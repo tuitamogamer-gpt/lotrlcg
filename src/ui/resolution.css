@@ -7,10 +7,16 @@
   box-shadow:
     0 25px 100px #28190ba6,
     inset 0 0 0 4px #b9985738;
-  width: min(880px, calc(100vw - 56px));
+  width: min(560px, calc(100vw - 56px));
   max-height: calc(100dvh - 60px);
   padding: 0;
   overflow: hidden;
+}
+.resolution-dialog.resolution-with-card {
+  width: min(680px, calc(100vw - 56px));
+}
+.resolution-dialog.resolution-summary {
+  width: min(640px, calc(100vw - 56px));
 }
 .resolution-dialog[open] {
   display: flex;
@@ -21,12 +27,17 @@
   backdrop-filter: blur(2px);
 }
 .resolution-header {
-  padding: 17px 26px 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: 5px;
+  column-gap: 14px;
+  padding: 12px 20px;
   border-bottom: 1px solid #ac8b5555;
   background: #ddc59a55;
   flex-shrink: 0;
 }
 .resolution-kicker {
+  grid-column: 1;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -36,28 +47,34 @@
   color: #805530;
 }
 .resolution-header > div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 7px;
+  display: contents;
   font-size: 11px;
   color: #836846;
 }
+.resolution-header > div > span {
+  grid-column: 1;
+}
 .resolution-header button {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   background: none;
   color: #795735;
   padding: 5px;
 }
 .resolution-body {
-  padding: 24px 26px;
+  padding: 16px 20px;
   overflow: auto;
   min-height: 0;
   scrollbar-width: thin;
   scrollbar-color: #b2915b #e2d0ae;
 }
 .resolution-body h2 {
-  font: 25px/1.4 var(--serif);
-  margin: 0 0 20px;
+  font: 21px/1.35 var(--serif);
+  margin: 0 0 12px;
   color: #50351f;
 }
 .resolution-body h2:focus {
@@ -65,8 +82,8 @@
 }
 .resolution-content.with-featured-card {
   display: grid;
-  grid-template-columns: minmax(180px, 245px) minmax(0, 1fr);
-  gap: 25px;
+  grid-template-columns: 174px minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
 }
 .resolution-card {
@@ -77,6 +94,9 @@
 }
 .resolution-card > img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 424 / 600;
+  object-fit: contain;
   display: block;
   border-radius: 9px;
   box-shadow: 0 7px 20px #36210e40;
@@ -87,26 +107,26 @@
   justify-content: center;
   gap: 6px;
   font-size: 10px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 .resolution-detail {
   font-size: 13px;
-  line-height: 1.8;
-  margin: 0 0 18px;
+  line-height: 1.65;
+  margin: 0 0 10px;
   color: #6d5134;
 }
 .resolution-rules {
-  padding: 16px 18px;
+  padding: 10px 12px;
   background: #fcf3df80;
   border: 1px solid #b5976066;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
 }
 .resolution-rules h3,
 .resolution-changes h3 {
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin: 0 0 10px;
+  margin: 0 0 7px;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -114,7 +134,7 @@
 }
 .resolution-rules > p {
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.65;
   white-space: pre-line;
   margin: 0;
   color: #533d27;
@@ -123,7 +143,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px;
-  margin: 0 0 18px;
+  margin: 0 0 12px;
 }
 .resolution-cards > button {
   min-width: 0;
@@ -163,7 +183,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(100px, auto);
   gap: 16px;
-  padding: 8px 0;
+  padding: 6px 0;
   border-bottom: 1px solid #a78a5733;
   font-size: 11px;
 }
@@ -200,7 +220,7 @@
   font-weight: 700;
 }
 .resolution-lines {
-  margin-top: 18px;
+  margin-top: 10px;
   padding-left: 11px;
   border-left: 2px solid #b68e4b55;
 }
@@ -223,8 +243,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 16px 26px;
+  gap: 14px;
+  padding: 10px 20px;
   background: #d6bd9155;
   border-top: 1px solid #a98a5555;
   flex-shrink: 0;
@@ -242,10 +262,11 @@
   font-size: 10px;
 }
 .redbook .resolution-continue {
-  min-width: 230px;
-  min-height: 54px;
+  min-width: 196px;
+  min-height: 46px;
+  padding: 9px 13px;
   justify-content: space-between;
-  gap: 20px;
+  gap: 14px;
   background: linear-gradient(#d6b77b, #b68b45);
   color: #392713;
   border: 1px solid #a57d3c;
@@ -369,19 +390,104 @@
     max-height: calc(100dvh - 36px);
   }
   .resolution-content.with-featured-card {
-    grid-template-columns: 190px minmax(0, 1fr);
+    grid-template-columns: 158px minmax(0, 1fr);
   }
   .resolution-body {
-    padding: 18px 24px;
+    padding: 14px 18px;
   }
   .resolution-body h2 {
     font-size: 21px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   .resolution-header {
-    padding-block: 12px;
+    padding-block: 10px;
   }
   .resolution-footer {
-    padding-block: 12px;
+    padding-block: 9px;
+  }
+}
+
+/* Dense summaries and action dialogs keep related information together. */
+@media (min-width: 1024px) {
+  .resolution-summary .resolution-cards {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+  .resolution-summary .resolution-changes dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+  .redbook .modal-compact {
+    max-width: min(480px, calc(100vw - 48px));
+    max-height: calc(100dvh - 48px);
+    padding: 18px 20px;
+  }
+  .modal-compact .modal-top {
+    top: -18px;
+    padding: 2px 0 10px;
+    margin-bottom: 14px;
+  }
+  .modal-compact .modal-top h2 {
+    font-size: 19px;
+    line-height: 1.35;
+  }
+  .modal-compact p {
+    margin: 10px 0;
+    line-height: 1.65;
+  }
+  .modal-compact .rules-text {
+    margin-top: 0;
+    line-height: 1.65 !important;
+  }
+  .modal-compact .field-label {
+    margin-top: 12px;
+  }
+  .modal-compact .field-label select {
+    margin-top: 6px;
+  }
+  .modal-compact .payment-heading {
+    font-size: 14px;
+    margin: 16px 0 6px;
+  }
+  .modal-compact .payment-row {
+    padding: 8px 0;
+  }
+  .modal-compact .choice-list {
+    margin-top: 12px;
+    gap: 6px;
+  }
+  .modal-compact .choice-list > button {
+    padding: 8px 10px;
+    gap: 11px;
+    min-height: 52px;
+  }
+  .modal-compact .choice-list > button > img {
+    width: 32px;
+    height: 44px;
+  }
+  .modal-compact .choice-list small {
+    margin-top: 3px;
+  }
+  .modal-compact .combat-target {
+    padding: 10px;
+    gap: 12px;
+  }
+  .modal-compact .combat-target span {
+    font-size: 16px;
+  }
+  .modal-compact .combat-target small {
+    margin-top: 4px;
+  }
+  .modal-compact .undefended {
+    padding: 10px 12px;
+    margin-top: 10px;
+  }
+  .modal-compact .modal-actions {
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .modal-compact .modal-actions > button {
+    min-height: 40px;
+    padding: 10px 15px;
   }
 }

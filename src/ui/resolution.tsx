@@ -38,6 +38,8 @@ export function ResolutionContent({
           <img
             src={imageUrl(card(featured.code))}
             alt={card(featured.code).name}
+            width={424}
+            height={600}
           />
           <span>
             <Eye size={14} /> Open full card
@@ -154,7 +156,13 @@ export function ResolutionDialog({
   return (
     <dialog
       ref={ref}
-      className="resolution-dialog"
+      className={`resolution-dialog ${
+        (step.kind === "reveal" || step.kind === "shadow") && step.cards.length
+          ? "resolution-with-card"
+          : step.cards.length > 1 || step.changes.length > 7
+            ? "resolution-summary"
+            : "resolution-brief"
+      }`}
       aria-labelledby="resolution-title"
       aria-describedby="resolution-pause-note"
       onCancel={(e) => e.preventDefault()}

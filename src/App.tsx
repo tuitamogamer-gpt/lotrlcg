@@ -167,11 +167,13 @@ function Modal({
   children,
   onClose,
   wide = false,
+  compact = false,
 }: {
   title: string;
   children: ReactNode;
   onClose?: () => void;
   wide?: boolean;
+  compact?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -182,7 +184,7 @@ function Modal({
   return (
     <dialog
       ref={ref}
-      className={`modal ${wide ? "modal-wide" : ""}`}
+      className={`modal ${wide ? "modal-wide" : ""} ${compact ? "modal-compact" : ""}`}
       onCancel={(e) => {
         if (!onClose) e.preventDefault();
         else onClose();
@@ -2277,7 +2279,7 @@ export default function App() {
         />
       )}
       {restart && (
-        <Modal title="A new journey?" onClose={() => setRestart(false)}>
+        <Modal title="A new journey?" onClose={() => setRestart(false)} compact>
           <p>
             Your current saved adventure will be replaced. You can export it
             first to keep a copy.
@@ -2324,7 +2326,7 @@ export default function App() {
         />
       )}
       {game && game.choice && !game.flow?.pending && page === "table" && (
-        <Modal title={game.choice.title}>
+        <Modal title={game.choice.title} compact>
           {game.table && (
             <div className="decision-owner">
               <Crown size={16} /> {seatName(game, activeSeat(game))}’s decision
@@ -2349,7 +2351,11 @@ export default function App() {
         </Modal>
       )}
       {claimId && game && (
-        <Modal title="Claim an objective" onClose={() => setClaimId(null)}>
+        <Modal
+          title="Claim an objective"
+          onClose={() => setClaimId(null)}
+          compact
+        >
           <p>
             Raise your threat by 2 and attach this objective to a hero. It
             counts toward that hero’s two restricted attachments.
@@ -2380,6 +2386,7 @@ export default function App() {
         <Modal
           title={`Play ${name(playCard)}`}
           onClose={() => setPlayCard(null)}
+          compact
         >
           <p className="rules-text">{plain(card(playCard.code).text)}</p>
           {needsTarget(playCard) && (
@@ -2516,6 +2523,7 @@ export default function App() {
               : "Choose your attackers"
           }
           onClose={() => setCombatEnemy(null)}
+          compact
         >
           <div className="combat-target">
             <Sword size={25} />
