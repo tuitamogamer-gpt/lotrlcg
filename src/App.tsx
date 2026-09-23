@@ -62,12 +62,38 @@ import {
   stageInfo,
   stagingThreat,
   stats,
-  validateSave,
+  restoreSave,
+  continueCampaign,
+  retryAdventure,
+  canFight,
+  objectiveFree,
+  newCampaign,
 } from "./game/engine";
-import type { Action, Card, GameState, Unit } from "./game/types";
+import type {
+  Action,
+  Card,
+  GameState,
+  Unit,
+  ScenarioId,
+  PlayMode,
+} from "./game/types";
+import { SCENARIOS, scenario, OBJECTIVES } from "./game/scenarios";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
+const CAMPAIGN_KEY = "there-and-back-again.campaign.v1";
+const MODE_KEY = "there-and-back-again.mode.v1";
+const readMode = (): PlayMode => {
+  try {
+    return localStorage.getItem(MODE_KEY) === "campaign"
+      ? "campaign"
+      : "normal";
+  } catch {
+    return "normal";
+  }
+};
+const activeSaveKey = () =>
+  readMode() === "campaign" ? CAMPAIGN_KEY : SAVE_KEY;
 type Page = "adventures" | "library" | "fellowship" | "guide" | "table";
 declare global {
   interface Window {
@@ -75,10 +101,10 @@ declare global {
     advanceTime: (ms: number) => Promise<void>;
   }
 }
-const readSave = () => {
+const readSave = (key = SAVE_KEY) => {
   try {
-    const s = JSON.parse(localStorage.getItem(SAVE_KEY) ?? "null");
-    return validateSave(s) ? s : null;
+    const s = JSON.parse(localStorage.getItem(key) ?? "null");
+    return restoreSave(s);
   } catch {
     return null;
   }
@@ -299,10 +325,42 @@ function Stats({ s, u }: { s: GameState; u: Unit }) {
 export default function App() {
   const reducedMotion = useReducedMotion();
   const [page, setPage] = useState<Page>("adventures");
-  const [game, setGame] = useState<GameState | null>(readSave);
+  const [game, setGame] = useState<GameState | null>(() =>
+    readSave(activeSaveKey()),
+  );
+  const [playMode, setPlayMode] = useState<PlayMode>(readMode);
+  const [selectedScenario, setSelectedScenario] = useState<ScenarioId>(
+    () => readSave(activeSaveKey())?.scenarioId ?? "mirkwood",
+  );
+  const [interlude, setInterlude] = useState(false);
+  const [nextHeroes, setNextHeroes] = useState<string[]>([]);
+  const [nextDeck, setNextDeck] = useState("leadership");
+  const [includeSupport, setIncludeSupport] = useState(true);
+  const [claimId, setClaimId] = useState<string | null>(null);
+  const quest = scenario(
+    playMode === "campaign"
+      ? (game?.scenarioId ?? "mirkwood")
+      : selectedScenario,
+  );
+  const resumable =
+    game && (playMode === "campaign" || game.scenarioId === selectedScenario);
+  const switchMode = (mode: PlayMode) => {
+    if (mode === playMode) return;
+    const saved = readSave(mode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY);
+    setPlayMode(mode);
+    setGame(saved);
+    setSelectedScenario(saved?.scenarioId ?? "mirkwood");
+    if (saved && STARTERS.some((d) => d.id === saved.deckId))
+      setSelectedDeck(saved.deckId);
+    setHistory([]);
+  };
   const [selectedDeck, setSelectedDeck] = useState(readDeckId);
   const starter = STARTERS.find((d) => d.id === selectedDeck)!;
   const deck = starter.cards;
+  const displayHeroes =
+    playMode === "campaign" && game?.campaign
+      ? game.campaign.heroes
+      : starter.heroes;
   const [detail, setDetail] = useState<Card | null>(null);
   const [toast, setToast] = useState("");
   const [restart, setRestart] = useState(false);
@@ -320,6 +378,13 @@ export default function App() {
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
   useEffect(() => {
+    try {
+      localStorage.setItem(MODE_KEY, playMode);
+    } catch {
+      /* local mode still works */
+    }
+  }, [playMode]);
+  useEffect(() => {
     if (!toast) return;
     const t = setTimeout(() => setToast(""), 4500);
     return () => clearTimeout(t);
@@ -327,7 +392,10 @@ export default function App() {
   useEffect(() => {
     if (game)
       try {
-        localStorage.setItem(SAVE_KEY, JSON.stringify(game));
+        localStorage.setItem(
+          game.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY,
+          JSON.stringify(game),
+        );
       } catch {
         notify(
           "The game is playable, but browser storage is full. Export your save to keep it.",
@@ -346,10 +414,16 @@ export default function App() {
       JSON.stringify(
         game && page === "table"
           ? publicState(game)
-          : { mode: page, savedGame: !!game, cardCount: 1315 },
+          : {
+              mode: page,
+              playMode,
+              scenario: quest.id,
+              savedGame: !!game,
+              cardCount: 1315,
+            },
       );
     window.advanceTime = () => Promise.resolve();
-  }, [game, page]);
+  }, [game, page, playMode, quest.id]);
   const chime = () => {
     if (!sound) return;
     try {
@@ -385,15 +459,63 @@ export default function App() {
   };
   const start = () => {
     try {
-      const s = createGame(Date.now(), deck, starter.heroes, starter.id);
+      const s = createGame(Date.now(), deck, starter.heroes, starter.id, {
+        scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
+        playMode,
+        ...(playMode === "campaign" &&
+        game?.campaign?.completed.length === 3 &&
+        game.campaign.mendorSaved
+          ? { campaign: newCampaign(starter.heroes, true) }
+          : {}),
+      });
       setGame(s);
       setPage("table");
       setRestart(false);
       setHistory([]);
       setCombatEnemy(null);
+      setInterlude(false);
     } catch (e) {
       notify((e as Error).message);
       setPage("fellowship");
+    }
+  };
+  const prepareNextChapter = () => {
+    if (!game?.campaign) return;
+    const c = game.campaign;
+    const picked = c.heroes.filter((h) => !c.fallen.includes(h));
+    for (const h of playerCards.filter((h) => h.type_code === "hero"))
+      if (
+        picked.length < 3 &&
+        !picked.includes(h.code) &&
+        !c.fallen.includes(h.code)
+      )
+        picked.push(h.code);
+    setNextHeroes(picked);
+    setNextDeck(game.deckId);
+    setIncludeSupport(true);
+    setInterlude(true);
+  };
+  const advanceCampaign = () => {
+    if (!game) return;
+    try {
+      const next = continueCampaign(game, nextHeroes, nextDeck, includeSupport);
+      setGame(next);
+      setHistory([]);
+      setInterlude(false);
+      setCombatEnemy(null);
+      setSelectedDeck(nextDeck);
+    } catch (e) {
+      notify((e as Error).message);
+    }
+  };
+  const retry = () => {
+    if (!game) return;
+    try {
+      setGame(retryAdventure(game));
+      setHistory([]);
+      setCombatEnemy(null);
+    } catch (e) {
+      notify((e as Error).message);
     }
   };
   const nav = (p: Page) => {
@@ -435,17 +557,22 @@ export default function App() {
       new Blob([JSON.stringify(game, null, 2)], { type: "application/json" }),
     );
     a.href = url;
-    a.download = "mirkwood-adventure.json";
+    a.download =
+      game.playMode === "campaign"
+        ? "mirkwood-paths-campaign.json"
+        : `${game.scenarioId}-adventure.json`;
     a.click();
     URL.revokeObjectURL(url);
     notify("Adventure exported.");
   };
   const importSave = async (file: File) => {
     try {
-      const s = JSON.parse(await file.text());
-      if (!validateSave(s))
-        throw new Error("This is not a valid adventure save.");
+      const s = restoreSave(JSON.parse(await file.text()));
+      if (!s) throw new Error("This is not a valid adventure save.");
       setGame(s);
+      setPlayMode(s.playMode);
+      setSelectedScenario(s.scenarioId);
+      setSelectedDeck(s.deckId === "custom" ? "leadership" : s.deckId);
       setHistory([]);
       setPage("table");
       notify("Adventure restored.");
@@ -510,7 +637,9 @@ export default function App() {
               {game.status === "playing"
                 ? "Return to adventure"
                 : "View last adventure"}
-              <small>Round {game.round || 1} · Mirkwood</small>
+              <small>
+                Round {game.round || 1} · {scenario(game.scenarioId).shortName}
+              </small>
             </span>
             <CaretRight size={14} />
           </button>
@@ -541,7 +670,7 @@ export default function App() {
             <CaretRight size={12} />
             <strong>
               {page === "table"
-                ? "Passage Through Mirkwood"
+                ? scenario(game!.scenarioId).name
                 : page === "adventures"
                   ? "Adventures"
                   : page === "library"
@@ -588,26 +717,105 @@ export default function App() {
                 </p>
               </div>
               <span className="chapter-label">
-                <Diamond size={13} /> CHAPTER I
+                <Diamond size={13} /> CORE SET ·{" "}
+                {playMode === "campaign" ? "CAMPAIGN" : "3 QUESTS"}
               </span>
             </div>
-            <section className="adventure-hero">
+            <section className="mode-selection" aria-label="Choose game mode">
+              <div className="mode-tabs" role="group" aria-label="Game mode">
+                <button
+                  aria-pressed={playMode === "normal"}
+                  onClick={() => switchMode("normal")}
+                >
+                  <Compass size={19} />
+                  <span>
+                    Normal game<small>A standalone adventure</small>
+                  </span>
+                </button>
+                <button
+                  aria-pressed={playMode === "campaign"}
+                  onClick={() => switchMode("campaign")}
+                >
+                  <Books size={19} />
+                  <span>
+                    Campaign mode<small>One fellowship. Three chapters.</small>
+                  </span>
+                </button>
+              </div>
+              <p>
+                {playMode === "normal"
+                  ? "Choose any Core Set quest. Each adventure begins with a fresh fellowship."
+                  : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
+              </p>
+            </section>
+            <section
+              className="mission-selection"
+              aria-label="Core Set missions"
+            >
+              {SCENARIOS.map((q) => {
+                const completed = game?.campaign?.completed.some(
+                  (c) => c.scenarioId === q.id,
+                );
+                return (
+                  <button
+                    key={q.id}
+                    className={`mission-card mission-${q.id} ${quest.id === q.id ? "selected" : ""}`}
+                    aria-pressed={quest.id === q.id}
+                    disabled={playMode === "campaign" && q.id !== quest.id}
+                    onClick={() => setSelectedScenario(q.id)}
+                  >
+                    <span className="mission-number">
+                      {completed ? <Check size={23} /> : q.chapter}
+                    </span>
+                    <span>
+                      <small>
+                        {completed
+                          ? "CHAPTER COMPLETE"
+                          : `DIFFICULTY ${q.difficulty} / 10`}
+                      </small>
+                      <strong>{q.name}</strong>
+                      <em>{q.tagline}</em>
+                    </span>
+                    {quest.id === q.id && <Diamond size={14} weight="fill" />}
+                  </button>
+                );
+              })}
+            </section>
+            {playMode === "campaign" && game?.campaign && (
+              <CampaignJournal game={game} inspect={setDetail} />
+            )}
+            <section className={`adventure-hero adventure-${quest.id}`}>
               <div className="forest-bg" />
               <Ambient />
               <div className="hero-copy">
                 <div className="eyebrow">
-                  <span /> THE SHADOWS OF MIRKWOOD
+                  <span />{" "}
+                  {playMode === "campaign"
+                    ? `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
+                    : quest.tagline.toUpperCase()}
                 </div>
                 <h2>
-                  Into the heart
-                  <br />
-                  of <em>Mirkwood.</em>
+                  {quest.id === "mirkwood" ? (
+                    <>
+                      Into the heart
+                      <br />
+                      of <em>Mirkwood.</em>
+                    </>
+                  ) : quest.id === "anduin" ? (
+                    <>
+                      Along the
+                      <br />
+                      <em>great river.</em>
+                    </>
+                  ) : (
+                    <>
+                      Escape from
+                      <br />
+                      <em>Dol Guldur.</em>
+                    </>
+                  )}
                 </h2>
-                <p>
-                  Beyond the familiar paths, an ancient
-                  <br className="desktop-break" /> darkness stirs. Your journey
-                  begins here.
-                </p>
+                <p>{quest.description}</p>
                 <label className="starter-select">
                   YOUR FELLOWSHIP
                   <select
@@ -626,25 +834,37 @@ export default function App() {
                   className="primary hero-cta"
                   id="start-btn"
                   onClick={() =>
-                    game?.status === "playing" ? nav("table") : start()
+                    resumable &&
+                    (game?.status === "playing" || playMode === "campaign")
+                      ? nav("table")
+                      : game
+                        ? setRestart(true)
+                        : start()
                   }
                 >
-                  {game?.status === "playing"
-                    ? "Continue adventure"
-                    : "Begin adventure"}
+                  {resumable &&
+                  (game?.status === "playing" || playMode === "campaign")
+                    ? game?.status === "playing"
+                      ? "Continue adventure"
+                      : "View campaign results"
+                    : playMode === "campaign"
+                      ? "Begin campaign"
+                      : "Begin adventure"}
                   <ArrowRight size={20} />
                 </button>
-                {game?.status === "playing" && (
+                {game && (
                   <button
                     className="new-adventure"
                     onClick={() => setRestart(true)}
                   >
-                    Start a new adventure <ArrowCounterClockwise size={13} />
+                    Start a new{" "}
+                    {playMode === "campaign" ? "campaign" : "adventure"}{" "}
+                    <ArrowCounterClockwise size={13} />
                   </button>
                 )}
               </div>
               <div className="hero-fan" aria-label="Your starting heroes">
-                {[starter.heroes[1], starter.heroes[0], starter.heroes[2]].map(
+                {[displayHeroes[1], displayHeroes[0], displayHeroes[2]].map(
                   (code, i) => (
                     <motion.button
                       initial={reducedMotion ? false : { opacity: 0, y: 30 }}
@@ -666,7 +886,7 @@ export default function App() {
               </div>
               <div className="hero-bottom">
                 <span>
-                  <Compass size={17} /> Passage Through Mirkwood
+                  <Compass size={17} /> {quest.name}
                 </span>
                 <span>
                   <UsersThree size={15} /> 1 player
@@ -675,11 +895,7 @@ export default function App() {
                   <Diamond size={14} /> Core Set
                 </span>
                 <span className="difficulty">
-                  Difficulty <i className="lit" />
-                  <i />
-                  <i />
-                  <i />
-                  <i />
+                  Difficulty {quest.difficulty} / 10
                 </span>
               </div>
             </section>
@@ -690,42 +906,30 @@ export default function App() {
                   <span>3 quest stages</span>
                 </div>
                 <div className="journey-stages">
-                  {[
-                    {
-                      n: "I",
-                      title: "Flies and Spiders",
-                      text: "Step beneath the trees",
-                      icon: Tree,
-                    },
-                    {
-                      n: "II",
-                      title: "A Fork in the Road",
-                      text: "Follow the hidden trail",
-                      icon: Compass,
-                    },
-                    {
-                      n: "III",
-                      title: "A Chosen Path",
-                      text: "Face what lies beyond",
-                      icon: Mountains,
-                    },
-                  ].map((q, i) => (
-                    <div className="journey-stage" key={q.n}>
-                      <div
-                        className={`stage-emblem ${i === 0 ? "current" : ""}`}
-                      >
-                        <q.icon size={22} />
+                  {quest.stages
+                    .map((stage, i) => ({
+                      n: ["I", "II", "III"][i],
+                      title: stage.name,
+                      text: stage.story,
+                      icon: [Tree, Compass, Mountains][i],
+                    }))
+                    .map((q, i) => (
+                      <div className="journey-stage" key={q.n}>
+                        <div
+                          className={`stage-emblem ${i === 0 ? "current" : ""}`}
+                        >
+                          <q.icon size={22} />
+                        </div>
+                        <div>
+                          <span>STAGE {q.n}</span>
+                          <h4>{q.title}</h4>
+                          <p>{q.text}</p>
+                        </div>
+                        {i < 2 && (
+                          <CaretRight className="stage-chevron" size={15} />
+                        )}
                       </div>
-                      <div>
-                        <span>STAGE {q.n}</span>
-                        <h4>{q.title}</h4>
-                        <p>{q.text}</p>
-                      </div>
-                      {i < 2 && (
-                        <CaretRight className="stage-chevron" size={15} />
-                      )}
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </section>
               <section className="fellowship-mini">
@@ -740,7 +944,7 @@ export default function App() {
                 </div>
                 <div className="fellowship-summary">
                   <div className="avatar-stack">
-                    {starter.heroes.map((code) => (
+                    {displayHeroes.map((code) => (
                       <div key={code}>
                         <Art c={card(code)} />
                       </div>
@@ -788,9 +992,7 @@ export default function App() {
               </div>
               <button
                 className="primary"
-                onClick={() =>
-                  game?.status === "playing" ? setRestart(true) : start()
-                }
+                onClick={() => (game ? setRestart(true) : start())}
               >
                 Begin with {starter.subtitle} <ArrowRight />
               </button>
@@ -873,8 +1075,8 @@ export default function App() {
               <div>
                 <h1>Every great journey starts here.</h1>
                 <p>
-                  The forest plays against you. Lead your fellowship through all
-                  three quest stages.
+                  Lead your fellowship through the Core Set, one quest at a
+                  time.
                 </p>
               </div>
               <BookOpen size={45} weight="thin" />
@@ -884,11 +1086,11 @@ export default function App() {
               <div>
                 <h2>Your first adventure</h2>
                 <p>
-                  Passage Through Mirkwood is ready for solo play. Choose
-                  Leadership, Tactics, Spirit, or Lore. Each original learning
-                  deck includes its three heroes and 30 cards, including one
-                  Gandalf. Win by finishing the final quest; lose if threat
-                  reaches 50 or all your heroes fall.
+                  All three Core Set quests are ready for solo play in normal or
+                  campaign mode. Choose Leadership, Tactics, Spirit, or Lore.
+                  Each original learning deck includes its three heroes and 30
+                  cards, including one Gandalf. Win by finishing the final
+                  quest; lose if threat reaches 50 or all your heroes fall.
                 </p>
                 <button
                   className="primary"
@@ -899,6 +1101,35 @@ export default function App() {
                 </button>
               </div>
             </div>
+            <section className="guide-note">
+              <h2>Choose your journey</h2>
+              <p>
+                <strong>Normal game:</strong> select any of the three missions
+                for a fresh, standalone adventure.{" "}
+                <strong>Campaign mode:</strong> follow Mirkwood Paths in order.
+                After a victory, select Continue campaign to prepare the next
+                chapter with your earned boons and burdens.
+              </p>
+              <p>
+                The campaign log records fallen heroes, scores, permanent cards,
+                and the hero captured in Dol Guldur. Replacing a hero adds +1 to
+                your starting threat in later chapters. You may change one
+                surviving hero between quests and replace any fallen heroes.
+                Choose whether to add Mendor’s Support to your next deck.
+              </p>
+              <p>
+                Keep Mendor alive: losing him ends the first two campaign
+                quests. In Dol Guldur, claiming an unguarded objective frees
+                Mendor; placing progress on stage two rescues your hero. Claim
+                objectives from the staging area after clearing their guards.
+              </p>
+              <p>
+                Normal games and campaigns save separately on this device. Retry
+                this quest restarts a failed chapter with the campaign log from
+                before that quest. Export a save to keep additional adventures
+                or move to another device.
+              </p>
+            </section>
             <div className="guide-steps">
               {[
                 {
@@ -950,17 +1181,18 @@ export default function App() {
             <section className="guide-note">
               <h2>A living adventure</h2>
               <p>
-                This first version scripts the original 36-card Mirkwood
-                encounter deck, both final quest branches, and all 73 original
-                Core Set player-card definitions across four starter decks.
-                Multiplayer, campaign mode, other scenarios, and other
-                player-card abilities are not implemented. The library includes
-                the wider RingsDB player-card catalog for browsing.
+                This version scripts all three Core Set quests, their encounter
+                decks, the Mirkwood Paths campaign, and all 73 original Core Set
+                player-card definitions across four starter decks. Multiplayer,
+                expert campaign mode, expansion scenarios, and other player-card
+                abilities are not implemented. The library includes the wider
+                RingsDB player-card catalog for browsing.
               </p>
               <p>
-                Some optional responses are presented in a fixed order. All
-                selected effects resolve through visible decision prompts. Undo
-                is available for local solo play; it can reveal hidden
+                Some optional responses resolve automatically or in a fixed
+                order, and intermediate attack action windows are simplified.
+                Targeted effects, Valor, and cancellations use decision prompts.
+                Undo is available for local solo play; it can reveal hidden
                 information.
               </p>
               <div className="guide-links">
@@ -1024,7 +1256,12 @@ export default function App() {
                 <button className="text-link" onClick={() => nav("adventures")}>
                   <ArrowLeft size={14} /> Adventures
                 </button>
-                <h1>Passage Through Mirkwood</h1>
+                <h1>{scenario(game.scenarioId).name}</h1>
+                <span className="game-mode-label">
+                  {game.playMode === "campaign"
+                    ? "Mirkwood Paths · Campaign"
+                    : "Normal game"}
+                </span>
               </div>
               <div className="table-tools">
                 <span className="save-status">
@@ -1054,6 +1291,34 @@ export default function App() {
                 </button>
               </div>
             </div>
+            {(game.prisoner || game.captiveMendor) && (
+              <div className="prisoner-banner">
+                <Shield size={22} />
+                <div>
+                  <strong>
+                    {game.prisoner
+                      ? `${name(game.prisoner)} is imprisoned`
+                      : "The prisoner is free"}
+                  </strong>
+                  <p>
+                    {game.prisoner
+                      ? "This hero cannot act or collect resources. Add progress to stage 2 to rescue them."
+                      : ""}
+                    {game.captiveMendor
+                      ? " Claim your first objective to free Mendor."
+                      : ""}
+                  </p>
+                </div>
+                {game.prisoner && (
+                  <button
+                    className="text-link"
+                    onClick={() => setDetail(card(game.prisoner!.code))}
+                  >
+                    Inspect hero
+                  </button>
+                )}
+              </div>
+            )}
             <div className="round-strip">
               <div className="round-number">
                 <span>ROUND</span>
@@ -1109,33 +1374,41 @@ export default function App() {
                         u={u}
                         inspect={() => setDetail(card(u.code))}
                         action={
-                          game.phase === "travel" &&
-                          card(u.code).type_code === "location" &&
-                          !game.activeLocation
-                            ? () => dispatch({ type: "TRAVEL", id: u.id })
-                            : game.phase === "encounter" &&
-                                card(u.code).type_code === "enemy" &&
-                                !game.optionalEngagement
-                              ? () => dispatch({ type: "ENGAGE", id: u.id })
-                              : game.phase === "attack" &&
+                          OBJECTIVES.includes(u.code) &&
+                          game.phase !== "setup" &&
+                          objectiveFree(game, u)
+                            ? () => setClaimId(u.id)
+                            : game.phase === "travel" &&
+                                card(u.code).type_code === "location" &&
+                                !game.activeLocation
+                              ? () => dispatch({ type: "TRAVEL", id: u.id })
+                              : game.phase === "encounter" &&
                                   card(u.code).type_code === "enemy" &&
-                                  !u.attacked &&
-                                  game.heroes.some(
-                                    (h) => h.code === "01009" && !h.exhausted,
-                                  )
-                                ? () => {
-                                    setCombatEnemy(u.id);
-                                    setAttackers([]);
-                                    setDefender("");
-                                  }
-                                : undefined
+                                  !game.optionalEngagement
+                                ? () => dispatch({ type: "ENGAGE", id: u.id })
+                                : game.phase === "attack" &&
+                                    card(u.code).type_code === "enemy" &&
+                                    !u.attacked &&
+                                    game.heroes.some(
+                                      (h) => h.code === "01009" && !h.exhausted,
+                                    )
+                                  ? () => {
+                                      setCombatEnemy(u.id);
+                                      setAttackers([]);
+                                      setDefender("");
+                                    }
+                                  : undefined
                         }
                         actionLabel={
-                          card(u.code).type_code === "location"
-                            ? "Travel here"
-                            : game.phase === "attack"
-                              ? "Dúnhere attack"
-                              : "Engage"
+                          OBJECTIVES.includes(u.code)
+                            ? objectiveFree(game, u)
+                              ? "Claim · +2 threat"
+                              : "Guarded"
+                            : card(u.code).type_code === "location"
+                              ? "Travel here"
+                              : game.phase === "attack"
+                                ? "Dúnhere attack"
+                                : "Engage"
                         }
                       />
                     ))}
@@ -1154,11 +1427,13 @@ export default function App() {
                   <div className="quest-description">
                     <span>
                       QUEST {game.stage} ·{" "}
-                      {game.branch === "unknown"
-                        ? "THE FOREST PATH"
-                        : game.branch === "spider"
-                          ? "THE SPIDER’S LAIR"
-                          : "THE WAY OUT"}
+                      {game.scenarioId !== "mirkwood"
+                        ? scenario(game.scenarioId).shortName.toUpperCase()
+                        : game.branch === "unknown"
+                          ? "THE FOREST PATH"
+                          : game.branch === "spider"
+                            ? "THE SPIDER’S LAIR"
+                            : "THE WAY OUT"}
                     </span>
                     <h2>{stageInfo(game).name}</h2>
                     <p>{stageInfo(game).story}</p>
@@ -1517,6 +1792,34 @@ export default function App() {
           </div>
         </Modal>
       )}
+      {claimId && game && (
+        <Modal title="Claim an objective" onClose={() => setClaimId(null)}>
+          <p>
+            Raise your threat by 2 and attach this objective to a hero. It
+            counts toward that hero’s two restricted attachments.
+          </p>
+          <div className="choice-list">
+            {game.heroes.map((h) => (
+              <button
+                key={h.id}
+                disabled={
+                  h.attachments.filter((a) =>
+                    card(a.code).text?.includes("Restricted"),
+                  ).length >= 2
+                }
+                onClick={() => {
+                  if (dispatch({ type: "CLAIM", id: claimId, heroId: h.id }))
+                    setClaimId(null);
+                }}
+              >
+                <Art c={card(h.code)} />
+                <span>{name(h)}</span>
+                <CaretRight />
+              </button>
+            ))}
+          </div>
+        </Modal>
+      )}
       {game && playCard && (
         <Modal
           title={`Play ${name(playCard)}`}
@@ -1671,6 +1974,7 @@ export default function App() {
               .filter(
                 (u) =>
                   !u.exhausted &&
+                  canFight(u) &&
                   (!game.staging.some((e) => e.id === combatEnemy) ||
                     u.code === "01009"),
               )
@@ -1776,7 +2080,98 @@ export default function App() {
           </div>
         </Modal>
       )}
-      {game && game.status !== "playing" && page === "table" && (
+      {interlude && game?.campaign && (
+        <Modal
+          title="Prepare the next chapter"
+          onClose={() => setInterlude(false)}
+        >
+          <p>
+            Continue to{" "}
+            <strong>{SCENARIOS[game.campaign.completed.length]?.name}</strong>.
+            Heroes recover their damage and begin with a fresh deck. Each
+            replaced hero adds +1 to your permanent starting threat penalty.
+          </p>
+          <div className="interlude-heroes">
+            {nextHeroes.map((code, i) => (
+              <label className="field-label" key={i}>
+                Hero {i + 1}
+                <select
+                  aria-label={`Campaign hero ${i + 1}`}
+                  value={code}
+                  onChange={(e) =>
+                    setNextHeroes((h) =>
+                      h.map((old, j) => (i === j ? e.target.value : old)),
+                    )
+                  }
+                >
+                  {playerCards
+                    .filter((c) => c.type_code === "hero")
+                    .map((c) => (
+                      <option
+                        key={c.code}
+                        value={c.code}
+                        disabled={
+                          game.campaign!.fallen.includes(c.code) ||
+                          (nextHeroes.includes(c.code) && c.code !== code)
+                        }
+                      >
+                        {c.name}
+                        {game.campaign!.fallen.includes(c.code)
+                          ? " · fallen"
+                          : ""}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            ))}
+          </div>
+          <label className="field-label">
+            Player deck
+            <select
+              aria-label="Campaign player deck"
+              value={nextDeck}
+              onChange={(e) => setNextDeck(e.target.value)}
+            >
+              {STARTERS.map((d) => (
+                <option value={d.id} key={d.id}>
+                  {d.subtitle} · {d.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="support-toggle">
+            <input
+              type="checkbox"
+              checked={includeSupport}
+              onChange={(e) => setIncludeSupport(e.target.checked)}
+            />{" "}
+            Add earned Mendor’s Support to the deck
+          </label>
+          {game.campaign.prisoner && (
+            <p className="campaign-note">
+              The recorded prisoner, {card(game.campaign.prisoner).name}, must
+              stay in your fellowship.
+            </p>
+          )}
+          <p className="campaign-note">
+            Starting threat penalty: +
+            {game.campaign.threatPenalty +
+              game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
+                .length}
+            . You may replace fallen heroes and voluntarily change one other
+            hero.
+          </p>
+          <div className="modal-actions">
+            <button className="secondary" onClick={() => setInterlude(false)}>
+              Back
+            </button>
+            <button className="primary" onClick={advanceCampaign}>
+              Begin next chapter <ArrowRight />
+            </button>
+          </div>
+        </Modal>
+      )}
+      {game && game.status !== "playing" && page === "table" && !interlude && (
         <Modal
           title={
             game.status === "won"
@@ -1792,7 +2187,9 @@ export default function App() {
             )}
             <h2>
               {game.status === "won"
-                ? "Mirkwood lies behind you."
+                ? game.campaign?.completed.length === 3
+                  ? "Your tale is complete."
+                  : `${scenario(game.scenarioId).shortName} lies behind you.`
                 : "Every journey leaves a story."}
             </h2>
             <p>{game.reason}</p>
@@ -1809,9 +2206,36 @@ export default function App() {
                 </span>
               )}
             </div>
-            <button className="primary" onClick={start}>
-              Begin another journey <ArrowRight />
-            </button>
+            {game.campaign && (
+              <CampaignJournal game={game} inspect={setDetail} />
+            )}
+            {game.campaign &&
+            game.status === "won" &&
+            game.campaign.completed.length < 3 ? (
+              <button className="primary" onClick={prepareNextChapter}>
+                Continue campaign <ArrowRight />
+              </button>
+            ) : game.status === "lost" ? (
+              <button className="primary" onClick={retry}>
+                Retry this quest <ArrowCounterClockwise />
+              </button>
+            ) : (
+              <button
+                className="primary"
+                onClick={() => {
+                  nav("adventures");
+                }}
+              >
+                Choose another adventure <ArrowRight />
+              </button>
+            )}
+            {game.campaign?.completed.length === 3 && (
+              <p className="campaign-note">
+                {game.campaign.mendorSaved
+                  ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
+                  : "The campaign is complete, but Mendor did not survive the escape."}
+              </p>
+            )}
             <button className="text-link" onClick={() => nav("adventures")}>
               Return to adventures
             </button>
@@ -1819,6 +2243,108 @@ export default function App() {
         </Modal>
       )}
     </div>
+  );
+}
+
+function CampaignJournal({
+  game,
+  inspect,
+}: {
+  game: GameState;
+  inspect: (c: Card) => void;
+}) {
+  const c = game.campaign;
+  if (!c) return null;
+  return (
+    <section className="campaign-journal" aria-label="Campaign log">
+      <div className="section-line">
+        <h3>
+          <Books size={18} /> Mirkwood Paths
+        </h3>
+        <span>{c.completed.length} / 3 chapters</span>
+      </div>
+      <ol>
+        {SCENARIOS.map((q) => {
+          const result = c.completed.find((r) => r.scenarioId === q.id);
+          return (
+            <li
+              key={q.id}
+              className={
+                result ? "complete" : q.id === game.scenarioId ? "current" : ""
+              }
+            >
+              <span>{result ? <Check size={15} /> : q.chapter}</span>
+              <strong>{q.name}</strong>
+              <small>
+                {result
+                  ? `Score ${result.score}`
+                  : q.id === game.scenarioId
+                    ? "Current chapter"
+                    : "Ahead"}
+              </small>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="campaign-pool">
+        <div>
+          <span>BOONS</span>
+          {c.boons.length ? (
+            [...new Set(c.boons)].map((code) => (
+              <button key={code} onClick={() => inspect(card(code))}>
+                <Sparkle size={13} />
+                {card(code).name}
+                {c.boons.filter((x) => x === code).length > 1
+                  ? ` ×${c.boons.filter((x) => x === code).length}`
+                  : ""}
+              </button>
+            ))
+          ) : (
+            <small>Earned as your story unfolds</small>
+          )}
+        </div>
+        <div>
+          <span>BURDENS</span>
+          {c.burdens.length ? (
+            [...new Set(c.burdens)].map((code) => (
+              <button key={code} onClick={() => inspect(card(code))}>
+                <Eye size={13} />
+                {card(code).name}
+                {c.burdens.filter((x) => x === code).length > 1
+                  ? ` ×${c.burdens.filter((x) => x === code).length}`
+                  : ""}
+              </button>
+            ))
+          ) : (
+            <small>No burdens recorded</small>
+          )}
+        </div>
+      </div>
+      {Object.entries(c.permanent).map(([hero, boons]) => (
+        <p className="campaign-note" key={hero}>
+          {card(hero).name}: {boons.map((code) => card(code).name).join(", ")}
+        </p>
+      ))}
+      {c.prisoner && (
+        <p className="campaign-note">
+          Recorded prisoner: {card(c.prisoner).name}
+        </p>
+      )}
+      {c.fallen.length > 0 && (
+        <p className="campaign-note">
+          Fallen heroes: {c.fallen.map((h) => card(h).name).join(", ")}
+        </p>
+      )}
+      <footer>
+        <span>
+          Starting threat penalty <strong>+{c.threatPenalty}</strong>
+        </span>
+        <span>
+          Campaign score{" "}
+          <strong>{c.completed.reduce((sum, q) => sum + q.score, 0)}</strong>
+        </span>
+      </footer>
+    </section>
   );
 }
 
@@ -1837,7 +2363,9 @@ function phaseHelp(s: GameState) {
         ? "You already have an active location. Continue to the encounter phase."
         : "Travel to one location in staging, or stay where you are. Check its travel cost first.";
     case "encounter":
-      return "You may engage one enemy by choice. Then all enemies at or below your threat engage automatically.";
+      return s.scenarioId === "anduin" && s.stage === 2
+        ? "You may engage one enemy. Automatic engagement checks are skipped on the river."
+        : "You may engage one enemy by choice. Then all enemies at or below your threat engage automatically.";
     case "defense":
       return "Each enemy attacks once. Assign a ready defender; its defense reduces incoming damage.";
     case "attack":
@@ -1866,14 +2394,24 @@ function BoardCard({
         <Art c={c} />
         <span
           className="encounter-value"
-          title={c.type_code === "enemy" ? "Engagement cost" : "Quest points"}
+          title={
+            c.type_code === "objective"
+              ? "Objective"
+              : c.type_code === "enemy"
+                ? "Engagement cost"
+                : "Quest points"
+          }
         >
           {c.type_code === "enemy" ? (
             <Crosshair size={12} />
           ) : (
             <Compass size={12} />
           )}{" "}
-          {c.type_code === "enemy" ? c.engagement : c.quest}
+          {c.type_code === "objective"
+            ? "Objective"
+            : c.type_code === "enemy"
+              ? c.engagement
+              : c.quest}
         </span>
       </button>
       <div className="board-card-name">{name(u)}</div>
@@ -1894,6 +2432,13 @@ function BoardCard({
           <span className={u.damage ? "damaged" : ""}>
             <Heart />
             {(c.health ?? 0) - u.damage}
+          </span>
+        </div>
+      ) : c.type_code === "objective" ? (
+        <div className="enemy-stats">
+          <span>
+            <Shield />
+            {objectiveFree(s, u) ? "Unguarded" : "Guarded"}
           </span>
         </div>
       ) : (

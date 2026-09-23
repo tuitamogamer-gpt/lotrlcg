@@ -12,7 +12,7 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "tsx --test tests/*.test.ts",
     "sync:cards": "node scripts/sync-cards.mjs",
-    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs",
+    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs",
     "format": "prettier --write src tests scripts/*.mjs scripts/*.ts vite.config.ts",
     "check": "tsc -b"
   },

@@ -82,7 +82,15 @@ for (const d of STARTERS) {
 }
 test("scenario uses exact 36-card original encounter list", () =>
   assert.equal(
-    encounterCards.reduce((n, c) => n + (c.quantity ?? 0), 0),
+    encounterCards
+      .filter((c) =>
+        [
+          "Passage Through Mirkwood",
+          "Spiders of Mirkwood",
+          "Dol Guldur Orcs",
+        ].includes(c.encounter_set!),
+      )
+      .reduce((n, c) => n + (c.quantity ?? 0), 0),
     36,
   ));
 test("seeded shuffling is deterministic and inputs remain immutable", () => {

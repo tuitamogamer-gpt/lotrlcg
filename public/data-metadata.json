@@ -1,1 +1,30 @@
-{"catalog":{"url":"https://ringsdb.com/api/public/cards/","count":1315,"retrievedAt":"2026-09-23"},"core":{"url":"https://ringsdb.com/api/public/cards/core.json","count":73,"retrievedAt":"2026-09-23"}}
+{
+  "catalog": {
+    "url": "https://ringsdb.com/api/public/cards/",
+    "count": 1315,
+    "retrievedAt": "2026-09-23"
+  },
+  "core": {
+    "url": "https://ringsdb.com/api/public/cards/core.json",
+    "count": 73,
+    "retrievedAt": "2026-09-23"
+  },
+  "encounters": {
+    "url": "https://raw.githubusercontent.com/GeckoTH/Lord-of-the-Rings/master/o8g/Sets/Core%20Set/set.xml",
+    "definitions": 45,
+    "physicalCards": 84,
+    "retrievedAt": "2026-09-23",
+    "scenarios": {
+      "mirkwood": 36,
+      "anduin": 47,
+      "dol-guldur": 41
+    }
+  },
+  "campaign": {
+    "name": "Mirkwood Paths",
+    "chapters": 3,
+    "supportCardDefinitions": 7,
+    "url": "https://hallofbeorn-resources.s3.amazonaws.com/Images/LotR/Print-and-Play/core_set_campaign_cards.pdf",
+    "retrievedAt": "2026-09-23"
+  }
+}

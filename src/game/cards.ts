@@ -1,10 +1,14 @@
 import players from "../data/player-cards.json";
 import encounters from "../data/encounter-cards.json";
 import type { Card, Unit } from "./types";
+import { CAMPAIGN_CARDS, ORC_GUARD } from "./scenarios";
 export const playerCards = players as Card[];
 export const encounterCards = encounters as Card[];
 export const cards: Record<string, Card> = Object.fromEntries(
-  [...playerCards, ...encounterCards].map((c) => [c.code, c]),
+  [...playerCards, ...encounterCards, ...CAMPAIGN_CARDS, ORC_GUARD].map((c) => [
+    c.code,
+    c,
+  ]),
 );
 export const HEROES = ["01001", "01002", "01007"];
 export const DECK: Record<string, number> = {
@@ -80,7 +84,9 @@ export const STARTERS: StarterDeck[] = [
   },
 }));
 export const SCRIPTED = new Set(
-  [...playerCards, ...encounterCards].map((c) => c.code),
+  [...playerCards, ...encounterCards, ...CAMPAIGN_CARDS, ORC_GUARD].map(
+    (c) => c.code,
+  ),
 );
 export const card = (code: string): Card => {
   const c = cards[code];
@@ -88,11 +94,13 @@ export const card = (code: string): Card => {
   return c;
 };
 export const imageUrl = (c: Card) =>
-  c.pack_name === "Core Set" && cards[c.code]
-    ? `/cards/${c.code}.${c.sphere_code === "encounter" ? "jpg" : "png"}`
-    : c.imagesrc?.startsWith("http")
-      ? c.imagesrc
-      : `https://ringsdb.com${c.imagesrc ?? `/bundles/cards/${c.code}.png`}`;
+  c.imagesrc?.startsWith("/cards/")
+    ? c.imagesrc
+    : c.pack_name === "Core Set" && cards[c.code]
+      ? `/cards/${c.code}.${c.sphere_code === "encounter" ? "jpg" : "png"}`
+      : c.imagesrc?.startsWith("http")
+        ? c.imagesrc
+        : `https://ringsdb.com${c.imagesrc ?? `/bundles/cards/${c.code}.png`}`;
 export const name = (u: Unit) => card(u.code).name;
 export const plain = (s = "") =>
   s

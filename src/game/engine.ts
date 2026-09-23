@@ -6,7 +6,6 @@ import {
   DECK,
   SCRIPTED,
   encounterCards,
-  STAGES,
   STARTERS,
 } from "./cards";
 import type {
@@ -17,7 +16,11 @@ import type {
   GameState,
   Option,
   Unit,
+  ScenarioId,
+  PlayMode,
+  CampaignState,
 } from "./types";
+import { SCENARIOS, scenario, OBJECTIVES } from "./scenarios";
 
 export class RuleError extends Error {}
 function requireRule(ok: unknown, message: string): asserts ok {
@@ -111,6 +114,7 @@ export function stats(s: GameState, u: Unit) {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
+        (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
         u.attachments.filter((a) => a.code === "01027").length * 2 +
         u.attachments.filter((a) => a.code === "01055").length -
         u.attachments.filter((a) => a.code === "01071").length +
@@ -121,6 +125,7 @@ export function stats(s: GameState, u: Unit) {
     ),
     attack:
       (c.attack ?? 0) +
+      (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
       (u.tempAttack ?? 0) +
       (u.code === "01004" ? u.damage : 0) +
       u.attachments.filter((a) => a.code === "01041").length *
@@ -132,6 +137,7 @@ export function stats(s: GameState, u: Unit) {
           : 0),
     defense:
       (c.defense ?? 0) +
+      (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
       (u.tempDefense ?? 0) +
       (s.gondor && hasGondor(u) ? 1 : 0),
     health:
@@ -140,38 +146,51 @@ export function stats(s: GameState, u: Unit) {
   };
 }
 export const stagingThreat = (s: GameState) =>
-  s.staging.reduce(
-    (n, u) =>
-      n +
-      (u.suppressed
-        ? 0
-        : Math.max(
-            0,
-            (card(u.code).threat ?? 0) +
-              (u.tempThreat ?? 0) -
-              u.attachments.filter((a) => a.code === "01056").length,
-          )),
-    0,
-  );
+  s.threatModifier +
+  s.staging
+    .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
+    .reduce(
+      (n, u) =>
+        n +
+        (u.suppressed
+          ? 0
+          : Math.max(
+              0,
+              (card(u.code).threat ?? 0) +
+                (u.tempThreat ?? 0) -
+                u.attachments.filter((a) => a.code === "01056").length,
+            )),
+      0,
+    );
 export const questWill = (s: GameState) =>
   characters(s)
     .filter((u) => u.committed || s.committedIds.includes(u.id))
     .reduce((n, u) => n + stats(s, u).will, 0);
-export const stageInfo = (s: GameState) =>
-  s.stage < 3
-    ? STAGES[s.stage - 1]
-    : s.branch === "beorn"
-      ? {
-          name: "Beorn’s Path",
-          quest: 10,
-          story:
-            "Leave the forest behind. Ungoliant’s Spawn must not remain in play.",
-        }
-      : {
-          name: "Don’t Leave the Path!",
-          quest: 0,
-          story: "Find and defeat Ungoliant’s Spawn to escape Mirkwood.",
-        };
+export const stageInfo = (s: GameState) => {
+  if (s.scenarioId !== "mirkwood" || s.stage < 3)
+    return scenario(s.scenarioId).stages[s.stage - 1];
+  return s.branch === "beorn"
+    ? {
+        name: "Beorn’s Path",
+        quest: 10,
+        story:
+          "Leave the forest behind. Ungoliant’s Spawn must not remain in play.",
+      }
+    : {
+        name: "Don’t Leave the Path!",
+        quest: 0,
+        story: "Find and defeat Ungoliant’s Spawn to escape Mirkwood.",
+      };
+};
+export const canFight = (u: Unit) => !has(u, "01108");
+export const objectiveFree = (s: GameState, u: Unit) =>
+  OBJECTIVES.includes(u.code) && !units(s).some((x) => x.guarding === u.id);
+const objectiveCount = (s: GameState) =>
+  s.heroes
+    .flatMap((h) => h.attachments)
+    .filter((a) => OBJECTIVES.includes(a.code)).length;
+const inPlay = (s: GameState, code: string) =>
+  [...s.staging, ...s.engaged].some((u) => u.code === code);
 export const resources = (s: GameState, sphere?: string) =>
   s.heroes
     .filter(
@@ -220,6 +239,12 @@ function pay(s: GameState, c: Card, payment?: Record<string, number>) {
 function draw(s: GameState, count: number) {
   if (s.activeLocation?.code === "01095") {
     log(s, "Enchanted Stream prevents card draw.", "danger");
+    return;
+  }
+  if (count > 0 && s.shackles > 0) {
+    s.shackles--;
+    s.encounterDiscard.push("01105");
+    log(s, "Iron Shackles prevents this draw and is discarded.", "danger");
     return;
   }
   let n = 0;
@@ -282,24 +307,21 @@ function check(s: GameState) {
     s.choice = null;
     s.queue = [];
     log(s, s.reason, "danger");
-  } else if (
-    s.stage === 3 &&
-    s.branch === "beorn" &&
-    s.progress >= 10 &&
-    !s.staging.concat(s.engaged).some((u) => u.code === "01076")
-  )
-    win(s);
+  } else advanceQuest(s);
 }
 function win(s: GameState) {
+  if (s.status !== "playing") return;
   s.status = "won";
-  s.reason = "Your fellowship has passed safely through Mirkwood.";
+  s.reason =
+    s.scenarioId === "mirkwood"
+      ? "Your fellowship has passed safely through Mirkwood."
+      : s.scenarioId === "anduin"
+        ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+        : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
-  log(
-    s,
-    "Victory! The path opens, and the forest falls silent behind you.",
-    "chapter",
-  );
+  if (s.campaign) resolveCampaign(s);
+  log(s, `Victory! ${s.reason}`, "chapter");
 }
 function damage(s: GameState, id: string, value: number) {
   const u = get(s, id);
@@ -310,8 +332,19 @@ function damage(s: GameState, id: string, value: number) {
   if (u.damage >= stats(s, u).health) destroy(s, u);
   check(s);
 }
-function discardAttachment(s: GameState, u: Unit, a: Attachment) {
+function discardAttachment(
+  s: GameState,
+  u: Unit,
+  a: Attachment,
+  leaving = false,
+) {
+  if (!leaving && card(a.code).text?.includes("Permanent")) return;
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
+  if (OBJECTIVES.includes(a.code)) {
+    s.staging.push(make(s, a.code));
+    log(s, `${card(a.code).name} returns to staging, unclaimed.`);
+    return;
+  }
   (card(a.code).sphere_code === "encounter"
     ? s.encounterDiscard
     : s.discard
@@ -324,19 +357,46 @@ function destroy(s: GameState, u: Unit) {
     for (const h of s.heroes)
       for (const a of h.attachments) if (a.code === "01042") h.resources++;
   }
-  for (const a of [...u.attachments]) discardAttachment(s, u, a);
+  if (["ally", "hero"].includes(c.type_code)) {
+    s.threat += characters(s).reduce(
+      (n, h) => n + h.attachments.filter((a) => a.code === "rc138").length,
+      0,
+    );
+  }
+  for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (c.type_code === "enemy") {
     s.staging = s.staging.filter((x) => x.id !== u.id);
     s.engaged = s.engaged.filter((x) => x.id !== u.id);
     s.encounterDiscard.push(...u.shadows);
-    if (c.victory) s.victory += c.victory;
+    if (u.facedownCard) s.discard.push(u.facedownCard);
+    else if (u.code === "01115") {
+      s.encounterDeck.push(u.code);
+      shuffle(s, s.encounterDeck);
+    } else if (c.victory) s.victory += c.victory;
     else s.encounterDiscard.push(u.code);
+    if (u.code === "01102") s.nazgulDefeated = true;
+    if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
+      s.queue.push(fx("earnPermanent", { code: "rc133" }));
     log(s, `${c.name} is defeated.`, "good");
-    if (s.stage === 3 && s.branch === "spider" && u.code === "01076") win(s);
+    if (
+      s.scenarioId === "mirkwood" &&
+      s.stage === 3 &&
+      s.branch === "spider" &&
+      u.code === "01076"
+    )
+      win(s);
   } else {
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
-    s.discard.push(u.code);
+    if (u.code === "rc135") {
+      s.removed.push(u.code);
+      if (s.campaign && s.scenarioId !== "dol-guldur") {
+        s.status = "lost";
+        s.reason = "Mendor has left play. The campaign quest is lost.";
+        s.choice = null;
+        s.queue = [];
+      }
+    } else s.discard.push(u.code);
     if (c.type_code === "hero") s.fallenThreat += c.threat ?? 0;
     log(s, `${c.name} has fallen.`, "danger");
     if (c.type_code === "ally") s.queue.push(fx("valiant"));
@@ -351,7 +411,9 @@ function progressLocation(s: GameState, u: Unit, value: number) {
   log(s, `${name(u)} is explored.`, "good");
   if (s.activeLocation?.id === u.id) s.activeLocation = null;
   else s.staging = s.staging.filter((x) => x.id !== u.id);
-  s.encounterDiscard.push(u.code);
+  if (u.code === "01113") s.encounterDeck.unshift(u.code);
+  else if (card(u.code).victory) s.victory += card(u.code).victory!;
+  else s.encounterDiscard.push(u.code);
   for (const a of [...u.attachments]) discardAttachment(s, u, a);
   if (u.code === "01078") prepend(s, fx("mountainReward"));
 }
@@ -366,19 +428,65 @@ function progress(s: GameState, n: number) {
   }
   if (n <= 0 || s.status !== "playing") return;
   s.progress += n;
+  if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
+    rescuePrisoner(s);
   advanceQuest(s);
 }
 function advanceQuest(s: GameState) {
+  if (s.status !== "playing" || s.stageRevealing || s.phase === "setup") return;
   if (s.stage === 3) {
-    check(s);
+    if (
+      s.scenarioId === "anduin" &&
+      !s.queue.length &&
+      !s.choice &&
+      ![...s.staging, ...s.engaged].some(
+        (u) => card(u.code).type_code === "enemy",
+      )
+    )
+      win(s);
+    else if (
+      s.scenarioId === "dol-guldur" &&
+      s.progress >= 7 &&
+      s.nazgulDefeated &&
+      !inPlay(s, "01102")
+    )
+      win(s);
+    else if (
+      s.scenarioId === "mirkwood" &&
+      s.branch === "beorn" &&
+      s.progress >= 10 &&
+      !inPlay(s, "01076")
+    )
+      win(s);
     return;
   }
   if (s.progress < stageInfo(s).quest) return;
+  if (s.scenarioId === "anduin" && s.stage === 1 && inPlay(s, "01082")) return;
+  if (
+    s.scenarioId === "dol-guldur" &&
+    (objectiveCount(s) < (s.stage === 1 ? 1 : 3) ||
+      (s.stage === 2 && s.prisoner))
+  )
+    return;
+  const mendor = s.allies.find((u) => u.code === "rc135");
+  if (mendor) {
+    mendor.exhausted = false;
+    draw(s, 1);
+    log(
+      s,
+      "Mendor readies and you draw a card after defeating a quest stage.",
+      "good",
+    );
+  }
   s.stage = (s.stage + 1) as 2 | 3;
   s.progress = 0;
-  if (s.stage === 3) {
+  if (s.stage === 3 && s.scenarioId === "mirkwood") {
     s.branch = random(s) < 0.5 ? "beorn" : "spider";
     if (s.branch === "spider") prepend(s, fx("findSpider"));
+  }
+  if (s.stage === 3 && s.scenarioId === "anduin") {
+    s.stageRevealing = true;
+    prepend(s, fx("reveal"), fx("reveal"), fx("stageRevealed"));
   }
   log(s, `A new chapter: ${stageInfo(s).name}.`, "chapter");
 }
@@ -386,6 +494,7 @@ function phaseEnd(s: GameState) {
   s.faramir = 0;
   s.gondor = false;
   s.questDebuff = 0;
+  s.threatModifier = 0;
   s.standTogether = false;
   s.used = s.used.filter((k) => !k.startsWith("protector:"));
   for (const x of units(s)) {
@@ -424,7 +533,9 @@ function nextRound(s: GameState) {
   s.phase = "planning";
   s.used = [];
   s.peek = null;
-  for (const h of s.heroes) h.resources++;
+  s.alliesPlayed = 0;
+  s.mendorBoost = false;
+  for (const h of s.heroes) h.resources += has(h, "rc134") ? 2 : 1;
   draw(s, 1);
   log(s, `Round ${s.round} · Each hero gains 1 resource.`, "chapter");
 }
@@ -433,13 +544,14 @@ function engage(s: GameState, u: Unit) {
   s.engaged.push(u);
   log(s, `${name(u)} engages your fellowship.`, "danger");
   if (u.code === "01096") u.boost = 1;
+  if (u.code === "rc136") prepend(s, fx("chooseExhaust", { count: 2 }));
   if (u.code === "01075")
     prepend(s, fx("chooseDamage", { value: 5, flag: true }));
 }
 function returnTreachery(s: GameState, code: string) {
-  if (code !== "01080") s.encounterDiscard.push(code);
+  if (!["01080", "01105"].includes(code)) s.encounterDiscard.push(code);
 }
-function revealed(s: GameState, code: string) {
+function revealed(s: GameState, code: string, guarding?: string) {
   const c = card(code);
   s.lastReveal = code;
   log(
@@ -454,11 +566,16 @@ function revealed(s: GameState, code: string) {
   ) {
     thalin = true;
     if ((c.health ?? 0) <= 1) {
-      s.encounterDiscard.push(code);
+      const crow = make(s, code);
+      s.staging.push(crow);
+      destroy(s, crow);
       log(s, `Thalin defeats ${c.name} as it is revealed.`, "good");
       return;
     }
   }
+  const doomed = /Doomed (\d+)/.exec(c.text ?? "");
+  if (doomed) s.threat += Number(doomed[1]);
+  if (c.text?.includes("Surge.")) prepend(s, fx("reveal"));
   const when = (c.text ?? "").includes("When Revealed");
   const options: Option[] = [];
   if (
@@ -472,7 +589,12 @@ function revealed(s: GameState, code: string) {
       code: "01050",
       effects: [
         fx("spendEvent", { code: "01050" }),
-        fx("placeEncounter", { code, flag: true, value: thalin ? 1 : 0 }),
+        fx("placeEncounter", {
+          code,
+          flag: true,
+          value: thalin ? 1 : 0,
+          source: guarding,
+        }),
       ],
     });
   const eleanor = s.heroes.find((h) => h.code === "01008" && !h.exhausted);
@@ -483,7 +605,7 @@ function revealed(s: GameState, code: string) {
       code: "01008",
       effects: [
         fx("exhaust", { target: eleanor.id }),
-        fx("cancelReplace", { code }),
+        fx("cancelReplace", { code, source: guarding }),
       ],
     });
   if (options.length) {
@@ -496,26 +618,45 @@ function revealed(s: GameState, code: string) {
           id: "resolve",
           label: "Resolve the encounter",
           code,
-          effects: [fx("placeEncounter", { code, value: thalin ? 1 : 0 })],
+          effects: [
+            fx("placeEncounter", {
+              code,
+              value: thalin ? 1 : 0,
+              source: guarding,
+            }),
+          ],
         },
       ],
       c.text,
     );
     return;
   }
-  prepend(s, fx("placeEncounter", { code, value: thalin ? 1 : 0 }));
+  prepend(
+    s,
+    fx("placeEncounter", { code, value: thalin ? 1 : 0, source: guarding }),
+  );
 }
 function placeEncounter(
   s: GameState,
   code: string,
   cancel = false,
   initialDamage = 0,
+  guarding?: string,
 ) {
   const c = card(code);
   if (c.type_code !== "treachery") {
     const fresh = make(s, code);
     fresh.damage = initialDamage;
+    if (guarding && ["enemy", "location"].includes(c.type_code))
+      fresh.guarding = guarding;
     s.staging.push(fresh);
+    if (c.type_code === "objective") {
+      prepend(
+        s,
+        fx("guardObjective", { target: fresh.id }),
+        ...(guarding ? [fx("guardObjective", { target: guarding })] : []),
+      );
+    }
   }
   if (cancel) {
     if (c.type_code === "treachery") s.encounterDiscard.push(code);
@@ -523,6 +664,49 @@ function placeEncounter(
     return;
   }
   switch (code) {
+    case "01086":
+      s.progress = Math.max(0, s.progress - 4);
+      break;
+    case "01104":
+      s.threatModifier++;
+      break;
+    case "01105":
+      s.shackles++;
+      break;
+    case "01112":
+      prepend(s, fx("reveal"));
+      break;
+    case "01116":
+      if (s.threat >= 35)
+        for (const x of [...characters(s)]) damage(s, x.id, 1);
+      break;
+    case "01117":
+      s.threat += characters(s).filter((x) => !x.committed).length;
+      break;
+    case "01118":
+      s.staging
+        .filter((x) => card(x.code).type_code === "location")
+        .forEach((x) => (x.tempThreat = (x.tempThreat ?? 0) + 1));
+      if (s.threat >= 35) prepend(s, fx("discardHand"));
+      break;
+    case "rc137": {
+      const most = Math.max(...s.heroes.map((h) => h.damage));
+      choose(s, "Lingering Venom", [
+        {
+          id: "exhaust",
+          label: "Exhaust every damaged character",
+          effects: characters(s)
+            .filter((x) => x.damage > 0)
+            .map((x) => fx("exhaust", { target: x.id })),
+        },
+        ...opts(
+          s.heroes.filter((h) => h.damage === most),
+          (h) => [fx("damage", { target: h.id, value: 2 })],
+          () => "Deal 2 damage to this most-damaged hero",
+        ),
+      ]);
+      break;
+    }
     case "01074":
       prepend(s, fx("chooseExhaust", { count: 1 }));
       break;
@@ -557,9 +741,11 @@ function placeEncounter(
       break;
     case "01092":
       if (s.staging.length)
-        s.staging.forEach((u) => {
-          u.tempThreat = (u.tempThreat ?? 0) + 1;
-        });
+        s.staging
+          .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
+          .forEach((u) => {
+            u.tempThreat = (u.tempThreat ?? 0) + 1;
+          });
       else prepend(s, fx("reveal"));
       break;
     case "01093":
@@ -672,7 +858,11 @@ function attachmentChoice(s: GameState, defenderOnly = false) {
   const options: Option[] = [];
   for (const u of list.filter(Boolean))
     for (const a of u.attachments) {
-      if (card(a.code).sphere_code !== "encounter")
+      if (
+        !card(a.code).text?.includes("Permanent") &&
+        (card(a.code).sphere_code !== "encounter" ||
+          OBJECTIVES.includes(a.code))
+      )
         options.push({
           id: a.id,
           label: `${card(a.code).name} · ${name(u)}`,
@@ -689,6 +879,66 @@ function shadow(s: GameState, code: string) {
     c.defenderIds ?? (c.defenderId ? [c.defenderId] : [])
   ).some((id) => !!get(s, id));
   switch (code) {
+    case "01081":
+      prepend(s, fx("wolfAttack"));
+      break;
+    case "01085":
+      c.attackBonus += undefended ? 2 : 1;
+      break;
+    case "01086":
+      c.ignoreDefense = true;
+      break;
+    case "01103":
+      if (undefended)
+        for (const x of characters(s))
+          for (const a of [...x.attachments]) discardAttachment(s, x, a);
+      else attachmentChoice(s);
+      break;
+    case "01104":
+      s.threat += s.engaged.length;
+      break;
+    case "01105":
+      s.shackles++;
+      break;
+    case "01111":
+      s.progress = Math.max(0, s.progress - (undefended ? 3 : 1));
+      break;
+    case "01112": {
+      const enemy = get(s, c.enemyId),
+        extra = encounterDraw(s, true);
+      if (enemy && extra) {
+        enemy.shadows.push(extra);
+        prepend(s, fx("shadowReveal", { code: extra }));
+      }
+      break;
+    }
+    case "01115":
+      c.attackBonus += s.threat >= 35 ? 2 : 1;
+      break;
+    case "01117": {
+      const exhausted = s.allies.filter((a) => a.exhausted);
+      if (!exhausted.length) s.threat += 3;
+      else
+        choose(
+          s,
+          "Pursued by Shadow",
+          opts(exhausted, (a) => [fx("returnAlly", { target: a.id })]),
+        );
+      break;
+    }
+    case "rc136": {
+      const enemy = get(s, c.enemyId);
+      if (enemy) enemy.shadows.splice(enemy.shadows.indexOf(code), 1);
+      const swarm = make(s, code);
+      s.staging.push(swarm);
+      engage(s, swarm);
+      break;
+    }
+    case "rc137":
+      characters(s)
+        .filter((x) => x.damage > 0)
+        .forEach((x) => (x.exhausted = true));
+      break;
     case "01074":
       prepend(s, fx("chooseExhaust", { count: undefended ? 2 : 1 }));
       break;
@@ -767,11 +1017,11 @@ function handle(s: GameState, e: Effect) {
       spendEvent(s, e.code!);
       break;
     case "placeEncounter":
-      placeEncounter(s, e.code!, e.flag, e.value);
+      placeEncounter(s, e.code!, e.flag, e.value, e.source);
       break;
     case "reveal": {
       const code = encounterDraw(s);
-      if (code) revealed(s, code);
+      if (code) revealed(s, code, e.source);
       break;
     }
     case "engage":
@@ -1006,9 +1256,18 @@ function handle(s: GameState, e: Effect) {
       } else prepend(s, fx("shadowEffect", { code: e.code }));
       break;
     }
-    case "shadowEffect":
+    case "shadowEffect": {
+      const enemyId = s.combat?.enemyId,
+        before = s.queue.length;
       shadow(s, e.code!);
+      if (enemyId && get(s, enemyId)?.code === "01102" && card(e.code!).shadow)
+        s.queue.splice(
+          s.queue.length - before,
+          0,
+          fx("nazgulDiscard", { target: enemyId }),
+        );
       break;
+    }
     case "enemyDamage": {
       const c = s.combat;
       const enemy = get(s, c?.enemyId);
@@ -1019,7 +1278,10 @@ function handle(s: GameState, e: Effect) {
       const power = stats(s, enemy).attack + c.attackBonus;
       const amount = Math.max(
         0,
-        power - defenders.reduce((n, d) => n + stats(s, d).defense, 0),
+        power -
+          (c.ignoreDefense
+            ? 0
+            : defenders.reduce((n, d) => n + stats(s, d).defense, 0)),
       );
       if (defenders.length > 1) {
         if (amount)
@@ -1027,12 +1289,28 @@ function handle(s: GameState, e: Effect) {
             s,
             `Assign ${amount} combat damage`,
             opts(defenders, (d) => [
-              fx("damage", { target: d.id, value: amount }),
+              fx("combatDamage", {
+                target: d.id,
+                value: amount,
+                source: enemy.id,
+              }),
             ]),
             "Stand Together: all damage from this attack goes to one defender.",
           );
-      } else if (defenders.length) damage(s, defenders[0].id, amount);
-      else prepend(s, fx("chooseDamage", { value: power, flag: true }));
+      } else if (defenders.length) combatDamage(s, defenders[0], enemy, amount);
+      else
+        choose(
+          s,
+          `Assign ${power} damage`,
+          opts(s.heroes, (h) => [
+            fx("combatDamage", {
+              target: h.id,
+              source: enemy.id,
+              value: power,
+            }),
+          ]),
+          "All undefended damage goes to one hero.",
+        );
       log(s, `${name(enemy)} attacks for ${power}.`);
       break;
     }
@@ -1041,8 +1319,17 @@ function handle(s: GameState, e: Effect) {
       if (enemy) {
         enemy.attacked = true;
         if (enemy.code === "01090") enemy.resources++;
+        if (enemy.code === "01111") s.progress = Math.max(0, s.progress - 1);
+        if (s.combat?.returnToStaging || s.combat?.returnWolf) {
+          s.engaged = s.engaged.filter((x) => x.id !== enemy.id);
+          s.encounterDiscard.push(...enemy.shadows);
+          enemy.shadows = [];
+          if (s.combat.returnWolf) s.encounterDeck.unshift("01081");
+          else s.staging.push(enemy);
+        }
       }
-      s.combat = null;
+      s.combat = s.suspendedCombats.pop() ?? null;
+      if (s.combat) break;
       if (s.engaged.every((u) => u.attacked || u.feinted || has(u, "01069"))) {
         s.phase = "attack";
         for (const x of s.engaged) x.attacked = false;
@@ -1064,7 +1351,7 @@ function handle(s: GameState, e: Effect) {
         ]);
       break;
     case "refreshEnd":
-      s.threat++;
+      s.threat += s.activeLocation?.code === "01114" ? 2 : 1;
       s.phase = "refresh";
       log(s, "Refresh · Threat increases by 1.");
       check(s);
@@ -1094,6 +1381,12 @@ export function createGame(
   deck = DECK,
   heroCodes = HEROES,
   deckId = "custom",
+  options: {
+    scenarioId?: ScenarioId;
+    playMode?: PlayMode;
+    campaign?: CampaignState;
+    includeSupport?: boolean;
+  } = {},
 ): GameState {
   const list = Object.entries(deck).flatMap(
     ([code, n]) => Array(n).fill(code) as string[],
@@ -1103,7 +1396,7 @@ export function createGame(
     !!starter &&
     JSON.stringify(Object.entries(deck).sort()) ===
       JSON.stringify(Object.entries(starter.cards).sort()) &&
-    heroCodes.join() === starter.heroes.join();
+    (heroCodes.join() === starter.heroes.join() || !!options.campaign);
   requireRule(
     list.length === 50 || (list.length === 30 && original),
     "Use an original 30-card starter list or exactly 50 cards for a custom deck.",
@@ -1118,7 +1411,8 @@ export function createGame(
     requireRule(
       SCRIPTED.has(code) &&
         card(code).type_code !== "hero" &&
-        card(code).sphere_code !== "encounter",
+        card(code).sphere_code !== "encounter" &&
+        !code.startsWith("rc"),
       "Only scripted player cards can be included.",
     );
     requireRule(
@@ -1126,8 +1420,41 @@ export function createGame(
       "A deck can contain at most 3 copies of each card.",
     );
   }
+  const scenarioId = options.scenarioId ?? "mirkwood";
+  const playMode = options.playMode ?? "normal";
+  requireRule(
+    SCENARIOS.some((q) => q.id === scenarioId),
+    "Unknown Core Set scenario.",
+  );
+  requireRule(
+    playMode === "normal" || playMode === "campaign",
+    "Unknown game mode.",
+  );
+  requireRule(
+    playMode !== "campaign" || options.campaign || scenarioId === "mirkwood",
+    "A campaign begins in Mirkwood.",
+  );
+  const campaign =
+    playMode === "campaign"
+      ? structuredClone(options.campaign ?? newCampaign(heroCodes))
+      : null;
   const s: GameState = {
-    version: 1,
+    version: 2,
+    scenarioId,
+    playMode,
+    campaign,
+    startingHeroes: [...heroCodes],
+    prisoner: null,
+    captiveMendor: null,
+    nazgulDefeated: false,
+    stageRevealing: false,
+    alliesPlayed: 0,
+    threatModifier: 0,
+    shackles: 0,
+    mendorBoost: false,
+    campaignScarred: false,
+    includeSupport: options.includeSupport ?? true,
+    suspendedCombats: [],
     deckId,
     used: [],
     standTogether: false,
@@ -1146,9 +1473,13 @@ export function createGame(
     deck: list,
     discard: [],
     removed: [],
-    encounterDeck: encounterCards.flatMap((c) =>
-      Array(c.quantity).fill(c.code),
-    ),
+    encounterDeck: encounterCards
+      .filter((c) =>
+        (scenario(scenarioId).sets as readonly string[]).includes(
+          c.encounter_set ?? "",
+        ),
+      )
+      .flatMap((c) => Array(c.quantity).fill(c.code)),
     encounterDiscard: [],
     staging: [],
     engaged: [],
@@ -1174,14 +1505,48 @@ export function createGame(
   };
   s.heroes = heroCodes.map((code) => make(s, code));
   s.threat = s.heroes.reduce((n, h) => n + (card(h.code).threat ?? 0), 0);
-  shuffle(s, s.deck);
-  for (const code of ["01096", "01099"]) {
-    s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
-    s.staging.push(make(s, code));
+  if (campaign) {
+    s.threat += campaign.threatPenalty;
+    if (s.includeSupport && campaign.boons.includes("rc132"))
+      s.deck.push("rc132");
+    s.encounterDeck.push(
+      ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
+    );
+    for (const h of s.heroes)
+      for (const code of campaign.permanent[h.code] ?? [])
+        h.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+    s.allies.push(make(s, "rc135"));
   }
-  shuffle(s, s.encounterDeck);
+  shuffle(s, s.deck);
   draw(s, 6);
-  log(s, "Your fellowship gathers at the edge of Mirkwood.", "chapter");
+  if (scenarioId === "mirkwood") {
+    for (const code of ["01096", "01099"]) {
+      s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
+      s.staging.push(make(s, code));
+    }
+    shuffle(s, s.encounterDeck);
+  } else if (scenarioId === "anduin") {
+    shuffle(s, s.encounterDeck);
+    s.queue.push(fx("reveal"), fx("ensureTroll"));
+  } else {
+    s.encounterDeck = s.encounterDeck.filter(
+      (code) => code !== "01102" && !OBJECTIVES.includes(code),
+    );
+    shuffle(s, s.encounterDeck);
+    if (campaign) s.queue.push(fx("appointedByFate"));
+    for (const code of OBJECTIVES) {
+      const objective = make(s, code);
+      s.staging.push(objective);
+      s.queue.push(fx("guardObjective", { target: objective.id }));
+    }
+    s.queue.push(fx("capturePrisoner"));
+  }
+  log(
+    s,
+    `${scenario(scenarioId).name} · ${playMode === "campaign" ? "Mirkwood Paths campaign" : "Normal game"}.`,
+    "chapter",
+  );
+  flush(s);
   return s;
 }
 export function canPlay(s: GameState, u: Unit): string | null {
@@ -1191,6 +1556,18 @@ export function canPlay(s: GameState, u: Unit): string | null {
   if (s.phase === "setup") return "Continue to the next action window.";
   if (["ally", "attachment"].includes(c.type_code) && s.phase !== "planning")
     return "Play allies and attachments during planning.";
+  if (
+    c.type_code === "ally" &&
+    s.scenarioId === "dol-guldur" &&
+    s.stage < 3 &&
+    s.alliesPlayed >= 1
+  )
+    return "Only one ally may be played each round at this quest stage.";
+  if (
+    u.code === "rc132" &&
+    (s.mendorBoost || !s.allies.some((a) => a.code === "rc135"))
+  )
+    return "Mendor must be free, and his Support can be played once per round.";
   if (["01024", "01037", "01047", "01048", "01050"].includes(u.code))
     return "This response is offered automatically when its trigger occurs.";
   if (resources(s, c.sphere_code) < Number(c.cost ?? 0))
@@ -1212,7 +1589,7 @@ export function playTargets(s: GameState, u: Unit): Unit[] {
         ...s.staging,
         ...(s.activeLocation ? [s.activeLocation] : []),
       ].filter((x) => card(x.code).type_code === "location");
-    if (u.code === "01069") return s.engaged;
+    if (u.code === "01069") return s.engaged.filter((e) => e.code !== "01102");
     if (u.code === "01072") return characters(s);
     return s.heroes.filter(
       (h) =>
@@ -1231,7 +1608,8 @@ export function playTargets(s: GameState, u: Unit): Unit[] {
     return characters(s).filter(
       (a) => !a.exhausted && card(a.code).text?.includes("Ranged"),
     );
-  if (u.code === "01035") return characters(s).filter((a) => !a.exhausted);
+  if (u.code === "01035")
+    return characters(s).filter((a) => !a.exhausted && canFight(a));
   if (["01034", "01052"].includes(u.code)) return s.engaged;
   if (u.code === "01063") return characters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
@@ -1387,7 +1765,18 @@ export function applyAction(input: GameState, action: Action): GameState {
               .map((x) => fx("locationProgress", { target: x.id, value: 1 })),
           );
       }
-      s.queue.push(fx("reveal"), fx("questReady"));
+      const reveals =
+        s.scenarioId === "anduin"
+          ? s.stage === 3
+            ? 0
+            : s.stage === 2
+              ? 2
+              : 1
+          : 1;
+      s.queue.push(
+        ...Array.from({ length: reveals }, () => fx("reveal")),
+        fx("questReady"),
+      );
       break;
     }
     case "NEXT": {
@@ -1396,6 +1785,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         s.phase = "quest";
         s.lastQuest = null;
         log(s, "Quest phase · Choose characters to commit.");
+        if (s.scenarioId === "dol-guldur" && s.stage === 3) orcGuard(s);
       } else if (s.phase === "staging") {
         const will = questWill(s),
           threat = stagingThreat(s),
@@ -1410,6 +1800,8 @@ export function applyAction(input: GameState, action: Action): GameState {
           progress(s, net);
         } else if (net < 0) {
           s.threat -= net;
+          for (const jailor of s.staging.filter((u) => u.code === "01101"))
+            s.queue.push(fx("jailor", { source: jailor.id }));
           log(
             s,
             `Quest fails by ${-net}. Threat rises to ${s.threat}.`,
@@ -1417,10 +1809,12 @@ export function applyAction(input: GameState, action: Action): GameState {
           );
         } else
           log(s, "Willpower matches threat. No progress or threat increase.");
-        for (const u of characters(s)) u.committed = false;
-        phaseEnd(s);
-        s.phase = "travel";
+        s.queue.push(fx("finishQuestPhase"));
       } else if (s.phase === "travel") {
+        requireRule(
+          s.activeLocation || !s.staging.some((u) => u.code === "01088"),
+          "You must travel to The East Bight.",
+        );
         phaseEnd(s);
         s.phase = "encounter";
         s.optionalEngagement = false;
@@ -1428,6 +1822,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         for (const u of [...s.staging]
           .filter(
             (u) =>
+              !(s.scenarioId === "anduin" && s.stage === 2) &&
               card(u.code).type_code === "enemy" &&
               (card(u.code).engagement ?? 0) <= s.threat,
           )
@@ -1449,6 +1844,10 @@ export function applyAction(input: GameState, action: Action): GameState {
             log(s, "Gandalf departs at the end of the round.");
           }
         for (const enemy of [...s.staging, ...s.engaged]) enemy.boost = 0;
+        for (const h of [...s.heroes]) {
+          if (has(h, "01109")) s.threat += 2;
+          if (has(h, "01110")) damage(s, h.id, 1);
+        }
         s.queue.push(fx("nextRound"));
       } else throw new RuleError("Finish the current phase action first.");
       break;
@@ -1507,8 +1906,10 @@ export function applyAction(input: GameState, action: Action): GameState {
       pay(s, { ...c, cost: effectiveCost }, action.payment);
       s.hand = s.hand.filter((x) => x.id !== u.id);
       log(s, `Played ${c.name}.`, "good");
-      if (c.type_code === "ally") enterAlly(s, u);
-      else if (c.type_code === "attachment") {
+      if (c.type_code === "ally") {
+        s.alliesPlayed++;
+        enterAlly(s, u);
+      } else if (c.type_code === "attachment") {
         get(s, action.target)!.attachments.push({
           id: u.id,
           code: u.code,
@@ -1530,6 +1931,41 @@ export function applyAction(input: GameState, action: Action): GameState {
       useAbility(s, u, action.attachmentId);
       break;
     }
+    case "CLAIM": {
+      requireRule(s.phase !== "setup", "Wait for an action window.");
+      const objective = s.staging.find((u) => u.id === action.id);
+      const hero = s.heroes.find((h) => h.id === action.heroId);
+      requireRule(
+        objective && objectiveFree(s, objective) && hero,
+        "Choose an unguarded objective and a free hero.",
+      );
+      requireRule(
+        hero.attachments.filter((a) =>
+          card(a.code).text?.includes("Restricted"),
+        ).length < 2,
+        "This hero already has two restricted attachments.",
+      );
+      s.threat += 2;
+      s.staging = s.staging.filter((u) => u.id !== objective.id);
+      hero.attachments.push({
+        id: objective.id,
+        code: objective.code,
+        exhausted: false,
+      });
+      log(
+        s,
+        `${name(hero)} claims ${name(objective)}. Threat rises by 2.`,
+        "good",
+      );
+      if (s.captiveMendor) {
+        const m = s.captiveMendor;
+        s.captiveMendor = null;
+        m.damage = 1;
+        s.allies.push(m);
+        log(s, "Mendor is rescued with 1 damage.", "good");
+      }
+      break;
+    }
     case "TRAVEL": {
       requireRule(
         s.phase === "travel" && !s.activeLocation,
@@ -1539,6 +1975,10 @@ export function applyAction(input: GameState, action: Action): GameState {
         (x) => x.id === action.id && card(x.code).type_code === "location",
       );
       requireRule(u, "Choose a location in staging.");
+      requireRule(
+        u.code === "01088" || !s.staging.some((x) => x.code === "01088"),
+        "You must travel to The East Bight.",
+      );
       if (u.code === "01077")
         requireRule(
           s.heroes.some((h) => !h.exhausted),
@@ -1552,6 +1992,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       s.staging = s.staging.filter((x) => x.id !== u.id);
       s.activeLocation = u;
       log(s, `Travelled to ${name(u)}.`, "good");
+      if (u.code === "01087") progressLocation(s, u, 1);
+      if (u.code === "01107") orcGuard(s);
       if (u.code === "01099") s.queue.push(fx("travelReady"));
       if (u.code === "01100") s.queue.push(fx("draw", { value: 2 }));
       if (u.code === "01077") s.queue.push(fx("travelExhaust"));
@@ -1575,6 +2017,13 @@ export function applyAction(input: GameState, action: Action): GameState {
         (x) => x.id === action.id && card(x.code).type_code === "enemy",
       );
       requireRule(u, "Choose an enemy in staging.");
+      requireRule(
+        u.code !== "01083" ||
+          !s.staging.some(
+            (e) => e.id !== u.id && card(e.code).type_code === "enemy",
+          ),
+        "Goblin Sniper cannot be optionally engaged while another enemy is in staging.",
+      );
       s.optionalEngagement = true;
       engage(s, u);
       break;
@@ -1592,39 +2041,10 @@ export function applyAction(input: GameState, action: Action): GameState {
           !has(u, "01069"),
       );
       requireRule(enemy, "This enemy cannot attack again.");
-      const ids =
-        action.defenderIds ?? (action.defenderId ? [action.defenderId] : []);
-      requireRule(
-        new Set(ids).size === ids.length &&
-          (ids.length <= 1 || s.standTogether),
-        "Multiple defenders require Stand Together.",
-      );
-      const defenders = ids.map((id) =>
-        characters(s).find((u) => u.id === id && !u.exhausted),
-      );
-      requireRule(defenders.every(Boolean), "Choose ready defenders.");
-      for (const d of defenders) d!.exhausted = true;
-      s.combat = {
-        enemyId: enemy.id,
-        defenderId: ids[0] ?? null,
-        defenderIds: ids,
-        attackBonus: 0,
-      };
-      for (const d of defenders)
-        if (d!.code === "01029") damage(s, enemy.id, 1);
-      if (!get(s, enemy.id)) {
-        s.queue.push(fx("enemyDone"));
-        break;
-      }
-      s.queue.push(fx("swiftStrike"));
-      if (enemy.code === "01091") {
-        const code = encounterDraw(s, true);
-        if (code) enemy.shadows.push(code);
-      }
-      s.queue.push(
-        ...enemy.shadows.map((code) => fx("shadowReveal", { code })),
-        fx("enemyDamage"),
-        fx("enemyDone"),
+      beginEnemyAttack(
+        s,
+        enemy,
+        action.defenderIds ?? (action.defenderId ? [action.defenderId] : []),
       );
       break;
     }
@@ -1641,6 +2061,8 @@ export function applyAction(input: GameState, action: Action): GameState {
     case "END_ATTACKS":
       requireRule(s.phase === "attack", "Finish enemy attacks first.");
       phaseEnd(s);
+      for (const sniper of s.staging.filter((u) => u.code === "01083"))
+        s.queue.push(fx("chooseDamage", { value: 1, source: sniper.id }));
       for (const u of characters(s)) {
         u.committed = false;
         u.attacked = false;
@@ -1677,6 +2099,14 @@ export function score(s: GameState) {
 export function publicState(s: GameState) {
   return {
     mode: s.status,
+    playMode: s.playMode,
+    scenario: s.scenarioId,
+    campaign: s.campaign,
+    prisoner: s.prisoner ? name(s.prisoner) : null,
+    captiveMendor: !!s.captiveMendor,
+    objectives: s.staging
+      .filter((u) => OBJECTIVES.includes(u.code))
+      .map((u) => ({ id: u.id, name: name(u), free: objectiveFree(s, u) })),
     deck: s.deckId,
     peek: s.peek ? card(s.peek).name : null,
     round: s.round,
@@ -1755,13 +2185,93 @@ export function validateSave(value: unknown): value is GameState {
           SCRIPTED.has(a.code) &&
           typeof a.exhausted === "boolean",
       ) &&
-      codes(u.shadows);
+      codes(u.shadows) &&
+      (u.guarding === undefined || typeof u.guarding === "string") &&
+      (u.facedownCard === undefined ||
+        (SCRIPTED.has(u.facedownCard) &&
+          card(u.facedownCard).sphere_code !== "encounter"));
     if (
-      s.version !== 1 ||
+      s.version !== 2 ||
       (!STARTERS.some((d) => d.id === s.deckId) && s.deckId !== "custom") ||
       !Array.isArray(s.used) ||
       !s.used.every((x) => typeof x === "string") ||
       typeof s.standTogether !== "boolean"
+    )
+      return false;
+    if (
+      !SCENARIOS.some((q) => q.id === s.scenarioId) ||
+      !["normal", "campaign"].includes(s.playMode) ||
+      !codes(s.startingHeroes) ||
+      s.startingHeroes.length !== 3 ||
+      !s.startingHeroes.every((c) => card(c).type_code === "hero") ||
+      ![s.alliesPlayed, s.threatModifier, s.shackles].every(integer) ||
+      s.alliesPlayed < 0 ||
+      s.shackles < 0 ||
+      ![
+        s.nazgulDefeated,
+        s.stageRevealing,
+        s.mendorBoost,
+        s.campaignScarred,
+        s.includeSupport,
+      ].every((x) => typeof x === "boolean") ||
+      (s.prisoner !== null &&
+        (!validUnit(s.prisoner) ||
+          card(s.prisoner.code).type_code !== "hero")) ||
+      (s.captiveMendor !== null &&
+        (!validUnit(s.captiveMendor) || s.captiveMendor.code !== "rc135")) ||
+      !Array.isArray(s.suspendedCombats) ||
+      !s.suspendedCombats.every(
+        (c) => c && typeof c.enemyId === "string" && integer(c.attackBonus),
+      )
+    )
+      return false;
+    if (s.playMode === "normal" && s.campaign !== null) return false;
+    if (s.playMode === "campaign") {
+      const c = s.campaign;
+      if (
+        !c ||
+        !codes(c.heroes) ||
+        c.heroes.length !== 3 ||
+        new Set(c.heroes).size !== 3 ||
+        !c.heroes.every((h) => card(h).type_code === "hero") ||
+        !codes(c.fallen) ||
+        !c.fallen.every((h) => card(h).type_code === "hero") ||
+        !integer(c.threatPenalty) ||
+        c.threatPenalty < 0 ||
+        !codes(c.boons) ||
+        !c.boons.every((x) => ["rc132", "rc133", "rc135"].includes(x)) ||
+        !codes(c.burdens) ||
+        !c.burdens.every((x) => ["rc136", "rc137", "rc138"].includes(x)) ||
+        !c.permanent ||
+        typeof c.permanent !== "object" ||
+        Array.isArray(c.permanent) ||
+        !Object.entries(c.permanent).every(
+          ([h, cs]) =>
+            card(h).type_code === "hero" &&
+            codes(cs) &&
+            cs.every((x) => ["rc133", "rc138"].includes(x)),
+        ) ||
+        (c.prisoner !== null &&
+          (!SCRIPTED.has(c.prisoner) ||
+            card(c.prisoner).type_code !== "hero")) ||
+        typeof c.mendorSaved !== "boolean" ||
+        !Array.isArray(c.completed) ||
+        c.completed.length > 3 ||
+        !c.completed.every(
+          (q, i) =>
+            q.scenarioId === SCENARIOS[i].id &&
+            integer(q.score) &&
+            integer(q.rounds) &&
+            q.rounds >= 0,
+        )
+      )
+        return false;
+    }
+    if (
+      s.campaign &&
+      s.campaign.completed.length !==
+        SCENARIOS.findIndex((q) => q.id === s.scenarioId) +
+          (s.status === "won" ? 1 : 0)
     )
       return false;
     if (
@@ -1872,7 +2382,12 @@ export function validateSave(value: unknown): value is GameState {
       (s.peek !== null && !SCRIPTED.has(s.peek))
     )
       return false;
-    const ids = [...units(s), ...s.hand].map((u) => u.id);
+    const ids = [
+      ...units(s),
+      ...s.hand,
+      ...(s.prisoner ? [s.prisoner] : []),
+      ...(s.captiveMendor ? [s.captiveMendor] : []),
+    ].map((u) => u.id);
     return new Set(ids).size === ids.length;
   } catch {
     return false;
@@ -1888,7 +2403,7 @@ function playerAttack(
   ids = [...new Set(ids)];
   requireRule(ids.length > 0, "Choose at least one attacker.");
   const attackers = ids.map((id) =>
-    characters(s).find((u) => u.id === id && !u.exhausted),
+    characters(s).find((u) => u.id === id && !u.exhausted && canFight(u)),
   );
   requireRule(
     attackers.every(Boolean),
@@ -1899,6 +2414,31 @@ function playerAttack(
     !staging || (attackers.length === 1 && attackers[0]!.code === "01009"),
     "Only Dúnhere can attack a staging enemy, and he must attack alone.",
   );
+  attackers.forEach((u) => {
+    u!.exhausted = true;
+  });
+  if (regular) enemy.attacked = true;
+  prepend(
+    s,
+    ...attackers
+      .filter((u) =>
+        u!.attachments.some((a) => a.code === "rc133" && !a.exhausted),
+      )
+      .map((u) => fx("valorResponse", { target: u!.id, source: enemy.id })),
+    fx("resolvePlayerAttack", {
+      target: enemy.id,
+      ids,
+      value: staging ? 1 : 0,
+    }),
+  );
+}
+function resolvePlayerAttack(
+  s: GameState,
+  enemy: Unit,
+  ids: string[],
+  stagingBonus: number,
+) {
+  const attackers = ids.map((id) => get(s, id)).filter((u): u is Unit => !!u);
   const power =
     attackers.reduce(
       (n, u) =>
@@ -1908,11 +2448,7 @@ function playerAttack(
           ? u!.attachments.filter((a) => a.code === "01039").length
           : 0),
       0,
-    ) + (staging ? 1 : 0);
-  attackers.forEach((u) => {
-    u!.exhausted = true;
-  });
-  if (regular) enemy.attacked = true;
+    ) + stagingBonus;
   log(
     s,
     `${attackers.map((u) => name(u!)).join(" + ")} attack ${name(enemy)} for ${power}.`,
@@ -1938,6 +2474,9 @@ function playerAttack(
 function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
   const u = get(s, target);
   switch (code) {
+    case "rc132":
+      s.mendorBoost = true;
+      break;
     case "01020":
       if (u) u.exhausted = false;
       break;
@@ -2345,7 +2884,7 @@ function extraEffect(s: GameState, e: Effect) {
   switch (e.kind) {
     case "cancelReplace":
       s.encounterDiscard.push(e.code!);
-      prepend(s, fx("reveal"));
+      prepend(s, fx("reveal", { source: e.source }));
       break;
     case "quickAttack":
       if (u) playerAttack(s, u, [e.source!]);
@@ -2522,6 +3061,464 @@ function extraEffect(s: GameState, e: Effect) {
       prepend(s, fx("searchOrder", { ids: e.ids, value: (e.value ?? 0) + 1 }));
       break;
     default:
-      throw new Error(`Unknown effect ${e.kind}`);
+      if (!scenarioEffect(s, e)) throw new Error(`Unknown effect ${e.kind}`);
+  }
+}
+
+export function newCampaign(
+  heroes: string[],
+  mendorLegacy = false,
+): CampaignState {
+  return {
+    heroes: [...heroes],
+    fallen: [],
+    threatPenalty: 0,
+    boons: mendorLegacy ? ["rc132", "rc135"] : [],
+    burdens: [],
+    permanent: {},
+    prisoner: null,
+    completed: [],
+    mendorSaved: false,
+  };
+}
+function resolveCampaign(s: GameState) {
+  const c = s.campaign!;
+  if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
+  const fallen = s.startingHeroes.filter((code) => s.discard.includes(code));
+  c.fallen = [...new Set([...c.fallen, ...fallen])];
+  for (const code of fallen) delete c.permanent[code];
+  if (s.scenarioId === "mirkwood") {
+    if (!c.boons.includes("rc132")) c.boons.push("rc132");
+    c.burdens.push(s.branch === "beorn" ? "rc136" : "rc137");
+  }
+  if (s.scenarioId === "anduin") {
+    for (const h of s.heroes) {
+      const permanent = h.attachments
+        .filter((a) => ["rc133", "rc138"].includes(a.code))
+        .map((a) => a.code);
+      if (permanent.length) c.permanent[h.code] = permanent;
+    }
+    const highest = Math.max(...s.heroes.map((h) => h.damage));
+    const candidates = s.heroes.filter((h) => h.damage === highest);
+    c.prisoner =
+      candidates[Math.floor(random(s) * candidates.length)]?.code ?? null;
+    log(
+      s,
+      `${c.prisoner ? card(c.prisoner).name : "A hero"} will be the prisoner in Dol Guldur.`,
+    );
+  }
+  c.boons = c.boons.filter((code) => code !== "rc133");
+  c.burdens = c.burdens.filter((code) => code !== "rc138");
+  for (const codes of Object.values(c.permanent))
+    for (const code of codes)
+      (code === "rc133" ? c.boons : c.burdens).push(code);
+  if (s.scenarioId === "dol-guldur") {
+    c.mendorSaved = s.allies.some((a) => a.code === "rc135");
+    if (c.mendorSaved && !c.boons.includes("rc135")) c.boons.push("rc135");
+  }
+  c.completed.push({
+    scenarioId: s.scenarioId,
+    score: score(s),
+    rounds: s.round,
+  });
+  log(s, "The campaign log has been updated.", "good");
+}
+export function continueCampaign(
+  s: GameState,
+  heroes = s.campaign?.heroes ?? [],
+  deckId = s.deckId,
+  includeSupport = true,
+  seed = Date.now(),
+): GameState {
+  requireRule(
+    s.status === "won" && s.campaign && s.campaign.completed.length < 3,
+    "Win the current chapter before continuing.",
+  );
+  const c = structuredClone(s.campaign);
+  requireRule(
+    heroes.length === 3 &&
+      new Set(heroes).size === 3 &&
+      heroes.every(
+        (h) => card(h).type_code === "hero" && !c.fallen.includes(h),
+      ),
+    "Choose three different heroes who have not fallen.",
+  );
+  const replaced = c.heroes.filter((h) => !heroes.includes(h));
+  requireRule(
+    replaced.filter((h) => !c.fallen.includes(h)).length <= 1,
+    "Between quests, you may replace fallen heroes and voluntarily change one other hero.",
+  );
+  const next = SCENARIOS[c.completed.length].id;
+  requireRule(
+    next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
+    "The recorded prisoner must remain in this fellowship.",
+  );
+  c.threatPenalty += replaced.length;
+  c.heroes = [...heroes];
+  const d = STARTERS.find((d) => d.id === deckId);
+  requireRule(d, "Choose a Core Set starter deck.");
+  return createGame(seed, d.cards, heroes, d.id, {
+    scenarioId: next,
+    playMode: "campaign",
+    campaign: c,
+    includeSupport,
+  });
+}
+export function retryAdventure(s: GameState, seed = Date.now()): GameState {
+  const d = STARTERS.find((d) => d.id === s.deckId);
+  requireRule(d, "Choose a starter deck to start again.");
+  requireRule(
+    s.status !== "won",
+    "A won campaign chapter cannot be retried from its resolved log.",
+  );
+  return createGame(seed, d.cards, s.startingHeroes, d.id, {
+    scenarioId: s.scenarioId,
+    playMode: s.playMode,
+    campaign: s.campaign ?? undefined,
+    includeSupport: s.includeSupport,
+  });
+}
+function rescuePrisoner(s: GameState) {
+  if (!s.prisoner) return;
+  const hero = s.prisoner;
+  s.prisoner = null;
+  hero.damage = 1;
+  s.heroes.push(hero);
+  s.staging.push(make(s, "01102"));
+  log(
+    s,
+    `${name(hero)} is rescued with 1 damage. The Nazgûl enters staging.`,
+    "chapter",
+  );
+}
+function orcGuard(s: GameState) {
+  const code = s.deck.shift();
+  if (!code) return;
+  const orc = make(s, "orc-guard");
+  orc.facedownCard = code;
+  s.engaged.push(orc);
+  log(s, "The top card of your deck becomes an engaged Orc Guard.", "danger");
+}
+function combatDamage(s: GameState, target: Unit, enemy: Unit, amount: number) {
+  const killed = target.damage + amount >= stats(s, target).health;
+  if (enemy.code === "01082")
+    s.threat += Math.max(0, amount - (stats(s, target).health - target.damage));
+  damage(s, target.id, amount);
+  if (
+    killed &&
+    enemy.code === "01082" &&
+    s.campaign &&
+    s.scenarioId === "anduin" &&
+    !s.campaignScarred &&
+    s.status === "playing"
+  ) {
+    s.campaignScarred = true;
+    prepend(s, fx("earnPermanent", { code: "rc138" }));
+  }
+}
+function beginEnemyAttack(
+  s: GameState,
+  enemy: Unit,
+  ids: string[],
+  returnWolf = false,
+) {
+  requireRule(
+    new Set(ids).size === ids.length && (ids.length <= 1 || s.standTogether),
+    "Multiple defenders require Stand Together.",
+  );
+  const defenders = ids.map((id) =>
+    characters(s).find((u) => u.id === id && !u.exhausted && canFight(u)),
+  );
+  requireRule(
+    defenders.every(Boolean),
+    "Choose ready characters able to defend.",
+  );
+  for (const d of defenders) d!.exhausted = true;
+  s.combat = {
+    enemyId: enemy.id,
+    defenderId: ids[0] ?? null,
+    defenderIds: ids,
+    attackBonus: 0,
+    returnWolf,
+    returnToStaging:
+      enemy.code === "01085" &&
+      enemy.shadows.some((code) => !card(code).shadow),
+  };
+  if (enemy.code === "01084") s.threat++;
+  for (const d of defenders) if (d!.code === "01029") damage(s, enemy.id, 1);
+  if (!get(s, enemy.id)) {
+    prepend(s, fx("enemyDone"));
+    return;
+  }
+  if (enemy.code === "01091") {
+    const code = encounterDraw(s, true);
+    if (code) enemy.shadows.push(code);
+  }
+  prepend(
+    s,
+    fx("swiftStrike"),
+    ...enemy.shadows.map((code) => fx("shadowReveal", { code })),
+    fx("enemyDamage"),
+    fx("enemyDone"),
+  );
+}
+function scenarioEffect(s: GameState, e: Effect): boolean {
+  const u = get(s, e.target);
+  switch (e.kind) {
+    case "valorResponse":
+      if (u && get(s, e.source))
+        choose(s, `Valor: ${name(u)}`, [
+          {
+            id: "use",
+            label: "Exhaust Valor: heal 1 and deal 1 damage",
+            effects: [fx("resolveValor", { target: u.id, source: e.source })],
+          },
+          skip,
+        ]);
+      break;
+    case "resolveValor": {
+      const a = u?.attachments.find((a) => a.code === "rc133" && !a.exhausted);
+      if (u && a && get(s, e.source)) {
+        a.exhausted = true;
+        u.damage = Math.max(0, u.damage - 1);
+        damage(s, e.source!, 1);
+        log(
+          s,
+          "Valor heals its hero and deals 1 damage to the defending enemy.",
+          "good",
+        );
+      }
+      break;
+    }
+    case "resolvePlayerAttack":
+      if (u) resolvePlayerAttack(s, u, e.ids ?? [], e.value ?? 0);
+      break;
+    case "ensureTroll":
+      if (!inPlay(s, "01082")) {
+        const i = s.encounterDeck.indexOf("01082");
+        if (i >= 0) {
+          s.encounterDeck.splice(i, 1);
+          s.staging.push(make(s, "01082"));
+          shuffle(s, s.encounterDeck);
+        }
+      }
+      break;
+    case "stageRevealed":
+      s.stageRevealing = false;
+      break;
+    case "finishQuestPhase":
+      characters(s).forEach((u) => (u.committed = false));
+      phaseEnd(s);
+      s.phase = "travel";
+      break;
+    case "guardObjective": {
+      const code = encounterDraw(s);
+      if (u && code) revealed(s, code, u.id);
+      break;
+    }
+    case "appointedByFate":
+      choose(
+        s,
+        "Appointed by Fate",
+        opts(s.heroes, (h) => [
+          fx("attachBoon", { target: h.id, code: "rc134" }),
+        ]),
+        "This hero collects one extra resource each round. The prisoner’s attachments will be facedown until rescued.",
+      );
+      break;
+    case "attachBoon":
+      if (u) {
+        u.attachments.push({
+          id: `a${s.nextId++}`,
+          code: e.code!,
+          exhausted: false,
+        });
+        log(s, `${card(e.code!).name} is attached to ${name(u)}.`, "good");
+      }
+      break;
+    case "capturePrisoner": {
+      const code = s.campaign?.prisoner;
+      const hero =
+        s.heroes.find((h) => h.code === code) ??
+        s.heroes[Math.floor(random(s) * s.heroes.length)];
+      if (hero) {
+        s.heroes = s.heroes.filter((h) => h.id !== hero.id);
+        s.prisoner = hero;
+        log(s, `${name(hero)} is the prisoner.`, "danger");
+      }
+      const m = s.allies.find((a) => a.code === "rc135");
+      if (m) {
+        s.allies = s.allies.filter((a) => a.id !== m.id);
+        s.captiveMendor = m;
+      }
+      break;
+    }
+    case "earnPermanent": {
+      const eligible = s.heroes.filter((h) => !has(h, e.code!));
+      choose(
+        s,
+        e.code === "rc133" ? "Earn Valor" : "Scarred by the Hill Troll",
+        [
+          ...opts(eligible, (h) => [
+            fx("attachBoon", { target: h.id, code: e.code }),
+          ]),
+          ...(e.code === "rc133" ? [skip] : []),
+        ],
+        "This card remains attached to its hero in later campaign chapters.",
+      );
+      break;
+    }
+    case "combatDamage": {
+      const enemy = get(s, e.source);
+      if (u && enemy) combatDamage(s, u, enemy, e.value ?? 0);
+      break;
+    }
+    case "jailor":
+      choose(
+        s,
+        "Dungeon Jailor",
+        opts(
+          s.staging.filter((o) => OBJECTIVES.includes(o.code)),
+          (o) => [fx("shuffleObjective", { target: o.id })],
+        ),
+        "Shuffle one unclaimed objective back into the encounter deck.",
+      );
+      break;
+    case "shuffleObjective":
+      if (u) {
+        s.staging = s.staging.filter((x) => x.id !== u.id);
+        units(s).forEach((x) => {
+          if (x.guarding === u.id) delete x.guarding;
+        });
+        s.encounterDeck.push(u.code);
+        shuffle(s, s.encounterDeck);
+      }
+      break;
+    case "nazgulDiscard":
+      if (u)
+        choose(
+          s,
+          "The Nazgûl demands a sacrifice",
+          opts(characters(s), (x) => [
+            fx("discardCharacter", { target: x.id }),
+          ]),
+          "After its shadow effect resolves, discard one character you control.",
+        );
+      break;
+    case "discardCharacter":
+      if (u) {
+        // Discard is not destruction: no Horn, Scarred, or Dwarf death response.
+        for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+        s.heroes = s.heroes.filter((x) => x.id !== u.id);
+        s.allies = s.allies.filter((x) => x.id !== u.id);
+        if (u.code === "rc135") {
+          s.removed.push(u.code);
+          if (s.campaign && s.scenarioId !== "dol-guldur") {
+            s.status = "lost";
+            s.reason = "Mendor has left play.";
+            s.queue = [];
+            s.choice = null;
+          }
+        } else {
+          s.discard.push(u.code);
+          if (card(u.code).type_code === "hero")
+            s.fallenThreat += card(u.code).threat ?? 0;
+        }
+        if (card(u.code).type_code === "ally") s.queue.push(fx("valiant"));
+        log(s, `${name(u)} is discarded.`, "danger");
+      }
+      break;
+    case "returnAlly":
+      if (u) {
+        if (u.code === "rc135") {
+          prepend(s, fx("discardCharacter", { target: u.id }));
+          break;
+        }
+        s.allies = s.allies.filter((a) => a.id !== u.id);
+        for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+        u.exhausted = false;
+        u.damage = 0;
+        u.committed = false;
+        s.hand.push(u);
+        s.queue.push(fx("valiant"));
+      }
+      break;
+    case "discardHand":
+      choose(
+        s,
+        "Discard a card",
+        opts(s.hand, (x) => [fx("discardHandCard", { target: x.id })]),
+      );
+      break;
+    case "discardHandCard": {
+      const h = s.hand.find((x) => x.id === e.target);
+      if (h) {
+        s.hand = s.hand.filter((x) => x.id !== h.id);
+        s.discard.push(h.code);
+      }
+      break;
+    }
+    case "wolfAttack": {
+      if (!s.combat) break;
+      const original = get(s, s.combat.enemyId);
+      const i = original?.shadows.indexOf("01081") ?? -1;
+      if (original && i >= 0) original.shadows.splice(i, 1);
+      s.suspendedCombats.push(s.combat);
+      const wolf = make(s, "01081");
+      s.engaged.push(wolf);
+      const shadow = encounterDraw(s, true);
+      if (shadow) wolf.shadows.push(shadow);
+      choose(s, "Wolf Rider attacks from the shadows", [
+        ...opts(
+          characters(s).filter((x) => !x.exhausted && canFight(x)),
+          (x) => [fx("wolfDefend", { target: wolf.id, source: x.id })],
+        ),
+        {
+          id: "undefended",
+          label: "Leave the Wolf Rider attack undefended",
+          effects: [fx("wolfDefend", { target: wolf.id })],
+        },
+      ]);
+      break;
+    }
+    case "wolfDefend":
+      if (u) beginEnemyAttack(s, u, e.source ? [e.source] : [], true);
+      break;
+    default:
+      return false;
+  }
+  return true;
+}
+
+export function restoreSave(value: unknown): GameState | null {
+  try {
+    if (!value || typeof value !== "object") return null;
+    const s = structuredClone(value) as GameState;
+    if ((s.version as number) === 1) {
+      Object.assign(s, {
+        version: 2,
+        scenarioId: "mirkwood",
+        playMode: "normal",
+        campaign: null,
+        startingHeroes: STARTERS.find((d) => d.id === s.deckId)?.heroes ?? [
+          ...s.heroes.map((h) => h.code),
+          ...s.discard.filter((c) => card(c).type_code === "hero"),
+        ],
+        prisoner: null,
+        captiveMendor: null,
+        nazgulDefeated: false,
+        stageRevealing: false,
+        alliesPlayed: 0,
+        threatModifier: 0,
+        shackles: 0,
+        mendorBoost: false,
+        campaignScarred: false,
+        includeSupport: true,
+        suspendedCombats: [],
+      });
+    }
+    return validateSave(s) ? s : null;
+  } catch {
+    return null;
   }
 }

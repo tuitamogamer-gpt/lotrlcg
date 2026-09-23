@@ -9,8 +9,19 @@ import {
   stats,
   playTargets,
   needsTarget,
+  objectiveFree,
+  canFight,
+  newCampaign,
+  validateSave,
 } from "../src/game/engine.ts";
-import type { Action, GameState, Option } from "../src/game/types.ts";
+import { SCENARIOS } from "../src/game/scenarios.ts";
+import type {
+  ScenarioId,
+  PlayMode,
+  Action,
+  GameState,
+  Option,
+} from "../src/game/types.ts";
 function choose(s: GameState): Option {
   const opts = s.choice!.options;
   const title = s.choice!.title;
@@ -53,14 +64,50 @@ function choose(s: GameState): Option {
     opts[0]
   );
 }
-function run(seed: number, id: string) {
+function run(
+  seed: number,
+  id: string,
+  scenarioId: ScenarioId = "mirkwood",
+  playMode: PlayMode = "normal",
+) {
   const d = STARTERS.find((x) => x.id === id)!;
-  let s = createGame(seed, d.cards, d.heroes, d.id);
+  const campaign = newCampaign(d.heroes);
+  const chapter = SCENARIOS.findIndex((q) => q.id === scenarioId);
+  campaign.completed = SCENARIOS.slice(0, chapter).map((q) => ({
+    scenarioId: q.id,
+    score: 100,
+    rounds: 6,
+  }));
+  if (chapter) {
+    campaign.boons = ["rc132"];
+    campaign.burdens = [seed % 2 ? "rc136" : "rc137"];
+  }
+  if (chapter === 2) {
+    campaign.prisoner = d.heroes[1];
+    campaign.permanent[d.heroes[0]] = ["rc133", "rc138"];
+    campaign.boons.push("rc133");
+    campaign.burdens.push("rc138");
+  }
+  let s = createGame(seed, d.cards, d.heroes, d.id, {
+    scenarioId,
+    playMode,
+    ...(playMode === "campaign" ? { campaign } : {}),
+  });
   let steps = 0;
   while (s.status === "playing" && steps++ < 1000) {
     let action: Action;
+    const objective = s.staging.find((u) => objectiveFree(s, u));
+    const bearer = [...s.heroes]
+      .sort((a, b) => stats(s, a).attack - stats(s, b).attack)
+      .find(
+        (h) =>
+          h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
+            .length < 2,
+      );
     if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
     else if (s.phase === "setup") action = { type: "KEEP" };
+    else if (objective && bearer && s.threat < 46)
+      action = { type: "CLAIM", id: objective.id, heroId: bearer.id };
     else if (s.phase === "planning") {
       const steward = characters(s).flatMap((h) =>
         h.attachments
@@ -116,7 +163,9 @@ function run(seed: number, id: string) {
             (u.code !== "01094" || s.hand.length >= 2),
         )
         .sort(
-          (a, b) => (card(b.code).threat ?? 0) - (card(a.code).threat ?? 0),
+          (a, b) =>
+            Number(b.code === "01088") - Number(a.code === "01088") ||
+            (card(b.code).threat ?? 0) - (card(a.code).threat ?? 0),
         )[0];
       action =
         !s.activeLocation && loc
@@ -134,7 +183,7 @@ function run(seed: number, id: string) {
         "There must be a legal enemy attack or the phase should advance.",
       );
       const ready = characters(s)
-        .filter((u) => !u.exhausted)
+        .filter((u) => !u.exhausted && canFight(u))
         .sort((a, b) => stats(s, b).defense - stats(s, a).defense);
       action = {
         type: "DEFEND",
@@ -142,7 +191,7 @@ function run(seed: number, id: string) {
         defenderId: ready[0]?.id ?? null,
       };
     } else if (s.phase === "attack") {
-      const ready = characters(s).filter((u) => !u.exhausted);
+      const ready = characters(s).filter((u) => !u.exhausted && canFight(u));
       const enemy = s.engaged
         .filter((e) => !e.attacked)
         .sort(
@@ -158,7 +207,18 @@ function run(seed: number, id: string) {
             }
           : { type: "END_ATTACKS" };
     } else action = { type: "NEXT" };
-    s = applyAction(s, action);
+    try {
+      s = applyAction(s, action);
+    } catch (e) {
+      throw new Error(
+        `${scenarioId}/${playMode}/${id}/seed${seed}/${s.phase}: ${(e as Error).message}`,
+        { cause: e },
+      );
+    }
+    assert.ok(
+      validateSave(s),
+      `${scenarioId}/${playMode}/${id}/seed${seed}: valid save after ${action.type}`,
+    );
     assert.ok(Number.isFinite(s.threat));
     assert.ok(s.heroes.every((h) => h.resources >= 0));
     assert.ok(
@@ -195,3 +255,15 @@ for (const d of STARTERS)
     }
     console.log(d.id, results);
   });
+
+for (const q of SCENARIOS)
+  for (const mode of ["normal", "campaign"] as const) {
+    if (q.id === "mirkwood" && mode === "normal") continue;
+    test(`${q.name} / ${mode}: all four starter decks complete 10 seeded games each`, () => {
+      const results = { won: 0, lost: 0 };
+      for (const d of STARTERS)
+        for (let seed = 1; seed <= 10; seed++)
+          results[run(seed, d.id, q.id, mode) as "won" | "lost"]++;
+      console.log(q.id, mode, results);
+    });
+  }

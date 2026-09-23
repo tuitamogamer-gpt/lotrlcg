@@ -8,13 +8,14 @@ json.dump([normalize(c) for c in core],open('src/data/player-cards.json','w'),en
 enc=[]
 for c in E.fromstring(urllib.request.urlopen('https://raw.githubusercontent.com/GeckoTH/Lord-of-the-Rings/master/o8g/Sets/Core%20Set/set.xml',timeout=30).read()).findall('.//card'):
  p={v.get('name'):v.get('value') for v in c.findall('property')}
- if p.get('Encounter Set') not in ['Passage Through Mirkwood','Spiders of Mirkwood','Dol Guldur Orcs'] or p.get('Type')=='Quest':continue
+ if not p.get('Encounter Set') or p.get('Type')=='Quest':continue
  n=int(p['Card Number']); name=c.get('name').replace('Chieftan','Chieftain')
- d={'code':'01'+str(n).zfill(3),'name':name,'type_code':p['Type'].lower(),'sphere_code':'encounter','pack_name':'Core Set','traits':p.get('Traits',''),'text':p.get('Text','').replace('Û','[attack]').replace('Ò','[willpower]').replace('$','[threat]'),'shadow':p.get('Shadow','').replace('Û','[attack]'),'quantity':int(p['Quantity']),'encounter_set':p['Encounter Set'],'imagesrc':'https://hallofbeorn.com/Images/Cards/Core-Set/'+name.replace(' ','-')+'.jpg'}
+ d={'code':'01'+str(n).zfill(3),'name':name,'type_code':p['Type'].lower(),'sphere_code':'encounter','pack_name':'Core Set','traits':p.get('Traits',''),'text':((p.get('Keywords','')+'\n') if p.get('Keywords') else '')+p.get('Text','').replace('Û','[attack]').replace('Ò','[willpower]').replace('Ú','[defense]').replace('$','[threat]'),'shadow':p.get('Shadow','').replace('Û','[attack]').replace('Ú','[defense]').replace('Ò','[willpower]').replace('$','[threat]'),'quantity':int(p['Quantity']),'encounter_set':p['Encounter Set'],'imagesrc':'https://www.hallofbeorn.com/Images/Cards/Core-Set/'+name.replace(' ','-')+'.jpg'}
  for a,b in [('Threat','threat'),('Attack','attack'),('Defense','defense'),('Health','health'),('Engagement Cost','engagement'),('Quest Points','quest'),('Victory Points','victory')]:
   if a in p:d[b]=int(p[a])
  if n==89:d['imagesrc']='https://www.hallofbeorn.com/Images/Cards/Core-Set/Dol-Guldur-Orcs-Enemy.jpg'
  if n==90:d['imagesrc']='https://www.hallofbeorn.com/Images/Cards/Core-Set/Chieftan-Ufthak.jpg'
+ if n==102:d['imagesrc']='https://www.hallofbeorn.com/Images/Cards/Core-Set/Nazgul-of-Dol-Guldur.jpg'
  enc.append(d)
 json.dump(enc,open('src/data/encounter-cards.json','w'),ensure_ascii=False,indent=2)
 def dl(c):

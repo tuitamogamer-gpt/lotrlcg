@@ -51,6 +51,21 @@ export interface Unit {
   feinted?: boolean;
   beornReturn?: boolean;
   shadows: string[];
+  guarding?: string;
+  facedownCard?: string;
+}
+export type ScenarioId = "mirkwood" | "anduin" | "dol-guldur";
+export type PlayMode = "normal" | "campaign";
+export interface CampaignState {
+  heroes: string[];
+  fallen: string[];
+  threatPenalty: number;
+  boons: string[];
+  burdens: string[];
+  permanent: Record<string, string[]>;
+  prisoner: string | null;
+  completed: { scenarioId: ScenarioId; score: number; rounds: number }[];
+  mendorSaved: boolean;
 }
 export type Phase =
   | "setup"
@@ -92,7 +107,21 @@ export interface LogEntry {
   kind: "normal" | "good" | "danger" | "chapter";
 }
 export interface GameState {
-  version: 1;
+  version: 2;
+  scenarioId: ScenarioId;
+  playMode: PlayMode;
+  campaign: CampaignState | null;
+  startingHeroes: string[];
+  prisoner: Unit | null;
+  captiveMendor: Unit | null;
+  nazgulDefeated: boolean;
+  stageRevealing: boolean;
+  alliesPlayed: number;
+  threatModifier: number;
+  shackles: number;
+  mendorBoost: boolean;
+  campaignScarred: boolean;
+  includeSupport: boolean;
   deckId: string;
   used: string[];
   standTogether: boolean;
@@ -135,7 +164,11 @@ export interface GameState {
     defenderId: string | null;
     attackBonus: number;
     defenderIds?: string[];
+    ignoreDefense?: boolean;
+    returnToStaging?: boolean;
+    returnWolf?: boolean;
   } | null;
+  suspendedCombats: NonNullable<GameState["combat"]>[];
   log: LogEntry[];
   lastReveal: string | null;
   lastQuest: { will: number; threat: number; net: number } | null;
@@ -153,6 +186,7 @@ export type Action =
     }
   | { type: "ABILITY"; id: string; attachmentId?: string }
   | { type: "TRAVEL" | "ENGAGE"; id: string }
+  | { type: "CLAIM"; id: string; heroId: string }
   | {
       type: "DEFEND";
       enemyId: string;

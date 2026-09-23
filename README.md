@@ -1,6 +1,6 @@
 # There & Back Again
 
-A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. Play solo **Passage Through Mirkwood** using any of the four original Core Set starter decks: Leadership, Tactics, Spirit, or Lore.
+A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. Play all three Core Set quests—**Passage Through Mirkwood**, **Journey Along the Anduin**, and **Escape from Dol Guldur**—as standalone normal games or the connected **Mirkwood Paths campaign**. Choose any of the four original Core Set starter decks: Leadership, Tactics, Spirit, or Lore.
 
 ## Run
 
@@ -9,7 +9,9 @@ npm install
 npm run dev -- --port 5178
 ```
 
-Open **http://localhost:5178**. Choose a fellowship and begin the adventure. The game saves locally after each action. The in-app guide explains the phases and supports save export/import.
+Open **http://localhost:5178**. Select **Normal game** to choose any mission, or **Campaign mode** to begin the three chapters in order. Choose a fellowship and begin. The game saves locally after each action, with independent normal and campaign saves. The in-app guide explains the phases and supports save export/import.
+
+Campaign victories unlock the next chapter and record boons, burdens, fallen heroes, and scores. Prepare your heroes and player deck between quests. Dol Guldur uses the prisoner recorded at the end of the Anduin. Retry a failed quest from its campaign checkpoint.
 
 ## Check
 
@@ -43,7 +45,7 @@ RingsDB’s public API supplies player-card data. Encounter definitions come fro
 - [API research and artwork provenance](docs/SOURCES.md)
 - [Design direction](DESIGN.md)
 
-This is a playable first version, not the entire LOTR LCG catalog. It includes 73 Core Set player-card definitions, the 19 encounter definitions for Mirkwood, and its two final branches. The wider library contains 1,315 browsable player cards. Other scenarios, multiplayer, campaign modes, and expansion-card scripting are future work.
+This is a playable first version, not the entire LOTR LCG catalog. It includes 73 Core Set player-card definitions, all 45 Core Set encounter definitions, seven campaign support definitions, all three quests, and both Mirkwood endings. The wider library contains 1,315 browsable player cards. Multiplayer, expert campaign rules, expansion quests/cards, and unrestricted deck construction are outside the current scope. Some intermediate timing windows remain simplified; see the coverage document.
 
 ## Architecture
 
