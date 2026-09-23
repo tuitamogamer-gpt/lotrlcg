@@ -13,3 +13,5 @@ Playable scope: solo normal-mode Passage Through Mirkwood, both endings, origina
 Local servers: development http://localhost:5178; production preview http://localhost:5180. Existing unrelated port 5173 was left untouched.
 
 2026-09-23 release: The user explicitly requested Git push and Vercel deployment. Preparing a private GitHub repository and production Vercel project, with Node 22, locked installation, static Vite output, and SPA routing. Local credentials, generated test output, and build caches are excluded from version control. Prior game validation remains unchanged; deployment will be checked against the published commit and through the live browser.
+
+Repository created and pushed: https://github.com/tuitamogamer-gpt/lotrlcg (private, main). Vercel project lotrlcg was created in the existing account and connected to this GitHub repository. The production build passed again after adding deployment configuration. Environment files and Vercel linking metadata are excluded from deployment uploads as well as Git.
