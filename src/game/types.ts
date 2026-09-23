@@ -106,12 +106,40 @@ export interface Choice {
   options: Option[];
 }
 export interface LogEntry {
+  player?: number;
   id: number;
   round: number;
   text: string;
   kind: "normal" | "good" | "danger" | "chapter";
 }
+export interface ResolutionStep {
+  id: number;
+  kind:
+    | "reveal"
+    | "shadow"
+    | "effect"
+    | "quest"
+    | "combat"
+    | "round"
+    | "phase"
+    | "action"
+    | "setup";
+  title: string;
+  detail: string;
+  cards: { code: string; label: string }[];
+  changes: { label: string; before: string; after: string; code?: string }[];
+  lines: LogEntry[];
+  round: number;
+  phase: Phase;
+  player: number;
+}
+export interface GuidedFlow {
+  nextId: number;
+  pending: ResolutionStep | null;
+  history: ResolutionStep[];
+}
 export interface GameState {
+  flow?: GuidedFlow;
   table?: {
     seats: PlayerSeat[];
     active: number;
@@ -186,6 +214,7 @@ export interface GameState {
   lastQuest: { will: number; threat: number; net: number } | null;
 }
 export type Action =
+  | { type: "CONTINUE"; stepId: number }
   | { type: "SELECT_SEAT"; seat: number }
   | { type: "KEEP" | "MULLIGAN" | "NEXT" | "COMMIT" | "END_ATTACKS" }
   | { type: "TOGGLE_QUEST"; id: string }

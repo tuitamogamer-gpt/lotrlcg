@@ -9,6 +9,7 @@ import {
   Eye,
   Feather,
   Funnel,
+  Pause,
   Shield,
   Stack,
   X,
@@ -70,19 +71,21 @@ const offTurn = (s: GameState) =>
     s.phase,
   );
 export const nextAction = (s: GameState): Action | null =>
-  offTurn(s)
-    ? { type: "SELECT_SEAT", seat: s.table!.turn }
-    : s.choice || s.status !== "playing"
-      ? null
-      : s.phase === "setup"
-        ? { type: "KEEP" }
-        : s.phase === "quest"
-          ? { type: "COMMIT" }
-          : s.phase === "defense"
-            ? null
-            : s.phase === "attack"
-              ? { type: "END_ATTACKS" }
-              : { type: "NEXT" };
+  s.flow?.pending
+    ? null
+    : offTurn(s)
+      ? { type: "SELECT_SEAT", seat: s.table!.turn }
+      : s.choice || s.status !== "playing"
+        ? null
+        : s.phase === "setup"
+          ? { type: "KEEP" }
+          : s.phase === "quest"
+            ? { type: "COMMIT" }
+            : s.phase === "defense"
+              ? null
+              : s.phase === "attack"
+                ? { type: "END_ATTACKS" }
+                : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
   offTurn(s)
     ? `Continue as ${seatName(s, s.table!.turn)}`
@@ -109,11 +112,26 @@ export const nextLabel = (s: GameState) =>
 export function TurnActions({
   s,
   dispatch,
+  review,
 }: {
   s: GameState;
   dispatch: (a: Action) => unknown;
+  review?: () => void;
 }) {
   const action = nextAction(s);
+  if (s.flow?.pending)
+    return (
+      <div className="turn-actions resolution-paused">
+        <span>
+          <Pause size={13} weight="fill" /> WAITING FOR YOU
+        </span>
+        <strong>{s.flow.pending.title}</strong>
+        <p>The table is paused. Read the event before continuing.</p>
+        <button className="primary" onClick={review}>
+          Review current event <ArrowRight size={17} />
+        </button>
+      </div>
+    );
   if (s.table?.seats[activeSeat(s)].eliminated || offTurn(s))
     return (
       <div className="turn-actions">

@@ -13,9 +13,11 @@ Open **http://localhost:5178**. Select **Normal game** to choose any mission, or
 
 Campaign victories unlock the next chapter and record boons, burdens, fallen heroes, and scores. Prepare your heroes and player deck between quests. Dol Guldur uses the prisoner recorded at the end of the Anduin. Retry a failed quest from its campaign checkpoint.
 
+**You control the pace.** Encounters and shadows are shown before their effects resolve. Resource gains, drawn cards, damage, threat, quest results, and phase handoffs appear in a review that waits for **Continue**. There is no timer or automatic dismissal. **Inspect table** keeps the game paused while you examine cards and hero seats; **Review current event** returns to the pending step. The chronicle retains the last 80 event reviews, including revealed cards and before/after changes. Autosave and export/import preserve the exact pending review.
+
 The Red Book design uses parchment cartography, oxblood leather, brass, and distinct scenery for each quest. The desktop table keeps the hand and turn controls inside the viewport, with independent scrolling for crowded battlefield zones. Hero banners show each deck’s threat, resources, hand, and remaining cards. Mouse previews, full card inspection, hand sorting/filtering, discard browsing, and a shared quest forecast remain available. Preferences are saved on this device. **This release focuses on desktop; further mobile refinement is deferred.**
 
-Keyboard: **1 / 2 / 3** switches hero seats, **N** advances the current step, **U** undoes the last action, **H** jumps to your hand, **?** opens preferences and shortcuts, and **Esc** closes cards or menus. Shortcuts pause during dialogs and text entry.
+Keyboard: **1 / 2 / 3** switches hero seats, **N** advances the current phase or opens a pending review, **U** undoes the last action, **H** jumps to your hand, **?** opens preferences and shortcuts, and **Esc** closes cards or menus. Shortcuts pause during dialogs and text entry. A pending event requires its Continue button; Escape, repeated key presses, and double clicks cannot skip reviews.
 
 ## Check
 
@@ -28,7 +30,7 @@ npm run test:browser
 
 Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run preview -- --port 5178` serves the production build.
 
-`npm run test:ui` runs the interface checks separately: hand controls, card inspection and play, preferences, keyboard navigation, and responsive layouts. `npm run test:hotseat` checks independent seats, complete round handoffs, cooperative combat, campaign carry-over, hero shortcuts, and desktop action reachability. Both are included in `test:browser`. Use `DESKTOP_ONLY=1 npm run test:ui` or `DESKTOP_ONLY=1 npm run test:hotseat` for the current desktop focus (1280×720 through 2560×1440).
+`npm run test:ui` runs the interface checks separately: hand controls, card inspection and play, preferences, keyboard navigation, and responsive layouts. `npm run test:hotseat` checks independent seats, complete round handoffs, cooperative combat, campaign carry-over, hero shortcuts, and desktop action reachability. `npm run test:pacing` checks actual blocking reviews, encounter/shadow ordering, damage, resources, reload, the chronicle, and desktop Continue-button reachability. All are included in `test:browser`. Use `DESKTOP_ONLY=1 npm run test:browser` for the current desktop focus (1280×720 through 2560×1440).
 
 ## Deploy
 
@@ -52,6 +54,7 @@ RingsDB’s public API supplies player-card data. Encounter definitions come fro
 - [Design direction](DESIGN.md)
 - [Interface refresh and artwork prompts](docs/UI-REFRESH.md)
 - [Solo hot-seat and Red Book desktop update](docs/HOTSEAT-REDBOOK.md)
+- [Visible events and player-controlled progression](docs/PLAYER-CONTROL.md)
 
 This is a playable first version, not the entire LOTR LCG catalog. It includes 73 Core Set player-card definitions, all 45 Core Set encounter definitions, seven campaign support definitions, all three quests, and both Mirkwood endings. The wider library contains 1,315 browsable player cards. Online multiplayer, expert campaign rules, expansion quests/cards, and unrestricted deck construction are outside the current scope. Some intermediate timing windows remain simplified; see the coverage document.
 

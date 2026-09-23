@@ -423,13 +423,19 @@ for (const scenarioId of ["mirkwood", "anduin", "dol-guldur"] as const)
           let s = createGame(seed, d.cards, d.heroes, d.id, {
               seats: config.slice(0, n),
               scenarioId,
+              guided: seed <= 2,
               playMode: campaign ? "campaign" : "normal",
               ...(campaign ? { campaign: c } : {}),
             }),
             steps = 0;
-          while (s.status === "playing" && steps++ < 1500) {
+          while (
+            (s.status === "playing" || s.flow?.pending) &&
+            steps++ < 4000
+          ) {
             let a: Action;
-            if (s.choice)
+            if (s.flow?.pending)
+              a = { type: "CONTINUE", stepId: s.flow.pending.id };
+            else if (s.choice)
               a = {
                 type: "CHOOSE",
                 id: (

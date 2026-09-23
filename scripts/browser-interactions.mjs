@@ -1,3 +1,8 @@
+import {
+  installReviewHandler,
+  acknowledgeReviews,
+  reviewedState,
+} from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -12,6 +17,7 @@ for (const [name, fixture] of Object.entries(fixtures)) {
     reducedMotion: "reduce",
   });
   const p = await context.newPage();
+  await installReviewHandler(p);
   p.on("pageerror", (e) => failures.push(e.message));
   await p.goto(process.env.GAME_URL ?? "http://localhost:5178");
   await p.evaluate(
@@ -28,6 +34,7 @@ for (const [name, fixture] of Object.entries(fixtures)) {
     .click();
   if (name === "victory") {
     await p.getByRole("button", { name: "Resolve quest", exact: true }).click();
+    await acknowledgeReviews(p);
     assert.ok(
       await p.getByRole("dialog", { name: "Beyond the shadow" }).isVisible(),
     );
@@ -60,7 +67,7 @@ for (const [name, fixture] of Object.entries(fixtures)) {
         .getByRole("button", { name: "Resolve enemy attack", exact: true })
         .click();
     }
-    const s = JSON.parse(await p.evaluate(() => window.render_game_to_text()));
+    const s = await reviewedState(p);
     if (name === "leadership") {
       assert.equal(s.heroes[0].resources, 2);
       assert.equal(s.heroes[0].attachments[0].exhausted, true);

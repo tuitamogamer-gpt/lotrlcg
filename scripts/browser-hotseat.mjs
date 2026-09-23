@@ -1,3 +1,8 @@
+import {
+  installReviewHandler,
+  acknowledgeReviews,
+  reviewedState,
+} from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -7,14 +12,14 @@ await fs.mkdir(dir, { recursive: true });
 const fixtures = JSON.parse(await fs.readFile(`${dir}/fixtures.json`, "utf8"));
 const browser = await chromium.launch({ headless: true }),
   errors = [];
-const state = async (p) =>
-  JSON.parse(await p.evaluate(() => window.render_game_to_text()));
+const state = reviewedState;
 async function page(width = 1440, height = 1000) {
   const c = await browser.newContext({
     viewport: { width, height },
     reducedMotion: "reduce",
   });
   const p = await c.newPage();
+  await installReviewHandler(p);
   p.on("pageerror", (e) => errors.push(e.message));
   p.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());
@@ -51,6 +56,7 @@ async function settle(p) {
 const turn = async (p) =>
   p.locator(".turn-panel .turn-actions .primary").click();
 async function shot(p, name) {
+  await acknowledgeReviews(p);
   await p.screenshot({ path: `${dir}/${name}.png`, fullPage: true });
   assert.ok(
     await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
@@ -198,9 +204,7 @@ await shot(p, "campaign-three-seats");
 await load(p, fixtures.fallenCampaign);
 await turn(p);
 await settle(p);
-await p
-  .getByRole("button", { name: "Continue campaign", exact: true })
-  .click();
+await p.getByRole("button", { name: "Continue campaign", exact: true }).click();
 assert.equal(
   await p
     .getByRole("combobox", { name: "Campaign hero 1", exact: true })

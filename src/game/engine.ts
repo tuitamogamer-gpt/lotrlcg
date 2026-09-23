@@ -46,6 +46,16 @@ import {
   attackersFor,
 } from "./table";
 
+import {
+  observe,
+  pauseFor,
+  recordObservation,
+  validFlow,
+} from "./presentation";
+
+const observation = (s: GameState) =>
+  s.flow ? observe(s, stats, stagingThreat) : undefined;
+
 export class RuleError extends Error {}
 function requireRule(ok: unknown, message: string): asserts ok {
   if (!ok) throw new RuleError(message);
@@ -101,7 +111,13 @@ function log(
   text: string,
   kind: GameState["log"][number]["kind"] = "normal",
 ) {
-  s.log.push({ id: s.nextId++, round: s.round, text, kind });
+  s.log.push({
+    id: s.nextId++,
+    round: s.round,
+    text,
+    kind,
+    ...(s.table ? { player: activeSeat(s) } : {}),
+  });
   if (s.log.length > 250) s.log.shift();
 }
 function prepend(s: GameState, ...effects: Effect[]) {
@@ -705,6 +721,22 @@ function revealed(s: GameState, code: string, guarding?: string) {
     `Revealed ${c.name}.`,
     c.type_code === "treachery" ? "danger" : "normal",
   );
+  if (s.flow) {
+    prepend(s, fx("resolveReveal", { code, source: guarding }));
+    pauseFor(s, {
+      kind: "reveal",
+      title: `Revealed · ${c.name}`,
+      detail: "Read the encounter. Its revealed effects have not resolved yet.",
+      cards: [
+        { code, label: guarding ? "Objective guard" : "Encounter revealed" },
+      ],
+    });
+    return;
+  }
+  resolveReveal(s, code, guarding);
+}
+function resolveReveal(s: GameState, code: string, guarding?: string) {
+  const c = card(code);
   let thalin = false;
   if (
     c.type_code === "enemy" &&
@@ -1301,6 +1333,9 @@ function handle(s: GameState, e: Effect) {
     case "spendEvent":
       spendEvent(s, e.code!);
       break;
+    case "resolveReveal":
+      resolveReveal(s, e.code!, e.source);
+      break;
     case "placeEncounter":
       placeEncounter(s, e.code!, e.flag, e.value, e.source);
       break;
@@ -1495,6 +1530,39 @@ function handle(s: GameState, e: Effect) {
         "Exhaust one hero to pay the travel cost.",
       );
       break;
+    case "engagementRound": {
+      if (s.scenarioId === "anduin" && s.stage === 2) break;
+      const eligible = playerOrder(s).some((i) =>
+        s.staging.some(
+          (u) =>
+            card(u.code).type_code === "enemy" &&
+            (card(u.code).engagement ?? 0) <= seatView(s, i).threat,
+        ),
+      );
+      if (eligible)
+        prepend(
+          s,
+          ...playerOrder(s).map((player) =>
+            fx("automaticEngagement", { player }),
+          ),
+          fx("engagementRound"),
+        );
+      break;
+    }
+    case "automaticEngagement": {
+      const enemy = s.staging
+        .filter(
+          (u) =>
+            card(u.code).type_code === "enemy" &&
+            (card(u.code).engagement ?? 0) <= s.threat,
+        )
+        .sort(
+          (a, b) =>
+            (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
+        )[0];
+      if (enemy && !s.table?.seats[activeSeat(s)].eliminated) engage(s, enemy);
+      break;
+    }
     case "startCombat":
       startPhase(s, "defense");
       eachSeat(s, () => {
@@ -1516,37 +1584,24 @@ function handle(s: GameState, e: Effect) {
         s,
         `Shadow: ${card(e.code!).name}${card(e.code!).shadow ? " — " + card(e.code!).shadow : " · no effect"}.`,
       );
-      const eligible = playerOrder(s).filter((i) => {
-        const p = seatView(s, i);
-        return (
-          card(e.code!).shadow &&
-          p.hand.some((u) => u.code === "01048") &&
-          resources(p, "spirit") >= 1
-        );
-      });
-      if (eligible.length)
-        choose(
-          s,
-          "A shadow falls",
-          [
-            ...eligible.map((player) => ({
-              id: s.table ? `cancel-${player}` : "cancel",
-              label: `Play Hasty Stroke · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
-              code: "01048",
-              effects: [fx("spendEvent", { code: "01048", player })],
-            })),
-            {
-              id: "resolve",
-              label: "Resolve shadow effect",
-              code: e.code,
-              effects: [fx("shadowEffect", { code: e.code })],
-            },
-          ],
-          card(e.code!).shadow,
-        );
-      else prepend(s, fx("shadowEffect", { code: e.code }));
+      if (s.flow) {
+        prepend(s, fx("shadowResponse", { code: e.code }));
+        pauseFor(s, {
+          kind: "shadow",
+          title: `Shadow · ${card(e.code!).name}`,
+          detail: card(e.code!).shadow
+            ? "The shadow is faceup. Review it before its response window and effect."
+            : "This card has no shadow effect. Normal encounter text does not resolve here.",
+          cards: [{ code: e.code!, label: "Revealed shadow" }],
+        });
+        break;
+      }
+      shadowResponse(s, e.code!);
       break;
     }
+    case "shadowResponse":
+      shadowResponse(s, e.code!);
+      break;
     case "shadowEffect": {
       const enemyId = s.combat?.enemyId,
         before = s.queue.length;
@@ -1567,13 +1622,10 @@ function handle(s: GameState, e: Effect) {
         .map((id) => get(s, id))
         .filter((x): x is Unit => !!x);
       const power = stats(s, enemy).attack + c.attackBonus;
-      const amount = Math.max(
-        0,
-        power -
-          (c.ignoreDefense
-            ? 0
-            : defenders.reduce((n, d) => n + stats(s, d).defense, 0)),
-      );
+      const defense = c.ignoreDefense
+        ? 0
+        : defenders.reduce((n, d) => n + stats(s, d).defense, 0);
+      const amount = Math.max(0, power - defense);
       if (defenders.length > 1) {
         if (amount)
           choose(
@@ -1602,7 +1654,12 @@ function handle(s: GameState, e: Effect) {
           ]),
           "All undefended damage goes to one hero.",
         );
-      log(s, `${name(enemy)} attacks for ${power}.`);
+      log(
+        s,
+        defenders.length
+          ? `${name(enemy)} attacks for ${power} − ${defense} defense = ${amount} damage${c.ignoreDefense ? " (defense ignored)" : ""}.`
+          : `${name(enemy)} attacks for ${power} damage (undefended).`,
+      );
       break;
     }
     case "enemyDone": {
@@ -1659,12 +1716,49 @@ function handle(s: GameState, e: Effect) {
       extraEffect(s, e);
   }
 }
+function shadowResponse(s: GameState, code: string) {
+  const eligible = playerOrder(s).filter((i) => {
+    const p = seatView(s, i);
+    return (
+      card(code).shadow &&
+      p.hand.some((u) => u.code === "01048") &&
+      resources(p, "spirit") >= 1
+    );
+  });
+  if (eligible.length)
+    choose(
+      s,
+      "A shadow falls",
+      [
+        ...eligible.map((player) => ({
+          id: s.table ? `cancel-${player}` : "cancel",
+          label: `Play Hasty Stroke · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
+          code: "01048",
+          effects: [fx("spendEvent", { code: "01048", player })],
+        })),
+        {
+          id: "resolve",
+          label: "Resolve shadow effect",
+          code,
+          effects: [fx("shadowEffect", { code })],
+        },
+      ],
+      card(code).shadow,
+    );
+  else prepend(s, fx("shadowEffect", { code }));
+}
 function flush(s: GameState) {
   let n = 0;
-  while (s.queue.length && !s.choice && s.status === "playing") {
+  while (
+    s.queue.length &&
+    !s.choice &&
+    !s.flow?.pending &&
+    s.status === "playing"
+  ) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     if (s.table && effect.player !== undefined) selectSeat(s, effect.player);
+    const before = observation(s);
     if (
       !s.table?.seats[activeSeat(s)].eliminated ||
       [
@@ -1679,15 +1773,20 @@ function flush(s: GameState) {
         "travelDone",
         "reveal",
         "placeEncounter",
+        "resolveReveal",
+        "engagementRound",
+        "automaticEngagement",
         "enemyDone",
       ].includes(effect.kind)
     )
       handle(s, effect);
-    check(s);
+    if (!s.flow?.pending) check(s);
+    if (before) recordObservation(s, before, observation(s)!, effect);
   }
   if (
     s.table &&
     !s.choice &&
+    !s.flow?.pending &&
     ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
       s.phase,
     )
@@ -1706,6 +1805,7 @@ export function createGame(
     campaign?: CampaignState;
     includeSupport?: boolean;
     seats?: SeatConfig[];
+    guided?: boolean;
   } = {},
 ): GameState {
   const list = Object.entries(deck).flatMap(
@@ -1765,6 +1865,9 @@ export function createGame(
         )
       : null;
   const s: GameState = {
+    ...(options.guided
+      ? { flow: { nextId: 1, pending: null, history: [] } }
+      : {}),
     version: 2,
     scenarioId,
     playMode,
@@ -1923,11 +2026,22 @@ export function createGame(
     `${scenario(scenarioId).name} · ${playMode === "campaign" ? "Mirkwood Paths campaign" : "Normal game"}.`,
     "chapter",
   );
+  if (s.flow)
+    pauseFor(s, {
+      kind: "setup",
+      title: `${scenario(scenarioId).shortName} · The table is ready`,
+      detail:
+        "Each fellowship has drawn six starting cards. Review the setup, then continue at your pace.",
+      cards: s.staging.map((u) => ({ code: u.code, label: "Scenario setup" })),
+      lines: s.log.slice(),
+    });
   flush(s);
   return s;
 }
 export function canPlay(s: GameState, u: Unit): string | null {
   const c = card(u.code);
+  if (s.flow?.pending)
+    return "Review the current event before playing another card.";
   if (s.choice || s.status !== "playing")
     return "Resolve the current choice first.";
   if (s.table?.seats[activeSeat(s)].eliminated)
@@ -2103,6 +2217,16 @@ export function availableAbilities(s: GameState, u: Unit) {
 }
 export function applyAction(input: GameState, action: Action): GameState {
   const s = structuredClone(input);
+  if (action.type === "CONTINUE") {
+    requireRule(
+      s.flow?.pending && s.flow.pending.id === action.stepId,
+      "This event is no longer waiting for confirmation.",
+    );
+    s.flow.pending = null;
+    flush(s);
+    syncSeat(s);
+    return s;
+  }
   if (action.type === "SELECT_SEAT") {
     requireRule(
       s.table &&
@@ -2116,6 +2240,8 @@ export function applyAction(input: GameState, action: Action): GameState {
     syncSeat(s);
     return s;
   }
+  requireRule(!s.flow?.pending, "Review the current event before continuing.");
+  const before = observation(s);
   requireRule(s.status === "playing", "This adventure has ended.");
   requireRule(
     !s.table?.seats[activeSeat(s)].eliminated,
@@ -2261,28 +2387,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         });
       } else if (s.phase === "encounter") {
         if (!passSeat(s)) break;
-        let engaged = true;
-        while (engaged) {
-          engaged = false;
-          eachSeat(s, () => {
-            const enemy = s.staging
-              .filter(
-                (u) =>
-                  !(s.scenarioId === "anduin" && s.stage === 2) &&
-                  card(u.code).type_code === "enemy" &&
-                  (card(u.code).engagement ?? 0) <= s.threat,
-              )
-              .sort(
-                (a, b) =>
-                  (card(b.code).engagement ?? 0) -
-                  (card(a.code).engagement ?? 0),
-              )[0];
-            if (enemy) {
-              engage(s, enemy);
-              engaged = true;
-            }
-          });
-        }
+        enqueue(s, fx("engagementRound"));
         enqueue(s, fx("phaseEnd"), fx("startCombat"));
       } else if (s.phase === "refresh") {
         phaseEnd(s);
@@ -2579,8 +2684,12 @@ export function applyAction(input: GameState, action: Action): GameState {
     default:
       throw new RuleError("Unknown action.");
   }
+  if (before) {
+    if (!s.queue.length) check(s);
+    recordObservation(s, before, observation(s)!, action);
+  }
   flush(s);
-  check(s);
+  if (!s.flow?.pending) check(s);
   syncSeat(s);
   return s;
 }
@@ -2602,6 +2711,9 @@ export function score(s: GameState) {
 }
 export function publicState(s: GameState) {
   return {
+    awaitingConfirmation: !!s.flow?.pending,
+    resolution: s.flow?.pending ?? null,
+    recentEvents: s.flow?.history.slice(-8) ?? [],
     mode: s.status,
     table: s.table
       ? {
@@ -2619,7 +2731,12 @@ export function publicState(s: GameState) {
               deckCount: p.deck.length,
               heroes: p.heroes,
               allies: p.allies,
-              engaged: p.engaged,
+              engaged: p.engaged.map(
+                ({ shadows, facedownCard: _facedown, ...u }) => ({
+                  ...u,
+                  shadowCount: shadows.length,
+                }),
+              ),
               passed: s.table!.passed.includes(i),
             };
           }),
@@ -2688,6 +2805,7 @@ export function validateSave(value: unknown): value is GameState {
   try {
     if (!value || typeof value !== "object") return false;
     const s = value as GameState;
+    if (!validFlow(s.flow)) return false;
     const integer = (n: unknown) =>
       typeof n === "number" && Number.isInteger(n) && Number.isFinite(n);
     const codes = (v: unknown): v is string[] =>
@@ -3055,14 +3173,14 @@ function resolvePlayerAttack(
           : 0),
       0,
     ) + stagingBonus;
+  const defense = stats(s, enemy).defense;
+  const amount = Math.max(0, power - defense);
   log(
     s,
-    `${attackers.map((u) => name(u!)).join(" + ")} attack ${name(enemy)} for ${power}.`,
+    `${attackers.map((u) => name(u!)).join(" + ")} attack ${name(enemy)}: ${power} attack − ${defense} defense = ${amount} damage.`,
   );
-  const killed =
-    enemy.damage + Math.max(0, power - stats(s, enemy).defense) >=
-    stats(s, enemy).health;
-  damage(s, enemy.id, Math.max(0, power - stats(s, enemy).defense));
+  const killed = enemy.damage + amount >= stats(s, enemy).health;
+  damage(s, enemy.id, amount);
   if (killed && s.status === "playing") {
     const tokens = attackers.reduce(
       (n, u) =>
@@ -3867,6 +3985,7 @@ export function continueCampaign(
     playMode: "campaign",
     campaign: c,
     includeSupport,
+    guided: !!s.flow,
   });
 }
 export function retryAdventure(s: GameState, seed = Date.now()): GameState {
@@ -3889,6 +4008,7 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     playMode: s.playMode,
     campaign: s.campaign ?? undefined,
     includeSupport: s.includeSupport,
+    guided: !!s.flow,
   });
 }
 function rescuePrisoner(s: GameState) {

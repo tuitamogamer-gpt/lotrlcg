@@ -69,6 +69,7 @@ function run(
   id: string,
   scenarioId: ScenarioId = "mirkwood",
   playMode: PlayMode = "normal",
+  guided = false,
 ) {
   const d = STARTERS.find((x) => x.id === id)!;
   const campaign = newCampaign(d.heroes);
@@ -91,10 +92,14 @@ function run(
   let s = createGame(seed, d.cards, d.heroes, d.id, {
     scenarioId,
     playMode,
+    guided,
     ...(playMode === "campaign" ? { campaign } : {}),
   });
   let steps = 0;
-  while (s.status === "playing" && steps++ < 1000) {
+  while (
+    (s.status === "playing" || s.flow?.pending) &&
+    steps++ < (guided ? 5000 : 1000)
+  ) {
     let action: Action;
     const objective = s.staging.find((u) => objectiveFree(s, u));
     const bearer = [...s.heroes]
@@ -104,7 +109,9 @@ function run(
           h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
             .length < 2,
       );
-    if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
+    if (s.flow?.pending)
+      action = { type: "CONTINUE", stepId: s.flow.pending.id };
+    else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (objective && bearer && s.threat < 46)
       action = { type: "CLAIM", id: objective.id, heroId: bearer.id };
@@ -244,13 +251,13 @@ function run(
     "playing",
     `${id} seed ${seed} stalled at ${s.phase}`,
   );
-  return s.status;
+  return s;
 }
 for (const d of STARTERS)
   test(`${d.subtitle}: 25 seeded complete games terminate without illegal state or stuck decisions`, () => {
     const results = { won: 0, lost: 0 };
     for (let seed = 1; seed <= 25; seed++) {
-      const result = run(seed, d.id);
+      const result = run(seed, d.id).status;
       results[result as "won" | "lost"]++;
     }
     console.log(d.id, results);
@@ -263,7 +270,22 @@ for (const q of SCENARIOS)
       const results = { won: 0, lost: 0 };
       for (const d of STARTERS)
         for (let seed = 1; seed <= 10; seed++)
-          results[run(seed, d.id, q.id, mode) as "won" | "lost"]++;
+          results[run(seed, d.id, q.id, mode).status as "won" | "lost"]++;
       console.log(q.id, mode, results);
     });
   }
+
+for (const q of SCENARIOS)
+  for (const mode of ["normal", "campaign"] as const)
+    test(`${q.name} / ${mode}: guided confirmations preserve complete-game rules outcomes`, () => {
+      for (const d of STARTERS)
+        for (let seed = 1; seed <= 3; seed++) {
+          const immediate = run(seed, d.id, q.id, mode);
+          const { flow: _flow, ...guided } = run(seed, d.id, q.id, mode, true);
+          assert.deepEqual(
+            guided,
+            immediate,
+            `${q.id}/${mode}/${d.id}/${seed}`,
+          );
+        }
+    });

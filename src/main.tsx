@@ -10,10 +10,10 @@ import "@fontsource/manrope/latin-700.css";
 import App from "./App";
 import "./styles.css";
 import "./ui/experience.css";
+import "./ui/redbook.css";
+import "./ui/resolution.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
 );
-
-import "./ui/redbook.css";

@@ -1,3 +1,8 @@
+import {
+  installReviewHandler,
+  acknowledgeReviews,
+  reviewedState,
+} from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -12,8 +17,7 @@ const campaignKey = "there-and-back-again.campaign.v1";
 const modeKey = "there-and-back-again.mode.v1";
 const browser = await chromium.launch({ headless: true });
 const errors = [];
-const state = async (p) =>
-  JSON.parse(await p.evaluate(() => window.render_game_to_text()));
+const state = reviewedState;
 async function settle(p) {
   for (let n = 0; n < 50; n++) {
     const s = await state(p);
@@ -31,6 +35,7 @@ async function page(width = 1512, height = 982) {
     reducedMotion: "reduce",
   });
   const p = await context.newPage();
+  await installReviewHandler(p);
   p.on("pageerror", (e) => errors.push(e.message));
   p.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());
@@ -40,6 +45,7 @@ async function page(width = 1512, height = 982) {
   return p;
 }
 async function screenshot(p, name) {
+  await acknowledgeReviews(p);
   await p.screenshot({ path: `${directory}/${name}.png`, fullPage: true });
   assert.ok(
     await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
@@ -88,6 +94,7 @@ for (const id of ["mirkwood", "anduin", "dol-guldur"]) {
 const p = await page();
 await p.locator("#start-btn").click();
 await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+await acknowledgeReviews(p);
 const normal = await p.evaluate((key) => localStorage.getItem(key), normalKey);
 await p
   .getByRole("navigation")
@@ -143,6 +150,7 @@ assert.ok(
   [...anduin.deck, ...anduin.hand.map((h) => h.code)].includes("rc132"),
 );
 await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+await acknowledgeReviews(p);
 // Controlled final fight; victory and prisoner selection still go through the rules engine.
 const finalFight = JSON.parse(
   await p.evaluate((key) => localStorage.getItem(key), campaignKey),
@@ -243,7 +251,7 @@ console.log(
   "Campaign: rewards, hero change, permanent threat, all chapters, prisoner, objective claim, Mendor rescue, completion, mode persistence and save isolation passed",
 );
 await p.context().close();
-for (const width of [390, 320]) {
+for (const width of process.env.DESKTOP_ONLY ? [] : [390, 320]) {
   const p = await page(width, 844);
   await p.getByRole("button", { name: /Campaign mode/ }).click();
   await screenshot(p, `mobile-${width}-campaign`);

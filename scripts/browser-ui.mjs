@@ -1,3 +1,8 @@
+import {
+  installReviewHandler,
+  acknowledgeReviews,
+  reviewedState,
+} from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -7,14 +12,14 @@ await fs.mkdir(dir, { recursive: true });
 const fixture = JSON.parse(await fs.readFile(`${dir}/fixture.json`, "utf8"));
 const browser = await chromium.launch({ headless: true });
 const errors = [];
-const state = async (p) =>
-  JSON.parse(await p.evaluate(() => window.render_game_to_text()));
+const state = reviewedState;
 async function page(width = 1440, height = 1000) {
   const context = await browser.newContext({
     viewport: { width, height },
     reducedMotion: "reduce",
   });
   const p = await context.newPage();
+  await installReviewHandler(p);
   p.on("pageerror", (e) => errors.push(e.message));
   p.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());
@@ -38,6 +43,7 @@ async function load(p) {
     .click();
 }
 async function shot(p, name) {
+  await acknowledgeReviews(p);
   await p.screenshot({ path: `${dir}/${name}.png`, fullPage: true });
   assert.ok(
     await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
@@ -198,6 +204,7 @@ for (const width of process.env.DESKTOP_ONLY
   assert.ok(await p.locator(".adventure-dol-guldur").isVisible());
   await p.locator(".mission-mirkwood").click();
   await p.locator("#start-btn").click();
+  await acknowledgeReviews(p);
   const keep = p.getByRole("button", { name: "Keep hand", exact: true });
   assert.equal(await keep.count(), 1);
   if (width < 768) {

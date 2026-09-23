@@ -325,6 +325,7 @@ export function CooperativeActions({
           <button
             disabled={
               !!s.choice ||
+              !!s.flow?.pending ||
               s.eowynUsed ||
               !s.hand.length ||
               s.status !== "playing" ||
@@ -341,6 +342,7 @@ export function CooperativeActions({
             disabled={
               a.disabled ||
               !!s.choice ||
+              !!s.flow?.pending ||
               s.status !== "playing" ||
               s.table!.seats[activeSeat(s)].eliminated
             }

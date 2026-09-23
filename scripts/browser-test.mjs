@@ -1,3 +1,8 @@
+import {
+  installReviewHandler,
+  acknowledgeReviews,
+  reviewedState,
+} from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -6,8 +11,7 @@ await fs.mkdir("output/browser", { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const errors = [];
 const reports = [];
-const state = async (p) =>
-  JSON.parse(await p.evaluate(() => window.render_game_to_text()));
+const state = reviewedState;
 async function settle(p) {
   for (let n = 0; n < 30; n++) {
     const s = await state(p);
@@ -27,6 +31,7 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     reducedMotion: "reduce",
   });
   const p = await context.newPage();
+  await installReviewHandler(p);
   p.on("pageerror", (e) => errors.push(`${deck}: ${e.message}`));
   p.on("console", (msg) => {
     if (msg.type() === "error") errors.push(`${deck}: ${msg.text()}`);
@@ -139,48 +144,59 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   });
   await context.close();
 }
-const context = await browser.newContext({
-  viewport: { width: 390, height: 844 },
-  reducedMotion: "reduce",
-});
-const p = await context.newPage();
-p.on("pageerror", (e) => errors.push(`mobile: ${e.message}`));
-await p.goto(base);
-await p.waitForTimeout(400);
-assert.ok(
-  await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
-);
-assert.ok(
+if (!process.env.DESKTOP_ONLY) {
+  const context = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    reducedMotion: "reduce",
+  });
+  const p = await context.newPage();
+  await installReviewHandler(p);
+  p.on("pageerror", (e) => errors.push(`mobile: ${e.message}`));
+  await p.goto(base);
+  await p.waitForTimeout(400);
+  assert.ok(
+    await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+  );
+  assert.ok(
+    await p
+      .locator(".sidebar")
+      .evaluate((e) => e.getBoundingClientRect().right <= 0),
+  );
+  await p.screenshot({
+    path: "output/browser/mobile-home.png",
+    fullPage: true,
+  });
+  await p.locator("#start-btn").click();
+  await p.getByRole("button", { name: "Keep hand" }).click();
+  await p.screenshot({
+    path: "output/browser/mobile-table.png",
+    fullPage: true,
+  });
+  assert.ok(
+    await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+  );
+  await p.getByRole("button", { name: "Open navigation" }).click();
+  await p.getByRole("button", { name: "Card library", exact: true }).click();
+  await p.getByRole("textbox", { name: "Search cards" }).fill("Aragorn");
+  await p.waitForTimeout(250);
+  assert.ok((await p.locator(".catalog-card").count()) >= 1);
+  await p.getByRole("checkbox", { name: "Scripted cards only" }).check();
+  assert.equal(await p.locator(".catalog-card").count(), 1);
+  await p.locator(".catalog-card").click();
+  assert.ok(await p.locator("dialog[open]").isVisible());
+  await p.keyboard.press("Escape");
   await p
-    .locator(".sidebar")
-    .evaluate((e) => e.getBoundingClientRect().right <= 0),
-);
-await p.screenshot({ path: "output/browser/mobile-home.png", fullPage: true });
-await p.locator("#start-btn").click();
-await p.getByRole("button", { name: "Keep hand" }).click();
-await p.screenshot({ path: "output/browser/mobile-table.png", fullPage: true });
-assert.ok(
-  await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
-);
-await p.getByRole("button", { name: "Open navigation" }).click();
-await p.getByRole("button", { name: "Card library", exact: true }).click();
-await p.getByRole("textbox", { name: "Search cards" }).fill("Aragorn");
-await p.waitForTimeout(250);
-assert.ok((await p.locator(".catalog-card").count()) >= 1);
-await p.getByRole("checkbox", { name: "Scripted cards only" }).check();
-assert.equal(await p.locator(".catalog-card").count(), 1);
-await p.locator(".catalog-card").click();
-assert.ok(await p.locator("dialog[open]").isVisible());
-await p.keyboard.press("Escape");
-await p.getByRole("textbox", { name: "Search cards" }).fill("zzzznonexistent");
-assert.equal(await p.locator(".catalog-card").count(), 0);
-assert.ok(await p.getByText("No cards on this path.").isVisible());
-await p.getByRole("button", { name: "Clear filters" }).click();
-await p.screenshot({
-  path: "output/browser/mobile-library.png",
-  fullPage: true,
-});
-await context.close();
+    .getByRole("textbox", { name: "Search cards" })
+    .fill("zzzznonexistent");
+  assert.equal(await p.locator(".catalog-card").count(), 0);
+  assert.ok(await p.getByText("No cards on this path.").isVisible());
+  await p.getByRole("button", { name: "Clear filters" }).click();
+  await p.screenshot({
+    path: "output/browser/mobile-library.png",
+    fullPage: true,
+  });
+  await context.close();
+}
 await browser.close();
 await fs.writeFile(
   "output/browser/report.json",

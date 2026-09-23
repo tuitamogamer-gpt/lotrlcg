@@ -107,6 +107,8 @@ import {
   livingSeats,
   seatView,
 } from "./game/table";
+import { startGuided } from "./game/presentation";
+import { ResolutionDialog, ResolutionChronicle } from "./ui/resolution";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -133,7 +135,8 @@ declare global {
 const readSave = (key = SAVE_KEY) => {
   try {
     const s = JSON.parse(localStorage.getItem(key) ?? "null");
-    return restoreSave(s);
+    const restored = restoreSave(s);
+    return restored ? startGuided(restored) : null;
   } catch {
     return null;
   }
@@ -446,6 +449,10 @@ export default function App() {
   const [attackers, setAttackers] = useState<string[]>([]);
   const [defender, setDefender] = useState("");
   const [showLog, setShowLog] = useState(false);
+  const [showResolution, setShowResolution] = useState(true);
+  useEffect(() => {
+    setShowResolution(true);
+  }, [game?.flow?.pending?.id]);
   const [showSettings, setShowSettings] = useState(false);
   const [showPiles, setShowPiles] = useState(false);
   const [pile, setPile] = useState<"player" | "encounter">("player");
@@ -546,6 +553,7 @@ export default function App() {
   const start = (style: "classic" | "hotseat" = setupMode) => {
     try {
       const s = createGame(Date.now(), deck, starter.heroes, starter.id, {
+        guided: true,
         scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
         playMode,
         ...(style === "hotseat" ? { seats } : {}),
@@ -672,7 +680,8 @@ export default function App() {
   };
   const importSave = async (file: File) => {
     try {
-      const s = restoreSave(JSON.parse(await file.text()));
+      const restored = restoreSave(JSON.parse(await file.text()));
+      const s = restored ? startGuided(restored) : null;
       if (!s) throw new Error("This is not a valid adventure save.");
       setGame(s);
       setPlayMode(s.playMode);
@@ -723,7 +732,13 @@ export default function App() {
         setShowSettings(true);
         return;
       }
-      if (page !== "table" || game?.status !== "playing" || game.choice) return;
+      if (
+        page !== "table" ||
+        !game ||
+        (game.status !== "playing" && !game.flow?.pending) ||
+        game.choice
+      )
+        return;
       if (
         game.table &&
         /^[1-3]$/.test(e.key) &&
@@ -1438,6 +1453,24 @@ export default function App() {
               </div>
             </div>
             <section className="guide-note">
+              <h2>You set the pace</h2>
+              <p>
+                Read each encounter before its effect resolves, and each shadow
+                before combat damage. Changes to resources, threat, health,
+                progress, and your hand appear in an event review. Select
+                Continue when you are ready for the next step. Nothing advances
+                on a timer.
+              </p>
+              <p>
+                Inspect table lets you look around while the game stays paused.
+                Open Review current event to return, or browse the last 80
+                events in the chronicle. Revealed cards can be opened at full
+                size. Your save preserves the exact event waiting for
+                confirmation. These reading pauses do not create extra
+                card-action windows.
+              </p>
+            </section>
+            <section className="guide-note">
               <h2>One company. Separate fellowships.</h2>
               <p>
                 In hot-seat mode, choose one hero for each seat. Their sphere
@@ -1543,10 +1576,10 @@ export default function App() {
               <p>
                 This version scripts all three Core Set quests, their encounter
                 decks, the Mirkwood Paths campaign, and all 73 original Core Set
-                player-card definitions across four starter decks. Multiplayer,
-                expert campaign mode, expansion scenarios, and other player-card
-                abilities are not implemented. The library includes the wider
-                RingsDB player-card catalog for browsing.
+                player-card definitions across four starter decks. Online
+                multiplayer, expert campaign mode, expansion scenarios, and
+                other player-card abilities are not implemented. The library
+                includes the wider RingsDB player-card catalog for browsing.
               </p>
               <p>
                 Some optional responses resolve automatically or in a fixed
@@ -1969,7 +2002,11 @@ export default function App() {
                 {["quest", "staging"].includes(game.phase) && (
                   <QuestForecast s={game} />
                 )}
-                <TurnActions s={game} dispatch={dispatch} />
+                <TurnActions
+                  s={game}
+                  dispatch={dispatch}
+                  review={() => setShowResolution(true)}
+                />
                 <div className="turn-tip">
                   {game.phase === "quest"
                     ? "Click a ready character to select it. Click again to unselect."
@@ -2027,6 +2064,17 @@ export default function App() {
                     </button>
                   </div>
                 )}
+                {!!game.flow?.history.length && (
+                  <div className="latest-event">
+                    <button onClick={() => setShowLog(true)}>
+                      <Scroll size={16} />
+                      <span>
+                        <strong>{game.flow.history.at(-1)!.title}</strong>
+                        <small>Review the event chronicle</small>
+                      </span>
+                    </button>
+                  </div>
+                )}
                 <div className="recent-log">
                   <h3>The chronicle</h3>
                   {game.log
@@ -2049,7 +2097,11 @@ export default function App() {
                   <small>ROUND {game.round || 1}</small>
                   <strong>{phaseNames[game.phase]}</strong>
                 </div>
-                <TurnActions s={game} dispatch={dispatch} />
+                <TurnActions
+                  s={game}
+                  dispatch={dispatch}
+                  review={() => setShowResolution(true)}
+                />
               </footer>
             )}
           </main>
@@ -2262,7 +2314,16 @@ export default function App() {
           </div>
         </Modal>
       )}
-      {game && game.choice && page === "table" && (
+      {game?.flow?.pending && page === "table" && showResolution && (
+        <ResolutionDialog
+          s={game}
+          inspect={setDetail}
+          continueGame={(stepId) => dispatch({ type: "CONTINUE", stepId })}
+          viewTable={() => setShowResolution(false)}
+          openLog={() => setShowLog(true)}
+        />
+      )}
+      {game && game.choice && !game.flow?.pending && page === "table" && (
         <Modal title={game.choice.title}>
           {game.table && (
             <div className="decision-owner">
@@ -2568,7 +2629,13 @@ export default function App() {
         </Modal>
       )}
       {showLog && game && (
-        <Modal title="The chronicle" onClose={() => setShowLog(false)}>
+        <Modal title="The chronicle" onClose={() => setShowLog(false)} wide>
+          {game.flow?.history.length ? (
+            <ResolutionChronicle s={game} inspect={setDetail} />
+          ) : null}
+          {game.flow?.history.length ? (
+            <h3 className="raw-log-heading">Rules log</h3>
+          ) : null}
           <div className="full-log">
             {game.log
               .slice()
@@ -2681,77 +2748,81 @@ export default function App() {
           </div>
         </Modal>
       )}
-      {game && game.status !== "playing" && page === "table" && !interlude && (
-        <Modal
-          title={
-            game.status === "won"
-              ? "Beyond the shadow"
-              : "The fellowship has fallen"
-          }
-        >
-          <div className="endgame">
-            {game.status === "won" ? (
-              <Tree size={64} weight="thin" />
-            ) : (
-              <Moon size={64} weight="thin" />
-            )}
-            <h2>
-              {game.status === "won"
-                ? game.campaign?.completed.length === 3
-                  ? "Your tale is complete."
-                  : `${scenario(game.scenarioId).shortName} lies behind you.`
-                : "Every journey leaves a story."}
-            </h2>
-            <p>{game.reason}</p>
-            <div>
-              <span>
-                <strong>{game.round}</strong>Rounds
-              </span>
-              <span>
-                <strong>{game.threat}</strong>Threat
-              </span>
-              {game.status === "won" && (
-                <span>
-                  <strong>{score(game)}</strong>Final score
-                </span>
+      {game &&
+        game.status !== "playing" &&
+        !game.flow?.pending &&
+        page === "table" &&
+        !interlude && (
+          <Modal
+            title={
+              game.status === "won"
+                ? "Beyond the shadow"
+                : "The fellowship has fallen"
+            }
+          >
+            <div className="endgame">
+              {game.status === "won" ? (
+                <Tree size={64} weight="thin" />
+              ) : (
+                <Moon size={64} weight="thin" />
               )}
+              <h2>
+                {game.status === "won"
+                  ? game.campaign?.completed.length === 3
+                    ? "Your tale is complete."
+                    : `${scenario(game.scenarioId).shortName} lies behind you.`
+                  : "Every journey leaves a story."}
+              </h2>
+              <p>{game.reason}</p>
+              <div>
+                <span>
+                  <strong>{game.round}</strong>Rounds
+                </span>
+                <span>
+                  <strong>{game.threat}</strong>Threat
+                </span>
+                {game.status === "won" && (
+                  <span>
+                    <strong>{score(game)}</strong>Final score
+                  </span>
+                )}
+              </div>
+              {game.campaign && (
+                <CampaignJournal game={game} inspect={setDetail} />
+              )}
+              {game.campaign &&
+              game.status === "won" &&
+              game.campaign.completed.length < 3 ? (
+                <button className="primary" onClick={prepareNextChapter}>
+                  Continue campaign <ArrowRight />
+                </button>
+              ) : game.status === "lost" ? (
+                <button className="primary" onClick={retry}>
+                  Retry this quest <ArrowCounterClockwise />
+                </button>
+              ) : (
+                <button
+                  className="primary"
+                  onClick={() => {
+                    nav("adventures");
+                  }}
+                >
+                  Choose another adventure <ArrowRight />
+                </button>
+              )}
+              {game.campaign?.completed.length === 3 && (
+                <p className="campaign-note">
+                  {game.campaign.mendorSaved
+                    ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
+                    : "The campaign is complete, but Mendor did not survive the escape."}
+                </p>
+              )}
+              <button className="text-link" onClick={() => nav("adventures")}>
+                Return to adventures
+              </button>
             </div>
-            {game.campaign && (
-              <CampaignJournal game={game} inspect={setDetail} />
-            )}
-            {game.campaign &&
-            game.status === "won" &&
-            game.campaign.completed.length < 3 ? (
-              <button className="primary" onClick={prepareNextChapter}>
-                Continue campaign <ArrowRight />
-              </button>
-            ) : game.status === "lost" ? (
-              <button className="primary" onClick={retry}>
-                Retry this quest <ArrowCounterClockwise />
-              </button>
-            ) : (
-              <button
-                className="primary"
-                onClick={() => {
-                  nav("adventures");
-                }}
-              >
-                Choose another adventure <ArrowRight />
-              </button>
-            )}
-            {game.campaign?.completed.length === 3 && (
-              <p className="campaign-note">
-                {game.campaign.mendorSaved
-                  ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
-                  : "The campaign is complete, but Mendor did not survive the escape."}
-              </p>
-            )}
-            <button className="text-link" onClick={() => nav("adventures")}>
-              Return to adventures
-            </button>
-          </div>
-        </Modal>
-      )}
+          </Modal>
+        )}
     </div>
   );
 }
@@ -2977,7 +3048,11 @@ function BoardCard({
         </div>
       )}
       {action && (
-        <button className="card-action" onClick={action}>
+        <button
+          className="card-action"
+          onClick={action}
+          disabled={!!s.flow?.pending || !!s.choice}
+        >
           {actionLabel}
           <ArrowRight size={12} />
         </button>
@@ -3008,6 +3083,8 @@ function CharacterCard({
         className="character-art"
         onClick={
           s.phase === "quest" &&
+          !s.flow?.pending &&
+          !s.choice &&
           !u.exhausted &&
           (!s.table || s.table.active === s.table.turn)
             ? () => dispatch({ type: "TOGGLE_QUEST", id: u.id })
@@ -3015,6 +3092,8 @@ function CharacterCard({
         }
         aria-pressed={
           s.phase === "quest" &&
+          !s.flow?.pending &&
+          !s.choice &&
           !u.exhausted &&
           (!s.table || s.table.active === s.table.turn)
             ? selected
@@ -3022,6 +3101,8 @@ function CharacterCard({
         }
         aria-label={
           s.phase === "quest" &&
+          !s.flow?.pending &&
+          !s.choice &&
           !u.exhausted &&
           (!s.table || s.table.active === s.table.turn)
             ? `${selected ? "Unselect" : "Commit"} ${name(u)}`
@@ -3054,7 +3135,7 @@ function CharacterCard({
         {availableAbilities(s, u).map((a, i) => (
           <button
             key={a.id ?? i}
-            disabled={a.disabled}
+            disabled={a.disabled || !!s.flow?.pending || !!s.choice}
             onClick={() =>
               dispatch({ type: "ABILITY", id: u.id, attachmentId: a.id })
             }
