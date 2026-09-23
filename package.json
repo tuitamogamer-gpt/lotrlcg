@@ -1,0 +1,37 @@
+{
+  "name": "mirkwood-lcg",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "tsx --test tests/*.test.ts",
+    "sync:cards": "node scripts/sync-cards.mjs",
+    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs",
+    "format": "prettier --write src tests scripts/*.mjs scripts/*.ts vite.config.ts",
+    "check": "tsc -b"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "motion": "^13.4.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
+}

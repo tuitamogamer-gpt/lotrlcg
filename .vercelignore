@@ -1,0 +1,12 @@
+.git/
+node_modules/
+dist/
+output/
+tests/
+scripts/
+docs/
+progress.md
+README.md
+DESIGN.md
+*.tsbuildinfo
+*.log
