@@ -12,12 +12,13 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "tsx --test tests/*.test.ts",
     "sync:cards": "node scripts/sync-cards.mjs",
-    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs && npm run test:ui && npm run test:hotseat && npm run test:pacing",
+    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs && npm run test:ui && npm run test:hotseat && npm run test:pacing && npm run test:rules-browser",
     "test:ui": "tsx scripts/browser-ui-fixtures.ts && node scripts/browser-ui.mjs",
     "format": "prettier --write src tests scripts/*.mjs scripts/*.ts vite.config.ts",
     "check": "tsc -b",
     "test:hotseat": "tsx scripts/browser-hotseat-fixtures.ts && node scripts/browser-hotseat.mjs",
-    "test:pacing": "tsx scripts/browser-presentation-fixtures.ts && node scripts/browser-presentation.mjs"
+    "test:pacing": "tsx scripts/browser-presentation-fixtures.ts && node scripts/browser-presentation.mjs",
+    "test:rules-browser": "tsx scripts/browser-rules-fixtures.ts && node scripts/browser-rules.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",

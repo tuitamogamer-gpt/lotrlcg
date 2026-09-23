@@ -323,7 +323,7 @@ test("cross-seat attachments return to their owner and heal targets include the 
   assert.ok(seatView(s, 0).discard.includes("01027"));
   assert.ok(!seatView(s, 1).discard.includes("01027"));
 });
-test("campaign continuation and retry preserve all hero decks and per-seat penalties", () => {
+test("campaign continuation and retry preserve all hero decks and the shared replacement penalty", () => {
   let s = make(3, 9, "mirkwood", true);
   while (s.phase === "setup") s = act(s, { type: "KEEP" });
   s.phase = "staging";
@@ -340,7 +340,7 @@ test("campaign continuation and retry preserve all hero decks and per-seat penal
     s.table!.seats.map((p) => p.startingHeroes[0]),
     heroes,
   );
-  assert.deepEqual(s.campaign!.seatPenalties, [1, 0, 0]);
+  assert.deepEqual(s.campaign!.seatPenalties, [1, 1, 1]);
   assert.ok(seatView(s, 0).threat >= 9);
   assert.ok(seatView(s, 1).threat >= 9);
   assert.ok(validateSave(s));
@@ -589,21 +589,22 @@ test("Stand and Fight retrieves another player's ally with the correct cost, con
   assert.ok(!seatView(s, 0).discard.includes("01014"));
   assert.ok(validateSave(s));
 });
-test("an attachment is activated by its owner even on another player's hero", () => {
+test("an attachment is activated by the receiving hero's controller", () => {
   let s = planning();
   s.hand = [unit("01026")];
   s.heroes[0].resources = 3;
   const target = seatView(s, 2).heroes[0].id;
   s = act(prepare(s), { type: "PLAY", id: s.hand[0].id, target });
   const a = seatView(s, 2).heroes[0].attachments[0];
-  s = act(s, { type: "ABILITY", id: target, attachmentId: a.id });
-  assert.equal(seatView(s, 2).heroes[0].resources, 3);
-  assert.equal(seatView(s, 0).heroes[0].resources, 1);
-  selectSeat(s, 2);
   assert.throws(
-    () => act(prepare(s), { type: "ABILITY", id: target, attachmentId: a.id }),
+    () => act(s, { type: "ABILITY", id: target, attachmentId: a.id }),
     /control/,
   );
+  assert.equal(a.owner, 0);
+  selectSeat(s, 2);
+  s = act(prepare(s), { type: "ABILITY", id: target, attachmentId: a.id });
+  assert.equal(seatView(s, 2).heroes[0].resources, 3);
+  assert.equal(seatView(s, 0).heroes[0].resources, 1);
 });
 test("Under the Shadow and Massing at Night scale with active player count", () => {
   let s = planning();

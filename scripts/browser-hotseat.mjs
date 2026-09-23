@@ -179,9 +179,14 @@ await p
   .getByRole("button", { name: "Play card", exact: true })
   .click();
 assert.equal((await state(p)).heroes[0].resources, 3);
-await p
-  .getByRole("button", { name: "Steward of Gondor · Legolas", exact: true })
-  .click();
+assert.equal(
+  await p
+    .getByRole("button", { name: "Steward of Gondor · Legolas", exact: true })
+    .count(),
+  0,
+);
+await p.keyboard.press("3");
+await p.getByRole("button", { name: "Steward of Gondor", exact: true }).click();
 assert.equal((await state(p)).table.seats[2].heroes[0].resources, 3);
 await load(p, fixtures.campaign);
 await turn(p);
@@ -199,7 +204,7 @@ let s = await state(p);
 assert.equal(s.scenario, "anduin");
 assert.equal(s.table.seats.length, 3);
 assert.equal(s.table.seats[0].hero, "01002");
-assert.deepEqual(s.campaign.seatPenalties, [1, 0, 0]);
+assert.deepEqual(s.campaign.seatPenalties, [1, 1, 1]);
 await shot(p, "campaign-three-seats");
 await load(p, fixtures.fallenCampaign);
 await turn(p);
@@ -226,7 +231,7 @@ await p
   .click();
 await settle(p);
 s = await state(p);
-assert.deepEqual(s.campaign.seatPenalties, [0, 1, 0]);
+assert.deepEqual(s.campaign.seatPenalties, [1, 1, 1]);
 assert.equal(s.table.seats[1].hero, "01008");
 
 for (const width of process.env.DESKTOP_ONLY

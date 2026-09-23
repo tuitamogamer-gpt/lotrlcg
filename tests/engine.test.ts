@@ -292,6 +292,11 @@ test("Legolas and Blade of Gondolin add progress on a kill", () => {
   s.engaged = [enemy];
   s = act(s, { type: "ATTACK", enemyId: enemy.id, attackerIds: [h.id] });
   assert.equal(s.engaged.length, 0);
+  while (s.choice)
+    s = act(s, {
+      type: "CHOOSE",
+      id: s.choice.options.find((o) => o.id !== "skip")!.id,
+    });
   assert.equal(s.progress, 3);
 });
 test("Eleanor cancels and replaces a treachery", () => {
@@ -389,7 +394,12 @@ test("Citadel Plate and Dwarven Axe modify health and attack", () => {
   s = play(s, "01041", id);
   assert.equal(stats(s, s.heroes[0]).health, 9);
   assert.equal(stats(s, s.heroes[0]).attack, 4);
-  assert.throws(() => play(s, "01039", id));
+  s = play(s, "01039", id);
+  assert.match(s.choice!.title, /Restricted/);
+  const blade = s.heroes[0].attachments.find((a) => a.code === "01039")!;
+  s = act(s, { type: "CHOOSE", id: blade.id });
+  assert.equal(s.heroes[0].attachments.length, 2);
+  assert.ok(s.discard.includes("01039"));
 });
 test("Beorn fury returns Beorn to deck at end of combat", () => {
   let s = game("tactics");

@@ -63,6 +63,7 @@ import {
   score,
   stageInfo,
   stagingThreat,
+  threatOf,
   stats,
   restoreSave,
   continueCampaign,
@@ -109,6 +110,16 @@ import {
 } from "./game/table";
 import { startGuided } from "./game/presentation";
 import { ResolutionDialog, ResolutionChronicle } from "./ui/resolution";
+import {
+  AttachmentStack,
+  JourneyArea,
+  OtherFellowships,
+  ShadowCards,
+  TableDecks,
+  TableToken,
+  ThreatCounter,
+  questFace,
+} from "./ui/tabletop";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -457,6 +468,7 @@ export default function App() {
   }, [game?.flow?.pending?.id]);
   const [showSettings, setShowSettings] = useState(false);
   const [showPiles, setShowPiles] = useState(false);
+  const [showQuest, setShowQuest] = useState(false);
   const [pile, setPile] = useState<"player" | "encounter">("player");
   const [density, setDensity] = usePreference("density", "comfortable", [
     "comfortable",
@@ -1507,10 +1519,11 @@ export default function App() {
               </p>
               <p>
                 The campaign log records fallen heroes, scores, permanent cards,
-                and the hero captured in Dol Guldur. Replacing a hero adds +1 to
-                your starting threat in later chapters. You may change one
-                surviving hero between quests and replace any fallen heroes.
-                Choose whether to add Mendor’s Support to your next deck.
+                and the hero captured in Dol Guldur. Each hero replacement adds
+                +1 to every player’s starting threat in later chapters. Each
+                player may change one surviving hero between quests and replace
+                any fallen heroes. Choose whether to add Mendor’s Support to
+                your next deck.
               </p>
               <p>
                 Keep Mendor alive: losing him ends the first two campaign
@@ -1659,6 +1672,14 @@ export default function App() {
                 </span>
               </div>
               <div className="table-tools">
+                <button
+                  className="icon-button"
+                  aria-label="Table preferences"
+                  title="Table preferences & shortcuts"
+                  onClick={() => setShowSettings(true)}
+                >
+                  <SlidersHorizontal size={18} />
+                </button>
                 <span
                   className={`save-status ${saved ? "" : "unsaved"}`}
                   role="status"
@@ -1750,193 +1771,153 @@ export default function App() {
                   );
                 })}
               </div>
-              <div
-                className={`threat-dial ${game.threat >= 40 ? "danger" : ""}`}
-              >
-                <Eye size={23} />
-                <strong>{game.threat}</strong>
-                <span>
-                  THREAT<small> / 50</small>
-                </span>
-              </div>
+              <span className="shared-table-label">
+                <Tree size={14} /> A SHARED JOURNEY
+              </span>
             </div>
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
-                <div className="encounter-zone">
-                  <div className="zone-label">
-                    <span>
-                      <Eye size={16} /> STAGING AREA
-                    </span>
-                    <span>
-                      {stagingThreat(game)} threat · {game.encounterDeck.length}{" "}
-                      encounter cards
-                    </span>
-                  </div>
-                  <div className="board-cards">
-                    {game.staging.map((u) => (
-                      <BoardCard
-                        key={u.id}
-                        s={game}
-                        u={u}
-                        inspect={() => setDetail(card(u.code))}
-                        action={
-                          OBJECTIVES.includes(u.code) &&
-                          game.phase !== "setup" &&
-                          objectiveFree(game, u)
-                            ? () => setClaimId(u.id)
-                            : game.phase === "travel" &&
-                                card(u.code).type_code === "location" &&
-                                !game.activeLocation
-                              ? () => dispatch({ type: "TRAVEL", id: u.id })
-                              : game.phase === "encounter" &&
-                                  card(u.code).type_code === "enemy" &&
-                                  !game.optionalEngagement
-                                ? () => dispatch({ type: "ENGAGE", id: u.id })
-                                : game.phase === "attack" &&
+                <JourneyArea
+                  s={game}
+                  inspect={setDetail}
+                  inspectQuest={() => setShowQuest(true)}
+                />
+                <TableDecks
+                  s={game}
+                  kind="encounter"
+                  openDiscard={() => {
+                    setPile("encounter");
+                    setShowPiles(true);
+                  }}
+                />
+                <TableDecks
+                  s={game}
+                  kind="player"
+                  openDiscard={() => {
+                    setPile("player");
+                    setShowPiles(true);
+                  }}
+                />
+                <div
+                  className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""}`}
+                >
+                  <div className="encounter-zone">
+                    <div className="zone-label">
+                      <span>
+                        <Eye size={16} /> STAGING AREA
+                      </span>
+                      <span>
+                        {stagingThreat(game)} threat ·{" "}
+                        {game.encounterDeck.length} encounter cards
+                      </span>
+                    </div>
+                    <div className="board-cards">
+                      {game.staging.map((u) => (
+                        <BoardCard
+                          key={u.id}
+                          s={game}
+                          u={u}
+                          inspect={() => setDetail(card(u.code))}
+                          action={
+                            OBJECTIVES.includes(u.code) &&
+                            game.phase !== "setup" &&
+                            objectiveFree(game, u)
+                              ? () => setClaimId(u.id)
+                              : game.phase === "travel" &&
+                                  card(u.code).type_code === "location" &&
+                                  !game.activeLocation
+                                ? () => dispatch({ type: "TRAVEL", id: u.id })
+                                : game.phase === "encounter" &&
                                     card(u.code).type_code === "enemy" &&
-                                    !u.attacked &&
-                                    game.heroes.some(
-                                      (h) => h.code === "01009" && !h.exhausted,
-                                    )
-                                  ? () => {
-                                      setCombatEnemy(u.id);
-                                      setAttackers([]);
-                                      setDefender("");
-                                    }
-                                  : undefined
-                        }
-                        actionLabel={
-                          OBJECTIVES.includes(u.code)
-                            ? objectiveFree(game, u)
-                              ? "Claim · +2 threat"
-                              : "Guarded"
-                            : card(u.code).type_code === "location"
-                              ? "Travel here"
-                              : game.phase === "attack"
-                                ? "Dúnhere attack"
-                                : "Engage"
-                        }
-                      />
-                    ))}
-                    {!game.staging.length && (
-                      <div className="empty-zone">
-                        <Tree size={34} weight="thin" />
-                        <span>For a moment, the path is clear.</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="quest-zone">
-                  <div className="quest-marker">
-                    <Compass size={26} />
-                  </div>
-                  <div className="quest-description">
-                    <span>
-                      QUEST {game.stage} ·{" "}
-                      {game.scenarioId !== "mirkwood"
-                        ? scenario(game.scenarioId).shortName.toUpperCase()
-                        : game.branch === "unknown"
-                          ? "THE FOREST PATH"
-                          : game.branch === "spider"
-                            ? "THE SPIDER’S LAIR"
-                            : "THE WAY OUT"}
-                    </span>
-                    <h2>{stageInfo(game).name}</h2>
-                    <p>{stageInfo(game).story}</p>
-                    <QuestGoals s={game} />
-                  </div>
-                  <div className="quest-progress">
-                    <strong>
-                      {game.progress}
-                      <small> / {stageInfo(game).quest || "—"}</small>
-                    </strong>
-                    <span>PROGRESS</span>
-                    <div>
-                      <i
-                        style={{
-                          width: `${Math.min(100, (game.progress / (stageInfo(game).quest || 1)) * 100)}%`,
-                        }}
-                      />
+                                    !game.optionalEngagement
+                                  ? () => dispatch({ type: "ENGAGE", id: u.id })
+                                  : game.phase === "attack" &&
+                                      card(u.code).type_code === "enemy" &&
+                                      !u.attacked &&
+                                      game.heroes.some(
+                                        (h) =>
+                                          h.code === "01009" && !h.exhausted,
+                                      )
+                                    ? () => {
+                                        setCombatEnemy(u.id);
+                                        setAttackers([]);
+                                        setDefender("");
+                                      }
+                                    : undefined
+                          }
+                          actionLabel={
+                            OBJECTIVES.includes(u.code)
+                              ? objectiveFree(game, u)
+                                ? "Claim · +2 threat"
+                                : "Guarded"
+                              : card(u.code).type_code === "location"
+                                ? "Travel here"
+                                : game.phase === "attack"
+                                  ? "Dúnhere attack"
+                                  : "Engage"
+                          }
+                        />
+                      ))}
+                      {!game.staging.length && (
+                        <div className="empty-zone">
+                          <Tree size={34} weight="thin" />
+                          <span>For a moment, the path is clear.</span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                {(game.activeLocation || allEngaged(game).length > 0) && (
-                  <div className="active-zones">
-                    {game.activeLocation && (
-                      <div className="active-location">
-                        <div className="zone-label">
-                          <span>
-                            <Compass size={15} /> ACTIVE LOCATION
-                          </span>
-                        </div>
-                        <div className="location-inline">
-                          <button
-                            onClick={() =>
-                              setDetail(card(game.activeLocation!.code))
-                            }
-                          >
-                            <Art c={card(game.activeLocation.code)} />
-                          </button>
-                          <div>
-                            <h3>{name(game.activeLocation)}</h3>
-                            <p>
-                              {game.activeLocation.progress} /{" "}
-                              {card(game.activeLocation.code).quest} progress
-                            </p>
-                            <small>Progress goes here before the quest.</small>
-                          </div>
-                        </div>
+                  {allEngaged(game).length > 0 && (
+                    <div className="engaged-zone">
+                      <div className="zone-label">
+                        <span>
+                          <Sword size={15} /> ENGAGED ENEMIES
+                        </span>
                       </div>
-                    )}
-                    {allEngaged(game).length > 0 && (
-                      <div className="engaged-zone">
-                        <div className="zone-label">
-                          <span>
-                            <Sword size={15} /> ENGAGED ENEMIES
-                          </span>
-                        </div>
-                        <div className="board-cards">
-                          {allEngaged(game).map((u) => (
-                            <BoardCard
-                              key={u.id}
-                              s={game}
-                              u={u}
-                              inspect={() => setDetail(card(u.code))}
-                              action={
-                                (
-                                  game.phase === "defense"
-                                    ? ownerOf(game, u) === activeSeat(game) &&
-                                      !u.attacked
-                                    : game.phase === "attack" &&
-                                      (game.table
-                                        ? !u.attackedBy?.includes(
-                                            activeSeat(game),
-                                          )
-                                        : !u.attacked) &&
-                                      attackersFor(game, u).length > 0
-                                )
-                                  ? () => {
-                                      setCombatEnemy(u.id);
-                                      setAttackers([]);
-                                      setDefender("");
-                                    }
-                                  : undefined
-                              }
-                              actionLabel={
+                      <div className="board-cards">
+                        {allEngaged(game).map((u) => (
+                          <BoardCard
+                            key={u.id}
+                            s={game}
+                            u={u}
+                            inspect={() => setDetail(card(u.code))}
+                            action={
+                              (
                                 game.phase === "defense"
-                                  ? "Defend"
-                                  : game.table &&
-                                      ownerOf(game, u) !== activeSeat(game)
-                                    ? `Ranged · ${seatName(game, ownerOf(game, u))}`
-                                    : "Attack"
-                              }
-                            />
-                          ))}
-                        </div>
+                                  ? ownerOf(game, u) === activeSeat(game) &&
+                                    !u.attacked &&
+                                    !u.feinted &&
+                                    !u.attachments.some(
+                                      (a) => a.code === "01069",
+                                    )
+                                  : game.phase === "attack" &&
+                                    (game.table
+                                      ? !u.attackedBy?.includes(
+                                          activeSeat(game),
+                                        )
+                                      : !u.attacked) &&
+                                    attackersFor(game, u).length > 0
+                              )
+                                ? () => {
+                                    setCombatEnemy(u.id);
+                                    setAttackers([]);
+                                    setDefender("");
+                                  }
+                                : undefined
+                            }
+                            actionLabel={
+                              game.phase === "defense"
+                                ? "Defend"
+                                : game.table &&
+                                    ownerOf(game, u) !== activeSeat(game)
+                                  ? `Ranged · ${seatName(game, ownerOf(game, u))}`
+                                  : "Attack"
+                            }
+                          />
+                        ))}
                       </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
                 <div className="fellowship-zone">
                   <div className="zone-label">
                     <span>
@@ -1971,16 +1952,10 @@ export default function App() {
                         dispatch={dispatch}
                       />
                     ))}
-                    {!game.allies.length && (
-                      <div className="ally-placeholder">
-                        <Plus size={22} weight="thin" />
-                        <span>
-                          Your allies will
-                          <br />
-                          gather here
-                        </span>
-                      </div>
-                    )}
+                    <OtherFellowships
+                      s={game}
+                      select={(seat) => dispatch({ type: "SELECT_SEAT", seat })}
+                    />
                   </div>
                 </div>
                 <Hand
@@ -1993,6 +1968,7 @@ export default function App() {
                 />
               </section>
               <aside className="turn-panel">
+                <ThreatCounter s={game} />
                 <div className="turn-panel-top">
                   <span className="green-dot" />{" "}
                   {game.table
@@ -2001,6 +1977,15 @@ export default function App() {
                 </div>
                 <h2>{phaseNames[game.phase]}</h2>
                 <p>{phaseHelp(game)}</p>
+                {!!game.pendingWolfReturns?.length && (
+                  <p className="turn-tip">
+                    {game.pendingWolfReturns.length} Wolf Rider shadow
+                    {game.pendingWolfReturns.length === 1
+                      ? " waits"
+                      : "s wait"}{" "}
+                    to return to the encounter deck at the end of combat.
+                  </p>
+                )}
                 {["quest", "staging"].includes(game.phase) && (
                   <QuestForecast s={game} />
                 )}
@@ -2203,6 +2188,28 @@ export default function App() {
           </div>
         </Modal>
       )}
+      {showQuest && game && (
+        <Modal title={stageInfo(game).name} onClose={() => setShowQuest(false)}>
+          <div className="quest-inspector">
+            <img
+              src={questFace(game)}
+              alt={`${stageInfo(game).name}, quest side ${game.stage}B`}
+            />
+            <p>{stageInfo(game).story}</p>
+            <QuestGoals s={game} />
+            <p>
+              <strong>
+                {game.progress} / {stageInfo(game).quest || "Special objective"}
+              </strong>{" "}
+              quest progress · Stage {game.stage} of 3
+            </p>
+            <small>
+              Core Set quest card · Fantasy Flight Games · Scan from Hall of
+              Beorn
+            </small>
+          </div>
+        </Modal>
+      )}
       {showPiles && game && (
         <Modal title="Discard piles" onClose={() => setShowPiles(false)}>
           <div className="preference-segments">
@@ -2358,17 +2365,13 @@ export default function App() {
         >
           <p>
             Raise your threat by 2 and attach this objective to a hero. It
-            counts toward that hero’s two restricted attachments.
+            counts toward that hero’s two restricted attachments. If this is a
+            third, choose which Restricted attachment to discard afterwards.
           </p>
           <div className="choice-list">
             {game.heroes.map((h) => (
               <button
                 key={h.id}
-                disabled={
-                  h.attachments.filter((a) =>
-                    card(a.code).text?.includes("Restricted"),
-                  ).length >= 2
-                }
                 onClick={() => {
                   if (dispatch({ type: "CLAIM", id: claimId, heroId: h.id }))
                     setClaimId(null);
@@ -2721,7 +2724,7 @@ export default function App() {
           {game.table && (
             <p className="campaign-note">
               Each hero keeps a separate 30-card deck matching their sphere.
-              Replacement penalties apply to that hero’s seat.
+              Each hero replacement raises every seat’s starting threat by 1.
             </p>
           )}
           <label className="support-toggle">
@@ -2741,10 +2744,14 @@ export default function App() {
           <p className="campaign-note">
             Starting threat penalty: +
             {game.campaign.threatPenalty +
-              game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
-                .length}
-            . You may replace fallen heroes and voluntarily change one other
-            hero.
+              (game.table
+                ? game.table.seats.filter(
+                    (p, i) => p.startingHeroes[0] !== nextHeroes[i],
+                  ).length
+                : game.campaign.heroes.filter((h) => !nextHeroes.includes(h))
+                    .length)}{" "}
+            for every player. Each player may replace fallen heroes and
+            voluntarily change one other hero.
           </p>
           <div className="modal-actions">
             <button className="secondary" onClick={() => setInterlude(false)}>
@@ -2983,12 +2990,17 @@ function BoardCard({
     <div
       className={`board-card ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
     >
+      <ShadowCards count={u.shadows.length} />
       <button
         className="board-card-art"
         onClick={inspect}
         aria-label={`Inspect ${name(u)}`}
       >
         <Art c={c} />
+        <span className="card-table-tokens">
+          {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
+          {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
+        </span>
         <span
           className="encounter-value"
           title={
@@ -3017,11 +3029,15 @@ function BoardCard({
           Engaged with {seatName(s, ownerOf(s, u))}
         </div>
       )}
+      {s.phase === "defense" &&
+        (u.feinted || u.attachments.some((a) => a.code === "01069")) && (
+          <div className="engaged-owner">Enemy attack prevented</div>
+        )}
       {c.type_code === "enemy" ? (
         <div className="enemy-stats">
           <span>
             <Eye />
-            {c.threat}
+            {threatOf(s, u)}
           </span>
           <span>
             <Sword />
@@ -3047,7 +3063,7 @@ function BoardCard({
         <div className="enemy-stats">
           <span>
             <Eye />
-            {c.threat}
+            {threatOf(s, u)}
           </span>
           <span>
             <Compass />
@@ -3085,8 +3101,9 @@ function CharacterCard({
     selected = s.committedIds.includes(u.id) || u.committed;
   return (
     <div
-      className={`character-card ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""}`}
+      className={`character-card ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
     >
+      <AttachmentStack u={u} inspect={inspectCard} />
       <button
         className="character-art"
         onClick={
@@ -3126,12 +3143,12 @@ function CharacterCard({
         {u.exhausted && !selected && (
           <span className="exhausted-badge">Exhausted</span>
         )}
-        {c.type_code === "hero" && (
-          <span className="resource-token" title={`${u.resources} resources`}>
-            <Coins size={12} />
-            {u.resources}
-          </span>
-        )}
+        <span className="card-table-tokens">
+          {c.type_code === "hero" && (
+            <TableToken kind="resource" value={u.resources} />
+          )}
+          {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
+        </span>
       </button>
       <button className="character-name" onClick={inspect}>
         <Sphere sphere={c.sphere_code} />
@@ -3152,21 +3169,6 @@ function CharacterCard({
             {a.label}
           </button>
         ))}
-        {u.attachments
-          .filter(
-            (a) =>
-              !["01026", "01057", "01070", "01071", "01072"].includes(a.code),
-          )
-          .map((a) => (
-            <button
-              key={a.id}
-              title={plain(card(a.code).text)}
-              onClick={() => inspectCard(card(a.code))}
-            >
-              <Diamond size={10} />
-              {card(a.code).name}
-            </button>
-          ))}
       </div>
     </div>
   );

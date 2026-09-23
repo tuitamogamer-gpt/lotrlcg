@@ -44,6 +44,7 @@ import {
   passSeat,
   defendersFor,
   attackersFor,
+  attachmentController,
 } from "./table";
 
 import {
@@ -54,7 +55,7 @@ import {
 } from "./presentation";
 
 const observation = (s: GameState) =>
-  s.flow ? observe(s, stats, stagingThreat) : undefined;
+  s.flow ? observe(s, stats, stagingThreat, threatOf) : undefined;
 
 export class RuleError extends Error {}
 function requireRule(ok: unknown, message: string): asserts ok {
@@ -157,6 +158,37 @@ function opts(
 }
 const has = (u: Unit, code: string) =>
   u.attachments.some((a) => a.code === code);
+const restricted = (u: Unit) =>
+  u.attachments.filter((a) => card(a.code).text?.includes("Restricted"));
+function restrictAttachments(s: GameState, u: Unit) {
+  if (restricted(u).length <= 2) return;
+  selectSeat(s, ownerOf(s, u));
+  choose(
+    s,
+    `Restricted attachments · ${name(u)}`,
+    restricted(u).map((a) => ({
+      id: a.id,
+      code: a.code,
+      label: `Discard ${card(a.code).name}`,
+      effects: [fx("discardAttachment", { target: u.id, source: a.id })],
+    })),
+    "Choose one attachment to discard. A character may keep two Restricted attachments.",
+  );
+}
+function followFirstPlayer(s: GameState) {
+  if (!s.table) return;
+  const mendor = allCharacters(s).find((u) => u.code === "rc135");
+  if (!mendor || ownerOf(s, mendor) === s.table.first) return;
+  const from = ownerOf(s, mendor),
+    to = s.table.first;
+  forOwner(s, from, () => {
+    s.allies = s.allies.filter((u) => u.id !== mendor.id);
+  });
+  forOwner(s, to, () => {
+    s.allies.push(mendor);
+  });
+  log(s, `Mendor follows the first player: ${seatName(s, to)}.`);
+}
 function hasGondor(u: Unit) {
   return (card(u.code).traits ?? "").includes("Gondor") || has(u, "01026");
 }
@@ -171,7 +203,6 @@ export function stats(s: GameState, u: Unit) {
         u.attachments.filter((a) => a.code === "01055").length -
         u.attachments.filter((a) => a.code === "01071").length +
         (u.tempWill ?? 0) +
-        seatView(s, ownerOf(s, u)).faramir +
         (u.code === "01007" ? u.boost : 0) -
         (u.committed ? s.questDebuff : 0),
     ),
@@ -184,36 +215,35 @@ export function stats(s: GameState, u: Unit) {
         (c.traits?.includes("Dwarf") ? 2 : 1) +
       (c.type_code === "enemy"
         ? u.boost + (u.code === "01090" ? u.resources * 2 : 0)
-        : s.gondor
-          ? 1
-          : 0),
+        : 0),
     defense:
       (c.defense ?? 0) +
       (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
-      (u.tempDefense ?? 0) +
-      (s.gondor && hasGondor(u) ? 1 : 0),
+      (u.tempDefense ?? 0),
     health:
       (c.health ?? 0) +
       u.attachments.filter((a) => a.code === "01040").length * 4,
   };
 }
+/** Current printed/modifier threat. Suppression only applies in staging. */
+export const threatOf = (s: GameState, u: Unit) =>
+  u.suppressed && s.staging.some((x) => x.id === u.id)
+    ? 0
+    : Math.max(
+        0,
+        (card(u.code).threat ?? 0) +
+          (card(u.code).type_code === "location" &&
+          s.staging.some((x) => x.id === u.id)
+            ? (s.fog ?? 0)
+            : 0) +
+          (u.tempThreat ?? 0) -
+          u.attachments.filter((a) => a.code === "01056").length,
+      );
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
   s.staging
     .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
-    .reduce(
-      (n, u) =>
-        n +
-        (u.suppressed
-          ? 0
-          : Math.max(
-              0,
-              (card(u.code).threat ?? 0) +
-                (u.tempThreat ?? 0) -
-                u.attachments.filter((a) => a.code === "01056").length,
-            )),
-      0,
-    );
+    .reduce((n, u) => n + threatOf(s, u), 0);
 export const questWill = (s: GameState) =>
   allCharacters(s)
     .filter(
@@ -343,6 +373,21 @@ function advanceDefense(s: GameState) {
 }
 function check(s: GameState) {
   if (s.status !== "playing") return;
+  if (s.prisoner) {
+    const p = seatView(s, s.prisoner.owner ?? 0);
+    if (
+      p.threat >= 50 ||
+      (!p.heroes.length && p.startingHeroes.some((h) => h !== s.prisoner!.code))
+    ) {
+      s.status = "lost";
+      s.reason =
+        "The prisoner's fellowship has been eliminated. The prisoner cannot be rescued.";
+      s.choice = null;
+      s.queue = [];
+      log(s, s.reason, "danger");
+      return;
+    }
+  }
   eachSeat(s, () => {
     s.committedIds = s.committedIds.filter((id) =>
       characters(s).some((u) => u.id === id && !u.exhausted),
@@ -408,7 +453,7 @@ function check(s: GameState) {
       s.status = "lost";
       s.reason = "Every hero’s fellowship has fallen to the shadow.";
     } else {
-      if (!alive.includes(s.table.first)) s.table.first = alive[0];
+      if (!alive.includes(s.table.first)) s.table.first = playerOrder(s)[0];
       if (!alive.includes(s.table.turn))
         s.table.turn =
           playerOrder(s).find((i) => !s.table!.passed.includes(i)) ?? alive[0];
@@ -426,6 +471,13 @@ function check(s: GameState) {
     s.queue = [];
     log(s, s.reason, "danger");
   } else {
+    followFirstPlayer(s);
+    const overloaded = allCharacters(s).find((u) => restricted(u).length > 2);
+    if (overloaded) {
+      if (!s.choice) restrictAttachments(s, overloaded);
+      syncSeat(s);
+      return;
+    }
     advanceDefense(s);
     advanceQuest(s);
   }
@@ -482,27 +534,32 @@ function destroy(s: GameState, u: Unit) {
       for (const a of h.attachments) if (a.code === "01042") h.resources++;
   }
   if (["ally", "hero"].includes(c.type_code)) {
-    eachSeat(s, () => {
-      s.threat += characters(s).reduce(
-        (n, h) => n + h.attachments.filter((a) => a.code === "rc138").length,
-        0,
-      );
-    });
+    s.threat += characters(s).reduce(
+      (n, h) => n + h.attachments.filter((a) => a.code === "rc138").length,
+      0,
+    );
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (c.type_code === "enemy") {
     s.staging = s.staging.filter((x) => x.id !== u.id);
     s.engaged = s.engaged.filter((x) => x.id !== u.id);
     s.encounterDiscard.push(...u.shadows);
-    if (u.facedownCard) s.discard.push(u.facedownCard);
+    if (u.facedownCard)
+      seatView(s, u.owner ?? activeSeat(s)).discard.push(u.facedownCard);
     else if (u.code === "01115") {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
     } else if (c.victory) s.victory += c.victory;
-    else s.encounterDiscard.push(u.code);
+    else if (!(s.combat?.returnWolf && s.combat.enemyId === u.id))
+      s.encounterDiscard.push(u.code);
     if (u.code === "01102") s.nazgulDefeated = true;
     if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
-      enqueue(s, fx("earnPermanent", { code: "rc133" }));
+      enqueue(
+        s,
+        ...playerOrder(s).map((player) =>
+          fx("earnPermanent", { code: "rc133", player }),
+        ),
+      );
     log(s, `${c.name} is defeated.`, "good");
     if (
       s.scenarioId === "mirkwood" &&
@@ -633,13 +690,18 @@ function advanceQuest(s: GameState) {
   log(s, `A new chapter: ${stageInfo(s).name}.`, "chapter");
 }
 function phaseEnd(s: GameState) {
+  const departures = allCharacters(s)
+    .filter((u) => u.temporary || u.beornReturn)
+    .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
   eachSeat(s, () => phaseEndPlayer(s));
+  prepend(s, ...departures);
 }
 function phaseEndPlayer(s: GameState) {
   s.faramir = 0;
   s.gondor = false;
   s.questDebuff = 0;
   s.threatModifier = 0;
+  s.fog = 0;
   s.standTogether = false;
   s.used = s.used.filter((k) => !k.startsWith("protector:"));
   for (const x of [
@@ -654,35 +716,32 @@ function phaseEndPlayer(s: GameState) {
     x.tempDefense = 0;
     x.suppressed = false;
     x.feinted = false;
+    x.preventedAttacks = [];
   }
   for (const u of [...characters(s)]) {
     if (u.code === "01007") u.boost = 0;
-    if (u.beornReturn) {
-      s.allies = s.allies.filter((a) => a.id !== u.id);
-      for (const a of [...u.attachments]) discardAttachment(s, u, a);
-      s.deck.push(u.code);
-      shuffle(s, s.deck);
-      enqueue(s, fx("valiant"));
-      continue;
-    }
-    if (u.temporary) {
-      s.allies = s.allies.filter((a) => a.id !== u.id);
-      for (const a of [...u.attachments]) discardAttachment(s, u, a);
-      u.temporary = false;
-      u.exhausted = false;
-      u.damage = 0;
-      u.committed = false;
-      s.hand.push(u);
-      log(s, `${name(u)} returns to your hand after Sneak Attack.`);
-      enqueue(s, fx("valiant"));
-    }
   }
 }
+function returnAlly(s: GameState, u: Unit, toDeck = false) {
+  const controller = ownerOf(s, u),
+    owner = u.owner ?? controller;
+  for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+  forOwner(s, controller, () => {
+    s.allies = s.allies.filter((a) => a.id !== u.id);
+  });
+  forOwner(s, owner, () => {
+    if (toDeck) {
+      s.deck.push(u.code);
+      shuffle(s, s.deck);
+    } else s.hand.push(make(s, u.code));
+  });
+  log(
+    s,
+    `${name(u)} returns to ${seatName(s, owner)}’s ${toDeck ? "deck" : "hand"}.`,
+  );
+  prepend(s, fx("valiant", { player: controller }));
+}
 function nextRound(s: GameState) {
-  if (s.table && s.round > 0) {
-    const order = playerOrder(s);
-    s.table.first = order[1 % order.length] ?? 0;
-  }
   s.round++;
   startPhase(s, "planning");
   s.alliesPlayed = 0;
@@ -703,7 +762,9 @@ function engage(s: GameState, u: Unit) {
     });
   s.staging = s.staging.filter((x) => x.id !== u.id);
   s.engaged.push(u);
-  if (s.table) u.owner = activeSeat(s);
+  if (s.table && !u.facedownCard) u.owner = activeSeat(s);
+  if (u.preventedAttacks)
+    u.feinted = u.preventedAttacks.includes(activeSeat(s));
   log(s, `${name(u)} engages your fellowship.`, "danger");
   if (u.code === "01096") u.boost = 1;
   if (u.code === "rc136") prepend(s, fx("chooseExhaust", { count: 2 }));
@@ -884,9 +945,7 @@ function placeEncounter(
       });
       break;
     case "01118":
-      s.staging
-        .filter((x) => card(x.code).type_code === "location")
-        .forEach((x) => (x.tempThreat = (x.tempThreat ?? 0) + 1));
+      s.fog = (s.fog ?? 0) + 1;
       prepend(
         s,
         ...playerOrder(s)
@@ -960,7 +1019,7 @@ function placeEncounter(
   }
   if (c.type_code === "treachery") returnTreachery(s, code);
 }
-function enterAlly(s: GameState, u: Unit, temporary = false) {
+function enterAlly(s: GameState, u: Unit, temporary = false, played = false) {
   u.temporary = temporary;
   s.allies.push(u);
   switch (u.code) {
@@ -1002,6 +1061,7 @@ function enterAlly(s: GameState, u: Unit, temporary = false) {
       );
       break;
     case "01059": {
+      if (!played) break;
       if (s.table) {
         choose(s, "Erebor Hammersmith", [
           ...playerOrder(s).flatMap((player) => {
@@ -1042,15 +1102,29 @@ function enterAlly(s: GameState, u: Unit, temporary = false) {
       choose(s, "Miner of the Iron Hills", [
         ...allCharacters(s).flatMap((h) =>
           h.attachments
-            .filter((a) => a.code === "01080")
+            .filter(
+              (a) =>
+                !card(a.code).text?.includes("Permanent") &&
+                (card(a.code).traits?.includes("Condition") ||
+                  card(a.code).text?.includes("Condition")),
+            )
             .map((a) => ({
               id: a.id,
-              label: `Remove web from ${name(h)}`,
+              code: a.code,
+              label: `Discard ${card(a.code).name} from ${name(h)}`,
               effects: [
                 fx("discardAttachment", { target: h.id, source: a.id }),
               ],
             })),
         ),
+        ...playerOrder(s)
+          .filter((i) => seatView(s, i).shackles > 0)
+          .map((player) => ({
+            id: `shackles-${player}`,
+            code: "01105",
+            label: `Discard Iron Shackles · ${seatName(s, player)}`,
+            effects: [fx("discardShackles", { player })],
+          })),
         skip,
       ]);
       break;
@@ -1072,15 +1146,17 @@ function spendEvent(s: GameState, code: string) {
 }
 function attachmentChoice(s: GameState, defenderOnly = false) {
   const c = s.combat;
-  const list =
-    defenderOnly && c?.defenderId ? [get(s, c.defenderId)!] : characters(s);
+  const list = defenderOnly
+    ? (c?.defenderIds ?? (c?.defenderId ? [c.defenderId] : [])).map((id) =>
+        get(s, id)!,
+      )
+    : units(s);
   const options: Option[] = [];
   for (const u of list.filter(Boolean))
     for (const a of u.attachments) {
       if (
         !card(a.code).text?.includes("Permanent") &&
-        (card(a.code).sphere_code !== "encounter" ||
-          OBJECTIVES.includes(a.code))
+        (defenderOnly || attachmentController(s, u, a) === activeSeat(s))
       )
         options.push({
           id: a.id,
@@ -1108,29 +1184,41 @@ function shadow(s: GameState, code: string) {
       c.ignoreDefense = true;
       break;
     case "01103":
-      if (undefended)
-        for (const x of characters(s))
-          for (const a of [...x.attachments]) discardAttachment(s, x, a);
-      else attachmentChoice(s);
+      if (undefended) {
+        for (const x of units(s))
+          for (const a of [...x.attachments])
+            if (attachmentController(s, x, a) === activeSeat(s))
+              discardAttachment(s, x, a);
+      } else attachmentChoice(s);
       break;
     case "01104":
       s.threat += s.engaged.length;
       break;
-    case "01105":
+    case "01105": {
+      // The shadow card becomes a Condition on the deck. It must no longer be
+      // discarded with this enemy's remaining shadow cards at combat end.
+      const enemy = get(s, c.enemyId);
+      const index = enemy?.shadows.indexOf(code) ?? -1;
+      if (enemy && index >= 0) enemy.shadows.splice(index, 1);
       forOwner(s, s.table?.first ?? 0, () => {
         s.shackles++;
       });
       break;
+    }
     case "01111":
       s.progress = Math.max(0, s.progress - (undefended ? 3 : 1));
       break;
     case "01112": {
       const enemy = get(s, c.enemyId),
-        extra = encounterDraw(s, true);
-      if (enemy && extra) {
-        enemy.shadows.push(extra);
-        prepend(s, fx("shadowReveal", { code: extra }));
+        effects: Effect[] = [];
+      for (const _player of livingSeats(s)) {
+        const extra = encounterDraw(s, true);
+        if (enemy && extra) {
+          enemy.shadows.push(extra);
+          effects.push(fx("shadowReveal", { code: extra }));
+        }
       }
+      prepend(s, ...effects);
       break;
     }
     case "01115":
@@ -1174,9 +1262,9 @@ function shadow(s: GameState, code: string) {
       break;
     case "01092":
       if (undefended) {
-        for (const u of characters(s))
+        for (const u of units(s))
           for (const a of [...u.attachments])
-            if (card(a.code).sphere_code !== "encounter")
+            if (attachmentController(s, u, a) === activeSeat(s))
               discardAttachment(s, u, a);
       } else attachmentChoice(s, true);
       break;
@@ -1266,12 +1354,59 @@ function handle(s: GameState, e: Effect) {
         h.damage = 0;
       });
       break;
+    case "thicket":
+      s.engaged.forEach((enemy) => {
+        enemy.preventedAttacks = [
+          ...new Set([...(enemy.preventedAttacks ?? []), activeSeat(s)]),
+        ];
+        enemy.feinted = true;
+      });
+      break;
+    case "discardShackles":
+      if (s.shackles > 0) {
+        s.shackles--;
+        s.encounterDiscard.push("01105");
+        log(s, "Miner of the Iron Hills discards Iron Shackles.", "good");
+      }
+      break;
+    case "payPass":
+      for (let i = 0; i < 2; i++) {
+        const index = Math.floor(random(s) * s.hand.length);
+        s.discard.push(s.hand.splice(index, 1)[0].code);
+      }
+      log(
+        s,
+        "Necromancer’s Pass discards 2 random cards to pay its travel cost.",
+      );
+      break;
+    case "travelEnter":
+      if (u && s.staging.some((x) => x.id === u.id)) {
+        s.staging = s.staging.filter((x) => x.id !== u.id);
+        s.activeLocation = u;
+        log(s, `Travelled to ${name(u)}.`, "good");
+        if (u.code === "01087") progressLocation(s, u, 1);
+        if (u.code === "01107") eachSeat(s, () => orcGuard(s));
+        if (u.code === "01099")
+          enqueue(s, fx("travelReady", { player: s.table?.first ?? 0 }));
+        if (u.code === "01100")
+          enqueue(s, fx("draw", { value: 2, player: s.table?.first ?? 0 }));
+        enqueue(
+          s,
+          ...playerOrder(s).map((player) =>
+            fx("strengthOfWill", { target: u.id, player }),
+          ),
+          fx("travelDone"),
+        );
+      }
+      break;
     case "reshufflePlayer":
       s.deck.push(...s.discard.splice(0));
       shuffle(s, s.deck);
       break;
     case "faramir":
-      s.faramir++;
+      characters(s).forEach((u) => {
+        u.tempWill = (u.tempWill ?? 0) + 1;
+      });
       break;
     case "transferTook":
       if (u && e.value !== undefined) {
@@ -1493,15 +1628,120 @@ function handle(s: GameState, e: Effect) {
     case "phaseEnd":
       phaseEnd(s);
       break;
-    case "nextRound":
-      nextRound(s);
+    case "startQuest":
+      startPhase(s, "quest");
+      s.lastQuest = null;
+      log(s, "Quest phase · Choose characters to commit.");
+      if (s.scenarioId === "dol-guldur" && s.stage === 3)
+        eachSeat(s, () => orcGuard(s));
       break;
-    case "travelDone":
-      phaseEnd(s);
+    case "startTravel":
+      s.phase = "travel";
+      break;
+    case "startEncounter":
       startPhase(s, "encounter");
       eachSeat(s, () => {
         s.optionalEngagement = false;
       });
+      break;
+    case "allyDeparture":
+      if (u?.temporary && u.beornReturn) {
+        selectSeat(s, s.table?.first ?? 0);
+        choose(
+          s,
+          `Beorn · Choose the first end-of-phase effect`,
+          [
+            {
+              id: "hand",
+              label: "Sneak Attack · Return Beorn to his owner's hand",
+              code: u.code,
+              effects: [fx("returnAlly", { target: u.id })],
+            },
+            {
+              id: "deck",
+              label: "Beorn's fury · Shuffle Beorn into his owner's deck",
+              code: u.code,
+              effects: [fx("returnAllyDeck", { target: u.id })],
+            },
+          ],
+          "Both effects are due now. The first player chooses; leaving play ends the other effect.",
+        );
+      } else if (u) returnAlly(s, u, !!u.beornReturn);
+      break;
+    case "returnAllyDeck":
+      if (u) returnAlly(s, u, true);
+      break;
+    case "endCombat":
+      eachSeat(s, () => {
+        for (const enemy of s.engaged) {
+          s.encounterDiscard.push(...enemy.shadows);
+          enemy.shadows = [];
+          enemy.attacked = false;
+        }
+      });
+      if (s.pendingWolfReturns?.length) {
+        s.encounterDeck.unshift(...s.pendingWolfReturns);
+        log(
+          s,
+          `${s.pendingWolfReturns.length} Wolf Rider shadow card(s) return to the encounter deck at the end of combat.`,
+        );
+        s.pendingWolfReturns = [];
+      }
+      prepend(
+        s,
+        ...playerOrder(s).flatMap((player) =>
+          s.staging
+            .filter((u) => u.code === "01083")
+            .map((u) => fx("chooseDamage", { value: 1, source: u.id, player })),
+        ),
+        fx("refreshReady"),
+      );
+      break;
+    case "refreshReady":
+      s.phase = "refresh";
+      eachSeat(s, () => {
+        for (const u of characters(s)) {
+          u.committed = false;
+          u.attacked = false;
+          u.boost = 0;
+          for (const a of u.attachments) a.exhausted = false;
+          if (!has(u, "01080")) u.exhausted = false;
+          else enqueue(s, fx("webRefresh", { target: u.id }));
+        }
+        s.eowynUsed = false;
+      });
+      enqueue(s, fx("refreshEnd"));
+      break;
+    case "endRound":
+      if (s.table) {
+        const order = playerOrder(s);
+        s.table.first = order[1 % order.length] ?? 0;
+        followFirstPlayer(s);
+      }
+      s.mendorBoost = false;
+      eachSeat(s, () => {
+        for (const ally of [...s.allies])
+          if (ally.code === "01073") {
+            s.allies = s.allies.filter((a) => a.id !== ally.id);
+            for (const a of [...ally.attachments])
+              discardAttachment(s, ally, a, true);
+            seatView(s, ally.owner ?? activeSeat(s)).discard.push(ally.code);
+            enqueue(s, fx("valiant"));
+            log(s, "Gandalf departs at the end of the round.");
+          }
+        for (const h of [...s.heroes]) {
+          if (has(h, "01109")) s.threat += 2;
+          if (has(h, "01110")) damage(s, h.id, 1);
+        }
+      });
+      for (const enemy of [...s.staging, ...allEngaged(s)]) enemy.boost = 0;
+      enqueue(s, fx("nextRound"));
+      break;
+    case "nextRound":
+      nextRound(s);
+      break;
+    case "travelDone":
+      prepend(s, fx("phaseEnd"), fx("startEncounter"));
       break;
     case "travelReady":
       choose(
@@ -1570,7 +1810,7 @@ function handle(s: GameState, e: Effect) {
           (a, b) =>
             (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
         )) {
-          enemy.attacked = !!(has(enemy, "01069") || enemy.feinted);
+          enemy.attacked = false;
           enemy.attackedBy = [];
           const code = encounterDraw(s, true);
           enemy.shadows = code ? [code] : [];
@@ -1673,8 +1913,12 @@ function handle(s: GameState, e: Effect) {
           s.engaged = s.engaged.filter((x) => x.id !== enemy.id);
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
-          if (s.combat.returnWolf) s.encounterDeck.unshift("01081");
-          else s.staging.push(enemy);
+          if (s.combat.returnWolf) {
+            log(
+              s,
+              "Wolf Rider's attack ends. Its shadow card returns to the deck when combat ends.",
+            );
+          } else s.staging.push(enemy);
         }
       }
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -1682,20 +1926,23 @@ function handle(s: GameState, e: Effect) {
       advanceDefense(s);
       break;
     }
-    case "webRefresh":
-      if (u?.exhausted && has(u, "01080") && u.resources >= 2)
+    case "webRefresh": {
+      const cost =
+        (u?.attachments.filter((a) => a.code === "01080").length ?? 0) * 2;
+      if (u?.exhausted && cost && u.resources >= cost)
         choose(s, `Free ${name(u)} from the web?`, [
           {
             id: "pay",
-            label: "Pay 2 resources from this hero to ready",
+            label: `Pay ${cost} resources from this hero to ready`,
             effects: [
-              fx("resource", { target: u.id, value: -2 }),
+              fx("resource", { target: u.id, value: -cost }),
               fx("ready", { target: u.id }),
             ],
           },
           { id: "skip", label: "Leave this hero exhausted", effects: [] },
         ]);
       break;
+    }
     case "refreshEnd":
       eachSeat(s, () => {
         s.threat += s.activeLocation?.code === "01114" ? 2 : 1;
@@ -1771,12 +2018,19 @@ function flush(s: GameState) {
         "stageRevealed",
         "refreshEnd",
         "travelDone",
+        "travelEnter",
         "reveal",
         "placeEncounter",
         "resolveReveal",
         "engagementRound",
         "automaticEngagement",
         "enemyDone",
+        "startQuest",
+        "startTravel",
+        "startEncounter",
+        "endCombat",
+        "refreshReady",
+        "endRound",
       ].includes(effect.kind)
     )
       handle(s, effect);
@@ -1964,7 +2218,7 @@ export function createGame(
       );
       s.heroes = [make(s, config.hero)];
       s.threat =
-        (card(config.hero).threat ?? 0) + (campaign?.seatPenalties?.[i] ?? 0);
+        (card(config.hero).threat ?? 0) + (campaign?.threatPenalty ?? 0);
       syncSeat(s);
     });
     selectSeat(s, 0);
@@ -2010,10 +2264,7 @@ export function createGame(
     );
     shuffle(s, s.encounterDeck);
     if (campaign)
-      enqueue(
-        s,
-        ...playerOrder(s).map((player) => fx("appointedByFate", { player })),
-      );
+      enqueue(s, fx("appointedByFate", { player: s.table?.first ?? 0 }));
     for (const code of OBJECTIVES) {
       const objective = make(s, code);
       s.staging.push(objective);
@@ -2102,12 +2353,7 @@ export function playTargets(s: GameState, u: Unit): Unit[] {
     if (u.code === "01069")
       return allEngaged(s).filter((e) => e.code !== "01102");
     if (u.code === "01072") return allCharacters(s);
-    return allHeroes(s).filter(
-      (h) =>
-        !c.text?.includes("Restricted") ||
-        h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
-          .length < 2,
-    );
+    return allHeroes(s);
   }
   if (u.code === "01020")
     return allCharacters(s).filter(
@@ -2124,7 +2370,15 @@ export function playTargets(s: GameState, u: Unit): Unit[] {
       (a) => !a.exhausted && card(a.code).text?.includes("Ranged"),
     );
   if (u.code === "01035")
-    return characters(s).filter((a) => !a.exhausted && canFight(a));
+    return characters(s).filter(
+      (a) =>
+        !a.exhausted &&
+        canFight(a) &&
+        [
+          ...allEngaged(s),
+          ...s.staging.filter((e) => card(e.code).type_code === "enemy"),
+        ].some((enemy) => attackersFor(s, enemy).some((x) => x.id === a.id)),
+    );
   if (["01034", "01052"].includes(u.code)) return allEngaged(s);
   if (u.code === "01063") return allCharacters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
@@ -2206,7 +2460,7 @@ export function availableAbilities(s: GameState, u: Unit) {
     const active = ["01026", "01057", "01070", "01071", "01072"].includes(
       a.code,
     );
-    if (active && (a.owner ?? ownerOf(s, u)) === activeSeat(s))
+    if (active && attachmentController(s, u, a) === activeSeat(s))
       results.push({
         id: a.id,
         label: card(a.code).name,
@@ -2343,12 +2597,7 @@ export function applyAction(input: GameState, action: Action): GameState {
     case "NEXT": {
       if (s.phase === "planning") {
         if (!passSeat(s)) break;
-        phaseEnd(s);
-        startPhase(s, "quest");
-        s.lastQuest = null;
-        log(s, "Quest phase · Choose characters to commit.");
-        if (s.scenarioId === "dol-guldur" && s.stage === 3)
-          eachSeat(s, () => orcGuard(s));
+        enqueue(s, fx("phaseEnd"), fx("startQuest"));
       } else if (s.phase === "staging") {
         const will = questWill(s),
           threat = stagingThreat(s),
@@ -2380,34 +2629,13 @@ export function applyAction(input: GameState, action: Action): GameState {
           s.activeLocation || !s.staging.some((u) => u.code === "01088"),
           "You must travel to The East Bight.",
         );
-        phaseEnd(s);
-        startPhase(s, "encounter");
-        eachSeat(s, () => {
-          s.optionalEngagement = false;
-        });
+        enqueue(s, fx("phaseEnd"), fx("startEncounter"));
       } else if (s.phase === "encounter") {
         if (!passSeat(s)) break;
         enqueue(s, fx("engagementRound"));
         enqueue(s, fx("phaseEnd"), fx("startCombat"));
       } else if (s.phase === "refresh") {
-        phaseEnd(s);
-        eachSeat(s, () => {
-          for (const ally of [...s.allies])
-            if (ally.code === "01073") {
-              s.allies = s.allies.filter((a) => a.id !== ally.id);
-              for (const a of [...ally.attachments])
-                discardAttachment(s, ally, a);
-              s.discard.push(ally.code);
-              enqueue(s, fx("valiant"));
-              log(s, "Gandalf departs at the end of the round.");
-            }
-          for (const enemy of [...s.staging, ...allEngaged(s)]) enemy.boost = 0;
-          for (const h of [...s.heroes]) {
-            if (has(h, "01109")) s.threat += 2;
-            if (has(h, "01110")) damage(s, h.id, 1);
-          }
-        });
-        enqueue(s, fx("nextRound"));
+        enqueue(s, fx("phaseEnd"), fx("endRound"));
       } else throw new RuleError("Finish the current phase action first.");
       break;
     }
@@ -2472,7 +2700,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       log(s, `Played ${c.name}.`, "good");
       if (c.type_code === "ally") {
         s.alliesPlayed++;
-        enterAlly(s, u);
+        enterAlly(s, u, false, true);
       } else if (c.type_code === "attachment") {
         get(s, action.target)!.attachments.push({
           id: u.id,
@@ -2495,7 +2723,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             ? u.attachments.some(
                 (a) =>
                   a.id === action.attachmentId &&
-                  (a.owner ?? ownerOf(s, u)) === activeSeat(s),
+                  attachmentController(s, u, a) === activeSeat(s),
               )
             : characters(s).some((x) => x.id === u.id) || u.code === "01007"),
         "Choose a character or attachment you control.",
@@ -2510,12 +2738,6 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(
         objective && objectiveFree(s, objective) && hero,
         "Choose an unguarded objective and a free hero.",
-      );
-      requireRule(
-        hero.attachments.filter((a) =>
-          card(a.code).text?.includes("Restricted"),
-        ).length < 2,
-        "This hero already has two restricted attachments.",
       );
       s.threat += 2;
       s.staging = s.staging.filter((u) => u.id !== objective.id);
@@ -2563,35 +2785,23 @@ export function applyAction(input: GameState, action: Action): GameState {
           seatView(s, s.table?.first ?? 0).hand.length >= 2,
           "Necromancer’s Pass requires 2 cards to discard.",
         );
-      s.staging = s.staging.filter((x) => x.id !== u.id);
-      s.activeLocation = u;
-      log(s, `Travelled to ${name(u)}.`, "good");
-      if (u.code === "01087") progressLocation(s, u, 1);
-      if (u.code === "01107") eachSeat(s, () => orcGuard(s));
-      if (u.code === "01099") enqueue(s, fx("travelReady"));
-      if (u.code === "01100")
-        enqueue(s, fx("draw", { value: 2, player: s.table?.first ?? 0 }));
+      if (u.code === "01078")
+        requireRule(
+          s.encounterDeck.length > 0,
+          "There is no encounter card to reveal for this travel cost.",
+        );
       if (u.code === "01077")
         enqueue(
           s,
           ...playerOrder(s).map((player) => fx("travelExhaust", { player })),
         );
-      if (u.code === "01078") enqueue(s, fx("reveal"));
-      if (u.code === "01094") {
-        forOwner(s, s.table?.first ?? 0, () => {
-          for (let i = 0; i < 2; i++) {
-            const n = Math.floor(random(s) * s.hand.length);
-            s.discard.push(s.hand.splice(n, 1)[0].code);
-          }
-          log(s, "Necromancer’s Pass discards 2 random cards.");
-        });
-      }
+      if (u.code === "01094")
+        enqueue(s, fx("payPass", { player: s.table?.first ?? 0 }));
+      if (u.code === "01078")
+        enqueue(s, fx("reveal", { player: s.table?.first ?? 0 }));
       enqueue(
         s,
-        ...playerOrder(s).map((player) =>
-          fx("strengthOfWill", { target: u.id, player }),
-        ),
-        fx("travelDone"),
+        fx("travelEnter", { target: u.id, player: s.table?.first ?? 0 }),
       );
       break;
     }
@@ -2660,26 +2870,7 @@ export function applyAction(input: GameState, action: Action): GameState {
     case "END_ATTACKS":
       requireRule(s.phase === "attack", "Finish enemy attacks first.");
       if (!passSeat(s)) break;
-      phaseEnd(s);
-      eachSeat(s, () => {
-        for (const sniper of s.staging.filter((u) => u.code === "01083"))
-          enqueue(s, fx("chooseDamage", { value: 1, source: sniper.id }));
-        for (const u of characters(s)) {
-          u.committed = false;
-          u.attacked = false;
-          u.boost = 0;
-          for (const a of u.attachments) a.exhausted = false;
-          if (!has(u, "01080")) u.exhausted = false;
-          else enqueue(s, fx("webRefresh", { target: u.id }));
-        }
-        for (const u of s.engaged) {
-          s.encounterDiscard.push(...u.shadows);
-          u.shadows = [];
-          u.attacked = false;
-        }
-        s.eowynUsed = false;
-      });
-      enqueue(s, fx("refreshEnd"));
+      enqueue(s, fx("phaseEnd"), fx("endCombat"));
       break;
     default:
       throw new RuleError("Unknown action.");
@@ -2766,11 +2957,12 @@ export function publicState(s: GameState) {
     })),
     deckCount: s.deck.length,
     encounterCount: s.encounterDeck.length,
+    pendingWolfReturns: s.pendingWolfReturns?.length ?? 0,
     staging: s.staging.map((u) => ({
       id: u.id,
       name: name(u),
       ...stats(s, u),
-      threat: card(u.code).threat,
+      threat: threatOf(s, u),
       progress: u.progress,
     })),
     engaged: s.engaged.map((u) => ({
@@ -2819,6 +3011,13 @@ export function validateSave(value: unknown): value is GameState {
       (u.attackedBy === undefined ||
         (Array.isArray(u.attackedBy) &&
           u.attackedBy.every((i) => integer(i) && i >= 0 && i <= 2))) &&
+      (u.preventedAttacks === undefined ||
+        (Array.isArray(u.preventedAttacks) &&
+          new Set(u.preventedAttacks).size === u.preventedAttacks.length &&
+          u.preventedAttacks.every((i) => integer(i) && i >= 0 && i <= 2))) &&
+      [u.tempWill, u.tempAttack, u.tempDefense, u.tempThreat].every(
+        (n) => n === undefined || integer(n),
+      ) &&
       SCRIPTED.has(u.code) &&
       [u.damage, u.progress, u.resources, u.boost].every(integer) &&
       u.damage >= 0 &&
@@ -2843,6 +3042,10 @@ export function validateSave(value: unknown): value is GameState {
           card(u.facedownCard).sphere_code !== "encounter"));
     if (
       s.version !== 2 ||
+      (s.fog !== undefined && (!integer(s.fog) || s.fog < 0)) ||
+      (s.pendingWolfReturns !== undefined &&
+        (!Array.isArray(s.pendingWolfReturns) ||
+          !s.pendingWolfReturns.every((code) => code === "01081"))) ||
       (!STARTERS.some((d) => d.id === s.deckId) && s.deckId !== "custom") ||
       !Array.isArray(s.used) ||
       !s.used.every((x) => typeof x === "string") ||
@@ -3092,6 +3295,7 @@ export function validateSave(value: unknown): value is GameState {
       units(s).some(
         (u) =>
           (u.owner !== undefined && u.owner >= s.table!.seats.length) ||
+          u.preventedAttacks?.some((i) => i >= s.table!.seats.length) ||
           u.attachments.some(
             (a) => a.owner !== undefined && a.owner >= s.table!.seats.length,
           ),
@@ -3182,17 +3386,17 @@ function resolvePlayerAttack(
   const killed = enemy.damage + amount >= stats(s, enemy).health;
   damage(s, enemy.id, amount);
   if (killed && s.status === "playing") {
-    const tokens = attackers.reduce(
-      (n, u) =>
-        n +
-        (u!.code === "01005" ? 2 : 0) +
-        u!.attachments.filter((a) => a.code === "01039").length,
-      0,
-    );
-    if (tokens) {
-      log(s, `The victory adds ${tokens} progress.`, "good");
-      progress(s, tokens);
-    }
+    const responses = attackers.flatMap((u) => [
+      ...(u.code === "01005" ? [`01005:${u.id}`] : []),
+      ...u.attachments
+        .filter((a) => a.code === "01039")
+        .map((a) => `01039:${a.id}`),
+    ]);
+    if (responses.length)
+      prepend(
+        s,
+        fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
+      );
   }
 }
 function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
@@ -3218,7 +3422,10 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       }
       break;
     case "01022":
-      s.gondor = true;
+      for (const x of allCharacters(s)) {
+        x.tempAttack = (x.tempAttack ?? 0) + 1;
+        if (hasGondor(x)) x.tempDefense = (x.tempDefense ?? 0) + 1;
+      }
       break;
     case "01023":
       choose(
@@ -3256,7 +3463,12 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       }
       break;
     case "01034":
-      if (u) u.feinted = true;
+      if (u) {
+        u.preventedAttacks = [
+          ...new Set([...(u.preventedAttacks ?? []), ownerOf(s, u)]),
+        ];
+        u.feinted = true;
+      }
       if (
         !s.table &&
         s.phase === "defense" &&
@@ -3275,26 +3487,20 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
           "Quick Strike",
           opts(
             [
-              ...s.engaged,
-              ...(u.code === "01009"
-                ? s.staging.filter((e) => card(e.code).type_code === "enemy")
-                : []),
-            ],
+              ...allEngaged(s),
+              ...s.staging.filter((e) => card(e.code).type_code === "enemy"),
+            ].filter((enemy) =>
+              attackersFor(s, enemy).some((a) => a.id === u.id),
+            ),
             (enemy) => [fx("quickAttack", { target: enemy.id, source: u.id })],
           ),
           "Immediately attack with the chosen character.",
         );
       break;
     case "01036":
-      s.engaged.forEach((e) => {
-        e.feinted = true;
-      });
-      if (!s.table && s.phase === "defense") {
-        s.phase = "attack";
-        s.engaged.forEach((e) => {
-          e.attacked = false;
-        });
-      }
+      choosePlayer(s, "Thicket of Spears · Choose a fellowship", [
+        fx("thicket"),
+      ]);
       break;
     case "01038":
       choosePlayer(s, "Stand Together · Choose a fellowship", [
@@ -3340,6 +3546,20 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
     }
     case "01052":
       if (u) {
+        if (u.facedownCard) {
+          const controller = ownerOf(s, u);
+          forOwner(s, controller, () => {
+            s.engaged = s.engaged.filter((e) => e.id !== u.id);
+          });
+          seatView(s, u.owner ?? controller).discard.push(u.facedownCard);
+          s.encounterDiscard.push(...u.shadows);
+          for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+          log(
+            s,
+            "The Orc Guard returns to its owner's discard pile instead of staging.",
+          );
+          break;
+        }
         forOwner(s, ownerOf(s, u), () => {
           s.engaged = s.engaged.filter((e) => e.id !== u.id);
         });
@@ -3754,7 +3974,7 @@ function extraEffect(s: GameState, e: Effect) {
     }
     case "brok": {
       const brok = s.hand.find((u) => u.code === "01019");
-      if (brok && !s.allies.some((u) => u.code === "01019"))
+      if (brok && !allCharacters(s).some((u) => u.code === "01019"))
         choose(
           s,
           "Brok Ironfist",
@@ -3952,10 +4172,14 @@ export function continueCampaign(
       ),
     "Choose a different hero who has not fallen for each seat.",
   );
-  const replaced = c.heroes.filter((h) => !heroes.includes(h));
+  const replaced = s.table
+    ? s.table.seats.flatMap((p, i) =>
+        p.startingHeroes[0] === heroes[i] ? [] : [p.startingHeroes[0]],
+      )
+    : c.heroes.filter((h) => !heroes.includes(h));
   requireRule(
-    replaced.filter((h) => !c.fallen.includes(h)).length <= 1,
-    "Between quests, you may replace fallen heroes and voluntarily change one other hero.",
+    !!s.table || replaced.filter((h) => !c.fallen.includes(h)).length <= 1,
+    "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",
   );
   const next = SCENARIOS[c.completed.length].id;
   requireRule(
@@ -3963,12 +4187,7 @@ export function continueCampaign(
     "The recorded prisoner must remain in this fellowship.",
   );
   c.threatPenalty += replaced.length;
-  if (s.table)
-    c.seatPenalties = s.table.seats.map(
-      (p, i) =>
-        (c.seatPenalties?.[i] ?? 0) +
-        (p.startingHeroes[0] === heroes[i] ? 0 : 1),
-    );
+  if (s.table) c.seatPenalties = s.table.seats.map(() => c.threatPenalty);
   c.heroes = [...heroes];
   const d = STARTERS.find((d) => d.id === deckId);
   requireRule(d, "Choose a Core Set starter deck.");
@@ -4048,7 +4267,12 @@ function combatDamage(s: GameState, target: Unit, enemy: Unit, amount: number) {
     s.status === "playing"
   ) {
     s.campaignScarred = true;
-    prepend(s, fx("earnPermanent", { code: "rc138" }));
+    prepend(
+      s,
+      ...playerOrder(s).map((player) =>
+        fx("earnPermanent", { code: "rc138", player }),
+      ),
+    );
   }
 }
 function beginEnemyAttack(
@@ -4071,6 +4295,17 @@ function beginEnemyAttack(
       defenders.every((u) => u && ownerOf(s, u) === activeSeat(s)),
     "Stand Together combines characters controlled by the defending player.",
   );
+  // Beastmaster's Forced effect precedes declaration responses (including Spearman).
+  if (enemy.code === "01091") {
+    const code = encounterDraw(s, true);
+    if (code) {
+      enemy.shadows.push(code);
+      log(
+        s,
+        "Dol Guldur Beastmaster receives an additional facedown shadow before the defender is declared.",
+      );
+    }
+  }
   for (const d of defenders) d!.exhausted = true;
   s.combat = {
     enemyId: enemy.id,
@@ -4088,10 +4323,6 @@ function beginEnemyAttack(
     prepend(s, fx("enemyDone"));
     return;
   }
-  if (enemy.code === "01091") {
-    const code = encounterDraw(s, true);
-    if (code) enemy.shadows.push(code);
-  }
   prepend(
     s,
     fx("swiftStrike"),
@@ -4103,6 +4334,38 @@ function beginEnemyAttack(
 function scenarioEffect(s: GameState, e: Effect): boolean {
   const u = get(s, e.target);
   switch (e.kind) {
+    case "attackProgress": {
+      const responses = e.ids ?? [];
+      if (!responses.length) break;
+      choose(
+        s,
+        "Victory responses · Choose the next effect",
+        [
+          ...responses.map((id) => {
+            const code = id.split(":")[0],
+              value = code === "01005" ? 2 : 1;
+            return {
+              id,
+              code,
+              label: `${card(code).name} · Place ${value} progress`,
+              effects: [
+                fx("questProgress", { value }),
+                fx("attackProgress", {
+                  ids: responses.filter((x) => x !== id),
+                }),
+              ],
+            };
+          }),
+          { ...skip, label: "Skip the remaining responses" },
+        ],
+        "Resolve each response separately. The quest may advance between them.",
+      );
+      break;
+    }
+    case "questProgress":
+      log(s, `A victory response places ${e.value} progress.`, "good");
+      progress(s, e.value ?? 0);
+      break;
     case "valorResponse":
       if (u && get(s, e.source))
         choose(s, `Valor: ${name(u)}`, [
@@ -4146,8 +4409,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       break;
     case "finishQuestPhase":
       allCharacters(s).forEach((u) => (u.committed = false));
-      phaseEnd(s);
-      s.phase = "travel";
+      prepend(s, fx("phaseEnd"), fx("startTravel"));
       break;
     case "guardObjective": {
       const code = encounterDraw(s);
@@ -4158,7 +4420,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Appointed by Fate",
-        opts(s.heroes, (h) => [
+        opts(allHeroes(s), (h) => [
           fx("attachBoon", { target: h.id, code: "rc134" }),
         ]),
         "This hero collects one extra resource each round. The prisoner’s attachments will be facedown until rescued.",
@@ -4196,7 +4458,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "earnPermanent": {
-      const eligible = allHeroes(s).filter((h) => !has(h, e.code!));
+      const eligible = s.heroes.filter((h) => !has(h, e.code!));
       choose(
         s,
         e.code === "rc133" ? "Earn Valor" : "Scarred by the Hill Troll",
@@ -4249,7 +4511,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       break;
     case "discardCharacter":
       if (u) {
-        // Discard is not destruction: no Horn, Scarred, or Dwarf death response.
+        // Discard is not destruction (Horn/Scarred), but it is leaving play (Brok).
         for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
         s.heroes = s.heroes.filter((x) => x.id !== u.id);
         s.allies = s.allies.filter((x) => x.id !== u.id);
@@ -4267,6 +4529,11 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
             s.fallenThreat += card(u.code).threat ?? 0;
         }
         if (card(u.code).type_code === "ally") enqueue(s, fx("valiant"));
+        if (
+          card(u.code).type_code === "hero" &&
+          card(u.code).traits?.includes("Dwarf")
+        )
+          prepend(s, fx("brok"));
         log(s, `${name(u)} is discarded.`, "danger");
       }
       break;
@@ -4276,13 +4543,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
           prepend(s, fx("discardCharacter", { target: u.id }));
           break;
         }
-        s.allies = s.allies.filter((a) => a.id !== u.id);
-        for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-        u.exhausted = false;
-        u.damage = 0;
-        u.committed = false;
-        s.hand.push(u);
-        enqueue(s, fx("valiant"));
+        returnAlly(s, u);
       }
       break;
     case "discardHand":
@@ -4305,16 +4566,16 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       const original = get(s, s.combat.enemyId);
       const i = original?.shadows.indexOf("01081") ?? -1;
       if (original && i >= 0) original.shadows.splice(i, 1);
+      (s.pendingWolfReturns ??= []).push("01081");
       s.suspendedCombats.push(s.combat);
       const wolf = make(s, "01081");
       s.engaged.push(wolf);
       const shadow = encounterDraw(s, true);
       if (shadow) wolf.shadows.push(shadow);
       choose(s, "Wolf Rider attacks from the shadows", [
-        ...opts(
-          characters(s).filter((x) => !x.exhausted && canFight(x)),
-          (x) => [fx("wolfDefend", { target: wolf.id, source: x.id })],
-        ),
+        ...opts(defendersFor(s), (x) => [
+          fx("wolfDefend", { target: wolf.id, source: x.id }),
+        ]),
         {
           id: "undefended",
           label: "Leave the Wolf Rider attack undefended",
@@ -4360,6 +4621,23 @@ export function restoreSave(value: unknown): GameState | null {
       });
     }
     if (!validateSave(s)) return null;
+    // Legacy version-two saves used player/global modifiers. Bind those bonuses
+    // to the characters present at restore, then use the same snapshot rules.
+    const gondor = s.gondor;
+    eachSeat(s, () => {
+      for (const u of characters(s)) {
+        if (s.faramir) u.tempWill = (u.tempWill ?? 0) + s.faramir;
+        if (gondor) {
+          u.tempAttack = (u.tempAttack ?? 0) + 1;
+          if (hasGondor(u)) u.tempDefense = (u.tempDefense ?? 0) + 1;
+        }
+      }
+      s.faramir = 0;
+    });
+    s.gondor = false;
+    for (const u of allEngaged(s))
+      if (u.feinted && u.preventedAttacks === undefined)
+        u.preventedAttacks = [ownerOf(s, u)];
     syncSeat(s);
     return s;
   } catch {

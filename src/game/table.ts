@@ -1,4 +1,4 @@
-import type { Effect, GameState, PlayerSeat, Unit } from "./types";
+import type { Attachment, Effect, GameState, PlayerSeat, Unit } from "./types";
 import { card } from "./cards";
 
 // The top-level player fields are the active seat's projection. This keeps
@@ -91,6 +91,15 @@ export function ownerOf(s: GameState, u: Unit) {
         u.owner ??
         activeSeat(s))
     : 0;
+}
+/** Player attachments follow their host's controller; ownership never changes. */
+export function attachmentController(s: GameState, host: Unit, a: Attachment) {
+  return card(a.code).sphere_code === "encounter" &&
+    card(a.code).type_code !== "objective"
+    ? null
+    : ["hero", "ally"].includes(card(host.code).type_code)
+      ? ownerOf(s, host)
+      : (a.owner ?? activeSeat(s));
 }
 export function forOwner(s: GameState, owner: number, run: () => void) {
   const previous = activeSeat(s);

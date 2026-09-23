@@ -12,6 +12,7 @@ import "./styles.css";
 import "./ui/experience.css";
 import "./ui/redbook.css";
 import "./ui/resolution.css";
+import "./ui/tabletop.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />

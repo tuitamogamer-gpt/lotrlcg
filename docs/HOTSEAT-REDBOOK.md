@@ -10,7 +10,7 @@ The multiplayer framework follows FFG’s [Core Set rulebook](https://www.fantas
 
 Effects and pending choices remember their acting player. The engine temporarily selects that seat while resolving an effect, then returns to the ordered turn. Global effects visit all eligible seats. Card control is distinct from original ownership so transfers and foreign attachments resolve and discard correctly. Sentinel and Ranged eligibility comes from the supported cards’ printed keywords. Each attacking player gets a separate attack opportunity against an eligible enemy.
 
-Campaign chapters preserve seats and their threat penalties. Fallen heroes are replaced in place; surviving heroes retain their positions. The Dol Guldur prisoner remains associated with the original seat and returns there upon rescue. A captured single hero does not prematurely eliminate that seat. See [coverage](COVERAGE.md) for the existing timing simplifications and the limitations of one-hero introductory decks.
+Campaign chapters preserve seats and the shared threat penalty: each replacement increases every player's starting threat by one, and each player may make one voluntary replacement. Fallen heroes are replaced in place; surviving heroes retain their positions. The Dol Guldur prisoner remains associated with the original seat and returns there upon rescue. A captured single hero does not prematurely eliminate that seat; eliminating the prisoner's fellowship loses the quest for the whole company. Mendor follows the first-player token. See [coverage](COVERAGE.md) and the [rules audit corrections](RULES-AUDIT.md) for timing boundaries and regression coverage.
 
 ## Desktop interface
 

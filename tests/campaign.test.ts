@@ -283,7 +283,7 @@ test("Despair shadow removes defense from the attack", () => {
   s = act(s, { type: "DEFEND", enemyId: orc.id, defenderId: s.heroes[0].id });
   assert.equal(s.heroes[0].damage, 2);
 });
-test("Wolf Rider shadow interrupts, receives a shadow, then returns to the top", () => {
+test("Wolf Rider shadow interrupts, receives a shadow, then returns to the top at combat end", () => {
   let s = act(game(), { type: "KEEP" });
   s.phase = "defense";
   const orc = unit("01089");
@@ -296,10 +296,12 @@ test("Wolf Rider shadow interrupts, receives a shadow, then returns to the top",
   assert.ok(validateSave(s));
   s = act(s, { type: "CHOOSE", id: s.heroes[1].id });
   s = settle(s);
-  assert.equal(s.encounterDeck[0], "01081");
+  assert.ok(!s.encounterDeck.includes("01081"));
   assert.equal(s.suspendedCombats.length, 0);
   assert.equal(s.combat, null);
   assert.equal(s.phase, "attack");
+  s = settle(act(s, { type: "END_ATTACKS" }));
+  assert.equal(s.encounterDeck[0], "01081");
 });
 test("Massing at Night shadow resolves its extra shadow before damage", () => {
   let s = act(game(), { type: "KEEP" });

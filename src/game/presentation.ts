@@ -38,6 +38,7 @@ export function observe(
   s: GameState,
   getStats: (s: GameState, u: Unit) => Numbers,
   getStagingThreat: (s: GameState) => number,
+  getThreat?: (s: GameState, u: Unit) => number,
 ): Observation {
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
@@ -70,6 +71,9 @@ export function observe(
           : {}),
         ...(c.type_code === "location"
           ? { Progress: `${u.progress} / ${c.quest ?? 0}` }
+          : {}),
+        ...((enemy || c.type_code === "location") && getThreat
+          ? { Threat: String(getThreat(s, u)) }
           : {}),
         Attachments:
           u.attachments

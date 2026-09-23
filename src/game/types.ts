@@ -52,6 +52,8 @@ export interface Unit {
   tempDefense?: number;
   suppressed?: boolean;
   feinted?: boolean;
+  /** Players protected from this enemy's attacks for the current phase. */
+  preventedAttacks?: number[];
   beornReturn?: boolean;
   shadows: string[];
   guarding?: string;
@@ -158,6 +160,8 @@ export interface GameState {
   stageRevealing: boolean;
   alliesPlayed: number;
   threatModifier: number;
+  fog?: number;
+  pendingWolfReturns?: string[];
   shackles: number;
   mendorBoost: boolean;
   campaignScarred: boolean;
