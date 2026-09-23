@@ -27,11 +27,14 @@ export interface Card {
   url?: string;
 }
 export interface Attachment {
+  owner?: number;
   id: string;
   code: string;
   exhausted: boolean;
 }
 export interface Unit {
+  owner?: number;
+  attackedBy?: number[];
   id: string;
   code: string;
   exhausted: boolean;
@@ -57,6 +60,7 @@ export interface Unit {
 export type ScenarioId = "mirkwood" | "anduin" | "dol-guldur";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
+  seatPenalties?: number[];
   heroes: string[];
   fallen: string[];
   threatPenalty: number;
@@ -78,6 +82,7 @@ export type Phase =
   | "attack"
   | "refresh";
 export interface Effect {
+  player?: number;
   kind: string;
   target?: string;
   source?: string;
@@ -107,6 +112,13 @@ export interface LogEntry {
   kind: "normal" | "good" | "danger" | "chapter";
 }
 export interface GameState {
+  table?: {
+    seats: PlayerSeat[];
+    active: number;
+    first: number;
+    turn: number;
+    passed: number[];
+  };
   version: 2;
   scenarioId: ScenarioId;
   playMode: PlayMode;
@@ -174,6 +186,7 @@ export interface GameState {
   lastQuest: { will: number; threat: number; net: number } | null;
 }
 export type Action =
+  | { type: "SELECT_SEAT"; seat: number }
   | { type: "KEEP" | "MULLIGAN" | "NEXT" | "COMMIT" | "END_ATTACKS" }
   | { type: "TOGGLE_QUEST"; id: string }
   | { type: "CHOOSE"; id: string }
@@ -194,3 +207,28 @@ export type Action =
       defenderIds?: string[];
     }
   | { type: "ATTACK"; enemyId: string; attackerIds: string[] };
+
+export type SeatConfig = { hero: string; deckId: string };
+export type PlayerSeat = Pick<
+  GameState,
+  | "deckId"
+  | "startingHeroes"
+  | "threat"
+  | "heroes"
+  | "allies"
+  | "hand"
+  | "deck"
+  | "discard"
+  | "removed"
+  | "engaged"
+  | "fallenThreat"
+  | "committedIds"
+  | "faramir"
+  | "eowynUsed"
+  | "mulled"
+  | "optionalEngagement"
+  | "shackles"
+  | "peek"
+  | "used"
+  | "standTogether"
+> & { eliminated: boolean };

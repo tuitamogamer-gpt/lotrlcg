@@ -67,7 +67,6 @@ import {
   restoreSave,
   continueCampaign,
   retryAdventure,
-  canFight,
   objectiveFree,
   newCampaign,
 } from "./game/engine";
@@ -78,6 +77,7 @@ import type {
   Unit,
   ScenarioId,
   PlayMode,
+  SeatConfig,
 } from "./game/types";
 import { SCENARIOS, scenario, OBJECTIVES } from "./game/scenarios";
 import {
@@ -89,6 +89,24 @@ import {
   usePreference,
   playReason,
 } from "./ui/experience";
+
+import {
+  FellowshipSetup,
+  CooperativeActions,
+  FellowshipSeats,
+  DEFAULT_SEATS,
+} from "./ui/fellowship";
+import {
+  activeSeat,
+  allCharacters,
+  allEngaged,
+  ownerOf,
+  seatName,
+  attackersFor,
+  defendersFor,
+  livingSeats,
+  seatView,
+} from "./game/table";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -351,6 +369,17 @@ export default function App() {
   const [game, setGame] = useState<GameState | null>(() =>
     readSave(activeSaveKey()),
   );
+  const [setupMode, setSetupMode] = useState<"classic" | "hotseat">(() => {
+    const saved = readSave(activeSaveKey());
+    return saved ? (saved.table ? "hotseat" : "classic") : "hotseat";
+  });
+  const [seats, setSeats] = useState<SeatConfig[]>(
+    () =>
+      readSave(activeSaveKey())?.table?.seats.map((p) => ({
+        hero: p.startingHeroes[0],
+        deckId: p.deckId,
+      })) ?? DEFAULT_SEATS,
+  );
   const [playMode, setPlayMode] = useState<PlayMode>(readMode);
   const [selectedScenario, setSelectedScenario] = useState<ScenarioId>(
     () => readSave(activeSaveKey())?.scenarioId ?? "mirkwood",
@@ -370,6 +399,16 @@ export default function App() {
     const saved = readSave(mode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY);
     setPlayMode(mode);
     setGame(saved);
+    if (saved) {
+      setSetupMode(saved.table ? "hotseat" : "classic");
+      if (saved.table)
+        setSeats(
+          saved.table.seats.map((p) => ({
+            hero: p.startingHeroes[0],
+            deckId: p.deckId,
+          })),
+        );
+    }
     setSelectedScenario(saved?.scenarioId ?? "mirkwood");
     if (saved && STARTERS.some((d) => d.id === saved.deckId))
       setSelectedDeck(saved.deckId);
@@ -382,11 +421,18 @@ export default function App() {
     game &&
     (playMode === "campaign" ||
       (game.scenarioId === selectedScenario &&
-        (game.deckId === selectedDeck || game.deckId === "custom")));
+        (setupMode === "hotseat"
+          ? !!game.table &&
+            game.table.seats.map((p) => p.startingHeroes[0]).join() ===
+              seats.map((p) => p.hero).join()
+          : !game.table &&
+            (game.deckId === selectedDeck || game.deckId === "custom"))));
   const displayHeroes =
     playMode === "campaign" && game?.campaign
       ? game.campaign.heroes
-      : starter.heroes;
+      : setupMode === "hotseat"
+        ? seats.map((p) => p.hero)
+        : starter.heroes;
   const [detail, setDetail] = useState<Card | null>(null);
   const [toast, setToast] = useState("");
   const [restart, setRestart] = useState(false);
@@ -497,17 +543,24 @@ export default function App() {
       return false;
     }
   };
-  const start = () => {
+  const start = (style: "classic" | "hotseat" = setupMode) => {
     try {
       const s = createGame(Date.now(), deck, starter.heroes, starter.id, {
         scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
         playMode,
+        ...(style === "hotseat" ? { seats } : {}),
         ...(playMode === "campaign" &&
         game?.campaign?.completed.length === 3 &&
         game.campaign.mendorSaved
-          ? { campaign: newCampaign(starter.heroes, true) }
+          ? {
+              campaign: newCampaign(
+                style === "hotseat" ? seats.map((p) => p.hero) : starter.heroes,
+                true,
+              ),
+            }
           : {}),
       });
+      setSetupMode(style);
       setGame(s);
       setPage("table");
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -523,10 +576,20 @@ export default function App() {
   const prepareNextChapter = () => {
     if (!game?.campaign) return;
     const c = game.campaign;
-    const picked = c.heroes.filter((h) => !c.fallen.includes(h));
+    const picked = c.heroes.map((h) => (c.fallen.includes(h) ? "" : h));
+    for (let i = 0; i < picked.length; i++) {
+      if (!picked[i])
+        picked[i] =
+          playerCards.find(
+            (h) =>
+              h.type_code === "hero" &&
+              !picked.includes(h.code) &&
+              !c.fallen.includes(h.code),
+          )?.code ?? "";
+    }
     for (const h of playerCards.filter((h) => h.type_code === "hero"))
       if (
-        picked.length < 3 &&
+        picked.length < (game.table?.seats.length ?? 3) &&
         !picked.includes(h.code) &&
         !c.fallen.includes(h.code)
       )
@@ -613,6 +676,14 @@ export default function App() {
       if (!s) throw new Error("This is not a valid adventure save.");
       setGame(s);
       setPlayMode(s.playMode);
+      setSetupMode(s.table ? "hotseat" : "classic");
+      if (s.table)
+        setSeats(
+          s.table.seats.map((p) => ({
+            hero: p.startingHeroes[0],
+            deckId: p.deckId,
+          })),
+        );
       setSelectedScenario(s.scenarioId);
       setSelectedDeck(s.deckId === "custom" ? "leadership" : s.deckId);
       setHistory([]);
@@ -653,6 +724,14 @@ export default function App() {
         return;
       }
       if (page !== "table" || game?.status !== "playing" || game.choice) return;
+      if (
+        game.table &&
+        /^[1-3]$/.test(e.key) &&
+        Number(e.key) <= game.table.seats.length
+      ) {
+        e.preventDefault();
+        dispatch({ type: "SELECT_SEAT", seat: Number(e.key) - 1 });
+      }
       if (e.key.toLowerCase() === "n") {
         e.preventDefault();
         document
@@ -668,8 +747,8 @@ export default function App() {
       if (e.key.toLowerCase() === "h") {
         e.preventDefault();
         document
-          .querySelector("#your-hand")
-          ?.scrollIntoView({ block: "center", behavior: "instant" });
+          .querySelector<HTMLElement>("#your-hand")
+          ?.focus({ preventScroll: window.innerWidth >= 1100 });
       }
     };
     document.addEventListener("keydown", keydown);
@@ -708,7 +787,7 @@ export default function App() {
       : null;
   return (
     <div
-      className={`app density-${density} ${page === "table" ? "playing" : ""}`}
+      className={`app redbook density-${density} ${page === "table" ? "playing" : ""}`}
     >
       <a className="skip-link" href="#main-content">
         Skip to content
@@ -741,8 +820,9 @@ export default function App() {
             <span className="brand-stars">· ✦ ·</span>
           </div>
           <span>
-            THERE &<br />
-            BACK AGAIN<small>THE LORD OF THE RINGS · LCG</small>
+            THE LORD
+            <br />
+            OF THE RINGS<small>THERE & BACK AGAIN · THE CARD GAME</small>
           </span>
         </a>
         <div className="sidebar-divider">
@@ -801,7 +881,7 @@ export default function App() {
             wander are lost.”
           </p>
           <div className="build-info">
-            <span className="green-dot" /> CORE SET · SOLO PLAY
+            <span className="green-dot" /> THE RED BOOK · CORE SET
           </div>
         </div>
       </aside>
@@ -855,7 +935,10 @@ export default function App() {
               <SlidersHorizontal size={20} />
             </button>
             <span className="solo-label">
-              <UsersThree size={15} /> Solo play
+              <UsersThree size={15} />{" "}
+              {game?.table && page === "table"
+                ? `${game.table.seats.length} heroes · Solo hot-seat`
+                : "A solo journey"}
             </span>
             <button
               className="icon-button"
@@ -884,18 +967,27 @@ export default function App() {
           <main id="main-content" tabIndex={-1} className="lobby">
             <div className="page-heading">
               <div>
-                <span className="lobby-kicker">THERE & BACK AGAIN</span>
-                <h1>Choose your adventure.</h1>
-                <p>
-                  Three quests. Four fellowships. Your journey through
-                  Middle-earth.
-                </p>
+                <span className="lobby-kicker">
+                  FROM THE RED BOOK OF WESTMARCH
+                </span>
+                <h1>A tale yet to be told.</h1>
+                <p>Gather your company. Take the road into Middle-earth.</p>
               </div>
               <span className="chapter-label">
                 <Diamond size={13} /> CORE SET ·{" "}
                 {playMode === "campaign" ? "CAMPAIGN" : "3 QUESTS"}
               </span>
             </div>
+            <FellowshipSetup
+              mode={setupMode}
+              changeMode={setSetupMode}
+              seats={seats}
+              setSeats={setSeats}
+              inspect={(id) => {
+                setSelectedDeck(id);
+                nav("fellowship");
+              }}
+            />
             <section className="mode-selection" aria-label="Choose game mode">
               <div className="mode-tabs" role="group" aria-label="Game mode">
                 <button
@@ -988,31 +1080,54 @@ export default function App() {
                   )}
                 </h2>
                 <p>{quest.description}</p>
+                {setupMode === "hotseat" &&
+                  seats.length === 1 &&
+                  (quest.id === "dol-guldur" || playMode === "campaign") && (
+                    <p className="single-hero-note">
+                      Dol Guldur captures one hero. Bring 2–3 hero seats to
+                      leave someone free to lead the rescue.
+                    </p>
+                  )}
                 {resumable && game?.status === "playing" && (
                   <div className="resume-context">
                     <span className="green-dot" /> Saved journey · Round{" "}
                     {game.round || 1} · {phaseNames[game.phase]}
                   </div>
                 )}
-                <label className="starter-select">
-                  YOUR FELLOWSHIP
-                  <select
-                    aria-label="Choose starter deck"
-                    value={
-                      playMode === "campaign" && game?.campaign
-                        ? game.deckId
-                        : selectedDeck
-                    }
-                    disabled={playMode === "campaign" && !!game?.campaign}
-                    onChange={(e) => setSelectedDeck(e.target.value)}
-                  >
-                    {STARTERS.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.subtitle} · {d.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                {setupMode === "classic" && (
+                  <label className="starter-select">
+                    YOUR FELLOWSHIP
+                    <select
+                      aria-label="Choose starter deck"
+                      value={
+                        playMode === "campaign" && game?.campaign
+                          ? game.deckId
+                          : selectedDeck
+                      }
+                      disabled={playMode === "campaign" && !!game?.campaign}
+                      onChange={(e) => setSelectedDeck(e.target.value)}
+                    >
+                      {STARTERS.map((d) => (
+                        <option key={d.id} value={d.id}>
+                          {d.subtitle} · {d.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                {setupMode === "hotseat" && (
+                  <div className="selected-company">
+                    <UsersThree size={19} />
+                    <span>
+                      {displayHeroes.map((c) => card(c).name).join(" · ")}
+                      <small>
+                        {displayHeroes.length} separate{" "}
+                        {displayHeroes.length === 1 ? "deck" : "decks"} · You
+                        control the whole company
+                      </small>
+                    </span>
+                  </div>
+                )}
                 {playMode === "campaign" && game?.campaign && (
                   <small className="campaign-deck-note">
                     Change your deck between chapters or start a new campaign.
@@ -1052,23 +1167,27 @@ export default function App() {
                 )}
               </div>
               <div className="hero-fan" aria-label="Your starting heroes">
-                {[displayHeroes[1], displayHeroes[0], displayHeroes[2]].map(
-                  (code, i) => (
-                    <motion.button
-                      initial={reducedMotion ? false : { opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + i * 0.12, duration: 0.6 }}
-                      key={code}
-                      className={`fan-card fan-${i}`}
-                      onClick={() => setDetail(card(code))}
-                      title={`Inspect ${card(code).name}`}
-                    >
-                      <Art c={card(code)} />
-                    </motion.button>
-                  ),
-                )}
+                {(displayHeroes.length === 3
+                  ? [displayHeroes[1], displayHeroes[0], displayHeroes[2]]
+                  : displayHeroes
+                ).map((code, i) => (
+                  <motion.button
+                    initial={reducedMotion ? false : { opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + i * 0.12, duration: 0.6 }}
+                    key={code}
+                    className={`fan-card fan-${i}`}
+                    onClick={() => setDetail(card(code))}
+                    title={`Inspect ${card(code).name}`}
+                  >
+                    <Art c={card(code)} />
+                  </motion.button>
+                ))}
                 <div className="fan-caption">
-                  <span /> THREE HEROES. ONE FELLOWSHIP.
+                  <span />{" "}
+                  {setupMode === "hotseat"
+                    ? "MANY PATHS. ONE COMPANY."
+                    : "THREE HEROES. ONE FELLOWSHIP."}
                   <span />
                 </div>
               </div>
@@ -1077,7 +1196,10 @@ export default function App() {
                   <Compass size={17} /> {quest.name}
                 </span>
                 <span>
-                  <UsersThree size={15} /> 1 player
+                  <UsersThree size={15} />{" "}
+                  {setupMode === "hotseat"
+                    ? `${seats.length} heroes · Solo hot-seat`
+                    : "1 player"}
                 </span>
                 <span>
                   <Diamond size={14} /> Core Set
@@ -1151,8 +1273,16 @@ export default function App() {
                     ))}
                   </div>
                   <div>
-                    <strong>{starter.name}</strong>
-                    <span>{starter.subtitle} · 30 cards · 3 heroes</span>
+                    <strong>
+                      {setupMode === "hotseat"
+                        ? "Your travelling company"
+                        : starter.name}
+                    </strong>
+                    <span>
+                      {setupMode === "hotseat"
+                        ? `${seats.length} heroes · ${seats.length} separate decks`
+                        : `${starter.subtitle} · 30 cards · 3 heroes`}
+                    </span>
                   </div>
                 </div>
                 <div className="fellowship-foot">
@@ -1192,7 +1322,11 @@ export default function App() {
               </div>
               <button
                 className="primary"
-                onClick={() => (game ? setRestart(true) : start())}
+                onClick={() => {
+                  setSetupMode("classic");
+                  if (game) setRestart(true);
+                  else start("classic");
+                }}
               >
                 Begin with {starter.subtitle} <ArrowRight />
               </button>
@@ -1288,9 +1422,11 @@ export default function App() {
                 <p>
                   All three Core Set quests are ready for solo play in normal or
                   campaign mode. Choose Leadership, Tactics, Spirit, or Lore.
-                  Each original learning deck includes its three heroes and 30
-                  cards, including one Gandalf. Win by finishing the final
-                  quest; lose if threat reaches 50 or all your heroes fall.
+                  Classic solo uses three heroes and one 30-card deck. Solo
+                  hot-seat lets you command 1–3 heroes, each with their own
+                  starter deck, hand, resources, and threat. Complete the final
+                  quest together. A seat is eliminated at 50 threat or when its
+                  hero falls; surviving fellowships continue.
                 </p>
                 <button
                   className="primary"
@@ -1301,6 +1437,30 @@ export default function App() {
                 </button>
               </div>
             </div>
+            <section className="guide-note">
+              <h2>One company. Separate fellowships.</h2>
+              <p>
+                In hot-seat mode, choose one hero for each seat. Their sphere
+                determines their 30-card starter deck. Keep or mulligan each
+                hand, plan for each hero, then commit each fellowship to the
+                shared quest. One encounter is revealed per active seat.
+                Engagement, defense, and attacks follow the first-player order;
+                the crown moves each round.
+              </p>
+              <p>
+                Click a hero’s banner to view their hand and board. Resources
+                stay with that hero. Sentinel characters can defend for another
+                fellowship, Ranged characters can join its attacks, and support
+                cards let you choose which player benefits. Normal games and
+                campaigns both support this arrangement.
+              </p>
+              <p>
+                These original learning decks are preserved. A one-hero deck
+                cannot play Thicket of Spears, which requires three resource
+                pools belonging to the same player. Dol Guldur captures one
+                hero, so bring at least two hero seats to lead the rescue.
+              </p>
+            </section>
             <section className="guide-note">
               <h2>Choose your journey</h2>
               <p>
@@ -1495,6 +1655,7 @@ export default function App() {
                 </button>
               </div>
             </div>
+            <FellowshipSeats s={game} dispatch={dispatch} />
             {(game.prisoner || game.captiveMendor) && (
               <div className="prisoner-banner">
                 <Shield size={22} />
@@ -1664,7 +1825,7 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                {(game.activeLocation || game.engaged.length > 0) && (
+                {(game.activeLocation || allEngaged(game).length > 0) && (
                   <div className="active-zones">
                     {game.activeLocation && (
                       <div className="active-location">
@@ -1692,7 +1853,7 @@ export default function App() {
                         </div>
                       </div>
                     )}
-                    {game.engaged.length > 0 && (
+                    {allEngaged(game).length > 0 && (
                       <div className="engaged-zone">
                         <div className="zone-label">
                           <span>
@@ -1700,15 +1861,25 @@ export default function App() {
                           </span>
                         </div>
                         <div className="board-cards">
-                          {game.engaged.map((u) => (
+                          {allEngaged(game).map((u) => (
                             <BoardCard
                               key={u.id}
                               s={game}
                               u={u}
                               inspect={() => setDetail(card(u.code))}
                               action={
-                                ["defense", "attack"].includes(game.phase) &&
-                                !u.attacked
+                                (
+                                  game.phase === "defense"
+                                    ? ownerOf(game, u) === activeSeat(game) &&
+                                      !u.attacked
+                                    : game.phase === "attack" &&
+                                      (game.table
+                                        ? !u.attackedBy?.includes(
+                                            activeSeat(game),
+                                          )
+                                        : !u.attacked) &&
+                                      attackersFor(game, u).length > 0
+                                )
                                   ? () => {
                                       setCombatEnemy(u.id);
                                       setAttackers([]);
@@ -1717,7 +1888,12 @@ export default function App() {
                                   : undefined
                               }
                               actionLabel={
-                                game.phase === "defense" ? "Defend" : "Attack"
+                                game.phase === "defense"
+                                  ? "Defend"
+                                  : game.table &&
+                                      ownerOf(game, u) !== activeSeat(game)
+                                    ? `Ranged · ${seatName(game, ownerOf(game, u))}`
+                                    : "Attack"
                               }
                             />
                           ))}
@@ -1729,7 +1905,10 @@ export default function App() {
                 <div className="fellowship-zone">
                   <div className="zone-label">
                     <span>
-                      <UsersThree size={16} /> YOUR FELLOWSHIP
+                      <UsersThree size={16} />{" "}
+                      {game.table
+                        ? `${seatName(game, activeSeat(game)).toUpperCase()}’S FELLOWSHIP`
+                        : "YOUR FELLOWSHIP"}
                     </span>
                     <span>
                       {characters(game).filter((u) => !u.exhausted).length}{" "}
@@ -1770,6 +1949,7 @@ export default function App() {
                   </div>
                 </div>
                 <Hand
+                  key={game.table?.active ?? "classic"}
                   s={game}
                   inspect={(u) => setDetail(card(u.code))}
                   play={beginPlay}
@@ -1779,7 +1959,10 @@ export default function App() {
               </section>
               <aside className="turn-panel">
                 <div className="turn-panel-top">
-                  <span className="green-dot" /> YOUR TURN
+                  <span className="green-dot" />{" "}
+                  {game.table
+                    ? seatName(game, activeSeat(game)).toUpperCase()
+                    : "YOUR TURN"}
                 </div>
                 <h2>{phaseNames[game.phase]}</h2>
                 <p>{phaseHelp(game)}</p>
@@ -1828,6 +2011,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+                <CooperativeActions s={game} dispatch={dispatch} />
                 {game.lastReveal && (
                   <div className="last-reveal">
                     <h3>Last encounter</h3>
@@ -1924,6 +2108,12 @@ export default function App() {
               Keyboard shortcuts
             </h3>
             <dl>
+              <div>
+                <dt>Switch hero</dt>
+                <dd>
+                  <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>
+                </dd>
+              </div>
               <div>
                 <dt>Next step</dt>
                 <dd>
@@ -2040,25 +2230,33 @@ export default function App() {
             Your current saved adventure will be replaced. You can export it
             first to keep a copy.
           </p>
-          <label className="field-label">
-            Starting fellowship
-            <select
-              aria-label="New adventure fellowship"
-              value={selectedDeck}
-              onChange={(e) => setSelectedDeck(e.target.value)}
-            >
-              {STARTERS.map((d) => (
-                <option value={d.id} key={d.id}>
-                  {d.subtitle} · {d.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          {setupMode === "classic" ? (
+            <label className="field-label">
+              Starting fellowship
+              <select
+                aria-label="New adventure fellowship"
+                value={selectedDeck}
+                onChange={(e) => setSelectedDeck(e.target.value)}
+              >
+                {STARTERS.map((d) => (
+                  <option value={d.id} key={d.id}>
+                    {d.subtitle} · {d.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : (
+            <p className="restart-company">
+              New company: {seats.map((p) => card(p.hero).name).join(" · ")}
+              <br />
+              {seats.length} heroes with separate decks.
+            </p>
+          )}
           <div className="modal-actions">
             <button className="secondary" onClick={exportSave}>
               Export current save
             </button>
-            <button className="primary" onClick={start}>
+            <button className="primary" onClick={() => start()}>
               Begin anew <ArrowRight />
             </button>
           </div>
@@ -2066,6 +2264,11 @@ export default function App() {
       )}
       {game && game.choice && page === "table" && (
         <Modal title={game.choice.title}>
+          {game.table && (
+            <div className="decision-owner">
+              <Crown size={16} /> {seatName(game, activeSeat(game))}’s decision
+            </div>
+          )}
           <p className="choice-description">{plain(game.choice.description)}</p>
           <div className="choice-list">
             {game.choice.options.map((o) => (
@@ -2146,6 +2349,9 @@ export default function App() {
                 {playTargets(game, playCard).map((u) => (
                   <option key={u.id} value={u.id}>
                     {name(u)}
+                    {game.table && u.id.startsWith("discard-")
+                      ? ` · ${seatName(game, Number(u.id.split("-")[1]))}’s discard`
+                      : ""}
                   </option>
                 ))}
               </select>
@@ -2165,7 +2371,11 @@ export default function App() {
                 aria-label="Choose X"
                 type="number"
                 min="1"
-                max={game.deck.length}
+                max={Math.max(
+                  ...livingSeats(game).map(
+                    (i) => seatView(game, i).deck.length,
+                  ),
+                )}
                 value={xCost}
                 onChange={(e) => {
                   const n = Number(e.target.value);
@@ -2250,7 +2460,7 @@ export default function App() {
             <Sword size={25} />
             <span>
               {name(
-                [...game.engaged, ...game.staging].find(
+                [...allEngaged(game), ...game.staging].find(
                   (u) => u.id === combatEnemy,
                 )!,
               )}
@@ -2262,50 +2472,50 @@ export default function App() {
             </span>
           </div>
           <div className="choice-list">
-            {characters(game)
-              .filter(
-                (u) =>
-                  !u.exhausted &&
-                  canFight(u) &&
-                  (!game.staging.some((e) => e.id === combatEnemy) ||
-                    u.code === "01009"),
-              )
-              .map((u) => (
-                <button
-                  key={u.id}
-                  className={
-                    (
-                      game.phase === "defense" && !game.standTogether
-                        ? defender === u.id
-                        : attackers.includes(u.id)
-                    )
-                      ? "selected"
-                      : ""
-                  }
-                  onClick={() =>
+            {(game.phase === "defense"
+              ? defendersFor(game)
+              : attackersFor(
+                  game,
+                  [...allEngaged(game), ...game.staging].find(
+                    (u) => u.id === combatEnemy,
+                  )!,
+                )
+            ).map((u) => (
+              <button
+                key={u.id}
+                className={
+                  (
                     game.phase === "defense" && !game.standTogether
-                      ? setDefender(u.id)
-                      : setAttackers((a) =>
-                          a.includes(u.id)
-                            ? a.filter((id) => id !== u.id)
-                            : [...a, u.id],
-                        )
-                  }
-                >
-                  <Art c={card(u.code)} />
-                  <span>
-                    {name(u)}
-                    <small>
-                      {game.phase === "defense"
-                        ? `${stats(game, u).defense} defense · ${stats(game, u).health - u.damage} hit points`
-                        : `${stats(game, u).attack} attack`}
-                    </small>
-                  </span>
-                  {(game.phase === "defense" && !game.standTogether
-                    ? defender === u.id
-                    : attackers.includes(u.id)) && <Check size={20} />}
-                </button>
-              ))}
+                      ? defender === u.id
+                      : attackers.includes(u.id)
+                  )
+                    ? "selected"
+                    : ""
+                }
+                onClick={() =>
+                  game.phase === "defense" && !game.standTogether
+                    ? setDefender(u.id)
+                    : setAttackers((a) =>
+                        a.includes(u.id)
+                          ? a.filter((id) => id !== u.id)
+                          : [...a, u.id],
+                      )
+                }
+              >
+                <Art c={card(u.code)} />
+                <span>
+                  {name(u)}
+                  <small>
+                    {game.phase === "defense"
+                      ? `${stats(game, u).defense} defense · ${stats(game, u).health - u.damage} hit points`
+                      : `${stats(game, u).attack} attack`}
+                  </small>
+                </span>
+                {(game.phase === "defense" && !game.standTogether
+                  ? defender === u.id
+                  : attackers.includes(u.id)) && <Check size={20} />}
+              </button>
+            ))}
           </div>
           {game.phase === "defense" && (
             <button
@@ -2348,7 +2558,7 @@ export default function App() {
                       n +
                       stats(
                         game,
-                        characters(game).find((u) => u.id === id)!,
+                        allCharacters(game).find((u) => u.id === id)!,
                       ).attack,
                     0,
                   )} power`}
@@ -2417,20 +2627,28 @@ export default function App() {
               </label>
             ))}
           </div>
-          <label className="field-label">
-            Player deck
-            <select
-              aria-label="Campaign player deck"
-              value={nextDeck}
-              onChange={(e) => setNextDeck(e.target.value)}
-            >
-              {STARTERS.map((d) => (
-                <option value={d.id} key={d.id}>
-                  {d.subtitle} · {d.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          {!game.table && (
+            <label className="field-label">
+              Player deck
+              <select
+                aria-label="Campaign player deck"
+                value={nextDeck}
+                onChange={(e) => setNextDeck(e.target.value)}
+              >
+                {STARTERS.map((d) => (
+                  <option value={d.id} key={d.id}>
+                    {d.subtitle} · {d.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+          {game.table && (
+            <p className="campaign-note">
+              Each hero keeps a separate 30-card deck matching their sphere.
+              Replacement penalties apply to that hero’s seat.
+            </p>
+          )}
           <label className="support-toggle">
             <input
               type="checkbox"
@@ -2661,7 +2879,9 @@ function phaseHelp(s: GameState) {
     case "defense":
       return "Each enemy attacks once. Assign a ready defender; its defense reduces incoming damage.";
     case "attack":
-      return "Select an enemy and combine ready characters to attack it. Each enemy can be attacked once.";
+      return s.table
+        ? "Declare an attack with your ready characters. Other Ranged characters may join. Each fellowship may attack each eligible enemy once."
+        : "Select an enemy and combine ready characters to attack it. Each enemy can be attacked once.";
     case "refresh":
       return "The fellowship has readied. Prepare for another round beneath the trees.";
   }
@@ -2681,7 +2901,9 @@ function BoardCard({
 }) {
   const c = card(u.code);
   return (
-    <div className={`board-card ${u.attacked ? "acted" : ""}`}>
+    <div
+      className={`board-card ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
+    >
       <button
         className="board-card-art"
         onClick={inspect}
@@ -2711,6 +2933,11 @@ function BoardCard({
         </span>
       </button>
       <div className="board-card-name">{name(u)}</div>
+      {s.table && allEngaged(s).some((e) => e.id === u.id) && (
+        <div className="engaged-owner">
+          Engaged with {seatName(s, ownerOf(s, u))}
+        </div>
+      )}
       {c.type_code === "enemy" ? (
         <div className="enemy-stats">
           <span>
@@ -2780,15 +3007,23 @@ function CharacterCard({
       <button
         className="character-art"
         onClick={
-          s.phase === "quest" && !u.exhausted
+          s.phase === "quest" &&
+          !u.exhausted &&
+          (!s.table || s.table.active === s.table.turn)
             ? () => dispatch({ type: "TOGGLE_QUEST", id: u.id })
             : inspect
         }
         aria-pressed={
-          s.phase === "quest" && !u.exhausted ? selected : undefined
+          s.phase === "quest" &&
+          !u.exhausted &&
+          (!s.table || s.table.active === s.table.turn)
+            ? selected
+            : undefined
         }
         aria-label={
-          s.phase === "quest" && !u.exhausted
+          s.phase === "quest" &&
+          !u.exhausted &&
+          (!s.table || s.table.active === s.table.turn)
             ? `${selected ? "Unselect" : "Commit"} ${name(u)}`
             : `Inspect ${name(u)}`
         }

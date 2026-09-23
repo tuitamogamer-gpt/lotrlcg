@@ -19,8 +19,32 @@ import type {
   ScenarioId,
   PlayMode,
   CampaignState,
+  SeatConfig,
 } from "./types";
 import { SCENARIOS, scenario, OBJECTIVES } from "./scenarios";
+
+import {
+  activeSeat,
+  allCharacters,
+  allHeroes,
+  allEngaged,
+  eachSeat,
+  forOwner,
+  livingSeats,
+  ownerOf,
+  playerOrder,
+  seatIndices,
+  seatName,
+  seatView,
+  selectSeat,
+  snapshotSeat,
+  syncSeat,
+  scopedEffect,
+  startPhase,
+  passSeat,
+  defendersFor,
+  attackersFor,
+} from "./table";
 
 export class RuleError extends Error {}
 function requireRule(ok: unknown, message: string): asserts ok {
@@ -37,9 +61,9 @@ const skip: Option = {
 };
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 export const units = (s: GameState) => [
-  ...characters(s),
+  ...allCharacters(s),
   ...s.staging,
-  ...s.engaged,
+  ...allEngaged(s),
   ...(s.activeLocation ? [s.activeLocation] : []),
 ];
 const get = (s: GameState, id?: string) => units(s).find((u) => u.id === id);
@@ -59,6 +83,7 @@ function shuffle<T>(s: GameState, a: T[]) {
 function make(s: GameState, code: string): Unit {
   return {
     id: `c${s.nextId++}`,
+    ...(s.table ? { owner: activeSeat(s) } : {}),
     code,
     exhausted: false,
     damage: 0,
@@ -80,7 +105,10 @@ function log(
   if (s.log.length > 250) s.log.shift();
 }
 function prepend(s: GameState, ...effects: Effect[]) {
-  s.queue.unshift(...effects);
+  s.queue.unshift(...effects.map((e) => scopedEffect(s, e)));
+}
+function enqueue(s: GameState, ...effects: Effect[]) {
+  s.queue.push(...effects.map((e) => scopedEffect(s, e)));
 }
 function choose(
   s: GameState,
@@ -88,7 +116,15 @@ function choose(
   options: Option[],
   description?: string,
 ) {
-  if (options.length) s.choice = { title, options, description };
+  if (options.length)
+    s.choice = {
+      title,
+      options: options.map((o) => ({
+        ...o,
+        effects: o.effects.map((e) => scopedEffect(s, e)),
+      })),
+      description,
+    };
 }
 function opts(
   list: Unit[],
@@ -119,7 +155,7 @@ export function stats(s: GameState, u: Unit) {
         u.attachments.filter((a) => a.code === "01055").length -
         u.attachments.filter((a) => a.code === "01071").length +
         (u.tempWill ?? 0) +
-        s.faramir +
+        seatView(s, ownerOf(s, u)).faramir +
         (u.code === "01007" ? u.boost : 0) -
         (u.committed ? s.questDebuff : 0),
     ),
@@ -163,8 +199,11 @@ export const stagingThreat = (s: GameState) =>
       0,
     );
 export const questWill = (s: GameState) =>
-  characters(s)
-    .filter((u) => u.committed || s.committedIds.includes(u.id))
+  allCharacters(s)
+    .filter(
+      (u) =>
+        u.committed || seatView(s, ownerOf(s, u)).committedIds.includes(u.id),
+    )
     .reduce((n, u) => n + stats(s, u).will, 0);
 export const stageInfo = (s: GameState) => {
   if (s.scenarioId !== "mirkwood" || s.stage < 3)
@@ -186,11 +225,11 @@ export const canFight = (u: Unit) => !has(u, "01108");
 export const objectiveFree = (s: GameState, u: Unit) =>
   OBJECTIVES.includes(u.code) && !units(s).some((x) => x.guarding === u.id);
 const objectiveCount = (s: GameState) =>
-  s.heroes
+  allHeroes(s)
     .flatMap((h) => h.attachments)
     .filter((a) => OBJECTIVES.includes(a.code)).length;
 const inPlay = (s: GameState, code: string) =>
-  [...s.staging, ...s.engaged].some((u) => u.code === code);
+  [...s.staging, ...allEngaged(s)].some((u) => u.code === code);
 export const resources = (s: GameState, sphere?: string) =>
   s.heroes
     .filter(
@@ -266,21 +305,33 @@ function encounterDraw(s: GameState, shadow = false) {
   }
   return s.encounterDeck.shift();
 }
-function check(s: GameState) {
-  if (s.status !== "playing") return;
-  s.committedIds = s.committedIds.filter((id) =>
-    characters(s).some((u) => u.id === id && !u.exhausted),
+function advanceDefense(s: GameState) {
+  if (s.phase !== "defense" || s.combat) return;
+  const next = playerOrder(s).find((i) =>
+    seatView(s, i).engaged.some(
+      (u) => !u.attacked && !u.feinted && !has(u, "01069"),
+    ),
   );
-  if (
-    s.phase === "defense" &&
-    !s.combat &&
-    s.engaged.every((u) => u.attacked || u.feinted || has(u, "01069"))
-  ) {
-    s.phase = "attack";
-    s.engaged.forEach((u) => {
+  if (next !== undefined) {
+    if (s.table) {
+      s.table.turn = next;
+      if (!s.choice) selectSeat(s, next);
+    }
+  } else {
+    startPhase(s, "attack");
+    allEngaged(s).forEach((u) => {
       u.attacked = false;
+      u.attackedBy = [];
     });
   }
+}
+function check(s: GameState) {
+  if (s.status !== "playing") return;
+  eachSeat(s, () => {
+    s.committedIds = s.committedIds.filter((id) =>
+      characters(s).some((u) => u.id === id && !u.exhausted),
+    );
+  });
   if (
     ["quest", "staging"].includes(s.phase) &&
     !s.encounterDeck.length &&
@@ -290,24 +341,79 @@ function check(s: GameState) {
     log(s, "The empty encounter deck is refilled during the quest phase.");
   }
   const doomed = [
-    ...characters(s),
-    ...s.engaged,
+    ...allCharacters(s),
+    ...allEngaged(s),
     ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
   ].find((u) => u.damage >= stats(s, u).health);
   if (doomed) {
     destroy(s, doomed);
     return;
   }
-  if (s.threat >= 50 || !s.heroes.length) {
+  if (s.table) {
+    eachSeat(s, (i) => {
+      if (s.threat < 50 && (s.heroes.length || s.prisoner?.owner === i)) return;
+      s.table!.seats[i].eliminated = true;
+      log(
+        s,
+        `${seatName(s, i)} is eliminated. The remaining heroes continue.`,
+        "danger",
+      );
+      for (const u of [...s.heroes, ...s.allies]) {
+        for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+        seatView(s, u.owner ?? i).discard.push(u.code);
+        if (card(u.code).type_code === "hero")
+          s.fallenThreat += card(u.code).threat ?? 0;
+      }
+      if (
+        s.allies.some((u) => u.code === "rc135") &&
+        s.campaign &&
+        s.scenarioId !== "dol-guldur"
+      ) {
+        s.status = "lost";
+        s.reason = "Mendor has left play. The campaign quest is lost.";
+      }
+      s.discard.push(...s.hand.map((u) => u.code), ...s.deck);
+      s.heroes = [];
+      s.allies = [];
+      s.hand = [];
+      s.deck = [];
+      s.committedIds = [];
+      for (const u of s.engaged) {
+        s.encounterDiscard.push(...u.shadows);
+        u.shadows = [];
+        u.attacked = false;
+        s.staging.push(u);
+      }
+      s.engaged = [];
+      if (s.choice && activeSeat(s) === i) s.choice = null;
+    });
+    const alive = livingSeats(s);
+    if (!alive.length) {
+      s.status = "lost";
+      s.reason = "Every hero’s fellowship has fallen to the shadow.";
+    } else {
+      if (!alive.includes(s.table.first)) s.table.first = alive[0];
+      if (!alive.includes(s.table.turn))
+        s.table.turn =
+          playerOrder(s).find((i) => !s.table!.passed.includes(i)) ?? alive[0];
+      if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
+    }
+  } else if (s.threat >= 50 || (!s.heroes.length && !s.prisoner)) {
     s.status = "lost";
     s.reason =
       s.threat >= 50
         ? "Your threat reached 50. The shadow has found you."
         : "The last hero has fallen.";
+  }
+  if (s.status === "lost") {
     s.choice = null;
     s.queue = [];
     log(s, s.reason, "danger");
-  } else advanceQuest(s);
+  } else {
+    advanceDefense(s);
+    advanceQuest(s);
+  }
+  syncSeat(s);
 }
 function win(s: GameState) {
   if (s.status !== "playing") return;
@@ -347,21 +453,25 @@ function discardAttachment(
   }
   (card(a.code).sphere_code === "encounter"
     ? s.encounterDiscard
-    : s.discard
+    : seatView(s, a.owner ?? ownerOf(s, u)).discard
   ).push(a.code);
   log(s, `${card(a.code).name} is discarded from ${name(u)}.`);
 }
 function destroy(s: GameState, u: Unit) {
+  const previous = activeSeat(s);
+  selectSeat(s, ownerOf(s, u));
   const c = card(u.code);
   if (c.type_code === "ally" || c.type_code === "hero") {
-    for (const h of s.heroes)
+    for (const h of allHeroes(s))
       for (const a of h.attachments) if (a.code === "01042") h.resources++;
   }
   if (["ally", "hero"].includes(c.type_code)) {
-    s.threat += characters(s).reduce(
-      (n, h) => n + h.attachments.filter((a) => a.code === "rc138").length,
-      0,
-    );
+    eachSeat(s, () => {
+      s.threat += characters(s).reduce(
+        (n, h) => n + h.attachments.filter((a) => a.code === "rc138").length,
+        0,
+      );
+    });
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (c.type_code === "enemy") {
@@ -376,7 +486,7 @@ function destroy(s: GameState, u: Unit) {
     else s.encounterDiscard.push(u.code);
     if (u.code === "01102") s.nazgulDefeated = true;
     if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
-      s.queue.push(fx("earnPermanent", { code: "rc133" }));
+      enqueue(s, fx("earnPermanent", { code: "rc133" }));
     log(s, `${c.name} is defeated.`, "good");
     if (
       s.scenarioId === "mirkwood" &&
@@ -396,13 +506,15 @@ function destroy(s: GameState, u: Unit) {
         s.choice = null;
         s.queue = [];
       }
-    } else s.discard.push(u.code);
+    } else seatView(s, u.owner ?? activeSeat(s)).discard.push(u.code);
     if (c.type_code === "hero") s.fallenThreat += c.threat ?? 0;
     log(s, `${c.name} has fallen.`, "danger");
-    if (c.type_code === "ally") s.queue.push(fx("valiant"));
+    if (c.type_code === "ally") enqueue(s, fx("valiant"));
     if (c.type_code === "hero" && c.traits?.includes("Dwarf"))
-      s.queue.push(fx("brok"));
+      enqueue(s, fx("brok"));
   }
+  syncSeat(s);
+  selectSeat(s, previous);
   check(s);
 }
 function progressLocation(s: GameState, u: Unit, value: number) {
@@ -415,7 +527,11 @@ function progressLocation(s: GameState, u: Unit, value: number) {
   else if (card(u.code).victory) s.victory += card(u.code).victory!;
   else s.encounterDiscard.push(u.code);
   for (const a of [...u.attachments]) discardAttachment(s, u, a);
-  if (u.code === "01078") prepend(s, fx("mountainReward"));
+  if (u.code === "01078")
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("mountainReward", { player })),
+    );
 }
 function progress(s: GameState, n: number) {
   if (s.activeLocation) {
@@ -439,7 +555,7 @@ function advanceQuest(s: GameState) {
       s.scenarioId === "anduin" &&
       !s.queue.length &&
       !s.choice &&
-      ![...s.staging, ...s.engaged].some(
+      ![...s.staging, ...allEngaged(s)].some(
         (u) => card(u.code).type_code === "enemy",
       )
     )
@@ -468,10 +584,10 @@ function advanceQuest(s: GameState) {
       (s.stage === 2 && s.prisoner))
   )
     return;
-  const mendor = s.allies.find((u) => u.code === "rc135");
+  const mendor = allCharacters(s).find((u) => u.code === "rc135");
   if (mendor) {
     mendor.exhausted = false;
-    draw(s, 1);
+    eachSeat(s, () => draw(s, 1));
     log(
       s,
       "Mendor readies and you draw a card after defeating a quest stage.",
@@ -482,22 +598,40 @@ function advanceQuest(s: GameState) {
   s.progress = 0;
   if (s.stage === 3 && s.scenarioId === "mirkwood") {
     s.branch = random(s) < 0.5 ? "beorn" : "spider";
-    if (s.branch === "spider") prepend(s, fx("findSpider"));
+    if (s.branch === "spider")
+      prepend(
+        s,
+        ...playerOrder(s).map((player) => fx("findSpider", { player })),
+      );
   }
   if (s.stage === 3 && s.scenarioId === "anduin") {
     s.stageRevealing = true;
-    prepend(s, fx("reveal"), fx("reveal"), fx("stageRevealed"));
+    prepend(
+      s,
+      ...Array.from({ length: livingSeats(s).length * 2 }, () =>
+        fx("reveal", { player: s.table?.first ?? 0 }),
+      ),
+      fx("stageRevealed"),
+    );
   }
   log(s, `A new chapter: ${stageInfo(s).name}.`, "chapter");
 }
 function phaseEnd(s: GameState) {
+  eachSeat(s, () => phaseEndPlayer(s));
+}
+function phaseEndPlayer(s: GameState) {
   s.faramir = 0;
   s.gondor = false;
   s.questDebuff = 0;
   s.threatModifier = 0;
   s.standTogether = false;
   s.used = s.used.filter((k) => !k.startsWith("protector:"));
-  for (const x of units(s)) {
+  for (const x of [
+    ...characters(s),
+    ...s.engaged,
+    ...s.staging,
+    ...(s.activeLocation ? [s.activeLocation] : []),
+  ]) {
     x.tempThreat = 0;
     x.tempWill = 0;
     x.tempAttack = 0;
@@ -512,7 +646,7 @@ function phaseEnd(s: GameState) {
       for (const a of [...u.attachments]) discardAttachment(s, u, a);
       s.deck.push(u.code);
       shuffle(s, s.deck);
-      s.queue.push(fx("valiant"));
+      enqueue(s, fx("valiant"));
       continue;
     }
     if (u.temporary) {
@@ -524,24 +658,36 @@ function phaseEnd(s: GameState) {
       u.committed = false;
       s.hand.push(u);
       log(s, `${name(u)} returns to your hand after Sneak Attack.`);
-      s.queue.push(fx("valiant"));
+      enqueue(s, fx("valiant"));
     }
   }
 }
 function nextRound(s: GameState) {
+  if (s.table && s.round > 0) {
+    const order = playerOrder(s);
+    s.table.first = order[1 % order.length] ?? 0;
+  }
   s.round++;
-  s.phase = "planning";
-  s.used = [];
-  s.peek = null;
+  startPhase(s, "planning");
   s.alliesPlayed = 0;
   s.mendorBoost = false;
-  for (const h of s.heroes) h.resources += has(h, "rc134") ? 2 : 1;
-  draw(s, 1);
+  eachSeat(s, () => {
+    s.used = [];
+    s.peek = null;
+    s.optionalEngagement = false;
+    for (const h of s.heroes) h.resources += has(h, "rc134") ? 2 : 1;
+    draw(s, 1);
+  });
   log(s, `Round ${s.round} · Each hero gains 1 resource.`, "chapter");
 }
 function engage(s: GameState, u: Unit) {
+  if (allEngaged(s).some((e) => e.id === u.id))
+    forOwner(s, ownerOf(s, u), () => {
+      s.engaged = s.engaged.filter((e) => e.id !== u.id);
+    });
   s.staging = s.staging.filter((x) => x.id !== u.id);
   s.engaged.push(u);
+  if (s.table) u.owner = activeSeat(s);
   log(s, `${name(u)} engages your fellowship.`, "danger");
   if (u.code === "01096") u.boost = 1;
   if (u.code === "rc136") prepend(s, fx("chooseExhaust", { count: 2 }));
@@ -562,7 +708,7 @@ function revealed(s: GameState, code: string, guarding?: string) {
   let thalin = false;
   if (
     c.type_code === "enemy" &&
-    s.heroes.some((h) => h.code === "01006" && h.committed)
+    allHeroes(s).some((h) => h.code === "01006" && h.committed)
   ) {
     thalin = true;
     if ((c.health ?? 0) <= 1) {
@@ -574,40 +720,51 @@ function revealed(s: GameState, code: string, guarding?: string) {
     }
   }
   const doomed = /Doomed (\d+)/.exec(c.text ?? "");
-  if (doomed) s.threat += Number(doomed[1]);
+  if (doomed)
+    eachSeat(s, () => {
+      s.threat += Number(doomed[1]);
+    });
   if (c.text?.includes("Surge.")) prepend(s, fx("reveal"));
   const when = (c.text ?? "").includes("When Revealed");
   const options: Option[] = [];
-  if (
-    when &&
-    s.hand.some((u) => u.code === "01050") &&
-    resources(s, "spirit") >= 1
-  )
-    options.push({
-      id: "cancel",
-      label: "Play A Test of Will · 1 Spirit",
-      code: "01050",
-      effects: [
-        fx("spendEvent", { code: "01050" }),
-        fx("placeEncounter", {
-          code,
-          flag: true,
-          value: thalin ? 1 : 0,
-          source: guarding,
-        }),
-      ],
-    });
-  const eleanor = s.heroes.find((h) => h.code === "01008" && !h.exhausted);
-  if (when && c.type_code === "treachery" && eleanor)
-    options.push({
-      id: "eleanor",
-      label: "Exhaust Eleanor to cancel and replace",
-      code: "01008",
-      effects: [
-        fx("exhaust", { target: eleanor.id }),
-        fx("cancelReplace", { code, source: guarding }),
-      ],
-    });
+  const revealingPlayer = activeSeat(s);
+  eachSeat(s, (player) => {
+    if (
+      when &&
+      s.hand.some((u) => u.code === "01050") &&
+      resources(s, "spirit") >= 1
+    )
+      options.push({
+        id: s.table ? `cancel-${player}` : "cancel",
+        label: `Play A Test of Will · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
+        code: "01050",
+        effects: [
+          fx("spendEvent", { code: "01050", player }),
+          fx("placeEncounter", {
+            code,
+            flag: true,
+            player: revealingPlayer,
+            value: thalin ? 1 : 0,
+            source: guarding,
+          }),
+        ],
+      });
+    const eleanor = s.heroes.find((h) => h.code === "01008" && !h.exhausted);
+    if (when && c.type_code === "treachery" && eleanor)
+      options.push({
+        id: s.table ? `eleanor-${player}` : "eleanor",
+        label: "Exhaust Eleanor to cancel and replace",
+        code: "01008",
+        effects: [
+          fx("exhaust", { target: eleanor.id }),
+          fx("cancelReplace", {
+            code,
+            source: guarding,
+            player: revealingPlayer,
+          }),
+        ],
+      });
+  });
   if (options.length) {
     choose(
       s,
@@ -668,64 +825,77 @@ function placeEncounter(
       s.progress = Math.max(0, s.progress - 4);
       break;
     case "01104":
-      s.threatModifier++;
+      s.threatModifier += livingSeats(s).length;
       break;
     case "01105":
-      s.shackles++;
+      forOwner(s, s.table?.first ?? 0, () => {
+        s.shackles++;
+      });
       break;
     case "01112":
-      prepend(s, fx("reveal"));
+      prepend(
+        s,
+        ...playerOrder(s).map(() =>
+          fx("reveal", { player: s.table?.first ?? 0 }),
+        ),
+      );
       break;
     case "01116":
-      if (s.threat >= 35)
-        for (const x of [...characters(s)]) damage(s, x.id, 1);
+      eachSeat(s, () => {
+        if (s.threat >= 35)
+          for (const x of [...characters(s)]) damage(s, x.id, 1);
+      });
       break;
     case "01117":
-      s.threat += characters(s).filter((x) => !x.committed).length;
+      eachSeat(s, () => {
+        s.threat += characters(s).filter((x) => !x.committed).length;
+      });
       break;
     case "01118":
       s.staging
         .filter((x) => card(x.code).type_code === "location")
         .forEach((x) => (x.tempThreat = (x.tempThreat ?? 0) + 1));
-      if (s.threat >= 35) prepend(s, fx("discardHand"));
+      prepend(
+        s,
+        ...playerOrder(s)
+          .filter((i) => seatView(s, i).threat >= 35)
+          .map((player) => fx("discardHand", { player })),
+      );
       break;
-    case "rc137": {
-      const most = Math.max(...s.heroes.map((h) => h.damage));
-      choose(s, "Lingering Venom", [
-        {
-          id: "exhaust",
-          label: "Exhaust every damaged character",
-          effects: characters(s)
-            .filter((x) => x.damage > 0)
-            .map((x) => fx("exhaust", { target: x.id })),
-        },
-        ...opts(
-          s.heroes.filter((h) => h.damage === most),
-          (h) => [fx("damage", { target: h.id, value: 2 })],
-          () => "Deal 2 damage to this most-damaged hero",
-        ),
-      ]);
+    case "rc137":
+      prepend(s, ...playerOrder(s).map((player) => fx("venom", { player })));
       break;
-    }
     case "01074":
-      prepend(s, fx("chooseExhaust", { count: 1 }));
+      prepend(
+        s,
+        ...playerOrder(s).map((player) =>
+          fx("chooseExhaust", { count: 1, player }),
+        ),
+      );
       break;
     case "01076":
       s.questDebuff++;
       break;
-    case "01079": {
-      const events = s.hand.filter((u) => card(u.code).type_code === "event");
-      s.hand = s.hand.filter((u) => card(u.code).type_code !== "event");
-      s.discard.push(...events.map((u) => u.code));
-      log(s, `Eyes of the Forest discards ${events.length} events.`, "danger");
+    case "01079":
+      eachSeat(s, () => {
+        const events = s.hand.filter((u) => card(u.code).type_code === "event");
+        s.hand = s.hand.filter((u) => card(u.code).type_code !== "event");
+        s.discard.push(...events.map((u) => u.code));
+      });
       break;
-    }
     case "01080":
       choose(
         s,
         "Caught in a Web",
-        opts(s.heroes, (u) => [fx("web", { target: u.id })]),
-        "Choose a hero to bear the web. It prevents normal refreshing unless that hero pays 2 resources.",
+        opts(
+          allHeroes(s).filter(
+            (h) =>
+              seatView(s, ownerOf(s, h)).threat ===
+              Math.max(...livingSeats(s).map((i) => seatView(s, i).threat)),
+          ),
+          (u) => [fx("web", { target: u.id })],
+        ),
+        "The player with the highest threat chooses one of their heroes. The web prevents normal refreshing unless that hero pays 2 resources.",
       );
       break;
     case "01089":
@@ -733,7 +903,7 @@ function placeEncounter(
         s,
         "Dol Guldur Orcs",
         opts(
-          characters(s).filter((u) => u.committed),
+          allCharacters(s).filter((u) => u.committed),
           (u) => [fx("damage", { target: u.id, value: 2 })],
         ),
         "Choose a character committed to the quest to take 2 damage.",
@@ -749,19 +919,11 @@ function placeEncounter(
       else prepend(s, fx("reveal"));
       break;
     case "01093":
-      for (const u of [...characters(s)].filter((u) => u.exhausted))
+      for (const u of [...allCharacters(s)].filter((u) => u.exhausted))
         damage(s, u.id, 1);
       break;
     case "01098":
-      choose(
-        s,
-        "Black Forest Bats",
-        opts(
-          characters(s).filter((u) => u.committed),
-          (u) => [fx("uncommit", { target: u.id })],
-        ),
-        "Remove a character from the quest. It remains exhausted.",
-      );
+      prepend(s, ...playerOrder(s).map((player) => fx("bats", { player })));
       break;
   }
   if (c.type_code === "treachery") returnTreachery(s, code);
@@ -796,15 +958,40 @@ function enterAlly(s: GameState, u: Unit, temporary = false) {
         "Son of Arnor",
         [
           ...opts(
-            s.staging.filter((x) => card(x.code).type_code === "enemy"),
+            [
+              ...s.staging.filter((x) => card(x.code).type_code === "enemy"),
+              ...allEngaged(s).filter((x) => ownerOf(s, x) !== activeSeat(s)),
+            ],
             (x) => [fx("engage", { target: x.id })],
           ),
           skip,
         ],
-        "You may engage an enemy from staging.",
+        "You may engage an enemy from staging or another fellowship.",
       );
       break;
     case "01059": {
+      if (s.table) {
+        choose(s, "Erebor Hammersmith", [
+          ...playerOrder(s).flatMap((player) => {
+            const discard = seatView(s, player).discard;
+            const code = [...discard]
+              .reverse()
+              .find((c) => card(c).type_code === "attachment");
+            return code
+              ? [
+                  {
+                    id: `player-${player}`,
+                    label: `${card(code).name} · ${seatName(s, player)}`,
+                    code,
+                    effects: [fx("recoverAttachment", { player, code })],
+                  },
+                ]
+              : [];
+          }),
+          skip,
+        ]);
+        break;
+      }
       const attachment = [...s.discard]
         .reverse()
         .find((code) => card(code).type_code === "attachment");
@@ -821,7 +1008,7 @@ function enterAlly(s: GameState, u: Unit, temporary = false) {
     }
     case "01061":
       choose(s, "Miner of the Iron Hills", [
-        ...characters(s).flatMap((h) =>
+        ...allCharacters(s).flatMap((h) =>
           h.attachments
             .filter((a) => a.code === "01080")
             .map((a) => ({
@@ -836,7 +1023,7 @@ function enterAlly(s: GameState, u: Unit, temporary = false) {
       ]);
       break;
     case "01018":
-      for (const x of [...s.staging, ...s.engaged].filter((x) =>
+      for (const x of [...s.staging, ...allEngaged(s)].filter((x) =>
         card(x.code).traits?.includes("Orc"),
       ))
         damage(s, x.id, 1);
@@ -898,7 +1085,9 @@ function shadow(s: GameState, code: string) {
       s.threat += s.engaged.length;
       break;
     case "01105":
-      s.shackles++;
+      forOwner(s, s.table?.first ?? 0, () => {
+        s.shackles++;
+      });
       break;
     case "01111":
       s.progress = Math.max(0, s.progress - (undefended ? 3 : 1));
@@ -972,12 +1161,108 @@ function shadow(s: GameState, code: string) {
 function handle(s: GameState, e: Effect) {
   const u = get(s, e.target);
   switch (e.kind) {
+    case "commitSeat": {
+      if (!passSeat(s)) break;
+      const reveals =
+        s.scenarioId === "anduin" && s.stage === 3
+          ? 0
+          : livingSeats(s).length +
+            (s.scenarioId === "anduin" && s.stage === 2 ? 1 : 0);
+      const player = s.table?.first ?? 0;
+      enqueue(
+        s,
+        ...Array.from({ length: reveals }, () => fx("reveal", { player })),
+        fx("questReady", { player }),
+      );
+      break;
+    }
+    case "bats":
+      choose(
+        s,
+        "Black Forest Bats",
+        opts(
+          characters(s).filter((u) => u.committed),
+          (u) => [fx("uncommit", { target: u.id })],
+        ),
+        "Remove one of this player’s characters from the quest.",
+      );
+      break;
+    case "venom": {
+      const most = Math.max(0, ...s.heroes.map((h) => h.damage));
+      choose(s, "Lingering Venom", [
+        {
+          id: "exhaust",
+          label: "Exhaust every damaged character you control",
+          effects: characters(s)
+            .filter((x) => x.damage > 0)
+            .map((x) => fx("exhaust", { target: x.id })),
+        },
+        ...opts(
+          s.heroes.filter((h) => h.damage === most),
+          (h) => [fx("damage", { target: h.id, value: 2 })],
+          () => "Deal 2 damage to this most-damaged hero",
+        ),
+      ]);
+      break;
+    }
+    case "recoverAttachment": {
+      const i = s.discard.lastIndexOf(e.code!);
+      if (i >= 0) s.hand.push(make(s, s.discard.splice(i, 1)[0]));
+      break;
+    }
+    case "searchPlayer":
+      choose(
+        s,
+        "Gandalf’s Search",
+        s.deck.slice(0, e.value).map((code, i) => ({
+          id: `search-${i}`,
+          code,
+          label: card(code).name,
+          effects: [fx("searchTake", { code, value: i, count: e.value })],
+        })),
+        "Add one card to its owner’s hand, then order the rest on top of the deck.",
+      );
+      break;
+    case "rainOfArrows":
+      for (const enemy of [...s.engaged]) damage(s, enemy.id, 1);
+      break;
+    case "standTogether":
+      s.standTogether = true;
+      break;
+    case "hospitality":
+      s.heroes.forEach((h) => {
+        h.damage = 0;
+      });
+      break;
+    case "reshufflePlayer":
+      s.deck.push(...s.discard.splice(0));
+      shuffle(s, s.deck);
+      break;
+    case "faramir":
+      s.faramir++;
+      break;
+    case "transferTook":
+      if (u && e.value !== undefined) {
+        eachSeat(s, () => {
+          s.used.push(`took:${u.id}`);
+        });
+        const from = ownerOf(s, u);
+        forOwner(s, from, () => {
+          s.allies = s.allies.filter((a) => a.id !== u.id);
+          s.threat = Math.max(0, s.threat - 3);
+        });
+        forOwner(s, e.value, () => {
+          s.allies.push(u);
+          s.threat += 3;
+        });
+      }
+      break;
     case "eowynDiscard": {
       const h = s.hand.find((x) => x.id === e.target);
       if (h) {
         s.hand = s.hand.filter((x) => x.id !== h.id);
         s.discard.push(h.code);
-        const eowyn = s.heroes.find((x) => x.code === "01007");
+        const eowyn = allHeroes(s).find((x) => x.code === "01007");
         if (eowyn) eowyn.boost++;
         s.eowynUsed = true;
         log(s, "Éowyn gains +1 willpower this phase.", "good");
@@ -1072,7 +1357,7 @@ function handle(s: GameState, e: Effect) {
           effects: [fx("threat", { value: -5 })],
         },
         ...opts(
-          [...s.staging, ...s.engaged].filter(
+          [...s.staging, ...allEngaged(s)].filter(
             (u) => card(u.code).type_code === "enemy",
           ),
           (u) => [fx("damage", { target: u.id, value: 4 })],
@@ -1138,7 +1423,7 @@ function handle(s: GameState, e: Effect) {
         "Théodred’s response",
         [
           ...opts(
-            s.heroes.filter((u) => u.committed),
+            allHeroes(s).filter((u) => u.committed),
             (u) => [fx("resource", { target: u.id, value: 1 })],
           ),
           skip,
@@ -1178,8 +1463,10 @@ function handle(s: GameState, e: Effect) {
       break;
     case "travelDone":
       phaseEnd(s);
-      s.phase = "encounter";
-      s.optionalEngagement = false;
+      startPhase(s, "encounter");
+      eachSeat(s, () => {
+        s.optionalEngagement = false;
+      });
       break;
     case "travelReady":
       choose(
@@ -1187,7 +1474,9 @@ function handle(s: GameState, e: Effect) {
         "Old Forest Road",
         [
           ...opts(
-            characters(s).filter((u) => u.exhausted),
+            seatView(s, s.table?.first ?? 0)
+              .heroes.concat(seatView(s, s.table?.first ?? 0).allies)
+              .filter((u) => u.exhausted),
             (u) => [fx("ready", { target: u.id })],
           ),
           skip,
@@ -1207,21 +1496,19 @@ function handle(s: GameState, e: Effect) {
       );
       break;
     case "startCombat":
-      s.phase = "defense";
-      for (const enemy of [...s.engaged].sort(
-        (a, b) =>
-          (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
-      )) {
-        enemy.attacked = false;
-        const code = encounterDraw(s, true);
-        enemy.shadows = code ? [code] : [];
-      }
-      for (const enemy of s.engaged)
-        if (has(enemy, "01069") || enemy.feinted) enemy.attacked = true;
-      if (!s.engaged.length || s.engaged.every((e) => e.attacked)) {
-        s.phase = "attack";
-        for (const enemy of s.engaged) enemy.attacked = false;
-      }
+      startPhase(s, "defense");
+      eachSeat(s, () => {
+        for (const enemy of [...s.engaged].sort(
+          (a, b) =>
+            (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
+        )) {
+          enemy.attacked = !!(has(enemy, "01069") || enemy.feinted);
+          enemy.attackedBy = [];
+          const code = encounterDraw(s, true);
+          enemy.shadows = code ? [code] : [];
+        }
+      });
+      advanceDefense(s);
       break;
     case "shadowReveal": {
       if (!get(s, s.combat?.enemyId)) break;
@@ -1229,21 +1516,25 @@ function handle(s: GameState, e: Effect) {
         s,
         `Shadow: ${card(e.code!).name}${card(e.code!).shadow ? " — " + card(e.code!).shadow : " · no effect"}.`,
       );
-      if (
-        card(e.code!).shadow &&
-        s.hand.some((u) => u.code === "01048") &&
-        resources(s, "spirit") >= 1
-      ) {
+      const eligible = playerOrder(s).filter((i) => {
+        const p = seatView(s, i);
+        return (
+          card(e.code!).shadow &&
+          p.hand.some((u) => u.code === "01048") &&
+          resources(p, "spirit") >= 1
+        );
+      });
+      if (eligible.length)
         choose(
           s,
           "A shadow falls",
           [
-            {
-              id: "cancel",
-              label: "Play Hasty Stroke · 1 Spirit",
+            ...eligible.map((player) => ({
+              id: s.table ? `cancel-${player}` : "cancel",
+              label: `Play Hasty Stroke · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
               code: "01048",
-              effects: [fx("spendEvent", { code: "01048" })],
-            },
+              effects: [fx("spendEvent", { code: "01048", player })],
+            })),
             {
               id: "resolve",
               label: "Resolve shadow effect",
@@ -1253,7 +1544,7 @@ function handle(s: GameState, e: Effect) {
           ],
           card(e.code!).shadow,
         );
-      } else prepend(s, fx("shadowEffect", { code: e.code }));
+      else prepend(s, fx("shadowEffect", { code: e.code }));
       break;
     }
     case "shadowEffect": {
@@ -1321,6 +1612,7 @@ function handle(s: GameState, e: Effect) {
         if (enemy.code === "01090") enemy.resources++;
         if (enemy.code === "01111") s.progress = Math.max(0, s.progress - 1);
         if (s.combat?.returnToStaging || s.combat?.returnWolf) {
+          s.staging = s.staging.filter((x) => x.id !== enemy.id);
           s.engaged = s.engaged.filter((x) => x.id !== enemy.id);
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
@@ -1330,10 +1622,7 @@ function handle(s: GameState, e: Effect) {
       }
       s.combat = s.suspendedCombats.pop() ?? null;
       if (s.combat) break;
-      if (s.engaged.every((u) => u.attacked || u.feinted || has(u, "01069"))) {
-        s.phase = "attack";
-        for (const x of s.engaged) x.attacked = false;
-      }
+      advanceDefense(s);
       break;
     }
     case "webRefresh":
@@ -1351,7 +1640,9 @@ function handle(s: GameState, e: Effect) {
         ]);
       break;
     case "refreshEnd":
-      s.threat += s.activeLocation?.code === "01114" ? 2 : 1;
+      eachSeat(s, () => {
+        s.threat += s.activeLocation?.code === "01114" ? 2 : 1;
+      });
       s.phase = "refresh";
       log(s, "Refresh · Threat increases by 1.");
       check(s);
@@ -1372,9 +1663,37 @@ function flush(s: GameState) {
   let n = 0;
   while (s.queue.length && !s.choice && s.status === "playing") {
     requireRule(++n < 200, "Effect queue overflow.");
-    handle(s, s.queue.shift()!);
+    const effect = s.queue.shift()!;
+    if (s.table && effect.player !== undefined) selectSeat(s, effect.player);
+    if (
+      !s.table?.seats[activeSeat(s)].eliminated ||
+      [
+        "nextRound",
+        "phaseEnd",
+        "startCombat",
+        "finishQuestPhase",
+        "questReady",
+        "commitSeat",
+        "stageRevealed",
+        "refreshEnd",
+        "travelDone",
+        "reveal",
+        "placeEncounter",
+        "enemyDone",
+      ].includes(effect.kind)
+    )
+      handle(s, effect);
     check(s);
   }
+  if (
+    s.table &&
+    !s.choice &&
+    ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
+      s.phase,
+    )
+  )
+    selectSeat(s, s.table.turn);
+  syncSeat(s);
 }
 export function createGame(
   seed = Date.now(),
@@ -1386,6 +1705,7 @@ export function createGame(
     playMode?: PlayMode;
     campaign?: CampaignState;
     includeSupport?: boolean;
+    seats?: SeatConfig[];
   } = {},
 ): GameState {
   const list = Object.entries(deck).flatMap(
@@ -1396,16 +1716,19 @@ export function createGame(
     !!starter &&
     JSON.stringify(Object.entries(deck).sort()) ===
       JSON.stringify(Object.entries(starter.cards).sort()) &&
-    (heroCodes.join() === starter.heroes.join() || !!options.campaign);
+    (heroCodes.join() === starter.heroes.join() ||
+      !!options.campaign ||
+      !!options.seats);
   requireRule(
     list.length === 50 || (list.length === 30 && original),
     "Use an original 30-card starter list or exactly 50 cards for a custom deck.",
   );
   requireRule(
-    heroCodes.length === 3 &&
-      new Set(heroCodes).size === 3 &&
+    heroCodes.length >= 1 &&
+      heroCodes.length <= 3 &&
+      new Set(heroCodes).size === heroCodes.length &&
       heroCodes.every((c) => card(c).type_code === "hero"),
-    "Choose 3 different heroes.",
+    "Choose one to three different heroes.",
   );
   for (const [code, n] of Object.entries(deck)) {
     requireRule(
@@ -1436,7 +1759,10 @@ export function createGame(
   );
   const campaign =
     playMode === "campaign"
-      ? structuredClone(options.campaign ?? newCampaign(heroCodes))
+      ? structuredClone(
+          options.campaign ??
+            newCampaign(options.seats?.map((p) => p.hero) ?? heroCodes),
+        )
       : null;
   const s: GameState = {
     version: 2,
@@ -1503,22 +1829,65 @@ export function createGame(
     lastReveal: null,
     lastQuest: null,
   };
-  s.heroes = heroCodes.map((code) => make(s, code));
-  s.threat = s.heroes.reduce((n, h) => n + (card(h.code).threat ?? 0), 0);
+  if (options.seats) {
+    requireRule(
+      options.seats.length >= 1 &&
+        options.seats.length <= 3 &&
+        new Set(options.seats.map((p) => p.hero)).size === options.seats.length,
+      "Choose one to three different heroes, each with a separate deck.",
+    );
+    for (const config of options.seats) {
+      const d = STARTERS.find((d) => d.id === config.deckId);
+      requireRule(
+        d && d.heroes.includes(config.hero),
+        "Each hero uses their sphere’s Core Set starter deck.",
+      );
+    }
+    const blank = snapshotSeat(s);
+    s.table = {
+      seats: options.seats.map(() => structuredClone(blank)),
+      active: 0,
+      first: 0,
+      turn: 0,
+      passed: [],
+    };
+    options.seats.forEach((config, i) => {
+      selectSeat(s, i);
+      const d = STARTERS.find((d) => d.id === config.deckId)!;
+      s.deckId = d.id;
+      s.startingHeroes = [config.hero];
+      s.deck = Object.entries(d.cards).flatMap(([code, n]) =>
+        Array<string>(n).fill(code),
+      );
+      s.heroes = [make(s, config.hero)];
+      s.threat =
+        (card(config.hero).threat ?? 0) + (campaign?.seatPenalties?.[i] ?? 0);
+      syncSeat(s);
+    });
+    selectSeat(s, 0);
+  } else {
+    s.heroes = heroCodes.map((code) => make(s, code));
+    s.threat =
+      s.heroes.reduce((n, h) => n + (card(h.code).threat ?? 0), 0) +
+      (campaign?.threatPenalty ?? 0);
+  }
   if (campaign) {
-    s.threat += campaign.threatPenalty;
-    if (s.includeSupport && campaign.boons.includes("rc132"))
-      s.deck.push("rc132");
     s.encounterDeck.push(
       ...campaign.burdens.filter((c) => ["rc136", "rc137"].includes(c)),
     );
-    for (const h of s.heroes)
-      for (const code of campaign.permanent[h.code] ?? [])
-        h.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+    eachSeat(s, () => {
+      if (s.includeSupport && campaign.boons.includes("rc132"))
+        s.deck.push("rc132");
+      for (const h of s.heroes)
+        for (const code of campaign.permanent[h.code] ?? [])
+          h.attachments.push({ id: `a${s.nextId++}`, code, exhausted: false });
+    });
     s.allies.push(make(s, "rc135"));
   }
-  shuffle(s, s.deck);
-  draw(s, 6);
+  eachSeat(s, () => {
+    shuffle(s, s.deck);
+    draw(s, 6);
+  });
   if (scenarioId === "mirkwood") {
     for (const code of ["01096", "01099"]) {
       s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
@@ -1527,19 +1896,27 @@ export function createGame(
     shuffle(s, s.encounterDeck);
   } else if (scenarioId === "anduin") {
     shuffle(s, s.encounterDeck);
-    s.queue.push(fx("reveal"), fx("ensureTroll"));
+    enqueue(
+      s,
+      ...playerOrder(s).map((player) => fx("reveal", { player })),
+      fx("ensureTroll"),
+    );
   } else {
     s.encounterDeck = s.encounterDeck.filter(
       (code) => code !== "01102" && !OBJECTIVES.includes(code),
     );
     shuffle(s, s.encounterDeck);
-    if (campaign) s.queue.push(fx("appointedByFate"));
+    if (campaign)
+      enqueue(
+        s,
+        ...playerOrder(s).map((player) => fx("appointedByFate", { player })),
+      );
     for (const code of OBJECTIVES) {
       const objective = make(s, code);
       s.staging.push(objective);
-      s.queue.push(fx("guardObjective", { target: objective.id }));
+      enqueue(s, fx("guardObjective", { target: objective.id }));
     }
-    s.queue.push(fx("capturePrisoner"));
+    enqueue(s, fx("capturePrisoner"));
   }
   log(
     s,
@@ -1553,7 +1930,17 @@ export function canPlay(s: GameState, u: Unit): string | null {
   const c = card(u.code);
   if (s.choice || s.status !== "playing")
     return "Resolve the current choice first.";
+  if (s.table?.seats[activeSeat(s)].eliminated)
+    return "This fellowship has been eliminated.";
   if (s.phase === "setup") return "Continue to the next action window.";
+  if (
+    ["ally", "attachment"].includes(c.type_code) &&
+    s.table &&
+    activeSeat(s) !== s.table.turn
+  )
+    return "Wait for this hero’s planning turn.";
+  if (!eligiblePayers(s, c).length)
+    return "A matching sphere hero is required.";
   if (["ally", "attachment"].includes(c.type_code) && s.phase !== "planning")
     return "Play allies and attachments during planning.";
   if (
@@ -1565,11 +1952,13 @@ export function canPlay(s: GameState, u: Unit): string | null {
     return "Only one ally may be played each round at this quest stage.";
   if (
     u.code === "rc132" &&
-    (s.mendorBoost || !s.allies.some((a) => a.code === "rc135"))
+    (s.mendorBoost || !allCharacters(s).some((a) => a.code === "rc135"))
   )
     return "Mendor must be free, and his Support can be played once per round.";
   if (["01024", "01037", "01047", "01048", "01050"].includes(u.code))
     return "This response is offered automatically when its trigger occurs.";
+  if (u.code === "01036" && s.heroes.length < 3)
+    return "Thicket of Spears needs 3 heroes’ resource pools in the same deck.";
   if (resources(s, c.sphere_code) < Number(c.cost ?? 0))
     return "Not enough matching resources.";
   if (
@@ -1581,6 +1970,13 @@ export function canPlay(s: GameState, u: Unit): string | null {
     return "A unique card with this name is already in play.";
   return null;
 }
+function discardTarget(s: GameState, target: string) {
+  const parts = target.split("-").slice(1).map(Number);
+  return {
+    player: parts.length > 1 ? parts[0] : activeSeat(s),
+    index: parts.at(-1)!,
+  };
+}
 export function playTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   if (c.type_code === "attachment") {
@@ -1589,46 +1985,59 @@ export function playTargets(s: GameState, u: Unit): Unit[] {
         ...s.staging,
         ...(s.activeLocation ? [s.activeLocation] : []),
       ].filter((x) => card(x.code).type_code === "location");
-    if (u.code === "01069") return s.engaged.filter((e) => e.code !== "01102");
-    if (u.code === "01072") return characters(s);
-    return s.heroes.filter(
+    if (u.code === "01069")
+      return allEngaged(s).filter((e) => e.code !== "01102");
+    if (u.code === "01072") return allCharacters(s);
+    return allHeroes(s).filter(
       (h) =>
         !c.text?.includes("Restricted") ||
         h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
           .length < 2,
     );
   }
-  if (u.code === "01020") return s.allies.filter((a) => a.exhausted);
+  if (u.code === "01020")
+    return allCharacters(s).filter(
+      (a) => card(a.code).type_code === "ally" && a.exhausted,
+    );
   if (u.code === "01021")
     return s.heroes.filter(
-      (a) => !a.exhausted && s.heroes.some((h) => h.id !== a.id && h.exhausted),
+      (a) =>
+        !a.exhausted && allHeroes(s).some((h) => h.id !== a.id && h.exhausted),
     );
-  if (u.code === "01032") return characters(s);
+  if (u.code === "01032") return allCharacters(s);
   if (u.code === "01033")
     return characters(s).filter(
       (a) => !a.exhausted && card(a.code).text?.includes("Ranged"),
     );
   if (u.code === "01035")
     return characters(s).filter((a) => !a.exhausted && canFight(a));
-  if (["01034", "01052"].includes(u.code)) return s.engaged;
-  if (u.code === "01063") return characters(s).filter((a) => a.damage > 0);
+  if (["01034", "01052"].includes(u.code)) return allEngaged(s);
+  if (u.code === "01063") return allCharacters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
     return s.staging.filter((a) => card(a.code).type_code === "enemy");
   if (u.code === "01066")
     return s.staging.filter((a) => card(a.code).type_code === "location");
   if (["01051", "01053", "01054"].includes(u.code))
-    return s.discard
-      .map((code, i) => ({ ...s.heroes[0], code, id: `discard-${i}` }))
-      .filter((a) =>
-        u.code === "01051"
-          ? card(a.code).type_code === "ally" &&
-            card(a.code).sphere_code !== "neutral" &&
-            (!card(a.code).is_unique ||
-              !units(s).some((x) => x.code === a.code))
-          : u.code === "01053"
-            ? card(a.code).sphere_code === "spirit"
-            : card(a.code).type_code === "hero",
-      );
+    return (
+      s.table && u.code !== "01053" ? livingSeats(s) : [activeSeat(s)]
+    ).flatMap((player) =>
+      seatView(s, player)
+        .discard.map((code, i) => ({
+          ...s.heroes[0],
+          code,
+          id: s.table ? `discard-${player}-${i}` : `discard-${i}`,
+        }))
+        .filter((a) =>
+          u.code === "01051"
+            ? card(a.code).type_code === "ally" &&
+              card(a.code).sphere_code !== "neutral" &&
+              (!card(a.code).is_unique ||
+                !units(s).some((x) => x.code === a.code))
+            : u.code === "01053"
+              ? card(a.code).sphere_code === "spirit"
+              : card(a.code).type_code === "hero",
+        ),
+    );
   return [];
 }
 export const needsTarget = (u: Unit) =>
@@ -1661,6 +2070,7 @@ export function availableAbilities(s: GameState, u: Unit) {
     "01058": "Heal a hero",
     "01060": "Scout the path",
     "01062": "Draw a card",
+    ...(s.table ? { "01043": "Visit another fellowship" } : {}),
   };
   if (heroAbility[u.code])
     results.push({
@@ -1671,18 +2081,18 @@ export function availableAbilities(s: GameState, u: Unit) {
           : u.code === "01011"
             ? s.used.includes(u.id) ||
               u.resources < 1 ||
-              !characters(s).some((h) => h.damage > 0)
+              !allCharacters(s).some((h) => h.damage > 0)
             : u.code === "01031"
               ? s.used.includes(u.id)
               : u.code === "01058"
-                ? u.exhausted || !s.heroes.some((h) => h.damage > 0)
+                ? u.exhausted || !allHeroes(s).some((h) => h.damage > 0)
                 : s.used.includes(u.id) || u.exhausted,
     });
   for (const a of u.attachments) {
     const active = ["01026", "01057", "01070", "01071", "01072"].includes(
       a.code,
     );
-    if (active)
+    if (active && (a.owner ?? ownerOf(s, u)) === activeSeat(s))
       results.push({
         id: a.id,
         label: card(a.code).name,
@@ -1693,7 +2103,40 @@ export function availableAbilities(s: GameState, u: Unit) {
 }
 export function applyAction(input: GameState, action: Action): GameState {
   const s = structuredClone(input);
+  if (action.type === "SELECT_SEAT") {
+    requireRule(
+      s.table &&
+        Number.isInteger(action.seat) &&
+        action.seat >= 0 &&
+        action.seat < s.table.seats.length,
+      "Choose an existing hero seat.",
+    );
+    requireRule(!s.choice, "Resolve the current choice first.");
+    selectSeat(s, action.seat);
+    syncSeat(s);
+    return s;
+  }
   requireRule(s.status === "playing", "This adventure has ended.");
+  requireRule(
+    !s.table?.seats[activeSeat(s)].eliminated,
+    "This hero's seat has been eliminated. Switch to a surviving hero.",
+  );
+  if (
+    s.table &&
+    ([
+      "KEEP",
+      "MULLIGAN",
+      "COMMIT",
+      "TOGGLE_QUEST",
+      "END_ATTACKS",
+      "DEFEND",
+    ].includes(action.type) ||
+      (action.type === "NEXT" && ["planning", "encounter"].includes(s.phase)))
+  )
+    requireRule(
+      activeSeat(s) === s.table.turn,
+      `It is ${seatName(s, s.table.turn)}’s turn.`,
+    );
   if (action.type === "CHOOSE") {
     requireRule(s.choice, "There is no pending choice.");
     const option = s.choice.options.find((o) => o.id === action.id);
@@ -1720,7 +2163,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "KEEP":
       requireRule(s.phase === "setup", "Your opening hand is already kept.");
-      nextRound(s);
+      if (passSeat(s)) nextRound(s);
       break;
     case "TOGGLE_QUEST": {
       requireRule(
@@ -1749,43 +2192,37 @@ export function applyAction(input: GameState, action: Action): GameState {
       const committed = characters(s).filter((u) => u.committed);
       s.committedIds = [];
       log(s, `${committed.length} characters commit to the quest.`);
-      s.queue.push(
+      enqueue(
+        s,
         ...(committed.some((u) => u.code === "01002") ? [fx("theodred")] : []),
         ...(committed.some((u) => u.code === "01001") ? [fx("aragorn")] : []),
       );
       for (const u of committed) {
         if (u.code === "01044" && s.activeLocation)
-          s.queue.push(
+          enqueue(
+            s,
             fx("locationProgress", { target: s.activeLocation.id, value: 1 }),
           );
         if (u.code === "01045")
-          s.queue.push(
+          enqueue(
+            s,
             ...s.staging
               .filter((x) => card(x.code).type_code === "location")
               .map((x) => fx("locationProgress", { target: x.id, value: 1 })),
           );
       }
-      const reveals =
-        s.scenarioId === "anduin"
-          ? s.stage === 3
-            ? 0
-            : s.stage === 2
-              ? 2
-              : 1
-          : 1;
-      s.queue.push(
-        ...Array.from({ length: reveals }, () => fx("reveal")),
-        fx("questReady"),
-      );
+      enqueue(s, fx("commitSeat"));
       break;
     }
     case "NEXT": {
       if (s.phase === "planning") {
+        if (!passSeat(s)) break;
         phaseEnd(s);
-        s.phase = "quest";
+        startPhase(s, "quest");
         s.lastQuest = null;
         log(s, "Quest phase · Choose characters to commit.");
-        if (s.scenarioId === "dol-guldur" && s.stage === 3) orcGuard(s);
+        if (s.scenarioId === "dol-guldur" && s.stage === 3)
+          eachSeat(s, () => orcGuard(s));
       } else if (s.phase === "staging") {
         const will = questWill(s),
           threat = stagingThreat(s),
@@ -1799,9 +2236,11 @@ export function applyAction(input: GameState, action: Action): GameState {
           );
           progress(s, net);
         } else if (net < 0) {
-          s.threat -= net;
+          eachSeat(s, () => {
+            s.threat -= net;
+          });
           for (const jailor of s.staging.filter((u) => u.code === "01101"))
-            s.queue.push(fx("jailor", { source: jailor.id }));
+            enqueue(s, fx("jailor", { source: jailor.id }));
           log(
             s,
             `Quest fails by ${-net}. Threat rises to ${s.threat}.`,
@@ -1809,46 +2248,61 @@ export function applyAction(input: GameState, action: Action): GameState {
           );
         } else
           log(s, "Willpower matches threat. No progress or threat increase.");
-        s.queue.push(fx("finishQuestPhase"));
+        enqueue(s, fx("finishQuestPhase"));
       } else if (s.phase === "travel") {
         requireRule(
           s.activeLocation || !s.staging.some((u) => u.code === "01088"),
           "You must travel to The East Bight.",
         );
         phaseEnd(s);
-        s.phase = "encounter";
-        s.optionalEngagement = false;
+        startPhase(s, "encounter");
+        eachSeat(s, () => {
+          s.optionalEngagement = false;
+        });
       } else if (s.phase === "encounter") {
-        for (const u of [...s.staging]
-          .filter(
-            (u) =>
-              !(s.scenarioId === "anduin" && s.stage === 2) &&
-              card(u.code).type_code === "enemy" &&
-              (card(u.code).engagement ?? 0) <= s.threat,
-          )
-          .sort(
-            (a, b) =>
-              (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
-          ))
-          engage(s, u);
-        s.queue.push(fx("phaseEnd"), fx("startCombat"));
+        if (!passSeat(s)) break;
+        let engaged = true;
+        while (engaged) {
+          engaged = false;
+          eachSeat(s, () => {
+            const enemy = s.staging
+              .filter(
+                (u) =>
+                  !(s.scenarioId === "anduin" && s.stage === 2) &&
+                  card(u.code).type_code === "enemy" &&
+                  (card(u.code).engagement ?? 0) <= s.threat,
+              )
+              .sort(
+                (a, b) =>
+                  (card(b.code).engagement ?? 0) -
+                  (card(a.code).engagement ?? 0),
+              )[0];
+            if (enemy) {
+              engage(s, enemy);
+              engaged = true;
+            }
+          });
+        }
+        enqueue(s, fx("phaseEnd"), fx("startCombat"));
       } else if (s.phase === "refresh") {
         phaseEnd(s);
-        for (const ally of [...s.allies])
-          if (ally.code === "01073") {
-            s.allies = s.allies.filter((a) => a.id !== ally.id);
-            for (const a of [...ally.attachments])
-              discardAttachment(s, ally, a);
-            s.discard.push(ally.code);
-            s.queue.push(fx("valiant"));
-            log(s, "Gandalf departs at the end of the round.");
+        eachSeat(s, () => {
+          for (const ally of [...s.allies])
+            if (ally.code === "01073") {
+              s.allies = s.allies.filter((a) => a.id !== ally.id);
+              for (const a of [...ally.attachments])
+                discardAttachment(s, ally, a);
+              s.discard.push(ally.code);
+              enqueue(s, fx("valiant"));
+              log(s, "Gandalf departs at the end of the round.");
+            }
+          for (const enemy of [...s.staging, ...allEngaged(s)]) enemy.boost = 0;
+          for (const h of [...s.heroes]) {
+            if (has(h, "01109")) s.threat += 2;
+            if (has(h, "01110")) damage(s, h.id, 1);
           }
-        for (const enemy of [...s.staging, ...s.engaged]) enemy.boost = 0;
-        for (const h of [...s.heroes]) {
-          if (has(h, "01109")) s.threat += 2;
-          if (has(h, "01110")) damage(s, h.id, 1);
-        }
-        s.queue.push(fx("nextRound"));
+        });
+        enqueue(s, fx("nextRound"));
       } else throw new RuleError("Finish the current phase action first.");
       break;
     }
@@ -1879,7 +2333,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             (a) =>
               card(a.code).type_code === "ally" &&
               (!card(a.code).is_unique ||
-                !s.allies.some((x) => x.code === a.code)),
+                !allCharacters(s).some((x) => x.code === a.code)),
           ),
           "You need an eligible ally in hand.",
         );
@@ -1890,17 +2344,22 @@ export function applyAction(input: GameState, action: Action): GameState {
           "Thicket of Spears must use 3 different heroes’ resource pools.",
         );
       let effectiveCost = Number(c.cost) || 0;
-      if (u.code === "01051")
+      if (u.code === "01051") {
+        const target = discardTarget(s, action.target!);
         effectiveCost =
-          Number(card(s.discard[Number(action.target!.split("-")[1])]).cost) ||
+          Number(card(seatView(s, target.player).discard[target.index]).cost) ||
           0;
+      }
       if (u.code === "01067") {
         effectiveCost = action.amount ?? 0;
         requireRule(
           Number.isInteger(effectiveCost) &&
             effectiveCost > 0 &&
-            effectiveCost <= s.deck.length,
-          "Choose a positive X no larger than your remaining deck.",
+            effectiveCost <=
+              Math.max(
+                ...livingSeats(s).map((i) => seatView(s, i).deck.length),
+              ),
+          "Choose a positive X no larger than an available player deck.",
         );
       }
       pay(s, { ...c, cost: effectiveCost }, action.payment);
@@ -1914,6 +2373,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           id: u.id,
           code: u.code,
           exhausted: false,
+          ...(s.table ? { owner: activeSeat(s) } : {}),
         });
       } else {
         s.discard.push(u.code);
@@ -1925,8 +2385,15 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(s.phase !== "setup", "Wait for an action window.");
       const u = get(s, action.id);
       requireRule(
-        u && characters(s).some((x) => x.id === u.id),
-        "Choose a character you control.",
+        u &&
+          (action.attachmentId
+            ? u.attachments.some(
+                (a) =>
+                  a.id === action.attachmentId &&
+                  (a.owner ?? ownerOf(s, u)) === activeSeat(s),
+              )
+            : characters(s).some((x) => x.id === u.id) || u.code === "01007"),
+        "Choose a character or attachment you control.",
       );
       useAbility(s, u, action.attachmentId);
       break;
@@ -1981,34 +2448,53 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       if (u.code === "01077")
         requireRule(
-          s.heroes.some((h) => !h.exhausted),
+          livingSeats(s).every((i) =>
+            seatView(s, i).heroes.some((h) => !h.exhausted),
+          ),
           "Great Forest Web requires a ready hero.",
         );
       if (u.code === "01094")
         requireRule(
-          s.hand.length >= 2,
+          seatView(s, s.table?.first ?? 0).hand.length >= 2,
           "Necromancer’s Pass requires 2 cards to discard.",
         );
       s.staging = s.staging.filter((x) => x.id !== u.id);
       s.activeLocation = u;
       log(s, `Travelled to ${name(u)}.`, "good");
       if (u.code === "01087") progressLocation(s, u, 1);
-      if (u.code === "01107") orcGuard(s);
-      if (u.code === "01099") s.queue.push(fx("travelReady"));
-      if (u.code === "01100") s.queue.push(fx("draw", { value: 2 }));
-      if (u.code === "01077") s.queue.push(fx("travelExhaust"));
-      if (u.code === "01078") s.queue.push(fx("reveal"));
+      if (u.code === "01107") eachSeat(s, () => orcGuard(s));
+      if (u.code === "01099") enqueue(s, fx("travelReady"));
+      if (u.code === "01100")
+        enqueue(s, fx("draw", { value: 2, player: s.table?.first ?? 0 }));
+      if (u.code === "01077")
+        enqueue(
+          s,
+          ...playerOrder(s).map((player) => fx("travelExhaust", { player })),
+        );
+      if (u.code === "01078") enqueue(s, fx("reveal"));
       if (u.code === "01094") {
-        for (let i = 0; i < 2; i++) {
-          const n = Math.floor(random(s) * s.hand.length);
-          s.discard.push(s.hand.splice(n, 1)[0].code);
-        }
-        log(s, "Necromancer’s Pass discards 2 random cards.");
+        forOwner(s, s.table?.first ?? 0, () => {
+          for (let i = 0; i < 2; i++) {
+            const n = Math.floor(random(s) * s.hand.length);
+            s.discard.push(s.hand.splice(n, 1)[0].code);
+          }
+          log(s, "Necromancer’s Pass discards 2 random cards.");
+        });
       }
-      s.queue.push(fx("strengthOfWill", { target: u.id }), fx("travelDone"));
+      enqueue(
+        s,
+        ...playerOrder(s).map((player) =>
+          fx("strengthOfWill", { target: u.id, player }),
+        ),
+        fx("travelDone"),
+      );
       break;
     }
     case "ENGAGE": {
+      requireRule(
+        !s.table || activeSeat(s) === s.table.turn,
+        "Wait for this fellowship’s engagement turn.",
+      );
       requireRule(
         s.phase === "encounter" && !s.optionalEngagement,
         "You may optionally engage one enemy per round.",
@@ -2049,56 +2535,96 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     }
     case "ATTACK": {
+      requireRule(
+        !s.table || activeSeat(s) === s.table.turn,
+        "Wait for this fellowship’s attack turn.",
+      );
       requireRule(s.phase === "attack", "Enemies must finish attacking first.");
       const enemy = [
-        ...s.engaged,
+        ...allEngaged(s),
         ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
-      ].find((u) => u.id === action.enemyId && !u.attacked);
+      ].find(
+        (u) =>
+          u.id === action.enemyId &&
+          (s.table ? !u.attackedBy?.includes(activeSeat(s)) : !u.attacked),
+      );
       requireRule(enemy, "You may attack each enemy once per round.");
       playerAttack(s, enemy, action.attackerIds, true);
       break;
     }
     case "END_ATTACKS":
       requireRule(s.phase === "attack", "Finish enemy attacks first.");
+      if (!passSeat(s)) break;
       phaseEnd(s);
-      for (const sniper of s.staging.filter((u) => u.code === "01083"))
-        s.queue.push(fx("chooseDamage", { value: 1, source: sniper.id }));
-      for (const u of characters(s)) {
-        u.committed = false;
-        u.attacked = false;
-        u.boost = 0;
-        for (const a of u.attachments) a.exhausted = false;
-        if (!has(u, "01080")) u.exhausted = false;
-        else s.queue.push(fx("webRefresh", { target: u.id }));
-      }
-      for (const u of s.engaged) {
-        s.encounterDiscard.push(...u.shadows);
-        u.shadows = [];
-        u.attacked = false;
-      }
-      s.eowynUsed = false;
-      s.queue.push(fx("refreshEnd"));
+      eachSeat(s, () => {
+        for (const sniper of s.staging.filter((u) => u.code === "01083"))
+          enqueue(s, fx("chooseDamage", { value: 1, source: sniper.id }));
+        for (const u of characters(s)) {
+          u.committed = false;
+          u.attacked = false;
+          u.boost = 0;
+          for (const a of u.attachments) a.exhausted = false;
+          if (!has(u, "01080")) u.exhausted = false;
+          else enqueue(s, fx("webRefresh", { target: u.id }));
+        }
+        for (const u of s.engaged) {
+          s.encounterDiscard.push(...u.shadows);
+          u.shadows = [];
+          u.attacked = false;
+        }
+        s.eowynUsed = false;
+      });
+      enqueue(s, fx("refreshEnd"));
       break;
     default:
       throw new RuleError("Unknown action.");
   }
   flush(s);
   check(s);
+  syncSeat(s);
   return s;
 }
 
 export function score(s: GameState) {
   return (
     (s.round - 1) * 10 +
-    s.threat +
-    s.fallenThreat +
-    s.heroes.reduce((n, h) => n + h.damage, 0) -
+    seatIndices(s).reduce((n, i) => {
+      const p = seatView(s, i);
+      return (
+        n +
+        p.threat +
+        p.fallenThreat +
+        p.heroes.reduce((n, h) => n + h.damage, 0)
+      );
+    }, 0) -
     s.victory
   );
 }
 export function publicState(s: GameState) {
   return {
     mode: s.status,
+    table: s.table
+      ? {
+          active: s.table.active,
+          first: s.table.first,
+          turn: s.table.turn,
+          seats: seatIndices(s).map((i) => {
+            const p = seatView(s, i);
+            return {
+              name: seatName(s, i),
+              hero: p.startingHeroes[0],
+              eliminated: s.table!.seats[i].eliminated,
+              threat: p.threat,
+              hand: p.hand.map((u) => ({ id: u.id, code: u.code })),
+              deckCount: p.deck.length,
+              heroes: p.heroes,
+              allies: p.allies,
+              engaged: p.engaged,
+              passed: s.table!.passed.includes(i),
+            };
+          }),
+        }
+      : null,
     playMode: s.playMode,
     scenario: s.scenarioId,
     campaign: s.campaign,
@@ -2170,6 +2696,11 @@ export function validateSave(value: unknown): value is GameState {
     const validUnit = (u: Unit) =>
       u &&
       typeof u.id === "string" &&
+      (u.owner === undefined ||
+        (integer(u.owner) && u.owner >= 0 && u.owner <= 2)) &&
+      (u.attackedBy === undefined ||
+        (Array.isArray(u.attackedBy) &&
+          u.attackedBy.every((i) => integer(i) && i >= 0 && i <= 2))) &&
       SCRIPTED.has(u.code) &&
       [u.damage, u.progress, u.resources, u.boost].every(integer) &&
       u.damage >= 0 &&
@@ -2183,7 +2714,9 @@ export function validateSave(value: unknown): value is GameState {
         (a) =>
           typeof a.id === "string" &&
           SCRIPTED.has(a.code) &&
-          typeof a.exhausted === "boolean",
+          typeof a.exhausted === "boolean" &&
+          (a.owner === undefined ||
+            (integer(a.owner) && a.owner >= 0 && a.owner <= 2)),
       ) &&
       codes(u.shadows) &&
       (u.guarding === undefined || typeof u.guarding === "string") &&
@@ -2202,7 +2735,8 @@ export function validateSave(value: unknown): value is GameState {
       !SCENARIOS.some((q) => q.id === s.scenarioId) ||
       !["normal", "campaign"].includes(s.playMode) ||
       !codes(s.startingHeroes) ||
-      s.startingHeroes.length !== 3 ||
+      s.startingHeroes.length < 1 ||
+      s.startingHeroes.length > 3 ||
       !s.startingHeroes.every((c) => card(c).type_code === "hero") ||
       ![s.alliesPlayed, s.threatModifier, s.shackles].every(integer) ||
       s.alliesPlayed < 0 ||
@@ -2231,8 +2765,9 @@ export function validateSave(value: unknown): value is GameState {
       if (
         !c ||
         !codes(c.heroes) ||
-        c.heroes.length !== 3 ||
-        new Set(c.heroes).size !== 3 ||
+        c.heroes.length < 1 ||
+        c.heroes.length > 3 ||
+        new Set(c.heroes).size !== c.heroes.length ||
         !c.heroes.every((h) => card(h).type_code === "hero") ||
         !codes(c.fallen) ||
         !c.fallen.every((h) => card(h).type_code === "hero") ||
@@ -2382,9 +2917,72 @@ export function validateSave(value: unknown): value is GameState {
       (s.peek !== null && !SCRIPTED.has(s.peek))
     )
       return false;
+    if (s.table) {
+      const t = s.table;
+      if (
+        !Array.isArray(t.seats) ||
+        t.seats.length < 1 ||
+        t.seats.length > 3 ||
+        ![t.active, t.first, t.turn].every(
+          (i) => integer(i) && i >= 0 && i < t.seats.length,
+        ) ||
+        !Array.isArray(t.passed) ||
+        !t.passed.every((i) => integer(i) && i >= 0 && i < t.seats.length) ||
+        new Set(t.passed).size !== t.passed.length
+      )
+        return false;
+      if (
+        new Set(t.seats.flatMap((p) => p.startingHeroes)).size !==
+        t.seats.length
+      )
+        return false;
+      for (const p of t.seats) {
+        if (
+          typeof p.eliminated !== "boolean" ||
+          p.startingHeroes.length !== 1 ||
+          !validateSave({
+            ...s,
+            ...p,
+            table: undefined,
+            playMode: "normal",
+            campaign: null,
+          })
+        )
+          return false;
+      }
+      if (
+        s.campaign?.seatPenalties &&
+        (s.campaign.seatPenalties.length !== t.seats.length ||
+          !s.campaign.seatPenalties.every((n) => integer(n) && n >= 0))
+      )
+        return false;
+      const effects = [
+        ...s.queue,
+        ...(s.choice?.options.flatMap((o) => o.effects) ?? []),
+      ];
+      if (
+        effects.some(
+          (e) =>
+            e.player !== undefined &&
+            (!integer(e.player) || e.player < 0 || e.player >= t.seats.length),
+        )
+      )
+        return false;
+    }
+    if (
+      s.table &&
+      units(s).some(
+        (u) =>
+          (u.owner !== undefined && u.owner >= s.table!.seats.length) ||
+          u.attachments.some(
+            (a) => a.owner !== undefined && a.owner >= s.table!.seats.length,
+          ),
+      )
+    )
+      return false;
     const ids = [
       ...units(s),
-      ...s.hand,
+      ...seatIndices(s).flatMap((i) => seatView(s, i).hand),
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
     ].map((u) => u.id);
@@ -2403,11 +3001,15 @@ function playerAttack(
   ids = [...new Set(ids)];
   requireRule(ids.length > 0, "Choose at least one attacker.");
   const attackers = ids.map((id) =>
-    characters(s).find((u) => u.id === id && !u.exhausted && canFight(u)),
+    attackersFor(s, enemy).find((u) => u.id === id),
   );
   requireRule(
     attackers.every(Boolean),
     "All attackers must be ready characters.",
+  );
+  requireRule(
+    attackers.some((u) => u && ownerOf(s, u) === activeSeat(s)),
+    "Declare an attack with at least one character you control.",
   );
   const staging = s.staging.some((u) => u.id === enemy.id);
   requireRule(
@@ -2417,7 +3019,11 @@ function playerAttack(
   attackers.forEach((u) => {
     u!.exhausted = true;
   });
-  if (regular) enemy.attacked = true;
+  if (regular) {
+    enemy.attacked = true;
+    if (s.table)
+      enemy.attackedBy = [...(enemy.attackedBy ?? []), activeSeat(s)];
+  }
   prepend(
     s,
     ...attackers
@@ -2487,7 +3093,7 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
           s,
           "Common Cause",
           opts(
-            s.heroes.filter((h) => h.id !== u.id && h.exhausted),
+            allHeroes(s).filter((h) => h.id !== u.id && h.exhausted),
             (h) => [fx("ready", { target: h.id })],
           ),
         );
@@ -2505,7 +3111,7 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
             (a) =>
               card(a.code).type_code === "ally" &&
               (!card(a.code).is_unique ||
-                !s.allies.some((x) => x.code === a.code)),
+                !allCharacters(s).some((x) => x.code === a.code)),
           ),
           (a) => [fx("sneak", { target: a.id })],
         ),
@@ -2513,7 +3119,7 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       );
       break;
     case "01025":
-      characters(s).forEach((u) => {
+      allCharacters(s).forEach((u) => {
         u.exhausted = false;
       });
       break;
@@ -2526,12 +3132,15 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
     case "01033":
       if (u) {
         u.exhausted = true;
-        for (const e of [...s.engaged]) damage(s, e.id, 1);
+        choosePlayer(s, "Rain of Arrows · Choose a fellowship", [
+          fx("rainOfArrows"),
+        ]);
       }
       break;
     case "01034":
       if (u) u.feinted = true;
       if (
+        !s.table &&
         s.phase === "defense" &&
         s.engaged.every((e) => e.attacked || e.feinted || has(e, "01069"))
       ) {
@@ -2562,7 +3171,7 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       s.engaged.forEach((e) => {
         e.feinted = true;
       });
-      if (s.phase === "defense") {
+      if (!s.table && s.phase === "defense") {
         s.phase = "attack";
         s.engaged.forEach((e) => {
           e.attacked = false;
@@ -2570,40 +3179,58 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       }
       break;
     case "01038":
-      s.standTogether = true;
+      choosePlayer(s, "Stand Together · Choose a fellowship", [
+        fx("standTogether"),
+      ]);
       log(
         s,
         "Stand Together allows multiple defenders for each attack this phase.",
       );
       break;
     case "01046":
-      s.threat = Math.max(0, s.threat - 6);
+      if (s.table)
+        choose(s, "The Galadhrim’s Greeting", [
+          ...playerOrder(s).map((player) => ({
+            id: `player-${player}`,
+            label: `Reduce ${seatName(s, player)}’s threat by 6`,
+            effects: [fx("threat", { value: -6, player })],
+          })),
+          {
+            id: "everyone",
+            label: "Reduce every fellowship’s threat by 2",
+            effects: playerOrder(s).map((player) =>
+              fx("threat", { value: -2, player }),
+            ),
+          },
+        ]);
+      else s.threat = Math.max(0, s.threat - 6);
       break;
-    case "01049": {
+    case "01049":
       s.discard.splice(s.discard.lastIndexOf(code), 1);
-      s.deck.push(...s.discard.splice(0));
-      shuffle(s, s.deck);
       s.removed.push(code);
-      log(
-        s,
-        "Will of the West reshuffles your discard pile and is removed from the game.",
-      );
+      choosePlayer(s, "Will of the West · Choose a fellowship", [
+        fx("reshufflePlayer"),
+      ]);
       break;
-    }
     case "01051": {
-      const i = Number(target!.split("-")[1]);
-      const ally = s.discard.splice(i, 1)[0];
-      enterAlly(s, make(s, ally));
+      const t = discardTarget(s, target!);
+      const ally = seatView(s, t.player).discard.splice(t.index, 1)[0];
+      const fresh = make(s, ally);
+      if (s.table) fresh.owner = t.player;
+      enterAlly(s, fresh);
       break;
     }
     case "01052":
       if (u) {
-        s.engaged = s.engaged.filter((e) => e.id !== u.id);
+        forOwner(s, ownerOf(s, u), () => {
+          s.engaged = s.engaged.filter((e) => e.id !== u.id);
+        });
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
         u.attacked = false;
         s.staging.push(u);
         if (
+          !s.table &&
           s.phase === "defense" &&
           s.engaged.every((e) => e.attacked || e.feinted || has(e, "01069"))
         ) {
@@ -2615,50 +3242,69 @@ function eventEffect(s: GameState, code: string, target?: string, cost = 0) {
       }
       break;
     case "01053": {
-      const i = Number(target!.split("-")[1]);
-      s.hand.push(make(s, s.discard.splice(i, 1)[0]));
+      const t = discardTarget(s, target!);
+      s.hand.push(make(s, s.discard.splice(t.index, 1)[0]));
       break;
     }
     case "01054": {
-      const i = Number(target!.split("-")[1]),
-        c = s.discard.splice(i, 1)[0];
-      s.heroes.push(make(s, c));
-      s.fallenThreat -= card(c).threat ?? 0;
+      const t = discardTarget(s, target!);
+      forOwner(s, t.player, () => {
+        const code = s.discard.splice(t.index, 1)[0];
+        s.heroes.push(make(s, code));
+        s.fallenThreat -= card(code).threat ?? 0;
+      });
       break;
     }
     case "01063":
       if (u) u.damage = 0;
       break;
     case "01064":
-      draw(s, 3);
+      choosePlayer(s, "Lórien’s Wealth · Who draws 3 cards?", [
+        fx("draw", { value: 3 }),
+      ]);
       break;
     case "01065":
     case "01066":
       if (u) u.suppressed = true;
       break;
-    case "01067": {
-      const top = s.deck.slice(0, cost);
-      choose(
-        s,
-        "Gandalf’s Search",
-        top.map((code, i) => ({
-          id: `search-${i}`,
-          code,
-          label: card(code).name,
-          effects: [fx("searchTake", { code, value: i, count: cost })],
-        })),
-        "Add one card to your hand, then order the rest on top of your deck.",
-      );
+    case "01067":
+      if (s.table)
+        choose(
+          s,
+          "Gandalf’s Search · Choose a deck",
+          playerOrder(s)
+            .filter((i) => seatView(s, i).deck.length >= cost)
+            .map((player) => ({
+              id: `player-${player}`,
+              label: seatName(s, player),
+              effects: [fx("searchPlayer", { value: cost, player })],
+            })),
+        );
+      else prepend(s, fx("searchPlayer", { value: cost }));
       break;
-    }
     case "01068":
-      s.heroes.forEach((h) => {
-        h.damage = 0;
-      });
+      choosePlayer(s, "Beorn’s Hospitality · Choose a fellowship", [
+        fx("hospitality"),
+      ]);
       break;
     default:
       throw new RuleError("This event is a triggered response.");
   }
+}
+function choosePlayer(s: GameState, title: string, effects: Effect[]) {
+  if (!s.table) {
+    prepend(s, ...effects);
+    return;
+  }
+  choose(
+    s,
+    title,
+    playerOrder(s).map((player) => ({
+      id: `player-${player}`,
+      label: seatName(s, player),
+      effects: effects.map((e) => ({ ...e, player })),
+    })),
+  );
 }
 function useAbility(s: GameState, u: Unit, attachmentId?: string) {
   if (attachmentId) {
@@ -2763,8 +3409,12 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01014":
       requireRule(!u.exhausted, "Faramir is exhausted.");
       u.exhausted = true;
-      s.faramir++;
-      log(s, "Faramir grants every character +1 willpower this phase.", "good");
+      choosePlayer(s, "Faramir · Choose a fellowship", [fx("faramir")]);
+      log(
+        s,
+        "Faramir grants the chosen fellowship +1 willpower this phase.",
+        "good",
+      );
       break;
     case "01010":
     case "01060": {
@@ -2795,7 +3445,7 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     }
     case "01011":
       requireRule(
-        characters(s).some((h) => h.damage > 0),
+        allCharacters(s).some((h) => h.damage > 0),
         "There is no damaged character to heal.",
       );
       requireRule(
@@ -2806,7 +3456,7 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         s,
         "Glorfindel · Healing touch",
         opts(
-          characters(s).filter((h) => h.damage > 0),
+          allCharacters(s).filter((h) => h.damage > 0),
           (h) => [
             fx("resource", { target: u.id, value: -1 }),
             fx("heal", { target: h.id, value: 1 }),
@@ -2822,12 +3472,15 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         "Beravor can act once per round and must be ready.",
       );
       requireRule(
-        s.activeLocation?.code !== "01095" && s.deck.length,
+        s.activeLocation?.code !== "01095" &&
+          livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
       u.exhausted = true;
       s.used.push(u.id);
-      draw(s, 2);
+      choosePlayer(s, "Beravor · Who draws 2 cards?", [
+        fx("draw", { value: 2 }),
+      ]);
       break;
     case "01031":
       requireRule(
@@ -2846,14 +3499,14 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01058":
       requireRule(!u.exhausted, "Daughter of the Nimrodel is exhausted.");
       requireRule(
-        s.heroes.some((h) => h.damage > 0),
+        allHeroes(s).some((h) => h.damage > 0),
         "There is no damaged hero to heal.",
       );
       choose(
         s,
         "Daughter of the Nimrodel",
         opts(
-          s.heroes.filter((h) => h.damage > 0),
+          allHeroes(s).filter((h) => h.damage > 0),
           (h) => [
             fx("exhaust", { target: u.id }),
             fx("heal", { target: h.id, value: 2 }),
@@ -2865,11 +3518,39 @@ function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01062":
       requireRule(!u.exhausted, "Gléowine is exhausted.");
       requireRule(
-        s.activeLocation?.code !== "01095" && s.deck.length,
+        s.activeLocation?.code !== "01095" &&
+          livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
       u.exhausted = true;
-      draw(s, 1);
+      choosePlayer(s, "Gléowine · Who draws a card?", [
+        fx("draw", { value: 1 }),
+      ]);
+      break;
+    case "01043":
+      requireRule(
+        !s.used.includes(`took:${u.id}`),
+        "Wandering Took can transfer once per round.",
+      );
+      requireRule(
+        s.threat >= 3,
+        "Wandering Took requires at least 3 threat to transfer.",
+      );
+      requireRule(
+        livingSeats(s).length > 1,
+        "Wandering Took needs another player.",
+      );
+      choose(
+        s,
+        "Wandering Took · Choose a new controller",
+        livingSeats(s)
+          .filter((i) => i !== activeSeat(s))
+          .map((i) => ({
+            id: `player-${i}`,
+            label: seatName(s, i),
+            effects: [fx("transferTook", { target: u.id, value: i })],
+          })),
+      );
       break;
     default:
       throw new RuleError(
@@ -2924,29 +3605,35 @@ function extraEffect(s: GameState, e: Effect) {
       }
       break;
     }
-    case "valiant":
-      if (
-        s.hand.some((u) => u.code === "01024") &&
-        resources(s, "leadership") >= 1
-      )
+    case "valiant": {
+      const controller = activeSeat(s);
+      const eligible = playerOrder(s).filter((i) => {
+        const p = seatView(s, i);
+        return (
+          p.hand.some((u) => u.code === "01024") &&
+          resources(p, "leadership") >= 1
+        );
+      });
+      if (eligible.length)
         choose(
           s,
           "Valiant Sacrifice",
           [
-            {
-              id: "play",
-              label: "Pay 1 Leadership to draw 2 cards",
+            ...eligible.map((player) => ({
+              id: s.table ? `play-${player}` : "play",
+              label: `Pay 1 Leadership${s.table ? " from " + seatName(s, player) : ""} · ${s.table ? seatName(s, controller) + " draws" : "draw"} 2 cards`,
               code: "01024",
               effects: [
-                fx("spendEvent", { code: "01024" }),
-                fx("draw", { value: 2 }),
+                fx("spendEvent", { code: "01024", player }),
+                fx("draw", { value: 2, player: controller }),
               ],
-            },
+            })),
             skip,
           ],
-          "An ally has left play.",
+          "An ally has left play. Its controller draws the cards.",
         );
       break;
+    }
     case "brok": {
       const brok = s.hand.find((u) => u.code === "01019");
       if (brok && !s.allies.some((u) => u.code === "01019"))
@@ -2976,25 +3663,26 @@ function extraEffect(s: GameState, e: Effect) {
     }
     case "swiftStrike": {
       const combat = s.combat;
-      if (
-        combat?.defenderId &&
-        get(s, combat.enemyId) &&
-        s.hand.some((u) => u.code === "01037") &&
-        resources(s, "tactics") >= 2
-      )
+      const eligible = playerOrder(s).filter((i) => {
+        const p = seatView(s, i);
+        return (
+          p.hand.some((u) => u.code === "01037") && resources(p, "tactics") >= 2
+        );
+      });
+      if (combat?.defenderId && get(s, combat.enemyId) && eligible.length)
         choose(
           s,
           "Swift Strike",
           [
-            {
-              id: "play",
-              label: "Pay 2 Tactics to deal 2 damage",
+            ...eligible.map((player) => ({
+              id: s.table ? `play-${player}` : "play",
+              label: `Pay 2 Tactics${s.table ? " · " + seatName(s, player) : ""} to deal 2 damage`,
               code: "01037",
               effects: [
-                fx("spendEvent", { code: "01037" }),
+                fx("spendEvent", { code: "01037", player }),
                 fx("damage", { target: combat.enemyId, value: 2 }),
               ],
-            },
+            })),
             skip,
           ],
           "A defender has been declared.",
@@ -3084,7 +3772,10 @@ export function newCampaign(
 function resolveCampaign(s: GameState) {
   const c = s.campaign!;
   if (c.completed.some((q) => q.scenarioId === s.scenarioId)) return;
-  const fallen = s.startingHeroes.filter((code) => s.discard.includes(code));
+  const fallen = seatIndices(s).flatMap((i) => {
+    const p = seatView(s, i);
+    return p.startingHeroes.filter((code) => p.discard.includes(code));
+  });
   c.fallen = [...new Set([...c.fallen, ...fallen])];
   for (const code of fallen) delete c.permanent[code];
   if (s.scenarioId === "mirkwood") {
@@ -3092,14 +3783,14 @@ function resolveCampaign(s: GameState) {
     c.burdens.push(s.branch === "beorn" ? "rc136" : "rc137");
   }
   if (s.scenarioId === "anduin") {
-    for (const h of s.heroes) {
+    for (const h of allHeroes(s)) {
       const permanent = h.attachments
         .filter((a) => ["rc133", "rc138"].includes(a.code))
         .map((a) => a.code);
       if (permanent.length) c.permanent[h.code] = permanent;
     }
-    const highest = Math.max(...s.heroes.map((h) => h.damage));
-    const candidates = s.heroes.filter((h) => h.damage === highest);
+    const highest = Math.max(...allHeroes(s).map((h) => h.damage));
+    const candidates = allHeroes(s).filter((h) => h.damage === highest);
     c.prisoner =
       candidates[Math.floor(random(s) * candidates.length)]?.code ?? null;
     log(
@@ -3113,7 +3804,7 @@ function resolveCampaign(s: GameState) {
     for (const code of codes)
       (code === "rc133" ? c.boons : c.burdens).push(code);
   if (s.scenarioId === "dol-guldur") {
-    c.mendorSaved = s.allies.some((a) => a.code === "rc135");
+    c.mendorSaved = allCharacters(s).some((a) => a.code === "rc135");
     if (c.mendorSaved && !c.boons.includes("rc135")) c.boons.push("rc135");
   }
   c.completed.push({
@@ -3136,12 +3827,12 @@ export function continueCampaign(
   );
   const c = structuredClone(s.campaign);
   requireRule(
-    heroes.length === 3 &&
-      new Set(heroes).size === 3 &&
+    heroes.length === (s.table?.seats.length ?? 3) &&
+      new Set(heroes).size === heroes.length &&
       heroes.every(
         (h) => card(h).type_code === "hero" && !c.fallen.includes(h),
       ),
-    "Choose three different heroes who have not fallen.",
+    "Choose a different hero who has not fallen for each seat.",
   );
   const replaced = c.heroes.filter((h) => !heroes.includes(h));
   requireRule(
@@ -3154,10 +3845,24 @@ export function continueCampaign(
     "The recorded prisoner must remain in this fellowship.",
   );
   c.threatPenalty += replaced.length;
+  if (s.table)
+    c.seatPenalties = s.table.seats.map(
+      (p, i) =>
+        (c.seatPenalties?.[i] ?? 0) +
+        (p.startingHeroes[0] === heroes[i] ? 0 : 1),
+    );
   c.heroes = [...heroes];
   const d = STARTERS.find((d) => d.id === deckId);
   requireRule(d, "Choose a Core Set starter deck.");
   return createGame(seed, d.cards, heroes, d.id, {
+    ...(s.table
+      ? {
+          seats: heroes.map((hero) => ({
+            hero,
+            deckId: STARTERS.find((d) => d.heroes.includes(hero))!.id,
+          })),
+        }
+      : {}),
     scenarioId: next,
     playMode: "campaign",
     campaign: c,
@@ -3172,6 +3877,14 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     "A won campaign chapter cannot be retried from its resolved log.",
   );
   return createGame(seed, d.cards, s.startingHeroes, d.id, {
+    ...(s.table
+      ? {
+          seats: s.table.seats.map((p) => ({
+            hero: p.startingHeroes[0],
+            deckId: p.deckId,
+          })),
+        }
+      : {}),
     scenarioId: s.scenarioId,
     playMode: s.playMode,
     campaign: s.campaign ?? undefined,
@@ -3183,7 +3896,9 @@ function rescuePrisoner(s: GameState) {
   const hero = s.prisoner;
   s.prisoner = null;
   hero.damage = 1;
-  s.heroes.push(hero);
+  forOwner(s, hero.owner ?? 0, () => {
+    s.heroes.push(hero);
+  });
   s.staging.push(make(s, "01102"));
   log(
     s,
@@ -3226,12 +3941,15 @@ function beginEnemyAttack(
     new Set(ids).size === ids.length && (ids.length <= 1 || s.standTogether),
     "Multiple defenders require Stand Together.",
   );
-  const defenders = ids.map((id) =>
-    characters(s).find((u) => u.id === id && !u.exhausted && canFight(u)),
-  );
+  const defenders = ids.map((id) => defendersFor(s).find((u) => u.id === id));
   requireRule(
     defenders.every(Boolean),
     "Choose ready characters able to defend.",
+  );
+  requireRule(
+    ids.length <= 1 ||
+      defenders.every((u) => u && ownerOf(s, u) === activeSeat(s)),
+    "Stand Together combines characters controlled by the defending player.",
   );
   for (const d of defenders) d!.exhausted = true;
   s.combat = {
@@ -3307,7 +4025,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
       s.stageRevealing = false;
       break;
     case "finishQuestPhase":
-      characters(s).forEach((u) => (u.committed = false));
+      allCharacters(s).forEach((u) => (u.committed = false));
       phaseEnd(s);
       s.phase = "travel";
       break;
@@ -3339,22 +4057,26 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
     case "capturePrisoner": {
       const code = s.campaign?.prisoner;
       const hero =
-        s.heroes.find((h) => h.code === code) ??
-        s.heroes[Math.floor(random(s) * s.heroes.length)];
+        allHeroes(s).find((h) => h.code === code) ??
+        allHeroes(s)[Math.floor(random(s) * allHeroes(s).length)];
       if (hero) {
-        s.heroes = s.heroes.filter((h) => h.id !== hero.id);
+        forOwner(s, ownerOf(s, hero), () => {
+          s.heroes = s.heroes.filter((h) => h.id !== hero.id);
+        });
         s.prisoner = hero;
         log(s, `${name(hero)} is the prisoner.`, "danger");
       }
-      const m = s.allies.find((a) => a.code === "rc135");
+      const m = allCharacters(s).find((a) => a.code === "rc135");
       if (m) {
-        s.allies = s.allies.filter((a) => a.id !== m.id);
+        forOwner(s, ownerOf(s, m), () => {
+          s.allies = s.allies.filter((a) => a.id !== m.id);
+        });
         s.captiveMendor = m;
       }
       break;
     }
     case "earnPermanent": {
-      const eligible = s.heroes.filter((h) => !has(h, e.code!));
+      const eligible = allHeroes(s).filter((h) => !has(h, e.code!));
       choose(
         s,
         e.code === "rc133" ? "Earn Valor" : "Scarred by the Hill Troll",
@@ -3420,11 +4142,11 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
             s.choice = null;
           }
         } else {
-          s.discard.push(u.code);
+          seatView(s, u.owner ?? activeSeat(s)).discard.push(u.code);
           if (card(u.code).type_code === "hero")
             s.fallenThreat += card(u.code).threat ?? 0;
         }
-        if (card(u.code).type_code === "ally") s.queue.push(fx("valiant"));
+        if (card(u.code).type_code === "ally") enqueue(s, fx("valiant"));
         log(s, `${name(u)} is discarded.`, "danger");
       }
       break;
@@ -3440,7 +4162,7 @@ function scenarioEffect(s: GameState, e: Effect): boolean {
         u.damage = 0;
         u.committed = false;
         s.hand.push(u);
-        s.queue.push(fx("valiant"));
+        enqueue(s, fx("valiant"));
       }
       break;
     case "discardHand":
@@ -3517,7 +4239,9 @@ export function restoreSave(value: unknown): GameState | null {
         suspendedCombats: [],
       });
     }
-    return validateSave(s) ? s : null;
+    if (!validateSave(s)) return null;
+    syncSeat(s);
+    return s;
   } catch {
     return null;
   }

@@ -32,6 +32,7 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     if (msg.type() === "error") errors.push(`${deck}: ${msg.text()}`);
   });
   await p.goto(base);
+  await p.getByRole("button", { name: /Classic solo/ }).click();
   await p
     .getByRole("combobox", { name: "Choose starter deck" })
     .selectOption(deck);
@@ -80,7 +81,8 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   const travel = p
     .locator(".board-card")
     .filter({ hasText: "Old Forest Road" })
-    .getByRole("button", { name: "Travel here" });
+    .getByRole("button", { name: "Travel here" })
+    .first();
   if (await travel.count()) await travel.click();
   else await p.getByRole("button", { name: "Continue without travel" }).click();
   await settle(p);

@@ -20,6 +20,7 @@ async function page(width = 1440, height = 1000) {
     if (m.type() === "error") errors.push(m.text());
   });
   await p.goto(base);
+  await p.getByRole("button", { name: /Classic solo/ }).click();
   return p;
 }
 async function load(p) {
@@ -187,7 +188,9 @@ assert.equal(
   "leadership",
 );
 await p.context().close();
-for (const width of [320, 390, 768, 820, 1024, 1280, 1440, 1920]) {
+for (const width of process.env.DESKTOP_ONLY
+  ? [1280, 1440, 1920]
+  : [320, 390, 768, 820, 1024, 1280, 1440, 1920]) {
   const p = await page(width, width < 768 ? 844 : 1000);
   await p.locator(".mission-anduin").click();
   await shot(p, `lobby-${width}`);

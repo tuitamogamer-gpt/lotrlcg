@@ -36,6 +36,7 @@ async function page(width = 1512, height = 982) {
     if (m.type() === "error") errors.push(m.text());
   });
   await p.goto(base);
+  await p.getByRole("button", { name: /Classic solo/ }).click();
   return p;
 }
 async function screenshot(p, name) {

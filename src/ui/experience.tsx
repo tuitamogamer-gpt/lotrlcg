@@ -16,13 +16,20 @@ import {
 import { card, name } from "../game/cards";
 import {
   canPlay,
-  characters,
   needsTarget,
   playTargets,
   questWill,
   responseCards,
   stagingThreat,
 } from "../game/engine";
+import {
+  activeSeat,
+  allHeroes,
+  allCharacters,
+  allEngaged,
+  livingSeats,
+  seatName,
+} from "../game/table";
 import type { Action, GameState, Unit } from "../game/types";
 
 export function playReason(s: GameState, u: Unit): string | null {
@@ -56,32 +63,49 @@ export function usePreference<T extends string>(
   }, [key, value]);
   return [value, setValue] as const;
 }
+const offTurn = (s: GameState) =>
+  s.table &&
+  s.table.active !== s.table.turn &&
+  ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
+    s.phase,
+  );
 export const nextAction = (s: GameState): Action | null =>
-  s.choice || s.status !== "playing"
-    ? null
-    : s.phase === "setup"
-      ? { type: "KEEP" }
-      : s.phase === "quest"
-        ? { type: "COMMIT" }
-        : s.phase === "defense"
-          ? null
-          : s.phase === "attack"
-            ? { type: "END_ATTACKS" }
-            : { type: "NEXT" };
+  offTurn(s)
+    ? { type: "SELECT_SEAT", seat: s.table!.turn }
+    : s.choice || s.status !== "playing"
+      ? null
+      : s.phase === "setup"
+        ? { type: "KEEP" }
+        : s.phase === "quest"
+          ? { type: "COMMIT" }
+          : s.phase === "defense"
+            ? null
+            : s.phase === "attack"
+              ? { type: "END_ATTACKS" }
+              : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
-  ({
-    setup: "Keep hand",
-    planning: "Begin quest",
-    quest: "Commit & reveal",
-    staging: "Resolve quest",
-    travel: s.activeLocation
-      ? "Continue to encounter"
-      : "Continue without travel",
-    encounter: "Engagement checks",
-    defense: "Choose an enemy",
-    attack: "Finish combat",
-    refresh: "Begin next round",
-  })[s.phase];
+  offTurn(s)
+    ? `Continue as ${seatName(s, s.table!.turn)}`
+    : s.table && ["planning", "quest", "encounter", "attack"].includes(s.phase)
+      ? {
+          planning: "Finish this hero’s planning",
+          quest: "Commit this fellowship",
+          encounter: "Finish engagement choices",
+          attack: "Finish this hero’s attacks",
+        }[s.phase as "planning" | "quest" | "encounter" | "attack"]
+      : {
+          setup: "Keep hand",
+          planning: "Begin quest",
+          quest: "Commit & reveal",
+          staging: "Resolve quest",
+          travel: s.activeLocation
+            ? "Continue to encounter"
+            : "Continue without travel",
+          encounter: "Engagement checks",
+          defense: "Choose an enemy",
+          attack: "Finish combat",
+          refresh: "Begin next round",
+        }[s.phase];
 export function TurnActions({
   s,
   dispatch,
@@ -90,6 +114,23 @@ export function TurnActions({
   dispatch: (a: Action) => unknown;
 }) {
   const action = nextAction(s);
+  if (s.table?.seats[activeSeat(s)].eliminated || offTurn(s))
+    return (
+      <div className="turn-actions">
+        <p>
+          {s.table?.seats[activeSeat(s)].eliminated
+            ? "This fellowship has been eliminated."
+            : "You are viewing another hero’s cards."}
+        </p>
+        <button
+          className="primary"
+          disabled={!!s.choice}
+          onClick={() => dispatch({ type: "SELECT_SEAT", seat: s.table!.turn })}
+        >
+          Continue as {seatName(s, s.table!.turn)} <ArrowRight size={18} />
+        </button>
+      </div>
+    );
   const mandatoryTravel =
     s.phase === "travel" &&
     !s.activeLocation &&
@@ -151,8 +192,12 @@ export function QuestForecast({ s }: { s: GameState }) {
   const will = questWill(s),
     threat = stagingThreat(s),
     net = will - threat;
-  const committed = characters(s).filter(
-    (u) => u.committed || s.committedIds.includes(u.id),
+  const committed = allCharacters(s).filter(
+    (u) =>
+      u.committed ||
+      (s.table
+        ? s.table.seats.some((p) => p.committedIds.includes(u.id))
+        : s.committedIds.includes(u.id)),
   ).length;
   return (
     <div className="forecast" aria-label="Quest forecast">
@@ -221,11 +266,19 @@ export function Hand({
             : 0,
     );
   return (
-    <div className="hand-zone" id="your-hand">
+    <div
+      className="hand-zone"
+      id="your-hand"
+      tabIndex={-1}
+      aria-label="Your hand"
+    >
       <div className="zone-label">
         <span>
           <Books size={17} />
-          YOUR HAND <b>{s.hand.length}</b>
+          {s.table
+            ? `${seatName(s, activeSeat(s)).toUpperCase()}’S HAND`
+            : "YOUR HAND"}{" "}
+          <b>{s.hand.length}</b>
         </span>
         <button className="pile-link" onClick={onPiles}>
           <Stack size={15} />
@@ -418,7 +471,7 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
-  const objectives = s.heroes
+  const objectives = allHeroes(s)
     .flatMap((h) => h.attachments)
     .filter((a) => ["01108", "01109", "01110"].includes(a.code)).length;
   const goals =
@@ -427,17 +480,22 @@ export function QuestGoals({ s }: { s: GameState }) {
         ? [
             {
               label: "Defeat every Hill Troll",
-              done: ![...s.staging, ...s.engaged].some(
+              done: ![...s.staging, ...allEngaged(s)].some(
                 (u) => u.code === "01082",
               ),
             },
           ]
         : s.stage === 2
-          ? [{ label: "2 encounter reveals each quest phase", done: false }]
+          ? [
+              {
+                label: `${livingSeats(s).length + 1} encounter reveals each quest phase`,
+                done: false,
+              },
+            ]
           : [
               {
                 label: "Defeat every remaining enemy",
-                done: ![...s.staging, ...s.engaged].some(
+                done: ![...s.staging, ...allEngaged(s)].some(
                   (u) => card(u.code).type_code === "enemy",
                 ),
               },
