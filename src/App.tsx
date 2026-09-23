@@ -36,6 +36,10 @@ import {
   SpeakerHigh,
   SpeakerSlash,
   DownloadSimple,
+  SlidersHorizontal,
+  Stack,
+  Keyboard,
+  WarningCircle,
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -50,12 +54,10 @@ import {
 import {
   applyAction,
   availableAbilities,
-  canPlay,
   characters,
   createGame,
   needsTarget,
   playTargets,
-  responseCards,
   publicState,
   questWill,
   score,
@@ -78,6 +80,15 @@ import type {
   PlayMode,
 } from "./game/types";
 import { SCENARIOS, scenario, OBJECTIVES } from "./game/scenarios";
+import {
+  Hand,
+  CardHoverPreview,
+  QuestForecast,
+  QuestGoals,
+  TurnActions,
+  usePreference,
+  playReason,
+} from "./ui/experience";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -111,6 +122,8 @@ const readSave = (key = SAVE_KEY) => {
 };
 const readDeckId = () => {
   try {
+    const savedDeck = readSave(activeSaveKey())?.deckId;
+    if (STARTERS.some((s) => s.id === savedDeck)) return savedDeck!;
     const d = localStorage.getItem(DECK_KEY);
     return STARTERS.some((s) => s.id === d) ? d! : "leadership";
   } catch {
@@ -205,6 +218,7 @@ function Art({ c, className = "" }: { c: Card; className?: string }) {
     <img
       src={imageUrl(c)}
       alt={c.name}
+      data-card-code={c.code}
       loading="lazy"
       className={className}
       onError={() => setFailed(true)}
@@ -242,7 +256,15 @@ function Ambient() {
   }, []);
   return <canvas ref={ref} className="ambient" aria-hidden="true" />;
 }
-function CardDetail({ c, onClose }: { c: Card; onClose: () => void }) {
+function CardDetail({
+  c,
+  onClose,
+  action,
+}: {
+  c: Card;
+  onClose: () => void;
+  action?: ReactNode;
+}) {
   return (
     <Modal title={c.name} onClose={onClose} wide>
       <div className="card-detail">
@@ -274,6 +296,7 @@ function CardDetail({ c, onClose }: { c: Card; onClose: () => void }) {
             {plain(c.text) || "No additional abilities."}
           </p>
           {c.shadow && <p className="shadow-text">{plain(c.shadow)}</p>}
+          {action}
           <div className="source-note">
             {c.pack_name} · #{c.code}
             <br />
@@ -342,8 +365,6 @@ export default function App() {
       ? (game?.scenarioId ?? "mirkwood")
       : selectedScenario,
   );
-  const resumable =
-    game && (playMode === "campaign" || game.scenarioId === selectedScenario);
   const switchMode = (mode: PlayMode) => {
     if (mode === playMode) return;
     const saved = readSave(mode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY);
@@ -357,6 +378,11 @@ export default function App() {
   const [selectedDeck, setSelectedDeck] = useState(readDeckId);
   const starter = STARTERS.find((d) => d.id === selectedDeck)!;
   const deck = starter.cards;
+  const resumable =
+    game &&
+    (playMode === "campaign" ||
+      (game.scenarioId === selectedScenario &&
+        (game.deckId === selectedDeck || game.deckId === "custom")));
   const displayHeroes =
     playMode === "campaign" && game?.campaign
       ? game.campaign.heroes
@@ -374,6 +400,18 @@ export default function App() {
   const [attackers, setAttackers] = useState<string[]>([]);
   const [defender, setDefender] = useState("");
   const [showLog, setShowLog] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showPiles, setShowPiles] = useState(false);
+  const [pile, setPile] = useState<"player" | "encounter">("player");
+  const [density, setDensity] = usePreference("density", "comfortable", [
+    "comfortable",
+    "compact",
+  ] as const);
+  const [hoverCards, setHoverCards] = usePreference("hover-cards", "on", [
+    "on",
+    "off",
+  ] as const);
+  const [saved, setSaved] = useState(true);
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
@@ -396,7 +434,9 @@ export default function App() {
           game.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY,
           JSON.stringify(game),
         );
+        setSaved(true);
       } catch {
+        setSaved(false);
         notify(
           "The game is playable, but browser storage is full. Export your save to keep it.",
         );
@@ -470,6 +510,7 @@ export default function App() {
       });
       setGame(s);
       setPage("table");
+      window.scrollTo({ top: 0, behavior: "instant" });
       setRestart(false);
       setHistory([]);
       setCombatEnemy(null);
@@ -521,10 +562,11 @@ export default function App() {
   const nav = (p: Page) => {
     setPage(p);
     setMenu(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
   const beginPlay = (u: Unit) => {
     if (!game) return;
-    const reason = canPlay(game, u);
+    const reason = playReason(game, u);
     if (reason) {
       notify(reason);
       return;
@@ -580,9 +622,112 @@ export default function App() {
       notify((e as Error).message);
     }
   };
+  const undo = () => {
+    const prev = history.at(-1);
+    if (prev) {
+      setGame(prev);
+      setHistory((h) => h.slice(0, -1));
+      setCombatEnemy(null);
+      notify("Last action undone.");
+    }
+  };
+  useEffect(() => {
+    const keydown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menu) {
+        setMenu(false);
+        return;
+      }
+      if (
+        e.ctrlKey ||
+        e.metaKey ||
+        e.altKey ||
+        menu ||
+        document.querySelector("dialog[open]") ||
+        (e.target instanceof Element &&
+          e.target.closest('input,select,textarea,[contenteditable="true"]'))
+      )
+        return;
+      if (e.key === "?") {
+        e.preventDefault();
+        setShowSettings(true);
+        return;
+      }
+      if (page !== "table" || game?.status !== "playing" || game.choice) return;
+      if (e.key.toLowerCase() === "n") {
+        e.preventDefault();
+        document
+          .querySelector<HTMLButtonElement>(
+            ".turn-panel .turn-actions .primary",
+          )
+          ?.click();
+      }
+      if (e.key.toLowerCase() === "u") {
+        e.preventDefault();
+        undo();
+      }
+      if (e.key.toLowerCase() === "h") {
+        e.preventDefault();
+        document
+          .querySelector("#your-hand")
+          ?.scrollIntoView({ block: "center", behavior: "instant" });
+      }
+    };
+    document.addEventListener("keydown", keydown);
+    return () => document.removeEventListener("keydown", keydown);
+  });
+  useEffect(() => {
+    if (!menu) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const panel = document.querySelector<HTMLElement>("#navigation-panel")!;
+    const focusable = () => [
+      ...panel.querySelectorAll<HTMLElement>("button:not(:disabled),a[href]"),
+    ];
+    focusable()[0]?.focus();
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const items = focusable(),
+        first = items[0],
+        last = items.at(-1);
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", trap);
+    return () => {
+      document.removeEventListener("keydown", trap);
+      previous?.focus();
+    };
+  }, [menu]);
+  const inspectedHand =
+    game && page === "table" && detail
+      ? game.hand.find((u) => u.code === detail.code)
+      : null;
   return (
-    <div className={`app ${page === "table" ? "playing" : ""}`}>
-      <aside className={`sidebar ${menu ? "is-open" : ""}`}>
+    <div
+      className={`app density-${density} ${page === "table" ? "playing" : ""}`}
+    >
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      {menu && (
+        <button
+          className="nav-scrim"
+          aria-label="Close navigation"
+          onClick={() => setMenu(false)}
+        />
+      )}
+      <CardHoverPreview enabled={hoverCards === "on" && !menu} />
+      <aside
+        id="navigation-panel"
+        role={menu ? "dialog" : undefined}
+        aria-modal={menu ? true : undefined}
+        aria-label={menu ? "Main navigation" : undefined}
+        className={`sidebar ${menu ? "is-open" : ""}`}
+      >
         <a
           className="brand"
           href="#"
@@ -615,6 +760,8 @@ export default function App() {
           ).map((item) => (
             <button
               key={item.id}
+              aria-label={item.label}
+              title={item.label}
               className={`nav-item ${page === item.id ? "active" : ""}`}
               onClick={() => nav(item.id)}
             >
@@ -630,6 +777,8 @@ export default function App() {
         {game && (
           <button
             className={`resume-side ${page === "table" ? "active" : ""}`}
+            aria-label="Return to adventure"
+            title="Return to adventure"
             onClick={() => nav("table")}
           >
             <Campfire size={21} />
@@ -652,7 +801,7 @@ export default function App() {
             wander are lost.”
           </p>
           <div className="build-info">
-            <span className="green-dot" /> SOLO ADVENTURE · v0.1
+            <span className="green-dot" /> CORE SET · SOLO PLAY
           </div>
         </div>
       </aside>
@@ -662,7 +811,9 @@ export default function App() {
             <button
               className="icon-button mobile-menu"
               onClick={() => setMenu(!menu)}
-              aria-label="Open navigation"
+              aria-label={menu ? "Close navigation" : "Open navigation"}
+              aria-expanded={menu}
+              aria-controls="navigation-panel"
             >
               <List size={22} />
             </button>
@@ -681,6 +832,28 @@ export default function App() {
             </strong>
           </div>
           <div className="top-tools">
+            {page === "table" && (
+              <button
+                className="icon-button"
+                aria-label="Jump to your hand"
+                title="Your hand · H"
+                onClick={() =>
+                  document
+                    .querySelector("#your-hand")
+                    ?.scrollIntoView({ block: "center", behavior: "instant" })
+                }
+              >
+                <Books size={20} />
+              </button>
+            )}
+            <button
+              className="icon-button"
+              aria-label="Table preferences"
+              title="Table preferences & shortcuts"
+              onClick={() => setShowSettings(true)}
+            >
+              <SlidersHorizontal size={20} />
+            </button>
             <span className="solo-label">
               <UsersThree size={15} /> Solo play
             </span>
@@ -708,12 +881,14 @@ export default function App() {
           </div>
         </header>
         {page === "adventures" && (
-          <main className="lobby">
+          <main id="main-content" tabIndex={-1} className="lobby">
             <div className="page-heading">
               <div>
-                <h1>Your adventure awaits.</h1>
+                <span className="lobby-kicker">THERE & BACK AGAIN</span>
+                <h1>Choose your adventure.</h1>
                 <p>
-                  A fellowship. An uncharted path. A story only you can tell.
+                  Three quests. Four fellowships. Your journey through
+                  Middle-earth.
                 </p>
               </div>
               <span className="chapter-label">
@@ -781,9 +956,6 @@ export default function App() {
                 );
               })}
             </section>
-            {playMode === "campaign" && game?.campaign && (
-              <CampaignJournal game={game} inspect={setDetail} />
-            )}
             <section className={`adventure-hero adventure-${quest.id}`}>
               <div className="forest-bg" />
               <Ambient />
@@ -816,11 +988,22 @@ export default function App() {
                   )}
                 </h2>
                 <p>{quest.description}</p>
+                {resumable && game?.status === "playing" && (
+                  <div className="resume-context">
+                    <span className="green-dot" /> Saved journey · Round{" "}
+                    {game.round || 1} · {phaseNames[game.phase]}
+                  </div>
+                )}
                 <label className="starter-select">
                   YOUR FELLOWSHIP
                   <select
                     aria-label="Choose starter deck"
-                    value={selectedDeck}
+                    value={
+                      playMode === "campaign" && game?.campaign
+                        ? game.deckId
+                        : selectedDeck
+                    }
+                    disabled={playMode === "campaign" && !!game?.campaign}
                     onChange={(e) => setSelectedDeck(e.target.value)}
                   >
                     {STARTERS.map((d) => (
@@ -830,6 +1013,11 @@ export default function App() {
                     ))}
                   </select>
                 </label>
+                {playMode === "campaign" && game?.campaign && (
+                  <small className="campaign-deck-note">
+                    Change your deck between chapters or start a new campaign.
+                  </small>
+                )}
                 <button
                   className="primary hero-cta"
                   id="start-btn"
@@ -899,6 +1087,18 @@ export default function App() {
                 </span>
               </div>
             </section>
+            {playMode === "campaign" && game?.campaign && (
+              <details className="lobby-journal">
+                <summary>
+                  <Books size={18} />
+                  Campaign journal
+                  <span>
+                    {game.campaign.completed.length} / 3 chapters recorded
+                  </span>
+                </summary>
+                <CampaignJournal game={game} inspect={setDetail} />
+              </details>
+            )}
             <div className="lobby-lower">
               <section className="journey-panel">
                 <div className="section-line">
@@ -981,7 +1181,7 @@ export default function App() {
         )}
         {page === "library" && <Library inspect={setDetail} notify={notify} />}
         {page === "fellowship" && (
-          <main className="content-page">
+          <main id="main-content" tabIndex={-1} className="content-page">
             <div className="page-heading">
               <div>
                 <h1>Choose your fellowship.</h1>
@@ -1070,7 +1270,7 @@ export default function App() {
           </main>
         )}
         {page === "guide" && (
-          <main className="content-page guide">
+          <main id="main-content" tabIndex={-1} className="content-page guide">
             <div className="page-heading">
               <div>
                 <h1>Every great journey starts here.</h1>
@@ -1250,7 +1450,7 @@ export default function App() {
           </main>
         )}
         {page === "table" && game && (
-          <main className="table-page">
+          <main id="main-content" tabIndex={-1} className="table-page">
             <div className="table-heading">
               <div>
                 <button className="text-link" onClick={() => nav("adventures")}>
@@ -1264,24 +1464,28 @@ export default function App() {
                 </span>
               </div>
               <div className="table-tools">
-                <span className="save-status">
-                  <Check size={13} /> Saved
+                <span
+                  className={`save-status ${saved ? "" : "unsaved"}`}
+                  role="status"
+                >
+                  {saved ? <Check size={14} /> : <WarningCircle size={14} />}{" "}
+                  {saved ? "Saved on this device" : "Export to save"}
                 </span>
                 <button
                   className="icon-button"
                   aria-label="Undo last action"
                   disabled={!history.length}
-                  onClick={() => {
-                    const prev = history.at(-1);
-                    if (prev) {
-                      setGame(prev);
-                      setHistory((h) => h.slice(0, -1));
-                      setCombatEnemy(null);
-                      notify("Last action undone.");
-                    }
-                  }}
+                  onClick={undo}
                 >
                   <ArrowCounterClockwise size={18} />
+                </button>
+                <button
+                  className="icon-button"
+                  aria-label="View discard piles"
+                  title="Discard piles"
+                  onClick={() => setShowPiles(true)}
+                >
+                  <Stack size={19} />
                 </button>
                 <button
                   className="secondary compact"
@@ -1339,7 +1543,11 @@ export default function App() {
                     (p.key === "quest" && game.phase === "staging") ||
                     (p.key === "attack" && game.phase === "defense");
                   return (
-                    <div key={p.key} className={active ? "active" : ""}>
+                    <div
+                      key={p.key}
+                      className={active ? "active" : ""}
+                      aria-current={active ? "step" : undefined}
+                    >
                       <span>{i + 1}</span>
                       {p.label}
                     </div>
@@ -1351,11 +1559,13 @@ export default function App() {
               >
                 <Eye size={23} />
                 <strong>{game.threat}</strong>
-                <span>THREAT</span>
+                <span>
+                  THREAT<small> / 50</small>
+                </span>
               </div>
             </div>
             <div className="table-layout">
-              <section className="gameboard">
+              <section className={`gameboard board-${game.scenarioId}`}>
                 <div className="encounter-zone">
                   <div className="zone-label">
                     <span>
@@ -1437,6 +1647,7 @@ export default function App() {
                     </span>
                     <h2>{stageInfo(game).name}</h2>
                     <p>{stageInfo(game).story}</p>
+                    <QuestGoals s={game} />
                   </div>
                   <div className="quest-progress">
                     <strong>
@@ -1532,6 +1743,7 @@ export default function App() {
                         s={game}
                         u={u}
                         inspect={() => setDetail(card(u.code))}
+                        inspectCard={setDetail}
                         dispatch={dispatch}
                       />
                     ))}
@@ -1541,6 +1753,7 @@ export default function App() {
                         s={game}
                         u={u}
                         inspect={() => setDetail(card(u.code))}
+                        inspectCard={setDetail}
                         dispatch={dispatch}
                       />
                     ))}
@@ -1556,52 +1769,13 @@ export default function App() {
                     )}
                   </div>
                 </div>
-                <div className="hand-zone">
-                  <div className="zone-label">
-                    <span>
-                      <Books size={16} /> YOUR HAND <b>{game.hand.length}</b>
-                    </span>
-                    <span>
-                      {game.deck.length} in deck · {game.discard.length}{" "}
-                      discarded
-                    </span>
-                  </div>
-                  <div className="hand-cards">
-                    {game.hand.map((u) => (
-                      <div
-                        className={`hand-card ${canPlay(game, u) === null ? "playable" : ""}`}
-                        key={u.id}
-                      >
-                        <button
-                          className="hand-art"
-                          onClick={() => setDetail(card(u.code))}
-                          aria-label={`Inspect ${name(u)}`}
-                        >
-                          <Art c={card(u.code)} />
-                        </button>
-                        <button
-                          className="hand-play"
-                          disabled={!!canPlay(game, u)}
-                          title={canPlay(game, u) ?? "Play this card"}
-                          onClick={() => beginPlay(u)}
-                        >
-                          {card(u.code).cost}
-                          <Sphere sphere={card(u.code).sphere_code} />
-                          <span>
-                            {responseCards.includes(u.code)
-                              ? "Response"
-                              : "Play card"}
-                          </span>
-                        </button>
-                      </div>
-                    ))}
-                    {!game.hand.length && (
-                      <div className="empty-zone">
-                        Your hand is empty. Draw a card next round.
-                      </div>
-                    )}
-                  </div>
-                </div>
+                <Hand
+                  s={game}
+                  inspect={(u) => setDetail(card(u.code))}
+                  play={beginPlay}
+                  art={(u) => <Art c={card(u.code)} />}
+                  onPiles={() => setShowPiles(true)}
+                />
               </section>
               <aside className="turn-panel">
                 <div className="turn-panel-top">
@@ -1609,74 +1783,19 @@ export default function App() {
                 </div>
                 <h2>{phaseNames[game.phase]}</h2>
                 <p>{phaseHelp(game)}</p>
-                {game.phase === "setup" ? (
-                  <>
-                    <button
-                      className="primary"
-                      onClick={() => dispatch({ type: "KEEP" })}
-                    >
-                      Keep hand <ArrowRight />
-                    </button>
-                    <button
-                      className="secondary"
-                      disabled={game.mulled}
-                      onClick={() => dispatch({ type: "MULLIGAN" })}
-                    >
-                      Mulligan {game.mulled ? "used" : "once"}{" "}
-                      <ArrowCounterClockwise />
-                    </button>
-                  </>
-                ) : game.phase === "quest" ? (
-                  <>
-                    <div className="quest-equation">
-                      <span>
-                        <Feather />
-                        {questWill(game)}
-                        <small>Willpower</small>
-                      </span>
-                      <span className="vs">vs</span>
-                      <span>
-                        <Eye />
-                        {stagingThreat(game)}
-                        <small>Staging threat</small>
-                      </span>
-                    </div>
-                    <button
-                      className="primary"
-                      onClick={() => dispatch({ type: "COMMIT" })}
-                    >
-                      Commit & reveal <ArrowRight />
-                    </button>
-                  </>
-                ) : game.phase === "defense" ? (
-                  <div className="turn-hint">
-                    <Shield size={22} /> Choose an engaged enemy to defend
-                    against.
-                  </div>
-                ) : game.phase === "attack" ? (
-                  <button
-                    className="primary"
-                    onClick={() => dispatch({ type: "END_ATTACKS" })}
-                  >
-                    Finish combat <ArrowRight />
-                  </button>
-                ) : (
-                  <button
-                    className="primary"
-                    onClick={() => dispatch({ type: "NEXT" })}
-                  >
-                    {game.phase === "planning"
-                      ? "Begin quest"
-                      : game.phase === "staging"
-                        ? "Resolve quest"
-                        : game.phase === "travel"
-                          ? "Continue without travel"
-                          : game.phase === "encounter"
-                            ? "Engagement checks"
-                            : "Begin next round"}
-                    <ArrowRight />
-                  </button>
+                {["quest", "staging"].includes(game.phase) && (
+                  <QuestForecast s={game} />
                 )}
+                <TurnActions s={game} dispatch={dispatch} />
+                <div className="turn-tip">
+                  {game.phase === "quest"
+                    ? "Click a ready character to select it. Click again to unselect."
+                    : game.phase === "planning"
+                      ? `${game.hand.filter((u) => !playReason(game, u)).length} cards playable · Inspect a card for its rules and costs.`
+                      : game.phase === "defense"
+                        ? "Your defender exhausts. Damage is attack minus defense, after shadows."
+                        : "Hover to preview a card. Click to read its full rules."}
+                </div>
                 {game.lastQuest && (
                   <div
                     className={`quest-result ${game.lastQuest.net >= 0 ? "success" : "failure"}`}
@@ -1740,6 +1859,15 @@ export default function App() {
                 </button>
               </aside>
             </div>
+            {game.status === "playing" && (
+              <footer className="mobile-action-bar">
+                <div>
+                  <small>ROUND {game.round || 1}</small>
+                  <strong>{phaseNames[game.phase]}</strong>
+                </div>
+                <TurnActions s={game} dispatch={dispatch} />
+              </footer>
+            )}
           </main>
         )}
       </div>
@@ -1755,13 +1883,177 @@ export default function App() {
           </button>
         </div>
       )}
-      {detail && <CardDetail c={detail} onClose={() => setDetail(null)} />}
+      {showSettings && (
+        <Modal
+          title="Make the table yours"
+          onClose={() => setShowSettings(false)}
+        >
+          <div className="preference-section">
+            <h3>Card density</h3>
+            <p>Choose more room to read, or more cards on screen.</p>
+            <div className="preference-segments">
+              {(["comfortable", "compact"] as const).map((v) => (
+                <button
+                  key={v}
+                  aria-pressed={density === v}
+                  onClick={() => setDensity(v)}
+                >
+                  {v === "comfortable" ? "Comfortable" : "Compact"}
+                  {density === v && <Check size={16} />}
+                </button>
+              ))}
+            </div>
+          </div>
+          <label className="preference-check">
+            <div>
+              <strong>Hover card previews</strong>
+              <small>
+                Read cards without leaving the table. Available with a mouse on
+                larger screens.
+              </small>
+            </div>
+            <input
+              type="checkbox"
+              checked={hoverCards === "on"}
+              onChange={(e) => setHoverCards(e.target.checked ? "on" : "off")}
+            />
+          </label>
+          <div className="keyboard-guide">
+            <h3>
+              <Keyboard size={19} />
+              Keyboard shortcuts
+            </h3>
+            <dl>
+              <div>
+                <dt>Next step</dt>
+                <dd>
+                  <kbd>N</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>Undo last action</dt>
+                <dd>
+                  <kbd>U</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>Jump to hand</dt>
+                <dd>
+                  <kbd>H</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>Preferences & shortcuts</dt>
+                <dd>
+                  <kbd>?</kbd>
+                </dd>
+              </div>
+              <div>
+                <dt>Close a card or menu</dt>
+                <dd>
+                  <kbd>Esc</kbd>
+                </dd>
+              </div>
+            </dl>
+            <p>Shortcuts pause while you’re typing or making a choice.</p>
+          </div>
+        </Modal>
+      )}
+      {showPiles && game && (
+        <Modal title="Discard piles" onClose={() => setShowPiles(false)}>
+          <div className="preference-segments">
+            {(["player", "encounter"] as const).map((p) => (
+              <button
+                key={p}
+                aria-pressed={pile === p}
+                onClick={() => setPile(p)}
+              >
+                {p === "player"
+                  ? `Your cards · ${game.discard.length}`
+                  : `Encounters · ${game.encounterDiscard.length}`}
+              </button>
+            ))}
+          </div>
+          <p className="pile-note">
+            Only discarded cards are shown.{" "}
+            {pile === "player" ? game.deck.length : game.encounterDeck.length}{" "}
+            cards remain in the {pile === "player" ? "player" : "encounter"}{" "}
+            deck.
+          </p>
+          <div className="pile-list">
+            {[...(pile === "player" ? game.discard : game.encounterDiscard)]
+              .reverse()
+              .map((code, i) => (
+                <button
+                  key={`${code}-${i}`}
+                  onClick={() => setDetail(card(code))}
+                >
+                  <Art c={card(code)} />
+                  <span>
+                    <strong>{card(code).name}</strong>
+                    <small>
+                      {card(code).type_code} · {card(code).sphere_code}
+                    </small>
+                  </span>
+                  <Info size={17} />
+                </button>
+              ))}
+          </div>
+          {!(pile === "player" ? game.discard : game.encounterDiscard)
+            .length && (
+            <div className="empty-zone">
+              <Stack size={30} />
+              <span>No cards have been discarded here.</span>
+            </div>
+          )}
+        </Modal>
+      )}
+      {detail && (
+        <CardDetail
+          c={detail}
+          onClose={() => setDetail(null)}
+          action={
+            inspectedHand && game ? (
+              <div className="inspector-action">
+                <p>
+                  {playReason(game, inspectedHand) ??
+                    `Available now · cost ${card(inspectedHand.code).cost} resources`}
+                </p>
+                <button
+                  className="primary"
+                  disabled={!!playReason(game, inspectedHand)}
+                  onClick={() => {
+                    setDetail(null);
+                    beginPlay(inspectedHand);
+                  }}
+                >
+                  Play this card <ArrowRight size={18} />
+                </button>
+              </div>
+            ) : undefined
+          }
+        />
+      )}
       {restart && (
         <Modal title="A new journey?" onClose={() => setRestart(false)}>
           <p>
             Your current saved adventure will be replaced. You can export it
             first to keep a copy.
           </p>
+          <label className="field-label">
+            Starting fellowship
+            <select
+              aria-label="New adventure fellowship"
+              value={selectedDeck}
+              onChange={(e) => setSelectedDeck(e.target.value)}
+            >
+              {STARTERS.map((d) => (
+                <option value={d.id} key={d.id}>
+                  {d.subtitle} · {d.name}
+                </option>
+              ))}
+            </select>
+          </label>
           <div className="modal-actions">
             <button className="secondary" onClick={exportSave}>
               Export current save
@@ -2390,7 +2682,11 @@ function BoardCard({
   const c = card(u.code);
   return (
     <div className={`board-card ${u.attacked ? "acted" : ""}`}>
-      <button className="board-card-art" onClick={inspect}>
+      <button
+        className="board-card-art"
+        onClick={inspect}
+        aria-label={`Inspect ${name(u)}`}
+      >
         <Art c={c} />
         <span
           className="encounter-value"
@@ -2466,11 +2762,13 @@ function CharacterCard({
   s,
   u,
   inspect,
+  inspectCard,
   dispatch,
 }: {
   s: GameState;
   u: Unit;
   inspect: () => void;
+  inspectCard: (c: Card) => void;
   dispatch: (a: Action) => unknown;
 }) {
   const c = card(u.code),
@@ -2486,8 +2784,11 @@ function CharacterCard({
             ? () => dispatch({ type: "TOGGLE_QUEST", id: u.id })
             : inspect
         }
+        aria-pressed={
+          s.phase === "quest" && !u.exhausted ? selected : undefined
+        }
         aria-label={
-          s.phase === "quest"
+          s.phase === "quest" && !u.exhausted
             ? `${selected ? "Unselect" : "Commit"} ${name(u)}`
             : `Inspect ${name(u)}`
         }
@@ -2536,7 +2837,7 @@ function CharacterCard({
             <button
               key={a.id}
               title={plain(card(a.code).text)}
-              onClick={inspect}
+              onClick={() => inspectCard(card(a.code))}
             >
               <Diamond size={10} />
               {card(a.code).name}
@@ -2616,7 +2917,7 @@ function Library({
       (!scripted || SCRIPTED.has(c.code)),
   );
   return (
-    <main className="content-page library">
+    <main id="main-content" tabIndex={-1} className="content-page library">
       <div className="page-heading">
         <div>
           <h1>The archives of Middle-earth</h1>

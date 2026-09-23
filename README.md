@@ -13,6 +13,10 @@ Open **http://localhost:5178**. Select **Normal game** to choose any mission, or
 
 Campaign victories unlock the next chapter and record boons, burdens, fallen heroes, and scores. Prepare your heroes and player deck between quests. Dol Guldur uses the prisoner recorded at the end of the Anduin. Retry a failed quest from its campaign checkpoint.
 
+The adventure screen has distinct scenery for every quest. The table offers comfortable or compact cards, mouse hover previews, full card inspection with contextual play, hand sorting and playable filtering, discard browsing, and a live quest forecast. On mobile, the current turn action stays at the bottom of the screen. Preferences are saved on this device.
+
+Keyboard: **N** advances the current step, **U** undoes the last action, **H** jumps to your hand, **?** opens preferences and shortcuts, and **Esc** closes cards or menus. Shortcuts pause during dialogs and text entry.
+
 ## Check
 
 ```sh
@@ -23,6 +27,8 @@ npm run test:browser
 ```
 
 Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run preview -- --port 5178` serves the production build.
+
+`npm run test:ui` runs the interface checks separately: hand controls, card inspection and play, preferences, keyboard navigation, and layouts from 320px to 1920px. It is also included in `test:browser`.
 
 ## Deploy
 
@@ -39,11 +45,12 @@ Saves belong to the browser and site origin. To transfer a local game to the dep
 
 ## Data
 
-RingsDB’s public API supplies player-card data. Encounter definitions come from OCTGN and are checked against FFG’s published scenario list. Card scans and the generated environment image are cached locally. No API key or backend is needed. `npm run sync:cards` refreshes player-card snapshots with cache validators.
+RingsDB’s public API supplies player-card data. Encounter definitions come from OCTGN and are checked against FFG’s published scenario list. Card scans and generated environment images are cached locally. No API key or backend is needed. `npm run sync:cards` refreshes player-card snapshots with cache validators.
 
 - [Implemented rules and limits](docs/COVERAGE.md)
 - [API research and artwork provenance](docs/SOURCES.md)
 - [Design direction](DESIGN.md)
+- [Interface refresh and artwork prompts](docs/UI-REFRESH.md)
 
 This is a playable first version, not the entire LOTR LCG catalog. It includes 73 Core Set player-card definitions, all 45 Core Set encounter definitions, seven campaign support definitions, all three quests, and both Mirkwood endings. The wider library contains 1,315 browsable player cards. Multiplayer, expert campaign rules, expansion quests/cards, and unrestricted deck construction are outside the current scope. Some intermediate timing windows remain simplified; see the coverage document.
 

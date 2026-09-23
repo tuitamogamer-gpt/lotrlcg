@@ -19,6 +19,7 @@ Verified on 2026-09-23. No credentials are needed for the implemented public API
 - `public/cards/rc132.jpg`–`rc138.jpg`: campaign support scans from Hall of Beorn’s `/Images/Cards/Revised-Core-Set/`. The `rc` codes are application-local identifiers matching revised card numbers, not RingsDB API codes. `public/cards/orc-guard.svg` is an original geometric facedown card back for player-deck Orc Guards.
 - Card artwork and rules text remain the property of Fantasy Flight Games and their respective owners. This project is an unofficial fan implementation, with attribution in the in-app guide. No rights transfer is implied by API availability.
 - `public/art/mirkwood.jpg`: original background generated with the built-in image-generation tool, then optimized as JPEG for the application. The generated original was copied from the Codex output directory; the application uses only the workspace copy.
+- `public/art/anduin.jpg` and `public/art/dol-guldur.jpg`: original river and fortress scenery generated with the built-in image-generation tool for the interface refresh, then optimized as JPEGs. Exact prompts are preserved in [UI-REFRESH.md](UI-REFRESH.md).
 
 ### Background prompt
 
