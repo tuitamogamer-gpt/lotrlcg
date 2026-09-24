@@ -33,3 +33,9 @@ Use case: stylized-concept. Asset type: original wide cinematic background paint
 ### Premium table collection (2026-09-24)
 
 - `public/art/premium/`: six original assets created with the built-in `image_gen` tool: three illustrated playmats, White Tree and Eye card backs, and an alpha-transparent gold/ruby/jade token sprite. Optimized WebP copies ship with the game; the generated PNG originals are retained locally. These are fan-project accessory designs. Exact generation prompts, dimensions, and integration details are preserved in [PREMIUM-TABLE.md](PREMIUM-TABLE.md).
+
+Official resources linked on the Adventures page (verified against FFG's product support page on 2026-09-24):
+
+- Original game: https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/
+- Revised Core Set Learn to Play: https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf
+- Revised Core Set Rules Reference: https://images-cdn.fantasyflightgames.com/filer_public/f2/87/f28704b2-5f25-4fd8-be7a-18d4a5d2c1c4/mec101_core_set_rules_reference_v10c-compressed.pdf

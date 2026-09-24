@@ -51,7 +51,7 @@ h4,
 .redbook .brand small,
 .redbook.playing .brand small {
   font-family: var(--body);
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
   color: #d0c5a7;
 }
@@ -118,7 +118,7 @@ h4,
 .redbook .eyebrow {
   font-family: var(--body);
   font-weight: 600;
-  font-size: 11px;
+  font-size: var(--text-small);
   letter-spacing: 1.7px;
 }
 
@@ -223,7 +223,7 @@ h4,
 
 .redbook .turn-panel .turn-actions > p {
   color: #d2c9af;
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.55;
   margin: 8px 0;
 }
@@ -242,7 +242,7 @@ h4,
 }
 
 .redbook .gameboard .zone-label > span:first-child {
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 
 .redbook .gameboard .character-name,
@@ -254,7 +254,7 @@ h4,
 }
 
 .redbook .phase-track > div {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 
 .redbook .phase-track > div > span,
@@ -359,9 +359,520 @@ h4,
     font-size: 35px;
   }
   .redbook .phase-track > div {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .primary {
     font-size: 15px;
   }
+}
+
+/* Readable print: captions never fall below 14px, even in compact layouts.
+   Large headings keep the Core Set lettering; controls use the open body face. */
+.redbook {
+  --muted: #4f493b;
+  --gold: #624718;
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.redbook
+  :is(
+    .breadcrumbs,
+    .solo-label,
+    .chapter-label,
+    .lobby-kicker,
+    .book-kicker,
+    .hero-selection label,
+    .hero-deck-info,
+    .company-note,
+    .deck-preview-link,
+    .starter-heroes span,
+    .journey-stage > div > span,
+    .fellowship-foot,
+    .lobby-footer,
+    .lobby-footer button,
+    .lobby-footer button span
+  ) {
+  color: #51432e;
+}
+
+.redbook
+  :is(
+    .company-options > p,
+    .mode-selection > p,
+    .journey-stage p,
+    .fellowship-summary span,
+    .guide p,
+    .guide li
+  ) {
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: #433d31;
+}
+
+.redbook
+  :is(
+    .play-style button,
+    .mode-tabs button,
+    .primary,
+    .secondary,
+    .text-link,
+    .preference-segments > button,
+    .hero-selection select
+  ) {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.redbook :is(.play-style small, .mode-tabs small) {
+  opacity: 1;
+  line-height: 1.45;
+}
+
+.redbook .breadcrumbs > span {
+  color: #51432e;
+}
+.redbook .hero-copy > p {
+  color: #fff4d9;
+  font-size: 1.25rem;
+}
+.redbook .selected-company small,
+.redbook .hero-bottom {
+  color: #f5e6c5;
+}
+.redbook .hero-bottom {
+  flex-wrap: wrap;
+}
+.redbook .hero-copy {
+  padding-bottom: 100px;
+}
+.redbook .chapter-label {
+  white-space: normal;
+}
+.redbook .lobby-footer {
+  flex-wrap: wrap;
+}
+
+.official-resources {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  padding: 20px 24px;
+  border: 1px solid #b8aa88;
+  background: #f8f4e9;
+  color: #38372d;
+}
+.official-resources > div {
+  flex: 1 1 440px;
+}
+.official-resources strong {
+  font-size: 1.125rem;
+}
+.official-resources p {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.official-resources nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+.official-resources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  color: #304c31;
+  font-size: 1rem;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.official-resources a:hover {
+  color: #172d18;
+}
+
+/* Solid, dark backing keeps the text readable on every illustrated playmat. */
+.redbook .table-page {
+  --table-ink: #fff7e5;
+  --table-muted: #e2ddcb;
+}
+.redbook .gameboard :is(.journey-area, .table-decks, .hand-zone) {
+  background: #152820f5;
+}
+.redbook .gameboard :is(.encounter-zone, .fellowship-zone) {
+  background: #0c1c16a6;
+}
+.redbook
+  .gameboard
+  :is(
+    .zone-label,
+    .zone-label > span:first-child,
+    .zone-label > span:last-child,
+    .tabletop-label,
+    .tabletop-progress > div > span,
+    .tabletop-quest > p,
+    .tabletop-location > span,
+    .tabletop-location > small,
+    .location-slot,
+    .location-slot small,
+    .deck-on-table,
+    .discard-on-table,
+    .pile-link,
+    .hand-controls label,
+    .filter-toggle,
+    .empty-zone
+  ) {
+  color: #eee9d9;
+}
+.redbook .gameboard :is(.character-name, .board-card-name, .hand-card-title) {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff7e5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  height: auto;
+  min-height: 34px;
+}
+.redbook .gameboard :is(.stat-row, .enemy-stats) {
+  color: #fff7e5;
+  font-size: 1rem;
+  gap: 6px;
+  flex-wrap: wrap;
+  height: auto;
+  min-height: 26px;
+  line-height: 1.35;
+}
+.redbook .gameboard :is(.board-card, .character-card) {
+  min-width: 140px;
+}
+.redbook .gameboard .card-action {
+  min-height: 36px;
+}
+.redbook .gameboard .hand-play {
+  min-height: 36px;
+  height: auto;
+  padding: 6px 4px;
+  font-size: var(--text-small);
+  line-height: 1.25;
+  white-space: normal;
+}
+.redbook .gameboard .hand-toolbar label {
+  color: #eee9d9;
+}
+.redbook .gameboard .tabletop-label {
+  letter-spacing: 0.6px;
+}
+.redbook .gameboard .tabletop-label > span {
+  white-space: nowrap;
+}
+.redbook .gameboard .location-slot {
+  padding: 10px;
+  text-align: center;
+}
+.redbook .gameboard .table-decks {
+  padding: 12px 8px;
+  gap: 10px;
+  min-height: 0;
+  overflow-y: auto;
+}
+.redbook .gameboard :is(.deck-on-table, .discard-on-table) {
+  line-height: 1.2;
+  gap: 6px;
+}
+.redbook .gameboard .hand-play:disabled {
+  opacity: 1;
+  color: #d4d9cc;
+  background: #25362b;
+  border: 1px dashed #87917b;
+}
+.redbook .gameboard .hand-play:not(:disabled) {
+  background: #e1d2a6;
+  color: #203222;
+}
+.redbook .gameboard .hand-play:not(:disabled):hover {
+  background: #f9e9bb;
+  color: #152719;
+}
+.redbook .hand-cost {
+  width: 27px;
+  height: 27px;
+}
+.redbook .phase-track > div {
+  color: #dfdccd;
+}
+.redbook .phase-track > div > span {
+  color: #292d22;
+  background: #e3d3a8;
+  min-width: 23px;
+  min-height: 23px;
+}
+.redbook .phase-track > div.active {
+  color: #fff0bb;
+}
+.redbook .phase-track > div.active > span {
+  color: #17251b;
+  background: #ffe3a0;
+}
+.redbook
+  :is(
+    .round-number > span,
+    .shared-table-label,
+    .table-heading .game-mode-label,
+    .table-tools .save-status
+  ) {
+  color: #e0dbc9;
+}
+.redbook .table-page .turn-panel :is(p, .turn-tip, .action-help) {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #f0e9d7;
+}
+.redbook .table-page .turn-panel .turn-actions > p {
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: #f0e9d7;
+}
+.redbook .table-page .turn-panel .turn-actions .primary {
+  font-size: 1.125rem;
+  min-height: 44px;
+  line-height: 1.35;
+}
+.redbook .table-page .turn-panel :is(h3, .turn-panel-top) {
+  color: #f1dba9;
+}
+.redbook .table-page .resource-pools > div {
+  font-size: 1rem;
+}
+.redbook :is(.resource-pools, .companion-tokens) .table-token {
+  --token-size: 32px;
+  font-size: var(--text-small);
+}
+.redbook .illustrated-threat .threat-counter-heading,
+.redbook .illustrated-threat .threat-counter-caption,
+.redbook .illustrated-threat .threat-counter-caption b {
+  font-size: var(--text-small);
+  color: #eee2c7;
+  letter-spacing: 0.3px;
+}
+
+/* Inspector and decisions are the reading surfaces for the printed cards. */
+.redbook .modal .card-detail :is(.rules-text, .shadow-text) {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: #302d25;
+}
+.redbook
+  :is(
+    .decision-header p,
+    .decision-summary strong,
+    .decision-hint,
+    .resolution-detail,
+    .resolution-rules > p,
+    .resolution-changes li,
+    .preference-row p,
+    .hover-preview p
+  ) {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #433c2e;
+}
+.redbook .decision-select > strong {
+  font-size: 1.125rem;
+}
+.redbook .decision-card-details {
+  color: #4b4131;
+}
+.redbook .decision-summary small {
+  color: #4b4131;
+}
+
+@media (min-width: 1100px) {
+  .redbook .seat-tabs:has(.seat-tab:nth-child(4)) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .redbook .table-layout {
+    grid-template-columns: minmax(0, 1fr) clamp(250px, 20vw, 310px);
+  }
+  .redbook .table-page .turn-panel {
+    padding: 16px;
+  }
+  .redbook .gameboard,
+  .redbook .gameboard:has(> .active-zones) {
+    grid-template-columns: clamp(170px, 14.2vw, 224px) minmax(0, 1fr) 105px;
+  }
+  .redbook .gameboard .board-card {
+    --table-card-height: clamp(78px, calc(100cqh - 108px), 215px);
+  }
+  .redbook .gameboard .board-card:has(.card-action) {
+    --table-card-height: clamp(78px, calc(100cqh - 144px), 215px);
+  }
+  .redbook .gameboard .board-card:has(.engaged-owner) {
+    --table-card-height: clamp(78px, calc(100cqh - 170px), 215px);
+  }
+  .redbook .gameboard .character-card,
+  .redbook .gameboard .other-fellowships {
+    --table-card-height: clamp(80px, calc(100cqh - 116px), 220px);
+  }
+  .redbook .gameboard .character-card:has(.abilities > button) {
+    --table-card-height: clamp(80px, calc(100cqh - 152px), 220px);
+  }
+  .redbook .seat-tab .seat-counts {
+    height: auto;
+    line-height: 1.4;
+  }
+  .redbook .gameboard .hand-card {
+    width: 126px;
+    flex-basis: 126px;
+  }
+  .redbook .gameboard .hand-card-title {
+    min-height: 42px;
+  }
+  .redbook .round-strip {
+    min-height: 40px;
+    height: auto;
+  }
+  .redbook .phase-track {
+    padding: 0 10px;
+    gap: 8px;
+  }
+}
+@media (max-width: 1099px) {
+  .redbook .gameboard .hand-card {
+    width: 132px;
+    flex-basis: 132px;
+  }
+  .redbook .gameboard .zone-label {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .redbook .table-tools .compact {
+    font-size: 0;
+  }
+  .redbook .table-tools .playmat-trigger {
+    font-size: var(--text-small);
+  }
+}
+@media (max-width: 599px) {
+  .redbook .brand small {
+    font-size: var(--text-small);
+    letter-spacing: 0.4px;
+  }
+  .redbook .play-style {
+    flex-wrap: wrap;
+  }
+  .redbook .play-style button {
+    flex: 1 1 160px;
+  }
+  .redbook .mode-tabs button {
+    padding: 10px;
+  }
+  .official-resources {
+    padding: 16px;
+  }
+  .official-resources nav {
+    gap: 4px 18px;
+  }
+  .redbook .hero-bottom {
+    position: static;
+  }
+  .redbook .hero-copy {
+    padding-bottom: 24px;
+  }
+}
+
+.redbook .content-page :is(p, small),
+.redbook .journey-panel .section-line > span {
+  color: #51432e;
+}
+.redbook input::placeholder {
+  color: #65543c;
+  opacity: 1;
+}
+.redbook .fan-caption {
+  color: #fff1cf;
+  background: #152820ed;
+  padding: 6px 10px;
+  letter-spacing: 0.6px;
+}
+.redbook .mission-card:disabled {
+  opacity: 1;
+  filter: grayscale(0.7);
+}
+.redbook .mission-card:disabled :is(small, em) {
+  color: #e3ddcf;
+}
+.redbook .gameboard .hand-cost {
+  width: 27px;
+  height: 27px;
+}
+
+/* On short laptop screens put readable captions beside their card scan.
+   The hand stays anchored while crowded character rows can scroll sideways. */
+@media (min-width: 1100px) and (max-height: 780px) {
+  .redbook .gameboard .character-card,
+  .redbook .gameboard .character-card:has(.abilities > button),
+  .redbook .gameboard .board-card,
+  .redbook .gameboard .board-card:has(.card-action),
+  .redbook .gameboard .board-card:has(.engaged-owner) {
+    --table-card-height: 80px;
+    --table-card-width: 57px;
+    display: grid;
+    grid-template-columns: 57px 108px;
+    grid-template-rows: auto auto auto;
+    column-gap: 12px;
+    width: 177px;
+    min-width: 177px;
+    align-items: start;
+    align-content: start;
+  }
+  .redbook .gameboard :is(.character-art, .board-card-art) {
+    grid-column: 1;
+    grid-row: 1 / 5;
+  }
+  .redbook
+    .gameboard
+    :is(
+      .character-name,
+      .board-card-name,
+      .stat-row,
+      .enemy-stats,
+      .abilities,
+      .card-action,
+      .engaged-owner
+    ) {
+    grid-column: 2;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .redbook .gameboard :is(.character-name, .board-card-name) {
+    padding: 0 0 4px;
+    min-height: 24px;
+  }
+  .redbook .gameboard .character-card.exhausted .card-table-tokens {
+    right: -10px;
+    bottom: 8px;
+  }
+  .redbook .gameboard .character-card .table-attachments {
+    top: 4px;
+    left: -14px;
+  }
+  .redbook .gameboard .character-row {
+    padding-left: 18px;
+  }
+  .redbook .table-page .turn-panel .turn-actions > p {
+    margin: 4px 0 8px;
+    font-size: 1rem;
+  }
+}
+
+.redbook .table-page .turn-panel .turn-actions {
+  margin-bottom: 12px;
 }

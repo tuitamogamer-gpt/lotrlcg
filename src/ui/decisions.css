@@ -34,7 +34,7 @@
   outline: none;
 }
 .decision-header p {
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.6;
   margin: 7px 0 0;
   color: #745333;
@@ -95,13 +95,13 @@
 }
 .decision-summary strong {
   display: block;
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1.6;
 }
 .decision-summary small,
 .decision-hint {
   display: block;
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.7;
   color: #735432;
 }
@@ -174,7 +174,7 @@
   display: flex;
   gap: 5px;
   align-items: center;
-  font-size: 10px;
+  font-size: var(--text-small);
   font-weight: 700;
   color: #fff7e4;
   background: #34553d;
@@ -184,14 +184,14 @@
   white-space: nowrap;
 }
 .decision-select > strong {
-  font: 13px/1.5 var(--serif);
+  font: var(--text-small)/1.5 var(--serif);
   padding-top: 10px;
 }
 .decision-card-details {
   width: 100%;
 }
 .decision-card-details > small {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: #745333;
   margin-top: 4px;
@@ -204,7 +204,7 @@
   width: 100%;
   color: #684b2c;
   background: none;
-  font-size: 10px;
+  font-size: var(--text-small);
   padding: 9px 0 2px;
   margin-top: 9px;
   border: 0;
@@ -230,7 +230,7 @@
 }
 .decision-stats small {
   display: block;
-  font-size: 8px;
+  font-size: var(--text-small);
   font-weight: 500;
   color: #715435;
 }
@@ -247,7 +247,7 @@
 .combat-enemy > p {
   display: flex;
   gap: 6px;
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: #745333;
   margin-bottom: 0;
@@ -262,7 +262,7 @@
   gap: 12px;
 }
 .combat-company h3 > span {
-  font: 10px var(--body);
+  font: var(--text-small) var(--body);
   color: #745333;
 }
 .decision-dialog .undefended {
@@ -282,11 +282,11 @@
 }
 .decision-dialog .undefended strong {
   display: block;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .decision-dialog .undefended small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   margin-top: 4px;
 }
@@ -316,7 +316,7 @@
 .decision-empty {
   padding: 22px;
   background: #c9b08030;
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1.6;
 }
 .play-source {
@@ -326,7 +326,7 @@
   min-width: 0;
 }
 .play-options .rules-text {
-  font-size: 13px;
+  font-size: var(--text-small);
   color: #654628;
   line-height: 1.8;
   margin: 0 0 20px;
@@ -338,7 +338,7 @@
   color: #654628;
   background: transparent;
   border-color: #a5865255;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .decision-dialog .payment-row small {
   color: #745333;
@@ -413,7 +413,7 @@
   }
   .decision-actions button {
     padding: 10px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
 }
 @media (prefers-reduced-motion: reduce) {

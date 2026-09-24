@@ -22,7 +22,7 @@ button:disabled {
 }
 .primary {
   min-height: 46px;
-  font-size: 13px;
+  font-size: var(--text-small);
   font-weight: 700;
   background: linear-gradient(125deg, #ead5a4, #c6a76b);
   color: #182119;
@@ -42,7 +42,7 @@ button:disabled {
 }
 .secondary {
   min-height: 42px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .icon-button {
   min-width: 40px;
@@ -53,7 +53,7 @@ button:disabled {
   background: #cad6b510;
 }
 .text-link {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .skip-link {
   position: fixed;
@@ -81,7 +81,7 @@ main:focus {
   gap: 8px;
 }
 .breadcrumbs {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .profile {
   display: none;
@@ -121,18 +121,18 @@ main:focus {
   line-height: 1.3;
 }
 .page-heading p {
-  font-size: 13px;
+  font-size: var(--text-small);
   margin-top: 9px;
 }
 .lobby-kicker {
   display: block;
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 3px;
   color: #ceb47c;
   margin-bottom: 10px;
 }
 .chapter-label {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .mode-selection {
   gap: 24px;
@@ -152,7 +152,7 @@ main:focus {
   font-size: 14px;
 }
 .mode-tabs button small {
-  font-size: 10px;
+  font-size: var(--text-small);
   margin-top: 4px;
 }
 .mode-tabs button[aria-pressed="true"] {
@@ -162,7 +162,7 @@ main:focus {
 }
 .mode-selection > p {
   max-width: 480px;
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.65;
 }
 .mission-selection {
@@ -224,7 +224,7 @@ main:focus {
   margin-top: 2px;
 }
 .mission-card small {
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
   color: #c1c7b2;
 }
@@ -235,7 +235,7 @@ main:focus {
 }
 .mission-card em {
   display: block;
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.55;
   color: #b4c1b4;
 }
@@ -265,12 +265,12 @@ main:focus {
   color: #e3c888;
 }
 .hero-copy p {
-  font-size: 13px;
+  font-size: var(--text-small);
   max-width: 355px;
   line-height: 1.75;
 }
 .hero-copy .eyebrow {
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 2px;
   white-space: normal;
 }
@@ -304,13 +304,13 @@ main:focus {
   transform: translateX(65px) rotate(13deg);
 }
 .fan-caption {
-  font-size: 6px;
+  font-size: var(--text-small);
   bottom: -32px;
 }
 .hero-cta {
   min-width: 215px;
   margin-top: 20px;
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .hero-bottom {
   height: 52px;
@@ -319,18 +319,18 @@ main:focus {
   background: #0b1813a8;
 }
 .hero-bottom span {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .hero-bottom .difficulty {
   display: none;
 }
 .starter-select {
   margin-top: 22px;
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
 }
 .starter-select select {
-  font-size: 11px;
+  font-size: var(--text-small);
   letter-spacing: 0;
   min-height: 44px;
   max-width: 285px;
@@ -340,7 +340,7 @@ main:focus {
   display: block;
   max-width: 285px;
   margin-top: 8px;
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: var(--muted);
 }
@@ -348,12 +348,12 @@ main:focus {
   display: flex;
   gap: 7px;
   align-items: center;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #d5c794;
   margin-top: 18px;
 }
 .new-adventure {
-  font-size: 10px;
+  font-size: var(--text-small);
   margin-top: 13px;
 }
 .lobby-lower {
@@ -367,10 +367,10 @@ main:focus {
   padding: 24px;
 }
 .journey-stage h4 {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .journey-stage p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.65;
 }
 .journey-stages {
@@ -385,7 +385,7 @@ main:focus {
   font-size: 14px;
 }
 .fellowship-summary span {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .fellowship-mini {
   display: block;
@@ -404,7 +404,7 @@ main:focus {
   flex-wrap: wrap;
 }
 .lobby-footer {
-  font-size: 10px;
+  font-size: var(--text-small);
   padding: 4px 0;
 }
 .lobby-journal {
@@ -418,12 +418,12 @@ main:focus {
   gap: 12px;
   padding: 18px 22px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: var(--text-small);
   color: #e1c992;
 }
 .lobby-journal summary > span {
   margin-left: auto;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #acbdad;
 }
 .lobby-journal .campaign-journal {
@@ -444,14 +444,14 @@ main:focus {
   margin-top: 7px;
 }
 .game-mode-label {
-  font-size: 11px;
+  font-size: var(--text-small);
   letter-spacing: 0.4px;
 }
 .table-heading .text-link {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .save-status {
-  font-size: 11px;
+  font-size: var(--text-small);
   white-space: nowrap;
 }
 .save-status.unsaved {
@@ -462,7 +462,7 @@ main:focus {
 }
 .table-tools .compact {
   min-height: 40px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .round-strip {
   margin-bottom: 16px;
@@ -475,7 +475,7 @@ main:focus {
   padding: 8px 12px;
 }
 .round-number > span {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .round-number strong {
   font-size: 24px;
@@ -485,13 +485,13 @@ main:focus {
   padding: 0 18px;
 }
 .phase-track > div {
-  font-size: 10px;
+  font-size: var(--text-small);
   gap: 8px;
 }
 .phase-track > div > span {
   width: 24px;
   height: 24px;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .phase-track > div.active {
   color: #efd49a;
@@ -506,12 +506,12 @@ main:focus {
   font-variant-numeric: tabular-nums;
 }
 .threat-dial > span {
-  font-size: 9px;
+  font-size: var(--text-small);
   line-height: 1.5;
 }
 .threat-dial small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #a3b1a0;
   letter-spacing: 0;
 }
@@ -542,17 +542,17 @@ main:focus {
   padding: 18px 20px;
 }
 .zone-label {
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 1.2px;
   margin-bottom: 14px;
   color: #b8cab6;
 }
 .zone-label > span:last-child {
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #aebdab;
 }
 .zone-label b {
-  font-size: 10px;
+  font-size: var(--text-small);
   min-width: 23px;
   text-align: center;
 }
@@ -575,16 +575,16 @@ main:focus {
   object-position: center 18%;
 }
 .board-card-name {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.45;
   min-height: 36px;
   padding: 8px 7px 4px;
 }
 .encounter-value {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .enemy-stats {
-  font-size: 11px;
+  font-size: var(--text-small);
   gap: 8px;
   padding: 7px 6px 9px;
 }
@@ -594,7 +594,7 @@ main:focus {
 }
 .card-action {
   min-height: 36px;
-  font-size: 11px;
+  font-size: var(--text-small);
   padding: 8px;
   background: #dcc18a12;
 }
@@ -607,7 +607,7 @@ main:focus {
   background: linear-gradient(110deg, #b7a66c16, #b7a66c05);
 }
 .quest-description > span {
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
 }
 .quest-description h2 {
@@ -615,7 +615,7 @@ main:focus {
   margin: 6px 0;
 }
 .quest-description p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: #bdc4af;
 }
@@ -627,7 +627,7 @@ main:focus {
   font-size: 25px;
 }
 .quest-progress > span {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .quest-goals {
   display: flex;
@@ -639,7 +639,7 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #bbc4b0;
 }
 .quest-goals > span.done {
@@ -671,7 +671,7 @@ main:focus {
   filter: saturate(0.35) brightness(0.7);
 }
 .character-name {
-  font-size: 11px;
+  font-size: var(--text-small);
   min-height: 34px;
   padding: 7px;
 }
@@ -679,7 +679,7 @@ main:focus {
   width: 13px;
 }
 .stat-row {
-  font-size: 12px;
+  font-size: var(--text-small);
   justify-content: space-around;
   padding: 6px 7px 10px;
 }
@@ -691,7 +691,7 @@ main:focus {
   height: 12px;
 }
 .resource-token {
-  font-size: 13px;
+  font-size: var(--text-small);
   background: #11221ded;
   border-color: #d0bb7f96;
   min-width: 32px;
@@ -699,11 +699,11 @@ main:focus {
 }
 .quest-badge,
 .exhausted-badge {
-  font-size: 9px;
+  font-size: var(--text-small);
   padding: 4px 6px;
 }
 .abilities > button {
-  font-size: 10px;
+  font-size: var(--text-small);
   min-height: 31px;
   padding: 7px;
   line-height: 1.45;
@@ -711,7 +711,7 @@ main:focus {
 .ally-placeholder {
   width: 95px;
   min-height: 180px;
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
 }
 .active-zones {
@@ -719,11 +719,11 @@ main:focus {
   padding: 18px 20px;
 }
 .location-inline h3 {
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .location-inline p,
 .location-inline small {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .prisoner-banner {
   margin-bottom: 16px;
@@ -733,7 +733,7 @@ main:focus {
   font-size: 14px;
 }
 .prisoner-banner p {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .turn-panel {
   top: 18px;
@@ -746,7 +746,7 @@ main:focus {
   scrollbar-color: #6b7553 transparent;
 }
 .turn-panel-top {
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
 }
 .turn-panel h2 {
@@ -755,7 +755,7 @@ main:focus {
   margin: 14px 0 10px;
 }
 .turn-panel > p {
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.75;
   margin-bottom: 17px;
   color: #bfccbb;
@@ -768,7 +768,7 @@ main:focus {
 .turn-actions .primary,
 .turn-actions .secondary {
   width: 100%;
-  font-size: 12px;
+  font-size: var(--text-small);
   padding: 12px;
   gap: 10px;
   min-height: 46px;
@@ -780,7 +780,7 @@ main:focus {
 }
 .turn-tip {
   margin: 14px 0 0;
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.75;
   color: #a9bba6;
 }
@@ -791,30 +791,30 @@ main:focus {
 .resource-pools h3,
 .last-reveal h3,
 .recent-log h3 {
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 1.1px;
   margin-bottom: 12px;
 }
 .resource-pools > div {
-  font-size: 12px;
+  font-size: var(--text-small);
   padding: 5px 0;
 }
 .resource-pools > div strong {
   font-size: 14px;
 }
 .recent-log > p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.75;
   padding-left: 12px;
 }
 .last-reveal button > span {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .last-reveal button small {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .turn-panel .export-link {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .forecast {
   background: #0a1b1477;
@@ -841,17 +841,17 @@ main:focus {
 }
 .forecast-numbers small {
   grid-column: 1/-1;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #bac9b1;
   margin-top: 4px;
 }
 .forecast-numbers .forecast-vs {
   display: block;
   color: #93a48c;
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .forecast p {
-  font-size: 12px;
+  font-size: var(--text-small);
   margin-top: 12px;
   font-weight: 600;
 }
@@ -863,7 +863,7 @@ main:focus {
 }
 .forecast > small {
   display: block;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #9db29e;
   line-height: 1.6;
   margin-top: 4px;
@@ -871,13 +871,13 @@ main:focus {
 .quest-result {
   margin-top: 20px;
   padding: 14px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .quest-result strong {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .quest-result small {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 /* Hand: art provides atmosphere; readable labels and costs do the work. */
 .hand-zone {
@@ -889,7 +889,7 @@ main:focus {
   gap: 7px;
   background: none;
   color: #b5c4b3;
-  font-size: 11px;
+  font-size: var(--text-small);
   padding: 3px 0;
 }
 .pile-link:hover {
@@ -911,7 +911,7 @@ main:focus {
   padding: 7px 10px;
   background: #18271b;
   color: #b4c4a8;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .filter-toggle[aria-pressed="true"] {
   border-color: #d7ba78;
@@ -922,11 +922,11 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #aebca8;
 }
 .hand-toolbar select {
-  font-size: 10px;
+  font-size: var(--text-small);
   padding: 7px 8px;
   min-height: 32px;
   background: #14241b;
@@ -986,7 +986,7 @@ main:focus {
 .hand-card-title {
   background: transparent;
   text-align: left;
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.45;
   padding: 8px 9px 0;
   width: 100%;
@@ -1000,7 +1000,7 @@ main:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 9px;
+  font-size: var(--text-small);
   text-transform: capitalize;
   letter-spacing: 0.3px;
   color: #adbea9;
@@ -1014,7 +1014,7 @@ main:focus {
 }
 .hand-play {
   min-height: 35px;
-  font-size: 10px;
+  font-size: var(--text-small);
   gap: 5px;
   padding: 7px 3px;
 }
@@ -1036,7 +1036,7 @@ main:focus {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .hover-preview {
   position: fixed;
@@ -1060,12 +1060,12 @@ main:focus {
 .hover-preview > span {
   display: block;
   padding: 8px 7px;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #eed7a4;
 }
 .hover-preview small {
   float: right;
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #acbaa4;
 }
 @keyframes preview-in {
@@ -1124,10 +1124,10 @@ main:focus {
   font-size: 24px;
 }
 .card-detail .detail-type {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .card-detail .traits {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .detail-stats {
   padding: 12px 0;
@@ -1135,7 +1135,7 @@ main:focus {
   font-size: 15px;
 }
 .source-note {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.75;
 }
 .inspector-action {
@@ -1144,7 +1144,7 @@ main:focus {
   margin-top: 18px;
 }
 .inspector-action p {
-  font-size: 12px;
+  font-size: var(--text-small);
   margin-bottom: 12px;
 }
 .inspector-action > .primary {
@@ -1152,7 +1152,7 @@ main:focus {
 }
 .choice-list > button {
   min-height: 62px;
-  font-size: 13px;
+  font-size: var(--text-small);
   border-color: #b5c19832;
   background: #15261e;
 }
@@ -1165,7 +1165,7 @@ main:focus {
   background: #c4b0781c;
 }
 .choice-list small {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .preference-section h3,
 .keyboard-guide h3 {
@@ -1174,7 +1174,7 @@ main:focus {
   font-weight: 600;
 }
 .preference-section p {
-  font-size: 12px;
+  font-size: var(--text-small);
   margin: 7px 0 14px;
 }
 .preference-segments {
@@ -1192,7 +1192,7 @@ main:focus {
   background: #102119;
   border: 1px solid var(--line);
   padding: 13px 10px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .preference-segments > button[aria-pressed="true"] {
   background: #c8b7771b;
@@ -1209,12 +1209,12 @@ main:focus {
   border-bottom: 1px solid var(--line);
 }
 .preference-check strong {
-  font-size: 13px;
+  font-size: var(--text-small);
   display: block;
   margin-bottom: 5px;
 }
 .preference-check small {
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.65;
   color: #b7c4ad;
   display: block;
@@ -1241,7 +1241,7 @@ main:focus {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  font-size: 12px;
+  font-size: var(--text-small);
   color: #b8c8b1;
 }
 .keyboard-guide dd {
@@ -1257,11 +1257,11 @@ kbd {
   border-radius: 4px;
   background: #12231a;
   color: #e5d29e;
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .keyboard-guide p,
 .pile-note {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .pile-note {
   margin: 17px 0;
@@ -1294,17 +1294,17 @@ kbd {
 }
 .pile-list strong {
   display: block;
-  font-size: 13px;
+  font-size: var(--text-small);
   font-weight: 500;
 }
 .pile-list small {
-  font-size: 11px;
+  font-size: var(--text-small);
   display: block;
   color: #a6b9a2;
   margin-top: 6px;
 }
 .toast {
-  font-size: 13px;
+  font-size: var(--text-small);
   border-color: #bdc8a750;
   bottom: 24px;
   background: #203729;
@@ -1319,11 +1319,11 @@ kbd {
 }
 .library-toolbar input,
 .library-toolbar select {
-  font-size: 13px;
+  font-size: var(--text-small);
   min-height: 46px;
 }
 .library-summary {
-  font-size: 12px;
+  font-size: var(--text-small);
   margin: 22px 0;
 }
 .catalog-grid {
@@ -1335,28 +1335,28 @@ kbd {
   background: #14231b;
 }
 .catalog-card > div {
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1.5;
   padding: 10px 10px 5px;
 }
 .catalog-card > small {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   padding: 0 10px 12px;
 }
 .starter-option > p {
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.75;
 }
 .starter-option > small {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .deck-row {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .guide p,
 .guide-steps p {
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .guide-steps h3 {
   font-size: 16px;
@@ -1420,7 +1420,7 @@ kbd {
     height: 105px;
   }
   .density-compact .character-name {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .density-compact .encounter-zone,
   .density-compact .fellowship-zone,
@@ -1483,7 +1483,7 @@ kbd {
     padding: 0 10px;
   }
   .phase-track > div {
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 4px;
   }
 }
@@ -1502,11 +1502,11 @@ kbd {
     font-size: 20px;
   }
   .turn-panel > p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .phase-track > div {
     flex-direction: column;
-    font-size: 8px;
+    font-size: var(--text-small);
     gap: 4px;
   }
   .table-heading h1 {
@@ -1541,7 +1541,7 @@ kbd {
   }
   .breadcrumbs {
     min-width: 0;
-    font-size: 10px;
+    font-size: var(--text-small);
     gap: 8px;
   }
   .breadcrumbs strong {
@@ -1573,11 +1573,11 @@ kbd {
     font-size: 27px;
   }
   .page-heading p {
-    font-size: 12px;
+    font-size: var(--text-small);
     line-height: 1.7;
   }
   .lobby-kicker {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .chapter-label {
     display: none;
@@ -1595,14 +1595,14 @@ kbd {
     padding: 11px 10px;
     gap: 8px;
     min-height: 58px;
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .mode-tabs button small {
-    font-size: 9px;
+    font-size: var(--text-small);
     line-height: 1.5;
   }
   .mode-selection > p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .mission-selection {
     display: flex;
@@ -1623,7 +1623,7 @@ kbd {
   }
   .mission-card em {
     display: block;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .mission-number {
     font-size: 24px;
@@ -1642,10 +1642,10 @@ kbd {
     margin: 18px 0;
   }
   .hero-copy p {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .hero-copy .eyebrow {
-    font-size: 7px;
+    font-size: var(--text-small);
     letter-spacing: 1.5px;
   }
   .hero-fan {
@@ -1666,11 +1666,11 @@ kbd {
   .starter-select select {
     max-width: none;
     width: 100%;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .hero-cta {
     width: 100%;
-    font-size: 12px;
+    font-size: var(--text-small);
     min-height: 46px;
   }
   .hero-bottom {
@@ -1679,7 +1679,7 @@ kbd {
     gap: 10px;
   }
   .hero-bottom > span {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .hero-bottom > span:not(:first-child) {
     display: none;
@@ -1698,19 +1698,19 @@ kbd {
     padding-top: 12px;
   }
   .journey-stage h4 {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .journey-stage p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .lobby-journal summary {
     padding: 16px;
-    font-size: 12px;
+    font-size: var(--text-small);
     gap: 8px;
     flex-wrap: wrap;
   }
   .lobby-journal summary > span {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .table-page {
     padding: 18px 12px 130px;
@@ -1725,10 +1725,10 @@ kbd {
     line-height: 1.5;
   }
   .table-heading .text-link {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .game-mode-label {
-    font-size: 10px;
+    font-size: var(--text-small);
     margin-top: 4px;
   }
   .table-tools {
@@ -1758,7 +1758,7 @@ kbd {
     padding: 7px;
   }
   .round-number > span {
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .round-number strong {
     font-size: 21px;
@@ -1776,13 +1776,13 @@ kbd {
   .phase-track > div.active {
     display: flex;
     flex-direction: row;
-    font-size: 11px;
+    font-size: var(--text-small);
     gap: 9px;
   }
   .phase-track > div.active > span {
     width: 23px;
     height: 23px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .threat-dial {
     padding: 8px 10px;
@@ -1795,10 +1795,10 @@ kbd {
     font-size: 25px;
   }
   .threat-dial > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .threat-dial small {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .table-layout {
     display: flex;
@@ -1832,7 +1832,7 @@ kbd {
     margin: 0 0 7px;
   }
   .turn-panel > p {
-    font-size: 12px;
+    font-size: var(--text-small);
     line-height: 1.7;
     margin: 0;
   }
@@ -1857,14 +1857,14 @@ kbd {
     padding: 16px 13px;
   }
   .zone-label {
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 10px;
     margin-bottom: 13px;
     letter-spacing: 0.8px;
     flex-wrap: wrap;
   }
   .zone-label > span:last-child {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .board-cards,
   .character-row {
@@ -1883,15 +1883,15 @@ kbd {
     height: 108px;
   }
   .board-card-name {
-    font-size: 10px;
+    font-size: var(--text-small);
     min-height: 37px;
   }
   .enemy-stats {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .card-action {
     min-height: 38px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .quest-zone {
     padding: 17px 13px;
@@ -1908,10 +1908,10 @@ kbd {
     line-height: 1.2;
   }
   .quest-description p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .quest-description > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .quest-progress {
     min-width: 53px;
@@ -1922,10 +1922,10 @@ kbd {
     font-size: 21px;
   }
   .quest-progress > span {
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .quest-goals > span {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .character-card {
     width: 135px;
@@ -1936,13 +1936,13 @@ kbd {
     height: 124px;
   }
   .character-name {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .stat-row {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .abilities > button {
-    font-size: 10px;
+    font-size: var(--text-small);
     min-height: 35px;
   }
   .ally-placeholder {
@@ -1956,21 +1956,21 @@ kbd {
     display: flex;
   }
   .pile-link {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .hand-toolbar {
     gap: 6px;
   }
   .filter-toggle {
     padding: 7px 8px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .hand-toolbar label {
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 5px;
   }
   .hand-toolbar select {
-    font-size: 10px;
+    font-size: var(--text-small);
     max-width: 118px;
   }
   .hand-card {
@@ -1980,11 +1980,11 @@ kbd {
     height: 134px;
   }
   .hand-card-title {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .hand-play {
     min-height: 39px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .mobile-action-bar {
     display: grid;
@@ -2008,12 +2008,12 @@ kbd {
     gap: 4px;
   }
   .mobile-action-bar small {
-    font-size: 8px;
+    font-size: var(--text-small);
     letter-spacing: 1px;
     color: #acbea6;
   }
   .mobile-action-bar strong {
-    font-size: 12px;
+    font-size: var(--text-small);
     font-weight: 500;
     color: #ecdfb8;
     line-height: 1.4;
@@ -2024,12 +2024,12 @@ kbd {
   }
   .mobile-action-bar .turn-actions > button {
     min-height: 46px;
-    font-size: 11px;
+    font-size: var(--text-small);
     line-height: 1.4;
     padding: 9px;
   }
   .mobile-action-bar .mulligan-button {
-    font-size: 9px !important;
+    font-size: var(--text-small) !important;
   }
   .mobile-action-bar .mulligan-button > svg {
     display: none;
@@ -2042,10 +2042,10 @@ kbd {
     gap: 10px;
   }
   .prisoner-banner p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .prisoner-banner strong {
-    font-size: 13px;
+    font-size: var(--text-small);
   }
   .toast {
     bottom: 95px;
@@ -2053,7 +2053,7 @@ kbd {
     right: 16px;
     width: auto;
     transform: none;
-    font-size: 12px;
+    font-size: var(--text-small);
     max-width: unset;
   }
   .modal {
@@ -2072,7 +2072,7 @@ kbd {
     font-size: 18px;
   }
   .modal p {
-    font-size: 13px;
+    font-size: var(--text-small);
   }
   .card-detail {
     display: flex;
@@ -2088,27 +2088,27 @@ kbd {
     font-size: 22px;
   }
   .choice-list > button {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .preference-segments > button {
     padding: 12px 8px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .endgame h2 {
     font-size: 22px;
   }
   .endgame > .primary {
     width: 100%;
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .campaign-journal {
     padding: 16px;
   }
   .campaign-journal li strong {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .campaign-pool button {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .content-page {
     padding: 25px 17px;
@@ -2122,30 +2122,30 @@ kbd {
   }
   .library-toolbar input,
   .library-toolbar select {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .library-summary {
-    font-size: 11px;
+    font-size: var(--text-small);
     gap: 12px;
   }
   .catalog-card > div {
-    font-size: 12px;
+    font-size: var(--text-small);
     padding: 8px 8px 4px;
   }
   .catalog-card > small {
-    font-size: 9px;
+    font-size: var(--text-small);
     padding: 0 8px 10px;
   }
   .starter-option > p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .starter-option > span,
   .starter-option > small {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .guide p,
   .guide-steps p {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
 }
 @media (max-width: 370px) {
@@ -2176,13 +2176,13 @@ kbd {
   }
   .mode-tabs button {
     padding: 9px 8px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .mode-tabs button svg {
     width: 16px;
   }
   .mode-tabs button small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2382,12 +2382,12 @@ kbd {
     height: 94px;
   }
   .character-name {
-    font-size: 10px;
+    font-size: var(--text-small);
     min-height: 30px;
     padding: 5px;
   }
   .stat-row {
-    font-size: 11px;
+    font-size: var(--text-small);
     padding: 5px;
   }
   .board-card {
@@ -2397,7 +2397,7 @@ kbd {
     height: 88px;
   }
   .board-card-name {
-    font-size: 10px;
+    font-size: var(--text-small);
     min-height: 32px;
     padding-block: 6px 3px;
   }

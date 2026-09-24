@@ -68,7 +68,7 @@ body {
 .redbook .brand small,
 .redbook.playing .brand small {
   display: block;
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.6px;
   color: #c0a885;
   margin-top: 5px;
@@ -95,7 +95,7 @@ body {
   border: 0;
   border-bottom: 1px solid transparent;
   background: none;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .redbook .nav-item span,
 .redbook.playing .nav-item span {
@@ -178,7 +178,7 @@ body {
 .book-kicker {
   display: block;
   color: #916a38;
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 2.4px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -229,12 +229,12 @@ body {
   box-shadow: inset 0 0 0 1px #b99b6355;
 }
 .play-style button span {
-  font-size: 12px;
+  font-size: var(--text-small);
   font-weight: 700;
 }
 .play-style small {
   display: block;
-  font-size: 9px;
+  font-size: var(--text-small);
   font-weight: 400;
   margin-top: 3px;
   opacity: 0.85;
@@ -247,7 +247,7 @@ body {
   margin-bottom: 18px;
 }
 .company-options p {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .hero-count {
   display: flex;
@@ -256,7 +256,7 @@ body {
   flex-shrink: 0;
 }
 .hero-count > span {
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   margin-right: 7px;
   color: #775638;
@@ -305,7 +305,7 @@ body {
   border: 1px solid #ae874d;
 }
 .starter-heroes span {
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #59412b;
   overflow-wrap: anywhere;
 }
@@ -344,14 +344,14 @@ body {
   background: #3e251fde;
   padding: 4px;
   color: #ecd5a8;
-  font: 11px var(--serif);
+  font: var(--text-small) var(--serif);
 }
 .hero-selection-body {
   flex: 1;
   min-width: 0;
 }
 .hero-selection label {
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.6px;
   color: #94734b;
   font-weight: 700;
@@ -374,7 +374,7 @@ body {
   align-items: center;
   gap: 5px 10px;
   margin-top: 8px;
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #786044;
 }
 .hero-deck-info span {
@@ -390,7 +390,7 @@ body {
   align-items: center;
   gap: 5px;
   background: none;
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #87592c;
   padding: 9px 0 0;
 }
@@ -399,7 +399,7 @@ body {
   text-decoration: underline;
 }
 .company-note {
-  font-size: 10px;
+  font-size: var(--text-small);
   display: flex;
   align-items: center;
   gap: 7px;
@@ -407,7 +407,7 @@ body {
   color: #837052;
 }
 .classic-note {
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .redbook .mode-selection {
   background: none;
@@ -436,7 +436,7 @@ body {
 }
 .redbook .mode-selection > p {
   color: #81684c;
-  font-size: 12px;
+  font-size: var(--text-small);
   max-width: 490px;
 }
 .redbook .mission-selection {
@@ -531,7 +531,7 @@ body {
 }
 .redbook .eyebrow {
   color: #cfb47c;
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.8px;
 }
 .redbook .hero-fan {
@@ -553,19 +553,19 @@ body {
   color: #dcc38c;
   width: 240px;
   left: -30px;
-  font-size: 7px;
+  font-size: var(--text-small);
 }
 .selected-company {
   display: flex;
   align-items: center;
   gap: 12px;
   color: #f0d8a9;
-  font: 13px/1.5 var(--serif);
+  font: var(--text-small)/1.5 var(--serif);
   margin-top: 22px;
 }
 .selected-company small {
   display: block;
-  font: 10px/1.6 var(--body);
+  font: var(--text-small)/1.6 var(--body);
   color: #c6b592;
   margin-top: 5px;
 }
@@ -710,7 +710,7 @@ body {
   margin-bottom: 9px;
 }
 .seat-section-heading > span {
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.8px;
   color: #6d5134;
   display: flex;
@@ -718,7 +718,7 @@ body {
   gap: 7px;
 }
 .seat-section-heading small {
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #8e7657;
 }
 .seat-tabs {
@@ -783,7 +783,7 @@ body {
   min-width: 0;
 }
 .seat-eyebrow {
-  font-size: 7px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
   opacity: 0.75;
 }
@@ -798,7 +798,7 @@ body {
 .seat-counts {
   display: flex;
   gap: 14px;
-  font-size: 10px;
+  font-size: var(--text-small);
   opacity: 0.85;
 }
 .seat-counts span {
@@ -818,13 +818,13 @@ body {
   font: 25px/1.1 var(--serif);
 }
 .seat-threat small {
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
 }
 .company-status {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #82694a;
   padding-top: 9px;
   gap: 16px;
@@ -918,7 +918,7 @@ body {
 .redbook .board-card-name {
   color: #f3e0b7;
   font-family: var(--serif);
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .redbook .abilities > button {
   color: #d8c197;
@@ -1031,7 +1031,7 @@ body {
 .redbook .hand-card-title {
   color: #533923;
   font-family: var(--serif);
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .redbook .hand-card-type {
   color: #96764f;
@@ -1262,7 +1262,7 @@ body {
   .redbook .nav-item,
   .redbook.playing .nav-item {
     padding-inline: 10px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .resume-side span,
   .redbook.playing .resume-side span,
@@ -1354,7 +1354,7 @@ body {
   }
   .redbook .nav-item,
   .redbook.playing .nav-item {
-    font-size: 13px;
+    font-size: var(--text-small);
     padding: 15px;
   }
   .redbook .resume-side,
@@ -1396,12 +1396,12 @@ body {
     padding: 15px;
   }
   .redbook .mission-card strong {
-    font-size: 13px;
+    font-size: var(--text-small);
   }
   .redbook .mission-card .mission-number {
     width: 26px;
     height: 26px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .adventure-hero {
     min-height: 440px;
@@ -1492,7 +1492,7 @@ body {
     font-size: 14px;
   }
   .redbook .seat-eyebrow {
-    font-size: 6px;
+    font-size: var(--text-small);
     letter-spacing: 0.7px;
   }
   .redbook .seat-threat {
@@ -1503,7 +1503,7 @@ body {
   }
   .redbook .seat-counts {
     gap: 7px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .seat-counts svg {
     width: 11px;
@@ -1532,7 +1532,7 @@ body {
     display: none;
   }
   .redbook .lobby-kicker {
-    font-size: 7px;
+    font-size: var(--text-small);
     letter-spacing: 2px;
   }
   .fellowship-builder {
@@ -1547,10 +1547,10 @@ body {
     gap: 7px;
   }
   .play-style button span {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .play-style small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .play-style svg {
     width: 16px;
@@ -1561,7 +1561,7 @@ body {
     gap: 12px;
   }
   .company-options p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .hero-count {
     align-self: flex-end;
@@ -1580,7 +1580,7 @@ body {
     margin-top: 6px;
   }
   .company-note {
-    font-size: 9px;
+    font-size: var(--text-small);
     align-items: flex-start;
   }
   .redbook .mode-tabs {
@@ -1592,10 +1592,10 @@ body {
     gap: 8px;
   }
   .redbook .mode-tabs button span {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .mode-tabs small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .redbook .mission-selection {
     display: flex;
@@ -1609,7 +1609,7 @@ body {
     font-size: 15px;
   }
   .redbook .mission-card em {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .mission-card:disabled em {
     display: block;
@@ -1639,7 +1639,7 @@ body {
     display: none;
   }
   .redbook .selected-company {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .hero-cta {
     width: 100%;
@@ -1661,7 +1661,7 @@ body {
     font-size: 19px;
   }
   .redbook .table-tools .save-status {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .redbook .seat-section-heading small {
     display: none;
@@ -1685,7 +1685,7 @@ body {
     font-size: 15px;
   }
   .redbook .company-status {
-    font-size: 9px;
+    font-size: var(--text-small);
     flex-direction: column;
     gap: 4px;
   }
@@ -1699,7 +1699,7 @@ body {
   }
   .redbook .phase-track > div {
     flex: 0 0 auto;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .encounter-zone,
   .redbook .fellowship-zone,
@@ -1714,7 +1714,7 @@ body {
     font-size: 17px;
   }
   .redbook .quest-description p {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .redbook .quest-progress strong {
     font-size: 27px;
@@ -1728,7 +1728,7 @@ body {
   .redbook .zone-label {
     flex-wrap: wrap;
     gap: 8px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .hand-toolbar {
     flex-wrap: wrap;
@@ -1791,7 +1791,7 @@ body {
   border: 1px solid #9a7a4555;
   color: #7b572e;
   padding: 7px 12px;
-  font-size: 10px;
+  font-size: var(--text-small);
   background: #f0e4c977;
   border-radius: 2px;
 }
@@ -1810,13 +1810,13 @@ body {
   gap: 8px;
   align-items: center;
   color: #85612f;
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-bottom: 15px;
   border-bottom: 1px solid #97703b44;
   padding-bottom: 12px;
 }
 .redbook .hero-copy > .single-hero-note {
-  font: 10px/1.7 var(--body);
+  font: var(--text-small)/1.7 var(--body);
   padding: 10px 12px;
   background: #201b17a0;
   border-left: 2px solid #c39f5c;
@@ -1836,7 +1836,7 @@ body {
   margin-top: 12px;
 }
 .engaged-owner {
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #c3aa7f;
   padding: 0 7px 5px;
   text-align: center;
@@ -1876,7 +1876,7 @@ body {
   color: #906d43;
 }
 .redbook .hero-roster p {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .redbook .guide-intro,
 .redbook .guide-steps section {
@@ -1977,7 +1977,7 @@ body {
   }
   .redbook .seat-section-heading small {
     display: block;
-    font-size: 8px;
+    font-size: var(--text-small);
   }
 }
 
@@ -1988,7 +1988,7 @@ body {
     padding-block: 5px;
   }
   .redbook.playing .brand > span {
-    font-size: 13px;
+    font-size: var(--text-small);
   }
   .redbook.playing .brand-mark svg {
     width: 26px;
@@ -2044,7 +2044,7 @@ body {
   }
   .redbook .game-mode-label {
     margin: 0;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .table-tools {
     gap: 10px;
@@ -2082,11 +2082,11 @@ body {
     margin: 0 0 2px;
   }
   .redbook .seat-eyebrow {
-    font-size: 7px;
+    font-size: var(--text-small);
     letter-spacing: 1px;
   }
   .redbook .seat-counts {
-    font-size: 10px;
+    font-size: var(--text-small);
     gap: 14px;
   }
   .redbook .seat-threat {
@@ -2117,13 +2117,13 @@ body {
     font-size: 21px;
   }
   .redbook .round-number > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .redbook .phase-track {
     padding: 0 18px;
   }
   .redbook .phase-track > div {
-    font-size: 10px;
+    font-size: var(--text-small);
     gap: 7px;
   }
   .redbook .phase-track > div > span {
@@ -2172,14 +2172,14 @@ body {
     width: 22px;
   }
   .redbook .quest-description > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .redbook .quest-description h2 {
     font-size: 17px;
     margin: 3px 0;
   }
   .redbook .quest-description p {
-    font-size: 12px;
+    font-size: var(--text-small);
     margin: 3px 0 0;
   }
   .redbook .quest-progress {
@@ -2190,12 +2190,12 @@ body {
   }
   .redbook .quest-progress > span {
     margin: 3px 0;
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .redbook .quest-goals {
     gap: 4px 10px;
     margin-top: 5px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .encounter-zone,
   .redbook .fellowship-zone,
@@ -2232,18 +2232,18 @@ body {
     flex-shrink: 0;
   }
   .redbook .location-inline h3 {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .redbook .location-inline p {
     margin: 4px 0;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .location-inline small {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .zone-label {
     margin: 0 0 9px;
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 5px 10px;
     flex-wrap: wrap;
   }
@@ -2263,11 +2263,11 @@ body {
   .redbook .character-name {
     min-height: 28px;
     padding: 5px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .stat-row {
     padding: 5px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .board-card {
     width: clamp(112px, 7.7vw, 148px);
@@ -2278,7 +2278,7 @@ body {
   .redbook .board-card-name {
     min-height: 30px;
     padding: 5px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .enemy-stats {
     padding: 5px;
@@ -2321,17 +2321,17 @@ body {
   .redbook .hand-card-title {
     min-height: 33px;
     padding: 5px 8px 0;
-    font-size: 10px;
+    font-size: var(--text-small);
     line-height: 1.4;
   }
   .redbook .hand-card-type {
     padding: 2px 8px 5px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .hand-play {
     min-height: 30px;
     padding: 4px 2px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .redbook .hand-empty {
     min-height: 95px;
@@ -2353,12 +2353,12 @@ body {
     font-size: 23px;
   }
   .redbook .turn-panel > p {
-    font-size: 11px;
+    font-size: var(--text-small);
     line-height: 1.65;
     margin-bottom: 14px;
   }
   .redbook .turn-tip {
-    font-size: 10px;
+    font-size: var(--text-small);
     margin: 11px 0 16px;
   }
   .redbook .resource-pools {
@@ -2372,11 +2372,11 @@ body {
   .redbook .prisoner-banner {
     margin: 0 0 8px;
     padding: 8px 13px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .prisoner-banner p {
     margin: 3px 0 0;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .density-compact .character-art {
     height: calc(var(--table-card-art) - 12px);
@@ -2483,14 +2483,14 @@ body {
 }
 @media (min-width: 1400px) and (min-height: 781px) {
   .redbook .hand-card-title {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .hand-play {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .redbook .character-name,
   .redbook .board-card-name {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
 }
 @media (min-width: 1100px) {

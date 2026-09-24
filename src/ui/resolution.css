@@ -41,14 +41,14 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1.6px;
   font-weight: 700;
   color: #805530;
 }
 .resolution-header > div {
   display: contents;
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #836846;
 }
 .resolution-header > div > span {
@@ -106,11 +106,11 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: var(--text-small);
   margin-top: 7px;
 }
 .resolution-detail {
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1.65;
   margin: 0 0 10px;
   color: #6d5134;
@@ -123,7 +123,7 @@
 }
 .resolution-rules h3,
 .resolution-changes h3 {
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin: 0 0 7px;
@@ -133,7 +133,7 @@
   color: #805932;
 }
 .resolution-rules > p {
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1.65;
   white-space: pre-line;
   margin: 0;
@@ -167,12 +167,12 @@
   flex: 1;
 }
 .resolution-cards strong {
-  font-size: 11px;
+  font-size: var(--text-small);
   display: block;
 }
 .resolution-cards small {
   display: block;
-  font-size: 9px;
+  font-size: var(--text-small);
   margin-top: 3px;
   color: #93774f;
 }
@@ -185,7 +185,7 @@
   gap: 16px;
   padding: 6px 0;
   border-bottom: 1px solid #a78a5733;
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .resolution-changes dt {
   color: #745333;
@@ -225,7 +225,7 @@
   border-left: 2px solid #b68e4b55;
 }
 .resolution-lines p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.7;
   color: #7d6342;
   margin: 5px 0;
@@ -250,7 +250,7 @@
   flex-shrink: 0;
 }
 .resolution-footer p {
-  font-size: 10px;
+  font-size: var(--text-small);
   display: flex;
   align-items: center;
   gap: 5px;
@@ -259,7 +259,7 @@
 }
 .resolution-footer .text-link {
   color: #826034;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .redbook .resolution-continue {
   min-width: 196px;
@@ -276,14 +276,14 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .resolution-continue small {
-  font-size: 9px;
+  font-size: var(--text-small);
   font-weight: 400;
 }
 .resolution-chronicle > p {
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.7;
   color: #876847;
 }
@@ -301,12 +301,12 @@
   flex: 1;
 }
 .resolution-chronicle summary strong {
-  font: 13px var(--serif);
+  font: var(--text-small) var(--serif);
   color: #6c4b2b;
   display: block;
 }
 .resolution-chronicle summary small {
-  font-size: 9px;
+  font-size: var(--text-small);
   display: block;
   margin-top: 4px;
   color: #9a7d54;
@@ -317,7 +317,7 @@
   display: grid;
   place-items: center;
   border: 1px solid #ad8d5555;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #856135;
   border-radius: 50%;
 }
@@ -328,7 +328,7 @@
   grid-template-columns: 145px minmax(0, 1fr);
 }
 .resolution-chronicle .resolution-rules > p {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .resolution-paused {
   padding: 13px;
@@ -341,7 +341,7 @@
   gap: 6px;
   align-items: center;
   color: #e8c885;
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
 }
 .resolution-paused > strong {
@@ -351,7 +351,7 @@
   margin: 9px 0;
 }
 .resolution-paused > p {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.7;
   color: #cbb18b;
   margin: 0 0 12px;
@@ -375,13 +375,13 @@
   width: 100%;
 }
 .latest-event strong {
-  font-size: 10px;
+  font-size: var(--text-small);
   font-weight: 500;
   line-height: 1.5;
 }
 .latest-event small {
   display: block;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #a78c69;
   margin-top: 4px;
 }
@@ -521,7 +521,7 @@
   line-height: 1.5;
 }
 .resolution-cards small {
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #765737;
 }
 .combat-scene {
@@ -534,7 +534,7 @@
   border-bottom: 1px solid #ac8b5555;
 }
 .combat-side h3 {
-  font: 12px var(--serif);
+  font: var(--text-small) var(--serif);
   text-align: center;
   color: #765331;
   margin: 0 0 10px;
@@ -564,7 +564,7 @@
 .combat-side strong {
   display: block;
   margin-top: 8px;
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.5;
 }
 .combat-impact {

@@ -22,7 +22,7 @@
   top: -4px;
   z-index: 10;
   pointer-events: none;
-  font: 700 13px/1 var(--body);
+  font: 700 var(--text-small)/1 var(--body);
   font-style: normal;
   color: #ffdf92;
   text-shadow:
@@ -261,7 +261,7 @@
   pointer-events: none;
 }
 .reveal-card-back > span {
-  font: 10px var(--serif);
+  font: var(--text-small) var(--serif);
   letter-spacing: 3px;
 }
 .is-revealing > img {

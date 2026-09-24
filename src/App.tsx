@@ -1027,6 +1027,43 @@ export default function App() {
                 {playMode === "campaign" ? "CAMPAIGN" : "3 QUESTS"}
               </span>
             </div>
+            <section
+              className="official-resources"
+              aria-label="About this fan project"
+            >
+              <div>
+                <strong>An unofficial fan project</strong>
+                <p>
+                  Inspired by The Lord of the Rings: The Card Game. Not
+                  affiliated with or endorsed by Fantasy Flight Games. Game
+                  text, card artwork and trademarks belong to their respective
+                  owners.
+                </p>
+              </div>
+              <nav aria-label="Original game and official rules">
+                <a
+                  href="https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Original game <ArrowRight size={16} />
+                </a>
+                <a
+                  href="https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn to Play (PDF) <ArrowRight size={16} />
+                </a>
+                <a
+                  href="https://images-cdn.fantasyflightgames.com/filer_public/f2/87/f28704b2-5f25-4fd8-be7a-18d4a5d2c1c4/mec101_core_set_rules_reference_v10c-compressed.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Rules Reference (PDF) <ArrowRight size={16} />
+                </a>
+              </nav>
+            </section>
             <FellowshipSetup
               mode={setupMode}
               changeMode={setSetupMode}
@@ -2021,6 +2058,11 @@ export default function App() {
                 <h2 key={game.phase} className="phase-title">
                   {phaseNames[game.phase]}
                 </h2>
+                <TurnActions
+                  s={game}
+                  dispatch={dispatch}
+                  review={() => setShowResolution(true)}
+                />
                 <p>{phaseHelp(game)}</p>
                 {!!game.pendingWolfReturns?.length && (
                   <p className="turn-tip">
@@ -2034,11 +2076,6 @@ export default function App() {
                 {["quest", "staging"].includes(game.phase) && (
                   <QuestForecast s={game} />
                 )}
-                <TurnActions
-                  s={game}
-                  dispatch={dispatch}
-                  review={() => setShowResolution(true)}
-                />
                 <div className="turn-tip">
                   {game.phase === "quest"
                     ? "Click a ready character to select it. Click again to unselect."

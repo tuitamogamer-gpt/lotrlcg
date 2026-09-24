@@ -157,7 +157,7 @@
   box-shadow: none;
   filter: drop-shadow(1px 3px 2px #0009);
   color: #fff1bd;
-  font-size: 13px;
+  font-size: var(--text-small);
   line-height: 1;
   text-shadow:
     0 1px 2px #100b03,
@@ -185,12 +185,12 @@
   min-width: var(--token-size);
   height: var(--token-size);
   padding: 0;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .redbook .resource-pools .table-token {
   --token-size: 27px;
   margin-left: auto;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .redbook .card-table-tokens {
   gap: 3px;
@@ -211,7 +211,7 @@
   border-radius: 4px;
   background: #171c18a6;
   color: #dfcfac;
-  font: 500 10px var(--body);
+  font: 500 var(--text-small) var(--body);
   white-space: nowrap;
 }
 .redbook .table-tools .playmat-trigger:hover {
@@ -260,7 +260,7 @@
   gap: 6px;
   margin-bottom: 9px;
   color: #8a652f;
-  font: 700 8px var(--body);
+  font: 700 var(--text-small) var(--body);
   letter-spacing: 1.8px;
 }
 .collection-heading h3 {
@@ -270,7 +270,7 @@
 }
 .redbook .collection-heading p {
   margin: 8px 0 17px;
-  font: 11px/1.7 var(--body);
+  font: var(--text-small)/1.7 var(--body);
   color: #806548;
 }
 .collection-preview {
@@ -306,7 +306,7 @@
   text-shadow: 0 2px 6px #081613;
 }
 .collection-preview-caption > span {
-  font-size: 7px;
+  font-size: var(--text-small);
   letter-spacing: 2px;
   color: #d0c7ac;
 }
@@ -315,7 +315,7 @@
   color: #ffedbf;
 }
 .redbook .collection-preview-caption small {
-  font: 10px var(--body);
+  font: var(--text-small) var(--body);
   color: #ddd5bd;
 }
 .collection-objects {
@@ -372,7 +372,7 @@
 }
 .playmat-options button strong {
   padding-inline: 7px;
-  font: 600 11px var(--serif);
+  font: 600 var(--text-small) var(--serif);
 }
 .playmat-options button.selected {
   border-color: #927043;
@@ -411,17 +411,17 @@
 .playmat-follow strong {
   display: block;
   margin-bottom: 4px;
-  font: 600 11px var(--body);
+  font: 600 var(--text-small) var(--body);
 }
 .redbook .playmat-follow small {
-  font: 10px/1.5 var(--body);
+  font: var(--text-small)/1.5 var(--body);
 }
 .collection-materials {
   display: flex;
   flex-wrap: wrap;
   gap: 9px 18px;
   color: #81694a;
-  font: 9px var(--body);
+  font: var(--text-small) var(--body);
 }
 .collection-materials > span {
   display: inline-flex;
@@ -449,7 +449,7 @@
 @media (min-width: 1100px) and (max-height: 780px) {
   .table-token {
     --token-size: 31px;
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .redbook .resource-pools .table-token {
     --token-size: 24px;
@@ -481,13 +481,13 @@
   }
   .collection-tokens .table-token {
     --token-size: 27px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .playmat-options {
     gap: 4px;
   }
   .playmat-options button strong {
-    font-size: 9px;
+    font-size: var(--text-small);
     padding-inline: 5px;
   }
   .playmat-thumbnail {

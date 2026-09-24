@@ -1,4 +1,6 @@
 :root {
+  --text-small: 0.875rem;
+  --text-body: 1.125rem;
   --body: "Crimson Pro", "Times New Roman", serif;
   font-family: var(--body);
   color: #e9e7de;
@@ -138,7 +140,7 @@ button {
   gap: 0;
 }
 .brand-stars {
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 3px;
   white-space: nowrap;
 }
@@ -151,7 +153,7 @@ button {
 .brand small {
   display: block;
   font-family: var(--body);
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.3px;
   margin-top: 9px;
   white-space: nowrap;
@@ -172,7 +174,7 @@ button {
   flex: 1;
 }
 .nav-label {
-  font-size: 9px;
+  font-size: var(--text-small);
   letter-spacing: 2px;
   color: #8d9c8e;
   padding: 0 16px;
@@ -190,7 +192,7 @@ nav {
   padding: 14px 15px;
   background: transparent;
   text-align: left;
-  font-size: 12px;
+  font-size: var(--text-small);
   color: #aebbae;
   border: 1px solid transparent;
   border-radius: 6px;
@@ -227,13 +229,13 @@ nav {
   color: var(--gold);
 }
 .resume-side > span {
-  font-size: 11px;
+  font-size: var(--text-small);
   flex: 1;
 }
 .resume-side small {
   display: block;
   color: var(--muted);
-  font-size: 9px;
+  font-size: var(--text-small);
   margin-top: 5px;
 }
 .sidebar-bottom {
@@ -247,14 +249,14 @@ nav {
 }
 .sidebar-bottom p {
   font-family: var(--serif);
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.9;
   font-style: italic;
   color: #a9ad96;
   margin: 17px 0 34px;
 }
 .build-info {
-  font-size: 7px;
+  font-size: var(--text-small);
   letter-spacing: 1.2px;
   display: flex;
   align-items: center;
@@ -287,7 +289,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #829585;
 }
 .breadcrumbs strong {
@@ -303,7 +305,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #9da997;
   margin-right: 10px;
 }
@@ -330,7 +332,7 @@ nav {
   width: 29px;
   border-radius: 50%;
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .mobile-menu {
   display: none;
@@ -354,7 +356,7 @@ nav {
   color: #e1e6d9;
 }
 .page-heading p {
-  font-size: 11px;
+  font-size: var(--text-small);
   letter-spacing: 0.1px;
   margin-top: 10px;
 }
@@ -362,7 +364,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 2px;
   color: #a3a889;
 }
@@ -404,7 +406,7 @@ nav {
   z-index: 3;
 }
 .eyebrow {
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 2.6px;
   color: #d5c698;
   display: flex;
@@ -431,7 +433,7 @@ nav {
   color: #d6bd83;
 }
 .hero-copy p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.9;
   color: #c6ceba;
   letter-spacing: 0.15px;
@@ -446,7 +448,7 @@ nav {
   border: 1px solid #d0b475;
   border-radius: 5px;
   padding: 12px 21px;
-  font-size: 11px;
+  font-size: var(--text-small);
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
@@ -486,7 +488,7 @@ nav {
   gap: 8px;
   background: transparent;
   color: #ccceb3;
-  font-size: 9px;
+  font-size: var(--text-small);
   margin-top: 12px;
 }
 .hero-fan {
@@ -551,7 +553,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 7px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
   white-space: nowrap;
   justify-content: center;
@@ -576,7 +578,7 @@ nav {
   gap: 23px;
   padding: 0 28px;
   color: #c0c8b2;
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .hero-bottom > span {
   display: flex;
@@ -587,7 +589,7 @@ nav {
 .hero-bottom > span:first-child {
   color: #e3d8b6;
   margin-right: auto;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .hero-bottom svg {
   color: #c4b885;
@@ -632,7 +634,7 @@ nav {
   letter-spacing: 0.05px;
 }
 .section-line > span {
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #93a28d;
 }
 .journey-stages {
@@ -665,19 +667,19 @@ nav {
   color: #c4b079;
 }
 .journey-stage div > span {
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   color: #b1a782;
 }
 .journey-stage h4 {
   font-family: var(--serif);
-  font-size: 9px;
+  font-size: var(--text-small);
   margin: 5px 0;
   color: #d0d4c1;
   white-space: nowrap;
 }
 .journey-stage p {
-  font-size: 7px;
+  font-size: var(--text-small);
   white-space: nowrap;
   color: #94a18c;
 }
@@ -692,7 +694,7 @@ nav {
   gap: 7px;
   border: 0;
   background: transparent;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #c4bc92;
   text-decoration: none;
   padding: 0;
@@ -730,12 +732,12 @@ nav {
   left: -7%;
 }
 .fellowship-summary strong {
-  font-size: 11px;
+  font-size: var(--text-small);
   font-weight: 600;
   display: block;
 }
 .fellowship-summary span {
-  font-size: 8px;
+  font-size: var(--text-small);
   display: block;
   margin-top: 5px;
   color: #a3ad94;
@@ -746,7 +748,7 @@ nav {
   padding-top: 14px;
   display: flex;
   justify-content: space-between;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #a3ae95;
   gap: 10px;
 }
@@ -764,7 +766,7 @@ nav {
   justify-content: space-between;
   gap: 15px;
   margin-top: 23px;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #879782;
 }
 .lobby-footer > span {
@@ -774,7 +776,7 @@ nav {
 }
 .lobby-footer button {
   background: transparent;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #95a38e;
   display: flex;
   gap: 7px;
@@ -809,19 +811,19 @@ nav {
   background: none;
   border: 0;
   width: 100%;
-  font-size: 12px;
+  font-size: var(--text-small);
   padding: 14px 0;
   outline: none;
 }
 .library-toolbar select {
-  font-size: 11px;
+  font-size: var(--text-small);
   min-width: 140px;
 }
 .library-summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #a2ad98;
   margin: 23px 0;
 }
@@ -864,11 +866,11 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: 5px;
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-top: 11px;
 }
 .catalog-card small {
-  font-size: 8px;
+  font-size: var(--text-small);
   display: flex;
   gap: 5px;
   align-items: center;
@@ -883,7 +885,7 @@ nav {
   border-top: 1px solid var(--line);
   margin-top: 35px;
   padding-top: 20px;
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .library-source a {
   color: #c8ba8c;
@@ -899,7 +901,7 @@ nav {
 }
 .library-empty p {
   margin: 12px 0 25px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .sphere-leadership {
   color: #b99ac4;
@@ -954,11 +956,11 @@ nav {
   margin: 6px 0;
 }
 .hero-roster p {
-  font-size: 9px;
+  font-size: var(--text-small);
   line-height: 1.6;
 }
 .hero-roster span {
-  font-size: 8px;
+  font-size: var(--text-small);
   display: block;
   margin-top: 10px;
   color: #c5b989;
@@ -976,7 +978,7 @@ nav {
   font-size: 20px;
 }
 .deck-heading p {
-  font-size: 10px;
+  font-size: var(--text-small);
   margin-top: 7px;
 }
 .deck-heading > strong {
@@ -985,7 +987,7 @@ nav {
   color: var(--gold);
 }
 .deck-heading > strong > span {
-  font-size: 12px;
+  font-size: var(--text-small);
   color: #a0ad94;
 }
 .deck-list {
@@ -1018,11 +1020,11 @@ nav {
   border-radius: 3px;
 }
 .deck-card-link > span {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .deck-card-link small {
   display: block;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #9aa98f;
   margin-top: 5px;
   text-transform: capitalize;
@@ -1032,7 +1034,7 @@ nav {
   align-items: center;
   border: 1px solid var(--line);
   border-radius: 5px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .stepper > button {
   background: transparent;
@@ -1066,7 +1068,7 @@ nav {
   font-size: 24px;
 }
 .guide-intro p {
-  font-size: 12px;
+  font-size: var(--text-small);
   max-width: 650px;
   margin: 15px 0 20px;
 }
@@ -1088,7 +1090,7 @@ nav {
 .guide-number {
   color: #727e6b;
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: var(--text-small);
   margin-top: 4px;
 }
 .guide-steps h3 {
@@ -1096,7 +1098,7 @@ nav {
   margin-bottom: 10px;
 }
 .guide-steps p {
-  font-size: 11px;
+  font-size: var(--text-small);
   max-width: 430px;
 }
 .guide-note {
@@ -1109,7 +1111,7 @@ nav {
 }
 .guide-note p {
   max-width: 850px;
-  font-size: 12px;
+  font-size: var(--text-small);
   margin-top: 15px;
 }
 .guide-links {
@@ -1118,7 +1120,7 @@ nav {
   margin: 24px 0;
 }
 .guide-links a {
-  font-size: 11px;
+  font-size: var(--text-small);
   color: #c7bb8e;
   text-decoration: none;
   display: flex;
@@ -1129,7 +1131,7 @@ nav {
   width: 14px;
 }
 .guide-note .fine-print {
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #92a089;
 }
 .save-tools {
@@ -1167,7 +1169,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: var(--text-small);
   z-index: 150;
   color: #e3e4cf;
 }
@@ -1209,7 +1211,7 @@ nav {
   font-size: 21px;
 }
 .modal p {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .modal-actions {
   display: flex;
@@ -1232,7 +1234,7 @@ nav {
   align-items: center;
   gap: 8px;
   text-transform: capitalize;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #bdc3aa;
 }
 .card-detail h3 {
@@ -1240,7 +1242,7 @@ nav {
   margin: 17px 0 7px;
 }
 .card-detail .traits {
-  font-size: 10px;
+  font-size: var(--text-small);
   font-style: italic;
   color: #bdbb9f;
 }
@@ -1271,7 +1273,7 @@ nav {
   color: #d0ad96;
 }
 .source-note {
-  font-size: 9px;
+  font-size: var(--text-small);
   line-height: 1.9;
   color: #9eaa91;
   border-top: 1px solid var(--line);
@@ -1290,7 +1292,7 @@ nav {
   padding: 20px;
   border: 1px solid var(--gold);
   text-align: center;
-  font-size: 13px;
+  font-size: var(--text-small);
   color: #ece2bb;
 }
 .choice-list {
@@ -1308,7 +1310,7 @@ nav {
   border: 1px solid var(--line);
   background: #d2c19106;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: var(--text-small);
   min-height: 52px;
 }
 .choice-list > button > img {
@@ -1324,7 +1326,7 @@ nav {
   display: block;
   margin-top: 6px;
   color: #a6b698;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .choice-list > button:hover,
 .choice-list > button.selected {
@@ -1336,14 +1338,14 @@ nav {
 }
 .field-label {
   display: block;
-  font-size: 11px;
+  font-size: var(--text-small);
   margin-top: 22px;
 }
 .field-label select {
   display: block;
   width: 100%;
   margin-top: 8px;
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .payment-heading {
   font-size: 15px;
@@ -1361,7 +1363,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .payment-row small {
   color: #a0ad95;
@@ -1379,13 +1381,13 @@ nav {
 .combat-target small {
   display: block;
   font-family: var(--body);
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: #a9b59d;
   margin-top: 8px;
 }
 .undefended {
-  font-size: 10px;
+  font-size: var(--text-small);
   background: #ad765415;
   border: 1px solid #ad765455;
   padding: 14px;
@@ -1416,7 +1418,7 @@ nav {
   margin: 30px 0;
 }
 .endgame > div > span {
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #aab799;
 }
 .endgame strong {
@@ -1442,12 +1444,12 @@ nav {
   align-items: baseline;
 }
 .full-log > div > span {
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #8ca184;
   min-width: 25px;
 }
 .full-log p {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .full-log .good p {
   color: #b3c5a1;
@@ -1481,14 +1483,14 @@ nav {
   gap: 13px;
 }
 .save-status {
-  font-size: 8px;
+  font-size: var(--text-small);
   display: flex;
   align-items: center;
   gap: 5px;
   color: #a7bd99;
 }
 .compact {
-  font-size: 9px;
+  font-size: var(--text-small);
   min-height: 33px;
   padding: 8px 12px;
   gap: 7px;
@@ -1512,7 +1514,7 @@ nav {
   padding: 8px;
 }
 .round-number > span {
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   color: #a8ae91;
 }
@@ -1534,7 +1536,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #94a18a;
 }
 .phase-track > div > span {
@@ -1542,7 +1544,7 @@ nav {
   place-items: center;
   border: 1px solid #acb48b28;
   border-radius: 50%;
-  font-size: 8px;
+  font-size: var(--text-small);
   width: 19px;
   height: 19px;
 }
@@ -1568,7 +1570,7 @@ nav {
   font-size: 29px;
 }
 .threat-dial > span {
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
 }
 .threat-dial.danger {
@@ -1594,7 +1596,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 7px;
+  font-size: var(--text-small);
   color: #9dba99;
   letter-spacing: 1.1px;
   margin-bottom: 16px;
@@ -1606,12 +1608,12 @@ nav {
 }
 .zone-label > span:last-child {
   letter-spacing: 0.15px;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #92a18a;
 }
 .zone-label b {
   background: #b5c29517;
-  font-size: 8px;
+  font-size: var(--text-small);
   padding: 2px 5px;
   border-radius: 3px;
 }
@@ -1670,12 +1672,12 @@ nav {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #ded5b4;
   border: 1px solid #baae814a;
 }
 .board-card-name {
-  font-size: 8px;
+  font-size: var(--text-small);
   text-align: center;
   padding: 8px 4px 4px;
   min-height: 26px;
@@ -1685,7 +1687,7 @@ nav {
   display: flex;
   justify-content: center;
   gap: 8px;
-  font-size: 9px;
+  font-size: var(--text-small);
   padding: 5px 2px 10px;
   color: #cdcbae;
 }
@@ -1704,7 +1706,7 @@ nav {
   background: #b79c581a;
   padding: 7px 5px;
   border-top: 1px solid var(--line);
-  font-size: 8px;
+  font-size: var(--text-small);
   display: flex;
   gap: 7px;
   align-items: center;
@@ -1727,7 +1729,7 @@ nav {
   min-height: 120px;
   width: 100%;
   color: #90a083;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .empty-zone > svg {
   color: #617d61;
@@ -1759,7 +1761,7 @@ nav {
   flex: 1;
 }
 .quest-description > span {
-  font-size: 6px;
+  font-size: var(--text-small);
   color: #b2ac7e;
   letter-spacing: 1.5px;
 }
@@ -1769,7 +1771,7 @@ nav {
   margin: 5px 0 7px;
 }
 .quest-description p {
-  font-size: 8px;
+  font-size: var(--text-small);
   line-height: 1.7;
   color: #aab394;
   max-width: 370px;
@@ -1791,7 +1793,7 @@ nav {
   color: #a8ae8a;
 }
 .quest-progress > span {
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
   color: #98a381;
 }
@@ -1837,14 +1839,14 @@ nav {
   object-position: top;
 }
 .location-inline h3 {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .location-inline p {
-  font-size: 9px;
+  font-size: var(--text-small);
   margin: 5px 0;
 }
 .location-inline small {
-  font-size: 7px;
+  font-size: var(--text-small);
   color: #90a288;
 }
 .engaged-zone {
@@ -1920,7 +1922,7 @@ nav {
   background: #17271ae8;
   border: 1px solid #b9a06166;
   border-radius: 12px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #e6d099;
 }
 .quest-badge,
@@ -1931,7 +1933,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 3px;
-  font-size: 6px;
+  font-size: var(--text-small);
   text-transform: uppercase;
   letter-spacing: 0.4px;
   z-index: 2;
@@ -1953,7 +1955,7 @@ nav {
   width: 100%;
   padding: 7px 4px 4px;
   font-family: var(--serif);
-  font-size: 10px;
+  font-size: var(--text-small);
   background: transparent;
   color: #e5dbc0;
   white-space: nowrap;
@@ -1970,7 +1972,7 @@ nav {
   justify-content: center;
   gap: 9px;
   padding: 7px 2px 10px;
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .stat-row > span {
   display: flex;
@@ -1998,7 +2000,7 @@ nav {
   gap: 4px;
   align-items: center;
   justify-content: center;
-  font-size: 6px;
+  font-size: var(--text-small);
 }
 .abilities > button:hover {
   background: #b5a26322;
@@ -2018,7 +2020,7 @@ nav {
   color: #7e9878;
   margin: 0 0 0 2px;
   text-align: center;
-  font-size: 8px;
+  font-size: var(--text-small);
   line-height: 1.7;
 }
 .hand-zone {
@@ -2067,7 +2069,7 @@ nav {
   gap: 4px;
   align-items: center;
   justify-content: center;
-  font-size: 8px;
+  font-size: var(--text-small);
   background: #bdaa6514;
   color: #d4c797;
   width: 100%;
@@ -2079,7 +2081,7 @@ nav {
   height: 10px;
 }
 .hand-play span {
-  font-size: 7px;
+  font-size: var(--text-small);
 }
 .turn-panel {
   position: sticky;
@@ -2093,7 +2095,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.4px;
   color: #c0c69e;
 }
@@ -2104,7 +2106,7 @@ nav {
   margin: 14px 0 11px;
 }
 .turn-panel > p {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.9;
   color: #b2bea4;
   margin-bottom: 19px;
@@ -2112,7 +2114,7 @@ nav {
 .turn-panel > .primary,
 .turn-panel > .secondary {
   width: 100%;
-  font-size: 9px;
+  font-size: var(--text-small);
   gap: 8px;
   padding: 10px 8px;
   min-height: 38px;
@@ -2129,7 +2131,7 @@ nav {
   gap: 12px;
   padding: 15px;
   border: 1px solid var(--line);
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #c1b986;
   line-height: 1.7;
 }
@@ -2142,7 +2144,7 @@ nav {
 .last-reveal h3,
 .recent-log h3 {
   font-family: var(--body);
-  font-size: 8px;
+  font-size: var(--text-small);
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #a9b299;
@@ -2153,12 +2155,12 @@ nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 9px;
+  font-size: var(--text-small);
   margin: 11px 0;
 }
 .resource-pools > div > strong {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--text-small);
   color: #daca94;
   font-weight: 500;
 }
@@ -2187,7 +2189,7 @@ nav {
   border-radius: 4px;
 }
 .last-reveal > button > span {
-  font-size: 10px;
+  font-size: var(--text-small);
   font-family: var(--serif);
   color: #d9d4b4;
   line-height: 1.6;
@@ -2195,7 +2197,7 @@ nav {
 .last-reveal small {
   display: block;
   font-family: var(--body);
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #99ae8e;
   text-transform: capitalize;
   margin-top: 4px;
@@ -2205,7 +2207,7 @@ nav {
   align-items: center;
   gap: 5px;
   color: #c6b983;
-  font-size: 7px;
+  font-size: var(--text-small);
   font-family: var(--body);
   margin-top: 6px;
 }
@@ -2215,7 +2217,7 @@ nav {
   padding-top: 18px;
 }
 .recent-log > p {
-  font-size: 8px;
+  font-size: var(--text-small);
   border-left: 1px solid #a79f5838;
   padding-left: 9px;
   margin-top: 12px;
@@ -2232,7 +2234,7 @@ nav {
 }
 .export-link {
   margin-top: 22px;
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .quest-equation {
   display: flex;
@@ -2257,13 +2259,13 @@ nav {
 .quest-equation small {
   display: block;
   font-family: var(--body);
-  font-size: 7px;
+  font-size: var(--text-small);
   color: #a4b193;
   width: 100%;
   text-align: center;
 }
 .quest-equation .vs {
-  font-size: 9px;
+  font-size: var(--text-small);
   color: #879c7d;
 }
 .quest-result {
@@ -2278,16 +2280,16 @@ nav {
 }
 .quest-result > span {
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: var(--text-small);
   color: #c3cc9b;
 }
 .quest-result strong {
-  font-size: 8px;
+  font-size: var(--text-small);
   font-weight: 500;
   color: #c0c6aa;
 }
 .quest-result small {
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #a2b18b;
 }
 .quest-result.failure > span {
@@ -2313,13 +2315,13 @@ nav {
     grid-template-columns: 1.5fr 1fr;
   }
   .journey-stage h4 {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .journey-stage p {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .journey-stage div > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .table-layout {
     grid-template-columns: minmax(0, 1fr) 270px;
@@ -2340,7 +2342,7 @@ nav {
     width: 107px;
   }
   .turn-panel > p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
 }
 @media (max-width: 1250px) {
@@ -2362,7 +2364,7 @@ nav {
     width: 31px;
   }
   .brand small {
-    font-size: 5px;
+    font-size: var(--text-small);
   }
   .main-shell {
     margin-left: 190px;
@@ -2399,13 +2401,13 @@ nav {
     justify-content: space-around;
   }
   .journey-stage h4 {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .journey-stage p {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .journey-stage div > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .stage-chevron {
     right: -45px;
@@ -2456,13 +2458,13 @@ nav {
     gap: 14px;
   }
   .phase-track > div {
-    font-size: 7px;
+    font-size: var(--text-small);
     gap: 4px;
   }
   .phase-track > div > span {
     width: 16px;
     height: 16px;
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .phase-track {
     padding: 0 8px;
@@ -2507,7 +2509,7 @@ nav {
     font-size: 14px;
   }
   .quest-description p {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .quest-marker {
     width: 32px;
@@ -2520,7 +2522,7 @@ nav {
     width: 53px;
   }
   .quest-description > span {
-    font-size: 5px;
+    font-size: var(--text-small);
   }
   .hand-card {
     width: 82px;
@@ -2533,10 +2535,10 @@ nav {
     max-width: 90px;
   }
   .character-name {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .board-card-name {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .enemy-stats {
     gap: 6px;
@@ -2563,7 +2565,7 @@ nav {
     width: 29px;
   }
   .nav-item {
-    font-size: 11px;
+    font-size: var(--text-small);
     gap: 10px;
     padding-inline: 10px;
   }
@@ -2599,7 +2601,7 @@ nav {
     height: 215px;
   }
   .hero-copy p {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .adventure-hero {
     min-height: 460px;
@@ -2609,16 +2611,16 @@ nav {
     padding: 0 20px;
   }
   .hero-bottom > span:first-child {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .hero-bottom > span {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .hero-bottom .difficulty {
     display: none;
   }
   .hero-fan .fan-caption {
-    font-size: 5px;
+    font-size: var(--text-small);
     gap: 7px;
     letter-spacing: 0.7px;
     top: 94%;
@@ -2681,7 +2683,7 @@ nav {
     margin-bottom: 0;
     max-width: 430px;
     grid-column: 1;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .turn-panel > .primary,
   .turn-panel > .secondary,
@@ -2768,7 +2770,7 @@ nav {
     font-size: 17px;
   }
   .quest-description p {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
 }
 @media (max-width: 767px) {
@@ -2791,7 +2793,7 @@ nav {
     width: 36px;
   }
   .sidebar .brand small {
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .main-shell {
     margin-left: 0;
@@ -2805,7 +2807,7 @@ nav {
   }
   .breadcrumbs {
     gap: 8px;
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .breadcrumbs > span {
     display: none;
@@ -2819,7 +2821,7 @@ nav {
   .profile {
     height: 25px;
     width: 25px;
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .top-tools .icon-button {
     padding: 5px;
@@ -2835,7 +2837,7 @@ nav {
     font-size: 23px;
   }
   .page-heading p {
-    font-size: 10px;
+    font-size: var(--text-small);
     line-height: 1.8;
     max-width: 270px;
   }
@@ -2853,17 +2855,17 @@ nav {
     line-height: 1.18;
   }
   .hero-copy p {
-    font-size: 10px;
+    font-size: var(--text-small);
     max-width: 270px;
     line-height: 1.8;
   }
   .eyebrow {
-    font-size: 6px;
+    font-size: var(--text-small);
     letter-spacing: 2px;
   }
   .hero-cta {
     margin-top: 21px;
-    font-size: 10px;
+    font-size: var(--text-small);
     padding: 10px 18px;
     min-height: 41px;
     min-width: 160px;
@@ -2908,11 +2910,11 @@ nav {
     min-height: 45px;
   }
   .hero-bottom > span:first-child {
-    font-size: 7px;
+    font-size: var(--text-small);
     margin-right: auto;
   }
   .hero-bottom > span {
-    font-size: 7px;
+    font-size: var(--text-small);
     gap: 4px;
   }
   .hero-bottom svg {
@@ -2930,7 +2932,7 @@ nav {
     padding: 19px;
   }
   .section-line h3 {
-    font-size: 13px;
+    font-size: var(--text-small);
   }
   .journey-stages {
     gap: 18px;
@@ -2945,19 +2947,19 @@ nav {
     min-width: 0;
   }
   .journey-stage h4 {
-    font-size: 8px;
+    font-size: var(--text-small);
     white-space: normal;
     line-height: 1.6;
     min-height: 26px;
     margin: 5px 0 2px;
   }
   .journey-stage p {
-    font-size: 7px;
+    font-size: var(--text-small);
     white-space: normal;
     line-height: 1.7;
   }
   .journey-stage div > span {
-    font-size: 5px;
+    font-size: var(--text-small);
   }
   .stage-emblem {
     width: 32px;
@@ -2972,21 +2974,21 @@ nav {
     width: 10px;
   }
   .fellowship-summary strong {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .fellowship-summary span {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .fellowship-foot {
-    font-size: 7px;
+    font-size: var(--text-small);
     margin-top: 20px;
   }
   .lobby-footer {
     margin-top: 20px;
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .lobby-footer button {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .hero-roster {
     grid-template-columns: 1fr;
@@ -3006,13 +3008,13 @@ nav {
   }
   .hero-roster p {
     min-height: 0;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .hero-roster h2 {
     font-size: 17px;
   }
   .hero-roster span {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .deck-list {
     grid-template-columns: 1fr;
@@ -3021,7 +3023,7 @@ nav {
     font-size: 18px;
   }
   .deck-heading p {
-    font-size: 9px;
+    font-size: var(--text-small);
     max-width: 220px;
   }
   .deck-heading > strong {
@@ -3029,32 +3031,32 @@ nav {
     white-space: nowrap;
   }
   .deck-heading > strong > span {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 23px 16px;
   }
   .catalog-card > div {
-    font-size: 10px;
+    font-size: var(--text-small);
     align-items: flex-start;
   }
   .catalog-card small {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .library-summary {
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 10px;
   }
   .library-toolbar select {
     min-width: 0;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .library .page-heading h1 {
     font-size: 21px;
   }
   .library .page-heading .secondary {
-    font-size: 9px;
+    font-size: var(--text-small);
     padding: 9px 13px;
     min-height: 36px;
   }
@@ -3069,7 +3071,7 @@ nav {
     font-size: 20px;
   }
   .guide-intro p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .guide-steps {
     grid-template-columns: 1fr;
@@ -3080,7 +3082,7 @@ nav {
     padding: 20px 0;
   }
   .guide-steps p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .guide-links {
     flex-direction: column;
@@ -3097,7 +3099,7 @@ nav {
     font-size: 21px;
   }
   .guide-note p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .modal {
     padding: 20px;
@@ -3120,14 +3122,14 @@ nav {
     flex-wrap: wrap;
   }
   .choice-list > button {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .payment-row > span {
-    font-size: 9px;
+    font-size: var(--text-small);
     gap: 5px;
   }
   .payment-row small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .table-page {
     padding: 20px 12px;
@@ -3138,12 +3140,12 @@ nav {
     margin-bottom: 18px;
   }
   .table-heading h1 {
-    font-size: 13px;
+    font-size: var(--text-small);
     max-width: 220px;
     line-height: 1.6;
   }
   .table-heading .text-link {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .table-tools .compact {
     font-size: 0;
@@ -3158,20 +3160,20 @@ nav {
     overflow: auto;
   }
   .phase-track > div {
-    font-size: 5px;
+    font-size: var(--text-small);
     gap: 5px;
   }
   .phase-track > div > span {
     width: 15px;
     height: 15px;
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .round-number {
     min-width: 37px;
     padding: 7px 4px;
   }
   .round-number > span {
-    font-size: 5px;
+    font-size: var(--text-small);
     letter-spacing: 0.8px;
   }
   .round-number strong {
@@ -3200,7 +3202,7 @@ nav {
     font-size: 17px;
   }
   .turn-panel > p {
-    font-size: 9px;
+    font-size: var(--text-small);
     max-width: none;
     grid-column: 1;
     margin-bottom: 8px;
@@ -3212,7 +3214,7 @@ nav {
     grid-row: auto;
     width: 100%;
     min-height: 38px;
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .turn-panel > .secondary {
     margin-top: 2px;
@@ -3230,13 +3232,13 @@ nav {
     margin-top: 10px;
   }
   .quest-result strong {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .quest-result small {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .quest-result > span {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .board-card {
     width: 95px;
@@ -3250,7 +3252,7 @@ nav {
     padding: 16px 12px;
   }
   .zone-label {
-    font-size: 6px;
+    font-size: var(--text-small);
     gap: 7px;
     letter-spacing: 0.7px;
   }
@@ -3258,7 +3260,7 @@ nav {
     width: 13px;
   }
   .zone-label > span:last-child {
-    font-size: 6px;
+    font-size: var(--text-small);
     text-align: right;
     gap: 5px;
   }
@@ -3266,10 +3268,10 @@ nav {
     gap: 9px;
   }
   .board-card-name {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .enemy-stats {
-    font-size: 8px;
+    font-size: var(--text-small);
     gap: 6px;
   }
   .enemy-stats svg {
@@ -3288,14 +3290,14 @@ nav {
     width: 17px;
   }
   .quest-description h2 {
-    font-size: 12px;
+    font-size: var(--text-small);
     margin: 5px 0;
   }
   .quest-description p {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .quest-description > span {
-    font-size: 4px;
+    font-size: var(--text-small);
     letter-spacing: 1px;
   }
   .quest-progress {
@@ -3305,10 +3307,10 @@ nav {
     font-size: 20px;
   }
   .quest-progress small {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .quest-progress > span {
-    font-size: 5px;
+    font-size: var(--text-small);
   }
   .character-row {
     gap: 8px;
@@ -3320,7 +3322,7 @@ nav {
     height: clamp(100px, 32vw, 160px);
   }
   .character-name {
-    font-size: 8px;
+    font-size: var(--text-small);
     gap: 3px;
   }
   .character-name > svg:first-child {
@@ -3331,7 +3333,7 @@ nav {
   }
   .stat-row {
     gap: 7px;
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .stat-row svg {
     width: 9px;
@@ -3340,14 +3342,14 @@ nav {
     gap: 2px;
   }
   .resource-token {
-    font-size: 9px;
+    font-size: var(--text-small);
     bottom: 3px;
   }
   .resource-token svg {
     width: 10px;
   }
   .abilities > button {
-    font-size: 5.5px;
+    font-size: var(--text-small);
     padding: 6px 2px;
     gap: 3px;
   }
@@ -3368,7 +3370,7 @@ nav {
     width: 14px;
   }
   .ally-placeholder span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .hand-card {
     width: 91px;
@@ -3393,10 +3395,10 @@ nav {
     width: 48px;
   }
   .location-inline h3 {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .location-inline small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .endgame h2 {
     font-size: 22px;
@@ -3405,7 +3407,7 @@ nav {
     gap: 28px;
   }
   .toast {
-    font-size: 10px;
+    font-size: var(--text-small);
     width: calc(100vw - 32px);
     bottom: 17px;
     padding: 14px;
@@ -3429,7 +3431,7 @@ nav {
 .starter-select {
   display: block;
   margin-top: 24px;
-  font-size: 6px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   color: #b7be9f;
 }
@@ -3438,7 +3440,7 @@ nav {
   margin-top: 8px;
   background: #0b1b16ba;
   border-color: #bea97155;
-  font-size: 10px;
+  font-size: var(--text-small);
   padding: 10px 12px;
   max-width: 270px;
   width: 100%;
@@ -3488,7 +3490,7 @@ nav {
   text-transform: uppercase;
   letter-spacing: 1.7px;
   color: #b9bf9f;
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .starter-option > h2 {
   font-size: 18px;
@@ -3497,7 +3499,7 @@ nav {
   min-height: 54px;
 }
 .starter-option > p {
-  font-size: 10px;
+  font-size: var(--text-small);
   line-height: 1.8;
   min-height: 54px;
 }
@@ -3505,7 +3507,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 8px;
+  font-size: var(--text-small);
   color: #b9c39f;
   border-top: 1px solid var(--line);
   padding-top: 14px;
@@ -3514,7 +3516,7 @@ nav {
 .deck-quantity {
   min-width: 36px;
   text-align: center;
-  font-size: 12px;
+  font-size: var(--text-small);
   color: var(--gold);
   padding: 8px;
   border: 1px solid var(--line);
@@ -3559,7 +3561,7 @@ nav {
   }
   .starter-select select {
     max-width: 245px;
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .hero-cta {
     margin-top: 15px;
@@ -3577,20 +3579,20 @@ nav {
     margin-bottom: 15px;
   }
   .starter-option > p {
-    font-size: 9px;
+    font-size: var(--text-small);
     min-height: 64px;
   }
   .starter-option > span {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .starter-option > small {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .starter-grid {
     gap: 12px;
   }
   .fellowship-mini .section-line .text-link {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
 }
 
@@ -3599,87 +3601,87 @@ nav {
   letter-spacing: 0.7px;
 }
 .nav-item {
-  font-size: 13px;
+  font-size: var(--text-small);
 }
 .zone-label {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .zone-label > span:last-child {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .turn-panel > p {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .turn-panel > .primary,
 .turn-panel > .secondary {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .recent-log > p {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .resource-pools > div {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .board-card-name {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .character-name {
-  font-size: 11px;
+  font-size: var(--text-small);
 }
 .stat-row {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .hand-play {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .hand-play span {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .abilities > button {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .section-line h3 {
   font-size: 15px;
 }
 .journey-stage h4 {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .journey-stage p {
-  font-size: 8px;
+  font-size: var(--text-small);
 }
 .fellowship-summary strong {
-  font-size: 12px;
+  font-size: var(--text-small);
 }
 .fellowship-summary span {
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 @media (max-width: 767px) {
   .zone-label {
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .zone-label > span:last-child {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
   .board-card-name {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .character-name {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .stat-row {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .abilities > button {
-    font-size: 6px;
+    font-size: var(--text-small);
   }
   .journey-stage h4 {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .turn-panel > p {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .journey-stage p {
-    font-size: 7px;
+    font-size: var(--text-small);
   }
 }
 .deck-card-link > .art-fallback {
@@ -3701,7 +3703,7 @@ nav {
   height: 100%;
   min-height: 0;
   padding: 8px;
-  font-size: 9px;
+  font-size: var(--text-small);
 }
 .character-art > .art-fallback svg,
 .board-card-art > .art-fallback svg {
@@ -3740,7 +3742,7 @@ nav {
 .mode-selection > p {
   max-width: 460px;
   color: var(--muted, #92a094);
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.8;
   margin: 0;
 }
@@ -3772,7 +3774,7 @@ nav {
   display: block;
   margin-top: 5px;
   color: #a0a697;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .mission-selection {
   display: grid;
@@ -3818,7 +3820,7 @@ nav {
 }
 .mission-card small {
   display: block;
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   color: #9ba48f;
 }
@@ -3831,7 +3833,7 @@ nav {
 .mission-card em {
   display: block;
   font-style: normal;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #8c9c8d;
 }
 .adventure-anduin .forest-bg {
@@ -3871,15 +3873,15 @@ nav {
 .campaign-journal li > span {
   width: 23px;
   flex-shrink: 0;
-  font: 13px var(--serif);
+  font: var(--text-small) var(--serif);
 }
 .campaign-journal li strong {
   flex: 1;
-  font-size: 12px;
+  font-size: var(--text-small);
   font-weight: 500;
 }
 .campaign-journal li small {
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .campaign-journal li.complete,
 .campaign-journal li.current {
@@ -3894,13 +3896,13 @@ nav {
 .campaign-pool > div > span {
   display: block;
   color: #b3a371;
-  font-size: 8px;
+  font-size: var(--text-small);
   letter-spacing: 1.5px;
   margin: 7px 0;
 }
 .campaign-pool small {
   color: #8e9a89;
-  font-size: 10px;
+  font-size: var(--text-small);
 }
 .campaign-pool button {
   display: inline-flex;
@@ -3908,7 +3910,7 @@ nav {
   align-items: center;
   padding: 6px 0;
   margin-right: 12px;
-  font-size: 11px;
+  font-size: var(--text-small);
   background: transparent;
   border: 0;
   color: #dbd7bf;
@@ -3917,7 +3919,7 @@ nav {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-size: 10px;
+  font-size: var(--text-small);
   color: #9ca88f;
   margin-top: 18px;
   padding-top: 14px;
@@ -3929,7 +3931,7 @@ nav {
   margin-left: 7px;
 }
 .campaign-note {
-  font-size: 12px;
+  font-size: var(--text-small);
   color: #a2ae97;
   line-height: 1.7;
 }
@@ -3951,7 +3953,7 @@ nav {
   font: 15px var(--serif);
 }
 .prisoner-banner p {
-  font-size: 11px;
+  font-size: var(--text-small);
   line-height: 1.6;
   margin: 6px 0 0;
   color: #baa88b;
@@ -3960,7 +3962,7 @@ nav {
   display: block;
   margin-top: 6px;
   color: #a59b72;
-  font-size: 10px;
+  font-size: var(--text-small);
   letter-spacing: 1px;
 }
 .interlude-heroes {
@@ -3973,7 +3975,7 @@ nav {
   gap: 10px;
   margin: 20px 0;
   color: #c6cbbb;
-  font-size: 12px;
+  font-size: var(--text-small);
   line-height: 1.5;
 }
 .support-toggle input {
@@ -4006,13 +4008,13 @@ nav {
     padding: 11px 10px;
     gap: 8px;
     flex: 1;
-    font-size: 12px;
+    font-size: var(--text-small);
   }
   .mode-tabs button small {
-    font-size: 8px;
+    font-size: var(--text-small);
   }
   .mode-selection > p {
-    font-size: 11px;
+    font-size: var(--text-small);
   }
   .mission-selection {
     grid-template-columns: 1fr;
@@ -4022,7 +4024,7 @@ nav {
     min-height: 77px;
   }
   .mission-card strong {
-    font-size: 13px;
+    font-size: var(--text-small);
     margin: 6px 0 0;
   }
   .mission-number {
@@ -4038,10 +4040,10 @@ nav {
     gap: 8px;
   }
   .campaign-journal li strong {
-    font-size: 10px;
+    font-size: var(--text-small);
   }
   .campaign-journal li small {
-    font-size: 9px;
+    font-size: var(--text-small);
   }
   .campaign-pool {
     gap: 10px;
@@ -4055,6 +4057,6 @@ nav {
     padding: 14px;
   }
   .prisoner-banner strong {
-    font-size: 12px;
+    font-size: var(--text-small);
   }
 }
