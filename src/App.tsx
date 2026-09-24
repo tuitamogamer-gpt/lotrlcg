@@ -128,9 +128,9 @@ import {
   ShadowCards,
   TableDecks,
   TableToken,
-  ThreatCounter,
   questFace,
 } from "./ui/tabletop";
+import { ThreatCounter } from "./ui/threat";
 import { TableCollection, PLAYMATS, PLAYMAT_CHOICES } from "./ui/premium";
 
 const SAVE_KEY = "there-and-back-again.save.v1",

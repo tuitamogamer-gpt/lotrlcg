@@ -2,7 +2,6 @@ import {
   Coins,
   Compass,
   Crown,
-  Eye,
   Heart,
   Leaf,
   Stack,
@@ -227,36 +226,6 @@ export function TableDecks({
         <span>Discard pile</span>
       </button>
     </aside>
-  );
-}
-
-export function ThreatCounter({ s }: { s: GameState }) {
-  const digits = String(s.threat).padStart(2, "0").split("");
-  return (
-    <div
-      className={`physical-threat ${s.threat >= 40 ? "danger" : ""}`}
-      role="meter"
-      aria-label="Threat level"
-      aria-valuenow={s.threat}
-      aria-valuemin={0}
-      aria-valuemax={50}
-    >
-      <div className="threat-counter-heading">
-        <Eye size={13} /> THREAT LEVEL
-      </div>
-      <div className="threat-wheels" aria-hidden="true">
-        {digits.map((n, i) => (
-          <div className="threat-wheel" key={i}>
-            <small>{(Number(n) + 9) % 10}</small>
-            <strong>
-              <AnimatedNumber value={Number(n)} />
-            </strong>
-            <small>{(Number(n) + 1) % 10}</small>
-          </div>
-        ))}
-      </div>
-      <span>50 ends this fellowship’s journey</span>
-    </div>
   );
 }
 

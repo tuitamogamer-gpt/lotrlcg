@@ -20,7 +20,8 @@
     "test:pacing": "tsx scripts/browser-presentation-fixtures.ts && node scripts/browser-presentation.mjs",
     "test:rules-browser": "tsx scripts/browser-rules-fixtures.ts && node scripts/browser-rules.mjs",
     "test:decisions": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-decisions.mjs",
-    "test:motion": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-motion.mjs"
+    "test:motion": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-motion.mjs",
+    "test:threat": "tsx scripts/browser-threat.ts"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",

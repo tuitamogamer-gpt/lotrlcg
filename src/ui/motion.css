@@ -171,10 +171,6 @@
 .table-shadows > .table-card-back:nth-child(3) {
   animation-delay: 130ms;
 }
-.threat-wheel {
-  overflow: hidden;
-}
-
 .redbook .lobby,
 .redbook .content-page,
 .redbook .table-heading {

@@ -1,0 +1,15 @@
+# Illustrated threat tracker
+
+The physical reference is page 3 of the [Fantasy Flight Games Core Set rulebook](https://www.fantasyflightgames.com/ffg_content/lotr-lcg/LOTR%20Rules.pdf): two numbered discs mounted beneath a faceplate with an Eye motif. This adaptation retains two readable digit windows, engraved rotating rings, an illustrated plate and the Core Set elimination threshold of 50.
+
+The component only reads the current player's threat. The rules engine still owns every change, elimination and save. Numeric values update accessibly as soon as the rules state changes; ring and numeral animations are cosmetic. Disc rotation follows the complete value at each decimal place so 29 to 30 rotates both discs forward and reductions turn backwards. Changing player or adventure resets animation history. At 40 the tracker uses a warmer rim and subtle embers; at 45 its glow deepens. These are visual warnings, not additional rules. Reduced motion disables all movement, particles and visual change flashes.
+
+Artwork: [threat-faceplate.webp](../public/art/premium/threat-faceplate.webp), 768 × 512, approximately 91 KiB. Generated using the built-in image_gen tool on 2026-09-24, then resized and encoded as WebP. It is original fan-project art, not a scan of the official component. All numbers and rings are live HTML/SVG, and the image is served locally with the app.
+
+The browser check is `npm run test:threat`. It uses legal saved-game fixtures and actual game buttons to check refresh increases, decimal rollover, a paid Galadhrim's Greeting reduction, elimination, zero, save/reload, seat switching, reduced motion, decoded artwork and five viewport sizes. Evidence is saved under the ignored `output/threat/` directory.
+
+## Generation prompt
+
+Use case: stylized-concept.
+Asset type: background artwork for a small physical two-dial threat tracker in a Lord of the Rings inspired fantasy card game UI.
+Create one front-on, flat rectangular illustration, landscape 3:2 ratio. Original finely painted collectible board game component artwork: a fiery lidless amber eye with a vertical dark pupil at EXACT horizontal center, in the UPPER THIRD of the image (center x=50%, y=26%). Eye is wide and clearly legible, about 34% of the canvas width. Subtle licking copper flames curl outward from the eye. Behind it are dark charcoal volcanic stone, embossed aged bronze filigree and smoky mountainous shadows. Thin tarnished bronze ornamental edging and engraved thorn-like interlace near the corners. Palette obsidian, weathered charcoal, rich oxblood and antique copper with restrained ember gold light. Tactile printed board surface with fine grain, painterly high-fantasy detail, premium and sinister. LOWER HALF MUST BE QUIET dark worn stone with very low contrast, because TWO LIVE HTML NUMBERED DISCS will be placed over it. Do not draw the discs, numbers, holes or UI. Full bleed artwork, not a photograph of a product; no table or surroundings. No text, letters, runes, numbers, logos, words, watermark, hands or people. No perspective. Match a dark green, parchment and antique brass tabletop aesthetic.

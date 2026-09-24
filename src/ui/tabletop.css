@@ -929,70 +929,6 @@
   color: #829873;
 }
 
-/* A two-wheel threat counter, inspired by the physical cardboard component. */
-.physical-threat {
-  padding: 0 0 16px;
-  margin-bottom: 17px;
-  border-bottom: 1px solid #ab956642;
-  text-align: center;
-}
-.threat-counter-heading {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
-  letter-spacing: 1.5px;
-  font-size: 8px;
-  color: #bfaa83;
-}
-.threat-wheels {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  width: 145px;
-  padding: 8px 14px;
-  margin: 8px auto;
-  border: 3px double #b3935c;
-  border-radius: 40%;
-  background: radial-gradient(ellipse, #684735, #38291e);
-  box-shadow:
-    0 3px 7px #0006,
-    inset 0 0 16px #0005;
-}
-.threat-wheel {
-  width: 47px;
-  height: 59px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  border-radius: 50%;
-  background: #1d221a;
-  border: 1px solid #958562;
-  box-shadow: inset 0 2px 7px #000a;
-}
-.threat-wheel strong {
-  font: 500 34px/1 var(--serif);
-  color: #f1dfb4;
-  font-variant-numeric: tabular-nums;
-}
-.threat-wheel small {
-  font-size: 8px;
-  line-height: 1;
-  color: #77765a;
-}
-.physical-threat > span {
-  font-size: 8px;
-  color: #ad9978;
-}
-.physical-threat.danger .threat-wheels {
-  background: #692f22;
-  border-color: #d59169;
-}
-.physical-threat.danger .threat-wheel strong {
-  color: #ffd1ae;
-}
 .redbook .table-page .turn-panel {
   background: linear-gradient(140deg, #342e23, #24271e);
   border: 1px solid #a790604f;
@@ -1335,22 +1271,6 @@
     font-size: 7px;
     min-height: 23px;
   }
-  .physical-threat {
-    padding-bottom: 10px;
-    margin-bottom: 11px;
-  }
-  .threat-wheels {
-    margin: 6px auto;
-    padding: 4px 10px;
-    width: 126px;
-  }
-  .threat-wheel {
-    height: 48px;
-    width: 42px;
-  }
-  .threat-wheel strong {
-    font-size: 27px;
-  }
   .redbook .table-page .turn-panel h2 {
     font-size: 18px;
   }
@@ -1490,9 +1410,6 @@
   }
   .redbook .table-page .turn-panel {
     padding: 20px;
-  }
-  .redbook .table-page .physical-threat {
-    display: none;
   }
 }
 @media (max-width: 599px) {
