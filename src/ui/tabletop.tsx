@@ -13,6 +13,8 @@ import { card, imageUrl, name } from "../game/cards";
 import { stageInfo } from "../game/engine";
 import { activeSeat, seatIndices, seatName, seatView } from "../game/table";
 import { QuestGoals } from "./experience";
+import { motion, useReducedMotion } from "motion/react";
+import { AnimatedNumber, CountChange, tableSpring } from "./motion";
 
 // Presentation only: the engine remains the source of every count and action.
 export function questFace(s: GameState) {
@@ -50,7 +52,10 @@ export function TableToken({
       aria-label={`${value} ${label}`}
     >
       <Icon weight="fill" size={11} aria-hidden="true" />
-      <b>{value}</b>
+      <b>
+        <AnimatedNumber value={value} />
+      </b>
+      <CountChange value={value} />
     </span>
   );
 }
@@ -65,12 +70,14 @@ export function JourneyArea({
   inspectQuest: () => void;
 }) {
   const q = stageInfo(s);
+  const reduced = useReducedMotion();
   return (
     <aside className="journey-area" aria-label="Quest and active location">
       <div className="tabletop-label">
         <Compass size={13} /> THE JOURNEY <span>{s.stage} / 3</span>
       </div>
       <button
+        key={questFace(s)}
         className="quest-card-stack"
         onClick={inspectQuest}
         aria-label={`Inspect quest: ${q.name}`}
@@ -91,7 +98,24 @@ export function JourneyArea({
           <b>{q.quest ? `${s.progress} / ${q.quest}` : "Special objective"}</b>
           <span>Quest progress</span>
         </div>
-        {q.quest > 0 && <progress value={s.progress} max={q.quest} />}
+        {q.quest > 0 && (
+          <div
+            className="quest-progress-track"
+            role="progressbar"
+            aria-label="Quest progress"
+            aria-valuenow={s.progress}
+            aria-valuemin={0}
+            aria-valuemax={q.quest}
+          >
+            <motion.span
+              initial={false}
+              animate={{ scaleX: Math.min(1, s.progress / q.quest) }}
+              transition={
+                reduced ? { duration: 0 } : { duration: 0.65, ease: "easeOut" }
+              }
+            />
+          </div>
+        )}
       </div>
       <QuestGoals s={s} />
       <div className="tabletop-location">
@@ -100,7 +124,9 @@ export function JourneyArea({
         </div>
         {s.activeLocation ? (
           <>
-            <button
+            <motion.button
+              layoutId={reduced ? undefined : `card-${s.activeLocation.id}`}
+              transition={reduced ? { duration: 0 } : tableSpring}
               className="location-card"
               onClick={() => inspect(card(s.activeLocation!.code))}
               aria-label={`Inspect active location: ${name(s.activeLocation)}`}
@@ -111,7 +137,7 @@ export function JourneyArea({
                 data-card-code={s.activeLocation.code}
               />
               <TableToken kind="progress" value={s.activeLocation.progress} />
-            </button>
+            </motion.button>
             <strong>{name(s.activeLocation)}</strong>
             <span>
               {s.activeLocation.progress} / {card(s.activeLocation.code).quest}{" "}
@@ -174,7 +200,9 @@ export function TableDecks({
           aria-label={`${count} cards in ${kind} deck`}
         >
           {count ? <CardBack encounter={encounter} /> : <Stack size={24} />}
-          <b className="deck-count">{count}</b>
+          <b className="deck-count">
+            <AnimatedNumber value={count} />
+          </b>
         </div>
         <span>{encounter ? "Encounter deck" : "Your deck"}</span>
       </div>
@@ -185,11 +213,17 @@ export function TableDecks({
       >
         <span className="discard-card">
           {top ? (
-            <img src={imageUrl(card(top))} alt={card(top).name} />
+            <img
+              key={`${top}-${discard.length}`}
+              src={imageUrl(card(top))}
+              alt={card(top).name}
+            />
           ) : (
             <Stack size={21} weight="thin" />
           )}
-          <b className="deck-count">{discard.length}</b>
+          <b className="deck-count">
+            <AnimatedNumber value={discard.length} />
+          </b>
         </span>
         <span>Discard pile</span>
       </button>
@@ -215,7 +249,9 @@ export function ThreatCounter({ s }: { s: GameState }) {
         {digits.map((n, i) => (
           <div className="threat-wheel" key={i}>
             <small>{(Number(n) + 9) % 10}</small>
-            <strong>{n}</strong>
+            <strong>
+              <AnimatedNumber value={Number(n)} />
+            </strong>
             <small>{(Number(n) + 1) % 10}</small>
           </div>
         ))}
@@ -232,11 +268,14 @@ export function AttachmentStack({
   u: Unit;
   inspect: (c: Card) => void;
 }) {
+  const reduced = useReducedMotion();
   if (!u.attachments.length) return null;
   return (
     <div className="table-attachments" aria-label={`Attachments on ${name(u)}`}>
       {u.attachments.map((a) => (
-        <button
+        <motion.button
+          layoutId={reduced ? undefined : `card-${a.id}`}
+          transition={reduced ? { duration: 0 } : tableSpring}
           key={a.id}
           className={a.exhausted ? "attachment-exhausted" : ""}
           onClick={() => inspect(card(a.code))}
@@ -249,7 +288,7 @@ export function AttachmentStack({
             alt={card(a.code).name}
           />
           <span>{card(a.code).name}</span>
-        </button>
+        </motion.button>
       ))}
     </div>
   );

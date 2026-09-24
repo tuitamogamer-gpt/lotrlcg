@@ -1,0 +1,402 @@
+/* Motion follows player actions. Nothing here advances or dismisses an event. */
+:root {
+  --table-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --table-settle: 460ms var(--table-ease);
+}
+
+.animated-number,
+.animated-number > span {
+  position: relative;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+.animated-number {
+  white-space: nowrap;
+}
+.table-token {
+  position: relative;
+}
+.count-change {
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  z-index: 10;
+  pointer-events: none;
+  font: 700 13px/1 var(--sans);
+  font-style: normal;
+  color: #ffdf92;
+  text-shadow:
+    0 1px 4px #161d14,
+    0 0 7px #161d14;
+}
+.token-damage .count-up {
+  color: #ffa38e;
+}
+.token-damage .count-down,
+.token-progress .count-up {
+  color: #d1efae;
+}
+.token-resource .count-down {
+  color: #ebc9a0;
+}
+
+.redbook .gameboard .hand-cards {
+  position: relative;
+}
+.redbook [data-motion-card][inert] {
+  pointer-events: none;
+}
+.redbook .gameboard .character-art {
+  transition:
+    width var(--table-settle),
+    box-shadow 250ms ease,
+    transform 250ms var(--table-ease);
+}
+.redbook .gameboard .character-art > img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--table-card-width);
+  height: var(--table-card-height);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition:
+    transform 520ms var(--table-ease),
+    filter 350ms ease;
+}
+.redbook .gameboard .character-card.committed .character-art {
+  box-shadow:
+    0 0 0 2px #d7c887,
+    0 0 22px #d6c57438,
+    2px 5px 10px #0006;
+}
+.redbook .gameboard .character-card.exhausted .character-art {
+  box-shadow: none;
+}
+.redbook .gameboard .character-card.committed .quest-badge,
+.redbook .gameboard .exhausted-badge,
+.decision-check {
+  animation: token-arrive 320ms var(--table-ease) both;
+}
+.redbook .gameboard .table-token {
+  animation: token-arrive 380ms var(--table-ease) both;
+}
+.table-attachments > button,
+.companion-art > img {
+  transition:
+    transform var(--table-settle),
+    box-shadow 220ms ease,
+    filter 250ms ease;
+}
+.redbook .gameboard .hand-art,
+.redbook .gameboard .board-card-art,
+.quest-card-stack,
+.location-card {
+  transition:
+    transform 280ms var(--table-ease),
+    box-shadow 280ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .redbook .gameboard .hand-art:hover {
+    transform: translateY(-5px) rotate(-1deg);
+    box-shadow:
+      0 8px 18px #0007,
+      0 0 0 1px #d8c695;
+  }
+  .redbook .gameboard .board-card-art:hover {
+    transform: translateY(-3px);
+  }
+  .redbook .primary:not(:disabled):hover > svg {
+    transform: translateX(3px);
+  }
+}
+.redbook .primary > svg {
+  transition: transform 220ms var(--table-ease);
+}
+.redbook .primary:not(:disabled):active,
+.redbook .card-action:not(:disabled):active,
+.redbook .hand-play:not(:disabled):active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.redbook .phase-track > div {
+  position: relative;
+}
+.phase-cursor {
+  position: absolute;
+  height: 2px;
+  bottom: -5px;
+  left: 4px;
+  right: 4px;
+  border-radius: 2px;
+  background: #9d692e;
+  box-shadow: 0 0 7px #bd8d3f40;
+  pointer-events: none;
+}
+.redbook .phase-track > div,
+.redbook .phase-track > div > span {
+  transition:
+    color 300ms ease,
+    background-color 300ms ease;
+}
+.phase-title {
+  animation: phase-arrive 360ms var(--table-ease) both;
+}
+.quest-progress-track {
+  grid-column: 1 / -1;
+  height: 5px;
+  background: #b7a17144;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.quest-progress-track > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #5c754a, #acbd76);
+  border-radius: inherit;
+}
+.quest-card-stack {
+  animation: chapter-arrive 650ms var(--table-ease) both;
+}
+.discard-card > img {
+  animation: discard-arrive 360ms var(--table-ease) both;
+}
+.table-shadows > .table-card-back {
+  animation: shadow-deal 420ms var(--table-ease) both;
+}
+.table-shadows > .table-card-back:nth-child(2) {
+  animation-delay: 65ms;
+}
+.table-shadows > .table-card-back:nth-child(3) {
+  animation-delay: 130ms;
+}
+.threat-wheel {
+  overflow: hidden;
+}
+
+.redbook .lobby,
+.redbook .content-page,
+.redbook .table-heading {
+  animation: surface-arrive 420ms var(--table-ease) both;
+}
+.redbook .gameboard {
+  animation: table-arrive 550ms var(--table-ease) both;
+}
+.redbook .turn-panel {
+  animation: surface-arrive 450ms 80ms var(--table-ease) both;
+}
+.companion-company {
+  animation: surface-arrive 400ms var(--table-ease) both;
+}
+.quest-result,
+.recent-log > p:first-of-type,
+.latest-event > button {
+  animation: phase-arrive 360ms var(--table-ease) both;
+}
+.toast {
+  animation: surface-arrive 280ms var(--table-ease) both;
+}
+
+/* Native dialogs retain their focus trap and immediately usable controls. */
+.redbook .modal[open],
+.decision-dialog[open],
+.resolution-dialog[open] {
+  animation: dialog-arrive 280ms var(--table-ease) both;
+}
+.redbook .modal::backdrop,
+.decision-dialog::backdrop,
+.resolution-dialog::backdrop {
+  animation: backdrop-arrive 240ms ease both;
+}
+.resolution-body {
+  animation: phase-arrive 300ms var(--table-ease) both;
+}
+.resolution-dialog .resolution-cards > button,
+.resolution-dialog .resolution-changes dl > div,
+.decision-dialog .decision-card {
+  animation: surface-arrive 360ms var(--table-ease) both;
+}
+.resolution-dialog .resolution-cards > button:nth-child(2),
+.decision-dialog .decision-card:nth-child(2) {
+  animation-delay: 45ms;
+}
+.resolution-dialog .resolution-cards > button:nth-child(n + 3),
+.decision-dialog .decision-card:nth-child(n + 3) {
+  animation-delay: 90ms;
+}
+.resolution-dialog .resolution-changes dd > strong {
+  animation: token-arrive 400ms 100ms var(--table-ease) both;
+}
+
+.resolution-card > .reveal-card-face {
+  position: relative;
+  display: block;
+  perspective: 1000px;
+  margin: 0;
+  border-radius: 8px;
+}
+.reveal-card-face > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 424 / 600;
+  border-radius: inherit;
+  box-shadow: 0 7px 20px #36210e40;
+  backface-visibility: hidden;
+}
+.reveal-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border: 7px double #a68b50;
+  border-radius: inherit;
+  color: #d7c490;
+  background: radial-gradient(ellipse, #4d5035, #202a20 75%);
+  box-shadow:
+    inset 0 0 0 8px #242c20,
+    inset 0 0 0 9px #a58b5044;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+.reveal-card-back > span {
+  font: 10px var(--serif);
+  letter-spacing: 3px;
+}
+.is-revealing > img {
+  animation: reveal-front 780ms var(--table-ease) both;
+}
+.is-revealing > .reveal-card-back {
+  animation: reveal-back 780ms var(--table-ease) both;
+}
+.resolution-dialog[data-resolution-kind="shadow"] .reveal-card-back {
+  background: radial-gradient(ellipse, #5a3b35, #261c1c 75%);
+}
+.combat-animated .combat-strikers img,
+.combat-animated .combat-receivers img,
+.combat-animated .combat-impact {
+  animation-delay: 150ms;
+  animation-duration: 780ms;
+}
+
+@keyframes surface-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes table-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes phase-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes token-arrive {
+  from {
+    opacity: 0;
+    scale: 0.65;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes chapter-arrive {
+  from {
+    opacity: 0;
+    transform: perspective(700px) rotateY(-12deg) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(700px) rotateY(0) translateY(0);
+  }
+}
+@keyframes discard-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotate(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+@keyframes shadow-deal {
+  from {
+    opacity: 0;
+    translate: 0 -18px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes dialog-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes backdrop-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes reveal-front {
+  from {
+    transform: rotateY(-180deg) scale(0.94);
+  }
+  to {
+    transform: rotateY(0) scale(1);
+  }
+}
+@keyframes reveal-back {
+  from {
+    transform: rotateY(0) scale(0.94);
+  }
+  to {
+    transform: rotateY(180deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .redbook *,
+  .redbook *::before,
+  .redbook *::after,
+  .redbook dialog::backdrop {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .count-change {
+    display: none;
+  }
+}

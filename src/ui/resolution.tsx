@@ -50,12 +50,22 @@ export function ResolutionContent({
           onClick={() => inspect(card(featured.code))}
           aria-label={`Inspect ${card(featured.code).name}`}
         >
-          <img
-            src={imageUrl(card(featured.code))}
-            alt={card(featured.code).name}
-            width={424}
-            height={600}
-          />
+          <span className={`reveal-card-face ${animate ? "is-revealing" : ""}`}>
+            <span className="reveal-card-back" aria-hidden="true">
+              {step.kind === "shadow" ? (
+                <Shield size={44} weight="thin" />
+              ) : (
+                <Eye size={44} weight="thin" />
+              )}
+              <span>{step.kind === "shadow" ? "SHADOW" : "ENCOUNTER"}</span>
+            </span>
+            <img
+              src={imageUrl(card(featured.code))}
+              alt={card(featured.code).name}
+              width={424}
+              height={600}
+            />
+          </span>
           <span>
             <Eye size={14} /> Open full card
           </span>
@@ -236,6 +246,7 @@ export function ResolutionDialog({
             : "resolution-brief"
       }`}
       aria-labelledby="resolution-title"
+      data-resolution-kind={step.kind}
       aria-describedby="resolution-pause-note"
       onCancel={(e) => e.preventDefault()}
       onKeyDown={(e) => {
@@ -261,7 +272,7 @@ export function ResolutionDialog({
           </button>
         </div>
       </header>
-      <div className="resolution-body">
+      <div className="resolution-body" key={step.id}>
         <h2 id="resolution-title" tabIndex={-1} ref={titleRef}>
           {step.title}
         </h2>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { AnimatedNumber, CardPresence, MovingCard } from "./motion";
 import type { ReactNode } from "react";
 import {
   ArrowRight,
@@ -222,13 +224,17 @@ export function QuestForecast({ s }: { s: GameState }) {
       <div className="forecast-numbers">
         <span>
           <Feather size={17} />
-          <strong>{will}</strong>
+          <strong>
+            <AnimatedNumber value={will} />
+          </strong>
           <small>Willpower</small>
         </span>
         <span className="forecast-vs">vs</span>
         <span>
           <Eye size={17} />
-          <strong>{threat}</strong>
+          <strong>
+            <AnimatedNumber value={threat} />
+          </strong>
           <small>Staging threat</small>
         </span>
       </div>
@@ -326,66 +332,73 @@ export function Hand({
           </select>
         </label>
       </div>
-      <div className="hand-cards">
-        {cards.map((u) => {
-          const c = card(u.code),
-            reason = playReason(s, u);
-          return (
-            <div key={u.id} className={`hand-card ${reason ? "" : "playable"}`}>
-              <button
-                className="hand-art"
-                onClick={() => inspect(u)}
-                aria-label={`Inspect ${name(u)}`}
+      <motion.div layoutScroll className="hand-cards">
+        <CardPresence>
+          {cards.map((u, i) => {
+            const c = card(u.code),
+              reason = playReason(s, u);
+            return (
+              <MovingCard
+                key={u.id}
+                id={u.id}
+                order={i}
+                className={`hand-card ${reason ? "" : "playable"}`}
               >
-                {art(u)}
-                <span
-                  className={`hand-cost sphere-${c.sphere_code}`}
-                  title="Resource cost"
+                <button
+                  className="hand-art"
+                  onClick={() => inspect(u)}
+                  aria-label={`Inspect ${name(u)}`}
                 >
-                  {c.cost}
-                </span>
-              </button>
-              <button className="hand-card-title" onClick={() => inspect(u)}>
-                {name(u)}
-              </button>
-              <div className="hand-card-type">
-                {c.type_code}
-                <span
-                  className={`sphere-dot sphere-${c.sphere_code}`}
-                  aria-label={c.sphere_code}
-                />
-              </div>
-              <button
-                className="hand-play"
-                disabled={!!reason}
-                title={reason ?? "Play this card"}
-                onClick={() => play(u)}
-              >
-                {responseCards.includes(u.code) ? (
-                  <>
-                    <Shield size={13} />
-                    Response
-                  </>
-                ) : !reason ? (
-                  <>
-                    <PlusIcon />
-                    Play card
-                    <ArrowRight size={13} />
-                  </>
-                ) : (
-                  <>
-                    <Coins size={13} />
-                    {reason.includes("resource")
-                      ? "Need resources"
-                      : reason.includes("target")
-                        ? "No target yet"
-                        : "Inspect timing"}
-                  </>
-                )}
-              </button>
-            </div>
-          );
-        })}
+                  {art(u)}
+                  <span
+                    className={`hand-cost sphere-${c.sphere_code}`}
+                    title="Resource cost"
+                  >
+                    {c.cost}
+                  </span>
+                </button>
+                <button className="hand-card-title" onClick={() => inspect(u)}>
+                  {name(u)}
+                </button>
+                <div className="hand-card-type">
+                  {c.type_code}
+                  <span
+                    className={`sphere-dot sphere-${c.sphere_code}`}
+                    aria-label={c.sphere_code}
+                  />
+                </div>
+                <button
+                  className="hand-play"
+                  disabled={!!reason}
+                  title={reason ?? "Play this card"}
+                  onClick={() => play(u)}
+                >
+                  {responseCards.includes(u.code) ? (
+                    <>
+                      <Shield size={13} />
+                      Response
+                    </>
+                  ) : !reason ? (
+                    <>
+                      <PlusIcon />
+                      Play card
+                      <ArrowRight size={13} />
+                    </>
+                  ) : (
+                    <>
+                      <Coins size={13} />
+                      {reason.includes("resource")
+                        ? "Need resources"
+                        : reason.includes("target")
+                          ? "No target yet"
+                          : "Inspect timing"}
+                    </>
+                  )}
+                </button>
+              </MovingCard>
+            );
+          })}
+        </CardPresence>
         {!cards.length && (
           <div className="empty-zone hand-empty">
             <Books size={26} />
@@ -404,7 +417,7 @@ export function Hand({
             )}
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

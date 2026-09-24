@@ -43,6 +43,12 @@ import {
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import {
+  AnimatedNumber,
+  MovingCard,
+  tableSpring,
+  useDamageFeedback,
+} from "./ui/motion";
+import {
   card,
   playerCards,
   STARTERS,
@@ -1749,7 +1755,9 @@ export default function App() {
             <div className="round-strip">
               <div className="round-number">
                 <span>ROUND</span>
-                <strong>{game.round || "—"}</strong>
+                <strong>
+                  {game.round ? <AnimatedNumber value={game.round} /> : "—"}
+                </strong>
               </div>
               <div className="phase-track">
                 {[
@@ -1773,6 +1781,16 @@ export default function App() {
                     >
                       <span>{i + 1}</span>
                       {p.label}
+                      {active && (
+                        <motion.i
+                          className="phase-cursor"
+                          layoutId="phase-cursor"
+                          transition={
+                            reducedMotion ? { duration: 0 } : tableSpring
+                          }
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                   );
                 })}
@@ -1807,7 +1825,7 @@ export default function App() {
                 <div
                   className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""}`}
                 >
-                  <div className="encounter-zone">
+                  <motion.div layoutScroll className="encounter-zone">
                     <div className="zone-label">
                       <span>
                         <Eye size={16} /> STAGING AREA
@@ -1817,7 +1835,7 @@ export default function App() {
                         {game.encounterDeck.length} encounter cards
                       </span>
                     </div>
-                    <div className="board-cards">
+                    <motion.div layoutScroll className="board-cards">
                       {game.staging.map((u) => (
                         <BoardCard
                           key={u.id}
@@ -1868,16 +1886,16 @@ export default function App() {
                           <span>For a moment, the path is clear.</span>
                         </div>
                       )}
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                   {allEngaged(game).length > 0 && (
-                    <div className="engaged-zone">
+                    <motion.div layoutScroll className="engaged-zone">
                       <div className="zone-label">
                         <span>
                           <Sword size={15} /> ENGAGED ENEMIES
                         </span>
                       </div>
-                      <div className="board-cards">
+                      <motion.div layoutScroll className="board-cards">
                         {allEngaged(game).map((u) => (
                           <BoardCard
                             key={u.id}
@@ -1916,11 +1934,11 @@ export default function App() {
                             }
                           />
                         ))}
-                      </div>
-                    </div>
+                      </motion.div>
+                    </motion.div>
                   )}
                 </div>
-                <div className="fellowship-zone">
+                <motion.div layoutScroll className="fellowship-zone">
                   <div className="zone-label">
                     <span>
                       <UsersThree size={16} />{" "}
@@ -1933,7 +1951,7 @@ export default function App() {
                       ready · {questWill(game)} willpower committed
                     </span>
                   </div>
-                  <div className="character-row">
+                  <motion.div layoutScroll className="character-row">
                     {game.heroes.map((u) => (
                       <CharacterCard
                         key={u.id}
@@ -1958,8 +1976,8 @@ export default function App() {
                       s={game}
                       select={(seat) => dispatch({ type: "SELECT_SEAT", seat })}
                     />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
                 <Hand
                   key={game.table?.active ?? "classic"}
                   s={game}
@@ -1977,7 +1995,9 @@ export default function App() {
                     ? seatName(game, activeSeat(game)).toUpperCase()
                     : "YOUR TURN"}
                 </div>
-                <h2>{phaseNames[game.phase]}</h2>
+                <h2 key={game.phase} className="phase-title">
+                  {phaseNames[game.phase]}
+                </h2>
                 <p>{phaseHelp(game)}</p>
                 {!!game.pendingWolfReturns?.length && (
                   <p className="turn-tip">
@@ -2033,7 +2053,9 @@ export default function App() {
                     <div key={h.id}>
                       <Sphere sphere={card(h.code).sphere_code} />
                       <span>{name(h)}</span>
-                      <strong>{h.resources}</strong>
+                      <strong>
+                        <AnimatedNumber value={h.resources} />
+                      </strong>
                     </div>
                   ))}
                 </div>
@@ -2939,12 +2961,15 @@ function BoardCard({
   actionLabel?: string;
 }) {
   const c = card(u.code);
+  const damageRef = useDamageFeedback(u.damage);
   return (
-    <div
+    <MovingCard
+      id={u.id}
       className={`board-card ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
     >
       <ShadowCards count={u.shadows.length} />
       <button
+        ref={damageRef}
         className="board-card-art"
         onClick={inspect}
         aria-label={`Inspect ${name(u)}`}
@@ -3034,7 +3059,7 @@ function BoardCard({
           <ArrowRight size={12} />
         </button>
       )}
-    </div>
+    </MovingCard>
   );
 }
 function CharacterCard({
@@ -3052,12 +3077,15 @@ function CharacterCard({
 }) {
   const c = card(u.code),
     selected = s.committedIds.includes(u.id) || u.committed;
+  const damageRef = useDamageFeedback(u.damage);
   return (
-    <div
+    <MovingCard
+      id={u.id}
       className={`character-card ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
     >
       <AttachmentStack u={u} inspect={inspectCard} />
       <button
+        ref={damageRef}
         className="character-art"
         onClick={
           s.phase === "quest" &&
@@ -3123,7 +3151,7 @@ function CharacterCard({
           </button>
         ))}
       </div>
-    </div>
+    </MovingCard>
   );
 }
 function Library({
