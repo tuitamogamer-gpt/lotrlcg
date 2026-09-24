@@ -1,5 +1,15 @@
 # LOTR LCG: istraživanje izgleda fizičke igre i frontend
 
+## Dopuna: vizuelni identitet originalnog Core Seta · 24. septembar 2026.
+
+Korisnik je tražio da cijeli interfejs, uključujući font, prati originalnu igru. Ranije zadržani Cinzel/Manrope i crvenosmeđi atlas zato više nisu glavni stilski uzor. Aktuelni sloj `src/ui/core-set.css` povezuje meni, sto, pregled karata, odluke i postavke sa vizuelnim jezikom štampanih komponenti.
+
+Pregledani su lokalni originalni sken Aragorna i [službeni FFG Core Set pravilnik](https://images-cdn.fantasyflightgames.com/ffg_content/lotr-lcg/LOTR%20Rules.pdf), uključujući okvir i tekst uvodne stranice. PDF font resursi navode Dumbledor1/Dumbledor1Wide, Vafthrudnir, TimesNewRomanLOTR i nekoliko Times New Roman varijanti. Fontovi nisu izdvojeni iz PDF-a za distribuciju. Web zamjene su **IM Fell English SC** za naslove i imena te **Crimson Pro** za tekst i brojeve; nisu identični originalnim fontovima. Oba su dostupna pod SIL Open Font License, isporučuju se lokalno kroz Fontsource, a licence su u `public/fonts/licenses/`.
+
+Uzor su svijetli papir, tamni štampani serif, mali verzali, zlatna biljna ornamentika i tamni okvir. Novi `public/art/core-vine.svg` je originalni vektorski ornament. Svijetli pergament, ugljeno-tamni i šumski okvir, dvostruki mesingani obrubi i veća primarna tipografija zamjenjuju moderan sans-serif. Postojeći skenovi, ilustrirane podloge, fizički raspored i animirani brojači ostaju dio cjeline.
+
+Ranije istraživanje i historijska validacija slijede ispod.
+
 Istraženo i implementirano lokalno 24. septembra 2026. Predmet je **The Lord of the Rings: The Card Game / LCG**, a ne Adventure Card Game, Decipher TCG ili druga LOTR društvena igra.
 
 ## Reference

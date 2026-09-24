@@ -1,0 +1,367 @@
+/* Core Set visual language: printed serif text, ivory card stock, vinework,
+   charcoal frames and worn brass. The two OFL fonts are bundled locally. */
+:root {
+  font-size-adjust: 0.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand,
+.mission-card strong {
+  font-size-adjust: none;
+}
+
+.redbook {
+  --bg: #eee8d8;
+  --panel: #f5f0e3;
+  --panel2: #e0d7bf;
+  --gold: #846b36;
+  --muted: #655e4e;
+  --line: #85704444;
+  --green: #485b42;
+  color: #302d25;
+  background:
+    radial-gradient(ellipse at 50% 10%, #fffdf085, transparent 75%),
+    linear-gradient(#f1eddfec, #dfd8c4ed),
+    url("/art/westmarch-atlas.jpg") center top / 1680px auto fixed;
+}
+
+/* A restrained charcoal-and-gold frame, like the printed game components. */
+.redbook .sidebar,
+.redbook.playing .sidebar {
+  background:
+    repeating-linear-gradient(125deg, #d0c8a904 0 1px, transparent 1px 5px),
+    linear-gradient(100deg, #1f2522, #32362e 50%, #1b211e);
+  border-bottom: 3px double #b29a62;
+  box-shadow: 0 3px 14px #10151055;
+}
+
+.redbook .brand > span,
+.redbook.playing .brand > span {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #e8d79c;
+  text-shadow: 0 2px 2px #0009;
+}
+
+.redbook .brand small,
+.redbook.playing .brand small {
+  font-family: var(--body);
+  font-size: 8px;
+  letter-spacing: 1.4px;
+  color: #d0c5a7;
+}
+
+.redbook .nav-item,
+.redbook.playing .nav-item {
+  font-family: var(--serif);
+  font-size-adjust: none;
+  font-size: 16px;
+  letter-spacing: 0.25px;
+}
+
+.redbook .topbar {
+  background: #b4a88516;
+}
+
+.redbook .page-heading {
+  position: relative;
+  border-bottom: 0;
+  padding-bottom: 28px;
+}
+
+.redbook .page-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(480px, 100%);
+  height: 22px;
+  background: url("/art/core-vine.svg") left center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+.redbook .page-heading h1 {
+  font-size: clamp(36px, 4vw, 54px);
+  letter-spacing: 0;
+  color: #34392c;
+}
+
+.redbook .page-heading p,
+.redbook .hero-copy > p,
+.redbook .hero-copy h2 em {
+  font-family: var(--body);
+}
+
+.redbook .page-heading p {
+  font-style: italic;
+  font-size: 20px;
+  color: #655c48;
+}
+
+.redbook .hero-copy h2 {
+  letter-spacing: 0;
+  line-height: 1.12;
+  font-size: clamp(37px, 3.6vw, 53px);
+}
+
+.redbook .hero-copy h2 em {
+  font-size: 1.06em;
+}
+
+.redbook .lobby-kicker,
+.redbook .book-kicker,
+.redbook .eyebrow {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1.7px;
+}
+
+.redbook .builder-heading h2,
+.redbook .guide h2,
+.redbook .guide h3 {
+  color: #3e4936;
+}
+
+.redbook .hero-selection,
+.redbook .play-style {
+  background: #f9f5e877;
+  border-color: #9a86534d;
+}
+
+.redbook .hero-selection {
+  border-top-color: #938153;
+  box-shadow:
+    inset 0 0 0 3px #d7ccb526,
+    0 3px 10px #30281b0a;
+}
+
+.redbook .play-style button[aria-pressed="true"],
+.redbook .hero-count button[aria-pressed="true"] {
+  background: #3b4a38;
+  color: #fff4d4;
+  border-color: #576245;
+}
+
+.redbook .mission-card {
+  border-radius: 2px 12px 2px 12px;
+}
+
+.redbook .mission-card strong {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.redbook .mission-card.selected {
+  border-color: #ab9254;
+  box-shadow:
+    inset 0 0 0 3px #d3bd7d22,
+    0 0 0 2px #76603622;
+}
+
+.redbook .adventure-hero {
+  border-color: #97814e;
+  border-radius: 2px 20px 2px 20px;
+}
+
+.redbook .adventure-hero::after {
+  border-color: #c9b27188;
+  border-radius: 1px 13px 1px 13px;
+  background: url("/art/core-vine.svg") center 7px / min(70%, 480px) 23px
+    no-repeat;
+}
+
+.redbook .primary {
+  font-family: var(--serif);
+  font-size-adjust: none;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  background: linear-gradient(#536047, #313e2d);
+  border-color: #ac9254;
+  color: #fff0cc;
+  border-radius: 3px;
+  box-shadow:
+    inset 0 0 0 2px #23331f,
+    inset 0 0 0 3px #c2a76b66,
+    0 2px 4px #1c241930;
+}
+
+.redbook .primary:hover:not(:disabled) {
+  background: linear-gradient(#617051, #3e4e36);
+  border-color: #dac48b;
+}
+
+/* Keep the original card scans and playmat prominent; the frame recedes. */
+.redbook.playing .main-shell {
+  background:
+    repeating-linear-gradient(120deg, #d5c7a803 0 1px, transparent 1px 5px),
+    radial-gradient(ellipse at 50% 0, #3c4035, #1e2521 85%);
+}
+
+.redbook .table-heading h1,
+.redbook .table-page .turn-panel h2 {
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.redbook .table-page .turn-panel {
+  background:
+    url("/art/core-vine.svg") center 5px / 90% 18px no-repeat,
+    linear-gradient(135deg, #323c30, #20291f);
+  border: 1px solid #9d8a51;
+  border-radius: 2px 14px 2px 14px;
+  box-shadow:
+    inset 0 0 0 3px #20281f,
+    inset 0 0 0 4px #a08b4e44;
+}
+
+.redbook .turn-panel .turn-actions > p {
+  color: #d2c9af;
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 8px 0;
+}
+
+.redbook .gameboard {
+  border-color: #454637;
+  border-radius: 3px 13px 3px 13px;
+}
+
+.redbook .gameboard .zone-label > span:first-child,
+.redbook .phase-track > div {
+  font-family: var(--serif);
+  font-size-adjust: none;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.redbook .gameboard .zone-label > span:first-child {
+  font-size: 13px;
+}
+
+.redbook .gameboard .character-name,
+.redbook .gameboard .board-card-name,
+.redbook .gameboard .hand-card-title {
+  font-family: var(--serif);
+  font-size-adjust: none;
+  font-weight: 400;
+}
+
+.redbook .phase-track > div {
+  font-size: 12px;
+}
+
+.redbook .phase-track > div > span,
+.redbook .table-token,
+.redbook .stat-row,
+.redbook .enemy-stats,
+.redbook .resource-pools {
+  font-family: var(--body);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Dialogs read like a page from the rulebook, including the card inspector. */
+.redbook .modal,
+.redbook .decision-dialog,
+.redbook .resolution-dialog {
+  background:
+    linear-gradient(#f8f5e9f2, #e8e1cef2),
+    url("/art/westmarch-atlas.jpg") center / cover;
+  border-color: #94804d;
+  border-radius: 3px 16px 3px 16px;
+  color: #343629;
+  box-shadow:
+    0 20px 80px #10150cb3,
+    inset 0 0 0 4px #b6a57455,
+    inset 0 0 0 6px #fff7dd66;
+}
+
+.redbook .modal .modal-top,
+.redbook .decision-header,
+.redbook .resolution-header {
+  background: #b6a97f22;
+  border-bottom: 3px double #95814f66;
+}
+
+.redbook .modal h2,
+.redbook .decision-header h2,
+.redbook .resolution-dialog h2 {
+  color: #3e4936;
+  font-weight: 400;
+}
+
+.redbook .modal .card-detail .rules-text,
+.redbook .modal .card-detail .shadow-text {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+  color: #3f3a2e;
+}
+
+.redbook .modal .detail-type {
+  color: #64634b;
+}
+
+/* Icon-only toolbar buttons use font-size: 0 at narrow breakpoints. */
+.redbook .table-tools .compact {
+  font-size-adjust: none;
+}
+
+.redbook .preference-segments > button,
+.redbook .modal:has(.table-collection) .preference-segments > button {
+  background: #e2dccb;
+  color: #4b4938;
+  border-color: #9b895855;
+}
+
+.redbook .preference-segments > button[aria-pressed="true"],
+.redbook
+  .modal:has(.table-collection)
+  .preference-segments
+  > button[aria-pressed="true"] {
+  background: #40523b;
+  color: #fff2cc;
+  border-color: #7e895e;
+}
+
+@media (min-width: 1100px) {
+  .redbook.playing .brand > span {
+    font-size: 16px;
+  }
+  .redbook.playing .nav-item {
+    font-size: 14px;
+  }
+  .redbook .table-page .turn-panel h2 {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .redbook .hero-copy h2 {
+    font-size: 40px;
+  }
+  .redbook .nav-item {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 599px) {
+  .redbook .page-heading h1 {
+    font-size: 34px;
+  }
+  .redbook .hero-copy h2 {
+    font-size: 35px;
+  }
+  .redbook .phase-track > div {
+    font-size: 10px;
+  }
+  .redbook .primary {
+    font-size: 15px;
+  }
+}

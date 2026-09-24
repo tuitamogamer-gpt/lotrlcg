@@ -1,5 +1,6 @@
 :root {
-  font-family: "Manrope", sans-serif;
+  --body: "Crimson Pro", "Times New Roman", serif;
+  font-family: var(--body);
   color: #e9e7de;
   background: #101915;
   font-synthesis: none;
@@ -12,7 +13,7 @@
   --muted: #9aab9d;
   --line: #c5bb9223;
   --green: #9db69a;
-  --serif: "Cinzel", Georgia, serif;
+  --serif: "IM Fell English SC", Georgia, serif;
 }
 * {
   box-sizing: border-box;
@@ -149,7 +150,7 @@ button {
 }
 .brand small {
   display: block;
-  font-family: "Manrope";
+  font-family: var(--body);
   font-size: 6px;
   letter-spacing: 1.3px;
   margin-top: 9px;
@@ -1377,7 +1378,7 @@ nav {
 }
 .combat-target small {
   display: block;
-  font-family: Manrope;
+  font-family: var(--body);
   font-size: 10px;
   line-height: 1.6;
   color: #a9b59d;
@@ -2140,7 +2141,7 @@ nav {
 .resource-pools h3,
 .last-reveal h3,
 .recent-log h3 {
-  font-family: Manrope;
+  font-family: var(--body);
   font-size: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2193,7 +2194,7 @@ nav {
 }
 .last-reveal small {
   display: block;
-  font-family: Manrope;
+  font-family: var(--body);
   font-size: 8px;
   color: #99ae8e;
   text-transform: capitalize;
@@ -2205,7 +2206,7 @@ nav {
   gap: 5px;
   color: #c6b983;
   font-size: 7px;
-  font-family: Manrope;
+  font-family: var(--body);
   margin-top: 6px;
 }
 .recent-log {
@@ -2255,7 +2256,7 @@ nav {
 }
 .quest-equation small {
   display: block;
-  font-family: Manrope;
+  font-family: var(--body);
   font-size: 7px;
   color: #a4b193;
   width: 100%;
@@ -3812,9 +3813,7 @@ nav {
 }
 .mission-number {
   color: #c7b077;
-  font:
-    24px "Cinzel",
-    serif;
+  font: 24px var(--serif);
   flex-shrink: 0;
 }
 .mission-card small {
@@ -3826,9 +3825,7 @@ nav {
 .mission-card strong {
   display: block;
   margin: 9px 0 6px;
-  font:
-    15px "Cinzel",
-    serif;
+  font: 15px var(--serif);
   line-height: 1.4;
 }
 .mission-card em {
@@ -3874,9 +3871,7 @@ nav {
 .campaign-journal li > span {
   width: 23px;
   flex-shrink: 0;
-  font:
-    13px "Cinzel",
-    serif;
+  font: 13px var(--serif);
 }
 .campaign-journal li strong {
   flex: 1;
@@ -3953,9 +3948,7 @@ nav {
   flex: 1;
 }
 .prisoner-banner strong {
-  font:
-    15px "Cinzel",
-    serif;
+  font: 15px var(--serif);
 }
 .prisoner-banner p {
   font-size: 11px;

@@ -22,7 +22,7 @@
   top: -4px;
   z-index: 10;
   pointer-events: none;
-  font: 700 13px/1 var(--sans);
+  font: 700 13px/1 var(--body);
   font-style: normal;
   color: #ffdf92;
   text-shadow:

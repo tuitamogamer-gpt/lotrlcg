@@ -1,7 +1,4 @@
 /* A top-down card table. All game-specific presentation is scoped to the table. */
-.redbook {
-  --sans: "Manrope", sans-serif;
-}
 .redbook.playing {
   background: #27231d;
 }
@@ -181,7 +178,7 @@
 .redbook .gameboard .character-name {
   min-height: 0;
   padding: 7px 0 3px;
-  font-family: var(--sans);
+  font-family: var(--body);
   font-weight: 600;
   font-size: 10px;
   line-height: 1.35;
@@ -312,7 +309,7 @@
   height: 29px;
   padding: 0 5px;
   border-radius: 50%;
-  font: 700 12px/1 var(--sans);
+  font: 700 12px/1 var(--body);
   font-variant-numeric: tabular-nums;
   border: 2px solid #b4a478;
   color: #342f20;
@@ -898,7 +895,7 @@
   color: #e7dec1;
   padding: 7px 1px 3px;
   min-height: 30px;
-  font: 500 9px/1.4 var(--sans);
+  font: 500 9px/1.4 var(--body);
   text-align: center;
 }
 .redbook .gameboard .hand-card-type {

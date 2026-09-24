@@ -1,8 +1,8 @@
 # There & Back Again
 
-An adventure atlas inspired by the Red Book of Westmarch, paired with a physical tabletop during play: warm parchment, fine cartography, oxblood leather, brass edges, and restrained forest green. Original generated scenery and an unlabelled parchment map carry the atmosphere; card scans retain their original attribution.
+The original Fantasy Flight Games LOTR LCG is the visual reference across the entire interface: printed serif text, ivory card stock, botanical ornament, charcoal framing, worn brass, and forest green. The adventure atlas and physical tabletop share that language. Original generated scenery and an unlabelled parchment map carry the atmosphere; card scans retain their original attribution.
 
-Paper #ecdfc3, ink #382a20, leather #301f1b, brass #936324, forest #4e6443. Cinzel display titles and Manrope interface text are self-hosted. Thin borders, small corner radii, botanical details, and quiet transitions replace a dashboard appearance. Phosphor icons and reduced-motion support remain. All labels, card rules, and controls are live HTML.
+Paper #eee8d8, ink #302d25, charcoal #1f2522, brass #846b36, forest #485b42. Self-hosted IM Fell English SC supplies printed small-cap titles; Crimson Pro supplies interface text, rules, italic narrative, and lining/tabular counters. These OFL-licensed alternatives evoke the original game's type without claiming to be its exact lettering. Latin Extended body fonts cover names such as Glóin and Éowyn. Thin double borders, original vinework, asymmetrical frame corners, and quiet transitions carry the component aesthetic through menus, controls, and dialogs. Phosphor icons and reduced-motion support remain. All labels, card rules, and controls are live HTML.
 
 The adventure page reads like an open chronicle: assemble 1–3 heroes, choose normal or campaign play, then choose a quest. Every hot-seat hero shows their own starter deck. Classic solo is a separate, explicit choice. Large original forest, river, and fortress scenes distinguish the three Core Set quests.
 

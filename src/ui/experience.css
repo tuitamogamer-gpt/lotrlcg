@@ -1169,7 +1169,7 @@ main:focus {
 }
 .preference-section h3,
 .keyboard-guide h3 {
-  font-family: Manrope;
+  font-family: var(--body);
   font-size: 14px;
   font-weight: 600;
 }

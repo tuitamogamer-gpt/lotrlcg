@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 28" fill="none">
+  <!-- Original vector ornament, inspired by the Core Set's botanical frames. -->
+  <g stroke="#b49a61" stroke-width="1.1">
+    <path d="M0 14h176c18 0 21-10 36-10 13 0 14 20 28 20s15-20 28-20c15 0 18 10 36 10h176"/>
+    <path d="M0 17h170c26 0 26 7 41 7s16-20 29-20 14 20 29 20 15-7 41-7h170" opacity=".55"/>
+    <path d="M39 14c7-10 14-10 22-7-4 7-13 10-22 7Zm42 0c6 10 15 11 23 7-5-6-14-10-23-7Zm42 0c7-10 14-10 22-7-4 7-13 10-22 7Zm235 0c7-10 14-10 22-7-4 7-13 10-22 7Zm42 0c6 10 15 11 23 7-5-6-14-10-23-7Zm42 0c7-10 14-10 22-7-4 7-13 10-22 7Z" fill="#b49a61" fill-opacity=".14"/>
+    <path d="m240 7 7 7-7 7-7-7Z" fill="#3c4237"/>
+    <path d="m240 11 3 3-3 3-3-3Z" fill="#d4c18b"/>
+  </g>
+</svg>

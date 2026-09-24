@@ -211,7 +211,7 @@
   border-radius: 4px;
   background: #171c18a6;
   color: #dfcfac;
-  font: 500 10px var(--sans);
+  font: 500 10px var(--body);
   white-space: nowrap;
 }
 .redbook .table-tools .playmat-trigger:hover {
@@ -260,7 +260,7 @@
   gap: 6px;
   margin-bottom: 9px;
   color: #8a652f;
-  font: 700 8px var(--sans);
+  font: 700 8px var(--body);
   letter-spacing: 1.8px;
 }
 .collection-heading h3 {
@@ -270,7 +270,7 @@
 }
 .redbook .collection-heading p {
   margin: 8px 0 17px;
-  font: 11px/1.7 var(--sans);
+  font: 11px/1.7 var(--body);
   color: #806548;
 }
 .collection-preview {
@@ -315,7 +315,7 @@
   color: #ffedbf;
 }
 .redbook .collection-preview-caption small {
-  font: 10px var(--sans);
+  font: 10px var(--body);
   color: #ddd5bd;
 }
 .collection-objects {
@@ -411,17 +411,17 @@
 .playmat-follow strong {
   display: block;
   margin-bottom: 4px;
-  font: 600 11px var(--sans);
+  font: 600 11px var(--body);
 }
 .redbook .playmat-follow small {
-  font: 10px/1.5 var(--sans);
+  font: 10px/1.5 var(--body);
 }
 .collection-materials {
   display: flex;
   flex-wrap: wrap;
   gap: 9px 18px;
   color: #81694a;
-  font: 9px var(--sans);
+  font: 9px var(--body);
 }
 .collection-materials > span {
   display: inline-flex;

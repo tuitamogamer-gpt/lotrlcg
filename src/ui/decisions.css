@@ -262,9 +262,7 @@
   gap: 12px;
 }
 .combat-company h3 > span {
-  font:
-    10px "Manrope",
-    sans-serif;
+  font: 10px var(--body);
   color: #745333;
 }
 .decision-dialog .undefended {

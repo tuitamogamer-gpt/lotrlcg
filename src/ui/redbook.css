@@ -1,6 +1,6 @@
 /* The Red Book: parchment pages, oxblood leather, brass, and hand-drawn cartography. */
 :root {
-  --serif: "Cinzel", Georgia, serif;
+  --serif: "IM Fell English SC", Georgia, serif;
 }
 body {
   background: #ddd0b4;
@@ -565,9 +565,7 @@ body {
 }
 .selected-company small {
   display: block;
-  font:
-    10px/1.6 Manrope,
-    sans-serif;
+  font: 10px/1.6 var(--body);
   color: #c6b592;
   margin-top: 5px;
 }
@@ -1818,9 +1816,7 @@ body {
   padding-bottom: 12px;
 }
 .redbook .hero-copy > .single-hero-note {
-  font:
-    10px/1.7 Manrope,
-    sans-serif;
+  font: 10px/1.7 var(--body);
   padding: 10px 12px;
   background: #201b17a0;
   border-left: 2px solid #c39f5c;
