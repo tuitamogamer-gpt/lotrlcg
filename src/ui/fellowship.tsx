@@ -24,11 +24,18 @@ import {
 
 import { availableAbilities } from "../game/engine";
 
-export const DEFAULT_SEATS: SeatConfig[] = [
-  { hero: "01001", deckId: "leadership" },
-  { hero: "01007", deckId: "spirit" },
-  { hero: "01005", deckId: "tactics" },
-];
+// New games always use complete starters. Existing saves keep their original heroes.
+export function starterSeats(saved?: { deckId: string }[]): SeatConfig[] {
+  const used = new Set<string>();
+  return (saved ?? [{ deckId: "leadership" }]).map((p) => {
+    const d =
+      STARTERS.find((d) => d.id === p.deckId && !used.has(d.id)) ??
+      STARTERS.find((d) => !used.has(d.id))!;
+    used.add(d.id);
+    return { heroes: [...d.heroes], deckId: d.id };
+  });
+}
+export const DEFAULT_SEATS = starterSeats();
 export function FellowshipSetup({
   mode,
   changeMode,
@@ -47,7 +54,7 @@ export function FellowshipSetup({
       <div className="builder-heading">
         <div>
           <span className="book-kicker">I · ASSEMBLE YOUR COMPANY</span>
-          <h2>Every hero has a part to play.</h2>
+          <h2>Three heroes. One fellowship per player.</h2>
         </div>
         <div className="play-style" role="group" aria-label="Deck arrangement">
           <button
@@ -56,7 +63,7 @@ export function FellowshipSetup({
           >
             <UsersThree size={18} />
             <span>
-              Solo hot-seat<small>Each hero has their own deck</small>
+              Solo hot-seat<small>You control 1–4 players</small>
             </span>
           </button>
           <button
@@ -65,7 +72,7 @@ export function FellowshipSetup({
           >
             <Cards size={18} />
             <span>
-              Classic solo<small>Three heroes share one deck</small>
+              Classic solo<small>One player · three heroes</small>
             </span>
           </button>
         </div>
@@ -74,29 +81,28 @@ export function FellowshipSetup({
         <>
           <div className="company-options">
             <p>
-              You command every fellowship. One shared quest, separate hands,
-              resources, and threat.
+              Each player has three heroes, one deck, one hand, and one threat
+              dial. You control every player.
             </p>
             <div
               className="hero-count"
               role="group"
-              aria-label="Number of heroes"
+              aria-label="Number of players"
             >
-              <span>HEROES</span>
-              {[1, 2, 3].map((n) => (
+              <span>PLAYERS</span>
+              {[1, 2, 3, 4].map((n) => (
                 <button
                   key={n}
                   aria-pressed={seats.length === n}
-                  aria-label={`${n} ${n === 1 ? "hero" : "heroes"}`}
+                  aria-label={`${n} ${n === 1 ? "player" : "players"}`}
                   onClick={() => {
                     const next = seats.slice(0, n);
                     for (const d of STARTERS)
-                      for (const hero of d.heroes)
-                        if (
-                          next.length < n &&
-                          !next.some((p) => p.hero === hero)
-                        )
-                          next.push({ hero, deckId: d.id });
+                      if (
+                        next.length < n &&
+                        !next.some((p) => p.deckId === d.id)
+                      )
+                        next.push({ heroes: [...d.heroes], deckId: d.id });
                     setSeats(next);
                   }}
                 >
@@ -105,64 +111,71 @@ export function FellowshipSetup({
               ))}
             </div>
           </div>
-          <div className="hero-selections">
+          <div className={`hero-selections players-${seats.length}`}>
             {seats.map((p, i) => {
-              const c = card(p.hero),
-                d = STARTERS.find((d) => d.id === p.deckId)!;
+              const d = STARTERS.find((d) => d.id === p.deckId)!;
+              const threat = p.heroes.reduce(
+                (n, h) => n + (card(h).threat ?? 0),
+                0,
+              );
               return (
                 <article className={`hero-selection sphere-${d.id}`} key={i}>
-                  <div className="hero-portrait">
-                    <img src={imageUrl(c)} alt={c.name} />
-                    <span>{["I", "II", "III"][i]}</span>
-                  </div>
                   <div className="hero-selection-body">
-                    <label htmlFor={`seat-hero-${i}`}>FELLOWSHIP {i + 1}</label>
+                    <label htmlFor={`seat-deck-${i}`}>PLAYER {i + 1}</label>
                     <select
-                      id={`seat-hero-${i}`}
-                      aria-label={`Hero ${i + 1}`}
-                      value={p.hero}
-                      onChange={(e) =>
+                      id={`seat-deck-${i}`}
+                      aria-label={`Player ${i + 1} starter deck`}
+                      value={p.deckId}
+                      onChange={(e) => {
+                        const next = STARTERS.find(
+                          (d) => d.id === e.target.value,
+                        )!;
                         setSeats(
                           seats.map((old, j) =>
                             j === i
-                              ? {
-                                  hero: e.target.value,
-                                  deckId: STARTERS.find((d) =>
-                                    d.heroes.includes(e.target.value),
-                                  )!.id,
-                                }
+                              ? { heroes: [...next.heroes], deckId: next.id }
                               : old,
                           ),
-                        )
-                      }
+                        );
+                      }}
                     >
                       {STARTERS.map((d) => (
-                        <optgroup label={d.subtitle} key={d.id}>
-                          {d.heroes.map((hero) => (
-                            <option
-                              value={hero}
-                              key={hero}
-                              disabled={seats.some(
-                                (x, j) => j !== i && x.hero === hero,
-                              )}
-                            >
-                              {card(hero).name}
-                            </option>
-                          ))}
-                        </optgroup>
+                        <option
+                          value={d.id}
+                          key={d.id}
+                          disabled={seats.some(
+                            (x, j) => j !== i && x.deckId === d.id,
+                          )}
+                        >
+                          {d.subtitle} · {d.name}
+                        </option>
                       ))}
                     </select>
+                    <div
+                      className="starter-heroes"
+                      aria-label={`Player ${i + 1} starting heroes`}
+                    >
+                      {p.heroes.map((hero) => (
+                        <div key={hero}>
+                          <img
+                            src={imageUrl(card(hero))}
+                            alt={card(hero).name}
+                          />
+                          <span>{card(hero).name}</span>
+                        </div>
+                      ))}
+                    </div>
                     <div className="hero-deck-info">
                       <span>
-                        <Eye size={13} /> {c.threat} starting threat
+                        <Eye size={13} /> {threat} starting threat
                       </span>
-                      <span className="deck-sphere">{d.subtitle}</span>
+                      <span>3 heroes · 30 player cards</span>
                     </div>
                     <button
                       className="deck-preview-link"
                       onClick={() => inspect(d.id)}
                     >
-                      <Stack size={14} /> Own 30-card starter deck{" "}
+                      <Stack size={14} /> View starter deck{" "}
                       <ArrowRight size={13} />
                     </button>
                   </div>
@@ -171,9 +184,10 @@ export function FellowshipSetup({
             })}
           </div>
           <p className="company-note">
-            <Check size={14} /> You play all{" "}
-            {seats.length === 1 ? "turns" : `${seats.length} seats`} on this
-            device. The table guides you from one hero to the next.
+            <Check size={14} /> {seats.length}{" "}
+            {seats.length === 1 ? "player" : "players"} · {seats.length * 3}{" "}
+            heroes total. The table guides you from one player to the next. Each
+            hero can appear only once.
           </p>
         </>
       ) : (
@@ -203,18 +217,18 @@ export function FellowshipSeats({
   }, [s.table?.active]);
   if (!s.table) return null;
   return (
-    <section className="fellowship-seats" aria-label="Hero seats">
+    <section className="fellowship-seats" aria-label="Player seats">
       <div className="seat-section-heading">
         <span>
           <UsersThree size={17} /> THE COMPANY
         </span>
-        <small>Switch heroes to manage their cards</small>
+        <small>Switch players to manage their fellowships</small>
       </div>
       <div
         ref={tabs}
         className="seat-tabs"
         role="group"
-        aria-label="Switch active hero"
+        aria-label="Switch active player"
       >
         {seatIndices(s).map((i) => {
           const p = seatView(s, i),
@@ -254,7 +268,9 @@ export function FellowshipSeats({
                           ? "AWAITING YOUR TURN"
                           : `FELLOWSHIP ${i + 1}`}
                 </span>
-                <strong>{seatName(s, i)}</strong>
+                <strong>
+                  Player {i + 1} · {seatName(s, i)}
+                </strong>
                 <div className="seat-counts">
                   <span title="Cards in hand">
                     <Cards size={13} /> {p.hand.length}

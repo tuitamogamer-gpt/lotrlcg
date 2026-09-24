@@ -6,6 +6,7 @@ import {
   Scroll,
   Shield,
   Sparkle,
+  Sword,
 } from "@phosphor-icons/react";
 import { card, imageUrl } from "../game/cards";
 import { nextResolutionLabel, phaseLabel } from "../game/presentation";
@@ -18,13 +19,27 @@ export function ResolutionContent({
   s,
   step,
   inspect,
+  animate = false,
 }: {
   s: GameState;
   step: ResolutionStep;
   inspect: (c: Card) => void;
+  animate?: boolean;
 }) {
   const featured = step.cards[0];
   const isReveal = step.kind === "reveal" || step.kind === "shadow";
+  const attackers = step.cards.filter((c) => c.label === "Attacker");
+  const targets = step.cards.filter(
+    (c) => c.label === "Defender" || c.label === "Target",
+  );
+  const combat =
+    step.kind === "combat" && attackers.length > 0 && targets.length > 0;
+  const combatCodes = combat
+    ? [...attackers, ...targets].map((c) => c.code)
+    : [];
+  const otherCards = (isReveal ? step.cards.slice(1) : step.cards).filter(
+    (c) => !combatCodes.includes(c.code),
+  );
   return (
     <div
       className={`resolution-content ${isReveal && featured ? "with-featured-card" : ""}`}
@@ -47,6 +62,58 @@ export function ResolutionContent({
         </button>
       )}
       <div className="resolution-explanation">
+        {combat && (
+          <div
+            key={step.id}
+            className={`combat-scene ${animate ? "combat-animated" : ""}`}
+            aria-label="Resolved attack"
+          >
+            <div className="combat-side combat-strikers">
+              <h3>Attacking</h3>
+              <div>
+                {attackers.map((c, i) => (
+                  <button
+                    key={`${c.code}-${i}`}
+                    onClick={() => inspect(card(c.code))}
+                  >
+                    <img
+                      src={imageUrl(card(c.code))}
+                      alt={card(c.code).name}
+                      width={424}
+                      height={600}
+                    />
+                    <strong>{card(c.code).name}</strong>
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="combat-impact" aria-hidden="true">
+              <Sword size={30} />
+              <ArrowRight size={22} />
+            </div>
+            <div className="combat-side combat-receivers">
+              <h3>
+                {targets[0].label === "Defender" ? "Defending" : "Target"}
+              </h3>
+              <div>
+                {targets.map((c, i) => (
+                  <button
+                    key={`${c.code}-${i}`}
+                    onClick={() => inspect(card(c.code))}
+                  >
+                    <img
+                      src={imageUrl(card(c.code))}
+                      alt={card(c.code).name}
+                      width={424}
+                      height={600}
+                    />
+                    <strong>{card(c.code).name}</strong>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
         <p className="resolution-detail">{plain(step.detail)}</p>
         {isReveal && featured && (
           <section className="resolution-rules">
@@ -70,14 +137,19 @@ export function ResolutionContent({
             </p>
           </section>
         )}
-        {step.cards.length > (isReveal ? 1 : 0) && (
+        {otherCards.length > 0 && (
           <div className="resolution-cards">
-            {(isReveal ? step.cards.slice(1) : step.cards).map((c, i) => (
+            {otherCards.map((c, i) => (
               <button
                 key={`${c.code}-${i}`}
                 onClick={() => inspect(card(c.code))}
               >
-                <img src={imageUrl(card(c.code))} alt="" />
+                <img
+                  src={imageUrl(card(c.code))}
+                  alt={card(c.code).name}
+                  width={424}
+                  height={600}
+                />
                 <span>
                   <strong>{card(c.code).name}</strong>
                   <small>{c.label}</small>
@@ -193,7 +265,7 @@ export function ResolutionDialog({
         <h2 id="resolution-title" tabIndex={-1} ref={titleRef}>
           {step.title}
         </h2>
-        <ResolutionContent s={s} step={step} inspect={inspect} />
+        <ResolutionContent s={s} step={step} inspect={inspect} animate />
       </div>
       <footer className="resolution-footer">
         <div>

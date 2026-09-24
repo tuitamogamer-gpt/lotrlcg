@@ -2115,7 +2115,7 @@ export function createGame(
     playMode === "campaign"
       ? structuredClone(
           options.campaign ??
-            newCampaign(options.seats?.map((p) => p.hero) ?? heroCodes),
+            newCampaign(options.seats?.flatMap((p) => p.heroes) ?? heroCodes),
         )
       : null;
   const s: GameState = {
@@ -2187,17 +2187,23 @@ export function createGame(
     lastQuest: null,
   };
   if (options.seats) {
+    const heroes = options.seats.flatMap((p) => p.heroes);
     requireRule(
       options.seats.length >= 1 &&
-        options.seats.length <= 3 &&
-        new Set(options.seats.map((p) => p.hero)).size === options.seats.length,
-      "Choose one to three different heroes, each with a separate deck.",
+        options.seats.length <= 4 &&
+        new Set(heroes).size === heroes.length,
+      "Choose one to four players with different heroes across the table.",
     );
     for (const config of options.seats) {
       const d = STARTERS.find((d) => d.id === config.deckId);
       requireRule(
-        d && d.heroes.includes(config.hero),
-        "Each hero uses their sphere’s Core Set starter deck.",
+        d &&
+          config.heroes.length >= 1 &&
+          config.heroes.length <= 3 &&
+          config.heroes.every(
+            (h) => SCRIPTED.has(h) && card(h).type_code === "hero",
+          ),
+        "Each player needs one to three heroes and a Core Set starter deck.",
       );
     }
     const blank = snapshotSeat(s);
@@ -2212,13 +2218,14 @@ export function createGame(
       selectSeat(s, i);
       const d = STARTERS.find((d) => d.id === config.deckId)!;
       s.deckId = d.id;
-      s.startingHeroes = [config.hero];
+      s.startingHeroes = [...config.heroes];
       s.deck = Object.entries(d.cards).flatMap(([code, n]) =>
         Array<string>(n).fill(code),
       );
-      s.heroes = [make(s, config.hero)];
+      s.heroes = config.heroes.map((h) => make(s, h));
       s.threat =
-        (card(config.hero).threat ?? 0) + (campaign?.threatPenalty ?? 0);
+        config.heroes.reduce((n, h) => n + (card(h).threat ?? 0), 0) +
+        (campaign?.threatPenalty ?? 0);
       syncSeat(s);
     });
     selectSeat(s, 0);
@@ -2916,6 +2923,8 @@ export function publicState(s: GameState) {
             return {
               name: seatName(s, i),
               hero: p.startingHeroes[0],
+              startingHeroes: p.startingHeroes,
+              deckId: p.deckId,
               eliminated: s.table!.seats[i].eliminated,
               threat: p.threat,
               hand: p.hand.map((u) => ({ id: u.id, code: u.code })),
@@ -3007,14 +3016,14 @@ export function validateSave(value: unknown): value is GameState {
       u &&
       typeof u.id === "string" &&
       (u.owner === undefined ||
-        (integer(u.owner) && u.owner >= 0 && u.owner <= 2)) &&
+        (integer(u.owner) && u.owner >= 0 && u.owner <= 3)) &&
       (u.attackedBy === undefined ||
         (Array.isArray(u.attackedBy) &&
-          u.attackedBy.every((i) => integer(i) && i >= 0 && i <= 2))) &&
+          u.attackedBy.every((i) => integer(i) && i >= 0 && i <= 3))) &&
       (u.preventedAttacks === undefined ||
         (Array.isArray(u.preventedAttacks) &&
           new Set(u.preventedAttacks).size === u.preventedAttacks.length &&
-          u.preventedAttacks.every((i) => integer(i) && i >= 0 && i <= 2))) &&
+          u.preventedAttacks.every((i) => integer(i) && i >= 0 && i <= 3))) &&
       [u.tempWill, u.tempAttack, u.tempDefense, u.tempThreat].every(
         (n) => n === undefined || integer(n),
       ) &&
@@ -3033,7 +3042,7 @@ export function validateSave(value: unknown): value is GameState {
           SCRIPTED.has(a.code) &&
           typeof a.exhausted === "boolean" &&
           (a.owner === undefined ||
-            (integer(a.owner) && a.owner >= 0 && a.owner <= 2)),
+            (integer(a.owner) && a.owner >= 0 && a.owner <= 3)),
       ) &&
       codes(u.shadows) &&
       (u.guarding === undefined || typeof u.guarding === "string") &&
@@ -3087,7 +3096,7 @@ export function validateSave(value: unknown): value is GameState {
         !c ||
         !codes(c.heroes) ||
         c.heroes.length < 1 ||
-        c.heroes.length > 3 ||
+        c.heroes.length > (s.table ? 12 : 3) ||
         new Set(c.heroes).size !== c.heroes.length ||
         !c.heroes.every((h) => card(h).type_code === "hero") ||
         !codes(c.fallen) ||
@@ -3243,7 +3252,7 @@ export function validateSave(value: unknown): value is GameState {
       if (
         !Array.isArray(t.seats) ||
         t.seats.length < 1 ||
-        t.seats.length > 3 ||
+        t.seats.length > 4 ||
         ![t.active, t.first, t.turn].every(
           (i) => integer(i) && i >= 0 && i < t.seats.length,
         ) ||
@@ -3254,13 +3263,14 @@ export function validateSave(value: unknown): value is GameState {
         return false;
       if (
         new Set(t.seats.flatMap((p) => p.startingHeroes)).size !==
-        t.seats.length
+        t.seats.flatMap((p) => p.startingHeroes).length
       )
         return false;
       for (const p of t.seats) {
         if (
           typeof p.eliminated !== "boolean" ||
-          p.startingHeroes.length !== 1 ||
+          p.startingHeroes.length < 1 ||
+          p.startingHeroes.length > 3 ||
           !validateSave({
             ...s,
             ...p,
@@ -4158,6 +4168,7 @@ export function continueCampaign(
   deckId = s.deckId,
   includeSupport = true,
   seed = Date.now(),
+  seatDeckIds?: string[],
 ): GameState {
   requireRule(
     s.status === "won" && s.campaign && s.campaign.completed.length < 3,
@@ -4165,22 +4176,41 @@ export function continueCampaign(
   );
   const c = structuredClone(s.campaign);
   requireRule(
-    heroes.length === (s.table?.seats.length ?? 3) &&
+    heroes.length ===
+      (s.table?.seats.flatMap((p) => p.startingHeroes).length ?? 3) &&
       new Set(heroes).size === heroes.length &&
       heroes.every(
         (h) => card(h).type_code === "hero" && !c.fallen.includes(h),
       ),
-    "Choose a different hero who has not fallen for each seat.",
+    "Choose different heroes who have not fallen, keeping each player's hero count.",
   );
-  const replaced = s.table
-    ? s.table.seats.flatMap((p, i) =>
-        p.startingHeroes[0] === heroes[i] ? [] : [p.startingHeroes[0]],
-      )
-    : c.heroes.filter((h) => !heroes.includes(h));
-  requireRule(
-    !!s.table || replaced.filter((h) => !c.fallen.includes(h)).length <= 1,
-    "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",
-  );
+  let offset = 0;
+  const seats = s.table?.seats.map((p, i) => {
+    const next = heroes.slice(offset, offset + p.startingHeroes.length);
+    offset += p.startingHeroes.length;
+    return {
+      heroes: next,
+      deckId:
+        seatDeckIds?.[i] ??
+        (p.startingHeroes.length === 1
+          ? STARTERS.find((d) => d.heroes.includes(next[0]))!.id
+          : p.deckId),
+    };
+  });
+  const groups = s.table
+    ? s.table.seats.map((p, i) => ({
+        before: p.startingHeroes,
+        after: seats![i].heroes,
+      }))
+    : [{ before: c.heroes, after: heroes }];
+  const replaced = groups.flatMap(({ before, after }) => {
+    const removed = before.filter((h) => !after.includes(h));
+    requireRule(
+      removed.filter((h) => !c.fallen.includes(h)).length <= 1,
+      "Between quests, each player may replace fallen heroes and voluntarily change one other hero.",
+    );
+    return removed;
+  });
   const next = SCENARIOS[c.completed.length].id;
   requireRule(
     next !== "dol-guldur" || !c.prisoner || heroes.includes(c.prisoner),
@@ -4191,15 +4221,8 @@ export function continueCampaign(
   c.heroes = [...heroes];
   const d = STARTERS.find((d) => d.id === deckId);
   requireRule(d, "Choose a Core Set starter deck.");
-  return createGame(seed, d.cards, heroes, d.id, {
-    ...(s.table
-      ? {
-          seats: heroes.map((hero) => ({
-            hero,
-            deckId: STARTERS.find((d) => d.heroes.includes(hero))!.id,
-          })),
-        }
-      : {}),
+  return createGame(seed, d.cards, seats?.[0].heroes ?? heroes, d.id, {
+    ...(seats ? { seats } : {}),
     scenarioId: next,
     playMode: "campaign",
     campaign: c,
@@ -4218,7 +4241,7 @@ export function retryAdventure(s: GameState, seed = Date.now()): GameState {
     ...(s.table
       ? {
           seats: s.table.seats.map((p) => ({
-            hero: p.startingHeroes[0],
+            heroes: [...p.startingHeroes],
             deckId: p.deckId,
           })),
         }

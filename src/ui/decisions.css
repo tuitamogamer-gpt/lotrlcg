@@ -1,0 +1,425 @@
+/* Card decisions share the table's parchment, brass and forest palette. */
+.decision-dialog {
+  width: min(1000px, calc(100vw - 40px));
+  max-width: none;
+  max-height: calc(100dvh - 40px);
+  padding: 0;
+  color: #47321f;
+  background: linear-gradient(130deg, #f5ead2, #e8d6b5);
+  border: 1px solid #a48248;
+  border-radius: 5px;
+  box-shadow:
+    0 25px 100px #28190ba6,
+    inset 0 0 0 4px #b9985726;
+}
+.decision-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.decision-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid #ac8b5555;
+  flex-shrink: 0;
+}
+.decision-header h2 {
+  font: 24px/1.35 var(--serif);
+  margin: 0;
+  color: #50351f;
+}
+.decision-header h2:focus {
+  outline: none;
+}
+.decision-header p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 7px 0 0;
+  color: #745333;
+}
+.decision-header .icon-button {
+  color: #654628;
+}
+.decision-body {
+  padding: 22px 26px;
+  overflow: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #a58652 transparent;
+}
+.decision-body h3 {
+  font: 14px/1.5 var(--serif);
+  margin: 0 0 14px;
+  color: #654628;
+}
+.decision-footer {
+  padding: 16px 26px;
+  border-top: 1px solid #ac8b5555;
+  background: #e5d1ae;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-shrink: 0;
+}
+.decision-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.decision-actions button {
+  min-height: 44px;
+  white-space: nowrap;
+}
+.decision-dialog .secondary {
+  color: #654628;
+  border-color: #a58652;
+}
+.decision-dialog .primary {
+  background: #385441;
+  border: 1px solid #284733;
+  color: #fff7e4;
+}
+.decision-dialog button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.decision-dialog button:focus-visible {
+  outline: 3px solid #496c50;
+  outline-offset: 3px;
+}
+.decision-summary {
+  min-width: 0;
+}
+.decision-summary strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.decision-summary small,
+.decision-hint {
+  display: block;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #735432;
+}
+.decision-grid,
+.decision-grid.choice-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  align-items: start;
+  gap: 16px;
+  margin: 0;
+}
+.decision-card {
+  min-width: 0;
+  border: 1px solid #ac8b5555;
+  padding: 8px;
+  background: #fff6e54d;
+  border-radius: 5px;
+  transition:
+    border-color 150ms,
+    background 150ms;
+}
+.decision-card:hover {
+  border-color: #8d6836;
+}
+.decision-card.is-selected {
+  border-color: #3d6046;
+  background: #d7dfca;
+  box-shadow: 0 0 0 2px #3d6046;
+}
+.decision-dialog .decision-card .decision-select {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: #47321f;
+}
+.decision-face {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.decision-face img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 424/600;
+  object-fit: contain;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px #40260c30;
+}
+.decision-art-fallback {
+  aspect-ratio: 424/600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: #d3c09c;
+  padding: 12px;
+  text-align: center;
+}
+.decision-check {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff7e4;
+  background: #34553d;
+  border: 1px solid #bfd0ac;
+  border-radius: 3px;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+.decision-select > strong {
+  font: 13px/1.5 var(--serif);
+  padding-top: 10px;
+}
+.decision-card-details {
+  width: 100%;
+}
+.decision-card-details > small {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #745333;
+  margin-top: 4px;
+}
+.decision-dialog .decision-card .decision-inspect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  color: #684b2c;
+  background: none;
+  font-size: 10px;
+  padding: 9px 0 2px;
+  margin-top: 9px;
+  border: 0;
+  border-top: 1px solid #9b7b4940;
+}
+.decision-card .decision-inspect:hover {
+  color: #2f513a;
+  text-decoration: underline;
+}
+.decision-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+}
+.decision-stats > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.decision-stats small {
+  display: block;
+  font-size: 8px;
+  font-weight: 500;
+  color: #715435;
+}
+.combat-selection,
+.play-selection {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 28px;
+}
+.combat-enemy {
+  padding-right: 24px;
+  border-right: 1px solid #ac8b5555;
+}
+.combat-enemy > p {
+  display: flex;
+  gap: 6px;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #745333;
+  margin-bottom: 0;
+}
+.combat-enemy > p svg {
+  flex-shrink: 0;
+}
+.combat-company h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.combat-company h3 > span {
+  font:
+    10px "Manrope",
+    sans-serif;
+  color: #745333;
+}
+.decision-dialog .undefended {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  color: #80432c;
+  border: 1px solid #aa794966;
+  background: #93593d0a;
+  padding: 13px;
+  margin-top: 18px;
+}
+.decision-dialog .undefended > span {
+  flex: 1;
+}
+.decision-dialog .undefended strong {
+  display: block;
+  font-size: 12px;
+}
+.decision-dialog .undefended small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.decision-dialog .undefended.selected {
+  border-color: #8d4830;
+  background: #a1553720;
+  box-shadow: 0 0 0 1px #8d4830;
+}
+.decision-options.choice-list {
+  margin-top: 18px;
+}
+.decision-dialog .decision-options > button {
+  padding: 15px;
+  min-height: 50px;
+  border: 1px solid #ac8b5577;
+  color: #50351f;
+  background: #fff6e54d;
+}
+.decision-dialog .decision-options > button:hover {
+  background: #c9b0804d;
+  border-color: #986c32;
+}
+.decision-dialog .decision-owner {
+  margin: 0 0 16px;
+  color: #745333;
+}
+.decision-empty {
+  padding: 22px;
+  background: #c9b08030;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.play-source {
+  align-self: start;
+}
+.play-options {
+  min-width: 0;
+}
+.play-options .rules-text {
+  font-size: 13px;
+  color: #654628;
+  line-height: 1.8;
+  margin: 0 0 20px;
+}
+.play-options .payment-heading {
+  margin-top: 22px;
+}
+.decision-dialog .payment-row {
+  color: #654628;
+  background: transparent;
+  border-color: #a5865255;
+  font-size: 12px;
+}
+.decision-dialog .payment-row small {
+  color: #745333;
+}
+.decision-dialog .stepper button {
+  color: #654628;
+  background: #d9c49e;
+}
+.decision-dialog .field-label {
+  color: #654628;
+}
+.decision-dialog input {
+  color: #47321f;
+  background: #fff6e5;
+  border-color: #a58652;
+}
+@media (max-width: 720px) {
+  .decision-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .decision-header {
+    padding: 16px;
+  }
+  .decision-header h2 {
+    font-size: 20px;
+  }
+  .decision-body {
+    padding: 16px;
+  }
+  .decision-footer {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .decision-actions {
+    justify-content: flex-end;
+  }
+  .combat-selection,
+  .play-selection {
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .combat-enemy {
+    padding-right: 12px;
+  }
+  .decision-grid,
+  .decision-grid.choice-list {
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    gap: 12px;
+  }
+  .combat-company h3 {
+    display: block;
+  }
+  .combat-company h3 > span {
+    display: block;
+    margin-top: 3px;
+  }
+}
+@media (max-width: 460px) {
+  .combat-selection,
+  .play-selection {
+    grid-template-columns: 1fr;
+  }
+  .combat-enemy,
+  .play-source {
+    width: 155px;
+    padding: 0;
+    border: 0;
+    justify-self: center;
+  }
+  .decision-actions button {
+    padding: 10px;
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .decision-card {
+    transition: none;
+  }
+}

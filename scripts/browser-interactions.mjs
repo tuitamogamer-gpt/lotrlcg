@@ -43,17 +43,31 @@ for (const [name, fixture] of Object.entries(fixtures)) {
     await p.locator(".hand-play").click();
     const dialog = p.locator("dialog[open]");
     if (name === "leadership")
-      await dialog.locator("select").selectOption(fixture.heroes[0].id);
+      await dialog
+        .locator(
+          `.target-selection [data-unit-id="${fixture.heroes[0].id}"] .decision-select`,
+        )
+        .click();
     if (name === "spirit")
-      await dialog.locator("select").selectOption("discard-0");
+      await dialog
+        .locator(
+          '.target-selection [data-unit-id="discard-0"] .decision-select',
+        )
+        .click();
     if (name === "lore")
       await dialog.getByRole("spinbutton", { name: "Choose X" }).fill("2");
     await dialog
       .getByRole("button", { name: "Play card", exact: true })
       .click();
     if (name === "lore") {
-      await p.locator("dialog[open] .choice-list>button").first().click();
-      await p.locator("dialog[open] .choice-list>button").first().click();
+      await p
+        .locator("dialog[open] .choice-list .decision-select")
+        .first()
+        .click();
+      await p
+        .locator("dialog[open] .choice-list .decision-select")
+        .first()
+        .click();
     }
     if (name === "leadership")
       await p
@@ -61,8 +75,14 @@ for (const [name, fixture] of Object.entries(fixtures)) {
         .click();
     if (name === "tactics") {
       await p.locator(".engaged-zone .card-action").click();
-      await p.locator("dialog[open] .choice-list>button").nth(0).click();
-      await p.locator("dialog[open] .choice-list>button").nth(2).click();
+      await p
+        .locator("dialog[open] .choice-list .decision-select")
+        .nth(0)
+        .click();
+      await p
+        .locator("dialog[open] .choice-list .decision-select")
+        .nth(2)
+        .click();
       await p
         .getByRole("button", { name: "Resolve enemy attack", exact: true })
         .click();

@@ -66,8 +66,10 @@ try {
     await p.locator(".hand-play").click();
     await p
       .getByRole("dialog")
-      .locator("select")
-      .selectOption(fixtures.restricted.heroes[0].id);
+      .locator(
+        `.target-selection [data-unit-id="${fixtures.restricted.heroes[0].id}"] .decision-select`,
+      )
+      .click();
     await p
       .getByRole("dialog")
       .getByRole("button", { name: "Play card", exact: true })

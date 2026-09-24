@@ -347,6 +347,37 @@ export function recordObservation(
         label: action === "PLAY" ? "Played" : "Activated",
       });
   }
+  // Keep both sides of a resolved attack visible, including defeated units.
+  // These are public card faces only; facedown shadows remain private.
+  const participant = (id: string | undefined, label: string) => {
+    if (!id) return;
+    const unit = before.units[id] ?? after.units[id];
+    if (unit) cards.push({ code: unit.code, label, instanceId: id });
+  };
+  if ("type" in source && source.type === "ATTACK") {
+    source.attackerIds.forEach((id) => participant(id, "Attacker"));
+    participant(source.enemyId, "Target");
+  } else if ("type" in source && source.type === "DEFEND") {
+    participant(source.enemyId, "Attacker");
+    (
+      source.defenderIds ?? (source.defenderId ? [source.defenderId] : [])
+    ).forEach((id) => participant(id, "Defender"));
+  } else if (effect === "resolvePlayerAttack" && "kind" in source) {
+    source.ids?.forEach((id) => participant(id, "Attacker"));
+    participant(source.target, "Target");
+  } else if (effect === "enemyDamage" && !s.choice && s.combat) {
+    participant(s.combat.enemyId, "Attacker");
+    (
+      s.combat.defenderIds ?? (s.combat.defenderId ? [s.combat.defenderId] : [])
+    ).forEach((id) => participant(id, "Defender"));
+  } else if (effect === "combatDamage" && "kind" in source) {
+    participant(source.source, "Attacker");
+    participant(source.target, "Defender");
+  }
+  for (const change of changes) {
+    if (change.code && !cards.some((c) => c.code === change.code))
+      cards.push({ code: change.code, label: "Affected card" });
+  }
   const detail =
     kind === "quest" && s.lastQuest
       ? `${s.lastQuest.will} willpower − ${s.lastQuest.threat} staging threat = ${Math.abs(s.lastQuest.net)} ${s.lastQuest.net < 0 ? "threat added to each player" : "progress"}.`
@@ -359,7 +390,12 @@ export function recordObservation(
     lines,
     cards: cards.filter(
       (c, i) =>
-        cards.findIndex((x) => x.code === c.code && x.label === c.label) === i,
+        cards.findIndex(
+          (x) =>
+            x.code === c.code &&
+            x.label === c.label &&
+            x.instanceId === c.instanceId,
+        ) === i,
     ),
   });
 }
@@ -393,11 +429,15 @@ export function validFlow(value: unknown): boolean {
       Object.hasOwn(phaseLabel, r.phase) &&
       Number.isInteger(r.player) &&
       r.player >= 0 &&
-      r.player < 3 &&
+      r.player < 4 &&
       Array.isArray(r.cards) &&
       r.cards.length <= 500 &&
       r.cards.every(
-        (c) => text(c.code) && !!card(c.code).code && text(c.label),
+        (c) =>
+          text(c.code) &&
+          !!card(c.code).code &&
+          text(c.label) &&
+          (c.instanceId === undefined || text(c.instanceId)),
       ) &&
       Array.isArray(r.changes) &&
       r.changes.length <= 2000 &&

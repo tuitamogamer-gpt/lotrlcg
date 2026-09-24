@@ -4,9 +4,9 @@ import { createGame, applyAction, validateSave } from "../src/game/engine";
 import { selectSeat, syncSeat, eachSeat } from "../src/game/table";
 import type { GameState, Unit } from "../src/game/types";
 const config = [
-  { hero: "01001", deckId: "leadership" },
-  { hero: "01007", deckId: "spirit" },
-  { hero: "01005", deckId: "tactics" },
+  { heroes: ["01001"], deckId: "leadership" },
+  { heroes: ["01007"], deckId: "spirit" },
+  { heroes: ["01005"], deckId: "tactics" },
 ];
 const create = (campaign = false) => {
   const d = STARTERS[0];
@@ -67,7 +67,24 @@ fallenCampaign.heroes = [];
 fallenCampaign.discard.push("01007");
 fallenCampaign.table!.seats[1].eliminated = true;
 selectSeat(fallenCampaign, 0);
-const fixtures = { round, defense, ranged, support, campaign, fallenCampaign };
+const d = STARTERS[0];
+const fullCampaign = createGame(45, d.cards, d.heroes, d.id, {
+  playMode: "campaign",
+  seats: STARTERS.slice(0, 3).map((d) => ({ heroes: d.heroes, deckId: d.id })),
+});
+fullCampaign.status = "won";
+fullCampaign.campaign!.completed = [
+  { scenarioId: "mirkwood", score: 80, rounds: 5 },
+];
+const fixtures = {
+  round,
+  defense,
+  ranged,
+  support,
+  campaign,
+  fallenCampaign,
+  fullCampaign,
+};
 for (const s of Object.values(fixtures)) {
   syncSeat(s);
   if (!validateSave(s)) throw Error("Invalid fixture");

@@ -16,7 +16,7 @@ async function settle(p) {
   for (let n = 0; n < 30; n++) {
     const s = await state(p);
     if (!s.choice || s.mode !== "playing") return;
-    const choices = p.locator("dialog[open] .choice-list button");
+    const choices = p.locator("dialog[open] .choice-list .decision-select");
     let index = s.choice.options.findIndex((o) => o.id === "skip");
     if (index < 0)
       index = s.choice.options.findIndex((o) => o.id === "resolve");
@@ -97,8 +97,9 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     s = await state(p);
     if (s.mode !== "playing" || s.phase !== "defense") break;
     await p.locator(".engaged-zone .card-action").first().click();
-    const defender = p.locator("dialog[open] .choice-list > button").first();
+    const defender = p.locator("dialog[open] .choice-list .decision-select").first();
     if (await defender.count()) await defender.click();
+    else await p.getByRole("button", { name: /Leave undefended/ }).click();
     await p
       .getByRole("button", { name: "Resolve enemy attack", exact: true })
       .click();
@@ -109,7 +110,7 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     const enemy = p.locator(".engaged-zone .card-action").first();
     if (await enemy.count()) {
       await enemy.click();
-      const ready = p.locator("dialog[open] .choice-list > button");
+      const ready = p.locator("dialog[open] .choice-list .decision-select");
       const n = await ready.count();
       for (let i = 0; i < n; i++) await ready.nth(i).click();
       if (n) await p.locator("dialog[open] .primary").click();

@@ -47,7 +47,7 @@ async function settle(p) {
     const n = s.choice.options.findIndex((o) => o.id === "skip"),
       r = s.choice.options.findIndex((o) => o.id === "resolve");
     await p
-      .locator("dialog[open] .choice-list button")
+      .locator("dialog[open] .choice-list .decision-select")
       .nth(n >= 0 ? n : r >= 0 ? r : 0)
       .click();
   }
@@ -63,23 +63,23 @@ async function shot(p, name) {
     `${name} horizontal overflow`,
   );
 }
-for (const n of [1, 2, 3]) {
+for (const n of [1, 2, 3, 4]) {
   const p = await page();
   await p
     .getByRole("button", {
-      name: `${n} ${n === 1 ? "hero" : "heroes"}`,
+      name: `${n} ${n === 1 ? "player" : "players"}`,
       exact: true,
     })
     .click();
   assert.equal(await p.locator(".hero-selection").count(), n);
   if (n === 2)
     await p
-      .getByRole("combobox", { name: "Hero 2", exact: true })
-      .selectOption("01012");
+      .getByRole("combobox", { name: "Player 2 starter deck", exact: true })
+      .selectOption("lore");
   await p.locator("#start-btn").click();
   let s = await state(p);
   assert.equal(s.table.seats.length, n);
-  assert.equal(s.heroes.length, 1);
+  assert.equal(s.heroes.length, 3);
   for (let i = 0; i < n; i++) {
     assert.equal((await state(p)).table.active, i);
     await turn(p);
@@ -90,11 +90,11 @@ for (const n of [1, 2, 3]) {
     s.table.seats.every(
       (p) =>
         p.hand.length === 7 &&
-        p.heroes.length === 1 &&
-        p.heroes[0].resources === 1,
+        p.heroes.length === 3 &&
+        p.heroes.every((h) => h.resources === 1),
     ),
   );
-  if (n === 2) assert.equal(s.table.seats[1].hero, "01012");
+  if (n === 2) assert.equal(s.table.seats[1].deckId, "lore");
   await p.context().close();
 }
 const p = await page();
@@ -172,8 +172,10 @@ await load(p, fixtures.support);
 await p.locator(".hand-card .hand-play").click();
 await p
   .getByRole("dialog")
-  .locator("select")
-  .selectOption(fixtures.support.table.seats[2].heroes[0].id);
+  .locator(
+    `.target-selection [data-unit-id="${fixtures.support.table.seats[2].heroes[0].id}"] .decision-select`,
+  )
+  .click();
 await p
   .getByRole("dialog")
   .getByRole("button", { name: "Play card", exact: true })
@@ -323,5 +325,5 @@ await p.context().close();
 await browser.close();
 assert.deepEqual(errors, []);
 console.log(
-  "Hot-seat browser passed: setup 1–3, separate hands, full round, reload, Sentinel, Ranged, borrowed attachments, campaign carry-over, desktop action reachability and hero shortcuts; no console errors.",
+  "Hot-seat browser passed: setup 1–4 players with three heroes each, separate hands, full round, reload, Sentinel, Ranged, borrowed attachments, campaign carry-over, desktop action reachability and hero shortcuts; no console errors.",
 );

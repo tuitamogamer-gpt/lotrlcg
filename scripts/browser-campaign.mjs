@@ -25,7 +25,7 @@ async function settle(p) {
     let i = s.choice.options.findIndex((o) => o.id === "skip");
     if (i < 0) i = s.choice.options.findIndex((o) => o.id === "resolve");
     if (i < 0) i = 0;
-    await p.locator("dialog[open] .choice-list button").nth(i).click();
+    await p.locator("dialog[open] .choice-list .decision-select").nth(i).click();
   }
   throw Error("Choice did not settle");
 }
@@ -179,7 +179,7 @@ finalFight.engaged = [
 finalFight.heroes[1].damage = 2;
 await load(p, finalFight);
 await p.locator(".engaged-zone .card-action").click();
-await p.locator("dialog[open] .choice-list>button").first().click();
+await p.locator("dialog[open] .choice-list .decision-select").first().click();
 await p.locator("dialog[open] .primary").click();
 s = await state(p);
 assert.equal(s.mode, "won");
@@ -189,7 +189,7 @@ await p
   .getByRole("button", { name: "Begin next chapter", exact: true })
   .click();
 assert.equal((await state(p)).choice.title, "Appointed by Fate");
-await p.locator("dialog[open] .choice-list>button").first().click();
+await p.locator("dialog[open] .choice-list .decision-select").first().click();
 await settle(p);
 s = await state(p);
 assert.equal(s.scenario, "dol-guldur");
@@ -212,7 +212,7 @@ await p
   .filter({ hasText: "Gandalf's Map" })
   .getByRole("button", { name: "Claim · +2 threat" })
   .click();
-await p.locator("dialog[open] .choice-list>button").first().click();
+await p.locator("dialog[open] .choice-list .decision-select").first().click();
 s = await state(p);
 assert.equal(s.captiveMendor, false);
 assert.equal(s.allies.find((u) => u.code === "rc135").damage, 1);

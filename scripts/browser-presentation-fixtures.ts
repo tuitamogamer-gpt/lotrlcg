@@ -45,7 +45,21 @@ victory.branch = "beorn";
 victory.progress = 9;
 victory.staging = [];
 victory.heroes[0].committed = true;
-const fixtures = { encounter, combat, quest, victory };
+const setup = createGame(
+  77,
+  STARTERS[0].cards,
+  STARTERS[0].heroes,
+  STARTERS[0].id,
+  {
+    guided: true,
+    seats: [
+      { heroes: ["01001"], deckId: "leadership" },
+      { heroes: ["01007"], deckId: "spirit" },
+      { heroes: ["01005"], deckId: "tactics" },
+    ],
+  },
+);
+const fixtures = { setup, encounter, combat, quest, victory };
 for (const s of Object.values(fixtures))
   if (!validateSave(s)) throw Error("Invalid presentation fixture");
 mkdirSync("output/presentation", { recursive: true });

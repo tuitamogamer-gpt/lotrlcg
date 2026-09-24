@@ -26,13 +26,15 @@ import {
   defendersFor,
   attackersFor,
   livingSeats,
+  ownerOf,
 } from "../src/game/table";
 import type { GameState, Unit, ScenarioId, Action } from "../src/game/types";
 const config = [
-  { hero: "01001", deckId: "leadership" },
-  { hero: "01007", deckId: "spirit" },
-  { hero: "01005", deckId: "tactics" },
+  { heroes: ["01001"], deckId: "leadership" },
+  { heroes: ["01007"], deckId: "spirit" },
+  { heroes: ["01005"], deckId: "tactics" },
 ];
+const playerConfig = STARTERS.map((d) => ({ heroes: d.heroes, deckId: d.id }));
 let counter = 90000;
 const unit = (code: string, owner = 0): Unit => ({
   id: `hotseat-${counter++}`,
@@ -94,8 +96,8 @@ for (const n of [1, 2, 3])
     for (let i = 0; i < n; i++) {
       const p = seatView(s, i);
       assert.equal(p.heroes.length, 1);
-      assert.equal(p.heroes[0].code, config[i].hero);
-      assert.equal(p.threat, card(config[i].hero).threat);
+      assert.equal(p.heroes[0].code, config[i].heroes[0]);
+      assert.equal(p.threat, card(config[i].heroes[0]).threat);
       assert.equal(p.hand.length, 6);
       assert.equal(p.deck.length, 24);
     }
@@ -353,7 +355,7 @@ test("campaign continuation and retry preserve all hero decks and the shared rep
 });
 test("the campaign prisoner returns to the correct hero seat after rescue", () => {
   const d = STARTERS[0],
-    campaign = newCampaign(config.map((p) => p.hero));
+    campaign = newCampaign(config.flatMap((p) => p.heroes));
   campaign.completed = [
     { scenarioId: "mirkwood", score: 70, rounds: 6 },
     { scenarioId: "anduin", score: 80, rounds: 8 },
@@ -410,10 +412,10 @@ test("invalid seat indices, duplicate heroes and corrupt saves are rejected", ()
 for (const scenarioId of ["mirkwood", "anduin", "dol-guldur"] as const)
   for (const campaign of [false, true])
     test(`hot-seat ${scenarioId} ${campaign ? "campaign" : "normal"}: complete seeded games with save checks`, () => {
-      for (const n of [1, 2, 3])
+      for (const n of [1, 2, 3, 4])
         for (let seed = 1; seed <= 8; seed++) {
           const d = STARTERS[0],
-            heroes = config.slice(0, n).map((p) => p.hero),
+            heroes = playerConfig.slice(0, n).flatMap((p) => p.heroes),
             c = newCampaign(heroes),
             scenarios = ["mirkwood", "anduin", "dol-guldur"] as const;
           c.completed = scenarios
@@ -421,7 +423,7 @@ for (const scenarioId of ["mirkwood", "anduin", "dol-guldur"] as const)
             .map((scenarioId) => ({ scenarioId, score: 60, rounds: 5 }));
           if (scenarioId !== "mirkwood") c.boons = ["rc132"];
           let s = createGame(seed, d.cards, d.heroes, d.id, {
-              seats: config.slice(0, n),
+              seats: playerConfig.slice(0, n),
               scenarioId,
               guided: seed <= 2,
               playMode: campaign ? "campaign" : "normal",
@@ -472,7 +474,9 @@ for (const scenarioId of ["mirkwood", "anduin", "dol-guldur"] as const)
               const e = s.engaged.find(
                 (e) =>
                   !e.attackedBy?.includes(activeSeat(s)) &&
-                  attackersFor(s, e).length,
+                  attackersFor(s, e).some(
+                    (u) => ownerOf(s, u) === activeSeat(s),
+                  ),
               );
               a = e
                 ? {

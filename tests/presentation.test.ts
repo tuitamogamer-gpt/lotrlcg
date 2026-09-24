@@ -12,9 +12,9 @@ import { startGuided } from "../src/game/presentation";
 import { eachSeat, syncSeat, seatView } from "../src/game/table";
 import type { GameState, Unit } from "../src/game/types";
 const seats = [
-  { hero: "01001", deckId: "leadership" },
-  { hero: "01007", deckId: "spirit" },
-  { hero: "01005", deckId: "tactics" },
+  { heroes: ["01001"], deckId: "leadership" },
+  { heroes: ["01007"], deckId: "spirit" },
+  { heroes: ["01005"], deckId: "tactics" },
 ];
 const next = (s: GameState) =>
   act(s, { type: "CONTINUE", stepId: s.flow!.pending!.id });

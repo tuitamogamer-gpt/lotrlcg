@@ -491,3 +491,163 @@
     padding: 10px 15px;
   }
 }
+
+/* Full card faces make each pause readable without returning to the table. */
+.resolution-dialog.resolution-summary {
+  width: min(840px, calc(100vw - 40px));
+}
+.resolution-cards,
+.resolution-summary .resolution-cards {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+.resolution-cards > button {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 8px;
+  position: relative;
+}
+.resolution-cards img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 424 / 600;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.resolution-cards > button > svg {
+  align-self: flex-end;
+}
+.resolution-cards strong {
+  line-height: 1.5;
+}
+.resolution-cards small {
+  font-size: 10px;
+  color: #765737;
+}
+.combat-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0 18px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #ac8b5555;
+}
+.combat-side h3 {
+  font: 12px var(--serif);
+  text-align: center;
+  color: #765331;
+  margin: 0 0 10px;
+}
+.combat-side > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.combat-side button {
+  flex: 0 1 142px;
+  min-width: 0;
+  padding: 0;
+  color: #50351f;
+  background: none;
+}
+.combat-side img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 424/600;
+  object-fit: contain;
+  border-radius: 7px;
+  box-shadow: 0 5px 13px #40260c33;
+}
+.combat-side strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.combat-impact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #88422e;
+}
+.combat-animated .combat-strikers img {
+  animation: combat-strike 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.combat-animated .combat-receivers img {
+  animation: combat-hit 650ms ease-out both;
+}
+.combat-animated .combat-impact {
+  animation: combat-impact 650ms ease-out both;
+}
+@keyframes combat-strike {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+  25% {
+    transform: translateX(-8px) rotate(-3deg);
+  }
+  48% {
+    transform: translateX(28px) rotate(4deg);
+  }
+}
+@keyframes combat-hit {
+  0%,
+  42%,
+  100% {
+    transform: translateX(0);
+  }
+  52% {
+    transform: translateX(9px) rotate(3deg);
+  }
+  65% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+@keyframes combat-impact {
+  0%,
+  30% {
+    transform: scale(0.7);
+    opacity: 0.3;
+  }
+  48% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .combat-animated .combat-strikers img,
+  .combat-animated .combat-receivers img,
+  .combat-animated .combat-impact {
+    animation: none;
+  }
+}
+@media (max-width: 600px) {
+  .resolution-content.with-featured-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .resolution-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .combat-scene {
+    grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+    gap: 6px;
+  }
+  .resolution-cards,
+  .resolution-summary .resolution-cards {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  }
+}

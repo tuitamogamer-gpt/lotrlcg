@@ -81,9 +81,9 @@ for (const guided of [false, true]) {
         ...(hot
           ? {
               seats: [
-                { hero: "01001", deckId: "leadership" },
-                { hero: "01007", deckId: "spirit" },
-                { hero: "01005", deckId: "tactics" },
+                { heroes: ["01001"], deckId: "leadership" },
+                { heroes: ["01007"], deckId: "spirit" },
+                { heroes: ["01005"], deckId: "tactics" },
               ],
             }
           : {}),

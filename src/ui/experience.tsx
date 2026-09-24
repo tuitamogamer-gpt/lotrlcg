@@ -88,7 +88,7 @@ export const nextAction = (s: GameState): Action | null =>
                 : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
   offTurn(s)
-    ? `Continue as ${seatName(s, s.table!.turn)}`
+    ? `Continue as Player ${s.table!.turn + 1}`
     : s.table && ["planning", "quest", "encounter", "attack"].includes(s.phase)
       ? {
           planning: "Finish this hero’s planning",
@@ -138,14 +138,14 @@ export function TurnActions({
         <p>
           {s.table?.seats[activeSeat(s)].eliminated
             ? "This fellowship has been eliminated."
-            : "You are viewing another hero’s cards."}
+            : "You are viewing another player’s fellowship."}
         </p>
         <button
           className="primary"
           disabled={!!s.choice}
           onClick={() => dispatch({ type: "SELECT_SEAT", seat: s.table!.turn })}
         >
-          Continue as {seatName(s, s.table!.turn)} <ArrowRight size={18} />
+          Continue as Player {s.table!.turn + 1} <ArrowRight size={18} />
         </button>
       </div>
     );

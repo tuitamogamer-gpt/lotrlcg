@@ -134,8 +134,10 @@ await shot(p, "card-inspector");
 await p.getByRole("button", { name: "Play this card", exact: true }).click();
 await p
   .getByRole("dialog")
-  .locator("select")
-  .selectOption(fixture.heroes[0].id);
+  .locator(
+    `.target-selection [data-unit-id="${fixture.heroes[0].id}"] .decision-select`,
+  )
+  .click();
 await p
   .getByRole("dialog")
   .getByRole("button", { name: "Play card", exact: true })

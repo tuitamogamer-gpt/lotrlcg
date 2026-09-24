@@ -128,7 +128,7 @@ export interface ResolutionStep {
     | "setup";
   title: string;
   detail: string;
-  cards: { code: string; label: string }[];
+  cards: { code: string; label: string; instanceId?: string }[];
   changes: { label: string; before: string; after: string; code?: string }[];
   lines: LogEntry[];
   round: number;
@@ -241,7 +241,7 @@ export type Action =
     }
   | { type: "ATTACK"; enemyId: string; attackerIds: string[] };
 
-export type SeatConfig = { hero: string; deckId: string };
+export type SeatConfig = { heroes: string[]; deckId: string };
 export type PlayerSeat = Pick<
   GameState,
   | "deckId"

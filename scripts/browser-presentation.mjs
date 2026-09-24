@@ -51,7 +51,7 @@ async function shot(p, name) {
   );
 }
 const p = await page();
-await p.locator("#start-btn").click();
+await load(p, fixtures.setup);
 let frozen = await state(p);
 assert.equal(frozen.resolution.kind, "setup");
 await p.evaluate(() => window.advanceTime(60000));

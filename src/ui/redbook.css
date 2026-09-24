@@ -279,6 +279,36 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px;
 }
+.hero-selections.players-1 {
+  grid-template-columns: minmax(0, 480px);
+}
+.hero-selections.players-2,
+.hero-selections.players-4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.starter-heroes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+.starter-heroes > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.starter-heroes img {
+  width: 32px;
+  height: 48px;
+  object-fit: cover;
+  border: 1px solid #ae874d;
+}
+.starter-heroes span {
+  font-size: 10px;
+  color: #59412b;
+  overflow-wrap: anywhere;
+}
 .hero-selection {
   display: flex;
   gap: 14px;
