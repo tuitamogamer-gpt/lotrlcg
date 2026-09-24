@@ -12,6 +12,7 @@ import { card, imageUrl } from "../game/cards";
 import { nextResolutionLabel, phaseLabel } from "../game/presentation";
 import { seatName } from "../game/table";
 import type { Card, GameState, ResolutionStep } from "../game/types";
+import { CardBack } from "./tabletop";
 
 const plain = (text?: string) =>
   (text ?? "").replace(/<[^>]*>/g, "").replace(/\[([^\]]+)\]/g, "$1");
@@ -52,12 +53,7 @@ export function ResolutionContent({
         >
           <span className={`reveal-card-face ${animate ? "is-revealing" : ""}`}>
             <span className="reveal-card-back" aria-hidden="true">
-              {step.kind === "shadow" ? (
-                <Shield size={44} weight="thin" />
-              ) : (
-                <Eye size={44} weight="thin" />
-              )}
-              <span>{step.kind === "shadow" ? "SHADOW" : "ENCOUNTER"}</span>
+              <CardBack encounter />
             </span>
             <img
               src={imageUrl(card(featured.code))}

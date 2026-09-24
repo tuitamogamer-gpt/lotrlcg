@@ -15,7 +15,7 @@ Campaign victories unlock the next chapter and record boons, burdens, fallen her
 
 **You control the pace.** Encounters and shadows are shown before their effects resolve. Resource gains, drawn cards, damage, threat, quest results, and phase handoffs appear in a review that waits for **Continue**. There is no timer or automatic dismissal. **Inspect table** keeps the game paused while you examine cards and player seats; **Review current event** returns to the pending step. The chronicle retains the last 80 event reviews, including revealed cards and before/after changes. Autosave and export/import preserve the exact pending review.
 
-The adventure atlas uses Red Book parchment, oxblood leather, and distinct scenery for each quest. During play, a green cloth tabletop shows full card scans, landscape quest cards, a separate active location, physical deck/discard piles, resource/damage/progress tokens, tucked attachments, sideways exhausted characters, and a two-wheel threat counter. Other fellowships remain visible beside the active player. The desktop table keeps the hand and turn controls inside the viewport, with independent scrolling for crowded zones. Player banners show each deck’s threat, resources, hand, and remaining cards. Mouse previews, full card inspection, hand sorting/filtering, discard browsing, and a shared quest forecast remain available. Preferences are saved on this device. **This release focuses on desktop; further mobile refinement is deferred.**
+The adventure atlas uses Red Book parchment, oxblood leather, and distinct scenery for each quest. During play, an illustrated cloth tabletop with three selectable imagegen playmats shows full card scans, landscape quest cards, a separate active location, physical deck/discard piles, resource/damage/progress tokens, tucked attachments, sideways exhausted characters, and a two-wheel threat counter. Other fellowships remain visible beside the active player. The desktop table keeps the hand and turn controls inside the viewport, with independent scrolling for crowded zones. Player banners show each deck’s threat, resources, hand, and remaining cards. Mouse previews, full card inspection, hand sorting/filtering, discard browsing, and a shared quest forecast remain available. Preferences are saved on this device. **This release focuses on desktop; further mobile refinement is deferred.**
 
 Keyboard: **1 / 2 / 3 / 4** switches player seats, **N** advances the current phase or opens a pending review, **U** undoes the last action, **H** jumps to your hand, **?** opens preferences and shortcuts, and **Esc** closes cards or menus. Shortcuts pause during dialogs and text entry. A pending event requires its Continue button; Escape, repeated key presses, and double clicks cannot skip reviews.
 
@@ -54,6 +54,7 @@ RingsDB’s public API supplies player-card data. Encounter definitions come fro
 - [Design direction](DESIGN.md)
 - [Physical tabletop design research and references](docs/TABLETOP-DESIGN-RESEARCH.md)
 - [Interface refresh and artwork prompts](docs/UI-REFRESH.md)
+- [Premium playmats, card backs, tokens, and imagegen prompts](docs/PREMIUM-TABLE.md)
 - [Solo hot-seat and Red Book desktop update](docs/HOTSEAT-REDBOOK.md)
 - [Visible events and player-controlled progression](docs/PLAYER-CONTROL.md)
 

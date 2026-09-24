@@ -157,21 +157,20 @@ export function JourneyArea({
   );
 }
 
-function CardBack({ encounter = false }: { encounter?: boolean }) {
+export function CardBack({ encounter = false }: { encounter?: boolean }) {
   return (
     <span
       className={`table-card-back ${encounter ? "encounter-back" : "player-back"}`}
       aria-hidden="true"
     >
-      <span className="back-ornament">
-        {encounter ? (
-          <Eye size={29} weight="thin" />
-        ) : (
-          <Tree size={29} weight="thin" />
-        )}
-      </span>
-      <span>{encounter ? "SHADOW" : "FELLOWSHIP"}</span>
-      <i />
+      <img
+        className="card-back-art"
+        src={`/art/premium/${encounter ? "shadow" : "fellowship"}-back.webp`}
+        alt=""
+        width={280}
+        height={420}
+        draggable={false}
+      />
     </span>
   );
 }

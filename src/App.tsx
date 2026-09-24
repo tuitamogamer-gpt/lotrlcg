@@ -131,6 +131,7 @@ import {
   ThreatCounter,
   questFace,
 } from "./ui/tabletop";
+import { TableCollection, PLAYMATS, PLAYMAT_CHOICES } from "./ui/premium";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -478,6 +479,17 @@ export default function App() {
     "on",
     "off",
   ] as const);
+  const [playmat, setPlaymat] = usePreference(
+    "playmat",
+    "adventure",
+    PLAYMAT_CHOICES,
+  );
+  const activePlaymat =
+    playmat === "adventure"
+      ? page === "table" && game
+        ? game.scenarioId
+        : quest.id
+      : playmat;
   const [saved, setSaved] = useState(true);
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
@@ -824,6 +836,7 @@ export default function App() {
   return (
     <div
       className={`app redbook density-${density} ${page === "table" ? "playing" : ""}`}
+      data-playmat={activePlaymat}
     >
       <a className="skip-link" href="#main-content">
         Skip to content
@@ -1685,6 +1698,16 @@ export default function App() {
               </div>
               <div className="table-tools">
                 <button
+                  className="playmat-trigger"
+                  aria-label="Change playmat"
+                  title={`Playmat: ${PLAYMATS[activePlaymat].name}`}
+                  onClick={() => setShowSettings(true)}
+                >
+                  <span className={`playmat-swatch mat-${activePlaymat}`} />
+                  <span>{PLAYMATS[activePlaymat].name}</span>
+                  <SlidersHorizontal size={13} />
+                </button>
+                <button
                   className="icon-button"
                   aria-label="Table preferences"
                   title="Table preferences & shortcuts"
@@ -2053,9 +2076,7 @@ export default function App() {
                     <div key={h.id}>
                       <Sphere sphere={card(h.code).sphere_code} />
                       <span>{name(h)}</span>
-                      <strong>
-                        <AnimatedNumber value={h.resources} />
-                      </strong>
+                      <TableToken kind="resource" value={h.resources} />
                     </div>
                   ))}
                 </div>
@@ -2135,6 +2156,11 @@ export default function App() {
           title="Make the table yours"
           onClose={() => setShowSettings(false)}
         >
+          <TableCollection
+            selected={playmat}
+            active={activePlaymat}
+            select={setPlaymat}
+          />
           <div className="preference-section">
             <h3>Card density</h3>
             <p>Choose more room to read, or more cards on screen.</p>

@@ -16,6 +16,7 @@ import "./ui/resolution.css";
 import "./ui/tabletop.css";
 import "./ui/decisions.css";
 import "./ui/motion.css";
+import "./ui/premium.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MotionConfig reducedMotion="user">
