@@ -34,9 +34,7 @@ async function load(p) {
     localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(save));
   }, fixture);
   await p.reload();
-  await p
-    .getByRole("button", { name: "Continue adventure", exact: true })
-    .click();
+  await p.locator(".landing-primary").click();
 }
 async function shot(p, name) {
   await acknowledgeReviews(p);
@@ -51,12 +49,12 @@ await load(p);
 const originalHand = (await state(p)).hand.map((u) => u.id);
 await p.getByRole("combobox", { name: "Sort hand" }).selectOption("cost");
 assert.equal(
-  await p.locator(".hand-card-title").first().textContent(),
-  "Common Cause",
+  await p.locator(".hand-art").first().getAttribute("aria-label"),
+  "Inspect Common Cause",
 );
 assert.equal(
-  await p.locator(".hand-card-title").last().textContent(),
-  "Gandalf",
+  await p.locator(".hand-art").last().getAttribute("aria-label"),
+  "Inspect Gandalf",
 );
 assert.deepEqual(
   (await state(p)).hand.map((u) => u.id),
@@ -70,11 +68,11 @@ assert.equal(
   "only affordable cards with a legal target are shown",
 );
 await p.getByRole("button", { name: /playable now/ }).click();
-assert.ok(
-  await p
-    .getByRole("button", { name: "No target yet", exact: true })
-    .isDisabled(),
-);
+const unavailable = p.locator(".hand-card").filter({
+  has: p.locator('.hand-art[aria-description*="target"]'),
+});
+assert.ok(await unavailable.count());
+assert.equal(await unavailable.locator(".hand-play").count(), 0);
 await p.keyboard.press("?");
 assert.ok(
   await p.getByRole("dialog", { name: "Make the table yours" }).isVisible(),
@@ -84,9 +82,7 @@ await p.getByRole("checkbox", { name: /Hover card previews/ }).uncheck();
 await p.keyboard.press("Escape");
 assert.ok(await p.locator(".app.density-compact").count());
 await p.reload();
-await p
-  .getByRole("button", { name: "Continue adventure", exact: true })
-  .click();
+await p.locator(".landing-primary").click();
 assert.equal(
   await p.getByRole("combobox", { name: "Sort hand" }).inputValue(),
   "cost",
@@ -118,8 +114,7 @@ await p.keyboard.press("n");
 assert.equal((await state(p)).phase, "planning");
 await p.keyboard.press("Escape");
 await p
-  .locator(".hand-card-title")
-  .filter({ hasText: "Steward of Gondor" })
+  .getByRole("button", { name: "Inspect Steward of Gondor", exact: true })
   .click();
 assert.ok(
   await p

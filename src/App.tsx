@@ -28,7 +28,6 @@ import {
   UsersThree,
   X,
   MagnifyingGlass,
-  Crosshair,
   Coins,
   FloppyDisk,
   Info,
@@ -60,7 +59,6 @@ import {
 import {
   applyAction,
   availableAbilities,
-  characters,
   createGame,
   needsTarget,
   playTargets,
@@ -375,17 +373,21 @@ function CardDetail({
 }
 function Stats({ s, u }: { s: GameState; u: Unit }) {
   const st = stats(s, u);
+  const c = card(u.code);
   return (
-    <div className="stat-row">
-      <StatBadge kind="willpower" value={st.will} />
-      <StatBadge kind="attack" value={st.attack} />
-      <StatBadge kind="defense" value={st.defense} />
-      <StatBadge
-        kind="health"
-        value={st.health - u.damage}
-        label="Remaining hit points"
-        damaged={u.damage > 0}
-      />
+    <div className="card-modifiers" aria-label="Modified card values">
+      {st.will !== (c.willpower ?? 0) && (
+        <StatBadge kind="willpower" value={st.will} />
+      )}
+      {st.attack !== (c.attack ?? 0) && (
+        <StatBadge kind="attack" value={st.attack} />
+      )}
+      {st.defense !== (c.defense ?? 0) && (
+        <StatBadge kind="defense" value={st.defense} />
+      )}
+      {st.health !== (c.health ?? 0) && (
+        <StatBadge kind="health" value={st.health} label="Maximum hit points" />
+      )}
     </div>
   );
 }
@@ -1762,7 +1764,11 @@ export default function App() {
           </main>
         )}
         {page === "table" && game && (
-          <main id="main-content" tabIndex={-1} className="table-page">
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="table-page card-table"
+          >
             <div className="table-heading">
               <div>
                 <button className="text-link" onClick={() => nav("adventures")}>
@@ -1933,8 +1939,8 @@ export default function App() {
                         <Eye size={16} /> STAGING AREA
                       </span>
                       <span>
-                        {stagingThreat(game)} threat ·{" "}
-                        {game.encounterDeck.length} encounter cards
+                        <Eye size={15} aria-hidden="true" />{" "}
+                        {stagingThreat(game)} threat
                       </span>
                     </div>
                     <motion.div layoutScroll className="board-cards">
@@ -2049,31 +2055,48 @@ export default function App() {
                         : "YOUR FELLOWSHIP"}
                     </span>
                     <span>
-                      {characters(game).filter((u) => !u.exhausted).length}{" "}
-                      ready · {questWill(game)} willpower committed
+                      {questWill(game) > 0 && (
+                        <>
+                          <Feather size={15} /> {questWill(game)} committed
+                        </>
+                      )}
                     </span>
                   </div>
                   <motion.div layoutScroll className="character-row">
-                    {game.heroes.map((u) => (
-                      <CharacterCard
-                        key={u.id}
-                        s={game}
-                        u={u}
-                        inspect={() => setDetail(card(u.code))}
-                        inspectCard={setDetail}
-                        dispatch={dispatch}
-                      />
-                    ))}
-                    {game.allies.map((u) => (
-                      <CharacterCard
-                        key={u.id}
-                        s={game}
-                        u={u}
-                        inspect={() => setDetail(card(u.code))}
-                        inspectCard={setDetail}
-                        dispatch={dispatch}
-                      />
-                    ))}
+                    <div
+                      className="hero-company"
+                      role="group"
+                      aria-label="Heroes"
+                    >
+                      {game.heroes.map((u) => (
+                        <CharacterCard
+                          key={u.id}
+                          s={game}
+                          u={u}
+                          inspect={() => setDetail(card(u.code))}
+                          inspectCard={setDetail}
+                          dispatch={dispatch}
+                        />
+                      ))}
+                    </div>
+                    {game.allies.length > 0 && (
+                      <div
+                        className="ally-company"
+                        role="group"
+                        aria-label="Allies"
+                      >
+                        {game.allies.map((u) => (
+                          <CharacterCard
+                            key={u.id}
+                            s={game}
+                            u={u}
+                            inspect={() => setDetail(card(u.code))}
+                            inspectCard={setDetail}
+                            dispatch={dispatch}
+                          />
+                        ))}
+                      </div>
+                    )}
                     <OtherFellowships
                       s={game}
                       select={(seat) => dispatch({ type: "SELECT_SEAT", seat })}
@@ -2105,7 +2128,6 @@ export default function App() {
                   dispatch={dispatch}
                   review={() => setShowResolution(true)}
                 />
-                <p>{phaseHelp(game)}</p>
                 {!!game.pendingWolfReturns?.length && (
                   <p className="turn-tip">
                     {game.pendingWolfReturns.length} Wolf Rider shadow
@@ -2115,91 +2137,92 @@ export default function App() {
                     to return to the encounter deck at the end of combat.
                   </p>
                 )}
+                <details className="table-guidance">
+                  <summary>Help with this phase</summary>
+                  <p>{phaseHelp(game)}</p>
+                  <div className="turn-tip">
+                    {game.phase === "quest"
+                      ? "Click a ready character to select it. Click again to unselect."
+                      : game.phase === "planning"
+                        ? `${game.hand.filter((u) => !playReason(game, u)).length} cards playable · Inspect a card for its rules and costs.`
+                        : game.phase === "defense"
+                          ? "Your defender exhausts. Damage is attack minus defense, after shadows."
+                          : "Hover to preview a card. Click to read its full rules."}
+                  </div>
+                </details>
                 {["quest", "staging"].includes(game.phase) && (
                   <QuestForecast s={game} />
                 )}
-                <div className="turn-tip">
-                  {game.phase === "quest"
-                    ? "Click a ready character to select it. Click again to unselect."
-                    : game.phase === "planning"
-                      ? `${game.hand.filter((u) => !playReason(game, u)).length} cards playable · Inspect a card for its rules and costs.`
-                      : game.phase === "defense"
-                        ? "Your defender exhausts. Damage is attack minus defense, after shadows."
-                        : "Hover to preview a card. Click to read its full rules."}
-                </div>
-                {game.lastQuest && (
-                  <div
-                    className={`quest-result ${game.lastQuest.net >= 0 ? "success" : "failure"}`}
-                  >
-                    <span>
-                      {game.lastQuest.net > 0
-                        ? "Quest successful"
-                        : game.lastQuest.net < 0
-                          ? "Quest failed"
-                          : "A stalemate"}
-                    </span>
-                    <strong>
-                      {game.lastQuest.will} willpower − {game.lastQuest.threat}{" "}
-                      threat
-                    </strong>
-                    <small>
-                      {game.lastQuest.net >= 0
-                        ? `${game.lastQuest.net} progress gained`
-                        : `Threat increased by ${-game.lastQuest.net}`}
-                    </small>
-                  </div>
-                )}
-                <div className="resource-pools">
-                  <h3>Resource pools</h3>
-                  {game.heroes.map((h) => (
-                    <div key={h.id}>
-                      <Sphere sphere={card(h.code).sphere_code} />
-                      <span>{name(h)}</span>
-                      <TableToken kind="resource" value={h.resources} />
+                {game.lastQuest &&
+                  ["quest", "staging", "travel"].includes(game.phase) && (
+                    <div
+                      className={`quest-result ${game.lastQuest.net >= 0 ? "success" : "failure"}`}
+                    >
+                      <span>
+                        {game.lastQuest.net > 0
+                          ? "Quest successful"
+                          : game.lastQuest.net < 0
+                            ? "Quest failed"
+                            : "A stalemate"}
+                      </span>
+                      <strong>
+                        {game.lastQuest.will} willpower −{" "}
+                        {game.lastQuest.threat} threat
+                      </strong>
+                      <small>
+                        {game.lastQuest.net >= 0
+                          ? `${game.lastQuest.net} progress gained`
+                          : `Threat increased by ${-game.lastQuest.net}`}
+                      </small>
                     </div>
-                  ))}
-                </div>
+                  )}
                 <CooperativeActions s={game} dispatch={dispatch} />
-                {game.lastReveal && (
-                  <div className="last-reveal">
-                    <h3>Last encounter</h3>
-                    <button onClick={() => setDetail(card(game.lastReveal!))}>
-                      <Art c={card(game.lastReveal)} />
-                      <span>
-                        {card(game.lastReveal).name}
-                        <small>{card(game.lastReveal).type_code}</small>
+                <details className="table-history">
+                  <summary>Recent events</summary>
+                  {game.lastReveal && (
+                    <div className="last-reveal">
+                      <h3>Last encounter</h3>
+                      <button onClick={() => setDetail(card(game.lastReveal!))}>
+                        <Art c={card(game.lastReveal)} />
                         <span>
-                          Inspect <ArrowRight size={12} />
+                          {card(game.lastReveal).name}
+                          <small>{card(game.lastReveal).type_code}</small>
+                          <span>
+                            Inspect <ArrowRight size={12} />
+                          </span>
                         </span>
-                      </span>
-                    </button>
+                      </button>
+                    </div>
+                  )}
+                  {!!game.flow?.history.length && (
+                    <div className="latest-event">
+                      <button onClick={() => setShowLog(true)}>
+                        <Scroll size={16} />
+                        <span>
+                          <strong>{game.flow.history.at(-1)!.title}</strong>
+                          <small>Review the event chronicle</small>
+                        </span>
+                      </button>
+                    </div>
+                  )}
+                  <div className="recent-log">
+                    <h3>The chronicle</h3>
+                    {game.log
+                      .slice(-4)
+                      .reverse()
+                      .map((l) => (
+                        <p key={l.id} className={l.kind}>
+                          {l.text}
+                        </p>
+                      ))}
                   </div>
-                )}
-                {!!game.flow?.history.length && (
-                  <div className="latest-event">
-                    <button onClick={() => setShowLog(true)}>
-                      <Scroll size={16} />
-                      <span>
-                        <strong>{game.flow.history.at(-1)!.title}</strong>
-                        <small>Review the event chronicle</small>
-                      </span>
-                    </button>
-                  </div>
-                )}
-                <div className="recent-log">
-                  <h3>The chronicle</h3>
-                  {game.log
-                    .slice(-4)
-                    .reverse()
-                    .map((l) => (
-                      <p key={l.id} className={l.kind}>
-                        {l.text}
-                      </p>
-                    ))}
-                </div>
-                <button className="text-link export-link" onClick={exportSave}>
-                  <DownloadSimple size={14} /> Export adventure
-                </button>
+                  <button
+                    className="text-link export-link"
+                    onClick={exportSave}
+                  >
+                    <DownloadSimple size={14} /> Export adventure
+                  </button>
+                </details>
               </aside>
             </div>
             {game.status === "playing" && (
@@ -3119,35 +3142,20 @@ function BoardCard({
         className="board-card-art"
         onClick={inspect}
         aria-label={`Inspect ${name(u)}`}
+        aria-description={
+          c.type_code === "enemy"
+            ? `${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`
+            : c.type_code === "location"
+              ? `${u.progress} of ${c.quest} progress.`
+              : undefined
+        }
       >
         <Art c={c} />
         <span className="card-table-tokens">
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
         </span>
-        <span
-          className="encounter-value"
-          title={
-            c.type_code === "objective"
-              ? "Objective"
-              : c.type_code === "enemy"
-                ? "Engagement cost"
-                : "Quest points"
-          }
-        >
-          {c.type_code === "enemy" ? (
-            <Crosshair size={12} />
-          ) : (
-            <Compass size={12} />
-          )}{" "}
-          {c.type_code === "objective"
-            ? "Objective"
-            : c.type_code === "enemy"
-              ? c.engagement
-              : c.quest}
-        </span>
       </button>
-      <div className="board-card-name">{name(u)}</div>
       {s.table && allEngaged(s).some((e) => e.id === u.id) && (
         <div className="engaged-owner">
           Engaged with {seatName(s, ownerOf(s, u))}
@@ -3157,33 +3165,24 @@ function BoardCard({
         (u.feinted || u.attachments.some((a) => a.code === "01069")) && (
           <div className="engaged-owner">Enemy attack prevented</div>
         )}
-      {c.type_code === "enemy" ? (
-        <div className="enemy-stats">
+      <div className="card-modifiers" aria-label="Modified card values">
+        {threatOf(s, u) !== (c.threat ?? 0) && (
           <StatBadge kind="threat" value={threatOf(s, u)} />
+        )}
+        {c.type_code === "enemy" && stats(s, u).attack !== (c.attack ?? 0) && (
           <StatBadge kind="attack" value={stats(s, u).attack} />
-          <StatBadge kind="defense" value={c.defense} />
-          <StatBadge
-            kind="health"
-            value={(c.health ?? 0) - u.damage}
-            label="Remaining hit points"
-            damaged={u.damage > 0}
-          />
-        </div>
-      ) : c.type_code === "objective" ? (
-        <div className="enemy-stats">
+        )}
+        {c.type_code === "enemy" &&
+          stats(s, u).defense !== (c.defense ?? 0) && (
+            <StatBadge kind="defense" value={stats(s, u).defense} />
+          )}
+      </div>
+      {c.type_code === "objective" && (
+        <div className="objective-status">
           <span>
             <Shield />
             {objectiveFree(s, u) ? "Unguarded" : "Guarded"}
           </span>
-        </div>
-      ) : (
-        <div className="enemy-stats">
-          <StatBadge kind="threat" value={threatOf(s, u)} />
-          <StatBadge
-            kind="progress"
-            value={`${u.progress}/${c.quest}`}
-            label="Location progress"
-          />
         </div>
       )}
       {action && (
@@ -3218,12 +3217,13 @@ function CharacterCard({
   return (
     <MovingCard
       id={u.id}
-      className={`character-card ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
+      className={`character-card ${c.type_code === "hero" ? "hero-card" : "ally-card"} ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
     >
       <AttachmentStack u={u} inspect={inspectCard} />
       <button
         ref={damageRef}
         className="character-art"
+        aria-description={`${u.exhausted ? "Exhausted. " : "Ready. "}${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`}
         onClick={
           s.phase === "quest" &&
           !s.flow?.pending &&
@@ -3254,12 +3254,13 @@ function CharacterCard({
       >
         <Art c={c} />
         {selected && (
-          <span className="quest-badge">
-            <Feather size={12} /> Questing
+          <span
+            className="quest-badge"
+            title="Committed to the quest"
+            aria-label="Committed to the quest"
+          >
+            <Feather size={16} />
           </span>
-        )}
-        {u.exhausted && !selected && (
-          <span className="exhausted-badge">Exhausted</span>
         )}
         <span className="card-table-tokens">
           {c.type_code === "hero" && (
@@ -3268,10 +3269,13 @@ function CharacterCard({
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
         </span>
       </button>
-      <button className="character-name" onClick={inspect}>
-        <Sphere sphere={c.sphere_code} />
-        {name(u)}
-        <Info size={11} />
+      <button
+        className="character-inspect"
+        onClick={inspect}
+        aria-label={`Read ${name(u)} card`}
+        title={`Read ${name(u)} card`}
+      >
+        <Info size={17} />
       </button>
       <Stats s={s} u={u} />
       <div className="abilities">

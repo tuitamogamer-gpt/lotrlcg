@@ -7,7 +7,6 @@ import {
   ArrowCounterClockwise,
   Books,
   Check,
-  Coins,
   Eye,
   Feather,
   Funnel,
@@ -335,8 +334,7 @@ export function Hand({
       <motion.div layoutScroll className="hand-cards">
         <CardPresence>
           {cards.map((u, i) => {
-            const c = card(u.code),
-              reason = playReason(s, u);
+            const reason = playReason(s, u);
             return (
               <MovingCard
                 key={u.id}
@@ -348,53 +346,31 @@ export function Hand({
                   className="hand-art"
                   onClick={() => inspect(u)}
                   aria-label={`Inspect ${name(u)}`}
+                  aria-description={reason ?? "Playable now"}
+                  title={`${name(u)}${reason ? ` · ${reason}` : " · Playable now"}`}
                 >
                   {art(u)}
-                  <span
-                    className={`hand-cost sphere-${c.sphere_code}`}
-                    title="Resource cost"
+                </button>
+                {!reason && (
+                  <button
+                    className="hand-play"
+                    title="Play this card"
+                    onClick={() => play(u)}
                   >
-                    {c.cost}
-                  </span>
-                </button>
-                <button className="hand-card-title" onClick={() => inspect(u)}>
-                  {name(u)}
-                </button>
-                <div className="hand-card-type">
-                  {c.type_code}
-                  <span
-                    className={`sphere-dot sphere-${c.sphere_code}`}
-                    aria-label={c.sphere_code}
-                  />
-                </div>
-                <button
-                  className="hand-play"
-                  disabled={!!reason}
-                  title={reason ?? "Play this card"}
-                  onClick={() => play(u)}
-                >
-                  {responseCards.includes(u.code) ? (
-                    <>
-                      <Shield size={13} />
-                      Response
-                    </>
-                  ) : !reason ? (
-                    <>
-                      <PlusIcon />
-                      Play card
-                      <ArrowRight size={13} />
-                    </>
-                  ) : (
-                    <>
-                      <Coins size={13} />
-                      {reason.includes("resource")
-                        ? "Need resources"
-                        : reason.includes("target")
-                          ? "No target yet"
-                          : "Inspect timing"}
-                    </>
-                  )}
-                </button>
+                    {responseCards.includes(u.code) ? (
+                      <>
+                        <Shield size={13} />
+                        Response
+                      </>
+                    ) : (
+                      <>
+                        <PlusIcon />
+                        Play card
+                        <ArrowRight size={13} />
+                      </>
+                    )}
+                  </button>
+                )}
               </MovingCard>
             );
           })}

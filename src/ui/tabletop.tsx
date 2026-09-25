@@ -84,10 +84,6 @@ export function JourneyArea({
         <img src={questFace(s)} alt={`${q.name} · side ${s.stage}B`} />
         <span className="quest-stage-seal">{s.stage}B</span>
       </button>
-      <div className="tabletop-quest-title">
-        <h2>{q.name}</h2>
-        <span>Current quest</span>
-      </div>
       <div
         className="tabletop-progress"
         aria-label={`Quest progress: ${s.progress} of ${q.quest || "special objective"}`}
@@ -95,7 +91,7 @@ export function JourneyArea({
         <TableToken kind="progress" value={s.progress} />
         <div>
           <b>{q.quest ? `${s.progress} / ${q.quest}` : "Special objective"}</b>
-          <span>Quest progress</span>
+          <span>Progress</span>
         </div>
         {q.quest > 0 && (
           <div
@@ -137,12 +133,10 @@ export function JourneyArea({
               />
               <TableToken kind="progress" value={s.activeLocation.progress} />
             </motion.button>
-            <strong>{name(s.activeLocation)}</strong>
             <span>
               {s.activeLocation.progress} / {card(s.activeLocation.code).quest}{" "}
               progress
             </span>
-            <small>Explore before advancing the quest.</small>
           </>
         ) : (
           <div className="location-slot">
@@ -272,9 +266,7 @@ export function ShadowCards({ count }: { count: number }) {
       {Array.from({ length: Math.min(count, 3) }, (_, i) => (
         <CardBack encounter key={i} />
       ))}
-      <span>
-        {count} shadow{count === 1 ? "" : "s"}
-      </span>
+      {count > 1 && <span className="shadow-count">{count}</span>}
     </div>
   );
 }

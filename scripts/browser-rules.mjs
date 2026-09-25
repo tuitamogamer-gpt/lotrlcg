@@ -148,9 +148,17 @@ try {
     await load(p, fixtures.fog);
     assert.equal((await state(p)).stagingThreat, 6);
     const fields = p.locator(".board-card").filter({
-      has: p.locator(".board-card-name", { hasText: "Gladden Fields" }),
+      has: p.getByRole("button", {
+        name: "Inspect Gladden Fields",
+        exact: true,
+      }),
     });
-    assert.match(await fields.locator(".enemy-stats").innerText(), /4/);
+    assert.equal(
+      await fields
+        .locator(".card-modifiers .stat-badge--threat")
+        .getAttribute("aria-label"),
+      "Threat: 4",
+    );
     await shot(p, `fog-${width}`, height);
 
     await load(p, fixtures.prevention);

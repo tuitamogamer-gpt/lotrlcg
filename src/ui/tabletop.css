@@ -411,7 +411,7 @@
 .table-shadows .table-card-back > i {
   display: none;
 }
-.table-shadows > span:last-child {
+.table-shadows > .shadow-count {
   position: absolute;
   top: -12px;
   left: 0;
@@ -1705,7 +1705,7 @@
     left: -19px;
     top: 8px;
   }
-  .redbook .gameboard .engaged-zone .table-shadows > span:last-child {
+  .redbook .gameboard .engaged-zone .table-shadows > .shadow-count {
     top: auto;
     bottom: -20px;
     left: 4px;
