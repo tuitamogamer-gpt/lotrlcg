@@ -20,14 +20,10 @@ for (const [name, fixture] of Object.entries(fixtures)) {
   await installReviewHandler(p);
   p.on("pageerror", (e) => failures.push(e.message));
   await p.goto(process.env.GAME_URL ?? "http://localhost:5178");
-  await p.evaluate(
-    (save) =>
-      localStorage.setItem(
-        "there-and-back-again.save.v1",
-        JSON.stringify(save),
-      ),
-    fixture,
-  );
+  await p.evaluate((save) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
+    localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(save));
+  }, fixture);
   await p.reload();
   await p
     .getByRole("button", { name: "Continue adventure", exact: true })

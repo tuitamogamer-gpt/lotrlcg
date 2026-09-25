@@ -22,6 +22,10 @@ import "./ui/decisions.css";
 import "./ui/motion.css";
 import "./ui/premium.css";
 import "./ui/core-set.css";
+import "./ui/landing.css";
+import "./ui/fellowship-choices.css";
+import "./ui/stats.css";
+import "./ui/resolution-layout.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MotionConfig reducedMotion="user">

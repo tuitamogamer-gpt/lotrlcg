@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import {
   ArrowRight,
   Check,
+  Compass,
   Crown,
   Eye,
-  Heart,
   Shield,
   Sword,
   WarningCircle,
@@ -22,6 +22,7 @@ import {
   seatName,
 } from "../game/table";
 import type { Action, Card, GameState, Unit } from "../game/types";
+import { StatBadge } from "./stats";
 
 export function DecisionDialog({
   title,
@@ -64,7 +65,11 @@ export function DecisionDialog({
       }}
     >
       <header className="decision-header">
+        <span className="decision-emblem" aria-hidden="true">
+          <Compass size={28} weight="light" />
+        </span>
         <div>
+          <span className="decision-eyebrow">A choice before you</span>
           <h2 ref={heading} tabIndex={-1} id={id}>
             {title}
           </h2>
@@ -165,27 +170,15 @@ export function DecisionStats({ s, u }: { s: GameState; u: Unit }) {
   const st = stats(s, u);
   return (
     <span className="decision-stats">
-      <span title="Attack">
-        <Sword size={15} />
-        <span>
-          {st.attack}
-          <small>ATK</small>
-        </span>
-      </span>
-      <span title="Defense">
-        <Shield size={15} />
-        <span>
-          {st.defense}
-          <small>DEF</small>
-        </span>
-      </span>
-      <span title="Remaining hit points">
-        <Heart size={15} />
-        <span>
-          {Math.max(0, st.health - u.damage)}
-          <small>HP</small>
-        </span>
-      </span>
+      <StatBadge kind="attack" value={st.attack} caption />
+      <StatBadge kind="defense" value={st.defense} caption />
+      <StatBadge
+        kind="health"
+        value={Math.max(0, st.health - u.damage)}
+        label="Remaining hit points"
+        damaged={u.damage > 0}
+        caption
+      />
     </span>
   );
 }

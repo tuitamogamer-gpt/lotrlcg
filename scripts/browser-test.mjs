@@ -39,10 +39,13 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   await p.goto(base);
   await p.getByRole("button", { name: /Classic solo/ }).click();
   await p
-    .getByRole("combobox", { name: "Choose starter deck" })
-    .selectOption(deck);
+    .getByRole("button", {
+      name: `Choose ${deck[0].toUpperCase() + deck.slice(1)}`,
+      exact: true,
+    })
+    .click();
   await p.getByRole("button", { name: "My fellowship", exact: true }).click();
-  assert.equal(await p.locator(".starter-option").count(), 4);
+  assert.equal(await p.locator(".deck-choice").count(), 4);
   assert.equal(await p.locator(".hero-roster > button").count(), 3);
   assert.equal(await p.locator(".deck-row").count(), 16);
   await p.locator(".hero-roster > button").first().click();
@@ -97,7 +100,9 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     s = await state(p);
     if (s.mode !== "playing" || s.phase !== "defense") break;
     await p.locator(".engaged-zone .card-action").first().click();
-    const defender = p.locator("dialog[open] .choice-list .decision-select").first();
+    const defender = p
+      .locator("dialog[open] .choice-list .decision-select")
+      .first();
     if (await defender.count()) await defender.click();
     else await p.getByRole("button", { name: /Leave undefended/ }).click();
     await p

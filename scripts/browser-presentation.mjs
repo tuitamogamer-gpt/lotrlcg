@@ -38,6 +38,7 @@ async function until(p, kind) {
 }
 async function load(p, s) {
   await p.evaluate((s) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
     localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(s));
     localStorage.setItem("there-and-back-again.mode.v1", "normal");
   }, s);

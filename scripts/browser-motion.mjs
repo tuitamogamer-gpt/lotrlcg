@@ -27,6 +27,7 @@ async function drain(p) {
 async function load(p, save) {
   await p.goto(base);
   await p.evaluate((save) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
     localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(save));
     localStorage.setItem("there-and-back-again.mode.v1", "normal");
     localStorage.setItem("there-and-back-again.hover-cards", "off");

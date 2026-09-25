@@ -1,0 +1,515 @@
+/* An illustrated opening spread with independent landscape, atmosphere and foliage. */
+.redbook .lobby {
+  --landing-gutter: clamp(20px, 4vw, 64px);
+  padding-top: 0;
+}
+.landing-hero {
+  grid-column: 1 / -1;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(610px, calc(100svh - 200px), 820px);
+  margin: 0 calc(-1 * var(--landing-gutter)) 20px;
+  padding: 72px var(--landing-gutter) 106px;
+  overflow: hidden;
+  background: #111f1b;
+  color: #f4ecd6;
+}
+.landing-scene,
+.landing-shade,
+.landing-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.landing-scene {
+  z-index: -1;
+  overflow: hidden;
+}
+.landing-landscape {
+  position: absolute;
+  inset: -100px -20px -30px;
+}
+.landing-landscape-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 61% 48%;
+}
+.landing-shade {
+  background:
+    linear-gradient(90deg, #081510c4 0%, #0a171158 42%, transparent 70%),
+    linear-gradient(
+      0deg,
+      #101d18 0%,
+      #101d1855 21%,
+      transparent 58%,
+      #0c181322 100%
+    );
+}
+.landing-atmosphere {
+  overflow: hidden;
+}
+.landing-light {
+  position: absolute;
+  inset: -25% -15% 0 40%;
+  background: conic-gradient(
+    from 172deg at 62% 0%,
+    transparent 0deg,
+    #edda9221 14deg,
+    transparent 20deg,
+    #f3dfa016 26deg,
+    transparent 33deg
+  );
+  transform: rotate(-9deg);
+}
+.landing-mist {
+  position: absolute;
+  inset: 25% -20% -20% 25%;
+  background:
+    radial-gradient(ellipse at 70% 65%, #d6dcc029, transparent 53%),
+    radial-gradient(ellipse at 30% 80%, #b1c2a91c, transparent 50%);
+  animation: landing-mist 18s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.landing-mote {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #f4df9c;
+  box-shadow: 0 0 8px #f0d9958c;
+  opacity: 0;
+  animation: landing-drift var(--drift-duration) var(--drift-delay)
+    cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.landing-foreground {
+  position: absolute;
+  inset: auto -2% -70px;
+  width: 104%;
+  height: 90%;
+  color: #0b1913;
+  opacity: 0.85;
+}
+.landing-frame {
+  position: absolute;
+  inset: 20px 22px;
+  border: 1px solid #d3bd7333;
+  pointer-events: none;
+  mask-image: linear-gradient(
+    90deg,
+    #000,
+    transparent 25%,
+    transparent 75%,
+    #000
+  );
+}
+.landing-waymark {
+  position: absolute;
+  right: 46px;
+  top: 38px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #ecdeb6b3;
+  gap: 3px;
+  pointer-events: none;
+}
+.landing-waymark span:first-child {
+  font-family: var(--serif);
+  font-size: 15px;
+}
+.landing-waymark span:last-child {
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+.landing-copy {
+  position: relative;
+  max-width: 680px;
+}
+.landing-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #e5d4a4;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2.1px;
+  margin: 0 0 24px;
+}
+.landing-eyebrow > span {
+  width: 32px;
+  height: 1px;
+  background: #c4ac6b;
+}
+.landing-copy h1 {
+  font-family: var(--serif);
+  font-size: clamp(72px, 7.5vw, 112px);
+  font-weight: 400;
+  line-height: 0.97;
+  letter-spacing: -2.5px;
+  margin: 0;
+  color: #f5efdd;
+  text-shadow: 0 3px 22px #0b18193d;
+}
+.landing-copy h1 em {
+  font-style: normal;
+  color: #d9c18a;
+}
+.landing-vine {
+  display: block;
+  width: 270px;
+  max-width: 70%;
+  height: 22px;
+  margin: 26px 0 20px;
+  opacity: 0.8;
+}
+.landing-description {
+  margin: 0;
+  color: #e2deca;
+  font-size: 23px;
+  line-height: 1.5;
+  font-style: italic;
+}
+.landing-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.landing-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 23px;
+  min-height: 56px;
+  padding: 7px 8px 7px 23px;
+  border: 1px solid #eedba2;
+  border-radius: 40px;
+  background: #ddc68e;
+  color: #1d2c20;
+  font-family: var(--body);
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow:
+    inset 0 0 0 3px #c6aa692e,
+    0 5px 24px #111b1326;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.landing-primary > span {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  background: #1b2b2112;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.landing-primary:hover {
+  background: #f1dfa9;
+  transform: translateY(-2px);
+}
+.landing-primary:hover > span {
+  transform: translateX(2px);
+}
+.landing-primary:active {
+  transform: scale(0.98);
+}
+.landing-learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  border: 0;
+  padding: 4px 0;
+  color: #f1e8cc;
+  background: transparent;
+  font-size: 18px;
+  text-underline-offset: 6px;
+}
+.landing-learn:hover {
+  text-decoration: underline;
+}
+.landing-save-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbcbb8;
+  font-size: 14px;
+  margin: 15px 0 0;
+}
+.landing-save-note svg {
+  flex-shrink: 0;
+  color: #d6bf86;
+}
+.landing-save-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d6bf86;
+  flex-shrink: 0;
+}
+.landing-scene-caption {
+  position: absolute;
+  right: 54px;
+  bottom: 124px;
+  display: grid;
+  gap: 7px;
+  text-align: right;
+  color: #ebe2c5;
+}
+.landing-scene-caption > span {
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.landing-scene-caption > em {
+  font-size: 19px;
+}
+.landing-bottom {
+  position: absolute;
+  bottom: 0;
+  inset-inline: var(--landing-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 83px;
+  border-top: 1px solid #d4c38b40;
+}
+.landing-facts {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 42px);
+}
+.landing-facts > span {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  color: #dbd9c6;
+  font-size: 15px;
+}
+.landing-facts strong {
+  color: #dcc38a;
+  font-family: var(--serif);
+  font-size: 25px;
+  font-weight: 400;
+  font-size-adjust: none;
+}
+.landing-explore {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 10px 0;
+  min-height: 44px;
+  border: 0;
+  color: #e4d8b8;
+  background: transparent;
+  font-size: 15px;
+}
+.landing-explore svg {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.landing-explore:hover svg {
+  transform: translateY(4px);
+}
+.landing-hero button:focus-visible {
+  outline: 2px solid #fff1b7;
+  outline-offset: 5px;
+}
+.landing-hero:not(.is-in-view) :is(.landing-mist, .landing-mote) {
+  animation-play-state: paused;
+}
+#fellowship-setup {
+  scroll-margin-top: 112px;
+}
+#fellowship-setup:focus {
+  outline: none;
+}
+#fellowship-setup:focus-visible {
+  outline: 2px solid #846b36;
+  outline-offset: 6px;
+}
+.redbook .lobby > .official-resources {
+  margin-top: 8px;
+  background: #f8f4e966;
+  border-width: 1px 0 0;
+  padding: 24px 0 8px;
+}
+@keyframes landing-mist {
+  from {
+    transform: translate3d(-3%, 2%, 0);
+  }
+  to {
+    transform: translate3d(4%, -3%, 0);
+  }
+}
+@keyframes landing-drift {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  35% {
+    opacity: 0.65;
+  }
+  75% {
+    opacity: 0.25;
+  }
+  99% {
+    transform: translate3d(24px, -48px, 0);
+  }
+}
+@media (min-width: 1520px) {
+  .redbook .lobby {
+    max-width: 1800px;
+  }
+}
+@media (max-width: 1099px) {
+  .landing-hero {
+    min-height: 660px;
+    padding-top: 62px;
+  }
+  .landing-copy h1 {
+    font-size: clamp(70px, 9vw, 96px);
+  }
+  .landing-scene-caption {
+    display: none;
+  }
+  .landing-facts {
+    gap: 22px;
+  }
+  .landing-facts > span {
+    font-size: 14px;
+  }
+  .landing-explore {
+    font-size: 0;
+  }
+  #fellowship-setup {
+    scroll-margin-top: 24px;
+  }
+}
+@media (max-width: 599px) {
+  .redbook .lobby {
+    --landing-gutter: 16px;
+  }
+  .landing-hero {
+    min-height: 730px;
+    padding: 65px 24px 156px;
+    margin-bottom: 0;
+    justify-content: center;
+  }
+  .landing-landscape {
+    inset: -50px -20px -10px;
+  }
+  .landing-landscape-image {
+    object-position: 66% center;
+  }
+  .landing-shade {
+    background:
+      linear-gradient(90deg, #0a1814b8, #0b1b1470 80%),
+      linear-gradient(0deg, #101d18, transparent 85%);
+  }
+  .landing-frame {
+    inset: 12px;
+  }
+  .landing-waymark {
+    right: 23px;
+    top: 23px;
+  }
+  .landing-waymark svg {
+    width: 32px;
+    height: 32px;
+  }
+  .landing-waymark > span {
+    display: none;
+  }
+  .landing-eyebrow {
+    font-size: 14px;
+    letter-spacing: 1.4px;
+    max-width: 245px;
+    margin-bottom: 26px;
+  }
+  .landing-eyebrow > span {
+    display: none;
+  }
+  .landing-copy h1 {
+    font-size: clamp(59px, 13.5vw, 80px);
+    letter-spacing: -1.6px;
+  }
+  .landing-vine {
+    margin-block: 22px 17px;
+  }
+  .landing-description {
+    font-size: 20px;
+  }
+  .landing-line-break {
+    display: none;
+  }
+  .landing-actions {
+    gap: 9px 24px;
+    margin-top: 26px;
+  }
+  .landing-primary {
+    font-size: 17px;
+    gap: 17px;
+    min-height: 54px;
+  }
+  .landing-learn {
+    font-size: 17px;
+  }
+  .landing-save-note {
+    font-size: 14px;
+    align-items: flex-start;
+    max-width: 280px;
+  }
+  .landing-save-note svg,
+  .landing-save-dot {
+    margin-top: 5px;
+  }
+  .landing-bottom {
+    inset-inline: 24px;
+    min-height: 124px;
+    align-items: center;
+    gap: 12px;
+  }
+  .landing-facts {
+    flex: 1;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .landing-facts > span {
+    flex: 1;
+    flex-direction: column;
+    gap: 1px;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .landing-facts strong {
+    font-size: 24px;
+  }
+  .landing-explore {
+    display: none;
+  }
+}
+/* Keep the closed mobile masthead from leaking its long subtitle over the art. */
+@media (max-width: 899px) {
+  .redbook .sidebar {
+    overflow-x: clip;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-hero *,
+  .landing-hero *::before,
+  .landing-hero *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .landing-mote {
+    opacity: 0.35;
+  }
+}

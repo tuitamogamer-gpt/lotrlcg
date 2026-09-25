@@ -1,0 +1,183 @@
+/* Keep affected cards and their results together, including when the event skin changes. */
+.redbook .resolution-dialog .resolution-header,
+.redbook .resolution-dialog .resolution-footer {
+  background: #263a2c;
+}
+.redbook .resolution-dialog .resolution-kicker,
+.redbook .resolution-dialog .resolution-header button,
+.redbook .resolution-dialog .resolution-footer .text-link {
+  color: #f1e5c3;
+}
+.resolution-dialog .event-reference,
+.resolution-dialog .resolution-footer p {
+  color: #ccd2bd;
+  font-size: 16px;
+}
+.redbook .resolution-dialog .resolution-continue {
+  background: linear-gradient(140deg, #ead9aa, #c7ae75);
+  color: #263c29;
+}
+.redbook .resolution-dialog .resolution-continue small {
+  color: #39482f;
+}
+.resolution-dialog:has(.with-card-summary) {
+  width: min(900px, calc(100vw - 40px));
+}
+.resolution-dialog:has(.with-card-summary) .event-reading {
+  padding: 24px 28px;
+}
+.resolution-dialog .with-card-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 16px 24px;
+}
+.resolution-dialog
+  .with-card-summary:has(.resolution-cards > button:only-child) {
+  grid-template-columns: 170px minmax(0, 1fr);
+}
+.resolution-dialog .with-card-summary > .resolution-detail,
+.resolution-dialog .with-card-summary > .resolution-lines {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.resolution-dialog .with-card-summary > .resolution-cards {
+  grid-column: 1;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  margin: 0;
+}
+.resolution-dialog .with-card-summary > .resolution-changes {
+  grid-column: 2;
+  margin-top: 0;
+}
+.resolution-dialog .with-card-summary > .resolution-changes dl {
+  display: block;
+}
+.redbook .resolution-dialog .resolution-detail {
+  font-size: 21px;
+  line-height: 1.4;
+  color: #302f25;
+}
+.resolution-dialog .resolution-changes {
+  padding: 14px 16px;
+  background: #fffaf0a6;
+  border: 1px solid #9b855a66;
+  border-radius: 10px;
+}
+.resolution-dialog .resolution-changes h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  margin-bottom: 8px;
+  color: #4d533c;
+}
+.resolution-dialog .resolution-changes dl > div {
+  font-size: 18px;
+  line-height: 1.35;
+  gap: 10px;
+  padding: 12px 0;
+}
+.resolution-dialog .resolution-changes dl > div:last-child {
+  border-bottom: 0;
+}
+.resolution-dialog .resolution-changes dt {
+  color: #414735;
+}
+.resolution-dialog .resolution-changes dd > span {
+  color: #62634f;
+}
+.resolution-dialog .resolution-changes dd > strong {
+  color: #283a25;
+  background: #dce3ce;
+  font-size: 19px;
+  font-weight: 700;
+}
+.resolution-dialog .resolution-cards strong {
+  font-size: 20px;
+  line-height: 1.2;
+  color: #303c29;
+}
+.resolution-dialog .resolution-cards small {
+  font-size: 16px;
+  color: #586048;
+}
+.resolution-dialog .resolution-cards > button > svg {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff6e5;
+  color: #4b3b28;
+}
+.resolution-dialog .resolution-continue > span:first-child {
+  font-size: 21px;
+}
+.resolution-dialog .resolution-continue small {
+  font-size: 16px;
+}
+.resolution-dialog .event-context {
+  font-size: 16px;
+  color: #566047;
+}
+.resolution-explanation,
+.resolution-changes,
+.resolution-changes dt,
+.resolution-changes dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .resolution-dialog:has(.with-card-summary) {
+    width: calc(100vw - 24px);
+  }
+  .resolution-dialog:has(.with-card-summary) .event-reading {
+    padding: 20px 16px;
+  }
+  .resolution-dialog .with-card-summary,
+  .resolution-dialog
+    .with-card-summary:has(.resolution-cards > button:only-child) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .resolution-dialog .with-card-summary > .resolution-changes {
+    grid-column: 1;
+  }
+  .resolution-dialog .with-card-summary > .resolution-cards {
+    grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+  }
+  .resolution-dialog
+    .with-card-summary
+    > .resolution-cards
+    > button:only-child {
+    max-width: 170px;
+  }
+  .resolution-dialog .with-card-summary .resolution-cards img {
+    height: 112px;
+    width: auto;
+    max-width: 100%;
+    align-self: center;
+  }
+  .resolution-dialog .resolution-cards strong {
+    font-size: 18px;
+  }
+  .resolution-dialog .resolution-changes {
+    padding: 10px 12px;
+  }
+}
+@media (max-width: 420px) {
+  .resolution-dialog .resolution-header {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  .resolution-dialog .resolution-changes dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+  }
+  .resolution-dialog .resolution-changes dd {
+    justify-content: flex-start;
+  }
+}

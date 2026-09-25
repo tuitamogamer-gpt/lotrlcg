@@ -31,7 +31,7 @@ export function TableCollection({
           <Sparkle size={13} weight="duotone" /> THE COLLECTOR’S TABLE
         </span>
         <h3 id="collection-title">A place for your adventure.</h3>
-        <p>Illustrated playmats, gilded card backs & enamel tokens.</p>
+        <p>Illustrated playmats, gilded card backs & tabletop tokens.</p>
       </div>
       <div className={`collection-preview mat-${active}`} aria-hidden="true">
         <div className="collection-preview-caption">
@@ -87,7 +87,7 @@ export function TableCollection({
           <i className="material-dot material-gold" /> Gold · Resources
         </span>
         <span>
-          <i className="material-dot material-ruby" /> Ruby · Damage
+          <i className="material-dot material-damage" /> Wounds · Damage
         </span>
         <span>
           <i className="material-dot material-jade" /> Jade · Progress

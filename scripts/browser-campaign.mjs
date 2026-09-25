@@ -25,7 +25,10 @@ async function settle(p) {
     let i = s.choice.options.findIndex((o) => o.id === "skip");
     if (i < 0) i = s.choice.options.findIndex((o) => o.id === "resolve");
     if (i < 0) i = 0;
-    await p.locator("dialog[open] .choice-list .decision-select").nth(i).click();
+    await p
+      .locator("dialog[open] .choice-list .decision-select")
+      .nth(i)
+      .click();
   }
   throw Error("Choice did not settle");
 }
@@ -55,6 +58,7 @@ async function screenshot(p, name) {
 async function load(p, save) {
   await p.evaluate(
     ({ save, campaignKey, modeKey }) => {
+      localStorage.removeItem("there-and-back-again.choices.v1");
       localStorage.setItem(campaignKey, JSON.stringify(save));
       localStorage.setItem(modeKey, "campaign");
     },
@@ -131,8 +135,13 @@ assert.ok(
 await p.getByRole("button", { name: "Close dialog", exact: true }).click();
 await p.getByRole("button", { name: "Continue campaign", exact: true }).click();
 await p
-  .getByRole("combobox", { name: "Campaign hero 3" })
-  .selectOption("01004");
+  .getByRole("group", { name: "Campaign hero 3", exact: true })
+  .getByRole("button", { name: "Change hero", exact: true })
+  .click();
+await p
+  .getByRole("group", { name: "Campaign hero 3", exact: true })
+  .getByRole("button", { name: "Choose Gimli", exact: true })
+  .click();
 await screenshot(p, "chapter-preparation");
 await p
   .getByRole("button", { name: "Begin next chapter", exact: true })

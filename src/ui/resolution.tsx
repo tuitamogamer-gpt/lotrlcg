@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
 import {
   ArrowRight,
+  Check,
+  CaretDown,
+  Compass,
   Eye,
+  Leaf,
+  Moon,
   Pause,
   Scroll,
   Shield,
@@ -9,6 +14,7 @@ import {
   Sword,
 } from "@phosphor-icons/react";
 import { card, imageUrl } from "../game/cards";
+import { SCENARIOS } from "../game/scenarios";
 import { nextResolutionLabel, phaseLabel } from "../game/presentation";
 import { seatName } from "../game/table";
 import type { Card, GameState, ResolutionStep } from "../game/types";
@@ -16,6 +22,60 @@ import { CardBack } from "./tabletop";
 
 const plain = (text?: string) =>
   (text ?? "").replace(/<[^>]*>/g, "").replace(/\[([^\]]+)\]/g, "$1");
+
+const eventIdentity = {
+  phase: { label: "The journey continues", icon: Compass },
+  reveal: { label: "Encounter revealed", icon: Eye },
+  shadow: { label: "From the shadows", icon: Moon },
+  combat: { label: "The clash of steel", icon: Sword },
+  quest: { label: "The fate of the quest", icon: Compass },
+  round: { label: "A new round", icon: Leaf },
+  setup: { label: "An adventure begins", icon: Compass },
+  action: { label: "A moment in your journey", icon: Sparkle },
+  effect: { label: "The story unfolds", icon: Scroll },
+} satisfies Record<ResolutionStep["kind"], { label: string; icon: typeof Eye }>;
+
+const journeyPhases = [
+  "Resource",
+  "Planning",
+  "Quest",
+  "Travel",
+  "Engagement",
+  "Combat",
+  "Refresh",
+];
+const journeyIndex: Record<GameState["phase"], number> = {
+  setup: -1,
+  planning: 1,
+  quest: 2,
+  staging: 2,
+  travel: 3,
+  encounter: 4,
+  defense: 5,
+  attack: 5,
+  refresh: 6,
+};
+
+function PhaseJourney({ step }: { step: ResolutionStep }) {
+  const current = journeyIndex[step.phase];
+  if (current < 0) return null;
+  return (
+    <ol className="event-phase-journey" aria-label="Round phases">
+      {journeyPhases.map((label, i) => (
+        <li
+          key={label}
+          className={i < current ? "is-complete" : ""}
+          aria-current={i === current ? "step" : undefined}
+        >
+          <span aria-hidden="true">
+            {i < current ? <Check size={11} /> : <i />}
+          </span>
+          <small>{label}</small>
+        </li>
+      ))}
+    </ol>
+  );
+}
 export function ResolutionContent({
   s,
   step,
@@ -40,6 +100,17 @@ export function ResolutionContent({
     : [];
   const otherCards = (isReveal ? step.cards.slice(1) : step.cards).filter(
     (c) => !combatCodes.includes(c.code),
+  );
+  const hasCardSummary =
+    !isReveal && !combat && otherCards.length > 0 && step.changes.length > 0;
+  const phaseChange =
+    step.kind === "phase"
+      ? step.changes.find((change) => change.label === "Phase")
+      : undefined;
+  const changes = step.changes.filter((change) => change !== phaseChange);
+  // The latest rules line is often also the event description. Show it once.
+  const lines = step.lines.filter(
+    (line) => plain(line.text) !== plain(step.detail),
   );
   return (
     <div
@@ -67,7 +138,9 @@ export function ResolutionContent({
           </span>
         </button>
       )}
-      <div className="resolution-explanation">
+      <div
+        className={`resolution-explanation${hasCardSummary ? " with-card-summary" : ""}`}
+      >
         {combat && (
           <div
             key={step.id}
@@ -121,6 +194,21 @@ export function ResolutionContent({
           </div>
         )}
         <p className="resolution-detail">{plain(step.detail)}</p>
+        {phaseChange && (
+          <div className="event-phase-transition" aria-label="Phase change">
+            <div>
+              <small>Completed</small>
+              <span>{phaseChange.before}</span>
+            </div>
+            <span className="event-transition-arrow" aria-hidden="true">
+              <ArrowRight size={22} weight="light" />
+            </span>
+            <div>
+              <small>Up next</small>
+              <strong>{phaseChange.after}</strong>
+            </div>
+          </div>
+        )}
         {isReveal && featured && (
           <section className="resolution-rules">
             <h3>
@@ -165,11 +253,14 @@ export function ResolutionContent({
             ))}
           </div>
         )}
-        {step.changes.length > 0 && (
+        {changes.length > 0 && (
           <section className="resolution-changes" aria-label="What changed">
-            <h3>What changed</h3>
+            <h3>
+              <Sparkle size={15} weight="light" /> What changed{" "}
+              <span>{changes.length}</span>
+            </h3>
             <dl>
-              {step.changes.map((c, i) => (
+              {changes.map((c, i) => (
                 <div key={`${c.label}-${i}`}>
                   <dt>
                     {c.code ? (
@@ -190,9 +281,9 @@ export function ResolutionContent({
             </dl>
           </section>
         )}
-        {step.lines.length > 0 && (
+        {lines.length > 0 && (
           <div className="resolution-lines" aria-label="Event details">
-            {step.lines.map((l) => (
+            {lines.map((l) => (
               <p className={l.kind} key={l.id}>
                 {s.table && l.player !== undefined && s.table.seats[l.player]
                   ? `${seatName(s, l.player)} · `
@@ -222,6 +313,11 @@ export function ResolutionDialog({
   const ref = useRef<HTMLDialogElement>(null),
     titleRef = useRef<HTMLHeadingElement>(null),
     step = s.flow!.pending!;
+  const identity = eventIdentity[step.kind];
+  const EventIcon = identity.icon;
+  const scenic = step.kind === "phase";
+  const scenario =
+    SCENARIOS.find((item) => item.id === s.scenarioId) ?? SCENARIOS[0];
   useEffect(() => {
     const d = ref.current!;
     d.showModal();
@@ -240,7 +336,7 @@ export function ResolutionDialog({
           : step.cards.length > 1 || step.changes.length > 7
             ? "resolution-summary"
             : "resolution-brief"
-      }`}
+      } ${scenic ? "resolution-scenic" : ""}`}
       aria-labelledby="resolution-title"
       data-resolution-kind={step.kind}
       aria-describedby="resolution-pause-note"
@@ -251,37 +347,77 @@ export function ResolutionDialog({
     >
       <header className="resolution-header">
         <span className="resolution-kicker">
-          <Pause size={14} weight="fill" /> GAME PAUSED · EVENT {step.id}
+          <Pause size={12} weight="fill" /> Game paused
         </span>
-        <div>
-          <span>
-            {step.round ? `Round ${step.round}` : "Setup"} ·{" "}
-            {phaseLabel[step.phase]}
-            {s.table ? ` · ${seatName(s, step.player)}` : ""}
-          </span>
-          <button
-            onClick={viewTable}
-            aria-label="Inspect table while paused"
-            title="Inspect table while paused"
-          >
-            <Eye size={16} /> Inspect table
-          </button>
-        </div>
+        <span className="event-reference">
+          Event {String(step.id).padStart(2, "0")}
+        </span>
+        <button
+          onClick={viewTable}
+          aria-label="Inspect table while paused"
+          title="Inspect table while paused"
+        >
+          <Eye size={17} weight="light" /> Inspect table
+        </button>
       </header>
       <div className="resolution-body" key={step.id}>
-        <h2 id="resolution-title" tabIndex={-1} ref={titleRef}>
-          {step.title}
-        </h2>
-        <ResolutionContent s={s} step={step} inspect={inspect} animate />
+        {scenic && (
+          <aside
+            className={`event-landscape event-landscape-${scenario.id}`}
+            aria-label={scenario.name}
+          >
+            <span className="event-landscape-round">
+              {step.round
+                ? `Round ${String(step.round).padStart(2, "0")}`
+                : "Prologue"}
+            </span>
+            <div className="event-seal" aria-hidden="true">
+              <Compass size={52} weight="light" />
+            </div>
+            <div className="event-landscape-caption">
+              <span>Your adventure</span>
+              <strong>{scenario.name}</strong>
+              <i>{scenario.tagline}</i>
+            </div>
+          </aside>
+        )}
+        <section className="event-reading">
+          <div className="event-heading">
+            <span className="event-heading-symbol" aria-hidden="true">
+              <EventIcon size={25} weight="light" />
+            </span>
+            <div>
+              <p className="event-eyebrow">{identity.label}</p>
+              <h2 id="resolution-title" tabIndex={-1} ref={titleRef}>
+                {step.title.replace(/^Next phase · /, "")}
+              </h2>
+            </div>
+          </div>
+          <p className="event-context">
+            {step.round ? `Round ${step.round}` : "Setup"}
+            {!scenic && (
+              <>
+                {" "}
+                <span>·</span> {phaseLabel[step.phase]}
+              </>
+            )}
+            {s.table && (
+              <>
+                {" "}
+                <span>·</span> {seatName(s, step.player)}
+              </>
+            )}
+          </p>
+          <ResolutionContent s={s} step={step} inspect={inspect} animate />
+          {scenic && <PhaseJourney step={step} />}
+        </section>
       </div>
       <footer className="resolution-footer">
         <div>
-          <p id="resolution-pause-note">
-            <Pause size={13} /> Nothing advances until you continue.
-          </p>
           <button className="text-link" onClick={openLog}>
-            <Scroll size={15} /> Review earlier events
+            <Scroll size={18} weight="light" /> Review earlier events
           </button>
+          <p id="resolution-pause-note">Nothing advances until you continue.</p>
         </div>
         <button
           className="primary resolution-continue"
@@ -292,7 +428,9 @@ export function ResolutionDialog({
           <span>
             Continue<small>{nextResolutionLabel(s)}</small>
           </span>
-          <ArrowRight size={20} />
+          <span className="event-continue-arrow" aria-hidden="true">
+            <ArrowRight size={21} weight="light" />
+          </span>
         </button>
       </footer>
     </dialog>
@@ -307,26 +445,52 @@ export function ResolutionChronicle({
 }) {
   return (
     <div className="resolution-chronicle">
-      <p>
-        Review the last 80 revealed cards and resolved events. Opening an event
-        never advances the game.
-      </p>
-      {[...(s.flow?.history ?? [])].reverse().map((step) => (
-        <details key={step.id}>
-          <summary>
-            <span className={`event-number event-${step.kind}`}>{step.id}</span>
-            <span>
-              <strong>{step.title}</strong>
-              <small>
-                {step.round ? `Round ${step.round}` : "Setup"} ·{" "}
-                {phaseLabel[step.phase]}
-              </small>
-            </span>
-            <Eye size={15} />
-          </summary>
-          <ResolutionContent s={s} step={step} inspect={inspect} />
-        </details>
-      ))}
+      <div className="chronicle-intro">
+        <span className="chronicle-seal">
+          <Scroll size={30} weight="light" />
+        </span>
+        <div>
+          <p className="event-eyebrow">The story so far</p>
+          <p>Every encounter. Every turning point.</p>
+          <small>
+            Revisit up to 80 events. Your adventure stays right where you left
+            it.
+          </small>
+        </div>
+        <span className="chronicle-count">
+          <strong>{s.flow?.history.length ?? 0}</strong> events
+        </span>
+      </div>
+      <div className="chronicle-timeline">
+        {[...(s.flow?.history ?? [])].reverse().map((step) => {
+          const EventIcon = eventIdentity[step.kind].icon;
+          return (
+            <details
+              key={step.id}
+              className={`chronicle-event event-${step.kind}`}
+            >
+              <summary>
+                <span className="event-number">
+                  <EventIcon size={20} weight="light" />
+                </span>
+                <span>
+                  <strong>{step.title}</strong>
+                  <small>
+                    Event {String(step.id).padStart(2, "0")} ·{" "}
+                    {step.round ? `Round ${step.round}` : "Setup"} ·{" "}
+                    {phaseLabel[step.phase]}
+                  </small>
+                </span>
+                {s.flow?.pending?.id === step.id && (
+                  <span className="chronicle-current">Current</span>
+                )}
+                <CaretDown className="chronicle-chevron" size={16} />
+              </summary>
+              <ResolutionContent s={s} step={step} inspect={inspect} />
+            </details>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 # Premium tabletop artwork
 
-Original artwork generated with the built-in `image_gen` tool on 2026-09-24. The production assets live in `public/art/premium/`. These are original fan-project treatments, not official card backs or licensed accessories. Gameplay counts and decisions remain owned by the rules engine.
+Playmat, card-back, resource, and progress artwork generated with the built-in `image_gen` tool on 2026-09-24. Those production assets live in `public/art/premium/` and are original fan-project treatments, not official card backs or licensed accessories. The damage token uses the original printed artwork documented below. Gameplay counts and decisions remain owned by the rules engine.
 
 ## Using the collection
 
 Click the playmat thumbnail beside the table tools, or open **Table preferences** (`?`). The three illustrated surfaces can be selected at any time. **Follow the adventure**, enabled by default, matches the surface to the current quest; a manual choice persists across games and reloads. It is a device preference, separate from game saves and campaign progression.
 
-White Tree player backs and Eye encounter backs also appear on facedown shadow cards and encounter reveal animations. Gold resource, ruby damage, and jade progress counters retain live numbers, accessible labels, and count-change animations. The collection preview uses illustrative counts only.
+White Tree player backs and Eye encounter backs also appear on facedown shadow cards and encounter reveal animations. Gold resource, red-and-black wound damage, and jade progress counters retain live numbers, accessible labels, and count-change animations. The collection preview uses illustrative counts only.
 
 ## Production assets
 
@@ -17,9 +17,15 @@ White Tree player backs and Eye encounter backs also appear on facedown shadow c
 | `dol-guldur.webp` | 1536 × 1024 | Fortress playmat |
 | `fellowship-back.webp` | 420 × 630 | Player card back |
 | `shadow-back.webp` | 420 × 630 | Encounter and shadow card back |
-| `premium-tokens.webp` | 768 × 256 | Gold / ruby / jade token sprite |
+| `premium-tokens.webp` | 768 × 256 | Gold resource / unused ruby / jade progress sprite |
 
-Six production WebP files total approximately 1.26 MB. Generated artwork is only resized and encoded for the web; the token sprite preserves its alpha channel. Its three equal square regions use CSS background positions of 0%, 50%, and 100%. The original generated PNGs are retained in the local imagegen output folder. No generation service or external asset request is needed at runtime.
+Six production WebP files total approximately 1.26 MB. Generated artwork is only resized and encoded for the web; the token sprite preserves its alpha channel. Resources and progress use its first and third regions; damage uses the separate PNG below. The original generated PNGs are retained in the local imagegen output folder. No generation service or external asset request is needed at runtime.
+
+## Original damage token (2026-09-25)
+
+`public/art/tokens/damage.png` is the 71 × 71 RGBA, unnumbered damage token extracted from page 3 (Components) of the official [FFG Learn to Play](https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf), linked from the [game's support page](https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/). It has the original red-and-black wound mark and braided rim, with the PDF's transparency preserved. Extraction used PDFium's image rendering on the page's image object at index 25, including its transform and alpha mask; no AI generation or repainting was used. Artwork remains the property of its respective rights holders and is used by this unofficial fan project.
+
+All `TableToken kind="damage"` instances use this asset, including heroes, allies, enemies, other fellowships, and the collection preview. The live HTML number, accessible damage label, and count animation remain intact. White outlined numerals preserve contrast over the printed wound artwork.
 
 ## Generation prompts
 

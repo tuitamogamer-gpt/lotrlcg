@@ -17,6 +17,7 @@ async function drain(p) {
 }
 async function load(p, s) {
   await p.evaluate((s) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
     localStorage.setItem(
       s.playMode === "campaign"
         ? "there-and-back-again.campaign.v1"

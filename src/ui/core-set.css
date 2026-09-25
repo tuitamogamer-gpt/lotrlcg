@@ -268,8 +268,7 @@ h4,
 
 /* Dialogs read like a page from the rulebook, including the card inspector. */
 .redbook .modal,
-.redbook .decision-dialog,
-.redbook .resolution-dialog {
+.redbook .decision-dialog {
   background:
     linear-gradient(#f8f5e9f2, #e8e1cef2),
     url("/art/westmarch-atlas.jpg") center / cover;
@@ -283,15 +282,13 @@ h4,
 }
 
 .redbook .modal .modal-top,
-.redbook .decision-header,
-.redbook .resolution-header {
+.redbook .decision-header {
   background: #b6a97f22;
   border-bottom: 3px double #95814f66;
 }
 
 .redbook .modal h2,
-.redbook .decision-header h2,
-.redbook .resolution-dialog h2 {
+.redbook .decision-header h2 {
   color: #3e4936;
   font-weight: 400;
 }
@@ -674,8 +671,6 @@ h4,
     .decision-header p,
     .decision-summary strong,
     .decision-hint,
-    .resolution-detail,
-    .resolution-rules > p,
     .resolution-changes li,
     .preference-row p,
     .hover-preview p
@@ -875,4 +870,182 @@ h4,
 
 .redbook .table-page .turn-panel .turn-actions {
   margin-bottom: 12px;
+}
+
+/* The event system shares a forest frame, warm paper and quiet brass details. */
+.redbook .decision-dialog,
+.redbook .modal.chronicle-dialog {
+  background: #efecdf;
+  border: 1px solid #8c93647d;
+  border-radius: 20px;
+  box-shadow:
+    0 32px 100px #09160f66,
+    0 8px 28px #07160b33,
+    inset 0 0 0 4px #a2a57520;
+}
+.redbook .decision-header {
+  padding: 26px 30px;
+  gap: 18px;
+  align-items: center;
+  color: #e5dfc9;
+  background:
+    radial-gradient(ellipse at 100% 0, #76865c30, transparent 75%), #22392c;
+  border-bottom: 1px solid #b6ab7247;
+}
+.decision-emblem {
+  display: grid;
+  place-items: center;
+  flex: 0 0 52px;
+  height: 52px;
+  border: 1px solid #c7ba8552;
+  border-radius: 50%;
+  color: #d7c58e;
+  box-shadow: inset 0 0 0 5px #c7ba8508;
+}
+.decision-header > div {
+  flex: 1;
+}
+.decision-eyebrow {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 14px;
+  color: #bfc6ab;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+.redbook .decision-header h2 {
+  font-size: 30px;
+  line-height: 1.15;
+  color: #f0e6c8;
+}
+.redbook .decision-header p {
+  color: #c4cdb7;
+  font-size: 17px;
+  margin-top: 10px;
+}
+.redbook .decision-header .icon-button {
+  color: #d4d6bd;
+  background: #bfc9a312;
+  border: 1px solid #c6c9a723;
+  border-radius: 50%;
+}
+.redbook .decision-body {
+  padding: 26px 30px;
+}
+.redbook .decision-card {
+  padding: 10px;
+  border: 1px solid #939e734d;
+  border-radius: 13px;
+  background: #fbf9ee66;
+  box-shadow: inset 0 1px #fffdf2;
+  transition: transform 240ms cubic-bezier(0.22, 0.72, 0.18, 1);
+}
+.redbook .decision-card:hover {
+  transform: translateY(-3px);
+}
+.redbook .decision-card.is-selected {
+  background: #d8dfc8;
+  border-color: #6f8356;
+  box-shadow:
+    0 0 0 2px #6f835666,
+    inset 0 1px #f5f8e7;
+}
+.redbook .decision-footer {
+  background: #e0e3d1;
+  border-color: #8e9b6d40;
+  padding: 18px 30px;
+}
+.redbook .decision-dialog .primary {
+  border-radius: 28px;
+  background: #3e583d;
+  border: 1px solid #728461;
+  color: #fff4d5;
+  padding: 12px 22px;
+  box-shadow: inset 0 1px #bfcd9526;
+}
+.redbook .decision-dialog .secondary {
+  border-radius: 28px;
+  border-color: #929b7370;
+  color: #516143;
+}
+.redbook .modal.chronicle-dialog {
+  padding: 28px 34px;
+  color: #414e36;
+}
+.redbook .chronicle-dialog .modal-top {
+  background: #efecdf;
+  border-bottom: 1px solid #9caa7854;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+.redbook .chronicle-dialog .modal-top h2 {
+  font-size: 32px;
+  color: #3a5134;
+}
+.chronicle-rules-log {
+  border-top: 1px solid #a4aa8455;
+  margin-top: 25px;
+}
+.chronicle-rules-log > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #627151;
+  list-style: none;
+}
+.chronicle-rules-log > summary::-webkit-details-marker {
+  display: none;
+}
+.chronicle-rules-log > summary > span {
+  margin-left: auto;
+  font-size: 14px;
+}
+.chronicle-rules-log > summary::after {
+  content: "+";
+  font-size: 20px;
+  width: 18px;
+  text-align: center;
+}
+.chronicle-rules-log[open] > summary::after {
+  content: "−";
+}
+@media (max-width: 760px) {
+  .redbook .decision-header {
+    padding: 22px;
+    gap: 12px;
+  }
+  .decision-emblem {
+    display: none;
+  }
+  .redbook .decision-header h2 {
+    font-size: 26px;
+  }
+  .redbook .decision-header p {
+    font-size: 16px;
+  }
+  .decision-eyebrow {
+    font-size: 12px;
+  }
+  .redbook .decision-body {
+    padding: 22px;
+  }
+  .redbook .decision-footer {
+    padding: 16px 22px;
+  }
+  .redbook .modal.chronicle-dialog {
+    padding: 20px;
+  }
+}
+.redbook .chronicle-dialog .event-eyebrow {
+  color: #74734f;
+}
+.redbook .chronicle-dialog .chronicle-intro small,
+.redbook .chronicle-dialog .chronicle-event summary small {
+  color: #6b735c;
+}
+.redbook .chronicle-dialog .resolution-detail {
+  color: #59634f;
 }

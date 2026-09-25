@@ -23,13 +23,14 @@ for (const n of [2, 3, 4]) {
   await installReviewHandler(page);
   await page.goto(base);
   await page.getByRole("button", { name: `${n} players`, exact: true }).click();
-  assert.equal(await page.locator(".starter-heroes img").count(), n * 3);
+  assert.equal(await page.locator(".setup-seats > button").count(), n);
+  assert.equal(await page.locator(".deck-hero-triptych img").count(), 12);
+  await page.getByRole("button", { name: "Edit Player 2 fellowship" }).click();
   assert.equal(
     await page
-      .getByRole("combobox", { name: "Player 2 starter deck" })
-      .locator('option[value="leadership"]:disabled')
-      .count(),
-    1,
+      .getByRole("button", { name: "Choose Leadership", exact: true })
+      .isDisabled(),
+    true,
   );
   await page.screenshot({
     path: `${dir}/menu-${n}-players.png`,
@@ -114,6 +115,7 @@ const { fullCampaign } = JSON.parse(
 );
 await page.goto(base);
 await page.evaluate((s) => {
+  localStorage.removeItem("there-and-back-again.choices.v1");
   localStorage.setItem("there-and-back-again.campaign.v1", JSON.stringify(s));
   localStorage.setItem("there-and-back-again.mode.v1", "campaign");
 }, fullCampaign);
@@ -122,17 +124,19 @@ await page.locator("#start-btn").click();
 await page
   .getByRole("button", { name: "Continue campaign", exact: true })
   .click();
+assert.equal(await page.locator(".campaign-hero-picker").count(), 9);
 assert.equal(
-  await page.getByRole("combobox", { name: /^Campaign hero / }).count(),
-  9,
-);
-assert.equal(
-  await page.getByRole("combobox", { name: /^Campaign player / }).count(),
+  await page.locator(".campaign-deck-choices .deck-picker").count(),
   3,
 );
 await page
-  .getByRole("combobox", { name: "Campaign hero 2", exact: true })
-  .selectOption("01012");
+  .getByRole("group", { name: /Campaign hero 2$/ })
+  .getByRole("button", { name: "Change hero", exact: true })
+  .click();
+await page
+  .getByRole("group", { name: /Campaign hero 2$/ })
+  .getByRole("button", { name: "Choose Beravor", exact: true })
+  .click();
 await page.screenshot({
   path: `${dir}/campaign-three-fellowships.png`,
   fullPage: true,

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import type { ReactNode } from "react";
 import {
   ArrowRight,
@@ -14,7 +14,6 @@ import {
   Diamond,
   Eye,
   Feather,
-  Heart,
   Leaf,
   List,
   Mountains,
@@ -40,6 +39,7 @@ import {
   Stack,
   Keyboard,
   WarningCircle,
+  UserCircle,
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -131,7 +131,15 @@ import {
   questFace,
 } from "./ui/tabletop";
 import { ThreatCounter } from "./ui/threat";
+import { StatBadge } from "./ui/stats";
 import { TableCollection, PLAYMATS, PLAYMAT_CHOICES } from "./ui/premium";
+import { LandingHero } from "./ui/landing";
+
+import { DeckPicker, HeroPicker } from "./ui/deck-picker";
+import { AccountPanel, AccountStrip } from "./ui/account";
+import { useAccount } from "./account/use-account";
+import { readChoices } from "./account/choices";
+import type { FellowshipChoices } from "./account/choices";
 
 const SAVE_KEY = "there-and-back-again.save.v1",
   DECK_KEY = "there-and-back-again.deck.v1";
@@ -191,12 +199,14 @@ function Modal({
   onClose,
   wide = false,
   compact = false,
+  className = "",
 }: {
   title: string;
   children: ReactNode;
   onClose?: () => void;
   wide?: boolean;
   compact?: boolean;
+  className?: string;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -207,7 +217,7 @@ function Modal({
   return (
     <dialog
       ref={ref}
-      className={`modal ${wide ? "modal-wide" : ""} ${compact ? "modal-compact" : ""}`}
+      className={`modal ${wide ? "modal-wide" : ""} ${compact ? "modal-compact" : ""} ${className}`}
       onCancel={(e) => {
         if (!onClose) e.preventDefault();
         else onClose();
@@ -324,18 +334,14 @@ function CardDetail({
           <p className="traits">{c.traits}</p>
           {c.health !== undefined && (
             <div className="detail-stats">
-              <span>
-                <Feather /> {c.willpower ?? "—"}
-              </span>
-              <span>
-                <Sword /> {c.attack}
-              </span>
-              <span>
-                <Shield /> {c.defense}
-              </span>
-              <span>
-                <Heart /> {c.health}
-              </span>
+              {c.type_code === "enemy" ? (
+                <StatBadge kind="threat" value={c.threat} caption />
+              ) : (
+                <StatBadge kind="willpower" value={c.willpower} caption />
+              )}
+              <StatBadge kind="attack" value={c.attack} caption />
+              <StatBadge kind="defense" value={c.defense} caption />
+              <StatBadge kind="health" value={c.health} caption />
             </div>
           )}
           <p className="rules-text">
@@ -371,42 +377,51 @@ function Stats({ s, u }: { s: GameState; u: Unit }) {
   const st = stats(s, u);
   return (
     <div className="stat-row">
-      <span title="Willpower">
-        <Feather />
-        {st.will}
-      </span>
-      <span title="Attack">
-        <Sword />
-        {st.attack}
-      </span>
-      <span title="Defense">
-        <Shield />
-        {st.defense}
-      </span>
-      <span title="Remaining hit points" className={u.damage ? "damaged" : ""}>
-        <Heart />
-        {st.health - u.damage}
-      </span>
+      <StatBadge kind="willpower" value={st.will} />
+      <StatBadge kind="attack" value={st.attack} />
+      <StatBadge kind="defense" value={st.defense} />
+      <StatBadge
+        kind="health"
+        value={st.health - u.damage}
+        label="Remaining hit points"
+        damaged={u.damage > 0}
+      />
     </div>
   );
 }
 
 export default function App() {
   const reducedMotion = useReducedMotion();
+  const [initialChoices] = useState(readChoices);
   const [page, setPage] = useState<Page>("adventures");
   const [game, setGame] = useState<GameState | null>(() =>
-    readSave(activeSaveKey()),
+    readSave(
+      initialChoices
+        ? initialChoices.playMode === "campaign"
+          ? CAMPAIGN_KEY
+          : SAVE_KEY
+        : activeSaveKey(),
+    ),
   );
   const [setupMode, setSetupMode] = useState<"classic" | "hotseat">(() => {
+    if (initialChoices) return initialChoices.setupMode;
     const saved = readSave(activeSaveKey());
     return saved ? (saved.table ? "hotseat" : "classic") : "hotseat";
   });
   const [seats, setSeats] = useState<SeatConfig[]>(() =>
-    starterSeats(readSave(activeSaveKey())?.table?.seats),
+    starterSeats(
+      initialChoices?.seatDecks.map((deckId) => ({ deckId })) ??
+        readSave(activeSaveKey())?.table?.seats,
+    ),
   );
-  const [playMode, setPlayMode] = useState<PlayMode>(readMode);
+  const [playMode, setPlayMode] = useState<PlayMode>(
+    () => initialChoices?.playMode ?? readMode(),
+  );
   const [selectedScenario, setSelectedScenario] = useState<ScenarioId>(
-    () => readSave(activeSaveKey())?.scenarioId ?? "mirkwood",
+    () =>
+      initialChoices?.scenario ??
+      readSave(activeSaveKey())?.scenarioId ??
+      "mirkwood",
   );
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
@@ -433,7 +448,9 @@ export default function App() {
       setSelectedDeck(saved.deckId);
     setHistory([]);
   };
-  const [selectedDeck, setSelectedDeck] = useState(readDeckId);
+  const [selectedDeck, setSelectedDeck] = useState(
+    () => initialChoices?.selectedDeck ?? readDeckId(),
+  );
   const starter = STARTERS.find((d) => d.id === selectedDeck)!;
   const deck = starter.cards;
   const resumable =
@@ -494,6 +511,35 @@ export default function App() {
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
+  const [showAccount, setShowAccount] = useState(false);
+  const [previewDeck, setPreviewDeck] = useState<string | null>(null);
+  const choices = useMemo<FellowshipChoices>(
+    () => ({
+      version: 1,
+      setupMode,
+      selectedDeck,
+      seatDecks: seats.map((p) => p.deckId),
+      playMode,
+      scenario: selectedScenario,
+    }),
+    [setupMode, selectedDeck, seats, playMode, selectedScenario],
+  );
+  const restoreChoices = useCallback((restored: FellowshipChoices) => {
+    setSetupMode(restored.setupMode);
+    setSelectedDeck(restored.selectedDeck);
+    setSeats(starterSeats(restored.seatDecks.map((deckId) => ({ deckId }))));
+    setSelectedScenario(restored.scenario);
+    setPlayMode(restored.playMode);
+    setGame(
+      readSave(restored.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY),
+    );
+    setHistory([]);
+    setPage("adventures");
+  }, []);
+  const account = useAccount(choices, restoreChoices);
+  useEffect(() => {
+    if (account.recovery) setShowAccount(true);
+  }, [account.recovery]);
   useEffect(() => {
     try {
       localStorage.setItem(MODE_KEY, playMode);
@@ -539,10 +585,11 @@ export default function App() {
               scenario: quest.id,
               savedGame: !!game,
               cardCount: 1315,
+              fellowship: choices,
             },
       );
     window.advanceTime = () => Promise.resolve();
-  }, [game, page, playMode, quest.id]);
+  }, [game, page, playMode, quest.id, choices]);
   const chime = () => {
     if (!sound) return;
     try {
@@ -961,6 +1008,14 @@ export default function App() {
             </strong>
           </div>
           <div className="top-tools">
+            <button
+              className="account-nav"
+              onClick={() => setShowAccount(true)}
+              aria-label={account.user ? "My account" : "Sign in or register"}
+            >
+              <UserCircle size={21} />
+              <span>{account.user ? "My account" : "Sign in"}</span>
+            </button>
             {page === "table" && (
               <button
                 className="icon-button"
@@ -1007,73 +1062,29 @@ export default function App() {
             >
               <BookOpen size={19} />
             </button>
-            <div className="profile" title="Local adventurer">
-              B
-            </div>
           </div>
         </header>
         {page === "adventures" && (
           <main id="main-content" tabIndex={-1} className="lobby">
-            <div className="page-heading">
-              <div>
-                <span className="lobby-kicker">
-                  FROM THE RED BOOK OF WESTMARCH
-                </span>
-                <h1>A tale yet to be told.</h1>
-                <p>Gather your company. Take the road into Middle-earth.</p>
-              </div>
-              <span className="chapter-label">
-                <Diamond size={13} /> CORE SET ·{" "}
-                {playMode === "campaign" ? "CAMPAIGN" : "3 QUESTS"}
-              </span>
-            </div>
-            <section
-              className="official-resources"
-              aria-label="About this fan project"
-            >
-              <div>
-                <strong>An unofficial fan project</strong>
-                <p>
-                  Inspired by The Lord of the Rings: The Card Game. Not
-                  affiliated with or endorsed by Fantasy Flight Games. Game
-                  text, card artwork and trademarks belong to their respective
-                  owners.
-                </p>
-              </div>
-              <nav aria-label="Original game and official rules">
-                <a
-                  href="https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Original game <ArrowRight size={16} />
-                </a>
-                <a
-                  href="https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn to Play (PDF) <ArrowRight size={16} />
-                </a>
-                <a
-                  href="https://images-cdn.fantasyflightgames.com/filer_public/f2/87/f28704b2-5f25-4fd8-be7a-18d4a5d2c1c4/mec101_core_set_rules_reference_v10c-compressed.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Rules Reference (PDF) <ArrowRight size={16} />
-                </a>
-              </nav>
-            </section>
+            <LandingHero
+              savedJourney={
+                resumable && game?.status === "playing"
+                  ? `Saved journey · Round ${game.round} · ${phaseNames[game.phase] ?? game.phase}`
+                  : undefined
+              }
+              onResume={() => nav("table")}
+              onLearn={() => nav("guide")}
+            />
             <FellowshipSetup
               mode={setupMode}
               changeMode={setSetupMode}
               seats={seats}
               setSeats={setSeats}
-              inspect={(id) => {
-                setSelectedDeck(id);
-                nav("fellowship");
-              }}
+              selectedDeck={selectedDeck}
+              selectDeck={setSelectedDeck}
+              inspect={setPreviewDeck}
             />
+            <AccountStrip account={account} open={() => setShowAccount(true)} />
             <section className="mode-selection" aria-label="Choose game mode">
               <div className="mode-tabs" role="group" aria-label="Game mode">
                 <button
@@ -1173,25 +1184,33 @@ export default function App() {
                   </div>
                 )}
                 {setupMode === "classic" && (
-                  <label className="starter-select">
-                    YOUR FELLOWSHIP
-                    <select
-                      aria-label="Choose starter deck"
-                      value={
-                        playMode === "campaign" && game?.campaign
-                          ? game.deckId
-                          : selectedDeck
-                      }
-                      disabled={playMode === "campaign" && !!game?.campaign}
-                      onChange={(e) => setSelectedDeck(e.target.value)}
+                  <div className="selected-fellowship-summary">
+                    <span>YOUR FELLOWSHIP</span>
+                    <strong>
+                      {playMode === "campaign" && game?.campaign
+                        ? (STARTERS.find((d) => d.id === game.deckId)?.name ??
+                          "Campaign fellowship")
+                        : starter.name}
+                    </strong>
+                    <small>
+                      {displayHeroes
+                        .slice(0, 3)
+                        .map((code) => card(code).name)
+                        .join(" · ")}
+                    </small>
+                    <button
+                      onClick={() => {
+                        const el = document.getElementById("fellowship-setup");
+                        el?.scrollIntoView({
+                          behavior: reducedMotion ? "instant" : "smooth",
+                          block: "start",
+                        });
+                        el?.focus({ preventScroll: true });
+                      }}
                     >
-                      {STARTERS.map((d) => (
-                        <option key={d.id} value={d.id}>
-                          {d.subtitle} · {d.name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                      Change fellowship <ArrowRight size={14} />
+                    </button>
+                  </div>
                 )}
                 {setupMode === "hotseat" && (
                   <div className="selected-company">
@@ -1382,6 +1401,43 @@ export default function App() {
                 </div>
               </section>
             </div>
+            <section
+              className="official-resources"
+              aria-label="About this fan project"
+            >
+              <div>
+                <strong>An unofficial fan project</strong>
+                <p>
+                  Inspired by The Lord of the Rings: The Card Game. Not
+                  affiliated with or endorsed by Fantasy Flight Games. Game
+                  text, card artwork and trademarks belong to their respective
+                  owners.
+                </p>
+              </div>
+              <nav aria-label="Original game and official rules">
+                <a
+                  href="https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Original game <ArrowRight size={16} />
+                </a>
+                <a
+                  href="https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn to Play (PDF) <ArrowRight size={16} />
+                </a>
+                <a
+                  href="https://images-cdn.fantasyflightgames.com/filer_public/f2/87/f28704b2-5f25-4fd8-be7a-18d4a5d2c1c4/mec101_core_set_rules_reference_v10c-compressed.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Rules Reference (PDF) <ArrowRight size={16} />
+                </a>
+              </nav>
+            </section>
             <footer className="lobby-footer">
               <span>
                 <FloppyDisk size={13} /> Your journey is saved automatically on
@@ -1418,29 +1474,15 @@ export default function App() {
                 Begin with {starter.subtitle} <ArrowRight />
               </button>
             </div>
-            <div className="starter-grid">
-              {STARTERS.map((d) => (
-                <button
-                  key={d.id}
-                  className={`starter-option ${selectedDeck === d.id ? "selected" : ""}`}
-                  onClick={() => setSelectedDeck(d.id)}
-                >
-                  <Sphere sphere={d.id} />
-                  <span>{d.subtitle}</span>
-                  <h2>{d.name}</h2>
-                  <p>{d.description}</p>
-                  <small>
-                    {selectedDeck === d.id ? (
-                      <>
-                        <Check size={12} /> Selected fellowship
-                      </>
-                    ) : (
-                      "30 cards · 3 heroes"
-                    )}
-                  </small>
-                </button>
-              ))}
-            </div>
+            <DeckPicker
+              value={selectedDeck}
+              onChange={(id) => {
+                setSelectedDeck(id);
+                setSetupMode("classic");
+              }}
+              inspect={setPreviewDeck}
+            />
+            <AccountStrip account={account} open={() => setShowAccount(true)} />
             <div className="hero-roster">
               {starter.heroes.map((code) => (
                 <button key={code} onClick={() => setDetail(card(code))}>
@@ -2346,6 +2388,59 @@ export default function App() {
           )}
         </Modal>
       )}
+      {showAccount && (
+        <Modal
+          title="Your account"
+          onClose={() => setShowAccount(false)}
+          compact
+        >
+          <AccountPanel account={account} />
+        </Modal>
+      )}
+      {previewDeck &&
+        (() => {
+          const d = STARTERS.find((d) => d.id === previewDeck)!;
+          return (
+            <Modal
+              title={`${d.subtitle} · ${d.name}`}
+              onClose={() => setPreviewDeck(null)}
+              wide
+            >
+              <p>{d.description} Three starting heroes and 30 player cards.</p>
+              <div className="deck-preview-heroes">
+                {d.heroes.map((code) => (
+                  <button key={code} onClick={() => setDetail(card(code))}>
+                    <Art c={card(code)} />
+                    <strong>{card(code).name}</strong>
+                    <span>
+                      {card(code).threat} starting threat · Inspect hero
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <h3>Inside this starter deck</h3>
+              <div className="deck-list">
+                {Object.entries(d.cards).map(([code, count]) => (
+                  <div className="deck-row" key={code}>
+                    <button
+                      className="deck-card-link"
+                      onClick={() => setDetail(card(code))}
+                    >
+                      <Art c={card(code)} />
+                      <span>
+                        {card(code).name}
+                        <small>
+                          {card(code).type_code} · Cost {card(code).cost}
+                        </small>
+                      </span>
+                    </button>
+                    <span className="deck-quantity">× {count}</span>
+                  </div>
+                ))}
+              </div>
+            </Modal>
+          );
+        })()}
       {detail && (
         <CardDetail
           c={detail}
@@ -2373,26 +2468,18 @@ export default function App() {
         />
       )}
       {restart && (
-        <Modal title="A new journey?" onClose={() => setRestart(false)} compact>
+        <Modal title="A new journey?" onClose={() => setRestart(false)} wide>
           <p>
             Your current saved adventure will be replaced. You can export it
             first to keep a copy.
           </p>
           {setupMode === "classic" ? (
-            <label className="field-label">
-              Starting fellowship
-              <select
-                aria-label="New adventure fellowship"
-                value={selectedDeck}
-                onChange={(e) => setSelectedDeck(e.target.value)}
-              >
-                {STARTERS.map((d) => (
-                  <option value={d.id} key={d.id}>
-                    {d.subtitle} · {d.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <DeckPicker
+              value={selectedDeck}
+              onChange={setSelectedDeck}
+              label="New adventure fellowship"
+              compact
+            />
           ) : (
             <p className="restart-company">
               New company:{" "}
@@ -2640,29 +2727,41 @@ export default function App() {
         })()}
 
       {showLog && game && (
-        <Modal title="The chronicle" onClose={() => setShowLog(false)} wide>
+        <Modal
+          title="The chronicle"
+          onClose={() => setShowLog(false)}
+          wide
+          className="chronicle-dialog"
+        >
           {game.flow?.history.length ? (
             <ResolutionChronicle s={game} inspect={setDetail} />
           ) : null}
-          {game.flow?.history.length ? (
-            <h3 className="raw-log-heading">Rules log</h3>
-          ) : null}
-          <div className="full-log">
-            {game.log
-              .slice()
-              .reverse()
-              .map((l) => (
-                <div className={l.kind} key={l.id}>
-                  <span>R{l.round || "—"}</span>
-                  <p>{l.text}</p>
-                </div>
-              ))}
-          </div>
+          <details
+            className="chronicle-rules-log"
+            open={!game.flow?.history.length}
+          >
+            <summary>
+              <Scroll size={16} /> Detailed rules log{" "}
+              <span>{game.log.length} entries</span>
+            </summary>
+            <div className="full-log">
+              {game.log
+                .slice()
+                .reverse()
+                .map((l) => (
+                  <div className={l.kind} key={l.id}>
+                    <span>R{l.round || "—"}</span>
+                    <p>{l.text}</p>
+                  </div>
+                ))}
+            </div>
+          </details>
         </Modal>
       )}
       {interlude && game?.campaign && (
         <Modal
           title="Prepare the next chapter"
+          wide
           onClose={() => setInterlude(false)}
         >
           <p>
@@ -2671,80 +2770,64 @@ export default function App() {
             Heroes recover their damage and begin with a fresh deck. Each
             replaced hero adds +1 to your permanent starting threat penalty.
           </p>
-          <div className="interlude-heroes">
+          <div className="campaign-hero-slots">
             {nextHeroes.map((code, i) => (
-              <label className="field-label" key={i}>
-                {game.table
-                  ? `Player ${game.table.seats.findIndex((_, seat) => i < game.table!.seats.slice(0, seat + 1).reduce((n, p) => n + p.startingHeroes.length, 0)) + 1} · `
-                  : ""}
-                Hero {i + 1}
-                <select
-                  aria-label={`Campaign hero ${i + 1}`}
-                  value={code}
-                  onChange={(e) =>
-                    setNextHeroes((h) =>
-                      h.map((old, j) => (i === j ? e.target.value : old)),
-                    )
-                  }
-                >
-                  {playerCards
-                    .filter((c) => c.type_code === "hero")
-                    .map((c) => (
-                      <option
-                        key={c.code}
-                        value={c.code}
-                        disabled={
-                          game.campaign!.fallen.includes(c.code) ||
-                          (nextHeroes.includes(c.code) && c.code !== code)
-                        }
-                      >
-                        {c.name}
-                        {game.campaign!.fallen.includes(c.code)
-                          ? " · fallen"
-                          : ""}
-                      </option>
-                    ))}
-                </select>
-              </label>
+              <HeroPicker
+                key={i}
+                value={code}
+                onChange={(code) =>
+                  setNextHeroes((h) =>
+                    h.map((old, j) => (j === i ? code : old)),
+                  )
+                }
+                label={`${game.table ? `Player ${game.table.seats.findIndex((_, seat) => i < game.table!.seats.slice(0, seat + 1).reduce((n, p) => n + p.startingHeroes.length, 0)) + 1} · ` : ""}Campaign hero ${i + 1}`}
+                heroes={playerCards.filter((c) => c.type_code === "hero")}
+                inspect={setDetail}
+                unavailable={(candidate) =>
+                  game.campaign!.fallen.includes(candidate)
+                    ? "Fallen"
+                    : nextHeroes.includes(candidate) && candidate !== code
+                      ? "Already in the company"
+                      : game.campaign!.prisoner === code && candidate !== code
+                        ? "Keep the recorded prisoner"
+                        : undefined
+                }
+              />
             ))}
           </div>
           {!game.table && (
-            <label className="field-label">
-              Player deck
-              <select
-                aria-label="Campaign player deck"
+            <>
+              <h3>Player deck</h3>
+              <p>
+                The deck supplies your player cards. Your chosen campaign heroes
+                are shown above.
+              </p>
+              <DeckPicker
                 value={nextDeck}
-                onChange={(e) => setNextDeck(e.target.value)}
-              >
-                {STARTERS.map((d) => (
-                  <option value={d.id} key={d.id}>
-                    {d.subtitle} · {d.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+                onChange={setNextDeck}
+                label="Campaign player deck"
+                compact
+                showHeroes={false}
+              />
+            </>
           )}
           {game.table?.seats.some((p) => p.startingHeroes.length > 1) && (
-            <div className="interlude-heroes">
+            <div className="campaign-deck-choices">
               {nextSeatDecks.map((deckId, i) => (
-                <label className="field-label" key={i}>
-                  Player {i + 1} deck
-                  <select
-                    aria-label={`Campaign player ${i + 1} deck`}
+                <section key={i}>
+                  <h3>Player {i + 1} deck</h3>
+                  <DeckPicker
                     value={deckId}
-                    onChange={(e) =>
+                    onChange={(id) =>
                       setNextSeatDecks((decks) =>
-                        decks.map((d, j) => (j === i ? e.target.value : d)),
+                        decks.map((d, j) => (j === i ? id : d)),
                       )
                     }
-                  >
-                    {STARTERS.map((d) => (
-                      <option value={d.id} key={d.id}>
-                        {d.subtitle} · {d.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                    label={`Campaign player ${i + 1} deck`}
+                    compact
+                    showHeroes={false}
+                  />
+                </section>
               ))}
             </div>
           )}
@@ -3076,22 +3159,15 @@ function BoardCard({
         )}
       {c.type_code === "enemy" ? (
         <div className="enemy-stats">
-          <span>
-            <Eye />
-            {threatOf(s, u)}
-          </span>
-          <span>
-            <Sword />
-            {stats(s, u).attack}
-          </span>
-          <span>
-            <Shield />
-            {c.defense}
-          </span>
-          <span className={u.damage ? "damaged" : ""}>
-            <Heart />
-            {(c.health ?? 0) - u.damage}
-          </span>
+          <StatBadge kind="threat" value={threatOf(s, u)} />
+          <StatBadge kind="attack" value={stats(s, u).attack} />
+          <StatBadge kind="defense" value={c.defense} />
+          <StatBadge
+            kind="health"
+            value={(c.health ?? 0) - u.damage}
+            label="Remaining hit points"
+            damaged={u.damage > 0}
+          />
         </div>
       ) : c.type_code === "objective" ? (
         <div className="enemy-stats">
@@ -3102,14 +3178,12 @@ function BoardCard({
         </div>
       ) : (
         <div className="enemy-stats">
-          <span>
-            <Eye />
-            {threatOf(s, u)}
-          </span>
-          <span>
-            <Compass />
-            {u.progress}/{c.quest}
-          </span>
+          <StatBadge kind="threat" value={threatOf(s, u)} />
+          <StatBadge
+            kind="progress"
+            value={`${u.progress}/${c.quest}`}
+            label="Location progress"
+          />
         </div>
       )}
       {action && (

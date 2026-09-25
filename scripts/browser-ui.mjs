@@ -29,14 +29,10 @@ async function page(width = 1440, height = 1000) {
   return p;
 }
 async function load(p) {
-  await p.evaluate(
-    (save) =>
-      localStorage.setItem(
-        "there-and-back-again.save.v1",
-        JSON.stringify(save),
-      ),
-    fixture,
-  );
+  await p.evaluate((save) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
+    localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(save));
+  }, fixture);
   await p.reload();
   await p
     .getByRole("button", { name: "Continue adventure", exact: true })
@@ -180,9 +176,7 @@ await p
   .getByRole("navigation")
   .getByRole("button", { name: "Adventures", exact: true })
   .click();
-await p
-  .getByRole("combobox", { name: "Choose starter deck" })
-  .selectOption("lore");
+await p.getByRole("button", { name: "Choose Lore", exact: true }).click();
 assert.equal(await p.locator("#start-btn").textContent(), "Begin adventure");
 await p.locator("#start-btn").click();
 assert.ok(await p.getByRole("dialog", { name: "A new journey?" }).isVisible());

@@ -15,7 +15,7 @@ Campaign victories unlock the next chapter and record boons, burdens, fallen her
 
 **You control the pace.** Encounters and shadows are shown before their effects resolve. Resource gains, drawn cards, damage, threat, quest results, and phase handoffs appear in a review that waits for **Continue**. There is no timer or automatic dismissal. **Inspect table** keeps the game paused while you examine cards and player seats; **Review current event** returns to the pending step. The chronicle retains the last 80 event reviews, including revealed cards and before/after changes. Autosave and export/import preserve the exact pending review.
 
-The adventure atlas uses Red Book parchment, oxblood leather, and distinct scenery for each quest. During play, an illustrated cloth tabletop with three selectable imagegen playmats shows full card scans, landscape quest cards, a separate active location, physical deck/discard piles, resource/damage/progress tokens, tucked attachments, sideways exhausted characters, and a two-wheel threat counter. Other fellowships remain visible beside the active player. The desktop table keeps the hand and turn controls inside the viewport, with independent scrolling for crowded zones. Player banners show each deck’s threat, resources, hand, and remaining cards. Mouse previews, full card inspection, hand sorting/filtering, discard browsing, and a shared quest forecast remain available. Preferences are saved on this device. **This release focuses on desktop; further mobile refinement is deferred.**
+The adventure atlas uses Red Book parchment, oxblood leather, and distinct scenery for each quest. During play, an illustrated cloth tabletop with three selectable imagegen playmats shows full card scans, landscape quest cards, a separate active location, physical deck/discard piles, resource/damage/progress tokens, tucked attachments, sideways exhausted characters, and a two-wheel threat counter. Other fellowships remain visible beside the active player. The desktop table keeps the hand and turn controls inside the viewport, with independent scrolling for crowded zones. Player banners show each deck’s threat, resources, hand, and remaining cards. Mouse previews, full card inspection, hand sorting/filtering, discard browsing, and a shared quest forecast remain available. Table appearance preferences are saved on this device. Fellowship choices are saved locally for guests; connected accounts can save and restore their setup across devices using **Save choices**. **This release focuses on desktop; further mobile refinement is deferred.**
 
 Keyboard: **1 / 2 / 3 / 4** switches player seats, **N** advances the current phase or opens a pending review, **U** undoes the last action, **H** jumps to your hand, **?** opens preferences and shortcuts, and **Esc** closes cards or menus. Shortcuts pause during dialogs and text entry. A pending event requires its Continue button; Escape, repeated key presses, and double clicks cannot skip reviews.
 
@@ -34,7 +34,7 @@ Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run p
 
 ## Deploy
 
-Use Node.js 22. The Vercel configuration installs the locked dependencies with `npm ci`, builds with `npm run build`, and publishes `dist/`. No environment variables are required. Production deployments use the `main` branch of the connected GitHub repository.
+Use Node.js 22. The Vercel configuration installs the locked dependencies with `npm ci`, builds with `npm run build`, and publishes `dist/`. Guest play requires no environment variables. Optional account sign-in and cloud choices require the Supabase settings in [Account setup](docs/ACCOUNTS.md). Production deployments use the `main` branch of the connected GitHub repository.
 
 For a manual deployment from a clean checkout:
 
@@ -47,8 +47,9 @@ Saves belong to the browser and site origin. To transfer a local game to the dep
 
 ## Data
 
-RingsDB’s public API supplies player-card data. Encounter definitions come from OCTGN and are checked against FFG’s published scenario list. Card scans and generated environment images are cached locally. No API key or backend is needed. `npm run sync:cards` refreshes player-card snapshots with cache validators.
+RingsDB’s public API supplies player-card data. Encounter definitions come from OCTGN and are checked against FFG’s published scenario list. Card scans and generated environment images are cached locally. Card data and guest play need no backend. Optional accounts use Supabase Auth and a private per-user choices table. `npm run sync:cards` refreshes player-card snapshots with cache validators.
 
+- [Visual fellowship selection and account setup](docs/ACCOUNTS.md)
 - [Implemented rules and limits](docs/COVERAGE.md)
 - [API research and artwork provenance](docs/SOURCES.md)
 - [Design direction](DESIGN.md)

@@ -21,17 +21,21 @@
     "test:rules-browser": "tsx scripts/browser-rules-fixtures.ts && node scripts/browser-rules.mjs",
     "test:decisions": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-decisions.mjs",
     "test:motion": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-motion.mjs",
-    "test:threat": "tsx scripts/browser-threat.ts"
+    "test:threat": "tsx scripts/browser-threat.ts",
+    "test:choices": "node scripts/browser-fellowship-choices.mjs",
+    "test:account": "node scripts/browser-account.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",
     "@fontsource/im-fell-english-sc": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@supabase/supabase-js": "^2.117.2",
     "motion": "^13.4.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",

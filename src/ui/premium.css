@@ -1,4 +1,4 @@
-/* Original imagegen artwork; every counter and control remains live HTML. */
+/* Tabletop artwork; every counter and control remains live HTML. */
 .redbook[data-playmat="mirkwood"],
 .mat-mirkwood {
   --playmat-art: url("/art/premium/mirkwood.webp");
@@ -137,7 +137,7 @@
   border-radius: inherit;
 }
 
-/* Three evenly spaced images share one alpha-preserving WebP sprite. */
+/* Resource and progress coins share a sprite; damage uses its printed token. */
 .table-token {
   --token-size: 36px;
   display: inline-flex;
@@ -172,9 +172,18 @@
   font-size: inherit;
   line-height: 1;
 }
-.token-damage {
-  background-position: 50% 50%;
-  color: #ffede6;
+.table-token.token-damage {
+  border-radius: 0;
+  background: url("/art/tokens/damage.png") center / contain no-repeat;
+  color: #fff7ef;
+  text-shadow:
+    0 1px 1px #170503,
+    0 0 3px #170503,
+    0 0 5px #170503;
+}
+.table-token.token-damage b {
+  -webkit-text-stroke: 0.6px #240703;
+  paint-order: stroke fill;
 }
 .token-progress {
   background-position: 100% 50%;
@@ -439,8 +448,12 @@
 .material-gold {
   background: #b08a34;
 }
-.material-ruby {
-  background: #863e37;
+.material-damage {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  background: url("/art/tokens/damage.png") center / contain no-repeat;
+  box-shadow: none;
 }
 .material-jade {
   background: #466c4c;

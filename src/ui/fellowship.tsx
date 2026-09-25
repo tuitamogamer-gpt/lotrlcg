@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Crown,
   Eye,
@@ -6,7 +6,6 @@ import {
   Cards,
   Coins,
   Check,
-  ArrowRight,
   UsersThree,
   Sword,
 } from "@phosphor-icons/react";
@@ -21,6 +20,8 @@ import {
   seatName,
   seatView,
 } from "../game/table";
+
+import { DeckPicker } from "./deck-picker";
 
 import { availableAbilities } from "../game/engine";
 
@@ -41,20 +42,39 @@ export function FellowshipSetup({
   changeMode,
   seats,
   setSeats,
+  selectedDeck,
+  selectDeck,
   inspect,
 }: {
   mode: "classic" | "hotseat";
   changeMode: (mode: "classic" | "hotseat") => void;
   seats: SeatConfig[];
   setSeats: (seats: SeatConfig[]) => void;
+  selectedDeck: string;
+  selectDeck: (id: string) => void;
   inspect: (deckId: string) => void;
 }) {
+  const [editingSeat, setEditingSeat] = useState(0);
+  const active = Math.min(editingSeat, seats.length - 1);
+  const unavailable =
+    mode === "hotseat"
+      ? Object.fromEntries(
+          seats.flatMap((p, i) =>
+            i === active ? [] : [[p.deckId, `Assigned to Player ${i + 1}`]],
+          ),
+        )
+      : {};
   return (
-    <section className="fellowship-builder" aria-label="Fellowship setup">
+    <section
+      id="fellowship-setup"
+      className="fellowship-builder"
+      aria-label="Fellowship setup"
+      tabIndex={-1}
+    >
       <div className="builder-heading">
         <div>
           <span className="book-kicker">I · ASSEMBLE YOUR COMPANY</span>
-          <h2>Three heroes. One fellowship per player.</h2>
+          <h2>Choose the heroes of your story.</h2>
         </div>
         <div className="play-style" role="group" aria-label="Deck arrangement">
           <button
@@ -77,125 +97,100 @@ export function FellowshipSetup({
           </button>
         </div>
       </div>
-      {mode === "hotseat" ? (
-        <>
-          <div className="company-options">
-            <p>
-              Each player has three heroes, one deck, one hand, and one threat
-              dial. You control every player.
-            </p>
-            <div
-              className="hero-count"
-              role="group"
-              aria-label="Number of players"
-            >
-              <span>PLAYERS</span>
-              {[1, 2, 3, 4].map((n) => (
-                <button
-                  key={n}
-                  aria-pressed={seats.length === n}
-                  aria-label={`${n} ${n === 1 ? "player" : "players"}`}
-                  onClick={() => {
-                    const next = seats.slice(0, n);
-                    for (const d of STARTERS)
-                      if (
-                        next.length < n &&
-                        !next.some((p) => p.deckId === d.id)
-                      )
-                        next.push({ heroes: [...d.heroes], deckId: d.id });
-                    setSeats(next);
-                  }}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className={`hero-selections players-${seats.length}`}>
-            {seats.map((p, i) => {
-              const d = STARTERS.find((d) => d.id === p.deckId)!;
-              const threat = p.heroes.reduce(
-                (n, h) => n + (card(h).threat ?? 0),
-                0,
-              );
-              return (
-                <article className={`hero-selection sphere-${d.id}`} key={i}>
-                  <div className="hero-selection-body">
-                    <label htmlFor={`seat-deck-${i}`}>PLAYER {i + 1}</label>
-                    <select
-                      id={`seat-deck-${i}`}
-                      aria-label={`Player ${i + 1} starter deck`}
-                      value={p.deckId}
-                      onChange={(e) => {
-                        const next = STARTERS.find(
-                          (d) => d.id === e.target.value,
-                        )!;
-                        setSeats(
-                          seats.map((old, j) =>
-                            j === i
-                              ? { heroes: [...next.heroes], deckId: next.id }
-                              : old,
-                          ),
-                        );
-                      }}
-                    >
-                      {STARTERS.map((d) => (
-                        <option
-                          value={d.id}
-                          key={d.id}
-                          disabled={seats.some(
-                            (x, j) => j !== i && x.deckId === d.id,
-                          )}
-                        >
-                          {d.subtitle} · {d.name}
-                        </option>
-                      ))}
-                    </select>
-                    <div
-                      className="starter-heroes"
-                      aria-label={`Player ${i + 1} starting heroes`}
-                    >
-                      {p.heroes.map((hero) => (
-                        <div key={hero}>
-                          <img
-                            src={imageUrl(card(hero))}
-                            alt={card(hero).name}
-                          />
-                          <span>{card(hero).name}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="hero-deck-info">
-                      <span>
-                        <Eye size={13} /> {threat} starting threat
-                      </span>
-                      <span>3 heroes · 30 player cards</span>
-                    </div>
-                    <button
-                      className="deck-preview-link"
-                      onClick={() => inspect(d.id)}
-                    >
-                      <Stack size={14} /> View starter deck{" "}
-                      <ArrowRight size={13} />
-                    </button>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-          <p className="company-note">
-            <Check size={14} /> {seats.length}{" "}
-            {seats.length === 1 ? "player" : "players"} · {seats.length * 3}{" "}
-            heroes total. The table guides you from one player to the next. Each
-            hero can appear only once.
-          </p>
-        </>
-      ) : (
-        <p className="classic-note">
-          The original learning game: three heroes, one 30-card starter deck,
-          and one threat dial. Choose your sphere below.
+      <div className="company-options">
+        <p>
+          Each starter includes the three heroes shown and its original 30-card
+          deck. Select a complete fellowship, then inspect any card.
         </p>
+        {mode === "hotseat" && (
+          <div
+            className="hero-count"
+            role="group"
+            aria-label="Number of players"
+          >
+            <span>PLAYERS</span>
+            {[1, 2, 3, 4].map((n) => (
+              <button
+                key={n}
+                aria-pressed={seats.length === n}
+                aria-label={`${n} ${n === 1 ? "player" : "players"}`}
+                onClick={() => {
+                  const next = seats.slice(0, n);
+                  for (const d of STARTERS)
+                    if (next.length < n && !next.some((p) => p.deckId === d.id))
+                      next.push({ heroes: [...d.heroes], deckId: d.id });
+                  setSeats(next);
+                }}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {mode === "hotseat" && (
+        <div
+          className="setup-seats"
+          role="group"
+          aria-label="Choose player to edit"
+        >
+          {seats.map((p, i) => {
+            const d = STARTERS.find((d) => d.id === p.deckId)!;
+            return (
+              <button
+                key={i}
+                aria-pressed={active === i}
+                aria-label={`Edit Player ${i + 1} fellowship`}
+                onClick={() => setEditingSeat(i)}
+              >
+                <span className="setup-seat-number">{i + 1}</span>
+                <span>
+                  <small>
+                    PLAYER {i + 1}
+                    {active === i ? " · CHOOSING" : ""}
+                  </small>
+                  <strong>{d.subtitle}</strong>
+                  <span>{p.heroes.map((h) => card(h).name).join(" · ")}</span>
+                </span>
+                {active === i && <Check size={17} />}
+              </button>
+            );
+          })}
+        </div>
       )}
+      <div className="deck-picker-heading">
+        <h3>
+          {mode === "hotseat"
+            ? `Player ${active + 1} · Choose a fellowship`
+            : "Four fellowships. Four ways to play."}
+        </h3>
+        <span>CORE SET · ALL CARDS SCRIPTED</span>
+      </div>
+      <DeckPicker
+        value={mode === "hotseat" ? seats[active].deckId : selectedDeck}
+        onChange={(id) => {
+          if (mode === "classic") selectDeck(id);
+          else
+            setSeats(
+              seats.map((p, i) =>
+                i === active
+                  ? {
+                      deckId: id,
+                      heroes: [...STARTERS.find((d) => d.id === id)!.heroes],
+                    }
+                  : p,
+              ),
+            );
+        }}
+        unavailable={unavailable}
+        inspect={inspect}
+      />
+      <p className="company-note">
+        <Check size={15} />
+        {mode === "hotseat"
+          ? `${seats.length} ${seats.length === 1 ? "player" : "players"} · ${seats.length * 3} heroes · one deck per player. Each hero can appear only once.`
+          : "One player · three heroes · one deck. Your selected heroes begin in play."}
+      </p>
     </section>
   );
 }

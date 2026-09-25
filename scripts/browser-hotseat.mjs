@@ -29,6 +29,7 @@ async function page(width = 1440, height = 1000) {
 }
 async function load(p, s) {
   await p.evaluate((s) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
     localStorage.setItem(
       s.playMode === "campaign"
         ? "there-and-back-again.campaign.v1"
@@ -71,11 +72,11 @@ for (const n of [1, 2, 3, 4]) {
       exact: true,
     })
     .click();
-  assert.equal(await p.locator(".hero-selection").count(), n);
-  if (n === 2)
-    await p
-      .getByRole("combobox", { name: "Player 2 starter deck", exact: true })
-      .selectOption("lore");
+  assert.equal(await p.locator(".setup-seats > button").count(), n);
+  if (n === 2) {
+    await p.getByRole("button", { name: "Edit Player 2 fellowship" }).click();
+    await p.getByRole("button", { name: "Choose Lore", exact: true }).click();
+  }
   await p.locator("#start-btn").click();
   let s = await state(p);
   assert.equal(s.table.seats.length, n);
@@ -194,10 +195,18 @@ await load(p, fixtures.campaign);
 await turn(p);
 assert.equal((await state(p)).mode, "won");
 await p.getByRole("button", { name: "Continue campaign", exact: true }).click();
-assert.equal(await p.getByRole("dialog").locator("select").count(), 3);
+assert.equal(
+  await p.getByRole("dialog").locator(".campaign-hero-picker").count(),
+  3,
+);
 await p
-  .getByRole("combobox", { name: "Campaign hero 1" })
-  .selectOption("01002");
+  .getByRole("group", { name: /Campaign hero 1$/ })
+  .getByRole("button", { name: "Change hero", exact: true })
+  .click();
+await p
+  .getByRole("group", { name: /Campaign hero 1$/ })
+  .getByRole("button", { name: "Choose Théodred", exact: true })
+  .click();
 await p
   .getByRole("button", { name: "Begin next chapter", exact: true })
   .click();
@@ -214,20 +223,27 @@ await settle(p);
 await p.getByRole("button", { name: "Continue campaign", exact: true }).click();
 assert.equal(
   await p
-    .getByRole("combobox", { name: "Campaign hero 1", exact: true })
-    .inputValue(),
+    .getByRole("group", { name: /Campaign hero 1$/ })
+    .locator(".campaign-selected-hero")
+    .getAttribute("data-hero-code"),
   "01001",
 );
 assert.equal(
   await p
-    .getByRole("combobox", { name: "Campaign hero 3", exact: true })
-    .inputValue(),
+    .getByRole("group", { name: /Campaign hero 3$/ })
+    .locator(".campaign-selected-hero")
+    .getAttribute("data-hero-code"),
   "01005",
   "surviving heroes keep their original seats",
 );
 await p
-  .getByRole("combobox", { name: "Campaign hero 2", exact: true })
-  .selectOption("01008");
+  .getByRole("group", { name: /Campaign hero 2$/ })
+  .getByRole("button", { name: "Change hero", exact: true })
+  .click();
+await p
+  .getByRole("group", { name: /Campaign hero 2$/ })
+  .getByRole("button", { name: "Choose Eleanor", exact: true })
+  .click();
 await p
   .getByRole("button", { name: "Begin next chapter", exact: true })
   .click();
