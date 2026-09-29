@@ -34,7 +34,8 @@
     "defense": 0,
     "health": 3,
     "engagement": 40,
-    "victory": 5
+    "victory": 5,
+    "easy_quantity": 0
   },
   {
     "code": "01076",
@@ -95,7 +96,8 @@
     "shadow": "",
     "quantity": 1,
     "encounter_set": "Spiders of Mirkwood",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Eyes-of-the-Forest.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Eyes-of-the-Forest.jpg",
+    "easy_quantity": 0
   },
   {
     "code": "01080",
@@ -108,7 +110,8 @@
     "shadow": "",
     "quantity": 2,
     "encounter_set": "Spiders of Mirkwood",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Caught-in-a-Web.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Caught-in-a-Web.jpg",
+    "easy_quantity": 0
   },
   {
     "code": "01081",
@@ -145,7 +148,8 @@
     "defense": 3,
     "health": 9,
     "engagement": 30,
-    "victory": 4
+    "victory": 4,
+    "easy_quantity": 1
   },
   {
     "code": "01083",
@@ -182,7 +186,8 @@
     "defense": 1,
     "health": 7,
     "engagement": 40,
-    "victory": 3
+    "victory": 3,
+    "easy_quantity": 0
   },
   {
     "code": "01085",
@@ -213,7 +218,8 @@
     "shadow": "Shadow: Defending character does not count its [defense].",
     "quantity": 2,
     "encounter_set": "Wilderlands",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Despair.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Despair.jpg",
+    "easy_quantity": 0
   },
   {
     "code": "01087",
@@ -280,7 +286,8 @@
     "defense": 3,
     "health": 6,
     "engagement": 35,
-    "victory": 4
+    "victory": 4,
+    "easy_quantity": 0
   },
   {
     "code": "01091",
@@ -298,7 +305,8 @@
     "attack": 3,
     "defense": 1,
     "health": 5,
-    "engagement": 35
+    "engagement": 35,
+    "easy_quantity": 1
   },
   {
     "code": "01092",
@@ -324,7 +332,8 @@
     "shadow": "",
     "quantity": 3,
     "encounter_set": "Dol Guldur Orcs",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/The-Necromancer's-Reach.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/The-Necromancer's-Reach.jpg",
+    "easy_quantity": 1
   },
   {
     "code": "01094",
@@ -339,7 +348,8 @@
     "encounter_set": "Dol Guldur Orcs",
     "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Necromancer's-Pass.jpg",
     "threat": 3,
-    "quest": 2
+    "quest": 2,
+    "easy_quantity": 1
   },
   {
     "code": "01095",
@@ -457,7 +467,8 @@
     "defense": 3,
     "health": 5,
     "engagement": 38,
-    "victory": 5
+    "victory": 5,
+    "easy_quantity": 0
   },
   {
     "code": "01102",
@@ -619,7 +630,8 @@
     "shadow": "Shadow: Deal X shadow cards to this attacker. X is the number of players in the game.",
     "quantity": 1,
     "encounter_set": "Journey Down the Anduin",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Massing-at-Night.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Massing-at-Night.jpg",
+    "easy_quantity": 0
   },
   {
     "code": "01113",
@@ -650,7 +662,8 @@
     "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Gladden-Fields.jpg",
     "threat": 3,
     "quest": 3,
-    "victory": 3
+    "victory": 3,
+    "easy_quantity": 1
   },
   {
     "code": "01115",
@@ -668,7 +681,8 @@
     "attack": 1,
     "defense": 0,
     "health": 1,
-    "engagement": 30
+    "engagement": 30,
+    "easy_quantity": 1
   },
   {
     "code": "01116",
@@ -681,7 +695,8 @@
     "shadow": "",
     "quantity": 3,
     "encounter_set": "Sauron's Reach",
-    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Evil-Storm.jpg"
+    "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Evil-Storm.jpg",
+    "easy_quantity": 2
   },
   {
     "code": "01117",
@@ -708,5 +723,166 @@
     "quantity": 2,
     "encounter_set": "Sauron's Reach",
     "imagesrc": "https://www.hallofbeorn.com/Images/Cards/Core-Set/Treacherous-Fog.jpg"
+  },
+  {
+    "code": "02014",
+    "name": "Signs of Gollum",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02014.jpg",
+    "traits": "Clue.",
+    "text": "Guarded. Response: After the players quest successfully, the players may claim Signs of Gollum if it has no attached encounters. When claimed, attach Signs of Gollum to any hero committed to the quest. Counts as a Condition attachment with: Forced: After attached hero is damaged or leaves play, return this card to the top of the encounter deck.",
+    "quantity": 4
+  },
+  {
+    "code": "02015",
+    "name": "The Old Ford",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02015.jpg",
+    "traits": "Riverland.",
+    "threat": 0,
+    "quest": 2,
+    "text": "X is the number of ally cards in play.",
+    "shadow": "Shadow: Discard from play all allies with a printed cost lower than the number of Riverland locations in play.",
+    "quantity": 2,
+    "easy_quantity": 0
+  },
+  {
+    "code": "02016",
+    "name": "The Eaves of Mirkwood",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02016.jpg",
+    "traits": "Forest.",
+    "threat": 2,
+    "quest": 2,
+    "text": "While The Eaves of Mirkwood is the active location, encounter card effects cannot be canceled.",
+    "quantity": 3
+  },
+  {
+    "code": "02017",
+    "name": "River Ninglor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02017.jpg",
+    "traits": "Riverland.",
+    "threat": 2,
+    "quest": 4,
+    "text": "While River Ninglor is the active location, remove 1 progress token from it and from the current quest at the end of each round.",
+    "shadow": "Shadow: Remove 1 progress token from the current quest. (2 progress tokens instead if this attack is undefended.)",
+    "quantity": 2
+  },
+  {
+    "code": "02018",
+    "name": "The East Bank",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02018.jpg",
+    "traits": "Riverland.",
+    "threat": 3,
+    "quest": 3,
+    "text": "While The East Bank is the active location, ally cards cost 1 additional matching resource to play from hand.",
+    "shadow": "Shadow: If you do not control at least 1 hero with a Clue card attached, return this enemy to the staging area after its attack resolves.",
+    "quantity": 2
+  },
+  {
+    "code": "02019",
+    "name": "The West Bank",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02019.jpg",
+    "traits": "Riverland.",
+    "threat": 3,
+    "quest": 3,
+    "text": "While The West Bank is the active location, attachment and event cards cost 1 additional matching resource to play from hand.",
+    "shadow": "Shadow: If you do not control at least 1 hero with a Clue card attached, double this enemy's base attack for this attack.",
+    "quantity": 2
+  },
+  {
+    "code": "02020",
+    "name": "Goblintown Scavengers",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02020.jpg",
+    "traits": "Goblin. Orc.",
+    "engagement": 12,
+    "threat": 1,
+    "attack": 1,
+    "defense": 0,
+    "health": 3,
+    "text": "When Revealed: Discard the top card of each player's deck. Until the end of the phase, increase Goblintown Scavengers' threat by the total printed cost of all cards discarded in this way.",
+    "quantity": 2,
+    "easy_quantity": 1
+  },
+  {
+    "code": "02021",
+    "name": "Hunters from Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02021.jpg",
+    "traits": "Mordor.",
+    "engagement": 34,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 6,
+    "text": "Hunters from Mordor get +2 attack and +2 threat for each Clue card in play.",
+    "shadow": "Shadow: Deal 1 damage to each hero with a Clue card attached. (3 damage instead if this attack is undefended.)",
+    "quantity": 5,
+    "easy_quantity": 2
+  },
+  {
+    "code": "02022",
+    "name": "False Lead",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02022.jpg",
+    "text": "When Revealed: The first player chooses and shuffles a card with the printed Clue trait back into the encounter deck. If there are no Clue cards in play, False Lead gains surge and reveals another encounter card.",
+    "quantity": 2
+  },
+  {
+    "code": "02023",
+    "name": "Flooding",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02023.jpg",
+    "traits": "Disaster.",
+    "text": "Doomed 1. Surge. When Revealed: Remove all progress tokens from all Riverland locations.",
+    "shadow": "Shadow: Resolve the 'when revealed' effect of this card.",
+    "quantity": 2
+  },
+  {
+    "code": "02024",
+    "name": "Old Wives' Tales",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "pack_name": "The Hunt for Gollum",
+    "encounter_set": "The Hunt for Gollum",
+    "imagesrc": "/cards/02024.jpg",
+    "traits": "Gossip.",
+    "text": "When Revealed: Discard 1 resource from each hero's resource pool, if able. Exhaust any hero that could not discard a resource from its pool.",
+    "quantity": 3,
+    "easy_quantity": 1
   }
 ]

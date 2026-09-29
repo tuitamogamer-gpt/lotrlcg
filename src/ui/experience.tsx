@@ -23,6 +23,7 @@ import {
   questWill,
   responseCards,
   stagingThreat,
+  hasClue,
 } from "../game/engine";
 import {
   activeSeat,
@@ -516,22 +517,32 @@ export function QuestGoals({ s }: { s: GameState }) {
             { label: "Rescue the prisoner", done: !s.prisoner },
             { label: "Defeat the Nazgûl", done: s.nazgulDefeated },
           ]
-        : s.stage === 3
+        : s.scenarioId === "hunt-for-gollum"
           ? [
               {
-                label:
-                  s.branch === "spider"
-                    ? "Defeat Ungoliant’s Spawn"
-                    : "Keep Ungoliant’s Spawn out of play",
-                done:
-                  s.branch === "spider"
-                    ? s.status === "won"
-                    : !s.staging
-                        .concat(s.engaged)
-                        .some((u) => u.code === "01076"),
+                label: `Clues held by heroes · ${allHeroes(s).filter(hasClue).length}`,
+                done: allHeroes(s).some(hasClue),
               },
+              ...(s.stage === 3
+                ? [{ label: "Place 8 progress on the trail", done: false }]
+                : []),
             ]
-          : [];
+          : s.stage === 3
+            ? [
+                {
+                  label:
+                    s.branch === "spider"
+                      ? "Defeat Ungoliant’s Spawn"
+                      : "Keep Ungoliant’s Spawn out of play",
+                  done:
+                    s.branch === "spider"
+                      ? s.status === "won"
+                      : !s.staging
+                          .concat(s.engaged)
+                          .some((u) => u.code === "01076"),
+                },
+              ]
+            : [];
   return goals.length ? (
     <div className="quest-goals">
       {goals.map((g) => (

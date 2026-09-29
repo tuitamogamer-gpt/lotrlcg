@@ -93,6 +93,8 @@ import {
   retryAdventure,
   objectiveFree,
   newCampaign,
+  isGuarded,
+  playCost,
 } from "./game/engine";
 import type {
   Action,
@@ -796,7 +798,7 @@ export default function App() {
     }
     setTarget("");
     setXCost(1);
-    const cost = Number(card(u.code).cost) || 0;
+    const cost = playCost(game!, card(u.code));
     let left = cost;
     const pay: Record<string, number> = {};
     for (const h of game.heroes) {
@@ -1183,10 +1185,7 @@ export default function App() {
                   : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
               </p>
             </section>
-            <section
-              className="mission-selection"
-              aria-label="Core Set missions"
-            >
+            <section className="mission-selection" aria-label="Missions">
               {SCENARIOS.map((q) => {
                 const completed = game?.campaign?.completed.some(
                   (c) => c.scenarioId === q.id,
@@ -1238,6 +1237,12 @@ export default function App() {
                       Along the
                       <br />
                       <em>great river.</em>
+                    </>
+                  ) : quest.id === "hunt-for-gollum" ? (
+                    <>
+                      On the trail
+                      <br />
+                      of <em>Gollum.</em>
                     </>
                   ) : (
                     <>
@@ -1313,9 +1318,9 @@ export default function App() {
                     <div>
                       <strong>Easy mode</strong>
                       <small>
-                        Each hero begins with 1 extra resource, as in the
-                        official easy mode. Encounter-card removals are not yet
-                        included.
+                        The official easy mode: each hero begins with 1 extra
+                        resource, and the encounter cards marked for easy mode
+                        stay out of the deck.
                       </small>
                     </div>
                     <input
@@ -3565,7 +3570,7 @@ function BoardCard({
         <div className="objective-status">
           <span>
             <Shield />
-            {objectiveFree(s, u) ? "Unguarded" : "Guarded"}
+            {isGuarded(s, u) ? "Guarded" : "Unguarded"}
           </span>
         </div>
       )}

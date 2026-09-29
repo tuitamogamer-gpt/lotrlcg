@@ -39,3 +39,7 @@ Official resources linked on the Adventures page (verified against FFG's product
 - Original game: https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/
 - Revised Core Set Learn to Play: https://images-cdn.fantasyflightgames.com/filer_public/e9/2f/e92f2465-8a1e-4bfa-8293-ad0edd5e55c0/mec101_learn_to_play_eng_v11-compressed.pdf
 - Revised Core Set Rules Reference: https://images-cdn.fantasyflightgames.com/filer_public/f2/87/f28704b2-5f25-4fd8-be7a-18d4a5d2c1c4/mec101_core_set_rules_reference_v10c-compressed.pdf
+
+## The Hunt for Gollum
+
+Card statistics and quantities come from the OCTGN set definition (`o8g/Sets/The Hunt for Gollum/set.xml`, GeckoTH mirror) and the Hall of Beorn scenario page, which also records the official easy-mode quantities used for every quest. Encounter scans `public/cards/02014.jpg` to `02024.jpg` and the quest faces in `public/cards/quests/the-hunt-begins-*.jpg`, `a-new-terror-abroad-*.jpg` and `on-the-trail-*.jpg` are cached from Hall of Beorn's image archive on 2026-09-29. The adventure reuses the original Anduin scenery and playmat.

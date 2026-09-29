@@ -46,6 +46,8 @@ import {
   stats,
   threatOf,
   units,
+  playCost,
+  hasClue,
 } from "./core";
 import { check, engage, enterAlly, nextRound, progress } from "./board";
 import { flush } from "./effects";
@@ -87,7 +89,7 @@ export function canPlay(s: GameState, u: Unit): string | null {
     return "This response is offered automatically when its trigger occurs.";
   if (u.code === "01036" && s.heroes.length < 3)
     return "Thicket of Spears needs 3 heroes’ resource pools in the same deck.";
-  if (resources(s, c.sphere_code) < Number(c.cost ?? 0))
+  if (resources(s, c.sphere_code) < playCost(s, c))
     return "Not enough matching resources.";
   if (
     c.is_unique &&
@@ -334,6 +336,12 @@ export function applyAction(input: GameState, action: Action): GameState {
         u && characters(s).some((x) => x.id === u.id) && !u.exhausted,
         "Only ready characters may commit.",
       );
+      requireRule(
+        s.scenarioId !== "hunt-for-gollum" ||
+          s.stage !== 3 ||
+          s.heroes.some(hasClue),
+        "On the Trail: only a player whose hero holds a Clue may commit characters.",
+      );
       s.committedIds = s.committedIds.includes(u.id)
         ? s.committedIds.filter((x) => x !== u.id)
         : [...s.committedIds, u.id];
@@ -388,7 +396,14 @@ export function applyAction(input: GameState, action: Action): GameState {
             `Quest succeeds: ${will} willpower − ${threat} threat = ${net} progress.`,
             "good",
           );
+          const stageBefore = s.stage;
           progress(s, net);
+          if (s.scenarioId === "hunt-for-gollum" && s.status === "playing") {
+            const first = s.table?.first ?? 0;
+            enqueue(s, fx("huntClaim", { player: first }));
+            if (stageBefore === 1)
+              enqueue(s, fx("huntLook", { count: 3, player: first }));
+          }
         } else if (net < 0) {
           eachSeat(s, () => {
             s.threat -= net;

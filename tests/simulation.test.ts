@@ -11,10 +11,11 @@ import {
   needsTarget,
   objectiveFree,
   canFight,
+  hasClue,
   newCampaign,
   validateSave,
 } from "../src/game/engine.ts";
-import { SCENARIOS } from "../src/game/scenarios.ts";
+import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import type {
   ScenarioId,
   PlayMode,
@@ -145,9 +146,14 @@ function run(
           : { type: "NEXT" };
       }
     } else if (s.phase === "quest") {
-      const ready = characters(s)
-        .filter((u) => !u.exhausted)
-        .sort((a, b) => stats(s, b).will - stats(s, a).will);
+      const ready =
+        s.scenarioId === "hunt-for-gollum" &&
+        s.stage === 3 &&
+        !s.heroes.some(hasClue)
+          ? []
+          : characters(s)
+              .filter((u) => !u.exhausted)
+              .sort((a, b) => stats(s, b).will - stats(s, a).will);
       const reserve =
         s.engaged.length ||
         s.staging.some(
@@ -158,7 +164,7 @@ function run(
           ? 1
           : 0;
       const selected = ready
-        .slice(0, Math.max(1, ready.length - reserve))
+        .slice(0, Math.max(ready.length ? 1 : 0, ready.length - reserve))
         .map((u) => u.id);
       const missing = selected.find((id) => !s.committedIds.includes(id));
       action = missing
@@ -269,6 +275,7 @@ for (const d of STARTERS)
 for (const q of SCENARIOS)
   for (const mode of ["normal", "campaign"] as const) {
     if (q.id === "mirkwood" && mode === "normal") continue;
+    if (mode === "campaign" && !CAMPAIGN_CHAPTERS.includes(q.id)) continue;
     test(`${q.name} / ${mode}: all four starter decks complete 10 seeded games each`, () => {
       const results = { won: 0, lost: 0 };
       for (const d of STARTERS)
@@ -303,7 +310,9 @@ for (const q of SCENARIOS)
     });
 for (const q of SCENARIOS)
   for (const mode of ["normal", "campaign"] as const)
-    test(`${q.name} / ${mode}: guided confirmations preserve complete-game rules outcomes`, () => {
+    test(`${q.name} / ${mode}: guided confirmations preserve complete-game rules outcomes`, (t) => {
+      if (mode === "campaign" && !CAMPAIGN_CHAPTERS.includes(q.id))
+        return t.skip("campaign chapters are the Core Set quests");
       for (const d of STARTERS)
         for (let seed = 1; seed <= 3; seed++) {
           const immediate = run(seed, d.id, q.id, mode);

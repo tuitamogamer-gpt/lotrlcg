@@ -2831,3 +2831,16 @@ kbd {
 .easy-toggle {
   margin-top: 12px;
 }
+.mission-hunt-for-gollum:before {
+  background-image:
+    linear-gradient(90deg, #0e2019ef, #0e201980), url("/art/anduin.jpg");
+}
+.adventure-hunt-for-gollum .forest-bg {
+  background-image:
+    linear-gradient(90deg, #071612dc, #07161210), url("/art/anduin.jpg");
+  filter: none;
+}
+.board-hunt-for-gollum {
+  background-image:
+    linear-gradient(#15231ff2, #13221cf7), url("/art/anduin.jpg");
+}

@@ -15,7 +15,12 @@ import type {
   SeatConfig,
   ReviewMode,
 } from "./types";
-import { SCENARIOS, scenario, OBJECTIVES } from "./scenarios";
+import {
+  SCENARIOS,
+  scenario,
+  OBJECTIVES,
+  CAMPAIGN_CHAPTERS,
+} from "./scenarios";
 
 import {
   eachSeat,
@@ -105,6 +110,10 @@ export function createGame(
     playMode !== "campaign" || options.campaign || scenarioId === "mirkwood",
     "A campaign begins in Mirkwood.",
   );
+  requireRule(
+    playMode !== "campaign" || CAMPAIGN_CHAPTERS.includes(scenarioId),
+    "The Mirkwood Paths campaign covers the three Core Set quests.",
+  );
   const campaign =
     playMode === "campaign"
       ? structuredClone(
@@ -165,7 +174,13 @@ export function createGame(
           c.encounter_set ?? "",
         ),
       )
-      .flatMap((c) => Array(c.quantity).fill(c.code)),
+      .flatMap((c) =>
+        Array(
+          options.easy && c.easy_quantity !== undefined
+            ? c.easy_quantity
+            : c.quantity,
+        ).fill(c.code),
+      ),
     encounterDiscard: [],
     staging: [],
     engaged: [],
@@ -246,7 +261,11 @@ export function createGame(
     eachSeat(s, () => {
       for (const h of s.heroes) h.resources += 1;
     });
-    log(s, "Easy mode: each hero begins with 1 additional resource.", "good");
+    log(
+      s,
+      "Easy mode: each hero begins with 1 additional resource, and the encounter cards marked for easy mode are set aside.",
+      "good",
+    );
   }
   if (campaign) {
     s.encounterDeck.push(
@@ -278,6 +297,9 @@ export function createGame(
       ...playerOrder(s).map((player) => fx("reveal", { player })),
       fx("ensureTroll"),
     );
+  } else if (scenarioId === "hunt-for-gollum") {
+    shuffle(s, s.encounterDeck);
+    enqueue(s, ...playerOrder(s).map((player) => fx("reveal", { player })));
   } else {
     s.encounterDeck = s.encounterDeck.filter(
       (code) => code !== "01102" && !OBJECTIVES.includes(code),

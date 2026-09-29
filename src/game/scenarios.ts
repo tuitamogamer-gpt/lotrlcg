@@ -98,7 +98,46 @@ export const SCENARIOS = [
       },
     ],
   },
+  {
+    id: "hunt-for-gollum",
+    name: "The Hunt for Gollum",
+    shortName: "Hunt for Gollum",
+    chapter: "IV",
+    difficulty: 4,
+    tagline: "On the trail of the creature",
+    description:
+      "Follow the signs of Gollum’s passing along the Anduin and into the eaves of Mirkwood before the Hunters from Mordor close in.",
+    sets: ["The Hunt for Gollum", "Journey Down the Anduin", "Sauron's Reach"],
+    stages: [
+      {
+        name: "The Hunt Begins",
+        quest: 8,
+        story:
+          "Reveal 1 card per player at setup. After a successful quest, the first player looks at the top 3 cards and reveals one.",
+      },
+      {
+        name: "A New Terror Abroad",
+        quest: 10,
+        story:
+          "At the start of each quest phase, the first player looks at the top 2 cards and reveals one.",
+      },
+      {
+        name: "On the Trail",
+        quest: 8,
+        story:
+          "Only players with a Clue-bearing hero may commit characters. Losing every Clue returns the quest to stage 2.",
+      },
+    ],
+  },
 ] as const;
+/** The Mirkwood Paths campaign covers the three Core Set quests in order. */
+export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [
+  "mirkwood",
+  "anduin",
+  "dol-guldur",
+];
+/** Signs of Gollum: the Clue objective of The Hunt for Gollum. */
+export const CLUE = "02014";
 export const scenario = (id: ScenarioId) => SCENARIOS.find((s) => s.id === id)!;
 export const OBJECTIVES = ["01108", "01109", "01110"];
 export const CAMPAIGN_CARDS: Card[] = [

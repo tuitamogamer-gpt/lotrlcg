@@ -3832,3 +3832,6 @@ nav {
     font-size: var(--text-small);
   }
 }
+.adventure-hunt-for-gollum .forest-bg {
+  filter: saturate(0.45) brightness(0.7);
+}

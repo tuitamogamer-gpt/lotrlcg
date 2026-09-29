@@ -500,3 +500,7 @@
     font-size: 19px;
   }
 }
+.redbook[data-playmat="hunt-for-gollum"],
+.mat-hunt-for-gollum {
+  --playmat-art: url("/art/premium/anduin.webp");
+}

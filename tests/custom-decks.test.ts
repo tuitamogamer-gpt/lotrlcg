@@ -68,6 +68,47 @@ test("hot-seat seats may mix a starter with a custom deck, and campaigns carry t
   assert.equal(next.table!.seats[1].deckId, "custom");
   assert.deepEqual(next.table!.seats[1].customDeck, fifty);
 });
+test("easy mode builds the official smaller encounter decks", () => {
+  const sizes = {
+    mirkwood: [36, 27],
+    anduin: [47, 32],
+    "dol-guldur": [41, 30],
+  } as const;
+  for (const [scenarioId, [normal, easy]] of Object.entries(sizes)) {
+    const base = createGame(
+      11,
+      leadership.cards,
+      leadership.heroes,
+      "leadership",
+      {
+        scenarioId: scenarioId as keyof typeof sizes,
+      },
+    );
+    const light = createGame(
+      11,
+      leadership.cards,
+      leadership.heroes,
+      "leadership",
+      {
+        scenarioId: scenarioId as keyof typeof sizes,
+        easy: true,
+      },
+    );
+    // Every encounter card is in the deck, the discard or the staging area
+    // (guards are staging units); Dol Guldur also sets the Nazgûl aside.
+    const count = (s: typeof base) =>
+      s.encounterDeck.length +
+      s.encounterDiscard.length +
+      s.staging.length +
+      (scenarioId === "dol-guldur" ? 1 : 0);
+    assert.equal(count(base), normal, `${scenarioId} normal`);
+    assert.equal(count(light), easy, `${scenarioId} easy`);
+    assert.ok(
+      !light.encounterDeck.includes("01090"),
+      "Chieftain Ufthak leaves the easy deck",
+    );
+  }
+});
 test("easy mode gives every hero one extra starting resource and is kept for the next chapter", () => {
   const s = createGame(9, leadership.cards, leadership.heroes, "leadership", {
     easy: true,

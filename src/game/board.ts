@@ -1,7 +1,7 @@
 // Board rules: damage, destruction, progress, quest advancement, phases, encounter reveals and shadows.
 import { card, name } from "./cards";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
-import { OBJECTIVES } from "./scenarios";
+import { OBJECTIVES, CLUE } from "./scenarios";
 
 import {
   activeSeat,
@@ -49,6 +49,8 @@ import {
   stageInfo,
   stats,
   units,
+  hasClue,
+  riverlandsInPlay,
 } from "./core";
 import { rescuePrisoner } from "./scenario-rules";
 import { resolveCampaign } from "./campaign";
@@ -96,6 +98,19 @@ export function check(s: GameState) {
       characters(s).some((u) => u.id === id && !u.exhausted),
     );
   });
+  if (
+    s.scenarioId === "hunt-for-gollum" &&
+    s.stage === 3 &&
+    !allHeroes(s).some(hasClue)
+  ) {
+    s.stage = 2;
+    s.progress = 0;
+    log(
+      s,
+      "No hero holds a Clue. The trail is lost and the quest returns to stage 2.",
+      "danger",
+    );
+  }
   if (
     ["quest", "staging"].includes(s.phase) &&
     !s.encounterDeck.length &&
@@ -195,7 +210,9 @@ export function win(s: GameState) {
       ? "Your fellowship has passed safely through Mirkwood."
       : s.scenarioId === "anduin"
         ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-        : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+        : s.scenarioId === "hunt-for-gollum"
+          ? "You have found a true sign of Gollum’s passing. The trail leads on."
+          : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   if (s.campaign) resolveCampaign(s);
@@ -208,6 +225,10 @@ export function damage(s: GameState, id: string, value: number) {
   u.damage += value;
   if (u.code === "01003" && u.damage < stats(s, u).health) u.resources += value;
   log(s, `${name(u)} takes ${value} damage.`, value > 1 ? "danger" : "normal");
+  // Signs of Gollum: a damaged bearer returns the clue to the top of the encounter deck.
+  if (value > 0 && card(u.code).type_code === "hero")
+    for (const a of [...u.attachments].filter((a) => a.code === CLUE))
+      discardAttachment(s, u, a, true);
   if (u.damage >= stats(s, u).health) destroy(s, u);
   check(s);
 }
@@ -220,6 +241,15 @@ export function discardAttachment(
 ) {
   if (!leaving && card(a.code).text?.includes("Permanent")) return;
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
+  if (a.code === CLUE) {
+    s.encounterDeck.unshift(a.code);
+    log(
+      s,
+      `Signs of Gollum returns to the top of the encounter deck from ${name(u)}.`,
+      "danger",
+    );
+    return;
+  }
   if (OBJECTIVES.includes(a.code)) {
     s.staging.push(make(s, a.code));
     log(s, `${card(a.code).name} returns to staging, unclaimed.`);
@@ -357,6 +387,7 @@ export function advanceQuest(s: GameState) {
       !inPlay(s, "01076")
     )
       win(s);
+    else if (s.scenarioId === "hunt-for-gollum" && s.progress >= 8) win(s);
     return;
   }
   if (s.progress < stageInfo(s).quest) return;
@@ -536,7 +567,10 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
       s.threat += Number(doomed[1]);
     });
   if (c.text?.includes("Surge.")) prepend(s, fx("reveal"));
-  const when = (c.text ?? "").includes("When Revealed");
+  // The Eaves of Mirkwood: encounter card effects cannot be canceled.
+  const when =
+    (c.text ?? "").includes("When Revealed") &&
+    s.activeLocation?.code !== "02016";
   const options: Option[] = [];
   const revealingPlayer = activeSeat(s);
   eachSeat(s, (player) => {
@@ -734,6 +768,68 @@ export function placeEncounter(
       break;
     case "01098":
       prepend(s, ...playerOrder(s).map((player) => fx("bats", { player })));
+      break;
+    case "02020": {
+      // Goblintown Scavengers: each player discards the top card of their deck.
+      let total = 0;
+      eachSeat(s, () => {
+        const top = s.deck.shift();
+        if (top) {
+          s.discard.push(top);
+          total += Number(card(top).cost) || 0;
+        }
+      });
+      const scavengers = [...s.staging].reverse().find((x) => x.code === code);
+      if (scavengers)
+        scavengers.tempThreat = (scavengers.tempThreat ?? 0) + total;
+      log(
+        s,
+        `Goblintown Scavengers gain ${total} threat until the end of the phase.`,
+        "danger",
+      );
+      break;
+    }
+    case "02022": {
+      const inStaging = s.staging.filter((x) => x.code === CLUE);
+      const held = allHeroes(s).flatMap((h) =>
+        h.attachments.filter((a) => a.code === CLUE).map((a) => ({ h, a })),
+      );
+      if (!inStaging.length && !held.length) {
+        log(s, "No Clue is in play. False Lead surges.", "danger");
+        prepend(s, fx("reveal"));
+        break;
+      }
+      choose(
+        s,
+        "False Lead",
+        [
+          ...opts(inStaging, (x) => [fx("clueShuffle", { target: x.id })]),
+          ...held.map(({ h, a }) => ({
+            id: `clue-${h.id}-${a.id}`,
+            code: CLUE,
+            label: `Signs of Gollum on ${name(h)}`,
+            effects: [fx("clueShuffle", { target: h.id, source: a.id })],
+          })),
+        ],
+        "Choose a Clue card in play and shuffle it back into the encounter deck.",
+      );
+      break;
+    }
+    case "02023":
+      for (const x of riverlandsInPlay(s)) x.progress = 0;
+      log(
+        s,
+        "Flooding washes all progress from the Riverland locations.",
+        "danger",
+      );
+      break;
+    case "02024":
+      eachSeat(s, () => {
+        for (const h of s.heroes) {
+          if (h.resources > 0) h.resources--;
+          else h.exhausted = true;
+        }
+      });
       break;
   }
   if (c.type_code === "treachery") returnTreachery(s, code);
@@ -1002,6 +1098,41 @@ export function shadow(s: GameState, code: string) {
     case "01097":
       c.attackBonus++;
       if (undefended) s.threat += 3;
+      break;
+    case "02015": {
+      const rivers = riverlandsInPlay(s).length;
+      prepend(
+        s,
+        ...allCharacters(s)
+          .filter(
+            (x) =>
+              card(x.code).type_code === "ally" &&
+              (Number(card(x.code).cost) || 0) < rivers,
+          )
+          .map((x) =>
+            fx("discardCharacter", { target: x.id, player: ownerOf(s, x) }),
+          ),
+      );
+      break;
+    }
+    case "02017":
+      s.progress = Math.max(0, s.progress - (undefended ? 2 : 1));
+      break;
+    case "02018":
+      if (!s.heroes.some(hasClue)) c.returnToStaging = true;
+      break;
+    case "02019": {
+      const enemy = get(s, c.enemyId);
+      if (enemy && !s.heroes.some(hasClue))
+        c.attackBonus += card(enemy.code).attack ?? 0;
+      break;
+    }
+    case "02021":
+      for (const h of allHeroes(s).filter(hasClue))
+        damage(s, h.id, undefended ? 3 : 1);
+      break;
+    case "02023":
+      for (const x of riverlandsInPlay(s)) x.progress = 0;
       break;
   }
   check(s);

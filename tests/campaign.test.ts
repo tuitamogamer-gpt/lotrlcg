@@ -98,14 +98,18 @@ function finishAnduin() {
   s.heroes[0].attachments.push({ id: "valor", code: "rc133", exhausted: true });
   return act(s, { type: "NEXT" });
 }
-test("three exact encounter decks include all 45 Core Set definitions", () => {
-  assert.equal(encounterCards.length, 45);
+test("the exact encounter decks include all 45 Core Set definitions and the 11 Hunt for Gollum cards", () => {
+  assert.equal(
+    encounterCards.filter((c) => c.pack_name === "Core Set").length,
+    45,
+  );
+  assert.equal(encounterCards.length, 56);
   const counts = SCENARIOS.map((q) =>
     encounterCards
       .filter((c) => (q.sets as readonly string[]).includes(c.encounter_set!))
       .reduce((n, c) => n + c.quantity!, 0),
   );
-  assert.deepEqual(counts, [36, 47, 41]);
+  assert.deepEqual(counts, [36, 47, 41, 48]);
 });
 test("Anduin setup reveals one card and ensures a Hill Troll; no campaign cards in normal mode", () => {
   const s = game("anduin");

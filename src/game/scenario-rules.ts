@@ -1,7 +1,7 @@
 // Scenario-specific rules for the three Core Set quests.
 import { card, name } from "./cards";
 import type { Effect, GameState } from "./types";
-import { OBJECTIVES } from "./scenarios";
+import { CLUE, OBJECTIVES } from "./scenarios";
 
 import {
   activeSeat,
@@ -321,6 +321,100 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
     case "wolfDefend":
       if (u) beginEnemyAttack(s, u, e.source ? [e.source] : [], true);
       break;
+    case "huntLook": {
+      const count = Math.min(e.count ?? 1, s.encounterDeck.length);
+      const top = s.encounterDeck.slice(0, count);
+      if (!top.length) break;
+      choose(
+        s,
+        "The trail · Choose a card to reveal",
+        top.map((code, i) => ({
+          id: `look-${i}`,
+          code,
+          label: `Reveal ${card(code).name}`,
+          effects: [fx("huntReveal", { code, value: i, count })],
+        })),
+        "The first player looks at the top cards of the encounter deck, reveals one of them and discards the rest.",
+      );
+      break;
+    }
+    case "huntReveal": {
+      const looked = s.encounterDeck.splice(0, e.count ?? 1);
+      looked.splice(e.value ?? 0, 1);
+      s.encounterDiscard.push(...looked);
+      if (looked.length)
+        log(
+          s,
+          `${looked.map((code) => card(code).name).join(", ")} discarded from the top of the encounter deck.`,
+        );
+      revealed(s, e.code!);
+      break;
+    }
+    case "huntClaim": {
+      const signs = s.staging.find(
+        (x) => x.code === CLUE && !units(s).some((g) => g.guarding === x.id),
+      );
+      if (!signs) break;
+      const committed = allHeroes(s).filter(
+        (h) =>
+          h.committed || seatView(s, ownerOf(s, h)).committedIds.includes(h.id),
+      );
+      if (!committed.length) break;
+      choose(
+        s,
+        "Signs of Gollum · Claim the clue",
+        [
+          ...opts(committed, (h) => [
+            fx("huntAttach", { target: h.id, source: signs.id }),
+            fx("huntClaim", { player: e.player }),
+          ]),
+          { ...skip, label: "Leave it in the staging area" },
+        ],
+        "Attach the sign to a hero committed to the quest. If that hero is damaged or leaves play, the sign returns to the top of the encounter deck.",
+      );
+      break;
+    }
+    case "huntAttach": {
+      const signs = s.staging.find((x) => x.id === e.source);
+      if (u && signs) {
+        s.staging = s.staging.filter((x) => x.id !== signs.id);
+        u.attachments.push({
+          id: signs.id,
+          code: signs.code,
+          exhausted: false,
+        });
+        log(s, `${name(u)} claims Signs of Gollum.`, "good");
+      }
+      break;
+    }
+    case "clueShuffle": {
+      if (e.source) {
+        const a = u?.attachments.find((x) => x.id === e.source);
+        if (u && a) {
+          u.attachments = u.attachments.filter((x) => x.id !== a.id);
+          s.encounterDeck.push(a.code);
+          shuffle(s, s.encounterDeck);
+          log(
+            s,
+            `Signs of Gollum leaves ${name(u)} and is shuffled into the encounter deck.`,
+            "danger",
+          );
+        }
+      } else if (u) {
+        s.staging = s.staging.filter((x) => x.id !== u.id);
+        units(s).forEach((x) => {
+          if (x.guarding === u.id) delete x.guarding;
+        });
+        s.encounterDeck.push(u.code);
+        shuffle(s, s.encounterDeck);
+        log(
+          s,
+          "Signs of Gollum is shuffled back into the encounter deck.",
+          "danger",
+        );
+      }
+      break;
+    }
     default:
       return false;
   }

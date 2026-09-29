@@ -6,6 +6,10 @@ export const PLAYMATS = {
   mirkwood: { name: "Mirkwood", detail: "The ancient woodland" },
   anduin: { name: "Anduin", detail: "A river of silver & mist" },
   "dol-guldur": { name: "Dol Guldur", detail: "In the shadow of the keep" },
+  "hunt-for-gollum": {
+    name: "Anduin Valley",
+    detail: "Where the trail begins",
+  },
 } satisfies Record<ScenarioId, { name: string; detail: string }>;
 
 export const PLAYMAT_CHOICES = [
@@ -13,6 +17,7 @@ export const PLAYMAT_CHOICES = [
   "mirkwood",
   "anduin",
   "dol-guldur",
+  "hunt-for-gollum",
 ] as const;
 
 export function TableCollection({

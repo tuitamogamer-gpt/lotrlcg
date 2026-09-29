@@ -1,5 +1,6 @@
 // Public rules API. The implementation lives in the modules below;
 // this file keeps every existing import path stable.
+export { playCost, isGuarded, cluesInPlay, hasClue } from "./core";
 export {
   RuleError,
   characters,

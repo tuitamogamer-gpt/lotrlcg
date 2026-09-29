@@ -1162,3 +1162,6 @@
     animation: none;
   }
 }
+.event-landscape-hunt-for-gollum {
+  --event-art: url("/art/premium/anduin.webp");
+}

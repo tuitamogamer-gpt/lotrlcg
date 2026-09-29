@@ -210,7 +210,7 @@ export function LandingHero({
           aria-label="Core Set adventures for one to four players"
         >
           <span>
-            <strong>03</strong> iconic adventures
+            <strong>04</strong> iconic adventures
           </span>
           <span>
             <strong>12</strong> legendary heroes

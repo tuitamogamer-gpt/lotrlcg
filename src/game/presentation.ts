@@ -165,6 +165,9 @@ const ENCOUNTER_EFFECTS = new Set([
   "chooseDamage",
   "chooseExhaust",
   "earnPermanent",
+  "huntReveal",
+  "huntAttach",
+  "clueShuffle",
 ]);
 /** Player-driven combat results that need no confirmation when only hidden information pauses. */
 const OWN_ATTACKS = new Set(["resolvePlayerAttack", "quickAttack"]);

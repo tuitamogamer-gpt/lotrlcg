@@ -20,6 +20,8 @@ export interface Card {
   imagesrc?: string;
   illustrator?: string;
   quantity?: number;
+  /** Copies in the official easy-mode encounter deck when fewer than `quantity`. */
+  easy_quantity?: number;
   engagement?: number;
   quest?: number;
   victory?: number;
@@ -59,7 +61,8 @@ export interface Unit {
   guarding?: string;
   facedownCard?: string;
 }
-export type ScenarioId = "mirkwood" | "anduin" | "dol-guldur";
+export type ScenarioId =
+  "mirkwood" | "anduin" | "dol-guldur" | "hunt-for-gollum";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
   seatPenalties?: number[];

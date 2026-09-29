@@ -419,6 +419,8 @@ export function handle(s: GameState, e: Effect) {
       log(s, "Quest phase · Choose characters to commit.");
       if (s.scenarioId === "dol-guldur" && s.stage === 3)
         eachSeat(s, () => orcGuard(s));
+      if (s.scenarioId === "hunt-for-gollum" && s.stage === 2)
+        prepend(s, fx("huntLook", { count: 2, player: s.table?.first ?? 0 }));
       break;
     case "startTravel":
       s.phase = "travel";
@@ -519,6 +521,15 @@ export function handle(s: GameState, e: Effect) {
           if (has(h, "01110")) damage(s, h.id, 1);
         }
       });
+      if (s.activeLocation?.code === "02017") {
+        s.activeLocation.progress = Math.max(0, s.activeLocation.progress - 1);
+        s.progress = Math.max(0, s.progress - 1);
+        log(
+          s,
+          "River Ninglor washes away 1 progress from itself and the quest.",
+          "danger",
+        );
+      }
       for (const enemy of [...s.staging, ...allEngaged(s)]) enemy.boost = 0;
       enqueue(s, fx("nextRound"));
       break;

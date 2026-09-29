@@ -31,6 +31,11 @@ export function questFace(s: GameState) {
       "through-the-caverns-2b",
       "out-of-the-dungeons-3b",
     ],
+    "hunt-for-gollum": [
+      "the-hunt-begins-1b",
+      "a-new-terror-abroad-2b",
+      "on-the-trail-3b",
+    ],
   };
   return `/cards/quests/${faces[s.scenarioId][s.stage - 1]}.jpg`;
 }

@@ -28,7 +28,9 @@ export function parseChoices(value: unknown): FellowshipChoices | null {
     !v.seatDecks.every(validDeck) ||
     new Set(v.seatDecks).size !== v.seatDecks.length ||
     !["normal", "campaign"].includes(v.playMode) ||
-    !["mirkwood", "anduin", "dol-guldur"].includes(v.scenario)
+    !["mirkwood", "anduin", "dol-guldur", "hunt-for-gollum"].includes(
+      v.scenario,
+    )
   )
     return null;
   return {

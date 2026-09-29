@@ -1,7 +1,7 @@
 // Shared helpers: state access, randomness, logging, effect queue helpers, statistics and payments.
 import { card, name } from "./cards";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
-import { scenario, OBJECTIVES } from "./scenarios";
+import { scenario, OBJECTIVES, CLUE } from "./scenarios";
 
 import {
   activeSeat,
@@ -199,7 +199,9 @@ export function stats(s: GameState, u: Unit) {
       u.attachments.filter((a) => a.code === "01041").length *
         (c.traits?.includes("Dwarf") ? 2 : 1) +
       (c.type_code === "enemy"
-        ? u.boost + (u.code === "01090" ? u.resources * 2 : 0)
+        ? u.boost +
+          (u.code === "01090" ? u.resources * 2 : 0) +
+          (u.code === "02021" ? 2 * cluesInPlay(s) : 0)
         : 0),
     defense:
       (c.defense ?? 0) +
@@ -211,6 +213,32 @@ export function stats(s: GameState, u: Unit) {
   };
 }
 
+/** Signs of Gollum in play: in the staging area or attached to heroes. */
+export const cluesInPlay = (s: GameState) =>
+  s.staging.filter((u) => u.code === CLUE).length +
+  allHeroes(s)
+    .flatMap((h) => h.attachments)
+    .filter((a) => a.code === CLUE).length;
+export const hasClue = (u: Unit) => u.attachments.some((a) => a.code === CLUE);
+export const riverlandsInPlay = (s: GameState) =>
+  [...s.staging, ...(s.activeLocation ? [s.activeLocation] : [])].filter((u) =>
+    card(u.code).traits?.includes("Riverland"),
+  );
+/** An objective with an encounter card guarding it cannot be claimed. */
+export const isGuarded = (s: GameState, u: Unit) =>
+  units(s).some((x) => x.guarding === u.id);
+/** Printed cost plus active-location surcharges (The East Bank, The West Bank). */
+export function playCost(s: GameState, c: Card) {
+  const printed = Number(c.cost);
+  if (!Number.isFinite(printed)) return 0;
+  const active = s.activeLocation?.code;
+  const surcharge =
+    (active === "02018" && c.type_code === "ally") ||
+    (active === "02019" && ["attachment", "event"].includes(c.type_code))
+      ? 1
+      : 0;
+  return printed + surcharge;
+}
 /** Current printed/modifier threat. Suppression only applies in staging. */
 export const threatOf = (s: GameState, u: Unit) =>
   u.suppressed && s.staging.some((x) => x.id === u.id)
@@ -218,6 +246,11 @@ export const threatOf = (s: GameState, u: Unit) =>
     : Math.max(
         0,
         (card(u.code).threat ?? 0) +
+          (u.code === "02021" ? 2 * cluesInPlay(s) : 0) +
+          (u.code === "02015"
+            ? allCharacters(s).filter((x) => card(x.code).type_code === "ally")
+                .length
+            : 0) +
           (card(u.code).type_code === "location" &&
           s.staging.some((x) => x.id === u.id)
             ? (s.fog ?? 0)
@@ -291,7 +324,7 @@ export function eligiblePayers(s: GameState, c: Card) {
 }
 
 export function pay(s: GameState, c: Card, payment?: Record<string, number>) {
-  let cost = Number(c.cost) || 0;
+  let cost = playCost(s, c);
   const payers = eligiblePayers(s, c);
   requireRule(payers.length > 0, "A matching sphere hero is required.");
   requireRule(
