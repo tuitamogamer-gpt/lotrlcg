@@ -5,7 +5,7 @@ import {
   UserCircle,
   ArrowRight,
 } from "@phosphor-icons/react";
-import { accountClient } from "../account/client";
+import { loadAccountClient } from "../account/client";
 import type { AccountState } from "../account/use-account";
 
 export function AccountStrip({
@@ -130,9 +130,11 @@ export function AccountPanel({ account }: { account: AccountState }) {
           disabled={busy}
           onClick={() =>
             void act(async () => {
-              const { error } = await accountClient!.auth.signOut({
-                scope: "local",
-              });
+              const { error } = await (await loadAccountClient())!.auth.signOut(
+                {
+                  scope: "local",
+                },
+              );
               if (error) throw error;
               setPassword("");
               setConfirmPassword("");
@@ -159,28 +161,31 @@ export function AccountPanel({ account }: { account: AccountState }) {
               throw new Error("The passwords do not match.");
           }
           if (account.recovery) {
-            const { error } = await accountClient!.auth.updateUser({
-              password,
-            });
+            const { error } =
+              await (await loadAccountClient())!.auth.updateUser({
+                password,
+              });
             if (error) throw error;
             setPassword("");
             setConfirmPassword("");
             account.finishRecovery();
           } else if (mode === "reset") {
-            const { error } = await accountClient!.auth.resetPasswordForEmail(
-              email.trim(),
-              { redirectTo: window.location.origin },
-            );
+            const { error } =
+              await (await loadAccountClient())!.auth.resetPasswordForEmail(
+                email.trim(),
+                { redirectTo: window.location.origin },
+              );
             if (error) throw error;
             setMessage(
               "If an account exists for this email, a password reset link will arrive shortly.",
             );
           } else if (mode === "register") {
-            const { data, error } = await accountClient!.auth.signUp({
-              email: email.trim(),
-              password,
-              options: { emailRedirectTo: window.location.origin },
-            });
+            const { data, error } =
+              await (await loadAccountClient())!.auth.signUp({
+                email: email.trim(),
+                password,
+                options: { emailRedirectTo: window.location.origin },
+              });
             if (error) throw error;
             setPassword("");
             setConfirmPassword("");
@@ -189,10 +194,11 @@ export function AccountPanel({ account }: { account: AccountState }) {
                 "Check your email to confirm your account, then sign in here. If you already have an account, use Sign in.",
               );
           } else {
-            const { error } = await accountClient!.auth.signInWithPassword({
-              email: email.trim(),
-              password,
-            });
+            const { error } =
+              await (await loadAccountClient())!.auth.signInWithPassword({
+                email: email.trim(),
+                password,
+              });
             if (error)
               throw new Error(
                 "Sign-in failed. Check your email, password and email confirmation, then try again.",

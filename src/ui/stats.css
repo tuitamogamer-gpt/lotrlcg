@@ -57,29 +57,8 @@
     inset 0 -1px #18040f,
     0 2px 3px #0004;
 }
-.redbook .gameboard :is(.stat-row, .enemy-stats) {
-  gap: 4px;
-  padding: 4px 0 5px;
-  min-height: 41px;
-  height: auto;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.redbook .gameboard :is(.stat-row, .enemy-stats) > .stat-badge {
-  color: #fff1d4;
-  gap: 1px;
-}
-.redbook .gameboard :is(.stat-row, .enemy-stats) > .is-damaged {
-  color: #ffe0cb;
-}
 .redbook .gameboard :is(.character-card, .board-card) {
   min-width: 216px;
-}
-.redbook .gameboard .enemy-stats .stat-badge--progress {
-  padding-right: 7px;
-}
-.redbook .gameboard .enemy-stats:has(.stat-badge--progress) {
-  display: flex;
 }
 .redbook .detail-stats,
 .redbook .decision-stats {
@@ -134,10 +113,6 @@
 }
 
 @media (min-width: 1100px) {
-  .redbook .gameboard .engaged-zone .enemy-stats {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .redbook .gameboard .character-card:has(.abilities > button) {
     --table-card-height: clamp(72px, calc(100cqh - 135px), 215px);
   }
@@ -148,12 +123,6 @@
   }
   .redbook .gameboard .character-card:has(.abilities > button) {
     --table-card-height: 80px;
-  }
-  .redbook .gameboard :is(.stat-row, .enemy-stats) {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3px;
-    padding-top: 0;
   }
   .redbook .gameboard .stat-badge {
     justify-content: flex-start;

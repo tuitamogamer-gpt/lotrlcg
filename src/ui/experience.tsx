@@ -92,10 +92,10 @@ export const nextLabel = (s: GameState) =>
     ? `Continue as Player ${s.table!.turn + 1}`
     : s.table && ["planning", "quest", "encounter", "attack"].includes(s.phase)
       ? {
-          planning: "Finish this hero’s planning",
+          planning: "Finish planning",
           quest: "Commit this fellowship",
           encounter: "Finish engagement choices",
-          attack: "Finish this hero’s attacks",
+          attack: "Finish attacks",
         }[s.phase as "planning" | "quest" | "encounter" | "attack"]
       : {
           setup: "Keep hand",

@@ -135,10 +135,16 @@ export interface ResolutionStep {
   phase: Phase;
   player: number;
 }
+/**
+ * How often the table waits for confirmation. "all" pauses on every recorded
+ * event, "hidden" only for hidden information and losses, "decisions" never.
+ */
+export type ReviewMode = "all" | "hidden" | "decisions";
 export interface GuidedFlow {
   nextId: number;
   pending: ResolutionStep | null;
   history: ResolutionStep[];
+  mode?: ReviewMode;
 }
 export interface GameState {
   flow?: GuidedFlow;
@@ -167,6 +173,10 @@ export interface GameState {
   campaignScarred: boolean;
   includeSupport: boolean;
   deckId: string;
+  /** The complete custom player deck list, kept so campaigns and retries can rebuild it. */
+  customDeck?: Record<string, number>;
+  /** Official easy mode: each hero began with one extra resource. */
+  easyMode?: boolean;
   used: string[];
   standTogether: boolean;
   peek: string | null;
@@ -219,6 +229,7 @@ export interface GameState {
 }
 export type Action =
   | { type: "CONTINUE"; stepId: number }
+  | { type: "SET_REVIEW_MODE"; mode: ReviewMode }
   | { type: "SELECT_SEAT"; seat: number }
   | { type: "KEEP" | "MULLIGAN" | "NEXT" | "COMMIT" | "END_ATTACKS" }
   | { type: "TOGGLE_QUEST"; id: string }
@@ -241,10 +252,16 @@ export type Action =
     }
   | { type: "ATTACK"; enemyId: string; attackerIds: string[] };
 
-export type SeatConfig = { heroes: string[]; deckId: string };
+export type SeatConfig = {
+  heroes: string[];
+  deckId: string;
+  /** A custom 50-card list; when present the seat's deckId is recorded as "custom". */
+  cards?: Record<string, number>;
+};
 export type PlayerSeat = Pick<
   GameState,
   | "deckId"
+  | "customDeck"
   | "startingHeroes"
   | "threat"
   | "heroes"

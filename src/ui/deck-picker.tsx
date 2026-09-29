@@ -10,6 +10,8 @@ import {
 } from "@phosphor-icons/react";
 import { STARTERS, card, imageUrl, plain } from "../game/cards";
 import type { Card } from "../game/types";
+import { customId, deckSize } from "../game/decks";
+import type { CustomDeck } from "../game/decks";
 
 const icons = {
   leadership: Crown,
@@ -25,6 +27,8 @@ export function DeckPicker({
   inspect,
   compact = false,
   showHeroes = true,
+  custom = [],
+  onBuild,
 }: {
   value: string;
   onChange: (id: string) => void;
@@ -33,17 +37,33 @@ export function DeckPicker({
   inspect?: (id: string) => void;
   compact?: boolean;
   showHeroes?: boolean;
+  custom?: CustomDeck[];
+  onBuild?: () => void;
 }) {
+  const choices = [
+    ...STARTERS.map((d) => ({ ...d, custom: false })),
+    ...custom.map((d) => ({
+      id: customId(d),
+      name: d.name,
+      subtitle: "Custom deck",
+      description: d.source
+        ? "Imported from RingsDB and limited to scripted cards."
+        : "Assembled in the deck builder.",
+      heroes: d.heroes,
+      cards: d.cards,
+      custom: true,
+    })),
+  ];
   return (
     <div
       className={`deck-picker ${compact ? "deck-picker-compact" : ""}`}
       role="group"
       aria-label={label}
     >
-      {STARTERS.map((d) => {
-        const Icon = icons[d.id as keyof typeof icons];
+      {choices.map((d) => {
+        const Icon = d.custom ? Stack : icons[d.id as keyof typeof icons];
         const selected = d.id === value;
-        const count = Object.values(d.cards).reduce((n, v) => n + v, 0);
+        const count = deckSize(d.cards);
         return (
           <article
             key={d.id}
@@ -79,7 +99,9 @@ export function DeckPicker({
               <span className="deck-choice-facts">
                 <span>
                   <Stack size={15} /> {count} cards
-                  {showHeroes ? " · 3 heroes" : ""}
+                  {showHeroes
+                    ? ` · ${d.heroes.length} ${d.heroes.length === 1 ? "hero" : "heroes"}`
+                    : ""}
                 </span>
                 {showHeroes && (
                   <span>
@@ -115,6 +137,25 @@ export function DeckPicker({
           </article>
         );
       })}
+      {onBuild && (
+        <article className="deck-choice deck-choice-build">
+          <button className="deck-choice-select" onClick={onBuild}>
+            <span className="deck-choice-top">
+              <span>
+                <Stack size={19} /> Custom
+              </span>
+            </span>
+            <h3>Build your own deck</h3>
+            {!compact && (
+              <p>
+                Fifty scripted Core Set cards of your choice, or a RingsDB
+                decklist.
+              </p>
+            )}
+            <span className="deck-choice-state">Open the deck builder</span>
+          </button>
+        </article>
+      )}
     </div>
   );
 }

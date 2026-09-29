@@ -233,6 +233,74 @@ test("a final result can be acknowledged after elimination and review imports re
   badId.flow!.pending = { ...badId.flow!.history[0], id: 99999 };
   assert.equal(restoreSave(badId), null);
 });
+test("hidden-information mode records a player's own plays without pausing, then pauses for the reveal and its damage", () => {
+  let s = base();
+  s.flow!.mode = "hidden";
+  s.phase = "planning";
+  s.heroes[0].resources = 2;
+  s.hand = [unit(s, "01013")];
+  const events = s.flow!.history.length;
+  s = act(s, { type: "PLAY", id: s.hand[0].id });
+  assert.equal(s.flow!.pending, null);
+  assert.equal(s.allies.length, 1);
+  assert.equal(s.flow!.history.length, events + 1);
+  assert.equal(s.flow!.history.at(-1)!.title, "Card played");
+  s = act(s, { type: "NEXT" });
+  assert.equal(s.phase, "quest");
+  assert.equal(s.flow!.pending, null, "phase handoffs do not pause");
+  s.heroes[0].exhausted = true;
+  s.encounterDeck = ["01093", "01099"];
+  s = act(s, { type: "COMMIT" });
+  assert.equal(s.flow!.pending!.kind, "reveal");
+  assert.equal(s.heroes[0].damage, 0);
+  s = next(s);
+  assert.equal(s.heroes[0].damage, 1);
+  assert.ok(s.flow!.pending, "damage from a treachery still pauses");
+  assert.ok(
+    s.flow!.pending!.changes.some(
+      (c) => c.label.includes("Damage") && c.after.startsWith("1 /"),
+    ),
+  );
+  s = drain(s);
+  assert.ok(validateSave(s));
+  assert.equal(
+    restoreSave(JSON.parse(JSON.stringify(s)))!.flow!.mode,
+    "hidden",
+  );
+});
+test("decisions-only mode never pauses but keeps the chronicle, and the mode is validated", () => {
+  let s = base();
+  s.flow!.mode = "decisions";
+  s.phase = "quest";
+  s.heroes[0].exhausted = true;
+  s.encounterDeck = ["01093", "01099"];
+  s = act(s, { type: "COMMIT" });
+  assert.equal(s.flow!.pending, null);
+  assert.equal(s.heroes[0].damage, 1);
+  assert.equal(s.phase, "staging");
+  assert.ok(s.flow!.history.some((h) => h.kind === "reveal"));
+  assert.throws(
+    () => act(s, { type: "SET_REVIEW_MODE", mode: "loud" as never }),
+    /supported/,
+  );
+  s = act(s, { type: "SET_REVIEW_MODE", mode: "all" });
+  assert.equal(s.flow!.mode, "all");
+  s = act(s, { type: "NEXT" });
+  assert.ok(s.flow!.pending, "switching back to every event pauses again");
+  const bad = structuredClone(s);
+  bad.flow!.mode = "loud" as never;
+  assert.equal(restoreSave(bad), null);
+  const unguided = createGame(
+    5,
+    STARTERS[0].cards,
+    STARTERS[0].heroes,
+    "leadership",
+  );
+  assert.throws(
+    () => act(unguided, { type: "SET_REVIEW_MODE", mode: "hidden" }),
+    /does not use/,
+  );
+});
 test("public hot-seat state never exposes facedown shadow identities", () => {
   const s = base("leadership", true);
   s.engaged = [unit(s, "01089")];

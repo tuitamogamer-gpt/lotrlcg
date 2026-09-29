@@ -192,8 +192,7 @@
 .redbook .gameboard .character-name > svg:last-child {
   display: none;
 }
-.redbook .gameboard .stat-row,
-.redbook .gameboard .enemy-stats {
+.redbook .gameboard .stat-row {
   justify-content: center;
   padding: 3px 0;
   gap: 7px;
@@ -206,14 +205,12 @@
 .redbook .gameboard .stat-row > span {
   color: #d9d8ba;
 }
-.redbook .gameboard .stat-row svg,
-.redbook .gameboard .enemy-stats svg {
+.redbook .gameboard .stat-row svg {
   width: 11px;
   height: 11px;
   color: #aeb99a;
 }
-.redbook .gameboard .stat-row .damaged,
-.redbook .gameboard .enemy-stats .damaged {
+.redbook .gameboard .stat-row .damaged {
   color: #ffc2a6;
 }
 .redbook .gameboard .encounter-value {
@@ -249,8 +246,7 @@
   outline: 2px solid #d4c17a;
   outline-offset: 3px;
 }
-.redbook .gameboard .quest-badge,
-.redbook .gameboard .exhausted-badge {
+.redbook .gameboard .quest-badge {
   top: -7px;
   right: -7px;
   color: #f1e4b6;
@@ -260,10 +256,6 @@
   font-size: var(--text-small);
   z-index: 4;
   box-shadow: 0 2px 4px #0005;
-}
-.redbook .gameboard .exhausted-badge {
-  background: #383b30;
-  border-color: #a69e7d;
 }
 .redbook .gameboard .character-card.exhausted {
   width: var(--table-card-height);
@@ -284,7 +276,7 @@
   filter: none;
   box-shadow: 2px 3px 5px #0009;
 }
-.redbook .gameboard .character-card.exhausted .exhausted-badge,
+
 .redbook .gameboard .character-card.exhausted .quest-badge {
   top: 10%;
 }
@@ -399,13 +391,6 @@
   margin-left: 12px;
   transform: rotate(8deg);
   border: 1px solid #c7a472;
-}
-.table-shadows .back-ornament {
-  width: 23px;
-  height: 23px;
-}
-.table-shadows .back-ornament svg {
-  width: 19px;
 }
 .table-shadows .table-card-back > span:last-of-type,
 .table-shadows .table-card-back > i {
@@ -681,14 +666,6 @@
   background: radial-gradient(ellipse at 50% 40%, #85563c, #382016 65%);
   color: #d1aa6b;
   border-color: #a6855599;
-}
-.back-ornament {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid #c1b68066;
-  border-radius: 50%;
 }
 .table-card-back > span:last-of-type {
   font: 500 var(--text-small) var(--serif);
@@ -1053,8 +1030,7 @@
     width: 19px;
     height: 19px;
   }
-  .redbook .gameboard,
-  .redbook .gameboard:has(> .active-zones) {
+  .redbook .gameboard {
     display: grid;
     grid-template-columns: clamp(156px, 14.2vw, 224px) minmax(0, 1fr) 85px;
     grid-template-rows: minmax(0, 1fr) minmax(0, 1.08fr) auto;
@@ -1155,13 +1131,6 @@
     min-height: 35px;
     font-size: var(--text-small);
   }
-  .redbook .table-page .resource-pools {
-    margin-top: 12px;
-    padding-top: 12px;
-  }
-  .redbook .table-page .resource-pools > div {
-    font-size: var(--text-small);
-  }
   .redbook .table-page .turn-tip {
     margin: 10px 0;
     font-size: var(--text-small);
@@ -1222,13 +1191,6 @@
   .discard-card {
     width: 36px;
     height: 50px;
-  }
-  .back-ornament {
-    width: 27px;
-    height: 27px;
-  }
-  .back-ornament svg {
-    width: 22px;
   }
   .table-card-back {
     gap: 4px;
@@ -1613,8 +1575,7 @@
   font-size: var(--text-small);
   height: 14px;
 }
-.redbook .gameboard .stat-row,
-.redbook .gameboard .enemy-stats {
+.redbook .gameboard .stat-row {
   gap: 6px;
   min-height: 18px;
   height: 18px;
@@ -1682,7 +1643,6 @@
   }
   .redbook .gameboard .engaged-zone .board-card-name,
   .redbook .gameboard .engaged-zone .engaged-owner,
-  .redbook .gameboard .engaged-zone .enemy-stats,
   .redbook .gameboard .engaged-zone .card-action {
     grid-column: 2;
   }
@@ -1801,5 +1761,17 @@
 @media (max-width: 1099px) {
   .redbook .table-tools > button[aria-label="Table preferences"] {
     display: none;
+  }
+}
+
+/* Phones: engaged-enemy ownership wraps under the card instead of being cut off. */
+@media (max-width: 599px) {
+  .redbook .gameboard .engaged-owner {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    height: auto;
+    line-height: 1.3;
+    max-width: var(--table-card-width, 160px);
   }
 }

@@ -18,6 +18,11 @@
 - Normal games and campaigns have **separate browser saves**. The selected mode persists across reload. Version-one Mirkwood saves are migrated. Imported games restore their scenario, mode, campaign log, and pending choice.
 - Visible, player-confirmed resolution: encounter and shadow previews before effects, individual automatic engagements, combat calculations and damage, quest outcomes, resource/card summaries, and phase/seat changes. Event reviews pause the rules queue until confirmed; table/card inspection keeps that pause. The last 80 event snapshots and the exact pending event survive save/reload and export/import. Undealt cards and unrevealed shadows remain hidden.
 - Library: searchable 1,315-card snapshot with explicit scripted indicators and a manual live RingsDB refresh. Only the supported Core Set cards are playable.
+- **Custom decks**: the deck builder enforces the Rules Reference limits (one to three different heroes, at least 50 cards, at most three copies, cards payable by the chosen spheres) using scripted Core Set cards only. Public RingsDB decklists import with a report of unsupported cards. Custom decks are accepted by the engine for classic solo and for individual hot-seat seats, are stored in the save (`customDeck`), and continue through campaign chapters and retries.
+- **Easy mode**: each hero begins with one additional resource, following the official easy mode. The official easy-mode encounter-card removals are not implemented because no verified card list is bundled.
+- **Event review modes**: `all` pauses on every recorded event; `hidden` pauses on revealed encounters, shadows, setup, new rounds, quest results, enemy attacks, encounter-driven effects and any loss (damage, rising threat, cards leaving play); `decisions` never pauses. The mode is part of the save, validated on import, and complete-game simulations produce identical rules states in every mode.
+- **Journey record**: finished games are recorded once per game instance on this device, with result, rounds, threat, score and deck.
+- **Coaching tips**: one suggestion per decision derived from public state only (playable cards, willpower versus staging threat, engagement costs, safe defenders, lethal attacks). Tips never act on the player's behalf.
 
 ## Timing boundaries
 

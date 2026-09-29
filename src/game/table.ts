@@ -5,6 +5,7 @@ import { card } from "./cards";
 // existing single-player saves and card scripts compatible with the shared table.
 export const PLAYER_FIELDS = [
   "deckId",
+  "customDeck",
   "startingHeroes",
   "threat",
   "heroes",
@@ -28,7 +29,8 @@ export const PLAYER_FIELDS = [
 export const activeSeat = (s: GameState) => s.table?.active ?? 0;
 export function snapshotSeat(s: GameState): PlayerSeat {
   return Object.fromEntries([
-    ...PLAYER_FIELDS.map((k) => [k, s[k]]),
+    // Optional fields stay absent rather than undefined so saves round-trip exactly.
+    ...PLAYER_FIELDS.filter((k) => s[k] !== undefined).map((k) => [k, s[k]]),
     ["eliminated", s.table?.seats[activeSeat(s)]?.eliminated ?? false],
   ]) as PlayerSeat;
 }
@@ -39,13 +41,16 @@ export function selectSeat(s: GameState, i: number) {
   if (!s.table || i === s.table.active) return;
   syncSeat(s);
   s.table.active = i;
-  for (const key of PLAYER_FIELDS)
-    Object.assign(s, { [key]: s.table.seats[i][key] });
+  for (const key of PLAYER_FIELDS) {
+    if (s.table.seats[i][key] === undefined) delete s[key];
+    else Object.assign(s, { [key]: s.table.seats[i][key] });
+  }
 }
 export function seatView(s: GameState, i: number): GameState {
-  return !s.table || i === s.table.active
-    ? s
-    : { ...s, ...s.table.seats[i], table: { ...s.table, active: i } };
+  if (!s.table || i === s.table.active) return s;
+  const view = { ...s, ...s.table.seats[i], table: { ...s.table, active: i } };
+  if (s.table.seats[i].customDeck === undefined) delete view.customDeck;
+  return view;
 }
 export const seatIndices = (s: GameState) =>
   s.table ? s.table.seats.map((_, i) => i) : [0];

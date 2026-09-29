@@ -322,18 +322,6 @@ nav {
   color: var(--gold);
   background: #ffffff07;
 }
-.profile {
-  border: 1px solid #a496634f;
-  background: #71664419;
-  color: #cbbb90;
-  display: grid;
-  place-items: center;
-  height: 29px;
-  width: 29px;
-  border-radius: 50%;
-  font-family: var(--serif);
-  font-size: var(--text-small);
-}
 .mobile-menu {
   display: none;
 }
@@ -1683,24 +1671,6 @@ nav {
   min-height: 26px;
   color: #dddbbe;
 }
-.enemy-stats {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  font-size: var(--text-small);
-  padding: 5px 2px 10px;
-  color: #cdcbae;
-}
-.enemy-stats > span {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-}
-.enemy-stats svg {
-  width: 11px;
-  height: 11px;
-  color: #a7b08f;
-}
 .card-action {
   width: 100%;
   background: #b79c581a;
@@ -1807,18 +1777,6 @@ nav {
   height: 100%;
   background: #c5ab65;
 }
-.active-zones {
-  display: flex;
-  gap: 25px;
-  padding: 17px 22px;
-  border-bottom: 1px solid var(--line);
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-.active-location {
-  min-width: 185px;
-  flex: 1;
-}
 .location-inline {
   display: flex;
   gap: 12px;
@@ -1910,23 +1868,7 @@ nav {
   background: linear-gradient(transparent, #152219);
   pointer-events: none;
 }
-.resource-token {
-  position: absolute;
-  bottom: 5px;
-  left: 6px;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 6px;
-  background: #17271ae8;
-  border: 1px solid #b9a06166;
-  border-radius: 12px;
-  font-size: var(--text-small);
-  color: #e6d099;
-}
-.quest-badge,
-.exhausted-badge {
+.quest-badge {
   position: absolute;
   top: 6px;
   right: 5px;
@@ -1941,11 +1883,6 @@ nav {
   border: 1px solid #abbc8b88;
   border-radius: 3px;
   padding: 4px;
-}
-.exhausted-badge {
-  background: #131c16e8;
-  color: #c6be9b;
-  border-color: #c6be9b44;
 }
 .character-name {
   display: flex;
@@ -2135,12 +2072,7 @@ nav {
   color: #c1b986;
   line-height: 1.7;
 }
-.resource-pools {
-  border-top: 1px solid var(--line);
-  margin-top: 23px;
-  padding-top: 18px;
-}
-.resource-pools h3,
+
 .last-reveal h3,
 .recent-log h3 {
   font-family: var(--body);
@@ -2150,22 +2082,6 @@ nav {
   color: #a9b299;
   font-weight: 500;
   margin-bottom: 15px;
-}
-.resource-pools > div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: var(--text-small);
-  margin: 11px 0;
-}
-.resource-pools > div > strong {
-  margin-left: auto;
-  font-size: var(--text-small);
-  color: #daca94;
-  font-weight: 500;
-}
-.resource-pools svg {
-  width: 13px;
 }
 .last-reveal {
   border-top: 1px solid var(--line);
@@ -2540,9 +2456,6 @@ nav {
   .board-card-name {
     font-size: var(--text-small);
   }
-  .enemy-stats {
-    gap: 6px;
-  }
   .table-heading h1 {
     font-size: 18px;
   }
@@ -2697,7 +2610,7 @@ nav {
   .turn-panel > .secondary {
     grid-row: 4;
   }
-  .turn-panel .resource-pools,
+
   .turn-panel .last-reveal,
   .turn-panel .recent-log,
   .turn-panel .export-link {
@@ -2817,11 +2730,6 @@ nav {
   }
   .solo-label {
     display: none;
-  }
-  .profile {
-    height: 25px;
-    width: 25px;
-    font-size: var(--text-small);
   }
   .top-tools .icon-button {
     padding: 5px;
@@ -3270,13 +3178,6 @@ nav {
   .board-card-name {
     font-size: var(--text-small);
   }
-  .enemy-stats {
-    font-size: var(--text-small);
-    gap: 6px;
-  }
-  .enemy-stats svg {
-    width: 9px;
-  }
   .quest-zone {
     padding: 16px 13px;
     gap: 9px;
@@ -3341,13 +3242,6 @@ nav {
   .stat-row > span {
     gap: 2px;
   }
-  .resource-token {
-    font-size: var(--text-small);
-    bottom: 3px;
-  }
-  .resource-token svg {
-    width: 10px;
-  }
   .abilities > button {
     font-size: var(--text-small);
     padding: 6px 2px;
@@ -3378,12 +3272,7 @@ nav {
   .hand-cards {
     gap: 9px;
   }
-  .active-zones {
-    padding: 14px 12px;
-    gap: 17px;
-    flex-direction: column;
-  }
-  .active-location,
+
   .engaged-zone {
     width: 100%;
   }
@@ -3428,25 +3317,6 @@ nav {
     transform: none !important;
   }
 }
-.starter-select {
-  display: block;
-  margin-top: 24px;
-  font-size: var(--text-small);
-  letter-spacing: 1.5px;
-  color: #b7be9f;
-}
-.starter-select select {
-  display: block;
-  margin-top: 8px;
-  background: #0b1b16ba;
-  border-color: #bea97155;
-  font-size: var(--text-small);
-  padding: 10px 12px;
-  max-width: 270px;
-  width: 100%;
-  color: #d6d7ba;
-  letter-spacing: 0;
-}
 .hero-copy {
   padding-top: 48px;
   padding-bottom: 90px;
@@ -3463,56 +3333,6 @@ nav {
 .hero-fan {
   top: 137px;
 }
-.starter-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
-  margin: 28px 0;
-}
-.starter-option {
-  text-align: left;
-  padding: 23px 19px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: #15221a;
-}
-.starter-option.selected {
-  background: linear-gradient(135deg, #beab5916, #8faa6507);
-  border-color: #c4b0749e;
-}
-.starter-option > svg {
-  width: 30px;
-  height: 30px;
-  margin-bottom: 20px;
-  display: block;
-}
-.starter-option > span {
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-  color: #b9bf9f;
-  font-size: var(--text-small);
-}
-.starter-option > h2 {
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 10px 0;
-  min-height: 54px;
-}
-.starter-option > p {
-  font-size: var(--text-small);
-  line-height: 1.8;
-  min-height: 54px;
-}
-.starter-option > small {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-small);
-  color: #b9c39f;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
-  margin-top: 20px;
-}
 .deck-quantity {
   min-width: 36px;
   text-align: center;
@@ -3523,15 +3343,6 @@ nav {
   border-radius: 5px;
 }
 @media (max-width: 1250px) {
-  .starter-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .starter-option > h2 {
-    min-height: 0;
-  }
-  .starter-option > p {
-    min-height: 36px;
-  }
   .hero-fan {
     top: 153px;
   }
@@ -3556,40 +3367,8 @@ nav {
     height: 210px;
     width: 49%;
   }
-  .starter-select {
-    margin-top: 18px;
-  }
-  .starter-select select {
-    max-width: 245px;
-    font-size: var(--text-small);
-  }
   .hero-cta {
     margin-top: 15px;
-  }
-  .starter-option {
-    padding: 18px 15px;
-  }
-  .starter-option > h2 {
-    font-size: 15px;
-    min-height: 45px;
-  }
-  .starter-option > svg {
-    width: 25px;
-    height: 25px;
-    margin-bottom: 15px;
-  }
-  .starter-option > p {
-    font-size: var(--text-small);
-    min-height: 64px;
-  }
-  .starter-option > span {
-    font-size: var(--text-small);
-  }
-  .starter-option > small {
-    font-size: var(--text-small);
-  }
-  .starter-grid {
-    gap: 12px;
   }
   .fellowship-mini .section-line .text-link {
     font-size: var(--text-small);
@@ -3617,9 +3396,6 @@ nav {
   font-size: var(--text-small);
 }
 .recent-log > p {
-  font-size: var(--text-small);
-}
-.resource-pools > div {
   font-size: var(--text-small);
 }
 .board-card-name {
@@ -3964,10 +3740,6 @@ nav {
   color: #a59b72;
   font-size: var(--text-small);
   letter-spacing: 1px;
-}
-.interlude-heroes {
-  display: grid;
-  gap: 10px;
 }
 .support-toggle {
   display: flex;

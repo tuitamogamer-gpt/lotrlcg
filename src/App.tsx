@@ -1,4 +1,12 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  lazy,
+  Suspense,
+} from "react";
 import type { ReactNode } from "react";
 import {
   ArrowRight,
@@ -10,11 +18,9 @@ import {
   CaretRight,
   Check,
   Compass,
-  Crown,
   Diamond,
   Eye,
   Feather,
-  Leaf,
   List,
   Mountains,
   Moon,
@@ -27,7 +33,6 @@ import {
   Tree,
   UsersThree,
   X,
-  MagnifyingGlass,
   Coins,
   FloppyDisk,
   Info,
@@ -39,7 +44,22 @@ import {
   Keyboard,
   WarningCircle,
   UserCircle,
+  Lightbulb,
 } from "@phosphor-icons/react";
+import { coachTip } from "./ui/coach";
+import { Art, Sphere } from "./ui/card-art";
+import {
+  customId,
+  deckSize,
+  describeDeck,
+  isCustomId,
+  readDecks,
+  writeDecks,
+} from "./game/decks";
+import type { CustomDeck } from "./game/decks";
+import { readRecords, recordGame, summarize, writeRecords } from "./ui/records";
+const Library = lazy(() => import("./ui/library"));
+const DeckBuilder = lazy(() => import("./ui/deck-builder"));
 import { motion, useReducedMotion } from "motion/react";
 import {
   AnimatedNumber,
@@ -52,7 +72,6 @@ import {
   playerCards,
   STARTERS,
   SCRIPTED,
-  imageUrl,
   plain,
   name,
 } from "./game/cards";
@@ -110,7 +129,11 @@ import {
   livingSeats,
   seatView,
 } from "./game/table";
-import { startGuided } from "./game/presentation";
+import {
+  REVIEW_MODES,
+  reviewModeLabel,
+  startGuided,
+} from "./game/presentation";
 import { ResolutionDialog, ResolutionChronicle } from "./ui/resolution";
 import {
   ChoiceDialog,
@@ -154,7 +177,8 @@ const readMode = (): PlayMode => {
 };
 const activeSaveKey = () =>
   readMode() === "campaign" ? CAMPAIGN_KEY : SAVE_KEY;
-type Page = "adventures" | "library" | "fellowship" | "guide" | "table";
+type Page =
+  "adventures" | "library" | "fellowship" | "decks" | "guide" | "table";
 declare global {
   interface Window {
     render_game_to_text: () => string;
@@ -175,7 +199,9 @@ const readDeckId = () => {
     const savedDeck = readSave(activeSaveKey())?.deckId;
     if (STARTERS.some((s) => s.id === savedDeck)) return savedDeck!;
     const d = localStorage.getItem(DECK_KEY);
-    return STARTERS.some((s) => s.id === d) ? d! : "leadership";
+    return STARTERS.some((s) => s.id === d) || /^custom:[\w-]+$/.test(d ?? "")
+      ? d!
+      : "leadership";
   } catch {
     return "leadership";
   }
@@ -191,6 +217,8 @@ const phaseNames: Record<string, string> = {
   attack: "Strike back",
   refresh: "Refresh",
 };
+/** "1 player", "2 players": English plural for the setup summaries. */
+const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
 function Modal({
   title,
   children,
@@ -239,44 +267,6 @@ function Modal({
       </div>
       {children}
     </dialog>
-  );
-}
-function Sphere({ sphere }: { sphere: string }) {
-  const I =
-    sphere === "leadership"
-      ? Crown
-      : sphere === "spirit"
-        ? Feather
-        : sphere === "tactics"
-          ? Sword
-          : sphere === "lore"
-            ? Leaf
-            : Diamond;
-  return (
-    <I
-      weight="duotone"
-      className={`sphere-${sphere}`}
-      size={16}
-      aria-label={sphere}
-    />
-  );
-}
-function Art({ c, className = "" }: { c: Card; className?: string }) {
-  const [failed, setFailed] = useState(false);
-  return failed ? (
-    <div className={`art-fallback ${className}`}>
-      <Tree size={38} />
-      <span>{c.name}</span>
-    </div>
-  ) : (
-    <img
-      src={imageUrl(c)}
-      alt={c.name}
-      data-card-code={c.code}
-      loading="lazy"
-      className={className}
-      onError={() => setFailed(true)}
-    />
   );
 }
 function Ambient() {
@@ -453,8 +443,32 @@ export default function App() {
   const [selectedDeck, setSelectedDeck] = useState(
     () => initialChoices?.selectedDeck ?? readDeckId(),
   );
-  const starter = STARTERS.find((d) => d.id === selectedDeck)!;
+  const [decks, setDecksState] = useState<CustomDeck[]>(readDecks);
+  const setDecks = (list: CustomDeck[]) => {
+    setDecksState(list);
+    if (!writeDecks(list))
+      notify(
+        "Browser storage is full. The deck stays available until you reload.",
+      );
+  };
+  const starter =
+    describeDeck(selectedDeck, decks) ?? describeDeck("leadership", decks)!;
   const deck = starter.cards;
+  // Seats may reference a custom deck; the engine receives its card list.
+  const seatConfig = (p: SeatConfig): SeatConfig =>
+    isCustomId(p.deckId)
+      ? {
+          heroes: p.heroes,
+          deckId: "custom",
+          cards: decks.find((d) => customId(d) === p.deckId)?.cards,
+        }
+      : p;
+  const [easyMode, setEasyMode] = usePreference("easy-mode", "off", [
+    "off",
+    "on",
+  ] as const);
+  const [showRecords, setShowRecords] = useState(false);
+  const [records, setRecords] = useState(readRecords);
   const resumable =
     game &&
     (playMode === "campaign" ||
@@ -462,7 +476,9 @@ export default function App() {
         (setupMode === "hotseat"
           ? !!game.table &&
             game.table.seats.map((p) => p.deckId).join() ===
-              seats.map((p) => p.deckId).join()
+              seats
+                .map((p) => (isCustomId(p.deckId) ? "custom" : p.deckId))
+                .join()
           : !game.table &&
             (game.deckId === selectedDeck || game.deckId === "custom"))));
   const displayHeroes =
@@ -493,6 +509,28 @@ export default function App() {
   const [density, setDensity] = usePreference("density", "comfortable", [
     "comfortable",
     "compact",
+  ] as const);
+  const [reviewMode, setReviewMode] = usePreference(
+    "review-mode",
+    "hidden",
+    REVIEW_MODES,
+  );
+  // The saved preference applies to the current game, including restored saves.
+  useEffect(() => {
+    if (!game?.flow || (game.flow.mode ?? "all") === reviewMode) return;
+    try {
+      setGame(applyAction(game, { type: "SET_REVIEW_MODE", mode: reviewMode }));
+    } catch {
+      /* An unsupported mode leaves the game unchanged. */
+    }
+  }, [game, reviewMode]);
+  const [coach, setCoach] = usePreference("coach", "on", [
+    "on",
+    "off",
+  ] as const);
+  const [tutorial, setTutorial] = usePreference("tutorial", "pending", [
+    "pending",
+    "seen",
   ] as const);
   const [hoverCards, setHoverCards] = usePreference("hover-cards", "on", [
     "on",
@@ -569,6 +607,12 @@ export default function App() {
         );
       }
   }, [game, notify]);
+  // Finished adventures join the journey record once.
+  useEffect(() => {
+    if (!game || game.status === "playing") return;
+    const added = recordGame(game);
+    if (added) setRecords(readRecords());
+  }, [game]);
   useEffect(() => {
     try {
       localStorage.setItem(DECK_KEY, selectedDeck);
@@ -619,6 +663,18 @@ export default function App() {
       setHistory((h) => [...h.slice(-19), game]);
       setGame(next);
       chime();
+      // Events that were recorded without a pause still get a brief mention.
+      const firstNew = game.flow?.nextId ?? Infinity;
+      const recorded =
+        next.flow?.history.filter(
+          (h) => h.id >= firstNew && h.id !== next.flow?.pending?.id,
+        ) ?? [];
+      if (recorded.length)
+        notify(
+          recorded.length === 1
+            ? recorded[0].title
+            : `${recorded.at(-1)!.title} · ${recorded.length} events recorded`,
+        );
       return true;
     } catch (e) {
       notify(e instanceof Error ? e.message : "That action is unavailable.");
@@ -627,24 +683,32 @@ export default function App() {
   };
   const start = (style: "classic" | "hotseat" = setupMode) => {
     try {
-      const s = createGame(Date.now(), deck, starter.heroes, starter.id, {
-        guided: true,
-        scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
-        playMode,
-        ...(style === "hotseat" ? { seats } : {}),
-        ...(playMode === "campaign" &&
-        game?.campaign?.completed.length === 3 &&
-        game.campaign.mendorSaved
-          ? {
-              campaign: newCampaign(
-                style === "hotseat"
-                  ? seats.flatMap((p) => p.heroes)
-                  : starter.heroes,
-                true,
-              ),
-            }
-          : {}),
-      });
+      const s = createGame(
+        Date.now(),
+        deck,
+        starter.heroes,
+        starter.custom ? "custom" : starter.id,
+        {
+          guided: true,
+          reviewMode,
+          easy: easyMode === "on",
+          scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
+          playMode,
+          ...(style === "hotseat" ? { seats: seats.map(seatConfig) } : {}),
+          ...(playMode === "campaign" &&
+          game?.campaign?.completed.length === 3 &&
+          game.campaign.mendorSaved
+            ? {
+                campaign: newCampaign(
+                  style === "hotseat"
+                    ? seats.flatMap((p) => p.heroes)
+                    : starter.heroes,
+                  true,
+                ),
+              }
+            : {}),
+        },
+      );
       setSetupMode(style);
       setGame(s);
       setPage("table");
@@ -932,6 +996,7 @@ export default function App() {
             [
               { id: "adventures", label: "Adventures", icon: Compass },
               { id: "fellowship", label: "My fellowship", icon: UsersThree },
+              { id: "decks", label: "Deck builder", icon: Stack },
               { id: "library", label: "Card library", icon: Books },
               { id: "guide", label: "How to play", icon: BookOpen },
             ] as const
@@ -1006,7 +1071,9 @@ export default function App() {
                     ? "Card library"
                     : page === "fellowship"
                       ? "My fellowship"
-                      : "How to play"}
+                      : page === "decks"
+                        ? "Deck builder"
+                        : "How to play"}
             </strong>
           </div>
           <div className="top-tools">
@@ -1085,6 +1152,8 @@ export default function App() {
               selectedDeck={selectedDeck}
               selectDeck={setSelectedDeck}
               inspect={setPreviewDeck}
+              decks={decks}
+              onBuild={() => nav("decks")}
             />
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <section className="mode-selection" aria-label="Choose game mode">
@@ -1239,6 +1308,25 @@ export default function App() {
                     Change your deck between chapters or start a new campaign.
                   </small>
                 )}
+                {!(resumable && game?.status === "playing") && (
+                  <label className="preference-check easy-toggle">
+                    <div>
+                      <strong>Easy mode</strong>
+                      <small>
+                        Each hero begins with 1 extra resource, as in the
+                        official easy mode. Encounter-card removals are not yet
+                        included.
+                      </small>
+                    </div>
+                    <input
+                      type="checkbox"
+                      checked={easyMode === "on"}
+                      onChange={(e) =>
+                        setEasyMode(e.target.checked ? "on" : "off")
+                      }
+                    />
+                  </label>
+                )}
                 <button
                   className="primary hero-cta"
                   id="start-btn"
@@ -1388,7 +1476,7 @@ export default function App() {
                     </strong>
                     <span>
                       {setupMode === "hotseat"
-                        ? `${seats.length} players · ${seats.length * 3} heroes · ${seats.length} decks`
+                        ? `${count(seats.length, "player")} · ${seats.length * 3} heroes · ${count(seats.length, "deck")}`
                         : `${starter.subtitle} · 30 cards · 3 heroes`}
                     </span>
                   </div>
@@ -1445,6 +1533,13 @@ export default function App() {
                 <FloppyDisk size={13} /> Your journey is saved automatically on
                 this device.
               </span>
+              <button onClick={() => setShowRecords(true)}>
+                Your record{" "}
+                <span>
+                  {records.length} {records.length === 1 ? "game" : "games"}{" "}
+                  <ArrowRight size={13} />
+                </span>
+              </button>
               <button onClick={() => nav("guide")}>
                 New to the game?{" "}
                 <span>
@@ -1454,7 +1549,38 @@ export default function App() {
             </footer>
           </main>
         )}
-        {page === "library" && <Library inspect={setDetail} notify={notify} />}
+        {page === "library" && (
+          <Suspense
+            fallback={
+              <main className="content-page library">
+                <p className="library-loading">Opening the archives…</p>
+              </main>
+            }
+          >
+            <Library inspect={setDetail} notify={notify} />
+          </Suspense>
+        )}
+        {page === "decks" && (
+          <Suspense
+            fallback={
+              <main className="content-page deck-builder">
+                <p className="library-loading">Opening the deck builder…</p>
+              </main>
+            }
+          >
+            <DeckBuilder
+              decks={decks}
+              setDecks={setDecks}
+              inspect={setDetail}
+              notify={notify}
+              play={(id) => {
+                setSelectedDeck(id);
+                setSetupMode("classic");
+                nav("adventures");
+              }}
+            />
+          </Suspense>
+        )}
         {page === "fellowship" && (
           <main id="main-content" tabIndex={-1} className="content-page">
             <div className="page-heading">
@@ -1483,6 +1609,8 @@ export default function App() {
                 setSetupMode("classic");
               }}
               inspect={setPreviewDeck}
+              custom={decks}
+              onBuild={() => nav("decks")}
             />
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <div className="hero-roster">
@@ -1509,7 +1637,11 @@ export default function App() {
                 </p>
               </div>
               <strong>
-                30 <span>cards + 3 heroes</span>
+                {deckSize(deck)}{" "}
+                <span>
+                  cards + {starter.heroes.length}{" "}
+                  {starter.heroes.length === 1 ? "hero" : "heroes"}
+                </span>
               </strong>
             </div>
             <div className="deck-list">
@@ -2128,6 +2260,23 @@ export default function App() {
                   dispatch={dispatch}
                   review={() => setShowResolution(true)}
                 />
+                {coach === "on" &&
+                  (() => {
+                    const tip = coachTip(game);
+                    return tip ? (
+                      <aside
+                        className={`coach-tip coach-${tip.tone}`}
+                        aria-label="Coaching tip"
+                      >
+                        <Lightbulb size={18} weight="light" />
+                        <div>
+                          <strong>{tip.title}</strong>
+                          <p>{tip.text}</p>
+                          {tip.danger && <em>{tip.danger}</em>}
+                        </div>
+                      </aside>
+                    ) : null;
+                  })()}
                 {!!game.pendingWolfReturns?.length && (
                   <p className="turn-tip">
                     {game.pendingWolfReturns.length} Wolf Rider shadow
@@ -2253,6 +2402,185 @@ export default function App() {
           </button>
         </div>
       )}
+      {page === "table" &&
+        game &&
+        tutorial === "pending" &&
+        !game.flow?.pending &&
+        !game.choice && (
+          <Modal
+            title="Your first adventure"
+            className="tutorial-modal"
+            onClose={() => setTutorial("seen")}
+          >
+            <p className="tutorial-lead">
+              A round has seven phases. The table walks you through them; this
+              is the whole rhythm.
+            </p>
+            <ol className="tutorial-steps">
+              <li>
+                <strong>Resource & planning.</strong> Each hero gains 1
+                resource. Play allies and attachments with matching sphere
+                resources.
+              </li>
+              <li>
+                <strong>Quest.</strong> Commit characters; their willpower must
+                beat the staging threat. Then an encounter card is revealed.
+              </li>
+              <li>
+                <strong>Travel & engagement.</strong> Travel to a location to
+                remove its threat. Enemies whose engagement cost is at or below
+                your threat engage you.
+              </li>
+              <li>
+                <strong>Combat.</strong> Choose a defender for each enemy, then
+                strike back with ready characters.
+              </li>
+              <li>
+                <strong>Refresh.</strong> Everyone readies and threat rises by
+                1. At 50 threat you are eliminated.
+              </li>
+            </ol>
+            <p className="tutorial-note">
+              A lit lamp in the turn panel suggests a move for each decision.
+              Enter confirms an event review. Press ? for shortcuts and
+              preferences.
+            </p>
+            <label className="preference-check">
+              <div>
+                <strong>Show coaching tips</strong>
+              </div>
+              <input
+                type="checkbox"
+                checked={coach === "on"}
+                onChange={(e) => setCoach(e.target.checked ? "on" : "off")}
+              />
+            </label>
+            <div className="modal-actions">
+              <button
+                className="primary"
+                onClick={() => setTutorial("seen")}
+                autoFocus
+              >
+                Start playing <ArrowRight />
+              </button>
+            </div>
+          </Modal>
+        )}
+      {showRecords &&
+        (() => {
+          const sum = summarize(records);
+          return (
+            <Modal
+              title="Your journey record"
+              onClose={() => setShowRecords(false)}
+            >
+              <div className="records-summary">
+                <div>
+                  <strong>{sum.played}</strong>
+                  <small>games</small>
+                </div>
+                <div>
+                  <strong>{sum.won}</strong>
+                  <small>victories</small>
+                </div>
+                <div>
+                  <strong>
+                    {sum.played ? Math.round((sum.won / sum.played) * 100) : 0}%
+                  </strong>
+                  <small>win rate</small>
+                </div>
+                <div>
+                  <strong>{sum.bestScore}</strong>
+                  <small>best score</small>
+                </div>
+              </div>
+              {records.length === 0 ? (
+                <p>Finish an adventure and it will be recorded here.</p>
+              ) : (
+                <>
+                  <table
+                    className="records-table"
+                    aria-label="Results by quest"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Quest</th>
+                        <th>Played</th>
+                        <th>Won</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {SCENARIOS.map((q) => (
+                        <tr key={q.id}>
+                          <td>{q.name}</td>
+                          <td>{sum.byScenario[q.id]?.played ?? 0}</td>
+                          <td>{sum.byScenario[q.id]?.won ?? 0}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <h3>Recent adventures</h3>
+                  <table
+                    className="records-table"
+                    aria-label="Recent adventures"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Result</th>
+                        <th>Quest</th>
+                        <th>Deck</th>
+                        <th>Rounds</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...records]
+                        .reverse()
+                        .slice(0, 15)
+                        .map((r) => (
+                          <tr key={r.key}>
+                            <td
+                              className={
+                                r.result === "won" ? "is-won" : "is-lost"
+                              }
+                            >
+                              {r.result === "won" ? "Won" : "Lost"}
+                            </td>
+                            <td>
+                              {scenario(r.scenarioId).shortName}
+                              {r.playMode === "campaign" ? " · campaign" : ""}
+                              {r.easy ? " · easy" : ""}
+                            </td>
+                            <td>
+                              {r.deck}
+                              {r.players > 1 ? ` · ${r.players} players` : ""}
+                            </td>
+                            <td>{r.rounds}</td>
+                            <td>{r.result === "won" ? r.score : "—"}</td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                  <div className="modal-actions">
+                    <button
+                      className="secondary"
+                      onClick={() => {
+                        if (
+                          confirm("Clear your journey record on this device?")
+                        ) {
+                          writeRecords([]);
+                          setRecords([]);
+                        }
+                      }}
+                    >
+                      Clear record
+                    </button>
+                  </div>
+                </>
+              )}
+            </Modal>
+          );
+        })()}
       {showSettings && (
         <Modal
           title="Make the table yours"
@@ -2279,6 +2607,38 @@ export default function App() {
               ))}
             </div>
           </div>
+          <div className="preference-section">
+            <h3>Event reviews</h3>
+            <p>
+              Choose when the table waits for Continue. Every event is still
+              written to the chronicle.
+            </p>
+            <div className="preference-segments preference-stack">
+              {REVIEW_MODES.map((v) => (
+                <button
+                  key={v}
+                  aria-pressed={reviewMode === v}
+                  onClick={() => setReviewMode(v)}
+                >
+                  <span>
+                    {reviewModeLabel[v]}
+                    <small>
+                      {
+                        {
+                          all: "Confirm each recorded event, including your own plays.",
+                          hidden:
+                            "Pause for revealed encounters, shadows, damage, threat and quest results. Recommended.",
+                          decisions:
+                            "Never pause for information. Only choices stop the table.",
+                        }[v]
+                      }
+                    </small>
+                  </span>
+                  {reviewMode === v && <Check size={16} />}
+                </button>
+              ))}
+            </div>
+          </div>
           <label className="preference-check">
             <div>
               <strong>Hover card previews</strong>
@@ -2291,6 +2651,20 @@ export default function App() {
               type="checkbox"
               checked={hoverCards === "on"}
               onChange={(e) => setHoverCards(e.target.checked ? "on" : "off")}
+            />
+          </label>
+          <label className="preference-check">
+            <div>
+              <strong>Coaching tips</strong>
+              <small>
+                One suggestion for the current decision, computed from the
+                visible table. Numbers only; the choice stays yours.
+              </small>
+            </div>
+            <input
+              type="checkbox"
+              checked={coach === "on"}
+              onChange={(e) => setCoach(e.target.checked ? "on" : "off")}
             />
           </label>
           <div className="keyboard-guide">
@@ -2422,14 +2796,19 @@ export default function App() {
       )}
       {previewDeck &&
         (() => {
-          const d = STARTERS.find((d) => d.id === previewDeck)!;
+          const d = describeDeck(previewDeck, decks);
+          if (!d) return null;
           return (
             <Modal
               title={`${d.subtitle} · ${d.name}`}
               onClose={() => setPreviewDeck(null)}
               wide
             >
-              <p>{d.description} Three starting heroes and 30 player cards.</p>
+              <p>
+                {d.description} {d.heroes.length} starting{" "}
+                {d.heroes.length === 1 ? "hero" : "heroes"} and{" "}
+                {deckSize(d.cards)} player cards.
+              </p>
               <div className="deck-preview-heroes">
                 {d.heroes.map((code) => (
                   <button key={code} onClick={() => setDetail(card(code))}>
@@ -2511,8 +2890,8 @@ export default function App() {
                 .map((h) => card(h).name)
                 .join(" · ")}
               <br />
-              {seats.length} players · {seats.length * 3} heroes · one deck per
-              player.
+              {count(seats.length, "player")} · {seats.length * 3} heroes · one
+              deck per player.
             </p>
           )}
           <div className="modal-actions">
@@ -2818,7 +3197,12 @@ export default function App() {
               />
             ))}
           </div>
-          {!game.table && (
+          {!game.table && game.deckId === "custom" && (
+            <p className="campaign-deck-note">
+              Your custom deck continues into the next chapter.
+            </p>
+          )}
+          {!game.table && game.deckId !== "custom" && (
             <>
               <h3>Player deck</h3>
               <p>
@@ -3293,206 +3677,5 @@ function CharacterCard({
         ))}
       </div>
     </MovingCard>
-  );
-}
-function Library({
-  inspect,
-  notify,
-}: {
-  inspect: (c: Card) => void;
-  notify: (s: string) => void;
-}) {
-  const [catalog, setCatalog] = useState<Card[]>(playerCards);
-  const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("");
-  const [sphere, setSphere] = useState("all");
-  const [type, setType] = useState("all");
-  const [scripted, setScripted] = useState(false);
-  const [limit, setLimit] = useState(32);
-  useEffect(() => {
-    let ignore = false;
-    fetch("/catalog.json")
-      .then((r) => r.json())
-      .then((data: Card[]) => {
-        if (!ignore) setCatalog(data);
-      })
-      .catch(() =>
-        notify("Showing the cached Core Set. The full catalog could not load."),
-      )
-      .finally(() => {
-        if (!ignore) setLoading(false);
-      });
-    return () => {
-      ignore = true;
-    };
-  }, [notify]);
-  const refresh = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("https://ringsdb.com/api/public/cards/", {
-        signal: AbortSignal.timeout(12000),
-      });
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      if (
-        !Array.isArray(data) ||
-        !data.every(
-          (c) =>
-            typeof c.code === "string" &&
-            typeof c.name === "string" &&
-            typeof c.type_code === "string" &&
-            typeof c.sphere_code === "string",
-        )
-      )
-        throw new Error();
-      setCatalog(data);
-      notify(
-        `Library refreshed: ${data.length.toLocaleString()} player cards from RingsDB.`,
-      );
-    } catch {
-      notify("RingsDB is unavailable. Your cached library is still available.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  const found = catalog.filter(
-    (c) =>
-      (c.name + " " + (c.traits ?? ""))
-        .toLocaleLowerCase()
-        .includes(query.toLocaleLowerCase()) &&
-      (sphere === "all" || c.sphere_code === sphere) &&
-      (type === "all" || c.type_code === type) &&
-      (!scripted || SCRIPTED.has(c.code)),
-  );
-  return (
-    <main id="main-content" tabIndex={-1} className="content-page library">
-      <div className="page-heading">
-        <div>
-          <h1>The archives of Middle-earth</h1>
-          <p>Discover the heroes, allies, and artifacts of your next story.</p>
-        </div>
-        <button
-          className="secondary"
-          disabled={loading}
-          onClick={() => void refresh()}
-        >
-          <ArrowCounterClockwise />
-          {loading ? "Loading cards…" : "Refresh RingsDB"}
-        </button>
-      </div>
-      <div className="library-toolbar">
-        <label className="search-field">
-          <MagnifyingGlass size={19} />
-          <input
-            aria-label="Search cards"
-            placeholder="Search by name or trait…"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setLimit(32);
-            }}
-          />
-        </label>
-        <select
-          aria-label="Filter sphere"
-          value={sphere}
-          onChange={(e) => {
-            setSphere(e.target.value);
-            setLimit(32);
-          }}
-        >
-          <option value="all">All spheres</option>
-          {["leadership", "spirit", "lore", "tactics", "neutral"].map((v) => (
-            <option key={v} value={v}>
-              {v[0].toUpperCase() + v.slice(1)}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label="Filter card type"
-          value={type}
-          onChange={(e) => {
-            setType(e.target.value);
-            setLimit(32);
-          }}
-        >
-          <option value="all">All card types</option>
-          {["hero", "ally", "attachment", "event"].map((v) => (
-            <option key={v} value={v}>
-              {v[0].toUpperCase() + v.slice(1)}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="library-summary">
-        <span>
-          {found.length.toLocaleString()} cards {query && `matching “${query}”`}
-        </span>
-        <label>
-          <input
-            type="checkbox"
-            checked={scripted}
-            onChange={(e) => {
-              setScripted(e.target.checked);
-              setLimit(32);
-            }}
-          />{" "}
-          Scripted cards only
-        </label>
-      </div>
-      <div className="catalog-grid">
-        {found.slice(0, limit).map((c) => (
-          <button
-            className="catalog-card"
-            key={c.code}
-            onClick={() => inspect(c)}
-          >
-            <Art c={c} />
-            <div>
-              <span>{c.name}</span>
-              <Sphere sphere={c.sphere_code} />
-            </div>
-            <small>
-              {c.pack_name} · {c.type_code}
-              {SCRIPTED.has(c.code) && <Check size={12} />}
-            </small>
-          </button>
-        ))}
-      </div>
-      {found.length === 0 && (
-        <div className="library-empty">
-          <MagnifyingGlass size={40} weight="thin" />
-          <h2>No cards on this path.</h2>
-          <p>Try another name, trait, or filter.</p>
-          <button
-            className="secondary"
-            onClick={() => {
-              setQuery("");
-              setSphere("all");
-              setType("all");
-              setScripted(false);
-            }}
-          >
-            Clear filters
-          </button>
-        </div>
-      )}
-      {found.length > limit && (
-        <button
-          className="secondary load-more"
-          onClick={() => setLimit((v) => v + 32)}
-        >
-          Show more cards <Plus size={16} />
-        </button>
-      )}
-      <p className="library-source">
-        Player-card data from{" "}
-        <a href="https://ringsdb.com/api/" target="_blank" rel="noreferrer">
-          RingsDB’s public API
-        </a>
-        . A local snapshot keeps the library available. Browsing does not imply
-        gameplay support.
-      </p>
-    </main>
   );
 }

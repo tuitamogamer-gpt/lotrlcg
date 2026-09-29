@@ -12,6 +12,8 @@ Names, costs, resource pools, statistics, and legal play controls remain visible
 
 Live statistics use original vector reliefs with engraved brass bezels and colored enamel: a silver feather for willpower, a steel sword for attack, a blue shield for defense, a ruby heart for hit points, an amber Eye for threat, and a silver tree for location progress. Shared badges use 28px symbols and 19px live values on the table, larger labelled readings in the inspector, and compact three-column comparisons in combat decisions. Wounded HP has a distinct ruby frame as well as an accessible remaining-health label. SVG paint IDs are unique per instance for Safari; decorative artwork never owns or changes game state.
 
+The turn panel carries a coaching lamp: one plain-language suggestion for the current decision, computed from the visible table, never acting on the player's behalf. Event reviews follow the chosen review mode, so the table only interrupts for hidden information and losses unless the player asks for every event. The deck builder and journey record use the same paper, ink and brass language as the library.
+
 Desktop is the current optimization target: 1280×720 laptop windows through 2560×1440 displays. Existing small-screen behavior is retained, with further mobile design work deferred. Focus handling, labelled buttons, keyboard shortcut guards, comfortable/compact density, and reduced-motion preferences remain part of the interface.
 
 Physical-game research, reference links, and the digital adaptations are recorded in [TABLETOP-DESIGN-RESEARCH.md](docs/TABLETOP-DESIGN-RESEARCH.md).

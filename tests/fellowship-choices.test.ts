@@ -15,6 +15,12 @@ test("account choices restore only supported setups and isolate returned arrays"
   restored.seatDecks.push("tactics");
   assert.equal(valid.seatDecks.length, 2);
 });
+test("custom deck references are accepted, bare or malformed custom ids are not", () => {
+  assert.ok(parseChoices({ ...valid, selectedDeck: "custom:deck-1" }));
+  assert.ok(parseChoices({ ...valid, seatDecks: ["custom:a", "lore"] }));
+  assert.equal(parseChoices({ ...valid, selectedDeck: "custom:" }), null);
+  assert.equal(parseChoices({ ...valid, selectedDeck: "custom:a b" }), null);
+});
 test("invalid, oversized, future, duplicate-hero and unknown-card choices are rejected", () => {
   for (const value of [
     null,

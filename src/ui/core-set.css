@@ -259,9 +259,7 @@ h4,
 
 .redbook .phase-track > div > span,
 .redbook .table-token,
-.redbook .stat-row,
-.redbook .enemy-stats,
-.redbook .resource-pools {
+.redbook .stat-row {
   font-family: var(--body);
   font-variant-numeric: lining-nums tabular-nums;
 }
@@ -370,27 +368,6 @@ h4,
   --gold: #624718;
   font-size: var(--text-body);
   line-height: 1.5;
-}
-
-.redbook
-  :is(
-    .breadcrumbs,
-    .solo-label,
-    .chapter-label,
-    .lobby-kicker,
-    .book-kicker,
-    .hero-selection label,
-    .hero-deck-info,
-    .company-note,
-    .deck-preview-link,
-    .starter-heroes span,
-    .journey-stage > div > span,
-    .fellowship-foot,
-    .lobby-footer,
-    .lobby-footer button,
-    .lobby-footer button span
-  ) {
-  color: #51432e;
 }
 
 .redbook
@@ -538,15 +515,6 @@ h4,
   height: auto;
   min-height: 34px;
 }
-.redbook .gameboard :is(.stat-row, .enemy-stats) {
-  color: #fff7e5;
-  font-size: 1rem;
-  gap: 6px;
-  flex-wrap: wrap;
-  height: auto;
-  min-height: 26px;
-  line-height: 1.35;
-}
 .redbook .gameboard :is(.board-card, .character-card) {
   min-width: 140px;
 }
@@ -627,11 +595,6 @@ h4,
   ) {
   color: #e0dbc9;
 }
-.redbook .table-page .turn-panel :is(p, .turn-tip, .action-help) {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #f0e9d7;
-}
 .redbook .table-page .turn-panel .turn-actions > p {
   font-size: var(--text-body);
   line-height: 1.5;
@@ -644,13 +607,6 @@ h4,
 }
 .redbook .table-page .turn-panel :is(h3, .turn-panel-top) {
   color: #f1dba9;
-}
-.redbook .table-page .resource-pools > div {
-  font-size: 1rem;
-}
-.redbook :is(.resource-pools, .companion-tokens) .table-token {
-  --token-size: 32px;
-  font-size: var(--text-small);
 }
 .redbook .illustrated-threat .threat-counter-heading,
 .redbook .illustrated-threat .threat-counter-caption,
@@ -699,8 +655,7 @@ h4,
   .redbook .table-page .turn-panel {
     padding: 16px;
   }
-  .redbook .gameboard,
-  .redbook .gameboard:has(> .active-zones) {
+  .redbook .gameboard {
     grid-template-columns: clamp(170px, 14.2vw, 224px) minmax(0, 1fr) 105px;
   }
   .redbook .gameboard .board-card {
@@ -831,21 +786,6 @@ h4,
   .redbook .gameboard :is(.character-art, .board-card-art) {
     grid-column: 1;
     grid-row: 1 / 5;
-  }
-  .redbook
-    .gameboard
-    :is(
-      .character-name,
-      .board-card-name,
-      .stat-row,
-      .enemy-stats,
-      .abilities,
-      .card-action,
-      .engaged-owner
-    ) {
-    grid-column: 2;
-    text-align: left;
-    justify-content: flex-start;
   }
   .redbook .gameboard :is(.character-name, .board-card-name) {
     padding: 0 0 4px;

@@ -72,14 +72,12 @@
 }
 .redbook .gameboard .board-card-name,
 .redbook .gameboard .character-name,
-.redbook .gameboard .stat-row,
-.redbook .gameboard .enemy-stats {
+.redbook .gameboard .stat-row {
   text-shadow:
     0 1px 3px #000,
     0 0 8px #000c;
 }
-.redbook .gameboard .stat-row,
-.redbook .gameboard .enemy-stats {
+.redbook .gameboard .stat-row {
   color: #e2e4cc;
 }
 .redbook .gameboard .empty-zone {
@@ -194,11 +192,6 @@
   min-width: var(--token-size);
   height: var(--token-size);
   padding: 0;
-  font-size: var(--text-small);
-}
-.redbook .resource-pools .table-token {
-  --token-size: 27px;
-  margin-left: auto;
   font-size: var(--text-small);
 }
 .redbook .card-table-tokens {
@@ -463,9 +456,6 @@
   .table-token {
     --token-size: 31px;
     font-size: var(--text-small);
-  }
-  .redbook .resource-pools .table-token {
-    --token-size: 24px;
   }
 }
 @media (max-width: 700px) {

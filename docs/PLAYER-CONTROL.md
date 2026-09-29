@@ -14,10 +14,20 @@ campaign chapters, and retries.
 - Reviews list resource, threat, damage, progress, readiness, phase, and seat
   changes. New hand cards are labelled with their recipient. Public cards can be
   opened at full size, including from an earlier event.
-- Continue is explicit. There is no autoplay, timer, or automatic dismissal.
-  Focus moves to the new event heading so a held key cannot consume later events.
-  Escape does not advance the game and the second click of a double click is
-  ignored.
+- Continue is explicit: the Continue button or a single press of Enter or
+  Space while the review is open. There is no autoplay, timer, or automatic
+  dismissal. Focus moves to the new event heading and repeated (held) key
+  events are ignored, so a held key cannot consume later events. Escape does
+  not advance the game and the second click of a double click is ignored.
+- Table preferences choose how often the table waits. *Every event* is the
+  original behavior. *Hidden information & losses* (default for new players)
+  pauses for revealed encounters, shadows, setup, the start of a round, quest
+  results, enemy attacks, encounter-driven effects and any loss, while the
+  player's own plays are recorded and shown as a brief notice. *Decisions
+  only* never pauses for information. The mode is stored with the game
+  (`flow.mode`), applied to restored saves from the preference, and changed
+  through the `SET_REVIEW_MODE` action. Complete-game simulations produce the
+  same rules state in every mode.
 - Inspect table closes only the review view. The rules queue remains paused;
   cards and hero seats can be inspected. Review current event reopens it. N also
   reopens the review without confirming it. Gameplay actions remain disabled.

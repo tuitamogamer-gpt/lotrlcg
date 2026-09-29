@@ -1,6 +1,13 @@
 import { card } from "./cards";
 import { activeSeat, seatIndices, seatName, seatView } from "./table";
-import type { Action, Effect, GameState, ResolutionStep, Unit } from "./types";
+import type {
+  Action,
+  Effect,
+  GameState,
+  ResolutionStep,
+  ReviewMode,
+  Unit,
+} from "./types";
 
 export const phaseLabel: Record<GameState["phase"], string> = {
   setup: "Opening hands",
@@ -126,10 +133,82 @@ export function startGuided(s: GameState): GameState {
   s.flow ??= { nextId: 1, pending: null, history: [] };
   return s;
 }
+export const REVIEW_MODES = ["all", "hidden", "decisions"] as const;
+export const reviewModeLabel: Record<ReviewMode, string> = {
+  all: "Every event",
+  hidden: "Hidden information & losses",
+  decisions: "Decisions only",
+};
+/** Effects that come from the encounter deck or the scenario rather than a player's own choice. */
+const ENCOUNTER_EFFECTS = new Set([
+  "resolveReveal",
+  "placeEncounter",
+  "automaticEngagement",
+  "engagementRound",
+  "stageRevealed",
+  "capturePrisoner",
+  "nazgulDiscard",
+  "web",
+  "webRefresh",
+  "venom",
+  "bats",
+  "jailor",
+  "rainOfArrows",
+  "findSpider",
+  "fetchSpider",
+  "ensureTroll",
+  "encounterBottom",
+  "guardObjective",
+  "shuffleObjective",
+  "wolfAttack",
+  "wolfDefend",
+  "chooseDamage",
+  "chooseExhaust",
+  "earnPermanent",
+]);
+/** Player-driven combat results that need no confirmation when only hidden information pauses. */
+const OWN_ATTACKS = new Set(["resolvePlayerAttack", "quickAttack"]);
+const isLoss = (c: ResolutionStep["changes"][number]) => {
+  if (c.label.endsWith("· Damage"))
+    return Number(c.after.split(" / ")[0]) > Number(c.before.split(" / ")[0]);
+  if (c.label.endsWith("· Threat")) return Number(c.after) > Number(c.before);
+  return c.after === "Left play";
+};
+/**
+ * Decide whether a recorded event should stop the table. Every event is still
+ * written to the chronicle; this only controls the confirmation dialog.
+ */
+export function wantsPause(
+  mode: ReviewMode,
+  step: Pick<ResolutionStep, "kind" | "changes">,
+  source?: Action | Effect,
+): boolean {
+  if (mode === "all") return true;
+  if (mode === "decisions") return false;
+  const effect = source && "kind" in source ? source.kind : "";
+  switch (step.kind) {
+    case "reveal":
+    case "shadow":
+    case "setup":
+    case "round":
+    case "quest":
+      return true;
+    case "combat":
+      return !OWN_ATTACKS.has(effect);
+    case "effect":
+      return (
+        effect !== "refreshEnd" &&
+        (ENCOUNTER_EFFECTS.has(effect) || step.changes.some(isLoss))
+      );
+    default:
+      return false;
+  }
+}
 export function pauseFor(
   s: GameState,
   step: Pick<ResolutionStep, "title" | "detail" | "kind"> &
     Partial<Pick<ResolutionStep, "cards" | "changes" | "lines">>,
+  source?: Action | Effect,
 ) {
   if (!s.flow) return;
   const entry: ResolutionStep = {
@@ -142,7 +221,7 @@ export function pauseFor(
     lines: [],
     ...step,
   };
-  s.flow.pending = entry;
+  if (wantsPause(s.flow.mode ?? "all", entry, source)) s.flow.pending = entry;
   s.flow.history.push(entry);
   s.flow.history = s.flow.history.slice(-80);
 }
@@ -285,6 +364,7 @@ export function recordObservation(
   if (
     action === "TOGGLE_QUEST" ||
     action === "SELECT_SEAT" ||
+    action === "SET_REVIEW_MODE" ||
     action === "CHOOSE"
   )
     return;
@@ -307,6 +387,7 @@ export function recordObservation(
           END_ATTACKS: "Combat complete",
           NEXT: "The company continues",
           CONTINUE: "Resolution continues",
+          SET_REVIEW_MODE: "Event reviews changed",
         }[action]
       : "Effect resolved");
   let kind: ResolutionStep["kind"] = effect.includes("shadow")
@@ -382,22 +463,26 @@ export function recordObservation(
     kind === "quest" && s.lastQuest
       ? `${s.lastQuest.will} willpower − ${s.lastQuest.threat} staging threat = ${Math.abs(s.lastQuest.net)} ${s.lastQuest.net < 0 ? "threat added to each player" : "progress"}.`
       : (lines.at(-1)?.text ?? "Review the changes before the game continues.");
-  pauseFor(s, {
-    title: title ?? "Effect resolved",
-    detail,
-    kind,
-    changes,
-    lines,
-    cards: cards.filter(
-      (c, i) =>
-        cards.findIndex(
-          (x) =>
-            x.code === c.code &&
-            x.label === c.label &&
-            x.instanceId === c.instanceId,
-        ) === i,
-    ),
-  });
+  pauseFor(
+    s,
+    {
+      title: title ?? "Effect resolved",
+      detail,
+      kind,
+      changes,
+      lines,
+      cards: cards.filter(
+        (c, i) =>
+          cards.findIndex(
+            (x) =>
+              x.code === c.code &&
+              x.label === c.label &&
+              x.instanceId === c.instanceId,
+          ) === i,
+      ),
+    },
+    source,
+  );
 }
 export function validFlow(value: unknown): boolean {
   if (value === undefined) return true;
@@ -463,6 +548,7 @@ export function validFlow(value: unknown): boolean {
     !!f &&
     Number.isInteger(f.nextId) &&
     f.nextId > 0 &&
+    (f.mode === undefined || REVIEW_MODES.includes(f.mode)) &&
     Array.isArray(f.history) &&
     f.history.length <= 80 &&
     f.history.every(valid) &&

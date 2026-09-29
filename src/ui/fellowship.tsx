@@ -22,6 +22,8 @@ import {
 } from "../game/table";
 
 import { DeckPicker } from "./deck-picker";
+import { describeDeck } from "../game/decks";
+import type { CustomDeck } from "../game/decks";
 
 import { availableAbilities } from "../game/engine";
 
@@ -45,6 +47,8 @@ export function FellowshipSetup({
   selectedDeck,
   selectDeck,
   inspect,
+  decks = [],
+  onBuild,
 }: {
   mode: "classic" | "hotseat";
   changeMode: (mode: "classic" | "hotseat") => void;
@@ -53,6 +57,8 @@ export function FellowshipSetup({
   selectedDeck: string;
   selectDeck: (id: string) => void;
   inspect: (deckId: string) => void;
+  decks?: CustomDeck[];
+  onBuild?: () => void;
 }) {
   const [editingSeat, setEditingSeat] = useState(0);
   const active = Math.min(editingSeat, seats.length - 1);
@@ -135,7 +141,9 @@ export function FellowshipSetup({
           aria-label="Choose player to edit"
         >
           {seats.map((p, i) => {
-            const d = STARTERS.find((d) => d.id === p.deckId)!;
+            const d = describeDeck(p.deckId, decks) ?? {
+              subtitle: "Missing deck",
+            };
             return (
               <button
                 key={i}
@@ -176,7 +184,7 @@ export function FellowshipSetup({
                 i === active
                   ? {
                       deckId: id,
-                      heroes: [...STARTERS.find((d) => d.id === id)!.heroes],
+                      heroes: [...(describeDeck(id, decks)?.heroes ?? [])],
                     }
                   : p,
               ),
@@ -184,6 +192,8 @@ export function FellowshipSetup({
         }}
         unavailable={unavailable}
         inspect={inspect}
+        custom={decks}
+        onBuild={onBuild}
       />
       <p className="company-note">
         <Check size={15} />

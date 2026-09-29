@@ -12,6 +12,7 @@ import "@fontsource/crimson-pro/latin-ext-500.css";
 import "@fontsource/crimson-pro/latin-ext-600.css";
 import "@fontsource/crimson-pro/latin-ext-700.css";
 import App from "./App";
+import { AppErrorBoundary } from "./ui/error-boundary";
 import { LayoutGroup, MotionConfig } from "motion/react";
 import "./styles.css";
 import "./ui/experience.css";
@@ -31,7 +32,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MotionConfig reducedMotion="user">
       <LayoutGroup id="table">
-        <App />
+        <AppErrorBoundary>
+          <App />
+        </AppErrorBoundary>
       </LayoutGroup>
     </MotionConfig>
   </React.StrictMode>,

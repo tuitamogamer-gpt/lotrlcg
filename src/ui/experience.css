@@ -83,9 +83,6 @@ main:focus {
 .breadcrumbs {
   font-size: var(--text-small);
 }
-.profile {
-  display: none;
-}
 .nav-scrim {
   display: none;
 }
@@ -323,18 +320,6 @@ main:focus {
 }
 .hero-bottom .difficulty {
   display: none;
-}
-.starter-select {
-  margin-top: 22px;
-  font-size: var(--text-small);
-  letter-spacing: 1.4px;
-}
-.starter-select select {
-  font-size: var(--text-small);
-  letter-spacing: 0;
-  min-height: 44px;
-  max-width: 285px;
-  background: #132019d9;
 }
 .campaign-deck-note {
   display: block;
@@ -583,15 +568,6 @@ main:focus {
 .encounter-value {
   font-size: var(--text-small);
 }
-.enemy-stats {
-  font-size: var(--text-small);
-  gap: 8px;
-  padding: 7px 6px 9px;
-}
-.enemy-stats svg {
-  width: 12px;
-  height: 12px;
-}
 .card-action {
   min-height: 36px;
   font-size: var(--text-small);
@@ -690,15 +666,7 @@ main:focus {
   width: 12px;
   height: 12px;
 }
-.resource-token {
-  font-size: var(--text-small);
-  background: #11221ded;
-  border-color: #d0bb7f96;
-  min-width: 32px;
-  padding: 4px 7px;
-}
-.quest-badge,
-.exhausted-badge {
+.quest-badge {
   font-size: var(--text-small);
   padding: 4px 6px;
 }
@@ -713,10 +681,6 @@ main:focus {
   min-height: 180px;
   font-size: var(--text-small);
   line-height: 1.6;
-}
-.active-zones {
-  gap: 20px;
-  padding: 18px 20px;
 }
 .location-inline h3 {
   font-size: var(--text-small);
@@ -773,6 +737,10 @@ main:focus {
   gap: 10px;
   min-height: 46px;
   justify-content: center;
+  /* Long phase labels wrap instead of being clipped at the rail edge. */
+  white-space: normal;
+  text-align: center;
+  height: auto;
 }
 .turn-actions .mulligan-button {
   order: 2;
@@ -784,23 +752,130 @@ main:focus {
   line-height: 1.75;
   color: #a9bba6;
 }
-.resource-pools {
-  margin-top: 20px;
-  padding-top: 18px;
+/* Coaching tip: one suggestion for the current decision. */
+.coach-tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 12px 0 0;
+  padding: 11px 12px;
+  border: 1px solid #d3b97833;
+  border-left: 3px solid #cfae62;
+  border-radius: 6px;
+  background: #f1e6c30f;
+  color: #e6dfc7;
 }
-.resource-pools h3,
+.coach-tip > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #e2c67c;
+}
+.coach-tip strong {
+  display: block;
+  font-size: var(--text-small);
+  line-height: 1.35;
+  color: #f3e6bf;
+}
+.coach-tip p {
+  margin: 4px 0 0;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: #cfd6c2;
+}
+.coach-tip em {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--text-small);
+  font-style: normal;
+  color: #f0b8a0;
+}
+.coach-tip.coach-good {
+  border-left-color: #8fb573;
+}
+.coach-tip.coach-good > svg {
+  color: #b6d79a;
+}
+.coach-tip.coach-warn {
+  border-left-color: #d1866a;
+}
+.coach-tip.coach-warn > svg {
+  color: #e9a98c;
+}
+/* Stacked preference choices with a description line. */
+.preference-segments.preference-stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+.preference-segments.preference-stack > button {
+  justify-content: space-between;
+  text-align: left;
+}
+.preference-segments.preference-stack > button > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.preference-segments.preference-stack > button small {
+  font-size: var(--text-small);
+  font-weight: 400;
+  opacity: 0.85;
+}
+/* Recovery screen shown by the error boundary. */
+.error-recovery {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: #1f2522;
+  color: #eee8d8;
+}
+.error-recovery > div {
+  max-width: 560px;
+  padding: 28px;
+  border: 1px solid #846b3666;
+  border-radius: 10px;
+  background: #2a3330;
+}
+.error-recovery h1 {
+  font-size: 28px;
+  margin: 6px 0 12px;
+}
+.error-recovery p {
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+.error-recovery pre {
+  white-space: pre-wrap;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #151a18;
+  color: #d9c9a0;
+}
+/* First-game tutorial. */
+.tutorial-modal .tutorial-lead,
+.tutorial-modal .tutorial-note {
+  font-size: var(--text-body);
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.tutorial-steps {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  display: grid;
+  gap: 9px;
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+.tutorial-steps strong {
+  font-weight: 700;
+}
+
 .last-reveal h3,
 .recent-log h3 {
   font-size: var(--text-small);
   letter-spacing: 1.1px;
   margin-bottom: 12px;
-}
-.resource-pools > div {
-  font-size: var(--text-small);
-  padding: 5px 0;
-}
-.resource-pools > div strong {
-  font-size: 14px;
 }
 .recent-log > p {
   font-size: var(--text-small);
@@ -1344,13 +1419,6 @@ kbd {
   line-height: 1.6;
   padding: 0 10px 12px;
 }
-.starter-option > p {
-  font-size: var(--text-small);
-  line-height: 1.75;
-}
-.starter-option > small {
-  font-size: var(--text-small);
-}
 .deck-row {
   font-size: var(--text-small);
 }
@@ -1663,11 +1731,6 @@ kbd {
   .hero-fan .fan-2 {
     transform: translateX(38px) rotate(11deg);
   }
-  .starter-select select {
-    max-width: none;
-    width: 100%;
-    font-size: var(--text-small);
-  }
   .hero-cta {
     width: 100%;
     font-size: var(--text-small);
@@ -1821,7 +1884,6 @@ kbd {
   .turn-panel-top,
   .turn-panel .turn-actions,
   .turn-tip,
-  .turn-panel .resource-pools,
   .turn-panel .last-reveal,
   .turn-panel .recent-log,
   .turn-panel .export-link {
@@ -1886,9 +1948,6 @@ kbd {
     font-size: var(--text-small);
     min-height: 37px;
   }
-  .enemy-stats {
-    font-size: var(--text-small);
-  }
   .card-action {
     min-height: 38px;
     font-size: var(--text-small);
@@ -1947,10 +2006,6 @@ kbd {
   }
   .ally-placeholder {
     display: none;
-  }
-  .active-zones {
-    padding: 16px 13px;
-    gap: 16px;
   }
   .hand-zone .zone-label {
     display: flex;
@@ -2136,13 +2191,6 @@ kbd {
     font-size: var(--text-small);
     padding: 0 8px 10px;
   }
-  .starter-option > p {
-    font-size: var(--text-small);
-  }
-  .starter-option > span,
-  .starter-option > small {
-    font-size: var(--text-small);
-  }
   .guide p,
   .guide-steps p {
     font-size: var(--text-small);
@@ -2213,9 +2261,6 @@ kbd {
   .gameboard > .fellowship-zone {
     grid-area: fellowship;
     border-top: 0;
-  }
-  .gameboard > .active-zones {
-    grid-area: active;
   }
   .gameboard > .hand-zone {
     grid-area: hand;
@@ -2401,9 +2446,6 @@ kbd {
     min-height: 32px;
     padding-block: 6px 3px;
   }
-  .enemy-stats {
-    padding-block: 5px;
-  }
   .hand-toolbar {
     margin-bottom: 0;
   }
@@ -2451,4 +2493,341 @@ kbd {
   .density-compact .board-card-art {
     height: 80px;
   }
+}
+
+/* Deck builder */
+.deck-builder .deck-name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.deck-builder .deck-name-field span {
+  font-size: var(--text-small);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.deck-builder .deck-name-field input {
+  font-family: var(--serif);
+  font-size: 28px;
+  padding: 6px 10px;
+  max-width: 520px;
+}
+.deck-builder .builder-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.import-panel {
+  margin: 8px 0 24px;
+  padding: 18px 20px;
+  border: 1px solid #846b3644;
+  border-radius: 10px;
+}
+.import-panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+.import-panel p {
+  margin: 0 0 12px;
+  line-height: 1.55;
+}
+.import-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.import-form input {
+  flex: 1 1 320px;
+  padding: 10px 12px;
+}
+.import-report {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border-left: 3px solid #cfae62;
+  background: #f1e6c30f;
+  border-radius: 6px;
+}
+.import-report p {
+  margin: 4px 0;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+.deck-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.deck-shelf-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #846b3644;
+  border-radius: 10px;
+  align-content: start;
+}
+.deck-shelf-heroes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.deck-shelf-heroes img {
+  width: 96px;
+  border-radius: 4px;
+}
+.deck-shelf-body h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+.deck-shelf-body p {
+  margin: 0;
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+.deck-shelf-warning {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 8px;
+  color: #b8543a;
+}
+.deck-shelf-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.builder-heroes h2,
+.builder-summary h2 {
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+.builder-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.builder-hero > button:first-child {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 8px;
+  align-items: center;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #846b3644;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+}
+.builder-hero > button:first-child img {
+  width: 44px;
+  border-radius: 3px;
+}
+.builder-hero > button:first-child small {
+  display: block;
+  opacity: 0.75;
+}
+.builder-hero.is-selected > button:first-child {
+  border-color: #cfae62;
+  background: #cfae6218;
+}
+.builder-hero .text-link {
+  font-size: var(--text-small);
+  padding: 2px 8px;
+}
+.builder-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+.builder-card-list {
+  display: grid;
+  gap: 6px;
+}
+.builder-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 8px;
+  border: 1px solid #846b3630;
+  border-radius: 8px;
+}
+.builder-card.in-deck {
+  border-color: #cfae62;
+  background: #cfae6212;
+}
+.builder-card.not-legal {
+  opacity: 0.6;
+}
+.builder-card-info {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+.builder-card-info img {
+  width: 40px;
+  border-radius: 3px;
+}
+.builder-card-info small {
+  display: block;
+  opacity: 0.8;
+}
+.builder-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.builder-counter button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.builder-counter strong {
+  min-width: 18px;
+  text-align: center;
+}
+.builder-summary {
+  position: sticky;
+  top: 12px;
+  padding: 16px;
+  border: 1px solid #846b3644;
+  border-radius: 10px;
+}
+.builder-summary h2 span {
+  font-size: 16px;
+  opacity: 0.75;
+}
+.builder-spheres {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.builder-curve {
+  display: flex;
+  gap: 6px;
+  height: 70px;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+.builder-curve span {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  gap: 4px;
+}
+.builder-curve i {
+  display: block;
+  width: 100%;
+  min-height: 2px;
+  background: #cfae62;
+  border-radius: 3px 3px 0 0;
+}
+.builder-problems {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  display: grid;
+  gap: 6px;
+  font-size: var(--text-small);
+}
+.builder-problems li {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  color: #b8543a;
+}
+.builder-problems li.is-ok {
+  color: #4f7d3f;
+}
+.builder-deck-list {
+  display: grid;
+  gap: 2px;
+  max-height: 40vh;
+  overflow: auto;
+}
+.builder-deck-list button {
+  text-align: left;
+  background: transparent;
+  color: inherit;
+  padding: 3px 4px;
+  font-size: var(--text-small);
+}
+.builder-deck-list button span {
+  opacity: 0.7;
+  display: inline-block;
+  width: 30px;
+}
+@media (max-width: 860px) {
+  .builder-body {
+    grid-template-columns: 1fr;
+  }
+  .builder-summary {
+    position: static;
+  }
+}
+/* Journey record */
+.records-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.records-summary > div {
+  padding: 10px;
+  border: 1px solid #846b3644;
+  border-radius: 8px;
+  text-align: center;
+}
+.records-summary strong {
+  display: block;
+  font-size: 26px;
+  font-family: var(--serif);
+}
+.records-summary small {
+  font-size: var(--text-small);
+  opacity: 0.8;
+}
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+.records-table th,
+.records-table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid #846b3630;
+}
+.records-table .is-won {
+  color: #4f7d3f;
+  font-weight: 700;
+}
+.records-table .is-lost {
+  color: #b8543a;
+}
+.easy-toggle {
+  margin-top: 12px;
 }

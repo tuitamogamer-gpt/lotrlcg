@@ -18,7 +18,18 @@ export async function acknowledgeReviews(page) {
   }
   throw Error("Resolution review did not settle");
 }
+// Existing suites were written against a pause for every event. Keep that
+// behavior explicit so the default "hidden information" preference, the
+// first-game tutorial and coaching tips do not change their expectations.
+export async function legacyReviews(page) {
+  await page.addInitScript(() => {
+    localStorage.setItem("there-and-back-again.review-mode", "all");
+    localStorage.setItem("there-and-back-again.tutorial", "seen");
+    localStorage.setItem("there-and-back-again.coach", "off");
+  });
+}
 export async function installReviewHandler(page) {
+  await legacyReviews(page);
   await page.addLocatorHandler(
     page.locator(".resolution-dialog[open]"),
     async () => {

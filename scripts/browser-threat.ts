@@ -1,3 +1,4 @@
+import { legacyReviews } from "./browser-review-helpers.mjs";
 import { chromium, type Page } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -96,6 +97,7 @@ try {
       viewport: { width: 1440, height: 900 },
       reducedMotion,
     });
+    await legacyReviews(p);
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("console", (m) => {
       if (m.type() === "error") errors.push(m.text());
@@ -208,6 +210,7 @@ try {
   });
   assert.ok(validateSave(hotseat));
   const p = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await legacyReviews(p);
   p.on("pageerror", (e) => errors.push(e.message));
   p.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());

@@ -13,7 +13,11 @@ export interface FellowshipChoices {
 export function parseChoices(value: unknown): FellowshipChoices | null {
   if (!value || typeof value !== "object") return null;
   const v = value as FellowshipChoices;
-  const validDeck = (id: unknown) => STARTERS.some((d) => d.id === id);
+  // Starter ids, or a custom deck reference such as "custom:abc123" (the deck
+  // itself stays on the device; a missing deck falls back to a starter).
+  const validDeck = (id: unknown) =>
+    STARTERS.some((d) => d.id === id) ||
+    (typeof id === "string" && /^custom:[\w-]{1,64}$/.test(id));
   if (
     v.version !== 1 ||
     !["classic", "hotseat"].includes(v.setupMode) ||

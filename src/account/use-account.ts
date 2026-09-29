@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { User } from "@supabase/supabase-js";
-import { accountClient } from "./client";
+import type { SupabaseClient, User } from "@supabase/supabase-js";
+import { accountConfigured, loadAccountClient } from "./client";
 import { CHOICES_KEY, parseChoices, readChoices } from "./choices";
 import type { FellowshipChoices } from "./choices";
 
@@ -9,8 +9,22 @@ export function useAccount(
   choices: FellowshipChoices,
   restore: (choices: FellowshipChoices) => void,
 ) {
+  const [accountClient, setAccountClient] = useState<SupabaseClient | null>(
+    null,
+  );
   const [user, setUser] = useState<User | null>(null);
-  const [initialized, setInitialized] = useState(!accountClient);
+  const [initialized, setInitialized] = useState(!accountConfigured);
+  useEffect(() => {
+    let cancelled = false;
+    loadAccountClient().then((c) => {
+      if (cancelled) return;
+      setAccountClient(c);
+      if (!c) setInitialized(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [loadState, setLoadState] = useState<LoadState>("idle");
   const [saving, setSaving] = useState(false);
   const [savedChoices, setSavedChoices] = useState<string | null>(null);
@@ -46,7 +60,7 @@ export function useAccount(
       if (event === "PASSWORD_RECOVERY") setRecovery(true);
     });
     return () => data.subscription.unsubscribe();
-  }, []);
+  }, [accountClient]);
   useEffect(() => {
     // Account choices never overwrite guest choices in this browser.
     if (!initialized || user) return;
@@ -110,7 +124,7 @@ export function useAccount(
     return () => {
       cancelled = true;
     };
-  }, [user?.id, retry]);
+  }, [accountClient, user?.id, retry]);
   const save = useCallback(async () => {
     if (!accountClient || !user || loadState !== "ready" || saving) return;
     const snapshot = current.current;
@@ -135,11 +149,11 @@ export function useAccount(
       if (identity.current === id && version === generation.current)
         setSaving(false);
     }
-  }, [user, loadState, saving]);
+  }, [accountClient, user, loadState, saving]);
   return {
     user,
     initialized,
-    configured: !!accountClient,
+    configured: accountConfigured,
     loadState,
     saving,
     message,

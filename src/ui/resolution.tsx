@@ -342,7 +342,19 @@ export function ResolutionDialog({
       aria-describedby="resolution-pause-note"
       onCancel={(e) => e.preventDefault()}
       onKeyDown={(e) => {
-        if (e.repeat && ["Enter", " "].includes(e.key)) e.preventDefault();
+        if (!["Enter", " "].includes(e.key)) return;
+        // A held key never advances; one deliberate press confirms once.
+        if (e.repeat) {
+          e.preventDefault();
+          return;
+        }
+        if (
+          e.target instanceof Element &&
+          e.target.closest("button, a, input, select, textarea")
+        )
+          return;
+        e.preventDefault();
+        continueGame(step.id);
       }}
     >
       <header className="resolution-header">
@@ -417,7 +429,9 @@ export function ResolutionDialog({
           <button className="text-link" onClick={openLog}>
             <Scroll size={18} weight="light" /> Review earlier events
           </button>
-          <p id="resolution-pause-note">Nothing advances until you continue.</p>
+          <p id="resolution-pause-note">
+            Nothing advances until you continue. Enter also continues.
+          </p>
         </div>
         <button
           className="primary resolution-continue"

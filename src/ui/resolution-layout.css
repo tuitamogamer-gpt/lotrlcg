@@ -53,6 +53,12 @@
 .resolution-dialog .with-card-summary > .resolution-changes dl {
   display: block;
 }
+/* Phase handoffs keep their full-width step strip above the card summary. */
+.resolution-dialog .with-card-summary > .event-phase-transition,
+.resolution-dialog .with-card-summary > .event-phase-journey,
+.resolution-dialog .with-card-summary > .resolution-rules {
+  grid-column: 1 / -1;
+}
 .redbook .resolution-dialog .resolution-detail {
   font-size: 21px;
   line-height: 1.4;
@@ -127,7 +133,8 @@
 .resolution-changes dt,
 .resolution-changes dd {
   min-width: 0;
-  overflow-wrap: anywhere;
+  /* Break only words that cannot fit at all, never letter by letter. */
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 760px) {

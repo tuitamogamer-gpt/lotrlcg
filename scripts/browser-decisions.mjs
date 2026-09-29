@@ -1,3 +1,4 @@
+import { legacyReviews } from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -54,6 +55,7 @@ try {
       viewport: { width, height },
       reducedMotion,
     });
+    await legacyReviews(p);
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("console", (m) => {
       if (m.type() === "error") errors.push(m.text());

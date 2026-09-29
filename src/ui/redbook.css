@@ -279,36 +279,6 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px;
 }
-.hero-selections.players-1 {
-  grid-template-columns: minmax(0, 480px);
-}
-.hero-selections.players-2,
-.hero-selections.players-4 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.starter-heroes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 12px;
-}
-.starter-heroes > div {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-.starter-heroes img {
-  width: 32px;
-  height: 48px;
-  object-fit: cover;
-  border: 1px solid #ae874d;
-}
-.starter-heroes span {
-  font-size: var(--text-small);
-  color: #59412b;
-  overflow-wrap: anywhere;
-}
 .hero-selection {
   display: flex;
   gap: 14px;
@@ -405,9 +375,6 @@ body {
   gap: 7px;
   margin-top: 14px;
   color: #837052;
-}
-.classic-note {
-  font-size: var(--text-small);
 }
 .redbook .mode-selection {
   background: none;
@@ -659,7 +626,7 @@ body {
 .redbook .content-page small {
   color: #796147;
 }
-.redbook .starter-tabs button,
+
 .redbook .deck-stats,
 .redbook .deck-list,
 .redbook .guide-section,
@@ -928,11 +895,6 @@ body {
 .redbook .abilities > button:hover:not(:disabled) {
   background: #ad874c36;
 }
-.redbook .resource-token {
-  background: #654e28ed;
-  color: #f5dfaa;
-  border-color: #c7a25b;
-}
 .redbook .quest-zone {
   background: #ac8b4830;
   border-block: 3px double #946f3c55;
@@ -981,9 +943,6 @@ body {
 .redbook .empty-zone {
   color: #947956;
   border-color: #aa8a5844;
-}
-.redbook .active-zones {
-  border-color: #956e3f44;
 }
 .redbook .location-inline h3 {
   color: #785333;
@@ -1079,7 +1038,6 @@ body {
     inset 0 0 0 3px #efcf9444;
 }
 .redbook .turn-panel h3,
-.redbook .resource-pools strong,
 .redbook .turn-panel .export-link {
   color: #d6b782;
 }
@@ -1815,13 +1773,6 @@ body {
   border-bottom: 1px solid #97703b44;
   padding-bottom: 12px;
 }
-.redbook .hero-copy > .single-hero-note {
-  font: var(--text-small)/1.7 var(--body);
-  padding: 10px 12px;
-  background: #201b17a0;
-  border-left: 2px solid #c39f5c;
-  margin-top: 13px;
-}
 .redbook .guide-note {
   background: #ecdec2;
   border: 1px solid #aa865552;
@@ -1851,26 +1802,18 @@ body {
 .redbook .modal-top .icon-button {
   color: #5c3d25;
 }
-.redbook .starter-option,
+
 .redbook .hero-roster > button {
   background: #f1e4cbd9;
   border: 1px solid #a27f4b66;
   color: #5a3d27;
   border-radius: 3px;
 }
-.redbook .starter-option.selected {
-  background: #e1cda5b3;
-  border: 1px solid #a37435;
-  box-shadow:
-    inset 0 0 0 3px #ead6ae,
-    inset 0 0 0 4px #a3743555;
-}
-.redbook .starter-option > h2,
+
 .redbook .hero-roster h2 {
   color: #674529;
 }
-.redbook .starter-option > span,
-.redbook .starter-option > small,
+
 .redbook .hero-roster span,
 .redbook .deck-heading > strong > span {
   color: #906d43;
@@ -1895,25 +1838,21 @@ body {
 .redbook .source-note {
   color: #795737;
 }
-.redbook .settings-section,
-.redbook .settings-section > p,
+
 .redbook .preference-row,
 .redbook .keyboard-guide {
   color: #795f40;
 }
-.redbook .segmented-control,
-.redbook .settings-segment,
+
 .redbook .pile-tabs {
   background: #e3cfaa;
   border-color: #a8875555;
 }
-.redbook .segmented-control button,
-.redbook .settings-segment button,
+
 .redbook .pile-tabs button {
   color: #6e4e30;
 }
-.redbook .segmented-control button[aria-pressed="true"],
-.redbook .settings-segment button[aria-pressed="true"],
+
 .redbook .pile-tabs button[aria-pressed="true"] {
   background: #6a3e2d;
   color: #f2dfb9;
@@ -2155,10 +2094,6 @@ body {
     grid-template-rows: auto minmax(0, 1fr) auto;
     grid-template-areas: "quest quest" "staging fellowship" "hand hand";
   }
-  .redbook .gameboard:has(> .active-zones) {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.85fr) minmax(0, 1.2fr);
-    grid-template-areas: "quest quest quest" "staging active fellowship" "hand hand hand";
-  }
   .redbook .quest-zone {
     padding: 10px 16px;
     gap: 16px;
@@ -2198,8 +2133,7 @@ body {
     font-size: var(--text-small);
   }
   .redbook .encounter-zone,
-  .redbook .fellowship-zone,
-  .redbook .active-zones {
+  .redbook .fellowship-zone {
     min-width: 0;
     min-height: 0;
     overflow: auto;
@@ -2207,20 +2141,6 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #a38758 #dacaab;
     overscroll-behavior: contain;
-  }
-  .redbook .active-zones {
-    display: block;
-    border-top: 0;
-    border-right: 1px solid #a7895555;
-  }
-  .redbook .active-zones > div {
-    padding: 0;
-    border: 0;
-  }
-  .redbook .active-zones > div + div {
-    border-top: 1px solid #a7895555;
-    margin-top: 14px;
-    padding-top: 14px;
   }
   .redbook .location-inline {
     flex-wrap: wrap;
@@ -2279,9 +2199,6 @@ body {
     min-height: 30px;
     padding: 5px;
     font-size: var(--text-small);
-  }
-  .redbook .enemy-stats {
-    padding: 5px;
   }
   .redbook .hand-zone {
     display: grid;
@@ -2361,10 +2278,6 @@ body {
     font-size: var(--text-small);
     margin: 11px 0 16px;
   }
-  .redbook .resource-pools {
-    margin-top: 16px;
-    padding-top: 14px;
-  }
   .redbook .last-reveal,
   .redbook .recent-log {
     margin-top: 18px;
@@ -2424,8 +2337,7 @@ body {
     font-size: 22px;
   }
   .redbook .encounter-zone,
-  .redbook .fellowship-zone,
-  .redbook .active-zones {
+  .redbook .fellowship-zone {
     padding: 9px 12px;
   }
   .redbook .seat-tab {
@@ -2505,5 +2417,32 @@ body {
     width: 11px;
     height: 11px;
     flex-shrink: 0;
+  }
+}
+
+/* Phones: the seat card wraps instead of clipping the player name. */
+@media (max-width: 599px) {
+  .redbook .seat-tab {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+  .redbook .seat-information {
+    flex: 1 1 55%;
+  }
+  .redbook .seat-eyebrow {
+    display: block;
+    white-space: nowrap;
+    letter-spacing: 0.6px;
+    line-height: 1.3;
+  }
+  .redbook .seat-information > strong {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+  .redbook .seat-threat {
+    margin-left: auto;
   }
 }

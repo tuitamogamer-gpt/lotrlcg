@@ -21,6 +21,7 @@ import type {
   Action,
   GameState,
   Option,
+  ReviewMode,
 } from "../src/game/types.ts";
 function choose(s: GameState): Option {
   const opts = s.choice!.options;
@@ -70,6 +71,7 @@ function run(
   scenarioId: ScenarioId = "mirkwood",
   playMode: PlayMode = "normal",
   guided = false,
+  reviewMode?: ReviewMode,
 ) {
   const d = STARTERS.find((x) => x.id === id)!;
   const campaign = newCampaign(d.heroes);
@@ -93,6 +95,7 @@ function run(
     scenarioId,
     playMode,
     guided,
+    reviewMode,
     ...(playMode === "campaign" ? { campaign } : {}),
   });
   let steps = 0;
@@ -275,6 +278,29 @@ for (const q of SCENARIOS)
     });
   }
 
+for (const q of SCENARIOS)
+  for (const review of ["hidden", "decisions"] as const)
+    test(`${q.name}: ${review} review mode preserves complete-game rules outcomes with fewer pauses`, () => {
+      for (const d of STARTERS)
+        for (let seed = 1; seed <= 2; seed++) {
+          const immediate = run(seed, d.id, q.id, "normal");
+          const { flow, ...paced } = run(
+            seed,
+            d.id,
+            q.id,
+            "normal",
+            true,
+            review,
+          );
+          assert.deepEqual(
+            paced,
+            immediate,
+            `${q.id}/${review}/${d.id}/${seed}`,
+          );
+          assert.equal(flow!.mode, review);
+          if (review === "decisions") assert.equal(flow!.pending, null);
+        }
+    });
 for (const q of SCENARIOS)
   for (const mode of ["normal", "campaign"] as const)
     test(`${q.name} / ${mode}: guided confirmations preserve complete-game rules outcomes`, () => {

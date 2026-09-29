@@ -1,3 +1,4 @@
+import { legacyReviews } from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -63,6 +64,7 @@ try {
       viewport: { width: 1440, height: 900 },
       reducedMotion,
     });
+    await legacyReviews(p);
     p.on("pageerror", (e) => errors.push(e.message));
     p.on("console", (m) => {
       if (m.type() === "error") errors.push(m.text());
@@ -183,6 +185,7 @@ try {
   const small = await browser.newPage({
     viewport: { width: 1280, height: 720 },
   });
+  await legacyReviews(small);
   small.on("pageerror", (e) => errors.push(e.message));
   await load(small, ui);
   await shot(small, "laptop-table");
@@ -200,6 +203,7 @@ try {
   const seats = await browser.newPage({
     viewport: { width: 1440, height: 900 },
   });
+  await legacyReviews(seats);
   seats.on("pageerror", (e) => errors.push(e.message));
   await load(seats, fixtures.setup);
   await drain(seats);
