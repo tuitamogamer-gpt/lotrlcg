@@ -14,17 +14,6 @@ export function useAccount(
   );
   const [user, setUser] = useState<User | null>(null);
   const [initialized, setInitialized] = useState(!accountConfigured);
-  useEffect(() => {
-    let cancelled = false;
-    loadAccountClient().then((c) => {
-      if (cancelled) return;
-      setAccountClient(c);
-      if (!c) setInitialized(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
   const [loadState, setLoadState] = useState<LoadState>("idle");
   const [saving, setSaving] = useState(false);
   const [savedChoices, setSavedChoices] = useState<string | null>(null);
@@ -36,6 +25,30 @@ export function useAccount(
   const guest = useRef(readChoices() ?? choices);
   const identity = useRef<string | null>(null);
   const generation = useRef(0);
+  useEffect(() => {
+    let cancelled = false;
+    loadAccountClient()
+      .then((c) => {
+        if (cancelled) return;
+        setAccountClient(c);
+        if (!identity.current) {
+          setLoadState("idle");
+          setMessage("");
+        }
+        if (!c) setInitialized(true);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setInitialized(true);
+        setLoadState("error");
+        setMessage(
+          "Could not connect to accounts. Guest play is available; retry to reconnect.",
+        );
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [retry]);
   current.current = choices;
   restoreRef.current = restore;
   useEffect(() => {

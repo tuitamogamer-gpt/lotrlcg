@@ -12,16 +12,22 @@ let loading: Promise<SupabaseClient | null> | null = null;
  */
 export function loadAccountClient(): Promise<SupabaseClient | null> {
   if (!accountConfigured) return Promise.resolve(null);
-  loading ??= import("@supabase/supabase-js").then(({ createClient }) => {
-    client ??= createClient(url!, key!, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true,
-        flowType: "pkce",
-      },
+  loading ??= import("@supabase/supabase-js")
+    .then(({ createClient }) => {
+      client ??= createClient(url!, key!, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+          flowType: "pkce",
+        },
+      });
+      return client;
+    })
+    .catch((error) => {
+      // A failed chunk download must not poison every future sign-in attempt.
+      loading = null;
+      throw error;
     });
-    return client;
-  });
   return loading;
 }

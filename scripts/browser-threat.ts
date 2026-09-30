@@ -47,7 +47,11 @@ function fixture(threat: number, greeting = false) {
 
 async function load(p: Page, s: GameState) {
   await p.goto(base);
+  await p.waitForFunction(
+    () => typeof window.render_game_to_text === "function",
+  );
   await p.evaluate((save) => {
+    localStorage.removeItem("there-and-back-again.choices.v1");
     localStorage.setItem("there-and-back-again.save.v1", JSON.stringify(save));
     localStorage.setItem("there-and-back-again.mode.v1", "normal");
     localStorage.setItem("there-and-back-again.hover-cards", "off");
@@ -157,7 +161,7 @@ try {
     await load(p, fixture(43, true));
     await p
       .locator(".hand-card")
-      .filter({ hasText: "Galadhrim" })
+      .filter({ has: p.getByRole("button", { name: /Inspect.*Galadhrim/ }) })
       .locator(".hand-play")
       .click();
     await p
@@ -247,8 +251,9 @@ try {
       box &&
         box.x >= 0 &&
         box.x + box.width <= width &&
-        box.width >= 160 &&
-        box.height > 100,
+        box.width >= (width < 1100 ? 90 : 160) &&
+        box.height > (width < 1100 ? 60 : 100),
+      `the ${width}px threat dial remains contained and legible: ${JSON.stringify(box)}`,
     );
     await p.screenshot({ path: `${dir}/danger-${width}.png` });
     await p

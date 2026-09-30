@@ -51,7 +51,9 @@ for (const n of [2, 3, 4]) {
     assert.equal(state.table.active, i);
     assert.equal(state.heroes.length, 3);
     assert.equal(
-      await page.locator(".character-row > .character-card").count(),
+      await page
+        .locator(".character-row .hero-company > .character-card")
+        .count(),
       3,
     );
     assert.ok(state.table.seats[i].heroes.every((h) => h.resources === 1));

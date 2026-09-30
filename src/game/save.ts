@@ -14,6 +14,7 @@ import {
 
 import { validFlow } from "./presentation";
 import { characters, hasGondor, units } from "./core";
+import { validateDeckList } from "./setup";
 
 export function validateSave(value: unknown): value is GameState {
   try {
@@ -25,6 +26,15 @@ export function validateSave(value: unknown): value is GameState {
     const codes = (v: unknown): v is string[] =>
       Array.isArray(v) &&
       v.every((c) => typeof c === "string" && SCRIPTED.has(c));
+    const customList = (v: unknown) => {
+      if (!v || typeof v !== "object" || Array.isArray(v)) return false;
+      try {
+        validateDeckList(v as Record<string, number>);
+        return true;
+      } catch {
+        return false;
+      }
+    };
     const validUnit = (u: Unit) =>
       u &&
       typeof u.id === "string" &&
@@ -70,19 +80,7 @@ export function validateSave(value: unknown): value is GameState {
           !s.pendingWolfReturns.every((code) => code === "01081"))) ||
       (!STARTERS.some((d) => d.id === s.deckId) && s.deckId !== "custom") ||
       (s.easyMode !== undefined && typeof s.easyMode !== "boolean") ||
-      (s.customDeck !== undefined &&
-        (!s.customDeck ||
-          typeof s.customDeck !== "object" ||
-          Array.isArray(s.customDeck) ||
-          !Object.entries(s.customDeck).every(
-            ([code, n]) =>
-              SCRIPTED.has(code) &&
-              card(code).type_code !== "hero" &&
-              card(code).sphere_code !== "encounter" &&
-              integer(n) &&
-              n >= 0 &&
-              n <= 3,
-          ))) ||
+      (s.customDeck !== undefined && !customList(s.customDeck)) ||
       !Array.isArray(s.used) ||
       !s.used.every((x) => typeof x === "string") ||
       typeof s.standTogether !== "boolean"
@@ -94,6 +92,7 @@ export function validateSave(value: unknown): value is GameState {
       !codes(s.startingHeroes) ||
       s.startingHeroes.length < 1 ||
       s.startingHeroes.length > 3 ||
+      new Set(s.startingHeroes).size !== s.startingHeroes.length ||
       !s.startingHeroes.every((c) => card(c).type_code === "hero") ||
       ![s.alliesPlayed, s.threatModifier, s.shackles].every(integer) ||
       s.alliesPlayed < 0 ||

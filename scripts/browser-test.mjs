@@ -45,7 +45,10 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
     })
     .click();
   await p.getByRole("button", { name: "My fellowship", exact: true }).click();
-  assert.equal(await p.locator(".deck-choice").count(), 4);
+  assert.equal(
+    await p.locator(".deck-choice:not(.deck-choice-build)").count(),
+    4,
+  );
   assert.equal(await p.locator(".hero-roster > button").count(), 3);
   assert.equal(await p.locator(".deck-row").count(), 16);
   await p.locator(".hero-roster > button").first().click();
@@ -88,7 +91,12 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   assert.equal(s.phase, "travel");
   const travel = p
     .locator(".board-card")
-    .filter({ hasText: "Old Forest Road" })
+    .filter({
+      has: p.getByRole("button", {
+        name: "Inspect Old Forest Road",
+        exact: true,
+      }),
+    })
     .getByRole("button", { name: "Travel here" })
     .first();
   if (await travel.count()) await travel.click();

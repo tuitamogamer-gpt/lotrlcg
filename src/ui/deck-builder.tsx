@@ -14,9 +14,11 @@ import {
   DECK_CARDS,
   HERO_CARDS,
   costCurve,
+  createDeckId,
   customId,
   deckProblems,
   deckSize,
+  deckWarnings,
   legalSphere,
   parseRingsDbDeck,
   ringsDbId,
@@ -27,7 +29,7 @@ import type { Card } from "../game/types";
 import { Art, Sphere } from "./card-art";
 
 const newDeck = (): CustomDeck => ({
-  id: `d${Date.now().toString(36)}`,
+  id: createDeckId(),
   name: "New deck",
   heroes: [],
   cards: {},
@@ -42,7 +44,7 @@ export default function DeckBuilder({
   play,
 }: {
   decks: CustomDeck[];
-  setDecks: (decks: CustomDeck[]) => void;
+  setDecks: (decks: CustomDeck[]) => boolean;
   inspect: (c: Card) => void;
   notify: (message: string) => void;
   play: (id: string) => void;
@@ -58,17 +60,44 @@ export default function DeckBuilder({
     [editing],
   );
   const size = editing ? deckSize(editing.cards) : 0;
+  const warnings = useMemo(
+    () => (editing ? deckWarnings(editing) : []),
+    [editing],
+  );
+  const edit = (deck: CustomDeck) => {
+    setReport([]);
+    setQuery("");
+    setSphere("all");
+    setEditing({ ...deck, cards: { ...deck.cards }, heroes: [...deck.heroes] });
+  };
   const save = () => {
     if (!editing) return;
-    const deck = { ...editing, updatedAt: Date.now() };
+    if (!decks.some((d) => d.id === editing.id) && decks.length >= 50) {
+      notify(
+        "Your deck shelf holds 50 decks. Delete a deck before saving another.",
+      );
+      return;
+    }
+    const deck = {
+      ...editing,
+      name: editing.name.trim() || "Untitled deck",
+      updatedAt: Date.now(),
+    };
     const others = decks.filter((d) => d.id !== deck.id);
-    setDecks([deck, ...others]);
+    const persisted = setDecks([deck, ...others]);
     setEditing(null);
-    notify(`${deck.name} saved.`);
+    notify(
+      persisted
+        ? `${deck.name} ${problems.length ? "saved as a draft" : "saved"}.`
+        : "Browser storage is full. This deck stays available until you reload.",
+    );
   };
   const remove = (deck: CustomDeck) => {
     if (!confirm(`Delete ${deck.name}? This cannot be undone.`)) return;
-    setDecks(decks.filter((d) => d.id !== deck.id));
+    if (!setDecks(decks.filter((d) => d.id !== deck.id)))
+      notify(
+        "Could not save the deletion to this device. It may return after reload.",
+      );
   };
   const setCount = (code: string, n: number) => {
     if (!editing) return;
@@ -87,6 +116,7 @@ export default function DeckBuilder({
     setEditing({ ...editing, heroes });
   };
   const importDeck = async () => {
+    if (importing) return;
     const id = ringsDbId(importText);
     if (!id) {
       notify(
@@ -111,15 +141,19 @@ export default function DeckBuilder({
       const lines = [
         `${result.deck.name}: ${deckSize(result.deck.cards)} supported cards and ${result.deck.heroes.length} supported heroes imported.`,
         ...result.heroesDropped.map(
-          (h) => `Hero not available in this app: ${h}.`,
+          (h) =>
+            `Hero left out (unsupported or beyond the three-hero limit): ${h}.`,
         ),
         ...result.unsupported.map(
           (u) =>
             `${u.quantity} × ${u.name} skipped (not a scripted Core Set card).`,
         ),
+        ...result.adjustments,
       ];
       setReport(lines);
       setEditing(result.deck);
+      setQuery("");
+      setSphere("all");
       setImportText("");
     } catch (e) {
       notify(
@@ -162,21 +196,17 @@ export default function DeckBuilder({
               />
             </label>
             <p>
-              Choose up to three heroes, then add cards their spheres can pay
-              for. The Rules Reference asks for at least 50 cards and at most 3
-              copies.
+              Choose up to three heroes, then add at least 50 cards with at most
+              3 copies each. Match your heroes’ spheres or plan another way to
+              play the cards. You can save an unfinished deck as a draft.
             </p>
           </div>
           <div className="builder-actions">
             <button className="secondary" onClick={() => setEditing(null)}>
               Cancel
             </button>
-            <button
-              className="primary"
-              disabled={problems.length > 0}
-              onClick={save}
-            >
-              Save deck <Check size={16} />
+            <button className="primary" onClick={save}>
+              {problems.length ? "Save draft" : "Save deck"} <Check size={16} />
             </button>
           </div>
         </div>
@@ -188,7 +218,11 @@ export default function DeckBuilder({
           </div>
         )}
         <section className="builder-heroes" aria-label="Heroes">
-          <h2>Heroes · {editing.heroes.length}/3</h2>
+          <h2>
+            Heroes · {editing.heroes.length}/3
+            {editing.heroes.length > 0 &&
+              ` · ${editing.heroes.reduce((n, code) => n + (card(code).threat ?? 0), 0)} starting threat`}
+          </h2>
           <div className="builder-hero-grid">
             {HERO_CARDS.map((h) => {
               const on = editing.heroes.includes(h.code);
@@ -246,6 +280,12 @@ export default function DeckBuilder({
               </select>
             </div>
             <div className="builder-card-list">
+              {visible.length === 0 && (
+                <p role="status">
+                  No cards match this search and sphere. Try a different name or
+                  clear the filters.
+                </p>
+              )}
               {visible.map((c) => {
                 const n = editing.cards[c.code] ?? 0;
                 const legal = legalSphere(c.code, editing.heroes);
@@ -323,12 +363,17 @@ export default function DeckBuilder({
                   <Check size={15} /> This deck follows the deckbuilding rules.
                 </li>
               ) : (
-                problems.slice(0, 6).map((p) => (
+                problems.map((p) => (
                   <li key={p}>
                     <WarningCircle size={15} /> {p}
                   </li>
                 ))
               )}
+              {warnings.map((p) => (
+                <li key={p}>
+                  <WarningCircle size={15} /> {p}
+                </li>
+              ))}
             </ul>
             <div className="builder-deck-list">
               {Object.entries(editing.cards)
@@ -354,7 +399,11 @@ export default function DeckBuilder({
             RingsDB decklist. Decks stay on this device.
           </p>
         </div>
-        <button className="primary" onClick={() => setEditing(newDeck())}>
+        <button
+          className="primary"
+          disabled={importing}
+          onClick={() => edit(newDeck())}
+        >
           <Plus size={16} /> New deck
         </button>
       </div>
@@ -436,13 +485,8 @@ export default function DeckBuilder({
                   </button>
                   <button
                     className="secondary"
-                    onClick={() =>
-                      setEditing({
-                        ...d,
-                        cards: { ...d.cards },
-                        heroes: [...d.heroes],
-                      })
-                    }
+                    disabled={importing}
+                    onClick={() => edit(d)}
                   >
                     Edit
                   </button>

@@ -38,10 +38,11 @@ import {
   prepend,
   random,
   requireRule,
-  resources,
   shuffle,
   skip,
   stats,
+  canPay,
+  playCost,
 } from "./core";
 import {
   advanceDefense,
@@ -764,9 +765,10 @@ export function shadowResponse(s: GameState, code: string) {
   const eligible = playerOrder(s).filter((i) => {
     const p = seatView(s, i);
     return (
+      s.activeLocation?.code !== "02016" &&
       card(code).shadow &&
       p.hand.some((u) => u.code === "01048") &&
-      resources(p, "spirit") >= 1
+      canPay(p, card("01048"))
     );
   });
   if (eligible.length)
@@ -776,7 +778,7 @@ export function shadowResponse(s: GameState, code: string) {
       [
         ...eligible.map((player) => ({
           id: s.table ? `cancel-${player}` : "cancel",
-          label: `Play Hasty Stroke · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
+          label: `Play Hasty Stroke · ${playCost(s, card("01048"))} Spirit${s.table ? " · " + seatName(s, player) : ""}`,
           code: "01048",
           effects: [fx("spendEvent", { code: "01048", player })],
         })),
@@ -802,7 +804,17 @@ export function flush(s: GameState) {
   ) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
-    if (s.table && effect.player !== undefined) selectSeat(s, effect.player);
+    if (s.table && effect.player !== undefined) {
+      // These belong to the company, even if a reveal eliminates the original
+      // first player. The surviving first player resolves the remaining steps.
+      const sharedHuntEffect = [
+        "huntLook",
+        "huntReveal",
+        "huntClaim",
+        "huntProgress",
+      ].includes(effect.kind);
+      selectSeat(s, sharedHuntEffect ? s.table.first : effect.player);
+    }
     const before = observation(s);
     if (
       !s.table?.seats[activeSeat(s)].eliminated ||
@@ -897,8 +909,7 @@ export function extraEffect(s: GameState, e: Effect) {
       const eligible = playerOrder(s).filter((i) => {
         const p = seatView(s, i);
         return (
-          p.hand.some((u) => u.code === "01024") &&
-          resources(p, "leadership") >= 1
+          p.hand.some((u) => u.code === "01024") && canPay(p, card("01024"))
         );
       });
       if (eligible.length)
@@ -908,7 +919,7 @@ export function extraEffect(s: GameState, e: Effect) {
           [
             ...eligible.map((player) => ({
               id: s.table ? `play-${player}` : "play",
-              label: `Pay 1 Leadership${s.table ? " from " + seatName(s, player) : ""} · ${s.table ? seatName(s, controller) + " draws" : "draw"} 2 cards`,
+              label: `Pay ${playCost(s, card("01024"))} Leadership${s.table ? " from " + seatName(s, player) : ""} · ${s.table ? seatName(s, controller) + " draws" : "draw"} 2 cards`,
               code: "01024",
               effects: [
                 fx("spendEvent", { code: "01024", player }),
@@ -953,7 +964,7 @@ export function extraEffect(s: GameState, e: Effect) {
       const eligible = playerOrder(s).filter((i) => {
         const p = seatView(s, i);
         return (
-          p.hand.some((u) => u.code === "01037") && resources(p, "tactics") >= 2
+          p.hand.some((u) => u.code === "01037") && canPay(p, card("01037"))
         );
       });
       if (combat?.defenderId && get(s, combat.enemyId) && eligible.length)
@@ -963,7 +974,7 @@ export function extraEffect(s: GameState, e: Effect) {
           [
             ...eligible.map((player) => ({
               id: s.table ? `play-${player}` : "play",
-              label: `Pay 2 Tactics${s.table ? " · " + seatName(s, player) : ""} to deal 2 damage`,
+              label: `Pay ${playCost(s, card("01037"))} Tactics${s.table ? " · " + seatName(s, player) : ""} to deal 2 damage`,
               code: "01037",
               effects: [
                 fx("spendEvent", { code: "01037", player }),
@@ -980,6 +991,7 @@ export function extraEffect(s: GameState, e: Effect) {
       if (
         u &&
         s.hand.some((h) => h.code === "01047") &&
+        canPay(s, card("01047")) &&
         characters(s).some(
           (h) => card(h.code).sphere_code === "spirit" && !h.exhausted,
         )

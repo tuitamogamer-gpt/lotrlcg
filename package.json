@@ -12,7 +12,7 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "tsx --test tests/*.test.ts",
     "sync:cards": "node scripts/sync-cards.mjs",
-    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs && npm run test:ui && npm run test:hotseat && npm run test:pacing && npm run test:rules-browser && npm run test:decisions",
+    "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs && npm run test:ui && npm run test:hotseat && npm run test:pacing && npm run test:rules-browser && npm run test:decisions && npm run test:revisions",
     "test:ui": "tsx scripts/browser-ui-fixtures.ts && node scripts/browser-ui.mjs",
     "format": "prettier --write src tests scripts/*.mjs scripts/*.ts vite.config.ts",
     "check": "tsc -b",
@@ -23,7 +23,8 @@
     "test:motion": "tsx scripts/browser-presentation-fixtures.ts && tsx scripts/browser-ui-fixtures.ts && node scripts/browser-motion.mjs",
     "test:threat": "tsx scripts/browser-threat.ts",
     "test:choices": "node scripts/browser-fellowship-choices.mjs",
-    "test:account": "node scripts/browser-account.mjs"
+    "test:account": "node scripts/browser-account.mjs",
+    "test:revisions": "node --import tsx scripts/browser-revisions.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

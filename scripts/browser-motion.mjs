@@ -84,7 +84,12 @@ try {
     // A real payment, ally entering play and resource count changes.
     await p
       .locator(".hand-card")
-      .filter({ hasText: "Guard of the Citadel" })
+      .filter({
+        has: p.getByRole("button", {
+          name: "Inspect Guard of the Citadel",
+          exact: true,
+        }),
+      })
       .locator(".hand-play")
       .click();
     await p
@@ -108,7 +113,9 @@ try {
     assert.equal((await state(p)).phase, "quest");
     await p
       .locator(".character-card")
-      .filter({ hasText: "Glóin" })
+      .filter({
+        has: p.getByRole("button", { name: "Commit Glóin", exact: true }),
+      })
       .locator(".character-art")
       .click();
     assert.ok((await state(p)).willpower > 0);

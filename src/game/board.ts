@@ -41,7 +41,6 @@ import {
   prepend,
   random,
   requireRule,
-  resources,
   restrictAttachments,
   restricted,
   shuffle,
@@ -51,6 +50,8 @@ import {
   units,
   hasClue,
   riverlandsInPlay,
+  canPay,
+  playCost,
 } from "./core";
 import { rescuePrisoner } from "./scenario-rules";
 import { resolveCampaign } from "./campaign";
@@ -98,19 +99,6 @@ export function check(s: GameState) {
       characters(s).some((u) => u.id === id && !u.exhausted),
     );
   });
-  if (
-    s.scenarioId === "hunt-for-gollum" &&
-    s.stage === 3 &&
-    !allHeroes(s).some(hasClue)
-  ) {
-    s.stage = 2;
-    s.progress = 0;
-    log(
-      s,
-      "No hero holds a Clue. The trail is lost and the quest returns to stage 2.",
-      "danger",
-    );
-  }
   if (
     ["quest", "staging"].includes(s.phase) &&
     !s.encounterDeck.length &&
@@ -189,6 +177,20 @@ export function check(s: GameState) {
     s.queue = [];
     log(s, s.reason, "danger");
   } else {
+    // Elimination can remove the final Clue as well as ordinary damage/discard.
+    if (
+      s.scenarioId === "hunt-for-gollum" &&
+      s.stage === 3 &&
+      !allHeroes(s).some(hasClue)
+    ) {
+      s.stage = 2;
+      s.progress = 0;
+      log(
+        s,
+        "No hero holds a Clue. The trail is lost and the quest returns to stage 2.",
+        "danger",
+      );
+    }
     followFirstPlayer(s);
     const overloaded = allCharacters(s).find((u) => restricted(u).length > 2);
     if (overloaded) {
@@ -241,7 +243,7 @@ export function discardAttachment(
 ) {
   if (!leaving && card(a.code).text?.includes("Permanent")) return;
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
-  if (a.code === CLUE) {
+  if (a.code === CLUE && leaving) {
     s.encounterDeck.unshift(a.code);
     log(
       s,
@@ -577,11 +579,11 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
     if (
       when &&
       s.hand.some((u) => u.code === "01050") &&
-      resources(s, "spirit") >= 1
+      canPay(s, card("01050"))
     )
       options.push({
         id: s.table ? `cancel-${player}` : "cancel",
-        label: `Play A Test of Will · 1 Spirit${s.table ? " · " + seatName(s, player) : ""}`,
+        label: `Play A Test of Will · ${playCost(s, card("01050"))} Spirit${s.table ? " · " + seatName(s, player) : ""}`,
         code: "01050",
         effects: [
           fx("spendEvent", { code: "01050", player }),
@@ -656,8 +658,8 @@ export function placeEncounter(
     if (c.type_code === "objective") {
       prepend(
         s,
-        fx("guardObjective", { target: fresh.id }),
         ...(guarding ? [fx("guardObjective", { target: guarding })] : []),
+        fx("guardObjective", { target: fresh.id }),
       );
     }
   }
@@ -799,6 +801,7 @@ export function placeEncounter(
         prepend(s, fx("reveal"));
         break;
       }
+      selectSeat(s, s.table?.first ?? 0);
       choose(
         s,
         "False Lead",

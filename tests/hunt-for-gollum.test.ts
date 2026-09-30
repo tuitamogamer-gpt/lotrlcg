@@ -10,6 +10,8 @@ import {
   validateSave,
 } from "../src/game/engine";
 import type { GameState, Unit } from "../src/game/types";
+import { discardAttachment, placeEncounter } from "../src/game/board";
+import { activeSeat, seatView, selectSeat, syncSeat } from "../src/game/table";
 const leadership = STARTERS.find((d) => d.id === "leadership")!;
 function base(easy = false) {
   let s = createGame(21, leadership.cards, leadership.heroes, "leadership", {
@@ -220,4 +222,238 @@ test("Old Wives' Tales, Flooding and False Lead resolve their revealed effects",
   l = act(l, { type: "CHOOSE", id: l.choice!.options[0].id });
   assert.ok(!l.heroes[0].attachments.length, "the clue is shuffled back");
   assert.ok(l.encounterDeck.includes("02014"));
+});
+
+test("The Hunt Begins resolves its Forced reveal and Clue response before placing progress", () => {
+  let s = base();
+  s.progress = 7;
+  s.encounterDeck = ["02014", "02016", "02016", "02024", "02016"];
+  s = questSuccess(s, 1);
+  assert.match(s.choice!.title, /trail/);
+  assert.equal(s.stage, 1, "the Forced effect belongs to the undefeated stage");
+  assert.equal(
+    s.progress,
+    7,
+    "quest-success effects precede progress placement",
+  );
+  s = act(s, { type: "CHOOSE", id: "look-0" });
+  assert.match(s.choice!.title, /Signs of Gollum/);
+  assert.equal(s.stage, 1, "a newly revealed, unguarded Clue can respond now");
+  s = act(s, { type: "CHOOSE", id: s.heroes[0].id });
+  assert.equal(s.stage, 2);
+  assert.ok(s.heroes[0].attachments.some((a) => a.code === "02014"));
+  assert.ok(validateSave(s));
+});
+
+test("a Clue can be claimed before completing stage 2 and prevents stage 3 from resetting", () => {
+  let s = base();
+  s.stage = 2;
+  s.progress = 9;
+  s.staging = [unit(s, "02014")];
+  s.encounterDeck = ["02016"];
+  s = questSuccess(s, 0);
+  assert.equal(s.stage, 2);
+  assert.equal(s.progress, 9);
+  assert.match(s.choice!.title, /Signs of Gollum/);
+  s = act(s, { type: "CHOOSE", id: s.heroes[0].id });
+  assert.equal(s.stage, 3);
+  assert.equal(s.progress, 0);
+  assert.ok(s.heroes[0].attachments.some((a) => a.code === "02014"));
+});
+
+test("a Clue whose location guard is explored by quest progress waits for the next successful quest", () => {
+  let s = base();
+  s.stage = 2;
+  const signs = unit(s, "02014");
+  s.staging = [signs];
+  s.activeLocation = unit(s, "02016");
+  s.activeLocation.guarding = signs.id;
+  s.activeLocation.progress = 1;
+  s.encounterDeck = ["02016"];
+  s = questSuccess(s, 0);
+  assert.equal(s.activeLocation, null);
+  assert.equal(
+    s.choice,
+    null,
+    "the successful-quest response window has passed",
+  );
+  assert.ok(s.staging.some((x) => x.id === signs.id));
+  assert.equal(s.heroes[0].attachments.length, 0);
+  s = questSuccess(s, 0);
+  assert.match(s.choice!.title, /Signs of Gollum/);
+});
+
+test("consecutive Guarded objectives receive guards in their reveal order", () => {
+  let s = base();
+  s.stage = 2;
+  s.encounterDeck = ["02014", "02014", "02018", "02019", "02016"];
+  s.phase = "quest";
+  s = act(s, { type: "COMMIT" });
+  const signs = s.staging.filter((x) => x.code === "02014");
+  assert.equal(signs.length, 2);
+  assert.equal(
+    s.staging.find((x) => x.guarding === signs[0].id)?.code,
+    "02018",
+    "the next encounter fulfills the original Guarded keyword first",
+  );
+  assert.equal(
+    s.staging.find((x) => x.guarding === signs[1].id)?.code,
+    "02019",
+  );
+});
+
+test("discarding the Clue attachment itself does not trigger its bearer's damage/leave-play Forced effect", () => {
+  const s = base();
+  const clue = { id: "clue-discard", code: "02014", exhausted: false };
+  s.heroes[0].attachments = [clue];
+  s.encounterDeck = ["02016"];
+  discardAttachment(s, s.heroes[0], clue);
+  assert.deepEqual(s.encounterDeck, ["02016"]);
+  assert.deepEqual(s.encounterDiscard, ["02014"]);
+  assert.equal(s.heroes[0].attachments.length, 0);
+});
+
+function spiritCombat(activeLocation: string, resources: number) {
+  const s = base();
+  s.heroes = [unit(s, "01007")];
+  s.heroes[0].resources = resources;
+  s.hand = [unit(s, "01048")];
+  s.activeLocation = unit(s, activeLocation);
+  s.phase = "defense";
+  const enemy = unit(s, "02020");
+  enemy.shadows = ["02017"];
+  s.engaged = [enemy];
+  return s;
+}
+
+test("The Eaves of Mirkwood prevents Hasty Stroke from canceling a shadow effect", () => {
+  let s = spiritCombat("02016", 2);
+  s.progress = 3;
+  s = act(s, {
+    type: "DEFEND",
+    enemyId: s.engaged[0].id,
+    defenderId: s.heroes[0].id,
+  });
+  assert.equal(s.choice, null);
+  assert.equal(s.progress, 2);
+  assert.ok(s.hand.some((x) => x.code === "01048"));
+});
+
+test("West Bank response offers and payments include the extra matching resource", () => {
+  for (const resources of [1, 2]) {
+    let s = spiritCombat("02019", resources);
+    s.progress = 3;
+    s = act(s, {
+      type: "DEFEND",
+      enemyId: s.engaged[0].id,
+      defenderId: s.heroes[0].id,
+    });
+    if (resources === 1) {
+      assert.equal(s.choice, null, "an unaffordable response is not offered");
+      assert.equal(s.progress, 2);
+    } else {
+      assert.match(s.choice!.options[0].label, /2 Spirit/);
+      s = act(s, { type: "CHOOSE", id: "cancel" });
+      assert.equal(s.progress, 3);
+      assert.equal(s.heroes[0].resources, 0);
+      assert.ok(s.discard.includes("01048"));
+    }
+  }
+  for (const resources of [1, 2]) {
+    let s = base();
+    s.heroes = [unit(s, "01007")];
+    s.heroes[0].resources = resources;
+    s.hand = [unit(s, "01050")];
+    s.activeLocation = unit(s, "02019");
+    s.encounterDeck = ["02024", "02016"];
+    s.phase = "quest";
+    s = act(s, { type: "COMMIT" });
+    if (resources === 1) {
+      assert.equal(s.choice, null);
+      assert.equal(s.heroes[0].resources, 0, "the treachery resolves normally");
+    } else {
+      assert.match(s.choice!.options[0].label, /2 Spirit/);
+      s = act(s, { type: "CHOOSE", id: "cancel" });
+      assert.equal(s.heroes[0].resources, 0);
+      assert.ok(s.discard.includes("01050"));
+    }
+  }
+});
+
+function twoPlayers() {
+  let s = createGame(21, leadership.cards, leadership.heroes, "leadership", {
+    scenarioId: "hunt-for-gollum",
+    seats: [
+      { heroes: ["01001"], deckId: "leadership" },
+      { heroes: ["01007"], deckId: "spirit" },
+    ],
+  });
+  while (s.phase === "setup") {
+    if (s.choice) {
+      const option =
+        s.choice.options.find((x) => x.id === "resolve") ?? s.choice.options[0];
+      s = act(s, { type: "CHOOSE", id: option.id });
+    } else s = act(s, { type: "KEEP" });
+  }
+  s.hand = [];
+  seatView(s, 1).hand = [];
+  s.staging = [];
+  s.encounterDiscard = [];
+  s.queue = [];
+  s.choice = null;
+  syncSeat(s);
+  return s;
+}
+
+test("False Lead gives the choice to the first player even when another player reveals it", () => {
+  const s = twoPlayers();
+  s.table!.first = 0;
+  selectSeat(s, 1);
+  s.staging = [unit(s, "02014")];
+  placeEncounter(s, "02022");
+  assert.equal(activeSeat(s), 0);
+  assert.match(s.choice!.title, /False Lead/);
+  assert.ok(
+    s.choice!.options.every((x) => x.effects.every((e) => e.player === 0)),
+  );
+});
+
+test("eliminating the sole Clue-bearing fellowship resets stage 3 before checking victory", () => {
+  let s = twoPlayers();
+  s.stage = 3;
+  s.progress = 8;
+  s.heroes[0].attachments = [
+    { id: "last-clue", code: "02014", exhausted: false },
+  ];
+  s.threat = 50;
+  s.phase = "planning";
+  s = act(s, { type: "NEXT" });
+  assert.equal(s.status, "playing");
+  assert.equal(s.stage, 2);
+  assert.equal(s.progress, 0);
+  assert.equal(s.table!.seats[0].eliminated, true);
+  assert.equal(s.encounterDeck[0], "02014");
+});
+
+test("the surviving first player still places successful-quest progress after a Forced reveal eliminates the original first player", () => {
+  let s = twoPlayers();
+  s.table!.first = 0;
+  s.threat = 49;
+  seatView(s, 1).heroes[0].committed = true;
+  seatView(s, 1).heroes[0].tempWill = 1;
+  s.progress = 7;
+  s.encounterDeck = ["02023", "02016", "02016", "02016", "02016"];
+  s.phase = "staging";
+  s = act(s, { type: "NEXT" });
+  s = act(s, { type: "CHOOSE", id: "look-0" });
+  assert.equal(s.table!.seats[0].eliminated, true);
+  assert.equal(s.table!.first, 1);
+  assert.equal(s.status, "playing");
+  assert.equal(
+    s.stage,
+    2,
+    "the group's already-earned progress is still placed",
+  );
+  assert.equal(s.progress, 0);
+  assert.ok(validateSave(s));
 });

@@ -20,7 +20,10 @@ await page.goto(base);
 const state = () =>
   page.evaluate(() => JSON.parse(window.render_game_to_text()));
 assert.equal(await page.locator("main select").count(), 0);
-assert.equal(await page.locator(".deck-choice").count(), 4);
+assert.equal(
+  await page.locator(".deck-choice:not(.deck-choice-build)").count(),
+  4,
+);
 assert.equal(await page.locator(".deck-hero-triptych img").count(), 12);
 await page.getByRole("button", { name: /Classic solo/ }).click();
 await page.getByRole("button", { name: "Choose Spirit", exact: true }).click();

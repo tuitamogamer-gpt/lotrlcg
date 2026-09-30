@@ -14,6 +14,10 @@ import {
   parseRingsDbDeck,
   ringsDbId,
   legalSphere,
+  deckWarnings,
+  DECKS_KEY,
+  readDecks,
+  createDeckId,
 } from "../src/game/decks";
 const leadership = STARTERS.find((d) => d.id === "leadership")!;
 const spirit = STARTERS.find((d) => d.id === "spirit")!;
@@ -36,6 +40,114 @@ test("a custom 50-card deck plays in classic solo, survives saves, and keeps its
   assert.throws(
     () => createGame(3, { "01013": 3 }, ["01001"], "custom"),
     /at least 50/,
+  );
+});
+test("deck rules allow off-sphere cards while explaining how they need another way into play", () => {
+  const d = { heroes: leadership.heroes, cards: fifty };
+  assert.deepEqual(deckProblems(d), []);
+  assert.ok(deckWarnings(d).some((p) => p.includes("matching hero sphere")));
+  assert.ok(
+    deckProblems({ heroes: ["01013"], cards: fifty }).some((p) =>
+      p.includes("not a supported hero"),
+    ),
+  );
+  assert.ok(
+    deckProblems({
+      heroes: leadership.heroes,
+      cards: { ...fifty, unknown: 1 },
+    }).some((p) => p.includes("unknown is not")),
+  );
+});
+test("RingsDB imports reject malformed quantities and report every list adjustment", () => {
+  assert.throws(
+    () => parseRingsDbDeck({ slots: [] }, "test"),
+    /invalid decklist/,
+  );
+  const report = parseRingsDbDeck(
+    {
+      heroes: { "01001": 1, "01002": 1, "01003": 1, "01004": 1, "01005": 0 },
+      slots: {
+        "01013": 7,
+        "01014": 1.5,
+        "01015": "2",
+        "01016": true,
+        unknown: 5,
+      },
+    },
+    "test",
+    10,
+  );
+  assert.deepEqual(report.deck.heroes, leadership.heroes);
+  assert.equal(report.heroesDropped.length, 1);
+  assert.deepEqual(report.deck.cards, { "01013": 3, "01015": 2 });
+  assert.equal(report.unsupported[0].quantity, 5);
+  assert.equal(report.adjustments.length, 3);
+  const slotsOnly = parseRingsDbDeck(
+    { slots: { "01001": 1, "01013": 3 } },
+    "test",
+    10,
+  );
+  assert.deepEqual(slotsOnly.deck.heroes, ["01001"]);
+  assert.notEqual(slotsOnly.deck.id, report.deck.id);
+  assert.notEqual(createDeckId(10), createDeckId(10));
+  assert.equal(ringsDbId("https://ringsdb.com/deck/view/123"), null);
+  assert.equal(
+    ringsDbId("https://example.com/ringsdb.com/decklist/view/123"),
+    null,
+  );
+  assert.equal(ringsDbId("https://ringsdb.com/decklist/view/123oops"), null);
+  assert.equal(ringsDbId("ringsdb.com/decklist/view/123/title"), "123");
+});
+test("stored deck drafts survive while corrupt card types and duplicate ids are rejected", (t) => {
+  const old = Object.getOwnPropertyDescriptor(globalThis, "localStorage");
+  const draft = {
+    id: "draft",
+    name: "Draft",
+    heroes: [],
+    cards: {},
+    updatedAt: 10,
+  };
+  const items = [
+    draft,
+    { ...draft, id: "wrong-hero", heroes: ["01013"] },
+    { ...draft, id: "encounter", cards: { "01096": 1 } },
+    { ...draft, id: "boon", cards: { rc132: 1 } },
+    { ...draft, id: "cards-array", cards: [] },
+    { ...draft, name: "duplicate" },
+  ];
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: {
+      getItem: (key: string) =>
+        key === DECKS_KEY ? JSON.stringify(items) : null,
+    },
+  });
+  t.after(() =>
+    old
+      ? Object.defineProperty(globalThis, "localStorage", old)
+      : Reflect.deleteProperty(globalThis, "localStorage"),
+  );
+  assert.deepEqual(readDecks(), [draft]);
+});
+test("custom saves reject unusable original lists before retries can fail", () => {
+  const s = createGame(3, fifty, ["01001", "01007", "01003"], "custom");
+  for (const cards of [
+    {},
+    { ...fifty, rc132: 1 },
+    { ...fifty, "01013": 1.5 },
+    { ...fifty, "01001": 1 },
+  ]) {
+    assert.equal(restoreSave({ ...s, customDeck: cards }), null);
+  }
+  assert.equal(restoreSave({ ...s, startingHeroes: ["01001", "01001"] }), null);
+  assert.throws(
+    () =>
+      createGame(3, { ...fifty, "01013": 1.5 }, leadership.heroes, "custom"),
+    /at most 3/,
+  );
+  assert.throws(
+    () => createGame(3, { ...fifty, "01013": -1 }, leadership.heroes, "custom"),
+    /at most 3/,
   );
 });
 test("hot-seat seats may mix a starter with a custom deck, and campaigns carry the custom list forward", () => {

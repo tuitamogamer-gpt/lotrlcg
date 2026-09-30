@@ -374,6 +374,9 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       );
       break;
     }
+    case "huntProgress":
+      progress(s, e.value ?? 0);
+      break;
     case "huntAttach": {
       const signs = s.staging.find((x) => x.id === e.source);
       if (u && signs) {

@@ -218,7 +218,9 @@ dungeon.activeLocation = null;
 await load(p, dungeon);
 await p
   .locator(".board-card")
-  .filter({ hasText: "Gandalf's Map" })
+  .filter({
+    has: p.getByRole("button", { name: "Inspect Gandalf's Map", exact: true }),
+  })
   .getByRole("button", { name: "Claim · +2 threat" })
   .click();
 await p.locator("dialog[open] .choice-list .decision-select").first().click();

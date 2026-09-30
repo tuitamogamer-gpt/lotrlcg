@@ -10,7 +10,7 @@ import {
 } from "@phosphor-icons/react";
 import { STARTERS, card, imageUrl, plain } from "../game/cards";
 import type { Card } from "../game/types";
-import { customId, deckSize } from "../game/decks";
+import { customId, deckProblems, deckSize } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
 
 const icons = {
@@ -64,16 +64,19 @@ export function DeckPicker({
         const Icon = d.custom ? Stack : icons[d.id as keyof typeof icons];
         const selected = d.id === value;
         const count = deckSize(d.cards);
+        const blocked =
+          unavailable[d.id] ?? (d.custom ? deckProblems(d)[0] : undefined);
         return (
           <article
             key={d.id}
-            className={`deck-choice sphere-${d.id} ${selected ? "is-selected" : ""} ${unavailable[d.id] ? "is-unavailable" : ""}`}
+            className={`deck-choice sphere-${d.custom ? "custom" : d.id} ${selected ? "is-selected" : ""} ${blocked ? "is-unavailable" : ""}`}
           >
             <button
               className="deck-choice-select"
-              aria-label={`Choose ${d.subtitle}`}
+              aria-label={`Choose ${d.custom ? d.name : d.subtitle}`}
               aria-pressed={selected}
-              disabled={!!unavailable[d.id]}
+              disabled={!!blocked}
+              title={blocked}
               onClick={() => onChange(d.id)}
             >
               <span className="deck-choice-top">
@@ -115,7 +118,7 @@ export function DeckPicker({
                 )}
               </span>
               <span className="deck-choice-state">
-                {unavailable[d.id] ??
+                {blocked ??
                   (selected
                     ? showHeroes
                       ? "Selected fellowship"
@@ -129,7 +132,7 @@ export function DeckPicker({
               <button
                 className="deck-view"
                 onClick={() => inspect(d.id)}
-                aria-label={`View ${d.subtitle} deck and heroes`}
+                aria-label={`View ${d.custom ? d.name : d.subtitle} deck and heroes`}
               >
                 View deck & heroes <Eye size={15} />
               </button>

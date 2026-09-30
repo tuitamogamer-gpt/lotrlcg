@@ -520,7 +520,7 @@ export function QuestGoals({ s }: { s: GameState }) {
         : s.scenarioId === "hunt-for-gollum"
           ? [
               {
-                label: `Clues held by heroes · ${allHeroes(s).filter(hasClue).length}`,
+                label: `Heroes holding a Clue · ${allHeroes(s).filter(hasClue).length}`,
                 done: allHeroes(s).some(hasClue),
               },
               ...(s.stage === 3
@@ -538,7 +538,7 @@ export function QuestGoals({ s }: { s: GameState }) {
                     s.branch === "spider"
                       ? s.status === "won"
                       : !s.staging
-                          .concat(s.engaged)
+                          .concat(allEngaged(s))
                           .some((u) => u.code === "01076"),
                 },
               ]

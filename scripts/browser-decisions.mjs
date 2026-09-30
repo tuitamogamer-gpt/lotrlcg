@@ -156,7 +156,12 @@ try {
     await load(p, play);
     await p
       .locator(".hand-card")
-      .filter({ hasText: "Steward of Gondor" })
+      .filter({
+        has: p.getByRole("button", {
+          name: "Inspect Steward of Gondor",
+          exact: true,
+        }),
+      })
       .locator(".hand-play")
       .click();
     assert.ok(

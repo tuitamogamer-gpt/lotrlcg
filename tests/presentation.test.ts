@@ -310,3 +310,34 @@ test("public hot-seat state never exposes facedown shadow identities", () => {
   assert.equal(shown.table!.seats[0].engaged[0].shadowCount, 1);
   assert.ok(!JSON.stringify(shown).includes("01115"));
 });
+test("hidden-information mode records Gandalf defeating an enemy without treating it as a player loss", () => {
+  let s = base();
+  s.flow!.mode = "hidden";
+  s.phase = "planning";
+  s.heroes.forEach((h) => (h.resources = 5));
+  s.hand = [unit(s, "01073")];
+  const enemy = unit(s, "01089");
+  s.staging = [enemy];
+  s = act(s, { type: "PLAY", id: s.hand[0].id });
+  assert.match(s.choice!.title, /Gandalf/);
+  s = act(s, { type: "CHOOSE", id: enemy.id });
+  assert.equal(s.flow!.pending, null);
+  assert.ok(!s.staging.some((u) => u.id === enemy.id));
+  assert.ok(s.flow!.history.some((step) => step.title === "Damage dealt"));
+});
+test("hidden-information mode does not mistake Rain of Arrows for an encounter effect", () => {
+  let s = base("tactics");
+  s.flow!.mode = "hidden";
+  s.heroes.forEach((h) => (h.resources = 5));
+  s.hand = [unit(s, "01033")];
+  s.engaged = [unit(s, "01089")];
+  const archer = s.heroes.find((h) => h.code === "01005")!;
+  s = act(s, { type: "PLAY", id: s.hand[0].id, target: archer.id });
+  assert.equal(s.flow!.pending, null);
+  assert.equal(s.engaged[0].damage, 1);
+  assert.ok(
+    s.flow!.history.some((step) =>
+      step.changes.some((c) => c.label.endsWith("· Damage")),
+    ),
+  );
+});

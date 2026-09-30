@@ -396,14 +396,18 @@ export function applyAction(input: GameState, action: Action): GameState {
             `Quest succeeds: ${will} willpower − ${threat} threat = ${net} progress.`,
             "good",
           );
-          const stageBefore = s.stage;
-          progress(s, net);
-          if (s.scenarioId === "hunt-for-gollum" && s.status === "playing") {
+          if (s.scenarioId === "hunt-for-gollum") {
             const first = s.table?.first ?? 0;
-            enqueue(s, fx("huntClaim", { player: first }));
-            if (stageBefore === 1)
+            // FAQ 1.24: quest-success effects resolve before placing progress.
+            // The quest's Forced reveal precedes optional Clue responses.
+            if (s.stage === 1)
               enqueue(s, fx("huntLook", { count: 3, player: first }));
-          }
+            enqueue(
+              s,
+              fx("huntClaim", { player: first }),
+              fx("huntProgress", { value: net, player: first }),
+            );
+          } else progress(s, net);
         } else if (net < 0) {
           eachSeat(s, () => {
             s.threat -= net;

@@ -50,6 +50,7 @@ import { coachTip } from "./ui/coach";
 import { Art, Sphere } from "./ui/card-art";
 import {
   customId,
+  deckProblems,
   deckSize,
   describeDeck,
   isCustomId,
@@ -120,8 +121,14 @@ import {
   FellowshipSetup,
   CooperativeActions,
   FellowshipSeats,
-  starterSeats,
 } from "./ui/fellowship";
+import {
+  matchesSavedDeck,
+  recoverSavedDecks,
+  savedDeckId,
+  savedSeats,
+  setupSeats,
+} from "./ui/setup-decks";
 import {
   activeSeat,
   allEngaged,
@@ -402,12 +409,6 @@ export default function App() {
     const saved = readSave(activeSaveKey());
     return saved ? (saved.table ? "hotseat" : "classic") : "hotseat";
   });
-  const [seats, setSeats] = useState<SeatConfig[]>(() =>
-    starterSeats(
-      initialChoices?.seatDecks.map((deckId) => ({ deckId })) ??
-        readSave(activeSaveKey())?.table?.seats,
-    ),
-  );
   const [playMode, setPlayMode] = useState<PlayMode>(
     () => initialChoices?.playMode ?? readMode(),
   );
@@ -434,25 +435,55 @@ export default function App() {
     setPlayMode(mode);
     setGame(saved);
     if (saved) {
+      const recovered = recoverSavedDecks(saved, decks);
+      setDecks(recovered);
       setSetupMode(saved.table ? "hotseat" : "classic");
-      if (saved.table) setSeats(starterSeats(saved.table.seats));
+      if (saved.table) setSeats(savedSeats(saved, recovered));
+      setSelectedDeck(savedDeckId(saved, recovered));
+      setEasyMode(saved.easyMode ? "on" : "off");
     }
     setSelectedScenario(saved?.scenarioId ?? "mirkwood");
-    if (saved && STARTERS.some((d) => d.id === saved.deckId))
-      setSelectedDeck(saved.deckId);
     setHistory([]);
   };
-  const [selectedDeck, setSelectedDeck] = useState(
-    () => initialChoices?.selectedDeck ?? readDeckId(),
+  const [decks, setDecksState] = useState<CustomDeck[]>(() =>
+    recoverSavedDecks(game, readDecks()),
   );
-  const [decks, setDecksState] = useState<CustomDeck[]>(readDecks);
+  const [selectedDeck, setSelectedDeck] = useState(() => {
+    const id =
+      initialChoices?.selectedDeck ??
+      (game ? savedDeckId(game, decks) : readDeckId());
+    return describeDeck(id, decks)
+      ? id
+      : game
+        ? savedDeckId(game, decks)
+        : "leadership";
+  });
+  const [seats, setSeats] = useState<SeatConfig[]>(() =>
+    initialChoices
+      ? setupSeats(
+          initialChoices.seatDecks.map((deckId, i) => ({
+            deckId:
+              !describeDeck(deckId, decks) &&
+              game?.table?.seats[i] &&
+              initialChoices.scenario === game.scenarioId
+                ? savedDeckId(game.table.seats[i], decks)
+                : deckId,
+          })),
+          decks,
+        )
+      : game?.table
+        ? savedSeats(game, decks)
+        : setupSeats(undefined, decks),
+  );
   const setDecks = (list: CustomDeck[]) => {
     setDecksState(list);
-    if (!writeDecks(list))
-      notify(
-        "Browser storage is full. The deck stays available until you reload.",
-      );
+    if (!describeDeck(selectedDeck, list)) setSelectedDeck("leadership");
+    setSeats((current) => setupSeats(current, list));
+    return writeDecks(list);
   };
+  useEffect(() => {
+    writeDecks(decks);
+  }, []);
   const starter =
     describeDeck(selectedDeck, decks) ?? describeDeck("leadership", decks)!;
   const deck = starter.cards;
@@ -480,9 +511,11 @@ export default function App() {
             game.table.seats.map((p) => p.deckId).join() ===
               seats
                 .map((p) => (isCustomId(p.deckId) ? "custom" : p.deckId))
-                .join()
-          : !game.table &&
-            (game.deckId === selectedDeck || game.deckId === "custom"))));
+                .join() &&
+            game.table.seats.every((p, i) =>
+              matchesSavedDeck(p, seats[i].deckId, decks),
+            )
+          : !game.table && matchesSavedDeck(game, selectedDeck, decks))));
   const displayHeroes =
     playMode === "campaign" && game?.campaign
       ? game.campaign.heroes
@@ -566,18 +599,41 @@ export default function App() {
     }),
     [setupMode, selectedDeck, seats, playMode, selectedScenario],
   );
-  const restoreChoices = useCallback((restored: FellowshipChoices) => {
-    setSetupMode(restored.setupMode);
-    setSelectedDeck(restored.selectedDeck);
-    setSeats(starterSeats(restored.seatDecks.map((deckId) => ({ deckId }))));
-    setSelectedScenario(restored.scenario);
-    setPlayMode(restored.playMode);
-    setGame(
-      readSave(restored.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY),
-    );
-    setHistory([]);
-    setPage("adventures");
-  }, []);
+  const restoreChoices = useCallback(
+    (restored: FellowshipChoices) => {
+      const saved = readSave(
+        restored.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY,
+      );
+      const recovered = recoverSavedDecks(saved, decks);
+      setDecks(recovered);
+      setSetupMode(restored.setupMode);
+      setSelectedDeck(
+        describeDeck(restored.selectedDeck, recovered)
+          ? restored.selectedDeck
+          : "leadership",
+      );
+      setSeats(
+        setupSeats(
+          restored.seatDecks.map((deckId) => ({ deckId })),
+          recovered,
+        ),
+      );
+      setSelectedScenario(restored.scenario);
+      setPlayMode(restored.playMode);
+      setGame(saved);
+      if (
+        [restored.selectedDeck, ...restored.seatDecks].some(
+          (id) => !describeDeck(id, recovered),
+        )
+      )
+        notify(
+          "A custom deck is missing on this device. Choose a local deck or import the adventure save.",
+        );
+      setHistory([]);
+      setPage("adventures");
+    },
+    [decks],
+  );
   const account = useAccount(choices, restoreChoices);
   useEffect(() => {
     if (account.recovery) setShowAccount(true);
@@ -685,11 +741,27 @@ export default function App() {
   };
   const start = (style: "classic" | "hotseat" = setupMode) => {
     try {
+      const selected =
+        style === "hotseat" ? seats.map((p) => p.deckId) : [selectedDeck];
+      for (const id of selected) {
+        const description = describeDeck(id, decks);
+        if (!description)
+          throw new Error("Choose an available deck before beginning.");
+        if (description.custom) {
+          const problems = deckProblems(description);
+          if (problems.length)
+            throw new Error(
+              `${description.name}: ${problems[0]} Open the deck builder to finish it.`,
+            );
+        }
+      }
+      const startingDeck =
+        style === "hotseat" ? describeDeck(seats[0].deckId, decks)! : starter;
       const s = createGame(
         Date.now(),
-        deck,
-        starter.heroes,
-        starter.custom ? "custom" : starter.id,
+        startingDeck.cards,
+        startingDeck.heroes,
+        startingDeck.custom ? "custom" : startingDeck.id,
         {
           guided: true,
           reviewMode,
@@ -837,12 +909,15 @@ export default function App() {
       const restored = restoreSave(JSON.parse(await file.text()));
       const s = restored ? startGuided(restored) : null;
       if (!s) throw new Error("This is not a valid adventure save.");
+      const recovered = recoverSavedDecks(s, decks);
+      setDecks(recovered);
       setGame(s);
       setPlayMode(s.playMode);
       setSetupMode(s.table ? "hotseat" : "classic");
-      if (s.table) setSeats(starterSeats(s.table.seats));
+      if (s.table) setSeats(savedSeats(s, recovered));
       setSelectedScenario(s.scenarioId);
-      setSelectedDeck(s.deckId === "custom" ? "leadership" : s.deckId);
+      setSelectedDeck(savedDeckId(s, recovered));
+      setEasyMode(s.easyMode ? "on" : "off");
       setHistory([]);
       setPage("table");
       notify("Adventure restored.");
@@ -869,6 +944,7 @@ export default function App() {
         e.ctrlKey ||
         e.metaKey ||
         e.altKey ||
+        e.repeat ||
         menu ||
         document.querySelector("dialog[open]") ||
         (e.target instanceof Element &&
@@ -1112,7 +1188,7 @@ export default function App() {
             <span className="solo-label">
               <UsersThree size={15} />{" "}
               {game?.table && page === "table"
-                ? `${game.table.seats.length} heroes · Solo hot-seat`
+                ? `${count(game.table.seats.length, "player")} · Solo hot-seat`
                 : "A solo journey"}
             </span>
             <button
@@ -1181,7 +1257,7 @@ export default function App() {
               </div>
               <p>
                 {playMode === "normal"
-                  ? "Choose any Core Set quest. Each adventure begins with a fresh fellowship."
+                  ? "Choose a Core Set quest or The Hunt for Gollum. Each adventure begins with a fresh fellowship."
                   : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
               </p>
             </section>
@@ -1295,13 +1371,14 @@ export default function App() {
                       {seats
                         .map(
                           (p, i) =>
-                            `Player ${i + 1}: ${STARTERS.find((d) => d.id === p.deckId)!.subtitle}`,
+                            `Player ${i + 1}: ${describeDeck(p.deckId, decks)?.name ?? "Choose a deck"}`,
                         )
                         .join(" · ")}
                       <small>
                         {seats.length}{" "}
                         {seats.length === 1 ? "player" : "players"} ·{" "}
-                        {seats.length * 3} heroes · {seats.length} separate{" "}
+                        {seats.reduce((n, p) => n + p.heroes.length, 0)} heroes
+                        · {seats.length} separate{" "}
                         {seats.length === 1 ? "deck" : "decks"} · You control
                         the whole company
                       </small>
@@ -1387,8 +1464,8 @@ export default function App() {
                 <div className="fan-caption">
                   <span />{" "}
                   {setupMode === "hotseat"
-                    ? "THREE HEROES PER PLAYER."
-                    : "THREE HEROES. ONE FELLOWSHIP."}
+                    ? `${seats.reduce((n, p) => n + p.heroes.length, 0)} HEROES. ${seats.length} FELLOWSHIP${seats.length === 1 ? "" : "S"}.`
+                    : `${starter.heroes.length} HEROES. ONE FELLOWSHIP.`}
                   <span />
                 </div>
               </div>
@@ -1403,7 +1480,10 @@ export default function App() {
                     : "1 player"}
                 </span>
                 <span>
-                  <Diamond size={14} /> Core Set
+                  <Diamond size={14} />{" "}
+                  {quest.id === "hunt-for-gollum"
+                    ? "Shadows of Mirkwood"
+                    : "Core Set"}
                 </span>
                 <span className="difficulty">
                   Difficulty {quest.difficulty} / 10
@@ -1481,14 +1561,14 @@ export default function App() {
                     </strong>
                     <span>
                       {setupMode === "hotseat"
-                        ? `${count(seats.length, "player")} · ${seats.length * 3} heroes · ${count(seats.length, "deck")}`
-                        : `${starter.subtitle} · 30 cards · 3 heroes`}
+                        ? `${count(seats.length, "player")} · ${seats.reduce((n, p) => n + p.heroes.length, 0)} heroes · ${count(seats.length, "deck")}`
+                        : `${starter.subtitle} · ${deckSize(deck)} cards · ${count(starter.heroes.length, "hero")}`}
                     </span>
                   </div>
                 </div>
                 <div className="fellowship-foot">
                   <span>
-                    <Shield size={14} /> Fully scripted starter deck
+                    <Shield size={14} /> Fully scripted player cards
                   </span>
                   <span>
                     <Check size={14} /> Ready
@@ -1688,13 +1768,14 @@ export default function App() {
               <div>
                 <h2>Your first adventure</h2>
                 <p>
-                  All three Core Set quests are ready for solo play in normal or
-                  campaign mode. Choose Leadership, Tactics, Spirit, or Lore.
-                  Classic solo uses three heroes and one 30-card deck. Solo
-                  hot-seat lets you command 1–4 players, each with three heroes,
-                  one starter deck, one hand, and one threat dial. Complete the
-                  final quest together. A seat is eliminated at 50 threat or
-                  when its last hero falls; surviving fellowships continue.
+                  Play the three Core Set quests in normal or campaign mode, or
+                  The Hunt for Gollum as a standalone adventure. Choose an
+                  original 30-card starter with three heroes, or build a deck of
+                  at least 50 cards with one to three heroes. Solo hot-seat lets
+                  you command 1–4 players, each with a separate deck, hand, and
+                  threat dial. Complete the final quest together. A seat is
+                  eliminated at 50 threat or when its last hero falls; surviving
+                  fellowships continue.
                 </p>
                 <button
                   className="primary"
@@ -1708,11 +1789,11 @@ export default function App() {
             <section className="guide-note">
               <h2>You set the pace</h2>
               <p>
-                Read each encounter before its effect resolves, and each shadow
-                before combat damage. Changes to resources, threat, health,
-                progress, and your hand appear in an event review. Select
-                Continue when you are ready for the next step. Nothing advances
-                on a timer.
+                Choose your reading pace in Table preferences. Hidden
+                information & losses reviews encounters, shadows and harmful
+                changes; Every event also reviews your own plays; Decisions only
+                keeps information in the chronicle. Select Continue when an
+                event is waiting. Rules choices always require your input.
               </p>
               <p>
                 Inspect table lets you look around while the game stays paused.
@@ -1726,39 +1807,39 @@ export default function App() {
             <section className="guide-note">
               <h2>One company. Separate fellowships.</h2>
               <p>
-                In hot-seat mode, choose a starter deck for each player. Each
-                player starts with its three heroes already in play and a
-                separate 30-card player deck. Keep or mulligan each hand, plan
-                for each player, then commit each fellowship to the shared
-                quest. One encounter is revealed per active seat. Engagement,
-                defense, and attacks follow the first-player order; the crown
-                moves each round.
+                In hot-seat mode, choose a starter or custom deck for each
+                player. Each player’s selected heroes begin in play, with a
+                separate player deck. Keep or mulligan each hand, plan for each
+                player, then commit each fellowship to the shared quest. One
+                encounter is revealed per active seat. Engagement, defense, and
+                attacks follow the first-player order; the crown moves each
+                round.
               </p>
               <p>
-                Click a player’s banner to view their hand and three-hero
-                fellowship. Each hero has their own resource pool; players
-                cannot pool resources across seats. Sentinel characters can
-                defend for another fellowship, Ranged characters can join its
-                attacks, and support cards let you choose which player benefits.
-                Normal games and campaigns both support this arrangement.
+                Click a player’s banner to view their hand and fellowship. Each
+                hero has their own resource pool; players cannot pool resources
+                across seats. Sentinel characters can defend for another
+                fellowship, Ranged characters can join its attacks, and support
+                cards let you choose which player benefits. Normal games and
+                campaigns both support this arrangement.
               </p>
               <p>
                 These original 30-card learning decks are preserved, with their
                 three hero cards kept separate from the draw deck. Starting
-                threat is the sum of the three heroes’ threat values. Each hero
-                gains one resource per round. Dol Guldur captures one hero from
-                the whole table; the other heroes remain available for the
+                threat is the sum of your selected heroes’ threat values. Each
+                hero gains one resource per round. Dol Guldur captures one hero
+                from the whole table; the other heroes remain available for the
                 rescue.
               </p>
             </section>
             <section className="guide-note">
               <h2>Choose your journey</h2>
               <p>
-                <strong>Normal game:</strong> select any of the three missions
-                for a fresh, standalone adventure.{" "}
-                <strong>Campaign mode:</strong> follow Mirkwood Paths in order.
-                After a victory, select Continue campaign to prepare the next
-                chapter with your earned boons and burdens.
+                <strong>Normal game:</strong> select any of the four quests for
+                a fresh, standalone adventure. <strong>Campaign mode:</strong>{" "}
+                follow Mirkwood Paths in order. After a victory, select Continue
+                campaign to prepare the next chapter with your earned boons and
+                burdens.
               </p>
               <p>
                 The campaign log records fallen heroes, scores, permanent cards,
@@ -2429,7 +2510,9 @@ export default function App() {
               </li>
               <li>
                 <strong>Quest.</strong> Commit characters; their willpower must
-                beat the staging threat. Then an encounter card is revealed.
+                beat the staging threat to place progress. Usually, one
+                encounter card is revealed per player; quest effects can change
+                this.
               </li>
               <li>
                 <strong>Travel & engagement.</strong> Travel to a location to
@@ -2441,8 +2524,8 @@ export default function App() {
                 strike back with ready characters.
               </li>
               <li>
-                <strong>Refresh.</strong> Everyone readies and threat rises by
-                1. At 50 threat you are eliminated.
+                <strong>Refresh.</strong> Your characters ready and each
+                player’s threat rises by 1. At 50 threat you are eliminated.
               </li>
             </ol>
             <p className="tutorial-note">
@@ -2495,8 +2578,8 @@ export default function App() {
                   <small>win rate</small>
                 </div>
                 <div>
-                  <strong>{sum.bestScore}</strong>
-                  <small>best score</small>
+                  <strong>{sum.bestScore ?? "—"}</strong>
+                  <small>best score · lower is better</small>
                 </div>
               </div>
               {records.length === 0 ? (
@@ -2857,7 +2940,7 @@ export default function App() {
               <div className="inspector-action">
                 <p>
                   {playReason(game, inspectedHand) ??
-                    `Available now · cost ${card(inspectedHand.code).cost} resources`}
+                    `Available now · cost ${playCost(game, card(inspectedHand.code))} resources`}
                 </p>
                 <button
                   className="primary"
@@ -2885,6 +2968,7 @@ export default function App() {
               value={selectedDeck}
               onChange={setSelectedDeck}
               label="New adventure fellowship"
+              custom={decks}
               compact
             />
           ) : (
@@ -2895,8 +2979,9 @@ export default function App() {
                 .map((h) => card(h).name)
                 .join(" · ")}
               <br />
-              {count(seats.length, "player")} · {seats.length * 3} heroes · one
-              deck per player.
+              {count(seats.length, "player")} ·{" "}
+              {seats.reduce((n, p) => n + p.heroes.length, 0)} heroes · one deck
+              per player.
             </p>
           )}
           <div className="modal-actions">

@@ -77,9 +77,6 @@ export function createGame(
     easy?: boolean;
   } = {},
 ): GameState {
-  const list = Object.entries(deck).flatMap(
-    ([code, n]) => Array(n).fill(code) as string[],
-  );
   const starter = STARTERS.find((d) => d.id === deckId);
   const original =
     !!starter &&
@@ -89,11 +86,14 @@ export function createGame(
       !!options.campaign ||
       !!options.seats);
   validateDeckList(deck, original);
+  const list = Object.entries(deck).flatMap(
+    ([code, n]) => Array(n).fill(code) as string[],
+  );
   requireRule(
     heroCodes.length >= 1 &&
       heroCodes.length <= 3 &&
       new Set(heroCodes).size === heroCodes.length &&
-      heroCodes.every((c) => card(c).type_code === "hero"),
+      heroCodes.every((c) => SCRIPTED.has(c) && card(c).type_code === "hero"),
     "Choose one to three different heroes.",
   );
   const scenarioId = options.scenarioId ?? "mirkwood";

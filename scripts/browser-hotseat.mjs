@@ -127,7 +127,12 @@ await turn(p);
 await settle(p);
 await p
   .locator(".board-card")
-  .filter({ hasText: "Old Forest Road" })
+  .filter({
+    has: p.getByRole("button", {
+      name: "Inspect Old Forest Road",
+      exact: true,
+    }),
+  })
   .first()
   .getByRole("button", { name: "Travel here" })
   .click();
@@ -276,7 +281,7 @@ for (const width of process.env.DESKTOP_ONLY
   await shot(q, `table-${width}`);
   if (width >= 1100) {
     for (const selector of [
-      ".hand-play",
+      ".hand-art",
       ".turn-panel .turn-actions .primary",
     ]) {
       const rect = await q.locator(selector).first().boundingBox();

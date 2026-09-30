@@ -24,6 +24,7 @@ import {
 import { DeckPicker } from "./deck-picker";
 import { describeDeck } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
+import { expandSeats } from "./setup-decks";
 
 import { availableAbilities } from "../game/engine";
 
@@ -65,9 +66,19 @@ export function FellowshipSetup({
   const unavailable =
     mode === "hotseat"
       ? Object.fromEntries(
-          seats.flatMap((p, i) =>
-            i === active ? [] : [[p.deckId, `Assigned to Player ${i + 1}`]],
-          ),
+          [
+            ...STARTERS.map((d) => d.id),
+            ...decks.map((d) => `custom:${d.id}`),
+          ].flatMap((id) => {
+            const d = describeDeck(id, decks)!;
+            const other = seats.findIndex(
+              (p, i) =>
+                i !== active && p.heroes.some((h) => d.heroes.includes(h)),
+            );
+            return other < 0
+              ? []
+              : [[id, `Shares a hero with Player ${other + 1}`]];
+          }),
         )
       : {};
   return (
@@ -98,7 +109,7 @@ export function FellowshipSetup({
           >
             <Cards size={18} />
             <span>
-              Classic solo<small>One player · three heroes</small>
+              Classic solo<small>One player · one fellowship</small>
             </span>
           </button>
         </div>
@@ -120,12 +131,10 @@ export function FellowshipSetup({
                 key={n}
                 aria-pressed={seats.length === n}
                 aria-label={`${n} ${n === 1 ? "player" : "players"}`}
+                disabled={!expandSeats(seats, n, decks)}
                 onClick={() => {
-                  const next = seats.slice(0, n);
-                  for (const d of STARTERS)
-                    if (next.length < n && !next.some((p) => p.deckId === d.id))
-                      next.push({ heroes: [...d.heroes], deckId: d.id });
-                  setSeats(next);
+                  const next = expandSeats(seats, n, decks);
+                  if (next) setSeats(next);
                 }}
               >
                 {n}
@@ -198,8 +207,8 @@ export function FellowshipSetup({
       <p className="company-note">
         <Check size={15} />
         {mode === "hotseat"
-          ? `${seats.length} ${seats.length === 1 ? "player" : "players"} · ${seats.length * 3} heroes · one deck per player. Each hero can appear only once.`
-          : "One player · three heroes · one deck. Your selected heroes begin in play."}
+          ? `${seats.length} ${seats.length === 1 ? "player" : "players"} · ${seats.reduce((n, p) => n + p.heroes.length, 0)} heroes · one deck per player. Each hero can appear only once.`
+          : `One player · ${describeDeck(selectedDeck, decks)?.heroes.length ?? 3} heroes · one deck. Your selected heroes begin in play.`}
       </p>
     </section>
   );

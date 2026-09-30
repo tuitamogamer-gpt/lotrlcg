@@ -3,6 +3,7 @@ import {
   canFight,
   canPlay,
   characters,
+  hasClue,
   needsTarget,
   playTargets,
   questWill,
@@ -37,6 +38,14 @@ function warnings(s: GameState): string | undefined {
 export function coachTip(s: GameState): CoachTip | null {
   if (s.flow?.pending || s.choice || s.status !== "playing") return null;
   if (s.table?.seats[activeSeat(s)].eliminated) return null;
+  if (
+    s.table &&
+    activeSeat(s) !== s.table.turn &&
+    ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
+      s.phase,
+    )
+  )
+    return null;
   const chars = characters(s);
   const committed = (u: Unit) => u.committed || s.committedIds.includes(u.id);
   const ready = chars.filter((u) => !u.exhausted);
@@ -88,16 +97,27 @@ export function coachTip(s: GameState): CoachTip | null {
           tone: "good",
         });
       }
-      const costs = s.hand.map((u) => Number(card(u.code).cost) || 0);
       return tip({
-        title: s.hand.length ? "Nothing affordable yet" : "Your hand is empty",
+        title: s.hand.length
+          ? "No card plays available now"
+          : "Your hand is empty",
         text: s.hand.length
-          ? `Resources carry over. Your cheapest card costs ${Math.min(...costs)}; each hero gains 1 resource next round.`
+          ? "Cards may need matching resources, an eligible target, or a response trigger. Resources carry over; you can begin the quest when ready."
           : "Begin the quest. You draw a card at the start of every round.",
         tone: "info",
       });
     }
     case "quest": {
+      if (
+        s.scenarioId === "hunt-for-gollum" &&
+        s.stage === 3 &&
+        !s.heroes.some(hasClue)
+      )
+        return tip({
+          title: "A Clue is required to quest",
+          text: "On the Trail allows only a fellowship whose hero holds a Clue to commit characters. This fellowship must commit none; keep its characters ready for combat.",
+          tone: "warn",
+        });
       const will = questWill(s),
         threat = stagingThreat(s);
       const reserve = ready.filter((u) => !committed(u) && canFight(u));
@@ -105,19 +125,22 @@ export function coachTip(s: GameState): CoachTip | null {
       if (will < threat)
         return tip({
           title: `Willpower ${will} is below staging threat ${threat}`,
-          text: `Commit more characters or accept ${threat - will} threat. A revealed card usually adds 1–3 threat before the quest resolves.`,
+          text: `Commit more characters or risk ${threat - will} threat. Revealed encounters and their effects can change these totals before resolution.`,
           tone: "warn",
         });
       if (attackers.length && !reserve.length)
         return tip({
           title: "Keep a defender ready",
-          text: `${will} willpower beats ${threat} threat, but ${list(attackers)} will attack this round. Leave your best defender uncommitted.`,
+          text: `${will} willpower meets the current ${threat} threat, but ${list(attackers)} may attack this round. Leave your best defender uncommitted.`,
           tone: "warn",
         });
       return tip({
-        title: `Willpower ${will} beats threat ${threat}`,
-        text: `About ${will - threat} progress if the reveal is quiet. ${plural(reserve.length, "character")} stay ready for combat.`,
-        tone: "good",
+        title:
+          will === threat
+            ? `Willpower ${will} matches threat ${threat}`
+            : `Willpower ${will} beats threat ${threat}`,
+        text: `${will - threat} potential progress before encounter reveals. ${plural(reserve.length, "character")} ${reserve.length === 1 ? "stays" : "stay"} ready for combat.`,
+        tone: will === threat ? "info" : "good",
       });
     }
     case "staging":
@@ -141,16 +164,19 @@ export function coachTip(s: GameState): CoachTip | null {
       if (!locations.length)
         return tip({
           title: "No location to travel to",
-          text: "Continue. Quest progress goes straight to the quest card this round.",
+          text: "Continue to engagement. With no active location, future quest progress goes straight to the quest card.",
           tone: "info",
         });
-      const best = [...locations].sort(
-        (a, b) => threatOf(s, b) - threatOf(s, a),
-      )[0];
+      const mandatory = locations.find((u) => u.code === "01088");
+      const best =
+        mandatory ??
+        [...locations].sort((a, b) => threatOf(s, b) - threatOf(s, a))[0];
       return tip({
         title: `Travel to ${nameOf(best)} to remove ${threatOf(s, best)} threat`,
-        text: `An active location stops adding threat, but future progress explores it first (${card(best.code).quest ?? 0} needed). Read its travel cost.`,
-        tone: "good",
+        text: mandatory
+          ? `You must travel to The East Bight while it is in staging and there is no active location. Future quest progress explores it first (${card(best.code).quest ?? 0} needed).`
+          : `An active location stops adding threat, but future progress explores it first (${card(best.code).quest ?? 0} needed). Read its travel cost.`,
+        tone: mandatory ? "warn" : "good",
       });
     }
     case "encounter": {
@@ -169,8 +195,10 @@ export function coachTip(s: GameState): CoachTip | null {
         });
       }
       return tip({
-        title: "No enemies will engage",
-        text: "Continue to combat. Nothing in staging can reach you this round.",
+        title: "No new automatic engagements",
+        text: s.engaged.length
+          ? "Continue to combat. Already engaged enemies still attack, so keep a defender ready."
+          : "Continue to combat. No staging enemy engages automatically at your current threat.",
         tone: "good",
       });
     }

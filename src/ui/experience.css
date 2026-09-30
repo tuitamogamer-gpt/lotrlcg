@@ -2496,6 +2496,12 @@ kbd {
 }
 
 /* Deck builder */
+.deck-builder .page-heading > div {
+  min-width: 0;
+}
+.deck-builder .page-heading > div:first-child {
+  flex: 1 1 520px;
+}
 .deck-builder .deck-name-field {
   display: flex;
   flex-direction: column;
@@ -2513,11 +2519,16 @@ kbd {
   font-size: 28px;
   padding: 6px 10px;
   max-width: 520px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 .deck-builder .builder-actions {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
 }
 .import-panel {
   margin: 8px 0 24px;
@@ -2559,7 +2570,7 @@ kbd {
 }
 .deck-shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
   gap: 16px;
 }
 .deck-shelf-item {
@@ -2570,6 +2581,11 @@ kbd {
   border: 1px solid #846b3644;
   border-radius: 10px;
   align-content: start;
+  min-width: 0;
+}
+.deck-shelf-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .deck-shelf-heroes {
   display: flex;

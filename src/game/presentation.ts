@@ -153,7 +153,6 @@ const ENCOUNTER_EFFECTS = new Set([
   "venom",
   "bats",
   "jailor",
-  "rainOfArrows",
   "findSpider",
   "fetchSpider",
   "ensureTroll",
@@ -172,10 +171,15 @@ const ENCOUNTER_EFFECTS = new Set([
 /** Player-driven combat results that need no confirmation when only hidden information pauses. */
 const OWN_ATTACKS = new Set(["resolvePlayerAttack", "quickAttack"]);
 const isLoss = (c: ResolutionStep["changes"][number]) => {
-  if (c.label.endsWith("· Damage"))
+  const playerCard =
+    c.code &&
+    ["hero", "ally", "attachment", "objective"].includes(
+      card(c.code).type_code,
+    );
+  if (c.label.endsWith("· Damage") && playerCard)
     return Number(c.after.split(" / ")[0]) > Number(c.before.split(" / ")[0]);
   if (c.label.endsWith("· Threat")) return Number(c.after) > Number(c.before);
-  return c.after === "Left play";
+  return !!playerCard && c.after === "Left play";
 };
 /**
  * Decide whether a recorded event should stop the table. Every event is still

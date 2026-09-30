@@ -323,6 +323,11 @@ export function eligiblePayers(s: GameState, c: Card) {
   );
 }
 
+/** Response offers must use the same sphere and active-location cost as payment. */
+export const canPay = (s: GameState, c: Card) =>
+  eligiblePayers(s, c).length > 0 &&
+  resources(s, c.sphere_code) >= playCost(s, c);
+
 export function pay(s: GameState, c: Card, payment?: Record<string, number>) {
   let cost = playCost(s, c);
   const payers = eligiblePayers(s, c);
