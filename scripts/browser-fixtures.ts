@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { STARTERS } from "../src/game/cards";
-import { createGame, applyAction } from "../src/game/engine";
+import { createGame } from "../src/game/engine";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 import type { Unit } from "../src/game/types";
 const unit = (code: string): Unit => ({
   id: "fixture-card",

@@ -1,5 +1,15 @@
+import { consideredEngaged } from "./considered-engagement";
+import { amonPlayerCanAttackEnemy } from "./amon-din-player-cards";
+import { druadanPlayerPhaseStarted } from "./druadan-player-cards";
+import { longDarkCanAttack } from "./long-dark";
+import { canFight } from "./core";
+import { redhornCanDefend } from "./redhorn-gate";
+import { rohanStagingAttack } from "./rohan-player-cards";
+import { khazadCanAttack, khazadCanRangedAttack, KHAZAD } from "./khazad-dum";
 import type { Attachment, Effect, GameState, PlayerSeat, Unit } from "./types";
 import { card } from "./cards";
+import { effectiveKeyword } from "./expansion-passives";
+import { rhosgobelCanFight } from "./rhosgobel";
 
 // The top-level player fields are the active seat's projection. This keeps
 // existing single-player saves and card scripts compatible with the shared table.
@@ -7,6 +17,7 @@ export const PLAYER_FIELDS = [
   "deckId",
   "customDeck",
   "startingHeroes",
+  "startingThreat",
   "threat",
   "heroes",
   "allies",
@@ -85,6 +96,15 @@ export const allHeroes = (s: GameState) =>
   allCharacters(s).filter((u) => card(u.code).type_code === "hero");
 export const allEngaged = (s: GameState) =>
   seatIndices(s).flatMap((i) => seatView(s, i).engaged);
+export const allActiveLocations = (s: GameState) => [
+  ...(s.activeLocation ? [s.activeLocation] : []),
+  ...(s.extraActiveLocations ?? []),
+];
+export function removeActiveLocation(s: GameState, id: string) {
+  const remaining = allActiveLocations(s).filter((u) => u.id !== id);
+  s.activeLocation = remaining.shift() ?? null;
+  s.extraActiveLocations = remaining;
+}
 export function ownerOf(s: GameState, u: Unit) {
   return s.table
     ? (seatIndices(s).find((i) => {
@@ -99,10 +119,11 @@ export function ownerOf(s: GameState, u: Unit) {
 }
 /** Player attachments follow their host's controller; ownership never changes. */
 export function attachmentController(s: GameState, host: Unit, a: Attachment) {
+  if (a.code === KHAZAD.fear) return ownerOf(s, host);
   return card(a.code).sphere_code === "encounter" &&
     card(a.code).type_code !== "objective"
     ? null
-    : ["hero", "ally"].includes(card(host.code).type_code)
+    : ["hero", "ally", "objective-ally"].includes(card(host.code).type_code)
       ? ownerOf(s, host)
       : (a.owner ?? activeSeat(s));
 }
@@ -116,7 +137,9 @@ export function forOwner(s: GameState, owner: number, run: () => void) {
 export const scopedEffect = (s: GameState, e: Effect): Effect =>
   s.table && e.player === undefined ? { ...e, player: s.table.active } : e;
 export function startPhase(s: GameState, phase: GameState["phase"]) {
+  const previous = s.phase;
   s.phase = phase;
+  druadanPlayerPhaseStarted(s, previous, phase);
   if (s.table) {
     s.table.passed = [];
     s.table.turn = playerOrder(s)[0] ?? 0;
@@ -138,22 +161,35 @@ export const seatName = (s: GameState, i: number) =>
     .startingHeroes.map((c) => card(c).name)
     .join(" & ");
 export const hasKeyword = (u: Unit, keyword: string) =>
-  (card(u.code).text ?? "").includes(keyword);
-export const defendersFor = (s: GameState) =>
+  effectiveKeyword(u, keyword);
+export const defendersFor = (s: GameState, enemy?: Unit) =>
   allCharacters(s).filter(
     (u) =>
       !u.exhausted &&
+      canFight(u) &&
+      (!enemy || (rhosgobelCanFight(enemy, u) && redhornCanDefend(enemy, u))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
-      !u.attachments.some((a) => a.code === "01108"),
+      !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );
 export const attackersFor = (s: GameState, enemy: Unit) =>
   allCharacters(s).filter(
     (u) =>
       !u.exhausted &&
-      !u.attachments.some((a) => a.code === "01108") &&
-      (s.staging.some((e) => e.id === enemy.id)
-        ? ownerOf(s, u) === activeSeat(s) && u.code === "01009"
-        : (ownerOf(s, enemy) === activeSeat(s) &&
-            ownerOf(s, u) === activeSeat(s)) ||
-          hasKeyword(u, "Ranged")),
+      longDarkCanAttack(s, enemy) &&
+      canFight(u) &&
+      khazadCanAttack(u) &&
+      khazadCanRangedAttack(s, enemy, u, ownerOf(s, enemy) !== ownerOf(s, u)) &&
+      rhosgobelCanFight(enemy, u) &&
+      !u.attachments.some((a) => !a.blanked && a.code === "01108") &&
+      (amonPlayerCanAttackEnemy(s, enemy, u) ||
+        (ownerOf(s, u) === activeSeat(s) &&
+          (consideredEngaged(s, enemy) ||
+            (s.staging.some((e) => e.id === enemy.id)
+              ? u.code === "01009" ||
+                rohanStagingAttack(s, u) ||
+                (enemy.code === KHAZAD.archer && hasKeyword(u, "Ranged"))
+              : ownerOf(s, enemy) === activeSeat(s)))) ||
+        ((!s.staging.some((e) => e.id === enemy.id) ||
+          playerOrder(s).some((p) => consideredEngaged(s, enemy, p))) &&
+          hasKeyword(u, "Ranged"))),
   );

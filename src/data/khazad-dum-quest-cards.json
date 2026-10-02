@@ -1,0 +1,537 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9002",
+    "name": "A Presence in the Dark",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Prepare the quest deck. Add The Nameless Fear to the staging area. Remove all copies of A Foe Beyond from the encounter deck. Then, shuffle 1 copy of A Foe Beyond per player back into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 72,
+    "quantity": 1,
+    "cost": 1,
+    "victory": 2,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "A Presence in the Dark",
+    "back_text": "When Revealed: Reveal 1 encounter card per player, and add it to the staging area. Then, add A Presence in the Dark to your victory display.",
+    "back_type_code": "quest",
+    "back_victory": 2,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9002.B.jpg",
+    "printed_stats": {
+      "cost": "1",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9004",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9004",
+    "name": "A Way Up",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 69,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Into the Pit",
+    "side": "A",
+    "back_name": "A Way Up",
+    "back_text": "Heroes do not collect resources during the resource phase.  If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9004.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9004.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9004",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9004.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9028",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9028",
+    "name": "Entering the Mines",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for East-gate and Cave Torch. Put East-gate into play as the active location, and have the first player attach Cave Torch to a hero of his choice. Set First Hall and Bridge of Khazad-dum aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Into the Pit",
+    "side": "A",
+    "back_name": "Entering the Mines",
+    "back_text": "When Revealed: Reveal 1 encounter card per player, and add it to the staging area.  Players cannot advance to the next stage of the scenario unless Bridge of Khazad-dum is in their victory display.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9028.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9028.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9028",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9028.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9036",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9036",
+    "name": "Goblin Patrol",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 64,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Into the Pit",
+    "side": "A",
+    "back_name": "Goblin Patrol",
+    "back_text": "When Revealed: Each player must search the encounter deck and discard pile for 1 enemy of his choice, and add it to the staging area. One choice must be Patrol Leader, if able.  Forced: After an enemy is revealed from the encounter deck, discard it instead of adding it to the staging area.  If there are no enemies in play, immediately advance to the next stage of the scenario. (Players can also advance by placing 11 progress tokens on Goblin Patrol.)",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9036.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9036.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9036",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9036.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9056",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9056",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 65,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 2,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "A Wrong Turn",
+    "back_text": "When Revealed: Reveal 1 encounter card per player, and add it to the staging area.  Players may bypass this quest card at the end of the combat phase.",
+    "back_type_code": "quest",
+    "back_quest": 1,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9056.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9056.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9056",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9056.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9058",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9058",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 70,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Blocked by Shadow",
+    "back_text": "When Revealed: The first player chooses 1 of the following: * Each player discards 1 card from the top of the encounter deck. If the card is a treachery card, the discarding player is eliminated from the game. * Reveals the next quest card, putting Blocked by Shadow on the bottom of the quest deck.  Players may bypass this quest card at the end of the combat phase. If the players defeat this stage, they escape and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9058.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9058.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9058",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9058.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9060",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9060",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 71,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Escape from Darkness",
+    "back_text": "Abandoned Tools gains: \"Refresh Action: Exhaust attached hero to put a progress token on Escape from Darkness.\"  Players may bypass this quest card at the end of the combat phase.  Progress tokens cannot be placed on Escape from Darkness except by Abandoned Tools. If the players defeat this stage, they escape and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9060.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9060.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9060",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9060.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9062",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9062",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 75,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 2,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Hasty Council",
+    "back_text": "When Revealed: Shuffle all copies of A Foe Beyond from the encounter discard pile back into the encounter deck. Reveal the top 2 cards of the quest deck. Choose 1 to become the active quest (flipped to side 2B) and put the other on the bottom of the quest deck. Then, add Hasty Council to your victory display.",
+    "back_type_code": "quest",
+    "back_victory": 2,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9062.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9062.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9062",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9062.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9064",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9064",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 76,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Heading Down",
+    "back_text": "Forced: If Heading Up is in the player's victory display at the end of any quest phase, shuffle Heading Up back into the quest deck.  Players may bypass this quest card at the end of the combat phase.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_victory": 1,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9064.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9064.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9064",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9064.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9066",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9066",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 74,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Heading Up",
+    "back_text": "Forced: If Heading Down is in the player's victory display at the end of any quest phase, shuffle Heading Down back into the quest deck.  Players may bypass this quest card at the end of the combat phase.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_victory": 1,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9066.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9066.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9066",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9066.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9068",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9068",
+    "name": "Search for an Exit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Search for an Exit is the active quest card, only flip it to side 2B at the beginning of the staging step.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 73,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Flight from Moria",
+    "side": "A",
+    "back_name": "Narrow Paths",
+    "back_text": "When Revealed: Each player chooses 1 questing character he controls. Each questing character not chosen does not count its [willpower] until the end of the turn.  Forced: After placing the 1st progress token on Narrow Paths, search the encounter deck and discard pile for Abandoned Tools and add it to the staging area, if able.  Players may bypass this quest card at the end of the combat phase.",
+    "back_type_code": "quest",
+    "back_quest": 3,
+    "back_victory": 1,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9068.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9068.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9068",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9068.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9070",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9070",
+    "name": "Search for the Chamber",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for Book of Mazarbul, and have the first player attach it to a hero of his choice. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 67,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Seventh Level",
+    "side": "A",
+    "back_name": "Search for the Chamber",
+    "back_text": "When Revealed: Reveal 1 encounter card per player, and add it to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9070.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9070.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9070",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9070.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801207c9077",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801207c9077",
+    "name": "The Fate of Balin",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "KD",
+    "pack_name": "Khazad-dûm",
+    "position": 68,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Seventh Level",
+    "side": "A",
+    "back_name": "The Fate of Balin",
+    "back_text": "When Revealed: Remove Book of Mazarbul from the game.  Forced: At the end of the staging step, reveal the top X cards of the encounter deck, adding all enemies to the staging area. Discard the other revealed cards without resolving them. X is the number of players.  If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 17,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9077.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9077.jpg",
+    "packs": [
+      {
+        "pack_code": "KD",
+        "pack_name": "Khazad-dûm",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801207c9077",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801207c9077.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

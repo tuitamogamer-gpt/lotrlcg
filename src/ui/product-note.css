@@ -1,0 +1,150 @@
+.card-product-note {
+  display: block;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #655e4e;
+  overflow-wrap: anywhere;
+}
+.deck-product-note {
+  display: grid;
+  gap: 4px;
+  padding: 9px 0;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #655e4e;
+  overflow-wrap: anywhere;
+}
+.deck-product-note > strong {
+  font-weight: 600;
+  color: #4b503d;
+}
+.deck-product-note > small {
+  font-size: inherit;
+}
+.deck-product-note.is-compact {
+  font-size: 12px;
+}
+.deck-choice .deck-product-note {
+  border-top: 1px solid #bdb19366;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.deck-hero-triptych .card-product-note {
+  margin-top: 4px;
+  font-size: 11px;
+}
+.builder-scope-note {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border-left: 3px solid #59694b;
+  background: #7480510e;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.builder-scope-note > strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.builder-hero > button:first-child > span,
+.builder-card-info > span {
+  min-width: 0;
+}
+.builder-card-info .card-product-note,
+.builder-hero .card-product-note {
+  margin-top: 3px;
+  opacity: 1;
+}
+.builder-summary > .deck-product-note {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #846b3644;
+}
+.deck-shelf-body > .deck-product-note {
+  padding-bottom: 0;
+}
+.support-summary {
+  display: grid;
+  gap: 6px;
+  padding: 13px 16px;
+  margin: 0 0 20px;
+  background: #7480510e;
+  border-left: 3px solid #59694b;
+  color: #4b503d;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.support-summary > strong {
+  font-weight: 600;
+}
+.support-summary summary {
+  cursor: pointer;
+}
+.support-summary details p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.support-summary.is-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+.quest-selection-note {
+  display: none;
+}
+@media (max-width: 1099px) {
+  .redbook .gameboard .quest-selection-note {
+    display: block;
+    color: #e2dcb5;
+    font-size: var(--text-small);
+    line-height: 1.45;
+    margin: 0 12px 12px;
+  }
+  .mobile-action-bar .mandatory-quest-note {
+    display: none;
+  }
+  .mobile-action-bar .escape-turn-actions p {
+    display: none;
+  }
+}
+@media (max-width: 360px) {
+  .redbook .deck-picker {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.escape-test-summary {
+  padding: 16px 20px;
+  margin: 0 0 14px;
+  border: 1px solid #bba873;
+  background: #ece4cb;
+  color: #353d2c;
+  display: grid;
+  gap: 10px;
+}
+.escape-test-summary > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+}
+.escape-test-summary strong {
+  font-family: var(--serif);
+}
+.escape-participants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.escape-participants > span {
+  display: flex;
+  flex-direction: column;
+}
+.escape-test-summary p {
+  margin: 0;
+}
+@media (max-width: 600px) {
+  .escape-test-summary {
+    padding: 12px 14px;
+  }
+}

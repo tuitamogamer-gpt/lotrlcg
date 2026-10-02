@@ -329,7 +329,8 @@
 }
 
 /* Attachments peek from behind their host. Each remains independently inspectable. */
-.redbook .gameboard .character-card.has-attachments {
+.redbook .gameboard .character-card.has-attachments,
+.redbook .gameboard .board-card.has-attachments {
   margin-right: 30px;
 }
 .table-attachments {
@@ -1774,4 +1775,105 @@
     line-height: 1.3;
     max-width: var(--table-card-width, 160px);
   }
+}
+
+.multiple-active-locations {
+  display: block;
+}
+.active-locations-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.active-location-entry {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  color: #b3bca2;
+  font-size: var(--text-small);
+}
+.active-location-entry .location-card {
+  width: min(95px, 85%);
+  margin: 0 auto 5px;
+}
+.active-location-entry > strong {
+  color: #e7dfbf;
+  font-size: inherit;
+}
+.table-attachments > .facedown-attachment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 44px;
+  height: 72px;
+  flex-shrink: 0;
+  margin-bottom: -45px;
+  border-radius: 3px;
+}
+.facedown-attachment .table-card-back {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 0.715;
+}
+.facedown-attachment > span:last-child {
+  display: none;
+}
+
+.table-attachments > button .table-token {
+  position: absolute;
+  bottom: 3px;
+  right: -7px;
+  z-index: 3;
+  min-width: 20px;
+  height: 20px;
+}
+.redbook .gameboard .hand-ability {
+  width: 100%;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.companion-abilities {
+  margin-top: 6px;
+}
+.companion-abilities button {
+  width: 100%;
+  padding: 5px 7px;
+  font-size: 11px;
+  line-height: 1.25;
+  border: 1px solid #98835c;
+  border-radius: 4px;
+  background: #eee2c7;
+  color: #2d3328;
+}
+.companion-abilities button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.journey-location-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+.journey-location-actions button {
+  padding: 6px 7px;
+  border: 1px solid #7f795e;
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.3;
+  background: #efe3c8;
+  color: #303728;
+}
+.journey-location-actions:empty {
+  display: none;
+}
+.journey-location-actions button:disabled {
+  opacity: 0.55;
+  cursor: default;
 }

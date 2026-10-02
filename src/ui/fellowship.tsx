@@ -1,3 +1,4 @@
+import { engagedEnemies } from "../game/considered-engagement";
 import { useEffect, useRef, useState } from "react";
 import {
   Crown,
@@ -296,9 +297,9 @@ export function FellowshipSeats({
                     <Coins size={13} />{" "}
                     {p.heroes.reduce((n, h) => n + h.resources, 0)}
                   </span>
-                  {p.engaged.length > 0 && (
+                  {engagedEnemies(s, i).length > 0 && (
                     <span title="Engaged enemies">
-                      <Sword size={13} /> {p.engaged.length}
+                      <Sword size={13} /> {engagedEnemies(s, i).length}
                     </span>
                   )}
                 </div>

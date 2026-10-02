@@ -1,0 +1,521 @@
+[
+  {
+    "code": "01119",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9119",
+    "name": "Flies and Spiders",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for 1 copy of the Forest Spider and 1 copy of the Old Forest Road, and add them to the staging area. Then, shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 119,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Passage Through Mirkwood",
+    "side": "A",
+    "back_name": "Flies and Spiders",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9119.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9119.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 119,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9119",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9119.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01120",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9121",
+    "name": "A Fork in the Road",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 120,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Passage Through Mirkwood",
+    "side": "A",
+    "back_name": "A Fork in the Road",
+    "back_text": "Forced: When you defeat this stage, proceed to one of the 2 \"A Chosen Path\" stages, at random.",
+    "back_type_code": "quest",
+    "back_quest": 2,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9121.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9121.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 120,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9121",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9121.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01121",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9123",
+    "name": "A Chosen Path",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 121,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Passage Through Mirkwood",
+    "side": "A",
+    "back_name": "\"Don't Leave the Path!\"",
+    "back_text": "When Revealed: Each player must search the encounter deck and discard pile for 1 Spider card of his choice, and add it to the staging area.  The players must find and defeat Ungoliant's Spawn to win this game.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9123.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9123.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 121,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9123",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9123.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01122",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9125",
+    "name": "A Chosen Path",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 122,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Passage Through Mirkwood",
+    "side": "A",
+    "back_name": "Beorn's Path",
+    "back_text": "Players cannot defeat this stage while Ungoliant's Spawn is in play. If players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9125.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9125.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9125",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9125.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01123",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9127",
+    "name": "The Necromancer's Tower",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for the 3 objective cards, reveal and place them in the staging area. Also, place the Nazgûl of Dol Guldur face up but out of play, alongside the quest deck. Then, shuffle the encounter deck, and attach 1 encounter to each objective card.",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 123,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Escape from Dol Guldur",
+    "side": "A",
+    "back_name": "The Necromancer's Tower",
+    "back_text": "When Revealed: Randomly select 1 hero card (among all the heroes controlled by the players) and turn it facedown. That hero is now considered a \"prisoner\", cannot be used, cannot be damaged, and does not collect resources, until it is \"rescued\" (as instructed by card effects) later in this quest.  The players, as a group, cannot play more than 1 ally card each round.  Players cannot advance to the next stage of this quest unless they have at least 1 objective card.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9127.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9127.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 123,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9127",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9127.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01124",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9129",
+    "name": "Through the Caverns",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 124,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Escape from Dol Guldur",
+    "side": "A",
+    "back_name": "Through the Caverns",
+    "back_text": "Response: After placing any number of progress tokens on this card, flip the \"prisoner\" hero card face-up, and place 1 damage token on it. This hero has been \"rescued\", and may now be used by its controller.  The players, as a group, cannot play more than 1 ally card each round.  Players cannot advance to the next stage of this quest unless they have rescued the prisoner and have all 3 \"Escape from Dol Guldur\" objective cards.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9129.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9129.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 124,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9129",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9129.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01125",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9131",
+    "name": "Out of the Dungeons",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 125,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Escape from Dol Guldur",
+    "side": "A",
+    "back_name": "Out of the Dungeons",
+    "back_text": "Forced: At the beginning of each quest phase, each player places the top card of his deck, face down in front of him, as if it just engaged him from the staging area. These cards are called \"Orc Guard\", and act as enemies with: 1 hit point, 1 [attack], and 1 [defense].  Players cannot defeat this stage while Nazgûl of Dol Guldur is in play. If this stage is defeated and Nazgûl of Dol Guldur is not in play, the players have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9131.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9131.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9131",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9131.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01126",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9133",
+    "name": "To the River...",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player reveals 1 card from the top of the encounter deck, and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 126,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Journey Down the Anduin",
+    "side": "A",
+    "back_name": "To the River...",
+    "back_text": "When Revealed: Search the encounter deck for 1 Hill Troll (if one is not already in play), and place it in the staging area. Shuffle the encounter deck.  Players cannot defeat this stage while any Hill Troll cards are in play.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9133.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9133.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 126,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9133",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9133.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01127",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9135",
+    "name": "Anduin Passage",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 127,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Journey Down the Anduin",
+    "side": "A",
+    "back_name": "Anduin Passage",
+    "back_text": "Reveal 1 additional card from the encounter deck each quest phase. Do not make engagement checks during the encounter phase. (Each player may still optionally engage 1 enemy each encounter phase.)",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9135.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9135.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 127,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9135",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9135.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "01128",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801200c9137",
+    "name": "Ambush on the Shore",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "Core",
+    "pack_name": "Core Set",
+    "position": 128,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Journey Down the Anduin",
+    "side": "A",
+    "back_name": "Ambush on the Shore",
+    "back_text": "When Revealed: Reveal 2 encounter cards per player, and add them to the staging area.  Skip the staging step of the quest phase for the remainder of the game.  Once there are no enemies in play, the players have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9137.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9137.jpg",
+    "packs": [
+      {
+        "pack_code": "Core",
+        "pack_name": "Core Set",
+        "position": 128,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801200c9137",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801200c9137.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "02011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801201c9022",
+    "name": "The Hunt Begins",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Reveal 1 card per player from the encounter deck, and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "HfG",
+    "pack_name": "The Hunt for Gollum",
+    "position": 11,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Hunt for Gollum",
+    "side": "A",
+    "back_name": "The Hunt Begins",
+    "back_text": "Forced: After the players quest successfully, the first player looks at the top 3 cards of the encounter deck. Reveal and add 1 of those cards to the staging area, and discard the other 2 cards.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9022.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9022.jpg",
+    "packs": [
+      {
+        "pack_code": "HfG",
+        "pack_name": "The Hunt for Gollum",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801201c9022",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9022.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "02012",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801201c9024",
+    "name": "A New Terror Abroad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HfG",
+    "pack_name": "The Hunt for Gollum",
+    "position": 12,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Hunt for Gollum",
+    "side": "A",
+    "back_name": "A New Terror Abroad",
+    "back_text": "Forced: At the beginning of the quest phase, the first player looks at the top 2 cards of the encounter deck. Reveal and add 1 of those cards to the staging area, and discard the other.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9024.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "HfG",
+        "pack_name": "The Hunt for Gollum",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801201c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "02013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801201c9026",
+    "name": "On the Trail",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HfG",
+    "pack_name": "The Hunt for Gollum",
+    "position": 13,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Hunt for Gollum",
+    "side": "A",
+    "back_name": "On the Trail",
+    "back_text": "Any player who does not control a hero with at least 1 Clue objective attached cannot commit characters to this quest. If there are ever no heroes with Clue objectives attached in play, reset the quest deck to stage 2B.  If the players defeat this stage, the players have once again found a true sign of Gollum's passing, and won the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9026.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9026.jpg",
+    "packs": [
+      {
+        "pack_code": "HfG",
+        "pack_name": "The Hunt for Gollum",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801201c9026",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801201c9026.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

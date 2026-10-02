@@ -1,0 +1,33 @@
+# The Watcher in the Water rules support
+
+The original scenario includes twelve encounter designs and two double-sided quests, with the shared Misty Mountains set. Normal and easy recipes contain 45 and 35 physical encounter cards respectively; setting aside The Watcher and Doors of Durin leaves 43 and 33 in the initial encounter deck. Nightmare is reference content.
+
+## Sources
+
+- [FFG original rulesheet](https://images-cdn.fantasyflightgames.com/ffg_content/lotr-lcg/support/rulesheets/The_Watcher_in_the_Water_rulesheet.pdf): difficulty five, encounter-set composition, set-aside cards, Doors cannot be explored through progress, and Regenerate immediately after passing the first-player token before refresh actions.
+- [FFG Khazad-dûm insert](https://images-cdn.fantasyflightgames.com/filer_public/de/40/de405784-33a0-4ce4-bff8-e281a3a99fc8/khazad_dum_rules.pdf): any player may trigger an encounter card's action, subject to its normal restrictions. This permits a different fellowship to rescue a hero with Wrapped! using its own eligible hero.
+- [FFG FAQ 1.9](https://images-cdn.fantasyflightgames.com/filer_public/1d/bb/1dbb319c-6b1e-466e-9177-75a5857b5cfa/lotr_faq_19_printer_friendly.pdf): Watcher's restriction only forbids optional engagement; card-effect and automatic engagement remain legal. Sections1.06 and1.38 distinguish encounter attachment control from player attachments. Forced timing precedes optional responses. Per-card round limits apply to the card rather than independently to each player.
+- [FFG Rules Reference](https://images-cdn.fantasyflightgames.com/filer_public/90/19/90191e4e-a341-4379-b398-5963b7a87ebf/mec01_online_only_rules_reference_for_website.pdf): actual exhaustion/readying, attachment blanking, costs, immediate exploration, player-attack declaration and completion, and the dependency of Then clauses on successful preceding effects.
+- [FFG Easy Mode](https://www.fantasyflightgames.com/ffg_content/lotr-lcg/support/easy-mode/LOTR_Easy_Mode.pdf): original recipe quantities, including the shared set. Imported canonical printed definitions retain the exact source card codes and both quest faces.
+
+## Implemented rules
+
+Setup reveals complete encounter cards until the threat of cards in staging reaches twice the player count. Quest-wide threat modifiers are not card threat. Stage two places the set-aside Watcher in staging and Doors active, moves previous active locations to staging, and shuffles only discarded Tentacle enemies back into the encounter deck. Pending forced effects and responses finish before stage advancement.
+
+Doors redirects every attempted progress placement onto itself to the current quest. It remains in play at its printed zero quest points. Its once-per-round action lets each player explicitly discard any number of cards, including zero, before discarding one encounter card. Title initials include articles and use the printed English titles. The discarded encounter is not revealed, so its keywords and When Revealed effects do not resolve. A matching title moves Doors to the victory display with three points. The alternative victory route destroys The Watcher; both routes still require five stage-two progress.
+
+Perilous Swamp tracks actual tokens placed each round, including placements while blanked. It accepts at most one while its text is active. An incomplete active Swamp continues buffering excess quest progress; multiple active locations permit first-player allocation without bypassing this buffer. The placement ledger resets at the round boundary and survives saves.
+
+Grasping and Thrashing Tentacle discard tests precede optional attacker-declaration and exhaustion responses. Either shadow text or a Tentacle enemy satisfies the test. A converted Grasping card keeps its physical identity as an attachment and sets the selected attacker's attack and defense to zero after modifiers. Its old shadows and attachments are discarded. Thrashing redirects the full calculated attack damage, ignoring the chosen character's defense, to a character controlled by any attacking player. It does not deal enemy damage or award enemy-kill rewards. Striking tests before the actual defender declaration; success forces an undefended attack without exhausting a previously supplied defender.
+
+Wrapped! only attaches to a first-player hero without another copy, prevents actual exhaustion and readying, and discards that hero at round end. It does not destroy the hero or trigger destruction responses. Its combat rescue pays by exhausting an owned hero with no unblanked Tentacle attachment. Amon Lhaw blanking suppresses Wrapped and Grasping text but preserves their physical attachments and titles. Independent player attachments may still act if their costs do not require exhausting the wrapped hero.
+
+Stagnant Creek puts a discarded Tentacle enemy into staging, rather than revealing it, before raising each player's threat. Ill Purpose completes all staging-enemy engagements before its Then threat calculation and counts only remaining staging cards. Stair Falls pays its first-player exhaustion costs before travel; Makeshift Passage's after-travel progress bypasses the active buffer. The Watcher regenerates while in play and deals its end-combat damage only while in staging.
+
+## Verification and interpretation
+
+The focused suite has 48 tests covering exact recipes for one to four players in normal/easy mode, printed abilities and shadows, multiplayer choices, both victory routes, blanking, mandatory attack completion, and persisted decisions. Complete ordinary, guided, hidden and decisions-mode simulations pass with all four Core starters; the campaign-only case is skipped because campaign support covers Core chapters. Type checking passes. These results describe local validation and imply no deployment.
+
+`node --import tsx scripts/browser-watcher-water.mjs` passes at 1280, 390 and 320 pixels with no page or console errors. It exercises the active Doors action, physical hand discard, a matching-letter victory with save/reload, another fellowship's hero rescuing Wrapped and the printed stage-two reverse. Screenshots are retained in `output/watcher-water`.
+
+There is no Grasping-specific published ruling about after-attack participation in the consulted primary sources. The implementation follows Rules Reference6.8b/6.8.4: the already-declared attackers participated and the attack still ends after the target becomes an attachment. Háma's declaration response remains before completion; Vassal and Trollshaw Scout resolve their after-attack obligations. There is no enemy damage, enemy destruction reward, Heavy Stroke or Firefoot excess damage. Dedicated tests retain this interpretation explicitly.

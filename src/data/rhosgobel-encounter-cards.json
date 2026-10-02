@@ -1,0 +1,331 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9011",
+    "name": "Festering Wounds",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 2 damage to each wounded character.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 69,
+    "quantity": 2,
+    "shadow": "Shadow: Deal 1 damage to each wounded character. (2 damage instead if this attack is undefended.)",
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 69,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9012",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9012",
+    "name": "Athelas",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Item.",
+    "text": "Guarded.\nAction: Exhaust a hero to claim this objective if it has no encounters attached. Then, attach Athelas to that hero.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 63,
+    "quantity": 4,
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9012.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 63,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9012",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9012.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9013",
+    "name": "Black Forest Bats",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Only Eagle characters or characters with ranged can attack or defend against Black Forest Bats.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 71,
+    "quantity": 5,
+    "threat": 1,
+    "attack": 1,
+    "defense": 0,
+    "health": 2,
+    "engagement": 26,
+    "shadow": "Shadow: If this attack is undefended, the damage must be placed on Wilyador.",
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "0",
+      "health": "2",
+      "engagement": "26"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 71,
+        "quantity": 5,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9014",
+    "name": "Exhaustion",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 2 damage to each exhausted character.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 67,
+    "quantity": 4,
+    "shadow": "Shadow: Deal 1 damage to each exhausted character.",
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 67,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9015",
+    "name": "Forest Grove",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Response: After the players explore Forest Grove, search the encounter deck and discard pile for 1 Athelas objective, and add it to the staging area. Then, shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 66,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 66,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9016",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9016",
+    "name": "Mirkwood Flock",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Only Eagle characters or characters with ranged can attack or defend against Mirkwood Flock.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 70,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 32,
+    "shadow": "Shadow: If this attack is undefended, the damage must be placed on Wilyador.",
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "32"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9016.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 70,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9016",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9016.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9017",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9017",
+    "name": "Rhosgobel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "X is the number of players in the game.  While Rhosgobel is in the staging area, Wilyador cannot be healed.  Travel: Players must complete stage one of this quest before they can travel to Rhosgobel.",
+    "is_unique": true,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 65,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9017.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9017",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9017.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9018",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9018",
+    "name": "Swarming Insects",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each character without any attachments.",
+    "is_unique": false,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 68,
+    "quantity": 4,
+    "shadow": "Shadow: If a character (including Wilyador) has more damage than each other character, deal 3 additional damage to that character.",
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9018.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 68,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9018",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9018.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801203c9019",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801203c9019",
+    "name": "Wilyador",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Creature. Eagle.",
+    "text": "No attachments. The first player gains control of Wilyador, as an ally.  Forced: At the end of each round, Wilyador suffers 2 damage. Wilyador cannot be healed of more than 5 wounds by a single effect. If Wilyador leaves play, the players have lost the game.",
+    "is_unique": true,
+    "pack_code": "JtR",
+    "pack_name": "A Journey to Rhosgobel",
+    "position": 64,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 20,
+    "encounter_set": "A Journey to Rhosgobel",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9019.jpg",
+    "packs": [
+      {
+        "pack_code": "JtR",
+        "pack_name": "A Journey to Rhosgobel",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801203c9019",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801203c9019.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

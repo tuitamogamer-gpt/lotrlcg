@@ -1,8 +1,8 @@
+import { applyAction } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS } from "../src/game/cards";
 import {
-  applyAction,
   createGame,
   continueCampaign,
   retryAdventure,
@@ -270,16 +270,16 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
   const report = parseRingsDbDeck(
     {
       name: "Leadership rush",
-      heroes: { "01001": 1, "02001": 1 },
-      slots: { "01013": 3, "01014": 2, "02010": 3, "01001": 1 },
+      heroes: { "01001": 1, "02001": 1, "142002": 1 },
+      slots: { "01013": 3, "01014": 2, "02010": 3, "01001": 1, "11015": 1 },
     },
     "https://ringsdb.com/decklist/view/1",
     1000,
   );
   assert.equal(report.deck.name, "Leadership rush");
-  assert.deepEqual(report.deck.heroes, ["01001"]);
-  assert.deepEqual(report.deck.cards, { "01013": 3, "01014": 2 });
+  assert.deepEqual(report.deck.heroes, ["01001", "02001"]);
+  assert.deepEqual(report.deck.cards, { "01013": 3, "01014": 2, "02010": 3 });
   assert.equal(report.unsupported.length, 1);
-  assert.equal(report.unsupported[0].code, "02010");
-  assert.deepEqual(report.heroesDropped, ["02001"]);
+  assert.equal(report.unsupported[0].code, "11015");
+  assert.deepEqual(report.heroesDropped, ["142002"]);
 });

@@ -30,7 +30,15 @@ export function Sphere({ sphere }: { sphere: string }) {
     />
   );
 }
-export function Art({ c, className = "" }: { c: Card; className?: string }) {
+export function Art({
+  c,
+  className = "",
+  imageSrc,
+}: {
+  c: Card;
+  className?: string;
+  imageSrc?: string;
+}) {
   const [failed, setFailed] = useState(false);
   return failed ? (
     <div className={`art-fallback ${className}`}>
@@ -39,7 +47,7 @@ export function Art({ c, className = "" }: { c: Card; className?: string }) {
     </div>
   ) : (
     <img
-      src={imageUrl(c)}
+      src={imageSrc ?? imageUrl(c)}
       alt={c.name}
       data-card-code={c.code}
       loading="lazy"

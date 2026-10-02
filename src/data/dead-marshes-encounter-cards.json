@@ -1,0 +1,314 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9001",
+    "name": "A Wisp of Pale Sheen",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Escape.",
+    "text": "When Revealed: Place 2 resource tokens on Gollum. Any player may exhaust a [lore] hero to reduce this effect to 1 resource token.  Escape: 4",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 108,
+    "quantity": 3,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 108,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9007",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9007",
+    "name": "Fens and Mires",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dead Marshes.",
+    "text": "Forced: After the players travel to this location, place 1 resource token on Gollum.  Escape: 2",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 115,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9007.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 115,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9007",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9007.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9008",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9008",
+    "name": "Giant Marsh Worm",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: Remove 2 damage from Giant Marsh Worm at the end of each round.  Escape: 2",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 112,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 3,
+    "defense": 2,
+    "health": 6,
+    "engagement": 36,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "2",
+      "health": "6",
+      "engagement": "36"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9008.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 112,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9008",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9008.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9009",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9009",
+    "name": "Gollum",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "If Gollum ever has 8 or more resource tokens on him, shuffle him back into the encounter deck.  Forced: At the end of the quest phase, the party must make an escape test, dealing 1 card per player from the encounter deck. If this test is failed, place 2 resource tokens on Gollum.",
+    "is_unique": true,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 107,
+    "quantity": 1,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9009.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 107,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9009",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9009.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9010",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9010",
+    "name": "Impassable Bog",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dead Marshes.",
+    "text": "When Revealed: Place 1 resource token on Gollum for each location card in the staging area.  Escape: 2",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 113,
+    "quantity": 4,
+    "threat": 1,
+    "quest": 12,
+    "victory": 7,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "12",
+      "victory": "7"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9010.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 113,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9010",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9010.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9013",
+    "name": "Nightfall",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Escape.",
+    "text": "When Revealed: The first player makes an escape test, dealing 2 cards from the encounter deck. If this test is failed, place 1 resource token on Gollum and raise each player's threat by 2.  Escape: 2",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 109,
+    "quantity": 3,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 109,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9019",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9019",
+    "name": "The Heart of the Marshes",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dead Marshes.",
+    "text": "While The Heart of the Marshes is the active location, all cards dealt from the encounter deck for escape tests get +1 Escape. (Cards receive this bonus even if they do not have a printed escape value.)  Escape: 1",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 114,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9019.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 114,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9019",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9019.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9020",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9020",
+    "name": "The Lights of the Dead",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Escape.",
+    "text": "When Revealed: Each player must make an escape test, dealing 2 cards from the encounter deck for each test. Each player that fails this test places 1 resource token on Gollum, and raises his threat by 1.  Escape: 5",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 111,
+    "quantity": 4,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9020.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 111,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9020",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9020.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801205c9021",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801205c9021",
+    "name": "Through the Mist",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Escape.",
+    "text": "When Revealed: The first player makes an escape test counting [attack] instead of [willpower], dealing 2 cards from the encounter deck. If this test is failed, place 1 resource token on Gollum and raise each player's threat by 1.  Escape: 3",
+    "is_unique": false,
+    "pack_code": "TDM",
+    "pack_name": "The Dead Marshes",
+    "position": 110,
+    "quantity": 3,
+    "encounter_set": "The Dead Marshes",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9021.jpg",
+    "packs": [
+      {
+        "pack_code": "TDM",
+        "pack_name": "The Dead Marshes",
+        "position": 110,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801205c9021",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801205c9021.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

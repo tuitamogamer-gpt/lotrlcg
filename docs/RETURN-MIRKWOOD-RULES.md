@@ -1,0 +1,28 @@
+# Return to Mirkwood rules support
+
+The original scenario is scripted in normal and easy mode. Its separate Nightmare recipe remains reference content until those additional cards and rules are implemented.
+
+## Primary sources
+
+- [FFG original rulesheet](https://images-cdn.fantasyflightgames.com/filer_public/3a/23/3a23f598-ad80-4c7d-ac65-b6e36033d8fa/return_to_mirkwood_rulesheet.pdf): difficulty 7; Return to Mirkwood, Spiders of Mirkwood and Wilderlands encounter sets. The chosen player controls Gollum as an ally, although he cannot quest, attack or defend. Legal ally attachments can attach to him. Gollum leaving play, being destroyed or his controller being eliminated loses the game. Guard transfers occur only when a card permits them.
+- [FFG Easy Mode](https://www.fantasyflightgames.com/ffg_content/lotr-lcg/support/easy-mode/LOTR_Easy_Mode.pdf): remove two Spider's Rings, one Anguish, one Bite, one Wasted Provisions, two Bats and all three Attercops. The shared Core sets remove four Spiders of Mirkwood cards and four Wilderlands cards. After placing Gollum under player control, the encounter deck has 53 normal or 35 easy cards. Setup then reveals one per player.
+- [FFG FAQ 1.9](https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/lotr_faq_19_printer_friendly.pdf), section 1.34: multiple active locations each count as active and buffer the quest together. Players can divide progress among them; the first player chooses one when a card targets the singular active location.
+- [FFG Rules Reference](https://images-cdn.fantasyflightgames.com/filer_public/90/19/90191e4e-a341-4379-b398-5963b7a87ebf/mec01_online_only_rules_reference_for_website.pdf): **Engaged**, **Forced**, **Player Elimination**, **Playing Cards**, **Response**, **Then**, **Timing of Ability Resolution** and **Enemy Attack Resolution** supply common rules. Moving an enemy from another player's engagement is a new engagement; this triggers Bats. Shadow effects resolve before attack damage. Forced effects precede optional responses.
+
+## Printed card coverage
+
+The encounter fixture retains all ten original designs, exact printed stats, images, quantities and provenance. The quest fixture retains four double-sided cards, with progress thresholds 12, 3, 7 and 2. Gollum's printed type is Objective; the runtime uses the controlled objective-ally representation required by the rulesheet, and retains `printed_type_code` in its fixture.
+
+Gollum's guard receives all undefended attack damage against that player. His end-of-round effect raises the current guard's threat by three before offering a transfer. This follows the ordinary refresh increase, so a guard reaching fifty cannot transfer him to avert loss. The Spider's Ring prevents both optional and mandatory guard changes while any copy is active.
+
+Anguish raises the guard's threat by eight; Bite damages a chosen hero of that guard by four; Wasted Provisions discards the top ten available cards from that guard's deck. Each then requires a different guard when able. Their shadows use four threat, two hero damage or five discarded cards and do not transfer Gollum. An active Dry Watercourse expands effects of treachery cards targeting the guard to the other players, including shadows. Expanded effects use recipients captured at resolution, with each surviving affected player performing the transfer instruction after the damage, threat or discard portion. This application follows the printed targeting sentence and player-order rules; no separate card-specific FAQ ruling was found.
+
+Attercop automatically engages the current guard at the start of encounter, including when already engaged with another player. Bats wounds every character controlled by the current guard after any engagement. A Bats killed by Thalin before entry resolves neither Surge nor the engagement effect. Woodman's Glade travel exhausts a ready hero of the guard; its exploration response optionally reduces the other players' threat by two. Wood Elf Path offers a guard transfer only after actual travel.
+
+Escape Attempt prohibits the guard's characters from questing while another player survives and immediately loses after an unsuccessful quest; a tie is not an unsuccessful quest. To the Elvin King's Halls prohibits the guard from playing hand cards, including response events, while controlled abilities remain available. Ambush engages every enemy with the guard before combat shadow dealing. Its victory requires two progress and no enemies in play.
+
+The Spider's Ring shadow's second sentence is unconditional: it becomes active after a defended attack too, retaining earlier active locations. An undefended attack first returns the chosen current active location to staging with its existing progress and attachments. If several locations are active, the first player chooses the returned one under FAQ 1.34. The shadow's physical card leaves the attack's shadow array and becomes a location; its revealed-shadow count is updated. This is placement by a shadow effect, so travel costs and after-travel effects do not resolve.
+
+## Verification
+
+`tests/return-mirkwood.test.ts` covers 1–4-player normal/easy recipe quantities, guard choice before setup reveals, legal ally attachments and healing, departure/elimination losses, end-of-round timing, every encounter design and shadow, Dry Watercourse expansion, quest restrictions, all four thresholds, forced engagement before combat, undefended damage, multiple active locations and save/reload during progress allocation. Whole-game simulations and browser checks are maintained by the integration task.

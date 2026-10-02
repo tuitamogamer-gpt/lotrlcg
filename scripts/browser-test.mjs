@@ -1,3 +1,4 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import {
   installReviewHandler,
   acknowledgeReviews,
@@ -71,6 +72,7 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   assert.equal(s.hand.length, 6);
   await p.getByRole("button", { name: "Mulligan once" }).click();
   await p.getByRole("button", { name: "Keep hand" }).click();
+  await finishResourcePhase(p);
   s = await state(p);
   assert.equal(s.phase, "planning");
   assert.equal(s.hand.length, 7);
@@ -182,6 +184,7 @@ if (!process.env.DESKTOP_ONLY) {
   });
   await p.locator("#start-btn").click();
   await p.getByRole("button", { name: "Keep hand" }).click();
+  await finishResourcePhase(p);
   await p.screenshot({
     path: "output/browser/mobile-table.png",
     fullPage: true,
@@ -192,11 +195,22 @@ if (!process.env.DESKTOP_ONLY) {
   await p.getByRole("button", { name: "Open navigation" }).click();
   await p.getByRole("button", { name: "Card library", exact: true }).click();
   await p.getByRole("textbox", { name: "Search cards" }).fill("Aragorn");
+  await p
+    .getByRole("combobox", { name: "Filter card type" })
+    .selectOption("hero");
   await p.waitForTimeout(250);
   assert.ok((await p.locator(".catalog-card").count()) >= 1);
   await p.getByRole("checkbox", { name: "Scripted cards only" }).check();
-  assert.equal(await p.locator(".catalog-card").count(), 1);
-  await p.locator(".catalog-card").click();
+  const scriptedMatches = await p.locator(".catalog-card").count();
+  assert.ok(
+    scriptedMatches >= 1,
+    "registered Aragorn designs remain searchable",
+  );
+  assert.equal(
+    await p.locator(".catalog-card small svg").count(),
+    scriptedMatches,
+  );
+  await p.locator(".catalog-card").first().click();
   assert.ok(await p.locator("dialog[open]").isVisible());
   await p.keyboard.press("Escape");
   await p

@@ -1,7 +1,8 @@
+import { applyAction } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS } from "../src/game/cards";
-import { applyAction, createGame, restoreSave } from "../src/game/engine";
+import { createGame, restoreSave } from "../src/game/engine";
 import { startGuided } from "../src/game/presentation";
 import type { GameState, Unit } from "../src/game/types";
 

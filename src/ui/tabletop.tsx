@@ -7,17 +7,49 @@ import {
   Stack,
   Tree,
 } from "@phosphor-icons/react";
-import type { Card, GameState, Unit } from "../game/types";
+import type { Action, Card, GameState, Unit } from "../game/types";
 import { card, imageUrl, name } from "../game/cards";
-import { stageInfo } from "../game/engine";
-import { activeSeat, seatIndices, seatName, seatView } from "../game/table";
+import { availableAbilities, locationQuest, stageInfo } from "../game/engine";
+import {
+  activeSeat,
+  allActiveLocations,
+  seatIndices,
+  seatName,
+  seatView,
+} from "../game/table";
 import { QuestGoals } from "./experience";
 import { motion, useReducedMotion } from "motion/react";
 import { AnimatedNumber, CountChange, tableSpring } from "./motion";
+import carrockQuests from "../data/carrock-quest-cards.json";
+import emynQuests from "../data/emyn-muil-quest-cards.json";
+import { scenario } from "../game/scenarios";
+import { currentQuestUnit } from "../game/quest-state";
+import { collectorAbilityAnyPlayer } from "../game/collector-player-cards";
+import { WATCHER_WATER } from "../game/watcher-water-support";
 
 // Presentation only: the engine remains the source of every count and action.
+export function questStageLabel(s: GameState) {
+  const stage = stageInfo(s);
+  const number = "questNumber" in stage ? stage.questNumber : s.stage;
+  const side = "side" in stage ? stage.side : "B";
+  return `${number}${side}`;
+}
+
 export function questFace(s: GameState) {
-  const faces = {
+  const stage = stageInfo(s);
+  if ("questImage" in stage && typeof stage.questImage === "string") {
+    return stage.questImage;
+  }
+  if ("back_imagesrc" in stage && typeof stage.back_imagesrc === "string") {
+    return stage.back_imagesrc;
+  }
+  if ("cardCode" in stage) {
+    const quest = [...carrockQuests, ...emynQuests].find(
+      (c) => c.code === stage.cardCode,
+    );
+    if (quest) return quest.back_imagesrc ?? quest.imagesrc;
+  }
+  const faces: Partial<Record<GameState["scenarioId"], string[]>> = {
     mirkwood: [
       "flies-and-spiders-1b",
       "a-fork-in-the-road-2b",
@@ -37,7 +69,8 @@ export function questFace(s: GameState) {
       "on-the-trail-3b",
     ],
   };
-  return `/cards/quests/${faces[s.scenarioId][s.stage - 1]}.jpg`;
+  const face = faces[s.scenarioId]?.[s.stage - 1];
+  return face ? `/cards/quests/${face}.jpg` : "";
 }
 
 export function TableToken({
@@ -68,17 +101,63 @@ export function JourneyArea({
   s,
   inspect,
   inspectQuest,
+  dispatch,
 }: {
   s: GameState;
   inspect: (c: Card) => void;
   inspectQuest: () => void;
+  dispatch?: (a: Action) => unknown;
 }) {
   const q = stageInfo(s);
   const reduced = useReducedMotion();
+  const active = allActiveLocations(s);
+  const quest = currentQuestUnit(s);
+  const locationCard = (u: Unit) => (
+    <>
+      <motion.button
+        layoutId={reduced ? undefined : `card-${u.id}`}
+        transition={reduced ? { duration: 0 } : tableSpring}
+        className="location-card"
+        onClick={() => inspect(card(u.code))}
+        aria-label={`Inspect active location: ${name(u)}`}
+      >
+        <img
+          src={imageUrl(card(u.code))}
+          alt={name(u)}
+          data-card-code={u.code}
+        />
+        <TableToken kind="progress" value={u.progress} />
+      </motion.button>
+      <AttachmentStack u={u} inspect={inspect} />
+      {dispatch && (
+        <div className="journey-location-actions">
+          {availableAbilities(s, u).map((a) => (
+            <button
+              key={a.id ?? a.label}
+              disabled={
+                a.disabled ||
+                !!s.choice ||
+                !!s.flow?.pending ||
+                s.phase === "setup"
+              }
+              onClick={() =>
+                dispatch({ type: "ABILITY", id: u.id, attachmentId: a.id })
+              }
+            >
+              {a.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </>
+  );
   return (
     <aside className="journey-area" aria-label="Quest and active location">
       <div className="tabletop-label">
-        <Compass size={13} /> THE JOURNEY <span>{s.stage} / 3</span>
+        <Compass size={13} /> THE JOURNEY{" "}
+        <span>
+          {s.stage} / {scenario(s.scenarioId).stages.length}
+        </span>
       </div>
       <button
         key={questFace(s)}
@@ -86,8 +165,11 @@ export function JourneyArea({
         onClick={inspectQuest}
         aria-label={`Inspect quest: ${q.name}`}
       >
-        <img src={questFace(s)} alt={`${q.name} · side ${s.stage}B`} />
-        <span className="quest-stage-seal">{s.stage}B</span>
+        <img
+          src={questFace(s)}
+          alt={`${q.name} · side ${questStageLabel(s)}`}
+        />
+        <span className="quest-stage-seal">{questStageLabel(s)}</span>
       </button>
       <div
         className="tabletop-progress"
@@ -117,32 +199,34 @@ export function JourneyArea({
           </div>
         )}
       </div>
+      {quest && <AttachmentStack u={quest} inspect={inspect} />}
       <QuestGoals s={s} />
-      <div className="tabletop-location">
+      <div
+        className={`tabletop-location ${active.length > 1 ? "multiple-active-locations" : ""}`}
+      >
         <div className="tabletop-label">
-          <Compass size={12} /> ACTIVE LOCATION
+          <Compass size={12} />{" "}
+          {active.length > 1 ? "ACTIVE LOCATIONS" : "ACTIVE LOCATION"}
         </div>
-        {s.activeLocation ? (
+        {active.length === 1 ? (
           <>
-            <motion.button
-              layoutId={reduced ? undefined : `card-${s.activeLocation.id}`}
-              transition={reduced ? { duration: 0 } : tableSpring}
-              className="location-card"
-              onClick={() => inspect(card(s.activeLocation!.code))}
-              aria-label={`Inspect active location: ${name(s.activeLocation)}`}
-            >
-              <img
-                src={imageUrl(card(s.activeLocation.code))}
-                alt={name(s.activeLocation)}
-                data-card-code={s.activeLocation.code}
-              />
-              <TableToken kind="progress" value={s.activeLocation.progress} />
-            </motion.button>
+            {locationCard(active[0])}
             <span>
-              {s.activeLocation.progress} / {card(s.activeLocation.code).quest}{" "}
-              progress
+              {active[0].progress} / {locationQuest(s, active[0])} progress
             </span>
           </>
+        ) : active.length > 1 ? (
+          <div className="active-locations-list">
+            {active.map((u) => (
+              <div className="active-location-entry" key={u.id}>
+                {locationCard(u)}
+                <strong>{name(u)}</strong>
+                <span>
+                  {u.progress} / {locationQuest(s, u)} progress
+                </span>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="location-slot">
             <Tree size={25} weight="thin" />
@@ -239,24 +323,44 @@ export function AttachmentStack({
   if (!u.attachments.length) return null;
   return (
     <div className="table-attachments" aria-label={`Attachments on ${name(u)}`}>
-      {u.attachments.map((a) => (
-        <motion.button
-          layoutId={reduced ? undefined : `card-${a.id}`}
-          transition={reduced ? { duration: 0 } : tableSpring}
-          key={a.id}
-          className={a.exhausted ? "attachment-exhausted" : ""}
-          onClick={() => inspect(card(a.code))}
-          aria-label={`Inspect attachment: ${card(a.code).name}`}
-          title={`${card(a.code).name}${a.exhausted ? " · exhausted" : ""}`}
-        >
-          <img
-            src={imageUrl(card(a.code))}
-            data-card-code={a.code}
-            alt={card(a.code).name}
-          />
-          <span>{card(a.code).name}</span>
-        </motion.button>
-      ))}
+      {u.attachments.map((a) =>
+        a.facedown ? (
+          <span
+            key={a.id}
+            className="facedown-attachment"
+            aria-label="Facedown attachment"
+            title="Facedown attachment"
+          >
+            <CardBack encounter={card(a.code).sphere_code === "encounter"} />
+            <span>Facedown attachment</span>
+          </span>
+        ) : (
+          <motion.button
+            layoutId={reduced ? undefined : `card-${a.id}`}
+            transition={reduced ? { duration: 0 } : tableSpring}
+            key={a.id}
+            className={a.exhausted ? "attachment-exhausted" : ""}
+            onClick={() =>
+              inspect({
+                ...card(a.code),
+                attachmentResourceTokens: a.resourceTokens,
+              } as Card & { attachmentResourceTokens?: number })
+            }
+            aria-label={`Inspect attachment: ${card(a.code).name}`}
+            title={`${card(a.code).name}${a.resourceTokens !== undefined ? ` · ${a.resourceTokens} resource tokens` : ""}${a.exhausted ? " · exhausted" : ""}`}
+          >
+            <img
+              src={imageUrl(card(a.code))}
+              data-card-code={a.code}
+              alt={card(a.code).name}
+            />
+            <span>{card(a.code).name}</span>
+            {a.resourceTokens !== undefined && (
+              <TableToken kind="resource" value={a.resourceTokens} />
+            )}
+          </motion.button>
+        ),
+      )}
     </div>
   );
 }
@@ -279,9 +383,11 @@ export function ShadowCards({ count }: { count: number }) {
 export function OtherFellowships({
   s,
   select,
+  dispatch,
 }: {
   s: GameState;
   select: (seat: number) => void;
+  dispatch?: (a: Action) => unknown;
 }) {
   if (!s.table || s.table.seats.length < 2) return null;
   return (
@@ -333,6 +439,50 @@ export function OtherFellowships({
                   </button>
                 ))}
               </div>
+              {dispatch &&
+                [...p.heroes, ...p.allies]
+                  .filter(
+                    (u) =>
+                      collectorAbilityAnyPlayer(u.code) ||
+                      u.attachments.some(
+                        (a) => a.code === WATCHER_WATER.wrapped,
+                      ),
+                  )
+                  .map((u) => (
+                    <div className="companion-abilities" key={u.id}>
+                      {availableAbilities(s, u)
+                        .filter((a) =>
+                          !a.id
+                            ? collectorAbilityAnyPlayer(u.code)
+                            : u.attachments.some(
+                                (att) =>
+                                  att.id === a.id &&
+                                  att.code === WATCHER_WATER.wrapped,
+                              ),
+                        )
+                        .map((a) => (
+                          <button
+                            key={a.id ?? a.label}
+                            disabled={
+                              a.disabled ||
+                              !!s.choice ||
+                              !!s.flow?.pending ||
+                              s.phase === "setup"
+                            }
+                            onClick={() =>
+                              dispatch({
+                                type: "ABILITY",
+                                id: u.id,
+                                attachmentId: a.id,
+                              })
+                            }
+                            aria-label={`${name(u)} · ${a.label}`}
+                          >
+                            {name(u)} · {a.label}
+                          </button>
+                        ))}
+                    </div>
+                  ))}
               {!p.heroes.length && (
                 <small>
                   {s.table!.seats[i].eliminated

@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { STARTERS } from "../src/game/cards";
-import { createGame, applyAction, validateSave } from "../src/game/engine";
+import { createGame, validateSave } from "../src/game/engine";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 import { startGuided } from "../src/game/presentation";
 import type { GameState, Unit } from "../src/game/types";
 const make = () => {

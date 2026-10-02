@@ -10,7 +10,10 @@ export {
   stagingThreat,
   questWill,
   stageInfo,
+  locationQuest,
+  engagementCost,
   canFight,
+  enemyAttackPrevented,
   objectiveFree,
   resources,
 } from "./core";
@@ -18,6 +21,10 @@ export { newCampaign, continueCampaign, retryAdventure } from "./campaign";
 export { createGame } from "./setup";
 export {
   canPlay,
+  canPlayAtNoCost,
+  canCommit,
+  canTravel,
+  optionalEngagementProblem,
   playTargets,
   needsTarget,
   responseCards,
@@ -27,3 +34,6 @@ export {
   publicState,
 } from "./actions";
 export { validateSave, restoreSave } from "./save";
+
+export { currentQuestCode, currentQuestUnit } from "./quest-state";
+export { collectorEnemyCannotAttack } from "./collector-player-cards";

@@ -162,6 +162,9 @@ await drain(p);
 assert.equal((await state(p)).phase, "travel");
 await load(p, fixtures.victory);
 await p.locator(".turn-panel .turn-actions .primary").click();
+assert.equal((await state(p)).mode, "playing");
+assert.equal((await state(p)).resolution.kind, "quest");
+await confirm(p);
 assert.equal((await state(p)).mode, "won");
 assert.ok((await state(p)).resolution);
 assert.equal(

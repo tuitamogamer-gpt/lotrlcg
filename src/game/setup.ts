@@ -1,3 +1,11 @@
+import { setupShadowFlame } from "./shadow-flame";
+import { startingThreat } from "./starting-threat";
+import { setupLongDark } from "./long-dark";
+import { setupWatcherWater } from "./watcher-water";
+import { setupRoadRivendell } from "./road-rivendell";
+import { setupRedhorn } from "./redhorn-gate";
+import { syncAttachmentText } from "./attachment-text";
+import { setupKhazad } from "./khazad-dum";
 // Game creation and scenario setup.
 import {
   card,
@@ -35,6 +43,11 @@ import { draw, enqueue, fx, log, make, requireRule, shuffle } from "./core";
 
 import { flush } from "./effects";
 import { newCampaign } from "./campaign";
+import { setupCarrock } from "./carrock";
+import { setupEmynMuil } from "./emyn-muil";
+import { setupRhosgobel } from "./rhosgobel";
+import { setupReturnMirkwood } from "./return-mirkwood";
+import { setupDeadMarshes } from "./dead-marshes";
 
 /** The official deck limits: at least 50 cards, at most 3 copies, scripted player cards only. */
 export function validateDeckList(
@@ -55,8 +68,10 @@ export function validateDeckList(
       "Only scripted player cards can be included.",
     );
     requireRule(
-      Number.isInteger(n) && n >= 0 && n <= 3,
-      "A deck can contain at most 3 copies of each card.",
+      Number.isInteger(n) &&
+        n >= 0 &&
+        n <= Math.min(3, card(code).deck_limit ?? 3),
+      `${card(code).name}: a deck can contain at most ${Math.min(3, card(code).deck_limit ?? 3)} copies.`,
     );
   }
 }
@@ -93,14 +108,15 @@ export function createGame(
     heroCodes.length >= 1 &&
       heroCodes.length <= 3 &&
       new Set(heroCodes).size === heroCodes.length &&
-      heroCodes.every((c) => SCRIPTED.has(c) && card(c).type_code === "hero"),
+      heroCodes.every((c) => SCRIPTED.has(c) && card(c).type_code === "hero") &&
+      new Set(heroCodes.map((c) => card(c).name)).size === heroCodes.length,
     "Choose one to three different heroes.",
   );
   const scenarioId = options.scenarioId ?? "mirkwood";
   const playMode = options.playMode ?? "normal";
   requireRule(
     SCENARIOS.some((q) => q.id === scenarioId),
-    "Unknown Core Set scenario.",
+    "Unknown or unsupported scenario.",
   );
   requireRule(
     playMode === "normal" || playMode === "campaign",
@@ -209,7 +225,9 @@ export function createGame(
     requireRule(
       options.seats.length >= 1 &&
         options.seats.length <= 4 &&
-        new Set(heroes).size === heroes.length,
+        new Set(heroes).size === heroes.length &&
+        heroes.every((h) => SCRIPTED.has(h) && card(h).type_code === "hero") &&
+        new Set(heroes.map((h) => card(h).name)).size === heroes.length,
       "Choose one to four players with different heroes across the table.",
     );
     for (const config of options.seats) {
@@ -221,7 +239,7 @@ export function createGame(
           config.heroes.every(
             (h) => SCRIPTED.has(h) && card(h).type_code === "hero",
           ),
-        "Each player needs one to three heroes and a Core Set starter or custom deck.",
+        "Each player needs one to three supported heroes and a starter or custom deck.",
       );
       if (config.cards) validateDeckList(config.cards);
     }
@@ -245,18 +263,16 @@ export function createGame(
         Array<string>(n).fill(code),
       );
       s.heroes = config.heroes.map((h) => make(s, h));
-      s.threat =
-        config.heroes.reduce((n, h) => n + (card(h).threat ?? 0), 0) +
-        (campaign?.threatPenalty ?? 0);
+      s.threat = startingThreat(config.heroes) + (campaign?.threatPenalty ?? 0);
+      s.startingThreat = s.threat;
       syncSeat(s);
     });
     selectSeat(s, 0);
   } else {
     s.heroes = heroCodes.map((code) => make(s, code));
-    s.threat =
-      s.heroes.reduce((n, h) => n + (card(h.code).threat ?? 0), 0) +
-      (campaign?.threatPenalty ?? 0);
+    s.threat = startingThreat(heroCodes) + (campaign?.threatPenalty ?? 0);
   }
+  if (!s.table) s.startingThreat = s.threat;
   if (options.easy) {
     eachSeat(s, () => {
       for (const h of s.heroes) h.resources += 1;
@@ -300,6 +316,32 @@ export function createGame(
   } else if (scenarioId === "hunt-for-gollum") {
     shuffle(s, s.encounterDeck);
     enqueue(s, ...playerOrder(s).map((player) => fx("reveal", { player })));
+  } else if (scenarioId === "conflict-at-the-carrock") {
+    setupCarrock(s);
+  } else if (scenarioId === "hills-of-emyn-muil") {
+    setupEmynMuil(s);
+  } else if (scenarioId === "journey-to-rhosgobel") {
+    setupRhosgobel(s);
+  } else if (scenarioId === "dead-marshes") {
+    setupDeadMarshes(s);
+  } else if (scenarioId === "return-to-mirkwood") {
+    setupReturnMirkwood(s);
+  } else if (
+    ["into-the-pit", "the-seventh-level", "flight-from-moria"].includes(
+      scenarioId,
+    )
+  ) {
+    setupKhazad(s);
+  } else if (scenarioId === "road-to-rivendell") {
+    setupRoadRivendell(s);
+  } else if (scenarioId === "redhorn-gate") {
+    setupRedhorn(s);
+  } else if (scenarioId === "shadow-and-flame") {
+    setupShadowFlame(s);
+  } else if (scenarioId === "the-long-dark") {
+    setupLongDark(s);
+  } else if (scenarioId === "watcher-in-the-water") {
+    setupWatcherWater(s);
   } else {
     s.encounterDeck = s.encounterDeck.filter(
       (code) => code !== "01102" && !OBJECTIVES.includes(code),
@@ -329,5 +371,6 @@ export function createGame(
       lines: s.log.slice(),
     });
   flush(s);
+  syncAttachmentText(s);
   return s;
 }

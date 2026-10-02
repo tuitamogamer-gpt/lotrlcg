@@ -41,3 +41,21 @@ export async function reviewedState(page) {
   await acknowledgeReviews(page);
   return JSON.parse(await page.evaluate(() => window.render_game_to_text()));
 }
+
+// Call explicitly where the test intends to begin planning. Resource remains
+// visible in the real app and in tests that exercise its events or abilities.
+export async function finishResourcePhase(page) {
+  for (let i = 0; i < 16; i++) {
+    const state = await reviewedState(page);
+    if (state.phase !== "resource" || state.mode !== "playing") return state;
+    if (state.choice)
+      throw Error("Resolve the resource choice before beginning planning");
+    await page
+      .getByRole("button", {
+        name: /^(Begin planning|Finish resource actions|Continue as Player [1-4])$/,
+      })
+      .first()
+      .click();
+  }
+  throw Error("Resource phase did not finish");
+}

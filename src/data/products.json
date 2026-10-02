@@ -1,0 +1,2744 @@
+[
+  {
+    "id": "core",
+    "name": "Core Set",
+    "kind": "core",
+    "packCodes": [
+      "Core"
+    ],
+    "content": "mixed",
+    "description": "Original base game with four single-sphere learning lists and three scenarios.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/Core",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-dark-of-mirkwood",
+    "name": "The Dark of Mirkwood",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TDoM"
+    ],
+    "content": "encounter",
+    "description": "The Oath and The Caves of Nibin-dûm from the Limited Collector’s Edition, with new campaign cards.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TDoM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/the-dark-of-mirkwood-scenario-pack/"
+    ],
+    "reprints": [
+      "limited-starter"
+    ]
+  },
+  {
+    "id": "the-hunt-for-gollum",
+    "name": "The Hunt for Gollum",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "HfG"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/HfG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "conflict-at-the-carrock",
+    "name": "Conflict at the Carrock",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "CatC"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/CatC",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "a-journey-to-rhosgobel",
+    "name": "A Journey to Rhosgobel",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "JtR"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/JtR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-massing-at-osgiliath",
+    "name": "The Massing at Osgiliath",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TMaO"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TMaO",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-hills-of-emyn-muil",
+    "name": "The Hills of Emyn Muil",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "HoEM"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/HoEM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-dead-marshes",
+    "name": "The Dead Marshes",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TDM"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TDM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "return-to-mirkwood",
+    "name": "Return to Mirkwood",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "RtM"
+    ],
+    "cycle": "Shadows of Mirkwood",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RtM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "khazad-dum",
+    "name": "Khazad-dûm",
+    "kind": "deluxe",
+    "packCodes": [
+      "KD"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/KD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-redhorn-gate",
+    "name": "The Redhorn Gate",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TRG"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TRG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "road-to-rivendell",
+    "name": "Road to Rivendell",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "RtR"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RtR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-watcher-in-the-water",
+    "name": "The Watcher in the Water",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "WitW"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/WitW",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-long-dark",
+    "name": "The Long Dark",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TLD"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TLD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "foundations-of-stone",
+    "name": "Foundations of Stone",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "FoS"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/FoS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "shadow-and-flame",
+    "name": "Shadow and Flame",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "SaF"
+    ],
+    "cycle": "Dwarrowdelf",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/SaF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "over-hill-and-under-hill",
+    "name": "Over Hill and Under Hill",
+    "kind": "saga",
+    "packCodes": [
+      "OHaUH"
+    ],
+    "cycle": "The Hobbit",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/OHaUH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-battle-of-lake-town",
+    "name": "The Battle of Lake-town",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TBoLT"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TBoLT",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "heirs-of-numenor",
+    "name": "Heirs of Númenor",
+    "kind": "deluxe",
+    "packCodes": [
+      "HoN"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/HoN",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "on-the-doorstep",
+    "name": "On the Doorstep",
+    "kind": "saga",
+    "packCodes": [
+      "OtD"
+    ],
+    "cycle": "The Hobbit",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/OtD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-steward-s-fear",
+    "name": "The Steward's Fear",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TSF"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TSF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-druadan-forest",
+    "name": "The Drúadan Forest",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TDF"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TDF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "encounter-at-amon-din",
+    "name": "Encounter at Amon Dîn",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "EaAD"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/EaAD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "assault-on-osgiliath",
+    "name": "Assault on Osgiliath",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "AoO"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/AoO",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-black-riders",
+    "name": "The Black Riders",
+    "kind": "saga",
+    "packCodes": [
+      "TBR"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TBR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-blood-of-gondor",
+    "name": "The Blood of Gondor",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "BoG"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/BoG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-stone-of-erech",
+    "name": "The Stone of Erech",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TSoE"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TSoE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-morgul-vale",
+    "name": "The Morgul Vale",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TMV"
+    ],
+    "cycle": "Against the Shadow",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TMV",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-voice-of-isengard",
+    "name": "The Voice of Isengard",
+    "kind": "deluxe",
+    "packCodes": [
+      "VoI"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/VoI",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-dunland-trap",
+    "name": "The Dunland Trap",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TDT"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TDT",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-three-trials",
+    "name": "The Three Trials",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TTT"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TTT",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "trouble-in-tharbad",
+    "name": "Trouble in Tharbad",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TiT"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TiT",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-road-darkens",
+    "name": "The Road Darkens",
+    "kind": "saga",
+    "packCodes": [
+      "TRD"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TRD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-nin-in-eilph",
+    "name": "The Nîn-in-Eilph",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "NiE"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/NiE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-old-forest",
+    "name": "The Old Forest",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TOF"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TOF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "celebrimbor-s-secret",
+    "name": "Celebrimbor's Secret",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "CS"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/CS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-antlered-crown",
+    "name": "The Antlered Crown",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TAC"
+    ],
+    "cycle": "The Ring-maker",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TAC",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "fog-on-the-barrow-downs",
+    "name": "Fog on the Barrow-downs",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "FotBd"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/FotBd",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-lost-realm",
+    "name": "The Lost Realm",
+    "kind": "deluxe",
+    "packCodes": [
+      "TLR"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TLR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-treason-of-saruman",
+    "name": "The Treason of Saruman",
+    "kind": "saga",
+    "packCodes": [
+      "ToS"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/ToS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-wastes-of-eriador",
+    "name": "The Wastes of Eriador",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "WoE"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/WoE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "escape-from-mount-gram",
+    "name": "Escape from Mount Gram",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "EfMG"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/EfMG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "across-the-ettenmoors",
+    "name": "Across the Ettenmoors",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "AtE"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/AtE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-treachery-of-rhudaur",
+    "name": "The Treachery of Rhudaur",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "ToR"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/ToR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-battle-of-carn-dum",
+    "name": "The Battle of Carn Dûm",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "BoCD"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/BoCD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-land-of-shadow",
+    "name": "The Land of Shadow",
+    "kind": "saga",
+    "packCodes": [
+      "LoS"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/LoS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-dread-realm",
+    "name": "The Dread Realm",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TDR"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TDR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "angmar-awakened-campaign-expansion",
+    "name": "Angmar Awakened Campaign Expansion",
+    "kind": "campaign-expansion",
+    "packCodes": [
+      "AACE"
+    ],
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "description": "Scenario and campaign cards from a repackaged cycle; player deckbuilding cards are in the separate Hero Expansion.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/AACE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2022/3/17/evil-reawakened/"
+    ],
+    "reprints": [
+      "the-lost-realm",
+      "the-wastes-of-eriador",
+      "escape-from-mount-gram",
+      "across-the-ettenmoors",
+      "the-treachery-of-rhudaur",
+      "the-battle-of-carn-dum",
+      "the-dread-realm"
+    ]
+  },
+  {
+    "id": "the-grey-havens",
+    "name": "The Grey Havens",
+    "kind": "deluxe",
+    "packCodes": [
+      "TGH"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TGH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-ruins-of-belegost",
+    "name": "The Ruins of Belegost",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TRoB"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TRoB",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "murder-at-the-prancing-pony",
+    "name": "Murder at the Prancing Pony",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "MatPP"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/MatPP",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "flight-of-the-stormcaller",
+    "name": "Flight of the Stormcaller",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "FotS"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/FotS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-thing-in-the-depths",
+    "name": "The Thing in the Depths",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TitD"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TitD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "temple-of-the-deceived",
+    "name": "Temple of the Deceived",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TotD"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TotD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-flame-of-the-west",
+    "name": "The Flame of the West",
+    "kind": "saga",
+    "packCodes": [
+      "FotW"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/FotW",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-drowned-ruins",
+    "name": "The Drowned Ruins",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "DR"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/DR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "a-storm-on-cobas-haven",
+    "name": "A Storm on Cobas Haven",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "SoCH"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/SoCH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-city-of-corsairs",
+    "name": "The City of Corsairs",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "CoC"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/CoC",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-sands-of-harad",
+    "name": "The Sands of Harad",
+    "kind": "deluxe",
+    "packCodes": [
+      "TSoH"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TSoH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-mumakil",
+    "name": "The Mûmakil",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "M"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/M",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-siege-of-annuminas",
+    "name": "The Siege of Annúminas",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TSoA"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TSoA",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "race-across-harad",
+    "name": "Race Across Harad",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "RAH"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RAH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "beneath-the-sands",
+    "name": "Beneath the Sands",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "BtS"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/BtS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "limited-starter",
+    "name": "Two-Player Limited Edition Starter",
+    "kind": "limited-starter",
+    "packCodes": [
+      "Starter"
+    ],
+    "content": "mixed",
+    "description": "Two prebuilt decks and two scenarios, included in the Limited Collector’s Edition bundle.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/Starter",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/lord-rings-living-card-game-limited-collectors-edition/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings/blob/802f09c407e8b418c6fa59fd003bddfdc671e968/o8g/Sets/Two-Player%20Limited%20Edition%20Starter/set.xml",
+      "https://www.fantasyflightgames.com/en/news/2018/6/21/there-and-back-again-1/"
+    ]
+  },
+  {
+    "id": "the-black-serpent",
+    "name": "The Black Serpent",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TBS"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TBS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-mountain-of-fire",
+    "name": "The Mountain of Fire",
+    "kind": "saga",
+    "packCodes": [
+      "MoF"
+    ],
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "description": "Heroes, player cards and book-based scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/MoF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-dungeons-of-cirith-gurat",
+    "name": "The Dungeons of Cirith Gurat",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "DoCG"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/DoCG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-crossings-of-poros",
+    "name": "The Crossings of Poros",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "CoP"
+    ],
+    "cycle": "Haradrim",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/CoP",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "attack-on-dol-guldur",
+    "name": "Attack on Dol Guldur",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "AoDG"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/AoDG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-wilds-of-rhovanion",
+    "name": "The Wilds of Rhovanion",
+    "kind": "deluxe",
+    "packCodes": [
+      "TWoR"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TWoR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-withered-heath",
+    "name": "The Withered Heath",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TWH"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TWH",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "roam-across-rhovanion",
+    "name": "Roam Across Rhovanion",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "RAR"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RAR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "fire-in-the-night",
+    "name": "Fire in the Night",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "FitN"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/FitN",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-ghost-of-framsburg",
+    "name": "The Ghost of Framsburg",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TGoF"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TGoF",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "mount-gundabad",
+    "name": "Mount Gundabad",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "MG"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/MG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-fate-of-wilderland",
+    "name": "The Fate of Wilderland",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TFoW"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TFoW",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-wizard-s-quest",
+    "name": "The Wizard's Quest",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TWQ"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TWQ",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-woodland-realm",
+    "name": "The Woodland Realm",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TWR"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TWR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "a-shadow-in-the-east",
+    "name": "A Shadow in the East",
+    "kind": "deluxe",
+    "packCodes": [
+      "ASitE"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Heroes, player cards and three scenarios; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/ASitE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "wrath-and-ruin",
+    "name": "Wrath and Ruin",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "WaR"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/WaR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-city-of-ulfast",
+    "name": "The City of Ulfast",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TCoU"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TCoU",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "challenge-of-the-wainriders",
+    "name": "Challenge of the Wainriders",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "CotW"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/CotW",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "under-the-ash-mountains",
+    "name": "Under the Ash Mountains",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "UtAM"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/UtAM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-mines-of-moria",
+    "name": "The Mines of Moria",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "TMoM"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TMoM",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "escape-from-khazad-dum",
+    "name": "Escape from Khazad-dûm",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "EfKD"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/EfKD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-land-of-sorrow",
+    "name": "The Land of Sorrow",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TLoS"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TLoS",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-fortress-of-nurn",
+    "name": "The Fortress of Nurn",
+    "kind": "adventure-pack",
+    "packCodes": [
+      "TFoN"
+    ],
+    "cycle": "Vengeance of Mordor",
+    "content": "mixed",
+    "description": "Original cycle pack with a hero, player cards and a scenario; cards are assembled into decks.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/TFoN",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "the-hunt-for-the-dreadnaught",
+    "name": "The Hunt for the Dreadnaught",
+    "kind": "scenario-pack",
+    "packCodes": [
+      "THftD"
+    ],
+    "content": "encounter",
+    "description": "Additional scenarios and encounter cards; requires the Core Set.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/THftD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/"
+    ]
+  },
+  {
+    "id": "revised-core",
+    "name": "Revised Core Set",
+    "kind": "core",
+    "packCodes": [
+      "RevCore"
+    ],
+    "content": "mixed",
+    "description": "Repackaged Core Set with three copies of each player card and new campaign cards. Includes learning and suggested decklists to assemble.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RevCore",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2021/9/16/the-road-goes-ever-on/"
+    ],
+    "reprints": [
+      "core"
+    ]
+  },
+  {
+    "id": "starter-dwarves",
+    "name": "Dwarves of Durin",
+    "kind": "starter-deck",
+    "packCodes": [
+      "DoD"
+    ],
+    "content": "player",
+    "description": "Sold separately as a ready-to-play deck: three heroes, 50 playing cards and additional deckbuilding cards.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/DoD",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2021/12/9/starting-the-journey/",
+      "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec103_rules.pdf"
+    ]
+  },
+  {
+    "id": "starter-elves",
+    "name": "Elves of Lórien",
+    "kind": "starter-deck",
+    "packCodes": [
+      "EoL"
+    ],
+    "content": "player",
+    "description": "Sold separately as a ready-to-play deck: three heroes, 50 playing cards and additional deckbuilding cards.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/EoL",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2021/12/9/starting-the-journey/",
+      "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec104_rules.pdf"
+    ]
+  },
+  {
+    "id": "starter-gondor",
+    "name": "Defenders of Gondor",
+    "kind": "starter-deck",
+    "packCodes": [
+      "DoG"
+    ],
+    "content": "player",
+    "description": "Sold separately as a ready-to-play deck: three heroes, 50 playing cards and additional deckbuilding cards.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/DoG",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2021/12/9/starting-the-journey/",
+      "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec105_rules.pdf"
+    ]
+  },
+  {
+    "id": "starter-rohan",
+    "name": "Riders of Rohan",
+    "kind": "starter-deck",
+    "packCodes": [
+      "RoR"
+    ],
+    "content": "player",
+    "description": "Sold separately as a ready-to-play deck: three heroes, 50 playing cards and additional deckbuilding cards.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/RoR",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2021/12/9/starting-the-journey/",
+      "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec106_rules.pdf"
+    ]
+  },
+  {
+    "id": "dream-chaser-campaign-expansion",
+    "name": "Dream-chaser Campaign Expansion",
+    "kind": "campaign-expansion",
+    "packCodes": [
+      "DCCE"
+    ],
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "description": "Scenario and campaign cards from a repackaged cycle; player deckbuilding cards are in the separate Hero Expansion.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/DCCE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2023/3/2/a-high-seas-adventure/"
+    ],
+    "reprints": [
+      "the-grey-havens",
+      "flight-of-the-stormcaller",
+      "the-thing-in-the-depths",
+      "temple-of-the-deceived",
+      "the-drowned-ruins",
+      "a-storm-on-cobas-haven",
+      "the-city-of-corsairs"
+    ]
+  },
+  {
+    "id": "ered-mithrin-campaign-expansion",
+    "name": "Ered Mithrin Campaign Expansion",
+    "kind": "campaign-expansion",
+    "packCodes": [
+      "EMCE"
+    ],
+    "cycle": "Ered Mithrin",
+    "content": "encounter",
+    "description": "Scenario and campaign cards from a repackaged cycle; player deckbuilding cards are in the separate Hero Expansion.",
+    "sourceUrls": [
+      "https://ringsdb.com/set/EMCE",
+      "https://www.fantasyflightgames.com/product/the-lord-of-the-rings-the-card-game/",
+      "https://www.fantasyflightgames.com/en/news/2024/2/22/into-the-wilds/"
+    ],
+    "reprints": [
+      "the-wilds-of-rhovanion",
+      "the-withered-heath",
+      "roam-across-rhovanion",
+      "fire-in-the-night",
+      "the-ghost-of-framsburg",
+      "mount-gundabad",
+      "the-fate-of-wilderland"
+    ]
+  },
+  {
+    "id": "angmar-awakened-hero-expansion",
+    "name": "Angmar Awakened Hero Expansion",
+    "kind": "hero-expansion",
+    "cycle": "Angmar Awakened",
+    "content": "player",
+    "packCodes": [],
+    "reprints": [
+      "the-lost-realm",
+      "the-wastes-of-eriador",
+      "escape-from-mount-gram",
+      "across-the-ettenmoors",
+      "the-treachery-of-rhudaur",
+      "the-battle-of-carn-dum",
+      "the-dread-realm"
+    ],
+    "description": "Player-card pool from a deluxe expansion and six Adventure Packs. Includes suggested decklists to assemble.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2022/3/17/evil-reawakened/"
+    ]
+  },
+  {
+    "id": "dream-chaser-hero-expansion",
+    "name": "Dream-chaser Hero Expansion",
+    "kind": "hero-expansion",
+    "cycle": "Dream-chaser",
+    "content": "player",
+    "packCodes": [],
+    "reprints": [
+      "the-grey-havens",
+      "flight-of-the-stormcaller",
+      "the-thing-in-the-depths",
+      "temple-of-the-deceived",
+      "the-drowned-ruins",
+      "a-storm-on-cobas-haven",
+      "the-city-of-corsairs"
+    ],
+    "description": "Player-card pool from a deluxe expansion and six Adventure Packs. Includes suggested decklists to assemble.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2023/3/2/a-high-seas-adventure/"
+    ]
+  },
+  {
+    "id": "ered-mithrin-hero-expansion",
+    "name": "Ered Mithrin Hero Expansion",
+    "kind": "hero-expansion",
+    "cycle": "Ered Mithrin",
+    "content": "player",
+    "packCodes": [],
+    "reprints": [
+      "the-wilds-of-rhovanion",
+      "the-withered-heath",
+      "roam-across-rhovanion",
+      "fire-in-the-night",
+      "the-ghost-of-framsburg",
+      "mount-gundabad",
+      "the-fate-of-wilderland"
+    ],
+    "description": "Player-card pool from a deluxe expansion and six Adventure Packs. Includes suggested decklists to assemble.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2024/2/22/into-the-wilds/"
+    ]
+  },
+  {
+    "id": "fellowship-of-the-ring-saga",
+    "name": "The Fellowship of the Ring Saga Expansion",
+    "kind": "saga",
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "packCodes": [],
+    "reprints": [
+      "the-black-riders",
+      "the-road-darkens"
+    ],
+    "description": "Repackaged contents of The Black Riders and The Road Darkens; heroes, deckbuilding cards and six scenarios.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2022/7/14/the-bonds-of-fellowship/"
+    ]
+  },
+  {
+    "id": "two-towers-saga",
+    "name": "The Two Towers Saga Expansion",
+    "kind": "saga",
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "packCodes": [],
+    "reprints": [
+      "the-treason-of-saruman",
+      "the-land-of-shadow"
+    ],
+    "description": "Repackaged contents of The Treason of Saruman and The Land of Shadow; heroes, deckbuilding cards and six scenarios.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2023/7/6/the-hand-and-the-eye/"
+    ]
+  },
+  {
+    "id": "return-of-the-king-saga",
+    "name": "The Return of the King Saga Expansion",
+    "kind": "saga",
+    "cycle": "The Lord of the Rings",
+    "content": "mixed",
+    "packCodes": [],
+    "reprints": [
+      "the-flame-of-the-west",
+      "the-mountain-of-fire"
+    ],
+    "description": "Repackaged contents of The Flame of the West and The Mountain of Fire; heroes, deckbuilding cards and six scenarios.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2024/7/18/the-fate-of-middle-earth/"
+    ]
+  },
+  {
+    "id": "core-nightmare",
+    "name": "Core Set Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "Core Set",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:core-set"
+    ],
+    "aliases": [
+      "Core Set - Nightmare",
+      "Core Set - Nightmare"
+    ],
+    "encounterSets": [
+      "Passage Through Mirkwood - Nightmare",
+      "Journey Along the Anduin - Nightmare",
+      "Escape from Dol Guldur - Nightmare"
+    ],
+    "requires": [
+      "core"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "khazad-dum-nightmare",
+    "name": "Khazad-dûm Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:khazad-dum"
+    ],
+    "aliases": [
+      "Khazad-dûm - Nightmare",
+      "Khazad-dûm - Nightmare"
+    ],
+    "encounterSets": [
+      "Into the Pit - Nightmare",
+      "The Seventh Level - Nightmare",
+      "Flight from Moria - Nightmare"
+    ],
+    "requires": [
+      "khazad-dum"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "heirs-of-numenor-nightmare",
+    "name": "Heirs of Númenor Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:heirs-of-numenor"
+    ],
+    "aliases": [
+      "Heirs of Númenor - Nightmare",
+      "Heirs of Númenor - Nightmare"
+    ],
+    "encounterSets": [
+      "Peril in Pelargir - Nightmare",
+      "Into Ithilien - Nightmare",
+      "The Siege of Cair Andros - Nightmare"
+    ],
+    "requires": [
+      "heirs-of-numenor"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-voice-of-isengard-nightmare",
+    "name": "The Voice of Isengard Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-voice-of-isengard"
+    ],
+    "aliases": [
+      "The Voice of Isengard - Nightmare",
+      "The Voice of Isengard - Nightmare"
+    ],
+    "encounterSets": [
+      "The Fords of Isen - Nightmare",
+      "To Catch an Orc - Nightmare",
+      "Into Fangorn - Nightmare"
+    ],
+    "requires": [
+      "the-voice-of-isengard"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-lost-realm-nightmare",
+    "name": "The Lost Realm Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-lost-realm"
+    ],
+    "aliases": [
+      "The Lost Realm - Nightmare",
+      "The Lost Realm - Nightmare"
+    ],
+    "encounterSets": [
+      "Intruders in Chetwood - Nightmare",
+      "The Weather Hills - Nightmare",
+      "Deadmen’s Dike - Nightmare"
+    ],
+    "requires": [
+      "the-lost-realm"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-grey-havens-nightmare",
+    "name": "The Grey Havens Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-grey-havens"
+    ],
+    "aliases": [
+      "The Grey Havens - Nightmare",
+      "The Grey Havens - Nightmare"
+    ],
+    "encounterSets": [
+      "Voyage Across Belegaer - Nightmare",
+      "The Fate of Númenor - Nightmare",
+      "Raid on the Grey Havens - Nightmare"
+    ],
+    "requires": [
+      "the-grey-havens"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "over-hill-and-under-hill-nightmare",
+    "name": "The Hobbit: Over Hill and Under Hill Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Hobbit",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-hobbit-over-hill-and-under-hill"
+    ],
+    "aliases": [
+      "The Hobbit - Over Hill and Under Hill - Nightmare",
+      "The Hobbit: Over Hill and Under Hill - Nightmare"
+    ],
+    "encounterSets": [
+      "We Must Away, Ere Break of Day - Nightmare",
+      "Over the Misty Mountains Grim - Nightmare",
+      "Dungeons Deep and Caverns Dim - Nightmare"
+    ],
+    "requires": [
+      "over-hill-and-under-hill"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "on-the-doorstep-nightmare",
+    "name": "The Hobbit: On the Doorstep Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Hobbit",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-hobbit-on-the-doorstep"
+    ],
+    "aliases": [
+      "The Hobbit - On the Doorstep - Nightmare",
+      "The Hobbit: On the Doorstep - Nightmare"
+    ],
+    "encounterSets": [
+      "Flies and Spiders - Nightmare",
+      "The Lonely Mountain - Nightmare",
+      "The Battle of Five Armies - Nightmare"
+    ],
+    "requires": [
+      "on-the-doorstep"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-black-riders-nightmare",
+    "name": "The Black Riders Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Lord of the Rings",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-black-riders"
+    ],
+    "aliases": [
+      "The Black Riders - Nightmare",
+      "The Black Riders - Nightmare"
+    ],
+    "encounterSets": [
+      "A Shadow of the Past - Nightmare",
+      "A Knife in the Dark - Nightmare",
+      "Flight to the Ford - Nightmare"
+    ],
+    "requires": [
+      "the-black-riders"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-road-darkens-nightmare",
+    "name": "The Road Darkens Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Lord of the Rings",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-road-darkens"
+    ],
+    "aliases": [
+      "The Road Darkens - Nightmare",
+      "The Road Darkens - Nightmare"
+    ],
+    "encounterSets": [
+      "The Ring Goes South - Nightmare",
+      "Journey in the Dark - Nightmare",
+      "Breaking of the Fellowship - Nightmare"
+    ],
+    "requires": [
+      "the-road-darkens"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-treason-of-saruman-nightmare",
+    "name": "The Treason of Saruman Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Lord of the Rings",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-treason-of-saruman"
+    ],
+    "aliases": [
+      "The Treason of Saruman - Nightmare",
+      "The Treason of Saruman - Nightmare"
+    ],
+    "encounterSets": [
+      "The Uruk-hai - Nightmare",
+      "Helm’s Deep - Nightmare",
+      "The Road to Isengard - Nightmare"
+    ],
+    "requires": [
+      "the-treason-of-saruman"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-land-of-shadow-nightmare",
+    "name": "The Land of Shadow Nightmare Decks",
+    "kind": "nightmare-deck",
+    "cycle": "The Lord of the Rings",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:the-land-of-shadow"
+    ],
+    "aliases": [
+      "The Land of Shadow - Nightmare",
+      "The Land of Shadow - Nightmare"
+    ],
+    "encounterSets": [
+      "The Passage of the Marshes - Nightmare",
+      "Journey to the Cross-roads - Nightmare",
+      "Shelob’s Lair - Nightmare"
+    ],
+    "requires": [
+      "the-land-of-shadow"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-hunt-for-gollum-nightmare",
+    "name": "The Hunt for Gollum Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "The Hunt for Gollum - Nightmare"
+    ],
+    "requires": [
+      "the-hunt-for-gollum"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "conflict-at-the-carrock-nightmare",
+    "name": "Conflict at the Carrock Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "Conflict at the Carrock - Nightmare"
+    ],
+    "requires": [
+      "conflict-at-the-carrock"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "a-journey-to-rhosgobel-nightmare",
+    "name": "A Journey to Rhosgobel Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "A Journey to Rhosgobel - Nightmare"
+    ],
+    "requires": [
+      "a-journey-to-rhosgobel"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-hills-of-emyn-muil-nightmare",
+    "name": "The Hills of Emyn Muil Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "The Hills of Emyn Muil - Nightmare"
+    ],
+    "requires": [
+      "the-hills-of-emyn-muil"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-dead-marshes-nightmare",
+    "name": "The Dead Marshes Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "The Dead Marshes - Nightmare"
+    ],
+    "requires": [
+      "the-dead-marshes"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "return-to-mirkwood-nightmare",
+    "name": "Return to Mirkwood Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Shadows of Mirkwood",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:shadows-of-mirkwood"
+    ],
+    "encounterSets": [
+      "Return to Mirkwood - Nightmare"
+    ],
+    "requires": [
+      "return-to-mirkwood"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-redhorn-gate-nightmare",
+    "name": "The Redhorn Gate Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "The Redhorn Gate - Nightmare"
+    ],
+    "requires": [
+      "the-redhorn-gate"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "road-to-rivendell-nightmare",
+    "name": "Road to Rivendell Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "Road to Rivendell - Nightmare"
+    ],
+    "requires": [
+      "road-to-rivendell"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-watcher-in-the-water-nightmare",
+    "name": "The Watcher in the Water Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "The Watcher in the Water - Nightmare"
+    ],
+    "requires": [
+      "the-watcher-in-the-water"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-long-dark-nightmare",
+    "name": "The Long Dark Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "The Long Dark - Nightmare"
+    ],
+    "requires": [
+      "the-long-dark"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "foundations-of-stone-nightmare",
+    "name": "Foundations of Stone Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "Foundations of Stone - Nightmare"
+    ],
+    "requires": [
+      "foundations-of-stone"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "shadow-and-flame-nightmare",
+    "name": "Shadow and Flame Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dwarrowdelf",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dwarrowdelf"
+    ],
+    "encounterSets": [
+      "Shadow and Flame - Nightmare"
+    ],
+    "requires": [
+      "shadow-and-flame"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-steward-s-fear-nightmare",
+    "name": "The Steward's Fear Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "The Steward's Fear - Nightmare"
+    ],
+    "requires": [
+      "the-steward-s-fear"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-druadan-forest-nightmare",
+    "name": "The Drúadan Forest Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "The Drúadan Forest - Nightmare"
+    ],
+    "requires": [
+      "the-druadan-forest"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "encounter-at-amon-din-nightmare",
+    "name": "Encounter at Amon Dîn Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "Encounter at Amon Dîn - Nightmare"
+    ],
+    "requires": [
+      "encounter-at-amon-din"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "assault-on-osgiliath-nightmare",
+    "name": "Assault on Osgiliath Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "Assault on Osgiliath - Nightmare"
+    ],
+    "requires": [
+      "assault-on-osgiliath"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-blood-of-gondor-nightmare",
+    "name": "The Blood of Gondor Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "The Blood of Gondor - Nightmare"
+    ],
+    "requires": [
+      "the-blood-of-gondor"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-morgul-vale-nightmare",
+    "name": "The Morgul Vale Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Against the Shadow",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:against-the-shadow"
+    ],
+    "encounterSets": [
+      "The Morgul Vale - Nightmare"
+    ],
+    "requires": [
+      "the-morgul-vale"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-dunland-trap-nightmare",
+    "name": "The Dunland Trap Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "The Dunland Trap - Nightmare"
+    ],
+    "requires": [
+      "the-dunland-trap"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-three-trials-nightmare",
+    "name": "The Three Trials Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "The Three Trials - Nightmare"
+    ],
+    "requires": [
+      "the-three-trials"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "trouble-in-tharbad-nightmare",
+    "name": "Trouble in Tharbad Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "Trouble in Tharbad - Nightmare"
+    ],
+    "requires": [
+      "trouble-in-tharbad"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-nin-in-eilph-nightmare",
+    "name": "The Nîn-in-Eilph Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "The Nîn-in-Eilph - Nightmare"
+    ],
+    "requires": [
+      "the-nin-in-eilph"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "celebrimbor-s-secret-nightmare",
+    "name": "Celebrimbor's Secret Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "Celebrimbor's Secret - Nightmare"
+    ],
+    "requires": [
+      "celebrimbor-s-secret"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-antlered-crown-nightmare",
+    "name": "The Antlered Crown Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "The Ring-maker",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:ringmaker"
+    ],
+    "encounterSets": [
+      "The Antlered Crown - Nightmare"
+    ],
+    "requires": [
+      "the-antlered-crown"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-wastes-of-eriador-nightmare",
+    "name": "The Wastes of Eriador Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "The Wastes of Eriador - Nightmare"
+    ],
+    "requires": [
+      "the-wastes-of-eriador"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "escape-from-mount-gram-nightmare",
+    "name": "Escape from Mount Gram Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "Escape from Mount Gram - Nightmare"
+    ],
+    "requires": [
+      "escape-from-mount-gram"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "across-the-ettenmoors-nightmare",
+    "name": "Across the Ettenmoors Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "Across the Ettenmoors - Nightmare"
+    ],
+    "requires": [
+      "across-the-ettenmoors"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-treachery-of-rhudaur-nightmare",
+    "name": "The Treachery of Rhudaur Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "The Treachery of Rhudaur - Nightmare"
+    ],
+    "requires": [
+      "the-treachery-of-rhudaur"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-battle-of-carn-dum-nightmare",
+    "name": "The Battle of Carn Dûm Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "The Battle of Carn Dûm - Nightmare"
+    ],
+    "requires": [
+      "the-battle-of-carn-dum"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-dread-realm-nightmare",
+    "name": "The Dread Realm Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Angmar Awakened",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:angmar-awakened"
+    ],
+    "encounterSets": [
+      "The Dread Realm - Nightmare"
+    ],
+    "requires": [
+      "the-dread-realm"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "flight-of-the-stormcaller-nightmare",
+    "name": "Flight of the Stormcaller Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "Flight of the Stormcaller - Nightmare"
+    ],
+    "requires": [
+      "flight-of-the-stormcaller"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-thing-in-the-depths-nightmare",
+    "name": "The Thing in the Depths Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "The Thing in the Depths - Nightmare",
+      "The Things in the Depths - Nightmare"
+    ],
+    "requires": [
+      "the-thing-in-the-depths"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "temple-of-the-deceived-nightmare",
+    "name": "Temple of the Deceived Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "Temple of the Deceived - Nightmare"
+    ],
+    "requires": [
+      "temple-of-the-deceived"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-drowned-ruins-nightmare",
+    "name": "The Drowned Ruins Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "The Drowned Ruins - Nightmare"
+    ],
+    "requires": [
+      "the-drowned-ruins"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "a-storm-on-cobas-haven-nightmare",
+    "name": "A Storm on Cobas Haven Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "A Storm on Cobas Haven - Nightmare"
+    ],
+    "requires": [
+      "a-storm-on-cobas-haven"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "the-city-of-corsairs-nightmare",
+    "name": "The City of Corsairs Nightmare Deck",
+    "kind": "nightmare-deck",
+    "cycle": "Dream-chaser",
+    "content": "encounter",
+    "packCodes": [
+      "nightmare:dreamchaser"
+    ],
+    "encounterSets": [
+      "The City of Corsairs - Nightmare"
+    ],
+    "requires": [
+      "the-city-of-corsairs"
+    ],
+    "description": "Alternative encounter cards and instructions that modify an existing scenario; the original scenario is required.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/products/the-lord-of-the-rings-the-card-game/products/black-riders-nightmare-decks/",
+      "https://github.com/GeckoTH/Lord-of-the-Rings"
+    ]
+  },
+  {
+    "id": "promo-aragorn-2014",
+    "name": "Aragorn · Fellowship 2014 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "01001"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Aragorn, distributed at Fellowship 2014. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/ffg_blog/22030/original_content"
+    ]
+  },
+  {
+    "id": "promo-legolas-2015",
+    "name": "Legolas · Fellowship 2015 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "01005"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Legolas, distributed at Fellowship 2015. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2015/10/30/join-the-fellowship/"
+    ]
+  },
+  {
+    "id": "promo-boromir-2016",
+    "name": "Boromir · Gen Con 2016 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "02095"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Boromir, distributed at Gen Con 2016. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2016/7/27/defend-against-the-siege-of-annuminas/"
+    ]
+  },
+  {
+    "id": "promo-faramir-2016",
+    "name": "Faramir · Fellowship 2016 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "144002"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Faramir, distributed at Fellowship 2016. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2016/7/27/defend-against-the-siege-of-annuminas/"
+    ]
+  },
+  {
+    "id": "promo-celeborn-2017",
+    "name": "Celeborn · Gen Con 2017 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "08001"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Celeborn, distributed at Gen Con 2017. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2017/9/14/assault-on-dol-guldur/"
+    ]
+  },
+  {
+    "id": "promo-galadriel-2017",
+    "name": "Galadriel · Fellowship 2017 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "08112"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Galadriel, distributed at Fellowship 2017. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2017/9/14/assault-on-dol-guldur/"
+    ]
+  },
+  {
+    "id": "promo-eowyn-2018",
+    "name": "Éowyn · Fellowship 2018 Promo",
+    "kind": "promo",
+    "packCodes": [],
+    "cardCodes": [
+      "01007"
+    ],
+    "content": "player",
+    "description": "Official alternate-art printing of Éowyn, distributed at Fellowship 2018. Its rules match the original hero; this is not a separately sold player deck.",
+    "sourceUrls": [
+      "https://www.fantasyflightgames.com/en/news/2018/8/24/the-woodland-realm/"
+    ]
+  }
+]

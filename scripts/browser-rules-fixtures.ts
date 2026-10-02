@@ -1,11 +1,8 @@
 import assert from "node:assert/strict";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { STARTERS } from "../src/game/cards";
-import {
-  applyAction as act,
-  createGame,
-  validateSave,
-} from "../src/game/engine";
+import { createGame, validateSave } from "../src/game/engine";
+import { applyPlanningFixtureAction as act } from "./fixture-phase-helper.ts";
 import { startGuided } from "../src/game/presentation";
 import { selectSeat, syncSeat } from "../src/game/table";
 import type { GameState, Unit } from "../src/game/types";

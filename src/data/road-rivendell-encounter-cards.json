@@ -1,0 +1,465 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9005",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9005",
+    "name": "Arwen Undómiel",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Noldor. Noble. Ally.",
+    "text": "The first player gains control of Arwen Undomiel, as an ally.  Response: After Arwen Undomiel exhausts, choose a hero. Add 1 resource to that hero's resource pool.  If Arwen Undomiel leaves play, the players are defeated.",
+    "is_unique": true,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 41,
+    "quantity": 1,
+    "willpower": 2,
+    "attack": 0,
+    "defense": 1,
+    "health": 2,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "0",
+      "defense": "1",
+      "health": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9005.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 41,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9006",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9006",
+    "name": "Barren Hills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Barren Hills is the active location, ignore ambush.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 45,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9006.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9006",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9006.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9008",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9008",
+    "name": "Crebain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nWhile Crebain is in the staging area, encounter card effects cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 51,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 0,
+    "defense": 0,
+    "health": 3,
+    "engagement": 35,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "0",
+      "defense": "0",
+      "health": "3",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9008.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 51,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9008",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9008.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9011",
+    "name": "Followed by Night",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player (choose 1): deals 1 damage to all allies in play and Followed by Night gains surge, or all enemies engaged with players make an immediate attack, if able.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 47,
+    "quantity": 3,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 47,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9012",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9012",
+    "name": "Goblin Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Gate.",
+    "text": "While Goblin Gate is the active location, the first enemy revealed from the encounter deck each round gains ambush. If that enemy engages a player, it makes an immediate attack (deal and resolve a shadow card).",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 43,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 4,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9012.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 43,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9012",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9012.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9013",
+    "name": "Goblin Taskmaster",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Ambush.\nForced: After Goblin Taskmaster engages a player, that player deals 2 damage to 1 character he controls.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 49,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 4,
+    "engagement": 27,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "4",
+      "engagement": "27"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 49,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9016",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9016",
+    "name": "Orc Ambush",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: All Orc enemies in the staging area engage the first player. If there are no Orc enemies in the staging area, return all Orc enemies in the encounter discard pile to the staging area, if able.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 48,
+    "quantity": 2,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9016.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 48,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9016",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9016.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9019",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9019",
+    "name": "Orc Raiders",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Ambush.\nForced: After Orc Raiders engages a player, that player discards 2 attachments he controls, if able.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 50,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 21,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "21"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9019.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 50,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9019",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9019.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9021",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9021",
+    "name": "Pathless Country",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "Forced: After at least 1 progress token is placed on Pathless Country, remove 1 progress token from it.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 44,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 5,
+    "shadow": "Shadow: Deal 1 damage to each ally in play.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9021.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9021",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9021.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9024",
+    "name": "Ruined Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Road.",
+    "text": "Response: After you travel to Ruined Road, the first player places 2 progress tokens on it or readies 1 hero he controls.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 42,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 5,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 42,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9025",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9025",
+    "name": "Sleeping Sentry",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each exhausted character. Then, exhaust all ready characters.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 46,
+    "quantity": 2,
+    "shadow": "Shadow: Defending player must discard all exhausted characters he controls.",
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9025.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 46,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9028",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9028",
+    "name": "Wild Bear",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Ambush.\nForced: After Wild Bear engages a player, it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 52,
+    "quantity": 3,
+    "threat": 0,
+    "attack": 2,
+    "defense": 3,
+    "health": 5,
+    "engagement": 34,
+    "encounter_set": "Road to Rivendell",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "2",
+      "defense": "3",
+      "health": "5",
+      "engagement": "34"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9028.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9028",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9028.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  }
+]

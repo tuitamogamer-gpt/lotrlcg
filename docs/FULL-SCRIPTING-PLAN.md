@@ -1,0 +1,34 @@
+# Full published-content automation
+
+The requested goal is automation of the complete official published library, including all player-card designs, original and revised campaigns, standalone and Saga quests, and Nightmare variants. Reference import is complete. Rules implementation is in progress; adding a record or putting its text in a dialog does not finish its mechanics.
+
+## Runtime registration and evidence
+
+`src/game/cards.ts` registers only implemented player and encounter definitions. `src/game/support.ts` registers scripted quest stages and supported scenario modes. Deck creation, RingsDB import, hero selection, save validation and client play controls use those registrations. The published recipe gallery enables a deck only after every hero and card design is supported. Original Core learning recipes keep their original quantities when the expansion pool grows.
+
+Run `npm run audit:rules` to regenerate `public/automation-coverage.json`. It records the exact reference-catalog SHA-256, implemented and pending card identities, scenario variants, and per-product coverage. The manifest is an inventory, not a substitute for semantic rules tests. Reprints reuse canonical handlers while preserving their product provenance. Nightmare and campaign variants have separate support gates.
+
+The 2026-10-02 release inventory registers 355 player definitions (42 heroes and 313 deck cards), 223 encounter definitions and 17 scenario designs. It resolves 636 of 4,183 reference identities and 34 of 355 setup recipes to registered automation; 3,547 reference identities remain pending. The six complete retail/Collector main deck recipes preserve their printed lists. These counts describe registration coverage, with the corresponding semantic and client evidence recorded separately.
+
+## Implementation batches
+
+1. **Shared player mechanics:** continuous traits and keywords; extra resource icons; conditional statistics; Restricted capacity and weighted slots; attachment and uniqueness limits; cost modifiers and Secrecy; characters that stay ready when questing. Explicitly registered rules have active engine tests. Additional keywords remain pending until implemented.
+2. **Shadows of Mirkwood:** complete player rules by Adventure Pack and complete original/easy scenario behavior, then Nightmare variants. All six player packs and all six original/easy adventure rules are implemented. Nightmare variants remain pending. Further work continues in release order where practical.
+3. **Preconstructed decks:** verify every recipe's complete hero/playing-card rules and integrate published deck selection, persistence, multiplayer setup and actual browser play. Defenders of Gondor, Dwarves of Durin, Elves of Lórien and Riders of Rohan have complete selectable printed main decks, with engine and responsive browser evidence. Both Collector's Edition exact 50-card main lists are also selectable, with engine and responsive browser evidence. Extra cards supplied for deckbuilding retain individual support status.
+4. **Cycle mechanics and quests:** Dwarrowdelf, Against the Shadow, Ring-maker, Angmar Awakened, Dream-chaser, Haradrim, Ered Mithrin and Vengeance of Mordor. Khazad-dûm's player cards and three original/easy quests are integrated; The Redhorn Gate, Road to Rivendell, The Watcher in the Water, The Long Dark and Shadow and Flame original/easy quests are integrated and checked in all event-review modes and at 1280/390/320px. Foundations of Stone's quest remains pending. All six Dwarrowdelf player packs are implemented. Heirs of Númenor, The Steward’s Fear, Drúadan Forest and Encounter at Amon Dîn player sets are integrated, including explicit multiplayer choices and save/reload. Their Against the Shadow quests and the remaining cycle quests/player sets are pending. New mechanics need their own shared primitives before a dependent card or quest is registered.
+5. **Saga:** Baggins/Fellowship resource icons, Ring-bearers, additional quest structure, treasures, burdens, boons and campaign history across Hobbit and Lord of the Rings releases.
+6. **Standalone scenarios:** every Gen Con/Fellowship/Scenario Pack, including custom encounter construction, epic modes and any separate staging/quest areas. Unsupported player counts or encounter arrangements cannot silently fall back to an ordinary solo quest.
+7. **Revised campaigns and Nightmare:** complete campaign setup/resolution, carry-over and card effects, followed by every Nightmare encounter replacement and modified quest. Standard support does not automatically confer Nightmare support.
+
+These batches are implementation order, not a reduced requested scope. `automation-coverage.json` provides the remaining identity-level inventory throughout the work.
+
+## Completion requirements
+
+- Every gameplay clause has an explicit handler or a fully implemented shared mechanic; flavour text, rulesheet proxies and alternate face references are identified separately.
+- Trigger ordering, costs, valid targets, resource icons, printed limits, optional decisions, cancellation/immunity and multiplayer control/ownership have semantic checks.
+- Every scenario's setup, stage transition, special zones, victory/loss and normal/easy/Nightmare differences are verified against printed cards and official rules.
+- Pending effects and player choices survive save/reload and remain visible in the client. Hidden decks and shadows stay private.
+- Complete published decks can be selected and used in actual games. Cards are not discarded from imported lists merely to make unsupported recipes appear playable.
+- Existing deterministic games and focused browser journeys pass; newly introduced mechanics have real interactions and edge cases, not only registration tests.
+
+Rules sources and scenario-specific findings are recorded in the corresponding implementation documents, beginning with [CARROCK-RULES.md](CARROCK-RULES.md). Full-import provenance is in [CONTENT-IMPORT.md](CONTENT-IMPORT.md).

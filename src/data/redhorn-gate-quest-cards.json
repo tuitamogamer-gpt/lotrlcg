@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "octgnid": "001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "name": "The Mountains' Peaks",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 13,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Redhorn Gate",
+    "side": "A",
+    "back_name": "The Mountains' Peaks",
+    "back_text": "When Revealed: Shuffle all copies of Snowstorm in the encounter discard pile back into the encounter deck.  Characters are discarded from play if their [willpower] is ever 0.  Players cannot defeat this stage unless they have 5 victory points. If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 13,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
+    "octgnid": "0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
+    "name": "Up the Pass",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Caradhras to the staging area. Remove all copies of Snowstorm from the encounter deck and set them aside, out of play. Put Arwen Undomiel into play under the control of the first player.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 11,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Redhorn Gate",
+    "side": "A",
+    "back_name": "Up the Pass",
+    "back_text": "When Revealed: Reveal 1 card from the encounter deck per player, and add it to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ec5f691-e5b3-41b5-bcec-2f963786ef4d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ec5f691-e5b3-41b5-bcec-2f963786ef4d.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ec5f691-e5b3-41b5-bcec-2f963786ef4d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "octgnid": "737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "name": "Snowdrifts",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 12,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Redhorn Gate",
+    "side": "A",
+    "back_name": "Snowdrifts",
+    "back_text": "When Revealed: Shuffle 1 more copy of Snowstorm into the encounter deck than the number of players in the game.  Forced: After placing the 11th progress token on Snowdrifts, discard any active location. Caradhras becomes the active location.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737a8d5f-2f82-47e4-844e-52fdae95ccf5.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737a8d5f-2f82-47e4-844e-52fdae95ccf5.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737a8d5f-2f82-47e4-844e-52fdae95ccf5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

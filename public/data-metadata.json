@@ -1,30 +1,323 @@
 {
-  "catalog": {
-    "url": "https://ringsdb.com/api/public/cards/",
-    "count": 1315,
-    "retrievedAt": "2026-09-23"
+  "schemaVersion": 2,
+  "retrievedAt": "2026-09-30T08:37:00.000Z",
+  "scope": "Published Fantasy Flight Games LotR LCG card definitions and source recipes; community and virtual MotK cards excluded.",
+  "recipeCorrections": {
+    "file": "src/data/scenario-recipe-corrections.json",
+    "canonicalJsonSha256": "b86fbe047a3a9c94dc0fc3ea8ef515e7d6ea1c88c3611ca7e37cf4c326a15480",
+    "entries": [
+      {
+        "id": "Q02.7",
+        "source_url": "https://images-cdn.fantasyflightgames.com/filer_public/82/5f/825f170d-3a2a-45a8-a145-f7f0c55ae13a/the_long_dark_rulesheet.pdf",
+        "reason": "The official rulesheet requires The Long Dark, Twists and Turns, and Hazards of the Pit. The upstream recipe incorrectly includes Deeps of Moria. Printed easy-mode removals are preserved. Cave Torch remains separately listed in the original setup staging section."
+      },
+      {
+        "id": "E02.7",
+        "source_url": "https://images-cdn.fantasyflightgames.com/filer_public/82/5f/825f170d-3a2a-45a8-a145-f7f0c55ae13a/the_long_dark_rulesheet.pdf",
+        "reason": "The official rulesheet requires The Long Dark, Twists and Turns, and Hazards of the Pit. The upstream recipe incorrectly includes Deeps of Moria. Printed easy-mode removals are preserved. Cave Torch remains separately listed in the original setup staging section."
+      }
+    ]
   },
-  "core": {
-    "url": "https://ringsdb.com/api/public/cards/core.json",
-    "count": 73,
-    "retrievedAt": "2026-09-23"
-  },
-  "encounters": {
-    "url": "https://raw.githubusercontent.com/GeckoTH/Lord-of-the-Rings/master/o8g/Sets/Core%20Set/set.xml",
-    "definitions": 45,
-    "physicalCards": 84,
-    "retrievedAt": "2026-09-23",
-    "scenarios": {
-      "mirkwood": 36,
-      "anduin": 47,
-      "dol-guldur": 41
+  "sources": {
+    "cards": {
+      "url": "https://ringsdb.com/api/public/cards/",
+      "retrievedAt": "2026-09-30T08:37:00.000Z",
+      "sha256": "7f344f93098e8df16c1f6e18bc7dad4262b94acee66da781495a8fb9dc666aaa",
+      "bytes": 1447303
+    },
+    "packs": {
+      "url": "https://ringsdb.com/api/public/packs/",
+      "retrievedAt": "2026-09-30T08:37:00.000Z",
+      "sha256": "bea5e2778feaab161f9844ab35720d51fdcc4874ecb696a25b6ca96a33f88832",
+      "bytes": 19796
+    },
+    "dragncards": {
+      "url": "https://dragncards.com/be/api/plugins/1",
+      "retrievedAt": "2026-09-30T08:37:00.000Z",
+      "sha256": "4c681411366e5aa7e8bfd31513d1e5fe35b116ec93590f57a491bb745de2d99f",
+      "bytes": 2202282,
+      "pluginVersion": 50
     }
   },
-  "campaign": {
-    "name": "Mirkwood Paths",
-    "chapters": 3,
-    "supportCardDefinitions": 7,
-    "url": "https://hallofbeorn-resources.s3.amazonaws.com/Images/LotR/Print-and-Play/core_set_campaign_cards.pdf",
-    "retrievedAt": "2026-09-23"
-  }
+  "counts": {
+    "cards": 4183,
+    "playerCards": 963,
+    "encounterAndCampaignCards": 3220,
+    "heroes": 112,
+    "packs": 113,
+    "ringsdbCanonicalCards": 1023,
+    "officialDragncardsRecords": 4376,
+    "officialDragncardsPrintings": 4337,
+    "cardPrintings": 4410,
+    "canonicalPrintedCards": 4144,
+    "referenceOnlyFaces": 39,
+    "scenarios": 121,
+    "nightmareScenarios": 72,
+    "scenarioRecipes": 355,
+    "campaignPools": 7,
+    "byType": {
+      "ally": 271,
+      "attachment": 275,
+      "campaign": 60,
+      "contract": 8,
+      "encounter-side-quest": 69,
+      "enemy": 760,
+      "event": 270,
+      "hero": 112,
+      "location": 853,
+      "nightmare": 72,
+      "objective": 136,
+      "objective-ally": 42,
+      "objective-hero": 4,
+      "player-side-quest": 10,
+      "quest": 441,
+      "rules": 36,
+      "ship-enemy": 27,
+      "ship-objective": 19,
+      "treachery": 700,
+      "treasure": 18
+    },
+    "bySphere": {
+      "baggins": 4,
+      "boon": 108,
+      "burden": 47,
+      "encounter": 3162,
+      "fellowship": 13,
+      "leadership": 189,
+      "lore": 191,
+      "neutral": 96,
+      "spirit": 186,
+      "tactics": 187
+    }
+  },
+  "excluded": {
+    "ringsdbPacks": [
+      {
+        "code": "MotKA",
+        "name": "Messenger of the King Allies"
+      },
+      {
+        "code": "ALePMotKA",
+        "name": "ALeP - Messenger of the King Allies"
+      },
+      {
+        "code": "CoE",
+        "name": "ALeP - Children of Eorl"
+      },
+      {
+        "code": "TAP",
+        "name": "ALeP - The Aldburg Plot"
+      },
+      {
+        "code": "TSotS",
+        "name": "ALeP - The Scouring of the Shire"
+      },
+      {
+        "code": "FotE",
+        "name": "ALeP - Fire on the Eastemnet"
+      },
+      {
+        "code": "TGoR",
+        "name": "ALeP - The Gap of Rohan"
+      },
+      {
+        "code": "TGC",
+        "name": "ALeP - The Glittering Caves"
+      },
+      {
+        "code": "MotR",
+        "name": "ALeP - Mustering of the Rohirrim"
+      },
+      {
+        "code": "BitI",
+        "name": "ALeP - Blood in the Isen"
+      },
+      {
+        "code": "TNaA",
+        "name": "ALeP - The Nine are Abroad"
+      },
+      {
+        "code": "TSoEr",
+        "name": "ALeP - The Siege of Erebor"
+      },
+      {
+        "code": "TSR",
+        "name": "ALeP - The Shire's Reckoning"
+      },
+      {
+        "code": "THo",
+        "name": "ALeP - The Hobbit"
+      },
+      {
+        "code": "SNiB",
+        "name": "ALeP - Strange News in Bree"
+      },
+      {
+        "code": "FitD",
+        "name": "ALeP - Fangs in the Dark"
+      },
+      {
+        "code": "TMoG",
+        "name": "ALeP - The Mirror of Galadriel"
+      },
+      {
+        "code": "TBP",
+        "name": "ALeP - The Brandywine Pursuit"
+      }
+    ],
+    "dragncardsCardRecords": 1514,
+    "scenarioRecipes": [
+      {
+        "id": "QA2.4",
+        "name": "ALeP Strange News in Bree"
+      },
+      {
+        "id": "QA1.7",
+        "name": "ALeP The Glittering Caves"
+      },
+      {
+        "id": "EA2.6",
+        "name": "ALeP The Brandywine Pursuit (Easy)"
+      },
+      {
+        "id": "Q99.17",
+        "name": "ALeP The Nine are Abroad"
+      },
+      {
+        "id": "QA2.1",
+        "name": "ALeP Pies for the Party"
+      },
+      {
+        "id": "Q0C.19",
+        "name": "ALeP The Scouring of the Shire"
+      },
+      {
+        "id": "EA1.7",
+        "name": "ALeP The Glittering Caves (Easy)"
+      },
+      {
+        "id": "EA1.2",
+        "name": "ALeP The Battle for the Beacon (Easy)"
+      },
+      {
+        "id": "QA1.5",
+        "name": "ALeP Fire on the Eastemnet"
+      },
+      {
+        "id": "EA1.3",
+        "name": "ALeP The Horse Lord’s Ire (Easy)"
+      },
+      {
+        "id": "EA1.4",
+        "name": "ALeP The Aldburg Plot (Easy)"
+      },
+      {
+        "id": "QA2.6",
+        "name": "ALeP The Brandywine Pursuit"
+      },
+      {
+        "id": "EA2.5",
+        "name": "ALeP Fangs in the Dark (Easy)"
+      },
+      {
+        "id": "QA1.1",
+        "name": "ALeP Ambush at Erelas"
+      },
+      {
+        "id": "EA2.4",
+        "name": "ALeP Strange News in Bree (Easy)"
+      },
+      {
+        "id": "EA1.6",
+        "name": "ALeP The Gap of Rohan (Easy)"
+      },
+      {
+        "id": "Q99.19",
+        "name": "ALeP The Hobbit"
+      },
+      {
+        "id": "QA1.3",
+        "name": "ALeP The Horse Lord’s Ire"
+      },
+      {
+        "id": "EA1.8",
+        "name": "ALeP Mustering of the Rohirrim (Easy)"
+      },
+      {
+        "id": "EA1.5",
+        "name": "ALeP Fire on the Eastemnet (Easy)"
+      },
+      {
+        "id": "QA2.2",
+        "name": "ALeP Sundown on the Shire"
+      },
+      {
+        "id": "QA1.4",
+        "name": "ALeP The Aldburg Plot"
+      },
+      {
+        "id": "QA1.2",
+        "name": "ALeP The Battle for the Beacon"
+      },
+      {
+        "id": "QA1.9",
+        "name": "ALeP Blood in the Isen"
+      },
+      {
+        "id": "QA2.5",
+        "name": "ALeP Fangs in the Dark"
+      },
+      {
+        "id": "QA2.3",
+        "name": "ALeP Secrets of the Old Forest"
+      },
+      {
+        "id": "Q99.18",
+        "name": "The Siege of Erebor"
+      },
+      {
+        "id": "E0C.19",
+        "name": "ALeP The Scouring of the Shire (Easy)"
+      },
+      {
+        "id": "EA1.9",
+        "name": "ALeP Blood in the Isen (Easy)"
+      },
+      {
+        "id": "QA1.8",
+        "name": "ALeP Mustering of the Rohirrim"
+      },
+      {
+        "id": "Q99.16",
+        "name": "ALeP The Scouring of the Shire"
+      },
+      {
+        "id": "QA1.6",
+        "name": "ALeP The Gap of Rohan"
+      },
+      {
+        "id": "Q99.20",
+        "name": "ALeP The Mirror of Galadriel"
+      },
+      {
+        "id": "E99.16",
+        "name": "ALeP The Scouring of the Shire (Easy)"
+      },
+      {
+        "id": "EA1.1",
+        "name": "ALeP Ambush at Erelas (Easy)"
+      }
+    ]
+  },
+  "notes": [
+    "Reprints are folded into canonical player identities by rules and stat fingerprints; packs retains physical printing, quantity, image and OCTGN identity.",
+    "Limited Starter Gandalf printings 4 and 37 both resolve to Core Gandalf with two copies each; the API aggregate quantity is preserved as ringsdb_quantity.",
+    "Quantity-zero references are scanned rule-sheet pages or alternate faces already belonging to printed cards, excluded from physical printing counts.",
+    "Nightmare data packs are grouped by original OCTGN set; retail Nightmare products are in the product catalogue.",
+    "RingsDB availability dates can describe original content rather than the revised retail release.",
+    "Imported rules text and scenario deck recipes do not imply automated play support.",
+    "Gundabad Stalker upstream RingsDB UUID is reconciled by exact printed pack, position and name against DragnCards; ringsdb_octgnid retains the original API identity.",
+    "The Long Dark standard/easy recipes use the official rulesheet's three encounter sets instead of the upstream Deeps of Moria inclusion; original_source and correction_reason retain the audit trail.",
+    "Non-numeric printed corner labels, including The Long Dark's six PASS cards, are preserved as corner_text/back_corner_text."
+  ]
 }

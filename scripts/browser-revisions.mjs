@@ -1,8 +1,10 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import { chromium, webkit } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { STARTERS } from "../src/game/cards.ts";
-import { createGame, applyAction } from "../src/game/engine.ts";
+import { createGame } from "../src/game/engine.ts";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 import { DECKS_KEY } from "../src/game/decks.ts";
 import { CHOICES_KEY } from "../src/account/choices.ts";
 import {
@@ -123,6 +125,7 @@ try {
   assert.equal(state.scenario, "hunt-for-gollum");
   assert.equal(state.heroes.length, 1);
   await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+  await finishResourcePhase(p);
   state = await reviewedState(p);
   assert.equal(state.phase, "planning");
   assert.equal(state.heroes[0].resources, 1);

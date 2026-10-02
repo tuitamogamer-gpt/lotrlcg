@@ -10,6 +10,58 @@ export const PLAYMATS = {
     name: "Anduin Valley",
     detail: "Where the trail begins",
   },
+  "conflict-at-the-carrock": {
+    name: "The Carrock",
+    detail: "Trolls beside the Anduin",
+  },
+  "hills-of-emyn-muil": {
+    name: "Emyn Muil",
+    detail: "The hills beside the Great River",
+  },
+  "journey-to-rhosgobel": {
+    name: "Rhosgobel",
+    detail: "A wounded Eagle's refuge",
+  },
+  "return-to-mirkwood": {
+    name: "Return to Mirkwood",
+    detail: "Guard Gollum through the forest",
+  },
+  "dead-marshes": {
+    name: "The Dead Marshes",
+    detail: "Gollum's trail through the mire",
+  },
+  "into-the-pit": {
+    name: "Into the Pit",
+    detail: "Beyond the East-gate of Moria",
+  },
+  "the-seventh-level": {
+    name: "The Seventh Level",
+    detail: "The halls of Khazad-dûm",
+  },
+  "flight-from-moria": {
+    name: "Flight from Moria",
+    detail: "Find a way out of the darkness",
+  },
+  "redhorn-gate": {
+    name: "The Redhorn Gate",
+    detail: "Snow on the slopes of Caradhras",
+  },
+  "road-to-rivendell": {
+    name: "Road to Rivendell",
+    detail: "Escort Arwen beyond the Misty Mountains",
+  },
+  "shadow-and-flame": {
+    name: "Shadow and Flame",
+    detail: "Durin’s Bane beneath Khazad-dûm",
+  },
+  "the-long-dark": {
+    name: "The Long Dark",
+    detail: "Locate the eastward path beneath Moria",
+  },
+  "watcher-in-the-water": {
+    name: "The West-door",
+    detail: "Tentacles in the lake before Moria",
+  },
 } satisfies Record<ScenarioId, { name: string; detail: string }>;
 
 export const PLAYMAT_CHOICES = [
@@ -18,6 +70,19 @@ export const PLAYMAT_CHOICES = [
   "anduin",
   "dol-guldur",
   "hunt-for-gollum",
+  "conflict-at-the-carrock",
+  "hills-of-emyn-muil",
+  "journey-to-rhosgobel",
+  "dead-marshes",
+  "return-to-mirkwood",
+  "into-the-pit",
+  "the-seventh-level",
+  "flight-from-moria",
+  "redhorn-gate",
+  "road-to-rivendell",
+  "watcher-in-the-water",
+  "the-long-dark",
+  "shadow-and-flame",
 ] as const;
 
 export function TableCollection({

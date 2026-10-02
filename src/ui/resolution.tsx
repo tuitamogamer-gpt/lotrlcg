@@ -46,6 +46,7 @@ const journeyPhases = [
 ];
 const journeyIndex: Record<GameState["phase"], number> = {
   setup: -1,
+  resource: 0,
   planning: 1,
   quest: 2,
   staging: 2,

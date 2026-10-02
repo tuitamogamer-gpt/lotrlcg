@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { STARTERS } from "../src/game/cards";
-import { createGame, applyAction, validateSave } from "../src/game/engine";
+import { createGame, validateSave } from "../src/game/engine";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 const d = STARTERS[0];
 let s = applyAction(
   createGame(42, d.cards, d.heroes, d.id, { playMode: "campaign" }),

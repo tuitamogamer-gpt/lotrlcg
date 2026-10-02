@@ -1,7 +1,8 @@
+export { startingThreat } from "./starting-threat";
 import { card, playerCards, SCRIPTED, STARTERS } from "./cards";
 import type { Card } from "./types";
 
-/** A player-built deck. Only scripted Core Set cards can be included. */
+/** A player-built deck. Only registered, scripted player cards can be included. */
 export interface CustomDeck {
   id: string;
   name: string;
@@ -10,6 +11,8 @@ export interface CustomDeck {
   updatedAt: number;
   /** Where the list came from, for example a RingsDB decklist URL. */
   source?: string;
+  productId?: string;
+  deckKind?: "official-preconstructed" | "custom";
 }
 export const DECKS_KEY = "there-and-back-again.decks.v1";
 export const CUSTOM_PREFIX = "custom:";
@@ -55,6 +58,10 @@ export function deckProblems(deck: Pick<CustomDeck, "heroes" | "cards">) {
   if (heroes.length > 3) problems.push("A deck has at most three heroes.");
   if (new Set(heroes).size !== heroes.length)
     problems.push("Each hero can appear only once.");
+  if (new Set(heroes.map((h) => card(h).name)).size !== heroes.length)
+    problems.push(
+      "Different versions of the same unique hero cannot share a deck.",
+    );
   const size = deckSize(deck.cards);
   if (size < 50) problems.push(`Add ${50 - size} more cards to reach 50.`);
   if (size > 100)
@@ -62,12 +69,13 @@ export function deckProblems(deck: Pick<CustomDeck, "heroes" | "cards">) {
   for (const [code, n] of Object.entries(deck.cards)) {
     if (!deckCodes.has(code)) {
       problems.push(
-        `${names.get(code) ?? code} is not a scripted Core Set player card.`,
+        `${names.get(code) ?? code} is not a scripted player card.`,
       );
       continue;
     }
-    if (!Number.isInteger(n) || n < 0 || n > 3)
-      problems.push(`${card(code).name}: at most 3 copies.`);
+    const limit = Math.min(3, card(code).deck_limit ?? 3);
+    if (!Number.isInteger(n) || n < 0 || n > limit)
+      problems.push(`${card(code).name}: at most ${limit} copies.`);
   }
   return problems;
 }
@@ -232,7 +240,11 @@ const validDeck = (d: unknown): d is CustomDeck => {
     Number.isSafeInteger(v.updatedAt) &&
     v.updatedAt >= 0 &&
     (v.source === undefined ||
-      (typeof v.source === "string" && v.source.length <= 2048))
+      (typeof v.source === "string" && v.source.length <= 2048)) &&
+    (v.productId === undefined ||
+      (typeof v.productId === "string" && v.productId.length <= 128)) &&
+    (v.deckKind === undefined ||
+      ["official-preconstructed", "custom"].includes(v.deckKind))
   );
 };
 export function readDecks(): CustomDeck[] {
@@ -269,9 +281,12 @@ export function describeDeck(id: string, decks: CustomDeck[]) {
     id,
     name: deck.name,
     subtitle: "Custom deck",
-    description: `${deckSize(deck.cards)} cards you assembled${deck.source ? " from RingsDB" : ""}.`,
+    description: `${deckSize(deck.cards)} cards in this saved list${deck.source ? "; its source is linked" : ""}.`,
     heroes: deck.heroes,
     cards: deck.cards,
+    source: deck.source,
+    productId: deck.productId,
+    deckKind: deck.deckKind,
     custom: true as const,
   };
 }

@@ -1,0 +1,33 @@
+// Runtime registration consumes printed definitions without importing their rule handlers.
+import type { Card } from "./types";
+import CARROCK_ENCOUNTERS_DATA from "../data/carrock-encounter-cards.json";
+export const CARROCK_ENCOUNTERS = CARROCK_ENCOUNTERS_DATA as Card[];
+import EMYN_MUIL_ENCOUNTERS_DATA from "../data/emyn-muil-encounter-cards.json";
+export const EMYN_MUIL_ENCOUNTERS = EMYN_MUIL_ENCOUNTERS_DATA as Card[];
+import EMYN_MUIL_QUESTS_DATA from "../data/emyn-muil-quest-cards.json";
+export const EMYN_MUIL_QUESTS = EMYN_MUIL_QUESTS_DATA as Card[];
+import RHOSGOBEL_ENCOUNTERS_DATA from "../data/rhosgobel-encounter-cards.json";
+export const RHOSGOBEL_ENCOUNTERS = RHOSGOBEL_ENCOUNTERS_DATA as Card[];
+import RHOSGOBEL_QUESTS_DATA from "../data/rhosgobel-quest-cards.json";
+export const RHOSGOBEL_QUESTS = RHOSGOBEL_QUESTS_DATA as Card[];
+import DEAD_MARSHES_ENCOUNTERS_DATA from "../data/dead-marshes-encounter-cards.json";
+export const DEAD_MARSHES_ENCOUNTERS = DEAD_MARSHES_ENCOUNTERS_DATA as Card[];
+import DEAD_MARSHES_QUESTS_DATA from "../data/dead-marshes-quest-cards.json";
+export const DEAD_MARSHES_QUESTS = DEAD_MARSHES_QUESTS_DATA as Card[];
+import RETURN_MIRKWOOD_ENCOUNTERS_DATA from "../data/return-mirkwood-encounter-cards.json";
+export const RETURN_MIRKWOOD_ENCOUNTERS =
+  RETURN_MIRKWOOD_ENCOUNTERS_DATA as Card[];
+import RETURN_MIRKWOOD_QUESTS_DATA from "../data/return-mirkwood-quest-cards.json";
+export const RETURN_MIRKWOOD_QUESTS = RETURN_MIRKWOOD_QUESTS_DATA as Card[];
+import KHAZAD_ENCOUNTERS_DATA from "../data/khazad-dum-encounter-cards.json";
+export const KHAZAD_ENCOUNTERS = KHAZAD_ENCOUNTERS_DATA as Card[];
+import KHAZAD_QUESTS_DATA from "../data/khazad-dum-quest-cards.json";
+export const KHAZAD_QUESTS = KHAZAD_QUESTS_DATA as Card[];
+import REDHORN_ENCOUNTERS_DATA from "../data/redhorn-gate-encounter-cards.json";
+export const REDHORN_ENCOUNTERS = REDHORN_ENCOUNTERS_DATA as Card[];
+import REDHORN_QUESTS_DATA from "../data/redhorn-gate-quest-cards.json";
+export const REDHORN_QUESTS = REDHORN_QUESTS_DATA as Card[];
+import ROAD_ENCOUNTERS_DATA from "../data/road-rivendell-encounter-cards.json";
+export const ROAD_ENCOUNTERS = ROAD_ENCOUNTERS_DATA as Card[];
+import ROAD_QUESTS_DATA from "../data/road-rivendell-quest-cards.json";
+export const ROAD_QUESTS = ROAD_QUESTS_DATA as Card[];

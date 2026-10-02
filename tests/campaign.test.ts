@@ -1,10 +1,10 @@
+import { applyAction as act } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { card, STARTERS, encounterCards } from "../src/game/cards.ts";
 import { SCENARIOS, OBJECTIVES } from "../src/game/scenarios.ts";
 import {
   createGame,
-  applyAction as act,
   continueCampaign,
   retryAdventure,
   restoreSave,
@@ -103,8 +103,13 @@ test("the exact encounter decks include all 45 Core Set definitions and the 11 H
     encounterCards.filter((c) => c.pack_name === "Core Set").length,
     45,
   );
-  assert.equal(encounterCards.length, 56);
-  const counts = SCENARIOS.map((q) =>
+  assert.equal(
+    encounterCards.filter((c) => c.pack_name === "The Hunt for Gollum").length,
+    11,
+  );
+  const counts = SCENARIOS.filter((q) =>
+    ["mirkwood", "anduin", "dol-guldur", "hunt-for-gollum"].includes(q.id),
+  ).map((q) =>
     encounterCards
       .filter((c) => (q.sets as readonly string[]).includes(c.encounter_set!))
       .reduce((n, c) => n + c.quantity!, 0),

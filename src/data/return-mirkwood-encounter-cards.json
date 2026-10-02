@@ -1,0 +1,371 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9004",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9004",
+    "name": "Attercop, Attercop",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Forced: At the beginning of the encounter phase, Attercop, Attercop automatically engages the player guarding Gollum, regardless of his threat.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 139,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 8,
+    "defense": 4,
+    "health": 6,
+    "engagement": 44,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "8",
+      "defense": "4",
+      "health": "6",
+      "engagement": "44"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9004.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 139,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9004",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9004.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9007",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9007",
+    "name": "Dry Watercourse",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Dry Watercourse is the active location, all treachery card effects that target the player guarding Gollum also target each other player.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 132,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9007.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 132,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9007",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9007.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9012",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9012",
+    "name": "Gollum",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Damage from undefended attacks against you must be dealt to Gollum. If Gollum is destroyed, or if the player guarding Gollum is eliminated, the players have lost the game.  Forced: At the end of each round, raise the threat of the player guarding Gollum by 3. Then, that player may choose a new player to guard Gollum.",
+    "is_unique": true,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 130,
+    "quantity": 1,
+    "health": 5,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "willpower": "-",
+      "attack": "-",
+      "defense": "-",
+      "health": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9012.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 130,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9012",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9012.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "printed_type_code": "objective"
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9013",
+    "name": "Gollum's Anguish",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Tantrum.",
+    "text": "When Revealed: Raise the threat of the player guarding Gollum by 8. That player must choose a new player to guard Gollum, if able.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 135,
+    "quantity": 2,
+    "shadow": "Shadow: Raise the threat of the player guarding Gollum by 4.",
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 135,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9014",
+    "name": "Gollum's Bite",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Tantrum.",
+    "text": "When Revealed: Deal 4 damage to a hero controlled by the player guarding Gollum. That player must choose a new player to guard Gollum, if able.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 136,
+    "quantity": 2,
+    "shadow": "Shadow: Deal 2 damage to a hero controlled by the player guarding Gollum.",
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 136,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9015",
+    "name": "Mirkwood Bats",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nForced: After Mirkwood Bats engages a player, deal 1 damage to each character controlled by the player guarding Gollum.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 138,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 1,
+    "engagement": 22,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "1",
+      "engagement": "22"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 138,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9020",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9020",
+    "name": "The Spider's Ring",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While The Spider's Ring is the active location, the player guarding Gollum cannot change.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 131,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 2,
+    "shadow": "Shadow: If this attack is undefended, return any current active location to the staging area. The Spider's Ring becomes the active location.",
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9020.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 131,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9020",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9020.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9025",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9025",
+    "name": "Wasted Provisions",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Tantrum.",
+    "text": "When Revealed: Discard the top 10 cards from the deck of the player guarding Gollum. That player must choose a new player to guard Gollum, if able.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 137,
+    "quantity": 3,
+    "shadow": "Shadow: Discard the top 5 cards from the deck of the player guarding Gollum.",
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9025.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 137,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9027",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9027",
+    "name": "Wood Elf Path",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Response: After the players travel to Wood Elf Path, the player guarding Gollum may choose a new player to guard him.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 134,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 3,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9027.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 134,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9027",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9027.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801206c9028",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801206c9028",
+    "name": "Woodman's Glade",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Travel: The player guarding Gollum must exhaust a hero he controls to travel to Woodman's Glade.  Response: After exploring Woodman's Glade, reduce the threat of each player not guarding Gollum by 2.",
+    "is_unique": false,
+    "pack_code": "RtM",
+    "pack_name": "Return to Mirkwood",
+    "position": 133,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Return to Mirkwood",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9028.jpg",
+    "packs": [
+      {
+        "pack_code": "RtM",
+        "pack_name": "Return to Mirkwood",
+        "position": 133,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801206c9028",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801206c9028.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

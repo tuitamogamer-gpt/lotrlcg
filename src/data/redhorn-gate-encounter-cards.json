@@ -1,0 +1,530 @@
+[
+  {
+    "code": "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
+    "octgnid": "0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
+    "name": "Fallen Stones",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player (choose 1): removes all progress tokens from play, or reveals 2 cards from the encounter deck and adds them to the staging area.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 21,
+    "quantity": 2,
+    "shadow": "Shadow: attacking enemy gets +1 [attack] for each progress token on the active location.",
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a1166fb-fb90-4651-a8ae-7d532e41c2b6.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 21,
+        "quantity": 2,
+        "octgnid": "0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a1166fb-fb90-4651-a8ae-7d532e41c2b6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "octgnid": "14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "name": "Fell Voices",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return the top 2 Snow cards in the encounter discard pile to the top of the encounter deck. If this effect returned less than 2 Snow treachery cards, Fell Voices gains surge.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 20,
+    "quantity": 2,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14be3661-3f3c-4a89-b27f-ab7c15f92e4e.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14be3661-3f3c-4a89-b27f-ab7c15f92e4e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
+    "octgnid": "1ce63cb5-0022-48b2-a864-af49bdf18bef",
+    "name": "Celebdil",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain. Snow.",
+    "text": "While Celebdil is the active location, remove 2 progress tokens from it at the end of each round.",
+    "is_unique": true,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 17,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 7,
+    "victory": 2,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "7",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ce63cb5-0022-48b2-a864-af49bdf18bef.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "1ce63cb5-0022-48b2-a864-af49bdf18bef",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ce63cb5-0022-48b2-a864-af49bdf18bef.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgnid": "231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "name": "Arwen Undómiel",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Noldor. Noble. Ally.",
+    "text": "The first player gains control of Arwen Undomiel, as an ally.  Response: After Arwen Undomiel exhausts, choose a hero. Add 1 resource to that hero's resource pool.  If Arwen Undomiel leaves play, the players are defeated.",
+    "is_unique": true,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 14,
+    "quantity": 1,
+    "willpower": 2,
+    "attack": 0,
+    "defense": 1,
+    "health": 2,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "0",
+      "defense": "1",
+      "health": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/231bf335-bf9b-44d9-a919-e59aa1d46473.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "231bf335-bf9b-44d9-a919-e59aa1d46473",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/231bf335-bf9b-44d9-a919-e59aa1d46473.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgnid": "2809f147-b000-419c-bbb2-39e6221d72de",
+    "name": "Mountain Goblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Mountain Goblin gets +1 [attack] for each Mountain location in the staging area.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 25,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: attacking enemy gets +1 [attack]. (+2 [attack] instead if the active location is a Mountain.)",
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "2",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2809f147-b000-419c-bbb2-39e6221d72de.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 25,
+        "quantity": 3,
+        "octgnid": "2809f147-b000-419c-bbb2-39e6221d72de",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2809f147-b000-419c-bbb2-39e6221d72de.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgnid": "2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "name": "Freezing Cold",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Snow.",
+    "text": "When Revealed: The first player attaches this card to a hero he controls. Counts as a Condition Attachment with the text: \"Attached hero gets -2 [willpower] and cannot commit to a quest. If attached hero has more than 1 copy of Freezing Cold attached, discard attached hero from play.\"",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 23,
+    "quantity": 3,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e810a9b-5d79-4828-8268-33e82c5fc1fa.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 23,
+        "quantity": 3,
+        "octgnid": "2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e810a9b-5d79-4828-8268-33e82c5fc1fa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
+    "octgnid": "71f1436f-bc66-4bf9-ac87-369ddea7dc64",
+    "name": "Fanuidhol",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain. Snow.",
+    "text": "While Fanuidhol is the active loction, heroes must spend 1 resource from their resource pool to count their [willpower] during the quest phase.",
+    "is_unique": true,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 16,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 7,
+    "victory": 2,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "7",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71f1436f-bc66-4bf9-ac87-369ddea7dc64.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "71f1436f-bc66-4bf9-ac87-369ddea7dc64",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71f1436f-bc66-4bf9-ac87-369ddea7dc64.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
+    "octgnid": "a4df63d1-cb3d-4510-9e26-3b734632f456",
+    "name": "The Dimrill Stair",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Stair.",
+    "text": "Travel: Reshuffle all locations in the discard pile and victory display back into the encounter deck. If you reshuffled at least two locations, reduce each player's threat by 11 and discard all copies of Freezing Cold from play.",
+    "is_unique": true,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 18,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 3,
+    "victory": 1,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4df63d1-cb3d-4510-9e26-3b734632f456.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 18,
+        "quantity": 1,
+        "octgnid": "a4df63d1-cb3d-4510-9e26-3b734632f456",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4df63d1-cb3d-4510-9e26-3b734632f456.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgnid": "a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "name": "Snow Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Snow.",
+    "text": "Allies cannot defend while Snow Warg is attacking.  Forced: After a character is declared as a defender against Snow Warg, deal 1 damage to the defending character, if able.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 27,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 28,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "28"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a516b400-b53f-4c21-8e44-c0a889caa8d5.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "a516b400-b53f-4c21-8e44-c0a889caa8d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a516b400-b53f-4c21-8e44-c0a889caa8d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgnid": "ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "name": "Mountain Troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Mountain Troll gets +1 [attack] for each Mountain location in the staging area.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 26,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 5,
+    "defense": 5,
+    "health": 7,
+    "engagement": 35,
+    "shadow": "Shadow: attacking enemy gets +1 [attack]. (+2 [attack] instead if the active location is a Mountain.)",
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "5",
+      "defense": "5",
+      "health": "7",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
+    "octgnid": "e6808a55-528f-444e-bf61-67748e7261e9",
+    "name": "Snowstorm",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Snow.",
+    "text": "When Revealed: Each questing character gets -1 [willpower] until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 22,
+    "quantity": 5,
+    "shadow": "Shadow: Until the end of the phase, characters defending this attack get -1 [willpower] and are discarded if their [willpower] is 0.",
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6808a55-528f-444e-bf61-67748e7261e9.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 22,
+        "quantity": 5,
+        "octgnid": "e6808a55-528f-444e-bf61-67748e7261e9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6808a55-528f-444e-bf61-67748e7261e9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 5
+  },
+  {
+    "code": "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
+    "octgnid": "ef0a0467-656b-4cef-baf2-e60037d69472",
+    "name": "Avalanche!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Snow.",
+    "text": "When Revealed: Exhaust each ready character and if it is the quest phase commit them to the quest.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 24,
+    "quantity": 1,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef0a0467-656b-4cef-baf2-e60037d69472.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "ef0a0467-656b-4cef-baf2-e60037d69472",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef0a0467-656b-4cef-baf2-e60037d69472.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
+    "octgnid": "f433a8a8-00ee-45d3-b0ac-1643216a2422",
+    "name": "Caradhras",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain. Snow.",
+    "text": "While Caradhras is the active location, questing characters get -1 [willpower].  Players cannot travel to Caradhras except by quest card effects.",
+    "is_unique": true,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 15,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 9,
+    "victory": 3,
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "9",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f433a8a8-00ee-45d3-b0ac-1643216a2422.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "f433a8a8-00ee-45d3-b0ac-1643216a2422",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f433a8a8-00ee-45d3-b0ac-1643216a2422.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgnid": "f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "name": "Rocky Crags",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "Travel: Each player must deal 2 damage to 1 character he controls to travel here.",
+    "is_unique": false,
+    "pack_code": "TRG",
+    "pack_name": "The Redhorn Gate",
+    "position": 19,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 2,
+    "shadow": "Shadow: attacking enemy gets +1 [attack] for each progress token on the active location.",
+    "encounter_set": "The Redhorn Gate",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8edfe48-aeda-41ea-bef9-db49d4781e7b.jpg",
+    "packs": [
+      {
+        "pack_code": "TRG",
+        "pack_name": "The Redhorn Gate",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8edfe48-aeda-41ea-bef9-db49d4781e7b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

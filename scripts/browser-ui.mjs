@@ -1,3 +1,4 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import {
   installReviewHandler,
   acknowledgeReviews,
@@ -206,6 +207,7 @@ for (const width of process.env.DESKTOP_ONLY
     );
   }
   await keep.click();
+  await finishResourcePhase(p);
   await shot(p, `table-${width}`);
   await p.getByRole("button", { name: "Begin quest", exact: true }).click();
   await p.locator(".character-art").first().click();
@@ -239,6 +241,7 @@ for (const width of process.env.DESKTOP_ONLY
 const laptop = await page(1280, 720);
 await laptop.locator("#start-btn").click();
 await laptop.getByRole("button", { name: "Keep hand", exact: true }).click();
+await finishResourcePhase(laptop);
 const firstPlay = await laptop.locator(".hand-play").first().boundingBox();
 assert.ok(
   firstPlay && firstPlay.y + firstPlay.height <= 720,

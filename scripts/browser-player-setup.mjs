@@ -1,3 +1,4 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import { chromium } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -44,6 +45,8 @@ for (const n of [2, 3, 4]) {
     await page.locator(".turn-panel .turn-actions .primary").click();
     state = await reviewedState(page);
   }
+  assert.equal(state.phase, "resource");
+  state = await finishResourcePhase(page);
   assert.equal(state.phase, "planning");
   for (let i = 0; i < n; i++) {
     await page.keyboard.press(String(i + 1));

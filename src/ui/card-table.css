@@ -811,3 +811,33 @@
     transition: none;
   }
 }
+
+/* Considered engagement lives beside the one physical staging enemy. */
+.redbook .table-page.card-table .gameboard .board-card.considered-enemy {
+  width: calc(var(--table-card-width) + 126px);
+  min-height: max(var(--table-card-height), 112px);
+  align-items: flex-start;
+}
+.redbook
+  .table-page.card-table
+  .gameboard
+  .considered-enemy
+  > .considered-engagement {
+  text-align: left;
+  position: absolute;
+  top: 4px;
+  left: calc(var(--table-card-width) + 16px);
+  width: 110px;
+  height: auto;
+  padding: 0;
+  white-space: normal;
+  line-height: 1.2;
+}
+.redbook .table-page.card-table .gameboard .considered-enemy > .card-action {
+  width: 110px;
+}
+
+.redbook .table-page.card-table .gameboard .considered-engagement > span {
+  display: block;
+  margin-top: 3px;
+}

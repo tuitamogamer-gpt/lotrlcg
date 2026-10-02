@@ -1,3 +1,7 @@
+import { engagedEnemies, consideredEngaged } from "./considered-engagement";
+import { removePlayedEvent } from "./event-resolution";
+import { shadowFlameCanMove } from "./shadow-flame";
+import { advanceDefense, exhaustCharacter, enemyAddedToStaging } from "./board";
 // Player card scripts: events, hero and attachment abilities.
 import { card, name, plain } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
@@ -5,6 +9,7 @@ import type { Effect, GameState, Unit } from "./types";
 import {
   activeSeat,
   allCharacters,
+  allActiveLocations,
   allHeroes,
   allEngaged,
   forOwner,
@@ -21,7 +26,6 @@ import {
   choose,
   fx,
   get,
-  has,
   hasGondor,
   log,
   make,
@@ -29,8 +33,73 @@ import {
   prepend,
   requireRule,
 } from "./core";
-import { discardAttachment, enterAlly } from "./board";
+import {
+  discardAttachment,
+  enterAlly,
+  allyCanEnter,
+  readyCharacter,
+  takePlayerDiscard,
+} from "./board";
 import { discardTarget } from "./actions";
+import { isSacked } from "./carrock";
+import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
+import {
+  rhosgobelPlayerEventEffect,
+  useRhosgobelAbility,
+} from "./rhosgobel-player-cards";
+import {
+  emynPlayerEventEffect,
+  useEmynPlayerAbility,
+} from "./emyn-player-cards";
+import {
+  marshPlayerEventEffect,
+  useMarshPlayerAbility,
+} from "./marsh-player-cards";
+import {
+  mirkwoodPlayerEventEffect,
+  useMirkwoodPlayerAbility,
+} from "./mirkwood-player-cards";
+import {
+  khazadPlayerEventEffect,
+  useKhazadPlayerAbility,
+} from "./khazad-player-cards";
+import {
+  redhornPlayerEventEffect,
+  useRedhornPlayerAbility,
+} from "./redhorn-player-cards";
+import {
+  roadPlayerEventEffect,
+  useRoadPlayerAbility,
+} from "./road-player-cards";
+import { useWatcherPlayerAbility } from "./watcher-player-cards";
+import {
+  longDarkPlayerEventEffect,
+  useLongDarkPlayerAbility,
+} from "./long-dark-player-cards";
+import { useFoundationsPlayerAbility } from "./foundations-player-cards";
+import {
+  shadowFlamePlayerEventEffect,
+  useShadowFlamePlayerAbility,
+} from "./shadow-flame-player-cards";
+import {
+  heirsPlayerEventEffect,
+  useHeirsPlayerAbility,
+} from "./heirs-player-cards";
+import { stewardPlayerEventEffect } from "./steward-player-cards";
+import { druadanPlayerEventEffect } from "./druadan-player-cards";
+import {
+  amonPlayerEventEffect,
+  useAmonPlayerAbility,
+} from "./amon-din-player-cards";
+import {
+  expansionEventEffect,
+  useExpansionAbility,
+} from "./expansion-player-cards";
+import {
+  gondorEventEffect,
+  gondorResourcesGained,
+  useGondorAbility,
+} from "./gondor-player-cards";
 
 export function eventEffect(
   s: GameState,
@@ -38,17 +107,32 @@ export function eventEffect(
   target?: string,
   cost = 0,
 ) {
+  if (amonPlayerEventEffect(s, code)) return;
+  if (druadanPlayerEventEffect(s, code)) return;
+  if (stewardPlayerEventEffect(s, code, target)) return;
+  if (heirsPlayerEventEffect(s, code, target)) return;
+  if (shadowFlamePlayerEventEffect(s, code, target)) return;
+  if (expansionEventEffect(s, code, target, cost)) return;
+  if (gondorEventEffect(s, code, target)) return;
+  if (rhosgobelPlayerEventEffect(s, code, target)) return;
+  if (emynPlayerEventEffect(s, code, target)) return;
+  if (marshPlayerEventEffect(s, code)) return;
+  if (mirkwoodPlayerEventEffect(s, code)) return;
+  if (khazadPlayerEventEffect(s, code, target)) return;
+  if (redhornPlayerEventEffect(s, code, target)) return;
+  if (roadPlayerEventEffect(s, code, target)) return;
+  if (longDarkPlayerEventEffect(s, code, target)) return;
   const u = get(s, target);
   switch (code) {
     case "rc132":
       s.mendorBoost = true;
       break;
     case "01020":
-      if (u) u.exhausted = false;
+      if (u) readyCharacter(s, u);
       break;
     case "01021":
       if (u) {
-        u.exhausted = true;
+        requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
         choose(
           s,
           "Common Cause",
@@ -70,12 +154,7 @@ export function eventEffect(
         s,
         "Sneak Attack",
         opts(
-          s.hand.filter(
-            (a) =>
-              card(a.code).type_code === "ally" &&
-              (!card(a.code).is_unique ||
-                !allCharacters(s).some((x) => x.code === a.code)),
-          ),
+          s.hand.filter((a) => allyCanEnter(s, a.code)),
           (a) => [fx("sneak", { target: a.id })],
         ),
         "Put an ally into play. It returns to your hand at the end of this phase.",
@@ -83,7 +162,7 @@ export function eventEffect(
       break;
     case "01025":
       allCharacters(s).forEach((u) => {
-        u.exhausted = false;
+        readyCharacter(s, u);
       });
       break;
     case "01032":
@@ -94,7 +173,7 @@ export function eventEffect(
       break;
     case "01033":
       if (u) {
-        u.exhausted = true;
+        requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
         choosePlayer(s, "Rain of Arrows · Choose a fellowship", [
           fx("rainOfArrows"),
         ]);
@@ -102,20 +181,21 @@ export function eventEffect(
       break;
     case "01034":
       if (u) {
-        u.preventedAttacks = [
-          ...new Set([...(u.preventedAttacks ?? []), ownerOf(s, u)]),
-        ];
-        u.feinted = true;
-      }
-      if (
-        !s.table &&
-        s.phase === "defense" &&
-        s.engaged.every((e) => e.attacked || e.feinted || has(e, "01069"))
-      ) {
-        s.phase = "attack";
-        s.engaged.forEach((e) => {
-          e.attacked = false;
-        });
+        const eligible = playerOrder(s).filter((p) =>
+          engagedEnemies(s, p).some((enemy) => enemy.id === u.id),
+        );
+        if (eligible.length > 1)
+          choose(
+            s,
+            "Feint · Choose the attacked fellowship",
+            eligible.map((player) => ({
+              id: `feint-${player}`,
+              label: `Prevent ${name(u)} attacking ${seatName(s, player)} this phase`,
+              effects: [fx("feintEnemy", { target: u.id, value: player })],
+            })),
+          );
+        else if (eligible.length)
+          prepend(s, fx("feintEnemy", { target: u.id, value: eligible[0] }));
       }
       break;
     case "01035":
@@ -168,14 +248,17 @@ export function eventEffect(
       else s.threat = Math.max(0, s.threat - 6);
       break;
     case "01049":
-      s.discard.splice(s.discard.lastIndexOf(code), 1);
-      s.removed.push(code);
+      removePlayedEvent(s, code);
       choosePlayer(s, "Will of the West · Choose a fellowship", [
         fx("reshufflePlayer"),
       ]);
       break;
     case "01051": {
       const t = discardTarget(s, target!);
+      requireRule(
+        allyCanEnter(s, seatView(s, t.player).discard[t.index]),
+        "Choose an ally that can legally enter play.",
+      );
       const ally = seatView(s, t.player).discard.splice(t.index, 1)[0];
       const fresh = make(s, ally);
       if (s.table) fresh.owner = t.player;
@@ -184,6 +267,7 @@ export function eventEffect(
     }
     case "01052":
       if (u) {
+        if (!shadowFlameCanMove(s, u)) break;
         if (u.facedownCard) {
           const controller = ownerOf(s, u);
           forOwner(s, controller, () => {
@@ -203,23 +287,16 @@ export function eventEffect(
         });
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
+        u.revealedShadowCount = 0;
         u.attacked = false;
         s.staging.push(u);
-        if (
-          !s.table &&
-          s.phase === "defense" &&
-          s.engaged.every((e) => e.attacked || e.feinted || has(e, "01069"))
-        ) {
-          s.phase = "attack";
-          s.engaged.forEach((e) => {
-            e.attacked = false;
-          });
-        }
+        enemyAddedToStaging(s, u);
+        advanceDefense(s);
       }
       break;
     case "01053": {
       const t = discardTarget(s, target!);
-      s.hand.push(make(s, s.discard.splice(t.index, 1)[0]));
+      s.hand.push(takePlayerDiscard(s, t.index));
       break;
     }
     case "01054": {
@@ -232,7 +309,8 @@ export function eventEffect(
       break;
     }
     case "01063":
-      if (u) u.damage = 0;
+      if (u)
+        rhosgobelHeal(s, u, u.damage, { code: "01063", player: activeSeat(s) });
       break;
     case "01064":
       choosePlayer(s, "Lórien’s Wealth · Who draws 3 cards?", [
@@ -285,24 +363,54 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 }
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
+  if (useAmonPlayerAbility(s, u, attachmentId)) return;
+  if (useHeirsPlayerAbility(s, u, attachmentId)) return;
+  if (useShadowFlamePlayerAbility(s, u, attachmentId)) return;
+  if (useExpansionAbility(s, u, attachmentId)) return;
+  if (!attachmentId && useGondorAbility(s, u)) return;
+  if (!attachmentId && useRhosgobelAbility(s, u)) return;
+  if (!attachmentId && useEmynPlayerAbility(s, u)) return;
+  if (useMarshPlayerAbility(s, u, attachmentId)) return;
+  if (useMirkwoodPlayerAbility(s, u, attachmentId)) return;
+  if (useKhazadPlayerAbility(s, u)) return;
+  if (useRedhornPlayerAbility(s, u, attachmentId)) return;
+  if (useRoadPlayerAbility(s, u)) return;
+  if (!attachmentId && useWatcherPlayerAbility(s, u)) return;
+  if (!attachmentId && useLongDarkPlayerAbility(s, u)) return;
+  if (!attachmentId && useFoundationsPlayerAbility(s, u)) return;
   if (attachmentId) {
     const a = u.attachments.find((a) => a.id === attachmentId);
-    requireRule(a && !a.exhausted, "This attachment is exhausted.");
+    requireRule(
+      a && !a.exhausted && !a.blanked,
+      "This attachment is exhausted or its printed text is blank.",
+    );
     switch (a.code) {
       case "01026":
+        requireRule(
+          !isSacked(u),
+          "This hero cannot collect resources while Sacked.",
+        );
         a.exhausted = true;
         u.resources += 2;
+        gondorResourcesGained(s, u, 2, true);
         log(s, `Steward of Gondor gives ${name(u)} 2 resources.`, "good");
         return;
       case "01057":
         requireRule(u.exhausted, "This hero is already ready.");
         a.exhausted = true;
-        u.exhausted = false;
+        readyCharacter(s, u);
         return;
       case "01072":
-        requireRule(u.damage > 0, "This character has no damage.");
+        requireRule(
+          rhosgobelHealingAllowed(s, u),
+          "This character has no damage that can be healed.",
+        );
         a.exhausted = true;
-        u.damage = Math.max(0, u.damage - 2);
+        rhosgobelHeal(s, u, 2, {
+          source: a.id,
+          code: a.code,
+          player: a.owner ?? ownerOf(s, u),
+        });
         return;
       case "01070": {
         const key = `protector:${a.id}`;
@@ -342,14 +450,17 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
       case "01071":
         requireRule(
           s.phase === "defense" &&
-            s.engaged.some((e) => e.shadows.length && !e.attacked),
+            engagedEnemies(s).some(
+              (e) =>
+                e.shadows.length && (!e.attacked || consideredEngaged(s, e)),
+            ),
           "Use Dark Knowledge after shadow cards are dealt.",
         );
         choose(
           s,
           "Dark Knowledge",
-          s.engaged
-            .filter((e) => !e.attacked)
+          engagedEnemies(s)
+            .filter((e) => !e.attacked || consideredEngaged(s, e))
             .flatMap((e) =>
               e.shadows.map((code, i) => ({
                 id: `${e.id}-${i}`,
@@ -386,7 +497,7 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
       break;
     case "01014":
       requireRule(!u.exhausted, "Faramir is exhausted.");
-      u.exhausted = true;
+      requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
       choosePlayer(s, "Faramir · Choose a fellowship", [fx("faramir")]);
       log(
         s,
@@ -398,7 +509,7 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01060": {
       requireRule(!u.exhausted, "This character is exhausted.");
       requireRule(s.encounterDeck.length, "The encounter deck is empty.");
-      u.exhausted = true;
+      requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
       const code = s.encounterDeck[0];
       s.peek = code;
       choose(
@@ -423,7 +534,7 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     }
     case "01011":
       requireRule(
-        allCharacters(s).some((h) => h.damage > 0),
+        allCharacters(s).some((h) => rhosgobelHealingAllowed(s, h)),
         "There is no damaged character to heal.",
       );
       requireRule(
@@ -434,10 +545,10 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         s,
         "Glorfindel · Healing touch",
         opts(
-          allCharacters(s).filter((h) => h.damage > 0),
+          allCharacters(s).filter((h) => rhosgobelHealingAllowed(s, h)),
           (h) => [
             fx("resource", { target: u.id, value: -1 }),
-            fx("heal", { target: h.id, value: 1 }),
+            fx("heal", { target: h.id, value: 1, source: u.id, code: u.code }),
             fx("used", { text: u.id }),
           ],
         ),
@@ -450,11 +561,11 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         "Beravor can act once per round and must be ready.",
       );
       requireRule(
-        s.activeLocation?.code !== "01095" &&
+        !allActiveLocations(s).some((l) => l.code === "01095") &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
-      u.exhausted = true;
+      requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
       s.used.push(u.id);
       choosePlayer(s, "Beravor · Who draws 2 cards?", [
         fx("draw", { value: 2 }),
@@ -477,17 +588,17 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01058":
       requireRule(!u.exhausted, "Daughter of the Nimrodel is exhausted.");
       requireRule(
-        allHeroes(s).some((h) => h.damage > 0),
+        allHeroes(s).some((h) => rhosgobelHealingAllowed(s, h)),
         "There is no damaged hero to heal.",
       );
       choose(
         s,
         "Daughter of the Nimrodel",
         opts(
-          allHeroes(s).filter((h) => h.damage > 0),
+          allHeroes(s).filter((h) => rhosgobelHealingAllowed(s, h)),
           (h) => [
             fx("exhaust", { target: u.id }),
-            fx("heal", { target: h.id, value: 2 }),
+            fx("heal", { target: h.id, value: 2, source: u.id, code: u.code }),
           ],
         ),
         "Exhaust to heal up to 2 damage from a hero.",
@@ -496,11 +607,11 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01062":
       requireRule(!u.exhausted, "Gléowine is exhausted.");
       requireRule(
-        s.activeLocation?.code !== "01095" &&
+        !allActiveLocations(s).some((l) => l.code === "01095") &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
-      u.exhausted = true;
+      requireRule(exhaustCharacter(s, u), "This character cannot exhaust.");
       choosePlayer(s, "Gléowine · Who draws a card?", [
         fx("draw", { value: 1 }),
       ]);

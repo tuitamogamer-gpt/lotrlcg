@@ -1,0 +1,455 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9001",
+    "name": "Amon Hen",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "X is double the number of players in the game.\nWhile Amon Hen is the active location, players cannot play events.",
+    "is_unique": true,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 83,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 5,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9002",
+    "name": "Amon Lhaw",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "X is double the number of players in the game.\nWhile Amon Lhaw is the active location, treat all attachments as if their printed text boxes were blank.",
+    "is_unique": true,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 84,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 5,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 84,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9017",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9017",
+    "name": "The East Wall of Rohan",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "While The East Wall of Rohan is the active location, non-Rohan characters cost 2 additional matching resources to play.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 85,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 2,
+    "victory": 3,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "2",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9017.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 85,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9017",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9017.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9021",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9021",
+    "name": "The North Stair",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "Forced: After traveling to The North Stair, move the top card of the encounter discard pile to the staging area. Resolve any \"when revealed\" effects on that card.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 86,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "victory": 3,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9021.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 86,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9021",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9021.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9011",
+    "name": "Rauros Falls",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "While Rauros Falls is the active location, all characters must commit to the current quest during the quest phase.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 87,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "victory": 3,
+    "shadow": "Shadow: After this attack resolves, return attacking enemy to the staging area.",
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 87,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9024",
+    "name": "The Shores of Nen Hithoel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "Travel: The first player must discard 1 event card from his hand to travel to this location.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 88,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "shadow": "Shadow: After this attack resolves, return attacking enemy to the staging area.",
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 88,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9022",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9022",
+    "name": "The Outer Ridge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "While The Outer Ridge is the active location, each location in the staging area gets +1 [threat].",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 89,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "shadow": "Shadow: After this attack resolves, return attacking enemy to the staging area.",
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9022.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 89,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9022",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9022.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9018",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9018",
+    "name": "The Highlands",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Emyn Muil.",
+    "text": "Travel: In order to travel to The Highlands, the players must reveal the top card of the encounter deck, and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 90,
+    "quantity": 4,
+    "threat": 1,
+    "quest": 1,
+    "victory": 1,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9018.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 90,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9018",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9018.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9007",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9007",
+    "name": "Impassable Chasm",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: If there is an active location, remove all progress tokens from that location and return it to the staging area. If no location is moved by this effect, this card gains surge.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 91,
+    "quantity": 4,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9007.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 91,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9007",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9007.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9014",
+    "name": "Rockslide",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: Deal 2 damage to each character committed to this quest.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 92,
+    "quantity": 3,
+    "shadow": "Shadow: Remove defending character from combat. This attack is considered undefended.",
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 92,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9015",
+    "name": "Slick Footing",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: Remove 1 progress token from each location in play. Then, discard the top card of each player's deck for each progress token removed by this effect.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 93,
+    "quantity": 3,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 93,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801204c9010",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801204c9010",
+    "name": "Orc Horse Thieves",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Orc.",
+    "text": "Doomed 2.\nOrc Horse Thieves get +1 [attack] for each location in the staging area.",
+    "is_unique": false,
+    "pack_code": "HoEM",
+    "pack_name": "The Hills of Emyn Muil",
+    "position": 94,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 1,
+    "defense": 2,
+    "health": 6,
+    "engagement": 35,
+    "encounter_set": "The Hills of Emyn Muil",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "1",
+      "defense": "2",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9010.jpg",
+    "packs": [
+      {
+        "pack_code": "HoEM",
+        "pack_name": "The Hills of Emyn Muil",
+        "position": 94,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801204c9010",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801204c9010.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  }
+]

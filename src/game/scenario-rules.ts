@@ -1,10 +1,22 @@
+import { longDarkEffect } from "./long-dark";
+import { shadowFlameEffect, shadowFlameQuestEnd } from "./shadow-flame";
+import { takePlayerDeck } from "./core";
+import { rhosgobelHeal } from "./rhosgobel";
 // Scenario-specific rules for the three Core Set quests.
 import { card, name } from "./cards";
 import type { Effect, GameState } from "./types";
 import { CLUE, OBJECTIVES } from "./scenarios";
+import { carrockEffect } from "./carrock";
+import { emynMuilEffect } from "./emyn-muil";
+import { rhosgobelEffect } from "./rhosgobel";
+import { deadMarshesEffect, deadMarshesQuestEnd } from "./dead-marshes";
+import { returnMirkwoodEffect } from "./return-mirkwood";
+import { khazadEffect, khazadQuestEnd } from "./khazad-dum";
+import { redhornEffect } from "./redhorn-gate";
+import { roadRivendellEffect } from "./road-rivendell";
+import { watcherWaterEffect } from "./watcher-water";
 
 import {
-  activeSeat,
   allCharacters,
   allHeroes,
   forOwner,
@@ -17,7 +29,6 @@ import {
   characters,
   choose,
   encounterDraw,
-  enqueue,
   fx,
   get,
   has,
@@ -27,13 +38,16 @@ import {
   opts,
   prepend,
   random,
+  removeShadowCard,
   shuffle,
   skip,
   units,
 } from "./core";
 import {
   damage,
-  discardAttachment,
+  discardCharacter,
+  discardHandCard,
+  enemyAddedToStaging,
   progress,
   returnAlly,
   revealed,
@@ -48,7 +62,9 @@ export function rescuePrisoner(s: GameState) {
   forOwner(s, hero.owner ?? 0, () => {
     s.heroes.push(hero);
   });
-  s.staging.push(make(s, "01102"));
+  const nazgul = make(s, "01102");
+  s.staging.push(nazgul);
+  enemyAddedToStaging(s, nazgul);
   log(
     s,
     `${name(hero)} is rescued with 1 damage. The Nazgûl enters staging.`,
@@ -57,10 +73,12 @@ export function rescuePrisoner(s: GameState) {
 }
 
 export function orcGuard(s: GameState) {
-  const code = s.deck.shift();
-  if (!code) return;
+  if (!s.deck.length) return;
+  const physical = takePlayerDeck(s),
+    code = physical.code;
   const orc = make(s, "orc-guard");
   orc.facedownCard = code;
+  orc.facedownCardId = physical.id;
   s.engaged.push(orc);
   log(s, "The top card of your deck becomes an engaged Orc Guard.", "danger");
 }
@@ -98,7 +116,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
     }
     case "questProgress":
       log(s, `A victory response places ${e.value} progress.`, "good");
-      progress(s, e.value ?? 0);
+      progress(s, e.value ?? 0, true);
       break;
     case "valorResponse":
       if (u && get(s, e.source))
@@ -112,10 +130,16 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
         ]);
       break;
     case "resolveValor": {
-      const a = u?.attachments.find((a) => a.code === "rc133" && !a.exhausted);
+      const a = u?.attachments.find(
+        (a) => !a.blanked && a.code === "rc133" && !a.exhausted,
+      );
       if (u && a && get(s, e.source)) {
         a.exhausted = true;
-        u.damage = Math.max(0, u.damage - 1);
+        rhosgobelHeal(s, u, 1, {
+          source: a.id,
+          code: "rc133",
+          player: ownerOf(s, u),
+        });
         damage(s, e.source!, 1);
         log(
           s,
@@ -133,7 +157,9 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
         const i = s.encounterDeck.indexOf("01082");
         if (i >= 0) {
           s.encounterDeck.splice(i, 1);
-          s.staging.push(make(s, "01082"));
+          const troll = make(s, "01082");
+          s.staging.push(troll);
+          enemyAddedToStaging(s, troll);
           shuffle(s, s.encounterDeck);
         }
       }
@@ -142,8 +168,11 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       s.stageRevealing = false;
       break;
     case "finishQuestPhase":
+      if (!e.flag && deadMarshesQuestEnd(s)) break;
+      khazadQuestEnd(s);
       allCharacters(s).forEach((u) => (u.committed = false));
       prepend(s, fx("phaseEnd"), fx("startTravel"));
+      shadowFlameQuestEnd(s);
       break;
     case "guardObjective": {
       const code = encounterDraw(s);
@@ -244,32 +273,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
         );
       break;
     case "discardCharacter":
-      if (u) {
-        // Discard is not destruction (Horn/Scarred), but it is leaving play (Brok).
-        for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-        s.heroes = s.heroes.filter((x) => x.id !== u.id);
-        s.allies = s.allies.filter((x) => x.id !== u.id);
-        if (u.code === "rc135") {
-          s.removed.push(u.code);
-          if (s.campaign && s.scenarioId !== "dol-guldur") {
-            s.status = "lost";
-            s.reason = "Mendor has left play.";
-            s.queue = [];
-            s.choice = null;
-          }
-        } else {
-          seatView(s, u.owner ?? activeSeat(s)).discard.push(u.code);
-          if (card(u.code).type_code === "hero")
-            s.fallenThreat += card(u.code).threat ?? 0;
-        }
-        if (card(u.code).type_code === "ally") enqueue(s, fx("valiant"));
-        if (
-          card(u.code).type_code === "hero" &&
-          card(u.code).traits?.includes("Dwarf")
-        )
-          prepend(s, fx("brok"));
-        log(s, `${name(u)} is discarded.`, "danger");
-      }
+      if (u) discardCharacter(s, u);
       break;
     case "returnAlly":
       if (u) {
@@ -290,8 +294,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
     case "discardHandCard": {
       const h = s.hand.find((x) => x.id === e.target);
       if (h) {
-        s.hand = s.hand.filter((x) => x.id !== h.id);
-        s.discard.push(h.code);
+        discardHandCard(s, h.id);
       }
       break;
     }
@@ -299,7 +302,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       if (!s.combat) break;
       const original = get(s, s.combat.enemyId);
       const i = original?.shadows.indexOf("01081") ?? -1;
-      if (original && i >= 0) original.shadows.splice(i, 1);
+      if (original && i >= 0) removeShadowCard(original, i);
       (s.pendingWolfReturns ??= []).push("01081");
       s.suspendedCombats.push(s.combat);
       const wolf = make(s, "01081");
@@ -419,7 +422,19 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       break;
     }
     default:
-      return false;
+      return (
+        carrockEffect(s, e) ||
+        emynMuilEffect(s, e) ||
+        rhosgobelEffect(s, e) ||
+        deadMarshesEffect(s, e) ||
+        returnMirkwoodEffect(s, e) ||
+        khazadEffect(s, e) ||
+        shadowFlameEffect(s, e) ||
+        longDarkEffect(s, e) ||
+        watcherWaterEffect(s, e) ||
+        roadRivendellEffect(s, e) ||
+        redhornEffect(s, e)
+      );
   }
   return true;
 }

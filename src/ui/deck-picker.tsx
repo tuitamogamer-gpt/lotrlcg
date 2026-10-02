@@ -1,3 +1,4 @@
+import { startingThreat } from "../game/decks";
 import { useState } from "react";
 import {
   Check,
@@ -12,6 +13,7 @@ import { STARTERS, card, imageUrl, plain } from "../game/cards";
 import type { Card } from "../game/types";
 import { customId, deckProblems, deckSize } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
+import { CardProductNote, DeckProductNote } from "./product-note";
 
 const icons = {
   leadership: Crown,
@@ -47,10 +49,13 @@ export function DeckPicker({
       name: d.name,
       subtitle: "Custom deck",
       description: d.source
-        ? "Imported from RingsDB and limited to scripted cards."
+        ? "Imported deck list using supported cards."
         : "Assembled in the deck builder.",
       heroes: d.heroes,
       cards: d.cards,
+      source: d.source,
+      productId: d.productId,
+      deckKind: d.deckKind ?? "custom",
       custom: true,
     })),
   ];
@@ -61,7 +66,9 @@ export function DeckPicker({
       aria-label={label}
     >
       {choices.map((d) => {
-        const Icon = d.custom ? Stack : icons[d.id as keyof typeof icons];
+        const Icon = d.custom
+          ? Stack
+          : (icons[d.id as keyof typeof icons] ?? Stack);
         const selected = d.id === value;
         const count = deckSize(d.cards);
         const blocked =
@@ -89,12 +96,14 @@ export function DeckPicker({
               </span>
               <h3>{d.name}</h3>
               {!compact && <p>{d.description}</p>}
+              <DeckProductNote deck={d} compact={compact} brief />
               {showHeroes && (
                 <span className="deck-hero-triptych">
                   {d.heroes.map((code) => (
                     <span key={code}>
                       <img src={imageUrl(card(code))} alt="" loading="lazy" />
                       <strong>{card(code).name}</strong>
+                      <CardProductNote c={card(code)} />
                     </span>
                   ))}
                 </span>
@@ -108,12 +117,7 @@ export function DeckPicker({
                 </span>
                 {showHeroes && (
                   <span>
-                    <Eye size={15} />{" "}
-                    {d.heroes.reduce(
-                      (n, code) => n + (card(code).threat ?? 0),
-                      0,
-                    )}{" "}
-                    threat
+                    <Eye size={15} /> {startingThreat(d.heroes)} threat
                   </span>
                 )}
               </span>
@@ -149,9 +153,13 @@ export function DeckPicker({
               </span>
             </span>
             <h3>Build your own deck</h3>
+            <span className="deck-product-note" data-deck-origin="custom">
+              <strong>Custom deck · Supported play pool</strong>
+              <small>Choose cards from the supported play pool.</small>
+            </span>
             {!compact && (
               <p>
-                Fifty scripted Core Set cards of your choice, or a RingsDB
+                At least fifty supported cards of your choice, or a RingsDB
                 decklist.
               </p>
             )}
@@ -198,6 +206,7 @@ export function HeroPicker({
           <span>
             {selected.threat} threat · {selected.sphere_code}
           </span>
+          <CardProductNote c={selected} />
           {unavailable(value) && <small>{unavailable(value)}</small>}
           <button
             className="secondary"
@@ -214,9 +223,11 @@ export function HeroPicker({
             <div
               className={`campaign-hero-choice ${value === hero.code ? "is-selected" : ""}`}
               key={hero.code}
+              data-card-code={hero.code}
             >
               <button
                 aria-label={`Choose ${hero.name}`}
+                aria-description={`${hero.sphere_code} · ${hero.pack_name}`}
                 aria-pressed={value === hero.code}
                 disabled={!!unavailable(hero.code)}
                 onClick={() => {
@@ -226,6 +237,7 @@ export function HeroPicker({
               >
                 <img src={imageUrl(hero)} alt="" loading="lazy" />
                 <strong>{hero.name}</strong>
+                <CardProductNote c={hero} />
                 <small>
                   {unavailable(hero.code) ??
                     `${hero.threat} threat · ${hero.sphere_code}`}

@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import { STARTERS } from "../src/game/cards";
-import { createGame, applyAction, validateSave } from "../src/game/engine";
+import { createGame, validateSave } from "../src/game/engine";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 import type { Unit } from "../src/game/types";
 const d = STARTERS[0];
 const s = applyAction(createGame(8, d.cards, d.heroes, d.id), { type: "KEEP" });

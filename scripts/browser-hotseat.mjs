@@ -1,3 +1,4 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import {
   installReviewHandler,
   acknowledgeReviews,
@@ -86,6 +87,8 @@ for (const n of [1, 2, 3, 4]) {
     await turn(p);
   }
   s = await state(p);
+  assert.equal(s.phase, "resource");
+  s = await finishResourcePhase(p);
   assert.equal(s.phase, "planning");
   assert.ok(
     s.table.seats.every(

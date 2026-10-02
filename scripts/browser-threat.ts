@@ -3,7 +3,8 @@ import { chromium, type Page } from "playwright";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { STARTERS } from "../src/game/cards";
-import { applyAction, createGame, validateSave } from "../src/game/engine";
+import { createGame, validateSave } from "../src/game/engine";
+import { applyPlanningFixtureAction as applyAction } from "./fixture-phase-helper.ts";
 import { eachSeat } from "../src/game/table";
 import type { GameState, Unit } from "../src/game/types";
 

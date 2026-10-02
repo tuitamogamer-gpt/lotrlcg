@@ -23,10 +23,27 @@ import {
   parseRingsDbDeck,
   ringsDbId,
   sphereCounts,
+  startingThreat,
 } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
 import type { Card } from "../game/types";
 import { Art, Sphere } from "./card-art";
+import { CardProductNote, DeckProductNote } from "./product-note";
+import { SupportSummary, playableProductNames } from "./support-summary";
+import { cardProductInfo } from "../game/products";
+
+function PlayPoolNote() {
+  return (
+    <>
+      <SupportSummary />
+      <p className="builder-scope-note">
+        Choose any registered hero or card below for automated play. The full
+        imported collection can be inspected in the card library; additional
+        cards enter this builder as their rules are implemented.
+      </p>
+    </>
+  );
+}
 
 const newDeck = (): CustomDeck => ({
   id: createDeckId(),
@@ -52,6 +69,7 @@ export default function DeckBuilder({
   const [editing, setEditing] = useState<CustomDeck | null>(null);
   const [query, setQuery] = useState("");
   const [sphere, setSphere] = useState("all");
+  const [product, setProduct] = useState("all");
   const [importText, setImportText] = useState("");
   const [importing, setImporting] = useState(false);
   const [report, setReport] = useState<string[]>([]);
@@ -68,6 +86,7 @@ export default function DeckBuilder({
     setReport([]);
     setQuery("");
     setSphere("all");
+    setProduct("all");
     setEditing({ ...deck, cards: { ...deck.cards }, heroes: [...deck.heroes] });
   };
   const save = () => {
@@ -103,7 +122,7 @@ export default function DeckBuilder({
     if (!editing) return;
     const cards = { ...editing.cards };
     if (n <= 0) delete cards[code];
-    else cards[code] = Math.min(3, n);
+    else cards[code] = Math.min(3, card(code).deck_limit ?? 3, n);
     setEditing({ ...editing, cards });
   };
   const toggleHero = (code: string) => {
@@ -146,7 +165,7 @@ export default function DeckBuilder({
         ),
         ...result.unsupported.map(
           (u) =>
-            `${u.quantity} × ${u.name} skipped (not a scripted Core Set card).`,
+            `${u.quantity} × ${u.name} skipped (automated play is not available yet).`,
         ),
         ...result.adjustments,
       ];
@@ -154,6 +173,7 @@ export default function DeckBuilder({
       setEditing(result.deck);
       setQuery("");
       setSphere("all");
+      setProduct("all");
       setImportText("");
     } catch (e) {
       notify(
@@ -169,7 +189,8 @@ export default function DeckBuilder({
     const visible = DECK_CARDS.filter(
       (c) =>
         (sphere === "all" || c.sphere_code === sphere) &&
-        (c.name + " " + (c.traits ?? ""))
+        (product === "all" || cardProductInfo(c).originLabel === product) &&
+        (c.name + " " + (c.traits ?? "") + " " + cardProductInfo(c).originLabel)
           .toLocaleLowerCase()
           .includes(query.toLocaleLowerCase()),
     );
@@ -197,8 +218,9 @@ export default function DeckBuilder({
             </label>
             <p>
               Choose up to three heroes, then add at least 50 cards with at most
-              3 copies each. Match your heroes’ spheres or plan another way to
-              play the cards. You can save an unfinished deck as a draft.
+              3 copies each, respecting printed deck limits. Match your heroes’
+              spheres or plan another way to play the cards. You can save an
+              unfinished deck as a draft.
             </p>
           </div>
           <div className="builder-actions">
@@ -210,6 +232,7 @@ export default function DeckBuilder({
             </button>
           </div>
         </div>
+        <PlayPoolNote />
         {report.length > 0 && (
           <div className="import-report" role="status">
             {report.map((line, i) => (
@@ -221,7 +244,7 @@ export default function DeckBuilder({
           <h2>
             Heroes · {editing.heroes.length}/3
             {editing.heroes.length > 0 &&
-              ` · ${editing.heroes.reduce((n, code) => n + (card(code).threat ?? 0), 0)} starting threat`}
+              ` · ${startingThreat(editing.heroes)} starting threat`}
           </h2>
           <div className="builder-hero-grid">
             {HERO_CARDS.map((h) => {
@@ -229,18 +252,33 @@ export default function DeckBuilder({
               return (
                 <div
                   key={h.code}
+                  data-card-code={h.code}
                   className={`builder-hero ${on ? "is-selected" : ""}`}
                 >
                   <button
                     aria-pressed={on}
                     aria-label={`${on ? "Remove" : "Add"} ${h.name}`}
+                    aria-description={`${h.sphere_code} · ${h.pack_name}`}
                     onClick={() => toggleHero(h.code)}
-                    disabled={!on && editing.heroes.length >= 3}
+                    disabled={
+                      !on &&
+                      (editing.heroes.length >= 3 ||
+                        editing.heroes.some(
+                          (code) => card(code).name === h.name,
+                        ))
+                    }
+                    title={
+                      !on &&
+                      editing.heroes.some((code) => card(code).name === h.name)
+                        ? "A version of this unique hero is already selected."
+                        : undefined
+                    }
                   >
                     <Art c={h} />
                     <span>
                       <Sphere sphere={h.sphere_code} /> {h.name}
                       <small>{h.threat} threat</small>
+                      <CardProductNote c={h} />
                     </span>
                     {on && <Check size={15} weight="bold" />}
                   </button>
@@ -259,7 +297,7 @@ export default function DeckBuilder({
                 <MagnifyingGlass size={19} />
                 <input
                   aria-label="Search cards"
-                  placeholder="Search by name or trait…"
+                  placeholder="Search by name, trait or release…"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                 />
@@ -277,6 +315,18 @@ export default function DeckBuilder({
                     </option>
                   ),
                 )}
+              </select>
+              <select
+                aria-label="Filter playable card product"
+                value={product}
+                onChange={(e) => setProduct(e.target.value)}
+              >
+                <option value="all">All supported releases</option>
+                {playableProductNames.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="builder-card-list">
@@ -307,6 +357,7 @@ export default function DeckBuilder({
                           {c.cost}
                           {!legal && " · no matching hero"}
                         </small>
+                        <CardProductNote c={c} />
                       </span>
                     </button>
                     <span
@@ -324,7 +375,7 @@ export default function DeckBuilder({
                       <strong>{n}</strong>
                       <button
                         aria-label={`Add one ${c.name}`}
-                        disabled={n >= 3}
+                        disabled={n >= Math.min(3, c.deck_limit ?? 3)}
                         onClick={() => setCount(c.code, n + 1)}
                       >
                         <Plus size={14} />
@@ -339,6 +390,7 @@ export default function DeckBuilder({
             <h2>
               {size} <span>/ 50 cards</span>
             </h2>
+            <DeckProductNote deck={editing} />
             <div className="builder-spheres">
               {Object.entries(spheres).map(([s, n]) => (
                 <span key={s}>
@@ -395,8 +447,8 @@ export default function DeckBuilder({
         <div>
           <h1>Your decks</h1>
           <p>
-            Build a 50-card deck from the scripted Core Set, or import a public
-            RingsDB decklist. Decks stay on this device.
+            Build a 50-card deck from the supported play pool, or import a
+            public RingsDB decklist. Decks stay on this device.
           </p>
         </div>
         <button
@@ -407,13 +459,14 @@ export default function DeckBuilder({
           <Plus size={16} /> New deck
         </button>
       </div>
+      <PlayPoolNote />
       <section className="import-panel" aria-label="Import from RingsDB">
         <h2>
           <DownloadSimple size={18} /> Import from RingsDB
         </h2>
         <p>
-          Paste a public decklist link. Cards outside the scripted Core Set are
-          listed and left out, so you can fill the gaps here.
+          Paste a public decklist link. Cards whose rules are not implemented
+          are listed and left out, so you can fill the gaps here.
         </p>
         <form
           className="import-form"
@@ -467,8 +520,9 @@ export default function DeckBuilder({
                       "No heroes yet"}
                     <br />
                     {deckSize(d.cards)} cards
-                    {d.source && " · from RingsDB"}
+                    {d.source && " · imported list"}
                   </p>
+                  <DeckProductNote deck={d} compact />
                   {issues.length > 0 && (
                     <small className="deck-shelf-warning">
                       <WarningCircle size={13} /> {issues[0]}

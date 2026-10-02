@@ -1,10 +1,104 @@
+import {
+  engagedEnemies,
+  consideredEngaged,
+  prepareEnemyShadows,
+  markEnemyAttack,
+  finishEnemyShadows,
+} from "./considered-engagement";
+import { finishPlayedEvent } from "./event-resolution";
+import {
+  handleAmonPlayerEffect,
+  amonPlayerCanEngage,
+  amonPlayerEnemyAttackTarget,
+  amonPlayerSurgeRevealed,
+} from "./amon-din-player-cards";
+import {
+  shadowFlameRoundEnd,
+  shadowFlameCanMove,
+  shadowFlameEnemyAttackStart,
+} from "./shadow-flame";
+import {
+  handleDruadanPlayerEffect,
+  druadanPlayerUndefendedTargets,
+  druadanPlayerNoEngagementChecks,
+} from "./druadan-player-cards";
+import { handleStewardPlayerEffect } from "./steward-player-cards";
+import {
+  longDarkProgressLocation,
+  longDarkRoundEnd,
+  longDarkQuestFailed,
+} from "./long-dark";
+import {
+  handleHeirsPlayerEffect,
+  heirsPlayerNoEngagementCheck,
+} from "./heirs-player-cards";
+import {
+  handleCollectorPlayerEffect,
+  collectorRoundEndEffects,
+  collectorEnemyAttackFinished,
+} from "./collector-player-cards";
+import {
+  watcherWaterTravelEntered,
+  watcherWaterCombatEnd,
+  watcherWaterRoundEnd,
+  watcherWaterRefresh,
+} from "./watcher-water";
+import {
+  handleShadowFlamePlayerEffect,
+  shadowFlamePlayerEnemyAttackEnded,
+} from "./shadow-flame-player-cards";
+import { handleFoundationsPlayerEffect } from "./foundations-player-cards";
+import {
+  roadRivendellTravelEntered,
+  roadRivendellRoundEnd,
+  roadRivendellCannotCancel,
+} from "./road-rivendell";
+import { redhornCanMakeActive, redhornRoundEnd } from "./redhorn-gate";
+import {
+  handleLongDarkPlayerEffect,
+  longDarkPlayerIgnoreEngagement,
+  longDarkPlayerTravelled,
+} from "./long-dark-player-cards";
+import {
+  handleRohanPlayerEffect,
+  rohanQuestSucceeded,
+  rohanRevealReduction,
+  rohanQuestBegins,
+  rohanCombatBegins,
+  rohanRoundEnd,
+  rohanOathPlayers,
+} from "./rohan-player-cards";
+import {
+  handleWatcherPlayerEffect,
+  watcherPlayerDefended,
+} from "./watcher-player-cards";
+import {
+  handleRoadPlayerEffect,
+  roadPlayerAttackerDeclared,
+} from "./road-player-cards";
+import {
+  handleRedhornPlayerEffect,
+  redhornPlayerDefenderDeclared,
+  redhornPlayerQuestSucceeded,
+} from "./redhorn-player-cards";
+import {
+  khazadBeforeStaging,
+  khazadStagingEnd,
+  khazadCombatEnd,
+  khazadRoundEnd,
+  khazadAutoEngageAllowed,
+  khazadAttackBonus,
+  khazadCannotExhaust,
+} from "./khazad-dum";
 // The effect interpreter: every queued effect kind resolves here, plus queue flushing.
 import { card, name } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 
 import {
   activeSeat,
+  defendersFor,
   allCharacters,
+  allActiveLocations,
   allHeroes,
   allEngaged,
   eachSeat,
@@ -43,41 +137,397 @@ import {
   stats,
   canPay,
   playCost,
+  engagementCost,
+  takePlayerDeck,
+  putPlayerDeck,
 } from "./core";
 import {
   advanceDefense,
   check,
+  characterLeftPlay,
   damage,
   discardAttachment,
+  discardHandCard,
   engage,
   enterAlly,
   nextRound,
   phaseEnd,
   placeEncounter,
   progressLocation,
+  progress,
   resolveReveal,
   returnAlly,
   revealed,
   shadow,
   spendEvent,
+  raiseThreat,
+  readyCharacter,
+  exhaustCharacter,
+  enemyAddedToStaging,
+  takePlayerDiscard,
 } from "./board";
-import { combatDamage, playerAttack } from "./combat";
+import {
+  beginEnemyAttack,
+  combatDamage,
+  playerAttack,
+  playerAttackResolved,
+} from "./combat";
 import { orcGuard, scenarioEffect } from "./scenario-rules";
+import {
+  CARROCK,
+  carrockAfterAttack,
+  carrockTravel,
+  isSacked,
+} from "./carrock";
+import {
+  handleExpansionPlayerEffect,
+  huntDefenseEffects,
+  expansionShadowOptions,
+} from "./expansion-player-cards";
+import { emynMuilTravel, emynMuilQuestStart } from "./emyn-muil";
+import {
+  handleGondorPlayerEffect,
+  gondorResourcesGained,
+} from "./gondor-player-cards";
+import {
+  rhosgobelQuestStart,
+  rhosgobelRoundEnd,
+  rhosgobelHeal,
+} from "./rhosgobel";
+import {
+  handleRhosgobelPlayerEffect,
+  rhosgobelQuestResolved,
+} from "./rhosgobel-player-cards";
+import {
+  handleEmynPlayerEffect,
+  emynPlayerRevealReduction,
+} from "./emyn-player-cards";
+import { deadMarshesTravel, deadMarshesRoundEnd } from "./dead-marshes";
+import {
+  handleMarshPlayerEffect,
+  marshPlayerShadowOptions,
+} from "./marsh-player-cards";
+import { handleDwarfPlayerEffect } from "./dwarf-player-cards";
+
+import {
+  returnMirkwoodEncounterStart,
+  returnMirkwoodCombatStart,
+  returnMirkwoodRoundEnd,
+  returnMirkwoodTravel,
+  returnMirkwoodUndefendedTarget,
+} from "./return-mirkwood";
+
+import {
+  handleMirkwoodPlayerEffect,
+  mirkwoodPlayerCombatWindow,
+} from "./mirkwood-player-cards";
+
+import {
+  handleKhazadPlayerEffect,
+  khazadPlayerFailedQuest,
+  khazadPlayerQuestFailureAmount,
+} from "./khazad-player-cards";
+
+import { handleElfPlayerEffect } from "./elf-player-cards";
+
+function restoreImmediateShadows(
+  s: GameState,
+  enemy: Unit,
+  combat: NonNullable<GameState["combat"]>,
+) {
+  s.encounterDiscard.push(...enemy.shadows);
+  enemy.shadows = [...(combat.immediatePreviousShadows ?? [])];
+  enemy.revealedShadowCount = combat.immediatePreviousRevealedShadowCount ?? 0;
+  enemy.attacked = !!combat.immediatePreviousAttacked;
+  if (combat.immediatePreviousShadowCancelsDamage)
+    enemy.shadowCancelsDamage = true;
+  else delete enemy.shadowCancelsDamage;
+  if (combat.immediatePreviousShadowCancelsCombatDamage)
+    enemy.shadowCancelsCombatDamage = true;
+  else delete enemy.shadowCancelsCombatDamage;
+}
 
 export function handle(s: GameState, e: Effect) {
+  const continuation = new Set(s.queue);
+  handleEffect(s, e);
+  const finishes = s.queue.filter(
+    (effect) => effect.kind === "eventFinish" && !continuation.has(effect),
+  );
+  if (finishes.length) {
+    const finishSet = new Set(finishes);
+    s.queue = [
+      ...s.queue.filter(
+        (effect) => !continuation.has(effect) && !finishSet.has(effect),
+      ),
+      ...finishes,
+      ...s.queue.filter((effect) => continuation.has(effect)),
+    ];
+  }
+}
+
+function handleEffect(s: GameState, e: Effect) {
+  if (handleAmonPlayerEffect(s, e)) return;
+  if (handleDruadanPlayerEffect(s, e)) return;
+  if (handleStewardPlayerEffect(s, e)) return;
+  if (handleHeirsPlayerEffect(s, e)) return;
+  if (handleCollectorPlayerEffect(s, e)) return;
+  if (handleShadowFlamePlayerEffect(s, e)) return;
+  if (handleFoundationsPlayerEffect(s, e)) return;
+  if (e.kind === "finishQuestPhase") rhosgobelQuestResolved(s);
+  if (handleExpansionPlayerEffect(s, e)) return;
+  if (handleGondorPlayerEffect(s, e)) return;
+  if (handleRhosgobelPlayerEffect(s, e)) return;
+  if (handleEmynPlayerEffect(s, e)) return;
+  if (handleMarshPlayerEffect(s, e)) return;
+  if (handleDwarfPlayerEffect(s, e)) return;
+  if (handleMirkwoodPlayerEffect(s, e)) return;
+  if (handleKhazadPlayerEffect(s, e)) return;
+  if (handleRohanPlayerEffect(s, e)) return;
+  if (handleLongDarkPlayerEffect(s, e)) return;
+  if (handleWatcherPlayerEffect(s, e)) return;
+  if (handleRoadPlayerEffect(s, e)) return;
+  if (handleElfPlayerEffect(s, e)) return;
+  if (handleRedhornPlayerEffect(s, e)) return;
   const u = get(s, e.target);
   switch (e.kind) {
+    case "eventFinish":
+      finishPlayedEvent(s, e.target!);
+      break;
+    case "amonSurgeWindow":
+      amonPlayerSurgeRevealed(s, { ...make(s, e.code!), code: e.code! });
+      break;
+    case "immediateAttack": {
+      if (!u || card(u.code).type_code !== "enemy") break;
+      const previous = {
+        shadows: [...u.shadows],
+        revealed: u.revealedShadowCount ?? 0,
+        attacked: !!u.attacked,
+        damage: u.shadowCancelsDamage,
+        combat: u.shadowCancelsCombatDamage,
+      };
+      if (s.combat) s.suspendedCombats.push(s.combat);
+      s.combat = {
+        enemyId: u.id,
+        attackPlayer: activeSeat(s),
+        defenderId: null,
+        defenderIds: [],
+        attackBonus: 0,
+        damageDealt: 0,
+        immediate: true,
+        immediatePendingDeclaration: true,
+        immediatePreviousAttacked: previous.attacked,
+        immediatePreviousShadows: previous.shadows,
+        immediatePreviousRevealedShadowCount: previous.revealed,
+        immediatePreviousShadowCancelsDamage: previous.damage,
+        immediatePreviousShadowCancelsCombatDamage: previous.combat,
+      };
+      u.shadows = [];
+      u.revealedShadowCount = 0;
+      delete u.shadowCancelsDamage;
+      delete u.shadowCancelsCombatDamage;
+      const code = encounterDraw(s, true);
+      if (code) u.shadows.push(code);
+      prepend(
+        s,
+        fx("immediateChooseDefender", { target: u.id, player: activeSeat(s) }),
+      );
+      shadowFlameEnemyAttackStart(s, u, activeSeat(s));
+      break;
+    }
+    case "immediateChooseDefender":
+      if (!u) {
+        prepend(s, fx("enemyDone", { flag: true }));
+        break;
+      }
+      choose(s, `${name(u)} · Immediate attack`, [
+        ...opts(defendersFor(s, u), (d) => [
+          fx("immediateDefend", {
+            target: u.id,
+            ids: [d.id],
+            player: activeSeat(s),
+          }),
+        ]),
+        {
+          id: "undefended",
+          label: "Leave the attack undefended",
+          effects: [
+            fx("immediateDefend", {
+              target: u.id,
+              ids: [],
+              player: activeSeat(s),
+            }),
+          ],
+        },
+      ]);
+      break;
+    case "immediateDefend": {
+      const prior = s.combat;
+      requireRule(
+        u && prior?.immediate && prior.enemyId === u.id,
+        "The same immediate attack must remain pending.",
+      );
+      beginEnemyAttack(s, u, e.ids ?? [], false, false, true);
+      if (s.combat)
+        Object.assign(s.combat, {
+          immediate: true,
+          immediatePendingDeclaration: false,
+          attackPlayer: prior.attackPlayer,
+          immediatePreviousAttacked: prior.immediatePreviousAttacked,
+          immediatePreviousShadows: prior.immediatePreviousShadows,
+          immediatePreviousRevealedShadowCount:
+            prior.immediatePreviousRevealedShadowCount,
+          immediatePreviousShadowCancelsDamage:
+            prior.immediatePreviousShadowCancelsDamage,
+          immediatePreviousShadowCancelsCombatDamage:
+            prior.immediatePreviousShadowCancelsCombatDamage,
+        });
+      break;
+    }
+    case "startPlanning":
+      startPhase(s, "planning");
+      break;
+    case "finishQuestDefeat":
+      if (s.pendingQuestDefeat === e.code) delete s.pendingQuestDefeat;
+      break;
+    case "roadAttackers":
+      for (const id of e.ids ?? []) {
+        const a = get(s, id);
+        if (a) roadPlayerAttackerDeclared(s, a);
+      }
+      break;
+    case "redhornDefenders":
+      for (const id of e.ids ?? []) {
+        const d = get(s, id);
+        if (d) redhornPlayerDefenderDeclared(s, d);
+      }
+      break;
+    case "questSucceeded": {
+      const first = s.table?.first ?? 0;
+      prepend(
+        s,
+        ...(s.scenarioId === "hunt-for-gollum" && s.stage === 1
+          ? [fx("huntLook", { count: 3, player: first })]
+          : []),
+        fx("questSuccessResponses", { player: first }),
+        ...(s.scenarioId === "hunt-for-gollum"
+          ? [fx("huntClaim", { player: first })]
+          : []),
+        fx("successfulQuestProgress", { value: e.value, player: first }),
+      );
+      break;
+    }
+    case "questSuccessResponses":
+      redhornPlayerQuestSucceeded(s);
+      rohanQuestSucceeded(s);
+      break;
+    case "successfulQuestProgress":
+      progress(s, e.value ?? 0);
+      break;
+    case "allocateActiveProgress": {
+      const pending = s.queue.length;
+      if (u && allActiveLocations(s).some((l) => l.id === u.id)) {
+        if (
+          longDarkProgressLocation(
+            s,
+            u,
+            e.value ?? 0,
+            e.count
+              ? [
+                  fx("continueProgress", {
+                    value: e.count,
+                    flag: e.flag,
+                    player: e.player,
+                  }),
+                ]
+              : [],
+          )
+        )
+          break;
+        progressLocation(s, u, e.value ?? 0);
+      }
+      if (e.count)
+        s.queue.splice(
+          s.queue.length - pending,
+          0,
+          fx("continueProgress", {
+            value: e.count,
+            flag: e.flag,
+            player: e.player,
+          }),
+        );
+      break;
+    }
+    case "continueProgress":
+      progress(s, e.value ?? 0, !!e.flag);
+      break;
+    case "activeLocationEffect": {
+      const locations = allActiveLocations(s);
+      if (!locations.length) break;
+      const next = (location: Unit) => ({
+        ...e,
+        kind: e.text!,
+        target: location.id,
+        text: undefined,
+      });
+      if (locations.length === 1) prepend(s, next(locations[0]));
+      else {
+        selectSeat(s, s.table?.first ?? 0);
+        choose(
+          s,
+          "Choose the active location",
+          opts(locations, (l) => [next(l)]),
+          "This effect targets one active location. The first player chooses.",
+        );
+      }
+      break;
+    }
+    case "failedQuest":
+      if (
+        s.scenarioId === "the-long-dark" &&
+        !e.flag &&
+        e.text !== "longDarkLostResolved"
+      ) {
+        prepend(s, { ...e, text: "longDarkLostResolved" });
+        longDarkQuestFailed(s);
+        break;
+      }
+      if (!e.flag && khazadPlayerFailedQuest(s, e.value ?? 0)) break;
+      eachSeat(s, (player) =>
+        raiseThreat(
+          s,
+          khazadPlayerQuestFailureAmount(s, player, e.value ?? 0),
+          "quest-failure",
+        ),
+      );
+      for (const jailor of s.staging.filter((u) => u.code === "01101"))
+        prepend(s, fx("jailor", { source: jailor.id }));
+      log(
+        s,
+        `Quest fails by ${e.value}. Each unprotected player raises threat.`,
+        "danger",
+      );
+      break;
+    case "mirkwoodCombatWindow":
+      mirkwoodPlayerCombatWindow(s);
+      break;
     case "commitSeat": {
       if (!passSeat(s)) break;
-      const reveals =
-        s.scenarioId === "anduin" && s.stage === 3
-          ? 0
-          : livingSeats(s).length +
-            (s.scenarioId === "anduin" && s.stage === 2 ? 1 : 0);
+      const reveals = rohanRevealReduction(
+        s,
+        emynPlayerRevealReduction(
+          s,
+          s.scenarioId === "anduin" && s.stage === 3
+            ? 0
+            : livingSeats(s).length +
+                (s.scenarioId === "anduin" && s.stage === 2 ? 1 : 0),
+        ),
+      );
       const player = s.table?.first ?? 0;
+      khazadBeforeStaging(s);
       enqueue(
         s,
         ...Array.from({ length: reveals }, () => fx("reveal", { player })),
+        fx("khazadStagingEnd", { player }),
         fx("questReady", { player }),
       );
       break;
@@ -113,7 +563,7 @@ export function handle(s: GameState, e: Effect) {
     }
     case "recoverAttachment": {
       const i = s.discard.lastIndexOf(e.code!);
-      if (i >= 0) s.hand.push(make(s, s.discard.splice(i, 1)[0]));
+      if (i >= 0) s.hand.push(takePlayerDiscard(s, i));
       break;
     }
     case "searchPlayer":
@@ -130,22 +580,32 @@ export function handle(s: GameState, e: Effect) {
       );
       break;
     case "rainOfArrows":
-      for (const enemy of [...s.engaged]) damage(s, enemy.id, 1);
+      for (const enemy of [...engagedEnemies(s)]) damage(s, enemy.id, 1);
       break;
     case "standTogether":
       s.standTogether = true;
       break;
     case "hospitality":
       s.heroes.forEach((h) => {
-        h.damage = 0;
+        rhosgobelHeal(s, h, h.damage, { code: "01068" });
       });
       break;
+    case "feintEnemy":
+      if (u) {
+        const player = e.value ?? activeSeat(s);
+        u.preventedAttacks = [
+          ...new Set([...(u.preventedAttacks ?? []), player]),
+        ];
+        if (!s.staging.some((enemy) => enemy.id === u.id)) u.feinted = true;
+        advanceDefense(s);
+      }
+      break;
     case "thicket":
-      s.engaged.forEach((enemy) => {
+      engagedEnemies(s).forEach((enemy) => {
         enemy.preventedAttacks = [
           ...new Set([...(enemy.preventedAttacks ?? []), activeSeat(s)]),
         ];
-        enemy.feinted = true;
+        if (!s.staging.some((u) => u.id === enemy.id)) enemy.feinted = true;
       });
       break;
     case "discardShackles":
@@ -158,35 +618,56 @@ export function handle(s: GameState, e: Effect) {
     case "payPass":
       for (let i = 0; i < 2; i++) {
         const index = Math.floor(random(s) * s.hand.length);
-        s.discard.push(s.hand.splice(index, 1)[0].code);
+        discardHandCard(s, s.hand[index].id);
       }
       log(
         s,
         "Necromancer’s Pass discards 2 random cards to pay its travel cost.",
       );
       break;
+    case "playerAttackResolved":
+      if (u)
+        playerAttackResolved(s, u, e.ids ?? [], e.value ?? 0, e.count ?? 0);
+      break;
     case "travelEnter":
-      if (u && s.staging.some((x) => x.id === u.id)) {
+      if (
+        u &&
+        redhornCanMakeActive(u) &&
+        s.staging.some((x) => x.id === u.id)
+      ) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
+        const priorActive = allActiveLocations(s);
         s.activeLocation = u;
+        s.extraActiveLocations =
+          e.text === "strider-replace" ? priorActive : [];
+        returnMirkwoodTravel(s, u);
+        roadRivendellTravelEntered(s, u);
+        longDarkPlayerTravelled(s, u);
+        watcherWaterTravelEntered(s, u);
         log(s, `Travelled to ${name(u)}.`, "good");
         if (u.code === "01087") progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
-        if (u.code === "01099")
-          enqueue(s, fx("travelReady", { player: s.table?.first ?? 0 }));
-        if (u.code === "01100")
-          enqueue(s, fx("draw", { value: 2, player: s.table?.first ?? 0 }));
-        enqueue(
-          s,
+        const responses = [
+          ...(u.code === "01099"
+            ? [fx("travelReady", { player: s.table?.first ?? 0 })]
+            : []),
+          ...(u.code === "01100"
+            ? [fx("draw", { value: 2, player: s.table?.first ?? 0 })]
+            : []),
           ...playerOrder(s).map((player) =>
             fx("strengthOfWill", { target: u.id, player }),
           ),
-          fx("travelDone"),
-        );
+          ...(e.flag ? [] : [fx("travelDone")]),
+        ];
+        if (e.flag) prepend(s, ...responses);
+        else enqueue(s, ...responses);
+        carrockTravel(s, u);
+        emynMuilTravel(s, u);
+        deadMarshesTravel(s, u);
       }
       break;
     case "reshufflePlayer":
-      s.deck.push(...s.discard.splice(0));
+      while (s.discard.length) putPlayerDeck(s, takePlayerDiscard(s, 0));
       shuffle(s, s.deck);
       break;
     case "faramir":
@@ -206,15 +687,14 @@ export function handle(s: GameState, e: Effect) {
         });
         forOwner(s, e.value, () => {
           s.allies.push(u);
-          s.threat += 3;
+          raiseThreat(s, 3, "player-card");
         });
       }
       break;
     case "eowynDiscard": {
       const h = s.hand.find((x) => x.id === e.target);
       if (h) {
-        s.hand = s.hand.filter((x) => x.id !== h.id);
-        s.discard.push(h.code);
+        discardHandCard(s, h.id);
         const eowyn = allHeroes(s).find((x) => x.code === "01007");
         if (eowyn) eowyn.boost++;
         s.eowynUsed = true;
@@ -223,13 +703,23 @@ export function handle(s: GameState, e: Effect) {
       break;
     }
     case "resource":
-      if (u) u.resources += e.value ?? 1;
+      if (u && !((e.value ?? 1) > 0 && isSacked(u))) {
+        const amount = e.value ?? 1;
+        u.resources += amount;
+        gondorResourcesGained(s, u, amount, true);
+      }
       break;
     case "ready":
-      if (u) u.exhausted = false;
+      if (u) readyCharacter(s, u);
       break;
     case "exhaust":
-      if (u) u.exhausted = true;
+      if (u) {
+        requireRule(
+          !khazadCannotExhaust(u),
+          "Shadow of Fear prevents exhausting this hero.",
+        );
+        exhaustCharacter(s, u);
+      }
       break;
     case "damage":
       if (u) damage(s, u.id, e.value ?? 0);
@@ -238,7 +728,8 @@ export function handle(s: GameState, e: Effect) {
       draw(s, e.value ?? 1);
       break;
     case "threat":
-      s.threat = Math.max(0, s.threat + (e.value ?? 0));
+      if ((e.value ?? 0) > 0) raiseThreat(s, e.value!, "player-card");
+      else s.threat = Math.max(0, s.threat + (e.value ?? 0));
       break;
     case "uncommit":
       if (u) u.committed = false;
@@ -251,6 +742,18 @@ export function handle(s: GameState, e: Effect) {
           exhausted: false,
         });
       break;
+    case "eventPlay": {
+      if (e.costEffects?.length) {
+        prepend(s, ...e.costEffects, { ...e, costEffects: undefined });
+        break;
+      }
+      const resolved = spendEvent(s, e.code!, e.source);
+      prepend(
+        s,
+        ...(resolved ? (e.effects ?? []) : (e.cancelledEffects ?? [])),
+      );
+      break;
+    }
     case "spendEvent":
       spendEvent(s, e.code!);
       break;
@@ -258,7 +761,14 @@ export function handle(s: GameState, e: Effect) {
       resolveReveal(s, e.code!, e.source);
       break;
     case "placeEncounter":
-      placeEncounter(s, e.code!, e.flag, e.value, e.source);
+      placeEncounter(
+        s,
+        e.code!,
+        e.flag,
+        e.value,
+        e.source,
+        e.text === "revealed",
+      );
       break;
     case "reveal": {
       const code = encounterDraw(s);
@@ -269,7 +779,11 @@ export function handle(s: GameState, e: Effect) {
       if (u) engage(s, u);
       break;
     case "locationProgress":
-      if (u) progressLocation(s, u, e.value ?? 0);
+      if (
+        u &&
+        !/immune to (?:player )?card effects/i.test(card(u.code).text ?? "")
+      )
+        progressLocation(s, u, e.value ?? 0);
       break;
     case "discardAttachment": {
       const a = u?.attachments.find((a) => a.id === e.source);
@@ -337,8 +851,7 @@ export function handle(s: GameState, e: Effect) {
       break;
     }
     case "takeSearched": {
-      s.deck.splice(e.value!, 1);
-      s.hand.push(make(s, e.code!));
+      s.hand.push(takePlayerDeck(s, e.value!));
       shuffle(s, s.deck);
       break;
     }
@@ -368,7 +881,9 @@ export function handle(s: GameState, e: Effect) {
         ? s.encounterDeck
         : s.encounterDiscard;
       pile.splice(pile.indexOf(e.code!), 1);
-      s.staging.push(make(s, e.code!));
+      const spider = make(s, e.code!);
+      s.staging.push(spider);
+      enemyAddedToStaging(s, spider);
       shuffle(s, s.encounterDeck);
       log(s, `${card(e.code!).name} emerges from the trees.`, "danger");
       break;
@@ -379,7 +894,7 @@ export function handle(s: GameState, e: Effect) {
         "Théodred’s response",
         [
           ...opts(
-            allHeroes(s).filter((u) => u.committed),
+            allHeroes(s).filter((u) => u.committed && !isSacked(u)),
             (u) => [fx("resource", { target: u.id, value: 1 })],
           ),
           skip,
@@ -389,7 +904,7 @@ export function handle(s: GameState, e: Effect) {
       break;
     case "aragorn": {
       const a = s.heroes.find((h) => h.code === "01001");
-      if (a?.committed && a.exhausted && a.resources > 0)
+      if (a?.committed && a.exhausted && a.resources > 0 && !isSacked(a))
         choose(s, "Aragorn’s response", [
           {
             id: "ready",
@@ -404,6 +919,9 @@ export function handle(s: GameState, e: Effect) {
         ]);
       break;
     }
+    case "khazadStagingEnd":
+      khazadStagingEnd(s);
+      break;
     case "questReady":
       s.phase = "staging";
       log(
@@ -416,6 +934,9 @@ export function handle(s: GameState, e: Effect) {
       break;
     case "startQuest":
       startPhase(s, "quest");
+      emynMuilQuestStart(s);
+      rhosgobelQuestStart(s);
+      rohanQuestBegins(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
       if (s.scenarioId === "dol-guldur" && s.stage === 3)
@@ -424,10 +945,11 @@ export function handle(s: GameState, e: Effect) {
         prepend(s, fx("huntLook", { count: 2, player: s.table?.first ?? 0 }));
       break;
     case "startTravel":
-      s.phase = "travel";
+      startPhase(s, "travel");
       break;
     case "startEncounter":
       startPhase(s, "encounter");
+      returnMirkwoodEncounterStart(s);
       eachSeat(s, () => {
         s.optionalEngagement = false;
       });
@@ -460,10 +982,18 @@ export function handle(s: GameState, e: Effect) {
       if (u) returnAlly(s, u, true);
       break;
     case "endCombat":
+      for (const enemy of [
+        ...allEngaged(s),
+        ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+      ]) {
+        delete enemy.shadowCancelsDamage;
+        delete enemy.shadowCancelsCombatDamage;
+      }
       eachSeat(s, () => {
         for (const enemy of s.engaged) {
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
+          enemy.revealedShadowCount = 0;
           enemy.attacked = false;
         }
       });
@@ -482,18 +1012,23 @@ export function handle(s: GameState, e: Effect) {
             .filter((u) => u.code === "01083")
             .map((u) => fx("chooseDamage", { value: 1, source: u.id, player })),
         ),
+        fx("khazadCombatEnd"),
         fx("refreshReady"),
       );
       break;
+    case "khazadCombatEnd":
+      khazadCombatEnd(s);
+      watcherWaterCombatEnd(s);
+      break;
     case "refreshReady":
-      s.phase = "refresh";
+      startPhase(s, "refresh");
       eachSeat(s, () => {
         for (const u of characters(s)) {
           u.committed = false;
           u.attacked = false;
           u.boost = 0;
           for (const a of u.attachments) a.exhausted = false;
-          if (!has(u, "01080")) u.exhausted = false;
+          if (!has(u, "01080")) readyCharacter(s, u);
           else enqueue(s, fx("webRefresh", { target: u.id }));
         }
         s.eowynUsed = false;
@@ -501,11 +1036,20 @@ export function handle(s: GameState, e: Effect) {
       enqueue(s, fx("refreshEnd"));
       break;
     case "endRound":
-      if (s.table) {
-        const order = playerOrder(s);
-        s.table.first = order[1 % order.length] ?? 0;
-        followFirstPlayer(s);
-      }
+      prepend(s, ...collectorRoundEndEffects(s), fx("endRoundAfterCollector"));
+      break;
+    case "endRoundAfterCollector":
+      shadowFlameRoundEnd(s);
+      longDarkRoundEnd(s);
+      watcherWaterRoundEnd(s);
+      khazadRoundEnd(s);
+      redhornRoundEnd(s);
+      roadRivendellRoundEnd(s);
+      rohanRoundEnd(s);
+      deadMarshesRoundEnd(s);
+      rhosgobelRoundEnd(s);
+      returnMirkwoodRoundEnd(s);
+      if (s.status !== "playing") break;
       s.mendorBoost = false;
       eachSeat(s, () => {
         for (const ally of [...s.allies])
@@ -515,15 +1059,23 @@ export function handle(s: GameState, e: Effect) {
               discardAttachment(s, ally, a, true);
             seatView(s, ally.owner ?? activeSeat(s)).discard.push(ally.code);
             enqueue(s, fx("valiant"));
+            const owner = ally.owner ?? activeSeat(s);
+            characterLeftPlay(s, ally, activeSeat(s), {
+              zone: "discard",
+              player: owner,
+              index: seatView(s, owner).discard.length - 1,
+            });
             log(s, "Gandalf departs at the end of the round.");
           }
         for (const h of [...s.heroes]) {
-          if (has(h, "01109")) s.threat += 2;
+          if (has(h, "01109")) raiseThreat(s, 2, "encounter");
           if (has(h, "01110")) damage(s, h.id, 1);
         }
       });
-      if (s.activeLocation?.code === "02017") {
-        s.activeLocation.progress = Math.max(0, s.activeLocation.progress - 1);
+      for (const location of allActiveLocations(s).filter(
+        (l) => l.code === "02017",
+      )) {
+        location.progress = Math.max(0, location.progress - 1);
         s.progress = Math.max(0, s.progress - 1);
         log(
           s,
@@ -531,7 +1083,10 @@ export function handle(s: GameState, e: Effect) {
           "danger",
         );
       }
-      for (const enemy of [...s.staging, ...allEngaged(s)]) enemy.boost = 0;
+      for (const enemy of [...s.staging, ...allEngaged(s)]) {
+        enemy.boost = 0;
+        delete enemy.tempEngagement;
+      }
       enqueue(s, fx("nextRound"));
       break;
     case "nextRound":
@@ -568,12 +1123,18 @@ export function handle(s: GameState, e: Effect) {
       );
       break;
     case "engagementRound": {
+      if (druadanPlayerNoEngagementChecks(s)) break;
       if (s.scenarioId === "anduin" && s.stage === 2) break;
       const eligible = playerOrder(s).some((i) =>
         s.staging.some(
           (u) =>
             card(u.code).type_code === "enemy" &&
-            (card(u.code).engagement ?? 0) <= seatView(s, i).threat,
+            amonPlayerCanEngage(s, u, i) &&
+            shadowFlameCanMove(s, u) &&
+            khazadAutoEngageAllowed(s, u) &&
+            !heirsPlayerNoEngagementCheck(u) &&
+            !longDarkPlayerIgnoreEngagement(s, u) &&
+            engagementCost(s, u) <= seatView(s, i).threat,
         ),
       );
       if (eligible)
@@ -587,36 +1148,64 @@ export function handle(s: GameState, e: Effect) {
       break;
     }
     case "automaticEngagement": {
+      if (druadanPlayerNoEngagementChecks(s)) break;
       const enemy = s.staging
         .filter(
           (u) =>
             card(u.code).type_code === "enemy" &&
-            (card(u.code).engagement ?? 0) <= s.threat,
+            amonPlayerCanEngage(s, u, activeSeat(s)) &&
+            shadowFlameCanMove(s, u) &&
+            khazadAutoEngageAllowed(s, u) &&
+            !heirsPlayerNoEngagementCheck(u) &&
+            !longDarkPlayerIgnoreEngagement(s, u) &&
+            engagementCost(s, u) <= s.threat,
         )
-        .sort(
-          (a, b) =>
-            (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
-        )[0];
+        .sort((a, b) => engagementCost(s, b) - engagementCost(s, a))[0];
       if (enemy && !s.table?.seats[activeSeat(s)].eliminated) engage(s, enemy);
       break;
     }
     case "startCombat":
       startPhase(s, "defense");
+      if (!e.flag && returnMirkwoodCombatStart(s)) break;
+      prepend(s, fx("prepareCombat", { player: s.table?.first ?? 0 }));
+      rohanCombatBegins(s);
+      break;
+    case "prepareCombat":
       eachSeat(s, () => {
         for (const enemy of [...s.engaged].sort(
-          (a, b) =>
-            (card(b.code).engagement ?? 0) - (card(a.code).engagement ?? 0),
+          (a, b) => engagementCost(s, b) - engagementCost(s, a),
         )) {
-          enemy.attacked = false;
-          enemy.attackedBy = [];
-          const code = encounterDraw(s, true);
-          enemy.shadows = code ? [code] : [];
+          prepareEnemyShadows(s, enemy);
         }
       });
-      advanceDefense(s);
+      for (const enemy of s.staging.filter((u) =>
+        playerOrder(s).some((p) => consideredEngaged(s, u, p)),
+      ))
+        prepareEnemyShadows(s, enemy);
+      {
+        const early = rohanOathPlayers(s);
+        if (early.length) {
+          s.earlyAttackPlayers = early;
+          s.phase = "attack";
+          if (s.table) {
+            s.table.turn = early[0];
+            s.table.passed = [];
+          }
+          selectSeat(s, early[0]);
+          log(
+            s,
+            "Oath of Eorl · These fellowships attack before enemy attacks.",
+            "good",
+          );
+        } else advanceDefense(s);
+      }
       break;
     case "shadowReveal": {
-      if (!get(s, s.combat?.enemyId)) break;
+      const enemy = get(s, s.combat?.enemyId);
+      if (!enemy) break;
+      const unrevealed = enemy.shadows.slice(enemy.revealedShadowCount ?? 0);
+      if (!unrevealed.includes(e.code!)) break;
+      enemy.revealedShadowCount = (enemy.revealedShadowCount ?? 0) + 1;
       log(
         s,
         `Shadow: ${card(e.code!).name}${card(e.code!).shadow ? " — " + card(e.code!).shadow : " · no effect"}.`,
@@ -658,10 +1247,33 @@ export function handle(s: GameState, e: Effect) {
       const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
         .map((id) => get(s, id))
         .filter((x): x is Unit => !!x);
-      const power = stats(s, enemy).attack + c.attackBonus;
+      const power =
+        stats(s, enemy).attack +
+        c.attackBonus +
+        khazadAttackBonus(s, enemy, !defenders.length);
+      const redirected = amonPlayerEnemyAttackTarget(s, enemy);
+      if (redirected !== undefined) {
+        c.redirectedToEnemy = true;
+        if (redirected) {
+          const amount = Math.max(0, power - stats(s, redirected).defense);
+          damage(s, redirected.id, amount, {
+            enemyId: enemy.id,
+            combatDamage: true,
+          });
+          log(
+            s,
+            `${name(enemy)} attacks ${name(redirected)} for ${amount} damage.`,
+          );
+        }
+        break;
+      }
       const defense = c.ignoreDefense
         ? 0
-        : defenders.reduce((n, d) => n + stats(s, d).defense, 0);
+        : defenders.reduce(
+            (n, d) =>
+              n + Math.max(0, stats(s, d).defense - (c.defensePenalty ?? 0)),
+            0,
+          );
       const amount = Math.max(0, power - defense);
       if (defenders.length > 1) {
         if (amount)
@@ -678,18 +1290,29 @@ export function handle(s: GameState, e: Effect) {
             "Stand Together: all damage from this attack goes to one defender.",
           );
       } else if (defenders.length) combatDamage(s, defenders[0], enemy, amount);
+      else if (returnMirkwoodUndefendedTarget(s, activeSeat(s)))
+        combatDamage(
+          s,
+          returnMirkwoodUndefendedTarget(s, activeSeat(s))!,
+          enemy,
+          power,
+        );
+      else if (c.undefendedTargetId && get(s, c.undefendedTargetId))
+        combatDamage(s, get(s, c.undefendedTargetId)!, enemy, power);
       else
         choose(
           s,
           `Assign ${power} damage`,
-          opts(s.heroes, (h) => [
+          opts([...s.heroes, ...druadanPlayerUndefendedTargets(s)], (h) => [
             fx("combatDamage", {
               target: h.id,
               source: enemy.id,
               value: power,
             }),
           ]),
-          "All undefended damage goes to one hero.",
+          druadanPlayerUndefendedTargets(s).length
+            ? "Assign all damage to one hero or an eligible White Tower Watchman."
+            : "All undefended damage goes to one hero.",
         );
       log(
         s,
@@ -700,9 +1323,44 @@ export function handle(s: GameState, e: Effect) {
       break;
     }
     case "enemyDone": {
+      const attackPlayer = s.combat?.attackPlayer ?? activeSeat(s);
+      const completed = s.combat;
+      const immediate = completed?.immediate,
+        previousAttacked = completed?.immediatePreviousAttacked;
+      if (e.flag) {
+        const skipped = get(s, s.combat?.enemyId);
+        if (skipped && !immediate) markEnemyAttack(s, skipped, attackPlayer);
+        if (skipped) finishEnemyShadows(s, skipped);
+        if (
+          immediate &&
+          skipped &&
+          completed?.immediatePreviousShadows !== undefined
+        )
+          restoreImmediateShadows(s, skipped, completed);
+        if (
+          immediate &&
+          skipped &&
+          completed?.immediatePreviousShadows === undefined
+        ) {
+          skipped.attacked = !!previousAttacked;
+          if (!["defense", "attack"].includes(s.phase)) {
+            s.encounterDiscard.push(...skipped.shadows);
+            skipped.shadows = [];
+            skipped.revealedShadowCount = 0;
+            delete skipped.shadowCancelsDamage;
+            delete skipped.shadowCancelsCombatDamage;
+          }
+        }
+        s.combat = s.suspendedCombats.pop() ?? null;
+        if (!s.combat && !immediate) advanceDefense(s);
+        break;
+      }
+      if (!s.used.includes("phase:attack-resolved"))
+        s.used.push("phase:attack-resolved");
       const enemy = get(s, s.combat?.enemyId);
       if (enemy) {
-        enemy.attacked = true;
+        if (!immediate) markEnemyAttack(s, enemy, attackPlayer);
+        carrockAfterAttack(s, enemy);
         if (enemy.code === "01090") enemy.resources++;
         if (enemy.code === "01111") s.progress = Math.max(0, s.progress - 1);
         if (s.combat?.returnToStaging || s.combat?.returnWolf) {
@@ -710,22 +1368,70 @@ export function handle(s: GameState, e: Effect) {
           s.engaged = s.engaged.filter((x) => x.id !== enemy.id);
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
+          enemy.revealedShadowCount = 0;
+          delete enemy.shadowCancelsDamage;
+          delete enemy.shadowCancelsCombatDamage;
           if (s.combat.returnWolf) {
             log(
               s,
               "Wolf Rider's attack ends. Its shadow card returns to the deck when combat ends.",
             );
-          } else s.staging.push(enemy);
+          } else {
+            s.staging.push(enemy);
+            enemyAddedToStaging(s, enemy);
+          }
         }
       }
+      for (const id of s.combat?.defenderIds ??
+        (s.combat?.defenderId ? [s.combat.defenderId] : [])) {
+        const d = get(s, id);
+        if (d) watcherPlayerDefended(s, d);
+      }
+      prepend(
+        s,
+        ...huntDefenseEffects(
+          s,
+          s.combat?.defenderIds ??
+            (s.combat?.defenderId ? [s.combat.defenderId] : []),
+        ),
+      );
+      collectorEnemyAttackFinished(
+        s,
+        s.combat?.desperateDefenderIds ?? [],
+        (s.combat?.damageDealt ?? 0) === 0,
+      );
+      if (enemy && !completed?.redirectedToEnemy)
+        shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
+      if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
-      if (s.combat) break;
+      if (
+        immediate &&
+        enemy &&
+        completed?.immediatePreviousShadows !== undefined
+      )
+        restoreImmediateShadows(s, enemy, completed);
+      if (
+        immediate &&
+        enemy &&
+        completed?.immediatePreviousShadows === undefined
+      ) {
+        enemy.attacked = !!previousAttacked;
+        if (!["defense", "attack"].includes(s.phase)) {
+          s.encounterDiscard.push(...enemy.shadows);
+          enemy.shadows = [];
+          enemy.revealedShadowCount = 0;
+          delete enemy.shadowCancelsDamage;
+          delete enemy.shadowCancelsCombatDamage;
+        }
+      }
+      if (s.combat || immediate) break;
       advanceDefense(s);
       break;
     }
     case "webRefresh": {
       const cost =
-        (u?.attachments.filter((a) => a.code === "01080").length ?? 0) * 2;
+        (u?.attachments.filter((a) => !a.blanked && a.code === "01080")
+          .length ?? 0) * 2;
       if (u?.exhausted && cost && u.resources >= cost)
         choose(s, `Free ${name(u)} from the web?`, [
           {
@@ -742,10 +1448,23 @@ export function handle(s: GameState, e: Effect) {
     }
     case "refreshEnd":
       eachSeat(s, () => {
-        s.threat += s.activeLocation?.code === "01114" ? 2 : 1;
+        raiseThreat(s, 1, "framework");
+        raiseThreat(
+          s,
+          allActiveLocations(s).filter((l) => l.code === "01114").length,
+          "encounter",
+        );
       });
       s.phase = "refresh";
       log(s, "Refresh · Threat increases by 1.");
+      check(s);
+      if (s.status !== "playing") break;
+      if (s.table) {
+        const order = playerOrder(s);
+        s.table.first = order[1 % order.length] ?? 0;
+        followFirstPlayer(s);
+      }
+      watcherWaterRefresh(s);
       check(s);
       break;
     case "sneak": {
@@ -765,22 +1484,43 @@ export function shadowResponse(s: GameState, code: string) {
   const eligible = playerOrder(s).filter((i) => {
     const p = seatView(s, i);
     return (
-      s.activeLocation?.code !== "02016" &&
+      !roadRivendellCannotCancel(s) &&
+      !allActiveLocations(s).some((l) => l.code === "02016") &&
       card(code).shadow &&
       p.hand.some((u) => u.code === "01048") &&
       canPay(p, card("01048"))
     );
   });
-  if (eligible.length)
+  const brand = roadRivendellCannotCancel(s)
+    ? []
+    : expansionShadowOptions(s, code);
+  const watcher = roadRivendellCannotCancel(s)
+    ? []
+    : marshPlayerShadowOptions(s, code);
+  if (eligible.length || brand.length || watcher.length)
     choose(
       s,
       "A shadow falls",
       [
+        ...brand,
+        ...watcher,
         ...eligible.map((player) => ({
           id: s.table ? `cancel-${player}` : "cancel",
           label: `Play Hasty Stroke · ${playCost(s, card("01048"))} Spirit${s.table ? " · " + seatName(s, player) : ""}`,
           code: "01048",
-          effects: [fx("spendEvent", { code: "01048", player })],
+          effects: [
+            fx("eventPlay", {
+              code: "01048",
+              player,
+              effects: [],
+              cancelledEffects: [
+                fx("shadowEffect", {
+                  code,
+                  player: s.combat?.attackPlayer ?? activeSeat(s),
+                }),
+              ],
+            }),
+          ],
         })),
         {
           id: "resolve",
@@ -804,29 +1544,76 @@ export function flush(s: GameState) {
   ) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
-    if (s.table && effect.player !== undefined) {
-      // These belong to the company, even if a reveal eliminates the original
-      // first player. The surviving first player resolves the remaining steps.
-      const sharedHuntEffect = [
-        "huntLook",
-        "huntReveal",
-        "huntClaim",
-        "huntProgress",
-      ].includes(effect.kind);
-      selectSeat(s, sharedHuntEffect ? s.table.first : effect.player);
-    }
+    const sharedEffect = [
+      "eventFinish",
+      "shadowFlameStageReady",
+      "shadowFlameLastLord",
+      "shadowFlameLastLordFinish",
+      "shadowFlameRearProgress",
+      "shadowFlameRearAdvance",
+      "shadowFlameLeavesOrder",
+      "shadowFlameLeavesResolve",
+      "shadowFlameAlliesChoose",
+      "shadowFlameDiscardAllies",
+      "shadowFlameAttachmentsChoose",
+      "shadowFlameDiscardAttachments",
+      "shadowFlameInner",
+      "longDarkLost",
+      "longDarkLostOrder",
+      "longDarkLostResolve",
+      "longDarkLocate",
+      "longDarkLocateAttempt",
+      "longDarkLocateFail",
+      "longDarkTwistingPlace",
+      "longDarkEast",
+      "longDarkEastReveal",
+      "longDarkStageReady",
+      "longDarkSetupLocations",
+      "roadRivendellAllAttacks",
+      "roadRivendellOutpost",
+      "roadRivendellStageReady",
+      "roadRivendellOrderEffects",
+      "huntLook",
+      "huntReveal",
+      "huntClaim",
+      "huntProgress",
+      "questSucceeded",
+      "questSuccessResponses",
+      "successfulQuestProgress",
+      "prepareCombat",
+      "deadBeginEscape",
+      "deadDiscardTreachery",
+      "deadChooseCapturer",
+      "khazadStageReady",
+      "khazadFlipQuest",
+      "khazadCouncil",
+      "khazadCouncilSelect",
+      "khazadCouncilVictory",
+      "khazadBypass",
+      "khazadPresenceDone",
+      "khazadDiscardTreachery",
+    ].includes(effect.kind);
+    if (s.table && (sharedEffect || effect.player !== undefined))
+      selectSeat(s, sharedEffect ? s.table.first : effect.player!);
     const before = observation(s);
     if (
+      sharedEffect ||
       !s.table?.seats[activeSeat(s)].eliminated ||
       [
         "nextRound",
         "phaseEnd",
         "startCombat",
         "finishQuestPhase",
+        "questSucceeded",
+        "questSuccessResponses",
+        "successfulQuestProgress",
         "questReady",
         "commitSeat",
         "stageRevealed",
         "refreshEnd",
+        "deadBeginEscape",
+        "deadDiscardTreachery",
+        "deadChooseCapturer",
         "travelDone",
         "travelEnter",
         "reveal",
@@ -836,11 +1623,14 @@ export function flush(s: GameState) {
         "automaticEngagement",
         "enemyDone",
         "startQuest",
+        "startPlanning",
         "startTravel",
         "startEncounter",
         "endCombat",
         "refreshReady",
         "endRound",
+        "endRoundAfterCollector",
+        "finishQuestDefeat",
       ].includes(effect.kind)
     )
       handle(s, effect);
@@ -849,11 +1639,18 @@ export function flush(s: GameState) {
   }
   if (
     s.table &&
+    !s.escapeTest &&
     !s.choice &&
     !s.flow?.pending &&
-    ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
-      s.phase,
-    )
+    [
+      "setup",
+      "resource",
+      "planning",
+      "quest",
+      "encounter",
+      "defense",
+      "attack",
+    ].includes(s.phase)
   )
     selectSeat(s, s.table.turn);
   syncSeat(s);
@@ -870,7 +1667,12 @@ export function extraEffect(s: GameState, e: Effect) {
       if (u) playerAttack(s, u, [e.source!]);
       break;
     case "heal":
-      if (u) u.damage = Math.max(0, u.damage - (e.value ?? 0));
+      if (u)
+        rhosgobelHeal(s, u, e.value ?? 0, {
+          source: e.source,
+          code: e.code,
+          player: e.owner ?? e.player,
+        });
       break;
     case "used":
       s.used.push(e.text!);
@@ -896,8 +1698,7 @@ export function extraEffect(s: GameState, e: Effect) {
     case "protector": {
       const h = s.hand.find((h) => h.id === e.source);
       if (u && h) {
-        s.hand = s.hand.filter((x) => x.id !== h.id);
-        s.discard.push(h.code);
+        discardHandCard(s, h.id);
         s.used.push(e.text!);
         if (e.flag) u.tempWill = (u.tempWill ?? 0) + 1;
         else u.tempDefense = (u.tempDefense ?? 0) + 1;
@@ -922,8 +1723,11 @@ export function extraEffect(s: GameState, e: Effect) {
               label: `Pay ${playCost(s, card("01024"))} Leadership${s.table ? " from " + seatName(s, player) : ""} · ${s.table ? seatName(s, controller) + " draws" : "draw"} 2 cards`,
               code: "01024",
               effects: [
-                fx("spendEvent", { code: "01024", player }),
-                fx("draw", { value: 2, player: controller }),
+                fx("eventPlay", {
+                  code: "01024",
+                  player,
+                  effects: [fx("draw", { value: 2, player: controller })],
+                }),
               ],
             })),
             skip,
@@ -977,8 +1781,17 @@ export function extraEffect(s: GameState, e: Effect) {
               label: `Pay ${playCost(s, card("01037"))} Tactics${s.table ? " · " + seatName(s, player) : ""} to deal 2 damage`,
               code: "01037",
               effects: [
-                fx("spendEvent", { code: "01037", player }),
-                fx("damage", { target: combat.enemyId, value: 2 }),
+                fx("eventPlay", {
+                  code: "01037",
+                  player,
+                  effects: [
+                    fx("damage", {
+                      target: combat.enemyId,
+                      value: 2,
+                      player: combat.attackPlayer ?? activeSeat(s),
+                    }),
+                  ],
+                }),
               ],
             })),
             skip,
@@ -990,6 +1803,7 @@ export function extraEffect(s: GameState, e: Effect) {
     case "strengthOfWill":
       if (
         u &&
+        u.code !== CARROCK.carrock &&
         s.hand.some((h) => h.code === "01047") &&
         canPay(s, card("01047")) &&
         characters(s).some(
@@ -1005,9 +1819,11 @@ export function extraEffect(s: GameState, e: Effect) {
                 (h) => card(h.code).sphere_code === "spirit" && !h.exhausted,
               ),
               (h) => [
-                fx("spendEvent", { code: "01047" }),
-                fx("exhaust", { target: h.id }),
-                fx("locationProgress", { target: u.id, value: 2 }),
+                fx("eventPlay", {
+                  code: "01047",
+                  costEffects: [fx("exhaust", { target: h.id })],
+                  effects: [fx("locationProgress", { target: u.id, value: 2 })],
+                }),
               ],
             ),
             skip,
@@ -1016,8 +1832,8 @@ export function extraEffect(s: GameState, e: Effect) {
         );
       break;
     case "searchTake": {
-      s.hand.push(make(s, s.deck.splice(e.value!, 1)[0]));
-      const remaining = s.deck.splice(0, (e.count ?? 1) - 1);
+      s.hand.push(takePlayerDeck(s, e.value!));
+      const remaining = s.deck.slice(0, (e.count ?? 1) - 1);
       prepend(s, fx("searchOrder", { ids: remaining, value: 0 }));
       break;
     }
@@ -1035,6 +1851,7 @@ export function extraEffect(s: GameState, e: Effect) {
             fx("searchPlace", {
               code,
               value: e.value ?? 0,
+              count: i,
               ids: remaining.filter((_, j) => i !== j),
             }),
           ],
@@ -1044,7 +1861,11 @@ export function extraEffect(s: GameState, e: Effect) {
       break;
     }
     case "searchPlace":
-      s.deck.splice(e.value ?? 0, 0, e.code!);
+      putPlayerDeck(
+        s,
+        takePlayerDeck(s, (e.value ?? 0) + (e.count ?? 0)),
+        e.value ?? 0,
+      );
       prepend(s, fx("searchOrder", { ids: e.ids, value: (e.value ?? 0) + 1 }));
       break;
     default:

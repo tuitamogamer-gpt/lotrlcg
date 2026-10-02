@@ -1,7 +1,20 @@
+import {
+  engagedEnemies,
+  normalAttackPending,
+} from "../game/considered-engagement";
+import { shadowFlameCanMove } from "../game/shadow-flame";
+import { effectiveKeyword } from "../game/expansion-passives";
+import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { card } from "../game/cards";
+import { engagementCost } from "../game/core";
 import {
   canFight,
+  enemyAttackPrevented,
   canPlay,
+  canCommit,
+  canTravel,
+  optionalEngagementProblem,
+  locationQuest,
   characters,
   hasClue,
   needsTarget,
@@ -11,8 +24,15 @@ import {
   stats,
   threatOf,
 } from "../game/engine";
-import { activeSeat } from "../game/table";
+import {
+  activeSeat,
+  allActiveLocations,
+  attackersFor,
+  defendersFor,
+  ownerOf,
+} from "../game/table";
 import type { GameState, Unit } from "../game/types";
+import { emynMuilMustCommit, emynMuilEventsBlocked } from "../game/emyn-muil";
 
 /** One short piece of advice for the current decision, derived from public state. */
 export interface CoachTip {
@@ -38,21 +58,46 @@ function warnings(s: GameState): string | undefined {
 export function coachTip(s: GameState): CoachTip | null {
   if (s.flow?.pending || s.choice || s.status !== "playing") return null;
   if (s.table?.seats[activeSeat(s)].eliminated) return null;
+  if (s.escapeTest)
+    return {
+      title:
+        s.escapeTest.phase === "preparing"
+          ? "Reserve ready characters for the escape"
+          : "Actions before escape cards are dealt",
+      text:
+        s.escapeTest.phase === "preparing"
+          ? "Choose ready heroes and allies. Each committed character exhausts to contribute its current strength."
+          : "You can play events and use abilities now. Resolve the escape test when you are ready; committed strength must exceed the dealt escape values.",
+      tone: "info",
+    };
   if (
     s.table &&
     activeSeat(s) !== s.table.turn &&
-    ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
-      s.phase,
-    )
+    [
+      "setup",
+      "resource",
+      "planning",
+      "quest",
+      "encounter",
+      "defense",
+      "attack",
+    ].includes(s.phase)
   )
     return null;
+  const questStat = druadanPlayerQuestStat(s);
+  const questLabel =
+    questStat === "attack"
+      ? "Attack"
+      : questStat === "defense"
+        ? "Defense"
+        : "Willpower";
   const chars = characters(s);
   const committed = (u: Unit) => u.committed || s.committedIds.includes(u.id);
   const ready = chars.filter((u) => !u.exhausted);
-  const enemies = s.staging.filter((u) => card(u.code).type_code === "enemy");
-  const willEngage = enemies.filter(
-    (u) => (card(u.code).engagement ?? 99) <= s.threat,
+  const enemies = s.staging.filter(
+    (u) => card(u.code).type_code === "enemy" && shadowFlameCanMove(s, u),
   );
+  const willEngage = enemies.filter((u) => engagementCost(s, u) <= s.threat);
   const danger = warnings(s);
   const tip = (t: Omit<CoachTip, "danger">): CoachTip => ({ ...t, danger });
   switch (s.phase) {
@@ -80,6 +125,12 @@ export function coachTip(s: GameState): CoachTip | null {
         tone: "warn",
       });
     }
+    case "resource":
+      return tip({
+        title: "Resource actions",
+        text: "Resource collection and card draw are complete. Use eligible events or abilities before beginning planning; allies and attachments wait for planning.",
+        tone: "info",
+      });
     case "planning": {
       const playable = s.hand.filter(
         (u) =>
@@ -108,6 +159,18 @@ export function coachTip(s: GameState): CoachTip | null {
       });
     }
     case "quest": {
+      if (emynMuilMustCommit(s)) {
+        const remaining = chars.filter((u) => canCommit(s, u) && !committed(u));
+        return tip({
+          title: remaining.length
+            ? "Every ready character must quest"
+            : "All required questers are selected",
+          text: remaining.length
+            ? `The Falls of Rauros requires ${list(remaining)} to commit. Select all remaining eligible ready characters before revealing encounters.`
+            : "The Falls of Rauros requires every eligible ready character to commit. Continue to staging when your actions are finished.",
+          tone: remaining.length ? "warn" : "info",
+        });
+      }
       if (
         s.scenarioId === "hunt-for-gollum" &&
         s.stage === 3 &&
@@ -121,24 +184,26 @@ export function coachTip(s: GameState): CoachTip | null {
       const will = questWill(s),
         threat = stagingThreat(s);
       const reserve = ready.filter((u) => !committed(u) && canFight(u));
-      const attackers = [...s.engaged, ...willEngage];
+      const attackers = [...engagedEnemies(s), ...willEngage].filter(
+        (e) => !enemyAttackPrevented(s, e),
+      );
       if (will < threat)
         return tip({
-          title: `Willpower ${will} is below staging threat ${threat}`,
+          title: `${questLabel} ${will} is below staging threat ${threat}`,
           text: `Commit more characters or risk ${threat - will} threat. Revealed encounters and their effects can change these totals before resolution.`,
           tone: "warn",
         });
       if (attackers.length && !reserve.length)
         return tip({
           title: "Keep a defender ready",
-          text: `${will} willpower meets the current ${threat} threat, but ${list(attackers)} may attack this round. Leave your best defender uncommitted.`,
+          text: `${will} ${questLabel.toLowerCase()} meets the current ${threat} threat, but ${list(attackers)} may attack this round. Leave your best defender uncommitted.`,
           tone: "warn",
         });
       return tip({
         title:
           will === threat
-            ? `Willpower ${will} matches threat ${threat}`
-            : `Willpower ${will} beats threat ${threat}`,
+            ? `${questLabel} ${will} matches threat ${threat}`
+            : `${questLabel} ${will} beats threat ${threat}`,
         text: `${will - threat} potential progress before encounter reveals. ${plural(reserve.length, "character")} ${reserve.length === 1 ? "stays" : "stay"} ready for combat.`,
         tone: will === threat ? "info" : "good",
       });
@@ -146,18 +211,27 @@ export function coachTip(s: GameState): CoachTip | null {
     case "staging":
       return tip({
         title: "Last actions before the quest resolves",
-        text: `Staging threat is now ${stagingThreat(s)} against ${questWill(s)} willpower. Play events that add willpower or lower threat, then resolve the quest.`,
+        text: `Staging threat is now ${stagingThreat(s)} against ${questWill(s)} ${questLabel.toLowerCase()}. ${emynMuilEventsBlocked(s) ? "Amon Hen prevents playing events; use other legal actions before resolving the quest." : `Use events or abilities that increase ${questLabel.toLowerCase()} or lower threat, then resolve the quest.`}`,
         tone: "info",
       });
     case "travel": {
       const locations = s.staging.filter(
-        (u) => card(u.code).type_code === "location",
+        (u) => card(u.code).type_code === "location" && !canTravel(s, u),
       );
-      if (s.activeLocation) {
-        const c = card(s.activeLocation.code);
+      const active = allActiveLocations(s);
+      if (active.length && !locations.length) {
         return tip({
-          title: `Exploring ${c.name}`,
-          text: `${s.activeLocation.progress} / ${c.quest ?? 0} progress. Only one location can be active, so continue to the encounter phase.`,
+          title:
+            active.length === 1
+              ? `Exploring ${nameOf(active[0])}`
+              : `Exploring ${active.length} active locations`,
+          text:
+            active
+              .map(
+                (u) =>
+                  `${nameOf(u)}: ${u.progress} / ${locationQuest(s, u)} progress.`,
+              )
+              .join(" ") + " Continue to the encounter phase.",
           tone: "info",
         });
       }
@@ -174,8 +248,8 @@ export function coachTip(s: GameState): CoachTip | null {
       return tip({
         title: `Travel to ${nameOf(best)} to remove ${threatOf(s, best)} threat`,
         text: mandatory
-          ? `You must travel to The East Bight while it is in staging and there is no active location. Future quest progress explores it first (${card(best.code).quest ?? 0} needed).`
-          : `An active location stops adding threat, but future progress explores it first (${card(best.code).quest ?? 0} needed). Read its travel cost.`,
+          ? `You must travel to The East Bight while it is in staging and there is no active location. Future quest progress explores it first (${locationQuest(s, best)} needed).`
+          : `An active location stops adding threat, but future progress explores it first (${locationQuest(s, best)} needed). Read its travel cost.`,
         tone: mandatory ? "warn" : "good",
       });
     }
@@ -183,30 +257,33 @@ export function coachTip(s: GameState): CoachTip | null {
       if (willEngage.length)
         return tip({
           title: `${list(willEngage)} will engage you`,
-          text: `Engagement cost ${willEngage.map((u) => card(u.code).engagement).join("/")} is at or below your threat ${s.threat}. Prepare a ready defender.`,
+          text: `Engagement cost ${willEngage.map((u) => engagementCost(s, u)).join("/")} is at or below your threat ${s.threat}. Prepare a ready defender.`,
           tone: "warn",
         });
-      if (enemies.length && ready.length) {
-        const e = enemies[0];
+      const optional = enemies.filter((e) => !optionalEngagementProblem(s, e));
+      if (optional.length && ready.length) {
+        const e = optional[0];
         return tip({
           title: "Optional engagement",
-          text: `${nameOf(e)} needs threat ${card(e.code).engagement} to engage on its own. Engaging it now, while defenders are ready, removes ${threatOf(s, e)} threat from staging.`,
+          text: `${nameOf(e)} needs threat ${engagementCost(s, e)} to engage on its own. Engaging it now, while defenders are ready, removes ${threatOf(s, e)} threat from staging.`,
           tone: "info",
         });
       }
       return tip({
         title: "No new automatic engagements",
-        text: s.engaged.length
+        text: engagedEnemies(s).length
           ? "Continue to combat. Already engaged enemies still attack, so keep a defender ready."
           : "Continue to combat. No staging enemy engages automatically at your current threat.",
         tone: "good",
       });
     }
     case "defense": {
-      const enemy = s.engaged.find((e) => !e.attacked && !e.feinted);
+      const enemy = engagedEnemies(s).find(
+        (e) => normalAttackPending(s, e) && !enemyAttackPrevented(s, e),
+      );
       if (!enemy) return null;
       const attack = stats(s, enemy).attack;
-      const scored = ready.filter(canFight).map((u) => ({
+      const scored = defendersFor(s, enemy).map((u) => ({
         u,
         damage: Math.max(0, attack - stats(s, u).defense),
         hp: stats(s, u).health - u.damage,
@@ -237,30 +314,49 @@ export function coachTip(s: GameState): CoachTip | null {
     }
     case "attack": {
       const seat = activeSeat(s);
-      const targets = s.engaged.filter((e) =>
+      const physicalTargets = new Map(
+        [
+          ...engagedEnemies(s),
+          ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+        ].map((enemy) => [enemy.id, enemy]),
+      );
+      const targets = [...physicalTargets.values()].filter((e) =>
         s.table ? !e.attackedBy?.includes(seat) : !e.attacked,
       );
       if (!targets.length)
         return tip({
           title: "No enemies left to attack",
-          text: "Finish attacks to reach the refresh phase.",
+          text: s.earlyAttackPlayers?.length
+            ? "Finish these early attacks to continue to enemy attacks."
+            : "Finish attacks to reach the refresh phase.",
           tone: "info",
         });
-      const attackers = ready.filter(canFight);
-      if (!attackers.length)
+      const attackable = targets.filter((enemy) =>
+        attackersFor(s, enemy).some((u) => ownerOf(s, u) === seat),
+      );
+      if (!attackable.length)
         return tip({
-          title: "Nobody is ready to attack",
-          text: "Exhausted characters cannot attack. Finish attacks; everyone readies in the refresh phase.",
+          title: "No legal attack is available",
+          text: s.earlyAttackPlayers?.length
+            ? "Finish these early attacks to continue to enemy attacks."
+            : "Card restrictions or exhausted characters prevent an attack. Finish attacks to reach refresh.",
           tone: "info",
         });
-      const target = [...targets].sort(
+      const target = [...attackable].sort(
         (a, b) =>
           stats(s, a).health - a.damage - (stats(s, b).health - b.damage),
       )[0];
+      const attackers = attackersFor(s, target);
       const power = attackers.reduce((sum, u) => sum + stats(s, u).attack, 0);
       const defense = stats(s, target).defense;
       const hp = stats(s, target).health - target.damage;
       const damage = Math.max(0, power - defense);
+      if (effectiveKeyword(target, "Indestructible"))
+        return tip({
+          title: `Damage ${nameOf(target)}`,
+          text: `${power} attack − ${defense} defense = ${damage} damage. Indestructible prevents its destruction even at 0 remaining hit points.`,
+          tone: "info",
+        });
       return damage >= hp
         ? tip({
             title: `Destroy ${nameOf(target)}`,
@@ -275,11 +371,11 @@ export function coachTip(s: GameState): CoachTip | null {
     }
     case "refresh":
       return tip({
-        title: `Threat rises to ${s.threat + 1}`,
+        title: `Threat is now ${s.threat}`,
         text:
           s.threat >= 40
             ? "Above 40 most enemies engage automatically. Lower threat with Spirit cards or Gandalf."
-            : "Every refresh raises threat by 1. Elimination comes at 50.",
+            : "The fellowship has readied and refresh threat has been applied. Use eligible actions before beginning the next round.",
         tone: s.threat >= 40 ? "warn" : "info",
       });
   }

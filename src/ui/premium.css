@@ -1,18 +1,46 @@
 /* Tabletop artwork; every counter and control remains live HTML. */
 .redbook[data-playmat="mirkwood"],
-.mat-mirkwood {
+.mat-mirkwood,
+.redbook[data-playmat="return-to-mirkwood"],
+.mat-return-to-mirkwood {
   --playmat-art: url("/art/premium/mirkwood.webp");
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
 .redbook[data-playmat="anduin"],
-.mat-anduin {
+.redbook[data-playmat="hunt-for-gollum"],
+.redbook[data-playmat="conflict-at-the-carrock"],
+.mat-anduin,
+.mat-hunt-for-gollum,
+.mat-conflict-at-the-carrock,
+.redbook[data-playmat="hills-of-emyn-muil"],
+.mat-hills-of-emyn-muil,
+.redbook[data-playmat="journey-to-rhosgobel"],
+.mat-journey-to-rhosgobel,
+.redbook[data-playmat="dead-marshes"],
+.mat-dead-marshes,
+.redbook[data-playmat="redhorn-gate"],
+.mat-redhorn-gate,
+.redbook[data-playmat="road-to-rivendell"],
+.mat-road-to-rivendell,
+.redbook[data-playmat="watcher-in-the-water"],
+.mat-watcher-in-the-water {
   --playmat-art: url("/art/premium/anduin.webp");
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
 .redbook[data-playmat="dol-guldur"],
-.mat-dol-guldur {
+.mat-dol-guldur,
+.redbook[data-playmat="into-the-pit"],
+.mat-into-the-pit,
+.redbook[data-playmat="the-seventh-level"],
+.mat-the-seventh-level,
+.redbook[data-playmat="flight-from-moria"],
+.mat-flight-from-moria,
+.redbook[data-playmat="the-long-dark"],
+.mat-the-long-dark,
+.redbook[data-playmat="shadow-and-flame"],
+.mat-shadow-and-flame {
   --playmat-art: url("/art/premium/dol-guldur.webp");
   --mat-shade: #21172352;
   --mat-tint: #30252d;

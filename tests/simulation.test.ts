@@ -1,10 +1,13 @@
+import { applyAction } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS, card } from "../src/game/cards.ts";
 import {
   createGame,
-  applyAction,
   canPlay,
+  availableAbilities,
+  canCommit,
+  canTravel,
   characters,
   stats,
   playTargets,
@@ -16,6 +19,15 @@ import {
   validateSave,
 } from "../src/game/engine.ts";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
+import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
+import { defendersFor, attackersFor } from "../src/game/table.ts";
+import {
+  engagedEnemies,
+  normalAttackPending,
+} from "../src/game/considered-engagement.ts";
+import { SHADOW_FLAME } from "../src/game/shadow-flame-support.ts";
+import { RHOS } from "../src/game/rhosgobel.ts";
+import { KHAZAD } from "../src/game/khazad-dum.ts";
 import type {
   ScenarioId,
   PlayMode,
@@ -28,6 +40,8 @@ function choose(s: GameState): Option {
   const opts = s.choice!.options;
   const title = s.choice!.title;
   const skip = opts.find((o) => o.id === "skip");
+  if (title.includes("Cave Torch") && title.includes("Illuminate"))
+    return opts.find((o) => o.id.endsWith(":3")) ?? opts[0];
   if (
     title.includes("Valiant") ||
     title.includes("Strength of Will") ||
@@ -110,22 +124,73 @@ function run(
       .sort((a, b) => stats(s, a).attack - stats(s, b).attack)
       .find(
         (h) =>
+          (![RHOS.athelas, KHAZAD.book, KHAZAD.tools].includes(
+            objective?.code ?? "",
+          ) ||
+            !h.exhausted) &&
           h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
             .length < 2,
       );
     if (s.flow?.pending)
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
+    else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (objective && bearer && s.threat < 46)
       action = { type: "CLAIM", id: objective.id, heroId: bearer.id };
-    else if (s.phase === "planning") {
+    else if (
+      s.phase === "refresh" &&
+      s.activeLocation?.code === SHADOW_FLAME.pit &&
+      availableAbilities(s, s.activeLocation).some((o) => !o.disabled)
+    )
+      action = { type: "ABILITY", id: s.activeLocation.id };
+    else if (
+      s.phase === "refresh" &&
+      characters(s).some((h) =>
+        h.attachments.some(
+          (a) =>
+            a.code === KHAZAD.tools &&
+            availableAbilities(s, h).some((o) => o.id === a.id && !o.disabled),
+        ),
+      )
+    ) {
+      const h = characters(s).find((h) =>
+        h.attachments.some(
+          (a) =>
+            a.code === KHAZAD.tools &&
+            availableAbilities(s, h).some((o) => o.id === a.id && !o.disabled),
+        ),
+      )!;
+      action = {
+        type: "ABILITY",
+        id: h.id,
+        attachmentId: h.attachments.find((a) => a.code === KHAZAD.tools)!.id,
+      };
+    } else if (s.phase === "planning") {
+      const encounterAbility = [
+        ...s.staging,
+        ...(s.activeLocation ? [s.activeLocation] : []),
+        ...(s.extraActiveLocations ?? []),
+      ].find(
+        (u) =>
+          u.code === KHAZAD.shaft &&
+          s.threat < 45 &&
+          availableAbilities(s, u).some((o) => !o.disabled),
+      );
       const steward = characters(s).flatMap((h) =>
         h.attachments
-          .filter((a) => a.code === "01026" && !a.exhausted)
+          .filter(
+            (a) =>
+              ["01026", KHAZAD.fear, KHAZAD.torch].includes(a.code) &&
+              availableAbilities(s, h).some(
+                (option) => option.id === a.id && !option.disabled,
+              ),
+          )
           .map((a) => ({ h, a })),
       )[0];
-      if (steward)
+      if (encounterAbility)
+        action = { type: "ABILITY", id: encounterAbility.id };
+      else if (steward)
         action = {
           type: "ABILITY",
           id: steward.h.id,
@@ -152,10 +217,10 @@ function run(
         !s.heroes.some(hasClue)
           ? []
           : characters(s)
-              .filter((u) => !u.exhausted)
+              .filter((u) => canCommit(s, u))
               .sort((a, b) => stats(s, b).will - stats(s, a).will);
       const reserve =
-        s.engaged.length ||
+        engagedEnemies(s).length ||
         s.staging.some(
           (e) =>
             card(e.code).type_code === "enemy" &&
@@ -164,7 +229,13 @@ function run(
           ? 1
           : 0;
       const selected = ready
-        .slice(0, Math.max(ready.length ? 1 : 0, ready.length - reserve))
+        .slice(
+          0,
+          Math.max(
+            ready.length ? 1 : 0,
+            ready.length - (emynMuilMustCommit(s) ? 0 : reserve),
+          ),
+        )
         .map((u) => u.id);
       const missing = selected.find((id) => !s.committedIds.includes(id));
       action = missing
@@ -172,12 +243,7 @@ function run(
         : { type: "COMMIT" };
     } else if (s.phase === "travel") {
       const loc = s.staging
-        .filter(
-          (u) =>
-            card(u.code).type_code === "location" &&
-            (u.code !== "01077" || s.heroes.some((h) => !h.exhausted)) &&
-            (u.code !== "01094" || s.hand.length >= 2),
-        )
+        .filter((u) => !canTravel(s, u))
         .sort(
           (a, b) =>
             Number(b.code === "01088") - Number(a.code === "01088") ||
@@ -188,9 +254,9 @@ function run(
           ? { type: "TRAVEL", id: loc.id }
           : { type: "NEXT" };
     } else if (s.phase === "defense") {
-      const e = s.engaged.find(
+      const e = engagedEnemies(s).find(
         (e) =>
-          !e.attacked &&
+          normalAttackPending(s, e) &&
           !e.feinted &&
           !e.attachments.some((a) => a.code === "01069"),
       );
@@ -198,22 +264,22 @@ function run(
         e,
         "There must be a legal enemy attack or the phase should advance.",
       );
-      const ready = characters(s)
-        .filter((u) => !u.exhausted && canFight(u))
-        .sort((a, b) => stats(s, b).defense - stats(s, a).defense);
+      const ready = defendersFor(s, e).sort(
+        (a, b) => stats(s, b).defense - stats(s, a).defense,
+      );
       action = {
         type: "DEFEND",
         enemyId: e.id,
         defenderId: ready[0]?.id ?? null,
       };
     } else if (s.phase === "attack") {
-      const ready = characters(s).filter((u) => !u.exhausted && canFight(u));
-      const enemy = s.engaged
-        .filter((e) => !e.attacked)
+      const enemy = engagedEnemies(s)
+        .filter((e) => !e.attacked && attackersFor(s, e).length)
         .sort(
           (a, b) =>
             stats(s, a).health - a.damage - (stats(s, b).health - b.damage),
         )[0];
+      const ready = enemy ? attackersFor(s, enemy) : [];
       action =
         ready.length && enemy
           ? {

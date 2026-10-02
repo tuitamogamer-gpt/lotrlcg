@@ -1,3 +1,5 @@
+import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
+import { amonPlayerCannotDeclareAttack } from "../game/amon-din-player-cards";
 import { useEffect, useId, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -270,7 +272,9 @@ export function CombatDialog({
   const defending = s.phase === "defense";
   const [selected, setSelected] = useState<string[]>([]);
   const [undefended, setUndefended] = useState(false);
-  const candidates = defending ? defendersFor(s) : attackersFor(s, enemy);
+  const candidates = defending
+    ? defendersFor(s, enemy)
+    : attackersFor(s, enemy);
   const picked = candidates.filter((u) => selected.includes(u.id));
   const total = picked.reduce(
     (sum, u) => sum + stats(s, u)[defending ? "defense" : "attack"],
@@ -283,7 +287,7 @@ export function CombatDialog({
     picked.some((u) => ownerOf(s, u) !== activeSeat(s));
   const canConfirm = defending
     ? (undefended || picked.length > 0) && !invalidGroup
-    : ownAttacker;
+    : ownAttacker && !amonPlayerCannotDeclareAttack(s);
   const choose = (id: string) => {
     setUndefended(false);
     setSelected((old) =>
@@ -329,13 +333,15 @@ export function CombatDialog({
                   : "No character selected"}
             </strong>
             <small>
-              {invalidGroup
-                ? "Stand Together requires defenders from your own fellowship."
-                : !defending && picked.length && !ownAttacker
-                  ? "Include at least one attacker from your own fellowship."
-                  : defending
-                    ? "Shadow effects resolve after you confirm and may change the damage."
-                    : "Card abilities and responses resolve before damage is dealt."}
+              {!defending && amonPlayerCannotDeclareAttack(s)
+                ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
+                : invalidGroup
+                  ? "Stand Together requires defenders from your own fellowship."
+                  : !defending && picked.length && !ownAttacker
+                    ? "Include at least one attacker from your own fellowship."
+                    : defending
+                      ? "Shadow effects resolve after you confirm and may change the damage."
+                      : "Card abilities and responses resolve before damage is dealt."}
             </small>
           </div>
           <div className="decision-actions">
@@ -409,8 +415,9 @@ export function CombatDialog({
               <span>
                 <strong>Leave undefended</strong>
                 <small>
-                  All attack damage goes to one hero. Its defense does not
-                  count.
+                  {druadanPlayerUndefendedTargets(s).length
+                    ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
+                    : "All attack damage goes to one hero. Its defense does not count."}
                 </small>
               </span>
               {undefended && <Check size={19} />}

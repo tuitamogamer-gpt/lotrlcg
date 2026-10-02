@@ -1,3 +1,4 @@
+import { finishResourcePhase } from "./browser-review-helpers.mjs";
 import {
   installReviewHandler,
   acknowledgeReviews,
@@ -85,6 +86,7 @@ for (const id of ["mirkwood", "anduin", "dol-guldur"]) {
     assert.ok(s.prisoner);
   }
   await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+  await finishResourcePhase(p);
   await p.getByRole("button", { name: "Begin quest", exact: true }).click();
   await p.locator(".character-art").first().click();
   await p.getByRole("button", { name: "Commit & reveal", exact: true }).click();
@@ -98,6 +100,7 @@ for (const id of ["mirkwood", "anduin", "dol-guldur"]) {
 const p = await page();
 await p.locator("#start-btn").click();
 await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+await finishResourcePhase(p);
 await acknowledgeReviews(p);
 const normal = await p.evaluate((key) => localStorage.getItem(key), normalKey);
 await p
@@ -159,6 +162,7 @@ assert.ok(
   [...anduin.deck, ...anduin.hand.map((h) => h.code)].includes("rc132"),
 );
 await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+await finishResourcePhase(p);
 await acknowledgeReviews(p);
 // Controlled final fight; victory and prisoner selection still go through the rules engine.
 const finalFight = JSON.parse(
@@ -205,6 +209,7 @@ assert.equal(s.scenario, "dol-guldur");
 assert.equal(s.prisoner, "Théodred");
 assert.equal(s.captiveMendor, true);
 await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+await finishResourcePhase(p);
 await screenshot(p, "campaign-dungeon");
 const dungeon = JSON.parse(
   await p.evaluate((key) => localStorage.getItem(key), campaignKey),

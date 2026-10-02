@@ -20,6 +20,8 @@ export interface Card {
   imagesrc?: string;
   illustrator?: string;
   quantity?: number;
+  /** Printed maximum copies per player's deck, when stricter than the default three. */
+  deck_limit?: number;
   /** Copies in the official easy-mode encounter deck when fewer than `quantity`. */
   easy_quantity?: number;
   engagement?: number;
@@ -27,15 +29,62 @@ export interface Card {
   victory?: number;
   encounter_set?: string;
   url?: string;
+  /** Reference-catalog provenance does not confer automated gameplay support. */
+  source_url?: string;
+  source?: "ringsdb" | "octgn" | "ffg" | "dragncards";
+  octgnid?: string;
+  official?: boolean;
+  nightmare?: boolean;
+  back_text?: string;
+  back_name?: string;
+  back_imagesrc?: string;
+  /** Printed X, dash or variable values retained alongside numeric game fields. */
+  printed_stats?: Partial<
+    Record<
+      | "cost"
+      | "threat"
+      | "willpower"
+      | "attack"
+      | "defense"
+      | "health"
+      | "quest"
+      | "engagement"
+      | "victory",
+      string
+    >
+  >;
+  side?: "A" | "B";
+  packs?: (string | { pack_code: string; pack_name?: string })[];
+  /** Exact alias of an existing scripted definition, when identifiers differ by source. */
+  engine_code?: string;
 }
 export interface Attachment {
+  dynamicTraits?: string[];
+  resourceTokens?: number;
+  /** Face-down Eagle cards retain physical ownership but no printed abilities. */
+  facedown?: boolean;
   owner?: number;
   id: string;
   code: string;
   exhausted: boolean;
+  /** Derived from active effects; restoration recalculates this value. */
+  blanked?: boolean;
 }
 export interface Unit {
+  /** Resolved shadow protections expire when the attached shadows are discarded. */
+  shadowCancelsDamage?: boolean;
+  shadowCancelsCombatDamage?: boolean;
+  /** Derived global continuous traits and keywords. */
+  dynamicTraits?: string[];
+  dynamicKeywords?: string[];
+  /** Lasting keyword grants survive phase ends and end with the round. */
+  roundKeywords?: string[];
+  /** Derived printed-text blanking; lasting modifiers remain separate. */
+  blanked?: boolean;
+  /** Lasting grants remain until phase end even if their source leaves play. */
+  phaseResourceIcons?: string[];
   owner?: number;
+  consideredEnemyAttackedBy?: number[];
   attackedBy?: number[];
   id: string;
   code: string;
@@ -49,6 +98,7 @@ export interface Unit {
   attacked: boolean;
   temporary?: boolean;
   tempThreat?: number;
+  tempEngagement?: number;
   tempWill?: number;
   tempAttack?: number;
   tempDefense?: number;
@@ -58,11 +108,29 @@ export interface Unit {
   preventedAttacks?: number[];
   beornReturn?: boolean;
   shadows: string[];
+  revealedShadowCount?: number;
   guarding?: string;
   facedownCard?: string;
+  facedownCardId?: string;
 }
 export type ScenarioId =
-  "mirkwood" | "anduin" | "dol-guldur" | "hunt-for-gollum";
+  | "mirkwood"
+  | "anduin"
+  | "dol-guldur"
+  | "hunt-for-gollum"
+  | "conflict-at-the-carrock"
+  | "hills-of-emyn-muil"
+  | "journey-to-rhosgobel"
+  | "dead-marshes"
+  | "return-to-mirkwood"
+  | "into-the-pit"
+  | "the-seventh-level"
+  | "flight-from-moria"
+  | "redhorn-gate"
+  | "road-to-rivendell"
+  | "watcher-in-the-water"
+  | "the-long-dark"
+  | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
   seatPenalties?: number[];
@@ -78,6 +146,7 @@ export interface CampaignState {
 }
 export type Phase =
   | "setup"
+  | "resource"
   | "planning"
   | "quest"
   | "staging"
@@ -87,6 +156,12 @@ export type Phase =
   | "attack"
   | "refresh";
 export interface Effect {
+  /** Serializable event resolution retains paid costs and cancellation continuations. */
+  effects?: Effect[];
+  cancelledEffects?: Effect[];
+  costEffects?: Effect[];
+  /** Physical source owner when a controlled attachment has already left play. */
+  owner?: number;
   player?: number;
   kind: string;
   target?: string;
@@ -97,6 +172,17 @@ export interface Effect {
   ids?: string[];
   text?: string;
   flag?: boolean;
+}
+export interface EscapeTest {
+  phase: "preparing" | "committing" | "actions";
+  source: string;
+  participants: number[];
+  cursor: number;
+  committedIds: string[];
+  count: number;
+  attack: boolean;
+  capture: boolean;
+  continuation: Effect[];
 }
 export interface Option {
   id: string;
@@ -150,6 +236,42 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  resolvingEvents?: {
+    unit: Unit;
+    player: number;
+    destination: "discard" | "bottom" | "removed" | "victory" | "hand";
+  }[];
+  shadowFlame?: { roundAttackBonus: number; heroCommittedRound?: number };
+  longDark?: {
+    adderDamagedIds: string[];
+    locate?: { player: number; source: string; pass: Effect[]; fail: Effect[] };
+  };
+  watcherWater?: {
+    setAside: string[];
+    swampPlaced: Record<string, number>;
+    doorsUsedRound?: number;
+    thrashing?: { enemyId: string; attackerIds: string[]; players: number[] };
+  };
+  questAttachments?: Record<string, Attachment[]>;
+  pendingQuestDefeat?: string;
+  roadRivendell?: { gateEnemyId?: string; gateSeenRound?: number };
+  redhorn?: {
+    setAside: string[];
+    snowstorms: number;
+    fanuidholResolved?: boolean;
+    fanuidholPaid?: string[];
+    snowShadowIds?: string[];
+  };
+  /** Players still resolving their Oath of Eorl attacks before enemies. */
+  earlyAttackPlayers?: number[];
+  khazad?: {
+    victoryCards: string[];
+    questDeck: string[];
+    activeQuest?: string;
+    questSide?: "A" | "B";
+    narrowIds?: string[];
+    toolsFound?: boolean;
+  };
   flow?: GuidedFlow;
   table?: {
     seats: PlayerSeat[];
@@ -162,6 +284,8 @@ export interface GameState {
   scenarioId: ScenarioId;
   playMode: PlayMode;
   campaign: CampaignState | null;
+  /** Immutable setup threat, retained when a starting hero leaves play. */
+  startingThreat?: number;
   startingHeroes: string[];
   prisoner: Unit | null;
   captiveMendor: Unit | null;
@@ -170,6 +294,7 @@ export interface GameState {
   alliesPlayed: number;
   threatModifier: number;
   fog?: number;
+  emynMuilTreacherySeen?: boolean;
   pendingWolfReturns?: string[];
   shackles: number;
   mendorBoost: boolean;
@@ -202,10 +327,13 @@ export interface GameState {
   staging: Unit[];
   engaged: Unit[];
   activeLocation: Unit | null;
-  stage: 1 | 2 | 3;
+  extraActiveLocations?: Unit[];
+  stage: number;
   branch: "unknown" | "beorn" | "spider";
   progress: number;
   victory: number;
+  /** Physical identities placed in the shared victory display by player effects. */
+  victoryCards?: string[];
   fallenThreat: number;
   committedIds: string[];
   questDebuff: number;
@@ -216,14 +344,35 @@ export interface GameState {
   optionalEngagement: boolean;
   choice: Choice | null;
   queue: Effect[];
+  /** An escape test suspends ordinary encounter/phase effects until resolved. */
+  escapeTest?: EscapeTest;
   combat: {
+    redirectedToEnemy?: boolean;
+    damageDealt?: number;
+    defenseBonuses?: Record<string, number>;
+    desperateDefenderIds?: string[];
     enemyId: string;
+    /** Original player attacked, independent of Sentinel defense or damage replacement. */
+    attackPlayer?: number;
     defenderId: string | null;
     attackBonus: number;
+    defensePenalty?: number;
+    /** An encounter shadow may redirect otherwise undefended damage. */
+    undefendedTargetId?: string;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;
     returnWolf?: boolean;
+    immediate?: boolean;
+    immediatePreviousAttacked?: boolean;
+    /** Suspended physical shadows are restored after a nested immediate attack. */
+    immediatePreviousShadows?: string[];
+    immediatePreviousRevealedShadowCount?: number;
+    immediatePreviousShadowCancelsDamage?: boolean;
+    immediatePreviousShadowCancelsCombatDamage?: boolean;
+    immediatePendingDeclaration?: boolean;
+    cancelEnemyDamage?: boolean;
+    cancelCombatDamage?: boolean;
   } | null;
   suspendedCombats: NonNullable<GameState["combat"]>[];
   log: LogEntry[];
@@ -234,7 +383,15 @@ export type Action =
   | { type: "CONTINUE"; stepId: number }
   | { type: "SET_REVIEW_MODE"; mode: ReviewMode }
   | { type: "SELECT_SEAT"; seat: number }
-  | { type: "KEEP" | "MULLIGAN" | "NEXT" | "COMMIT" | "END_ATTACKS" }
+  | {
+      type:
+        | "KEEP"
+        | "MULLIGAN"
+        | "NEXT"
+        | "COMMIT"
+        | "END_ATTACKS"
+        | "RESOLVE_ESCAPE";
+    }
   | { type: "TOGGLE_QUEST"; id: string }
   | { type: "CHOOSE"; id: string }
   | {
@@ -266,6 +423,7 @@ export type PlayerSeat = Pick<
   | "deckId"
   | "customDeck"
   | "startingHeroes"
+  | "startingThreat"
   | "threat"
   | "heroes"
   | "allies"

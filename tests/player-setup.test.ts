@@ -1,9 +1,9 @@
+import { applyAction as act } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS, card } from "../src/game/cards";
 import {
   createGame,
-  applyAction as act,
   validateSave,
   restoreSave,
   retryAdventure,

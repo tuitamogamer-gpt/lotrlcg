@@ -1,0 +1,492 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9001",
+    "name": "Abandoned Mine",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Lost: Return the top 2 Goblin enemies in the encounter discard pile to the staging area, if able.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 89,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 89,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9002",
+    "name": "Cave Spider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Spider. Creature.",
+    "text": "When Revealed: The first player draws 1 card. Then, that player must choose and discard 4 cards from his hand, if able.  Forced: After Cave Spider engages a player, that player must choose and discard 1 card from his hand, if able.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 97,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 2,
+    "defense": 1,
+    "health": 4,
+    "engagement": 31,
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "1",
+      "health": "4",
+      "engagement": "31"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 97,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9005",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9005",
+    "name": "Durin's Greaves",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Armour.",
+    "text": "When Revealed: The first player attaches Durin's Greaves to a hero of his choice as an attachment.  Attached hero gets +1 [defense].",
+    "is_unique": true,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 88,
+    "quantity": 1,
+    "encounter_set": "The Long Dark",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9005.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 88,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9006",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9006",
+    "name": "Dwarven Forge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Lost: Each player must choose and discard 1 card from his hand.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 90,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9006.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 90,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9006",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9006.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9010",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9010",
+    "name": "Fatigue",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must exhaust 1 character he controls, if able. Then, if any player controls no unexhausted characters, Fatigue gains surge.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 93,
+    "quantity": 2,
+    "shadow": "Shadow: The defending player must exhaust 1 character he controls, if able.",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9010.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 93,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9010",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9010.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9011",
+    "name": "Foul Air",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player makes a locate test. If this test is failed, deal 2 damage to all characters and trigger all \"Lost:\" effects in play.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 94,
+    "quantity": 4,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 94,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9013",
+    "name": "Gathering Ground",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach this card to a location in the staging area with the highest combined threat and remaining quest points. (Counts as a Condition attachment with the text: \"Each enemy revealed from the encounter deck gains surge.\")",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 95,
+    "quantity": 1,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 95,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9014",
+    "name": "Goblin Sneak",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Forced: After Goblin Sneak engages a player, discard the top card of the encounter deck. If it is a treachery card, Goblin Sneak engages the next player, if able.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 98,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 1,
+    "defense": 1,
+    "health": 2,
+    "engagement": 15,
+    "shadow": "Shadow: Add Goblin Sneak to the staging area.",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "1",
+      "defense": "1",
+      "health": "2",
+      "engagement": "15"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 98,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9015",
+    "name": "Goblin Warlord",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Lost: Each player must choose and discard 1 ally he controls from play, if able.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 99,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 3,
+    "defense": 3,
+    "health": 5,
+    "engagement": 39,
+    "shadow": "Shadow: Trigger all \"Lost:\" effects in play.",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "3",
+      "defense": "3",
+      "health": "5",
+      "engagement": "39"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 99,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9022",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9022",
+    "name": "Rock Adder",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Rock Adder cannot be attacked unless it has dealt at least 1 damage this round.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 100,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 0,
+    "health": 3,
+    "engagement": 20,
+    "shadow": "Shadow: If this attack is undefended, the defending player must discard 1 character he controls from play.",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "0",
+      "health": "3",
+      "engagement": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9022.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 100,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9022",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9022.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9023",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9023",
+    "name": "Silent Caverns",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Lost: Exhaust all characters.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 91,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 3,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9023.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 91,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9024",
+    "name": "Twisting Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Forced: Before placing progress tokens on Twisting Passage, the first player must make a locate test. If this test is failed, do not place any progress tokens on Twisting Passage and trigger all \"Lost:\" effects in play.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 92,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "corner_text": "PASS",
+    "encounter_set": "The Long Dark",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 92,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801211c9025",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801211c9025",
+    "name": "Vast and Intricate",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player makes a locate test. If this test is failed, raise each player's threat by 7, remove all progress tokens from play, and trigger all \"Lost:\" effects in play.",
+    "is_unique": false,
+    "pack_code": "TLD",
+    "pack_name": "The Long Dark",
+    "position": 96,
+    "quantity": 2,
+    "encounter_set": "The Long Dark",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9025.jpg",
+    "packs": [
+      {
+        "pack_code": "TLD",
+        "pack_name": "The Long Dark",
+        "position": 96,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801211c9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801211c9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

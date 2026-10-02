@@ -1,0 +1,459 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9001",
+    "name": "Counter-Spell",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Shadow.",
+    "text": "When Revealed: Attach Counter-spell to Durin's Bane. (Counts as a Condition attachment with the text: \"Forced: When a player plays an event, discard the top card of the encounter deck. If that card is a treachery card, cancel the effects of the event, discard the event player's hand, and discard Counter-spell from play.\")",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 145,
+    "quantity": 3,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 145,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9002",
+    "name": "Dark Pit",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "While Dark Pit is the active location it gains: \"Refresh Action: Exhaust X characters (maximum 3) you control to discard the top X cards of your deck. If all discarded cards have a higher combined printed cost than the remaining hit points of Durin's Bane, discard Durin's Bane from play.\"",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 141,
+    "quantity": 1,
+    "threat": 0,
+    "quest": 11,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {
+      "threat": "0",
+      "quest": "11"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 141,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9003",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9003",
+    "name": "Durin's Bane",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Balrog. Flame. Shadow.",
+    "text": "Regenerate 3. Indestructible.\nPlayers cannot play attachments on Durin's Bane.  Durin's Bane cannot leave the staging area, is considered to be engaged with each player whose threat is 1 or greater, and attacks each of those players in turn during the combat phase (deal and discard a new shadow card each attack).",
+    "is_unique": true,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 150,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 3,
+    "health": 27,
+    "engagement": 1,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "3",
+      "health": "27",
+      "engagement": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9003.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 150,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9003",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9003.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9005",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9005",
+    "name": "Fiery Sword",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weapon. Flame.",
+    "text": "When Revealed: Attach Fiery Sword to Durin's Bane as a Weapon attachment with the text: \"Attached enemy gets +3 [attack].\"",
+    "is_unique": true,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 152,
+    "quantity": 2,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9005.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 152,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9006",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9006",
+    "name": "Fires in the Deep",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must discard 1 ally he controls, if able. If Fires in the Deep discarded no allies, it gains surge.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 144,
+    "quantity": 2,
+    "shadow": "Shadow: The defending player discards 1 ally he controls, if able.",
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9006.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 144,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9006",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9006.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9009",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9009",
+    "name": "Inner Flame",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Durin's Bane gets +3 [attack] until the end of the round. The first player may remove 1 questing hero he controls from the quest to cancel this effect.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 146,
+    "quantity": 3,
+    "shadow": "Shadow: If attacking enemy is Durin's Bane, it gets +3 [attack].",
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9009.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 146,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9009",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9009.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9010",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9010",
+    "name": "Inner Shadow",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Heal 5 damage from Durin's Bane, if able. The first player may remove 1 questing hero he controls from the quest to cancel this effect.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 147,
+    "quantity": 3,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9010.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 147,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9010",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9010.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9013",
+    "name": "Leaping Flame",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Durin's Bane makes an immediate attack against the first player (deal and resolve a shadow card).",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 149,
+    "quantity": 3,
+    "shadow": "Shadow: If attacking enemy is Durin's Bane, it gets +3 [attack].",
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 149,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9014",
+    "name": "Many Thonged Whip",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weapon. Flame.",
+    "text": "When Revealed: Attach Many Thonged Whip to Durin's Bane as a Weapon attachment with the text: \"Forced: When Durin's Bane attacks, the defending player must discard 1 card at random from his hand.\"",
+    "is_unique": true,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 153,
+    "quantity": 2,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 153,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9021",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9021",
+    "name": "Ranging Goblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "When Revealed: Each player must deal 1 damage to a hero he controls.  Forced: After a character leaves play, shuffle Ranging Goblin and the top card in the encounter discard pile back into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 151,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 1,
+    "defense": 1,
+    "health": 2,
+    "engagement": 35,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "1",
+      "defense": "1",
+      "health": "2",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9021.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 151,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9021",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9021.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9023",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9023",
+    "name": "Second Deep",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Durin's Bane has no damage on it, progress tokens cannot be placed on Second Deep.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 143,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9023.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 143,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9024",
+    "name": "Second Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Second Hall is the active location, it gains: \"Forced: After a character leaves play, reveal 1 card from the encounter deck and add it to the staging area.\"",
+    "is_unique": true,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 142,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 2,
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 142,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801213c9029",
+    "name": "Whip Lash",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must discard 1 attachment he controls, if able.",
+    "is_unique": false,
+    "pack_code": "SaF",
+    "pack_name": "Shadow and Flame",
+    "position": 148,
+    "quantity": 2,
+    "shadow": "Shadow: If attacking enemy is Durin's Bane, the defending player discards all attachments he controls.",
+    "encounter_set": "Shadow and Flame",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9029.jpg",
+    "packs": [
+      {
+        "pack_code": "SaF",
+        "pack_name": "Shadow and Flame",
+        "position": 148,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801213c9029",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801213c9029.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  }
+]

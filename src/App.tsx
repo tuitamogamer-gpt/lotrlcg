@@ -1,4 +1,11 @@
 import {
+  consideredEngaged,
+  normalAttackPending,
+} from "./game/considered-engagement";
+import { SHADOW_FLAME } from "./game/shadow-flame-support";
+import { druadanPlayerQuestStat } from "./game/druadan-player-cards";
+import { amonPlayerCannotDeclareAttack } from "./game/amon-din-player-cards";
+import {
   useState,
   useEffect,
   useRef,
@@ -50,6 +57,9 @@ import { coachTip } from "./ui/coach";
 import { Art, Sphere } from "./ui/card-art";
 import {
   customId,
+  createDeckId,
+  HERO_CARDS,
+  DECK_CARDS,
   deckProblems,
   deckSize,
   describeDeck,
@@ -61,6 +71,22 @@ import type { CustomDeck } from "./game/decks";
 import { readRecords, recordGame, summarize, writeRecords } from "./ui/records";
 const Library = lazy(() => import("./ui/library"));
 const DeckBuilder = lazy(() => import("./ui/deck-builder"));
+const PublishedContent = lazy(() => import("./ui/published-content"));
+import type { PublishedPlayRecipe } from "./ui/published-content";
+import { CardProductNote, DeckProductNote } from "./ui/product-note";
+import { SupportSummary } from "./ui/support-summary";
+import { cardProductInfo } from "./game/products";
+import { catalogCardCount, isScriptedCard, loadCatalog } from "./game/catalog";
+import "./ui/catalog.css";
+import carrockQuestCards from "./data/carrock-quest-cards.json";
+import { CARROCK, isSacked } from "./game/carrock";
+import { EMYN_MUIL_QUESTS, emynMuilMustCommit } from "./game/emyn-muil";
+import { eligiblePayers, engagementCost, get } from "./game/core";
+import { currentQuestUnit } from "./game/quest-state";
+import { RHOS } from "./game/rhosgobel";
+import { KHAZAD, khazadCannotExhaust } from "./game/khazad-dum";
+import { DEAD } from "./game/dead-marshes";
+import { singlePoolCard } from "./game/expansion-passives";
 import { motion, useReducedMotion } from "motion/react";
 import {
   AnimatedNumber,
@@ -68,17 +94,14 @@ import {
   tableSpring,
   useDamageFeedback,
 } from "./ui/motion";
-import {
-  card,
-  playerCards,
-  STARTERS,
-  SCRIPTED,
-  plain,
-  name,
-} from "./game/cards";
+import { card, encounterCards, STARTERS, plain, name } from "./game/cards";
 import {
   applyAction,
   availableAbilities,
+  enemyAttackPrevented,
+  canCommit,
+  canTravel,
+  optionalEngagementProblem,
   createGame,
   needsTarget,
   playTargets,
@@ -86,6 +109,7 @@ import {
   questWill,
   score,
   stageInfo,
+  locationQuest,
   stagingThreat,
   threatOf,
   stats,
@@ -106,13 +130,19 @@ import type {
   PlayMode,
   SeatConfig,
 } from "./game/types";
-import { SCENARIOS, scenario, OBJECTIVES } from "./game/scenarios";
+import {
+  SCENARIOS,
+  CAMPAIGN_CHAPTERS,
+  scenario,
+  OBJECTIVES,
+} from "./game/scenarios";
 import {
   Hand,
   CardHoverPreview,
   QuestForecast,
   QuestGoals,
   TurnActions,
+  EscapeTestSummary,
   usePreference,
   playReason,
 } from "./ui/experience";
@@ -131,6 +161,8 @@ import {
 } from "./ui/setup-decks";
 import {
   activeSeat,
+  allActiveLocations,
+  allHeroes,
   allEngaged,
   ownerOf,
   seatName,
@@ -159,6 +191,7 @@ import {
   TableDecks,
   TableToken,
   questFace,
+  questStageLabel,
 } from "./ui/tabletop";
 import { ThreatCounter } from "./ui/threat";
 import { StatBadge } from "./ui/stats";
@@ -217,6 +250,7 @@ const readDeckId = () => {
 };
 const phaseNames: Record<string, string> = {
   setup: "Your opening hand",
+  resource: "Resource actions",
   planning: "Planning",
   quest: "Commit to the quest",
   staging: "Resolve the quest",
@@ -226,8 +260,62 @@ const phaseNames: Record<string, string> = {
   attack: "Strike back",
   refresh: "Refresh",
 };
+const objectiveClaimCode = (s: GameState, id: string) =>
+  s.staging.find((u) => u.id === id)?.code ??
+  allHeroes(s)
+    .flatMap((h) => h.attachments)
+    .find((a) => a.id === id)?.code;
+const objectiveClaimExhausts = (s: GameState, id: string) =>
+  ([RHOS.athelas, KHAZAD.book, KHAZAD.tools] as string[]).includes(
+    objectiveClaimCode(s, id) ?? "",
+  );
+const pendingEnemyAttack = (s: GameState, u: Unit) =>
+  normalAttackPending(s, u) && !enemyAttackPrevented(s, u);
+const phaseTitle = (s: GameState) =>
+  s.escapeTest
+    ? "Escape test"
+    : s.phase === "attack" && s.earlyAttackPlayers?.length
+      ? "Oath of Eorl · Player attacks"
+      : phaseNames[s.phase];
 /** "1 player", "2 players": English plural for the setup summaries. */
 const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
+function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
+  const payers = eligiblePayers(s, c, target);
+  const single = singlePoolCard(c)
+    ? payers.find((u) => u.resources >= cost)
+    : null;
+  let left = cost;
+  return Object.fromEntries(
+    payers.map((u) => {
+      const spend =
+        singlePoolCard(c) && u !== single ? 0 : Math.min(left, u.resources);
+      left -= spend;
+      return [u.id, spend];
+    }),
+  );
+}
+const scenarioRelease = (id: ScenarioId) => {
+  const q = scenario(id);
+  const c = encounterCards.find((c) => c.encounter_set === q.sets[0]);
+  const origin = c ? cardProductInfo(c).original : null;
+  return origin?.cycle ?? origin?.name ?? c?.pack_name ?? q.name;
+};
+const sameDeckRecipe = (
+  a: Pick<CustomDeck, "heroes" | "cards">,
+  b: Pick<CustomDeck, "heroes" | "cards">,
+) =>
+  JSON.stringify([...a.heroes].sort()) ===
+    JSON.stringify([...b.heroes].sort()) &&
+  JSON.stringify(
+    Object.entries(a.cards)
+      .filter(([, n]) => n > 0)
+      .sort(([a], [b]) => a.localeCompare(b)),
+  ) ===
+    JSON.stringify(
+      Object.entries(b.cards)
+        .filter(([, n]) => n > 0)
+        .sort(([a], [b]) => a.localeCompare(b)),
+    );
 function Modal({
   title,
   children,
@@ -314,14 +402,52 @@ function CardDetail({
   onClose,
   action,
 }: {
-  c: Card;
+  c: Card & { attachmentResourceTokens?: number };
   onClose: () => void;
   action?: ReactNode;
 }) {
+  const origin = cardProductInfo(c);
+  const source = c.source_url ?? c.url;
+  const printing = c as Card & {
+    position?: number | string;
+    corner_text?: string;
+  };
+  const printedNumber =
+    printing.position ?? (!c.code.startsWith("octgn:") ? c.code : undefined);
+  const [reverse, setReverse] = useState(false);
   return (
     <Modal title={c.name} onClose={onClose} wide>
       <div className="card-detail">
-        <Art c={c} />
+        {c.back_imagesrc ? (
+          <div className="card-detail-art">
+            <Art
+              key={`${c.code}-${reverse}`}
+              className={c.type_code === "quest" ? "quest-reference-art" : ""}
+              imageSrc={reverse ? c.back_imagesrc : undefined}
+              c={
+                reverse
+                  ? {
+                      ...c,
+                      imagesrc: c.back_imagesrc,
+                      name: c.back_name ?? c.name,
+                    }
+                  : c
+              }
+            />
+            <button
+              className="secondary"
+              aria-pressed={reverse}
+              onClick={() => setReverse((shown) => !shown)}
+            >
+              {reverse ? "Show front" : "Show reverse"}
+            </button>
+          </div>
+        ) : (
+          <Art
+            c={c}
+            className={c.type_code === "quest" ? "quest-reference-art" : ""}
+          />
+        )}
         <div>
           <div className="detail-type">
             <Sphere sphere={c.sphere_code} />
@@ -329,40 +455,119 @@ function CardDetail({
           </div>
           <h3>{c.name}</h3>
           <p className="traits">{c.traits}</p>
-          {c.health !== undefined && (
+          {(c.health !== undefined || c.printed_stats?.health) && (
             <div className="detail-stats">
               {c.type_code === "enemy" ? (
-                <StatBadge kind="threat" value={c.threat} caption />
+                <StatBadge
+                  kind="threat"
+                  value={c.threat ?? c.printed_stats?.threat}
+                  caption
+                />
               ) : (
-                <StatBadge kind="willpower" value={c.willpower} caption />
+                <StatBadge
+                  kind="willpower"
+                  value={c.willpower ?? c.printed_stats?.willpower}
+                  caption
+                />
               )}
-              <StatBadge kind="attack" value={c.attack} caption />
-              <StatBadge kind="defense" value={c.defense} caption />
-              <StatBadge kind="health" value={c.health} caption />
+              <StatBadge
+                kind="attack"
+                value={c.attack ?? c.printed_stats?.attack}
+                caption
+              />
+              <StatBadge
+                kind="defense"
+                value={c.defense ?? c.printed_stats?.defense}
+                caption
+              />
+              <StatBadge
+                kind="health"
+                value={c.health ?? c.printed_stats?.health}
+                caption
+              />
             </div>
           )}
-          <p className="rules-text">
-            {plain(c.text) || "No additional abilities."}
-          </p>
+          {(c.text || c.type_code !== "quest") && (
+            <p className="rules-text">
+              {plain(c.text) || "No additional abilities."}
+            </p>
+          )}
           {c.shadow && <p className="shadow-text">{plain(c.shadow)}</p>}
+          {c.back_text && (
+            <div className="card-back-rules">
+              <h4>{c.back_name ?? "Reverse side"}</h4>
+              <p className="rules-text">{plain(c.back_text)}</p>
+            </div>
+          )}
           {action}
           <div className="source-note">
-            {c.pack_name} · #{c.code}
+            <strong>{origin.originLabel}</strong>
             <br />
+            {origin.availableIn.length > 1 && (
+              <>
+                <span>
+                  Also included in:{" "}
+                  {origin.availableIn
+                    .filter((p) => p.id !== origin.original?.id)
+                    .map((p) => p.name)
+                    .join(" · ")}
+                </span>
+                <br />
+              </>
+            )}
+            {c.encounter_set && (
+              <>
+                <span>Encounter set: {c.encounter_set}</span>
+                <br />
+              </>
+            )}
+            {c.nightmare && (
+              <>
+                <span>Nightmare edition</span>
+                <br />
+              </>
+            )}
+            {c.attachmentResourceTokens !== undefined && (
+              <>
+                <strong>
+                  Live resource tokens: {c.attachmentResourceTokens}
+                </strong>
+                <br />
+              </>
+            )}
+            {printedNumber !== undefined && (
+              <>
+                Card #{printedNumber}
+                <br />
+              </>
+            )}
+            {printing.corner_text && (
+              <>
+                Printed corner: {printing.corner_text}
+                <br />
+              </>
+            )}
             {c.illustrator && `Illustration: ${c.illustrator}`}
             <br />
-            {SCRIPTED.has(c.code)
-              ? "Scripted in this adventure."
+            {isScriptedCard(c)
+              ? "Automated play support is available."
               : "Available to browse. Gameplay scripting is not available yet."}
           </div>
-          {c.url && (
+          {source && /^https?:\/\//.test(source) && (
             <a
               className="text-link"
-              href={c.url}
+              href={source}
               target="_blank"
               rel="noreferrer"
             >
-              View on RingsDB <ArrowRight />
+              {c.source === "dragncards"
+                ? "View DragnCards source"
+                : c.source === "octgn"
+                  ? "View OCTGN source"
+                  : c.source === "ffg"
+                    ? "View official source"
+                    : "View on RingsDB"}{" "}
+              <ArrowRight />
             </a>
           )}
         </div>
@@ -395,6 +600,7 @@ export default function App() {
   const reducedMotion = useReducedMotion();
   const [initialChoices] = useState(readChoices);
   const [page, setPage] = useState<Page>("adventures");
+  const [libraryProduct, setLibraryProduct] = useState("all");
   const [game, setGame] = useState<GameState | null>(() =>
     readSave(
       initialChoices
@@ -688,7 +894,15 @@ export default function App() {
               playMode,
               scenario: quest.id,
               savedGame: !!game,
-              cardCount: 1315,
+              cardCount: catalogCardCount(),
+              automatedPlay: {
+                heroes: HERO_CARDS.length,
+                heroCodes: HERO_CARDS.map((c) => c.code),
+                deckCards: DECK_CARDS.length,
+                deckCardCodes: DECK_CARDS.map((c) => c.code),
+                decks: STARTERS.map((d) => ({ id: d.id, heroes: d.heroes })),
+                quests: SCENARIOS.map((q) => q.id),
+              },
               fellowship: choices,
             },
       );
@@ -770,7 +984,7 @@ export default function App() {
           playMode,
           ...(style === "hotseat" ? { seats: seats.map(seatConfig) } : {}),
           ...(playMode === "campaign" &&
-          game?.campaign?.completed.length === 3 &&
+          game?.campaign?.completed.length === CAMPAIGN_CHAPTERS.length &&
           game.campaign.mendorSaved
             ? {
                 campaign: newCampaign(
@@ -796,6 +1010,32 @@ export default function App() {
       setPage("fellowship");
     }
   };
+  const choosePublishedDeck = (recipe: PublishedPlayRecipe) => {
+    const problems = deckProblems(recipe);
+    if (problems.length) {
+      notify(problems[0]);
+      return;
+    }
+    let chosen = decks.find(
+      (d) => d.source === recipe.source && sameDeckRecipe(d, recipe),
+    );
+    if (!chosen) {
+      if (decks.length >= 50) {
+        notify(
+          "Your deck shelf holds 50 decks. Delete a deck before saving this recipe.",
+        );
+        return;
+      }
+      chosen = { ...recipe, id: createDeckId(), updatedAt: Date.now() };
+      if (!setDecks([chosen, ...decks]))
+        notify(
+          "Browser storage is full. This deck stays available until you reload.",
+        );
+    }
+    setSelectedDeck(customId(chosen));
+    setSetupMode("classic");
+    nav("adventures");
+  };
   const prepareNextChapter = () => {
     if (!game?.campaign) return;
     const c = game.campaign;
@@ -803,14 +1043,11 @@ export default function App() {
     for (let i = 0; i < picked.length; i++) {
       if (!picked[i])
         picked[i] =
-          playerCards.find(
-            (h) =>
-              h.type_code === "hero" &&
-              !picked.includes(h.code) &&
-              !c.fallen.includes(h.code),
+          HERO_CARDS.find(
+            (h) => !picked.includes(h.code) && !c.fallen.includes(h.code),
           )?.code ?? "";
     }
-    for (const h of playerCards.filter((h) => h.type_code === "hero"))
+    for (const h of HERO_CARDS)
       if (
         picked.length <
           (game.table?.seats.flatMap((p) => p.startingHeroes).length ?? 3) &&
@@ -870,23 +1107,13 @@ export default function App() {
     }
     setTarget("");
     setXCost(1);
-    const cost = playCost(game!, card(u.code));
-    let left = cost;
-    const pay: Record<string, number> = {};
-    for (const h of game.heroes) {
-      if (
-        card(u.code).sphere_code === "neutral" ||
-        card(h.code).sphere_code === card(u.code).sphere_code ||
-        (card(u.code).sphere_code === "spirit" &&
-          h.code === "01001" &&
-          h.attachments.some((a) => a.code === "01027"))
-      ) {
-        const v = Math.min(left, h.resources);
-        pay[h.id] = v;
-        left -= v;
-      }
-    }
-    setPayment(pay);
+    const c = card(u.code);
+    const costing = c.cost === "X" ? { ...c, cost: 1 } : c;
+    const legalTargets = needsTarget(u) ? playTargets(game, u) : [];
+    const cost = legalTargets.length
+      ? Math.min(...legalTargets.map((host) => playCost(game, costing, host)))
+      : playCost(game, costing);
+    setPayment(planCardPayment(game, costing, cost));
     setPlayCard(u);
   };
   const exportSave = () => {
@@ -1216,7 +1443,7 @@ export default function App() {
             <LandingHero
               savedJourney={
                 resumable && game?.status === "playing"
-                  ? `Saved journey · Round ${game.round} · ${phaseNames[game.phase] ?? game.phase}`
+                  ? `Saved journey · Round ${game.round} · ${phaseTitle(game) ?? game.phase}`
                   : undefined
               }
               onResume={() => nav("table")}
@@ -1251,13 +1478,16 @@ export default function App() {
                 >
                   <Books size={19} />
                   <span>
-                    Campaign mode<small>One fellowship. Three chapters.</small>
+                    Campaign mode
+                    <small>
+                      One fellowship. {CAMPAIGN_CHAPTERS.length} chapters.
+                    </small>
                   </span>
                 </button>
               </div>
               <p>
                 {playMode === "normal"
-                  ? "Choose a Core Set quest or The Hunt for Gollum. Each adventure begins with a fresh fellowship."
+                  ? `Choose from ${SCENARIOS.length} automated quests. Each adventure begins with a fresh fellowship.`
                   : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
               </p>
             </section>
@@ -1332,7 +1562,7 @@ export default function App() {
                 {resumable && game?.status === "playing" && (
                   <div className="resume-context">
                     <span className="green-dot" /> Saved journey · Round{" "}
-                    {game.round || 1} · {phaseNames[game.phase]}
+                    {game.round || 1} · {phaseTitle(game)}
                   </div>
                 )}
                 {setupMode === "classic" && (
@@ -1480,10 +1710,7 @@ export default function App() {
                     : "1 player"}
                 </span>
                 <span>
-                  <Diamond size={14} />{" "}
-                  {quest.id === "hunt-for-gollum"
-                    ? "Shadows of Mirkwood"
-                    : "Core Set"}
+                  <Diamond size={14} /> {scenarioRelease(quest.id)}
                 </span>
                 <span className="difficulty">
                   Difficulty {quest.difficulty} / 10
@@ -1496,7 +1723,8 @@ export default function App() {
                   <Books size={18} />
                   Campaign journal
                   <span>
-                    {game.campaign.completed.length} / 3 chapters recorded
+                    {game.campaign.completed.length} /{" "}
+                    {CAMPAIGN_CHAPTERS.length} chapters recorded
                   </span>
                 </summary>
                 <CampaignJournal game={game} inspect={setDetail} />
@@ -1506,15 +1734,27 @@ export default function App() {
               <section className="journey-panel">
                 <div className="section-line">
                   <h3>The path ahead</h3>
-                  <span>3 quest stages</span>
+                  <span>{quest.stages.length} quest stages</span>
                 </div>
                 <div className="journey-stages">
                   {quest.stages
                     .map((stage, i) => ({
-                      n: ["I", "II", "III"][i],
+                      n:
+                        [
+                          "I",
+                          "II",
+                          "III",
+                          "IV",
+                          "V",
+                          "VI",
+                          "VII",
+                          "VIII",
+                          "IX",
+                          "X",
+                        ][i] ?? String(i + 1),
                       title: stage.name,
                       text: stage.story,
-                      icon: [Tree, Compass, Mountains][i],
+                      icon: [Tree, Compass, Mountains][i % 3],
                     }))
                     .map((q, i) => (
                       <div className="journey-stage" key={q.n}>
@@ -1528,7 +1768,7 @@ export default function App() {
                           <h4>{q.title}</h4>
                           <p>{q.text}</p>
                         </div>
-                        {i < 2 && (
+                        {i < quest.stages.length - 1 && (
                           <CaretRight className="stage-chevron" size={15} />
                         )}
                       </div>
@@ -1642,7 +1882,23 @@ export default function App() {
               </main>
             }
           >
-            <Library inspect={setDetail} notify={notify} />
+            <Library
+              inspect={setDetail}
+              notify={notify}
+              initialProduct={libraryProduct}
+              chooseAdventure={(id, mode) => {
+                const chosenDeck = selectedDeck;
+                const chosenSetup = setupMode;
+                const chosenSeats = seats;
+                switchMode(mode === "campaign" ? "campaign" : "normal");
+                setSelectedDeck(chosenDeck);
+                setSetupMode(chosenSetup);
+                setSeats(chosenSeats);
+                setSelectedScenario(id);
+                setEasyMode(mode === "easy" ? "on" : "off");
+                nav("adventures");
+              }}
+            />
           </Suspense>
         )}
         {page === "decks" && (
@@ -1672,8 +1928,8 @@ export default function App() {
               <div>
                 <h1>Choose your fellowship.</h1>
                 <p>
-                  Four original Core Set starter decks. Four ways through the
-                  forest.
+                  Choose a supported fellowship, or explore every published hero
+                  and the separately sold starter decks below.
                 </p>
               </div>
               <button
@@ -1687,6 +1943,7 @@ export default function App() {
                 Begin with {starter.subtitle} <ArrowRight />
               </button>
             </div>
+            <SupportSummary />
             <DeckPicker
               value={selectedDeck}
               onChange={(id) => {
@@ -1708,7 +1965,8 @@ export default function App() {
                     <Sphere sphere={card(code).sphere_code} />
                     <h2>{card(code).name}</h2>
                     <p>{plain(card(code).text)}</p>
-                    <span>{card(code).threat} starting threat</span>
+                    <span>{card(code).threat} printed threat</span>
+                    <CardProductNote c={card(code)} />
                   </div>
                 </button>
               ))}
@@ -1717,8 +1975,10 @@ export default function App() {
               <div>
                 <h2>{starter.name}</h2>
                 <p>
-                  Original printed card quantities. All cards below have
-                  scripted abilities.
+                  {starter.custom
+                    ? "Your saved deck list."
+                    : "Ready-to-play deck with registered cards."}{" "}
+                  All cards below have scripted abilities.
                 </p>
               </div>
               <strong>
@@ -1729,6 +1989,7 @@ export default function App() {
                 </span>
               </strong>
             </div>
+            <DeckProductNote deck={starter} />
             <div className="deck-list">
               {Object.keys(deck).map((code) => (
                 <div className="deck-row" key={code}>
@@ -1749,6 +2010,16 @@ export default function App() {
                 </div>
               ))}
             </div>
+            <Suspense fallback={<p>Opening the published collection…</p>}>
+              <PublishedContent
+                inspect={setDetail}
+                play={choosePublishedDeck}
+                browse={(productId) => {
+                  setLibraryProduct(productId);
+                  nav("library");
+                }}
+              />
+            </Suspense>
           </main>
         )}
         {page === "guide" && (
@@ -1757,7 +2028,7 @@ export default function App() {
               <div>
                 <h1>Every great journey starts here.</h1>
                 <p>
-                  Lead your fellowship through the Core Set, one quest at a
+                  Lead your fellowship through Middle-earth, one quest at a
                   time.
                 </p>
               </div>
@@ -1768,14 +2039,15 @@ export default function App() {
               <div>
                 <h2>Your first adventure</h2>
                 <p>
-                  Play the three Core Set quests in normal or campaign mode, or
-                  The Hunt for Gollum as a standalone adventure. Choose an
-                  original 30-card starter with three heroes, or build a deck of
-                  at least 50 cards with one to three heroes. Solo hot-seat lets
-                  you command 1–4 players, each with a separate deck, hand, and
-                  threat dial. Complete the final quest together. A seat is
-                  eliminated at 50 threat or when its last hero falls; surviving
-                  fellowships continue.
+                  Choose from {SCENARIOS.length} automated quests for a
+                  standalone adventure, or follow the {CAMPAIGN_CHAPTERS.length}{" "}
+                  Core Set campaign chapters. Choose an original 30-card starter
+                  with three heroes, or build a deck of at least 50 cards with
+                  one to three heroes. Solo hot-seat lets you command 1–4
+                  players, each with a separate deck, hand, and threat dial.
+                  Complete the final quest together. A seat is eliminated at 50
+                  threat or when its last hero falls; surviving fellowships
+                  continue.
                 </p>
                 <button
                   className="primary"
@@ -1835,11 +2107,11 @@ export default function App() {
             <section className="guide-note">
               <h2>Choose your journey</h2>
               <p>
-                <strong>Normal game:</strong> select any of the four quests for
-                a fresh, standalone adventure. <strong>Campaign mode:</strong>{" "}
-                follow Mirkwood Paths in order. After a victory, select Continue
-                campaign to prepare the next chapter with your earned boons and
-                burdens.
+                <strong>Normal game:</strong> select any of the{" "}
+                {SCENARIOS.length} registered quests for a fresh, standalone
+                adventure. <strong>Campaign mode:</strong> follow Mirkwood Paths
+                in order. After a victory, select Continue campaign to prepare
+                the next chapter with your earned boons and burdens.
               </p>
               <p>
                 The campaign log records fallen heroes, scores, permanent cards,
@@ -1876,7 +2148,7 @@ export default function App() {
                 },
                 {
                   name: "Quest",
-                  text: "Select ready characters to commit. They exhaust. After revealing an encounter, compare their willpower with staging threat. Success places progress; failure raises your threat.",
+                  text: "Select ready characters to commit. They exhaust. Compare quest strength with staging threat: willpower normally, attack for Battle, defense for Siege. Success places progress; failure raises your threat.",
                   icon: Feather,
                 },
                 {
@@ -1913,13 +2185,15 @@ export default function App() {
             <section className="guide-note">
               <h2>A living adventure</h2>
               <p>
-                This version scripts all three Core Set quests, their encounter
-                decks, the Mirkwood Paths campaign, and all 73 original Core Set
-                player-card definitions across four starter decks. Online
-                multiplayer, expert campaign mode, expansion scenarios, and
-                other player-card abilities are not implemented. The library
-                includes the wider RingsDB player-card catalog for browsing.
+                The registered play pool currently includes {HERO_CARDS.length}{" "}
+                heroes, {DECK_CARDS.length} deckbuilding cards,{" "}
+                {SCENARIOS.length} quests and the {CAMPAIGN_CHAPTERS.length}
+                -chapter Mirkwood Paths campaign. New releases become playable
+                when their rules are implemented. The library includes the
+                official player, encounter, quest, campaign and Nightmare card
+                catalog, with original and revised product information.
               </p>
+              <SupportSummary />
               <p>
                 Some optional responses resolve automatically or in a fixed
                 order, and intermediate attack action windows are simplified.
@@ -2087,7 +2361,7 @@ export default function App() {
               </div>
               <div className="phase-track">
                 {[
-                  { label: "Resource", key: "setup" },
+                  { label: "Resource", key: "resource" },
                   { label: "Planning", key: "planning" },
                   { label: "Quest", key: "quest" },
                   { label: "Travel", key: "travel" },
@@ -2097,6 +2371,7 @@ export default function App() {
                 ].map((p, i) => {
                   const active =
                     p.key === game.phase ||
+                    (p.key === "resource" && game.phase === "setup") ||
                     (p.key === "quest" && game.phase === "staging") ||
                     (p.key === "attack" && game.phase === "defense");
                   return (
@@ -2125,10 +2400,12 @@ export default function App() {
                 <Tree size={14} /> A SHARED JOURNEY
               </span>
             </div>
+            <EscapeTestSummary s={game} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
                   s={game}
+                  dispatch={dispatch}
                   inspect={setDetail}
                   inspectQuest={() => setShowQuest(true)}
                 />
@@ -2167,42 +2444,93 @@ export default function App() {
                           key={u.id}
                           s={game}
                           u={u}
+                          dispatch={dispatch}
                           inspect={() => setDetail(card(u.code))}
+                          inspectCard={setDetail}
                           action={
-                            OBJECTIVES.includes(u.code) &&
-                            game.phase !== "setup" &&
-                            objectiveFree(game, u)
-                              ? () => setClaimId(u.id)
-                              : game.phase === "travel" &&
-                                  card(u.code).type_code === "location" &&
-                                  !game.activeLocation
-                                ? () => dispatch({ type: "TRAVEL", id: u.id })
-                                : game.phase === "encounter" &&
-                                    card(u.code).type_code === "enemy" &&
-                                    !game.optionalEngagement
-                                  ? () => dispatch({ type: "ENGAGE", id: u.id })
-                                  : game.phase === "attack" &&
+                            game.phase === "defense" &&
+                            pendingEnemyAttack(game, u)
+                              ? () => setCombatEnemy(u.id)
+                              : (OBJECTIVES.includes(u.code) ||
+                                    [
+                                      RHOS.athelas,
+                                      KHAZAD.book,
+                                      KHAZAD.tools,
+                                    ].includes(
+                                      u.code as typeof RHOS.athelas,
+                                    )) &&
+                                  game.phase !== "setup" &&
+                                  objectiveFree(game, u)
+                                ? () => setClaimId(u.id)
+                                : game.phase === "travel" &&
+                                    card(u.code).type_code === "location"
+                                  ? () => dispatch({ type: "TRAVEL", id: u.id })
+                                  : game.phase === "encounter" &&
                                       card(u.code).type_code === "enemy" &&
-                                      !u.attacked &&
-                                      game.heroes.some(
-                                        (h) =>
-                                          h.code === "01009" && !h.exhausted,
-                                      )
-                                    ? () => {
-                                        setCombatEnemy(u.id);
-                                      }
-                                    : undefined
+                                      !game.optionalEngagement
+                                    ? () =>
+                                        dispatch({ type: "ENGAGE", id: u.id })
+                                    : game.phase === "attack" &&
+                                        card(u.code).type_code === "enemy" &&
+                                        (game.table || game.earlyAttackPlayers
+                                          ? !u.attackedBy?.includes(
+                                              activeSeat(game),
+                                            )
+                                          : !u.attacked) &&
+                                        attackersFor(game, u).length > 0
+                                      ? () => {
+                                          setCombatEnemy(u.id);
+                                        }
+                                      : undefined
                           }
                           actionLabel={
-                            OBJECTIVES.includes(u.code)
-                              ? objectiveFree(game, u)
-                                ? "Claim · +2 threat"
-                                : "Guarded"
-                              : card(u.code).type_code === "location"
-                                ? "Travel here"
-                                : game.phase === "attack"
-                                  ? "Dúnhere attack"
-                                  : "Engage"
+                            game.phase === "defense" &&
+                            consideredEngaged(game, u)
+                              ? "Defend"
+                              : OBJECTIVES.includes(u.code) ||
+                                  [
+                                    RHOS.athelas,
+                                    KHAZAD.book,
+                                    KHAZAD.tools,
+                                  ].includes(u.code as typeof RHOS.athelas)
+                                ? objectiveFree(game, u)
+                                  ? [
+                                      RHOS.athelas,
+                                      KHAZAD.book,
+                                      KHAZAD.tools,
+                                    ].includes(u.code as typeof RHOS.athelas)
+                                    ? "Claim · Exhaust hero"
+                                    : "Claim · +2 threat"
+                                  : "Guarded"
+                                : card(u.code).type_code === "location"
+                                  ? "Travel here"
+                                  : game.phase === "attack"
+                                    ? consideredEngaged(game, u)
+                                      ? "Attack"
+                                      : "Attack staging enemy"
+                                    : "Engage"
+                          }
+                          actionDisabled={
+                            game.phase === "attack" &&
+                            amonPlayerCannotDeclareAttack(game)
+                              ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
+                              : game.phase === "encounter" &&
+                                  card(u.code).type_code === "enemy"
+                                ? optionalEngagementProblem(game, u)
+                                : [
+                                      RHOS.athelas,
+                                      KHAZAD.book,
+                                      KHAZAD.tools,
+                                    ].includes(u.code as typeof RHOS.athelas) &&
+                                    !game.heroes.some(
+                                      (h) =>
+                                        !h.exhausted && !khazadCannotExhaust(h),
+                                    )
+                                  ? "A ready hero must be able to exhaust to claim this objective."
+                                  : game.phase === "travel" &&
+                                      card(u.code).type_code === "location"
+                                    ? canTravel(game, u)
+                                    : null
                           }
                         />
                       ))}
@@ -2228,17 +2556,13 @@ export default function App() {
                             s={game}
                             u={u}
                             inspect={() => setDetail(card(u.code))}
+                            inspectCard={setDetail}
                             action={
                               (
                                 game.phase === "defense"
-                                  ? ownerOf(game, u) === activeSeat(game) &&
-                                    !u.attacked &&
-                                    !u.feinted &&
-                                    !u.attachments.some(
-                                      (a) => a.code === "01069",
-                                    )
+                                  ? pendingEnemyAttack(game, u)
                                   : game.phase === "attack" &&
-                                    (game.table
+                                    (game.table || game.earlyAttackPlayers
                                       ? !u.attackedBy?.includes(
                                           activeSeat(game),
                                         )
@@ -2257,6 +2581,12 @@ export default function App() {
                                     ownerOf(game, u) !== activeSeat(game)
                                   ? `Ranged · ${seatName(game, ownerOf(game, u))}`
                                   : "Attack"
+                            }
+                            actionDisabled={
+                              game.phase === "attack" &&
+                              amonPlayerCannotDeclareAttack(game)
+                                ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
+                                : null
                             }
                           />
                         ))}
@@ -2280,6 +2610,39 @@ export default function App() {
                       )}
                     </span>
                   </div>
+                  {game.phase === "quest" && emynMuilMustCommit(game) && (
+                    <p className="quest-selection-note" role="status">
+                      The Falls of Rauros requires every eligible ready
+                      character to quest. Select each ready card below.
+                    </p>
+                  )}
+                  {allHeroes(game)
+                    .flatMap((h) =>
+                      h.attachments
+                        .filter((a) => a.code === KHAZAD.book && !a.blanked)
+                        .map((a) => ({ h, a })),
+                    )
+                    .map(({ h, a }) => (
+                      <div className="abilities objective-actions" key={a.id}>
+                        <button
+                          disabled={
+                            game.phase === "setup" ||
+                            !!game.escapeTest ||
+                            !!game.choice ||
+                            !!game.flow?.pending ||
+                            !game.heroes.some(
+                              (hero) =>
+                                !hero.exhausted &&
+                                !khazadCannotExhaust(hero) &&
+                                hero.id !== h.id,
+                            )
+                          }
+                          onClick={() => setClaimId(a.id)}
+                        >
+                          Move Book of Mazarbul · Exhaust a hero
+                        </button>
+                      </div>
+                    ))}
                   <motion.div layoutScroll className="character-row">
                     <div
                       className="hero-company"
@@ -2317,6 +2680,7 @@ export default function App() {
                     )}
                     <OtherFellowships
                       s={game}
+                      dispatch={dispatch}
                       select={(seat) => dispatch({ type: "SELECT_SEAT", seat })}
                     />
                   </motion.div>
@@ -2326,6 +2690,7 @@ export default function App() {
                   s={game}
                   inspect={(u) => setDetail(card(u.code))}
                   play={beginPlay}
+                  dispatch={dispatch}
                   art={(u) => <Art c={card(u.code)} />}
                   onPiles={() => setShowPiles(true)}
                 />
@@ -2339,7 +2704,7 @@ export default function App() {
                     : "YOUR TURN"}
                 </div>
                 <h2 key={game.phase} className="phase-title">
-                  {phaseNames[game.phase]}
+                  {phaseTitle(game)}
                 </h2>
                 <TurnActions
                   s={game}
@@ -2401,7 +2766,7 @@ export default function App() {
                             : "A stalemate"}
                       </span>
                       <strong>
-                        {game.lastQuest.will} willpower −{" "}
+                        {game.lastQuest.will} quest strength −{" "}
                         {game.lastQuest.threat} threat
                       </strong>
                       <small>
@@ -2464,7 +2829,7 @@ export default function App() {
               <footer className="mobile-action-bar">
                 <div>
                   <small>ROUND {game.round || 1}</small>
-                  <strong>{phaseNames[game.phase]}</strong>
+                  <strong>{phaseTitle(game)}</strong>
                 </div>
                 <TurnActions
                   s={game}
@@ -2509,8 +2874,9 @@ export default function App() {
                 resources.
               </li>
               <li>
-                <strong>Quest.</strong> Commit characters; their willpower must
-                beat the staging threat to place progress. Usually, one
+                <strong>Quest.</strong> Commit characters; their quest strength
+                must beat staging threat to place progress. Use willpower
+                normally, attack for Battle, and defense for Siege. Usually, one
                 encounter card is revealed per player; quest effects can change
                 this.
               </li>
@@ -2807,20 +3173,61 @@ export default function App() {
           <div className="quest-inspector">
             <img
               src={questFace(game)}
-              alt={`${stageInfo(game).name}, quest side ${game.stage}B`}
+              alt={`${stageInfo(game).name}, quest side ${questStageLabel(game)}`}
             />
             <p>{stageInfo(game).story}</p>
+            {currentQuestUnit(game) && (
+              <AttachmentStack
+                u={currentQuestUnit(game)!}
+                inspect={(c) => {
+                  setShowQuest(false);
+                  setDetail(c);
+                }}
+              />
+            )}
             <QuestGoals s={game} />
             <p>
               <strong>
                 {game.progress} / {stageInfo(game).quest || "Special objective"}
               </strong>{" "}
-              quest progress · Stage {game.stage} of 3
+              quest progress · Stage {game.stage} of{" "}
+              {scenario(game.scenarioId).stages.length}
             </p>
             <small>
-              Core Set quest card · Fantasy Flight Games · Scan from Hall of
-              Beorn
+              {scenarioRelease(game.scenarioId)} · Quest card · Fantasy Flight
+              Games
             </small>
+            {"cardCode" in stageInfo(game) && (
+              <button
+                className="secondary"
+                onClick={async () => {
+                  const stage = stageInfo(game);
+                  if (!("cardCode" in stage)) return;
+                  try {
+                    const local = [
+                      ...(carrockQuestCards as Card[]),
+                      ...EMYN_MUIL_QUESTS,
+                    ].find((c) => c.code === stage.cardCode);
+                    const printed =
+                      local ??
+                      (await loadCatalog()).find(
+                        (c) => c.code === stage.cardCode,
+                      );
+                    if (printed) {
+                      setShowQuest(false);
+                      setDetail(printed);
+                    } else
+                      notify(
+                        "The printed quest is not available in the imported snapshot.",
+                      );
+                  } catch {
+                    notify("The printed quest could not load. Try again.");
+                  }
+                }}
+              >
+                <BookOpen size={16} /> Read printed quest
+              </button>
+            )}
           </div>
         </Modal>
       )}
@@ -2897,18 +3304,20 @@ export default function App() {
                 {d.heroes.length === 1 ? "hero" : "heroes"} and{" "}
                 {deckSize(d.cards)} player cards.
               </p>
+              <DeckProductNote deck={d} />
               <div className="deck-preview-heroes">
                 {d.heroes.map((code) => (
                   <button key={code} onClick={() => setDetail(card(code))}>
                     <Art c={card(code)} />
                     <strong>{card(code).name}</strong>
                     <span>
-                      {card(code).threat} starting threat · Inspect hero
+                      {card(code).threat} printed threat · Inspect hero
                     </span>
+                    <CardProductNote c={card(code)} />
                   </button>
                 ))}
               </div>
-              <h3>Inside this starter deck</h3>
+              <h3>Inside this deck</h3>
               <div className="deck-list">
                 {Object.entries(d.cards).map(([code, count]) => (
                   <div className="deck-row" key={code}>
@@ -2942,6 +3351,25 @@ export default function App() {
                   {playReason(game, inspectedHand) ??
                     `Available now · cost ${playCost(game, card(inspectedHand.code))} resources`}
                 </p>
+                {availableAbilities(game, inspectedHand).map((a) => (
+                  <button
+                    key={a.id ?? a.label}
+                    className="secondary"
+                    disabled={
+                      a.disabled || !!game.choice || !!game.flow?.pending
+                    }
+                    onClick={() => {
+                      setDetail(null);
+                      dispatch({
+                        type: "ABILITY",
+                        id: inspectedHand.id,
+                        attachmentId: a.id,
+                      });
+                    }}
+                  >
+                    {a.label}
+                  </button>
+                ))}
                 <button
                   className="primary"
                   disabled={!!playReason(game, inspectedHand)}
@@ -3014,20 +3442,32 @@ export default function App() {
         <DecisionDialog
           title="Claim an objective"
           onClose={() => setClaimId(null)}
-          description="Choose a hero to carry the objective. Raise your threat by 2; this counts toward the hero’s two restricted attachments."
+          description={
+            objectiveClaimExhausts(game, claimId)
+              ? `Choose a ready hero who can exhaust to carry the objective. Claiming it adds no threat.${objectiveClaimCode(game, claimId) !== RHOS.athelas ? " This objective is a restricted attachment." : ""}`
+              : "Choose a hero to carry the objective. Raise your threat by 2; this counts toward the hero’s two restricted attachments."
+          }
         >
           <div className="decision-grid choice-list">
-            {game.heroes.map((h) => (
-              <DecisionCard
-                key={h.id}
-                c={card(h.code)}
-                inspect={setDetail}
-                onSelect={() => {
-                  if (dispatch({ type: "CLAIM", id: claimId, heroId: h.id }))
-                    setClaimId(null);
-                }}
-              />
-            ))}
+            {game.heroes
+              .filter(
+                (h) =>
+                  !objectiveClaimExhausts(game, claimId) ||
+                  (!h.exhausted &&
+                    !khazadCannotExhaust(h) &&
+                    !h.attachments.some((a) => a.id === claimId)),
+              )
+              .map((h) => (
+                <DecisionCard
+                  key={h.id}
+                  c={card(h.code)}
+                  inspect={setDetail}
+                  onSelect={() => {
+                    if (dispatch({ type: "CLAIM", id: claimId, heroId: h.id }))
+                      setClaimId(null);
+                  }}
+                />
+              ))}
           </div>
         </DecisionDialog>
       )}
@@ -3045,7 +3485,15 @@ export default function App() {
               <span className="decision-hint">
                 {needsTarget(playCard) && !target
                   ? "Select a target card to continue."
-                  : `${Object.values(payment).reduce((sum, n) => sum + n, 0)} resources selected`}
+                  : !eligiblePayers(
+                        game,
+                        card(playCard.code).cost === "X"
+                          ? { ...card(playCard.code), cost: xCost }
+                          : card(playCard.code),
+                        get(game, target),
+                      ).length
+                    ? "A matching sphere hero is required for this target."
+                    : `${Object.values(payment).reduce((sum, n) => sum + n, 0)} resources selected`}
               </span>
               <div className="decision-actions">
                 <button className="secondary" onClick={() => setPlayCard(null)}>
@@ -3053,7 +3501,27 @@ export default function App() {
                 </button>
                 <button
                   className="primary"
-                  disabled={needsTarget(playCard) && !target}
+                  disabled={
+                    (needsTarget(playCard) && !target) ||
+                    !eligiblePayers(
+                      game,
+                      card(playCard.code).cost === "X"
+                        ? { ...card(playCard.code), cost: xCost }
+                        : card(playCard.code),
+                      get(game, target),
+                    ).length ||
+                    Object.values(payment).reduce(
+                      (n, value) => n + value,
+                      0,
+                    ) !==
+                      playCost(
+                        game,
+                        card(playCard.code).cost === "X"
+                          ? { ...card(playCard.code), cost: xCost }
+                          : card(playCard.code),
+                        get(game, target),
+                      )
+                  }
                   onClick={() => {
                     if (
                       dispatch({
@@ -3090,30 +3558,42 @@ export default function App() {
                       <DecisionCard
                         key={u.id}
                         unitId={u.id}
-                        c={card(u.code)}
+                        c={
+                          u.id.startsWith("quest:")
+                            ? { ...card(u.code), imagesrc: questFace(game) }
+                            : card(u.code)
+                        }
                         selected={target === u.id}
                         inspect={setDetail}
                         detail={
-                          game.table
-                            ? u.id.startsWith("discard-")
-                              ? `${seatName(game, Number(u.id.split("-")[1]))}’s discard`
-                              : `${seatName(game, ownerOf(game, u))}’s fellowship`
-                            : undefined
+                          u.id.startsWith("quest:")
+                            ? "Current encounter quest"
+                            : game.table
+                              ? u.id.startsWith("discard-")
+                                ? `${seatName(game, Number(u.id.split("-")[1]))}’s discard`
+                                : `${seatName(game, ownerOf(game, u))}’s fellowship`
+                              : undefined
                         }
                         onSelect={() => {
                           setTarget(u.id);
-                          if (playCard.code === "01051") {
-                            const n = Number(card(u.code).cost) || 0;
-                            setXCost(n);
-                            let left = n;
-                            const pay: Record<string, number> = {};
-                            for (const h of game.heroes) {
-                              const spend = Math.min(left, h.resources);
-                              pay[h.id] = spend;
-                              left -= spend;
-                            }
-                            setPayment(pay);
-                          }
+                          const c = card(playCard.code);
+                          const amount =
+                            playCard.code === "01051"
+                              ? Number(card(u.code).cost) || 0
+                              : xCost;
+                          if (playCard.code === "01051") setXCost(amount);
+                          setPayment(
+                            planCardPayment(
+                              game,
+                              c.cost === "X" ? { ...c, cost: amount } : c,
+                              playCost(
+                                game,
+                                c.cost === "X" ? { ...c, cost: amount } : c,
+                                u,
+                              ),
+                              u,
+                            ),
+                          );
                         }}
                       >
                         {!u.id.startsWith("discard-") &&
@@ -3132,9 +3612,13 @@ export default function App() {
               )}
               <h3 className="payment-heading">
                 Pay{" "}
-                {card(playCard.code).cost === "X"
-                  ? xCost
-                  : card(playCard.code).cost}{" "}
+                {playCost(
+                  game,
+                  card(playCard.code).cost === "X"
+                    ? { ...card(playCard.code), cost: xCost }
+                    : card(playCard.code),
+                  get(game, target),
+                )}{" "}
                 resources
               </h3>
               {playCard.code === "01067" && (
@@ -3153,49 +3637,57 @@ export default function App() {
                     onChange={(e) => {
                       const n = Number(e.target.value);
                       setXCost(n);
-                      let left = n;
-                      const p: Record<string, number> = {};
-                      for (const h of game.heroes) {
-                        const take = Math.min(left, h.resources);
-                        p[h.id] = take;
-                        left -= take;
-                      }
-                      setPayment(p);
+                      const c = card(playCard.code);
+                      setPayment(
+                        planCardPayment(
+                          game,
+                          { ...c, cost: n },
+                          playCost(game, { ...c, cost: n }, get(game, target)),
+                          get(game, target),
+                        ),
+                      );
                     }}
                   />
                 </label>
               )}
-              {game.heroes
-                .filter((h) => Object.hasOwn(payment, h.id))
-                .map((h) => (
-                  <div className="payment-row" key={h.id}>
-                    <span>
-                      <Sphere sphere={card(h.code).sphere_code} />
-                      {name(h)} <small>({h.resources} available)</small>
-                    </span>
-                    <div className="stepper">
-                      <button
-                        disabled={!payment[h.id]}
-                        onClick={() =>
-                          setPayment((p) => ({ ...p, [h.id]: p[h.id] - 1 }))
-                        }
-                        aria-label={`Spend less from ${name(h)}`}
-                      >
-                        <Minus size={14} />
-                      </button>
-                      <span>{payment[h.id]}</span>
-                      <button
-                        disabled={payment[h.id] >= h.resources}
-                        onClick={() =>
-                          setPayment((p) => ({ ...p, [h.id]: p[h.id] + 1 }))
-                        }
-                        aria-label={`Spend more from ${name(h)}`}
-                      >
-                        <Plus size={14} />
-                      </button>
-                    </div>
+              {eligiblePayers(
+                game,
+                card(playCard.code).cost === "X"
+                  ? { ...card(playCard.code), cost: xCost }
+                  : card(playCard.code),
+                get(game, target),
+              ).map((h) => (
+                <div className="payment-row" key={h.id}>
+                  <span>
+                    <Sphere sphere={card(h.code).sphere_code} />
+                    {name(h)} <small>({h.resources} available)</small>
+                  </span>
+                  <div className="stepper">
+                    <button
+                      disabled={!payment[h.id]}
+                      onClick={() =>
+                        setPayment((p) => ({ ...p, [h.id]: p[h.id] - 1 }))
+                      }
+                      aria-label={`Spend less from ${name(h)}`}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span>{payment[h.id] ?? 0}</span>
+                    <button
+                      disabled={(payment[h.id] ?? 0) >= h.resources}
+                      onClick={() =>
+                        setPayment((p) => ({
+                          ...p,
+                          [h.id]: (p[h.id] ?? 0) + 1,
+                        }))
+                      }
+                      aria-label={`Spend more from ${name(h)}`}
+                    >
+                      <Plus size={14} />
+                    </button>
                   </div>
-                ))}
+                </div>
+              ))}
             </section>
           </div>
         </DecisionDialog>
@@ -3258,8 +3750,11 @@ export default function App() {
         >
           <p>
             Continue to{" "}
-            <strong>{SCENARIOS[game.campaign.completed.length]?.name}</strong>.
-            Heroes recover their damage and begin with a fresh deck. Each
+            <strong>
+              {scenario(CAMPAIGN_CHAPTERS[game.campaign.completed.length])
+                ?.name ?? "Campaign complete"}
+            </strong>
+            . Heroes recover their damage and begin with a fresh deck. Each
             replaced hero adds +1 to your permanent starting threat penalty.
           </p>
           <div className="campaign-hero-slots">
@@ -3273,7 +3768,7 @@ export default function App() {
                   )
                 }
                 label={`${game.table ? `Player ${game.table.seats.findIndex((_, seat) => i < game.table!.seats.slice(0, seat + 1).reduce((n, p) => n + p.startingHeroes.length, 0)) + 1} · ` : ""}Campaign hero ${i + 1}`}
-                heroes={playerCards.filter((c) => c.type_code === "hero")}
+                heroes={HERO_CARDS}
                 inspect={setDetail}
                 unavailable={(candidate) =>
                   game.campaign!.fallen.includes(candidate)
@@ -3401,7 +3896,7 @@ export default function App() {
               )}
               <h2>
                 {game.status === "won"
-                  ? game.campaign?.completed.length === 3
+                  ? game.campaign?.completed.length === CAMPAIGN_CHAPTERS.length
                     ? "Your tale is complete."
                     : `${scenario(game.scenarioId).shortName} lies behind you.`
                   : "Every journey leaves a story."}
@@ -3425,7 +3920,7 @@ export default function App() {
               )}
               {game.campaign &&
               game.status === "won" &&
-              game.campaign.completed.length < 3 ? (
+              game.campaign.completed.length < CAMPAIGN_CHAPTERS.length ? (
                 <button className="primary" onClick={prepareNextChapter}>
                   Continue campaign <ArrowRight />
                 </button>
@@ -3443,7 +3938,7 @@ export default function App() {
                   Choose another adventure <ArrowRight />
                 </button>
               )}
-              {game.campaign?.completed.length === 3 && (
+              {game.campaign?.completed.length === CAMPAIGN_CHAPTERS.length && (
                 <p className="campaign-note">
                   {game.campaign.mendorSaved
                     ? "Mendor survived. His Support will be available from the start of your next Core Set campaign."
@@ -3475,10 +3970,13 @@ function CampaignJournal({
         <h3>
           <Books size={18} /> Mirkwood Paths
         </h3>
-        <span>{c.completed.length} / 3 chapters</span>
+        <span>
+          {c.completed.length} / {CAMPAIGN_CHAPTERS.length} chapters
+        </span>
       </div>
       <ol>
-        {SCENARIOS.map((q) => {
+        {CAMPAIGN_CHAPTERS.map((id) => {
+          const q = scenario(id);
           const result = c.completed.find((r) => r.scenarioId === q.id);
           return (
             <li
@@ -3563,19 +4061,31 @@ function CampaignJournal({
 }
 
 function phaseHelp(s: GameState) {
+  if (s.escapeTest)
+    return s.escapeTest.phase === "preparing"
+      ? "Use end-of-quest actions, then choose ready characters for the escape test."
+      : s.escapeTest.phase === "actions"
+        ? "An action window is open. Play events or use abilities, then resolve the escape test to deal its cards."
+        : "Choose ready heroes or allies to contribute their printed willpower or attack to the escape test.";
   switch (s.phase) {
     case "setup":
       return "Inspect your six starting cards. Keep them or take one mulligan before the first resource phase.";
+    case "resource":
+      return "Resources have been collected and cards drawn. Use eligible events and abilities, then continue to planning.";
     case "planning":
       return "Gather allies and equip your heroes. Spend resources from heroes with a matching sphere.";
     case "quest":
-      return "Select ready characters below. Keep some ready to defend the dangers ahead.";
+      return `Select ready characters below. Their ${druadanPlayerQuestStat(s) === "attack" ? "attack" : druadanPlayerQuestStat(s) === "defense" ? "defense" : "willpower"} contributes to this quest. Keep some ready to defend the dangers ahead.`;
     case "staging":
-      return "The encounter has been revealed. Use available abilities or events before comparing willpower and threat.";
+      return `The encounter has been revealed. Use available abilities or events before comparing ${druadanPlayerQuestStat(s) === "attack" ? "attack" : druadanPlayerQuestStat(s) === "defense" ? "defense" : "willpower"} and threat.`;
     case "travel":
-      return s.activeLocation
-        ? "You already have an active location. Continue to the encounter phase."
-        : "Travel to one location in staging, or stay where you are. Check its travel cost first.";
+      return s.staging.some(
+        (u) => card(u.code).type_code === "location" && !canTravel(s, u),
+      )
+        ? "Choose an eligible location in staging. Check its travel cost before continuing."
+        : allActiveLocations(s).length
+          ? "Continue to the encounter phase after exploring the active locations."
+          : "Continue to the encounter phase when you are ready.";
     case "encounter":
       return s.scenarioId === "anduin" && s.stage === 2
         ? "You may engage one enemy. Automatic engagement checks are skipped on the river."
@@ -3583,9 +4093,11 @@ function phaseHelp(s: GameState) {
     case "defense":
       return "Each enemy attacks once. Assign a ready defender; its defense reduces incoming damage.";
     case "attack":
-      return s.table
-        ? "Declare an attack with your ready characters. Other Ranged characters may join. Each fellowship may attack each eligible enemy once."
-        : "Select an enemy and combine ready characters to attack it. Each enemy can be attacked once.";
+      return s.earlyAttackPlayers?.length
+        ? "Oath of Eorl lets this fellowship attack before enemy attacks. Finish these attacks to continue the combat sequence."
+        : s.table
+          ? "Declare an attack with your ready characters. Other Ranged characters may join. Each fellowship may attack each eligible enemy once."
+          : "Select an enemy and combine ready characters to attack it. Each enemy can be attacked once.";
     case "refresh":
       return "The fellowship has readied. Prepare for another round beneath the trees.";
   }
@@ -3594,23 +4106,38 @@ function BoardCard({
   s,
   u,
   inspect,
+  inspectCard,
   action,
   actionLabel,
+  actionDisabled,
+  dispatch,
 }: {
   s: GameState;
   u: Unit;
   inspect: () => void;
+  inspectCard: (c: Card) => void;
   action?: () => void;
   actionLabel?: string;
+  actionDisabled?: string | null;
+  dispatch?: (a: Action) => unknown;
 }) {
   const c = card(u.code);
+  const consideredPlayers = livingSeats(s).filter((player) =>
+    consideredEngaged(s, u, player),
+  );
+  const consideredLabel = consideredPlayers.length
+    ? `Considered engaged with ${consideredPlayers
+        .map((player) => (s.table ? `Player ${player + 1}` : "your fellowship"))
+        .join(" · ")}`
+    : "Considered engaged at threat 1 or higher";
   const damageRef = useDamageFeedback(u.damage);
   return (
     <MovingCard
       id={u.id}
-      className={`board-card ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
+      className={`board-card ${u.code === SHADOW_FLAME.bane && !u.blanked && s.staging.some((e) => e.id === u.id) ? "considered-enemy" : ""} ${u.attachments.length ? "has-attachments" : ""} ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
     >
       <ShadowCards count={u.shadows.length} />
+      <AttachmentStack u={u} inspect={inspectCard} />
       <button
         ref={damageRef}
         className="board-card-art"
@@ -3620,7 +4147,7 @@ function BoardCard({
           c.type_code === "enemy"
             ? `${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`
             : c.type_code === "location"
-              ? `${u.progress} of ${c.quest} progress.`
+              ? `${u.progress} of ${locationQuest(s, u)} progress.`
               : undefined
         }
       >
@@ -3628,21 +4155,53 @@ function BoardCard({
         <span className="card-table-tokens">
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
+          {(u.code === CARROCK.grimbeorn || u.code === DEAD.gollum) && (
+            <TableToken kind="resource" value={u.resources} />
+          )}
         </span>
       </button>
+      {u.code === SHADOW_FLAME.bane &&
+        s.staging.some((e) => e.id === u.id) &&
+        !u.blanked && (
+          <div
+            className="engaged-owner considered-engagement"
+            aria-label={consideredLabel}
+            title={consideredLabel}
+          >
+            Considered engaged
+            <span>
+              {consideredPlayers.length
+                ? s.table
+                  ? `${consideredPlayers.length === 1 ? "Player" : "Players"} ${consideredPlayers.map((player) => player + 1).join(", ")}`
+                  : "Your fellowship"
+                : "At threat 1 or higher"}
+            </span>
+          </div>
+        )}
       {s.table && allEngaged(s).some((e) => e.id === u.id) && (
         <div className="engaged-owner">
           Engaged with {seatName(s, ownerOf(s, u))}
         </div>
       )}
       {s.phase === "defense" &&
-        (u.feinted || u.attachments.some((a) => a.code === "01069")) && (
-          <div className="engaged-owner">Enemy attack prevented</div>
-        )}
+        c.type_code === "enemy" &&
+        enemyAttackPrevented(
+          s,
+          u,
+          allEngaged(s).some((e) => e.id === u.id)
+            ? ownerOf(s, u)
+            : activeSeat(s),
+        ) && <div className="engaged-owner">Enemy attack prevented</div>}
       <div className="card-modifiers" aria-label="Modified card values">
         {threatOf(s, u) !== (c.threat ?? 0) && (
           <StatBadge kind="threat" value={threatOf(s, u)} />
         )}
+        {c.type_code === "enemy" &&
+          engagementCost(s, u) !== (c.engagement ?? 0) && (
+            <span className="engaged-owner">
+              Engagement cost {engagementCost(s, u)}
+            </span>
+          )}
         {c.type_code === "enemy" && stats(s, u).attack !== (c.attack ?? 0) && (
           <StatBadge kind="attack" value={stats(s, u).attack} />
         )}
@@ -3651,6 +4210,17 @@ function BoardCard({
             <StatBadge kind="defense" value={stats(s, u).defense} />
           )}
       </div>
+      {c.type_code === "attachment" &&
+        c.traits?.split(".").some((trait) => trait.trim() === "Trap") && (
+          <div className="objective-status">
+            <span>
+              {u.blanked
+                ? "Trap in staging · printed ability blank"
+                : "Trap in staging · awaiting an eligible enemy"}
+              {s.table ? ` · ${seatName(s, u.owner ?? 0)}` : ""}
+            </span>
+          </div>
+        )}
       {c.type_code === "objective" && (
         <div className="objective-status">
           <span>
@@ -3663,11 +4233,32 @@ function BoardCard({
         <button
           className="card-action"
           onClick={action}
-          disabled={!!s.flow?.pending || !!s.choice}
+          disabled={!!actionDisabled || !!s.flow?.pending || !!s.choice}
+          title={actionDisabled ?? undefined}
         >
           {actionLabel}
           <ArrowRight size={12} />
         </button>
+      )}
+      {dispatch && availableAbilities(s, u).length > 0 && (
+        <div className="abilities">
+          {availableAbilities(s, u).map((a, i) => (
+            <button
+              key={a.id ?? i}
+              disabled={
+                a.disabled ||
+                !!s.flow?.pending ||
+                !!s.choice ||
+                s.phase === "setup"
+              }
+              onClick={() =>
+                dispatch({ type: "ABILITY", id: u.id, attachmentId: a.id })
+              }
+            >
+              <Sparkle size={11} /> {a.label}
+            </button>
+          ))}
+        </div>
       )}
     </MovingCard>
   );
@@ -3686,7 +4277,13 @@ function CharacterCard({
   dispatch: (a: Action) => unknown;
 }) {
   const c = card(u.code),
-    selected = s.committedIds.includes(u.id) || u.committed;
+    selected = s.committedIds.includes(u.id) || u.committed,
+    canQuest =
+      canCommit(s, u) &&
+      !s.escapeTest &&
+      !s.flow?.pending &&
+      !s.choice &&
+      (!s.table || s.table.active === s.table.turn);
   const damageRef = useDamageFeedback(u.damage);
   return (
     <MovingCard
@@ -3699,29 +4296,13 @@ function CharacterCard({
         className="character-art"
         aria-description={`${u.exhausted ? "Exhausted. " : "Ready. "}${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`}
         onClick={
-          s.phase === "quest" &&
-          !s.flow?.pending &&
-          !s.choice &&
-          !u.exhausted &&
-          (!s.table || s.table.active === s.table.turn)
+          canQuest
             ? () => dispatch({ type: "TOGGLE_QUEST", id: u.id })
             : inspect
         }
-        aria-pressed={
-          s.phase === "quest" &&
-          !s.flow?.pending &&
-          !s.choice &&
-          !u.exhausted &&
-          (!s.table || s.table.active === s.table.turn)
-            ? selected
-            : undefined
-        }
+        aria-pressed={canQuest ? selected : undefined}
         aria-label={
-          s.phase === "quest" &&
-          !s.flow?.pending &&
-          !s.choice &&
-          !u.exhausted &&
-          (!s.table || s.table.active === s.table.turn)
+          canQuest
             ? `${selected ? "Unselect" : "Commit"} ${name(u)}`
             : `Inspect ${name(u)}`
         }
@@ -3737,7 +4318,9 @@ function CharacterCard({
           </span>
         )}
         <span className="card-table-tokens">
-          {c.type_code === "hero" && (
+          {(c.type_code === "hero" ||
+            u.code === CARROCK.grimbeorn ||
+            u.code === "02059") && (
             <TableToken kind="resource" value={u.resources} />
           )}
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
@@ -3752,11 +4335,21 @@ function CharacterCard({
         <Info size={17} />
       </button>
       <Stats s={s} u={u} />
+      {isSacked(u) && (
+        <div className="engaged-owner">
+          Sacked! · Cannot quest, fight or use own ability
+        </div>
+      )}
       <div className="abilities">
         {availableAbilities(s, u).map((a, i) => (
           <button
             key={a.id ?? i}
-            disabled={a.disabled || !!s.flow?.pending || !!s.choice}
+            disabled={
+              a.disabled ||
+              (s.phase === "setup" && !s.escapeTest) ||
+              !!s.flow?.pending ||
+              !!s.choice
+            }
             onClick={() =>
               dispatch({ type: "ABILITY", id: u.id, attachmentId: a.id })
             }

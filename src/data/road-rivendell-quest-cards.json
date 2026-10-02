@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9001",
+    "name": "Along the Misty Mountains",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Put Arwen Undomiel into play under the control of the first player. Shuffle the encounter deck. Reveal 1 card from the encounter deck per player, and add them to the staging area.",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 38,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Road to Rivendell",
+    "side": "A",
+    "back_name": "Along the Misty Mountains",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9001.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 38,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9003",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9003",
+    "name": "Approaching Rivendell",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 40,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Road to Rivendell",
+    "side": "A",
+    "back_name": "Approaching Rivendell",
+    "back_text": "When Revealed: Reveal 1 card from the encounter deck per player, and add it to the staging area.  Characters cannot be healed.  If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 13,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9003.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9003.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9003",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9003.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801209c9017",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801209c9017",
+    "name": "Orc Outpost",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "RtR",
+    "pack_name": "Road to Rivendell",
+    "position": 39,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Road to Rivendell",
+    "side": "A",
+    "back_name": "Orc Outpost",
+    "back_text": "When Revealed: Search the encounter deck and discard pile for Goblin Gate and add it to the staging area, if able. Then, if there is no active location, Goblin Gate becomes the active location.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9017.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9017.jpg",
+    "packs": [
+      {
+        "pack_code": "RtR",
+        "pack_name": "Road to Rivendell",
+        "position": 39,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801209c9017",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801209c9017.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

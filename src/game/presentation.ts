@@ -1,4 +1,6 @@
+import { allActiveLocations } from "./table";
 import { card } from "./cards";
+import { locationQuest } from "./core";
 import { activeSeat, seatIndices, seatName, seatView } from "./table";
 import type {
   Action,
@@ -10,6 +12,7 @@ import type {
 } from "./types";
 
 export const phaseLabel: Record<GameState["phase"], string> = {
+  resource: "Resource actions",
   setup: "Opening hands",
   planning: "Planning",
   quest: "Commit to the quest",
@@ -77,15 +80,17 @@ export function observe(
           ? { Attack: String(stats.attack), Defense: String(stats.defense) }
           : {}),
         ...(c.type_code === "location"
-          ? { Progress: `${u.progress} / ${c.quest ?? 0}` }
+          ? { Progress: `${u.progress} / ${locationQuest(s, u)}` }
           : {}),
         ...((enemy || c.type_code === "location") && getThreat
           ? { Threat: String(getThreat(s, u)) }
           : {}),
         Attachments:
           u.attachments
-            .map(
-              (a) => `${card(a.code).name}${a.exhausted ? " (exhausted)" : ""}`,
+            .map((a) =>
+              a.facedown
+                ? "Facedown attachment"
+                : `${card(a.code).name}${a.exhausted ? " (exhausted)" : ""}${a.resourceTokens !== undefined ? ` (${a.resourceTokens} resources)` : ""}`,
             )
             .join(", ") || "None",
       },
@@ -107,7 +112,8 @@ export function observe(
     for (const u of p.hand) hands[u.id] = { code: u.code, owner: label };
   }
   for (const u of s.staging) add(u, "Staging area");
-  if (s.activeLocation) add(s.activeLocation, "Active location");
+  for (const location of allActiveLocations(s))
+    add(location, "Active location");
   if (s.prisoner) add(s.prisoner, "Prisoner");
   if (s.captiveMendor) add(s.captiveMendor, "Captive");
   if (s.combat) {
@@ -386,6 +392,7 @@ export function recordObservation(
           PLAY: "Card played",
           ABILITY: "Ability used",
           COMMIT: "Characters committed",
+          RESOLVE_ESCAPE: "Escape test",
           DEFEND: "Defense declared",
           ATTACK: "Attack declared",
           TRAVEL: "A new path",

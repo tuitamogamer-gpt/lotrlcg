@@ -1930,6 +1930,14 @@ body {
   .redbook .seat-section-heading small {
     display: block;
     font-size: var(--text-small);
+    flex-basis: 100%;
+  }
+  .redbook .seat-section-heading {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .redbook .seat-section-heading > span {
+    flex-shrink: 0;
   }
 }
 

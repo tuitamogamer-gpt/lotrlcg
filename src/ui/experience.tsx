@@ -1,3 +1,4 @@
+import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { AnimatedNumber, CardPresence, MovingCard } from "./motion";
@@ -13,27 +14,49 @@ import {
   Pause,
   Shield,
   Stack,
+  Sword,
   X,
 } from "@phosphor-icons/react";
 import { card, name } from "../game/cards";
 import {
   canPlay,
+  availableAbilities,
+  canCommit,
+  stats,
+  stageInfo,
   needsTarget,
   playTargets,
   questWill,
   responseCards,
   stagingThreat,
+  threatOf,
   hasClue,
 } from "../game/engine";
 import {
   activeSeat,
+  allActiveLocations,
   allHeroes,
   allCharacters,
   allEngaged,
   livingSeats,
+  ownerOf,
   seatName,
 } from "../game/table";
 import type { Action, GameState, Unit } from "../game/types";
+import { emynMuilMustCommit } from "../game/emyn-muil";
+import { RHOS } from "../game/rhosgobel";
+import { ROAD } from "../game/road-rivendell";
+import { WATCHER_WATER } from "../game/watcher-water";
+import { DEAD, deadMarshesEscapeStrength } from "../game/dead-marshes";
+import { KHAZAD } from "../game/khazad-dum";
+import { returnMirkwoodGuard } from "../game/return-mirkwood";
+
+const requiredQuestSelections = (s: GameState) =>
+  s.phase === "quest" && emynMuilMustCommit(s)
+    ? allCharacters(s).filter(
+        (u) => canCommit(s, u) && !s.committedIds.includes(u.id),
+      ).length
+    : 0;
 
 export function playReason(s: GameState, u: Unit): string | null {
   return (
@@ -69,48 +92,80 @@ export function usePreference<T extends string>(
 const offTurn = (s: GameState) =>
   s.table &&
   s.table.active !== s.table.turn &&
-  ["setup", "planning", "quest", "encounter", "defense", "attack"].includes(
-    s.phase,
-  );
+  [
+    "setup",
+    "resource",
+    "planning",
+    "quest",
+    "encounter",
+    "defense",
+    "attack",
+  ].includes(s.phase);
 export const nextAction = (s: GameState): Action | null =>
   s.flow?.pending
     ? null
-    : offTurn(s)
-      ? { type: "SELECT_SEAT", seat: s.table!.turn }
-      : s.choice || s.status !== "playing"
+    : s.escapeTest
+      ? s.choice ||
+        s.status !== "playing" ||
+        s.escapeTest.phase === "committing"
         ? null
-        : s.phase === "setup"
-          ? { type: "KEEP" }
-          : s.phase === "quest"
-            ? { type: "COMMIT" }
-            : s.phase === "defense"
-              ? null
-              : s.phase === "attack"
-                ? { type: "END_ATTACKS" }
-                : { type: "NEXT" };
+        : { type: "RESOLVE_ESCAPE" }
+      : offTurn(s)
+        ? { type: "SELECT_SEAT", seat: s.table!.turn }
+        : s.choice || s.status !== "playing"
+          ? null
+          : s.phase === "setup"
+            ? { type: "KEEP" }
+            : s.phase === "quest"
+              ? requiredQuestSelections(s)
+                ? null
+                : { type: "COMMIT" }
+              : s.phase === "defense"
+                ? null
+                : s.phase === "attack"
+                  ? { type: "END_ATTACKS" }
+                  : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
-  offTurn(s)
-    ? `Continue as Player ${s.table!.turn + 1}`
-    : s.table && ["planning", "quest", "encounter", "attack"].includes(s.phase)
-      ? {
-          planning: "Finish planning",
-          quest: "Commit this fellowship",
-          encounter: "Finish engagement choices",
-          attack: "Finish attacks",
-        }[s.phase as "planning" | "quest" | "encounter" | "attack"]
-      : {
-          setup: "Keep hand",
-          planning: "Begin quest",
-          quest: "Commit & reveal",
-          staging: "Resolve quest",
-          travel: s.activeLocation
-            ? "Continue to encounter"
-            : "Continue without travel",
-          encounter: "Engagement checks",
-          defense: "Choose an enemy",
-          attack: "Finish combat",
-          refresh: "Begin next round",
-        }[s.phase];
+  s.escapeTest
+    ? s.escapeTest.phase === "preparing"
+      ? "Begin escape test"
+      : s.escapeTest.phase === "actions"
+        ? "Resolve escape test"
+        : "Choose escape characters"
+    : offTurn(s)
+      ? `Continue as Player ${s.table!.turn + 1}`
+      : s.phase === "attack" && s.earlyAttackPlayers?.length
+        ? "Continue to enemy attacks"
+        : requiredQuestSelections(s) > 0
+          ? `Select ${requiredQuestSelections(s)} more characters`
+          : s.table &&
+              ["resource", "planning", "quest", "encounter", "attack"].includes(
+                s.phase,
+              )
+            ? {
+                resource: "Finish resource actions",
+                planning: "Finish planning",
+                quest: "Commit this fellowship",
+                encounter: "Finish engagement choices",
+                attack: "Finish attacks",
+              }[
+                s.phase as
+                  "resource" | "planning" | "quest" | "encounter" | "attack"
+              ]
+            : {
+                setup: "Keep hand",
+                resource: "Begin planning",
+                planning: "Begin quest",
+                quest: "Commit & reveal",
+                staging: "Resolve quest",
+                travel: allActiveLocations(s).length
+                  ? "Continue to encounter"
+                  : "Continue without travel",
+                encounter: "Engagement checks",
+                defense: "Choose an enemy",
+                attack: "Finish combat",
+                refresh: "Begin next round",
+              }[s.phase];
 export function TurnActions({
   s,
   dispatch,
@@ -134,6 +189,25 @@ export function TurnActions({
         </button>
       </div>
     );
+  if (s.escapeTest)
+    return (
+      <div className="turn-actions escape-turn-actions">
+        <p>
+          {s.escapeTest.phase === "preparing"
+            ? "You may use actions before choosing characters for this escape test."
+            : s.escapeTest.phase === "actions"
+              ? "You may play events and use abilities before dealing escape cards."
+              : "Finish choosing ready characters in the escape dialog."}
+        </p>
+        <button
+          className="primary"
+          disabled={!action}
+          onClick={() => action && dispatch(action)}
+        >
+          {nextLabel(s)} <ArrowRight size={18} />
+        </button>
+      </div>
+    );
   if (s.table?.seats[activeSeat(s)].eliminated || offTurn(s))
     return (
       <div className="turn-actions">
@@ -153,10 +227,18 @@ export function TurnActions({
     );
   const mandatoryTravel =
     s.phase === "travel" &&
-    !s.activeLocation &&
+    !allActiveLocations(s).length &&
     s.staging.some((u) => u.code === "01088");
   return (
     <div className="turn-actions">
+      {s.phase === "quest" && emynMuilMustCommit(s) && (
+        <p className="mandatory-quest-note" role="status">
+          The Falls of Rauros: select every eligible ready character.
+          {requiredQuestSelections(s) > 0
+            ? ` ${requiredQuestSelections(s)} still to select.`
+            : " All required characters are selected."}
+        </p>
+      )}
       {s.phase === "setup" && (
         <button
           className="secondary mulligan-button"
@@ -208,6 +290,54 @@ export function TurnActions({
     </div>
   );
 }
+export function EscapeTestSummary({ s }: { s: GameState }) {
+  const test = s.escapeTest;
+  if (!test) return null;
+  const committed = allCharacters(s).filter((u) =>
+    test.committedIds.includes(u.id),
+  );
+  return (
+    <section
+      className="escape-test-summary"
+      aria-label="Escape test"
+      aria-live="polite"
+    >
+      <div>
+        <strong>{card(test.source).name} · Escape test</strong>
+        <span>
+          {deadMarshesEscapeStrength(s)} committed{" "}
+          {test.attack ? "attack" : "willpower"} · {test.count} escape{" "}
+          {test.count === 1 ? "card" : "cards"}
+        </span>
+      </div>
+      <div className="escape-participants">
+        {test.participants.map((player) => {
+          const characters = committed.filter((u) => ownerOf(s, u) === player);
+          const strength = characters.reduce(
+            (sum, u) => sum + stats(s, u)[test.attack ? "attack" : "will"],
+            0,
+          );
+          return (
+            <span key={player}>
+              <strong>
+                {s.table ? `Player ${player + 1}` : "Your fellowship"}
+              </strong>
+              {characters.length} committed · {strength}{" "}
+              {test.attack ? "attack" : "willpower"}
+            </span>
+          );
+        })}
+      </div>
+      <p>
+        {test.phase === "preparing"
+          ? "Choose ready heroes or allies to resist the escape. They exhaust when committed."
+          : test.phase === "actions"
+            ? "Use actions or events, then resolve to deal escape cards."
+            : "Select escape characters in the current choice, then confirm when finished."}
+      </p>
+    </section>
+  );
+}
 export function QuestForecast({ s }: { s: GameState }) {
   const will = questWill(s),
     threat = stagingThreat(s),
@@ -219,15 +349,20 @@ export function QuestForecast({ s }: { s: GameState }) {
         ? s.table.seats.some((p) => p.committedIds.includes(u.id))
         : s.committedIds.includes(u.id)),
   ).length;
+  const stat = druadanPlayerQuestStat(s);
+  const statLabel =
+    stat === "attack" ? "Attack" : stat === "defense" ? "Defense" : "Willpower";
+  const StatIcon =
+    stat === "attack" ? Sword : stat === "defense" ? Shield : Feather;
   return (
     <div className="forecast" aria-label="Quest forecast">
       <div className="forecast-numbers">
         <span>
-          <Feather size={17} />
+          <StatIcon size={17} />
           <strong>
             <AnimatedNumber value={will} />
           </strong>
-          <small>Willpower</small>
+          <small>{statLabel}</small>
         </span>
         <span className="forecast-vs">vs</span>
         <span>
@@ -247,7 +382,7 @@ export function QuestForecast({ s }: { s: GameState }) {
           ? `+${net} potential progress`
           : net < 0
             ? `+${-net} potential threat`
-            : "Willpower matches threat"}
+            : `${statLabel} matches threat`}
       </p>
       <small>
         {s.phase === "quest"
@@ -261,12 +396,14 @@ export function Hand({
   s,
   inspect,
   play,
+  dispatch,
   art,
   onPiles,
 }: {
   s: GameState;
   inspect: (u: Unit) => void;
   play: (u: Unit) => void;
+  dispatch: (a: Action) => unknown;
   art: (u: Unit) => ReactNode;
   onPiles: () => void;
 }) {
@@ -277,9 +414,11 @@ export function Hand({
     "type",
   ] as const);
   const [onlyPlayable, setOnlyPlayable] = useState(false);
-  const playable = s.hand.filter((u) => !playReason(s, u)).length;
+  const handActionable = (u: Unit) =>
+    !playReason(s, u) || availableAbilities(s, u).some((a) => !a.disabled);
+  const playable = s.hand.filter(handActionable).length;
   const cards = [...s.hand]
-    .filter((u) => !onlyPlayable || !playReason(s, u))
+    .filter((u) => !onlyPlayable || handActionable(u))
     .sort((a, b) =>
       sort === "cost"
         ? (Number(card(a.code).cost) || 0) - (Number(card(b.code).cost) || 0)
@@ -341,7 +480,7 @@ export function Hand({
                 key={u.id}
                 id={u.id}
                 order={i}
-                className={`hand-card ${reason ? "" : "playable"}`}
+                className={`hand-card ${handActionable(u) ? "playable" : ""}`}
               >
                 <button
                   className="hand-art"
@@ -372,6 +511,22 @@ export function Hand({
                     )}
                   </button>
                 )}
+                {availableAbilities(s, u).map((a) => (
+                  <button
+                    key={a.id ?? a.label}
+                    className="hand-play hand-ability"
+                    disabled={a.disabled || !!s.choice || !!s.flow?.pending}
+                    onClick={() =>
+                      dispatch({
+                        type: "ABILITY",
+                        id: u.id,
+                        attachmentId: a.id,
+                      })
+                    }
+                  >
+                    {a.label}
+                  </button>
+                ))}
               </MovingCard>
             );
           })}
@@ -482,6 +637,14 @@ export function QuestGoals({ s }: { s: GameState }) {
   const objectives = allHeroes(s)
     .flatMap((h) => h.attachments)
     .filter((a) => ["01108", "01109", "01110"].includes(a.code)).length;
+  const fear = [...s.staging, ...allEngaged(s)].find(
+    (u) => u.code === KHAZAD.nameless,
+  );
+  const eagle = allCharacters(s).find((u) => u.code === RHOS.wilyador);
+  const athelas = allHeroes(s)
+    .flatMap((h) => h.attachments)
+    .filter((a) => a.code === RHOS.athelas).length;
+  const gollum = s.staging.find((u) => u.code === DEAD.gollum);
   const goals =
     s.scenarioId === "anduin"
       ? s.stage === 1
@@ -527,22 +690,416 @@ export function QuestGoals({ s }: { s: GameState }) {
                 ? [{ label: "Place 8 progress on the trail", done: false }]
                 : []),
             ]
-          : s.stage === 3
-            ? [
-                {
-                  label:
-                    s.branch === "spider"
-                      ? "Defeat Ungoliant’s Spawn"
-                      : "Keep Ungoliant’s Spawn out of play",
-                  done:
-                    s.branch === "spider"
-                      ? s.status === "won"
-                      : !s.staging
-                          .concat(allEngaged(s))
-                          .some((u) => u.code === "01076"),
-                },
-              ]
-            : [];
+          : s.scenarioId === "conflict-at-the-carrock"
+            ? s.stage === 1
+              ? [
+                  {
+                    label: "Place 7 quest progress to activate The Carrock",
+                    done: s.progress >= 7,
+                  },
+                ]
+              : [
+                  { label: "Place 1 quest progress", done: s.progress >= 1 },
+                  {
+                    label: `Trolls remaining · ${[...s.staging, ...allEngaged(s)].filter((u) => card(u.code).type_code === "enemy" && card(u.code).traits?.includes("Troll")).length}`,
+                    done: ![...s.staging, ...allEngaged(s)].some(
+                      (u) =>
+                        card(u.code).type_code === "enemy" &&
+                        card(u.code).traits?.includes("Troll"),
+                    ),
+                  },
+                ]
+            : s.scenarioId === "journey-to-rhosgobel"
+              ? [
+                  {
+                    label: `Wilyador · ${eagle ? Math.max(0, stats(s, eagle).health - eagle.damage) : 0}/${eagle ? stats(s, eagle).health : 20} HP`,
+                    done: !!eagle && eagle.damage < stats(s, eagle).health,
+                  },
+                  {
+                    label: `Athelas held · ${athelas} (${athelas * 5} healing)`,
+                    done: !!eagle && athelas * 5 >= eagle.damage,
+                  },
+                  ...(s.stage === 3
+                    ? [
+                        {
+                          label: "Heal every Wilyador wound",
+                          done: !!eagle && eagle.damage === 0,
+                        },
+                      ]
+                    : [
+                        {
+                          label: `Place ${stageInfo(s).quest} quest progress`,
+                          done: s.progress >= stageInfo(s).quest,
+                        },
+                      ]),
+                  ...(s.staging.some((u) => u.code === RHOS.rhosgobel)
+                    ? [
+                        {
+                          label:
+                            "Rhosgobel in staging prevents Wilyador healing",
+                          done: false,
+                        },
+                      ]
+                    : []),
+                  ...(s.stage === 2
+                    ? [
+                        {
+                          label:
+                            "Healing Wilyador removes its source card from the game",
+                          done: false,
+                        },
+                      ]
+                    : []),
+                ]
+              : s.scenarioId === "dead-marshes"
+                ? [
+                    {
+                      label: gollum
+                        ? `Gollum escape tokens · ${gollum.resources}/8`
+                        : "Gollum has escaped into the encounter deck",
+                      done: !!gollum && gollum.resources < 8,
+                    },
+                    {
+                      label:
+                        s.stage === 1
+                          ? `Place ${stageInfo(s).quest} progress with Gollum in staging`
+                          : "Pass the final capture escape test",
+                      done:
+                        s.stage === 1 &&
+                        !!gollum &&
+                        s.progress >= stageInfo(s).quest,
+                    },
+                  ]
+                : s.scenarioId === "hills-of-emyn-muil"
+                  ? [
+                      {
+                        label: `Victory points · ${s.victory}/20`,
+                        done: s.victory >= 20,
+                      },
+                      {
+                        label: "Explore every Emyn Muil location",
+                        done: ![...s.staging, ...allActiveLocations(s)].some(
+                          (u) =>
+                            card(u.code).type_code === "location" &&
+                            card(u.code).traits?.includes("Emyn Muil"),
+                        ),
+                      },
+                      {
+                        label: "Place 1 quest progress",
+                        done: s.progress >= 1,
+                      },
+                    ]
+                  : s.scenarioId === "return-to-mirkwood"
+                    ? [
+                        {
+                          label: `Gollum's guard · ${returnMirkwoodGuard(s) === undefined ? "No guard" : seatName(s, returnMirkwoodGuard(s)!)}`,
+                          done: returnMirkwoodGuard(s) !== undefined,
+                        },
+                        {
+                          label: `Place ${stageInfo(s).quest} quest progress`,
+                          done: s.progress >= stageInfo(s).quest,
+                        },
+                        ...(s.stage === 2 && livingSeats(s).length > 1
+                          ? [
+                              {
+                                label: "Gollum's guard cannot quest",
+                                done: false,
+                              },
+                            ]
+                          : []),
+                        ...(s.stage === 3
+                          ? [
+                              {
+                                label: "Gollum's guard cannot play cards",
+                                done: false,
+                              },
+                            ]
+                          : []),
+                        ...(s.stage === 4
+                          ? [
+                              {
+                                label: "Defeat every enemy in play",
+                                done: ![...s.staging, ...allEngaged(s)].some(
+                                  (u) => card(u.code).type_code === "enemy",
+                                ),
+                              },
+                            ]
+                          : []),
+                      ]
+                    : s.scenarioId === "into-the-pit"
+                      ? [
+                          {
+                            label: `Place ${stageInfo(s).quest} quest progress${s.stage === 2 ? " or defeat every enemy" : ""}`,
+                            done:
+                              s.progress >= stageInfo(s).quest ||
+                              (s.stage === 2 &&
+                                ![...s.staging, ...allEngaged(s)].some(
+                                  (u) => card(u.code).type_code === "enemy",
+                                )),
+                          },
+                          ...(s.stage === 1
+                            ? [
+                                {
+                                  label: "Explore the Bridge of Khazad-dûm",
+                                  done: !!s.khazad?.victoryCards.includes(
+                                    KHAZAD.bridge,
+                                  ),
+                                },
+                              ]
+                            : []),
+                          ...(s.stage === 3
+                            ? [
+                                {
+                                  label:
+                                    "Heroes collect no resources during the resource phase",
+                                  done: false,
+                                },
+                              ]
+                            : []),
+                        ]
+                      : s.scenarioId === "the-seventh-level"
+                        ? [
+                            {
+                              label: `Place ${stageInfo(s).quest} quest progress`,
+                              done: s.progress >= stageInfo(s).quest,
+                            },
+                            ...(s.stage === 1
+                              ? [
+                                  {
+                                    label: `Book of Mazarbul · ${allHeroes(s).find((h) => h.attachments.some((a) => a.code === KHAZAD.book))?.code ? name(allHeroes(s).find((h) => h.attachments.some((a) => a.code === KHAZAD.book))!) : "Unclaimed"}`,
+                                    done: allHeroes(s).some((h) =>
+                                      h.attachments.some(
+                                        (a) => a.code === KHAZAD.book,
+                                      ),
+                                    ),
+                                  },
+                                ]
+                              : []),
+                          ]
+                        : s.scenarioId === "flight-from-moria"
+                          ? [
+                              {
+                                label: fear
+                                  ? `The Nameless Fear · ${stats(s, fear).attack} attack / ${stats(s, fear).defense} defense / ${threatOf(s, fear)} threat`
+                                  : "The Nameless Fear is not in staging",
+                                done: false,
+                              },
+                              {
+                                label: `Quest routes remaining · ${s.khazad?.questDeck.length ?? 0}`,
+                                done: false,
+                              },
+                              ...(s.khazad?.questSide === "A" && s.stage === 2
+                                ? [
+                                    {
+                                      label:
+                                        "Turn this route over at the beginning of staging",
+                                      done: false,
+                                    },
+                                  ]
+                                : []),
+                              ...(s.khazad?.activeQuest === KHAZAD.darkness &&
+                              s.khazad.questSide === "B"
+                                ? [
+                                    {
+                                      label: `Abandoned Tools · ${s.progress}/${stageInfo(s).quest} progress during refresh`,
+                                      done: s.progress >= stageInfo(s).quest,
+                                    },
+                                  ]
+                                : []),
+                              ...(s.khazad?.activeQuest === KHAZAD.blocked &&
+                              s.khazad.questSide === "B"
+                                ? [
+                                    {
+                                      label: `Escape at ${stageInfo(s).quest} progress`,
+                                      done: s.progress >= stageInfo(s).quest,
+                                    },
+                                  ]
+                                : []),
+                            ]
+                          : s.scenarioId === "redhorn-gate"
+                            ? [
+                                {
+                                  label: `Place ${stageInfo(s).quest} quest progress`,
+                                  done: s.progress >= stageInfo(s).quest,
+                                },
+                                {
+                                  label: "Keep Arwen Undómiel in play",
+                                  done: allCharacters(s).some(
+                                    (u) =>
+                                      card(u.code)
+                                        .name.normalize("NFD")
+                                        .replace(/[\u0300-\u036f]/g, "") ===
+                                        "Arwen Undomiel" &&
+                                      card(u.code).type_code ===
+                                        "objective-ally",
+                                  ),
+                                },
+                                ...(s.stage === 3
+                                  ? [
+                                      {
+                                        label: `Victory points · ${s.victory}/5`,
+                                        done: s.victory >= 5,
+                                      },
+                                      {
+                                        label:
+                                          "Characters with 0 willpower are discarded",
+                                        done: false,
+                                      },
+                                    ]
+                                  : []),
+                              ]
+                            : s.scenarioId === "road-to-rivendell"
+                              ? [
+                                  {
+                                    label: `Place ${stageInfo(s).quest} quest progress`,
+                                    done: s.progress >= stageInfo(s).quest,
+                                  },
+                                  {
+                                    label: "Keep Arwen Undómiel in play",
+                                    done: allCharacters(s).some(
+                                      (u) => u.code === ROAD.arwen,
+                                    ),
+                                  },
+                                  ...(allActiveLocations(s).some(
+                                    (u) => u.code === ROAD.gate,
+                                  )
+                                    ? [
+                                        {
+                                          label:
+                                            "Goblin Gate: the first revealed enemy each round ambushes the fellowship",
+                                          done: false,
+                                        },
+                                      ]
+                                    : []),
+                                  ...(s.stage === 3
+                                    ? [
+                                        {
+                                          label:
+                                            "Characters cannot be healed during this stage",
+                                          done: false,
+                                        },
+                                      ]
+                                    : []),
+                                ]
+                              : s.scenarioId === "shadow-and-flame"
+                                ? [
+                                    ...(stageInfo(s).quest > 0
+                                      ? [
+                                          {
+                                            label: `Place ${stageInfo(s).quest} quest progress`,
+                                            done:
+                                              s.progress >= stageInfo(s).quest,
+                                          },
+                                        ]
+                                      : []),
+                                    {
+                                      label:
+                                        "Durin’s Bane is considered engaged with each player at threat 1 or higher",
+                                      done: false,
+                                    },
+                                    ...(s.stage === 3
+                                      ? [
+                                          {
+                                            label:
+                                              "Dark Pit: during refresh, exhaust 1–3 ready characters and discard that many deck cards",
+                                            done: false,
+                                          },
+                                          {
+                                            label:
+                                              "Their total printed cost must exceed Durin’s Bane’s remaining hit points",
+                                            done: false,
+                                          },
+                                        ]
+                                      : []),
+                                  ]
+                                : s.scenarioId === "the-long-dark"
+                                  ? [
+                                      {
+                                        label: `Place ${stageInfo(s).quest} quest progress`,
+                                        done: s.progress >= stageInfo(s).quest,
+                                      },
+                                      ...(s.stage === 1
+                                        ? [
+                                            {
+                                              label:
+                                                "Each location has +1 threat during this stage",
+                                              done: false,
+                                            },
+                                          ]
+                                        : []),
+                                      {
+                                        label: s.longDark?.locate
+                                          ? `${s.longDark.locate.source} · Locate test in progress`
+                                          : "Locate: discard one own hand card per attempt; an encounter card marked PASS passes",
+                                        done: false,
+                                      },
+                                    ]
+                                  : s.scenarioId === "watcher-in-the-water"
+                                    ? [
+                                        {
+                                          label: `Place ${stageInfo(s).quest} quest progress`,
+                                          done:
+                                            s.progress >= stageInfo(s).quest,
+                                        },
+                                        ...(s.stage === 2
+                                          ? [
+                                              {
+                                                label: `Victory points · ${s.victory}/3`,
+                                                done: s.victory >= 3,
+                                              },
+                                              {
+                                                label:
+                                                  "Defeat The Watcher or open Doors of Durin",
+                                                done: (
+                                                  s.victoryCards ?? []
+                                                ).some((code) =>
+                                                  [
+                                                    WATCHER_WATER.watcher,
+                                                    WATCHER_WATER.doors,
+                                                  ].includes(code),
+                                                ),
+                                              },
+                                              {
+                                                label:
+                                                  "Doors: discard cards matching the encounter card's first letter",
+                                                done: false,
+                                              },
+                                            ]
+                                          : []),
+                                        ...(allCharacters(s).some((u) =>
+                                          u.attachments.some(
+                                            (a) =>
+                                              a.code === WATCHER_WATER.wrapped,
+                                          ),
+                                        )
+                                          ? [
+                                              {
+                                                label:
+                                                  "Rescue Wrapped heroes during combat before the round ends",
+                                                done: false,
+                                              },
+                                            ]
+                                          : []),
+                                      ]
+                                    : s.scenarioId === "mirkwood" &&
+                                        s.stage === 3
+                                      ? [
+                                          {
+                                            label:
+                                              s.branch === "spider"
+                                                ? "Defeat Ungoliant’s Spawn"
+                                                : "Keep Ungoliant’s Spawn out of play",
+                                            done:
+                                              s.branch === "spider"
+                                                ? s.status === "won"
+                                                : !s.staging
+                                                    .concat(allEngaged(s))
+                                                    .some(
+                                                      (u) => u.code === "01076",
+                                                    ),
+                                          },
+                                        ]
+                                      : [];
   return goals.length ? (
     <div className="quest-goals">
       {goals.map((g) => (

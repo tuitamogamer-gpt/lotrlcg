@@ -1,7 +1,8 @@
+import { applyAction } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS } from "../src/game/cards";
-import { applyAction, createGame } from "../src/game/engine";
+import { createGame } from "../src/game/engine";
 import { selectSeat } from "../src/game/table";
 import type { GameState, Unit } from "../src/game/types";
 import { coachTip } from "../src/ui/coach";
@@ -85,4 +86,34 @@ test("engagement coaching warns that already engaged enemies still attack", () =
   s.staging = [];
   s.engaged = [unit(s, "01089")];
   assert.match(coachTip(s)!.text, /Already engaged enemies still attack/);
+});
+
+test("coaching respects mandatory Rauros commitment and does not reserve a defender", () => {
+  const s = base();
+  s.scenarioId = "hills-of-emyn-muil";
+  s.phase = "quest";
+  s.activeLocation = unit(s, "octgn:51223bd0-ffd1-11df-a976-0801204c9011");
+  s.engaged = [unit(s, "01082")];
+  s.committedIds = s.heroes.map((h) => h.id);
+  assert.match(coachTip(s)!.title, /All required questers/);
+  assert.doesNotMatch(coachTip(s)!.text, /defender uncommitted/);
+  s.committedIds.pop();
+  assert.match(coachTip(s)!.title, /Every ready character/);
+});
+test("travel coaching never recommends immune Carrock or unpaid travel costs", () => {
+  const s = base();
+  s.phase = "travel";
+  s.activeLocation = null;
+  s.hand = [];
+  s.staging = [
+    unit(s, "octgn:51223bd0-ffd1-11df-a976-0801202c9027"),
+    unit(s, "01094"),
+  ];
+  assert.match(coachTip(s)!.title, /No location/);
+});
+test("Amon Hen staging advice respects its event prohibition", () => {
+  const s = base();
+  s.phase = "staging";
+  s.activeLocation = unit(s, "octgn:51223bd0-ffd1-11df-a976-0801204c9001");
+  assert.match(coachTip(s)!.text, /Amon Hen prevents playing events/);
 });

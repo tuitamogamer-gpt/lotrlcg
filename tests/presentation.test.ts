@@ -1,8 +1,8 @@
+import { applyAction as act } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS } from "../src/game/cards";
 import {
-  applyAction as act,
   createGame,
   restoreSave,
   validateSave,
@@ -194,10 +194,16 @@ test("a quest result waits before moving to travel", () => {
   s = act(s, { type: "NEXT" });
   assert.equal(s.phase, "staging");
   assert.equal(s.flow!.pending!.kind, "quest");
-  assert.equal(s.progress, 2);
+  assert.equal(
+    s.progress,
+    0,
+    "Quest-success responses resolve before progress is placed.",
+  );
+  assert.ok(s.queue.some((e) => e.kind === "questSucceeded"));
   assert.match(s.flow!.pending!.detail, /2 willpower/);
   s = drain(s);
   assert.equal(s.phase, "travel");
+  assert.equal(s.progress, 2);
 });
 test("engagement checks pause per enemy and do not silently start combat", () => {
   let s = base();

@@ -1,0 +1,65 @@
+{
+  "Q02.7": {
+    "sections": {
+      "sharedEncounterDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9013": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9015": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9016": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9021": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9022": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9023": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9033": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9035": 4,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9046": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9047": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9076": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9089": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9001": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9002": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9005": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9006": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9010": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9011": 4,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9013": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9014": 4,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9015": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9022": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9023": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9024": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9025": 2
+      }
+    },
+    "source_url": "https://images-cdn.fantasyflightgames.com/filer_public/82/5f/825f170d-3a2a-45a8-a145-f7f0c55ae13a/the_long_dark_rulesheet.pdf",
+    "reason": "The official rulesheet requires The Long Dark, Twists and Turns, and Hazards of the Pit. The upstream recipe incorrectly includes Deeps of Moria. Printed easy-mode removals are preserved. Cave Torch remains separately listed in the original setup staging section.",
+    "physical_encounter_cards": 59
+  },
+  "E02.7": {
+    "sections": {
+      "sharedEncounterDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9013": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9015": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9016": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9022": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9033": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9035": 4,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9046": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9047": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801207c9089": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9001": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9002": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9005": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9006": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9010": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9011": 1,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9014": 4,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9022": 3,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9023": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9024": 2,
+        "octgn:51223bd0-ffd1-11df-a976-0801211c9025": 1
+      }
+    },
+    "source_url": "https://images-cdn.fantasyflightgames.com/filer_public/82/5f/825f170d-3a2a-45a8-a145-f7f0c55ae13a/the_long_dark_rulesheet.pdf",
+    "reason": "The official rulesheet requires The Long Dark, Twists and Turns, and Hazards of the Pit. The upstream recipe incorrectly includes Deeps of Moria. Printed easy-mode removals are preserved. Cave Torch remains separately listed in the original setup staging section.",
+    "physical_encounter_cards": 43
+  }
+}

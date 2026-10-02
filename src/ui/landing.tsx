@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import type { CSSProperties, PointerEvent } from "react";
+import { HERO_CARDS } from "../game/decks";
+import { SCENARIOS } from "../game/scenarios";
 import {
   ArrowDown,
   ArrowRight,
@@ -207,13 +209,14 @@ export function LandingHero({
       <div className="landing-bottom">
         <div
           className="landing-facts"
-          aria-label="Core Set adventures for one to four players"
+          aria-label="Automated adventures for one to four players"
         >
           <span>
-            <strong>04</strong> iconic adventures
+            <strong>{String(SCENARIOS.length).padStart(2, "0")}</strong>{" "}
+            automated adventures
           </span>
           <span>
-            <strong>12</strong> legendary heroes
+            <strong>{HERO_CARDS.length}</strong> playable heroes
           </span>
           <span>
             <strong>1–4</strong> players in solo hot-seat

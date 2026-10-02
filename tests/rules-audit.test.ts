@@ -1,8 +1,8 @@
+import { applyAction as rawAct } from "./pass-resource-window.ts";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { STARTERS, card } from "../src/game/cards.ts";
 import {
-  applyAction as rawAct,
   createGame,
   stats,
   stagingThreat,
