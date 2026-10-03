@@ -565,8 +565,8 @@ export function effectCardPlayProblem(
       return "This card cannot be played from a player deck.";
     const problem = canPlayAtNoCost(s, u);
     if (problem) return problem;
-    if (c.code === "01067")
-      return "At no cost, X is zero and Gandalf's Search cannot inspect or add a card.";
+    if (["01067", "06083"].includes(c.code))
+      return `At no cost, X is zero and ${c.name} cannot change the game state.`;
   } else {
     if (c.code === "05017")
       return "Ranger Spikes needs a play effect to enter the staging area.";
@@ -610,9 +610,18 @@ export function replayEventProblem(
   s: GameState,
   u: Unit,
   target?: string,
+  amount?: number,
 ): string | null {
   if (card(u.code).type_code !== "event")
     return "Choose an event in your discard pile.";
+  if (u.code === "01051" && target === undefined)
+    return playTargets(s, u).some(
+      (candidate) => !replayEventProblem(s, u, candidate.id),
+    )
+      ? null
+      : "No eligible discarded ally can be paid for.";
+  if (["01067", "06083"].includes(u.code) && amount === undefined)
+    return replayEventProblem(s, u, target, 1);
   const problem = canPlay(s, u, {
     resolvingEffect: true,
     target: get(s, target),
@@ -625,9 +634,26 @@ export function replayEventProblem(
     )
   )
     return "This event has no legal target.";
-  if (card(u.code).printed_stats?.cost === "X")
+  if (
+    (card(u.code).printed_stats?.cost === "X" || card(u.code).cost === "X") &&
+    !["01051", "01067", "06083"].includes(u.code)
+  )
     return "Choose an event with a fixed resource cost.";
-  if (!eventReplayPayments(s, u, target).length)
+  if (["01067", "06083"].includes(u.code)) {
+    const maximum =
+      u.code === "01067"
+        ? Math.max(...livingSeats(s).map((i) => seatView(s, i).deck.length))
+        : s.discard.filter(
+            (code) =>
+              card(code).type_code === "ally" &&
+              (card(code).traits ?? "")
+                .split(".")
+                .some((trait) => trait.trim() === "Outlands"),
+          ).length;
+    if (!Number.isInteger(amount) || amount! <= 0 || amount! > maximum)
+      return "Choose a positive X within the available cards.";
+  }
+  if (!eventReplayPayments(s, u, target, amount).length)
     return "The event's resource payment cannot be made.";
   return null;
 }
@@ -636,8 +662,12 @@ export function eventReplayPayments(
   s: GameState,
   u: Unit,
   target?: string,
+  amount?: number,
 ): Record<string, number>[] {
-  const c = card(u.code),
+  if (u.code === "01051" && target === undefined) return [];
+  const definition = card(u.code),
+    effectiveCost = replayEventCost(s, u, target, amount),
+    c = { ...definition, cost: effectiveCost },
     payers = eligiblePayers(s, c, get(s, target)),
     cost = playCost(s, c, get(s, target));
   const result: Record<string, number>[] = [];
@@ -672,6 +702,24 @@ export function eventReplayPayments(
   return result;
 }
 
+function replayEventCost(
+  s: GameState,
+  u: Unit,
+  target?: string,
+  amount?: number,
+) {
+  if (u.code === "01051") {
+    const selected = discardTarget(s, target!);
+    return (
+      Number(card(seatView(s, selected.player).discard[selected.index]).cost) ||
+      0
+    );
+  }
+  return ["01067", "06083"].includes(u.code)
+    ? (amount ?? 0)
+    : Number(card(u.code).cost) || 0;
+}
+
 export function playEventFromDiscardEffect(
   s: GameState,
   index: number,
@@ -679,6 +727,7 @@ export function playEventFromDiscardEffect(
     target?: string;
     payment?: Record<string, number>;
     bottom?: boolean;
+    amount?: number;
   } = {},
 ) {
   requireRule(
@@ -686,7 +735,17 @@ export function playEventFromDiscardEffect(
     "Choose the actual event in your discard pile.",
   );
   const preview = { ...s.heroes[0], code: s.discard[index] } as Unit;
-  const problem = replayEventProblem(s, preview, options.target);
+  if (["01067", "06083"].includes(preview.code))
+    requireRule(
+      options.amount !== undefined,
+      "Choose an explicit X before playing this event from discard.",
+    );
+  const problem = replayEventProblem(
+    s,
+    preview,
+    options.target,
+    options.amount,
+  );
   requireRule(!problem, problem ?? "");
   if (needsTarget(preview))
     requireRule(
@@ -699,14 +758,33 @@ export function playEventFromDiscardEffect(
         Object.values(options.payment).filter((n) => n > 0).length === 3,
       "Thicket of Spears needs three hero resource pools.",
     );
-  pay(s, card(preview.code), options.payment, get(s, options.target));
+  const effectiveCost = replayEventCost(
+    s,
+    preview,
+    options.target,
+    options.amount,
+  );
+  pay(
+    s,
+    { ...card(preview.code), cost: effectiveCost },
+    options.payment,
+    get(s, options.target),
+  );
   const physical = takePlayerDiscard(s, index);
+  let target = options.target;
+  if (target?.startsWith("discard-")) {
+    const selected = discardTarget(s, target);
+    if (selected.player === activeSeat(s) && selected.index > index)
+      target = s.table
+        ? `discard-${selected.player}-${selected.index - 1}`
+        : `discard-${selected.index - 1}`;
+  }
   redhornPlayerEventPlayed(s, physical.code);
   resolvePlayerCard(
     s,
     physical,
-    options.target,
-    Number(card(physical.code).cost) || 0,
+    target,
+    effectiveCost,
     true,
     false,
     !!options.bottom,

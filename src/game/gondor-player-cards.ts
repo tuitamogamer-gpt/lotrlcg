@@ -186,7 +186,7 @@ export function gondorAllyEntered(s: GameState, u: Unit) {
 }
 export function gondorLeavesPlay(s: GameState, u: Unit, controller: number) {
   const effects: Effect[] = [];
-  if (u.code === "06108")
+  if (u.code === "06108" && !u.blanked)
     effects.push(fx("gondorSquireResponse", { player: controller }));
   for (const hero of readyImrahils(s))
     effects.push(

@@ -96,7 +96,7 @@ export function playerAttack(
   enemy: Unit,
   ids: string[],
   regular = false,
-  abilityMode?: "haldir" | "hands-upon-bow",
+  abilityMode?: "haldir" | "hands-upon-bow" | "knight",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -168,7 +168,8 @@ export function playerAttack(
   attackers.forEach((u) => {
     if (
       abilityMode !== "hands-upon-bow" &&
-      (abilityMode === "haldir" ||
+      (abilityMode === "knight" ||
+        abilityMode === "haldir" ||
         (!pathOfNeed(s, u!) && !foundationsPlayerNoAttackExhaust(u!)))
     )
       requireRule(exhaustCharacter(s, u!), "This attacker cannot exhaust.");
