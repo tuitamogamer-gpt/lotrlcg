@@ -148,22 +148,6 @@ h4,
   border-color: #576245;
 }
 
-.redbook .mission-card {
-  border-radius: 2px 12px 2px 12px;
-}
-
-.redbook .mission-card strong {
-  font-size: 20px;
-  line-height: 1.2;
-}
-
-.redbook .mission-card.selected {
-  border-color: #ab9254;
-  box-shadow:
-    inset 0 0 0 3px #d3bd7d22,
-    0 0 0 2px #76603622;
-}
-
 .redbook .adventure-hero {
   border-color: #97814e;
   border-radius: 2px 20px 2px 20px;
@@ -373,7 +357,7 @@ h4,
 .redbook
   :is(
     .company-options > p,
-    .mode-selection > p,
+    .mode-heading p,
     .journey-stage p,
     .fellowship-summary span,
     .guide p,
@@ -751,13 +735,6 @@ h4,
   background: #152820ed;
   padding: 6px 10px;
   letter-spacing: 0.6px;
-}
-.redbook .mission-card:disabled {
-  opacity: 1;
-  filter: grayscale(0.7);
-}
-.redbook .mission-card:disabled :is(small, em) {
-  color: #e3ddcf;
 }
 .redbook .gameboard .hand-cost {
   width: 27px;

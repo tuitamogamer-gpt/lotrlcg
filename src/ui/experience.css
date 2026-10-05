@@ -162,85 +162,6 @@ main:focus {
   font-size: var(--text-small);
   line-height: 1.65;
 }
-.mission-selection {
-  grid-column: 1;
-  grid-template-columns: 1fr;
-  margin: 0;
-  gap: 12px;
-}
-.mission-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 156px;
-  padding: 22px;
-  gap: 14px;
-  align-items: flex-start;
-  isolation: isolate;
-  background: #16251f;
-}
-.mission-card:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(90deg, #0e2019ed, #0e201986),
-    url("/art/mirkwood.jpg") center/cover;
-  opacity: 0.65;
-  transition:
-    opacity 0.4s var(--ease-out),
-    transform 0.6s var(--ease-out);
-}
-.mission-anduin:before {
-  background-image:
-    linear-gradient(90deg, #0e2019ef, #0e201987), url("/art/anduin.jpg");
-}
-.mission-dol-guldur:before {
-  background-image:
-    linear-gradient(90deg, #0e2019ef, #0e201980), url("/art/dol-guldur.jpg");
-}
-.mission-card.selected {
-  border-color: #dbbd78;
-  background: #243025;
-  box-shadow: inset 3px 0 #d8ba75;
-}
-.mission-card.selected:before {
-  opacity: 1;
-}
-.mission-card:not(:disabled):hover:before {
-  transform: scale(1.045);
-  opacity: 1;
-}
-.mission-card:disabled {
-  opacity: 0.62;
-}
-.mission-number {
-  font-size: 23px;
-  width: 25px;
-  color: #e0c68c;
-  margin-top: 2px;
-}
-.mission-card small {
-  font-size: var(--text-small);
-  letter-spacing: 1.4px;
-  color: #c1c7b2;
-}
-.mission-card strong {
-  font-size: 17px;
-  line-height: 1.5;
-  margin: 12px 0 8px;
-}
-.mission-card em {
-  display: block;
-  font-size: var(--text-small);
-  line-height: 1.55;
-  color: #b4c1b4;
-}
-.mission-card > svg {
-  position: absolute;
-  right: 16px;
-  bottom: 18px;
-}
 .adventure-hero {
   grid-column: 2;
   margin: 0;
@@ -274,12 +195,28 @@ main:focus {
 .forest-bg {
   background-position: center;
 }
-.adventure-anduin .forest-bg {
+/* The three original sceneries stand in for every quest: the river for the
+   Anduin valley and Gondor's waterways, the fortress for Moria, Dol Guldur
+   and besieged cities, and the forest for everything else. */
+.adventure-anduin .forest-bg,
+.adventure-conflict-at-the-carrock .forest-bg,
+.adventure-hills-of-emyn-muil .forest-bg,
+.adventure-dead-marshes .forest-bg,
+.adventure-peril-in-pelargir .forest-bg,
+.adventure-siege-of-cair-andros .forest-bg {
   background-image:
     linear-gradient(90deg, #071612de, #07161220), url("/art/anduin.jpg");
   filter: none;
 }
-.adventure-dol-guldur .forest-bg {
+.adventure-dol-guldur .forest-bg,
+.adventure-into-the-pit .forest-bg,
+.adventure-the-seventh-level .forest-bg,
+.adventure-flight-from-moria .forest-bg,
+.adventure-watcher-in-the-water .forest-bg,
+.adventure-the-long-dark .forest-bg,
+.adventure-foundations-of-stone .forest-bg,
+.adventure-shadow-and-flame .forest-bg,
+.adventure-the-stewards-fear .forest-bg {
   background-image:
     linear-gradient(90deg, #071612dc, #07161210), url("/art/dol-guldur.jpg");
   filter: none;
@@ -1541,12 +1478,6 @@ kbd {
   .fan-caption {
     display: none;
   }
-  .mission-card {
-    padding: 18px 15px;
-  }
-  .mission-card strong {
-    font-size: 15px;
-  }
   .phase-track {
     padding: 0 10px;
   }
@@ -1671,31 +1602,6 @@ kbd {
   }
   .mode-selection > p {
     font-size: var(--text-small);
-  }
-  .mission-selection {
-    display: flex;
-    gap: 9px;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding: 1px 1px 6px;
-  }
-  .mission-card {
-    flex: 0 0 73%;
-    min-height: 132px;
-    padding: 18px;
-    scroll-snap-align: start;
-  }
-  .mission-card strong {
-    font-size: 16px;
-    margin: 9px 0 4px;
-  }
-  .mission-card em {
-    display: block;
-    font-size: var(--text-small);
-  }
-  .mission-number {
-    font-size: 24px;
-    width: 22px;
   }
   .adventure-hero {
     min-height: 510px;
@@ -2846,10 +2752,6 @@ kbd {
 }
 .easy-toggle {
   margin-top: 12px;
-}
-.mission-hunt-for-gollum:before {
-  background-image:
-    linear-gradient(90deg, #0e2019ef, #0e201980), url("/art/anduin.jpg");
 }
 .adventure-hunt-for-gollum .forest-bg {
   background-image:

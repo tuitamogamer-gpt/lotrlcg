@@ -3552,66 +3552,6 @@ nav {
   color: #a0a697;
   font-size: var(--text-small);
 }
-.mission-selection {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 25px;
-}
-.mission-card {
-  display: flex;
-  align-items: center;
-  text-align: left;
-  gap: 14px;
-  min-width: 0;
-  min-height: 115px;
-  border: 1px solid #2f3d30;
-  border-radius: 8px;
-  background: #14231a;
-  color: #d8d8c6;
-  padding: 18px;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
-}
-.mission-card > span:nth-child(2) {
-  flex: 1;
-  min-width: 0;
-}
-.mission-card.selected {
-  background: #252d20;
-  border-color: #a18f57;
-}
-.mission-card:not(:disabled):hover {
-  border-color: #bba266;
-}
-.mission-card:disabled {
-  opacity: 0.6;
-  cursor: default;
-}
-.mission-number {
-  color: #c7b077;
-  font: 24px var(--serif);
-  flex-shrink: 0;
-}
-.mission-card small {
-  display: block;
-  font-size: var(--text-small);
-  letter-spacing: 1.5px;
-  color: #9ba48f;
-}
-.mission-card strong {
-  display: block;
-  margin: 9px 0 6px;
-  font: 15px var(--serif);
-  line-height: 1.4;
-}
-.mission-card em {
-  display: block;
-  font-style: normal;
-  font-size: var(--text-small);
-  color: #8c9c8d;
-}
 .adventure-anduin .forest-bg {
   filter: hue-rotate(24deg) saturate(0.65);
 }
@@ -3764,13 +3704,6 @@ nav {
     flex-direction: column;
     gap: 14px;
   }
-  .mission-card {
-    padding: 14px;
-    gap: 10px;
-  }
-  .mission-card em {
-    display: none;
-  }
 }
 @media (max-width: 700px) {
   .mode-tabs {
@@ -3787,22 +3720,6 @@ nav {
   }
   .mode-selection > p {
     font-size: var(--text-small);
-  }
-  .mission-selection {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .mission-card {
-    min-height: 77px;
-  }
-  .mission-card strong {
-    font-size: var(--text-small);
-    margin: 6px 0 0;
-  }
-  .mission-number {
-    width: 33px;
-    text-align: center;
-    font-size: 22px;
   }
   .campaign-journal {
     padding: 16px;

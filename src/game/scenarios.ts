@@ -569,9 +569,9 @@ export const SCENARIOS = [
     shortName: "Peril in Pelargir",
     chapter: "XIX",
     difficulty: 6,
-    tagline: "Peril in Pelargir",
+    tagline: "Brigands in the harbour city",
     description:
-      "Follow the printed scenario setup, encounter effects and quest stages.",
+      "Carry a secret message through the streets of Pelargir while thieves and spies close in on the fellowship.",
     sets: ["Peril in Pelargir", "Streets of Gondor", "Brigands"],
     stages: [
       {
@@ -606,9 +606,9 @@ export const SCENARIOS = [
     shortName: "Into Ithilien",
     chapter: "XX",
     difficulty: 4,
-    tagline: "Into Ithilien",
+    tagline: "Ambush in the Rangers’ land",
     description:
-      "Follow the printed scenario setup, encounter effects and quest stages.",
+      "Escort the Rangers through Ithilien as Southron raiders and the wild land itself turn against you.",
     sets: [
       "Into Ithilien",
       "Creatures of the Forest",
@@ -656,9 +656,9 @@ export const SCENARIOS = [
     shortName: "The Siege of Cair Andros",
     chapter: "XXI",
     difficulty: 7,
-    tagline: "The Siege of Cair Andros",
+    tagline: "Hold the river fortress",
     description:
-      "Follow the printed scenario setup, encounter effects and quest stages.",
+      "Defend the island fortress of Cair Andros, battleground by battleground, against the assault from Mordor.",
     sets: ["The Siege of Cair Andros", "Mordor Elite", "Ravaging Orcs"],
     stages: [
       {
@@ -709,9 +709,9 @@ export const SCENARIOS = [
     shortName: "The Steward's Fear",
     chapter: "XXII",
     difficulty: 5,
-    tagline: "The Steward's Fear",
+    tagline: "A conspiracy in Minas Tirith",
     description:
-      "Follow the printed scenario setup, encounter effects and quest stages.",
+      "Uncover the plot stirring beneath Minas Tirith and unmask the villain behind it before the city falls.",
     sets: ["The Steward's Fear", "Streets of Gondor", "Brigands"],
     stages: [
       {

@@ -99,7 +99,7 @@ import {
   tableSpring,
   useDamageFeedback,
 } from "./ui/motion";
-import { card, encounterCards, STARTERS, plain, name } from "./game/cards";
+import { card, STARTERS, plain, name } from "./game/cards";
 import {
   applyAction,
   availableAbilities,
@@ -201,6 +201,7 @@ import { ThreatCounter } from "./ui/threat";
 import { StatBadge } from "./ui/stats";
 import { TableCollection, PLAYMATS, PLAYMAT_CHOICES } from "./ui/premium";
 import { LandingHero } from "./ui/landing";
+import { QuestHeadline, QuestIndex, scenarioRelease } from "./ui/quest-index";
 
 import { DeckPicker, HeroPicker } from "./ui/deck-picker";
 import { AccountPanel, AccountStrip } from "./ui/account";
@@ -327,12 +328,6 @@ function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
     }),
   );
 }
-const scenarioRelease = (id: ScenarioId) => {
-  const q = scenario(id);
-  const c = encounterCards.find((c) => c.encounter_set === q.sets[0]);
-  const origin = c ? cardProductInfo(c).original : null;
-  return origin?.cycle ?? origin?.name ?? c?.pack_name ?? q.name;
-};
 const sameDeckRecipe = (
   a: Pick<CustomDeck, "heroes" | "cards">,
   b: Pick<CustomDeck, "heroes" | "cards">,
@@ -1495,6 +1490,15 @@ export default function App() {
             />
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <section className="mode-selection" aria-label="Choose game mode">
+              <div className="mode-heading">
+                <span className="book-kicker">II · CHOOSE YOUR QUEST</span>
+                <h2>Where will the road lead?</h2>
+                <p>
+                  {playMode === "normal"
+                    ? `Choose from ${SCENARIOS.length} automated quests. Each adventure begins with a fresh fellowship.`
+                    : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
+                </p>
+              </div>
               <div className="mode-tabs" role="group" aria-label="Game mode">
                 <button
                   aria-pressed={playMode === "normal"}
@@ -1518,42 +1522,15 @@ export default function App() {
                   </span>
                 </button>
               </div>
-              <p>
-                {playMode === "normal"
-                  ? `Choose from ${SCENARIOS.length} automated quests. Each adventure begins with a fresh fellowship.`
-                  : "Mirkwood Paths • Follow the quests in order. Boons, burdens, fallen heroes, and your story carry forward."}
-              </p>
             </section>
-            <section className="mission-selection" aria-label="Missions">
-              {SCENARIOS.map((q) => {
-                const completed = game?.campaign?.completed.some(
-                  (c) => c.scenarioId === q.id,
-                );
-                return (
-                  <button
-                    key={q.id}
-                    className={`mission-card mission-${q.id} ${quest.id === q.id ? "selected" : ""}`}
-                    aria-pressed={quest.id === q.id}
-                    disabled={playMode === "campaign" && q.id !== quest.id}
-                    onClick={() => setSelectedScenario(q.id)}
-                  >
-                    <span className="mission-number">
-                      {completed ? <Check size={23} /> : q.chapter}
-                    </span>
-                    <span>
-                      <small>
-                        {completed
-                          ? "CHAPTER COMPLETE"
-                          : `DIFFICULTY ${q.difficulty} / 10`}
-                      </small>
-                      <strong>{q.name}</strong>
-                      <em>{q.tagline}</em>
-                    </span>
-                    {quest.id === q.id && <Diamond size={14} weight="fill" />}
-                  </button>
-                );
-              })}
-            </section>
+            <QuestIndex
+              selected={quest.id}
+              locked={playMode === "campaign"}
+              completed={
+                game?.campaign?.completed.map((c) => c.scenarioId) ?? []
+              }
+              onSelect={setSelectedScenario}
+            />
             <section className={`adventure-hero adventure-${quest.id}`}>
               <div className="forest-bg" />
               <Ambient />
@@ -1565,31 +1542,7 @@ export default function App() {
                     : quest.tagline.toUpperCase()}
                 </div>
                 <h2>
-                  {quest.id === "mirkwood" ? (
-                    <>
-                      Into the heart
-                      <br />
-                      of <em>Mirkwood.</em>
-                    </>
-                  ) : quest.id === "anduin" ? (
-                    <>
-                      Along the
-                      <br />
-                      <em>great river.</em>
-                    </>
-                  ) : quest.id === "hunt-for-gollum" ? (
-                    <>
-                      On the trail
-                      <br />
-                      of <em>Gollum.</em>
-                    </>
-                  ) : (
-                    <>
-                      Escape from
-                      <br />
-                      <em>Dol Guldur.</em>
-                    </>
-                  )}
+                  <QuestHeadline id={quest.id} />
                 </h2>
                 <p>{quest.description}</p>
                 {resumable && game?.status === "playing" && (
