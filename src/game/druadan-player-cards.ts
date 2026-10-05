@@ -1,3 +1,4 @@
+import { globalPlayerOrder } from "./table";
 // The Drúadan Forest: printed-sphere restrictions and exact lasting responses.
 import { card, cards, plain } from "./cards";
 import type { Card, Effect, GameState, Phase, Unit } from "./types";
@@ -90,7 +91,7 @@ export function druadanPlayerPhaseStarted(
   }
 }
 export function druadanPlayerStats(s: GameState, u: Unit) {
-  const instances = playerOrder(s).reduce(
+  const instances = globalPlayerOrder(s).reduce(
     (n, p) =>
       n +
       seatView(s, p).used.filter((k) => k === `round:harbor-master:${u.id}`)
@@ -114,7 +115,12 @@ export function druadanPlayerQuestStat(
 export const druadanPlayerDefenseStat = (
   s: GameState,
   u: Unit,
-): "will" | null => (marker(s, `phase:against-shadow:${u.id}`) ? "will" : null);
+): "will" | null =>
+  globalPlayerOrder(s).some((p) =>
+    seatView(s, p).used.includes(`phase:against-shadow:${u.id}`),
+  )
+    ? "will"
+    : null;
 export const druadanPlayerNoEngagementChecks = (s: GameState) =>
   marker(s, "phase:advance-warning");
 export function druadanPlayerUndefendedTargets(s: GameState): Unit[] {

@@ -1,0 +1,70 @@
+// Printed Heirs definitions stay independent of encounter runtime hooks.
+import encounters from "../data/heirs-numenor-encounter-cards.json";
+import quests from "../data/heirs-numenor-quest-cards.json";
+import type { Card } from "./types";
+export const HEIRS_NUMENOR_ENCOUNTERS = encounters as Card[];
+export const HEIRS_NUMENOR_QUESTS = quests as Card[];
+const ids = {
+  scroll: "9001",
+  ram: "9003",
+  wargs: "9006",
+  celador: "9009",
+  collateral: "9012",
+  bat: "9017",
+  elite: "9018",
+  storehouse: "9019",
+  thug: "9020",
+  fishQuest: "9021",
+  fighting: "9023",
+  quays: "9025",
+  ambush: "9027",
+  counterAttack: "9029",
+  hiddenWay: "9031",
+  approaching: "9033",
+  defense: "9035",
+  reinforcing: "9037",
+  breakthroughApproach: "9039",
+  breakthroughCitadel: "9041",
+  lastBattle: "9043",
+  guardian: "9046",
+  road: "9047",
+  lieutenant: "9049",
+  bandit: "9052",
+  lostCompanion: "9053",
+  lurking: "9055",
+  spider: "9058",
+  mumak: "9059",
+  arbalesters: "9061",
+  arsonist: "9062",
+  assault: "9063",
+  rabble: "9064",
+  scramblers: "9065",
+  vanguard: "9066",
+  camp: "9067",
+  trail: "9068",
+  docks: "9069",
+  scourge: "9072",
+  glade: "9073",
+  raft: "9074",
+  company: "9075",
+  mercenaries: "9076",
+  support: "9077",
+  approach: "9079",
+  banks: "9080",
+  citadel: "9081",
+  fish: "9082",
+  malice: "9083",
+  power: "9084",
+  assassin: "9085",
+  watcher: "9086",
+  traitor: "9088",
+};
+export const HEIRS_NUMENOR = Object.fromEntries(
+  Object.entries(ids).map(([key, suffix]) => [
+    key,
+    `octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b${suffix}`,
+  ]),
+) as Record<keyof typeof ids, string>;
+export const BRIGANDS_ENCOUNTERS = HEIRS_NUMENOR_ENCOUNTERS.filter(
+  (c) => c.encounter_set === "Brigands",
+);

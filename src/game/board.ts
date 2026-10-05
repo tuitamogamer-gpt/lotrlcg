@@ -16,6 +16,12 @@ import {
   shadowFlameShadow,
 } from "./shadow-flame";
 import { druadanPlayerLeavesPlay } from "./druadan-player-cards";
+import { morgulPlayerCharactersCommitted } from "./morgul-player-cards";
+import { osgiliathPlayerAllyEntered } from "./osgiliath-player-cards";
+import {
+  bloodPlayerEnemyAddedToStaging,
+  bloodPlayerPhaseEndEffects,
+} from "./blood-gondor-player-cards";
 import {
   advanceLongDark,
   longDarkProgressLocation,
@@ -33,6 +39,51 @@ import {
   heirsPlayerLocationExplored,
 } from "./heirs-player-cards";
 import { takePlayerDeck } from "./core";
+import {
+  advanceHeirs,
+  heirsAttachmentLeaves,
+  heirsThreatRaised,
+  heirsDamageAmount,
+  heirsDamageDealt,
+  heirsCharacterLeaves,
+  heirsRemoveCharacter,
+  heirsCheck,
+  heirsExplored,
+  heirsLocationProgressBlocked,
+  heirsRoundEnd,
+  heirsPhaseEnd,
+  heirsEnemyEntered,
+  heirsEngaged,
+  heirsEncounter,
+  heirsShadow,
+  heirsCannotCancel,
+} from "./heirs-numenor";
+import {
+  advanceStewardFear,
+  stewardFearCheck,
+  stewardFearQuestProgress,
+  stewardFearCharacterExhausted,
+  stewardFearCharacterReadied,
+  stewardFearHeroAbilityTriggered,
+  stewardFearCharacterDestroyed,
+  stewardFearLocationEntered,
+  stewardFearLocationLeft,
+  stewardFearEventPlayed,
+  stewardFearTreacheryRevealed,
+  stewardFearCannotCancel,
+  stewardFearEncounter,
+  stewardFearShadow,
+} from "./steward-fear";
+import {
+  advanceFoundationsStone,
+  foundationsCharactersCommitted,
+  foundationsCheck,
+  foundationsHeroMissingAllowed,
+  foundationsEngaged,
+  foundationsLocationExplored,
+  foundationsEncounter,
+  foundationsShadow,
+} from "./foundations-stone";
 import { currentQuestCode, currentQuestUnit } from "./quest-state";
 import {
   collectorAllyEntered,
@@ -141,6 +192,13 @@ import {
   allHeroes,
   allEngaged,
   eachSeat,
+  eachArea,
+  globalEachSeat,
+  globalCharacters,
+  globalEngaged,
+  globalLivingSeats,
+  globalPlayerOrder,
+  firstPlayer,
   forOwner,
   livingSeats,
   ownerOf,
@@ -181,6 +239,7 @@ import {
   locationQuest,
   stats,
   units,
+  globalUnits,
   hasClue,
   riverlandsInPlay,
   canPay,
@@ -291,6 +350,7 @@ export function raiseThreat(
   s.threat += amount;
   marshPlayerThreatRaised(s, activeSeat(s), amount, reason);
   roadPlayerThreatRaised(s, activeSeat(s), amount);
+  heirsThreatRaised(s, activeSeat(s), amount);
 }
 /** Framework and card effects share actual exhaustion timing. */
 export function exhaustCharacter(s: GameState, u: Unit): boolean {
@@ -301,12 +361,14 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   watcherPlayerCharacterExhausted(s, u);
   redhornCharacterExhausted(s, u);
   roadRivendellCharacterExhausted(s, u);
+  stewardFearCharacterExhausted(s, u);
   return true;
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
 export function enemyAddedToStaging(s: GameState, u: Unit) {
   amonPlayerEnemyAddedToStaging(s, u);
   heirsPlayerEnemyAddedToStaging(s, u);
+  bloodPlayerEnemyAddedToStaging(s, u);
   longDarkPlayerEnemyAddedToStaging(s, u);
 }
 
@@ -320,6 +382,7 @@ export function charactersCommitted(
     (u) => u.committed && allCharacters(s).some((c) => c.id === u.id),
   );
   shadowFlameCharactersCommitted(s, actual);
+  foundationsCharactersCommitted(s, actual);
   dwarfCharactersCommitted(s, actual);
   elfCharactersCommitted(s, actual);
   rohanCharactersCommitted(s, actual);
@@ -354,6 +417,7 @@ export function charactersCommitted(
           ),
       );
   }
+  morgulPlayerCharactersCommitted(s, actual);
 }
 
 export function readyCharacter(s: GameState, u: Unit) {
@@ -362,6 +426,7 @@ export function readyCharacter(s: GameState, u: Unit) {
   const wasExhausted = u.exhausted;
   u.exhausted = false;
   if (wasExhausted) marshPlayerCharacterReadied(s, u);
+  if (wasExhausted) stewardFearCharacterReadied(s, u);
 }
 /** Move actual top cards atomically; deck-discard responses run after the causing effect. */
 export function discardPlayerDeck(
@@ -411,9 +476,11 @@ export function advanceDefense(s: GameState) {
     )
   )
     return;
-  const next = playerOrder(s).find((i) =>
-    engagedEnemies(s, i).some(
-      (u) => normalAttackPending(s, u, i) && !enemyAttackPrevented(s, u, i),
+  const next = globalPlayerOrder(s).find((i) =>
+    engagedEnemies(seatView(s, i), i).some(
+      (u) =>
+        normalAttackPending(seatView(s, i), u, i) &&
+        !enemyAttackPrevented(seatView(s, i), u, i),
     ),
   );
   if (next !== undefined) {
@@ -424,15 +491,15 @@ export function advanceDefense(s: GameState) {
   } else {
     startPhase(s, "attack");
     [
-      ...allEngaged(s),
+      ...globalEngaged(s),
       ...s.staging.filter((u) =>
         playerOrder(s).some((p) => consideredEngaged(s, u, p)),
       ),
     ].forEach((u) => {
       u.attacked = false;
     });
-    const later = playerOrder(s).filter(
-      (i) => !rohanOathPlayers(s).includes(i),
+    const later = globalPlayerOrder(s).filter(
+      (i) => !rohanOathPlayers(seatView(s, i)).includes(i),
     );
     if (!later.length) enqueue(s, fx("phaseEnd"), fx("endCombat"));
     else if (s.table) {
@@ -444,12 +511,17 @@ export function advanceDefense(s: GameState) {
 
 export function check(s: GameState) {
   if (s.status !== "playing") return;
-  syncAttachmentText(s);
-  for (const denethor of amonPlayerDiscardAtZero(s))
-    if (get(s, denethor.id)) discardCharacter(s, denethor);
+  eachArea(s, () => syncAttachmentText(s));
+  globalEachSeat(s, () => {
+    for (const denethor of amonPlayerDiscardAtZero(s))
+      if (get(s, denethor.id)) discardCharacter(s, denethor);
+  });
   if (s.status !== "playing") return;
+  const activeQuests = new Set(
+    globalPlayerOrder(s).map((player) => currentQuestCode(seatView(s, player))),
+  );
   for (const [code, attachments] of Object.entries(s.questAttachments ?? {})) {
-    if (code === currentQuestCode(s)) continue;
+    if (activeQuests.has(code)) continue;
     const host = {
       ...currentQuestUnit(s)!,
       id: `quest:${code}`,
@@ -480,7 +552,7 @@ export function check(s: GameState) {
       return;
     }
   }
-  eachSeat(s, () => {
+  globalEachSeat(s, () => {
     s.committedIds = s.committedIds.filter((id) =>
       characters(s).some((u) => u.id === id && !u.exhausted),
     );
@@ -493,20 +565,32 @@ export function check(s: GameState) {
     s.encounterDeck = shuffle(s, s.encounterDiscard.splice(0));
     log(s, "The empty encounter deck is refilled during the quest phase.");
   }
-  const doomed = [
-    ...allCharacters(s),
-    ...allEngaged(s),
-    ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
-  ].find(
-    (u) => !shadowFlameIndestructible(u) && u.damage >= stats(s, u).health,
-  );
+  let doomed: { unit: Unit; player: number } | undefined;
+  eachArea(s, () => {
+    if (doomed) return;
+    const unit = [
+      ...allCharacters(s),
+      ...allEngaged(s),
+      ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+    ].find(
+      (u) => !shadowFlameIndestructible(u) && u.damage >= stats(s, u).health,
+    );
+    if (unit) doomed = { unit, player: activeSeat(s) };
+  });
   if (doomed) {
-    destroy(s, doomed);
+    const target = doomed;
+    forOwner(s, target.player, () => destroy(s, target.unit));
     return;
   }
   if (s.table) {
-    eachSeat(s, (i) => {
-      if (s.threat < 50 && (s.heroes.length || s.prisoner?.owner === i)) return;
+    globalEachSeat(s, (i) => {
+      if (
+        s.threat < 50 &&
+        (s.heroes.length ||
+          s.prisoner?.owner === i ||
+          foundationsHeroMissingAllowed(s, i))
+      )
+        return;
       if (s.table!.seats[i].eliminated) return;
       for (const host of [
         ...s.staging,
@@ -560,7 +644,11 @@ export function check(s: GameState) {
       s.allies = [];
       s.hand = [];
       s.deck = [];
-      s.used = s.used.filter((key) => !key.startsWith("phase:heavy-"));
+      s.used = s.used.filter(
+        (key) =>
+          !key.startsWith("phase:heavy-") &&
+          !key.startsWith("game:foundations-hero-deck:"),
+      );
       s.committedIds = [];
       for (const u of s.engaged) {
         s.encounterDiscard.push(...u.shadows);
@@ -576,18 +664,23 @@ export function check(s: GameState) {
       for (const u of leavingCharacters) druadanPlayerLeavesPlay(s, u);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
-    const alive = livingSeats(s);
+    const alive = globalLivingSeats(s);
     if (!alive.length) {
       s.status = "lost";
       s.reason = "Every hero’s fellowship has fallen to the shadow.";
     } else {
-      if (!alive.includes(s.table.first)) s.table.first = playerOrder(s)[0];
+      if (!alive.includes(s.table.first))
+        s.table.first = globalPlayerOrder(s)[0];
       if (!alive.includes(s.table.turn))
         s.table.turn =
-          playerOrder(s).find((i) => !s.table!.passed.includes(i)) ?? alive[0];
+          globalPlayerOrder(s).find((i) => !s.table!.passed.includes(i)) ??
+          alive[0];
       if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
     }
-  } else if (s.threat >= 50 || (!s.heroes.length && !s.prisoner)) {
+  } else if (
+    s.threat >= 50 ||
+    (!s.heroes.length && !s.prisoner && !foundationsHeroMissingAllowed(s, 0))
+  ) {
     s.status = "lost";
     s.reason =
       s.threat >= 50
@@ -617,7 +710,7 @@ export function check(s: GameState) {
     }
     if (s.earlyAttackPlayers) {
       s.earlyAttackPlayers = s.earlyAttackPlayers.filter((i) =>
-        livingSeats(s).includes(i),
+        globalLivingSeats(s).includes(i),
       );
       if (!s.earlyAttackPlayers.length) {
         delete s.earlyAttackPlayers;
@@ -631,7 +724,10 @@ export function check(s: GameState) {
     redhornFollowFirstPlayer(s);
     roadRivendellFollowFirstPlayer(s);
     longDarkCheck(s);
-    const overloaded = allCharacters(s).find(
+    foundationsCheck(s);
+    heirsCheck(s);
+    stewardFearCheck(s);
+    const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
     if (overloaded) {
@@ -700,6 +796,8 @@ export function damage(
   syncAttachmentText(s);
   const u = get(s, id);
   if (!u) return false;
+  value = heirsDamageAmount(s, u, value);
+  if (value <= 0) return false;
   if (
     value > 0 &&
     (u.shadowCancelsDamage ||
@@ -714,6 +812,7 @@ export function damage(
   if (!context.bypassFrodo && offerFrodoDamage(s, u, value, context))
     return false;
   u.damage += value;
+  heirsDamageDealt(s, u, value, context);
   longDarkDamageDealt(s, context.enemyId, value);
   if (value > 0 && s.combat && context.enemyId === s.combat.enemyId)
     s.combat.damageDealt = (s.combat.damageDealt ?? 0) + value;
@@ -723,6 +822,7 @@ export function damage(
     !isSacked(u) &&
     u.damage < stats(s, u).health
   ) {
+    stewardFearHeroAbilityTriggered(s, u);
     u.resources += value;
     gondorResourcesGained(s, u, value, true);
   }
@@ -733,7 +833,10 @@ export function damage(
       (a) => !a.blanked && a.code === CLUE,
     ))
       discardAttachment(s, u, a, true);
-  if (u.damage >= stats(s, u).health) destroy(s, u);
+  if (card(u.code).type_code !== "location" && u.damage >= stats(s, u).health) {
+    stewardFearCharacterDestroyed(s, u, context);
+    destroy(s, u);
+  }
   check(s);
   return true;
 }
@@ -749,6 +852,7 @@ export function discardAttachment(
   if (u.id.startsWith("quest:"))
     (s.questAttachments ??= {})[u.code] = u.attachments;
   if (khazadAttachmentLeaves(s, u, a)) return;
+  if (heirsAttachmentLeaves(s, u, a)) return;
   if (a.code === CLUE && leaving) {
     s.encounterDeck.unshift(a.code);
     log(
@@ -779,6 +883,34 @@ export function characterLeftPlay(
   lastKnownAttack = stats(s, u).attack,
   lastKnownTraits = effectiveTraits(u),
 ) {
+  // A later entry starts a new instance even when its physical card keeps its id.
+  globalEachSeat(s, () => {
+    const targetEffects = [
+      `phase:forth-eorlingas:${u.id}`,
+      `phase:against-shadow:${u.id}`,
+      `phase:mutual:Gondor:${u.id}`,
+      `phase:mutual:Rohan:${u.id}`,
+      `round:durin-song:${u.id}`,
+      `round:beacons:${u.id}`,
+      `phase:unseen-strike:${u.id}`,
+      `round:miruvor:${u.id}`,
+      `round:harbor-master:${u.id}`,
+      `round:hirgon:${u.id}`,
+      `round:captain:${u.id}`,
+      `round:celeborn:${u.id}`,
+      `round:naith-guide:${u.id}`,
+      `round:elf-entered:${u.id}`,
+    ];
+    s.used = s.used.filter(
+      (key) =>
+        !targetEffects.includes(key) &&
+        ![
+          `round:arwen:${u.id}:`,
+          `round:grave-cairn:${u.id}:`,
+          `phase:nenya:${u.id}:`,
+        ].some((prefix) => key.startsWith(prefix)),
+    );
+  });
   returnMirkwoodCheck(s);
   rhosgobelCheck(s);
   redhornCheck(s);
@@ -794,6 +926,7 @@ export function characterLeftPlay(
   mirkwoodPlayerLeavesPlay(s, u, controller, destination);
   prepend(s, ...shadowFlameCharactersLeft(s));
   druadanPlayerLeavesPlay(s, u);
+  heirsCharacterLeaves(s, u);
 }
 
 /** Destruction is distinct from discard costs and forced discard effects. */
@@ -864,6 +997,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
     )
       win(s);
   } else {
+    const removedByScenario = heirsRemoveCharacter(s, u);
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
     if (u.code === "rc135") {
@@ -874,7 +1008,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
         s.choice = null;
         s.queue = [];
       }
-    } else
+    } else if (!removedByScenario)
       (c.type_code === "objective-ally"
         ? s.encounterDiscard
         : seatView(s, u.owner ?? activeSeat(s)).discard
@@ -916,6 +1050,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
 export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
+  if (heirsLocationProgressBlocked(s, u)) return;
   if (shadowFlameLocationProgressBlocked(s, u)) return;
   if (longDarkProgressLocation(s, u, value)) return;
   if (watcherWaterProgressLocation(s, u, value)) return;
@@ -928,8 +1063,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   roadRivendellProgressPlaced(s, u, value);
   if (u.progress < locationQuest(s, u)) return;
   log(s, `${name(u)} is explored.`, "good");
-  if (allActiveLocations(s).some((l) => l.id === u.id))
-    removeActiveLocation(s, u.id);
+  const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
+  if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((x) => x.id !== u.id);
   let exploredDiscardIndex: number | undefined;
   if (u.code === "01113") s.encounterDeck.unshift(u.code);
@@ -939,6 +1074,9 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     exploredDiscardIndex = s.encounterDiscard.length - 1;
   }
   const exploredAttachments = [...u.attachments];
+  stewardFearLocationLeft(s, u, true, wasActive);
+  foundationsLocationExplored(s, u);
+  heirsExplored(s, u);
   khazadExplored(s, u);
   rhosgobelLocationExplored(s, u);
   for (const a of [...u.attachments]) discardAttachment(s, u, a);
@@ -974,7 +1112,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
       );
     const total = locations.reduce((sum, l) => sum + remaining(l), 0);
     if (n > 0 && n < total) {
-      selectSeat(s, s.table?.first ?? 0);
+      selectSeat(s, firstPlayer(s));
       choose(
         s,
         "Divide progress between active locations",
@@ -989,7 +1127,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
                 value: i + 1,
                 count: n - i - 1,
                 flag: playerEffect,
-                player: s.table?.first ?? 0,
+                player: firstPlayer(s),
               }),
             ],
           })),
@@ -1005,7 +1143,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
           fx("continueProgress", {
             value: n - amount,
             flag: playerEffect,
-            player: s.table?.first ?? 0,
+            player: firstPlayer(s),
           }),
         ])
       )
@@ -1026,7 +1164,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
         fx("continueProgress", {
           value: n - toLocation,
           flag: playerEffect,
-          player: s.table?.first ?? 0,
+          player: firstPlayer(s),
         }),
       ])
     )
@@ -1041,6 +1179,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
     return;
   if (n <= 0 || s.status !== "playing") return;
   if (khazadQuestProgress(s, n)) return;
+  if (stewardFearQuestProgress(s)) return;
   s.progress += n;
   if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
     rescuePrisoner(s);
@@ -1067,7 +1206,10 @@ export function questDefeated(s: GameState, code: string): boolean {
 
 export function advanceQuest(s: GameState) {
   if (s.status !== "playing" || s.stageRevealing || s.phase === "setup") return;
+  if (advanceHeirs(s)) return;
+  if (advanceStewardFear(s)) return;
   if (advanceShadowFlame(s)) return;
+  if (advanceFoundationsStone(s)) return;
   if (advanceLongDark(s)) return;
   if (advanceKhazad(s)) return;
   if (advanceWatcherWater(s)) return;
@@ -1139,7 +1281,7 @@ export function advanceQuest(s: GameState) {
     prepend(
       s,
       ...Array.from({ length: livingSeats(s).length * 2 }, () =>
-        fx("reveal", { player: s.table?.first ?? 0 }),
+        fx("reveal", { player: firstPlayer(s) }),
       ),
       fx("stageRevealed"),
     );
@@ -1148,13 +1290,16 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
-  const departures = allCharacters(s)
+  const bloodEffects: Effect[] = [];
+  eachArea(s, () => bloodEffects.push(...bloodPlayerPhaseEndEffects(s)));
+  const departures = globalCharacters(s)
     .filter((u) => u.temporary || u.beornReturn)
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
-  eachSeat(s, () => phaseEndPlayer(s));
-  redhornPhaseEnd(s);
-  prepend(s, ...departures);
-  rohanPhaseEnd(s);
+  globalEachSeat(s, () => phaseEndPlayer(s));
+  eachArea(s, () => redhornPhaseEnd(s));
+  prepend(s, ...bloodEffects, ...departures);
+  eachArea(s, () => rohanPhaseEnd(s));
+  eachArea(s, () => heirsPhaseEnd(s));
 }
 
 export function phaseEndPlayer(s: GameState) {
@@ -1302,12 +1447,13 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
 }
 
 export function nextRound(s: GameState) {
-  for (const u of allCharacters(s)) delete u.roundKeywords;
+  heirsRoundEnd(s);
+  for (const u of globalCharacters(s)) delete u.roundKeywords;
   s.round++;
   startPhase(s, "resource");
   s.alliesPlayed = 0;
   s.mendorBoost = false;
-  eachSeat(s, (player) => {
+  globalEachSeat(s, (player) => {
     s.used = s.used.filter((key) => key.startsWith("game:"));
     s.peek = null;
     s.optionalEngagement = false;
@@ -1339,6 +1485,8 @@ export function engage(s: GameState, u: Unit, optional = false) {
     u.feinted = u.preventedAttacks.includes(activeSeat(s));
   log(s, `${name(u)} engages your fellowship.`, "danger");
   longDarkEngaged(s, u);
+  foundationsEngaged(s, u);
+  heirsEngaged(s, u, activeSeat(s), optional);
   gondorEnemyEngaged(s, u, activeSeat(s), optional);
   returnMirkwoodEngaged(s, u);
   roadRivendellEngaged(s, u);
@@ -1354,19 +1502,29 @@ export function returnTreachery(s: GameState, code: string) {
   if (!["01080", "01105"].includes(code)) s.encounterDiscard.push(code);
 }
 
-export function revealed(s: GameState, code: string, guarding?: string) {
-  if (amonPlayerInterceptReveal(s, code)) return;
+export function revealed(
+  s: GameState,
+  code: string,
+  guarding?: string,
+  revealOrigin: Effect["revealOrigin"] = "encounter",
+) {
+  if (revealOrigin === "encounter" && amonPlayerInterceptReveal(s, code))
+    return;
   const c = card(code);
   s.lastReveal = code;
-  elfEncounterRevealed(s, code);
-  collectorEncounterRevealed(s, code);
+  if (revealOrigin === "encounter") {
+    elfEncounterRevealed(s, code);
+    collectorEncounterRevealed(s, code);
+  }
+  if (c.type_code === "treachery")
+    stewardFearTreacheryRevealed(s, code, revealOrigin);
   log(
     s,
     `Revealed ${c.name}.`,
     c.type_code === "treachery" ? "danger" : "normal",
   );
   if (s.flow) {
-    prepend(s, fx("resolveReveal", { code, source: guarding }));
+    prepend(s, fx("resolveReveal", { code, source: guarding, revealOrigin }));
     pauseFor(s, {
       kind: "reveal",
       title: `Revealed · ${c.name}`,
@@ -1377,13 +1535,19 @@ export function revealed(s: GameState, code: string, guarding?: string) {
     });
     return;
   }
-  resolveReveal(s, code, guarding);
+  resolveReveal(s, code, guarding, revealOrigin);
 }
 
-export function resolveReveal(s: GameState, code: string, guarding?: string) {
+export function resolveReveal(
+  s: GameState,
+  code: string,
+  guarding?: string,
+  revealOrigin: Effect["revealOrigin"] = "encounter",
+) {
   const c = card(code);
   let thalin = false;
   if (
+    revealOrigin === "encounter" &&
     c.type_code === "enemy" &&
     allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed)
   ) {
@@ -1393,6 +1557,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
       roadRivendellRevealedEnemy(s, crow);
       khazadRevealedEnemy(s, crow);
       s.staging.push(crow);
+      heirsEnemyEntered(s, crow, true);
       destroy(s, crow);
       log(s, `Thalin defeats ${c.name} as it is revealed.`, "good");
       return;
@@ -1404,13 +1569,19 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
       raiseThreat(s, Number(doomed[1]), "encounter");
     });
   const emynSurge = emynMuilRevealSurge(s, code);
-  if (c.text?.includes("Surge.") || emynSurge || longDarkRevealSurge(s, code))
+  if (
+    /(?:^|[.\n]\s*)Surge(?:[.\s]|$)/i.test(c.text ?? "") ||
+    emynSurge ||
+    longDarkRevealSurge(s, code)
+  )
     prepend(s, fx("amonSurgeWindow", { code }), fx("reveal"));
   // The Eaves of Mirkwood: encounter card effects cannot be canceled.
   const when =
     (c.text ?? "").includes("When Revealed") &&
     code !== CARROCK.sacked &&
     !khazadCannotCancel(code) &&
+    !heirsCannotCancel(code) &&
+    !stewardFearCannotCancel(code) &&
     !roadRivendellCannotCancel(s) &&
     !allActiveLocations(s).some((l) => l.code === "02016");
   const options: Option[] = [];
@@ -1437,6 +1608,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
                 player: revealingPlayer,
                 value: thalin ? 1 : 0,
                 source: guarding,
+                revealOrigin,
               }),
             ],
             cancelledEffects: [
@@ -1446,6 +1618,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
                 player: revealingPlayer,
                 value: thalin ? 1 : 0,
                 source: guarding,
+                revealOrigin,
               }),
             ],
           }),
@@ -1460,10 +1633,15 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
         label: "Exhaust Eleanor to cancel and replace",
         code: "01008",
         effects: [
-          fx("exhaust", { target: eleanor.id }),
+          fx("exhaust", {
+            target: eleanor.id,
+            source: eleanor.id,
+            code: eleanor.code,
+          }),
           fx("cancelReplace", {
             code,
             source: guarding,
+            revealOrigin,
             player: revealingPlayer,
           }),
         ],
@@ -1480,6 +1658,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
           player: revealingPlayer,
           value: thalin ? 1 : 0,
           source: guarding,
+          revealOrigin,
         }),
       ),
     );
@@ -1499,6 +1678,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
               code,
               value: thalin ? 1 : 0,
               source: guarding,
+              revealOrigin,
             }),
           ],
         },
@@ -1514,6 +1694,7 @@ export function resolveReveal(s: GameState, code: string, guarding?: string) {
       code,
       value: thalin ? 1 : 0,
       source: guarding,
+      revealOrigin,
     }),
   );
 }
@@ -1525,6 +1706,7 @@ export function placeEncounter(
   initialDamage = 0,
   guarding?: string,
   fromReveal = false,
+  revealOrigin: Effect["revealOrigin"] = "encounter",
 ) {
   const c = card(code);
   if (c.type_code !== "treachery") {
@@ -1536,17 +1718,23 @@ export function placeEncounter(
     if (guarding && ["enemy", "location"].includes(c.type_code))
       fresh.guarding = guarding;
     s.staging.push(fresh);
-    if (fromReveal && c.type_code === "enemy") {
+    if (fromReveal && revealOrigin === "encounter" && c.type_code === "enemy") {
       khazadRevealedEnemy(s, fresh);
       khazadDiscardRevealedEnemy(s, fresh);
     }
     if (c.type_code === "enemy" && s.staging.some((u) => u.id === fresh.id))
       enemyAddedToStaging(s, fresh);
     if (c.type_code === "enemy")
-      roadRivendellEnemyEntered(s, fresh, fromReveal);
+      roadRivendellEnemyEntered(
+        s,
+        fresh,
+        fromReveal && revealOrigin === "encounter",
+      );
+    if (c.type_code === "enemy") heirsEnemyEntered(s, fresh, fromReveal);
     if (c.type_code === "location") {
+      stewardFearLocationEntered(s, fresh);
       watcherPlayerLocationEntered(s, fresh);
-      if (fromReveal)
+      if (fromReveal && revealOrigin === "encounter")
         prepend(s, fx("huntLocationResponse", { target: fresh.id }));
     }
     if (c.type_code === "objective") {
@@ -1565,6 +1753,9 @@ export function placeEncounter(
     return;
   }
   if (shadowFlameEncounter(s, code)) return;
+  if (heirsEncounter(s, code)) return;
+  if (stewardFearEncounter(s, code)) return;
+  if (foundationsEncounter(s, code)) return;
   if (longDarkEncounter(s, code)) return;
   if (watcherWaterEncounter(s, code)) return;
   if (roadRivendellEncounter(s, code)) return;
@@ -1583,16 +1774,14 @@ export function placeEncounter(
       s.threatModifier += livingSeats(s).length;
       break;
     case "01105":
-      forOwner(s, s.table?.first ?? 0, () => {
+      forOwner(s, firstPlayer(s), () => {
         s.shackles++;
       });
       break;
     case "01112":
       prepend(
         s,
-        ...playerOrder(s).map(() =>
-          fx("reveal", { player: s.table?.first ?? 0 }),
-        ),
+        ...playerOrder(s).map(() => fx("reveal", { player: firstPlayer(s) })),
       );
       break;
     case "01116":
@@ -1710,7 +1899,7 @@ export function placeEncounter(
         prepend(s, fx("reveal"));
         break;
       }
-      selectSeat(s, s.table?.first ?? 0);
+      selectSeat(s, firstPlayer(s));
       choose(
         s,
         "False Lead",
@@ -1765,11 +1954,12 @@ export function allyCanEnter(s: GameState, code: string): boolean {
     return false;
   return (
     !c.is_unique ||
-    !units(s).some(
+    !globalUnits(s).some(
       (u) =>
         key(card(u.code).name) === title ||
         u.attachments.some(
-          (a) => !a.facedown && key(card(a.code).name) === title,
+          (a) =>
+            !a.facedown && !a.namelessCard && key(card(a.code).name) === title,
         ),
     )
   );
@@ -1792,6 +1982,7 @@ export function enterAlly(
   if (played) heirsPlayerCardPlayed(s, card(u.code));
   heirsPlayerAllyEntered(s, u, played, fromHand);
   amonPlayerAllyEntered(s, u, played);
+  osgiliathPlayerAllyEntered(s, u, played);
   collectorAllyEntered(s, u, played, fromHand);
   huntAllyEntered(s, u, played && fromHand);
   mirkwoodPlayerAllyEntered(s, u, played && fromHand);
@@ -1926,6 +2117,7 @@ export function spendEvent(s: GameState, code: string, id?: string) {
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
   holdPlayedEvent(s, u);
+  stewardFearEventPlayed(s);
   log(s, `Played ${card(code).name}.`, "good");
   return !shadowFlameEventCancelled(s);
 }
@@ -1955,7 +2147,12 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (heirsShadow(s, code)) return;
+  if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;
+  const foundationsAttacker = get(s, s.combat?.enemyId);
+  if (foundationsAttacker && foundationsShadow(s, foundationsAttacker, code))
+    return;
   const longDarkAttacker = get(s, s.combat?.enemyId);
   if (longDarkAttacker && longDarkShadow(s, longDarkAttacker, code)) return;
   if (watcherWaterShadow(s, code)) return;
@@ -1998,7 +2195,7 @@ export function shadow(s: GameState, code: string) {
       const enemy = get(s, c.enemyId);
       const index = enemy?.shadows.indexOf(code) ?? -1;
       if (enemy && index >= 0) removeShadowCard(enemy, index);
-      forOwner(s, s.table?.first ?? 0, () => {
+      forOwner(s, firstPlayer(s), () => {
         s.shackles++;
       });
       break;

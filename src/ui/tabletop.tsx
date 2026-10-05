@@ -8,7 +8,8 @@ import {
   Tree,
 } from "@phosphor-icons/react";
 import type { Action, Card, GameState, Unit } from "../game/types";
-import { card, imageUrl, name } from "../game/cards";
+import { card, imageUrl, name, cachedImageSource } from "../game/cards";
+import { foundationsArea } from "../game/foundations-stone-support";
 import { availableAbilities, locationQuest, stageInfo } from "../game/engine";
 import {
   activeSeat,
@@ -38,10 +39,10 @@ export function questStageLabel(s: GameState) {
 export function questFace(s: GameState) {
   const stage = stageInfo(s);
   if ("questImage" in stage && typeof stage.questImage === "string") {
-    return stage.questImage;
+    return cachedImageSource(stage.questImage);
   }
   if ("back_imagesrc" in stage && typeof stage.back_imagesrc === "string") {
-    return stage.back_imagesrc;
+    return cachedImageSource(stage.back_imagesrc);
   }
   if ("cardCode" in stage) {
     const quest = [...carrockQuests, ...emynQuests].find(
@@ -112,6 +113,12 @@ export function JourneyArea({
   const reduced = useReducedMotion();
   const active = allActiveLocations(s);
   const quest = currentQuestUnit(s);
+  const resourceQuest = s.scenarioId === "the-stewards-fear" && s.stage < 3;
+  const questValue = resourceQuest
+    ? (s.stewardFear?.questResources ?? 0)
+    : s.progress;
+  const questGoal = resourceQuest ? 4 : q.quest;
+  const area = s.foundationsStone?.split ? foundationsArea(s) : undefined;
   const locationCard = (u: Unit) => (
     <>
       <motion.button
@@ -127,8 +134,18 @@ export function JourneyArea({
           data-card-code={u.code}
         />
         <TableToken kind="progress" value={u.progress} />
+        {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
       </motion.button>
       <AttachmentStack u={u} inspect={inspect} />
+      {!!s.stewardFear?.underneath[u.id]?.length && (
+        <span
+          className="journey-underworld"
+          aria-label={`${s.stewardFear.underneath[u.id].length} facedown Underworld cards`}
+        >
+          <Stack size={13} aria-hidden="true" />{" "}
+          {s.stewardFear.underneath[u.id].length} facedown Underworld
+        </span>
+      )}
       {dispatch && (
         <div className="journey-location-actions">
           {availableAbilities(s, u).map((a) => (
@@ -159,6 +176,11 @@ export function JourneyArea({
           {s.stage} / {scenario(s.scenarioId).stages.length}
         </span>
       </div>
+      {area && (
+        <div className="journey-area-players">
+          Staging area · {area.players.map((p) => seatName(s, p)).join(" · ")}
+        </div>
+      )}
       <button
         key={questFace(s)}
         className="quest-card-stack"
@@ -173,25 +195,30 @@ export function JourneyArea({
       </button>
       <div
         className="tabletop-progress"
-        aria-label={`Quest progress: ${s.progress} of ${q.quest || "special objective"}`}
+        aria-label={`Quest ${resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`}
       >
-        <TableToken kind="progress" value={s.progress} />
+        <TableToken
+          kind={resourceQuest ? "resource" : "progress"}
+          value={questValue}
+        />
         <div>
-          <b>{q.quest ? `${s.progress} / ${q.quest}` : "Special objective"}</b>
-          <span>Progress</span>
+          <b>
+            {questGoal ? `${questValue} / ${questGoal}` : "Special objective"}
+          </b>
+          <span>{resourceQuest ? "Quest resources" : "Progress"}</span>
         </div>
-        {q.quest > 0 && (
+        {questGoal > 0 && (
           <div
             className="quest-progress-track"
             role="progressbar"
-            aria-label="Quest progress"
-            aria-valuenow={s.progress}
+            aria-label={resourceQuest ? "Quest resources" : "Quest progress"}
+            aria-valuenow={questValue}
             aria-valuemin={0}
-            aria-valuemax={q.quest}
+            aria-valuemax={questGoal}
           >
             <motion.span
               initial={false}
-              animate={{ scaleX: Math.min(1, s.progress / q.quest) }}
+              animate={{ scaleX: Math.min(1, questValue / questGoal) }}
               transition={
                 reduced ? { duration: 0 } : { duration: 0.65, ease: "easeOut" }
               }

@@ -1,3 +1,6 @@
+import { globalPlayerOrder } from "./table";
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 // Exact Heirs of Númenor player actions, lasting effects and physical Trap entry.
 import { card, plain } from "./cards";
 import type { Attachment, Card, Effect, GameState, Unit } from "./types";
@@ -53,7 +56,7 @@ const allHosts = (s: GameState): Unit[] => [
   ).values(),
 ];
 const hasMarker = (s: GameState, key: string) =>
-  playerOrder(s).some((player) => seatView(s, player).used.includes(key));
+  globalPlayerOrder(s).some((player) => seatView(s, player).used.includes(key));
 const ownEnemies = (s: GameState) =>
   s.staging.filter((u) => card(u.code).type_code === "enemy");
 const resourceTargets = (s: GameState) =>
@@ -96,7 +99,7 @@ export function heirsPlayerCardPlayed(s: GameState, c: Card) {
     s.used = s.used.filter((k) => k !== masterMarker(c.type_code));
 }
 export function heirsPlayerStats(s: GameState, u: Unit) {
-  const copies = playerOrder(s).reduce(
+  const copies = globalPlayerOrder(s).reduce(
     (count, p) =>
       count +
       seatView(s, p).used.filter((k) => k === `round:beacons:${u.id}`).length,
@@ -199,6 +202,8 @@ export function heirsPlayerAbilityProblem(
     if (a?.code !== "05013") return undefined;
     if (a.blanked || a.facedown)
       return "Blood of Númenor's printed ability is blank.";
+    if (!heirsCanSpendResources(s, u))
+      return "Orc Vanguard prevents this hero from spending resources.";
     if (u.resources < 2)
       return "The attached hero needs at least 2 resources to gain defense after paying 1.";
     if (hasMarker(s, `phase:blood-numenor:${a.id}`))
@@ -227,7 +232,7 @@ export function useHeirsPlayerAbility(
       !heirsPlayerAbilityProblem(s, u, attachmentId),
       heirsPlayerAbilityProblem(s, u, attachmentId) ?? "",
     );
-    u.resources--;
+    spendResources(s, u, 1);
     u.tempDefense = (u.tempDefense ?? 0) + u.resources;
     s.used.push(`phase:blood-numenor:${a.id}`);
     return true;

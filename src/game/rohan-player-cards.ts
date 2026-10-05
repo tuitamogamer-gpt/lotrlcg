@@ -1,3 +1,5 @@
+import { globalPlayerOrder } from "./table";
+import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
 // Exact Riders of Rohan main-list rules; original printings remain in the catalog.
 // Primary list: https://images-cdn.fantasyflightgames.com/filer_public/1d/d6/1dd6170d-344d-4f9e-977b-7ef79c2d5c6c/mec106_rules.pdf
@@ -33,6 +35,7 @@ import {
 import {
   activeSeat,
   allCharacters,
+  globalCharacters,
   allEngaged,
   allHeroes,
   attachmentController,
@@ -72,7 +75,7 @@ const affected = (u: Unit) =>
   !/immune to player card effects/i.test(plain(card(u.code).text));
 const uniqueAllowed = (s: GameState, code: string) =>
   !card(code).is_unique ||
-  !allCharacters(s).some((u) => card(u.code).name === card(code).name);
+  !globalCharacters(s).some((u) => card(u.code).name === card(code).name);
 const live = (s: GameState, u: Unit) =>
   allCharacters(s).some((x) => x.id === u.id);
 const ownsUniqueTraits = (s: GameState) => {
@@ -247,7 +250,15 @@ export function useRohanAbility(
 }
 export function rohanEventEffect(s: GameState, code: string): boolean {
   if (code === rohanCode.forth) {
-    s.used.push("phase:forth-eorlingas");
+    // FAQ 1.55: player-card lasting effects select affected cards once.
+    // Record each physical hero on its controller's seat so later traits or
+    // hero entries cannot change this permission, including across seats.
+    for (const hero of allHeroes(s).filter(
+      (u) => hasTrait(u, "Rohan") && (u.blanked || affected(u)),
+    ))
+      seatView(s, ownerOf(s, hero)).used.push(
+        `phase:forth-eorlingas:${hero.id}`,
+      );
     log(
       s,
       "Each Rohan hero can attack enemies in staging this combat phase.",
@@ -269,9 +280,8 @@ export function rohanEventEffect(s: GameState, code: string): boolean {
 }
 export const rohanStagingAttack = (s: GameState, u: Unit) =>
   card(u.code).type_code === "hero" &&
-  hasTrait(u, "Rohan") &&
-  playerOrder(s).some((i) =>
-    seatView(s, i).used.includes("phase:forth-eorlingas"),
+  globalPlayerOrder(s).some((i) =>
+    seatView(s, i).used.includes(`phase:forth-eorlingas:${u.id}`),
   );
 export const rohanRevealReduction = (s: GameState, count: number) =>
   Math.max(
@@ -777,7 +787,7 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
           eligiblePayers(s, card(ally.code)).some((x) => x.id === payer.id),
         "Choose an available matching resource pool.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       prepend(
         s,
         fx("rohanHirgonPay", {

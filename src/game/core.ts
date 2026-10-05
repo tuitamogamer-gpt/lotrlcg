@@ -1,5 +1,36 @@
 import { shadowFlameAttackBonus } from "./shadow-flame";
 import {
+  heirsStats,
+  heirsStagingThreatBonus,
+  heirsStagingQuestCharacters,
+  heirsQuestStat,
+  heirsEngagementCost,
+  heirsCanSpendResources,
+  heirsObjectiveFree,
+} from "./heirs-numenor";
+import {
+  stewardFearLocationQuestBonus,
+  stewardFearEnemyAttackBonus,
+  stewardFearIsClue,
+} from "./steward-fear";
+import {
+  foundationsAllAreaUnits,
+  foundationsStageInfo,
+} from "./foundations-stone-support";
+import {
+  foundationsStats,
+  foundationsEnemyX,
+  foundationsDrawHero,
+  foundationsObjectiveFree,
+} from "./foundations-stone";
+import { globalCharacters, globalEngaged } from "./table";
+import { morgulPlayerStats, morgulPlayerCost } from "./morgul-player-cards";
+import {
+  osgiliathPlayerStats,
+  osgiliathPlayerCost,
+} from "./osgiliath-player-cards";
+import { bloodPlayerCost } from "./blood-gondor-player-cards";
+import {
   druadanPlayerStats,
   druadanPlayerQuestStat,
   druadanPlayerDefenseStat,
@@ -147,6 +178,12 @@ export const units = (s: GameState) => [
   ...s.staging,
   ...allEngaged(s),
   ...allActiveLocations(s),
+];
+/** Physical identity and uniqueness remain global across separated staging areas. */
+export const globalUnits = (s: GameState) => [
+  ...globalCharacters(s),
+  ...globalEngaged(s),
+  ...foundationsAllAreaUnits(s),
 ];
 
 export const get = (s: GameState, id?: string) =>
@@ -358,10 +395,18 @@ export function stats(s: GameState, u: Unit) {
   const stewardBonus = stewardPlayerStats(s, u);
   const druadanBonus = druadanPlayerStats(s, u);
   const amonBonus = amonPlayerStats(s, u);
+  const morgulBonus = morgulPlayerStats(s, u);
+  const osgiliathBonus = osgiliathPlayerStats(s, u);
+  const foundationsBonus = foundationsStats(s, u);
+  const namelessX = foundationsEnemyX(s, u);
+  const heirsScenarioBonus = heirsStats(s, u);
   const result = {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
+        foundationsBonus.will +
+        morgulBonus.will +
+        osgiliathBonus.will +
         amonBonus.will +
         stewardBonus.will +
         bonus.will +
@@ -384,7 +429,12 @@ export function stats(s: GameState, u: Unit) {
     ),
     attack: watcherWaterZeroCombatStats(u)
       ? 0
-      : (c.attack ?? 0) +
+      : (namelessX ?? c.attack ?? 0) +
+        foundationsBonus.attack +
+        heirsScenarioBonus.attack +
+        stewardFearEnemyAttackBonus(s, u) +
+        morgulBonus.attack +
+        osgiliathBonus.attack +
         shadowFlameAttackBonus(s, u) +
         stewardBonus.attack +
         bonus.attack +
@@ -415,6 +465,9 @@ export function stats(s: GameState, u: Unit) {
       : Math.max(
           0,
           (c.defense ?? 0) +
+            foundationsBonus.defense +
+            heirsScenarioBonus.defense +
+            osgiliathBonus.defense +
             druadanBonus.defense +
             stewardBonus.defense +
             longDarkDefenseBonus(s, u) +
@@ -434,12 +487,14 @@ export function stats(s: GameState, u: Unit) {
             (s.combat?.defenseBonuses?.[u.id] ?? 0),
         ),
     health:
-      (c.health ?? 0) +
+      (namelessX ?? c.health ?? 0) +
+      foundationsBonus.health +
       stewardBonus.health +
       bonus.health +
       u.attachments.filter((a) => !a.blanked && a.code === "01040").length * 4,
   };
   if (druadanPlayerDefenseStat(s, u)) result.defense = result.will;
+  result.attack = Math.max(0, result.attack);
   return result;
 }
 
@@ -480,7 +535,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
             (u) => card(u.code).type_code === "ally" && hasTrait(u, "Gondor"),
           ).length
         : 0;
-  return amonPlayerCost(
+  const baseCost = amonPlayerCost(
     s,
     c,
     heirsPlayerCost(
@@ -509,6 +564,11 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
       target,
     ),
   );
+  return bloodPlayerCost(
+    s,
+    c,
+    osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+  );
 }
 /** Current printed/modifier threat. Suppression only applies in staging. */
 export const threatOf = (s: GameState, u: Unit) =>
@@ -522,6 +582,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           rhosgobelThreatBonus(s, u) +
           khazadThreatBonus(s, u) +
           heirsPlayerThreatModifier(u) +
+          heirsStats(s, u).threat +
           longDarkThreatBonus(s, u) +
           (u.code === "02021" ? 2 * cluesInPlay(s) : 0) +
           (u.code === "02015"
@@ -538,28 +599,36 @@ export const threatOf = (s: GameState, u: Unit) =>
 
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
+  heirsStagingThreatBonus(s) +
   s.staging
     .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
     .reduce((n, u) => n + threatOf(s, u), 0);
 
 export const questWill = (s: GameState) =>
-  allCharacters(s)
+  [...allCharacters(s), ...heirsStagingQuestCharacters(s)]
     .filter(
       (u) =>
         redhornWillCounts(s, u) &&
         khazadWillCounts(s, u) &&
         (u.committed || seatView(s, ownerOf(s, u)).committedIds.includes(u.id)),
     )
-    .reduce((n, u) => n + stats(s, u)[druadanPlayerQuestStat(s)], 0);
+    .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
+
+export const questStat = (s: GameState) =>
+  heirsQuestStat(s) ?? druadanPlayerQuestStat(s);
 
 export const locationQuest = (s: GameState, u: Unit) =>
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
-    collectorLocationQuestBonus(u);
-export const engagementCost = (_s: GameState, u: Unit) =>
+    collectorLocationQuestBonus(u) +
+    stewardFearLocationQuestBonus(s, u);
+export const engagementCost = (s: GameState, u: Unit) =>
+  heirsEngagementCost(s, u) ??
   Math.max(0, (card(u.code).engagement ?? 0) + (u.tempEngagement ?? 0));
 
 export const stageInfo = (s: GameState) => {
+  const foundations = foundationsStageInfo(s);
+  if (foundations) return foundations;
   const dynamic = khazadStageInfo(s);
   if (dynamic) return dynamic;
   if (s.scenarioId !== "mirkwood" || s.stage < 3)
@@ -602,11 +671,14 @@ export const canFight = (u: Unit) =>
   !watcherWaterCannotExhaust(u);
 
 export const objectiveFree = (s: GameState, u: Unit) =>
-  (OBJECTIVES.includes(u.code) ||
+  foundationsObjectiveFree(s, u) ??
+  ((heirsObjectiveFree(s, u) ||
+    stewardFearIsClue(u.code) ||
+    OBJECTIVES.includes(u.code) ||
     u.code === RHOS.athelas ||
     u.code === KHAZAD.book ||
     u.code === KHAZAD.tools) &&
-  !units(s).some((x) => x.guarding === u.id);
+    !units(s).some((x) => x.guarding === u.id));
 
 export const objectiveCount = (s: GameState) =>
   allHeroes(s)
@@ -631,20 +703,37 @@ export const resources = (s: GameState, sphere?: string) => {
 export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
   syncAttachmentText(s);
   const actualCost = playCost(s, c, target);
-  const heroes = s.heroes.filter(
-    (h) =>
-      stewardPlayerCanPay(s, h, c, actualCost) ||
-      (c.code === "22062" && hasTrait(h, "Rohan")) ||
-      hasResourceIcon(h, c.sphere_code) ||
-      (actualCost > 0 &&
-        c.type_code === "ally" &&
-        h.code === "04128" &&
-        !h.blanked) ||
-      (c.sphere_code === "leadership" && carrockPaysLeadership(s, h)),
-  );
+  const heroes = s.heroes
+    .filter((h) => actualCost === 0 || heirsCanSpendResources(s, h))
+    .filter(
+      (h) =>
+        stewardPlayerCanPay(s, h, c, actualCost) ||
+        (c.code === "22062" && hasTrait(h, "Rohan")) ||
+        hasResourceIcon(h, c.sphere_code) ||
+        (actualCost > 0 &&
+          c.type_code === "ally" &&
+          h.code === "04128" &&
+          !h.blanked) ||
+        (c.sphere_code === "leadership" && carrockPaysLeadership(s, h)),
+    );
   return hasTraitCard(c, "Creature")
     ? [...heroes, ...s.allies.filter((u) => u.code === "02059")]
     : heroes;
+}
+
+/** Card and ability costs share spending restrictions; transfers and losses do not. */
+export function spendResources(s: GameState, hero: Unit, amount: number) {
+  requireRule(
+    Number.isInteger(amount) && amount >= 0 && hero.resources >= amount,
+    "Not enough resources.",
+  );
+  requireRule(
+    amount === 0 ||
+      card(hero.code).type_code !== "hero" ||
+      heirsCanSpendResources(s, hero),
+    "Orc Vanguard prevents this hero from spending resources.",
+  );
+  hero.resources -= amount;
 }
 
 const hasTraitCard = (c: Card, trait: string) =>
@@ -727,7 +816,8 @@ export function draw(s: GameState, count: number) {
   }
   let n = 0;
   while (n < count && s.deck.length) {
-    s.hand.push(takePlayerDeck(s));
+    const u = takePlayerDeck(s);
+    if (!foundationsDrawHero(s, u)) s.hand.push(u);
     n++;
   }
   if (n) log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);

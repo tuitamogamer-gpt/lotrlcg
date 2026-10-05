@@ -1,3 +1,5 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 // Active rules completing the two printed Collector's Edition starter decks.
 import { card, plain } from "./cards";
 import type {
@@ -37,6 +39,7 @@ import {
   enemyAddedToStaging,
 } from "./board";
 import {
+  firstPlayer,
   activeSeat,
   allActiveLocations,
   allCharacters,
@@ -108,7 +111,10 @@ const locations = (s: GameState) =>
   );
 const spherePayers = (s: GameState, sphere: string, player = activeSeat(s)) =>
   seatView(s, player).heroes.filter(
-    (h) => h.resources > 0 && hasResourceIcon(h, sphere),
+    (h) =>
+      h.resources > 0 &&
+      heirsCanSpendResources(s, h) &&
+      hasResourceIcon(h, sphere),
   );
 const groupPayers = (s: GameState, sphere: string) =>
   playerOrder(s).flatMap((player) => spherePayers(s, sphere, player));
@@ -316,7 +322,7 @@ export const collectorRoundEndEffects = (s: GameState): Effect[] =>
       ? [
           fx("collectorSellswordPayment", {
             source: u.id,
-            player: s.table?.first ?? 0,
+            player: firstPlayer(s),
           }),
         ]
       : !u.blanked &&
@@ -342,7 +348,7 @@ export function collectorLocationExplored(
       .map((a) =>
         fx("collectorElfStoneResponse", {
           source: a.id,
-          value: s.table?.first ?? 0,
+          value: firstPlayer(s),
           player: a.owner ?? 0,
         }),
       ),
@@ -428,7 +434,9 @@ export function collectorAbilityProblem(
 ): string | undefined {
   if (
     u.code === codes.gildor &&
-    (u.resources < 1 || s.used.includes(`round:collector-gildor:${u.id}`))
+    (u.resources < 1 ||
+      !heirsCanSpendResources(s, u) ||
+      s.used.includes(`round:collector-gildor:${u.id}`))
   )
     return "Gildor needs one resource and may use this action once per round.";
   if (
@@ -453,7 +461,7 @@ export function useCollectorAbility(s: GameState, u: Unit): boolean {
     collectorAbilityProblem(s, u) ?? "",
   );
   if (u.code === codes.gildor) {
-    u.resources--;
+    spendResources(s, u, 1);
     s.used.push(`round:collector-gildor:${u.id}`);
     choose(
       s,
@@ -1021,7 +1029,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
     case "collectorAzainPay": {
       const h = spherePayers(s, "tactics").find((h) => h.id === e.target);
       requireRule(h, "Pay one Tactics resource.");
-      h.resources--;
+      spendResources(s, h, 1);
       choose(
         s,
         "Azain Silverbeard · Enemy sharing a trait",
@@ -1043,7 +1051,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           hero,
         "Ioreth and a Lore resource are required.",
       );
-      hero.resources--;
+      spendResources(s, hero, 1);
       requireRule(exhaustCharacter(s, healer), "Ioreth cannot exhaust.");
       choose(
         s,
@@ -1152,7 +1160,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         h && u?.code === codes.sellsword,
         "Spend one Leadership resource to retain this Sellsword.",
       );
-      h.resources--;
+      spendResources(s, h, 1);
       return true;
     }
     case "collectorDesperateResponse":

@@ -46,6 +46,7 @@ import {
   rohanCharactersLeft,
   rohanQuestSucceeded,
   rohanRoundEnd,
+  rohanStagingAttack,
 } from "../src/game/rohan-player-cards.ts";
 import { RETURN } from "../src/game/return-mirkwood.ts";
 import { KHAZAD } from "../src/game/khazad-dum.ts";
@@ -503,6 +504,88 @@ test("Forth Eorlingas permits multiple own Rohan heroes against staging without 
   assert.ok(attackersFor(s, enemy).some((u) => u.id === l.id));
   s = act(s, { type: "ATTACK", enemyId: enemy.id, attackerIds: [e.id, l.id] });
   assert.equal(get(s, enemy.id)!.damage, 1);
+});
+test("Forth snapshots Mutual Accord's Rohan heroes only when Accord resolves first", () => {
+  for (const accordFirst of [false, true]) {
+    let s = game();
+    const gondor = s.heroes[1];
+    s.phase = "attack";
+    const enemy = make(s, "01082");
+    s.staging = [enemy];
+    assert.ok(effectiveTraits(gondor).includes("Gondor"));
+    assert.equal(effectiveTraits(gondor).includes("Rohan"), false);
+    attach(s, gondor, "02010"); // Song of Kings pays Mutual Accord.
+    if (accordFirst) s = play(s, "05005");
+    s = play(s, "06138");
+    if (!accordFirst) s = play(s, "05005");
+    assert.equal(rohanStagingAttack(s, get(s, gondor.id)!), accordFirst);
+    assert.equal(
+      attackersFor(s, enemy).some((u) => u.id === gondor.id),
+      accordFirst,
+    );
+    const saved = JSON.parse(JSON.stringify(s));
+    assert.ok(validateSave(saved));
+    assert.equal(
+      rohanStagingAttack(saved, get(saved, gondor.id)!),
+      accordFirst,
+    );
+    phaseEnd(s);
+    flush(s);
+    assert.equal(rohanStagingAttack(s, get(s, gondor.id)!), false);
+  }
+});
+test("Forth does not grant staging attacks to a Rohan hero who enters later through Fortune or Fate", () => {
+  let s = game();
+  const fallen = s.heroes[0];
+  s.heroes = s.heroes.filter((u) => u.id !== fallen.id);
+  s.heroes[0].code = "06134";
+  s.discard = [fallen.code];
+  s.phase = "attack";
+  const existing = s.heroes[0],
+    enemy = make(s, "01082");
+  s.staging = [enemy];
+  s = play(s, "06138");
+  assert.equal(rohanStagingAttack(s, get(s, existing.id)!), true);
+  s = play(s, "01054", "discard-0");
+  const returned = s.heroes.find((u) => u.code === fallen.code)!;
+  assert.ok(returned);
+  assert.ok(effectiveTraits(returned).includes("Rohan"));
+  assert.equal(rohanStagingAttack(s, returned), false);
+  assert.equal(
+    attackersFor(s, enemy).some((u) => u.id === returned.id),
+    false,
+  );
+});
+test("Forth records eligible heroes on both seats and keeps a granted permission after its Rohan trait is lost", () => {
+  let s = table();
+  const first = seatView(s, 0).heroes[0],
+    second = seatView(s, 1).heroes.find((u) => u.code === "01002")!;
+  const conditional = seatView(s, 0).heroes[2];
+  s.phase = "attack";
+  const enemy = make(s, "01082");
+  s.staging = [enemy];
+  assert.ok(effectiveTraits(conditional).includes("Rohan"));
+  s = play(s, "06138");
+  assert.equal(rohanStagingAttack(s, get(s, first.id)!), true);
+  assert.equal(rohanStagingAttack(s, get(s, second.id)!), true);
+  const late = make(s, "06134");
+  selectSeat(s, 1);
+  s.heroes.push(late);
+  syncSeat(s);
+  assert.equal(rohanStagingAttack(s, late), false);
+  assert.ok(attackersFor(s, enemy).some((u) => u.id === second.id));
+  selectSeat(s, 0);
+  s.heroes = s.heroes.filter((u) => u.id !== first.id);
+  syncSeat(s);
+  stats(s, get(s, conditional.id)!);
+  assert.equal(
+    effectiveTraits(get(s, conditional.id)!).includes("Rohan"),
+    false,
+  );
+  assert.equal(rohanStagingAttack(s, get(s, conditional.id)!), true);
+  const saved = JSON.parse(JSON.stringify(s));
+  assert.ok(validateSave(saved));
+  assert.equal(rohanStagingAttack(saved, get(saved, second.id)!), true);
 });
 test("Horn of the Mark uses last-known granted traits before the departing character's attachments are discarded", () => {
   let s = game(),

@@ -3,15 +3,30 @@ import type { GameState, Unit } from "./types";
 // Only a used per-copy event needs an identity while a code-only hidden zone holds it.
 // The binding expires with the phase, alongside the event's printed usage limit.
 const deckPrefix = "phase:heavy-deck:";
-type Binding = { index: number; id: string };
+const heroPrefix = "game:foundations-hero-deck:";
+type Binding = { index: number; id: string; hero?: boolean };
 function bindings(s: GameState): Binding[] {
   return s.used
-    .filter((key) => key.startsWith(deckPrefix))
-    .map((key) => JSON.parse(key.slice(deckPrefix.length)) as Binding);
+    .filter((key) => key.startsWith(deckPrefix) || key.startsWith(heroPrefix))
+    .map((key) =>
+      key.startsWith(heroPrefix)
+        ? ({
+            ...JSON.parse(key.slice(heroPrefix.length)),
+            hero: true,
+          } as Binding)
+        : (JSON.parse(key.slice(deckPrefix.length)) as Binding),
+    );
 }
 function save(s: GameState, values: Binding[]) {
-  s.used = s.used.filter((key) => !key.startsWith(deckPrefix));
-  s.used.push(...values.map((value) => deckPrefix + JSON.stringify(value)));
+  s.used = s.used.filter(
+    (key) => !key.startsWith(deckPrefix) && !key.startsWith(heroPrefix),
+  );
+  s.used.push(
+    ...values.map(
+      ({ hero, ...value }) =>
+        (hero ? heroPrefix : deckPrefix) + JSON.stringify(value),
+    ),
+  );
 }
 export function deckCardTaken(s: GameState, index: number): string | undefined {
   const values = bindings(s),
@@ -38,6 +53,15 @@ export function deckCardInserted(
   }));
   if (u.code === "04105" && s.used.includes(`phase:heavy-stroke:${u.id}`))
     values.push({ index, id: u.id });
+  if (
+    s.foundationsStone?.lostHeroes.some(
+      (h) =>
+        h.player === (s.table?.active ?? 0) &&
+        h.id === u.id &&
+        h.code === u.code,
+    )
+  )
+    values.push({ index, id: u.id, hero: true });
   save(s, values);
 }
 export function deckCardsSwapped(s: GameState, a: number, b: number) {
@@ -68,11 +92,13 @@ export function hiddenPlayerCardIds(s: GameState): string[] | null {
   const result: string[] = [],
     positions = new Set<string>();
   for (const key of s.used) {
-    const prefix = key.startsWith(deckPrefix)
-      ? deckPrefix
-      : key.startsWith("phase:heavy-discard:")
-        ? "phase:heavy-discard:"
-        : undefined;
+    const prefix = key.startsWith(heroPrefix)
+      ? heroPrefix
+      : key.startsWith(deckPrefix)
+        ? deckPrefix
+        : key.startsWith("phase:heavy-discard:")
+          ? "phase:heavy-discard:"
+          : undefined;
     if (!prefix) continue;
     let value: { index?: number; ordinal?: number; id?: unknown };
     try {
@@ -84,10 +110,22 @@ export function hiddenPlayerCardIds(s: GameState): string[] | null {
       !value ||
       typeof value.id !== "string" ||
       !value.id.length ||
-      !s.used.includes(`phase:heavy-stroke:${value.id}`)
+      (prefix !== heroPrefix &&
+        !s.used.includes(`phase:heavy-stroke:${value.id}`))
     )
       return null;
-    if (prefix === deckPrefix) {
+    if (prefix === heroPrefix) {
+      const hero = s.foundationsStone?.lostHeroes.find(
+        (h) => h.player === (s.table?.active ?? 0) && h.id === value.id,
+      );
+      if (
+        !hero ||
+        !Number.isInteger(value.index) ||
+        value.index! < 0 ||
+        s.deck[value.index!] !== hero.code
+      )
+        return null;
+    } else if (prefix === deckPrefix) {
       if (
         !Number.isInteger(value.index) ||
         value.index! < 0 ||
@@ -101,7 +139,12 @@ export function hiddenPlayerCardIds(s: GameState): string[] | null {
     )
       return null;
     const position =
-      prefix + String(prefix === deckPrefix ? value.index : value.ordinal);
+      (prefix === heroPrefix || prefix === deckPrefix ? "deck:" : "discard:") +
+      String(
+        prefix === heroPrefix || prefix === deckPrefix
+          ? value.index
+          : value.ordinal,
+      );
     if (positions.has(position)) return null;
     positions.add(position);
     result.push(value.id);

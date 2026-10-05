@@ -3,8 +3,13 @@ import {
   normalAttackPending,
 } from "./game/considered-engagement";
 import { SHADOW_FLAME } from "./game/shadow-flame-support";
-import { druadanPlayerQuestStat } from "./game/druadan-player-cards";
+import { questStat } from "./game/core";
+import { FOUNDATIONS_STONE as F } from "./game/foundations-stone-support";
+import { HEIRS_NUMENOR as H } from "./game/heirs-numenor-support";
+import { STEWARD_FEAR as S, STEWARD_CLUES } from "./game/steward-fear-support";
+import { watcherWaterCannotExhaust } from "./game/watcher-water";
 import { amonPlayerCannotDeclareAttack } from "./game/amon-din-player-cards";
+import { eventXMaximum } from "./game/actions";
 import {
   useState,
   useEffect,
@@ -168,7 +173,6 @@ import {
   seatName,
   attackersFor,
   livingSeats,
-  seatView,
 } from "./game/table";
 import {
   REVIEW_MODES,
@@ -265,10 +269,39 @@ const objectiveClaimCode = (s: GameState, id: string) =>
   allHeroes(s)
     .flatMap((h) => h.attachments)
     .find((a) => a.id === id)?.code;
+const claimableObjectives: string[] = [
+  ...OBJECTIVES,
+  RHOS.athelas,
+  KHAZAD.book,
+  KHAZAD.tools,
+  F.axe,
+  F.helm,
+  H.scroll,
+  ...STEWARD_CLUES,
+];
+const exhaustedClaimObjectives: string[] = [
+  RHOS.athelas,
+  KHAZAD.book,
+  KHAZAD.tools,
+  F.axe,
+  F.helm,
+  H.scroll,
+  ...STEWARD_CLUES,
+];
 const objectiveClaimExhausts = (s: GameState, id: string) =>
-  ([RHOS.athelas, KHAZAD.book, KHAZAD.tools] as string[]).includes(
+  exhaustedClaimObjectives.includes(objectiveClaimCode(s, id) ?? "");
+const objectiveClaimRestricted = (s: GameState, id: string) =>
+  ![RHOS.athelas, H.scroll, ...STEWARD_CLUES].includes(
     objectiveClaimCode(s, id) ?? "",
   );
+const objectiveClaimDescription = (s: GameState, id: string) => {
+  const code = objectiveClaimCode(s, id);
+  if (code === S.prisoner || code === S.scrap)
+    return `Exhaust a ready hero you control to add this Clue to the victory display and place ${code === S.prisoner ? 2 : 1} resource ${code === S.prisoner ? "tokens" : "token"} on the quest.`;
+  if (objectiveClaimExhausts(s, id))
+    return `Choose a ready hero who can exhaust to carry the objective. Claiming it adds no threat.${objectiveClaimRestricted(s, id) ? " This objective is a restricted attachment." : ""}`;
+  return "Choose a hero to carry the objective. Raise your threat by 2; this counts toward the hero’s two restricted attachments.";
+};
 const pendingEnemyAttack = (s: GameState, u: Unit) =>
   normalAttackPending(s, u) && !enemyAttackPrevented(s, u);
 const phaseTitle = (s: GameState) =>
@@ -2451,14 +2484,7 @@ export default function App() {
                             game.phase === "defense" &&
                             pendingEnemyAttack(game, u)
                               ? () => setCombatEnemy(u.id)
-                              : (OBJECTIVES.includes(u.code) ||
-                                    [
-                                      RHOS.athelas,
-                                      KHAZAD.book,
-                                      KHAZAD.tools,
-                                    ].includes(
-                                      u.code as typeof RHOS.athelas,
-                                    )) &&
+                              : claimableObjectives.includes(u.code) &&
                                   game.phase !== "setup" &&
                                   objectiveFree(game, u)
                                 ? () => setClaimId(u.id)
@@ -2487,18 +2513,9 @@ export default function App() {
                             game.phase === "defense" &&
                             consideredEngaged(game, u)
                               ? "Defend"
-                              : OBJECTIVES.includes(u.code) ||
-                                  [
-                                    RHOS.athelas,
-                                    KHAZAD.book,
-                                    KHAZAD.tools,
-                                  ].includes(u.code as typeof RHOS.athelas)
+                              : claimableObjectives.includes(u.code)
                                 ? objectiveFree(game, u)
-                                  ? [
-                                      RHOS.athelas,
-                                      KHAZAD.book,
-                                      KHAZAD.tools,
-                                    ].includes(u.code as typeof RHOS.athelas)
+                                  ? objectiveClaimExhausts(game, u.id)
                                     ? "Claim · Exhaust hero"
                                     : "Claim · +2 threat"
                                   : "Guarded"
@@ -2517,14 +2534,12 @@ export default function App() {
                               : game.phase === "encounter" &&
                                   card(u.code).type_code === "enemy"
                                 ? optionalEngagementProblem(game, u)
-                                : [
-                                      RHOS.athelas,
-                                      KHAZAD.book,
-                                      KHAZAD.tools,
-                                    ].includes(u.code as typeof RHOS.athelas) &&
+                                : exhaustedClaimObjectives.includes(u.code) &&
                                     !game.heroes.some(
                                       (h) =>
-                                        !h.exhausted && !khazadCannotExhaust(h),
+                                        !h.exhausted &&
+                                        !khazadCannotExhaust(h) &&
+                                        !watcherWaterCannotExhaust(h),
                                     )
                                   ? "A ready hero must be able to exhaust to claim this objective."
                                   : game.phase === "travel" &&
@@ -3442,11 +3457,7 @@ export default function App() {
         <DecisionDialog
           title="Claim an objective"
           onClose={() => setClaimId(null)}
-          description={
-            objectiveClaimExhausts(game, claimId)
-              ? `Choose a ready hero who can exhaust to carry the objective. Claiming it adds no threat.${objectiveClaimCode(game, claimId) !== RHOS.athelas ? " This objective is a restricted attachment." : ""}`
-              : "Choose a hero to carry the objective. Raise your threat by 2; this counts toward the hero’s two restricted attachments."
-          }
+          description={objectiveClaimDescription(game, claimId)}
         >
           <div className="decision-grid choice-list">
             {game.heroes
@@ -3455,6 +3466,7 @@ export default function App() {
                   !objectiveClaimExhausts(game, claimId) ||
                   (!h.exhausted &&
                     !khazadCannotExhaust(h) &&
+                    !watcherWaterCannotExhaust(h) &&
                     !h.attachments.some((a) => a.id === claimId)),
               )
               .map((h) => (
@@ -3503,6 +3515,10 @@ export default function App() {
                   className="primary"
                   disabled={
                     (needsTarget(playCard) && !target) ||
+                    (["01067", "06083"].includes(playCard.code) &&
+                      (!Number.isInteger(xCost) ||
+                        xCost < 1 ||
+                        xCost > eventXMaximum(game, playCard.code))) ||
                     !eligiblePayers(
                       game,
                       card(playCard.code).cost === "X"
@@ -3621,18 +3637,14 @@ export default function App() {
                 )}{" "}
                 resources
               </h3>
-              {playCard.code === "01067" && (
+              {["01067", "06083"].includes(playCard.code) && (
                 <label className="field-label">
                   Choose X
                   <input
                     aria-label="Choose X"
                     type="number"
                     min="1"
-                    max={Math.max(
-                      ...livingSeats(game).map(
-                        (i) => seatView(game, i).deck.length,
-                      ),
-                    )}
+                    max={eventXMaximum(game, playCard.code)}
                     value={xCost}
                     onChange={(e) => {
                       const n = Number(e.target.value);
@@ -4075,9 +4087,9 @@ function phaseHelp(s: GameState) {
     case "planning":
       return "Gather allies and equip your heroes. Spend resources from heroes with a matching sphere.";
     case "quest":
-      return `Select ready characters below. Their ${druadanPlayerQuestStat(s) === "attack" ? "attack" : druadanPlayerQuestStat(s) === "defense" ? "defense" : "willpower"} contributes to this quest. Keep some ready to defend the dangers ahead.`;
+      return `Select ready characters below. Their ${questStat(s) === "attack" ? "attack" : questStat(s) === "defense" ? "defense" : "willpower"} contributes to this quest. Keep some ready to defend the dangers ahead.`;
     case "staging":
-      return `The encounter has been revealed. Use available abilities or events before comparing ${druadanPlayerQuestStat(s) === "attack" ? "attack" : druadanPlayerQuestStat(s) === "defense" ? "defense" : "willpower"} and threat.`;
+      return `The encounter has been revealed. Use available abilities or events before comparing ${questStat(s) === "attack" ? "attack" : questStat(s) === "defense" ? "defense" : "willpower"} and threat.`;
     case "travel":
       return s.staging.some(
         (u) => card(u.code).type_code === "location" && !canTravel(s, u),
@@ -4155,7 +4167,9 @@ function BoardCard({
         <span className="card-table-tokens">
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
-          {(u.code === CARROCK.grimbeorn || u.code === DEAD.gollum) && (
+          {(u.code === CARROCK.grimbeorn ||
+            u.code === DEAD.gollum ||
+            u.code === S.flames) && (
             <TableToken kind="resource" value={u.resources} />
           )}
         </span>
@@ -4221,6 +4235,17 @@ function BoardCard({
             </span>
           </div>
         )}
+      {!!s.stewardFear?.underneath[u.id]?.length && (
+        <div
+          className="objective-status"
+          aria-label={`${s.stewardFear.underneath[u.id].length} facedown Underworld cards`}
+        >
+          <span>
+            <Stack size={14} /> {s.stewardFear.underneath[u.id].length} facedown
+            Underworld
+          </span>
+        </div>
+      )}
       {c.type_code === "objective" && (
         <div className="objective-status">
           <span>

@@ -377,6 +377,8 @@
   }
   .decision-actions {
     justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-shrink: 1;
   }
   .combat-selection,
   .play-selection {
@@ -419,5 +421,17 @@
 @media (prefers-reduced-motion: reduce) {
   .decision-card {
     transition: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .decision-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+  .decision-actions button {
+    width: 100%;
+    white-space: normal;
   }
 }

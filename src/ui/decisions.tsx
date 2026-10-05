@@ -415,9 +415,11 @@ export function CombatDialog({
               <span>
                 <strong>Leave undefended</strong>
                 <small>
-                  {druadanPlayerUndefendedTargets(s).length
-                    ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
-                    : "All attack damage goes to one hero. Its defense does not count."}
+                  {s.scenarioId === "siege-of-cair-andros" && s.stage === 1
+                    ? "All attack damage goes to the lowest-threat Battleground. Excess damage does not carry over."
+                    : druadanPlayerUndefendedTargets(s).length
+                      ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
+                      : "All attack damage goes to one hero. Its defense does not count."}
                 </small>
               </span>
               {undefended && <Check size={19} />}

@@ -475,7 +475,7 @@ export function recordObservation(
   }
   const detail =
     kind === "quest" && s.lastQuest
-      ? `${s.lastQuest.will} willpower − ${s.lastQuest.threat} staging threat = ${Math.abs(s.lastQuest.net)} ${s.lastQuest.net < 0 ? "threat added to each player" : "progress"}.`
+      ? `${s.lastQuest.will} ${s.lastQuest.stat === "attack" ? "attack" : s.lastQuest.stat === "defense" ? "defense" : "willpower"} − ${s.lastQuest.threat} staging threat = ${Math.abs(s.lastQuest.net)} ${s.lastQuest.net < 0 ? "threat added to each player" : "progress"}.`
       : (lines.at(-1)?.text ?? "Review the changes before the game continues.");
   pauseFor(
     s,

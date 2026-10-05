@@ -24,6 +24,7 @@ import { hasTrait } from "./expansion-passives";
 import { isSacked } from "./carrock";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import {
+  firstPlayer,
   allActiveLocations,
   allCharacters,
   ownerOf,
@@ -120,7 +121,7 @@ export function khazadPlayerEventEffect(
     );
     requireRule(dwarf, "Exhaust a Dwarf character you control.");
     requireRule(exhaustCharacter(s, dwarf), "This Dwarf cannot exhaust.");
-    prepend(s, fx("khazadAncestralLocation", { player: s.table?.first ?? 0 }));
+    prepend(s, fx("khazadAncestralLocation", { player: firstPlayer(s) }));
   }
   return true;
 }
@@ -217,7 +218,7 @@ export function khazadPlayerFailedQuest(s: GameState, value: number): boolean {
   prepend(
     s,
     ...offers.map((player) => fx("khazadEverWindow", { player })),
-    fx("failedQuest", { value, flag: true, player: s.table?.first ?? 0 }),
+    fx("failedQuest", { value, flag: true, player: firstPlayer(s) }),
   );
   return true;
 }
@@ -297,7 +298,9 @@ export function handleKhazadPlayerEffect(s: GameState, e: Effect): boolean {
             id: "reduce",
             label: "Lower your threat by 2",
             code: "03001",
-            effects: [fx("threat", { value: -2 })],
+            effects: [
+              fx("threat", { value: -2, source: dwalin.id, code: dwalin.code }),
+            ],
           },
           skip,
         ]);

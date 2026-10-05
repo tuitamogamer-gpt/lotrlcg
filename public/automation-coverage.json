@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 355,
-    "heroes": 42,
-    "deckCards": 313,
-    "encounterCards": 223,
-    "scenarios": 17,
+    "playerCards": 377,
+    "heroes": 45,
+    "deckCards": 332,
+    "encounterCards": 296,
+    "scenarios": 22,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -24,17 +24,22 @@
       "road-to-rivendell",
       "watcher-in-the-water",
       "the-long-dark",
-      "shadow-and-flame"
+      "foundations-of-stone",
+      "shadow-and-flame",
+      "peril-in-pelargir",
+      "into-ithilien",
+      "siege-of-cair-andros",
+      "the-stewards-fear"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 636,
-    "pending": 3547
+    "scripted": 754,
+    "pending": 3429
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 34
+    "scripted": 44
   },
   "registeredCodes": [
     "01001",
@@ -347,13 +352,35 @@
     "06063",
     "06064",
     "06065",
+    "06081",
     "06082",
+    "06083",
+    "06084",
+    "06085",
+    "06086",
+    "06087",
+    "06088",
+    "06089",
+    "06090",
+    "06107",
     "06108",
+    "06109",
     "06110",
+    "06111",
+    "06112",
+    "06113",
+    "06114",
+    "06115",
+    "06116",
+    "06134",
     "06135",
     "06136",
+    "06137",
     "06138",
+    "06139",
+    "06140",
     "06141",
+    "06142",
     "06143",
     "07001",
     "07006",
@@ -449,13 +476,81 @@
     "22142",
     "22143",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
+    "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:21ee317d-9aca-43be-9782-521539827cb8",
+    "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9006",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9009",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9011",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9012",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9017",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9018",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9019",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9020",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9021",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9023",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9025",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9027",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9029",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9031",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9033",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9035",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9037",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9039",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9041",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9043",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9046",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9047",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9049",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9051",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9052",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9053",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9054",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9055",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9056",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9058",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9059",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9061",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9063",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9064",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9065",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9066",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9067",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9068",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9069",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9070",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9073",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9074",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9075",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9076",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9077",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9079",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9080",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9081",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9082",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9083",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9084",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9085",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9086",
+    "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
+    "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
+    "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9011",
@@ -625,6 +720,23 @@
     "octgn:51223bd0-ffd1-11df-a976-0801211c9023",
     "octgn:51223bd0-ffd1-11df-a976-0801211c9024",
     "octgn:51223bd0-ffd1-11df-a976-0801211c9025",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9002",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9004",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9006",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9008",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9011",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9012",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9013",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9014",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9015",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9022",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9023",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9024",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9025",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9026",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9029",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9031",
+    "octgn:51223bd0-ffd1-11df-a976-0801212c9034",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9001",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9003",
@@ -641,15 +753,26 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9024",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
+    "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+    "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
+    "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "orc-guard",
     "rc132",
     "rc133",
@@ -719,9 +842,9 @@
     {
       "product": "assault-on-osgiliath",
       "total": 26,
-      "scripted": 1,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "assault-on-osgiliath-nightmare",
@@ -873,7 +996,7 @@
     {
       "product": "foundations-of-stone",
       "total": 27,
-      "scripted": 10,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -887,7 +1010,7 @@
     {
       "product": "heirs-of-numenor",
       "total": 76,
-      "scripted": 18,
+      "scripted": 76,
       "player": 18,
       "playerScripted": 18
     },
@@ -1097,9 +1220,9 @@
     {
       "product": "the-blood-of-gondor",
       "total": 27,
-      "scripted": 2,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 2
+      "playerScripted": 10
     },
     {
       "product": "the-blood-of-gondor-nightmare",
@@ -1363,9 +1486,9 @@
     {
       "product": "the-morgul-vale",
       "total": 27,
-      "scripted": 5,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 5
+      "playerScripted": 10
     },
     {
       "product": "the-morgul-vale-nightmare",
@@ -1461,7 +1584,7 @@
     {
       "product": "the-steward-s-fear",
       "total": 31,
-      "scripted": 10,
+      "scripted": 31,
       "player": 10,
       "playerScripted": 10
     },
@@ -4280,7 +4403,7 @@
       "name": "Faramir",
       "type": "hero",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4296,7 +4419,7 @@
       "name": "Men of the West",
       "type": "event",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4304,7 +4427,7 @@
       "name": "Knight of Minas Tirith",
       "type": "ally",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4312,7 +4435,7 @@
       "name": "Gondorian Fire",
       "type": "attachment",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4320,7 +4443,7 @@
       "name": "Pelargir Shipwright",
       "type": "ally",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4328,7 +4451,7 @@
       "name": "Map of Earnil",
       "type": "attachment",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4336,7 +4459,7 @@
       "name": "Ranger Bow",
       "type": "attachment",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4344,7 +4467,7 @@
       "name": "Forest Patrol",
       "type": "event",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4352,7 +4475,7 @@
       "name": "Palantir",
       "type": "attachment",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -4360,7 +4483,7 @@
       "name": "Caldara",
       "type": "hero",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4376,7 +4499,7 @@
       "name": "Tome of Atanatar",
       "type": "attachment",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4392,7 +4515,7 @@
       "name": "The Hammer-stroke",
       "type": "event",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4400,7 +4523,7 @@
       "name": "Emery",
       "type": "ally",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4408,7 +4531,7 @@
       "name": "Children of the Sea",
       "type": "event",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4416,7 +4539,7 @@
       "name": "Anborn",
       "type": "ally",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4424,7 +4547,7 @@
       "name": "Poisoned Stakes",
       "type": "attachment",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4432,7 +4555,7 @@
       "name": "Well-Equipped",
       "type": "event",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -4440,7 +4563,7 @@
       "name": "Théoden",
       "type": "hero",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -4464,7 +4587,7 @@
       "name": "Spear of the Mark",
       "type": "attachment",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -4480,7 +4603,7 @@
       "name": "Steed of the Mark",
       "type": "attachment",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -4488,7 +4611,7 @@
       "name": "Lay of Nimrodel",
       "type": "event",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -4504,7 +4627,7 @@
       "name": "Scroll of Isildur",
       "type": "attachment",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -10632,7 +10755,7 @@
       "name": "Sewers",
       "type": "location",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -12640,7 +12763,7 @@
       "name": "Up in Flames",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -13008,7 +13131,7 @@
       "name": "The Grand Design",
       "type": "quest",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -13016,7 +13139,7 @@
       "name": "The Hand of Castamir",
       "type": "enemy",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -13216,7 +13339,7 @@
       "name": "A Prisoner",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -13976,7 +14099,7 @@
       "name": "Unholy Alliance",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -14808,7 +14931,7 @@
       "name": "Houses of the Dead",
       "type": "location",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -15672,7 +15795,7 @@
       "name": "Daughter of Berúthiel",
       "type": "enemy",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -16280,7 +16403,7 @@
       "name": "Alcaron's Scroll",
       "type": "objective",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16288,7 +16411,7 @@
       "name": "Battering Ram",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16296,7 +16419,7 @@
       "name": "Blocking Wargs",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16304,7 +16427,7 @@
       "name": "Celador",
       "type": "objective-ally",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16312,7 +16435,7 @@
       "name": "City Street",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16320,7 +16443,7 @@
       "name": "Collateral Damage",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16328,7 +16451,7 @@
       "name": "Forest Bat",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16336,7 +16459,7 @@
       "name": "Haradrim Elite",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16344,7 +16467,7 @@
       "name": "Harbor Storehouse",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16352,7 +16475,7 @@
       "name": "Harbor Thug",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16360,7 +16483,7 @@
       "name": "The Leaping Fish",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16368,7 +16491,7 @@
       "name": "Fighting in the Streets",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16376,7 +16499,7 @@
       "name": "Escape to the Quays",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16384,7 +16507,7 @@
       "name": "Ambush in Ithilien",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16392,7 +16515,7 @@
       "name": "Southron Counter-attack",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16400,7 +16523,7 @@
       "name": "The Hidden Way",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16408,7 +16531,7 @@
       "name": "Approaching Cair Andros",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16416,7 +16539,7 @@
       "name": "The Defense",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16424,7 +16547,7 @@
       "name": "Reinforcing the Banks",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16432,7 +16555,7 @@
       "name": "Breakthrough at the Approach",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16440,7 +16563,7 @@
       "name": "Breakthrough at the Citadel",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16448,7 +16571,7 @@
       "name": "The Last Battle",
       "type": "quest",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16456,7 +16579,7 @@
       "name": "Ithilien Guardian",
       "type": "objective-ally",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16464,7 +16587,7 @@
       "name": "Ithilien Road",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16472,7 +16595,7 @@
       "name": "Lieutenant of Mordor",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16480,7 +16603,7 @@
       "name": "Local Trouble",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16488,7 +16611,7 @@
       "name": "Lossarnach Bandit",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16496,7 +16619,7 @@
       "name": "Lost Companion",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16504,7 +16627,7 @@
       "name": "Lost in the City",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16512,7 +16635,7 @@
       "name": "Lurking in Shadows",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16520,7 +16643,7 @@
       "name": "Market Square",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16528,7 +16651,7 @@
       "name": "Morgul Spider",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16536,7 +16659,7 @@
       "name": "Mumak",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16544,7 +16667,7 @@
       "name": "Orc Arbalesters",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16552,7 +16675,7 @@
       "name": "Orc Arsonist",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16560,7 +16683,7 @@
       "name": "Orc Assault",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16568,7 +16691,7 @@
       "name": "Orc Rabble",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16576,7 +16699,7 @@
       "name": "Orc Scramblers",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16584,7 +16707,7 @@
       "name": "Orc Vanguard",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16592,7 +16715,7 @@
       "name": "Orc War Camp",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16600,7 +16723,7 @@
       "name": "Overgrown Trail",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16608,7 +16731,7 @@
       "name": "Pelargir Docks",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16616,7 +16739,7 @@
       "name": "Pickpocket",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16624,7 +16747,7 @@
       "name": "Scourge of Mordor",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16632,7 +16755,7 @@
       "name": "Secluded Glade",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16640,7 +16763,7 @@
       "name": "Siege Raft",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16648,7 +16771,7 @@
       "name": "Southron Company",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16656,7 +16779,7 @@
       "name": "Southron Mercenaries",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16664,7 +16787,7 @@
       "name": "Southron Support",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16672,7 +16795,7 @@
       "name": "The Approach",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16680,7 +16803,7 @@
       "name": "The Banks",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16688,7 +16811,7 @@
       "name": "The Citadel",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16696,7 +16819,7 @@
       "name": "The Leaping Fish",
       "type": "location",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16704,7 +16827,7 @@
       "name": "The Master's Malice",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16712,7 +16835,7 @@
       "name": "The Power of Mordor",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16720,7 +16843,7 @@
       "name": "Umbar Assassin",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16728,7 +16851,7 @@
       "name": "Watcher in the Wood",
       "type": "treachery",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -16736,7 +16859,7 @@
       "name": "Zealous Traitor",
       "type": "enemy",
       "pack": "Heirs of Númenor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "heirs-of-numenor"
     },
     {
@@ -17080,7 +17203,7 @@
       "name": "Poisoned Counsels",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -17296,7 +17419,7 @@
       "name": "Conspiracy",
       "type": "quest",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -18888,7 +19011,7 @@
       "name": "Below the Mines",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18896,7 +19019,7 @@
       "name": "Below the Mines",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18904,7 +19027,7 @@
       "name": "Below the Mines",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18912,7 +19035,7 @@
       "name": "Below the Mines",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18920,7 +19043,7 @@
       "name": "Deep Deep Dark",
       "type": "treachery",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18928,7 +19051,7 @@
       "name": "Drowned Treasury",
       "type": "location",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18936,7 +19059,7 @@
       "name": "Durin's Axe",
       "type": "objective",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18944,7 +19067,7 @@
       "name": "Durin's Helm",
       "type": "objective",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18952,7 +19075,7 @@
       "name": "Elder Nameless Thing",
       "type": "enemy",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18960,7 +19083,7 @@
       "name": "Lost and Alone",
       "type": "treachery",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18968,7 +19091,7 @@
       "name": "Mithril Lode",
       "type": "location",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18976,7 +19099,7 @@
       "name": "Moria Bats",
       "type": "enemy",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18984,7 +19107,7 @@
       "name": "Nameless Thing",
       "type": "enemy",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -18992,7 +19115,7 @@
       "name": "Out of the Depths",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -19000,7 +19123,7 @@
       "name": "The Dripping Walls",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -19008,7 +19131,7 @@
       "name": "The Water's Edge",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -19016,7 +19139,7 @@
       "name": "Washed Away!",
       "type": "quest",
       "pack": "Foundations of Stone",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "foundations-of-stone"
     },
     {
@@ -21064,7 +21187,7 @@
       "name": "Roots of Mindolluin",
       "type": "location",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -24016,7 +24139,7 @@
       "name": "The Confrontation",
       "type": "quest",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -27136,7 +27259,7 @@
       "name": "A Scrap of History",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -27984,7 +28107,7 @@
       "name": "The Fourth Star",
       "type": "location",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -28744,7 +28867,7 @@
       "name": "Storehouse",
       "type": "location",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -29800,7 +29923,7 @@
       "name": "A Knife in the Back",
       "type": "treachery",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -29832,7 +29955,7 @@
       "name": "Telemnar's Bane",
       "type": "enemy",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -31736,7 +31859,7 @@
       "name": "Secret Map",
       "type": "objective",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -33064,7 +33187,7 @@
       "name": "Underworld Dissident",
       "type": "enemy",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -34616,7 +34739,7 @@
       "name": "Unwelcome Discovery",
       "type": "treachery",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -34952,7 +35075,7 @@
       "name": "False Lead",
       "type": "treachery",
       "pack": "The Steward's Fear",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-steward-s-fear"
     },
     {
@@ -35231,8 +35354,8 @@
       "id": "E02.8",
       "name": "Foundations of Stone (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "foundations-of-stone",
+      "state": "scripted"
     },
     {
       "id": "E02.9",
@@ -35245,29 +35368,29 @@
       "id": "E03.1",
       "name": "Peril In Pelargir (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "peril-in-pelargir",
+      "state": "scripted"
     },
     {
       "id": "E03.2",
       "name": "Into Ithilien (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-ithilien",
+      "state": "scripted"
     },
     {
       "id": "E03.3",
       "name": "The Siege of Cair Andros (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "siege-of-cair-andros",
+      "state": "scripted"
     },
     {
       "id": "E03.4",
       "name": "The Steward's Fear (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-stewards-fear",
+      "state": "scripted"
     },
     {
       "id": "E03.5",
@@ -36722,8 +36845,8 @@
       "id": "Q02.8",
       "name": "Foundations of Stone",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "foundations-of-stone",
+      "state": "scripted"
     },
     {
       "id": "Q02.9",
@@ -36736,29 +36859,29 @@
       "id": "Q03.1",
       "name": "Peril In Pelargir",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "peril-in-pelargir",
+      "state": "scripted"
     },
     {
       "id": "Q03.2",
       "name": "Into Ithilien",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-ithilien",
+      "state": "scripted"
     },
     {
       "id": "Q03.3",
       "name": "The Siege of Cair Andros",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "siege-of-cair-andros",
+      "state": "scripted"
     },
     {
       "id": "Q03.4",
       "name": "The Steward's Fear",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-stewards-fear",
+      "state": "scripted"
     },
     {
       "id": "Q03.5",

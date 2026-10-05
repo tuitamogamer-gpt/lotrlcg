@@ -101,7 +101,12 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
               code,
               label: `${card(code).name} · Place ${value} progress`,
               effects: [
-                fx("questProgress", { value }),
+                fx("questProgress", {
+                  value,
+                  ...(code === "01005"
+                    ? { source: id.slice(code.length + 1), code }
+                    : {}),
+                }),
                 fx("attackProgress", {
                   ids: responses.filter((x) => x !== id),
                 }),

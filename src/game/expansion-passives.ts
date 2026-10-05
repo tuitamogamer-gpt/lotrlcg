@@ -79,6 +79,7 @@ const rules: Record<string, AttachmentRule> = {
   "06058": { type: "hero", traits: ["Gondor", "Outlands"] },
   "06059": { type: "hero", sphere: "tactics" },
   "06082": { type: "ally", traits: ["Gondor"], grantsTraits: ["Outlands"] },
+  "06088": { traits: ["Ranger"], restricted: 1 },
   "06136": { type: "hero", traits: ["Gondor"] },
   "08029": {
     traits: ["Noldor", "Silvan"],

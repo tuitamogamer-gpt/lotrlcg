@@ -1,3 +1,6 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
+import { stewardFearTravelEntered } from "./steward-fear";
 import {
   encodeDamageContext,
   readDamageContext,
@@ -39,6 +42,7 @@ import { isSacked, CARROCK } from "./carrock";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import {
+  firstPlayer,
   activeSeat,
   allActiveLocations,
   attachmentController,
@@ -76,7 +80,12 @@ const mapLocations = (s: GameState) =>
       ),
   );
 const lorePayers = (s: GameState) =>
-  s.heroes.filter((u) => u.resources > 0 && hasResourceIcon(u, "lore"));
+  s.heroes.filter(
+    (u) =>
+      u.resources > 0 &&
+      heirsCanSpendResources(s, u) &&
+      hasResourceIcon(u, "lore"),
+  );
 
 function addResources(s: GameState, hero: Unit, amount: number) {
   requireRule(
@@ -484,7 +493,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         "The Record Keeper requires a ready ally and 1 Lore resource.",
       );
       exhaustCharacter(s, source);
-      payer.resources--;
+      spendResources(s, payer, 1);
       choose(
         s,
         "Erebor Record Keeper · Ready a Dwarf",
@@ -520,7 +529,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
       );
       const active = allActiveLocations(s);
       if (active.length > 1) {
-        const first = s.table?.first ?? 0;
+        const first = firstPlayer(s);
         selectSeat(s, first);
         choose(
           s,
@@ -563,6 +572,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         : [location];
       s.activeLocation = replaced[0];
       s.extraActiveLocations = replaced.slice(1);
+      stewardFearTravelEntered(s, location);
       log(
         s,
         `Thrór's Map makes ${name(location)} active without travelling.`,

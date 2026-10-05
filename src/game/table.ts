@@ -10,6 +10,14 @@ import type { Attachment, Effect, GameState, PlayerSeat, Unit } from "./types";
 import { card } from "./cards";
 import { effectiveKeyword } from "./expansion-passives";
 import { rhosgobelCanFight } from "./rhosgobel";
+import { foundationsCanFight } from "./foundations-stone";
+import { heirsCanDefend } from "./heirs-numenor";
+import {
+  foundationsAreaPlayers,
+  foundationsAreaView,
+  foundationsSyncArea,
+  foundationsSelectArea,
+} from "./foundations-stone-support";
 
 // The top-level player fields are the active seat's projection. This keeps
 // existing single-player saves and card scripts compatible with the shared table.
@@ -46,12 +54,14 @@ export function snapshotSeat(s: GameState): PlayerSeat {
   ]) as PlayerSeat;
 }
 export function syncSeat(s: GameState) {
+  foundationsSyncArea(s);
   if (s.table) Object.assign(s.table.seats[s.table.active], snapshotSeat(s));
 }
 export function selectSeat(s: GameState, i: number) {
   if (!s.table || i === s.table.active) return;
   syncSeat(s);
   s.table.active = i;
+  foundationsSelectArea(s, i);
   for (const key of PLAYER_FIELDS) {
     if (s.table.seats[i][key] === undefined) delete s[key];
     else Object.assign(s, { [key]: s.table.seats[i][key] });
@@ -59,20 +69,46 @@ export function selectSeat(s: GameState, i: number) {
 }
 export function seatView(s: GameState, i: number): GameState {
   if (!s.table || i === s.table.active) return s;
-  const view = { ...s, ...s.table.seats[i], table: { ...s.table, active: i } };
+  foundationsSyncArea(s);
+  const view = {
+    ...s,
+    ...s.table.seats[i],
+    ...foundationsAreaView(s, i),
+    table: { ...s.table, active: i },
+  };
   if (s.table.seats[i].customDeck === undefined) delete view.customDeck;
   return view;
 }
 export const seatIndices = (s: GameState) =>
   s.table ? s.table.seats.map((_, i) => i) : [0];
-export const livingSeats = (s: GameState) =>
+export const globalLivingSeats = (s: GameState) =>
   seatIndices(s).filter((i) => !s.table?.seats[i].eliminated);
-export function playerOrder(s: GameState) {
+export const livingSeats = (s: GameState) => {
+  const area = foundationsAreaPlayers(s);
+  return globalLivingSeats(s).filter((i) => !area || area.includes(i));
+};
+export function globalPlayerOrder(s: GameState) {
   const first = s.table?.first ?? 0,
     count = s.table?.seats.length ?? 1;
   return Array.from({ length: count }, (_, i) => (i + first) % count).filter(
-    (i) => livingSeats(s).includes(i),
+    (i) => globalLivingSeats(s).includes(i),
   );
+}
+export const playerOrder = (s: GameState) => {
+  const area = foundationsAreaPlayers(s);
+  return globalPlayerOrder(s).filter((i) => !area || area.includes(i));
+};
+export const firstPlayer = (s: GameState) =>
+  playerOrder(s)[0] ?? s.table?.first ?? 0;
+function restoreSeat(s: GameState, previous: number) {
+  const fallback = s.table?.turn ?? previous;
+  const player =
+    s.status === "playing" && s.table?.seats[previous].eliminated
+      ? !s.table.seats[fallback].eliminated
+        ? fallback
+        : (globalPlayerOrder(s)[0] ?? previous)
+      : previous;
+  selectSeat(s, player);
 }
 export function eachSeat(
   s: GameState,
@@ -80,22 +116,64 @@ export function eachSeat(
   includeEliminated = false,
 ) {
   const previous = activeSeat(s);
-  for (const i of includeEliminated ? seatIndices(s) : playerOrder(s)) {
+  const area = foundationsAreaPlayers(s);
+  const players = includeEliminated
+    ? seatIndices(s).filter((i) => !area || area.includes(i))
+    : playerOrder(s);
+  for (const i of players) {
     selectSeat(s, i);
     run(i);
     syncSeat(s);
   }
-  selectSeat(s, previous);
+  restoreSeat(s, previous);
 }
-export const allCharacters = (s: GameState) =>
+export function globalEachSeat(
+  s: GameState,
+  run: (seat: number) => void,
+  includeEliminated = false,
+) {
+  const previous = activeSeat(s);
+  for (const i of includeEliminated ? seatIndices(s) : globalPlayerOrder(s)) {
+    selectSeat(s, i);
+    run(i);
+    syncSeat(s);
+  }
+  restoreSeat(s, previous);
+}
+/** Once per distinct staging area, in global first-player order. */
+export function eachArea(s: GameState, run: () => void) {
+  const previous = activeSeat(s);
+  const visited = new Set<number>();
+  for (const i of globalPlayerOrder(s)) {
+    if (visited.has(i)) continue;
+    selectSeat(s, i);
+    for (const player of playerOrder(s)) visited.add(player);
+    run();
+    syncSeat(s);
+  }
+  restoreSeat(s, previous);
+}
+export const globalCharacters = (s: GameState) =>
   seatIndices(s).flatMap((i) => {
     const p = seatView(s, i);
     return [...p.heroes, ...p.allies];
   });
+export const allCharacters = (s: GameState) => {
+  const area = foundationsAreaPlayers(s);
+  return globalCharacters(s).filter(
+    (u) => !area || area.includes(ownerOf(s, u)),
+  );
+};
+export const globalHeroes = (s: GameState) =>
+  globalCharacters(s).filter((u) => card(u.code).type_code === "hero");
 export const allHeroes = (s: GameState) =>
   allCharacters(s).filter((u) => card(u.code).type_code === "hero");
-export const allEngaged = (s: GameState) =>
+export const globalEngaged = (s: GameState) =>
   seatIndices(s).flatMap((i) => seatView(s, i).engaged);
+export const allEngaged = (s: GameState) => {
+  const area = foundationsAreaPlayers(s);
+  return globalEngaged(s).filter((u) => !area || area.includes(ownerOf(s, u)));
+};
 export const allActiveLocations = (s: GameState) => [
   ...(s.activeLocation ? [s.activeLocation] : []),
   ...(s.extraActiveLocations ?? []),
@@ -132,17 +210,17 @@ export function forOwner(s: GameState, owner: number, run: () => void) {
   selectSeat(s, owner);
   run();
   syncSeat(s);
-  selectSeat(s, previous);
+  restoreSeat(s, previous);
 }
 export const scopedEffect = (s: GameState, e: Effect): Effect =>
   s.table && e.player === undefined ? { ...e, player: s.table.active } : e;
 export function startPhase(s: GameState, phase: GameState["phase"]) {
   const previous = s.phase;
   s.phase = phase;
-  druadanPlayerPhaseStarted(s, previous, phase);
+  eachArea(s, () => druadanPlayerPhaseStarted(s, previous, phase));
   if (s.table) {
     s.table.passed = [];
-    s.table.turn = playerOrder(s)[0] ?? 0;
+    s.table.turn = globalPlayerOrder(s)[0] ?? 0;
     selectSeat(s, s.table.turn);
   }
 }
@@ -150,7 +228,7 @@ export function passSeat(s: GameState) {
   if (!s.table) return true;
   if (!s.table.passed.includes(s.table.active))
     s.table.passed.push(s.table.active);
-  const next = playerOrder(s).find((i) => !s.table!.passed.includes(i));
+  const next = globalPlayerOrder(s).find((i) => !s.table!.passed.includes(i));
   if (next === undefined) return true;
   s.table.turn = next;
   selectSeat(s, next);
@@ -167,7 +245,11 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
     (u) =>
       !u.exhausted &&
       canFight(u) &&
-      (!enemy || (rhosgobelCanFight(enemy, u) && redhornCanDefend(enemy, u))) &&
+      (!enemy ||
+        (rhosgobelCanFight(enemy, u) &&
+          redhornCanDefend(enemy, u) &&
+          foundationsCanFight(enemy, u) &&
+          heirsCanDefend(s, enemy, u))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );
@@ -180,6 +262,7 @@ export const attackersFor = (s: GameState, enemy: Unit) =>
       khazadCanAttack(u) &&
       khazadCanRangedAttack(s, enemy, u, ownerOf(s, enemy) !== ownerOf(s, u)) &&
       rhosgobelCanFight(enemy, u) &&
+      foundationsCanFight(enemy, u) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108") &&
       (amonPlayerCanAttackEnemy(s, enemy, u) ||
         (ownerOf(s, u) === activeSeat(s) &&

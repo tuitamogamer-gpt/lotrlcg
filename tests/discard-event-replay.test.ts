@@ -105,3 +105,37 @@ test("Gandalf's Search discard replay pays the selected positive X and saves its
   assert.equal(next.hand[0].code, "01013");
   assert.equal(next.deck.at(-1), "01067");
 });
+
+test("a replayed Dwarven Tomb cannot recover its own physical copy or consume payment", () => {
+  const s = fixture();
+  s.discard = ["01053", "01043"];
+  const before = JSON.stringify(s);
+  assert.throws(
+    () =>
+      playEventFromDiscardEffect(s, 0, {
+        target: "discard-0",
+        payment: { [s.heroes[0].id]: 1 },
+        bottom: true,
+      }),
+    /own physical discard copy/,
+  );
+  assert.equal(JSON.stringify(s), before);
+});
+
+test("a replayed Dwarven Tomb recovers another identical copy after its source leaves discard", () => {
+  const s = fixture();
+  s.discard = ["01053", "01053", "01043"];
+  playEventFromDiscardEffect(s, 0, {
+    target: "discard-1",
+    payment: { [s.heroes[0].id]: 1 },
+    bottom: true,
+  });
+  flush(s);
+  assert.deepEqual(
+    s.hand.map((u) => u.code),
+    ["01053"],
+  );
+  assert.deepEqual(s.discard, ["01043"]);
+  assert.equal(s.deck.at(-1), "01053");
+  assert.ok(validateSave(JSON.parse(JSON.stringify(s))));
+});

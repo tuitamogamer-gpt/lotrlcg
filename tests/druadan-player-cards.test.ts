@@ -393,6 +393,20 @@ test("Trained for War does not transfer its keyword to a subsequently advanced q
   s.stage = 2;
   assert.equal(druadanPlayerQuestStat(s), "will");
 });
+test("Battle quest resolution retains its actual statistic after the phase keyword expires", () => {
+  let s = game("tactics");
+  s.phase = "quest";
+  s.heroes.forEach((h) => (h.committed = true));
+  s = play(s, "06036");
+  const strength = questWill(s);
+  s.phase = "staging";
+  s = rawAct(s, { type: "NEXT" });
+  assert.equal(s.lastQuest?.stat, "attack");
+  assert.equal(s.lastQuest?.will, strength);
+  assert.ok(s.log.some((entry) => entry.text.includes(`${strength} attack`)));
+  assert.equal(druadanPlayerQuestStat(s), "will");
+  assert.ok(validateSave(JSON.parse(JSON.stringify(s))));
+});
 test("Against the Shadow uses current willpower instead of defense and ignores defense-only bonuses", () => {
   let s = game("spirit"),
     hero = s.heroes[0];

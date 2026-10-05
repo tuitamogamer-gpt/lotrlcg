@@ -1,0 +1,335 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9011",
+    "name": "Deep Deep Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. Surge.\nWhen Revealed: Attach 1 card from the top of the first player's deck to each Nameless enemy in play, if able.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 123,
+    "quantity": 4,
+    "shadow": "Shadow: If attacking enemy is Nameless, the defending player must discard his hand.",
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 123,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9012",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9012",
+    "name": "Drowned Treasury",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Underwater.",
+    "text": "If Drowned Treasury is the active location at the end of the quest phase, each player must discard 1 character he controls.  Response: After Drowned Treasury leaves play as an explored location, each player may draw 2 cards or claim 1 objective in play.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 121,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9012.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 121,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9012",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9012.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9013",
+    "name": "Durin's Axe",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Weapon. Artifact.",
+    "text": "Surge. Restricted.\nAttached hero gets +3 [attack]. If attached hero is a Dwarf, it gets +1 [willpower].  Action: Exhaust a hero to claim this objective. Then, attach Durin's Axe to that hero as an attachment.",
+    "is_unique": true,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 119,
+    "quantity": 1,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 119,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9014",
+    "name": "Durin's Helm",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Armor. Artifact.",
+    "text": "Surge.\nAttached hero gets +1 [defense]. If attached hero is a Dwarf, it gets +2 hit points.  Action: Exhaust a hero to claim this objective. Then, attach Durin's Helm to that hero as an attachment.",
+    "is_unique": true,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 120,
+    "quantity": 1,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 120,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9015",
+    "name": "Elder Nameless Thing",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nameless.",
+    "text": "Forced: After Elder Nameless Thing engages a player, attach the top 3 cards of that player's deck to it.  X is the printed cost of all attached cards on this card. If there are no cards attached, X is 4.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 126,
+    "quantity": 3,
+    "threat": 4,
+    "defense": 4,
+    "engagement": 40,
+    "victory": 3,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "X",
+      "defense": "4",
+      "health": "X",
+      "engagement": "40",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 126,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9022",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9022",
+    "name": "Lost and Alone",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player chooses and shuffles a hero he controls into his deck. When he draws that hero, he puts it into play.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 124,
+    "quantity": 2,
+    "shadow": "Shadow: If attacking enemy is Nameless, the defending player must discard his hand.",
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9022.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 124,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9022",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9022.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9023",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9023",
+    "name": "Mithril Lode",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Doomed 1.\nWhile Mithril Lode is the active location, it gains: \"Refresh Action: Exhaust a character you control to place X progress tokens on the current quest card, bypassing any active location. X is the exhausted character's [willpower]. (Limit once per round.)\"",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 122,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9023.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9024",
+    "name": "Moria Bats",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Only characters with ranged can attack or defend against Moria Bats.  While Moria Bats is engaged with a player, it gets +1 [attack] for each other enemy engaged with that player.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 127,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 1,
+    "defense": 2,
+    "health": 1,
+    "engagement": 33,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "2",
+      "health": "1",
+      "engagement": "33"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 127,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9025",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9025",
+    "name": "Nameless Thing",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nameless.",
+    "text": "Forced: After Nameless Thing engages a player, attach the top 2 cards of that player's deck to it.  X is the printed cost of all attached cards on this card. If there are no cards attached, X is 3.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 125,
+    "quantity": 5,
+    "threat": 3,
+    "defense": 3,
+    "engagement": 27,
+    "victory": 1,
+    "encounter_set": "Foundations of Stone",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "X",
+      "defense": "3",
+      "health": "X",
+      "engagement": "27",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9025.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 125,
+        "quantity": 5,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  }
+]

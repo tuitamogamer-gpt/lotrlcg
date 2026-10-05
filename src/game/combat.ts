@@ -11,6 +11,7 @@ import {
 } from "./considered-engagement";
 import { shadowFlameEnemyAttackStart } from "./shadow-flame";
 import { druadanPlayerAttackKilled } from "./druadan-player-cards";
+import { morgulPlayerAttackBonus } from "./morgul-player-cards";
 import { longDarkCanAttack } from "./long-dark";
 import {
   heirsPlayerNoDefenseExhaust,
@@ -83,6 +84,13 @@ import { pathOfNeed } from "./expansion-passives";
 import { utilityAttackDeclared } from "./utility-attachments";
 import { emynPlayerAttackKilled } from "./emyn-player-cards";
 import { marshPlayerAttackResolved } from "./marsh-player-cards";
+import {
+  heirsCanDefend,
+  heirsCombatDamageTarget,
+  heirsDamageAmount,
+  heirsShadowDealt,
+} from "./heirs-numenor";
+import { stewardFearAttackStarted } from "./steward-fear";
 
 import { mirkwoodPlayerAttackDefense } from "./mirkwood-player-cards";
 
@@ -233,6 +241,7 @@ export function resolvePlayerAttack(
     attackers.map((u) => [
       u.id,
       stats(s, u).attack +
+        morgulPlayerAttackBonus(s, u, enemy) +
         redhornPlayerAttackBonus(s, u, enemy) +
         watcherPlayerAttackBonus(s, u, enemy) +
         (card(enemy.code).traits?.includes("Orc")
@@ -243,7 +252,7 @@ export function resolvePlayerAttack(
   );
   const power = Object.values(contributions).reduce((total, n) => total + n, 0);
   const defense = mirkwoodPlayerAttackDefense(s, enemy, ids);
-  const amount = Math.max(0, power - defense);
+  const amount = heirsDamageAmount(s, enemy, Math.max(0, power - defense));
   log(
     s,
     `${attackers.map((u) => name(u!)).join(" + ")} attack ${name(enemy)}: ${power} attack − ${defense} defense = ${amount} damage.`,
@@ -322,10 +331,18 @@ export function combatDamage(
   enemy: Unit,
   amount: number,
 ) {
+  target = heirsCombatDamageTarget(s, target);
   const remainingHealth = stats(s, target).health - target.damage;
   if (!damage(s, target.id, amount, { enemyId: enemy.id, combatDamage: true }))
     return;
   applyCombatDamageConsequences(s, target, enemy, amount, remainingHealth);
+}
+
+/** The attack actually begins once, before its declaration and response windows. */
+export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
+  if (enemyAttackPrevented(s, enemy, player)) return;
+  shadowFlameEnemyAttackStart(s, enemy, player);
+  stewardFearAttackStarted(s, enemy, player);
 }
 
 export function applyCombatDamageConsequences(
@@ -391,7 +408,11 @@ export function beginEnemyAttack(
   );
   requireRule(
     defenders.every(
-      (u) => !!u && rhosgobelCanFight(enemy, u) && redhornCanDefend(enemy, u),
+      (u) =>
+        !!u &&
+        rhosgobelCanFight(enemy, u) &&
+        redhornCanDefend(enemy, u) &&
+        heirsCanDefend(s, enemy, u),
     ),
     "Choose ready characters able to defend.",
   );
@@ -405,6 +426,7 @@ export function beginEnemyAttack(
     const code = encounterDraw(s, true);
     if (code) {
       enemy.shadows.push(code);
+      heirsShadowDealt(s, enemy);
       log(
         s,
         "Dol Guldur Beastmaster receives an additional facedown shadow before the defender is declared.",
@@ -413,7 +435,7 @@ export function beginEnemyAttack(
   }
   if (!shadowsPrepared) beginConsideredEnemyShadows(s, enemy);
   const beforeForced = s.queue.length;
-  if (!shadowsPrepared) shadowFlameEnemyAttackStart(s, enemy, activeSeat(s));
+  if (!shadowsPrepared) enemyAttackStarted(s, enemy, activeSeat(s));
   redhornDefendersDeclared(s, enemy, ids);
   const forcedResponses = s.queue.splice(0, s.queue.length - beforeForced);
   const priorQueue = s.queue.length;

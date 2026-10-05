@@ -1,0 +1,494 @@
+[
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9021",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9021",
+    "name": "The Leaping Fish",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for The Leaping Fish and Alcaron's Scroll. Make The Leaping Fish the active location and attach Alcaron's Scroll to a hero.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 65,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Peril in Pelargir",
+    "side": "A",
+    "back_name": "The Leaping Fish",
+    "back_text": "Battle. When Revealed: Each player must search the encounter deck for a copy of Harbor Thug and add it to the staging area. Shuffle the encounter deck.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9021.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9021.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9021",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9021.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 6
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9023",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9023",
+    "name": "Fighting in the Streets",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 66,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Peril in Pelargir",
+    "side": "A",
+    "back_name": "Fighting in the Streets",
+    "back_text": "Battle. The players cannot advance to the next stage unless Alcaron's Scroll is attached to a hero.  When Revealed: Attach Alcaron's Scroll to the highest engagement cost enemy in play, if able. Otherwise, add Alcaron's Scroll to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 13,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9023.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9023.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 13
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9025",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9025",
+    "name": "Escape to the Quays",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for 1 enemy and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 67,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Peril in Pelargir",
+    "side": "A",
+    "back_name": "Escape to the Quays",
+    "back_text": "Enemies cannot be optionally engaged.  Forced: The first enemy revealed from the encounter deck each round makes an immediate attack against the player who controls Alcaron's Scroll from the staging area.  The players cannot defeat this stage unless Alcaron's Scroll is attached to a hero. If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9025.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9025.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9027",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9027",
+    "name": "Ambush in Ithilien",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Celador to the staging area. Search the encounter deck for a copy of Ithilien Road and make it the active location. Each player must search the encounter deck for a copy of Southron Company and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 68,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Into Ithilien",
+    "side": "A",
+    "back_name": "Ambush in Ithilien",
+    "back_text": "Battle. If the players complete this stage with Celador in the staging area, advance to stage 3A (bypassing stage 2).",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9027.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9027.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9027",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9027.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9029",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9029",
+    "name": "Southron Counter-attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 69,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Into Ithilien",
+    "side": "A",
+    "back_name": "Southron Counter-attack",
+    "back_text": "Siege. Archery X. X is the number of players in the game. After this stage is completed, advance to stage 4A (bypassing stage 3).",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9029.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9029.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9029",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9029.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9031",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9031",
+    "name": "The Hidden Way",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 70,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Into Ithilien",
+    "side": "A",
+    "back_name": "The Hidden Way",
+    "back_text": "When Revealed: The first player takes control of all Ranger objectives in the staging area.  Enemies do not make engagement checks and cannot be optionally engaged.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9031.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9031.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9031",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9031.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9033",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9033",
+    "name": "Approaching Cair Andros",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 71,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Into Ithilien",
+    "side": "A",
+    "back_name": "Approaching Cair Andros",
+    "back_text": "If any player's threat is 37 or higher, Approaching Cair Andros gains siege.  Forced: At the end of each round, raise each player's threat by 2.  If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9033.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9033.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9033",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9033.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9035",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9035",
+    "name": "The Defense",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Approach, The Citadel, and The Banks to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 72,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Siege of Cair Andros",
+    "side": "A",
+    "back_name": "The Defense",
+    "back_text": "Siege. Players must deal damage from undefended attacks to the lowest [threat] Battleground location in play. If there are no Battleground locations in play, immediately advance to the next stage.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9035.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9035.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9035",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9035.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9037",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9037",
+    "name": "Reinforcing the Banks",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 73,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Siege of Cair Andros",
+    "side": "A",
+    "back_name": "Reinforcing the Banks",
+    "back_text": "Reveal 1 additional card from the encounter deck and add it to the staging area during the staging step each round.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9037.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9037.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9037",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9037.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9039",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9039",
+    "name": "Breakthrough at the Approach",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 74,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Siege of Cair Andros",
+    "side": "A",
+    "back_name": "Breakthrough at the Approach",
+    "back_text": "Battle. Forced: After the players quest unsuccessfully, instead of raising threat, each player must choose and discard 1 character he controls.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9039.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9039.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9039",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9039.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 7
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9041",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9041",
+    "name": "Breakthrough at the Citadel",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 75,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Siege of Cair Andros",
+    "side": "A",
+    "back_name": "Breakthrough at the Citadel",
+    "back_text": "Siege. Breakthrough at the Citadel adds 5 [threat] to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9041.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9041.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9041",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9041.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 5
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9043",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9043",
+    "name": "The Last Battle",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 76,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "The Siege of Cair Andros",
+    "side": "A",
+    "back_name": "The Last Battle",
+    "back_text": "Siege. When Revealed: Reveal 1 card per player from the encounter deck and add it to the staging area.  If the players have collected 4 or more victory points, The Last Battle gains battle and loses siege.  If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9043.B.jpg",
+    "printed_stats": {
+      "cost": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9043.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9043",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9043.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  }
+]

@@ -1,4 +1,16 @@
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
+import {
+  morgulPlayerEventEffect,
+  useMorgulPlayerAbility,
+} from "./morgul-player-cards";
+import {
+  osgiliathPlayerEventEffect,
+  useOsgiliathPlayerAbility,
+} from "./osgiliath-player-cards";
+import {
+  bloodPlayerEventEffect,
+  useBloodPlayerAbility,
+} from "./blood-gondor-player-cards";
 import { removePlayedEvent } from "./event-resolution";
 import { shadowFlameCanMove } from "./shadow-flame";
 import { advanceDefense, exhaustCharacter, enemyAddedToStaging } from "./board";
@@ -106,7 +118,11 @@ export function eventEffect(
   code: string,
   target?: string,
   cost = 0,
+  amount = cost,
 ) {
+  if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
+  if (bloodPlayerEventEffect(s, code, target)) return;
+  if (morgulPlayerEventEffect(s, code, target)) return;
   if (amonPlayerEventEffect(s, code)) return;
   if (druadanPlayerEventEffect(s, code)) return;
   if (stewardPlayerEventEffect(s, code, target)) return;
@@ -363,6 +379,9 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 }
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
+  if (useOsgiliathPlayerAbility(s, u, attachmentId)) return;
+  if (useBloodPlayerAbility(s, u, attachmentId)) return;
+  if (useMorgulPlayerAbility(s, u, attachmentId)) return;
   if (useAmonPlayerAbility(s, u, attachmentId)) return;
   if (useHeirsPlayerAbility(s, u, attachmentId)) return;
   if (useShadowFlamePlayerAbility(s, u, attachmentId)) return;
@@ -547,7 +566,7 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         opts(
           allCharacters(s).filter((h) => rhosgobelHealingAllowed(s, h)),
           (h) => [
-            fx("resource", { target: u.id, value: -1 }),
+            fx("resource", { target: u.id, value: -1, flag: true }),
             fx("heal", { target: h.id, value: 1, source: u.id, code: u.code }),
             fx("used", { text: u.id }),
           ],

@@ -5,8 +5,9 @@ import type { Attachment, Effect, GameState, Unit } from "./types";
 import { SCENARIOS } from "./scenarios";
 
 import {
-  allEngaged,
-  eachSeat,
+  eachArea,
+  globalEngaged,
+  globalEachSeat,
   ownerOf,
   seatIndices,
   seatView,
@@ -14,10 +15,16 @@ import {
 } from "./table";
 
 import { validFlow } from "./presentation";
-import { characters, hasGondor, units } from "./core";
+import { characters, hasGondor, globalUnits } from "./core";
 import { validateDeckList } from "./setup";
 import { syncAttachmentText } from "./attachment-text";
 import { DEAD } from "./dead-marshes";
+import {
+  FOUNDATIONS_STONE as F,
+  validateFoundationsState,
+} from "./foundations-stone-support";
+import { validateStewardFearState } from "./steward-fear-support";
+import { validateHeirsState } from "./heirs-numenor";
 
 export function validateSave(
   value: unknown,
@@ -52,6 +59,7 @@ export function validateSave(
       (a.resourceTokens === undefined ||
         (integer(a.resourceTokens) && a.resourceTokens >= 0)) &&
       (a.facedown === undefined || typeof a.facedown === "boolean") &&
+      a.namelessCard === undefined &&
       (a.blanked === undefined || typeof a.blanked === "boolean") &&
       (a.owner === undefined ||
         (integer(a.owner) &&
@@ -153,6 +161,9 @@ export function validateSave(
           (a.resourceTokens === undefined ||
             (integer(a.resourceTokens) && a.resourceTokens >= 0)) &&
           (a.facedown === undefined || typeof a.facedown === "boolean") &&
+          (a.namelessCard === undefined ||
+            (a.namelessCard === true &&
+              [F.nameless, F.elder].includes(u.code as typeof F.nameless))) &&
           (a.blanked === undefined || typeof a.blanked === "boolean") &&
           (a.owner === undefined ||
             (integer(a.owner) && a.owner >= 0 && a.owner <= 3)),
@@ -211,6 +222,13 @@ export function validateSave(
       !Array.isArray(s.used) ||
       !s.used.every((x) => typeof x === "string") ||
       typeof s.standTogether !== "boolean"
+    )
+      return false;
+    if (
+      inheritedSeatCount === undefined &&
+      (!validateFoundationsState(s, validUnit as (value: unknown) => boolean) ||
+        !validateStewardFearState(s) ||
+        !validateHeirsState(s))
     )
       return false;
     if (
@@ -668,6 +686,9 @@ export function validateSave(
             {
               ...s,
               ...p,
+              used: p.used.filter(
+                (key) => !key.startsWith("game:foundations-hero-deck:"),
+              ),
               table: undefined,
               escapeTest: undefined,
               earlyAttackPlayers: undefined,
@@ -711,7 +732,7 @@ export function validateSave(
     }
     if (
       s.table &&
-      units(s).some(
+      globalUnits(s).some(
         (u) =>
           (u.owner !== undefined && u.owner >= s.table!.seats.length) ||
           u.preventedAttacks?.some((i) => i >= s.table!.seats.length) ||
@@ -726,7 +747,7 @@ export function validateSave(
     );
     if (hiddenIds.includes(null)) return false;
     const ids = [
-      ...units(s),
+      ...globalUnits(s),
       ...seatIndices(s).flatMap((i) => seatView(s, i).hand),
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
@@ -777,11 +798,11 @@ export function restoreSave(value: unknown): GameState | null {
       });
     }
     if (!validateSave(s)) return null;
-    syncAttachmentText(s);
+    eachArea(s, () => syncAttachmentText(s));
     // Legacy version-two saves used player/global modifiers. Bind those bonuses
     // to the characters present at restore, then use the same snapshot rules.
     const gondor = s.gondor;
-    eachSeat(s, () => {
+    globalEachSeat(s, () => {
       for (const u of characters(s)) {
         if (s.faramir) u.tempWill = (u.tempWill ?? 0) + s.faramir;
         if (gondor) {
@@ -792,7 +813,7 @@ export function restoreSave(value: unknown): GameState | null {
       s.faramir = 0;
     });
     s.gondor = false;
-    for (const u of allEngaged(s))
+    for (const u of globalEngaged(s))
       if (u.feinted && u.preventedAttacks === undefined)
         u.preventedAttacks = [ownerOf(s, u)];
     syncSeat(s);

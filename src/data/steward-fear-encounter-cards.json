@@ -1,0 +1,659 @@
+[
+  {
+    "code": "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
+    "octgnid": "03587572-2760-48b5-9b08-e01ccdc9788f",
+    "name": "Sewers",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underworld. City.",
+    "text": "Underworld 1.\nWhen Revealed: Place the top card of the underworld deck facedown underneath the active location, if able.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 18,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03587572-2760-48b5-9b08-e01ccdc9788f.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 18,
+        "quantity": 3,
+        "octgnid": "03587572-2760-48b5-9b08-e01ccdc9788f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03587572-2760-48b5-9b08-e01ccdc9788f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgnid": "1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "name": "Up in Flames",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Plot.",
+    "text": "Forced: At the end of the round, place 1 resource token on Up in Flames and discard the top X cards of each player's deck. X is the number of resource tokens on Up in Flames.  If any player has no cards in his deck, the players have lost the game.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 30,
+    "quantity": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1dcf16e8-8882-4b61-93ac-a7da643c52bd.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 30,
+        "quantity": 1,
+        "octgnid": "1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1dcf16e8-8882-4b61-93ac-a7da643c52bd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
+    "octgnid": "21f520fd-5efe-41f9-9f02-7a65e36eb31f",
+    "name": "The Hand of Castamir",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Villain.",
+    "text": "Forced: After The Hand of Castamir attacks, reveal the top card of the encounter deck, resolve its effects, and discard it.  Forced: After a treachery card is revealed from the encounter deck, The Hand of Castamir makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 16,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 6,
+    "engagement": 30,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "3",
+      "health": "6",
+      "engagement": "30"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21f520fd-5efe-41f9-9f02-7a65e36eb31f.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "21f520fd-5efe-41f9-9f02-7a65e36eb31f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21f520fd-5efe-41f9-9f02-7a65e36eb31f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
+    "octgnid": "23c33968-01db-4f79-94bd-45ea1e0d50d0",
+    "name": "A Prisoner",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust a hero to claim this objective, add it to the victory display, and place 2 resource tokens on the current quest.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 28,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23c33968-01db-4f79-94bd-45ea1e0d50d0.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 28,
+        "quantity": 1,
+        "octgnid": "23c33968-01db-4f79-94bd-45ea1e0d50d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23c33968-01db-4f79-94bd-45ea1e0d50d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
+    "octgnid": "2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
+    "name": "Unholy Alliance",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Plot.",
+    "text": "Reveal 1 additional card from the encounter deck and add it to the staging area during the staging step each round.  If a hero is destroyed by an enemy attack, the players have lost the game.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 29,
+    "quantity": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 29,
+        "quantity": 1,
+        "octgnid": "2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgnid": "35055e3e-d806-4c21-ad37-8177d70be329",
+    "name": "Houses of the Dead",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underworld. City.",
+    "text": "Underworld 2.\nForced: After Houses of the Dead becomes the active location, exhaust all characters.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 21,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35055e3e-d806-4c21-ad37-8177d70be329.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "35055e3e-d806-4c21-ad37-8177d70be329",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35055e3e-d806-4c21-ad37-8177d70be329.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "octgnid": "408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "name": "Daughter of Berúthiel",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Villain.",
+    "text": "Daughter of Beruthiel cannot be optionally engaged.  Forced: After Daughter of Beruthiel attacks, return her to the staging area. The engaged player may raise his threat by 4 to prevent this effect.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 15,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 5,
+    "defense": 3,
+    "health": 5,
+    "engagement": 10,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "3",
+      "health": "5",
+      "engagement": "10"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408148e1-3391-4734-aeac-3e3a7b69c1c1.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "408148e1-3391-4734-aeac-3e3a7b69c1c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408148e1-3391-4734-aeac-3e3a7b69c1c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
+    "octgnid": "4bcc7bde-4223-411e-a612-9459a1502743",
+    "name": "Poisoned Counsels",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Plot.",
+    "text": "At the end of each round, raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 31,
+    "quantity": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bcc7bde-4223-411e-a612-9459a1502743.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "4bcc7bde-4223-411e-a612-9459a1502743",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bcc7bde-4223-411e-a612-9459a1502743.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgnid": "5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "name": "Roots of Mindolluin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underworld.",
+    "text": "Underworld 1.\nEach location in the staging area gets +2 quest points.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 19,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e39ebfc-287a-49d5-9369-49dbfb0fd665.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 19,
+        "quantity": 1,
+        "octgnid": "5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e39ebfc-287a-49d5-9369-49dbfb0fd665.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgnid": "a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "name": "A Scrap of History",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust a hero to claim this objective, add it to the victory display, and place 1 resource token on the current quest.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 26,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8494d53-c8a4-4f74-b3e1-2e4183aeea2a.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8494d53-c8a4-4f74-b3e1-2e4183aeea2a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "octgnid": "b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "name": "The Fourth Star",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Underworld X. X is the number of players in the game.\nResponse: When The Fourth Star leaves play as an explored location, each player may draw 1 card.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 22,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2acb892-ab3b-4037-8751-c036f9f6f8bd.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 22,
+        "quantity": 1,
+        "octgnid": "b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2acb892-ab3b-4037-8751-c036f9f6f8bd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgnid": "b89a5a01-88c0-434a-a061-1654c6f84477",
+    "name": "Storehouse",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underworld. City.",
+    "text": "Underworld 1.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 20,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+2 [attack] instead if undefended.)",
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b89a5a01-88c0-434a-a061-1654c6f84477.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "b89a5a01-88c0-434a-a061-1654c6f84477",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b89a5a01-88c0-434a-a061-1654c6f84477.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+    "octgnid": "c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+    "name": "A Knife in the Back",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Randomly select 1 ally controlled by the first player, if able. The first player deals X damage to one of his heroes, where X is that ally's [attack]. Then discard that ally. If no ally is discarded by this effect, A Knife in the Back gains surge.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 24,
+    "quantity": 3,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 24,
+        "quantity": 3,
+        "octgnid": "c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
+    "octgnid": "c460b9c0-0239-4a74-99cb-3c302429db44",
+    "name": "Telemnar's Bane",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Villain.",
+    "text": "Forced: When Telemnar's Bane attacks, discard the top 3 cards of each player's deck.  Forced: After a player plays an event card, Telemnar's Bane makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 17,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 7,
+    "engagement": 20,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "7",
+      "engagement": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c460b9c0-0239-4a74-99cb-3c302429db44.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "c460b9c0-0239-4a74-99cb-3c302429db44",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c460b9c0-0239-4a74-99cb-3c302429db44.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgnid": "dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "name": "Secret Map",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust a hero to claim this objective and attach it to that hero.  Action: If attached to a hero, add Secret Map to the victory display to place 3 progress tokens on the active location.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 27,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgnid": "eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "name": "Underworld Dissident",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Brigand.",
+    "text": "Underworld Dissident gets +1 [attack] for each Underworld location in play.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 14,
+    "quantity": 5,
+    "threat": 3,
+    "attack": 2,
+    "defense": 2,
+    "health": 2,
+    "engagement": 25,
+    "shadow": "Shadow: If this attack is undefended, remove 1 token from the current quest.",
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "2",
+      "health": "2",
+      "engagement": "25"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb9f723d-0f74-4d10-89e7-b046313a1e91.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 14,
+        "quantity": 5,
+        "octgnid": "eb9f723d-0f74-4d10-89e7-b046313a1e91",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb9f723d-0f74-4d10-89e7-b046313a1e91.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 5
+  },
+  {
+    "code": "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgnid": "fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "name": "Unwelcome Discovery",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge\nWhen Revealed: Reveal 1 card from the underworld deck and add it to the staging area. If it is a Clue card, discard it instead.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 23,
+    "quantity": 2,
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc4f9f69-7870-4449-b89b-cd7b4dc158d0.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc4f9f69-7870-4449-b89b-cd7b4dc158d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
+    "octgnid": "fe7448a2-e2e2-4e81-95f4-2ac585160433",
+    "name": "False Lead",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: End the quest phase without resolving the quest.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 25,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, remove all tokens from the current quest.",
+    "encounter_set": "The Steward's Fear",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe7448a2-e2e2-4e81-95f4-2ac585160433.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 25,
+        "quantity": 2,
+        "octgnid": "fe7448a2-e2e2-4e81-95f4-2ac585160433",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe7448a2-e2e2-4e81-95f4-2ac585160433.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  }
+]

@@ -387,7 +387,12 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
         choose(
           s,
           "Brand son of Bain · Defeated enemy",
-          [...opts(targets, (u) => [fx("ready", { target: u.id })]), skip],
+          [
+            ...opts(targets, (u) => [
+              fx("ready", { target: u.id, source: brand.id, code: brand.code }),
+            ]),
+            skip,
+          ],
           "Ready one character controlled by the player engaged with the defeated enemy.",
         );
       return true;

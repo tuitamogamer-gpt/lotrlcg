@@ -4,9 +4,8 @@ import {
 } from "../game/considered-engagement";
 import { shadowFlameCanMove } from "../game/shadow-flame";
 import { effectiveKeyword } from "../game/expansion-passives";
-import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { card } from "../game/cards";
-import { engagementCost } from "../game/core";
+import { engagementCost, questStat as currentQuestStat } from "../game/core";
 import {
   canFight,
   enemyAttackPrevented,
@@ -84,7 +83,7 @@ export function coachTip(s: GameState): CoachTip | null {
     ].includes(s.phase)
   )
     return null;
-  const questStat = druadanPlayerQuestStat(s);
+  const questStat = currentQuestStat(s);
   const questLabel =
     questStat === "attack"
       ? "Attack"
@@ -308,7 +307,10 @@ export function coachTip(s: GameState): CoachTip | null {
         });
       return tip({
         title: "No safe defender",
-        text: `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to one hero of your choice.`,
+        text:
+          s.scenarioId === "siege-of-cair-andros" && s.stage === 1
+            ? `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to the lowest-threat Battleground; excess damage does not carry over.`
+            : `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to one hero of your choice.`,
         tone: "warn",
       });
     }

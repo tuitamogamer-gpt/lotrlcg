@@ -1,3 +1,4 @@
+import { globalPlayerOrder } from "./table";
 import { takePlayerDiscard } from "./board";
 import { shadowFlameCanMove } from "./shadow-flame";
 import { takePlayerDeck, putPlayerDeck } from "./core";
@@ -35,7 +36,6 @@ import {
   forOwner,
   hasKeyword,
   ownerOf,
-  playerOrder,
   seatView,
 } from "./table";
 import { isSacked } from "./carrock";
@@ -83,7 +83,7 @@ const ranged = (s: GameState) =>
 export const SHADOW_FLAME_ATTACHMENT_ACTIONS = ["04133", "04137"];
 
 export function shadowFlamePlayerStats(s: GameState, u: Unit) {
-  const will = playerOrder(s).reduce(
+  const will = globalPlayerOrder(s).reduce(
     (n, player) =>
       n +
       seatView(s, player).used.filter((k) => k === `round:miruvor:${u.id}`)
@@ -233,20 +233,18 @@ export function useShadowFlamePlayerAbility(
   );
   requireRule(exhaustCharacter(s, u), "Master of the Forge cannot exhaust.");
   choose(s, "Master of the Forge · Top five", [
-    ...s.deck
-      .slice(0, 5)
-      .flatMap((code, index) =>
-        card(code).type_code === "attachment"
-          ? [
-              {
-                id: `card-${index}`,
-                label: card(code).name,
-                code,
-                effects: [fx("shadowFlameForgeTake", { code, value: index })],
-              },
-            ]
-          : [],
-      ),
+    ...s.deck.slice(0, 5).flatMap((code, index) =>
+      card(code).type_code === "attachment"
+        ? [
+            {
+              id: `card-${index}`,
+              label: card(code).name,
+              code,
+              effects: [fx("shadowFlameForgeTake", { code, value: index })],
+            },
+          ]
+        : [],
+    ),
     {
       id: "none",
       label: "Take no attachment and shuffle",

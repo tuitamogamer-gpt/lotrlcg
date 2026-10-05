@@ -1,3 +1,4 @@
+import { spendResources } from "./core";
 // Exact active and triggered player rules from A Journey to Rhosgobel.
 import { card, name, plain } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
@@ -27,6 +28,7 @@ import { gondorResourcesGained } from "./gondor-player-cards";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { consumeLeaveCard, leaveCardAvailable } from "./leave-consumption";
 import {
+  firstPlayer,
   activeSeat,
   allCharacters,
   allEngaged,
@@ -173,7 +175,7 @@ export function rhosgobelLocationExplored(s: GameState, location: Unit) {
       .map((a) =>
         fx("rhosMathomResponse", {
           player: a.owner ?? activeSeat(s),
-          value: s.table?.first ?? 0,
+          value: firstPlayer(s),
           code: a.code,
         }),
       ),
@@ -367,7 +369,7 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
           amount <= target.damage,
         "Radagast requires enough resources and wounds.",
       );
-      source.resources -= amount;
+      spendResources(s, source, amount);
       rhosgobelHeal(s, target, amount, {
         source: source.id,
         code: source.code,

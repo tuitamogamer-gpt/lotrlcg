@@ -16,6 +16,7 @@
     "sync:content": "npm run sync:cards && npm run sync:products",
     "audit:rules": "node --import tsx scripts/audit-script-coverage.mjs",
     "test:expansion-browser": "node --import tsx scripts/browser-expansion-rules.mjs",
+    "test:against-shadow-players": "node --import tsx scripts/browser-osgiliath.mjs && node --import tsx scripts/browser-blood-gondor.mjs && node --import tsx scripts/browser-morgul.mjs",
     "test:content-browser": "node scripts/browser-content-import.mjs",
     "test:browser": "node scripts/browser-test.mjs && tsx scripts/browser-fixtures.ts && node scripts/browser-interactions.mjs && tsx scripts/browser-campaign-fixtures.ts && node scripts/browser-campaign.mjs && npm run test:ui && npm run test:hotseat && npm run test:pacing && npm run test:rules-browser && npm run test:decisions && npm run test:revisions",
     "test:ui": "tsx scripts/browser-ui-fixtures.ts && node scripts/browser-ui.mjs",
@@ -29,7 +30,8 @@
     "test:threat": "tsx scripts/browser-threat.ts",
     "test:choices": "node scripts/browser-fellowship-choices.mjs",
     "test:account": "node scripts/browser-account.mjs",
-    "test:revisions": "node --import tsx scripts/browser-revisions.mjs"
+    "test:revisions": "node --import tsx scripts/browser-revisions.mjs",
+    "test:new-quest-browser": "node --import tsx scripts/browser-foundations-stone.mjs && node --import tsx scripts/browser-heirs-numenor.mjs && node --import tsx scripts/browser-steward-fear.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:21ee317d-9aca-43be-9782-521539827cb8",
+    "octgnid": "21ee317d-9aca-43be-9782-521539827cb8",
+    "name": "The Grand Design",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal the set aside Plot card and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 12,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Steward's Fear",
+    "side": "A",
+    "back_name": "The Grand Design",
+    "back_text": "When Revealed: Make Roots of Mindolluin the active location, returning any other active location to the staging area.  Forced: After the active location leaves play as an explored location place 1 resource token on this quest.  If there are 4 or more resource tokens on The Grand Design, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21ee317d-9aca-43be-9782-521539827cb8.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21ee317d-9aca-43be-9782-521539827cb8.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "21ee317d-9aca-43be-9782-521539827cb8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21ee317d-9aca-43be-9782-521539827cb8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
+    "octgnid": "4e12f20f-aec3-4311-a656-10a517fd97fe",
+    "name": "Conspiracy",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Create the underworld deck. Remove Roots of Mindolluin from the encounter deck and set it aside, out of play. Shuffle all Villain cards and randomly set one aside, out of play, without looking at it. Remove the others from the game. Repeat this with all Plot cards.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 11,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Steward's Fear",
+    "side": "A",
+    "back_name": "Conspiracy",
+    "back_text": "When revealed: Search the encounter deck for The Fourth Star and make it the active location. Shuffle the encounter deck.  Forced: After the active location leaves play as an explored location, place 1 resource token on this quest.  If there are 4 or more resource tokens on Conspiracy, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4e12f20f-aec3-4311-a656-10a517fd97fe.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4e12f20f-aec3-4311-a656-10a517fd97fe.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "4e12f20f-aec3-4311-a656-10a517fd97fe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4e12f20f-aec3-4311-a656-10a517fd97fe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgnid": "8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "name": "The Confrontation",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal the set aside Villain card and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TSF",
+    "pack_name": "The Steward's Fear",
+    "position": 13,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Steward's Fear",
+    "side": "A",
+    "back_name": "The Confrontation",
+    "back_text": "When Revealed: Shuffle the underworld deck into the encounter deck. The players cannot defeat this stage while a Villain is in play.  If this stage is defeated, the players have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8239e81a-f779-4c7c-b586-cd5ad732f061.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8239e81a-f779-4c7c-b586-cd5ad732f061.jpg",
+    "packs": [
+      {
+        "pack_code": "TSF",
+        "pack_name": "The Steward's Fear",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "8239e81a-f779-4c7c-b586-cd5ad732f061",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8239e81a-f779-4c7c-b586-cd5ad732f061.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  }
+]

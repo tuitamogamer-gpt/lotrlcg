@@ -3,6 +3,7 @@ import type { GameState, Unit } from "./types";
 import { SHADOW_FLAME } from "./shadow-flame-support";
 import { activeSeat, playerOrder, seatView } from "./table";
 import { encounterDraw } from "./core";
+import { heirsShadowDealt } from "./heirs-numenor";
 type ConsideredEnemy = Unit & { consideredEnemyAttackedBy?: number[] };
 export function consideredEngaged(
   s: GameState,
@@ -55,7 +56,8 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
     return;
   }
   const code = encounterDraw(s, true);
-  u.shadows = code ? [code] : [];
+  if (code) u.shadows.push(code);
+  if (code) heirsShadowDealt(s, u);
 }
 /** Call when this considered-engaged enemy actually initiates any attack. */
 export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {

@@ -1,9 +1,26 @@
 import {
+  HEIRS_NUMENOR_ENCOUNTERS,
+  HEIRS_NUMENOR_QUESTS,
+} from "./heirs-numenor-support";
+import scriptedScenarioArt from "../data/scripted-scenario-art.json";
+import {
+  STEWARD_FEAR_ENCOUNTERS,
+  STEWARD_FEAR_QUESTS,
+  STREETS_GONDOR_ENCOUNTERS,
+} from "./steward-fear-support";
+import {
   SHADOW_FLAME_ENCOUNTERS,
   SHADOW_FLAME_QUESTS,
 } from "./shadow-flame-support";
 import { DRUADAN_PLAYER_CARDS } from "./druadan-player-support";
+import {
+  FOUNDATIONS_STONE_ENCOUNTERS,
+  FOUNDATIONS_STONE_QUESTS,
+} from "./foundations-stone-support";
 import { AMON_PLAYER_CARDS } from "./amon-din-player-support";
+import { MORGUL_PLAYER_CARDS } from "./morgul-player-support";
+import { OSGILIATH_PLAYER_CARDS } from "./osgiliath-player-support";
+import { BLOOD_PLAYER_CARDS } from "./blood-gondor-player-support";
 import { STEWARD_PLAYER_CARDS } from "./steward-player-support";
 import { LONG_DARK_ENCOUNTERS, LONG_DARK_QUESTS } from "./long-dark-support";
 import {
@@ -81,6 +98,9 @@ export const playerCards = [
       ...STEWARD_PLAYER_CARDS,
       ...DRUADAN_PLAYER_CARDS,
       ...AMON_PLAYER_CARDS,
+      ...MORGUL_PLAYER_CARDS,
+      ...OSGILIATH_PLAYER_CARDS,
+      ...BLOOD_PLAYER_CARDS,
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -97,6 +117,10 @@ export const encounterCards = [
   ...WATCHER_WATER_ENCOUNTERS,
   ...LONG_DARK_ENCOUNTERS,
   ...SHADOW_FLAME_ENCOUNTERS,
+  ...FOUNDATIONS_STONE_ENCOUNTERS,
+  ...HEIRS_NUMENOR_ENCOUNTERS,
+  ...STEWARD_FEAR_ENCOUNTERS,
+  ...STREETS_GONDOR_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -114,6 +138,9 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...WATCHER_WATER_QUESTS,
     ...LONG_DARK_QUESTS,
     ...SHADOW_FLAME_QUESTS,
+    ...FOUNDATIONS_STONE_QUESTS,
+    ...HEIRS_NUMENOR_QUESTS,
+    ...STEWARD_FEAR_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -204,6 +231,9 @@ export const SCRIPTED = new Set(
     ...WATCHER_WATER_QUESTS,
     ...LONG_DARK_QUESTS,
     ...SHADOW_FLAME_QUESTS,
+    ...FOUNDATIONS_STONE_QUESTS,
+    ...HEIRS_NUMENOR_QUESTS,
+    ...STEWARD_FEAR_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),
@@ -213,14 +243,17 @@ export const card = (code: string): Card => {
   if (!c) throw new Error(`Unknown card: ${code}`);
   return c;
 };
+export const cachedImageSource = (src: string | undefined) =>
+  scriptedScenarioArt[src as keyof typeof scriptedScenarioArt] ?? src;
 export const imageUrl = (c: Card) =>
-  c.imagesrc?.startsWith("/cards/")
+  scriptedScenarioArt[c.imagesrc as keyof typeof scriptedScenarioArt] ??
+  (c.imagesrc?.startsWith("/cards/")
     ? c.imagesrc
     : c.pack_name === "Core Set" && c.type_code !== "quest" && cards[c.code]
       ? `/cards/${c.code}.${c.sphere_code === "encounter" ? "jpg" : "png"}`
       : c.imagesrc?.startsWith("http")
         ? c.imagesrc
-        : `https://ringsdb.com${c.imagesrc ?? `/bundles/cards/${c.code}.png`}`;
+        : `https://ringsdb.com${c.imagesrc ?? `/bundles/cards/${c.code}.png`}`);
 export const name = (u: Unit) => card(u.code).name;
 export const plain = (s = "") =>
   s

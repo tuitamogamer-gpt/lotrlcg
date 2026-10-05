@@ -1,3 +1,5 @@
+import { globalPlayerOrder } from "./table";
+import { stewardFearLocationLeft } from "./steward-fear";
 import { engagedEnemies } from "./considered-engagement";
 import { startingThreat as heroesStartingThreat } from "./starting-threat";
 // Watcher in the Water: active and triggered rules beyond reviewed Elf/Dwarf/passives.
@@ -42,7 +44,7 @@ const locations = (s: GameState) =>
       !/immune to (?:player )?card effects/i.test(plain(card(u.code).text)),
   );
 const roundValue = (s: GameState, prefix: string) =>
-  playerOrder(s).reduce(
+  globalPlayerOrder(s).reduce(
     (sum, i) =>
       sum +
       seatView(s, i).used.reduce(
@@ -316,6 +318,7 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
       removeActiveLocation(s, location.id);
       for (const a of [...location.attachments])
         discardAttachment(s, location, a, true);
+      stewardFearLocationLeft(s, location, false, false);
       s.encounterDeck.push(location.code);
       shuffle(s, s.encounterDeck);
       prepend(s, fx("reveal"));

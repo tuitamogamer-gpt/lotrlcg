@@ -7,6 +7,12 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="into-ithilien"],
+.mat-into-ithilien {
+  --playmat-art: url("/art/premium/mirkwood.webp");
+  --mat-shade: #071e176b;
+  --mat-tint: #173127;
+}
 .redbook[data-playmat="anduin"],
 .redbook[data-playmat="hunt-for-gollum"],
 .redbook[data-playmat="conflict-at-the-carrock"],
@@ -29,6 +35,12 @@
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
+.redbook[data-playmat="peril-in-pelargir"],
+.mat-peril-in-pelargir {
+  --playmat-art: url("/art/premium/anduin.webp");
+  --mat-shade: #0b202f70;
+  --mat-tint: #1d3037;
+}
 .redbook[data-playmat="dol-guldur"],
 .mat-dol-guldur,
 .redbook[data-playmat="into-the-pit"],
@@ -39,8 +51,18 @@
 .mat-flight-from-moria,
 .redbook[data-playmat="the-long-dark"],
 .mat-the-long-dark,
+.redbook[data-playmat="foundations-of-stone"],
+.mat-foundations-of-stone,
 .redbook[data-playmat="shadow-and-flame"],
 .mat-shadow-and-flame {
+  --playmat-art: url("/art/premium/dol-guldur.webp");
+  --mat-shade: #21172352;
+  --mat-tint: #30252d;
+}
+.redbook[data-playmat="siege-of-cair-andros"],
+.mat-siege-of-cair-andros,
+.redbook[data-playmat="the-stewards-fear"],
+.mat-the-stewards-fear {
   --playmat-art: url("/art/premium/dol-guldur.webp");
   --mat-shade: #21172352;
   --mat-tint: #30252d;

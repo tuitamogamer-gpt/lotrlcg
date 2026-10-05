@@ -1,3 +1,5 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 // Road to Rivendell beyond the shared Dwarf and Rivendell Blade rules.
 import { engagedEnemies } from "./considered-engagement";
 import { putPlayedEventInVictory } from "./event-resolution";
@@ -48,7 +50,12 @@ const stagingEnemies = (s: GameState) =>
       !/immune to player card effects/i.test(plain(card(u.code).text)),
   );
 const spiritPayers = (s: GameState) =>
-  s.heroes.filter((u) => u.resources > 0 && hasResourceIcon(u, "spirit"));
+  s.heroes.filter(
+    (u) =>
+      u.resources > 0 &&
+      heirsCanSpendResources(s, u) &&
+      hasResourceIcon(u, "spirit"),
+  );
 const riderUsed = (s: GameState, u: Unit) =>
   playerOrder(s).some((i) =>
     seatView(s, i).used.includes(`round:rider:${u.id}`),
@@ -151,6 +158,7 @@ export function roadPlayerAttackerDeclared(s: GameState, u: Unit) {
     !u.blanked &&
     !isSacked(u) &&
     u.resources > 0 &&
+    heirsCanSpendResources(s, u) &&
     u.exhausted
   )
     prepend(
@@ -308,6 +316,7 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
         !hero.blanked &&
         !isSacked(hero) &&
         hero.resources > 0 &&
+        heirsCanSpendResources(s, hero) &&
         hero.exhausted
       )
         choose(s, "Elladan · Declared attacker", [
@@ -328,10 +337,11 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
           !hero.blanked &&
           !isSacked(hero) &&
           hero.resources > 0 &&
+          heirsCanSpendResources(s, hero) &&
           hero.exhausted,
         "Elladan cannot pay his attacker response.",
       );
-      hero.resources--;
+      spendResources(s, hero, 1);
       readyCharacter(s, hero);
       return true;
     }
@@ -367,7 +377,7 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
           player !== activeSeat(s),
         "Choose another living player.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       s.allies = s.allies.filter((u) => u.id !== rider.id);
       syncSeat(s);
       forOwner(s, player, () => s.allies.push(rider));

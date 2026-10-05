@@ -27,7 +27,12 @@ import {
 } from "../src/game/considered-engagement.ts";
 import { SHADOW_FLAME } from "../src/game/shadow-flame-support.ts";
 import { RHOS } from "../src/game/rhosgobel.ts";
-import { KHAZAD } from "../src/game/khazad-dum.ts";
+import { KHAZAD, khazadCannotExhaust } from "../src/game/khazad-dum.ts";
+import { watcherWaterCannotExhaust } from "../src/game/watcher-water.ts";
+import { isSacked } from "../src/game/carrock.ts";
+import { HEIRS_NUMENOR as HEIRS } from "../src/game/heirs-numenor-support.ts";
+import { STEWARD_CLUES } from "../src/game/steward-fear-support.ts";
+import { FOUNDATIONS_STONE as FOUNDATIONS } from "../src/game/foundations-stone-support.ts";
 import type {
   ScenarioId,
   PlayMode,
@@ -124,10 +129,19 @@ function run(
       .sort((a, b) => stats(s, a).attack - stats(s, b).attack)
       .find(
         (h) =>
-          (![RHOS.athelas, KHAZAD.book, KHAZAD.tools].includes(
-            objective?.code ?? "",
-          ) ||
-            !h.exhausted) &&
+          (![
+            RHOS.athelas,
+            KHAZAD.book,
+            KHAZAD.tools,
+            HEIRS.scroll,
+            ...STEWARD_CLUES,
+            FOUNDATIONS.axe,
+            FOUNDATIONS.helm,
+          ].includes(objective?.code ?? "") ||
+            (!h.exhausted &&
+              !isSacked(h) &&
+              !khazadCannotExhaust(h) &&
+              !watcherWaterCannotExhaust(h))) &&
           h.attachments.filter((a) => card(a.code).text?.includes("Restricted"))
             .length < 2,
       );

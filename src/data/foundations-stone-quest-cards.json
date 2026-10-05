@@ -1,0 +1,338 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9002",
+    "name": "Below the Mines",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 117,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "Old One Lair",
+    "back_text": "When Revealed: Create your own staging area. Reveal 4 cards from the encounter deck and add them to your staging area.  Forced: After the 5th progress token is placed on Old One Lair, join another player at the beginning of the travel phase. If you cannot join another player, all players continue on to stage 5 together.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9002.B.jpg",
+    "printed_stats": {
+      "cost": "4",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 117,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 5
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9004",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9004",
+    "name": "Below the Mines",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 114,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "Sheltered Rocks",
+    "back_text": "When Revealed: Create your own staging area. Reveal 2 cards from the encounter deck and add them to your staging area.  Forced: After the 11th progress token is placed on Sheltered Rocks, join another player at the beginning of the travel phase. If you cannot join another player, all players continue on to stage 5 together.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9004.B.jpg",
+    "printed_stats": {
+      "cost": "4",
+      "quest": "11"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9004.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 114,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9004",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9004.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 11
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9006",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9006",
+    "name": "Below the Mines",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 115,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "The Endless Caves",
+    "back_text": "When Revealed: Create your own staging area. Discard all resources from your heroes.  Forced: After the 17th progress token is placed on The Endless Caves, join another player at the beginning of the travel phase. If you cannot join another player, all players continue on to stage 5 together.",
+    "back_type_code": "quest",
+    "back_quest": 17,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9006.B.jpg",
+    "printed_stats": {
+      "cost": "4",
+      "quest": "17"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9006.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 115,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9006",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9006.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 17
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9008",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9008",
+    "name": "Below the Mines",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 116,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "The Shivering Bank",
+    "back_text": "When Revealed: Create your own staging area. Discard your hand. Reveal 2 cards from the encounter deck and add them to your staging area.  Forced: After the 7th progress token is placed on The Shivering Bank, join another player at the beginning of the travel phase. If you cannot join another player, all players continue on to stage 5 together.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9008.B.jpg",
+    "printed_stats": {
+      "cost": "4",
+      "quest": "7"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9008.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 116,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9008",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9008.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 7
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9026",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9026",
+    "name": "Out of the Depths",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 118,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "Out of the Depths",
+    "back_text": "When Revealed: Reveal 1 card from the encounter deck per player, and add it to the staging area.  Each player cannot commit more allies to the quest than the number of heroes he is also committing to the quest.  If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9026.B.jpg",
+    "printed_stats": {
+      "cost": "5",
+      "quest": "11"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9026.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 118,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9026",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9026.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 11
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9029",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9029",
+    "name": "The Dripping Walls",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Place the Foundations of Stone encounter set aside, out of play. The first player attaches Cave Torch to a hero of his choice.",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 111,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "The Dripping Walls",
+    "back_text": "When Revealed: Reveal 1 card from the encounter deck per player, and add it to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9029.B.jpg",
+    "printed_stats": {
+      "cost": "1",
+      "quest": "9"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9029.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 111,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9029",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9029.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9031",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9031",
+    "name": "The Water's Edge",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 112,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "The Water's Edge",
+    "back_text": "Forced: After a player commits characters to the quest, he must discard the top 2 cards of his deck.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9031.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "quest": "12"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9031.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 112,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9031",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9031.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-0801212c9034",
+    "octgnid": "51223bd0-ffd1-11df-a976-0801212c9034",
+    "name": "Washed Away!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FoS",
+    "pack_name": "Foundations of Stone",
+    "position": 113,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Foundations of Stone",
+    "side": "A",
+    "back_name": "Washed Away!",
+    "back_text": "When Revealed: Discard all Item, Armor, Weapon, Light cards and all encounter deck cards from play. Shuffle all enemy and treachery cards in the encounter discard pile together with the Foundations of Stone encounter set. This deck becomes the new encounter deck. remove all other encounter deck cards from the game. Then, starting with the first player, each player draws a random stage 4 quest card. Remove all other stage 4 quest cards from the game.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9034.B.jpg",
+    "printed_stats": {
+      "cost": "3",
+      "quest": "0"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9034.jpg",
+    "packs": [
+      {
+        "pack_code": "FoS",
+        "pack_name": "Foundations of Stone",
+        "position": 113,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-0801212c9034",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-0801212c9034.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 0
+  }
+]

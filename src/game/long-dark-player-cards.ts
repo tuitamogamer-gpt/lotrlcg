@@ -1,3 +1,5 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
 // The Long Dark: printed and errata-reviewed player rules.
 import { engagedEnemies } from "./considered-engagement";
@@ -48,7 +50,12 @@ const istari = (s: GameState) =>
 const damaged = (s: GameState) =>
   allCharacters(s).filter((u) => rhosgobelHealingAllowed(s, u));
 const lorePayers = (s: GameState) =>
-  s.heroes.filter((h) => h.resources > 0 && hasResourceIcon(h, "lore"));
+  s.heroes.filter(
+    (h) =>
+      h.resources > 0 &&
+      heirsCanSpendResources(s, h) &&
+      hasResourceIcon(h, "lore"),
+  );
 const canReadyWarden = (s: GameState, source?: string) => {
   const u = get(s, source);
   return (
@@ -542,7 +549,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
     case "longDarkWardenResource": {
       const hero = lorePayers(s).find((h) => h.id === e.target);
       requireRule(hero, "Pay an existing Lore resource from your own hero.");
-      hero.resources--;
+      spendResources(s, hero, 1);
       prepend(
         s,
         fx("longDarkWardenPay", {

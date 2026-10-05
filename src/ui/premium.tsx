@@ -58,6 +58,26 @@ export const PLAYMATS = {
     name: "The Long Dark",
     detail: "Locate the eastward path beneath Moria",
   },
+  "foundations-of-stone": {
+    name: "Foundations of Stone",
+    detail: "Separate paths beneath the drowned halls",
+  },
+  "peril-in-pelargir": {
+    name: "Pelargir",
+    detail: "Brigands at the Anduin docks",
+  },
+  "into-ithilien": {
+    name: "Ithilien",
+    detail: "The ambush on the southern road",
+  },
+  "siege-of-cair-andros": {
+    name: "Cair Andros",
+    detail: "Defend the island fortress",
+  },
+  "the-stewards-fear": {
+    name: "Minas Tirith",
+    detail: "A hidden conspiracy in the White City",
+  },
   "watcher-in-the-water": {
     name: "The West-door",
     detail: "Tentacles in the lake before Moria",
@@ -82,6 +102,11 @@ export const PLAYMAT_CHOICES = [
   "road-to-rivendell",
   "watcher-in-the-water",
   "the-long-dark",
+  "foundations-of-stone",
+  "peril-in-pelargir",
+  "into-ithilien",
+  "siege-of-cair-andros",
+  "the-stewards-fear",
   "shadow-and-flame",
 ] as const;
 

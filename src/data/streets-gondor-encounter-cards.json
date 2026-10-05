@@ -1,0 +1,187 @@
+[
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9011",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9011",
+    "name": "City Street",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Surge.\nWhile City Street is in the staging area, players cannot travel to a location that does not have the title City Street.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 38,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: attacking enemy gets +2 [attack].",
+    "encounter_set": "Streets of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9011.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 38,
+        "quantity": 3,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9051",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9051",
+    "name": "Local Trouble",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach this card to the hero with the highest threat cost without a copy of Local Trouble attached. (Counts as a Condition attachment with the text: \"When attached hero exhausts, readies, or triggers an ability, raise its controller's threat by 1.\")",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 41,
+    "quantity": 2,
+    "encounter_set": "Streets of Gondor",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9051.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 41,
+        "quantity": 2,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9051",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9051.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9054",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9054",
+    "name": "Lost in the City",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must search the encounter deck and discard pile for 1 City location and add it to the staging area, if able. Shuffle the encounter deck. This effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 40,
+    "quantity": 1,
+    "shadow": "Shadow: Defending player discards his hand.",
+    "encounter_set": "Streets of Gondor",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9054.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9054",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9054.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9056",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9056",
+    "name": "Market Square",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Immune to player card effects.\nTravel: Each player must spend 1 resource from one of his heroes' resource pools to travel here.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 39,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 1,
+    "shadow": "Shadow: Defending player discards all resources in his heroes' resource pools.",
+    "encounter_set": "Streets of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9056.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 39,
+        "quantity": 2,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9056",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9056.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9070",
+    "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9070",
+    "name": "Pickpocket",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Brigand.",
+    "text": "Forced: When Pickpocket attacks, the defending player discards 1 resource from one of his heroes' resource pools and 1 card at random from his hand.",
+    "is_unique": false,
+    "pack_code": "HoN",
+    "pack_name": "Heirs of Númenor",
+    "position": 37,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 1,
+    "defense": 0,
+    "health": 2,
+    "engagement": 28,
+    "shadow": "Shadow: Defending player discards 1 of his attachments. (Discard all of his attachments instead if undefended.)",
+    "encounter_set": "Streets of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "1",
+      "defense": "0",
+      "health": "2",
+      "engagement": "28"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9070.jpg",
+    "packs": [
+      {
+        "pack_code": "HoN",
+        "pack_name": "Heirs of Númenor",
+        "position": 37,
+        "quantity": 3,
+        "octgnid": "4823aae3-46ef-4a75-89f9-cbd3aa1b9070",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4823aae3-46ef-4a75-89f9-cbd3aa1b9070.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  }
+]

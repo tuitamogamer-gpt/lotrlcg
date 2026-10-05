@@ -7,7 +7,7 @@ import {
   Sword,
   Tree,
 } from "@phosphor-icons/react";
-import { imageUrl } from "../game/cards";
+import { imageUrl, cachedImageSource } from "../game/cards";
 import type { Card } from "../game/types";
 
 export function Sphere({ sphere }: { sphere: string }) {
@@ -47,7 +47,7 @@ export function Art({
     </div>
   ) : (
     <img
-      src={imageSrc ?? imageUrl(c)}
+      src={cachedImageSource(imageSrc) ?? imageUrl(c)}
       alt={c.name}
       data-card-code={c.code}
       loading="lazy"

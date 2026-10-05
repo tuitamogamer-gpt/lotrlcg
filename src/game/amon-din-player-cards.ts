@@ -23,6 +23,7 @@ import {
   spendEvent,
 } from "./board";
 import {
+  firstPlayer,
   activeSeat,
   allActiveLocations,
   allCharacters,
@@ -359,7 +360,7 @@ export function offerGondorianDiscipline(
       target: target.id,
       value,
       text: encodeDamageContext(context),
-      player: s.table?.first ?? activeSeat(s),
+      player: firstPlayer(s),
     }),
   );
   return true;

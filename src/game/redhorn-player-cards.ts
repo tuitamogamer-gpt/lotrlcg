@@ -1,3 +1,6 @@
+import { globalPlayerOrder } from "./table";
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
 import { engagementCost } from "./core";
 // Redhorn Gate actions and response windows, with physical Keeping Count tokens.
@@ -56,7 +59,12 @@ const locationsWithProgress = (s: GameState) =>
     (u) => u.progress > 0 && locations(s).some((v) => v.id !== u.id),
   );
 const spiritPayers = (s: GameState) =>
-  s.heroes.filter((u) => hasResourceIcon(u, "spirit") && u.resources > 0);
+  s.heroes.filter(
+    (u) =>
+      hasResourceIcon(u, "spirit") &&
+      u.resources > 0 &&
+      heirsCanSpendResources(s, u),
+  );
 const uniqueAllowed = allyCanEnter;
 const goodMealKey = (sphere: string) => `round:good-meal:${sphere}`;
 const mealMatches = (key: string, sphere: string) =>
@@ -230,7 +238,7 @@ export function redhornPlayerAttackBonus(
   if (engagementCost(s, enemy) <= seatView(s, ownerOf(s, u)).threat) return 0;
   return (
     3 *
-    playerOrder(s).reduce(
+    globalPlayerOrder(s).reduce(
       (n, i) =>
         n +
         seatView(s, i).used.filter((k) => k === `phase:unseen-strike:${u.id}`)
@@ -245,6 +253,7 @@ export function redhornPlayerDefenderDeclared(s: GameState, u: Unit) {
     !u.blanked &&
     !isSacked(u) &&
     u.resources > 0 &&
+    heirsCanSpendResources(s, u) &&
     u.exhausted
   )
     prepend(
@@ -410,6 +419,7 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
         !hero.blanked &&
         !isSacked(hero) &&
         hero.resources > 0 &&
+        heirsCanSpendResources(s, hero) &&
         hero.exhausted
       )
         choose(s, "Elrohir · Declared defender", [
@@ -430,10 +440,11 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
           !hero.blanked &&
           !isSacked(hero) &&
           hero.resources > 0 &&
+          heirsCanSpendResources(s, hero) &&
           hero.exhausted,
         "Elrohir cannot pay his defender response.",
       );
-      hero.resources--;
+      spendResources(s, hero, 1);
       readyCharacter(s, hero);
       return true;
     }
@@ -494,7 +505,7 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
         hand && payer && !redhornPlayerHandAbilityProblem(s, hand),
         "Bofur can no longer enter through this Quest Action.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       s.hand = s.hand.filter((u) => u.id !== hand.id);
       hand.exhausted = true;
       hand.committed = true;

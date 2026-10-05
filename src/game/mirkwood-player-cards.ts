@@ -1,3 +1,6 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
+import { stewardFearTravelEntered } from "./steward-fear";
 // Exact active/triggered Return to Mirkwood player rules; Dáin reuses dwarfStats.
 import { engagedEnemies } from "./considered-engagement";
 import { card, plain } from "./cards";
@@ -21,6 +24,7 @@ import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { isSacked } from "./carrock";
 import { consumeLeaveCard, leaveCardAvailable } from "./leave-consumption";
 import {
+  firstPlayer,
   activeSeat,
   allActiveLocations,
   allCharacters,
@@ -73,7 +77,12 @@ const dawnLegal = (s: GameState) =>
   !attackResolved(s) &&
   facedownShadows(s).length > 0;
 const lorePayers = (s: GameState) =>
-  s.heroes.filter((u) => hasResourceIcon(u, "lore") && u.resources > 0);
+  s.heroes.filter(
+    (u) =>
+      hasResourceIcon(u, "lore") &&
+      u.resources > 0 &&
+      heirsCanSpendResources(s, u),
+  );
 
 export function mirkwoodPlayerPlayProblem(
   s: GameState,
@@ -406,7 +415,7 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
         payer && returnPlayedEventToHand(s, "02124", e.source, e.value),
         "Pay a Lore hero's resource to return the resolved Rumour.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       return true;
     }
     case "mirkwoodSupportStat": {
@@ -467,7 +476,7 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
             label: "Switch an active location with a staging location",
             code: "02121",
             effects: [
-              fx("mirkwoodTravellerActive", { player: s.table?.first ?? 0 }),
+              fx("mirkwoodTravellerActive", { player: firstPlayer(s) }),
             ],
           },
           skip,
@@ -503,6 +512,7 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
         s.extraActiveLocations = (s.extraActiveLocations ?? []).map((u) =>
           u.id === old.id ? next : u,
         );
+      stewardFearTravelEntered(s, next);
       log(
         s,
         "West Road Traveller switches locations, keeping their progress and attachments; no travel occurs.",

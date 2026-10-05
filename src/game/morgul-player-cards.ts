@@ -1,3 +1,5 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 // The Morgul Vale: continuous bonuses, optional quest readying, and paid Record replays.
 import { card, name, plain } from "./cards";
 import type { Attachment, Card, Effect, GameState, Unit } from "./types";
@@ -12,7 +14,7 @@ import {
   skip,
 } from "./core";
 import { discardAttachment, readyCharacter } from "./board";
-import { hasResourceIcon } from "./expansion-passives";
+import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { khazadCannotReady } from "./khazad-dum";
 import { watcherWaterCannotReady } from "./watcher-water";
 import {
@@ -82,6 +84,14 @@ export function morgulPlayerPlayTargets(
   s: GameState,
   code: string,
 ): Unit[] | null {
+  if (code === "06137")
+    return allCharacters(s).filter((u) => hasTrait(u, "Rohan") && !immune(u));
+  if (code === "06139")
+    return allHeroes(s).filter(
+      (u) => (hasTrait(u, "Gondor") || hasTrait(u, "Rohan")) && !immune(u),
+    );
+  if (code === "06142")
+    return allHeroes(s).filter((u) => hasResourceIcon(u, "lore") && !immune(u));
   return code === "06140"
     ? allHeroes(s).filter(
         (hero) =>
@@ -98,6 +108,11 @@ export function morgulPlayerPlayProblem(
 ): string | null {
   if (code === "06140" && !morgulPlayerPlayTargets(s, code)?.length)
     return "Lay of Nimrodel needs a Spirit hero with resources.";
+  if (
+    ["06137", "06139", "06142"].includes(code) &&
+    !morgulPlayerPlayTargets(s, code)?.length
+  )
+    return "This attachment has no eligible character.";
   return null;
 }
 
@@ -108,11 +123,12 @@ export function morgulPlayerEventEffect(
   target?: string,
 ): boolean {
   if (code !== "06140") return false;
-  const hero = morgulPlayerPlayTargets(s, code)!.find((u) => u.id === target);
-  requireRule(
-    hero,
-    "Choose a Spirit hero with at least one resource remaining after payment.",
+  // Target eligibility was checked before costs were paid. Spending the hero's
+  // last resource can reduce the resulting bonus to zero without undoing play.
+  const hero = allHeroes(s).find(
+    (u) => u.id === target && hasResourceIcon(u, "spirit") && !immune(u),
   );
+  requireRule(hero, "Choose a Spirit hero.");
   hero.tempWill = (hero.tempWill ?? 0) + hero.resources;
   return true;
 }
@@ -133,6 +149,7 @@ function canSteedReady(s: GameState, u: Unit, id?: string) {
     !immune(u) &&
     u.exhausted &&
     u.resources >= 1 &&
+    heirsCanSpendResources(s, u) &&
     !khazadCannotReady(u) &&
     !watcherWaterCannotReady(u)
   );
@@ -152,7 +169,7 @@ export function morgulPlayerCharactersCommitted(s: GameState, actual: Unit[]) {
         fx("morgulSteedResponse", {
           source: u.id,
           text: a.id,
-          player: ownerOf(s, u),
+          player: attachmentController(s, u, a) ?? ownerOf(s, u),
         }),
       );
 }
@@ -258,7 +275,7 @@ export function handleMorgulPlayerEffect(s: GameState, e: Effect): boolean {
         hero && canSteedReady(s, hero, e.text),
         "This Steed needs its exhausted hero and one resource from that hero's own pool.",
       );
-      hero.resources--;
+      spendResources(s, hero, 1);
       readyCharacter(s, hero);
       return true;
     }

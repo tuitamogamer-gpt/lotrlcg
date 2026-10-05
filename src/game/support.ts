@@ -48,7 +48,9 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   const name = reference.name
     .replace(/\s*\((?:Easy|Campaign)\)\s*$/i, "")
     .trim();
-  const match = SCENARIOS.find((s) => s.name === name);
+  const match = SCENARIOS.find(
+    (s) => s.name.toLocaleLowerCase("en") === name.toLocaleLowerCase("en"),
+  );
   if (
     !match ||
     (reference.mode === "campaign" && !CAMPAIGN_CHAPTERS.includes(match.id))

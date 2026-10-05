@@ -1,4 +1,55 @@
+import {
+  heirsClaim,
+  heirsCanOptionallyEngage,
+  heirsCanSpendResources,
+  heirsCannotHaveAttachments,
+  heirsAbilityLabel,
+  heirsAbilityProblem,
+  useHeirsAbility,
+} from "./heirs-numenor";
+import {
+  stewardFearTravelProblem,
+  stewardFearTravelEffects,
+  stewardFearOptionalEngagementProblem,
+  stewardFearClaim,
+  stewardFearAbilityLabel,
+  stewardFearAbilityProblem,
+  useStewardFearAbility,
+  stewardFearHeroAbilityTriggered,
+  stewardFearEventPlayed,
+} from "./steward-fear";
 import { enemyAttackPrevented } from "./core";
+import {
+  foundationsResolveQuest,
+  foundationsTravelNext,
+  foundationsCommitProblem,
+  foundationsClaim,
+  foundationsAbilityLabel,
+  foundationsAbilityProblem,
+  useFoundationsAbility,
+} from "./foundations-stone";
+import {
+  osgiliathPlayerPlayProblem,
+  osgiliathPlayerPlayTargets,
+  osgiliathPlayerAbilityLabel,
+  osgiliathPlayerAbilityProblem,
+} from "./osgiliath-player-cards";
+import {
+  bloodPlayerPlayProblem,
+  bloodPlayerPlayTargets,
+  bloodPlayerAbilityLabel,
+  bloodPlayerAbilityProblem,
+  bloodPlayerHandAbilityLabel,
+  bloodPlayerHandAbilityProblem,
+  useBloodPlayerHandAbility,
+  bloodPlayerSpecialAttachmentEntry,
+} from "./blood-gondor-player-cards";
+import {
+  morgulPlayerPlayProblem,
+  morgulPlayerPlayTargets,
+  morgulPlayerAbilityLabel,
+  morgulPlayerAbilityProblem,
+} from "./morgul-player-cards";
 import { resolveEventAbility } from "./event-resolution";
 import {
   amonPlayerPlayProblem,
@@ -134,11 +185,11 @@ import {
   khazadOptionalEngageProblem,
 } from "./khazad-dum";
 // Player actions, legality checks and the public state projection.
-import { card, name } from "./cards";
-import type { Action, GameState, Unit } from "./types";
-import { OBJECTIVES } from "./scenarios";
+import { card, name, plain } from "./cards";
+import type { Action, Effect, GameState, Unit } from "./types";
 
 import {
+  firstPlayer,
   activeSeat,
   allCharacters,
   allActiveLocations,
@@ -146,6 +197,7 @@ import {
   allEngaged,
   livingSeats,
   playerOrder,
+  globalPlayerOrder,
   seatIndices,
   seatName,
   seatView,
@@ -173,13 +225,14 @@ import {
   pay,
   prepend,
   questWill,
+  questStat,
   requireRule,
   shuffle,
   stageInfo,
   stagingThreat,
   stats,
   threatOf,
-  units,
+  globalUnits,
   playCost,
   locationQuest,
   hasClue,
@@ -321,6 +374,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   )
     return "Choose a location in staging.";
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
+  const stewardProblem = stewardFearTravelProblem(s, u);
+  if (stewardProblem) return stewardProblem;
   const waterProblem = watcherWaterTravelProblem(s, u);
   if (waterProblem) return waterProblem;
   const redhornProblem = redhornTravelProblem(s, u);
@@ -340,7 +395,7 @@ export function canTravel(s: GameState, u: Unit): string | null {
     )
   )
     return "Great Forest Web requires a ready hero from every player.";
-  if (u.code === "01094" && seatView(s, s.table?.first ?? 0).hand.length < 2)
+  if (u.code === "01094" && seatView(s, firstPlayer(s)).hand.length < 2)
     return "Necromancer’s Pass requires two cards to discard.";
   if (u.code === "01078" && !s.encounterDeck.length)
     return "The travel cost needs an encounter card to reveal.";
@@ -348,7 +403,7 @@ export function canTravel(s: GameState, u: Unit): string | null {
     return "The Highlands requires an encounter card to reveal.";
   if (
     u.code === EMYN.shores &&
-    !seatView(s, s.table?.first ?? 0).hand.some(
+    !seatView(s, firstPlayer(s)).hand.some(
       (x) => card(x.code).type_code === "event",
     )
   )
@@ -360,6 +415,7 @@ export function optionalEngagementProblem(
   s: GameState,
   u: Unit,
 ): string | null {
+  syncAttachmentText(s, u);
   if (s.status !== "playing" || s.choice || s.flow?.pending)
     return "Resolve the current decision first.";
   if (s.table && activeSeat(s) !== s.table.turn)
@@ -378,6 +434,10 @@ export function optionalEngagementProblem(
     )
   )
     return "Goblin Sniper cannot be optionally engaged while another enemy is in staging.";
+  if (!heirsCanOptionallyEngage(s))
+    return "This quest stage prevents optional engagement.";
+  const stewardProblem = stewardFearOptionalEngagementProblem(s, u);
+  if (stewardProblem) return stewardProblem;
   if (!shadowFlameCanMove(s, u))
     return "Durin’s Bane remains in staging and cannot be optionally engaged.";
   if (!amonPlayerCanEngage(s, u, activeSeat(s)))
@@ -432,6 +492,12 @@ export function canPlay(
   if (c.code === "01023" && !s.hand.some((a) => allyCanEnter(s, a.code)))
     return "You need an eligible ally in hand.";
   const druadanProblem = druadanPlayerPlayProblem(s, c.code);
+  const morgulProblem = morgulPlayerPlayProblem(s, c.code);
+  if (morgulProblem) return morgulProblem;
+  const osgiliathProblem = osgiliathPlayerPlayProblem(s, c.code);
+  if (osgiliathProblem) return osgiliathProblem;
+  const bloodProblem = bloodPlayerPlayProblem(s, c.code);
+  if (bloodProblem) return bloodProblem;
   if (druadanProblem) return druadanProblem;
   const amonProblem = amonPlayerPlayProblem(s, c.code);
   if (amonProblem) return amonProblem;
@@ -535,7 +601,7 @@ export function canPlay(
     return "This card must be paid from a single hero’s resource pool.";
   if (
     c.is_unique &&
-    units(s).some(
+    globalUnits(s).some(
       (x) =>
         card(x.code)
           .name.normalize("NFD")
@@ -544,7 +610,9 @@ export function canPlay(
         (x.code === REDHORN.arwen &&
           c.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ===
             "Arwen Undomiel") ||
-        x.attachments.some((a) => !a.facedown && card(a.code).name === c.name),
+        x.attachments.some(
+          (a) => !a.facedown && !a.namelessCard && card(a.code).name === c.name,
+        ),
     )
   )
     return "A unique card with this name is already in play.";
@@ -568,8 +636,8 @@ export function effectCardPlayProblem(
     if (["01067", "06083"].includes(c.code))
       return `At no cost, X is zero and ${c.name} cannot change the game state.`;
   } else {
-    if (c.code === "05017")
-      return "Ranger Spikes needs a play effect to enter the staging area.";
+    if (["05017", "06115"].includes(c.code))
+      return "This Trap needs a play effect to enter the staging area.";
     if (!["ally", "attachment"].includes(c.type_code))
       return "Only allies and attachments have a valid put-into-play area.";
     if (c.type_code === "ally" && !allyCanEnter(s, c.code))
@@ -579,11 +647,12 @@ export function effectCardPlayProblem(
       if (problem) return problem;
       if (
         c.is_unique &&
-        units(s).some(
+        globalUnits(s).some(
           (x) =>
             card(x.code).name === c.name ||
             x.attachments.some(
-              (a) => !a.facedown && card(a.code).name === c.name,
+              (a) =>
+                !a.facedown && !a.namelessCard && card(a.code).name === c.name,
             ),
         )
       )
@@ -640,22 +709,31 @@ export function replayEventProblem(
   )
     return "Choose an event with a fixed resource cost.";
   if (["01067", "06083"].includes(u.code)) {
-    const maximum =
-      u.code === "01067"
-        ? Math.max(...livingSeats(s).map((i) => seatView(s, i).deck.length))
-        : s.discard.filter(
-            (code) =>
-              card(code).type_code === "ally" &&
-              (card(code).traits ?? "")
-                .split(".")
-                .some((trait) => trait.trim() === "Outlands"),
-          ).length;
+    const maximum = eventXMaximum(s, u.code);
     if (!Number.isInteger(amount) || amount! <= 0 || amount! > maximum)
       return "Choose a positive X within the available cards.";
   }
   if (!eventReplayPayments(s, u, target, amount).length)
     return "The event's resource payment cannot be made.";
   return null;
+}
+
+/** X is a printed choice, independent of any modifiers to its resource payment. */
+export function eventXMaximum(s: GameState, code: string): number {
+  if (code === "01067")
+    return Math.max(
+      0,
+      ...livingSeats(s).map((i) => seatView(s, i).deck.length),
+    );
+  if (code === "06083")
+    return s.discard.filter(
+      (entry) =>
+        card(entry).type_code === "ally" &&
+        (card(entry).traits ?? "")
+          .split(".")
+          .some((trait) => trait.trim() === "Outlands"),
+    ).length;
+  return 0;
 }
 
 export function eventReplayPayments(
@@ -735,6 +813,13 @@ export function playEventFromDiscardEffect(
     "Choose the actual event in your discard pile.",
   );
   const preview = { ...s.heroes[0], code: s.discard[index] } as Unit;
+  if (options.target?.startsWith("discard-")) {
+    const selected = discardTarget(s, options.target);
+    requireRule(
+      selected.player !== activeSeat(s) || selected.index !== index,
+      "The resolving event cannot target its own physical discard copy.",
+    );
+  }
   if (["01067", "06083"].includes(preview.code))
     requireRule(
       options.amount !== undefined,
@@ -788,6 +873,7 @@ export function playEventFromDiscardEffect(
     true,
     false,
     !!options.bottom,
+    options.amount ?? effectiveCost,
   );
 }
 function resolvePlayerCard(
@@ -798,6 +884,7 @@ function resolvePlayerCard(
   played: boolean,
   fromHand: boolean,
   bottom = false,
+  amount = 0,
 ) {
   const c = card(u.code);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
@@ -808,7 +895,8 @@ function resolvePlayerCard(
     c.type_code === "attachment" &&
     played &&
     (heirsPlayerSpecialAttachmentEntry(s, u) ||
-      amonPlayerSpecialAttachmentEntry(s, u))
+      amonPlayerSpecialAttachmentEntry(s, u) ||
+      bloodPlayerSpecialAttachmentEntry(s, u))
   ) {
   } else if (c.type_code === "attachment") {
     const host = get(s, target)!;
@@ -832,18 +920,17 @@ function resolvePlayerCard(
       s,
       u,
       () => {
-        if (
-          !shadowFlameEventCancelled(s) &&
-          !heirsPlayerEventEffect(s, u.code, target) &&
-          !collectorEventEffect(s, u.code, target) &&
-          !rohanEventEffect(s, u.code) &&
-          !roadPlayerEventEffect(s, u.code, target) &&
-          !redhornPlayerEventEffect(s, u.code, target) &&
-          !elfEventEffect(s, u.code, target) &&
-          !mirkwoodPlayerEventEffect(s, u.code) &&
-          !dwarfEventEffect(s, u.code, target)
-        )
-          eventEffect(s, u.code, target, effectiveCost);
+        if (played) stewardFearEventPlayed(s);
+        s.queue.push(
+          fx("playerEventAbility", {
+            target: u.id,
+            source: target,
+            code: u.code,
+            value: effectiveCost,
+            count: amount,
+            player: activeSeat(s),
+          }),
+        );
       },
       bottom,
     );
@@ -851,6 +938,30 @@ function resolvePlayerCard(
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
     longDarkPlayerCardPlayed(s, c, activeSeat(s));
+}
+/** Resolve the actual played event after mandatory reactions to its play. */
+export function handlePlayerEventAbilityEffect(
+  s: GameState,
+  e: Effect,
+): boolean {
+  if (e.kind !== "playerEventAbility") return false;
+  const physical = s.resolvingEvents?.find(
+    (event) => event.unit.id === e.target,
+  )?.unit;
+  if (!physical) return true;
+  if (
+    !shadowFlameEventCancelled(s) &&
+    !heirsPlayerEventEffect(s, physical.code, e.source) &&
+    !collectorEventEffect(s, physical.code, e.source) &&
+    !rohanEventEffect(s, physical.code) &&
+    !roadPlayerEventEffect(s, physical.code, e.source) &&
+    !redhornPlayerEventEffect(s, physical.code, e.source) &&
+    !elfEventEffect(s, physical.code, e.source) &&
+    !mirkwoodPlayerEventEffect(s, physical.code) &&
+    !dwarfEventEffect(s, physical.code, e.source)
+  )
+    eventEffect(s, physical.code, e.source, e.value ?? 0, e.count ?? 0);
+  return true;
 }
 /** Vilya resolves the recorded physical top card, never a fabricated hand play. */
 export function playCardFromEffect(
@@ -901,6 +1012,12 @@ export function playTargets(
 ): Unit[] {
   return rawPlayTargets(s, u).filter(
     (target) =>
+      (target.blanked ||
+        !/immune to (?:player )?card effects/i.test(
+          plain(card(target.code).text),
+        )) &&
+      (card(u.code).type_code !== "attachment" ||
+        !heirsCannotHaveAttachments(target)) &&
       (card(u.code).type_code !== "attachment" ||
         (rhosgobelCanAttach(s, target) &&
           (options.putIntoPlay ||
@@ -914,6 +1031,12 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const amonTargets = amonPlayerPlayTargets(s, c.code);
+  const morgulTargets = morgulPlayerPlayTargets(s, c.code);
+  if (morgulTargets) return morgulTargets;
+  const osgiliathTargets = osgiliathPlayerPlayTargets(s, c.code);
+  if (osgiliathTargets) return osgiliathTargets;
+  const bloodTargets = bloodPlayerPlayTargets(s, c.code);
+  if (bloodTargets) return bloodTargets;
   if (amonTargets) return amonTargets;
   const stewardTargets = stewardPlayerPlayTargets(s, c.code);
   if (stewardTargets) return stewardTargets;
@@ -1026,7 +1149,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
-  !["05017", "06064"].includes(u.code) &&
+  !["05017", "06064", "06115"].includes(u.code) &&
   (card(u.code).type_code === "attachment" ||
     [
       "01020",
@@ -1053,6 +1176,9 @@ export const needsTarget = (u: Unit) =>
       "08060",
       "05006",
       "06003",
+      "06140",
+      "06089",
+      "06113",
     ].includes(u.code));
 
 export const responseCards = [
@@ -1069,20 +1195,41 @@ export const responseCards = [
 
 export function availableAbilities(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
+  const heirsScenarioLabel = heirsAbilityLabel(u.code);
+  if (heirsScenarioLabel)
+    return [
+      { label: heirsScenarioLabel, disabled: !!heirsAbilityProblem(s, u) },
+    ];
+  const foundationsScenarioLabel = foundationsAbilityLabel(u.code);
+  if (foundationsScenarioLabel)
+    return [
+      {
+        label: foundationsScenarioLabel,
+        disabled: !!foundationsAbilityProblem(s, u),
+      },
+    ];
   if (s.hand.some((x) => x.id === u.id)) {
-    const label = redhornPlayerHandAbilityLabel(u.code);
+    const bloodHandLabel = bloodPlayerHandAbilityLabel(u.code);
+    const label = bloodHandLabel ?? redhornPlayerHandAbilityLabel(u.code);
+    const problem = bloodHandLabel
+      ? bloodPlayerHandAbilityProblem(s, u)
+      : redhornPlayerHandAbilityProblem(s, u);
     return label
       ? [
           {
             label,
-            disabled:
-              (s.phase === "setup" && !s.escapeTest) ||
-              !!redhornPlayerHandAbilityProblem(s, u),
+            disabled: (s.phase === "setup" && !s.escapeTest) || !!problem,
           },
         ]
       : [];
   }
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const bloodLabel = bloodPlayerAbilityLabel(u.code);
+  if (bloodLabel)
+    results.push({
+      label: bloodLabel,
+      disabled: !!bloodPlayerAbilityProblem(s, u),
+    });
   const waterLabel = watcherWaterAbilityLabel(u);
   if (waterLabel)
     results.push({
@@ -1216,6 +1363,7 @@ export function availableAbilities(s: GameState, u: Unit) {
           : u.code === "01011"
             ? s.used.includes(u.id) ||
               u.resources < 1 ||
+              !heirsCanSpendResources(s, u) ||
               !allCharacters(s).some((h) => rhosgobelHealingAllowed(s, h))
             : u.code === "01031"
               ? s.used.includes(u.id)
@@ -1226,6 +1374,34 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const stewardLabel = stewardFearAbilityLabel(u, a.id);
+    if (stewardLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: stewardLabel,
+        disabled: !!stewardFearAbilityProblem(s, u, a.id),
+      });
+    const osgiliathLabel = osgiliathPlayerAbilityLabel(a.code);
+    if (osgiliathLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: osgiliathLabel,
+        disabled: !!osgiliathPlayerAbilityProblem(s, u, a.id),
+      });
+    const bloodAttachmentLabel = bloodPlayerAbilityLabel(a.code);
+    if (bloodAttachmentLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: bloodAttachmentLabel,
+        disabled: !!bloodPlayerAbilityProblem(s, u, a.id),
+      });
+    const morgulLabel = morgulPlayerAbilityLabel(a.code);
+    if (morgulLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: morgulLabel,
+        disabled: !!morgulPlayerAbilityProblem(s, u, a.id),
+      });
     const amonLabel = amonPlayerAbilityLabel(a.code);
     if (amonLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -1426,6 +1602,8 @@ export function applyAction(input: GameState, action: Action): GameState {
     }
     case "COMMIT": {
       requireRule(s.phase === "quest", "Not at the commit step.");
+      const foundationsProblem = foundationsCommitProblem(s);
+      requireRule(!foundationsProblem, foundationsProblem ?? "");
       s.used.push("phase:quest-committed");
       if (emynMuilMustCommit(s))
         requireRule(
@@ -1463,31 +1641,38 @@ export function applyAction(input: GameState, action: Action): GameState {
         if (!passSeat(s)) break;
         enqueue(s, fx("phaseEnd"), fx("startQuest"));
       } else if (s.phase === "staging") {
+        if (foundationsResolveQuest(s)) break;
         if (redhornBeforeQuestResolution(s)) break;
         const will = questWill(s),
           threat = stagingThreat(s),
           net = will - threat;
-        s.lastQuest = { will, threat, net };
+        const stat = questStat(s);
+        const statLabel = stat === "will" ? "willpower" : stat;
+        s.lastQuest = { will, threat, net, stat };
         if (net > 0) {
           log(
             s,
-            `Quest succeeds: ${will} willpower − ${threat} threat = ${net} progress.`,
+            `Quest succeeds: ${will} ${statLabel} − ${threat} threat = ${net} progress.`,
             "good",
           );
           enqueue(
             s,
-            fx("questSucceeded", { value: net, player: s.table?.first ?? 0 }),
+            fx("questSucceeded", { value: net, player: firstPlayer(s) }),
           );
         } else if (net < 0) {
           if (returnMirkwoodQuestFailed(s)) break;
           enqueue(
             s,
-            fx("failedQuest", { value: -net, player: s.table?.first ?? 0 }),
+            fx("failedQuest", { value: -net, player: firstPlayer(s) }),
           );
         } else
-          log(s, "Willpower matches threat. No progress or threat increase.");
+          log(
+            s,
+            `${statLabel} matches threat. No progress or threat increase.`,
+          );
         enqueue(s, fx("finishQuestPhase"));
       } else if (s.phase === "travel") {
+        if (foundationsTravelNext(s)) break;
         requireRule(
           allActiveLocations(s).length > 0 ||
             !s.staging.some((u) => u.code === "01088"),
@@ -1496,7 +1681,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         enqueue(s, fx("phaseEnd"), fx("startEncounter"));
       } else if (s.phase === "encounter") {
         if (!passSeat(s)) break;
-        enqueue(s, fx("engagementRound"));
+        enqueue(s, fx("engagementAllAreas"));
         enqueue(s, fx("phaseEnd"), fx("startCombat"));
       } else if (s.phase === "refresh") {
         enqueue(s, fx("phaseEnd"), fx("endRound"));
@@ -1542,16 +1727,13 @@ export function applyAction(input: GameState, action: Action): GameState {
           Number(card(seatView(s, target.player).discard[target.index]).cost) ||
           0;
       }
-      if (u.code === "01067") {
+      if (["01067", "06083"].includes(u.code)) {
         effectiveCost = action.amount ?? 0;
         requireRule(
           Number.isInteger(effectiveCost) &&
             effectiveCost > 0 &&
-            effectiveCost <=
-              Math.max(
-                ...livingSeats(s).map((i) => seatView(s, i).deck.length),
-              ),
-          "Choose a positive X no larger than an available player deck.",
+            effectiveCost <= eventXMaximum(s, u.code),
+          "Choose a positive X within the available cards.",
         );
       }
       pay(
@@ -1562,7 +1744,16 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       if (c.type_code === "event") redhornPlayerEventPlayed(s, u.code);
       s.hand = s.hand.filter((x) => x.id !== u.id);
-      resolvePlayerCard(s, u, action.target, effectiveCost, true, true);
+      resolvePlayerCard(
+        s,
+        u,
+        action.target,
+        effectiveCost,
+        true,
+        true,
+        false,
+        action.amount ?? effectiveCost,
+      );
       break;
     }
     case "ABILITY": {
@@ -1575,12 +1766,20 @@ export function applyAction(input: GameState, action: Action): GameState {
       const handUnit = s.hand.find((u) => u.id === action.id);
       if (handUnit) {
         requireRule(
-          !action.attachmentId && useRedhornPlayerHandAbility(s, handUnit),
+          !action.attachmentId &&
+            (useBloodPlayerHandAbility(s, handUnit) ||
+              useRedhornPlayerHandAbility(s, handUnit)),
           "This card has no action from hand.",
         );
         break;
       }
       const u = get(s, action.id);
+      if (
+        u &&
+        !action.attachmentId &&
+        (useFoundationsAbility(s, u) || useHeirsAbility(s, u))
+      )
+        break;
       if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
         watcherWaterAbility(s, u, action.attachmentId);
         break;
@@ -1612,7 +1811,13 @@ export function applyAction(input: GameState, action: Action): GameState {
               collectorAbilityAnyPlayer(u.code)),
         "Choose a character or attachment you control.",
       );
-      if (u.code === CARROCK.grimbeorn && !action.attachmentId)
+      if (!action.attachmentId && u.code === "01011")
+        requireRule(
+          heirsCanSpendResources(s, u),
+          "Orc Vanguard prevents Glorfindel from spending the resource cost.",
+        );
+      if (useStewardFearAbility(s, u, action.attachmentId)) {
+      } else if (u.code === CARROCK.grimbeorn && !action.attachmentId)
         enqueue(s, fx("carrockContribute", { target: u.id }));
       else if (useAmonPlayerAbility(s, u, action.attachmentId)) {
       } else if (useHeirsPlayerAbility(s, u, action.attachmentId)) {
@@ -1631,6 +1836,12 @@ export function applyAction(input: GameState, action: Action): GameState {
         !useDwarfAbility(s, u, action.attachmentId)
       )
         useAbility(s, u, action.attachmentId);
+      if (
+        !action.attachmentId &&
+        card(u.code).type_code === "hero" &&
+        !["01007", "01011", "03002", "02095", "08056", "06107"].includes(u.code)
+      )
+        stewardFearHeroAbilityTriggered(s, u);
       break;
     }
     case "CLAIM": {
@@ -1648,7 +1859,10 @@ export function applyAction(input: GameState, action: Action): GameState {
         objective && objectiveFree(s, objective) && hero,
         "Choose an unguarded objective and a free hero.",
       );
+      if (stewardFearClaim(s, objective, hero)) break;
+      if (heirsClaim(s, objective, hero)) break;
       if (khazadClaim(s, objective, hero)) break;
+      if (foundationsClaim(s, objective, hero)) break;
       if (rhosgobelClaim(s, objective, hero)) break;
       raiseThreat(s, 2, "cost");
       s.staging = s.staging.filter((u) => u.id !== objective.id);
@@ -1681,12 +1895,21 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
+      const stewardCost = stewardFearTravelEffects(s, u);
+      if (stewardCost) {
+        prepend(
+          s,
+          ...stewardCost,
+          fx("travelEnter", { target: u.id, player: firstPlayer(s) }),
+        );
+        break;
+      }
       const waterCost = watcherWaterTravelCost(s, u);
       if (waterCost) {
         prepend(
           s,
           ...waterCost,
-          fx("travelEnter", { target: u.id, player: s.table?.first ?? 0 }),
+          fx("travelEnter", { target: u.id, player: firstPlayer(s) }),
         );
         break;
       }
@@ -1711,7 +1934,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         );
       if (u.code === "01094")
         requireRule(
-          seatView(s, s.table?.first ?? 0).hand.length >= 2,
+          seatView(s, firstPlayer(s)).hand.length >= 2,
           "Necromancer’s Pass requires 2 cards to discard.",
         );
       if (u.code === "01078")
@@ -1725,13 +1948,10 @@ export function applyAction(input: GameState, action: Action): GameState {
           ...playerOrder(s).map((player) => fx("travelExhaust", { player })),
         );
       if (u.code === "01094")
-        enqueue(s, fx("payPass", { player: s.table?.first ?? 0 }));
+        enqueue(s, fx("payPass", { player: firstPlayer(s) }));
       if (u.code === "01078")
-        enqueue(s, fx("reveal", { player: s.table?.first ?? 0 }));
-      enqueue(
-        s,
-        fx("travelEnter", { target: u.id, player: s.table?.first ?? 0 }),
-      );
+        enqueue(s, fx("reveal", { player: firstPlayer(s) }));
+      enqueue(s, fx("travelEnter", { target: u.id, player: firstPlayer(s) }));
       break;
     }
     case "ENGAGE": {
@@ -1812,7 +2032,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (s.table) {
         if (!s.table.passed.includes(activeSeat(s)))
           s.table.passed.push(activeSeat(s));
-        const next = playerOrder(s).find(
+        const next = globalPlayerOrder(s).find(
           (i) =>
             !rohanOathPlayers(s).includes(i) && !s.table!.passed.includes(i),
         );
@@ -1832,7 +2052,10 @@ export function applyAction(input: GameState, action: Action): GameState {
     recordObservation(s, before, observation(s)!, action);
   }
   flush(s);
-  if (!s.flow?.pending) check(s);
+  if (!s.flow?.pending) {
+    check(s);
+    if (!s.flow?.pending && !s.choice) flush(s);
+  }
   syncSeat(s);
   return s;
 }
@@ -1909,14 +2132,20 @@ export function publicState(s: GameState) {
     prisoner: s.prisoner ? name(s.prisoner) : null,
     captiveMendor: !!s.captiveMendor,
     objectives: s.staging
-      .filter((u) => OBJECTIVES.includes(u.code))
+      .filter((u) => card(u.code).type_code === "objective")
       .map((u) => ({ id: u.id, name: name(u), free: objectiveFree(s, u) })),
     deck: s.deckId,
     peek: s.peek ? card(s.peek).name : null,
     round: s.round,
     phase: s.phase,
     threat: s.threat,
-    quest: { ...stageInfo(s), stage: s.stage, progress: s.progress },
+    quest: {
+      ...stageInfo(s),
+      stage: s.stage,
+      progress: s.progress,
+      ...(s.stewardFear ? { resources: s.stewardFear.questResources } : {}),
+      stat: questStat(s),
+    },
     heroes: s.heroes.map((u) => ({ ...u, name: name(u), stats: stats(s, u) })),
     allies: s.allies.map((u) => ({ ...u, name: name(u), stats: stats(s, u) })),
     hand: s.hand.map((u) => ({
@@ -1928,6 +2157,12 @@ export function publicState(s: GameState) {
     deckCount: s.deck.length,
     encounterCount: s.encounterDeck.length,
     pendingWolfReturns: s.pendingWolfReturns?.length ?? 0,
+    ...(s.stewardFear
+      ? {
+          underworldCount: s.stewardFear.underworldDeck.length,
+          pendingUnderworldCount: s.stewardFear.pendingUnderworld.length,
+        }
+      : {}),
     staging: s.staging.map((u) => ({
       id: u.id,
       code: u.code,
@@ -1936,6 +2171,9 @@ export function publicState(s: GameState) {
       ...stats(s, u),
       threat: threatOf(s, u),
       progress: u.progress,
+      ...(s.stewardFear
+        ? { underworldCount: s.stewardFear.underneath[u.id]?.length ?? 0 }
+        : {}),
     })),
     consideredEngagements: s.staging
       .filter((u) => playerOrder(s).some((p) => consideredEngaged(s, u, p)))
@@ -1957,6 +2195,9 @@ export function publicState(s: GameState) {
       name: name(l),
       progress: l.progress,
       quest: locationQuest(s, l),
+      ...(s.stewardFear
+        ? { underworldCount: s.stewardFear.underneath[l.id]?.length ?? 0 }
+        : {}),
     })),
     activeLocation: s.activeLocation
       ? {

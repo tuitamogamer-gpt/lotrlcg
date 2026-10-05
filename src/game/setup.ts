@@ -1,4 +1,7 @@
+import { setupHeirs } from "./heirs-numenor";
+import { setupStewardFear } from "./steward-fear";
 import { setupShadowFlame } from "./shadow-flame";
+import { setupFoundationsStone } from "./foundations-stone";
 import { startingThreat } from "./starting-threat";
 import { setupLongDark } from "./long-dark";
 import { setupWatcherWater } from "./watcher-water";
@@ -338,6 +341,16 @@ export function createGame(
     setupRedhorn(s);
   } else if (scenarioId === "shadow-and-flame") {
     setupShadowFlame(s);
+  } else if (
+    ["peril-in-pelargir", "into-ithilien", "siege-of-cair-andros"].includes(
+      scenarioId,
+    )
+  ) {
+    setupHeirs(s);
+  } else if (scenarioId === "the-stewards-fear") {
+    setupStewardFear(s);
+  } else if (scenarioId === "foundations-of-stone") {
+    setupFoundationsStone(s);
   } else if (scenarioId === "the-long-dark") {
     setupLongDark(s);
   } else if (scenarioId === "watcher-in-the-water") {

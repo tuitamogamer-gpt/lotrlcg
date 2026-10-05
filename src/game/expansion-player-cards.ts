@@ -1,3 +1,5 @@
+import { heirsCanSpendResources } from "./heirs-numenor";
+import { spendResources } from "./core";
 import {
   encodeDamageContext,
   readDamageContext,
@@ -42,6 +44,7 @@ import { isSacked } from "./carrock";
 import { hasTrait } from "./expansion-passives";
 import { applyCombatDamageConsequences } from "./combat";
 import {
+  firstPlayer,
   allHeroes,
   allActiveLocations,
   removeActiveLocation,
@@ -175,6 +178,8 @@ export function huntAbilityProblem(
         ["02002", "02026", "02051", "02097", "02117"].includes(a.code),
     )
   ) {
+    if (!heirsCanSpendResources(s, u))
+      return "Orc Vanguard prevents this hero from spending resources.";
     if (u.resources < 1) return "The attached hero needs 1 resource.";
     if (!allHeroes(s).some((h) => h.id !== u.id))
       return "Another hero is required.";
@@ -471,7 +476,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
           host.resources > 0,
         "A Dúnedain Signal requires a resource and another hero.",
       );
-      host.resources--;
+      spendResources(s, host, 1);
       host.attachments = host.attachments.filter((x) => x.id !== a.id);
       target.attachments.push(a);
       log(
@@ -489,7 +494,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
         mapMaker?.code === "02032" && payer,
         "Longbeard Map-Maker requires one Lore resource.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       mapMaker.tempWill = (mapMaker.tempWill ?? 0) + 1;
       return true;
     }
@@ -668,7 +673,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
         guardian?.code === "02004" && payer,
         "Winged Guardian requires one Tactics resource from its controller.",
       );
-      payer.resources--;
+      spendResources(s, payer, 1);
       return true;
     }
     case "huntGuardianDiscard": {
@@ -696,7 +701,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           fx("huntStriderChooseActive", {
             target: location.id,
-            player: s.table?.first ?? 0,
+            player: firstPlayer(s),
           }),
         );
       } else
@@ -705,7 +710,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
           fx("huntStriderReplace", {
             target: location.id,
             source: active[0]?.id,
-            player: s.table?.first ?? 0,
+            player: firstPlayer(s),
           }),
         );
       log(
@@ -742,7 +747,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
         s,
         fx("travelEnter", {
           target: e.target,
-          player: s.table?.first ?? 0,
+          player: firstPlayer(s),
           flag: true,
           text: "strider-replace",
         }),

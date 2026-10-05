@@ -1,4 +1,11 @@
+import heirsQuests from "../data/heirs-numenor-quest-cards.json";
+import scriptedScenarioArt from "../data/scripted-scenario-art.json";
+import stewardQuests from "../data/steward-fear-quest-cards.json";
 import type { Card, ScenarioId } from "./types";
+import {
+  FOUNDATIONS_STONE as F,
+  FOUNDATIONS_STONE_QUESTS,
+} from "./foundations-stone-support";
 import carrockQuests from "../data/carrock-quest-cards.json";
 import emynQuests from "../data/emyn-muil-quest-cards.json";
 import rhosgobelQuests from "../data/rhosgobel-quest-cards.json";
@@ -23,8 +30,12 @@ const questImage = (code: string) => {
     ...watcherWaterQuests,
     ...longDarkQuests,
     ...shadowFlameQuests,
+    ...heirsQuests,
+    ...stewardQuests,
+    ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
-  return c?.back_imagesrc || c?.imagesrc;
+  const src = c?.back_imagesrc || c?.imagesrc;
+  return scriptedScenarioArt[src as keyof typeof scriptedScenarioArt] ?? src;
 };
 export const SCENARIOS = [
   {
@@ -506,6 +517,32 @@ export const SCENARIOS = [
       })),
   },
   {
+    id: "foundations-of-stone",
+    name: "Foundations of Stone",
+    shortName: "Foundations of Stone",
+    chapter: "XVII",
+    difficulty: 6,
+    tagline: "The flood beneath the mines",
+    description:
+      "Follow the Cave Torch into the drowned halls, survive the separation and find your companions again.",
+    sets: [
+      "Foundations of Stone",
+      "Twists and Turns",
+      "Hazards of the Pit",
+      "Goblins of the Deep",
+    ],
+    stages: [F.walls, F.edge, F.washed, F.lair, F.depths].map((code) => {
+      const q = FOUNDATIONS_STONE_QUESTS.find((q) => q.code === code)!;
+      return {
+        name: q.back_name ?? q.name,
+        quest: q.quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: q.back_imagesrc ?? q.imagesrc,
+      };
+    }),
+  },
+  {
     id: "shadow-and-flame",
     name: "Shadow and Flame",
     shortName: "Shadow and Flame",
@@ -525,6 +562,183 @@ export const SCENARIOS = [
         cardCode: q.code,
         questImage: questImage(q.code),
       })),
+  },
+  {
+    id: "peril-in-pelargir",
+    name: "Peril in Pelargir",
+    shortName: "Peril in Pelargir",
+    chapter: "XIX",
+    difficulty: 6,
+    tagline: "Peril in Pelargir",
+    description:
+      "Follow the printed scenario setup, encounter effects and quest stages.",
+    sets: ["Peril in Pelargir", "Streets of Gondor", "Brigands"],
+    stages: [
+      {
+        name: "The Leaping Fish",
+        quest: 6,
+        story:
+          "Battle. When Revealed: Each player must search the encounter deck for a copy of Harbor Thug and add it to the staging area. Shuffle the encounter deck.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9021",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9021.B.jpg",
+      },
+      {
+        name: "Fighting in the Streets",
+        quest: 13,
+        story:
+          "Battle. The players cannot advance to the next stage unless Alcaron's Scroll is attached to a hero.  When Revealed: Attach Alcaron's Scroll to the highest engagement cost enemy in play, if able. Otherwise, add Alcaron's Scroll to the staging area.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9023",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9023.B.jpg",
+      },
+      {
+        name: "Escape to the Quays",
+        quest: 15,
+        story:
+          "Enemies cannot be optionally engaged.  Forced: The first enemy revealed from the encounter deck each round makes an immediate attack against the player who controls Alcaron's Scroll from the staging area.  The players cannot defeat this stage unless Alcaron's Scroll is attached to a hero. If the players defeat this stage, they have won the game.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9025",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9025.B.jpg",
+      },
+    ],
+  },
+  {
+    id: "into-ithilien",
+    name: "Into Ithilien",
+    shortName: "Into Ithilien",
+    chapter: "XX",
+    difficulty: 4,
+    tagline: "Into Ithilien",
+    description:
+      "Follow the printed scenario setup, encounter effects and quest stages.",
+    sets: [
+      "Into Ithilien",
+      "Creatures of the Forest",
+      "Brooding Forest",
+      "Southrons",
+    ],
+    stages: [
+      {
+        name: "Ambush in Ithilien",
+        quest: 15,
+        story:
+          "Battle. If the players complete this stage with Celador in the staging area, advance to stage 3A (bypassing stage 2).",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9027",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9027.B.jpg",
+      },
+      {
+        name: "Southron Counter-attack",
+        quest: 9,
+        story:
+          "Siege. Archery X. X is the number of players in the game. After this stage is completed, advance to stage 4A (bypassing stage 3).",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9029",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9029.B.jpg",
+      },
+      {
+        name: "The Hidden Way",
+        quest: 12,
+        story:
+          "When Revealed: The first player takes control of all Ranger objectives in the staging area.  Enemies do not make engagement checks and cannot be optionally engaged.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9031",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9031.B.jpg",
+      },
+      {
+        name: "Approaching Cair Andros",
+        quest: 15,
+        story:
+          "If any player's threat is 37 or higher, Approaching Cair Andros gains siege.  Forced: At the end of each round, raise each player's threat by 2.  If the players defeat this stage, they have won the game.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9033",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9033.B.jpg",
+      },
+    ],
+  },
+  {
+    id: "siege-of-cair-andros",
+    name: "The Siege of Cair Andros",
+    shortName: "The Siege of Cair Andros",
+    chapter: "XXI",
+    difficulty: 7,
+    tagline: "The Siege of Cair Andros",
+    description:
+      "Follow the printed scenario setup, encounter effects and quest stages.",
+    sets: ["The Siege of Cair Andros", "Mordor Elite", "Ravaging Orcs"],
+    stages: [
+      {
+        name: "The Defense",
+        quest: 9,
+        story:
+          "Siege. Players must deal damage from undefended attacks to the lowest [threat] Battleground location in play. If there are no Battleground locations in play, immediately advance to the next stage.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9035",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9035.B.jpg",
+      },
+      {
+        name: "Reinforcing the Banks",
+        quest: 9,
+        story:
+          "Reveal 1 additional card from the encounter deck and add it to the staging area during the staging step each round.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9037",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9037.B.jpg",
+      },
+      {
+        name: "Breakthrough at the Approach",
+        quest: 7,
+        story:
+          "Battle. Forced: After the players quest unsuccessfully, instead of raising threat, each player must choose and discard 1 character he controls.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9039",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9039.B.jpg",
+      },
+      {
+        name: "Breakthrough at the Citadel",
+        quest: 5,
+        story:
+          "Siege. Breakthrough at the Citadel adds 5 [threat] to the staging area.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9041",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9041.B.jpg",
+      },
+      {
+        name: "The Last Battle",
+        quest: 15,
+        story:
+          "Siege. When Revealed: Reveal 1 card per player from the encounter deck and add it to the staging area.  If the players have collected 4 or more victory points, The Last Battle gains battle and loses siege.  If the players defeat this stage, they have won the game.",
+        cardCode: "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9043",
+        questImage: "/cards/4823aae3-46ef-4a75-89f9-cbd3aa1b9043.B.jpg",
+      },
+    ],
+  },
+  {
+    id: "the-stewards-fear",
+    name: "The Steward's Fear",
+    shortName: "The Steward's Fear",
+    chapter: "XXII",
+    difficulty: 5,
+    tagline: "The Steward's Fear",
+    description:
+      "Follow the printed scenario setup, encounter effects and quest stages.",
+    sets: ["The Steward's Fear", "Streets of Gondor", "Brigands"],
+    stages: [
+      {
+        name: "Conspiracy",
+        quest: 0,
+        story:
+          "When revealed: Search the encounter deck for The Fourth Star and make it the active location. Shuffle the encounter deck.  Forced: After the active location leaves play as an explored location, place 1 resource token on this quest.  If there are 4 or more resource tokens on Conspiracy, advance to the next stage.",
+        cardCode: "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
+        questImage: "/cards/4e12f20f-aec3-4311-a656-10a517fd97fe.B.jpg",
+      },
+      {
+        name: "The Grand Design",
+        quest: 0,
+        story:
+          "When Revealed: Make Roots of Mindolluin the active location, returning any other active location to the staging area.  Forced: After the active location leaves play as an explored location place 1 resource token on this quest.  If there are 4 or more resource tokens on The Grand Design, advance to the next stage.",
+        cardCode: "octgn:21ee317d-9aca-43be-9782-521539827cb8",
+        questImage: "/cards/21ee317d-9aca-43be-9782-521539827cb8.B.jpg",
+      },
+      {
+        name: "The Confrontation",
+        quest: 15,
+        story:
+          "When Revealed: Shuffle the underworld deck into the encounter deck. The players cannot defeat this stage while a Villain is in play.  If this stage is defeated, the players have won the game.",
+        cardCode: "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+        questImage: "/cards/8239e81a-f779-4c7c-b586-cd5ad732f061.B.jpg",
+      },
+    ],
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

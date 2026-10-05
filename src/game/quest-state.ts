@@ -1,6 +1,7 @@
 // Physical player attachments on the current encounter quest.
 import type { Attachment, GameState, Unit } from "./types";
 import { scenario } from "./scenarios";
+import { foundationsCurrentQuest } from "./foundations-stone-support";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -13,6 +14,8 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function currentQuestCode(s: GameState): string | undefined {
+  const foundations = foundationsCurrentQuest(s);
+  if (foundations) return foundations;
   if (s.scenarioId === "flight-from-moria") return s.khazad?.activeQuest;
   if (s.scenarioId === "mirkwood" && s.stage === 3)
     return s.branch === "beorn" ? "01122" : "01121";

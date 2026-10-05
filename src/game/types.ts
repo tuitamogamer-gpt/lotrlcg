@@ -59,6 +59,8 @@ export interface Card {
   engine_code?: string;
 }
 export interface Attachment {
+  /** Cards attached by Nameless enemies retain only their printed cost. */
+  namelessCard?: boolean;
   dynamicTraits?: string[];
   resourceTokens?: number;
   /** Face-down Eagle cards retain physical ownership but no printed abilities. */
@@ -130,6 +132,11 @@ export type ScenarioId =
   | "road-to-rivendell"
   | "watcher-in-the-water"
   | "the-long-dark"
+  | "foundations-of-stone"
+  | "peril-in-pelargir"
+  | "into-ithilien"
+  | "siege-of-cair-andros"
+  | "the-stewards-fear"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -156,6 +163,7 @@ export type Phase =
   | "attack"
   | "refresh";
 export interface Effect {
+  revealOrigin?: "encounter" | "underworld";
   /** Serializable event resolution retains paid costs and cancellation continuations. */
   effects?: Effect[];
   cancelledEffects?: Effect[];
@@ -236,6 +244,9 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  foundationsStone?: import("./foundations-stone-support").FoundationsStoneState;
+  stewardFear?: import("./steward-fear-support").StewardFearState;
+  heirsNumenor?: import("./heirs-numenor").HeirsNumenorState;
   resolvingEvents?: {
     unit: Unit;
     player: number;
@@ -347,6 +358,8 @@ export interface GameState {
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
   combat: {
+    stewardRemoveTokensIfKilled?: boolean;
+    heirsScrollDamage?: boolean;
     redirectedToEnemy?: boolean;
     damageDealt?: number;
     defenseBonuses?: Record<string, number>;
@@ -377,7 +390,12 @@ export interface GameState {
   suspendedCombats: NonNullable<GameState["combat"]>[];
   log: LogEntry[];
   lastReveal: string | null;
-  lastQuest: { will: number; threat: number; net: number } | null;
+  lastQuest: {
+    will: number;
+    threat: number;
+    net: number;
+    stat?: "will" | "attack" | "defense";
+  } | null;
 }
 export type Action =
   | { type: "CONTINUE"; stepId: number }

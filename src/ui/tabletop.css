@@ -1877,3 +1877,16 @@
   opacity: 0.55;
   cursor: default;
 }
+
+.journey-area-players,
+.journey-underworld {
+  font: 13px/1.35 var(--serif);
+  color: #594a32;
+  overflow-wrap: anywhere;
+}
+.journey-underworld {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}

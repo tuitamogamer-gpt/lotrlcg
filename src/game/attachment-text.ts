@@ -26,7 +26,8 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
   ];
   for (const host of hosts) {
     for (const attachment of host.attachments) {
-      if (blanked || attachment.facedown) attachment.blanked = true;
+      if (blanked || attachment.facedown || attachment.namelessCard)
+        attachment.blanked = true;
       else delete attachment.blanked;
       const traits = heirsPlayerTraitGrants(s, attachment.id);
       if (traits.length) attachment.dynamicTraits = traits;
