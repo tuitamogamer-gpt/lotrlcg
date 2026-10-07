@@ -1,4 +1,5 @@
-import { STARTERS } from "../game/cards";
+import { card } from "../game/cards";
+import { BUILT_IN_DECKS } from "../game/built-in-decks";
 import { customId, deckProblems, describeDeck } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
 import type { GameState, SeatConfig } from "../game/types";
@@ -73,19 +74,21 @@ export function setupSeats(
     const d =
       selected &&
       !used.has(selected.id) &&
-      !selected.heroes.some((h) => heroes.has(h))
+      !selected.heroes.some((h) => heroes.has(card(h).name))
         ? selected
         : [
-            ...STARTERS,
+            ...BUILT_IN_DECKS,
             ...decks
               .filter((d) => !deckProblems(d).length)
               .map((d) => ({ ...d, id: customId(d) })),
           ].find(
-            (d) => !used.has(d.id) && !d.heroes.some((h) => heroes.has(h)),
+            (d) =>
+              !used.has(d.id) &&
+              !d.heroes.some((h) => heroes.has(card(h).name)),
           );
     if (!d) return [];
     used.add(d.id);
-    d.heroes.forEach((h) => heroes.add(h));
+    d.heroes.forEach((h) => heroes.add(card(h).name));
     return [{ deckId: d.id, heroes: [...d.heroes] }];
   });
 }
@@ -106,18 +109,20 @@ export function expandSeats(
   const current = seats.slice(0, n);
   if (current.length === n) return current;
   const candidates = [
-    ...STARTERS,
+    ...BUILT_IN_DECKS,
     ...decks
       .filter((d) => !deckProblems(d).length)
       .map((d) => ({ ...d, id: customId(d) })),
   ];
   const add = (picked: SeatConfig[]): SeatConfig[] | null => {
     if (picked.length === n) return picked;
-    const heroes = new Set(picked.flatMap((p) => p.heroes));
+    const heroes = new Set(
+      picked.flatMap((p) => p.heroes.map((h) => card(h).name)),
+    );
     for (const d of candidates) {
       if (
         picked.some((p) => p.deckId === d.id) ||
-        d.heroes.some((h) => heroes.has(h))
+        d.heroes.some((h) => heroes.has(card(h).name))
       )
         continue;
       const result = add([...picked, { deckId: d.id, heroes: [...d.heroes] }]);

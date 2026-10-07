@@ -48,7 +48,7 @@ for (const deck of ["leadership", "tactics", "spirit", "lore"]) {
   await p.getByRole("button", { name: "My fellowship", exact: true }).click();
   assert.equal(
     await p.locator(".deck-choice:not(.deck-choice-build)").count(),
-    4,
+    10,
   );
   assert.equal(await p.locator(".hero-roster > button").count(), 3);
   assert.equal(await p.locator(".deck-row").count(), 16);

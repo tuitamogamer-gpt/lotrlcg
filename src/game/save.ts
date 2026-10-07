@@ -7,6 +7,7 @@ import { validateAssaultOsgiliathState } from "./assault-osgiliath-support";
 import { hiddenPlayerCardIds } from "./physical-player-card";
 // Save validation and restoration.
 import { card, SCRIPTED, STARTERS } from "./cards";
+import { BUILT_IN_DECKS } from "./built-in-decks";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import { SCENARIOS } from "./scenarios";
 
@@ -249,7 +250,8 @@ export function validateSave(
       (s.pendingWolfReturns !== undefined &&
         (!Array.isArray(s.pendingWolfReturns) ||
           !s.pendingWolfReturns.every((code) => code === "01081"))) ||
-      (!STARTERS.some((d) => d.id === s.deckId) && s.deckId !== "custom") ||
+      (!BUILT_IN_DECKS.some((d) => d.id === s.deckId) &&
+        s.deckId !== "custom") ||
       (s.easyMode !== undefined && typeof s.easyMode !== "boolean") ||
       (s.customDeck !== undefined && !customList(s.customDeck)) ||
       (s.earlyAttackPlayers !== undefined &&

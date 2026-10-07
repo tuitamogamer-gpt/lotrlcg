@@ -1,6 +1,7 @@
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
 import * as MorgulQuest from "./morgul-vale";
+import { playerOrder } from "./table";
 import {
   druadanForestStats,
   druadanForestThreat,
@@ -545,7 +546,7 @@ export const isGuarded = (s: GameState, u: Unit) =>
 /** Printed cost plus active-location surcharges (The East Bank, The West Bank). */
 export function playCost(s: GameState, c: Card, target?: Unit) {
   syncAttachmentText(s, target);
-  const printed = Number(c.cost);
+  const printed = c.code === "08010" ? playerOrder(s).length : Number(c.cost);
   if (!Number.isFinite(printed)) return 0;
   const active = allActiveLocations(s);
   const surcharge = active.reduce(

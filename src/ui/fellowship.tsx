@@ -10,7 +10,8 @@ import {
   UsersThree,
   Sword,
 } from "@phosphor-icons/react";
-import { card, imageUrl, STARTERS } from "../game/cards";
+import { card, imageUrl } from "../game/cards";
+import { BUILT_IN_DECKS } from "../game/built-in-decks";
 import type { Action, GameState, SeatConfig } from "../game/types";
 import {
   activeSeat,
@@ -25,20 +26,13 @@ import {
 import { DeckPicker } from "./deck-picker";
 import { describeDeck } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
-import { expandSeats } from "./setup-decks";
+import { expandSeats, setupSeats } from "./setup-decks";
 
 import { availableAbilities } from "../game/engine";
 
 // New games always use complete starters. Existing saves keep their original heroes.
 export function starterSeats(saved?: { deckId: string }[]): SeatConfig[] {
-  const used = new Set<string>();
-  return (saved ?? [{ deckId: "leadership" }]).map((p) => {
-    const d =
-      STARTERS.find((d) => d.id === p.deckId && !used.has(d.id)) ??
-      STARTERS.find((d) => !used.has(d.id))!;
-    used.add(d.id);
-    return { heroes: [...d.heroes], deckId: d.id };
-  });
+  return setupSeats(saved, []);
 }
 export const DEFAULT_SEATS = starterSeats();
 export function FellowshipSetup({
@@ -68,13 +62,16 @@ export function FellowshipSetup({
     mode === "hotseat"
       ? Object.fromEntries(
           [
-            ...STARTERS.map((d) => d.id),
+            ...BUILT_IN_DECKS.map((d) => d.id),
             ...decks.map((d) => `custom:${d.id}`),
           ].flatMap((id) => {
             const d = describeDeck(id, decks)!;
             const other = seats.findIndex(
               (p, i) =>
-                i !== active && p.heroes.some((h) => d.heroes.includes(h)),
+                i !== active &&
+                p.heroes.some((h) =>
+                  d.heroes.some((other) => card(h).name === card(other).name),
+                ),
             );
             return other < 0
               ? []
@@ -117,8 +114,8 @@ export function FellowshipSetup({
       </div>
       <div className="company-options">
         <p>
-          Each starter includes the three heroes shown and its original 30-card
-          deck. Select a complete fellowship, then inspect any card.
+          Choose three heroes with their complete deck: a 30-card Core learning
+          deck or a 50-card precon. Select a fellowship, then inspect any card.
         </p>
         {mode === "hotseat" && (
           <div
@@ -180,9 +177,9 @@ export function FellowshipSetup({
         <h3>
           {mode === "hotseat"
             ? `Player ${active + 1} · Choose a fellowship`
-            : "Four fellowships. Four ways to play."}
+            : "Choose your fellowship."}
         </h3>
-        <span>CORE SET · ALL CARDS SCRIPTED</span>
+        <span>PRECONSTRUCTED · READY TO PLAY</span>
       </div>
       <DeckPicker
         value={mode === "hotseat" ? seats[active].deckId : selectedDeck}

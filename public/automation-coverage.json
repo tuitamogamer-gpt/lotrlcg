@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 389,
+    "playerCards": 394,
     "heroes": 46,
-    "deckCards": 343,
+    "deckCards": 348,
     "encounterCards": 364,
     "scenarios": 27,
     "scenarioIds": [
@@ -39,8 +39,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 845,
-    "pending": 3338
+    "scripted": 850,
+    "pending": 3333
   },
   "scenarioRecipes": {
     "total": 355,
@@ -404,9 +404,14 @@
     "07015",
     "08001",
     "08002",
+    "08003",
     "08004",
+    "08005",
     "08006",
+    "08007",
+    "08008",
     "08009",
+    "08010",
     "08026",
     "08027",
     "08029",
@@ -1428,9 +1433,9 @@
     {
       "product": "the-dunland-trap",
       "total": 24,
-      "scripted": 5,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 5
+      "playerScripted": 10
     },
     {
       "product": "the-dunland-trap-nightmare",
@@ -4875,7 +4880,7 @@
       "name": "Swift and Silent",
       "type": "event",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -4891,7 +4896,7 @@
       "name": "Close Call",
       "type": "event",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -4907,7 +4912,7 @@
       "name": "The Fall of Gil-Galad",
       "type": "attachment",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -4915,7 +4920,7 @@
       "name": "Ithilien Lookout",
       "type": "ally",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -4931,7 +4936,7 @@
       "name": "The White Council",
       "type": "event",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {

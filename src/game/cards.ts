@@ -1,3 +1,6 @@
+import recipes from "../data/official-starter-decks.json";
+import dunlandPlayers from "../data/dunland-trap-player-cards.json";
+import type { PublishedStarterDeck } from "./products";
 import voiceIsengard from "../data/voice-isengard-player-cards.json";
 import {
   BLOOD_GONDOR_ENCOUNTERS,
@@ -94,6 +97,7 @@ export const playerCards = [
     [
       ...corePlayerCards,
       ...(voiceIsengard as Card[]),
+      ...(dunlandPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
       ...HUNT_PLAYER_CARDS,
       ...CARROCK_PLAYER_CARDS,
@@ -311,4 +315,46 @@ export const STAGES = [
     story:
       "The trail divides before you. Every path leads deeper into the forest.",
   },
+];
+
+export interface BuiltInDeck extends StarterDeck {
+  group: "core" | "starter" | "collector";
+  source?: string;
+  productId?: string;
+  deckKind?: "official-preconstructed";
+}
+
+const subtitles: Record<string, string> = {
+  "starter-dwarves": "Dwarves",
+  "starter-elves": "Elves",
+  "starter-gondor": "Gondor",
+  "starter-rohan": "Rohan",
+  "limited-leadership-spirit": "Leadership / Spirit",
+  "limited-lore-tactics": "Lore / Tactics",
+};
+
+/** Only complete printed main decks enter play; extra deckbuilding cards stay separate. */
+export const PRECON_DECKS: BuiltInDeck[] = (
+  recipes as unknown as PublishedStarterDeck[]
+)
+  .filter((d) =>
+    [...d.heroes, ...Object.keys(d.cards)].every((code) => SCRIPTED.has(code)),
+  )
+  .map((d) => ({
+    id: d.id,
+    name: d.name,
+    subtitle: subtitles[d.id] ?? d.name,
+    description: `${d.heroes.map((code) => card(code).name).join(", ")}. The complete printed 50-card deck.`,
+    heroes: [...d.heroes],
+    cards: { ...d.cards },
+    group: d.productId === "limited-starter" ? "collector" : "starter",
+    productId: d.productId,
+    deckKind: d.deckKind,
+    source: d.source_url,
+  }));
+
+/** Stable ids work on a fresh device without importing or saving a custom deck. */
+export const BUILT_IN_DECKS: BuiltInDeck[] = [
+  ...STARTERS.map((d) => ({ ...d, group: "core" as const })),
+  ...PRECON_DECKS,
 ];

@@ -6,6 +6,7 @@ import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
 import { canGainResources } from "./core";
+import { dunlandEffect } from "./dunland-trap-player";
 import {
   engagedEnemies,
   consideredEngaged,
@@ -312,6 +313,7 @@ export function handle(s: GameState, e: Effect) {
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (dunlandEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
   if (Druadan.handleDruadanForestEffect(s, e)) return;
@@ -836,7 +838,12 @@ function handleEffect(s: GameState, e: Effect) {
         break;
       }
       const continuationCount = s.queue.length;
-      const resolved = spendEvent(s, e.code!, e.source);
+      const resolved = spendEvent(
+        s,
+        e.code!,
+        e.source,
+        e.code === "08005" ? e.value : 0,
+      );
       const mandatory = s.queue.splice(0, s.queue.length - continuationCount);
       prepend(
         s,
@@ -1747,6 +1754,9 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "dunlandCloseWindow",
+      "dunlandCloseResume",
+      "dunlandCouncilStep",
       "eventFinish",
       "shadowFlameStageReady",
       "shadowFlameLastLord",

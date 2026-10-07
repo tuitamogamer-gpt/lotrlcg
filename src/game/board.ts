@@ -8,6 +8,12 @@ import * as Osgiliath from "./assault-osgiliath";
 import { canGainResources } from "./core";
 import { enemyAttackPrevented } from "./core";
 import {
+  dunlandAllyEntered,
+  dunlandEventPlayed,
+  dunlandFallResponses,
+  offerCloseCall,
+} from "./dunland-trap-player";
+import {
   engagedEnemies,
   normalAttackPending,
   consideredEngaged,
@@ -841,6 +847,7 @@ export function damage(
     return false;
   if (khazadDamageCancelled(s, u, value)) return false;
   if (offerGondorianDiscipline(s, u, value, context)) return false;
+  if (offerCloseCall(s, u, value, context)) return false;
   if (offerMarshDamageRedirect(s, u, value, context)) return false;
   if (!context.bypassDori && dwarfDamageAssigned(s, u, value, context))
     return false;
@@ -981,6 +988,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
   const previous = activeSeat(s);
   const lastKnownAttack = stats(s, u).attack;
   const lastKnownTraits = effectiveTraits(u);
+  const lastAttachments = [...u.attachments];
   selectSeat(s, ownerOf(s, u));
   const c = card(u.code);
   if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
@@ -1084,6 +1092,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       lastKnownTraits,
     );
     if (destruction) rhosgobelCharacterDestroyed(s, u, activeSeat(s));
+    if (destruction) dunlandFallResponses(s, u, lastAttachments, activeSeat(s));
     if (["ally", "objective-ally"].includes(c.type_code))
       enqueue(s, fx("valiant"));
     if (c.type_code === "hero" && c.traits?.includes("Dwarf"))
@@ -2113,6 +2122,7 @@ export function allyEntryResponses(
   khazadPlayerAllyEntered(s, u);
   rohanAllyEntered(s, u);
   Isengard.isengardAllyEntered(s, u);
+  dunlandAllyEntered(s, u);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);
@@ -2234,15 +2244,21 @@ export function allyEntryResponses(
   }
 }
 
-export function spendEvent(s: GameState, code: string, id?: string) {
+export function spendEvent(
+  s: GameState,
+  code: string,
+  id?: string,
+  doomedX = 0,
+) {
   const u = s.hand.find((u) => u.code === code && (!id || u.id === id));
   requireRule(u, "That event is no longer in hand.");
   pay(s, card(code));
   redhornPlayerEventPlayed(s, code);
+  dunlandEventPlayed(s, code);
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
   holdPlayedEvent(s, u);
-  Isengard.isengardPlayerPlayed(s, u, true);
+  Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);
   stewardFearEventPlayed(s);
   log(s, `Played ${card(code).name}.`, "good");
   return !shadowFlameEventCancelled(s);

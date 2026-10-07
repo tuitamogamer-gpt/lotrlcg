@@ -2,6 +2,9 @@
 
 ## Included
 
+- **All ten preconstructed fellowships directly in setup:** four Core learning decks, four retail Starter Decks and both Collector lists. Stable built-in choices need no import or local custom-deck slot; selection, inspection, save/reload, hot-seat uniqueness by hero name and Core campaign continuation are supported. See [menu notes](PRECONSTRUCTED-MENU.md).
+- **The Dunland Trap player pool:** all ten designs, including five reused precon scripts and five new definitions. Physical Swift returns, Doomed X damage cancellation, hero-destruction Song responses, Secrecy/encounter inspection and first-player Council choices have semantic and responsive-client tests. See [rules notes](DUNLAND-TRAP-PLAYER-SCRIPTS.md).
+
 - **Solo hot-seat** with 1–4 independently managed players and a separate fellowship and deck for each. Original Core learning decks retain three heroes and 30 cards; retail and Collector main lists retain three heroes and 50 cards; custom decks follow the deck builder's limits. Each has its own hand, draw/discard piles, threat, resources, allies, and engaged enemies. Classic solo uses one fellowship and deck.
 - Solo **normal games** for all three Core Set quests. Choose any quest independently; no campaign effects or rewards apply.
 - **Passage Through Mirkwood**: the original 36-card encounter deck, correct setup, quest thresholds 8 and 2, random final stage, Beorn’s Path and Don’t Leave the Path victory conditions.

@@ -1,4 +1,5 @@
-import { STARTERS } from "../game/cards";
+import { BUILT_IN_DECKS } from "../game/built-in-decks";
+import { SCENARIOS } from "../game/scenarios";
 import type { PlayMode, ScenarioId } from "../game/types";
 
 export const CHOICES_KEY = "there-and-back-again.choices.v1";
@@ -16,7 +17,7 @@ export function parseChoices(value: unknown): FellowshipChoices | null {
   // Starter ids, or a custom deck reference such as "custom:abc123" (the deck
   // itself stays on the device; a missing deck falls back to a starter).
   const validDeck = (id: unknown) =>
-    STARTERS.some((d) => d.id === id) ||
+    BUILT_IN_DECKS.some((d) => d.id === id) ||
     (typeof id === "string" && /^custom:[\w-]{1,64}$/.test(id));
   if (
     v.version !== 1 ||
@@ -28,9 +29,7 @@ export function parseChoices(value: unknown): FellowshipChoices | null {
     !v.seatDecks.every(validDeck) ||
     new Set(v.seatDecks).size !== v.seatDecks.length ||
     !["normal", "campaign"].includes(v.playMode) ||
-    !["mirkwood", "anduin", "dol-guldur", "hunt-for-gollum"].includes(
-      v.scenario,
-    )
+    !SCENARIOS.some((s) => s.id === v.scenario)
   )
     return null;
   return {

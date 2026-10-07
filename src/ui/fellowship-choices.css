@@ -26,6 +26,13 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
+.deck-picker-group {
+  grid-column: 1 / -1;
+  margin: 12px 0 0;
+  color: #4b513d;
+  font-size: 19px;
+  font-weight: 600;
+}
 .deck-choice {
   --sphere: #715584;
   position: relative;

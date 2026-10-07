@@ -1,7 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
+import { BUILT_IN_DECKS } from "../src/game/built-in-decks";
+import { SCENARIOS } from "../src/game/scenarios";
 
 test("account database enforces ownership on reads, writes, upserts and deletes", async () => {
   const db = new PGlite();
@@ -22,15 +24,11 @@ test("account database enforces ownership on reads, writes, upserts and deletes"
       grant usage on schema auth to authenticated;
       grant execute on function auth.uid() to authenticated;`);
     await db.query("insert into auth.users(id) values ($1),($2)", [alice, bob]);
-    await db.exec(
-      await readFile(
-        new URL(
-          "../supabase/migrations/202609250001_fellowship_choices.sql",
-          import.meta.url,
-        ),
-        "utf8",
-      ),
-    );
+    const migrations = new URL("../supabase/migrations/", import.meta.url);
+    for (const file of (await readdir(migrations))
+      .filter((f) => f.endsWith(".sql"))
+      .sort())
+      await db.exec(await readFile(new URL(file, migrations), "utf8"));
     await db.exec("set role anon");
     await assert.rejects(
       db.query("select * from public.fellowship_choices"),
@@ -107,6 +105,11 @@ test("account database enforces ownership on reads, writes, upserts and deletes"
       { ...choices, seatDecks: [] },
       { ...choices, version: 2 },
       { ...choices, selectedDeck: "custom" },
+      { ...choices, selectedDeck: "starter-unknown" },
+      { ...choices, seatDecks: ["starter-rohan", "starter-rohan"] },
+      { ...choices, seatDecks: [null] },
+      { ...choices, seatDecks: "starter-rohan" },
+      { ...choices, scenario: "unknown" },
     ]) {
       await assert.rejects(
         db.query(
@@ -116,6 +119,24 @@ test("account database enforces ownership on reads, writes, upserts and deletes"
         /valid_choices/,
       );
     }
+    for (const id of [...BUILT_IN_DECKS.map((d) => d.id), "custom:deck-1"])
+      await db.query(
+        "update public.fellowship_choices set choices=$1 where user_id=$2",
+        [{ ...choices, selectedDeck: id, seatDecks: [id] }, bob],
+      );
+    for (const scenario of SCENARIOS)
+      await db.query(
+        "update public.fellowship_choices set choices=$1 where user_id=$2",
+        [
+          {
+            ...choices,
+            selectedDeck: "starter-rohan",
+            seatDecks: ["starter-rohan"],
+            scenario: scenario.id,
+          },
+          bob,
+        ],
+      );
     await db.query("select set_config('test.uid',$1,false)", [alice]);
     assert.deepEqual(
       (

@@ -2,6 +2,7 @@ import * as Isengard from "./voice-isengard";
 import { morgulCannotLeave } from "./morgul-vale";
 import { canGainResources } from "./core";
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
+import { dunlandEvent } from "./dunland-trap-player";
 import {
   morgulPlayerEventEffect,
   useMorgulPlayerAbility,
@@ -122,6 +123,7 @@ export function eventEffect(
   cost = 0,
   amount = cost,
 ) {
+  if (dunlandEvent(s, code, target)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;
   if (morgulPlayerEventEffect(s, code, target)) return;

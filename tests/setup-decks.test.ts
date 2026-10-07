@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { STARTERS } from "../src/game/cards";
+import { card, STARTERS } from "../src/game/cards";
 import { createGame } from "../src/game/engine";
 import { customId } from "../src/game/decks";
 import type { CustomDeck } from "../src/game/decks";
@@ -98,5 +98,8 @@ test("adding hot-seat players avoids heroes already used by a mixed custom fello
   assert.ok(expanded);
   const heroes = expanded.flatMap((p) => p.heroes);
   assert.equal(new Set(heroes).size, heroes.length);
-  assert.equal(expandSeats([mixed], 4, [deck]), null);
+  const four = expandSeats([mixed], 4, [deck])!;
+  assert.equal(four.length, 4);
+  const names = four.flatMap((p) => p.heroes.map((h) => card(h).name));
+  assert.equal(new Set(names).size, names.length);
 });

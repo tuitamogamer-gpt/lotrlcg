@@ -25,7 +25,7 @@ for (const n of [2, 3, 4]) {
   await page.goto(base);
   await page.getByRole("button", { name: `${n} players`, exact: true }).click();
   assert.equal(await page.locator(".setup-seats > button").count(), n);
-  assert.equal(await page.locator(".deck-hero-triptych img").count(), 12);
+  assert.equal(await page.locator(".deck-hero-triptych img").count(), 30);
   await page.getByRole("button", { name: "Edit Player 2 fellowship" }).click();
   assert.equal(
     await page

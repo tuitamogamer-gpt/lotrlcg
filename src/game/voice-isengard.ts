@@ -82,14 +82,18 @@ export function isengardPlayerPlayed(
   u: Unit,
   fromHand: boolean,
   after?: Effect,
+  doomedX = 0,
 ) {
   const extra = fromHand && s.used.includes(GRIMA) ? 1 : 0;
   if (extra) s.used = s.used.filter((k) => k !== GRIMA);
   const n =
     (u.blanked
       ? 0
-      : Number(/\bDoomed\s+(\d+)/i.exec(plain(card(u.code).text))?.[1] ?? 0)) +
-    extra;
+      : /\bDoomed\s+X\b/i.test(plain(card(u.code).text))
+        ? doomedX
+        : Number(
+            /\bDoomed\s+(\d+)/i.exec(plain(card(u.code).text))?.[1] ?? 0,
+          )) + extra;
   if (n)
     prepend(
       s,
@@ -411,7 +415,7 @@ export function isengardEffect(s: GameState, e: Effect): boolean {
     }
     case "isengardSearch": {
       const options = s.deck.flatMap((code, index) =>
-        /\bDoomed\s+\d+/i.test(plain(card(code).text))
+        /\bDoomed\s+(?:\d+|X)\b/i.test(plain(card(code).text))
           ? [
               {
                 id: `deck-${index}`,

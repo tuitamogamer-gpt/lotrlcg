@@ -1,5 +1,6 @@
 export { startingThreat } from "./starting-threat";
-import { card, playerCards, SCRIPTED, STARTERS } from "./cards";
+import { card, playerCards, SCRIPTED } from "./cards";
+import { BUILT_IN_DECKS } from "./built-in-decks";
 import type { Card } from "./types";
 
 /** A player-built deck. Only registered, scripted player cards can be included. */
@@ -273,7 +274,7 @@ export function writeDecks(decks: CustomDeck[]) {
 }
 /** A starter-shaped description for the setup screens. */
 export function describeDeck(id: string, decks: CustomDeck[]) {
-  const starter = STARTERS.find((d) => d.id === id);
+  const starter = BUILT_IN_DECKS.find((d) => d.id === id);
   if (starter) return { ...starter, custom: false as const };
   const deck = decks.find((d) => customId(d) === id);
   if (!deck) return null;

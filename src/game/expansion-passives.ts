@@ -304,7 +304,7 @@ export function secrecyDiscount(s: GameState, c: Card) {
     ? 4
     : ["04003", "04029", "04062", "04081", "04136"].includes(c.code)
       ? 3
-      : ["04009", "04036", "08026"].includes(c.code)
+      : ["04009", "04036", "08026", "08008"].includes(c.code)
         ? 2
         : 0;
 }

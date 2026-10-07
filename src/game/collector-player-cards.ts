@@ -1082,22 +1082,27 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       });
       s.allies.push(trader);
       choose(s, "Blue Mountain Trader · Move a resource or discard", [
-        ...spherePayers(s, "neutral").flatMap((h) =>
-          seatView(s, old)
-            .heroes.filter((destination) => canGainResources(s, destination))
-            .map((destination) => ({
-              id: `${h.id}-${destination.id}`,
-              label: `${card(h.code).name} → ${card(destination.code).name}`,
-              effects: [
-                fx("collectorTraderResource", {
-                  source: trader.id,
-                  target: h.id,
-                  text: destination.id,
-                  value: old,
-                }),
-              ],
-            })),
-        ),
+        ...s.heroes
+          .filter((h) => h.resources > 0 && affected(h))
+          .flatMap((h) =>
+            seatView(s, old)
+              .heroes.filter(
+                (destination) =>
+                  affected(destination) && canGainResources(s, destination),
+              )
+              .map((destination) => ({
+                id: `${h.id}-${destination.id}`,
+                label: `${card(h.code).name} → ${card(destination.code).name}`,
+                effects: [
+                  fx("collectorTraderResource", {
+                    source: trader.id,
+                    target: h.id,
+                    text: destination.id,
+                    value: old,
+                  }),
+                ],
+              })),
+          ),
         {
           id: "discard",
           label: "Discard Blue Mountain Trader",
@@ -1117,7 +1122,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       );
       h.resources--;
       destination.resources++;
-      gondorResourcesGained(s, destination, 1, false);
+      gondorResourcesGained(s, destination, 1, true);
       return true;
     }
     case "collectorPursueDamage":

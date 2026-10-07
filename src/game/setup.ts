@@ -1,4 +1,5 @@
 import { setupBloodGondor } from "./blood-gondor";
+import { BUILT_IN_DECKS } from "./built-in-decks";
 import { setupMorgulVale } from "./morgul-vale";
 import { setupDruadanForest } from "./druadan-forest";
 import { setupAmonDin } from "./amon-din";
@@ -15,14 +16,7 @@ import { setupRedhorn } from "./redhorn-gate";
 import { syncAttachmentText } from "./attachment-text";
 import { setupKhazad } from "./khazad-dum";
 // Game creation and scenario setup.
-import {
-  card,
-  HEROES,
-  DECK,
-  SCRIPTED,
-  encounterCards,
-  STARTERS,
-} from "./cards";
+import { card, HEROES, DECK, SCRIPTED, encounterCards } from "./cards";
 import type {
   GameState,
   ScenarioId,
@@ -100,7 +94,7 @@ export function createGame(
     easy?: boolean;
   } = {},
 ): GameState {
-  const starter = STARTERS.find((d) => d.id === deckId);
+  const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
   const original =
     !!starter &&
     JSON.stringify(Object.entries(deck).sort()) ===
@@ -245,7 +239,7 @@ export function createGame(
       "Choose one to four players with different heroes across the table.",
     );
     for (const config of options.seats) {
-      const d = STARTERS.find((d) => d.id === config.deckId);
+      const d = BUILT_IN_DECKS.find((d) => d.id === config.deckId);
       requireRule(
         (d || config.cards) &&
           config.heroes.length >= 1 &&
@@ -267,7 +261,7 @@ export function createGame(
     };
     options.seats.forEach((config, i) => {
       selectSeat(s, i);
-      const d = STARTERS.find((d) => d.id === config.deckId);
+      const d = BUILT_IN_DECKS.find((d) => d.id === config.deckId);
       const cards = config.cards ?? d!.cards;
       s.deckId = config.cards ? "custom" : d!.id;
       if (config.cards) s.customDeck = { ...config.cards };

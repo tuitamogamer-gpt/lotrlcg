@@ -6,6 +6,11 @@ import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
 import { canGainResources } from "./core";
 import {
+  dunlandEventPlayed,
+  dunlandPlayProblem,
+  dunlandPlayTargets,
+} from "./dunland-trap-player";
+import {
   heirsClaim,
   heirsCanOptionallyEngage,
   heirsCanSpendResources,
@@ -523,6 +528,8 @@ export function canPlay(
   const stewardProblem = stewardPlayerPlayProblem(s, c.code);
   if (stewardProblem) return stewardProblem;
   const heirsProblem = heirsPlayerPlayProblem(s, c.code);
+  const dunlandProblem = dunlandPlayProblem(s, c.code);
+  if (dunlandProblem) return dunlandProblem;
   if (heirsProblem) return heirsProblem;
   const collectorProblem = collectorPlayProblem(s, c.code);
   if (collectorProblem) return collectorProblem;
@@ -724,7 +731,7 @@ export function replayEventProblem(
     return "This event has no legal target.";
   if (
     (card(u.code).printed_stats?.cost === "X" || card(u.code).cost === "X") &&
-    !["01051", "01067", "06083"].includes(u.code)
+    !["01051", "01067", "06083", "08010"].includes(u.code)
   )
     return "Choose an event with a fixed resource cost.";
   if (["01067", "06083"].includes(u.code)) {
@@ -805,6 +812,7 @@ function replayEventCost(
   target?: string,
   amount?: number,
 ) {
+  if (u.code === "08010") return playerOrder(s).length;
   if (u.code === "01051") {
     const selected = discardTarget(s, target!);
     return (
@@ -884,6 +892,7 @@ export function playEventFromDiscardEffect(
         : `discard-${selected.index - 1}`;
   }
   redhornPlayerEventPlayed(s, physical.code);
+  dunlandEventPlayed(s, physical.code);
   resolvePlayerCard(
     s,
     physical,
@@ -1005,8 +1014,10 @@ export function playCardFromEffect(
     );
   const physical = takePlayerDeck(s);
   u.id = physical.id;
-  if (!options.putIntoPlay && card(u.code).type_code === "event")
+  if (!options.putIntoPlay && card(u.code).type_code === "event") {
     redhornPlayerEventPlayed(s, u.code);
+    dunlandEventPlayed(s, u.code);
+  }
   // Printed X defaults to zero when an effect pays no cost.
   resolvePlayerCard(
     s,
@@ -1051,6 +1062,8 @@ export function playTargets(
 function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
+  const dunlandTargets = dunlandPlayTargets(s, c.code);
+  if (dunlandTargets) return dunlandTargets;
   const amonTargets = amonPlayerPlayTargets(s, c.code);
   const morgulTargets = morgulPlayerPlayTargets(s, c.code);
   if (morgulTargets) return morgulTargets;
@@ -1205,9 +1218,11 @@ export const needsTarget = (u: Unit) =>
       "06140",
       "06089",
       "06113",
+      "08003",
     ].includes(u.code));
 
 export const responseCards = [
+  "08005",
   "01024",
   "01037",
   "01047",
@@ -1768,7 +1783,8 @@ export function applyAction(input: GameState, action: Action): GameState {
             Object.values(action.payment).filter((v) => v > 0).length === 3,
           "Thicket of Spears must use 3 different heroes’ resource pools.",
         );
-      let effectiveCost = Number(c.cost) || 0;
+      let effectiveCost =
+        c.code === "08010" ? playerOrder(s).length : Number(c.cost) || 0;
       if (u.code === "01051") {
         const target = discardTarget(s, action.target!);
         effectiveCost =
@@ -1791,6 +1807,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         get(s, action.target),
       );
       if (c.type_code === "event") redhornPlayerEventPlayed(s, u.code);
+      if (c.type_code === "event") dunlandEventPlayed(s, u.code);
       s.hand = s.hand.filter((x) => x.id !== u.id);
       resolvePlayerCard(
         s,

@@ -1,5 +1,6 @@
 // Mirkwood Paths campaign log, rewards and chapter continuation.
 import { card, STARTERS } from "./cards";
+import { BUILT_IN_DECKS } from "./built-in-decks";
 import type { GameState, CampaignState } from "./types";
 import { SCENARIOS } from "./scenarios";
 
@@ -134,9 +135,9 @@ export function continueCampaign(
   c.threatPenalty += replaced.length;
   if (s.table) c.seatPenalties = s.table.seats.map(() => c.threatPenalty);
   c.heroes = [...heroes];
-  const d = STARTERS.find((d) => d.id === deckId);
+  const d = BUILT_IN_DECKS.find((d) => d.id === deckId);
   const cards = d?.cards ?? (deckId === "custom" ? s.customDeck : undefined);
-  requireRule(cards, "Choose a Core Set starter deck or keep the custom deck.");
+  requireRule(cards, "Choose a preconstructed deck or keep the custom deck.");
   return createGame(
     seed,
     cards,
@@ -156,7 +157,7 @@ export function continueCampaign(
 }
 
 export function retryAdventure(s: GameState, seed = Date.now()): GameState {
-  const d = STARTERS.find((d) => d.id === s.deckId);
+  const d = BUILT_IN_DECKS.find((d) => d.id === s.deckId);
   const cards = d?.cards ?? s.customDeck;
   requireRule(cards, "Choose a starter deck to start again.");
   requireRule(

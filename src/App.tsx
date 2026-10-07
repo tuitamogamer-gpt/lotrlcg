@@ -102,7 +102,8 @@ import {
   tableSpring,
   useDamageFeedback,
 } from "./ui/motion";
-import { card, STARTERS, plain, name } from "./game/cards";
+import { card, plain, name } from "./game/cards";
+import { BUILT_IN_DECKS } from "./game/built-in-decks";
 import {
   applyAction,
   availableAbilities,
@@ -247,9 +248,10 @@ const readSave = (key = SAVE_KEY) => {
 const readDeckId = () => {
   try {
     const savedDeck = readSave(activeSaveKey())?.deckId;
-    if (STARTERS.some((s) => s.id === savedDeck)) return savedDeck!;
+    if (BUILT_IN_DECKS.some((s) => s.id === savedDeck)) return savedDeck!;
     const d = localStorage.getItem(DECK_KEY);
-    return STARTERS.some((s) => s.id === d) || /^custom:[\w-]+$/.test(d ?? "")
+    return BUILT_IN_DECKS.some((s) => s.id === d) ||
+      /^custom:[\w-]+$/.test(d ?? "")
       ? d!
       : "leadership";
   } catch {
@@ -931,7 +933,10 @@ export default function App() {
                 heroCodes: HERO_CARDS.map((c) => c.code),
                 deckCards: DECK_CARDS.length,
                 deckCardCodes: DECK_CARDS.map((c) => c.code),
-                decks: STARTERS.map((d) => ({ id: d.id, heroes: d.heroes })),
+                decks: BUILT_IN_DECKS.map((d) => ({
+                  id: d.id,
+                  heroes: d.heroes,
+                })),
                 quests: SCENARIOS.map((q) => q.id),
               },
               fellowship: choices,
@@ -1045,6 +1050,13 @@ export default function App() {
     const problems = deckProblems(recipe);
     if (problems.length) {
       notify(problems[0]);
+      return;
+    }
+    const builtIn = BUILT_IN_DECKS.find((d) => sameDeckRecipe(d, recipe));
+    if (builtIn) {
+      setSelectedDeck(builtIn.id);
+      setSetupMode("classic");
+      nav("adventures");
       return;
     }
     let chosen = decks.find(
@@ -1559,8 +1571,8 @@ export default function App() {
                     <span>YOUR FELLOWSHIP</span>
                     <strong>
                       {playMode === "campaign" && game?.campaign
-                        ? (STARTERS.find((d) => d.id === game.deckId)?.name ??
-                          "Campaign fellowship")
+                        ? (BUILT_IN_DECKS.find((d) => d.id === game.deckId)
+                            ?.name ?? "Campaign fellowship")
                         : starter.name}
                     </strong>
                     <small>

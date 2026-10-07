@@ -22,9 +22,9 @@ const state = () =>
 assert.equal(await page.locator("main select").count(), 0);
 assert.equal(
   await page.locator(".deck-choice:not(.deck-choice-build)").count(),
-  4,
+  10,
 );
-assert.equal(await page.locator(".deck-hero-triptych img").count(), 12);
+assert.equal(await page.locator(".deck-hero-triptych img").count(), 30);
 await page.getByRole("button", { name: /Classic solo/ }).click();
 await page.getByRole("button", { name: "Choose Spirit", exact: true }).click();
 await page.getByRole("button", { name: "View Lore deck and heroes" }).click();

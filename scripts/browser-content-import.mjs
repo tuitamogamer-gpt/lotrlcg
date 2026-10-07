@@ -86,7 +86,7 @@ assert.equal(
 );
 assert.equal(
   await playableChoices.locator('[data-deck-origin="app-built"]').count(),
-  registry.decks.length,
+  4,
   "every playable app deck explains its printed source",
 );
 assert.equal(
