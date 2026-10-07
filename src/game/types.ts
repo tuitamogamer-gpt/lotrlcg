@@ -62,6 +62,8 @@ export interface Card {
   engine_code?: string;
 }
 export interface Attachment {
+  /** Borrowed attachments on encounter cards retain the player who played them. */
+  controller?: number;
   /** Cards attached by Nameless enemies retain only their printed cost. */
   namelessCard?: boolean;
   dynamicTraits?: string[];
@@ -76,6 +78,10 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Controller of a borrowed player attachment waiting in staging. */
+  controller?: number;
+  /** Noiseless Movement's lasting restriction; optional engagement stays legal. */
+  noEngagementRound?: number;
   /** Physical shadow visibility is independent of resolved shadow effects. */
   faceupShadows?: boolean[];
   morgulExtraAttacks?: number;
@@ -255,6 +261,7 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
   morgulVale?: import("./morgul-vale-support").MorgulValeState;

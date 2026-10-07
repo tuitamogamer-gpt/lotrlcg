@@ -331,6 +331,9 @@ export function heirsPlayerEnemyAddedToStaging(s: GameState, enemy: Unit) {
         id: trap.id,
         code: trap.code,
         owner: trap.owner ?? activeSeat(s),
+        ...(trap.controller !== undefined
+          ? { controller: trap.controller }
+          : {}),
         exhausted: trap.exhausted,
       });
     }

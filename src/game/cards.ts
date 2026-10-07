@@ -1,5 +1,6 @@
 import recipes from "../data/official-starter-decks.json";
 import dunlandPlayers from "../data/dunland-trap-player-cards.json";
+import trialsTharbadPlayers from "../data/trials-tharbad-player-cards.json";
 import type { PublishedStarterDeck } from "./products";
 import voiceIsengard from "../data/voice-isengard-player-cards.json";
 import {
@@ -98,6 +99,7 @@ export const playerCards = [
       ...corePlayerCards,
       ...(voiceIsengard as Card[]),
       ...(dunlandPlayers as Card[]),
+      ...(trialsTharbadPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
       ...HUNT_PLAYER_CARDS,
       ...CARROCK_PLAYER_CARDS,

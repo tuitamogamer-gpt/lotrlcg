@@ -1,3 +1,4 @@
+import { ringMakerEffect, ringMakerRoundEnd } from "./ring-maker-player";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
 import { allyEntryResponses } from "./board";
@@ -314,6 +315,7 @@ export function handle(s: GameState, e: Effect) {
 
 function handleEffect(s: GameState, e: Effect) {
   if (dunlandEffect(s, e)) return;
+  if (ringMakerEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
   if (Druadan.handleDruadanForestEffect(s, e)) return;
@@ -856,7 +858,7 @@ function handleEffect(s: GameState, e: Effect) {
       spendEvent(s, e.code!);
       break;
     case "resolveReveal":
-      resolveReveal(s, e.code!, e.source, e.revealOrigin, e.flag);
+      resolveReveal(s, e.code!, e.source, e.revealOrigin, e.flag, e.count);
       break;
     case "afterEncounterRevealed":
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
@@ -871,6 +873,7 @@ function handleEffect(s: GameState, e: Effect) {
         e.source,
         e.text === "revealed",
         e.revealOrigin,
+        e.count,
       );
       break;
     case "reveal": {
@@ -1181,7 +1184,7 @@ function handleEffect(s: GameState, e: Effect) {
       enqueue(s, fx("refreshEnd"));
       break;
     case "endRound": {
-      const passives: Effect[] = [],
+      const passives: Effect[] = ringMakerRoundEnd(s),
         forced: Effect[] = [];
       eachArea(s, () => {
         passives.push(...bloodPlayerRoundEndEffects(s));
@@ -1298,6 +1301,7 @@ function handleEffect(s: GameState, e: Effect) {
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
             !heirsPlayerNoEngagementCheck(u) &&
+            u.noEngagementRound !== s.round &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
             engagementCost(s, u) <= seatView(s, i).threat,
         ),
@@ -1331,6 +1335,7 @@ function handleEffect(s: GameState, e: Effect) {
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
             !heirsPlayerNoEngagementCheck(u) &&
+            u.noEngagementRound !== s.round &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
             engagementCost(s, u) <= s.threat,
         )
@@ -1754,6 +1759,7 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "ringDelayedReturn",
       "dunlandCloseWindow",
       "dunlandCloseResume",
       "dunlandCouncilStep",

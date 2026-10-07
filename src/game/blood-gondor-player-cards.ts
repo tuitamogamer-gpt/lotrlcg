@@ -320,6 +320,7 @@ interface DiscardedCard {
   index: number;
   code: string;
   id: string;
+  owner?: number;
 }
 function equippedTargets(s: GameState, entry: DiscardedCard) {
   const u = { ...s.heroes[0], code: entry.code, id: entry.id } as Unit;
@@ -351,9 +352,17 @@ export function bloodPlayerEventEffect(
     const entries: DiscardedCard[] = [];
     for (let i = 0; i < 2 && s.deck.length; i++) {
       const u = takePlayerDeck(s);
-      s.discard.push(u.code);
-      foundationsPlayerCardDiscarded(s, u);
-      entries.push({ index: s.discard.length - 1, code: u.code, id: u.id });
+      const owner = u.owner ?? activeSeat(s);
+      forOwner(s, owner, () => {
+        s.discard.push(u.code);
+        foundationsPlayerCardDiscarded(s, u);
+        entries.push({
+          index: s.discard.length - 1,
+          code: u.code,
+          id: u.id,
+          owner,
+        });
+      });
     }
     log(
       s,
@@ -366,7 +375,7 @@ export function bloodPlayerEventEffect(
         "Well-Equipped · Discarded attachment",
         [
           ...choices.map((entry) => ({
-            id: `attachment-${entry.index}`,
+            id: `attachment-${entry.owner !== activeSeat(s) ? `${entry.owner}-` : ""}${entry.index}`,
             code: entry.code,
             label: card(entry.code).name,
             effects: [
@@ -424,6 +433,7 @@ export function bloodPlayerEnemyAddedToStaging(s: GameState, enemy: Unit) {
       id: trap.id,
       code: trap.code,
       owner: trap.owner ?? activeSeat(s),
+      ...(trap.controller !== undefined ? { controller: trap.controller } : {}),
       exhausted: trap.exhausted,
     });
   }
@@ -615,7 +625,8 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
     case "bloodEquippedTarget": {
       const entry = JSON.parse(e.text!) as DiscardedCard;
       requireRule(
-        s.discard[entry.index] === entry.code,
+        seatView(s, entry.owner ?? activeSeat(s)).discard[entry.index] ===
+          entry.code,
         "Choose the actual attachment discarded by Well-Equipped.",
       );
       choose(
@@ -631,16 +642,20 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
       const entry = JSON.parse(e.text!) as DiscardedCard,
         target = equippedTargets(s, entry).find((u) => u.id === e.target);
       requireRule(
-        s.discard[entry.index] === entry.code && target,
+        seatView(s, entry.owner ?? activeSeat(s)).discard[entry.index] ===
+          entry.code && target,
         "The discarded attachment and an eligible Dwarf target must remain available.",
       );
-      const physical = takePlayerDiscard(s, entry.index),
-        attachment = {
-          id: entry.id,
-          code: physical.code,
-          exhausted: false,
-          owner: activeSeat(s),
-        };
+      let physical: Unit | undefined;
+      forOwner(s, entry.owner ?? activeSeat(s), () => {
+        physical = takePlayerDiscard(s, entry.index);
+      });
+      const attachment = {
+        id: entry.id,
+        code: physical!.code,
+        exhausted: false,
+        owner: entry.owner ?? activeSeat(s),
+      };
       target.attachments.push(attachment);
       roadPlayerAttachmentEntered(s, target, attachment);
       dwarfDeckDiscarded(s, e.ids ?? [], activeSeat(s));

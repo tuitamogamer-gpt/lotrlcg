@@ -30,6 +30,8 @@ type AttachmentRule = {
   names?: string[];
 };
 const rules: Record<string, AttachmentRule> = {
+  "08031": { type: "hero", traits: ["Scout"] },
+  "08034": { type: "hero", limit: 1 },
   "07008": {
     type: "hero",
     sphere: "tactics",
@@ -213,7 +215,8 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
       : allCharacters(s);
   return candidates.filter((u) => {
     if (
-      ["02004", "02053", "02075", "02098", "02119"].includes(u.code) &&
+      !u.blanked &&
+      /cannot have restricted attachments/i.test(card(u.code).text ?? "") &&
       (rule.restricted ?? 0) > 0
     )
       return false;

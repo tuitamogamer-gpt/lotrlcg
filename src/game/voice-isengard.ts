@@ -29,6 +29,9 @@ import {
 import { isSacked } from "./carrock";
 import { morgulCannotLeave } from "./morgul-vale";
 const GRIMA = "round:grima-next";
+// Optional grants mention Doomed in their ability text but have no printed keyword.
+const printedDoomed = (code: string) =>
+  /(?:^|[.\n]\s*)Doomed\s+(\d+|X)\b/i.exec(plain(card(code).text))?.[1];
 const immune = (u: Unit) =>
   !u.blanked &&
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
@@ -83,17 +86,18 @@ export function isengardPlayerPlayed(
   fromHand: boolean,
   after?: Effect,
   doomedX = 0,
+  gainedDoomed = 0,
 ) {
   const extra = fromHand && s.used.includes(GRIMA) ? 1 : 0;
   if (extra) s.used = s.used.filter((k) => k !== GRIMA);
   const n =
     (u.blanked
       ? 0
-      : /\bDoomed\s+X\b/i.test(plain(card(u.code).text))
+      : printedDoomed(u.code) === "X"
         ? doomedX
-        : Number(
-            /\bDoomed\s+(\d+)/i.exec(plain(card(u.code).text))?.[1] ?? 0,
-          )) + extra;
+        : Number(printedDoomed(u.code) ?? 0)) +
+    extra +
+    gainedDoomed;
   if (n)
     prepend(
       s,
@@ -415,7 +419,7 @@ export function isengardEffect(s: GameState, e: Effect): boolean {
     }
     case "isengardSearch": {
       const options = s.deck.flatMap((code, index) =>
-        /\bDoomed\s+(?:\d+|X)\b/i.test(plain(card(code).text))
+        printedDoomed(code)
           ? [
               {
                 id: `deck-${index}`,

@@ -192,6 +192,7 @@ export function ownerOf(s: GameState, u: Unit) {
           (x) => x.id === u.id,
         );
       }) ??
+        u.controller ??
         u.owner ??
         activeSeat(s))
     : 0;
@@ -204,7 +205,7 @@ export function attachmentController(s: GameState, host: Unit, a: Attachment) {
     ? null
     : ["hero", "ally", "objective-ally"].includes(card(host.code).type_code)
       ? ownerOf(s, host)
-      : (a.owner ?? activeSeat(s));
+      : (a.controller ?? a.owner ?? activeSeat(s));
 }
 export function forOwner(s: GameState, owner: number, run: () => void) {
   const previous = activeSeat(s);

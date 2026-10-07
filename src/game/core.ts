@@ -1,4 +1,5 @@
 import * as Isengard from "./voice-isengard";
+import { ringMakerSecrecy } from "./ring-maker-player";
 import * as BloodQuest from "./blood-gondor";
 import * as MorgulQuest from "./morgul-vale";
 import { playerOrder } from "./table";
@@ -273,7 +274,10 @@ export function takePlayerDeck(s: GameState, index = 0): Unit {
   );
   const identity = deckCardTaken(s, index),
     u = make(s, s.deck.splice(index, 1)[0]);
-  if (identity) u.id = identity;
+  if (identity) {
+    u.id = identity.id;
+    if (identity.owner !== undefined) u.owner = identity.owner;
+  }
   return u;
 }
 export function putPlayerDeck(s: GameState, u: Unit, index = s.deck.length) {
@@ -588,6 +592,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 emynMuilPlayCost(s, c) +
                 druadanForestCostIncrease(s) -
                 secrecyDiscount(s, c) -
+                ringMakerSecrecy(s, c) -
                 gondorDiscount,
             ) + dwarfAdditionalCost(c.code),
           ),

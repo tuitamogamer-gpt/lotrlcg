@@ -1,3 +1,12 @@
+import {
+  offerRingMakerDoomed,
+  ringMakerAllyEntered,
+  ringMakerCharacterLeft,
+  ringMakerEventPlayed,
+  ringMakerLocationExplored,
+  ringMakerLocationRevealed,
+  ringMakerThreatRaised,
+} from "./ring-maker-player";
 import { heirsShadowDealt } from "./heirs-numenor";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
@@ -364,6 +373,7 @@ export function raiseThreat(
   marshPlayerThreatRaised(s, activeSeat(s), amount, reason);
   roadPlayerThreatRaised(s, activeSeat(s), amount);
   heirsThreatRaised(s, activeSeat(s), amount);
+  ringMakerThreatRaised(s, amount, reason);
 }
 /** Framework and card effects share actual exhaustion timing. */
 export function exhaustCharacter(s: GameState, u: Unit): boolean {
@@ -452,8 +462,10 @@ export function discardPlayerDeck(
   forOwner(s, player, () => {
     for (let i = 0; i < Math.max(0, count) && s.deck.length; i++) {
       const u = takePlayerDeck(s);
-      s.discard.push(u.code);
-      foundationsPlayerCardDiscarded(s, u);
+      forOwner(s, u.owner ?? player, () => {
+        s.discard.push(u.code);
+        foundationsPlayerCardDiscarded(s, u);
+      });
       discarded.push(u.code);
     }
   });
@@ -465,8 +477,11 @@ export function discardHandCard(s: GameState, id: string): Unit {
   const index = s.hand.findIndex((u) => u.id === id);
   requireRule(index >= 0, "That physical card must remain in your hand.");
   const u = s.hand.splice(index, 1)[0];
-  s.discard.push(u.code);
-  foundationsPlayerCardDiscarded(s, u);
+  ringMakerCharacterLeft(s, u.id);
+  forOwner(s, u.owner ?? activeSeat(s), () => {
+    s.discard.push(u.code);
+    foundationsPlayerCardDiscarded(s, u);
+  });
   return u;
 }
 export function takePlayerDiscard(s: GameState, index: number): Unit {
@@ -631,7 +646,7 @@ export function check(s: GameState) {
           (s.questAttachments ??= {})[host.code] = host.attachments;
       }
       const traps = s.staging.filter(
-        (u) => card(u.code).sphere_code !== "encounter" && u.owner === i,
+        (u) => card(u.code).sphere_code !== "encounter" && ownerOf(s, u) === i,
       );
       for (const trap of traps) {
         s.staging = s.staging.filter((u) => u.id !== trap.id);
@@ -663,7 +678,14 @@ export function check(s: GameState) {
         s.status = "lost";
         s.reason = "Mendor has left play. The campaign quest is lost.";
       }
-      s.discard.push(...s.hand.map((u) => u.code), ...s.deck);
+      for (const u of s.hand) {
+        seatView(s, u.owner ?? i).discard.push(u.code);
+        ringMakerCharacterLeft(s, u.id);
+      }
+      while (s.deck.length) {
+        const u = takePlayerDeck(s);
+        seatView(s, u.owner ?? i).discard.push(u.code);
+      }
       s.heroes = [];
       s.allies = [];
       s.hand = [];
@@ -687,6 +709,7 @@ export function check(s: GameState) {
       }
       s.engaged = [];
       for (const u of leavingCharacters) {
+        ringMakerCharacterLeft(s, u.id);
         druadanPlayerLeavesPlay(s, u);
         Isengard.isengardCharacterLeft(s, u);
         Amon.amonDinCharacterLeftPlay(s, u);
@@ -930,6 +953,7 @@ export function characterLeftPlay(
   lastKnownAttack = stats(s, u).attack,
   lastKnownTraits = effectiveTraits(u),
 ) {
+  ringMakerCharacterLeft(s, u.id);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
     const targetEffects = [
@@ -1144,6 +1168,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (!captured) for (const a of [...u.attachments]) discardAttachment(s, u, a);
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
+  ringMakerLocationExplored(s);
   rhosgobelExplored(s, u);
   returnMirkwoodExplored(s, u);
   if (u.code === "01078")
@@ -1581,8 +1606,10 @@ export function revealed(
   guarding?: string,
   revealOrigin: Effect["revealOrigin"] = "encounter",
 ) {
-  if (revealOrigin === "encounter" && amonPlayerInterceptReveal(s, code))
+  if (revealOrigin === "encounter" && amonPlayerInterceptReveal(s, code)) {
+    ringMakerLocationRevealed(s, code, true);
     return;
+  }
   const c = card(code);
   s.lastReveal = code;
   if (revealOrigin === "encounter") {
@@ -1594,6 +1621,21 @@ export function revealed(
     `Revealed ${c.name}.`,
     c.type_code === "treachery" ? "danger" : "normal",
   );
+  const warden =
+    revealOrigin === "encounter"
+      ? ringMakerLocationRevealed(s, code)
+      : { progress: 0, explored: false };
+  if (warden.explored) {
+    if (s.flow)
+      pauseFor(s, {
+        kind: "reveal",
+        title: `Explored on reveal · ${c.name}`,
+        detail:
+          "Warden of Arnor explores this location before its keywords and When Revealed effects.",
+        cards: [{ code, label: "Explored location" }],
+      });
+    return;
+  }
   const revealKeywords = Druadan.druadanForestRevealEffects(
     s,
     code,
@@ -1603,7 +1645,12 @@ export function revealed(
     prepend(
       s,
       ...revealKeywords,
-      fx("resolveReveal", { code, source: guarding, revealOrigin }),
+      fx("resolveReveal", {
+        code,
+        source: guarding,
+        revealOrigin,
+        count: warden.progress,
+      }),
     );
     pauseFor(s, {
       kind: "reveal",
@@ -1619,11 +1666,16 @@ export function revealed(
     prepend(
       s,
       ...revealKeywords,
-      fx("resolveReveal", { code, source: guarding, revealOrigin }),
+      fx("resolveReveal", {
+        code,
+        source: guarding,
+        revealOrigin,
+        count: warden.progress,
+      }),
     );
     return;
   }
-  resolveReveal(s, code, guarding, revealOrigin);
+  resolveReveal(s, code, guarding, revealOrigin, false, warden.progress);
 }
 
 export function resolveReveal(
@@ -1632,6 +1684,7 @@ export function resolveReveal(
   guarding?: string,
   revealOrigin: Effect["revealOrigin"] = "encounter",
   doomedResolved = false,
+  initialProgress = 0,
 ) {
   const c = card(code);
   let thalin = false;
@@ -1656,7 +1709,13 @@ export function resolveReveal(
   if (doomed && !doomedResolved) {
     prepend(
       s,
-      fx("resolveReveal", { code, source: guarding, revealOrigin, flag: true }),
+      fx("resolveReveal", {
+        code,
+        source: guarding,
+        revealOrigin,
+        flag: true,
+        count: initialProgress,
+      }),
     );
     Isengard.resolveDoomed(s, Number(doomed[1]), "encounter");
     return;
@@ -1710,6 +1769,7 @@ export function resolveReveal(
                 flag: true,
                 player: revealingPlayer,
                 value: thalin ? 1 : 0,
+                count: initialProgress,
                 source: guarding,
                 revealOrigin,
               }),
@@ -1720,6 +1780,7 @@ export function resolveReveal(
                 code,
                 player: revealingPlayer,
                 value: thalin ? 1 : 0,
+                count: initialProgress,
                 source: guarding,
                 revealOrigin,
               }),
@@ -1760,6 +1821,7 @@ export function resolveReveal(
           code,
           player: revealingPlayer,
           value: thalin ? 1 : 0,
+          count: initialProgress,
           source: guarding,
           revealOrigin,
         }),
@@ -1780,6 +1842,7 @@ export function resolveReveal(
               text: "revealed",
               code,
               value: thalin ? 1 : 0,
+              count: initialProgress,
               source: guarding,
               revealOrigin,
             }),
@@ -1796,6 +1859,7 @@ export function resolveReveal(
       text: "revealed",
       code,
       value: thalin ? 1 : 0,
+      count: initialProgress,
       source: guarding,
       revealOrigin,
     }),
@@ -1810,10 +1874,12 @@ export function placeEncounter(
   guarding?: string,
   fromReveal = false,
   revealOrigin: Effect["revealOrigin"] = "encounter",
+  initialProgress = 0,
 ) {
   const c = card(code);
   if (c.type_code !== "treachery") {
     const fresh = make(s, code);
+    fresh.progress = initialProgress;
     fresh.damage =
       initialDamage && khazadDamageCancelled(s, fresh, initialDamage)
         ? 0
@@ -2088,6 +2154,17 @@ export function enterAlly(
   );
   u.temporary = temporary;
   s.allies.push(u);
+  if (offerRingMakerDoomed(s, u, played, fromHand)) return;
+  resolveAllyKeywords(s, u, played, fromHand);
+}
+
+export function resolveAllyKeywords(
+  s: GameState,
+  u: Unit,
+  played: boolean,
+  fromHand: boolean,
+  gainedDoomed = 0,
+) {
   if (
     Isengard.isengardPlayerPlayed(
       s,
@@ -2098,6 +2175,8 @@ export function enterAlly(
         flag: played,
         value: fromHand ? 1 : 0,
       }),
+      0,
+      gainedDoomed,
     )
   )
     return;
@@ -2123,6 +2202,7 @@ export function allyEntryResponses(
   rohanAllyEntered(s, u);
   Isengard.isengardAllyEntered(s, u);
   dunlandAllyEntered(s, u);
+  ringMakerAllyEntered(s, u, played, fromHand);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);
@@ -2255,6 +2335,7 @@ export function spendEvent(
   pay(s, card(code));
   redhornPlayerEventPlayed(s, code);
   dunlandEventPlayed(s, code);
+  ringMakerEventPlayed(s, code);
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
   holdPlayedEvent(s, u);

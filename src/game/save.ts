@@ -1,4 +1,5 @@
 import { validateIsengard } from "./voice-isengard";
+import { validateRingMaker } from "./ring-maker-player";
 import { validateBloodGondorState } from "./blood-gondor-support";
 import { validateMorgulValeState } from "./morgul-vale-support";
 import { validateDruadanForestState } from "./druadan-forest-support";
@@ -61,6 +62,10 @@ export function validateSave(
     const validAttachment = (a: Attachment) =>
       !!a &&
       typeof a.id === "string" &&
+      (a.controller === undefined ||
+        (integer(a.controller) &&
+          a.controller >= 0 &&
+          a.controller < seatCount)) &&
       SCRIPTED.has(a.code) &&
       typeof a.exhausted === "boolean" &&
       (a.resourceTokens === undefined ||
@@ -135,6 +140,12 @@ export function validateSave(
     const validUnit = (u: Unit) =>
       u &&
       typeof u.id === "string" &&
+      (u.controller === undefined ||
+        (integer(u.controller) &&
+          u.controller >= 0 &&
+          u.controller < seatCount)) &&
+      (u.noEngagementRound === undefined ||
+        (integer(u.noEngagementRound) && u.noEngagementRound >= 1)) &&
       [u.shadowCancelsDamage, u.shadowCancelsCombatDamage].every(
         (v) => v === undefined || typeof v === "boolean",
       ) &&
@@ -190,6 +201,10 @@ export function validateSave(
       u.attachments.every(
         (a) =>
           typeof a.id === "string" &&
+          (a.controller === undefined ||
+            (integer(a.controller) &&
+              a.controller >= 0 &&
+              a.controller < seatCount)) &&
           SCRIPTED.has(a.code) &&
           typeof a.exhausted === "boolean" &&
           (a.dynamicTraits === undefined ||
@@ -278,6 +293,7 @@ export function validateSave(
         !validateDruadanForestState(s) ||
         !validateAmonDinState(s) ||
         !validateIsengard(s, validUnit as (u: unknown) => boolean) ||
+        !validateRingMaker(s, seatCount) ||
         !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
         !validateMorgulValeState(s) ||
         !validateAssaultOsgiliathState(

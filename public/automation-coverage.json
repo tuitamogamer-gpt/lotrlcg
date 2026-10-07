@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 394,
-    "heroes": 46,
-    "deckCards": 348,
+    "playerCards": 405,
+    "heroes": 47,
+    "deckCards": 358,
     "encounterCards": 364,
     "scenarios": 27,
     "scenarioIds": [
@@ -39,8 +39,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 850,
-    "pending": 3333
+    "scripted": 861,
+    "pending": 3322
   },
   "scenarioRecipes": {
     "total": 355,
@@ -412,12 +412,23 @@
     "08008",
     "08009",
     "08010",
+    "08025",
     "08026",
     "08027",
+    "08028",
     "08029",
+    "08030",
+    "08031",
+    "08032",
+    "08033",
+    "08034",
     "08056",
+    "08057",
     "08058",
+    "08059",
     "08060",
+    "08061",
+    "08062",
     "08063",
     "08064",
     "08065",
@@ -1720,9 +1731,9 @@
     {
       "product": "the-three-trials",
       "total": 31,
-      "scripted": 3,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 3
+      "playerScripted": 10
     },
     {
       "product": "the-three-trials-nightmare",
@@ -1832,9 +1843,9 @@
     {
       "product": "trouble-in-tharbad",
       "total": 28,
-      "scripted": 6,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 6
+      "playerScripted": 10
     },
     {
       "product": "trouble-in-tharbad-nightmare",
@@ -4944,7 +4955,7 @@
       "name": "Idraen",
       "type": "hero",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -4968,7 +4979,7 @@
       "name": "Rúmil",
       "type": "ally",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -4984,7 +4995,7 @@
       "name": "Greyflood Wanderer",
       "type": "ally",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -4992,7 +5003,7 @@
       "name": "Warden of Arnor",
       "type": "attachment",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -5000,7 +5011,7 @@
       "name": "Message from Elrond",
       "type": "event",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -5008,7 +5019,7 @@
       "name": "Noiseless Movement",
       "type": "event",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -5016,7 +5027,7 @@
       "name": "Leaf Brooch",
       "type": "attachment",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -5032,7 +5043,7 @@
       "name": "Herald of Anórien",
       "type": "ally",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -5048,7 +5059,7 @@
       "name": "Gwaihir",
       "type": "ally",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -5064,7 +5075,7 @@
       "name": "Courage Awakened",
       "type": "event",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -5072,7 +5083,7 @@
       "name": "Free to Choose",
       "type": "event",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {

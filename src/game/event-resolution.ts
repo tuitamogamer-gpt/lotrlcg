@@ -3,6 +3,7 @@ import { activeSeat, forOwner } from "./table";
 import { fx, prepend, putPlayerDeck } from "./core";
 import { foundationsPlayerCardDiscarded } from "./foundations-player-cards";
 import { addVictoryCard, takePlayerDiscard } from "./board";
+import { ringMakerCharacterLeft } from "./ring-maker-player";
 
 /** Events remain outside hand/discard while their entire ability resolves (RR p8). */
 export function holdPlayedEvent(s: GameState, unit: Unit, bottom = false) {
@@ -19,7 +20,14 @@ export function finishPlayedEvent(s: GameState, id: string) {
   if (!pending) return;
   s.resolvingEvents = s.resolvingEvents!.filter((event) => event !== pending);
   if (!s.resolvingEvents.length) delete s.resolvingEvents;
-  forOwner(s, pending.player, () => {
+  // Events do not enter play: self-return and Record effects keep their printed
+  // player's hand/deck destination. Discards always use the originating deck.
+  const destinationPlayer = ["hand", "bottom"].includes(pending.destination)
+    ? pending.player
+    : (pending.unit.owner ?? pending.player);
+  if (pending.destination !== "hand")
+    ringMakerCharacterLeft(s, pending.unit.id);
+  forOwner(s, destinationPlayer, () => {
     if (pending.destination === "removed") s.removed.push(pending.unit.code);
     else if (pending.destination === "victory")
       addVictoryCard(s, pending.unit.code);

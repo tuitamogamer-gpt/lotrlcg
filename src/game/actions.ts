@@ -1,3 +1,8 @@
+import {
+  ringMakerEventPlayed,
+  ringMakerPlayProblem,
+  ringMakerPlayTargets,
+} from "./ring-maker-player";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
 import * as MorgulQuest from "./morgul-vale";
@@ -269,6 +274,7 @@ import {
   expansionPlayProblem,
   questExhausts,
   singlePoolCard,
+  restrictedAttachment,
 } from "./expansion-passives";
 import { CARROCK, isSacked, carrockCanContribute } from "./carrock";
 import { huntAbilityLabel, huntAbilityProblem } from "./expansion-player-cards";
@@ -528,6 +534,8 @@ export function canPlay(
   const stewardProblem = stewardPlayerPlayProblem(s, c.code);
   if (stewardProblem) return stewardProblem;
   const heirsProblem = heirsPlayerPlayProblem(s, c.code);
+  const ringMakerProblem = ringMakerPlayProblem(s, c.code, u.id);
+  if (ringMakerProblem) return ringMakerProblem;
   const dunlandProblem = dunlandPlayProblem(s, c.code);
   if (dunlandProblem) return dunlandProblem;
   if (heirsProblem) return heirsProblem;
@@ -893,6 +901,7 @@ export function playEventFromDiscardEffect(
   }
   redhornPlayerEventPlayed(s, physical.code);
   dunlandEventPlayed(s, physical.code);
+  ringMakerEventPlayed(s, physical.code);
   resolvePlayerCard(
     s,
     physical,
@@ -916,6 +925,12 @@ function resolvePlayerCard(
 ) {
   const c = card(u.code);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
+  if (
+    c.type_code === "attachment" &&
+    u.owner !== undefined &&
+    u.owner !== activeSeat(s)
+  )
+    u.controller = activeSeat(s);
   if (c.type_code === "ally") {
     if (played) s.alliesPlayed++;
     enterAlly(s, u, false, played, fromHand);
@@ -932,6 +947,7 @@ function resolvePlayerCard(
       id: u.id,
       code: u.code,
       exhausted: false,
+      ...(u.controller !== undefined ? { controller: u.controller } : {}),
       ...(s.table ? { owner: u.owner ?? activeSeat(s) } : {}),
     };
     if (host.id.startsWith("quest:"))
@@ -1017,6 +1033,7 @@ export function playCardFromEffect(
   if (!options.putIntoPlay && card(u.code).type_code === "event") {
     redhornPlayerEventPlayed(s, u.code);
     dunlandEventPlayed(s, u.code);
+    ringMakerEventPlayed(s, u.code);
   }
   // Printed X defaults to zero when an effect pays no cost.
   resolvePlayerCard(
@@ -1051,6 +1068,12 @@ export function playTargets(
       (card(u.code).type_code !== "attachment" ||
         !heirsCannotHaveAttachments(target)) &&
       (card(u.code).type_code !== "attachment" ||
+        target.blanked ||
+        !restrictedAttachment(u.code) ||
+        !/cannot have restricted attachments/i.test(
+          plain(card(target.code).text),
+        )) &&
+      (card(u.code).type_code !== "attachment" ||
         (rhosgobelCanAttach(s, target) &&
           (options.putIntoPlay ||
             target.code !== SHADOW_FLAME.bane ||
@@ -1062,6 +1085,8 @@ export function playTargets(
 function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
+  const ringMakerTargets = ringMakerPlayTargets(s, c.code);
+  if (ringMakerTargets) return ringMakerTargets;
   const dunlandTargets = dunlandPlayTargets(s, c.code);
   if (dunlandTargets) return dunlandTargets;
   const amonTargets = amonPlayerPlayTargets(s, c.code);
@@ -1219,9 +1244,12 @@ export const needsTarget = (u: Unit) =>
       "06089",
       "06113",
       "08003",
+      "08033",
+      "08061",
     ].includes(u.code));
 
 export const responseCards = [
+  "08062",
   "08005",
   "01024",
   "01037",
@@ -1808,6 +1836,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       if (c.type_code === "event") redhornPlayerEventPlayed(s, u.code);
       if (c.type_code === "event") dunlandEventPlayed(s, u.code);
+      if (c.type_code === "event") ringMakerEventPlayed(s, u.code);
       s.hand = s.hand.filter((x) => x.id !== u.id);
       resolvePlayerCard(
         s,
