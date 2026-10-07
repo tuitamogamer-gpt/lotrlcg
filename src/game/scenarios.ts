@@ -1,3 +1,5 @@
+import { BLOOD_GONDOR_QUESTS } from "./blood-gondor-support";
+import { MORGUL_VALE_QUESTS } from "./morgul-vale-support";
 import { DRUADAN_FOREST_QUESTS } from "./druadan-forest-support";
 import { AMON_DIN_QUESTS } from "./amon-din-support";
 import { ASSAULT_OSGILIATH_QUESTS } from "./assault-osgiliath-support";
@@ -38,6 +40,8 @@ const questImage = (code: string) => {
     ...DRUADAN_FOREST_QUESTS,
     ...AMON_DIN_QUESTS,
     ...ASSAULT_OSGILIATH_QUESTS,
+    ...BLOOD_GONDOR_QUESTS,
+    ...MORGUL_VALE_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -801,6 +805,46 @@ export const SCENARIOS = [
       .map((q) => ({
         name: q.back_name ?? q.name,
         quest: q.quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: questImage(q.code),
+      })),
+  },
+  {
+    id: "the-blood-of-gondor",
+    name: "The Blood of Gondor",
+    shortName: "Blood of Gondor",
+    chapter: "XXVI",
+    difficulty: 6,
+    tagline: "Ambush at the crossroads",
+    description:
+      "Survive the hidden forces of Mordor and fight through the ambush in Ithilien.",
+    sets: ["The Blood of Gondor", "Ravaging Orcs"],
+    stages: BLOOD_GONDOR_QUESTS.slice()
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.name,
+        quest: q.back_quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: questImage(q.code),
+      })),
+  },
+  {
+    id: "the-morgul-vale",
+    name: "The Morgul Vale",
+    shortName: "Morgul Vale",
+    chapter: "XXVII",
+    difficulty: 7,
+    tagline: "Pursuit beneath the Dead City",
+    description:
+      "Defeat three Captains and rescue Faramir before his captors reach Minas Morgul.",
+    sets: ["The Morgul Vale", "Mordor Elite", "Creatures of the Forest"],
+    stages: MORGUL_VALE_QUESTS.slice()
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.name,
+        quest: q.back_quest ?? 0,
         story: q.back_text ?? q.text ?? "",
         cardCode: q.code,
         questImage: questImage(q.code),

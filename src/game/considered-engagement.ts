@@ -53,6 +53,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
   delete u.shadowCancelsCombatDamage;
   if (u.code === SHADOW_FLAME.bane && !u.blanked) {
     u.shadows = [];
+    delete u.faceupShadows;
     return;
   }
   const code = encounterDraw(s, true);
@@ -67,6 +68,8 @@ export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {
   s.encounterDiscard.push(...u.shadows);
   const code = encounterDraw(s, true);
   u.shadows = code ? [code] : [];
+  delete u.faceupShadows;
+  if (code) heirsShadowDealt(s, u);
   u.revealedShadowCount = 0;
   delete u.shadowCancelsDamage;
   delete u.shadowCancelsCombatDamage;
@@ -82,6 +85,7 @@ export function finishEnemyShadows(
     return false;
   s.encounterDiscard.push(...u.shadows);
   u.shadows = [];
+  delete u.faceupShadows;
   u.revealedShadowCount = 0;
   delete u.shadowCancelsDamage;
   delete u.shadowCancelsCombatDamage;

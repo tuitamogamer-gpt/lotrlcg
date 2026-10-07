@@ -234,6 +234,7 @@ export function druadanForestAttackProgress(
       discardAttachment(s, enemy, a, true);
     s.encounterDiscard.push(...enemy.shadows);
     enemy.shadows = [];
+    delete enemy.faceupShadows;
     s.staging = s.staging.filter((u) => u.id !== enemy.id);
     for (const player of playerOrder(s))
       forOwner(s, player, () => {

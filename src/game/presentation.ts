@@ -53,6 +53,14 @@ export function observe(
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
     "Staging threat": String(getStagingThreat(s)),
+    ...(s.bloodGondor
+      ? Object.fromEntries(
+          seatIndices(s).map((p) => [
+            `${seatName(s, p)} · Hidden cards`,
+            String(s.bloodGondor!.hidden[p]?.length ?? 0),
+          ]),
+        )
+      : {}),
     ...(s.amonDin
       ? { "Villagers on the quest": String(s.amonDin.questVillagers) }
       : {}),
@@ -79,6 +87,9 @@ export function observe(
             }
           : {}),
         ...(c.type_code === "hero" ? { Resources: String(u.resources) } : {}),
+        ...(c.name === "To the Tower"
+          ? { "Tower progress": `${u.progress} / 10` }
+          : {}),
         ...(s.amonDin &&
         (c.type_code === "location" || c.name === "Rescued Villagers")
           ? { Villagers: String(u.resources) }

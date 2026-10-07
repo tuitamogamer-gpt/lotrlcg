@@ -1,3 +1,5 @@
+import * as Isengard from "./voice-isengard";
+import * as MorgulQuest from "./morgul-vale";
 import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
@@ -258,7 +260,18 @@ export function resolvePlayerAttack(
   );
   const power = Object.values(contributions).reduce((total, n) => total + n, 0);
   const defense = mirkwoodPlayerAttackDefense(s, enemy, ids);
-  const amount = heirsDamageAmount(s, enemy, Math.max(0, power - defense));
+  const unreplaced = heirsDamageAmount(s, enemy, Math.max(0, power - defense));
+  if (
+    MorgulQuest.morgulRedirectDamage(
+      s,
+      enemy,
+      unreplaced,
+      { combatDamage: true },
+      ids,
+    )
+  )
+    return;
+  const amount = MorgulQuest.morgulDamageAmount(s, enemy, unreplaced);
   log(
     s,
     `${attackers.map((u) => name(u!)).join(" + ")} attack ${name(enemy)}: ${power} attack − ${defense} defense = ${amount} damage.`,
@@ -319,6 +332,7 @@ export function playerAttackKilled(
       s,
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
+  Isengard.isengardAttackKilled(s, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
   collectorAttackKilled(s, enemy, ids, lastKnownTraits);
   redhornPlayerAttackKilled(s, ids);
@@ -354,6 +368,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   shadowFlameEnemyAttackStart(s, enemy, player);
   stewardFearAttackStarted(s, enemy, player);
   Amon.amonDinAttackStarted(s, enemy);
+  MorgulQuest.morgulAttackStarted(s, enemy);
 }
 
 export function applyCombatDamageConsequences(

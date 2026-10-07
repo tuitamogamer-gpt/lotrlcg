@@ -1,3 +1,5 @@
+import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
+import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
 import {
   consideredEngaged,
@@ -2388,6 +2390,7 @@ export default function App() {
               </span>
             </div>
             <EscapeTestSummary s={game} />
+            <ScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -4128,7 +4131,8 @@ function BoardCard({
       id={u.id}
       className={`board-card ${u.code === SHADOW_FLAME.bane && !u.blanked && s.staging.some((e) => e.id === u.id) ? "considered-enemy" : ""} ${u.attachments.length ? "has-attachments" : ""} ${(s.table && s.phase === "attack" ? u.attackedBy?.includes(activeSeat(s)) : u.attacked) ? "acted" : ""}`}
     >
-      <ShadowCards count={u.shadows.length} />
+      <ShadowCards count={u.shadows.length - faceupShadowCards(u).length} />
+      <FaceupShadows u={u} inspect={inspectCard} />
       <AttachmentStack u={u} inspect={inspectCard} />
       <button
         ref={damageRef}

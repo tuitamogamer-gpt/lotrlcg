@@ -1,3 +1,5 @@
+import * as Isengard from "./voice-isengard";
+import { morgulCannotLeave } from "./morgul-vale";
 import { canGainResources } from "./core";
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
 import {
@@ -137,6 +139,7 @@ export function eventEffect(
   if (khazadPlayerEventEffect(s, code, target)) return;
   if (redhornPlayerEventEffect(s, code, target)) return;
   if (roadPlayerEventEffect(s, code, target)) return;
+  if (Isengard.isengardEvent(s, code)) return;
   if (longDarkPlayerEventEffect(s, code, target)) return;
   const u = get(s, target);
   switch (code) {
@@ -283,7 +286,7 @@ export function eventEffect(
     }
     case "01052":
       if (u) {
-        if (!shadowFlameCanMove(s, u)) break;
+        if (!shadowFlameCanMove(s, u) || morgulCannotLeave(s, u)) break;
         if (u.facedownCard) {
           const controller = ownerOf(s, u);
           forOwner(s, controller, () => {
@@ -303,6 +306,7 @@ export function eventEffect(
         });
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
+        delete u.faceupShadows;
         u.revealedShadowCount = 0;
         u.attacked = false;
         s.staging.push(u);
@@ -379,6 +383,7 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 }
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
+  if (Isengard.useIsengardAbility(s, u, attachmentId)) return;
   if (useOsgiliathPlayerAbility(s, u, attachmentId)) return;
   if (useBloodPlayerAbility(s, u, attachmentId)) return;
   if (useMorgulPlayerAbility(s, u, attachmentId)) return;

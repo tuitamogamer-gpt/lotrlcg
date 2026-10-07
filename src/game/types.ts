@@ -1,6 +1,8 @@
 export type Sphere =
   "leadership" | "spirit" | "tactics" | "lore" | "neutral" | "encounter";
 export interface Card {
+  /** Cost context for plays from another zone; never changes the printed definition. */
+  playOrigin?: "hand" | "deck" | "discard";
   code: string;
   name: string;
   type_code: string;
@@ -74,6 +76,9 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Physical shadow visibility is independent of resolved shadow effects. */
+  faceupShadows?: boolean[];
+  morgulExtraAttacks?: number;
   /** Resolved shadow protections expire when the attached shadows are discarded. */
   shadowCancelsDamage?: boolean;
   shadowCancelsCombatDamage?: boolean;
@@ -141,6 +146,8 @@ export type ScenarioId =
   | "the-druadan-forest"
   | "encounter-at-amon-din"
   | "assault-on-osgiliath"
+  | "the-blood-of-gondor"
+  | "the-morgul-vale"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -248,6 +255,9 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  isengard?: import("./voice-isengard").IsengardState;
+  bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  morgulVale?: import("./morgul-vale-support").MorgulValeState;
   druadanForest?: import("./druadan-forest-support").DruadanForestState;
   amonDin?: import("./amon-din-support").AmonDinState;
   assaultOsgiliath?: import("./assault-osgiliath-support").AssaultOsgiliathState;
@@ -367,6 +377,10 @@ export interface GameState {
   combat: {
     stewardRemoveTokensIfKilled?: boolean;
     heirsScrollDamage?: boolean;
+    bloodTurnOnKill?: boolean;
+    bloodKilledPlayers?: { player: number; shadows: boolean }[];
+    morgulProgressOnKill?: boolean;
+    morgulKilledCharacter?: boolean;
     amonDinKilledCharacter?: boolean;
     amonDinShadowVillagers?: number;
     osgiliathReturnIfKilled?: boolean;
@@ -391,6 +405,7 @@ export interface GameState {
     immediatePreviousAttacked?: boolean;
     /** Suspended physical shadows are restored after a nested immediate attack. */
     immediatePreviousShadows?: string[];
+    immediatePreviousFaceupShadows?: boolean[];
     immediatePreviousRevealedShadowCount?: number;
     immediatePreviousShadowCancelsDamage?: boolean;
     immediatePreviousShadowCancelsCombatDamage?: boolean;

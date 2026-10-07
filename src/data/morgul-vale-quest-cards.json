@@ -1,0 +1,119 @@
+[
+  {
+    "code": "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+    "octgnid": "30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+    "name": "The Rearguard",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set aside Lord Alcaron, Nazgûl of Minas Morgul, and The White Bridge. Add To the Tower, Murzag, and 1 copy of Morgul Vale to the staging area.",
+    "is_unique": false,
+    "pack_code": "TMV",
+    "pack_name": "The Morgul Vale",
+    "position": 144,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Morgul Vale",
+    "side": "A",
+    "back_name": "The Rearguard",
+    "back_text": "Murzag cannot leave play unless destroyed. If Murzag is defeated, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a319ff-6092-4d5f-9b94-2a9b4f44f9c1.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a319ff-6092-4d5f-9b94-2a9b4f44f9c1.jpg",
+    "packs": [
+      {
+        "pack_code": "TMV",
+        "pack_name": "The Morgul Vale",
+        "position": 144,
+        "quantity": 1,
+        "octgnid": "30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a319ff-6092-4d5f-9b94-2a9b4f44f9c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgnid": "49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "name": "The Betrayal",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Lord Alcaron to the staging area.",
+    "is_unique": false,
+    "pack_code": "TMV",
+    "pack_name": "The Morgul Vale",
+    "position": 145,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Morgul Vale",
+    "side": "A",
+    "back_name": "The Betrayal",
+    "back_text": "Lord Alcaron cannot leave play unless destroyed. If Lord Alcaron is defeated, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49aa4e88-3774-43f7-ab8d-05268ed3fb7e.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49aa4e88-3774-43f7-ab8d-05268ed3fb7e.jpg",
+    "packs": [
+      {
+        "pack_code": "TMV",
+        "pack_name": "The Morgul Vale",
+        "position": 145,
+        "quantity": 1,
+        "octgnid": "49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49aa4e88-3774-43f7-ab8d-05268ed3fb7e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+    "octgnid": "8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+    "name": "The Morgul Rider",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Nazgûl of Minas Morgul and The White Bridge to the staging area.",
+    "is_unique": false,
+    "pack_code": "TMV",
+    "pack_name": "The Morgul Vale",
+    "position": 146,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Morgul Vale",
+    "side": "A",
+    "back_name": "The Morgul Rider",
+    "back_text": "When Revealed: Reveal 1 card per player from the encounter deck and add it to the staging area.  Nazgûl of Minas Morgul cannot leave play unless destroyed.  If Nazgûl of Minas Morgul is defeated, the players have won the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8.jpg",
+    "packs": [
+      {
+        "pack_code": "TMV",
+        "pack_name": "The Morgul Vale",
+        "position": 146,
+        "quantity": 1,
+        "octgnid": "8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

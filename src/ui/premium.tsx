@@ -3,6 +3,14 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-blood-of-gondor": {
+    name: "The Blood of Gondor",
+    detail: "An ambush in Ithilien",
+  },
+  "the-morgul-vale": {
+    name: "The Morgul Vale",
+    detail: "Rescue the captives before the tower",
+  },
   mirkwood: { name: "Mirkwood", detail: "The ancient woodland" },
   anduin: { name: "Anduin", detail: "A river of silver & mist" },
   "dol-guldur": { name: "Dol Guldur", detail: "In the shadow of the keep" },
@@ -122,6 +130,8 @@ export const PLAYMAT_CHOICES = [
   "the-druadan-forest",
   "encounter-at-amon-din",
   "assault-on-osgiliath",
+  "the-blood-of-gondor",
+  "the-morgul-vale",
   "shadow-and-flame",
 ] as const;
 

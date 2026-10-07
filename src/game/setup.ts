@@ -1,3 +1,5 @@
+import { setupBloodGondor } from "./blood-gondor";
+import { setupMorgulVale } from "./morgul-vale";
 import { setupDruadanForest } from "./druadan-forest";
 import { setupAmonDin } from "./amon-din";
 import { setupAssaultOsgiliath } from "./assault-osgiliath";
@@ -120,6 +122,12 @@ export function createGame(
   );
   const scenarioId = options.scenarioId ?? "mirkwood";
   const playMode = options.playMode ?? "normal";
+  const chosenHeroes = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
+  requireRule(
+    !["the-blood-of-gondor", "the-morgul-vale"].includes(scenarioId) ||
+      !chosenHeroes.some((c) => card(c).name === "Faramir"),
+    "Faramir is reserved by this scenario; choose another hero.",
+  );
   requireRule(
     SCENARIOS.some((q) => q.id === scenarioId),
     "Unknown or unsupported scenario.",
@@ -354,6 +362,10 @@ export function createGame(
     setupDruadanForest(s);
   } else if (scenarioId === "encounter-at-amon-din") {
     setupAmonDin(s);
+  } else if (scenarioId === "the-blood-of-gondor") {
+    setupBloodGondor(s);
+  } else if (scenarioId === "the-morgul-vale") {
+    setupMorgulVale(s);
   } else if (scenarioId === "assault-on-osgiliath") {
     setupAssaultOsgiliath(s);
   } else if (scenarioId === "the-stewards-fear") {

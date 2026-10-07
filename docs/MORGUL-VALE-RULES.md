@@ -1,0 +1,15 @@
+# The Morgul Vale original/easy rules
+
+Runtime identity: `the-morgul-vale`. Recipes `Q03.9` and `E03.9` supply 48 and 35 encounter cards including staging/set-aside cards. Fourteen encounter designs and three quest stages are implemented, reusing Mordor Elite and Creatures of the Forest. Nightmare remains separately gated.
+
+Sources: imported printed fronts/backs and recipes, [FFG rulesheet](https://images-cdn.fantasyflightgames.com/filer_public/f9/9c/f99ce117-719c-4441-a7fc-c5629468241d/rulesheet-the-morgul-vale.pdf), and [FAQ 1.9](https://images-cdn.fantasyflightgames.com/filer_public/2e/31/2e3129b3-dc51-4c27-81ed-6a72f13e82f3/lotr_faq_19.pdf).
+
+Setup puts Murzag, Morgul Vale and To the Tower in staging, setting aside the other Captains and White Bridge. Faramir cannot be a starting hero; ally copies are removed from decks and opening hands and cannot enter later. Quest progress can explore active locations but cannot advance a stage. The current Captain cannot leave play except by destruction, and a destruction ledger gates each transition. Stage three adds Nazgûl, White Bridge and one reveal per player. Defeating all three Captains wins; ten Tower progress loses immediately.
+
+Murzag reveals the top encounter normally and engages the newly revealed enemy with his attacked player. Alcaron places Tower progress when attacking. Each shadow dealt to him without a shadow effect schedules an additional attack with a fresh shadow, even if the original shadow is subsequently discarded. Pending attacks do not carry into another combat phase after an attack is prevented. Nazgûl accepts no attachments and caps each damage assignment at one.
+
+Morgul Bodyguard redirects Captain damage through a saved first-player choice and retains the attack's destruction-response context. With Nazgûl and a Bodyguard both applying, the player chooses reduction before redirection or redirection first. This is an application of FAQ 1.02's ordering of conflicting simultaneous effects, not a separate published ruling specifically naming these cards.
+
+Tower placements deal one shadow to each Sorcerer per placement, including immediate resolution if the Sorcerer is already attacking. White Bridge's threat and quest points follow Tower progress, including exploration when its threshold falls to existing progress or zero. Road's response, Vale's per-player returns, optional Tracker engagement and every treachery/shadow have explicit choices and timing. Bodyguard's shadow suspends the original attack while the enemy engages and attacks the next player; the original attack resumes with its original defender and physical shadows.
+
+Evidence: `tests/morgul-vale.test.ts` checks recipes, setup restrictions, all transitions, Captain protection, damage replacements, dynamic locations, per-player choices, Sorcerer extra shadows, additional/nested attacks and saves. `npm run test:against-shadow-finale` exercises the Fog choice, reload and Tower counter at 1280/390/320px. New fronts and quest backs are cached under `public/cards/`.

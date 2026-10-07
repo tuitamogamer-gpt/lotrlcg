@@ -328,6 +328,7 @@ function returnEnemy(s: GameState, enemy: Unit) {
   });
   s.encounterDiscard.push(...enemy.shadows);
   enemy.shadows = [];
+  delete enemy.faceupShadows;
   enemy.revealedShadowCount = 0;
   s.staging.push(enemy);
   enemyAddedToStaging(s, enemy);

@@ -1,3 +1,4 @@
+import { heirsShadowDealt } from "./heirs-numenor";
 import { druadanPlayerNoEngagementChecks } from "./druadan-player-cards";
 import { currentQuestCode } from "./quest-state";
 import { engagementCost } from "./core";
@@ -585,11 +586,15 @@ export function roadRivendellEffect(s: GameState, e: Effect) {
       // Immediate attacks have no action window before declaring the defender.
       s.encounterDiscard.push(...u.shadows);
       u.shadows = [];
+      delete u.faceupShadows;
       u.revealedShadowCount = 0;
       delete u.shadowCancelsDamage;
       delete u.shadowCancelsCombatDamage;
       const shadow = encounterDraw(s, true);
-      if (shadow) u.shadows.push(shadow);
+      if (shadow) {
+        u.shadows.push(shadow);
+        heirsShadowDealt(s, u);
+      }
       choose(s, `${name(u)} · Immediate attack`, [
         ...opts(defendersFor(s, u), (d) => [
           fx("roadRivendellImmediateDefend", { target: u.id, source: d.id }),

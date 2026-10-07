@@ -1,3 +1,12 @@
+import voiceIsengard from "../data/voice-isengard-player-cards.json";
+import {
+  BLOOD_GONDOR_ENCOUNTERS,
+  BLOOD_GONDOR_QUESTS,
+} from "./blood-gondor-support";
+import {
+  MORGUL_VALE_ENCOUNTERS,
+  MORGUL_VALE_QUESTS,
+} from "./morgul-vale-support";
 import {
   DRUADAN_FOREST_ENCOUNTERS,
   DRUADAN_FOREST_QUESTS,
@@ -84,6 +93,7 @@ export const playerCards = [
   ...new Map(
     [
       ...corePlayerCards,
+      ...(voiceIsengard as Card[]),
       ...PASSIVE_PLAYER_CARDS,
       ...HUNT_PLAYER_CARDS,
       ...CARROCK_PLAYER_CARDS,
@@ -133,6 +143,8 @@ export const encounterCards = [
   ...DRUADAN_FOREST_ENCOUNTERS,
   ...AMON_DIN_ENCOUNTERS,
   ...ASSAULT_OSGILIATH_ENCOUNTERS,
+  ...BLOOD_GONDOR_ENCOUNTERS,
+  ...MORGUL_VALE_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -156,6 +168,8 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...DRUADAN_FOREST_QUESTS,
     ...AMON_DIN_QUESTS,
     ...ASSAULT_OSGILIATH_QUESTS,
+    ...BLOOD_GONDOR_QUESTS,
+    ...MORGUL_VALE_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -252,6 +266,8 @@ export const SCRIPTED = new Set(
     ...DRUADAN_FOREST_QUESTS,
     ...AMON_DIN_QUESTS,
     ...ASSAULT_OSGILIATH_QUESTS,
+    ...BLOOD_GONDOR_QUESTS,
+    ...MORGUL_VALE_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

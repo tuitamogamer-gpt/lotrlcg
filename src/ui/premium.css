@@ -560,3 +560,92 @@
 .mat-hunt-for-gollum {
   --playmat-art: url("/art/premium/anduin.webp");
 }
+
+.redbook[data-playmat="the-blood-of-gondor"],
+.mat-the-blood-of-gondor {
+  --playmat-art: url("/art/premium/mirkwood.webp");
+  --mat-shade: #071e176b;
+  --mat-tint: #173127;
+}
+.redbook[data-playmat="the-morgul-vale"],
+.mat-the-morgul-vale {
+  --playmat-art: url("/art/premium/dol-guldur.webp");
+  --mat-shade: #21172352;
+  --mat-tint: #30252d;
+}
+
+.scenario-state-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  align-items: center;
+  padding: 8px 14px;
+  margin: 0 0 8px;
+  background: #211b18;
+  border: 1px solid #9c85504d;
+  border-radius: 6px;
+  color: #dccba7;
+  font-size: 12px;
+}
+.hidden-card-count {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 110px;
+}
+.hidden-card-count .table-card-back {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 36px;
+  flex: none;
+  transform: none;
+}
+.hidden-card-count strong {
+  display: block;
+  color: #f0dfba;
+  font-size: 13px;
+}
+.tower-counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.tower-counter progress {
+  accent-color: #a54038;
+  width: 100px;
+  height: 9px;
+}
+.scenario-captives {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.scenario-captives button,
+.faceup-shadows button {
+  color: inherit;
+  background: #3e3027;
+  border: 1px solid #a68d5959;
+  border-radius: 4px;
+  padding: 3px 7px;
+  cursor: pointer;
+  font: inherit;
+}
+.faceup-shadows {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  font-size: 10px;
+  color: #e8d6b0;
+}
+.faceup-shadows button {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}

@@ -49,6 +49,7 @@ jobs:
       - run: npm run test:pacing
       - run: npm run test:hotseat
       - run: npm run test:revisions
+      - run: npm run test:against-shadow-finale
       - uses: actions/upload-artifact@v4
         if: always()
         with:

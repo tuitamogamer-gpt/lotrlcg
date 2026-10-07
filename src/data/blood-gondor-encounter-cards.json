@@ -1,0 +1,580 @@
+[
+  {
+    "code": "octgn:01b1d42b-11a4-4030-988d-064673169fec",
+    "octgnid": "01b1d42b-11a4-4030-988d-064673169fec",
+    "name": "Western Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ithilien. Road.",
+    "text": "Western Road gets +5 quest points while it is in the staging area. Travel: The first player must take 1 hidden card to travel here.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 125,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01b1d42b-11a4-4030-988d-064673169fec.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "01b1d42b-11a4-4030-988d-064673169fec",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01b1d42b-11a4-4030-988d-064673169fec.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
+    "octgnid": "2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
+    "name": "Brutal Uruk",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk. Mordor.",
+    "text": "Forced: After Brutual Uruk attacks and destroys a character, that character's controller turns all hidden cards in his play area faceup. Deal a shadow card to each enemy turned faceup by this effect and resolve their attacks as normal.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 121,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 4,
+    "defense": 1,
+    "health": 5,
+    "engagement": 20,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "1",
+      "health": "5",
+      "engagement": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d2e4f42-009d-4fde-ab42-3cd9351a4d0f.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 121,
+        "quantity": 3,
+        "octgnid": "2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d2e4f42-009d-4fde-ab42-3cd9351a4d0f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
+    "octgnid": "5a654416-4449-4d0c-add8-8b3ca04bb401",
+    "name": "Southern Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ithilien. Road.",
+    "text": "Travel: The first player must take 1 hidden card to travel here.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 124,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a654416-4449-4d0c-add8-8b3ca04bb401.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 124,
+        "quantity": 1,
+        "octgnid": "5a654416-4449-4d0c-add8-8b3ca04bb401",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a654416-4449-4d0c-add8-8b3ca04bb401.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "octgnid": "6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "name": "Black Númenorean",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "X is the total number of hidden cards in the game. Forced: At the end of the round, each player must raise his threat by 1 for each hiddien card in his play area.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 119,
+    "quantity": 1,
+    "attack": 5,
+    "defense": 3,
+    "health": 5,
+    "engagement": 35,
+    "victory": 3,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "5",
+      "defense": "3",
+      "health": "5",
+      "engagement": "35",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a4b0ba7-c80b-4580-bc43-d5369b0c44aa.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 119,
+        "quantity": 1,
+        "octgnid": "6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a4b0ba7-c80b-4580-bc43-d5369b0c44aa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
+    "octgnid": "8affd994-f7f5-4341-8437-899f9a31b094",
+    "name": "Lying in Wait",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player turns each hidden card in his play area faceup. Resolve the \"When Revealed\" effects of each encounter cards turned faceup by this effect. If a location is turned faceup, add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 129,
+    "quantity": 4,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8affd994-f7f5-4341-8437-899f9a31b094.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 129,
+        "quantity": 4,
+        "octgnid": "8affd994-f7f5-4341-8437-899f9a31b094",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8affd994-f7f5-4341-8437-899f9a31b094.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+    "octgnid": "8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+    "name": "Northern Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ithilien. Road.",
+    "text": "Travel: The first player must take 1 hidden card to travel here.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 126,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 3,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eb1ca03-da9e-4e84-abf2-090804eeb1aa.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 126,
+        "quantity": 1,
+        "octgnid": "8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eb1ca03-da9e-4e84-abf2-090804eeb1aa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8f106a70-0102-41ad-8752-fb5667748850",
+    "octgnid": "8f106a70-0102-41ad-8752-fb5667748850",
+    "name": "Orc Ambusher",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Mordor.",
+    "text": "Forced: After Orc Ambusher engages you, discard 1 non-objective ally you control, if able. ",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 120,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 10,
+    "shadow": "Attack enemy gets +1 [attack] (+3 [attack] instead if undefended).",
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "10"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f106a70-0102-41ad-8752-fb5667748850.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 120,
+        "quantity": 4,
+        "octgnid": "8f106a70-0102-41ad-8752-fb5667748850",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f106a70-0102-41ad-8752-fb5667748850.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
+    "octgnid": "9b2302dc-3084-447f-8104-a4569fd26e38",
+    "name": "The Cross-roads",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ithilien.",
+    "text": "The current quest card gains siege (and loses battle).\nX is the number of players in the game. Travel: The first player must take 1 hidden card to travel here.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 123,
+    "quantity": 1,
+    "quest": 2,
+    "victory": 3,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "2",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b2302dc-3084-447f-8104-a4569fd26e38.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 123,
+        "quantity": 1,
+        "octgnid": "9b2302dc-3084-447f-8104-a4569fd26e38",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b2302dc-3084-447f-8104-a4569fd26e38.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
+    "octgnid": "9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
+    "name": "Evil Crow",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: When Evil Crow engages a player, that player takes 1 hidden card. ",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 122,
+    "quantity": 2,
+    "threat": 1,
+    "attack": 1,
+    "defense": 0,
+    "health": 2,
+    "engagement": 5,
+    "shadow": "Take 1 hidden card.",
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "0",
+      "health": "2",
+      "engagement": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d2926dc-ab14-492a-8f1e-b07c1b32b2d8.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 122,
+        "quantity": 2,
+        "octgnid": "9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d2926dc-ab14-492a-8f1e-b07c1b32b2d8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
+    "octgnid": "9d58de28-c518-4888-8e91-a52bb5c3e663",
+    "name": "Eastern Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ithilien. Road.",
+    "text": "Eastern Road gets +5 quest points while it is in the staging area. Travel: The first player must take 2 hidden cards to travel here.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 127,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 2,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d58de28-c518-4888-8e91-a52bb5c3e663.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 127,
+        "quantity": 1,
+        "octgnid": "9d58de28-c518-4888-8e91-a52bb5c3e663",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d58de28-c518-4888-8e91-a52bb5c3e663.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+    "octgnid": "ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+    "name": "Faramir",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Noble. Ranger.",
+    "text": "The first player gains control of Faramir.\nCombat Action: Exhaust Faramir to turn 1 hidden card faceup. If that card is an enemy, deal 3 damage to it. If Faramir leaves play, the players have lost the game.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 132,
+    "quantity": 1,
+    "willpower": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab2ac791-b266-43b2-b6ee-0d412a1100bc.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 132,
+        "quantity": 1,
+        "octgnid": "ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab2ac791-b266-43b2-b6ee-0d412a1100bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
+    "octgnid": "eec35e8e-281e-4dc7-8a76-b4823de3cb71",
+    "name": "The Dark Woods",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Archery X.\nX is the number of players in the game. Forced: After The Dark Woods leaves play as an explored location, the first player discards 1 hidden card.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 128,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eec35e8e-281e-4dc7-8a76-b4823de3cb71.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 128,
+        "quantity": 4,
+        "octgnid": "eec35e8e-281e-4dc7-8a76-b4823de3cb71",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eec35e8e-281e-4dc7-8a76-b4823de3cb71.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
+    "octgnid": "f4b35e95-7f32-490d-9591-ac9eb050bb7e",
+    "name": "Conflict at the Crossroads",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Until the end of the phase, Orc enemies engaged with players add their Threat to the staging area. If no Orc enemies are engaged with players, Conflict at the Crossroads gains surge. ",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 131,
+    "quantity": 2,
+    "shadow": "Take 1 hidden card.",
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4b35e95-7f32-490d-9591-ac9eb050bb7e.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 131,
+        "quantity": 2,
+        "octgnid": "f4b35e95-7f32-490d-9591-ac9eb050bb7e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f4b35e95-7f32-490d-9591-ac9eb050bb7e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
+    "octgnid": "fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
+    "name": "Mordor Looms",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Each player takes 1 hidden card.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 130,
+    "quantity": 3,
+    "shadow": "If this attack destoys a characters, that character's controller turns each of his hidden cards faceup.",
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa3a740d-36b7-4fa9-b5d5-6d70aa50f078.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 130,
+        "quantity": 3,
+        "octgnid": "fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa3a740d-36b7-4fa9-b5d5-6d70aa50f078.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+    "octgnid": "fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+    "name": "Lord Alcaron",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Noble.",
+    "text": "The first player gains control of Lord Alcaron.\nAction: Exhaust Lord Alcaron to return an enemy engaged with you to the staging area. If Lord Alcaron leaves play, the players have lost the game.",
+    "is_unique": true,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 133,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "encounter_set": "The Blood of Gondor",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "2",
+      "defense": "2",
+      "health": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa4aaa97-c06d-42d5-b796-2f6200d9a404.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 133,
+        "quantity": 1,
+        "octgnid": "fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa4aaa97-c06d-42d5-b796-2f6200d9a404.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

@@ -1,3 +1,7 @@
+import * as Isengard from "./voice-isengard";
+import * as BloodQuest from "./blood-gondor";
+import { allyEntryResponses } from "./board";
+import * as MorgulQuest from "./morgul-vale";
 import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
@@ -278,6 +282,7 @@ function restoreImmediateShadows(
 ) {
   s.encounterDiscard.push(...enemy.shadows);
   enemy.shadows = [...(combat.immediatePreviousShadows ?? [])];
+  enemy.faceupShadows = combat.immediatePreviousFaceupShadows?.slice();
   enemy.revealedShadowCount = combat.immediatePreviousRevealedShadowCount ?? 0;
   enemy.attacked = !!combat.immediatePreviousAttacked;
   if (combat.immediatePreviousShadowCancelsDamage)
@@ -312,6 +317,9 @@ function handleEffect(s: GameState, e: Effect) {
   if (Druadan.handleDruadanForestEffect(s, e)) return;
   if (Amon.handleAmonDinEffect(s, e)) return;
   if (Osgiliath.assaultOsgiliathEffect(s, e)) return;
+  if (BloodQuest.bloodGondorEffect(s, e)) return;
+  if (MorgulQuest.morgulEffect(s, e)) return;
+  if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
   if (handleFoundationsStoneEffect(s, e)) return;
@@ -342,6 +350,9 @@ function handleEffect(s: GameState, e: Effect) {
   if (handleRedhornPlayerEffect(s, e)) return;
   const u = get(s, e.target);
   switch (e.kind) {
+    case "allyEntryResponses":
+      if (u) allyEntryResponses(s, u, !!e.flag, !!e.value);
+      break;
     case "eventFinish":
       finishPlayedEvent(s, e.target!);
       break;
@@ -352,6 +363,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (!u || card(u.code).type_code !== "enemy") break;
       const previous = {
         shadows: [...u.shadows],
+        faceup: u.faceupShadows?.slice(),
         revealed: u.revealedShadowCount ?? 0,
         attacked: !!u.attacked,
         damage: u.shadowCancelsDamage,
@@ -369,11 +381,13 @@ function handleEffect(s: GameState, e: Effect) {
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
         immediatePreviousShadows: previous.shadows,
+        immediatePreviousFaceupShadows: previous.faceup,
         immediatePreviousRevealedShadowCount: previous.revealed,
         immediatePreviousShadowCancelsDamage: previous.damage,
         immediatePreviousShadowCancelsCombatDamage: previous.combat,
       };
       u.shadows = [];
+      delete u.faceupShadows;
       u.revealedShadowCount = 0;
       delete u.shadowCancelsDamage;
       delete u.shadowCancelsCombatDamage;
@@ -429,6 +443,7 @@ function handleEffect(s: GameState, e: Effect) {
           attackPlayer: prior.attackPlayer,
           immediatePreviousAttacked: prior.immediatePreviousAttacked,
           immediatePreviousShadows: prior.immediatePreviousShadows,
+          immediatePreviousFaceupShadows: prior.immediatePreviousFaceupShadows,
           immediatePreviousRevealedShadowCount:
             prior.immediatePreviousRevealedShadowCount,
           immediatePreviousShadowCancelsDamage:
@@ -834,7 +849,7 @@ function handleEffect(s: GameState, e: Effect) {
       spendEvent(s, e.code!);
       break;
     case "resolveReveal":
-      resolveReveal(s, e.code!, e.source, e.revealOrigin);
+      resolveReveal(s, e.code!, e.source, e.revealOrigin, e.flag);
       break;
     case "afterEncounterRevealed":
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
@@ -862,6 +877,8 @@ function handleEffect(s: GameState, e: Effect) {
           Druadan.druadanForestEncounter(s, e.code, true) ||
             Amon.amonDinEncounter(s, e.code, true) ||
             Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
+            BloodQuest.bloodGondorEncounter(s, e.code, true) ||
+            MorgulQuest.morgulEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1053,6 +1070,7 @@ function handleEffect(s: GameState, e: Effect) {
       rhosgobelQuestStart(s);
       rohanQuestBegins(s);
       heirsQuestStart(s);
+      BloodQuest.bloodGondorQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
       if (s.scenarioId === "dol-guldur" && s.stage === 3)
@@ -1098,6 +1116,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (u) returnAlly(s, u, true);
       break;
     case "endCombat":
+      MorgulQuest.morgulCombatEnd(s);
       eachArea(s, () => {
         for (const enemy of [
           ...allEngaged(s),
@@ -1111,6 +1130,7 @@ function handleEffect(s: GameState, e: Effect) {
         for (const enemy of s.engaged) {
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
+          delete enemy.faceupShadows;
           enemy.revealedShadowCount = 0;
           enemy.attacked = false;
         }
@@ -1158,8 +1178,13 @@ function handleEffect(s: GameState, e: Effect) {
         forced: Effect[] = [];
       eachArea(s, () => {
         passives.push(...bloodPlayerRoundEndEffects(s));
+        passives.push(...Isengard.isengardRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
+        forced.push(
+          ...BloodQuest.bloodGondorRoundEnd(s),
+          ...MorgulQuest.morgulRoundEnd(s),
+        );
         for (const effect of stewardFearRoundEndEffects(s)) {
           (effect.kind === "stewardCounsels" ? passives : forced).push(effect);
         }
@@ -1309,10 +1334,17 @@ function handleEffect(s: GameState, e: Effect) {
     case "startCombat":
       startPhase(s, "defense");
       if (!e.flag && returnMirkwoodCombatStart(s)) break;
+      prepend(
+        s,
+        fx("combatStartEffects"),
+        fx("prepareCombat", { player: firstPlayer(s) }),
+      );
+      BloodQuest.bloodGondorCombatStart(s);
+      rohanCombatBegins(s);
+      break;
+    case "combatStartEffects":
       heirsCombatStart(s);
       Druadan.druadanForestCombatStart(s);
-      prepend(s, fx("prepareCombat", { player: firstPlayer(s) }));
-      rohanCombatBegins(s);
       break;
     case "prepareCombat":
       globalEachSeat(s, () => {
@@ -1503,6 +1535,7 @@ function handleEffect(s: GameState, e: Effect) {
           if (!["defense", "attack"].includes(s.phase)) {
             s.encounterDiscard.push(...skipped.shadows);
             skipped.shadows = [];
+            delete skipped.faceupShadows;
             skipped.revealedShadowCount = 0;
             delete skipped.shadowCancelsDamage;
             delete skipped.shadowCancelsCombatDamage;
@@ -1525,6 +1558,7 @@ function handleEffect(s: GameState, e: Effect) {
           s.engaged = s.engaged.filter((x) => x.id !== enemy.id);
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
+          delete enemy.faceupShadows;
           enemy.revealedShadowCount = 0;
           delete enemy.shadowCancelsDamage;
           delete enemy.shadowCancelsCombatDamage;
@@ -1564,7 +1598,9 @@ function handleEffect(s: GameState, e: Effect) {
           stewardFearAttackFinished(s, enemy, attackPlayer);
           Druadan.druadanForestAttackFinished(s, enemy, completed);
           Amon.amonDinAttackFinished(s, enemy, completed);
+          MorgulQuest.morgulAttackFinished(s, enemy, attackPlayer, completed);
         }
+        BloodQuest.bloodGondorAttackFinished(s, completed);
         prepend(s, ...heirsAttackFinished(s, completed));
       }
       if (enemy) finishEnemyShadows(s, enemy);
@@ -1584,6 +1620,7 @@ function handleEffect(s: GameState, e: Effect) {
         if (!["defense", "attack"].includes(s.phase)) {
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
+          delete enemy.faceupShadows;
           enemy.revealedShadowCount = 0;
           delete enemy.shadowCancelsDamage;
           delete enemy.shadowCancelsCombatDamage;

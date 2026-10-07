@@ -1,3 +1,5 @@
+import { hasSilverLamp } from "./voice-isengard";
+import { heirsShadowDealt } from "./heirs-numenor";
 import { currentQuestCode } from "./quest-state";
 // Original Khazad-dûm encounter sets and the three printed scenarios.
 import encounters from "../data/khazad-dum-encounter-cards.json";
@@ -1458,6 +1460,12 @@ export function khazadEffect(s: GameState, e: Effect) {
         const codes = Array.from({ length: e.count ?? 0 }, () =>
           encounterDraw(s, true),
         ).filter((c): c is string => !!c);
+        u.faceupShadows ??= u.shadows.map(() => false);
+        u.faceupShadows.splice(
+          u.revealedShadowCount ?? 0,
+          0,
+          ...codes.map(() => hasSilverLamp(s, u)),
+        );
         u.shadows.splice(u.revealedShadowCount ?? 0, 0, ...codes);
         prepend(s, ...codes.map((code) => fx("shadowReveal", { code })));
       }
@@ -1466,13 +1474,17 @@ export function khazadEffect(s: GameState, e: Effect) {
       if (u && allEngaged(s).some((enemy) => enemy.id === u.id)) {
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
+        delete u.faceupShadows;
         u.revealedShadowCount = 0;
         u.attacked = false;
         s.phase = "defense";
         delete u.shadowCancelsDamage;
         delete u.shadowCancelsCombatDamage;
         const code = encounterDraw(s, true);
-        if (code) u.shadows.push(code);
+        if (code) {
+          u.shadows.push(code);
+          heirsShadowDealt(s, u);
+        }
         choose(s, `${name(u)} · Additional attack`, [
           ...opts(defendersFor(s, u), (d) => [
             fx("khazadRepeatDefend", { target: u.id, source: d.id }),

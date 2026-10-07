@@ -247,6 +247,7 @@ function removeEncounter(s: GameState, u: Unit) {
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   s.encounterDiscard.push(...u.shadows);
   u.shadows = [];
+  delete u.faceupShadows;
   s.staging = s.staging.filter((x) => x.id !== u.id);
   if (s.activeLocation?.id === u.id) s.activeLocation = null;
   s.extraActiveLocations = (s.extraActiveLocations ?? []).filter(

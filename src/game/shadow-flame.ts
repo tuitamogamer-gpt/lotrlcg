@@ -620,6 +620,7 @@ export function shadowFlameEffect(s: GameState, e: Effect): boolean {
       for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
       s.encounterDiscard.push(...u.shadows);
       u.shadows = [];
+      delete u.faceupShadows;
       u.revealedShadowCount = 0;
       s.encounterDeck.push(u.code, ...(top ? [top] : []));
       shuffle(s, s.encounterDeck);

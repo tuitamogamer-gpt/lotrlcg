@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
+    "octgnid": "23768a0d-bf6c-4405-9b09-ea8fdbfded31",
+    "name": "The Ambush",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add the Crossroads and Black Numenorean to the staging area. Put the Faramir and Lord Alcaron objective allies into play. Shuffle the encounter deck and reveal 1 card from the encounter deck per player and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 117,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Blood of Gondor",
+    "side": "A",
+    "back_name": "The Ambush",
+    "back_text": "At the beginning of the quest phase, each player takes 1 hidden card. At the beginning of the combat phase, each player must either turn each of his hidden cards faceup or take 1 hidden card.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23768a0d-bf6c-4405-9b09-ea8fdbfded31.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23768a0d-bf6c-4405-9b09-ea8fdbfded31.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 117,
+        "quantity": 1,
+        "octgnid": "23768a0d-bf6c-4405-9b09-ea8fdbfded31",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23768a0d-bf6c-4405-9b09-ea8fdbfded31.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+    "octgnid": "d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+    "name": "Captured!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Battle.\nWhen Revealed: Place Faramir and Lord Alcaron under Captured! (they are in play but players cannot gain control of them). Each player turns each of his hudden cards faceup.",
+    "is_unique": false,
+    "pack_code": "BoG",
+    "pack_name": "The Blood of Gondor",
+    "position": 118,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Blood of Gondor",
+    "side": "A",
+    "back_name": "Captured!",
+    "back_text": "At the beginning of the quest phase, each player takes 1 hidden card. If a player has 5 hidden cards, he must turn them faceup. If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe.jpg",
+    "packs": [
+      {
+        "pack_code": "BoG",
+        "pack_name": "The Blood of Gondor",
+        "position": 118,
+        "quantity": 1,
+        "octgnid": "d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

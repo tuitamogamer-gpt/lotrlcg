@@ -777,6 +777,7 @@ export function watcherWaterEffect(s: GameState, e: Effect): boolean {
       );
       s.encounterDiscard.push(...u.shadows);
       u.shadows = [];
+      delete u.faceupShadows;
       for (const a of [...u.attachments]) discardAttachment(s, u, a);
       host.attachments.push({ id: u.id, code: u.code, exhausted: false });
       // Declared attackers still participated. Complete at the original resolution

@@ -1,6 +1,6 @@
 # There & Back Again
 
-A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes the three Core Set quests, all six Shadows of Mirkwood adventures, the three Khazad-dûm quests, The Redhorn Gate, Road to Rivendell, The Watcher in the Water, The Long Dark and Shadow and Flame. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
+A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes 27 original/easy scenarios: the Core Set, Shadows of Mirkwood, Khazad-dûm, Dwarrowdelf, Heirs of Númenor and all six Against the Shadow adventures. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
 
 ## Run
 
@@ -31,6 +31,8 @@ npm run build
 npx playwright install chromium
 npm run test:browser
 ```
+
+`npm run test:against-shadow-finale` checks The Blood of Gondor, The Morgul Vale and The Voice of Isengard player interactions, including reload and responsive layouts.
 
 Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run preview -- --port 5178` serves the production build.
 
@@ -69,7 +71,7 @@ The bundled official-content catalogue combines RingsDB player-card identities w
 - [Solo hot-seat and Red Book desktop update](docs/HOTSEAT-REDBOOK.md)
 - [Visible events and player-controlled progression](docs/PLAYER-CONTROL.md)
 
-Automated play registers only card definitions with implemented rules. All Shadows of Mirkwood player packs, Khazad-dûm player cards, all six Dwarrowdelf player packs, Heirs of Númenor and all six Against the Shadow player packs are integrated, including Assault on Osgiliath, The Blood of Gondor and The Morgul Vale. The exact printed **Defenders of Gondor**, **Dwarves of Durin**, **Elves of Lórien** and **Riders of Rohan** main starter decks and both **Limited Collector’s Edition** 50-card lists can be selected and played. Published recipes retain exact quantities and packaging information. Twenty-two original/easy scenarios are integrated, including Foundations of Stone, all three Heirs of Númenor quests and The Steward's Fear. The remaining five Against the Shadow quests remain pending. The Core campaign remains separate from other campaign variants.
+Automated play registers only card definitions with implemented rules. All Shadows of Mirkwood player packs, Khazad-dûm player cards, all six Dwarrowdelf player packs, Heirs of Númenor and all six Against the Shadow player packs are integrated, including Assault on Osgiliath, The Blood of Gondor and The Morgul Vale. The exact printed **Defenders of Gondor**, **Dwarves of Durin**, **Elves of Lórien** and **Riders of Rohan** main starter decks and both **Limited Collector’s Edition** 50-card lists can be selected and played. Published recipes retain exact quantities and packaging information. Twenty-seven original/easy scenarios are integrated, including all six Against the Shadow quests. All fifteen The Voice of Isengard player designs are also implemented, including Gríma and Saruman; that expansion's quests remain pending. The Core campaign remains separate from other campaign variants.
 
 **Full-library scripting is in progress.** The imported catalogue contains 4,183 reference identities. Run `npm run audit:rules` for the current implemented and pending per-card/per-product inventory in `public/automation-coverage.json`. That inventory reports registrations; semantic rules checks and actual client interactions provide separate evidence. Saga, the remaining cycles/campaigns, standalone scenarios and Nightmare variants remain within the requested scope. The [full scripting implementation plan](docs/FULL-SCRIPTING-PLAN.md) and scenario-specific rule documents record progress and primary sources. Importing a reference alone never grants play support.
 

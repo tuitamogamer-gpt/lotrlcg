@@ -1,3 +1,6 @@
+import * as Isengard from "./voice-isengard";
+import * as BloodQuest from "./blood-gondor";
+import * as MorgulQuest from "./morgul-vale";
 import {
   druadanForestStats,
   druadanForestThreat,
@@ -195,6 +198,7 @@ export const units = (s: GameState) => [
   ...allEngaged(s),
   ...allActiveLocations(s),
   ...(s.assaultOsgiliath?.controlled ?? []),
+  ...(s.bloodGondor?.captured ?? []),
 ];
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
@@ -202,6 +206,7 @@ export const globalUnits = (s: GameState) => [
   ...globalEngaged(s),
   ...foundationsAllAreaUnits(s),
   ...(s.assaultOsgiliath?.controlled ?? []),
+  ...(s.bloodGondor?.captured ?? []),
 ];
 
 export const get = (s: GameState, id?: string) =>
@@ -217,6 +222,7 @@ export function removeShadowCard(enemy: Unit, index: number) {
       (enemy.revealedShadowCount ?? 0) - 1,
     );
   const removed = enemy.shadows.splice(index, 1)[0];
+  enemy.faceupShadows?.splice(index, 1);
   const resolved = enemy.shadows.slice(0, enemy.revealedShadowCount ?? 0);
   if (removedCode === KHAZAD.leader && !resolved.includes(KHAZAD.leader))
     delete enemy.shadowCancelsDamage;
@@ -435,6 +441,7 @@ export function stats(s: GameState, u: Unit) {
         khazadBonus.will +
         elfBonus.will +
         rohanBonus.will +
+        Isengard.isengardWill(s, u) +
         snowBonus.will +
         longDarkBonus.will +
         shadowFlameBonus.will +
@@ -588,10 +595,14 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
       target,
     ),
   );
-  return bloodPlayerCost(
+  return Isengard.isengardCost(
     s,
     c,
-    osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+    bloodPlayerCost(
+      s,
+      c,
+      osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+    ),
   );
 }
 /** Current printed/modifier threat. Suppression only applies in staging. */
@@ -600,7 +611,11 @@ export const threatOf = (s: GameState, u: Unit) =>
     ? 0
     : Math.max(
         0,
-        (druadanForestThreat(s, u) ?? card(u.code).threat ?? 0) +
+        (BloodQuest.bloodGondorThreat(s, u) ??
+          MorgulQuest.morgulBridgeValue(s, u) ??
+          druadanForestThreat(s, u) ??
+          card(u.code).threat ??
+          0) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
           emynMuilThreatBonus(s, u) +
@@ -625,6 +640,7 @@ export const threatOf = (s: GameState, u: Unit) =>
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
   heirsStagingThreatBonus(s) +
+  BloodQuest.bloodGondorStagingBonus(s) +
   s.staging
     .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
     .reduce((n, u) => n + threatOf(s, u), 0);
@@ -640,14 +656,17 @@ export const questWill = (s: GameState) =>
     .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
 
 export const questStat = (s: GameState) =>
+  BloodQuest.bloodGondorQuestStat(s) ??
   assaultOsgiliathQuestStat(s) ??
   heirsQuestStat(s) ??
   druadanPlayerQuestStat(s);
 
 export const locationQuest = (s: GameState, u: Unit) =>
+  MorgulQuest.morgulBridgeValue(s, u) ??
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
     collectorLocationQuestBonus(u) +
+    BloodQuest.bloodGondorLocationBonus(s, u) +
     stewardFearLocationQuestBonus(s, u);
 export const engagementCost = (s: GameState, u: Unit) =>
   heirsEngagementCost(s, u) ??

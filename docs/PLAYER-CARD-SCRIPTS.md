@@ -4,6 +4,8 @@ The reference catalog and the gameplay registry are separate. Catalog import doe
 not grant a card automated support. The fixed fixtures below register only cards
 whose printed abilities have implementations and focused integration tests.
 
+The latest addition is the complete **Voice of Isengard** player set (`07001`–`07015`), with twelve new definitions and three existing Rohan handlers. See [keyword timing, card rules and evidence](VOICE-ISENGARD-PLAYER-SCRIPTS.md).
+
 - `hunt-player-support.ts`: every player card from **The Hunt for Gollum**,
   `02001`–`02010`.
 - `carrock-player-support.ts`: every player card from **Conflict at the Carrock**,

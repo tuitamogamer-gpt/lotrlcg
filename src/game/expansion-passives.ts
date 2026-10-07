@@ -30,6 +30,14 @@ type AttachmentRule = {
   names?: string[];
 };
 const rules: Record<string, AttachmentRule> = {
+  "07008": {
+    type: "hero",
+    sphere: "tactics",
+    traits: ["Rohan"],
+    restricted: 1,
+  },
+  "07009": { type: "hero", sphere: "spirit" },
+  "07010": { type: "hero" },
   "02010": { type: "hero" },
   "02031": { grantsTraits: ["Rohan"] },
   "02002": { type: "hero", attack: 1 },
@@ -222,7 +230,7 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     // Ancestral Armor and Warrior Sword say sphere OR trait.
     if (c.code === "04057") {
       if (!traitMatch && card(u.code).name !== "Aragorn") return false;
-    } else if (["19028", "19089"].includes(c.code)) {
+    } else if (["07008", "19028", "19089"].includes(c.code)) {
       if (!traitMatch && !sphereMatch) return false;
     } else {
       if (rule.traits && !traitMatch) return false;

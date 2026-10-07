@@ -11,7 +11,13 @@ import {
 } from "../src/game/engine";
 import type { GameState, Unit } from "../src/game/types";
 import { discardAttachment, placeEncounter } from "../src/game/board";
-import { activeSeat, seatView, selectSeat, syncSeat } from "../src/game/table";
+import {
+  activeSeat,
+  forOwner,
+  seatView,
+  selectSeat,
+  syncSeat,
+} from "../src/game/table";
 const leadership = STARTERS.find((d) => d.id === "leadership")!;
 function base(easy = false) {
   let s = createGame(21, leadership.cards, leadership.heroes, "leadership", {
@@ -396,7 +402,9 @@ function twoPlayers() {
     } else s = act(s, { type: "KEEP" });
   }
   s.hand = [];
-  seatView(s, 1).hand = [];
+  forOwner(s, 1, () => {
+    s.hand = [];
+  });
   s.staging = [];
   s.encounterDiscard = [];
   s.queue = [];
@@ -455,5 +463,31 @@ test("the surviving first player still places successful-quest progress after a 
     "the group's already-earned progress is still placed",
   );
   assert.equal(s.progress, 0);
+  assert.ok(validateSave(s));
+});
+
+test("a surviving player keeps the cancellation window after Doomed eliminates the revealing player", () => {
+  let s = twoPlayers();
+  s.threat = 49;
+  s.progress = 7;
+  s.phase = "staging";
+  forOwner(s, 1, () => {
+    s.hand = [unit(s, "01050")];
+    s.heroes[0].resources = 2;
+    s.heroes[0].committed = true;
+    s.heroes[0].tempWill = 1;
+  });
+  s.encounterDeck = ["02023", "02016", "02016", "02016", "02016"];
+  s = act(s, { type: "NEXT" });
+  s = act(s, { type: "CHOOSE", id: "look-0" });
+  assert.equal(s.table!.seats[0].eliminated, true);
+  assert.equal(s.table!.first, 1);
+  assert.ok(s.choice!.options.some((o) => o.id === "cancel-1"));
+  assert.ok(validateSave(s));
+  s = act(s, { type: "CHOOSE", id: "cancel-1" });
+  assert.equal(s.stage, 2);
+  assert.equal(s.progress, 0);
+  assert.ok(seatView(s, 1).discard.includes("01050"));
+  assert.equal(s.status, "playing");
   assert.ok(validateSave(s));
 });

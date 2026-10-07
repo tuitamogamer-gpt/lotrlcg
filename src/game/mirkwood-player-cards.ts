@@ -401,6 +401,7 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
           enemy.shadows[index] === e.code,
         "Choose a still face-down shadow on an enemy engaged with you.",
       );
+      enemy.faceupShadows?.splice(index, 1);
       s.encounterDiscard.push(...enemy.shadows.splice(index, 1));
       log(
         s,

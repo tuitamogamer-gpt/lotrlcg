@@ -1,3 +1,6 @@
+import { validateIsengard } from "./voice-isengard";
+import { validateBloodGondorState } from "./blood-gondor-support";
+import { validateMorgulValeState } from "./morgul-vale-support";
 import { validateDruadanForestState } from "./druadan-forest-support";
 import { validateAmonDinState } from "./amon-din-support";
 import { validateAssaultOsgiliathState } from "./assault-osgiliath-support";
@@ -71,6 +74,23 @@ export function validateSave(
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
       (c.immediatePreviousShadows === undefined ||
         codes(c.immediatePreviousShadows)) &&
+      (c.immediatePreviousFaceupShadows === undefined ||
+        (Array.isArray(c.immediatePreviousFaceupShadows) &&
+          c.immediatePreviousFaceupShadows.length ===
+            c.immediatePreviousShadows?.length &&
+          c.immediatePreviousFaceupShadows.every(
+            (v) => typeof v === "boolean",
+          ))) &&
+      (c.bloodKilledPlayers === undefined ||
+        (Array.isArray(c.bloodKilledPlayers) &&
+          c.bloodKilledPlayers.every(
+            (v) =>
+              v &&
+              integer(v.player) &&
+              v.player >= 0 &&
+              v.player < (s.table?.seats.length ?? 1) &&
+              typeof v.shadows === "boolean",
+          ))) &&
       (c.immediatePreviousRevealedShadowCount === undefined ||
         (integer(c.immediatePreviousRevealedShadowCount) &&
           c.immediatePreviousRevealedShadowCount >= 0 &&
@@ -79,6 +99,9 @@ export function validateSave(
       [
         c.redirectedToEnemy,
         c.amonDinKilledCharacter,
+        c.bloodTurnOnKill,
+        c.morgulProgressOnKill,
+        c.morgulKilledCharacter,
         c.osgiliathReturnIfKilled,
         c.osgiliathUndefended,
         c.immediatePendingDeclaration,
@@ -183,7 +206,13 @@ export function validateSave(
           (a.owner === undefined ||
             (integer(a.owner) && a.owner >= 0 && a.owner <= 3)),
       ) &&
+      (u.morgulExtraAttacks === undefined ||
+        (integer(u.morgulExtraAttacks) && u.morgulExtraAttacks >= 0)) &&
       codes(u.shadows) &&
+      (u.faceupShadows === undefined ||
+        (Array.isArray(u.faceupShadows) &&
+          u.faceupShadows.length === u.shadows.length &&
+          u.faceupShadows.every((x) => typeof x === "boolean"))) &&
       (u.revealedShadowCount === undefined ||
         (integer(u.revealedShadowCount) &&
           u.revealedShadowCount >= 0 &&
@@ -246,6 +275,9 @@ export function validateSave(
         !validateHeirsState(s) ||
         !validateDruadanForestState(s) ||
         !validateAmonDinState(s) ||
+        !validateIsengard(s, validUnit as (u: unknown) => boolean) ||
+        !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
+        !validateMorgulValeState(s) ||
         !validateAssaultOsgiliathState(
           s,
           validUnit as (value: unknown) => boolean,

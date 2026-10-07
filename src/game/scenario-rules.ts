@@ -1,3 +1,4 @@
+import { heirsShadowDealt } from "./heirs-numenor";
 import { longDarkEffect } from "./long-dark";
 import { shadowFlameEffect, shadowFlameQuestEnd } from "./shadow-flame";
 import { takePlayerDeck } from "./core";
@@ -313,7 +314,10 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       const wolf = make(s, "01081");
       s.engaged.push(wolf);
       const shadow = encounterDraw(s, true);
-      if (shadow) wolf.shadows.push(shadow);
+      if (shadow) {
+        wolf.shadows.push(shadow);
+        heirsShadowDealt(s, wolf);
+      }
       choose(s, "Wolf Rider attacks from the shadows", [
         ...opts(defendersFor(s), (x) => [
           fx("wolfDefend", { target: wolf.id, source: x.id }),

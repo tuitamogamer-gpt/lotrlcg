@@ -1,3 +1,7 @@
+import { heirsShadowDealt } from "./heirs-numenor";
+import * as Isengard from "./voice-isengard";
+import * as BloodQuest from "./blood-gondor";
+import * as MorgulQuest from "./morgul-vale";
 import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
@@ -475,7 +479,16 @@ export function advanceDefense(s: GameState) {
   if (
     s.queue.some(
       (e) =>
-        e.kind === "khazadRepeatAttack" || (e.kind === "startCombat" && e.flag),
+        [
+          "khazadRepeatAttack",
+          "combatStartEffects",
+          "prepareCombat",
+          "bloodTurnAll",
+          "bloodTurn",
+          "bloodFaceup",
+          "immediateAttack",
+        ].includes(e.kind) ||
+        (e.kind === "startCombat" && e.flag),
     )
   )
     return;
@@ -619,6 +632,7 @@ export function check(s: GameState) {
         seatView(s, trap.owner!).discard.push(trap.code);
       }
       Osgiliath.assaultOsgiliathPlayerEliminated(s, i);
+      BloodQuest.bloodGondorEliminated(s, i);
       s.table!.seats[i].eliminated = true;
       log(
         s,
@@ -657,6 +671,7 @@ export function check(s: GameState) {
       for (const u of s.engaged) {
         s.encounterDiscard.push(...u.shadows);
         u.shadows = [];
+        delete u.faceupShadows;
         u.revealedShadowCount = 0;
         delete u.shadowCancelsDamage;
         delete u.shadowCancelsCombatDamage;
@@ -667,7 +682,9 @@ export function check(s: GameState) {
       s.engaged = [];
       for (const u of leavingCharacters) {
         druadanPlayerLeavesPlay(s, u);
+        Isengard.isengardCharacterLeft(s, u);
         Amon.amonDinCharacterLeftPlay(s, u);
+        BloodQuest.bloodGondorCharacterLeft(s, u);
         Osgiliath.assaultOsgiliathCharacterLeft(s);
       }
       if (s.choice && activeSeat(s) === i) s.choice = null;
@@ -736,6 +753,8 @@ export function check(s: GameState) {
     heirsCheck(s);
     stewardFearCheck(s);
     Amon.amonDinCheck(s);
+    BloodQuest.bloodGondorCheck(s);
+    MorgulQuest.morgulValeCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -811,7 +830,8 @@ export function damage(
   syncAttachmentText(s);
   const u = get(s, id);
   if (!u) return false;
-  value = heirsDamageAmount(s, u, value);
+  if (MorgulQuest.morgulRedirectDamage(s, u, value, context)) return false;
+  value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
   if (value <= 0) return false;
   if (
     value > 0 &&
@@ -852,6 +872,8 @@ export function damage(
   if (card(u.code).type_code !== "location" && u.damage >= stats(s, u).health) {
     stewardFearCharacterDestroyed(s, u, context);
     Amon.amonDinCharacterDestroyed(s, u, context);
+    BloodQuest.bloodGondorCharacterDestroyed(s, u, context);
+    MorgulQuest.morgulCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -945,13 +967,16 @@ export function characterLeftPlay(
   prepend(s, ...shadowFlameCharactersLeft(s));
   druadanPlayerLeavesPlay(s, u);
   heirsCharacterLeaves(s, u);
+  Isengard.isengardCharacterLeft(s, u);
   Amon.amonDinCharacterLeftPlay(s, u);
+  BloodQuest.bloodGondorCharacterLeft(s, u);
   Osgiliath.assaultOsgiliathCharacterLeft(s);
 }
 
 /** Destruction is distinct from discard costs and forced discard effects. */
 export function destroy(s: GameState, u: Unit, destruction = true) {
   if (destruction && shadowFlameIndestructible(u)) return;
+  if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   syncAttachmentText(s);
   const previous = activeSeat(s);
   const lastKnownAttack = stats(s, u).attack;
@@ -1010,6 +1035,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
     log(s, `${c.name} is defeated.`, "good");
     carrockDefeated(s, u);
     if (destruction) Osgiliath.assaultOsgiliathEnemyDefeated(s);
+    if (destruction) MorgulQuest.morgulEnemyDestroyed(s, u);
     if (
       s.scenarioId === "mirkwood" &&
       s.stage === 3 &&
@@ -1100,6 +1126,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   const exploredAttachments = [...u.attachments];
   stewardFearLocationLeft(s, u, true, wasActive);
   Amon.amonDinLocationLeft(s, u, true);
+  BloodQuest.bloodGondorExplored(s, u);
+  MorgulQuest.morgulExplored(s, u);
   foundationsLocationExplored(s, u);
   heirsExplored(s, u);
   khazadExplored(s, u);
@@ -1206,7 +1234,8 @@ export function progress(s: GameState, n: number, playerEffect = false) {
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
-  if (s.scenarioId === "assault-on-osgiliath") return;
+  if (["assault-on-osgiliath", "the-morgul-vale"].includes(s.scenarioId))
+    return;
   s.progress += n;
   if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
     rescuePrisoner(s);
@@ -1235,6 +1264,8 @@ export function advanceQuest(s: GameState) {
   if (s.status !== "playing" || s.stageRevealing || s.phase === "setup") return;
   if (Druadan.advanceDruadanForest(s)) return;
   if (Amon.advanceAmonDin(s)) return;
+  if (BloodQuest.advanceBloodGondor(s)) return;
+  if (MorgulQuest.advanceMorgulVale(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1329,6 +1360,7 @@ export function phaseEnd(s: GameState) {
   eachArea(s, () => redhornPhaseEnd(s));
   prepend(s, ...bloodEffects, ...departures);
   eachArea(s, () => rohanPhaseEnd(s));
+  if (s.bloodGondor) s.bloodGondor.conflict = false;
   eachArea(s, () => heirsPhaseEnd(s));
 }
 
@@ -1514,6 +1546,8 @@ export function engage(s: GameState, u: Unit, optional = false) {
   if (u.preventedAttacks)
     u.feinted = u.preventedAttacks.includes(activeSeat(s));
   log(s, `${name(u)} engages your fellowship.`, "danger");
+  BloodQuest.bloodGondorEngaged(s, u);
+  MorgulQuest.morgulEngaged(s, u, optional);
   longDarkEngaged(s, u);
   foundationsEngaged(s, u);
   heirsEngaged(s, u, activeSeat(s), optional);
@@ -1588,6 +1622,7 @@ export function resolveReveal(
   code: string,
   guarding?: string,
   revealOrigin: Effect["revealOrigin"] = "encounter",
+  doomedResolved = false,
 ) {
   const c = card(code);
   let thalin = false;
@@ -1609,10 +1644,14 @@ export function resolveReveal(
     }
   }
   const doomed = /Doomed (\d+)/.exec(c.text ?? "");
-  if (doomed)
-    eachSeat(s, () => {
-      raiseThreat(s, Number(doomed[1]), "encounter");
-    });
+  if (doomed && !doomedResolved) {
+    prepend(
+      s,
+      fx("resolveReveal", { code, source: guarding, revealOrigin, flag: true }),
+    );
+    Isengard.resolveDoomed(s, Number(doomed[1]), "encounter");
+    return;
+  }
   const emynSurge = emynMuilRevealSurge(s, code);
   if (
     /(?:^|[.\n]\s*)Surge(?:[.\s]|$)/i.test(c.text ?? "") ||
@@ -1812,6 +1851,8 @@ export function placeEncounter(
   if (Druadan.druadanForestEncounter(s, code)) return;
   if (Amon.amonDinEncounter(s, code)) return;
   if (Osgiliath.assaultOsgiliathEncounter(s, code)) return;
+  if (BloodQuest.bloodGondorEncounter(s, code)) return;
+  if (MorgulQuest.morgulEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -1999,6 +2040,7 @@ export function placeEncounter(
 export function allyCanEnter(s: GameState, code: string): boolean {
   const c = card(code);
   if (c.type_code !== "ally") return false;
+  if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir") return false;
   const key = (title: string) =>
     title
       .normalize("NFD")
@@ -2037,6 +2079,29 @@ export function enterAlly(
   );
   u.temporary = temporary;
   s.allies.push(u);
+  if (
+    Isengard.isengardPlayerPlayed(
+      s,
+      u,
+      played && fromHand,
+      fx("allyEntryResponses", {
+        target: u.id,
+        flag: played,
+        value: fromHand ? 1 : 0,
+      }),
+    )
+  )
+    return;
+  allyEntryResponses(s, u, played, fromHand);
+}
+
+/** Entry keywords precede the ally's optional responses, including older direct-choice handlers. */
+export function allyEntryResponses(
+  s: GameState,
+  u: Unit,
+  played: boolean,
+  fromHand: boolean,
+) {
   if (played) longDarkPlayerCardPlayed(s, card(u.code), activeSeat(s));
   if (played) heirsPlayerCardPlayed(s, card(u.code));
   heirsPlayerAllyEntered(s, u, played, fromHand);
@@ -2047,6 +2112,7 @@ export function enterAlly(
   mirkwoodPlayerAllyEntered(s, u, played && fromHand);
   khazadPlayerAllyEntered(s, u);
   rohanAllyEntered(s, u);
+  Isengard.isengardAllyEntered(s, u);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);
@@ -2176,6 +2242,7 @@ export function spendEvent(s: GameState, code: string, id?: string) {
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
   holdPlayedEvent(s, u);
+  Isengard.isengardPlayerPlayed(s, u, true);
   stewardFearEventPlayed(s);
   log(s, `Played ${card(code).name}.`, "good");
   return !shadowFlameEventCancelled(s);
@@ -2209,6 +2276,8 @@ export function shadow(s: GameState, code: string) {
   if (Druadan.druadanForestShadow(s, code)) return;
   if (Amon.amonDinShadow(s, code)) return;
   if (Osgiliath.assaultOsgiliathShadow(s, code)) return;
+  if (BloodQuest.bloodGondorShadow(s, code)) return;
+  if (MorgulQuest.morgulShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;
@@ -2272,6 +2341,7 @@ export function shadow(s: GameState, code: string) {
         const extra = encounterDraw(s, true);
         if (enemy && extra) {
           enemy.shadows.push(extra);
+          heirsShadowDealt(s, enemy);
           effects.push(fx("shadowReveal", { code: extra }));
         }
       }

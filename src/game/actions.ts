@@ -1,3 +1,6 @@
+import * as Isengard from "./voice-isengard";
+import * as BloodQuest from "./blood-gondor";
+import * as MorgulQuest from "./morgul-vale";
 import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
@@ -503,6 +506,10 @@ export function canPlay(
     return "This ally cannot enter play because of its unique title or a scenario restriction.";
   if (c.code === "01023" && !s.hand.some((a) => allyCanEnter(s, a.code)))
     return "You need an eligible ally in hand.";
+  if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir")
+    return "Faramir cannot be used in The Morgul Vale.";
+  const isengardProblem = Isengard.isengardEventProblem(s, c.code);
+  if (isengardProblem) return isengardProblem;
   const druadanProblem = druadanPlayerPlayProblem(s, c.code);
   const morgulProblem = morgulPlayerPlayProblem(s, c.code);
   if (morgulProblem) return morgulProblem;
@@ -757,7 +764,7 @@ export function eventReplayPayments(
   if (u.code === "01051" && target === undefined) return [];
   const definition = card(u.code),
     effectiveCost = replayEventCost(s, u, target, amount),
-    c = { ...definition, cost: effectiveCost },
+    c = { ...definition, cost: effectiveCost, playOrigin: "discard" as const },
     payers = eligiblePayers(s, c, get(s, target)),
     cost = playCost(s, c, get(s, target));
   const result: Record<string, number>[] = [];
@@ -863,7 +870,7 @@ export function playEventFromDiscardEffect(
   );
   pay(
     s,
-    { ...card(preview.code), cost: effectiveCost },
+    { ...card(preview.code), cost: effectiveCost, playOrigin: "discard" },
     options.payment,
     get(s, options.target),
   );
@@ -947,6 +954,8 @@ function resolvePlayerCard(
       bottom,
     );
   }
+  if (c.type_code !== "ally")
+    Isengard.isengardPlayerPlayed(s, u, played && fromHand);
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
     longDarkPlayerCardPlayed(s, c, activeSeat(s));
@@ -1130,7 +1139,12 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
           .flatMap((p) => engagedEnemies(s, p))
           .map((e) => [e.id, e]),
       ).values(),
-    ].filter((enemy) => u.code !== "01052" || shadowFlameCanMove(s, enemy));
+    ].filter(
+      (enemy) =>
+        u.code !== "01052" ||
+        (shadowFlameCanMove(s, enemy) &&
+          !MorgulQuest.morgulCannotLeave(s, enemy)),
+    );
   if (u.code === "01063") return allCharacters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
     return s.staging.filter((a) => card(a.code).type_code === "enemy");
@@ -1207,6 +1221,14 @@ export const responseCards = [
 
 export function availableAbilities(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
+  const bloodScenarioLabel = BloodQuest.bloodGondorAbilityLabel(u.code);
+  if (bloodScenarioLabel)
+    return [
+      {
+        label: bloodScenarioLabel,
+        disabled: !!BloodQuest.bloodGondorAbilityProblem(s, u),
+      },
+    ];
   const heirsScenarioLabel = heirsAbilityLabel(u.code);
   if (heirsScenarioLabel)
     return [
@@ -1236,6 +1258,12 @@ export function availableAbilities(s: GameState, u: Unit) {
       : [];
   }
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const isengardLabel = Isengard.isengardAbilityLabel(u.code);
+  if (isengardLabel)
+    results.push({
+      label: isengardLabel,
+      disabled: !!Isengard.isengardAbilityProblem(s, u),
+    });
   const osgiliathLabel = Osgiliath.assaultOsgiliathAbilityLabel(u.code);
   if (osgiliathLabel)
     results.push({
@@ -1797,7 +1825,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (
         u &&
         !action.attachmentId &&
-        (Osgiliath.useAssaultOsgiliathAbility(s, u) ||
+        (BloodQuest.bloodGondorAbility(s, u) ||
+          Osgiliath.useAssaultOsgiliathAbility(s, u) ||
           useFoundationsAbility(s, u) ||
           useHeirsAbility(s, u))
       )
@@ -1918,6 +1947,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        BloodQuest.bloodGondorTravel(s, u) ??
         Amon.amonDinTravelEffects(s, u) ??
         Osgiliath.assaultOsgiliathTravelEffects(s, u) ??
         (Druadan.druadanForestTravelEffects(s, u).length
@@ -2120,6 +2150,25 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.bloodGondor
+      ? {
+          hiddenCards: playerOrder(s).map((player) => ({
+            player,
+            count: s.bloodGondor!.hidden[player]?.length ?? 0,
+          })),
+          captives: s.bloodGondor.captured.map((u) => ({
+            id: u.id,
+            code: u.code,
+            name: card(u.code).name,
+          })),
+        }
+      : {}),
+    ...(s.morgulVale
+      ? {
+          towerProgress: MorgulQuest.morgulTowerProgress(s),
+          defeatedCaptains: s.morgulVale.defeated,
+        }
+      : {}),
     ...(s.amonDin
       ? {
           villagers: {
@@ -2186,6 +2235,10 @@ export function publicState(s: GameState) {
                 ({ shadows, facedownCard: _facedown, ...u }) => ({
                   ...u,
                   shadowCount: shadows.length,
+                  faceupShadowCards: Isengard.faceupShadowCards({
+                    ...u,
+                    shadows,
+                  }),
                 }),
               ),
               passed: s.table!.passed.includes(i),
@@ -2231,6 +2284,15 @@ export function publicState(s: GameState) {
           pendingUnderworldCount: s.stewardFear.pendingUnderworld.length,
         }
       : {}),
+    outOfPlay:
+      s.isengard?.outOfPlay.flatMap((g) =>
+        g.cards.map((u) => ({
+          id: u.id,
+          code: u.code,
+          name: name(u),
+          source: g.source,
+        })),
+      ) ?? [],
     staging: s.staging.map((u) => ({
       id: u.id,
       code: u.code,
@@ -2239,6 +2301,7 @@ export function publicState(s: GameState) {
       ...stats(s, u),
       threat: threatOf(s, u),
       progress: u.progress,
+      faceupShadowCards: Isengard.faceupShadowCards(u),
       damage: u.damage,
       ...(s.stewardFear
         ? { underworldCount: s.stewardFear.underneath[u.id]?.length ?? 0 }
@@ -2257,6 +2320,7 @@ export function publicState(s: GameState) {
       ...stats(s, u),
       damage: u.damage,
       attacked: u.attacked,
+      faceupShadowCards: Isengard.faceupShadowCards(u),
     })),
     activeLocations: allActiveLocations(s).map((l) => ({
       id: l.id,

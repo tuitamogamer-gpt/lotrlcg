@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 377,
-    "heroes": 45,
-    "deckCards": 332,
-    "encounterCards": 335,
-    "scenarios": 25,
+    "playerCards": 389,
+    "heroes": 46,
+    "deckCards": 343,
+    "encounterCards": 364,
+    "scenarios": 27,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -32,17 +32,19 @@
       "the-stewards-fear",
       "the-druadan-forest",
       "encounter-at-amon-din",
-      "assault-on-osgiliath"
+      "assault-on-osgiliath",
+      "the-blood-of-gondor",
+      "the-morgul-vale"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 799,
-    "pending": 3384
+    "scripted": 845,
+    "pending": 3338
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 50
+    "scripted": 54
   },
   "registeredCodes": [
     "01001",
@@ -386,8 +388,20 @@
     "06142",
     "06143",
     "07001",
+    "07002",
+    "07003",
+    "07004",
+    "07005",
     "07006",
     "07007",
+    "07008",
+    "07009",
+    "07010",
+    "07011",
+    "07012",
+    "07013",
+    "07014",
+    "07015",
     "08001",
     "08002",
     "08004",
@@ -479,8 +493,10 @@
     "22142",
     "22143",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
+    "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
@@ -494,17 +510,24 @@
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
+    "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
+    "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+    "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9006",
@@ -563,6 +586,8 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9085",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9086",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
+    "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
+    "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
@@ -768,8 +793,11 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
+    "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
+    "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
@@ -778,30 +806,50 @@
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
+    "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
+    "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+    "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+    "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
+    "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
+    "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
+    "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
+    "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+    "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+    "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
+    "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
+    "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
@@ -1268,7 +1316,7 @@
     {
       "product": "the-blood-of-gondor",
       "total": 27,
-      "scripted": 10,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -1534,7 +1582,7 @@
     {
       "product": "the-morgul-vale",
       "total": 27,
-      "scripted": 10,
+      "scripted": 27,
       "player": 10,
       "playerScripted": 10
     },
@@ -1709,9 +1757,9 @@
     {
       "product": "the-voice-of-isengard",
       "total": 67,
-      "scripted": 3,
+      "scripted": 15,
       "player": 15,
-      "playerScripted": 3
+      "playerScripted": 15
     },
     {
       "product": "the-voice-of-isengard-nightmare",
@@ -4699,7 +4747,7 @@
       "name": "Gríma",
       "type": "hero",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4707,7 +4755,7 @@
       "name": "Saruman",
       "type": "ally",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4715,7 +4763,7 @@
       "name": "Orthanc Guard",
       "type": "ally",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4723,7 +4771,7 @@
       "name": "Isengard Messenger",
       "type": "ally",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4747,7 +4795,7 @@
       "name": "Rohan Warhorse",
       "type": "attachment",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4755,7 +4803,7 @@
       "name": "Silver Lamp",
       "type": "attachment",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4763,7 +4811,7 @@
       "name": "Keys of Orthanc",
       "type": "attachment",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4771,7 +4819,7 @@
       "name": "Legacy of Númenor",
       "type": "event",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4779,7 +4827,7 @@
       "name": "Deep Knowledge",
       "type": "event",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4787,7 +4835,7 @@
       "name": "The Wizards's Voice",
       "type": "event",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4795,7 +4843,7 @@
       "name": "Power of Orthanc",
       "type": "event",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -4803,7 +4851,7 @@
       "name": "The Seeing-stone",
       "type": "event",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -10691,7 +10739,7 @@
       "name": "Western Road",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -11211,7 +11259,7 @@
       "name": "Terror Drives Them",
       "type": "treachery",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -13363,7 +13411,7 @@
       "name": "The Ambush",
       "type": "quest",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -14251,7 +14299,7 @@
       "name": "Brutal Uruk",
       "type": "enemy",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -14563,7 +14611,7 @@
       "name": "The Rearguard",
       "type": "quest",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -15675,7 +15723,7 @@
       "name": "Morgul Road",
       "type": "location",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -15723,7 +15771,7 @@
       "name": "Nazgûl of Minas Morgul",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -15939,7 +15987,7 @@
       "name": "Impenetrable Fog",
       "type": "treachery",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -16307,7 +16355,7 @@
       "name": "Sleepless Malice",
       "type": "treachery",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -17027,7 +17075,7 @@
       "name": "Lord Alcaron",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -17035,7 +17083,7 @@
       "name": "The Betrayal",
       "type": "quest",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -20971,7 +21019,7 @@
       "name": "Southern Road",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -21987,7 +22035,7 @@
       "name": "Morgul Tracker",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -22075,7 +22123,7 @@
       "name": "Black Númenorean",
       "type": "enemy",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -24931,7 +24979,7 @@
       "name": "The Dead City Looms",
       "type": "treachery",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -24955,7 +25003,7 @@
       "name": "Lying in Wait",
       "type": "treachery",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -24995,7 +25043,7 @@
       "name": "The Morgul Rider",
       "type": "quest",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -25291,7 +25339,7 @@
       "name": "Northern Road",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -25323,7 +25371,7 @@
       "name": "Orc Ambusher",
       "type": "enemy",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -25811,7 +25859,7 @@
       "name": "The White Bridge",
       "type": "location",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -26227,7 +26275,7 @@
       "name": "The Cross-roads",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -26411,7 +26459,7 @@
       "name": "Evil Crow",
       "type": "enemy",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -26435,7 +26483,7 @@
       "name": "Eastern Road",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -26867,7 +26915,7 @@
       "name": "Murzag",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -27155,7 +27203,7 @@
       "name": "To the Tower",
       "type": "objective",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -27499,7 +27547,7 @@
       "name": "Faramir",
       "type": "objective-ally",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -27683,7 +27731,7 @@
       "name": "Morgul Bodyguard",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -29699,7 +29747,7 @@
       "name": "Morgul Sorcerer",
       "type": "enemy",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -31155,7 +31203,7 @@
       "name": "Captured!",
       "type": "quest",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -32219,7 +32267,7 @@
       "name": "Morgul Vale",
       "type": "location",
       "pack": "The Morgul Vale",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-morgul-vale"
     },
     {
@@ -33499,7 +33547,7 @@
       "name": "The Dark Woods",
       "type": "location",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -34067,7 +34115,7 @@
       "name": "Conflict at the Crossroads",
       "type": "treachery",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -34523,7 +34571,7 @@
       "name": "Mordor Looms",
       "type": "treachery",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -34531,7 +34579,7 @@
       "name": "Lord Alcaron",
       "type": "objective-ally",
       "pack": "The Blood of Gondor",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-blood-of-gondor"
     },
     {
@@ -35465,15 +35513,15 @@
       "id": "E03.8",
       "name": "The Blood of Gondor (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-blood-of-gondor",
+      "state": "scripted"
     },
     {
       "id": "E03.9",
       "name": "The Morgul Vale (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-morgul-vale",
+      "state": "scripted"
     },
     {
       "id": "E04.1",
@@ -36956,15 +37004,15 @@
       "id": "Q03.8",
       "name": "The Blood of Gondor",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-blood-of-gondor",
+      "state": "scripted"
     },
     {
       "id": "Q03.9",
       "name": "The Morgul Vale",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-morgul-vale",
+      "state": "scripted"
     },
     {
       "id": "Q04.1",

@@ -1,3 +1,7 @@
+import { isengardShadowDealt } from "./voice-isengard";
+import { bloodGondorArchery } from "./blood-gondor";
+import { morgulShadowDealt } from "./morgul-vale";
+import { MORGUL_VALE } from "./morgul-vale-support";
 import { druadanForestArcheryTargets } from "./druadan-forest";
 import { assaultOsgiliathArcheryBonus } from "./assault-osgiliath";
 // Heirs of Númenor: physical objectives, branching quests and explicit encounter decisions.
@@ -368,7 +372,7 @@ export const heirsEngagementCost = (
     ? 0
     : null;
 export const heirsCannotHaveAttachments = (u: Unit) =>
-  u.code === H.mumak && !u.blanked;
+  [H.mumak, MORGUL_VALE.nazgul].includes(u.code) && !u.blanked;
 export const heirsLocationProgressBlocked = (s: GameState, u: Unit) =>
   u.code === H.camp &&
   !u.blanked &&
@@ -399,6 +403,8 @@ export function heirsPhaseEnd(s: GameState) {
   if (q) q.phaseRabble = {};
 }
 export function heirsShadowDealt(s: GameState, enemy: Unit) {
+  morgulShadowDealt(s, enemy);
+  isengardShadowDealt(s, enemy);
   if (enemy.code === H.rabble && !enemy.blanked) {
     const counts = (state(s).phaseRabble ??= {});
     counts[enemy.id] = (counts[enemy.id] ?? 0) + 2;
@@ -611,7 +617,9 @@ export function heirsEngaged(
 export function heirsCombatStart(s: GameState) {
   syncAttachmentText(s);
   let amount =
-    active(s, H.assassin).length * 2 + assaultOsgiliathArcheryBonus(s);
+    active(s, H.assassin).length * 2 +
+    assaultOsgiliathArcheryBonus(s) +
+    bloodGondorArchery(s);
   amount += active(s, H.mercenaries).length * playerOrder(s).length;
   const icons = ["leadership", "tactics", "spirit", "lore"].filter((sphere) =>
     allHeroes(s).some((h) => hasResourceIcon(h, sphere)),

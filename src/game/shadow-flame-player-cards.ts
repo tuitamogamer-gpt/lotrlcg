@@ -589,6 +589,7 @@ export function handleShadowFlamePlayerEffect(
         discardAttachment(s, enemy, a, true);
       s.encounterDiscard.push(...enemy.shadows);
       enemy.shadows = [];
+      delete enemy.faceupShadows;
       enemy.revealedShadowCount = 0;
       const controller = ownerOf(s, enemy);
       forOwner(s, controller, () => {
