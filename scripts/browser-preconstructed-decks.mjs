@@ -69,7 +69,12 @@ try {
     await choice.locator(".deck-choice-select").click();
     const images = choice.locator(".deck-hero-triptych img");
     assert.equal(await images.count(), 3);
-    for (const img of await images.all())
+    for (const img of await images.all()) {
+      assert.match(
+        await img.getAttribute("src"),
+        /^\/cards\//,
+        `${d.id}: hero portraits must use local card art`,
+      );
       assert.ok(
         await img.evaluate(async (i) => {
           i.loading = "eager";
@@ -77,6 +82,7 @@ try {
           return i.naturalWidth > 0;
         }),
       );
+    }
     assert.deepEqual(
       await choice.locator(".deck-hero-triptych strong").allTextContents(),
       d.heroes.map((h) => card(h).name),
