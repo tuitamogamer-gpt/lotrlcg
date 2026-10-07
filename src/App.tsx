@@ -320,6 +320,21 @@ const phaseTitle = (s: GameState) =>
 const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
 function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
   const payers = eligiblePayers(s, c, target);
+  if (["01036", "08143"].includes(c.code)) {
+    const heroes = payers
+      .filter((u) => u.resources > 0 && s.heroes.some((h) => h.id === u.id))
+      .slice(0, 3);
+    const payment: Record<string, number> = Object.fromEntries(
+      payers.map((u) => [u.id, heroes.includes(u) ? 1 : 0]),
+    );
+    let remaining = cost - heroes.length;
+    for (const h of heroes) {
+      const extra = Math.min(Math.max(0, remaining), h.resources - 1);
+      payment[h.id] += extra;
+      remaining -= extra;
+    }
+    return payment;
+  }
   const single = singlePoolCard(c)
     ? payers.find((u) => u.resources >= cost)
     : null;
@@ -3510,6 +3525,11 @@ export default function App() {
                   className="primary"
                   disabled={
                     (needsTarget(playCard) && !target) ||
+                    (["01036", "08143"].includes(playCard.code) &&
+                      Object.entries(payment).filter(
+                        ([id, n]) =>
+                          n > 0 && game.heroes.some((h) => h.id === id),
+                      ).length !== 3) ||
                     (["01067", "06083"].includes(playCard.code) &&
                       (!Number.isInteger(xCost) ||
                         xCost < 1 ||
@@ -3632,6 +3652,9 @@ export default function App() {
                 )}{" "}
                 resources
               </h3>
+              {["01036", "08143"].includes(playCard.code) && (
+                <p>Use resources from three different heroes.</p>
+              )}
               {["01067", "06083"].includes(playCard.code) && (
                 <label className="field-label">
                   Choose X
@@ -4365,7 +4388,7 @@ function CharacterCard({
         <span className="card-table-tokens">
           {(c.type_code === "hero" ||
             u.code === CARROCK.grimbeorn ||
-            u.code === "02059") && (
+            ["02059", "08146"].includes(u.code)) && (
             <TableToken kind="resource" value={u.resources} />
           )}
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}

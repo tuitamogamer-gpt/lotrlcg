@@ -1,5 +1,6 @@
 import * as Isengard from "./voice-isengard";
 import { ringMakerSecrecy } from "./ring-maker-player";
+import { finalRingFollowFirst } from "./ring-maker-final-player";
 import * as BloodQuest from "./blood-gondor";
 import * as MorgulQuest from "./morgul-vale";
 import { playerOrder } from "./table";
@@ -385,6 +386,7 @@ export function restrictAttachments(s: GameState, u: Unit) {
 
 export function followFirstPlayer(s: GameState) {
   if (!s.table) return;
+  finalRingFollowFirst(s);
   rhosgobelFollowFirstPlayer(s);
   const mendor = allCharacters(s).find((u) => u.code === "rc135");
   if (!mendor || ownerOf(s, mendor) === s.table.first) return;
@@ -499,6 +501,7 @@ export function stats(s: GameState, u: Unit) {
       : Math.max(
           0,
           (c.defense ?? 0) +
+            (u.roundDefense ?? 0) +
             foundationsBonus.defense +
             heirsScenarioBonus.defense +
             druadanScenarioBonus.defense +
@@ -613,7 +616,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
 }
 /** Current printed/modifier threat. Suppression only applies in staging. */
 export const threatOf = (s: GameState, u: Unit) =>
-  u.suppressed && s.staging.some((x) => x.id === u.id)
+  (u.suppressed || u.ignoreThreatRound === s.round) &&
+  s.staging.some((x) => x.id === u.id)
     ? 0
     : Math.max(
         0,
@@ -768,9 +772,18 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
           !h.blanked) ||
         (c.sphere_code === "leadership" && carrockPaysLeadership(s, h)),
     );
-  return hasTraitCard(c, "Creature")
-    ? [...heroes, ...s.allies.filter((u) => u.code === "02059")]
-    : heroes;
+  return [
+    ...heroes,
+    ...s.allies.filter(
+      (u) =>
+        !u.blanked &&
+        ((u.code === "02059" && hasTraitCard(c, "Creature")) ||
+          (u.code === "08146" &&
+            hasTraitCard(c, "Ent") &&
+            c.playOrigin !== "deck" &&
+            c.playOrigin !== "discard")),
+    ),
+  ];
 }
 
 /** Card and ability costs share spending restrictions; transfers and losses do not. */
@@ -786,6 +799,7 @@ export function spendResources(s: GameState, hero: Unit, amount: number) {
     "Orc Vanguard prevents this hero from spending resources.",
   );
   hero.resources -= amount;
+  if (amount > 0) hero.resourcesSpentRound = s.round;
 }
 
 const hasTraitCard = (c: Card, trait: string) =>
@@ -793,6 +807,11 @@ const hasTraitCard = (c: Card, trait: string) =>
 
 /** Response offers must use the same sphere and active-location cost as payment. */
 export const canPay = (s: GameState, c: Card) =>
+  (!["01036", "08143"].includes(c.code) ||
+    (playCost(s, c) >= 3 &&
+      eligiblePayers(s, c).filter(
+        (h) => h.resources > 0 && s.heroes.some((u) => u.id === h.id),
+      ).length >= 3)) &&
   !khazadCannotPlay(s) &&
   !returnMirkwoodCannotPlay(s) &&
   !(c.type_code === "event" && emynMuilEventsBlocked(s)) &&
@@ -822,6 +841,14 @@ export function pay(
   );
   let cost = playCost(s, c, target);
   const payers = eligiblePayers(s, c, target);
+  if (["01036", "08143"].includes(c.code))
+    requireRule(
+      payment &&
+        Object.entries(payment).filter(
+          ([id, n]) => n > 0 && s.heroes.some((h) => h.id === id),
+        ).length === 3,
+      "This card must use resources from three different heroes' pools.",
+    );
   requireRule(payers.length > 0, "A matching sphere hero is required.");
   requireRule(
     payers.reduce((n, h) => n + h.resources, 0) >= cost,
@@ -845,11 +872,15 @@ export function pay(
       requireRule(h && h.resources >= v, "Invalid resource payment.");
     }
     for (const [id, v] of Object.entries(payment))
-      payers.find((h) => h.id === id)!.resources -= v;
+      spendResources(
+        s,
+        payers.find((h) => h.id === id)!,
+        v,
+      );
   } else {
     for (const h of [...payers].sort((a, b) => b.resources - a.resources)) {
       const n = Math.min(cost, h.resources);
-      h.resources -= n;
+      spendResources(s, h, n);
       cost -= n;
     }
   }

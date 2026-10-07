@@ -1,4 +1,10 @@
 import { ringMakerEffect, ringMakerRoundEnd } from "./ring-maker-player";
+import {
+  finalRingEffect,
+  finalRingDefenseFinished,
+  finalRingShadowOptions,
+  finalRingUndefendedTargets,
+} from "./ring-maker-final-player";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
 import { allyEntryResponses } from "./board";
@@ -316,6 +322,7 @@ export function handle(s: GameState, e: Effect) {
 function handleEffect(s: GameState, e: Effect) {
   if (dunlandEffect(s, e)) return;
   if (ringMakerEffect(s, e)) return;
+  if (finalRingEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
   if (Druadan.handleDruadanForestEffect(s, e)) return;
@@ -495,7 +502,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanQuestSucceeded(s);
       break;
     case "successfulQuestProgress":
-      progress(s, e.value ?? 0);
+      progress(s, e.value ?? 0, false, true);
       break;
     case "allocateActiveProgress": {
       const pending = s.queue.length;
@@ -510,6 +517,7 @@ function handleEffect(s: GameState, e: Effect) {
                   fx("continueProgress", {
                     value: e.count,
                     flag: e.flag,
+                    text: e.text,
                     player: e.player,
                   }),
                 ]
@@ -526,13 +534,14 @@ function handleEffect(s: GameState, e: Effect) {
           fx("continueProgress", {
             value: e.count,
             flag: e.flag,
+            text: e.text,
             player: e.player,
           }),
         );
       break;
     }
     case "continueProgress":
-      progress(s, e.value ?? 0, !!e.flag);
+      progress(s, e.value ?? 0, !!e.flag, e.text === "quest");
       break;
     case "activeLocationEffect": {
       const locations = allActiveLocations(s);
@@ -858,7 +867,15 @@ function handleEffect(s: GameState, e: Effect) {
       spendEvent(s, e.code!);
       break;
     case "resolveReveal":
-      resolveReveal(s, e.code!, e.source, e.revealOrigin, e.flag, e.count);
+      resolveReveal(
+        s,
+        e.code!,
+        e.source,
+        e.revealOrigin,
+        e.flag,
+        e.count,
+        e.value,
+      );
       break;
     case "afterEncounterRevealed":
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
@@ -1504,15 +1521,23 @@ function handleEffect(s: GameState, e: Effect) {
         choose(
           s,
           `Assign ${power} damage`,
-          opts([...s.heroes, ...druadanPlayerUndefendedTargets(s)], (h) => [
-            fx("combatDamage", {
-              target: h.id,
-              source: enemy.id,
-              value: power,
-            }),
-          ]),
-          druadanPlayerUndefendedTargets(s).length
-            ? "Assign all damage to one hero or an eligible White Tower Watchman."
+          opts(
+            [
+              ...s.heroes,
+              ...druadanPlayerUndefendedTargets(s),
+              ...finalRingUndefendedTargets(s),
+            ],
+            (h) => [
+              fx("combatDamage", {
+                target: h.id,
+                source: enemy.id,
+                value: power,
+              }),
+            ],
+          ),
+          druadanPlayerUndefendedTargets(s).length ||
+            finalRingUndefendedTargets(s).length
+            ? "Assign all damage to one hero or an eligible ally."
             : "All undefended damage goes to one hero.",
         );
       log(
@@ -1585,6 +1610,7 @@ function handleEffect(s: GameState, e: Effect) {
           }
         }
       }
+      finalRingDefenseFinished(s);
       for (const id of s.combat?.defenderIds ??
         (s.combat?.defenderId ? [s.combat.defenderId] : [])) {
         const d = get(s, id);
@@ -1695,6 +1721,11 @@ function handleEffect(s: GameState, e: Effect) {
 }
 
 export function shadowResponse(s: GameState, code: string) {
+  const erkenbrand =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : finalRingShadowOptions(s, code);
   const eligible = playerOrder(s).filter((i) => {
     const p = seatView(s, i);
     return (
@@ -1711,12 +1742,13 @@ export function shadowResponse(s: GameState, code: string) {
   const watcher = roadRivendellCannotCancel(s)
     ? []
     : marshPlayerShadowOptions(s, code);
-  if (eligible.length || brand.length || watcher.length)
+  if (eligible.length || brand.length || watcher.length || erkenbrand.length)
     choose(
       s,
       "A shadow falls",
       [
         ...brand,
+        ...erkenbrand,
         ...watcher,
         ...eligible.map((player) => ({
           id: s.table ? `cancel-${player}` : "cancel",

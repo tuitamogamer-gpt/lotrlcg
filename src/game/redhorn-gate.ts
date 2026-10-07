@@ -14,6 +14,7 @@ import {
   opts,
   prepend,
   shuffle,
+  spendResources,
   skip,
   stats,
   units,
@@ -407,7 +408,7 @@ export function redhornEffect(s: GameState, e: Effect) {
       break;
     case "redhornFanuidholPay":
       if (u && u.resources) {
-        u.resources--;
+        spendResources(s, u, 1);
         state(s).fanuidholPaid = [...(state(s).fanuidholPaid ?? []), u.id];
       }
       break;

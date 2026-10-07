@@ -1,4 +1,11 @@
 import {
+  finalRingPlayProblem,
+  finalRingPlayTargets,
+  finalRingEventCost,
+  finalRingAbilityLabel,
+  finalRingAbilityProblem,
+} from "./ring-maker-final-player";
+import {
   ringMakerEventPlayed,
   ringMakerPlayProblem,
   ringMakerPlayTargets,
@@ -203,7 +210,7 @@ import {
 } from "./khazad-dum";
 // Player actions, legality checks and the public state projection.
 import { card, name, plain } from "./cards";
-import type { Action, Effect, GameState, Unit } from "./types";
+import type { Action, Card, Effect, GameState, Unit } from "./types";
 
 import {
   firstPlayer,
@@ -478,10 +485,17 @@ export function optionalEngagementProblem(
 export function canPlay(
   s: GameState,
   u: Unit,
-  options: { noCost?: boolean; resolvingEffect?: boolean; target?: Unit } = {},
+  options: {
+    noCost?: boolean;
+    resolvingEffect?: boolean;
+    target?: Unit;
+    playOrigin?: Card["playOrigin"];
+  } = {},
 ): string | null {
   syncAttachmentText(s);
-  const c = card(u.code);
+  const c = options.playOrigin
+    ? { ...card(u.code), playOrigin: options.playOrigin }
+    : card(u.code);
   const printedPhase =
     c.type_code === "event"
       ? /(?:^|>)\s*(Combat|Quest|Refresh|Planning|Resource|Travel|Encounter) Action:/i
@@ -536,6 +550,8 @@ export function canPlay(
   const heirsProblem = heirsPlayerPlayProblem(s, c.code);
   const ringMakerProblem = ringMakerPlayProblem(s, c.code, u.id);
   if (ringMakerProblem) return ringMakerProblem;
+  const finalRingProblem = finalRingPlayProblem(s, c.code);
+  if (finalRingProblem) return finalRingProblem;
   const dunlandProblem = dunlandPlayProblem(s, c.code);
   if (dunlandProblem) return dunlandProblem;
   if (heirsProblem) return heirsProblem;
@@ -607,8 +623,15 @@ export function canPlay(
     !allCharacters(s).some((h) => rhosgobelHealingAllowed(s, h))
   )
     return "There is no damaged character that can be healed.";
-  if (u.code === "01036" && s.heroes.length < 3)
-    return "Thicket of Spears needs 3 heroes’ resource pools in the same deck.";
+  if (
+    ["01036", "08143"].includes(u.code) &&
+    (options.noCost ||
+      playCost(s, c) < 3 ||
+      eligiblePayers(s, c).filter(
+        (h) => h.resources > 0 && s.heroes.some((u) => u.id === h.id),
+      ).length < 3)
+  )
+    return "This card needs resources from three different heroes' pools.";
   const requiredCost = options.target
     ? playCost(s, c, options.target)
     : c.type_code === "attachment" && needsTarget(u)
@@ -665,7 +688,11 @@ export function effectCardPlayProblem(
   if (!options.putIntoPlay) {
     if (!["ally", "attachment", "event"].includes(c.type_code))
       return "This card cannot be played from a player deck.";
-    const problem = canPlayAtNoCost(s, u);
+    const problem = canPlay(s, u, {
+      noCost: true,
+      resolvingEffect: true,
+      playOrigin: "deck",
+    });
     if (problem) return problem;
     if (["01067", "06083"].includes(c.code))
       return `At no cost, X is zero and ${c.name} cannot change the game state.`;
@@ -727,6 +754,7 @@ export function replayEventProblem(
     return replayEventProblem(s, u, target, 1);
   const problem = canPlay(s, u, {
     resolvingEffect: true,
+    playOrigin: "discard",
     target: get(s, target),
   });
   if (problem) return problem;
@@ -793,7 +821,7 @@ export function eventReplayPayments(
         left === 0 &&
         (!singlePoolCard(c) ||
           Object.values(payment).filter((n) => n > 0).length <= 1) &&
-        (u.code !== "01036" ||
+        (!["01036", "08143"].includes(u.code) ||
           Object.values(payment).filter((n) => n > 0).length === 3)
       )
         result.push(payment);
@@ -872,11 +900,11 @@ export function playEventFromDiscardEffect(
       playTargets(s, preview).some((target) => target.id === options.target),
       "Choose a legal event target.",
     );
-  if (preview.code === "01036")
+  if (["01036", "08143"].includes(preview.code))
     requireRule(
       options.payment &&
         Object.values(options.payment).filter((n) => n > 0).length === 3,
-      "Thicket of Spears needs three hero resource pools.",
+      "This card needs three hero resource pools.",
     );
   const effectiveCost = replayEventCost(
     s,
@@ -964,6 +992,7 @@ function resolvePlayerCard(
       s,
       u,
       () => {
+        const abilityCost = finalRingEventCost(s, u.code, target);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
           fx("playerEventAbility", {
@@ -971,7 +1000,7 @@ function resolvePlayerCard(
             source: target,
             code: u.code,
             value: effectiveCost,
-            count: amount,
+            count: abilityCost ?? amount,
             player: activeSeat(s),
           }),
         );
@@ -1087,6 +1116,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const ringMakerTargets = ringMakerPlayTargets(s, c.code);
   if (ringMakerTargets) return ringMakerTargets;
+  const finalRingTargets = finalRingPlayTargets(s, c.code);
+  if (finalRingTargets) return finalRingTargets;
   const dunlandTargets = dunlandPlayTargets(s, c.code);
   if (dunlandTargets) return dunlandTargets;
   const amonTargets = amonPlayerPlayTargets(s, c.code);
@@ -1246,9 +1277,12 @@ export const needsTarget = (u: Unit) =>
       "08003",
       "08033",
       "08061",
+      "08090",
+      "08142",
     ].includes(u.code));
 
 export const responseCards = [
+  "08144",
   "08062",
   "08005",
   "01024",
@@ -1301,6 +1335,12 @@ export function availableAbilities(s: GameState, u: Unit) {
       : [];
   }
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const finalRingLabel = finalRingAbilityLabel(u.code);
+  if (finalRingLabel)
+    results.push({
+      label: finalRingLabel,
+      disabled: !!finalRingAbilityProblem(s, u),
+    });
   const isengardLabel = Isengard.isengardAbilityLabel(u.code);
   if (isengardLabel)
     results.push({
@@ -1463,6 +1503,16 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const finalRingAttachmentLabel = finalRingAbilityLabel(a.code);
+    if (
+      finalRingAttachmentLabel &&
+      attachmentController(s, u, a) === activeSeat(s)
+    )
+      results.push({
+        id: a.id,
+        label: finalRingAttachmentLabel,
+        disabled: !!finalRingAbilityProblem(s, u, a.id),
+      });
     const stewardLabel = stewardFearAbilityLabel(u, a.id);
     if (stewardLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -1805,11 +1855,11 @@ export function applyAction(input: GameState, action: Action): GameState {
           s.hand.some((a) => allyCanEnter(s, a.code)),
           "You need an eligible ally in hand.",
         );
-      if (u.code === "01036")
+      if (["01036", "08143"].includes(u.code))
         requireRule(
           action.payment &&
             Object.values(action.payment).filter((v) => v > 0).length === 3,
-          "Thicket of Spears must use 3 different heroes’ resource pools.",
+          "This card must use 3 different heroes’ resource pools.",
         );
       let effectiveCost =
         c.code === "08010" ? playerOrder(s).length : Number(c.cost) || 0;

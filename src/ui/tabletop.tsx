@@ -475,7 +475,8 @@ export function OtherFellowships({
                       alt={name(u)}
                     />
                     <span className="companion-tokens">
-                      {card(u.code).type_code === "hero" && (
+                      {(card(u.code).type_code === "hero" ||
+                        ["02059", "08146"].includes(u.code)) && (
                         <TableToken kind="resource" value={u.resources} />
                       )}
                       {u.damage > 0 && (

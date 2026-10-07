@@ -1,4 +1,12 @@
 import {
+  finalRingAllyEntering,
+  finalRingAllyEntered,
+  finalRingFollowFirst,
+  finalRingDamageTaken,
+  finalRingQuestProgress,
+  finalRingHastyWindow,
+} from "./ring-maker-final-player";
+import {
   offerRingMakerDoomed,
   ringMakerAllyEntered,
   ringMakerCharacterLeft,
@@ -549,6 +557,7 @@ export function advanceDefense(s: GameState) {
 export function check(s: GameState) {
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
+  finalRingFollowFirst(s);
   globalEachSeat(s, () => {
     for (const denethor of amonPlayerDiscardAtZero(s))
       if (get(s, denethor.id)) discardCharacter(s, denethor);
@@ -859,7 +868,8 @@ export function damage(
   syncAttachmentText(s);
   const u = get(s, id);
   if (!u) return false;
-  if (MorgulQuest.morgulRedirectDamage(s, u, value, context)) return false;
+  if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
+    return false;
   value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
   if (value <= 0) return false;
   if (
@@ -869,14 +879,25 @@ export function damage(
   )
     return false;
   if (khazadDamageCancelled(s, u, value)) return false;
-  if (offerGondorianDiscipline(s, u, value, context)) return false;
-  if (offerCloseCall(s, u, value, context)) return false;
-  if (offerMarshDamageRedirect(s, u, value, context)) return false;
-  if (!context.bypassDori && dwarfDamageAssigned(s, u, value, context))
+  if (!context.cost && offerGondorianDiscipline(s, u, value, context))
     return false;
-  if (!context.bypassFrodo && offerFrodoDamage(s, u, value, context))
+  if (!context.cost && offerCloseCall(s, u, value, context)) return false;
+  if (!context.cost && offerMarshDamageRedirect(s, u, value, context))
+    return false;
+  if (
+    !context.cost &&
+    !context.bypassDori &&
+    dwarfDamageAssigned(s, u, value, context)
+  )
+    return false;
+  if (
+    !context.cost &&
+    !context.bypassFrodo &&
+    offerFrodoDamage(s, u, value, context)
+  )
     return false;
   u.damage += value;
+  finalRingDamageTaken(s, u);
   Druadan.druadanForestDamageDealt(s, u, value);
   heirsDamageDealt(s, u, value, context);
   longDarkDamageDealt(s, context.enemyId, value);
@@ -1178,7 +1199,12 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     );
 }
 
-export function progress(s: GameState, n: number, playerEffect = false) {
+export function progress(
+  s: GameState,
+  n: number,
+  playerEffect = false,
+  fromSuccessfulQuest = false,
+) {
   if (n <= 0 || s.status !== "playing") return;
   const allLocations = allActiveLocations(s);
   const locations = allLocations.filter(
@@ -1214,6 +1240,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
                 value: i + 1,
                 count: n - i - 1,
                 flag: playerEffect,
+                text: fromSuccessfulQuest ? "quest" : undefined,
                 player: firstPlayer(s),
               }),
             ],
@@ -1230,6 +1257,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
           fx("continueProgress", {
             value: n - amount,
             flag: playerEffect,
+            text: fromSuccessfulQuest ? "quest" : undefined,
             player: firstPlayer(s),
           }),
         ])
@@ -1251,6 +1279,7 @@ export function progress(s: GameState, n: number, playerEffect = false) {
         fx("continueProgress", {
           value: n - toLocation,
           flag: playerEffect,
+          text: fromSuccessfulQuest ? "quest" : undefined,
           player: firstPlayer(s),
         }),
       ])
@@ -1259,6 +1288,13 @@ export function progress(s: GameState, n: number, playerEffect = false) {
     progressLocation(s, location, toLocation);
     n -= toLocation;
   }
+  if (
+    n > 0 &&
+    fromSuccessfulQuest &&
+    !allActiveLocations(s).length &&
+    finalRingQuestProgress(s, n)
+  )
+    return;
   if (
     (playerEffect && allActiveLocations(s).length) ||
     watcherWaterProgressBlocked(s)
@@ -1544,7 +1580,10 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
 
 export function nextRound(s: GameState) {
   heirsRoundEnd(s);
-  for (const u of globalCharacters(s)) delete u.roundKeywords;
+  for (const u of globalCharacters(s)) {
+    delete u.roundKeywords;
+    delete u.roundDefense;
+  }
   s.round++;
   startPhase(s, "resource");
   s.alliesPlayed = 0;
@@ -1556,7 +1595,9 @@ export function nextRound(s: GameState) {
     for (const h of s.heroes)
       if (!isSacked(h) && khazadResourcePhase(s))
         h.resources += 1 + resourcePhaseBonus(h);
-    for (const ally of s.allies) if (ally.code === "02059") ally.resources++;
+    for (const ally of s.allies)
+      if (["02059", "08146"].includes(ally.code) && !ally.blanked)
+        ally.resources++;
     draw(
       s,
       1 + huntResourceDrawBonus(s, player) + dwarfResourceDrawBonus(s, player),
@@ -1636,11 +1677,31 @@ export function revealed(
       });
     return;
   }
+  const thalinDamage =
+    revealOrigin === "encounter" &&
+    c.type_code === "enemy" &&
+    allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed)
+      ? 1
+      : 0;
+  // Thalin's passive resolves before the pre-keyword response window.
+  if (thalinDamage && (c.health ?? 0) <= 1) {
+    resolveReveal(
+      s,
+      code,
+      guarding,
+      revealOrigin,
+      false,
+      warden.progress,
+      thalinDamage,
+    );
+    return;
+  }
   const revealKeywords = Druadan.druadanForestRevealEffects(
     s,
     code,
     revealOrigin,
   );
+  revealKeywords.unshift(...finalRingHastyWindow(s));
   if (s.flow) {
     prepend(
       s,
@@ -1650,6 +1711,7 @@ export function revealed(
         source: guarding,
         revealOrigin,
         count: warden.progress,
+        value: thalinDamage,
       }),
     );
     pauseFor(s, {
@@ -1671,11 +1733,20 @@ export function revealed(
         source: guarding,
         revealOrigin,
         count: warden.progress,
+        value: thalinDamage,
       }),
     );
     return;
   }
-  resolveReveal(s, code, guarding, revealOrigin, false, warden.progress);
+  resolveReveal(
+    s,
+    code,
+    guarding,
+    revealOrigin,
+    false,
+    warden.progress,
+    thalinDamage,
+  );
 }
 
 export function resolveReveal(
@@ -1685,13 +1756,18 @@ export function resolveReveal(
   revealOrigin: Effect["revealOrigin"] = "encounter",
   doomedResolved = false,
   initialProgress = 0,
+  thalinSnapshot?: number,
 ) {
   const c = card(code);
   let thalin = false;
   if (
     revealOrigin === "encounter" &&
     c.type_code === "enemy" &&
-    allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed)
+    (thalinSnapshot === undefined
+      ? allHeroes(s).some(
+          (h) => h.code === "01006" && !h.blanked && h.committed,
+        )
+      : thalinSnapshot > 0)
   ) {
     thalin = true;
     if ((c.health ?? 0) <= 1) {
@@ -1715,6 +1791,7 @@ export function resolveReveal(
         revealOrigin,
         flag: true,
         count: initialProgress,
+        value: thalin ? 1 : 0,
       }),
     );
     Isengard.resolveDoomed(s, Number(doomed[1]), "encounter");
@@ -2154,6 +2231,7 @@ export function enterAlly(
   );
   u.temporary = temporary;
   s.allies.push(u);
+  finalRingAllyEntering(u);
   if (offerRingMakerDoomed(s, u, played, fromHand)) return;
   resolveAllyKeywords(s, u, played, fromHand);
 }
@@ -2203,6 +2281,7 @@ export function allyEntryResponses(
   Isengard.isengardAllyEntered(s, u);
   dunlandAllyEntered(s, u);
   ringMakerAllyEntered(s, u, played, fromHand);
+  finalRingAllyEntered(s, u);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);

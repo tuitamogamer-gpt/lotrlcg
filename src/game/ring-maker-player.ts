@@ -1,5 +1,6 @@
 // Remaining player cards from The Three Trials and Trouble in Tharbad.
 import { card, plain, SCRIPTED } from "./cards";
+import { finalRingEventPlayed } from "./ring-maker-final-player";
 import type { Card, Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -101,6 +102,7 @@ export function ringMakerPlayProblem(
 }
 /** Every play consumes the first matching event, including canceled and free plays. */
 export function ringMakerEventPlayed(s: GameState, code: string) {
+  finalRingEventPlayed(s, code);
   s.used.push(sphereKey(card(code).sphere_code));
   if (["08033", "08061"].includes(code)) s.used.push(eventKey(code));
 }
@@ -193,7 +195,12 @@ export function offerRingMakerDoomed(
   played: boolean,
   fromHand: boolean,
 ) {
-  if (!played || !fromHand || u.blanked || !["08030", "08057"].includes(u.code))
+  if (
+    !played ||
+    !fromHand ||
+    u.blanked ||
+    !["08030", "08057", "08091", "08115"].includes(u.code)
+  )
     return false;
   prepend(s, fx("ringDoomedOffer", { target: u.id, player: ownerOf(s, u) }));
   return true;
@@ -215,10 +222,19 @@ export function ringMakerAllyEntered(
     s.used = s.used.filter((key) => key !== marker);
     prepend(
       s,
-      fx(u.code === "08030" ? "ringWandererOffer" : "ringHeraldOffer", {
-        source: u.id,
-        player: controller,
-      }),
+      fx(
+        u.code === "08030"
+          ? "ringWandererOffer"
+          : u.code === "08057"
+            ? "ringHeraldOffer"
+            : u.code === "08091"
+              ? "finalRingPioneerOffer"
+              : "finalRingGuardOffer",
+        {
+          source: u.id,
+          player: controller,
+        },
+      ),
     );
   }
 }
@@ -290,15 +306,16 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
     case "ringDoomedOffer": {
       const u = get(s, e.target);
       if (!u) return true;
-      choose(s, `${card(u.code).name} · Optional Doomed 2`, [
+      const amount = ["08091", "08115"].includes(u.code) ? 1 : 2;
+      choose(s, `${card(u.code).name} · Optional Doomed ${amount}`, [
         {
           id: "doomed",
-          label: "Give Doomed 2 and gain the response",
+          label: `Give Doomed ${amount} and gain the response`,
           effects: [{ ...e, kind: "ringDoomedResolve", flag: true }],
         },
         {
           id: "skip",
-          label: "Play without Doomed 2",
+          label: `Play without Doomed ${amount}`,
           effects: [{ ...e, kind: "ringDoomedResolve", flag: false }],
         },
       ]);
@@ -308,7 +325,13 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       const u = get(s, e.target);
       if (!u) return true;
       if (e.flag) s.used.push(`round:ring-doomed:${u.id}`);
-      resolveAllyKeywords(s, u, true, true, e.flag ? 2 : 0);
+      resolveAllyKeywords(
+        s,
+        u,
+        true,
+        true,
+        e.flag ? (["08091", "08115"].includes(u.code) ? 1 : 2) : 0,
+      );
       return true;
     }
     case "ringWandererOffer":

@@ -120,7 +120,10 @@ export function deckCardsReordered(
   );
 }
 
-export function hiddenPlayerCardIds(s: GameState): string[] | null {
+export function hiddenPlayerCardIds(
+  s: GameState,
+  seatCount = s.table?.seats.length ?? 1,
+): string[] | null {
   const result: string[] = [],
     positions = new Set<string>();
   for (const key of s.used) {
@@ -163,7 +166,7 @@ export function hiddenPlayerCardIds(s: GameState): string[] | null {
         s.deck[value.index!] !== value.code ||
         !Number.isInteger(value.owner) ||
         value.owner! < 0 ||
-        value.owner! >= (s.table?.seats.length ?? 1)
+        value.owner! >= seatCount
       )
         return null;
     } else if (prefix === heroPrefix) {

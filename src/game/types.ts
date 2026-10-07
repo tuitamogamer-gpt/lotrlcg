@@ -78,6 +78,10 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Actual resource spending, independent of transfers and forced losses. */
+  resourcesSpentRound?: number;
+  ignoreThreatRound?: number;
+  roundDefense?: number;
   /** Controller of a borrowed player attachment waiting in staging. */
   controller?: number;
   /** Noiseless Movement's lasting restriction; optional engagement stays legal. */
@@ -382,6 +386,8 @@ export interface GameState {
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
   combat: {
+    /** Every defender that actually took damage during this attack, including costs. */
+    damagedDefenders?: string[];
     stewardRemoveTokensIfKilled?: boolean;
     heirsScrollDamage?: boolean;
     bloodTurnOnKill?: boolean;

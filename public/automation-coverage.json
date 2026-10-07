@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 405,
-    "heroes": 47,
-    "deckCards": 358,
+    "playerCards": 424,
+    "heroes": 48,
+    "deckCards": 376,
     "encounterCards": 364,
     "scenarios": 27,
     "scenarioIds": [
@@ -39,8 +39,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 861,
-    "pending": 3322
+    "scripted": 880,
+    "pending": 3303
   },
   "scenarioRecipes": {
     "total": 355,
@@ -433,16 +433,35 @@
     "08064",
     "08065",
     "08084",
+    "08085",
+    "08086",
     "08087",
+    "08088",
+    "08089",
+    "08090",
+    "08091",
     "08092",
+    "08093",
     "08112",
     "08113",
     "08114",
+    "08115",
+    "08116",
     "08117",
+    "08118",
+    "08119",
     "08120",
     "08121",
+    "08137",
     "08138",
+    "08139",
     "08140",
+    "08141",
+    "08142",
+    "08143",
+    "08144",
+    "08145",
+    "08146",
     "09005",
     "10093",
     "10122",
@@ -982,9 +1001,9 @@
     {
       "product": "celebrimbor-s-secret",
       "total": 25,
-      "scripted": 6,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 6
+      "playerScripted": 10
     },
     {
       "product": "celebrimbor-s-secret-nightmare",
@@ -1276,9 +1295,9 @@
     {
       "product": "the-antlered-crown",
       "total": 25,
-      "scripted": 2,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 2
+      "playerScripted": 10
     },
     {
       "product": "the-antlered-crown-nightmare",
@@ -1626,9 +1645,9 @@
     {
       "product": "the-nin-in-eilph",
       "total": 28,
-      "scripted": 3,
+      "scripted": 10,
       "player": 10,
-      "playerScripted": 3
+      "playerScripted": 10
     },
     {
       "product": "the-nin-in-eilph-nightmare",
@@ -5123,7 +5142,7 @@
       "name": "Follow Me!",
       "type": "event",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5131,7 +5150,7 @@
       "name": "Tighten Our Belts",
       "type": "event",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5147,7 +5166,7 @@
       "name": "Bow of the Galadhrim",
       "type": "attachment",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5155,7 +5174,7 @@
       "name": "Celduin Traveler",
       "type": "ally",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5163,7 +5182,7 @@
       "name": "Island Amid Perils",
       "type": "event",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5171,7 +5190,7 @@
       "name": "Mirkwood Pioneer",
       "type": "ally",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5187,7 +5206,7 @@
       "name": "Defender of the West",
       "type": "attachment",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -5219,7 +5238,7 @@
       "name": "Henneth Annûn Guard",
       "type": "ally",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -5227,7 +5246,7 @@
       "name": "Charge of the Rohirrim",
       "type": "event",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -5243,7 +5262,7 @@
       "name": "Mirror of Galadriel",
       "type": "attachment",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -5251,7 +5270,7 @@
       "name": "Wandering Ent",
       "type": "ally",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -5275,7 +5294,7 @@
       "name": "Erkenbrand",
       "type": "hero",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5291,7 +5310,7 @@
       "name": "The Day's Rising",
       "type": "attachment",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5307,7 +5326,7 @@
       "name": "Booming Ent",
       "type": "ally",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5315,7 +5334,7 @@
       "name": "Ride Them Down",
       "type": "event",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5323,7 +5342,7 @@
       "name": "Shadows Give Way",
       "type": "event",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5331,7 +5350,7 @@
       "name": "Don't Be Hasty!",
       "type": "event",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5339,7 +5358,7 @@
       "name": "Waters of Nimrodel",
       "type": "event",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -5347,7 +5366,7 @@
       "name": "Treebeard",
       "type": "ally",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {

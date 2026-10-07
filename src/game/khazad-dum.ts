@@ -22,6 +22,7 @@ import {
   requireRule,
   restrictAttachments,
   shuffle,
+  spendResources,
   skip,
   stats,
   threatOf,
@@ -730,7 +731,7 @@ export function khazadAbility(s: GameState, u: Unit, attachmentId?: string) {
       );
       s.progress++;
     } else {
-      u.resources -= 3;
+      spendResources(s, u, 3);
       discardAttachment(s, u, a);
     }
     return true;

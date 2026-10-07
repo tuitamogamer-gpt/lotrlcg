@@ -1,5 +1,7 @@
 /** Serializable information that follows one damage assignment through replacements. */
 export interface DamageContext {
+  /** Ability costs cannot be canceled or redirected by optional replacements. */
+  cost?: boolean;
   enemyId?: string;
   combatDamage?: boolean;
   bypassFrodo?: boolean;

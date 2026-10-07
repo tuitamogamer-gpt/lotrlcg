@@ -2,6 +2,7 @@
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
+import { spendResources } from "./core";
 import {
   choose,
   fx,
@@ -611,7 +612,7 @@ export function assaultOsgiliathEffect(s: GameState, e: Effect): boolean {
           heirsCanSpendResources(s, u),
         "Spend a resource from a hero you control.",
       );
-      u.resources--;
+      spendResources(s, u, 1);
       prepend(
         s,
         fx("osgiliathBridgePay", {

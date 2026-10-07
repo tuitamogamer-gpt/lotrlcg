@@ -2,6 +2,7 @@
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
+import { spendResources } from "./core";
 import {
   choose,
   encounterDraw,
@@ -740,7 +741,7 @@ export function handleStewardFearEffect(s: GameState, e: Effect): boolean {
         u && u.resources > 0 && heirsCanSpendResources(s, u),
         "This hero cannot spend a resource for Market Square.",
       );
-      u.resources--;
+      spendResources(s, u, 1);
       break;
     case "stewardSewers":
       if (u && allActiveLocations(s).some((l) => l.id === u.id)) {

@@ -4,6 +4,7 @@ import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
 import * as Osgiliath from "./assault-osgiliath";
 import { enemyAttackPrevented } from "./core";
+import { finalRingAttackBonus } from "./ring-maker-final-player";
 import {
   amonPlayerCannotDeclareAttack,
   amonPlayerCanAttackEnemy,
@@ -248,6 +249,7 @@ export function resolvePlayerAttack(
       Druadan.druadanForestAttackStat(s) === "will"
         ? stats(s, u).will
         : stats(s, u).attack +
+          finalRingAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
           watcherPlayerAttackBonus(s, u, enemy) +

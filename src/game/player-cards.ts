@@ -4,6 +4,7 @@ import { canGainResources } from "./core";
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
 import { dunlandEvent } from "./dunland-trap-player";
 import { ringMakerEvent } from "./ring-maker-player";
+import { finalRingEvent, useFinalRingAbility } from "./ring-maker-final-player";
 import {
   morgulPlayerEventEffect,
   useMorgulPlayerAbility,
@@ -126,6 +127,7 @@ export function eventEffect(
 ) {
   if (dunlandEvent(s, code, target)) return;
   if (ringMakerEvent(s, code, target)) return;
+  if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;
   if (morgulPlayerEventEffect(s, code, target)) return;
@@ -387,6 +389,7 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 }
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
+  if (useFinalRingAbility(s, u, attachmentId)) return;
   if (Isengard.useIsengardAbility(s, u, attachmentId)) return;
   if (useOsgiliathPlayerAbility(s, u, attachmentId)) return;
   if (useBloodPlayerAbility(s, u, attachmentId)) return;

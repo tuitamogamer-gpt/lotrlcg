@@ -28,8 +28,19 @@ type AttachmentRule = {
   defense?: number;
   health?: number;
   names?: string[];
+  requiresKeyword?: string;
+  unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "08088": {
+    traits: ["Silvan"],
+    requiresKeyword: "Ranged",
+    restricted: 1,
+    attack: 1,
+  },
+  "08093": { type: "ally", unique: true },
+  "08118": { names: ["Galadriel"] },
+  "08139": { type: "hero", requiresKeyword: "Sentinel" },
   "08031": { type: "hero", traits: ["Scout"] },
   "08034": { type: "hero", limit: 1 },
   "07008": {
@@ -223,6 +234,14 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     if (/immune to player card effects/i.test(card(u.code).text ?? ""))
       return false;
     if (rule.type && card(u.code).type_code !== rule.type) return false;
+    if (rule.unique && !card(u.code).is_unique) return false;
+    if (
+      c.code === "08093" &&
+      (u.code === "rc135" || /Objective-Ally/i.test(card(u.code).text ?? ""))
+    )
+      return false;
+    if (rule.requiresKeyword && !effectiveKeyword(u, rule.requiresKeyword))
+      return false;
     if (rule.names && !rule.names.includes(card(u.code).name)) return false;
     if (c.code === "04062" && ownerOf(s, u) !== (s.table?.active ?? 0))
       return false;
@@ -307,7 +326,7 @@ export function secrecyDiscount(s: GameState, c: Card) {
     ? 4
     : ["04003", "04029", "04062", "04081", "04136"].includes(c.code)
       ? 3
-      : ["04009", "04036", "08026", "08008"].includes(c.code)
+      : ["04009", "04036", "08026", "08008", "08089"].includes(c.code)
         ? 2
         : 0;
 }
@@ -315,6 +334,10 @@ export function expansionStats(s: GameState, u: Unit) {
   const result = { will: 0, attack: 0, defense: 0, health: 0 };
   const owner = ownerOf(s, u),
     p = seatView(s, owner);
+  if (u.code === "08141" && !u.blanked)
+    result.attack += [...p.heroes, ...p.allies].filter(
+      (u) => u.damage > 0 && hasTrait(u, "Ent"),
+    ).length;
   if (u.code === "22028" && p.threat >= 40) result.attack += 2;
   if (u.code === "02055" && u.committed) result.will += 2;
   for (const a of u.attachments) {

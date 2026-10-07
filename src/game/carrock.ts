@@ -26,6 +26,7 @@ import {
   requireRule,
   removeShadowCard,
   shuffle,
+  spendResources,
   skip,
   threatOf,
 } from "./core";
@@ -344,7 +345,7 @@ export function carrockEffect(s: GameState, effect: Effect) {
         target && hero && hero.resources > 0 && carrockPaysLeadership(s, hero),
         "The chosen Leadership resource is no longer available.",
       );
-      hero.resources--;
+      spendResources(s, hero, 1);
       target.resources++;
       log(s, `Grimbeorn receives a resource (${target.resources}/8).`, "good");
       if (target.resources >= 8 && s.staging.some((u) => u.id === target.id)) {

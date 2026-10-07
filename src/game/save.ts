@@ -74,10 +74,11 @@ export function validateSave(
       a.namelessCard === undefined &&
       (a.blanked === undefined || typeof a.blanked === "boolean") &&
       (a.owner === undefined ||
-        (integer(a.owner) &&
-          a.owner >= 0 &&
-          a.owner < (s.table?.seats.length ?? 1)));
+        (integer(a.owner) && a.owner >= 0 && a.owner < seatCount));
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
+      (c.damagedDefenders === undefined ||
+        (Array.isArray(c.damagedDefenders) &&
+          c.damagedDefenders.every((id) => typeof id === "string"))) &&
       (c.immediatePreviousShadows === undefined ||
         codes(c.immediatePreviousShadows)) &&
       (c.immediatePreviousFaceupShadows === undefined ||
@@ -138,6 +139,9 @@ export function validateSave(
           new Set(c.desperateDefenderIds).size ===
             c.desperateDefenderIds.length));
     const validUnit = (u: Unit) =>
+      [u?.resourcesSpentRound, u?.ignoreThreatRound, u?.roundDefense].every(
+        (n) => n === undefined || (integer(n) && n >= 0),
+      ) &&
       u &&
       typeof u.id === "string" &&
       (u.controller === undefined ||
@@ -814,7 +818,7 @@ export function validateSave(
     )
       return false;
     const hiddenIds = seatIndices(s).flatMap(
-      (i) => hiddenPlayerCardIds(seatView(s, i)) ?? [null],
+      (i) => hiddenPlayerCardIds(seatView(s, i), seatCount) ?? [null],
     );
     if (hiddenIds.includes(null)) return false;
     const ids = [
