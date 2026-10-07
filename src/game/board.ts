@@ -1,3 +1,7 @@
+import * as Druadan from "./druadan-forest";
+import * as Amon from "./amon-din";
+import * as Osgiliath from "./assault-osgiliath";
+import { canGainResources } from "./core";
 import { enemyAttackPrevented } from "./core";
 import {
   engagedEnemies,
@@ -69,7 +73,6 @@ import {
   stewardFearLocationEntered,
   stewardFearLocationLeft,
   stewardFearEventPlayed,
-  stewardFearTreacheryRevealed,
   stewardFearCannotCancel,
   stewardFearEncounter,
   stewardFearShadow,
@@ -615,6 +618,7 @@ export function check(s: GameState) {
         s.staging = s.staging.filter((u) => u.id !== trap.id);
         seatView(s, trap.owner!).discard.push(trap.code);
       }
+      Osgiliath.assaultOsgiliathPlayerEliminated(s, i);
       s.table!.seats[i].eliminated = true;
       log(
         s,
@@ -661,7 +665,11 @@ export function check(s: GameState) {
         enemyAddedToStaging(s, u);
       }
       s.engaged = [];
-      for (const u of leavingCharacters) druadanPlayerLeavesPlay(s, u);
+      for (const u of leavingCharacters) {
+        druadanPlayerLeavesPlay(s, u);
+        Amon.amonDinCharacterLeftPlay(s, u);
+        Osgiliath.assaultOsgiliathCharacterLeft(s);
+      }
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
     const alive = globalLivingSeats(s);
@@ -727,6 +735,7 @@ export function check(s: GameState) {
     foundationsCheck(s);
     heirsCheck(s);
     stewardFearCheck(s);
+    Amon.amonDinCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -745,33 +754,39 @@ export function win(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "mirkwood"
-      ? "Your fellowship has passed safely through Mirkwood."
-      : s.scenarioId === "anduin"
-        ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-        : s.scenarioId === "hunt-for-gollum"
-          ? "You have found a true sign of Gollum’s passing. The trail leads on."
-          : s.scenarioId === "conflict-at-the-carrock"
-            ? "The Trolls are defeated and the Carrock is free."
-            : s.scenarioId === "hills-of-emyn-muil"
-              ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
-              : s.scenarioId === "journey-to-rhosgobel"
-                ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
-                : s.scenarioId === "dead-marshes"
-                  ? "Your fellowship captures Gollum in the Dead Marshes."
-                  : s.scenarioId === "return-to-mirkwood"
-                    ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
-                    : s.scenarioId === "road-to-rivendell"
-                      ? "Arwen arrives safely in Rivendell with your fellowship."
-                      : s.scenarioId === "redhorn-gate"
-                        ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
-                        : s.scenarioId === "into-the-pit"
-                          ? "Your fellowship survives the depths beneath the East-gate of Moria."
-                          : s.scenarioId === "the-seventh-level"
-                            ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
-                            : s.scenarioId === "flight-from-moria"
-                              ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                              : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+    s.scenarioId === "the-druadan-forest"
+      ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
+      : s.scenarioId === "encounter-at-amon-din"
+        ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
+        : s.scenarioId === "assault-on-osgiliath"
+          ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
+          : s.scenarioId === "mirkwood"
+            ? "Your fellowship has passed safely through Mirkwood."
+            : s.scenarioId === "anduin"
+              ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+              : s.scenarioId === "hunt-for-gollum"
+                ? "You have found a true sign of Gollum’s passing. The trail leads on."
+                : s.scenarioId === "conflict-at-the-carrock"
+                  ? "The Trolls are defeated and the Carrock is free."
+                  : s.scenarioId === "hills-of-emyn-muil"
+                    ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
+                    : s.scenarioId === "journey-to-rhosgobel"
+                      ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
+                      : s.scenarioId === "dead-marshes"
+                        ? "Your fellowship captures Gollum in the Dead Marshes."
+                        : s.scenarioId === "return-to-mirkwood"
+                          ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
+                          : s.scenarioId === "road-to-rivendell"
+                            ? "Arwen arrives safely in Rivendell with your fellowship."
+                            : s.scenarioId === "redhorn-gate"
+                              ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
+                              : s.scenarioId === "into-the-pit"
+                                ? "Your fellowship survives the depths beneath the East-gate of Moria."
+                                : s.scenarioId === "the-seventh-level"
+                                  ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                  : s.scenarioId === "flight-from-moria"
+                                    ? "Your fellowship finds an exit and escapes the darkness of Moria."
+                                    : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -812,6 +827,7 @@ export function damage(
   if (!context.bypassFrodo && offerFrodoDamage(s, u, value, context))
     return false;
   u.damage += value;
+  Druadan.druadanForestDamageDealt(s, u, value);
   heirsDamageDealt(s, u, value, context);
   longDarkDamageDealt(s, context.enemyId, value);
   if (value > 0 && s.combat && context.enemyId === s.combat.enemyId)
@@ -819,7 +835,7 @@ export function damage(
   if (
     u.code === "01003" &&
     !u.blanked &&
-    !isSacked(u) &&
+    canGainResources(s, u) &&
     u.damage < stats(s, u).health
   ) {
     stewardFearHeroAbilityTriggered(s, u);
@@ -835,6 +851,8 @@ export function damage(
       discardAttachment(s, u, a, true);
   if (card(u.code).type_code !== "location" && u.damage >= stats(s, u).health) {
     stewardFearCharacterDestroyed(s, u, context);
+    Amon.amonDinCharacterDestroyed(s, u, context);
+    Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
   check(s);
@@ -927,6 +945,8 @@ export function characterLeftPlay(
   prepend(s, ...shadowFlameCharactersLeft(s));
   druadanPlayerLeavesPlay(s, u);
   heirsCharacterLeaves(s, u);
+  Amon.amonDinCharacterLeftPlay(s, u);
+  Osgiliath.assaultOsgiliathCharacterLeft(s);
 }
 
 /** Destruction is distinct from discard costs and forced discard effects. */
@@ -941,7 +961,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
   if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
     for (const h of allHeroes(s))
       for (const a of h.attachments)
-        if (!a.blanked && a.code === "01042" && !isSacked(h)) {
+        if (!a.blanked && a.code === "01042" && canGainResources(s, h)) {
           h.resources++;
           gondorResourcesGained(s, h, 1, true);
         }
@@ -989,6 +1009,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       );
     log(s, `${c.name} is defeated.`, "good");
     carrockDefeated(s, u);
+    if (destruction) Osgiliath.assaultOsgiliathEnemyDefeated(s);
     if (
       s.scenarioId === "mirkwood" &&
       s.stage === 3 &&
@@ -1066,20 +1087,24 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((x) => x.id !== u.id);
+  const captured = Osgiliath.assaultOsgiliathCapture(s, u);
   let exploredDiscardIndex: number | undefined;
-  if (u.code === "01113") s.encounterDeck.unshift(u.code);
-  else if (card(u.code).victory) addVictoryCard(s, u.code);
-  else {
-    s.encounterDiscard.push(u.code);
-    exploredDiscardIndex = s.encounterDiscard.length - 1;
+  if (!captured) {
+    if (u.code === "01113") s.encounterDeck.unshift(u.code);
+    else if (card(u.code).victory) addVictoryCard(s, u.code);
+    else {
+      s.encounterDiscard.push(u.code);
+      exploredDiscardIndex = s.encounterDiscard.length - 1;
+    }
   }
   const exploredAttachments = [...u.attachments];
   stewardFearLocationLeft(s, u, true, wasActive);
+  Amon.amonDinLocationLeft(s, u, true);
   foundationsLocationExplored(s, u);
   heirsExplored(s, u);
   khazadExplored(s, u);
   rhosgobelLocationExplored(s, u);
-  for (const a of [...u.attachments]) discardAttachment(s, u, a);
+  if (!captured) for (const a of [...u.attachments]) discardAttachment(s, u, a);
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
   rhosgobelExplored(s, u);
@@ -1180,6 +1205,8 @@ export function progress(s: GameState, n: number, playerEffect = false) {
   if (n <= 0 || s.status !== "playing") return;
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
+  if (Amon.amonDinQuestProgress(s, n)) return;
+  if (s.scenarioId === "assault-on-osgiliath") return;
   s.progress += n;
   if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
     rescuePrisoner(s);
@@ -1206,6 +1233,9 @@ export function questDefeated(s: GameState, code: string): boolean {
 
 export function advanceQuest(s: GameState) {
   if (s.status !== "playing" || s.stageRevealing || s.phase === "setup") return;
+  if (Druadan.advanceDruadanForest(s)) return;
+  if (Amon.advanceAmonDin(s)) return;
+  if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
   if (advanceShadowFlame(s)) return;
@@ -1516,15 +1546,22 @@ export function revealed(
     elfEncounterRevealed(s, code);
     collectorEncounterRevealed(s, code);
   }
-  if (c.type_code === "treachery")
-    stewardFearTreacheryRevealed(s, code, revealOrigin);
   log(
     s,
     `Revealed ${c.name}.`,
     c.type_code === "treachery" ? "danger" : "normal",
   );
+  const revealKeywords = Druadan.druadanForestRevealEffects(
+    s,
+    code,
+    revealOrigin,
+  );
   if (s.flow) {
-    prepend(s, fx("resolveReveal", { code, source: guarding, revealOrigin }));
+    prepend(
+      s,
+      ...revealKeywords,
+      fx("resolveReveal", { code, source: guarding, revealOrigin }),
+    );
     pauseFor(s, {
       kind: "reveal",
       title: `Revealed · ${c.name}`,
@@ -1533,6 +1570,14 @@ export function revealed(
         { code, label: guarding ? "Objective guard" : "Encounter revealed" },
       ],
     });
+    return;
+  }
+  if (revealKeywords.length) {
+    prepend(
+      s,
+      ...revealKeywords,
+      fx("resolveReveal", { code, source: guarding, revealOrigin }),
+    );
     return;
   }
   resolveReveal(s, code, guarding, revealOrigin);
@@ -1575,6 +1620,15 @@ export function resolveReveal(
     longDarkRevealSurge(s, code)
   )
     prepend(s, fx("amonSurgeWindow", { code }), fx("reveal"));
+  if (revealOrigin === "encounter" && c.type_code === "treachery")
+    prepend(
+      s,
+      fx("afterEncounterRevealed", {
+        code,
+        revealOrigin,
+        player: activeSeat(s),
+      }),
+    );
   // The Eaves of Mirkwood: encounter card effects cannot be canceled.
   const when =
     (c.text ?? "").includes("When Revealed") &&
@@ -1582,6 +1636,7 @@ export function resolveReveal(
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
     !stewardFearCannotCancel(code) &&
+    !Osgiliath.assaultOsgiliathCannotCancel(code) &&
     !roadRivendellCannotCancel(s) &&
     !allActiveLocations(s).some((l) => l.code === "02016");
   const options: Option[] = [];
@@ -1733,6 +1788,7 @@ export function placeEncounter(
     if (c.type_code === "enemy") heirsEnemyEntered(s, fresh, fromReveal);
     if (c.type_code === "location") {
       stewardFearLocationEntered(s, fresh);
+      Amon.amonDinLocationEntered(s, fresh);
       watcherPlayerLocationEntered(s, fresh);
       if (fromReveal && revealOrigin === "encounter")
         prepend(s, fx("huntLocationResponse", { target: fresh.id }));
@@ -1753,6 +1809,9 @@ export function placeEncounter(
     return;
   }
   if (shadowFlameEncounter(s, code)) return;
+  if (Druadan.druadanForestEncounter(s, code)) return;
+  if (Amon.amonDinEncounter(s, code)) return;
+  if (Osgiliath.assaultOsgiliathEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2147,6 +2206,9 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (Druadan.druadanForestShadow(s, code)) return;
+  if (Amon.amonDinShadow(s, code)) return;
+  if (Osgiliath.assaultOsgiliathShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

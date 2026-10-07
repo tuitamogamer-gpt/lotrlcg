@@ -31,7 +31,8 @@
     "test:choices": "node scripts/browser-fellowship-choices.mjs",
     "test:account": "node scripts/browser-account.mjs",
     "test:revisions": "node --import tsx scripts/browser-revisions.mjs",
-    "test:new-quest-browser": "node --import tsx scripts/browser-foundations-stone.mjs && node --import tsx scripts/browser-heirs-numenor.mjs && node --import tsx scripts/browser-steward-fear.mjs"
+    "test:new-quest-browser": "node --import tsx scripts/browser-foundations-stone.mjs && node --import tsx scripts/browser-heirs-numenor.mjs && node --import tsx scripts/browser-steward-fear.mjs",
+    "test:against-shadow-quests": "node --import tsx scripts/browser-druadan-forest.mjs && node --import tsx scripts/browser-amon-din-quest.mjs && node --import tsx scripts/browser-assault-osgiliath.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

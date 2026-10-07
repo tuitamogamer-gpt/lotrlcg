@@ -74,6 +74,18 @@ export const PLAYMATS = {
     name: "Cair Andros",
     detail: "Defend the island fortress",
   },
+  "the-druadan-forest": {
+    name: "Drúadan Forest",
+    detail: "The hidden paths of the Woses",
+  },
+  "encounter-at-amon-din": {
+    name: "Amon Dîn",
+    detail: "The burning villages of Anórien",
+  },
+  "assault-on-osgiliath": {
+    name: "Osgiliath",
+    detail: "Reclaim the ancient capital",
+  },
   "the-stewards-fear": {
     name: "Minas Tirith",
     detail: "A hidden conspiracy in the White City",
@@ -107,6 +119,9 @@ export const PLAYMAT_CHOICES = [
   "into-ithilien",
   "siege-of-cair-andros",
   "the-stewards-fear",
+  "the-druadan-forest",
+  "encounter-at-amon-din",
+  "assault-on-osgiliath",
   "shadow-and-flame",
 ] as const;
 

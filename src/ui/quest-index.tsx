@@ -41,6 +41,9 @@ const HEADLINES: Partial<
   "into-ithilien": { lead: "The road into", em: "Ithilien." },
   "siege-of-cair-andros": { lead: "The siege of", em: "Cair Andros." },
   "the-stewards-fear": { lead: "The Steward’s", em: "fear." },
+  "the-druadan-forest": { lead: "Through the", em: "Drúadan Forest." },
+  "encounter-at-amon-din": { lead: "Rescue at", em: "Amon Dîn." },
+  "assault-on-osgiliath": { lead: "The assault on", em: "Osgiliath." },
 };
 
 /** The adventure panel title for any quest; unknown quests split their name. */

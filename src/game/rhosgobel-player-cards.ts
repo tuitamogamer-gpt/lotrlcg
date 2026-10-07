@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { spendResources } from "./core";
 // Exact active and triggered player rules from A Journey to Rhosgobel.
 import { card, name, plain } from "./cards";
@@ -22,7 +23,6 @@ import {
   spendEvent,
 } from "./board";
 import { khazadCannotExhaust } from "./khazad-dum";
-import { isSacked } from "./carrock";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
@@ -46,7 +46,7 @@ const enemies = (s: GameState) =>
       !/immune to player card effects/i.test(plain(card(u.code).text)),
   );
 const giftsRecipients = (s: GameState, source: Unit) =>
-  allHeroes(s).filter((u) => u.id !== source.id && !isSacked(u));
+  allHeroes(s).filter((u) => u.id !== source.id && canGainResources(s, u));
 const giftsDonors = (s: GameState) =>
   allHeroes(s).filter(
     (u) =>

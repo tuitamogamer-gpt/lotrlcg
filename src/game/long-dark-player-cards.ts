@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
@@ -31,7 +32,6 @@ import {
   hasTrait,
 } from "./expansion-passives";
 import { khazadCannotExhaust, khazadCannotReady } from "./khazad-dum";
-import { isSacked } from "./carrock";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import {
@@ -294,7 +294,7 @@ export function longDarkPlayerCardPlayed(
             !a.blanked &&
             !a.exhausted &&
             !a.facedown &&
-            !isSacked(u),
+            canGainResources(s, u),
         )
         .map((a) =>
           fx("longDarkTalesResponse", {
@@ -457,7 +457,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
             !a.blanked &&
             !a.facedown,
         );
-      if (target && a && !isSacked(target))
+      if (target && a && canGainResources(s, target))
         choose(s, "Love of Tales · Song played", [
           {
             id: "resource",
@@ -482,7 +482,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
             !a.facedown,
         );
       requireRule(
-        hero && a && !isSacked(hero),
+        hero && a && canGainResources(s, hero),
         "The ready attachment and a hero able to gain resources are required.",
       );
       a.exhausted = true;

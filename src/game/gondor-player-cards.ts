@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { takePlayerDeck } from "./core";
 // Exact active and triggered rules for the official Defenders of Gondor starter.
 import { card, name } from "./cards";
@@ -44,7 +45,7 @@ const readyImrahils = (s: GameState) =>
   );
 
 function cardResources(s: GameState, target: Unit, value: number) {
-  if (isSacked(target)) return;
+  if (!canGainResources(s, target)) return;
   target.resources += value;
   gondorResourcesGained(s, target, value, true);
 }
@@ -53,7 +54,9 @@ function moveDonorOptions(s: GameState, source?: string): Option[] {
     s.heroes.filter(
       (h) =>
         h.resources > 0 &&
-        allHeroes(s).some((other) => other.id !== h.id && !isSacked(other)),
+        allHeroes(s).some(
+          (other) => other.id !== h.id && canGainResources(s, other),
+        ),
     ),
     (h) => [fx("gondorMoveDestination", { target: h.id, source })],
   );
@@ -294,7 +297,8 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
       if (u.code === "05018") {
         const targets = allHeroes(s).filter(
           (h) =>
-            !isSacked(h) && (hasTrait(h, "Gondor") || hasTrait(h, "Noble")),
+            canGainResources(s, h) &&
+            (hasTrait(h, "Gondor") || hasTrait(h, "Noble")),
         );
         if (targets.length)
           choose(s, "Envoy of Pelargir", [
@@ -347,7 +351,9 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
         s,
         "Move a resource · Choose a recipient",
         opts(
-          allHeroes(s).filter((h) => h.id !== donor.id && !isSacked(h)),
+          allHeroes(s).filter(
+            (h) => h.id !== donor.id && canGainResources(s, h),
+          ),
           (h) => [
             fx("gondorMoveResource", {
               target: h.id,
@@ -366,7 +372,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
       requireRule(
         donor &&
           recipient &&
-          !isSacked(recipient) &&
+          canGainResources(s, recipient) &&
           recipient.id !== donor.id &&
           (!e.text || (errand?.code === "05003" && !errand.exhausted)),
         "The resource transfer is no longer legal.",
@@ -384,7 +390,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "gondorSquireResponse": {
       const targets = allHeroes(s).filter(
-        (h) => hasTrait(h, "Gondor") && !isSacked(h),
+        (h) => hasTrait(h, "Gondor") && canGainResources(s, h),
       );
       if (targets.length)
         choose(s, "Squire of the Citadel", [

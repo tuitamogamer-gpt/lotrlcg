@@ -1,3 +1,5 @@
+import { druadanForestArcheryTargets } from "./druadan-forest";
+import { assaultOsgiliathArcheryBonus } from "./assault-osgiliath";
 // Heirs of Númenor: physical objectives, branching quests and explicit encounter decisions.
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import { HEIRS_NUMENOR as H } from "./heirs-numenor-support";
@@ -608,7 +610,8 @@ export function heirsEngaged(
 }
 export function heirsCombatStart(s: GameState) {
   syncAttachmentText(s);
-  let amount = active(s, H.assassin).length * 2;
+  let amount =
+    active(s, H.assassin).length * 2 + assaultOsgiliathArcheryBonus(s);
   amount += active(s, H.mercenaries).length * playerOrder(s).length;
   const icons = ["leadership", "tactics", "spirit", "lore"].filter((sphere) =>
     allHeroes(s).some((h) => hasResourceIcon(h, sphere)),
@@ -1190,8 +1193,9 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
     case "heirsArchery": {
       const remaining = e.value ?? 0;
       if (remaining <= 0) break;
-      const characters = liveCharacters(s).filter(
-        (u) => u.damage < stats(s, u).health,
+      const characters = druadanForestArcheryTargets(
+        s,
+        liveCharacters(s).filter((u) => u.damage < stats(s, u).health),
       );
       if (characters.length)
         choose(

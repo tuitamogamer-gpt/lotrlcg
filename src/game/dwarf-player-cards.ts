@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import { stewardFearTravelEntered } from "./steward-fear";
@@ -38,7 +39,7 @@ import {
   readyCharacter,
 } from "./board";
 import { applyCombatDamageConsequences } from "./combat";
-import { isSacked, CARROCK } from "./carrock";
+import { CARROCK } from "./carrock";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import {
@@ -62,7 +63,7 @@ const readyAllies = (s: GameState) => s.allies.filter((u) => !u.exhausted);
 const dwarfHeroes = (s: GameState) =>
   allHeroes(s).filter((u) => hasTrait(u, "Dwarf"));
 const resourceRecipients = (s: GameState) =>
-  allHeroes(s).filter((u) => !isSacked(u));
+  allHeroes(s).filter((u) => canGainResources(s, u));
 const numericCost = (code: string) => Number(card(code).cost) || 0;
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
@@ -89,8 +90,8 @@ const lorePayers = (s: GameState) =>
 
 function addResources(s: GameState, hero: Unit, amount: number) {
   requireRule(
-    amount === 0 || !isSacked(hero),
-    "A Sacked hero cannot gain resources.",
+    amount === 0 || canGainResources(s, hero),
+    "This hero cannot gain resources from card effects.",
   );
   hero.resources += amount;
   gondorResourcesGained(s, hero, amount, true);
@@ -218,7 +219,8 @@ export function dwarfAbilityProblem(
   if (code === "03002") {
     if (seatView(s, ownerOf(s, u)).used.includes(`round:bifur:${u.id}`))
       return "Bifur has already used this ability this round.";
-    if (isSacked(u)) return "Bifur cannot gain resources while Sacked.";
+    if (!canGainResources(s, u))
+      return "Bifur cannot gain resources from card effects.";
     if (!allHeroes(s).some((h) => h.resources > 0))
       return "A hero needs a resource to pay for Bifur's ability.";
   }
@@ -462,7 +464,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
           donor &&
           allHeroes(s).some((h) => h.id === donor.id) &&
           donor.resources > 0 &&
-          !isSacked(bifur) &&
+          canGainResources(s, bifur) &&
           !seatView(s, ownerOf(s, bifur)).used.includes(
             `round:bifur:${bifur.id}`,
           ),
@@ -888,7 +890,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
           "Hidden Cache · Discarded from deck",
           [
             ...opts(
-              s.heroes.filter((h) => !isSacked(h)),
+              s.heroes.filter((h) => canGainResources(s, h)),
               (hero) => [fx("dwarfCacheResources", { target: hero.id })],
             ),
             skip,
@@ -907,7 +909,9 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
       enterAlly(s, make(s, "12066"));
       return true;
     case "dwarfCacheResources": {
-      const hero = s.heroes.find((h) => h.id === e.target && !isSacked(h));
+      const hero = s.heroes.find(
+        (h) => h.id === e.target && canGainResources(s, h),
+      );
       requireRule(hero, "Hidden Cache adds resources to a hero you control.");
       addResources(s, hero, 2);
       return true;

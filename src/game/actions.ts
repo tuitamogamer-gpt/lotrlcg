@@ -1,3 +1,7 @@
+import * as Druadan from "./druadan-forest";
+import * as Amon from "./amon-din";
+import * as Osgiliath from "./assault-osgiliath";
+import { canGainResources } from "./core";
 import {
   heirsClaim,
   heirsCanOptionallyEngage,
@@ -366,7 +370,11 @@ export function canCommit(s: GameState, u: Unit): boolean {
   );
 }
 export function canTravel(s: GameState, u: Unit): string | null {
-  if (s.phase !== "travel" || allActiveLocations(s).length > 0)
+  if (
+    s.phase !== "travel" ||
+    (allActiveLocations(s).length > 0 &&
+      !Osgiliath.assaultOsgiliathSecondLocation(s, u))
+  )
     return "Travel requires an empty active-location slot in the travel phase.";
   if (
     !s.staging.some((x) => x.id === u.id) ||
@@ -374,6 +382,10 @@ export function canTravel(s: GameState, u: Unit): string | null {
   )
     return "Choose a location in staging.";
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
+  const druadanProblem = Druadan.druadanForestTravelProblem(s, u);
+  if (druadanProblem) return druadanProblem;
+  const osgiliathProblem = Osgiliath.assaultOsgiliathTravelProblem(s, u);
+  if (osgiliathProblem) return osgiliathProblem;
   const stewardProblem = stewardFearTravelProblem(s, u);
   if (stewardProblem) return stewardProblem;
   const waterProblem = watcherWaterTravelProblem(s, u);
@@ -1224,6 +1236,12 @@ export function availableAbilities(s: GameState, u: Unit) {
       : [];
   }
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const osgiliathLabel = Osgiliath.assaultOsgiliathAbilityLabel(u.code);
+  if (osgiliathLabel)
+    results.push({
+      label: osgiliathLabel,
+      disabled: !!Osgiliath.assaultOsgiliathAbilityProblem(s, u),
+    });
   const bloodLabel = bloodPlayerAbilityLabel(u.code);
   if (bloodLabel)
     results.push({
@@ -1453,7 +1471,7 @@ export function availableAbilities(s: GameState, u: Unit) {
             )) ||
           !!heirsPlayerAbilityProblem(s, u, a.id) ||
           !!shadowFlamePlayerAbilityProblem(s, u, a.id) ||
-          (a.code === "01026" && isSacked(u)) ||
+          (a.code === "01026" && !canGainResources(s, u)) ||
           !!huntAbilityProblem(s, u, a.id) ||
           !!utilityAbilityProblem(s, u, a.id) ||
           !!marshPlayerAbilityProblem(s, u, a.id) ||
@@ -1470,6 +1488,37 @@ export function availableAbilities(s: GameState, u: Unit) {
       ? { ...a, disabled: true }
       : a,
   );
+}
+
+/** Resolve staging after mandatory stat choices and pre-resolution effects. */
+export function resolveQuestResult(s: GameState) {
+  if (
+    Osgiliath.assaultOsgiliathPrepareQuest(
+      s,
+      fx("resolveQuestResult", { player: firstPlayer(s) }),
+    )
+  )
+    return;
+  if (foundationsResolveQuest(s)) return;
+  if (redhornBeforeQuestResolution(s)) return;
+  const will = questWill(s),
+    threat = stagingThreat(s),
+    net = will - threat;
+  const stat = questStat(s);
+  const statLabel = stat === "will" ? "willpower" : stat;
+  s.lastQuest = { will, threat, net, stat };
+  if (net > 0) {
+    log(
+      s,
+      `Quest succeeds: ${will} ${statLabel} − ${threat} threat = ${net} progress.`,
+      "good",
+    );
+    enqueue(s, fx("questSucceeded", { value: net, player: firstPlayer(s) }));
+  } else if (net < 0) {
+    if (returnMirkwoodQuestFailed(s)) return;
+    enqueue(s, fx("failedQuest", { value: -net, player: firstPlayer(s) }));
+  } else log(s, `${statLabel} matches threat. No progress or threat increase.`);
+  enqueue(s, fx("finishQuestPhase"));
 }
 
 export function applyAction(input: GameState, action: Action): GameState {
@@ -1641,36 +1690,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         if (!passSeat(s)) break;
         enqueue(s, fx("phaseEnd"), fx("startQuest"));
       } else if (s.phase === "staging") {
-        if (foundationsResolveQuest(s)) break;
-        if (redhornBeforeQuestResolution(s)) break;
-        const will = questWill(s),
-          threat = stagingThreat(s),
-          net = will - threat;
-        const stat = questStat(s);
-        const statLabel = stat === "will" ? "willpower" : stat;
-        s.lastQuest = { will, threat, net, stat };
-        if (net > 0) {
-          log(
-            s,
-            `Quest succeeds: ${will} ${statLabel} − ${threat} threat = ${net} progress.`,
-            "good",
-          );
-          enqueue(
-            s,
-            fx("questSucceeded", { value: net, player: firstPlayer(s) }),
-          );
-        } else if (net < 0) {
-          if (returnMirkwoodQuestFailed(s)) break;
-          enqueue(
-            s,
-            fx("failedQuest", { value: -net, player: firstPlayer(s) }),
-          );
-        } else
-          log(
-            s,
-            `${statLabel} matches threat. No progress or threat increase.`,
-          );
-        enqueue(s, fx("finishQuestPhase"));
+        resolveQuestResult(s);
       } else if (s.phase === "travel") {
         if (foundationsTravelNext(s)) break;
         requireRule(
@@ -1777,7 +1797,9 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (
         u &&
         !action.attachmentId &&
-        (useFoundationsAbility(s, u) || useHeirsAbility(s, u))
+        (Osgiliath.useAssaultOsgiliathAbility(s, u) ||
+          useFoundationsAbility(s, u) ||
+          useHeirsAbility(s, u))
       )
         break;
       if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
@@ -1887,14 +1909,34 @@ export function applyAction(input: GameState, action: Action): GameState {
     }
     case "TRAVEL": {
       requireRule(
-        s.phase === "travel" && !allActiveLocations(s).length,
-        "You may travel only when there is no active location.",
+        s.phase === "travel",
+        "You may travel only during the travel phase.",
       );
       const u = s.staging.find(
         (x) => x.id === action.id && card(x.code).type_code === "location",
       );
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
+      const scenarioCost =
+        Amon.amonDinTravelEffects(s, u) ??
+        Osgiliath.assaultOsgiliathTravelEffects(s, u) ??
+        (Druadan.druadanForestTravelEffects(s, u).length
+          ? Druadan.druadanForestTravelEffects(s, u)
+          : undefined);
+      if (scenarioCost) {
+        prepend(
+          s,
+          ...scenarioCost,
+          fx("travelEnter", {
+            target: u.id,
+            player: firstPlayer(s),
+            text: Osgiliath.assaultOsgiliathSecondLocation(s, u)
+              ? "osgiliath-second"
+              : undefined,
+          }),
+        );
+        break;
+      }
       const stewardCost = stewardFearTravelEffects(s, u);
       if (stewardCost) {
         prepend(
@@ -2078,6 +2120,31 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.amonDin
+      ? {
+          villagers: {
+            remaining: s.amonDin.questVillagers,
+            rescued:
+              s.staging.find((u) => card(u.code).name === "Rescued Villagers")
+                ?.resources ?? 0,
+            dead:
+              s.staging.find((u) => card(u.code).name === "Dead Villagers")
+                ?.damage ?? 0,
+          },
+        }
+      : {}),
+    ...(s.assaultOsgiliath
+      ? {
+          controlledLocations: s.assaultOsgiliath.controlled.map((u) => ({
+            id: u.id,
+            code: u.code,
+            name: name(u),
+            owner: u.owner ?? 0,
+            progress: u.progress,
+            attachments: u.attachments,
+          })),
+        }
+      : {}),
     escapeTest: s.escapeTest
       ? {
           phase: s.escapeTest.phase,
@@ -2144,6 +2211,7 @@ export function publicState(s: GameState) {
       stage: s.stage,
       progress: s.progress,
       ...(s.stewardFear ? { resources: s.stewardFear.questResources } : {}),
+      ...(s.amonDin ? { villagers: s.amonDin.questVillagers } : {}),
       stat: questStat(s),
     },
     heroes: s.heroes.map((u) => ({ ...u, name: name(u), stats: stats(s, u) })),
@@ -2171,6 +2239,7 @@ export function publicState(s: GameState) {
       ...stats(s, u),
       threat: threatOf(s, u),
       progress: u.progress,
+      damage: u.damage,
       ...(s.stewardFear
         ? { underworldCount: s.stewardFear.underneath[u.id]?.length ?? 0 }
         : {}),
@@ -2195,6 +2264,7 @@ export function publicState(s: GameState) {
       name: name(l),
       progress: l.progress,
       quest: locationQuest(s, l),
+      resources: l.resources,
       ...(s.stewardFear
         ? { underworldCount: s.stewardFear.underneath[l.id]?.length ?? 0 }
         : {}),

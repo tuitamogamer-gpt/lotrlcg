@@ -1,3 +1,6 @@
+import * as Druadan from "./druadan-forest";
+import * as Amon from "./amon-din";
+import * as Osgiliath from "./assault-osgiliath";
 import { enemyAttackPrevented } from "./core";
 import {
   amonPlayerCannotDeclareAttack,
@@ -240,14 +243,17 @@ export function resolvePlayerAttack(
   const contributions = Object.fromEntries(
     attackers.map((u) => [
       u.id,
-      stats(s, u).attack +
-        morgulPlayerAttackBonus(s, u, enemy) +
-        redhornPlayerAttackBonus(s, u, enemy) +
-        watcherPlayerAttackBonus(s, u, enemy) +
-        (card(enemy.code).traits?.includes("Orc")
-          ? u.attachments.filter((a) => !a.blanked && a.code === "01039").length
-          : 0) +
-        (attackers.length === 1 ? stagingBonus : 0),
+      Druadan.druadanForestAttackStat(s) === "will"
+        ? stats(s, u).will
+        : stats(s, u).attack +
+          morgulPlayerAttackBonus(s, u, enemy) +
+          redhornPlayerAttackBonus(s, u, enemy) +
+          watcherPlayerAttackBonus(s, u, enemy) +
+          (card(enemy.code).traits?.includes("Orc")
+            ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
+                .length
+            : 0) +
+          (attackers.length === 1 ? stagingBonus : 0),
     ]),
   );
   const power = Object.values(contributions).reduce((total, n) => total + n, 0);
@@ -263,6 +269,10 @@ export function resolvePlayerAttack(
   const engagedPlayer = s.staging.some((u) => u.id === enemy.id)
     ? undefined
     : ownerOf(s, enemy);
+  if (Druadan.druadanForestAttackProgress(s, enemy, amount)) {
+    playerAttackResolved(s, enemy, ids, 0, remainingHealth);
+    return;
+  }
   if (watcherWaterRedirectAttack(s, enemy, ids, amount, remainingHealth))
     return;
   const assigned = damage(s, enemy.id, amount, { combatDamage: true });
@@ -343,6 +353,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   if (enemyAttackPrevented(s, enemy, player)) return;
   shadowFlameEnemyAttackStart(s, enemy, player);
   stewardFearAttackStarted(s, enemy, player);
+  Amon.amonDinAttackStarted(s, enemy);
 }
 
 export function applyCombatDamageConsequences(
@@ -412,7 +423,8 @@ export function beginEnemyAttack(
         !!u &&
         rhosgobelCanFight(enemy, u) &&
         redhornCanDefend(enemy, u) &&
-        heirsCanDefend(s, enemy, u),
+        heirsCanDefend(s, enemy, u) &&
+        Druadan.druadanForestCanDefend(s, enemy, u),
     ),
     "Choose ready characters able to defend.",
   );
@@ -463,6 +475,7 @@ export function beginEnemyAttack(
       ["01085", KHAZAD.warg].includes(enemy.code) &&
       enemy.shadows.some((code) => !card(code).shadow),
   };
+  if (!ids.length) Osgiliath.assaultOsgiliathAttackUndefended(s, s.combat);
   if (enemy.code === "01084") raiseThreat(s, 1, "encounter");
   for (const d of defenders.filter((d) => d && get(s, d.id)))
     if (d!.code === "01029") damage(s, enemy.id, 1);

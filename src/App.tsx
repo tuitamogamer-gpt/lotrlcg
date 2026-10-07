@@ -1,3 +1,4 @@
+import { AMON_DIN as A } from "./game/amon-din-support";
 import {
   consideredEngaged,
   normalAttackPending,
@@ -2412,7 +2413,7 @@ export default function App() {
                   }}
                 />
                 <div
-                  className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""}`}
+                  className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""} ${game.assaultOsgiliath?.controlled.length ? "has-controlled" : ""}`}
                 >
                   <motion.div layoutScroll className="encounter-zone">
                     <div className="zone-label">
@@ -2510,6 +2511,32 @@ export default function App() {
                       )}
                     </motion.div>
                   </motion.div>
+                  {!!game.assaultOsgiliath?.controlled.length && (
+                    <motion.div
+                      layoutScroll
+                      className="engaged-zone controlled-zone"
+                      aria-label="Controlled Osgiliath locations"
+                    >
+                      <div className="zone-label">
+                        <span>
+                          <Shield size={15} /> CONTROLLED
+                        </span>
+                        <span>{game.assaultOsgiliath.controlled.length}</span>
+                      </div>
+                      <motion.div layoutScroll className="board-cards">
+                        {game.assaultOsgiliath.controlled.map((u) => (
+                          <BoardCard
+                            key={u.id}
+                            s={game}
+                            u={u}
+                            dispatch={dispatch}
+                            inspect={() => setDetail(card(u.code))}
+                            inspectCard={setDetail}
+                          />
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  )}
                   {allEngaged(game).length > 0 && (
                     <motion.div layoutScroll className="engaged-zone">
                       <div className="zone-label">
@@ -4122,7 +4149,9 @@ function BoardCard({
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
           {(u.code === CARROCK.grimbeorn ||
             u.code === DEAD.gollum ||
-            u.code === S.flames) && (
+            u.code === S.flames ||
+            (s.scenarioId === "encounter-at-amon-din" &&
+              (c.type_code === "location" || u.code === A.rescued))) && (
             <TableToken kind="resource" value={u.resources} />
           )}
         </span>
@@ -4145,6 +4174,11 @@ function BoardCard({
             </span>
           </div>
         )}
+      {s.assaultOsgiliath?.controlled.some((l) => l.id === u.id) && (
+        <div className="engaged-owner">
+          {s.table ? seatName(s, u.owner ?? 0) : "Your fellowship"}
+        </div>
+      )}
       {s.table && allEngaged(s).some((e) => e.id === u.id) && (
         <div className="engaged-owner">
           Engaged with {seatName(s, ownerOf(s, u))}
@@ -4199,7 +4233,24 @@ function BoardCard({
           </span>
         </div>
       )}
-      {c.type_code === "objective" && (
+      {s.scenarioId === "encounter-at-amon-din" &&
+        (c.type_code === "location" ||
+          [A.rescued, A.dead].includes(u.code)) && (
+          <div
+            className="objective-status"
+            aria-label={`${u.code === A.dead ? u.damage : u.resources} ${u.code === A.dead ? "dead" : u.code === A.rescued ? "rescued" : "remaining"} villagers`}
+          >
+            <span>
+              {u.code === A.dead ? u.damage : u.resources}{" "}
+              {u.code === A.dead
+                ? "dead villagers"
+                : u.code === A.rescued
+                  ? "rescued villagers"
+                  : "villagers to rescue"}
+            </span>
+          </div>
+        )}
+      {c.type_code === "objective" && ![A.rescued, A.dead].includes(u.code) && (
         <div className="objective-status">
           <span>
             <Shield />

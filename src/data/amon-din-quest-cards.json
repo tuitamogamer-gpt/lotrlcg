@@ -1,0 +1,81 @@
+[
+  {
+    "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+    "octgnid": "fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+    "name": "Savagery of the Orcs",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Ghulat aside, out of play. Put Lord Alcaron into play. Make Burning Farmhouse the active location. Add the Rescued Villagers and Dead Villagers objectives to the staging area. Then, shuffle the encounter deck and reveal 1 encounter card per player and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "EaAD",
+    "pack_name": "Encounter at Amon Dîn",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Encounter at Amon Din",
+    "side": "A",
+    "back_name": "Savagery of the Orcs",
+    "back_text": "Villagers 5.\nWhen progress would be placed on Savagery of the Orcs, move an equal number of villager tokens from this quest onto Rescued Villagers instead.  If there are no villager tokens on Savagery of the Orcs, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93001.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93001.jpg",
+    "packs": [
+      {
+        "pack_code": "EaAD",
+        "pack_name": "Encounter at Amon Dîn",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+    "octgnid": "fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+    "name": "Protect the Villagers",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Ghulat to the staging area.",
+    "is_unique": false,
+    "pack_code": "EaAD",
+    "pack_name": "Encounter at Amon Dîn",
+    "position": 67,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Encounter at Amon Din",
+    "side": "A",
+    "back_name": "Protect the Villagers",
+    "back_text": "If an attack goes undefended, discard X villager tokens from Rescued Villagers instead of damaging a hero. X is the amount of damage that would have been dealt.  When the players defeat this stage, end the game. Compare the number of tokens on Rescued Villagers to the number of tokens on Dead Villagers.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93002.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93002.jpg",
+    "packs": [
+      {
+        "pack_code": "EaAD",
+        "pack_name": "Encounter at Amon Dîn",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd89bdbf-7475-4f3e-96fc-8f5315a93002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,4 +1,13 @@
 import {
+  DRUADAN_FOREST_ENCOUNTERS,
+  DRUADAN_FOREST_QUESTS,
+} from "./druadan-forest-support";
+import { AMON_DIN_ENCOUNTERS, AMON_DIN_QUESTS } from "./amon-din-support";
+import {
+  ASSAULT_OSGILIATH_ENCOUNTERS,
+  ASSAULT_OSGILIATH_QUESTS,
+} from "./assault-osgiliath-support";
+import {
   HEIRS_NUMENOR_ENCOUNTERS,
   HEIRS_NUMENOR_QUESTS,
 } from "./heirs-numenor-support";
@@ -121,6 +130,9 @@ export const encounterCards = [
   ...HEIRS_NUMENOR_ENCOUNTERS,
   ...STEWARD_FEAR_ENCOUNTERS,
   ...STREETS_GONDOR_ENCOUNTERS,
+  ...DRUADAN_FOREST_ENCOUNTERS,
+  ...AMON_DIN_ENCOUNTERS,
+  ...ASSAULT_OSGILIATH_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -141,6 +153,9 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...FOUNDATIONS_STONE_QUESTS,
     ...HEIRS_NUMENOR_QUESTS,
     ...STEWARD_FEAR_QUESTS,
+    ...DRUADAN_FOREST_QUESTS,
+    ...AMON_DIN_QUESTS,
+    ...ASSAULT_OSGILIATH_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -234,6 +249,9 @@ export const SCRIPTED = new Set(
     ...FOUNDATIONS_STONE_QUESTS,
     ...HEIRS_NUMENOR_QUESTS,
     ...STEWARD_FEAR_QUESTS,
+    ...DRUADAN_FOREST_QUESTS,
+    ...AMON_DIN_QUESTS,
+    ...ASSAULT_OSGILIATH_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

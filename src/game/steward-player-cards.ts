@@ -1,16 +1,16 @@
+import { canGainResources } from "./core";
 // The Steward's Fear: Outlands auras and explicit resource-payment permissions.
 import { card } from "./cards";
 import type { Card, Effect, GameState, Unit } from "./types";
 import { choose, draw, fx, requireRule } from "./core";
 import { hasTrait } from "./expansion-passives";
-import { isSacked } from "./carrock";
 import { ownerOf, seatView } from "./table";
 import { gondorResourcesGained } from "./gondor-player-cards";
 const regularSpheres = ["leadership", "tactics", "spirit", "lore"];
 const cardHasTrait = (c: Card, trait: string) =>
   (c.traits ?? "").split(".").some((t) => t.trim() === trait);
 const resourceTargets = (s: GameState) =>
-  s.heroes.filter((h) => h.resources >= 2 && !isSacked(h));
+  s.heroes.filter((h) => h.resources >= 2 && canGainResources(s, h));
 export function stewardPlayerStats(s: GameState, u: Unit) {
   const result = { will: 0, attack: 0, defense: 0, health: 0 };
   if (!hasTrait(u, "Outlands")) return result;

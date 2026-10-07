@@ -1,3 +1,4 @@
+import { druadanForestCanDefend } from "./druadan-forest";
 import { consideredEngaged } from "./considered-engagement";
 import { amonPlayerCanAttackEnemy } from "./amon-din-player-cards";
 import { druadanPlayerPhaseStarted } from "./druadan-player-cards";
@@ -249,7 +250,8 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
         (rhosgobelCanFight(enemy, u) &&
           redhornCanDefend(enemy, u) &&
           foundationsCanFight(enemy, u) &&
-          heirsCanDefend(s, enemy, u))) &&
+          heirsCanDefend(s, enemy, u) &&
+          druadanForestCanDefend(s, enemy, u))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );

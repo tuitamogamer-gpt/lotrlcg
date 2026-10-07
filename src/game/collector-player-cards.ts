@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // Active rules completing the two printed Collector's Edition starter decks.
@@ -1083,7 +1084,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       choose(s, "Blue Mountain Trader · Move a resource or discard", [
         ...spherePayers(s, "neutral").flatMap((h) =>
           seatView(s, old)
-            .heroes.filter((destination) => !isSacked(destination))
+            .heroes.filter((destination) => canGainResources(s, destination))
             .map((destination) => ({
               id: `${h.id}-${destination.id}`,
               label: `${card(h.code).name} → ${card(destination.code).name}`,
@@ -1108,7 +1109,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
     case "collectorTraderResource": {
       const h = s.heroes.find((h) => h.id === e.target && h.resources > 0),
         destination = seatView(s, e.value!).heroes.find(
-          (h) => h.id === e.text && !isSacked(h),
+          (h) => h.id === e.text && canGainResources(s, h),
         );
       requireRule(
         h && destination,

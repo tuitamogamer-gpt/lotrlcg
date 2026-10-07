@@ -1,0 +1,301 @@
+[
+  {
+    "id": "E03.6",
+    "name": "Encounter at Amon Dîn (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": ["EaAD", "HoN"],
+    "card_codes": [
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+      "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062",
+      "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070"
+    ],
+    "cards": [
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+        "quantity": 1,
+        "section": "sharedActiveLocation"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001": 1,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072": 4,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076": 4,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079": 2,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080": 2,
+        "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062": 3,
+        "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072": 2
+      },
+      "sharedSetAside": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071": 1
+      },
+      "sharedStagingArea": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068": 1,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069": 1
+      },
+      "player1Play1": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070": 1
+      },
+      "sharedActiveLocation": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q03.6",
+    "name": "Encounter at Amon Dîn",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": ["EaAD", "HoN"],
+    "card_codes": [
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93074",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+      "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062",
+      "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9064",
+      "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069",
+      "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070"
+    ],
+    "cards": [
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93074",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9064",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+        "quantity": 1,
+        "section": "sharedActiveLocation"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001": 1,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072": 4,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93074": 2,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076": 4,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077": 3,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078": 2,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079": 2,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080": 2,
+        "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9062": 3,
+        "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9064": 3,
+        "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9072": 2
+      },
+      "sharedSetAside": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071": 1
+      },
+      "sharedStagingArea": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068": 1,
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069": 1
+      },
+      "player1Play1": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070": 1
+      },
+      "sharedActiveLocation": {
+        "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

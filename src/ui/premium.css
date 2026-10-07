@@ -8,7 +8,9 @@
   --mat-tint: #173127;
 }
 .redbook[data-playmat="into-ithilien"],
-.mat-into-ithilien {
+.mat-into-ithilien,
+.redbook[data-playmat="the-druadan-forest"],
+.mat-the-druadan-forest {
   --playmat-art: url("/art/premium/mirkwood.webp");
   --mat-shade: #071e176b;
   --mat-tint: #173127;
@@ -62,7 +64,11 @@
 .redbook[data-playmat="siege-of-cair-andros"],
 .mat-siege-of-cair-andros,
 .redbook[data-playmat="the-stewards-fear"],
-.mat-the-stewards-fear {
+.mat-the-stewards-fear,
+.redbook[data-playmat="assault-on-osgiliath"],
+.mat-assault-on-osgiliath,
+.redbook[data-playmat="encounter-at-amon-din"],
+.mat-encounter-at-amon-din {
   --playmat-art: url("/art/premium/dol-guldur.webp");
   --mat-shade: #21172352;
   --mat-tint: #30252d;

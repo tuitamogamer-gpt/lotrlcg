@@ -114,10 +114,14 @@ export function JourneyArea({
   const active = allActiveLocations(s);
   const quest = currentQuestUnit(s);
   const resourceQuest = s.scenarioId === "the-stewards-fear" && s.stage < 3;
-  const questValue = resourceQuest
-    ? (s.stewardFear?.questResources ?? 0)
-    : s.progress;
-  const questGoal = resourceQuest ? 4 : q.quest;
+  const villagerQuest =
+    s.scenarioId === "encounter-at-amon-din" && s.stage === 1;
+  const questValue = villagerQuest
+    ? (s.amonDin?.questVillagers ?? 0)
+    : resourceQuest
+      ? (s.stewardFear?.questResources ?? 0)
+      : s.progress;
+  const questGoal = villagerQuest ? 5 : resourceQuest ? 4 : q.quest;
   const area = s.foundationsStone?.split ? foundationsArea(s) : undefined;
   const locationCard = (u: Unit) => (
     <>
@@ -134,9 +138,18 @@ export function JourneyArea({
           data-card-code={u.code}
         />
         <TableToken kind="progress" value={u.progress} />
+        {s.amonDin && <TableToken kind="resource" value={u.resources} />}
         {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
       </motion.button>
       <AttachmentStack u={u} inspect={inspect} />
+      {s.amonDin && (
+        <span
+          className="journey-underworld"
+          aria-label={`${u.resources} villagers to rescue`}
+        >
+          {u.resources} villagers to rescue
+        </span>
+      )}
       {!!s.stewardFear?.underneath[u.id]?.length && (
         <span
           className="journey-underworld"
@@ -195,17 +208,23 @@ export function JourneyArea({
       </button>
       <div
         className="tabletop-progress"
-        aria-label={`Quest ${resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`}
+        aria-label={`Quest ${villagerQuest ? "villagers" : resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`}
       >
         <TableToken
-          kind={resourceQuest ? "resource" : "progress"}
+          kind={resourceQuest || villagerQuest ? "resource" : "progress"}
           value={questValue}
         />
         <div>
           <b>
             {questGoal ? `${questValue} / ${questGoal}` : "Special objective"}
           </b>
-          <span>{resourceQuest ? "Quest resources" : "Progress"}</span>
+          <span>
+            {villagerQuest
+              ? "Villagers to rescue"
+              : resourceQuest
+                ? "Quest resources"
+                : "Progress"}
+          </span>
         </div>
         {questGoal > 0 && (
           <div

@@ -1,3 +1,6 @@
+import { DRUADAN_FOREST_QUESTS } from "./druadan-forest-support";
+import { AMON_DIN_QUESTS } from "./amon-din-support";
+import { ASSAULT_OSGILIATH_QUESTS } from "./assault-osgiliath-support";
 import heirsQuests from "../data/heirs-numenor-quest-cards.json";
 import scriptedScenarioArt from "../data/scripted-scenario-art.json";
 import stewardQuests from "../data/steward-fear-quest-cards.json";
@@ -32,6 +35,9 @@ const questImage = (code: string) => {
     ...shadowFlameQuests,
     ...heirsQuests,
     ...stewardQuests,
+    ...DRUADAN_FOREST_QUESTS,
+    ...AMON_DIN_QUESTS,
+    ...ASSAULT_OSGILIATH_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -535,7 +541,7 @@ export const SCENARIOS = [
       const q = FOUNDATIONS_STONE_QUESTS.find((q) => q.code === code)!;
       return {
         name: q.back_name ?? q.name,
-        quest: q.quest ?? 0,
+        quest: q.quest ?? q.back_quest ?? 0,
         story: q.back_text ?? q.text ?? "",
         cardCode: q.code,
         questImage: q.back_imagesrc ?? q.imagesrc,
@@ -739,6 +745,66 @@ export const SCENARIOS = [
         questImage: "/cards/8239e81a-f779-4c7c-b586-cd5ad732f061.B.jpg",
       },
     ],
+  },
+  {
+    id: "the-druadan-forest",
+    name: "The Drúadan Forest",
+    shortName: "Drúadan Forest",
+    chapter: "XXIII",
+    difficulty: 6,
+    tagline: "Pursuit beneath the silent trees",
+    description:
+      "Pursue the conspirators into the Woses’ forest, withstand their arrows and earn their trust.",
+    sets: ["The Druadan Forest", "Brooding Forest"],
+    stages: DRUADAN_FOREST_QUESTS.slice()
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.back_name ?? q.name,
+        quest: q.quest ?? q.back_quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: questImage(q.code),
+      })),
+  },
+  {
+    id: "encounter-at-amon-din",
+    name: "Encounter at Amon Dîn",
+    shortName: "Amon Dîn",
+    chapter: "XXIV",
+    difficulty: 3,
+    tagline: "Save the burning villages",
+    description:
+      "Rescue the villagers of Anórien from the raiders before Ghulat and his Orcs destroy their homes.",
+    sets: ["Encounter at Amon Din", "Ravaging Orcs"],
+    stages: AMON_DIN_QUESTS.slice()
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.back_name ?? q.name,
+        quest: q.quest ?? q.back_quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: questImage(q.code),
+      })),
+  },
+  {
+    id: "assault-on-osgiliath",
+    name: "Assault on Osgiliath",
+    shortName: "Osgiliath",
+    chapter: "XXV",
+    difficulty: 8,
+    tagline: "Reclaim the ruined city",
+    description:
+      "Join the forces of Gondor to capture the streets, harbours and strongholds of Osgiliath.",
+    sets: ["Assault on Osgiliath", "Mordor Elite", "Southrons"],
+    stages: ASSAULT_OSGILIATH_QUESTS.slice()
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.back_name ?? q.name,
+        quest: q.quest ?? 0,
+        story: q.back_text ?? q.text ?? "",
+        cardCode: q.code,
+        questImage: questImage(q.code),
+      })),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

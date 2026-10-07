@@ -1,3 +1,15 @@
+import {
+  druadanForestStats,
+  druadanForestThreat,
+  druadanForestThreatBonus,
+  druadanForestCostIncrease,
+  druadanForestCannotGainResources,
+} from "./druadan-forest";
+import { amonDinEnemyAttackBonus } from "./amon-din";
+import {
+  assaultOsgiliathAttackBonus,
+  assaultOsgiliathQuestStat,
+} from "./assault-osgiliath";
 import { shadowFlameAttackBonus } from "./shadow-flame";
 import {
   heirsStats,
@@ -171,6 +183,10 @@ export const skip: Option = {
   effects: [],
 };
 
+/** Positive resource gains include transfers; the resource phase is not a card effect. */
+export const canGainResources = (s: GameState, u: Unit, cardEffect = true) =>
+  !isSacked(u) && !druadanForestCannotGainResources(s, u, cardEffect);
+
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
 export const units = (s: GameState) => [
@@ -178,12 +194,14 @@ export const units = (s: GameState) => [
   ...s.staging,
   ...allEngaged(s),
   ...allActiveLocations(s),
+  ...(s.assaultOsgiliath?.controlled ?? []),
 ];
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
   ...globalCharacters(s),
   ...globalEngaged(s),
   ...foundationsAllAreaUnits(s),
+  ...(s.assaultOsgiliath?.controlled ?? []),
 ];
 
 export const get = (s: GameState, id?: string) =>
@@ -400,11 +418,13 @@ export function stats(s: GameState, u: Unit) {
   const foundationsBonus = foundationsStats(s, u);
   const namelessX = foundationsEnemyX(s, u);
   const heirsScenarioBonus = heirsStats(s, u);
+  const druadanScenarioBonus = druadanForestStats(s, u);
   const result = {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
         foundationsBonus.will +
+        druadanScenarioBonus.will +
         morgulBonus.will +
         osgiliathBonus.will +
         amonBonus.will +
@@ -432,6 +452,8 @@ export function stats(s: GameState, u: Unit) {
       : (namelessX ?? c.attack ?? 0) +
         foundationsBonus.attack +
         heirsScenarioBonus.attack +
+        amonDinEnemyAttackBonus(s, u) +
+        assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
         morgulBonus.attack +
         osgiliathBonus.attack +
@@ -467,6 +489,7 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             foundationsBonus.defense +
             heirsScenarioBonus.defense +
+            druadanScenarioBonus.defense +
             osgiliathBonus.defense +
             druadanBonus.defense +
             stewardBonus.defense +
@@ -554,7 +577,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
               0,
               printed +
                 surcharge +
-                emynMuilPlayCost(s, c) -
+                emynMuilPlayCost(s, c) +
+                druadanForestCostIncrease(s) -
                 secrecyDiscount(s, c) -
                 gondorDiscount,
             ) + dwarfAdditionalCost(c.code),
@@ -576,7 +600,8 @@ export const threatOf = (s: GameState, u: Unit) =>
     ? 0
     : Math.max(
         0,
-        (card(u.code).threat ?? 0) +
+        (druadanForestThreat(s, u) ?? card(u.code).threat ?? 0) +
+          druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
           emynMuilThreatBonus(s, u) +
           rhosgobelThreatBonus(s, u) +
@@ -615,7 +640,9 @@ export const questWill = (s: GameState) =>
     .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
 
 export const questStat = (s: GameState) =>
-  heirsQuestStat(s) ?? druadanPlayerQuestStat(s);
+  assaultOsgiliathQuestStat(s) ??
+  heirsQuestStat(s) ??
+  druadanPlayerQuestStat(s);
 
 export const locationQuest = (s: GameState, u: Unit) =>
   watcherWaterLocationQuest(s, u) ??

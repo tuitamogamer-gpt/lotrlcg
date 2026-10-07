@@ -1,0 +1,125 @@
+[
+  {
+    "code": "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
+    "octgnid": "71079813-3afe-41b7-8746-92dcc1f91084",
+    "name": "The Pursuit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for Drû-buri-Drû and set him aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 42,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Druadan Forest",
+    "side": "A",
+    "back_name": "The Pursuit",
+    "back_text": "When Revealed: Reveal 1 card from the encounter deck per player and add it to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71079813-3afe-41b7-8746-92dcc1f91084.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71079813-3afe-41b7-8746-92dcc1f91084.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "71079813-3afe-41b7-8746-92dcc1f91084",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71079813-3afe-41b7-8746-92dcc1f91084.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 11
+  },
+  {
+    "code": "octgn:346fda89-94df-410a-8027-41eacbf27238",
+    "octgnid": "346fda89-94df-410a-8027-41eacbf27238",
+    "name": "An Untimely End",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 43,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Druadan Forest",
+    "side": "A",
+    "back_name": "An Untimely End",
+    "back_text": "Archery damage must be assigned to allies, if able.",
+    "back_type_code": "quest",
+    "back_quest": 17,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/346fda89-94df-410a-8027-41eacbf27238.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/346fda89-94df-410a-8027-41eacbf27238.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 43,
+        "quantity": 1,
+        "octgnid": "346fda89-94df-410a-8027-41eacbf27238",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/346fda89-94df-410a-8027-41eacbf27238.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 17
+  },
+  {
+    "code": "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgnid": "f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "name": "The Passage Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Siege.\nWhen Revealed: Add Drû-buri-Drû to the staging area.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 44,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Druadan Forest",
+    "side": "A",
+    "back_name": "The Passage Out",
+    "back_text": "Siege.\nCharacters use their [willpower] instead of [attack] when attacking enemies. If an enemy would be damaged this way, place progress tokens on it instead of damage tokens. When an enemy has progress equal to its hit points, add it to the victory display and place those progress tokens on the quest.  If the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6578eb7-1b94-458b-aba1-82b406507a4d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6578eb7-1b94-458b-aba1-82b406507a4d.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 44,
+        "quantity": 1,
+        "octgnid": "f6578eb7-1b94-458b-aba1-82b406507a4d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6578eb7-1b94-458b-aba1-82b406507a4d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 14
+  }
+]

@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
 import { takePlayerDiscard } from "./board";
 import { shadowFlameCanMove } from "./shadow-flame";
@@ -315,7 +316,7 @@ function miruvorChoose(s: GameState, e: Effect) {
     {
       id: "resource",
       label: "Add 1 resource to attached hero",
-      valid: !!u && !isSacked(u),
+      valid: !!u && canGainResources(s, u),
     },
     { id: "will", label: "+1 willpower until end of round", valid: !!u },
     {
@@ -490,7 +491,7 @@ export function handleShadowFlamePlayerEffect(
       }
       if (mode === "resource") {
         requireRule(
-          u && !isSacked(u),
+          u && canGainResources(s, u),
           "The hero must be able to gain resources.",
         );
         u.resources++;

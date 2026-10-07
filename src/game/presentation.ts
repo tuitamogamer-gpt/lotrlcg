@@ -53,6 +53,9 @@ export function observe(
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
     "Staging threat": String(getStagingThreat(s)),
+    ...(s.amonDin
+      ? { "Villagers on the quest": String(s.amonDin.questVillagers) }
+      : {}),
   };
   const seen: Record<string, SeenUnit> = {},
     hands: Record<string, { code: string; owner: string }> = {};
@@ -76,6 +79,13 @@ export function observe(
             }
           : {}),
         ...(c.type_code === "hero" ? { Resources: String(u.resources) } : {}),
+        ...(s.amonDin &&
+        (c.type_code === "location" || c.name === "Rescued Villagers")
+          ? { Villagers: String(u.resources) }
+          : {}),
+        ...(s.amonDin && c.name === "Dead Villagers"
+          ? { "Dead villagers": String(u.damage) }
+          : {}),
         ...(character || enemy
           ? { Attack: String(stats.attack), Defense: String(stats.defense) }
           : {}),
@@ -114,6 +124,11 @@ export function observe(
   for (const u of s.staging) add(u, "Staging area");
   for (const location of allActiveLocations(s))
     add(location, "Active location");
+  for (const location of s.assaultOsgiliath?.controlled ?? [])
+    add(
+      location,
+      `Controlled by ${s.table ? seatName(s, location.owner ?? 0) : "your fellowship"}`,
+    );
   if (s.prisoner) add(s.prisoner, "Prisoner");
   if (s.captiveMendor) add(s.captiveMendor, "Captive");
   if (s.combat) {

@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
 import {
   morgulPlayerEventEffect,
@@ -53,7 +54,6 @@ import {
   takePlayerDiscard,
 } from "./board";
 import { discardTarget } from "./actions";
-import { isSacked } from "./carrock";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import {
   rhosgobelPlayerEventEffect,
@@ -406,8 +406,8 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     switch (a.code) {
       case "01026":
         requireRule(
-          !isSacked(u),
-          "This hero cannot collect resources while Sacked.",
+          canGainResources(s, u),
+          "This hero cannot collect resources from card effects.",
         );
         a.exhausted = true;
         u.resources += 2;

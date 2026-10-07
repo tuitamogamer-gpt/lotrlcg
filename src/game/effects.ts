@@ -1,3 +1,7 @@
+import * as Druadan from "./druadan-forest";
+import * as Amon from "./amon-din";
+import * as Osgiliath from "./assault-osgiliath";
+import { canGainResources } from "./core";
 import {
   engagedEnemies,
   consideredEngaged,
@@ -6,7 +10,7 @@ import {
   finishEnemyShadows,
 } from "./considered-engagement";
 import { finishPlayedEvent } from "./event-resolution";
-import { handlePlayerEventAbilityEffect } from "./actions";
+import { handlePlayerEventAbilityEffect, resolveQuestResult } from "./actions";
 import {
   handleHeirsEffect,
   heirsEncounter,
@@ -29,6 +33,7 @@ import {
   stewardFearRoundEndEffects,
   stewardFearAttackFinished,
   stewardFearExtraRevealCount,
+  stewardFearTreacheryRevealed,
 } from "./steward-fear";
 import {
   foundationsBeginStaging,
@@ -304,6 +309,9 @@ export function handle(s: GameState, e: Effect) {
 function handleEffect(s: GameState, e: Effect) {
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
+  if (Druadan.handleDruadanForestEffect(s, e)) return;
+  if (Amon.handleAmonDinEffect(s, e)) return;
+  if (Osgiliath.assaultOsgiliathEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
   if (handleFoundationsStoneEffect(s, e)) return;
@@ -697,8 +705,12 @@ function handleEffect(s: GameState, e: Effect) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
         const priorActive = allActiveLocations(s);
         s.activeLocation = u;
-        s.extraActiveLocations =
-          e.text === "strider-replace" ? priorActive : [];
+        s.extraActiveLocations = [
+          "strider-replace",
+          "osgiliath-second",
+        ].includes(e.text ?? "")
+          ? priorActive
+          : [];
         returnMirkwoodTravel(s, u);
         roadRivendellTravelEntered(s, u);
         longDarkPlayerTravelled(s, u);
@@ -763,7 +775,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "resource":
-      if (u && !((e.value ?? 1) > 0 && isSacked(u))) {
+      if (u && !((e.value ?? 1) > 0 && !canGainResources(s, u))) {
         const amount = e.value ?? 1;
         if (amount < 0 && e.flag) spendResources(s, u, -amount);
         else u.resources += amount;
@@ -824,6 +836,10 @@ function handleEffect(s: GameState, e: Effect) {
     case "resolveReveal":
       resolveReveal(s, e.code!, e.source, e.revealOrigin);
       break;
+    case "afterEncounterRevealed":
+      stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
+      Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);
+      break;
     case "placeEncounter":
       placeEncounter(
         s,
@@ -843,7 +859,10 @@ function handleEffect(s: GameState, e: Effect) {
     case "resolvePrintedWhenRevealed":
       if (e.code)
         requireRule(
-          heirsEncounter(s, e.code, true) ||
+          Druadan.druadanForestEncounter(s, e.code, true) ||
+            Amon.amonDinEncounter(s, e.code, true) ||
+            Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
+            heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
         );
@@ -1014,7 +1033,11 @@ function handleEffect(s: GameState, e: Effect) {
     case "khazadStagingEnd":
       khazadStagingEnd(s);
       break;
+    case "resolveQuestResult":
+      resolveQuestResult(s);
+      break;
     case "questReady":
+      if (Osgiliath.assaultOsgiliathPrepareQuest(s, e)) break;
       s.phase = "staging";
       log(
         s,
@@ -1136,6 +1159,7 @@ function handleEffect(s: GameState, e: Effect) {
       eachArea(s, () => {
         passives.push(...bloodPlayerRoundEndEffects(s));
         forced.push(...collectorRoundEndEffects(s));
+        forced.push(...Amon.amonDinRoundEndEffects(s));
         for (const effect of stewardFearRoundEndEffects(s)) {
           (effect.kind === "stewardCounsels" ? passives : forced).push(effect);
         }
@@ -1194,6 +1218,7 @@ function handleEffect(s: GameState, e: Effect) {
           delete enemy.tempEngagement;
         }
       });
+      Osgiliath.assaultOsgiliathRoundEnd(s);
       enqueue(s, fx("nextRound"));
       break;
     case "nextRound":
@@ -1285,6 +1310,7 @@ function handleEffect(s: GameState, e: Effect) {
       startPhase(s, "defense");
       if (!e.flag && returnMirkwoodCombatStart(s)) break;
       heirsCombatStart(s);
+      Druadan.druadanForestCombatStart(s);
       prepend(s, fx("prepareCombat", { player: firstPlayer(s) }));
       rohanCombatBegins(s);
       break;
@@ -1367,6 +1393,7 @@ function handleEffect(s: GameState, e: Effect) {
       const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
         .map((id) => get(s, id))
         .filter((x): x is Unit => !!x);
+      if (!defenders.length) Osgiliath.assaultOsgiliathAttackUndefended(s, c);
       const power =
         stats(s, enemy).attack +
         c.attackBonus +
@@ -1398,7 +1425,12 @@ function handleEffect(s: GameState, e: Effect) {
       const forcedHero = heirsForcedCombatDamageTarget(s);
       if (forcedHero)
         combatDamage(s, forcedHero, enemy, defenders.length ? amount : power);
-      else if (!defenders.length && heirsUndefendedDamage(s, enemy, power)) {
+      else if (
+        !defenders.length &&
+        Amon.amonDinUndefendedDamage(s, enemy, power)
+      ) {
+        /* The quest replaces undefended damage with rescued villager losses. */
+      } else if (!defenders.length && heirsUndefendedDamage(s, enemy, power)) {
         /* Damage redirected to a battleground. */
       } else if (defenders.length > 1) {
         if (amount)
@@ -1528,7 +1560,11 @@ function handleEffect(s: GameState, e: Effect) {
       if (enemy && !completed?.redirectedToEnemy)
         shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
       if (completed) {
-        if (enemy) stewardFearAttackFinished(s, enemy, attackPlayer);
+        if (enemy) {
+          stewardFearAttackFinished(s, enemy, attackPlayer);
+          Druadan.druadanForestAttackFinished(s, enemy, completed);
+          Amon.amonDinAttackFinished(s, enemy, completed);
+        }
         prepend(s, ...heirsAttackFinished(s, completed));
       }
       if (enemy) finishEnemyShadows(s, enemy);
@@ -1793,10 +1829,20 @@ export function flush(s: GameState) {
 export function extraEffect(s: GameState, e: Effect) {
   const u = get(s, e.target);
   switch (e.kind) {
-    case "cancelReplace":
+    case "cancelReplace": {
       s.encounterDiscard.push(e.code!);
-      prepend(s, fx("reveal", { source: e.source }));
+      const afterIndex = s.queue.findIndex(
+        (next) =>
+          next.kind === "afterEncounterRevealed" && next.code === e.code,
+      );
+      const after = afterIndex >= 0 ? s.queue.splice(afterIndex, 1) : [];
+      prepend(
+        s,
+        ...after,
+        fx("reveal", { source: e.source, revealOrigin: e.revealOrigin }),
+      );
       break;
+    }
     case "quickAttack":
       if (u) playerAttack(s, u, [e.source!]);
       break;

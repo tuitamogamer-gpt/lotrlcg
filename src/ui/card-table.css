@@ -1,5 +1,13 @@
 /* Cards own the table. Printed values stay on their scans; only live changes
    and physical tokens sit above them. Scoped after the legacy table themes. */
+@media (min-width: 1100px) {
+  .redbook .gameboard > .encounter-field.has-controlled {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .redbook .gameboard > .encounter-field.has-controlled.has-engaged {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 .redbook .card-table {
   --table-card-scale: 1;
   --hero-height: 224px;

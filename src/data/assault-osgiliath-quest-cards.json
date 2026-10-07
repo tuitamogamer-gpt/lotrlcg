@@ -1,0 +1,41 @@
+[
+  {
+    "code": "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "octgnid": "c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "name": "Retake the City",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player chooses 1 enemy and 1 unique location and add them to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 91,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Assault on Osgiliath",
+    "side": "A",
+    "back_name": "Retake the City",
+    "back_text": "Forced: When an Osgiliath location leaves play as an explored location, the first player takes control of that location.  If the players control all Osgiliath locations in play at the end of the round, they have won the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c46c37c3-b2e7-4e28-9466-e3a371417c8b.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c46c37c3-b2e7-4e28-9466-e3a371417c8b.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 91,
+        "quantity": 1,
+        "octgnid": "c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c46c37c3-b2e7-4e28-9466-e3a371417c8b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

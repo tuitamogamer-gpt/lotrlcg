@@ -36,6 +36,7 @@ export interface Card {
   official?: boolean;
   nightmare?: boolean;
   back_text?: string;
+  back_quest?: number;
   back_name?: string;
   back_imagesrc?: string;
   /** Printed X, dash or variable values retained alongside numeric game fields. */
@@ -137,6 +138,9 @@ export type ScenarioId =
   | "into-ithilien"
   | "siege-of-cair-andros"
   | "the-stewards-fear"
+  | "the-druadan-forest"
+  | "encounter-at-amon-din"
+  | "assault-on-osgiliath"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -244,6 +248,9 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  druadanForest?: import("./druadan-forest-support").DruadanForestState;
+  amonDin?: import("./amon-din-support").AmonDinState;
+  assaultOsgiliath?: import("./assault-osgiliath-support").AssaultOsgiliathState;
   foundationsStone?: import("./foundations-stone-support").FoundationsStoneState;
   stewardFear?: import("./steward-fear-support").StewardFearState;
   heirsNumenor?: import("./heirs-numenor").HeirsNumenorState;
@@ -360,6 +367,10 @@ export interface GameState {
   combat: {
     stewardRemoveTokensIfKilled?: boolean;
     heirsScrollDamage?: boolean;
+    amonDinKilledCharacter?: boolean;
+    amonDinShadowVillagers?: number;
+    osgiliathReturnIfKilled?: boolean;
+    osgiliathUndefended?: boolean;
     redirectedToEnemy?: boolean;
     damageDealt?: number;
     defenseBonuses?: Record<string, number>;

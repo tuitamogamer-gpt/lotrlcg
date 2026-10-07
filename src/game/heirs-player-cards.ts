@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -60,7 +61,7 @@ const hasMarker = (s: GameState, key: string) =>
 const ownEnemies = (s: GameState) =>
   s.staging.filter((u) => card(u.code).type_code === "enemy");
 const resourceTargets = (s: GameState) =>
-  allHeroes(s).filter((u) => hasTrait(u, "Gondor") && !isSacked(u));
+  allHeroes(s).filter((u) => hasTrait(u, "Gondor") && canGainResources(s, u));
 const canExhaust = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
 const rawTraits = (c: Card) =>

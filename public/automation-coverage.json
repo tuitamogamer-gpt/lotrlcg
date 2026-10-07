@@ -5,8 +5,8 @@
     "playerCards": 377,
     "heroes": 45,
     "deckCards": 332,
-    "encounterCards": 296,
-    "scenarios": 22,
+    "encounterCards": 335,
+    "scenarios": 25,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -29,17 +29,20 @@
       "peril-in-pelargir",
       "into-ithilien",
       "siege-of-cair-andros",
-      "the-stewards-fear"
+      "the-stewards-fear",
+      "the-druadan-forest",
+      "encounter-at-amon-din",
+      "assault-on-osgiliath"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 754,
-    "pending": 3429
+    "scripted": 799,
+    "pending": 3384
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 44
+    "scripted": 50
   },
   "registeredCodes": [
     "01001",
@@ -477,20 +480,31 @@
     "22143",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
+    "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
+    "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
+    "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
+    "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
+    "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
+    "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9006",
@@ -753,25 +767,59 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9024",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
+    "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
+    "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
+    "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
+    "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
+    "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+    "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93069",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93070",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93071",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93072",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93073",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93074",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93075",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93076",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93077",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
+    "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "orc-guard",
     "rc132",
@@ -842,7 +890,7 @@
     {
       "product": "assault-on-osgiliath",
       "total": 26,
-      "scripted": 10,
+      "scripted": 26,
       "player": 10,
       "playerScripted": 10
     },
@@ -926,7 +974,7 @@
     {
       "product": "encounter-at-amon-din",
       "total": 25,
-      "scripted": 10,
+      "scripted": 25,
       "player": 10,
       "playerScripted": 10
     },
@@ -1311,7 +1359,7 @@
     {
       "product": "the-druadan-forest",
       "total": 24,
-      "scripted": 10,
+      "scripted": 24,
       "player": 10,
       "playerScripted": 10
     },
@@ -10803,7 +10851,7 @@
       "name": "Pinned Down",
       "type": "treachery",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -11411,7 +11459,7 @@
       "name": "Ancient Harbor",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -11611,7 +11659,7 @@
       "name": "Ancestral Clearing",
       "type": "location",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -12427,7 +12475,7 @@
       "name": "Dru-buri-Dru",
       "type": "enemy",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -12667,7 +12715,7 @@
       "name": "Southron Phalanx",
       "type": "enemy",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -12867,7 +12915,7 @@
       "name": "Counter-attack",
       "type": "treachery",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -13435,7 +13483,7 @@
       "name": "Men in the Dark",
       "type": "treachery",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -13475,7 +13523,7 @@
       "name": "Street Fighting",
       "type": "treachery",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -13603,7 +13651,7 @@
       "name": "Southron Commander",
       "type": "enemy",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -14875,7 +14923,7 @@
       "name": "An Untimely End",
       "type": "quest",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -15915,7 +15963,7 @@
       "name": "Garden of Poisons",
       "type": "location",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -20899,7 +20947,7 @@
       "name": "West Gate",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -21355,7 +21403,7 @@
       "name": "Drúadan Elite",
       "type": "enemy",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -22507,7 +22555,7 @@
       "name": "The Pursuit",
       "type": "quest",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -23571,7 +23619,7 @@
       "name": "Stars in Sky",
       "type": "treachery",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -23875,7 +23923,7 @@
       "name": "Glade of Cleansing",
       "type": "location",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -23955,7 +24003,7 @@
       "name": "Drúadan Hunter",
       "type": "enemy",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -24339,7 +24387,7 @@
       "name": "Drúadan Thief",
       "type": "enemy",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -25595,7 +25643,7 @@
       "name": "East Quarter",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -26435,7 +26483,7 @@
       "name": "Leaves on Tree",
       "type": "treachery",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -27811,7 +27859,7 @@
       "name": "Ruined Tower",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -28387,7 +28435,7 @@
       "name": "West Quarter",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -29531,7 +29579,7 @@
       "name": "Uruk Lieutenant",
       "type": "enemy",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -29971,7 +30019,7 @@
       "name": "Retake the City",
       "type": "quest",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -32259,7 +32307,7 @@
       "name": "Drúadan Drummer",
       "type": "enemy",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -32435,7 +32483,7 @@
       "name": "The Old Bridge",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -34163,7 +34211,7 @@
       "name": "The Passage Out",
       "type": "quest",
       "pack": "The Drúadan Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-druadan-forest"
     },
     {
@@ -34339,7 +34387,7 @@
       "name": "Uruk Soldier",
       "type": "enemy",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -34531,7 +34579,7 @@
       "name": "The King's Library",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -34603,7 +34651,7 @@
       "name": "Ruined Square",
       "type": "location",
       "pack": "Assault on Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "assault-on-osgiliath"
     },
     {
@@ -34875,7 +34923,7 @@
       "name": "Savagery of the Orcs",
       "type": "quest",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34883,7 +34931,7 @@
       "name": "Protect the Villagers",
       "type": "quest",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34891,7 +34939,7 @@
       "name": "Rescued Villagers",
       "type": "objective",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34899,7 +34947,7 @@
       "name": "Dead Villagers",
       "type": "objective",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34907,7 +34955,7 @@
       "name": "Lord Alcaron",
       "type": "objective-ally",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34915,7 +34963,7 @@
       "name": "Ghulat",
       "type": "enemy",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34923,7 +34971,7 @@
       "name": "Marauding Orc",
       "type": "enemy",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34931,7 +34979,7 @@
       "name": "Orc Ravager",
       "type": "enemy",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34939,7 +34987,7 @@
       "name": "Craven Eagle",
       "type": "enemy",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34947,7 +34995,7 @@
       "name": "Burning Farmhouse",
       "type": "location",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34955,7 +35003,7 @@
       "name": "Gondorian Hamlet",
       "type": "location",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34963,7 +35011,7 @@
       "name": "Secluded Farmhouse",
       "type": "location",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34971,7 +35019,7 @@
       "name": "Burnt Homestead",
       "type": "treachery",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34979,7 +35027,7 @@
       "name": "Trapped Inside",
       "type": "treachery",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -34987,7 +35035,7 @@
       "name": "Panicked!",
       "type": "treachery",
       "pack": "Encounter at Amon Dîn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "encounter-at-amon-din"
     },
     {
@@ -35396,22 +35444,22 @@
       "id": "E03.5",
       "name": "The Drúadan Forest (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-druadan-forest",
+      "state": "scripted"
     },
     {
       "id": "E03.6",
       "name": "Encounter at Amon Dîn (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "encounter-at-amon-din",
+      "state": "scripted"
     },
     {
       "id": "E03.7",
       "name": "Assault on Osgiliath (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "assault-on-osgiliath",
+      "state": "scripted"
     },
     {
       "id": "E03.8",
@@ -36887,22 +36935,22 @@
       "id": "Q03.5",
       "name": "The Drúadan Forest",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-druadan-forest",
+      "state": "scripted"
     },
     {
       "id": "Q03.6",
       "name": "Encounter at Amon Dîn",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "encounter-at-amon-din",
+      "state": "scripted"
     },
     {
       "id": "Q03.7",
       "name": "Assault on Osgiliath",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "assault-on-osgiliath",
+      "state": "scripted"
     },
     {
       "id": "Q03.8",

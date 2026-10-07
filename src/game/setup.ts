@@ -1,3 +1,6 @@
+import { setupDruadanForest } from "./druadan-forest";
+import { setupAmonDin } from "./amon-din";
+import { setupAssaultOsgiliath } from "./assault-osgiliath";
 import { setupHeirs } from "./heirs-numenor";
 import { setupStewardFear } from "./steward-fear";
 import { setupShadowFlame } from "./shadow-flame";
@@ -347,6 +350,12 @@ export function createGame(
     )
   ) {
     setupHeirs(s);
+  } else if (scenarioId === "the-druadan-forest") {
+    setupDruadanForest(s);
+  } else if (scenarioId === "encounter-at-amon-din") {
+    setupAmonDin(s);
+  } else if (scenarioId === "assault-on-osgiliath") {
+    setupAssaultOsgiliath(s);
   } else if (scenarioId === "the-stewards-fear") {
     setupStewardFear(s);
   } else if (scenarioId === "foundations-of-stone") {

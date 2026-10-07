@@ -1,3 +1,6 @@
+import { validateDruadanForestState } from "./druadan-forest-support";
+import { validateAmonDinState } from "./amon-din-support";
+import { validateAssaultOsgiliathState } from "./assault-osgiliath-support";
 import { hiddenPlayerCardIds } from "./physical-player-card";
 // Save validation and restoration.
 import { card, SCRIPTED, STARTERS } from "./cards";
@@ -75,10 +78,22 @@ export function validateSave(
             (c.immediatePreviousShadows?.length ?? 0))) &&
       [
         c.redirectedToEnemy,
+        c.amonDinKilledCharacter,
+        c.osgiliathReturnIfKilled,
+        c.osgiliathUndefended,
         c.immediatePendingDeclaration,
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
+      ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
+        undefined ||
+        (integer(
+          (c as typeof c & { druadanReturnCount?: number }).druadanReturnCount,
+        ) &&
+          (c as typeof c & { druadanReturnCount?: number })
+            .druadanReturnCount! >= 0)) &&
+      (c.amonDinShadowVillagers === undefined ||
+        (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
         (integer(c.damageDealt) && c.damageDealt >= 0)) &&
       (c.defenseBonuses === undefined ||
@@ -228,7 +243,13 @@ export function validateSave(
       inheritedSeatCount === undefined &&
       (!validateFoundationsState(s, validUnit as (value: unknown) => boolean) ||
         !validateStewardFearState(s) ||
-        !validateHeirsState(s))
+        !validateHeirsState(s) ||
+        !validateDruadanForestState(s) ||
+        !validateAmonDinState(s) ||
+        !validateAssaultOsgiliathState(
+          s,
+          validUnit as (value: unknown) => boolean,
+        ))
     )
       return false;
     if (

@@ -1,3 +1,4 @@
+import { canGainResources } from "./core";
 // Exact Khazad-dûm player mechanics beyond the existing Dwarf/Song/passive rules.
 import { card, playerCards, plain } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
@@ -39,7 +40,7 @@ const ownDwarves = (s: GameState) =>
 const active = (s: GameState) => allActiveLocations(s).filter(affected);
 const boostedLocation = (u: Unit, traits: string[]) =>
   traits.some((t) => hasTrait(u, t));
-const heroes = (s: GameState) => s.heroes.filter((u) => !isSacked(u));
+const heroes = (s: GameState) => s.heroes.filter((u) => canGainResources(s, u));
 const protection = (s: GameState, player: number) =>
   playerOrder(s).some((i) =>
     seatView(s, i).used.includes(`phase:ever-onward:${player}`),

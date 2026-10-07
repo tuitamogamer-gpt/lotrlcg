@@ -1,0 +1,572 @@
+[
+  {
+    "code": "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
+    "octgnid": "03b6d303-7722-4319-9623-e182b50c90b2",
+    "name": "Pinned Down",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add X to the archery total this round. X is the number of locations the players control. If the players control less than 4 locations, Pinned Down gains surge.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 104,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, that character's controller must return a location he controls with the highest [threat] to the staging area.",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03b6d303-7722-4319-9623-e182b50c90b2.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 104,
+        "quantity": 2,
+        "octgnid": "03b6d303-7722-4319-9623-e182b50c90b2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/03b6d303-7722-4319-9623-e182b50c90b2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
+    "octgnid": "0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
+    "name": "Ancient Harbor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "The players cannot travel here.\nCombat Action: Exhaust a hero to place 1 progress token on Ancient Harbor.  Forced: After the player who controls Ancient Harbor lets an attack go undefended, return Ancient Harbor to the staging area.",
+    "is_unique": true,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 98,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c44ed2b-976a-4b17-b7e7-e64b20f74fd7.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 98,
+        "quantity": 1,
+        "octgnid": "0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c44ed2b-976a-4b17-b7e7-e64b20f74fd7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
+    "octgnid": "1c95d49a-5638-4f31-a42f-f93a5d1f50db",
+    "name": "Southron Phalanx",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "While engaged with a player, Southron Phalanx gets +1 [attack] for each location that player controls.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 94,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 1,
+    "defense": 2,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each location the defending player controls.",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "2",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c95d49a-5638-4f31-a42f-f93a5d1f50db.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 94,
+        "quantity": 3,
+        "octgnid": "1c95d49a-5638-4f31-a42f-f93a5d1f50db",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c95d49a-5638-4f31-a42f-f93a5d1f50db.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
+    "octgnid": "1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
+    "name": "Counter-attack",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Each player must return the location he controls with the highest [threat] to the staging area, or raise his threat by the total [threat] of all locations he controls.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 106,
+    "quantity": 2,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f1ad7bb-68ca-4b48-b7fa-516e5314e272.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 106,
+        "quantity": 2,
+        "octgnid": "1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f1ad7bb-68ca-4b48-b7fa-516e5314e272.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "octgnid": "2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "name": "Street Fighting",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until an Osgiliath location is discarded. The first player may exhaust a hero to take control of that location. Otherwise, add that location to the staging area. This effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 105,
+    "quantity": 2,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2573b8e3-d3a1-47c0-acc8-e6151f223383.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 105,
+        "quantity": 2,
+        "octgnid": "2573b8e3-d3a1-47c0-acc8-e6151f223383",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2573b8e3-d3a1-47c0-acc8-e6151f223383.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
+    "octgnid": "264adf61-31e1-46db-a655-7fee1d4282ae",
+    "name": "Southron Commander",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "When Revealed: Southron Commander makes an immediate attack from the staging area against each player who controls at least 1 location.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 95,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 37,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "37"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/264adf61-31e1-46db-a655-7fee1d4282ae.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 95,
+        "quantity": 2,
+        "octgnid": "264adf61-31e1-46db-a655-7fee1d4282ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/264adf61-31e1-46db-a655-7fee1d4282ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
+    "octgnid": "5a3d198a-5c72-42ec-b5ae-f183194632cf",
+    "name": "West Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "Action: If there is no active location, search the encounter deck and discard pile for an Osgiliath location, reveal it and add it to the staging area. Then, make West Gate the active location. Shuffle the encounter deck.  Forced: After the player who controls West Gate lets an attack go undefended, return West Gate to the staging area.",
+    "is_unique": true,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 96,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a3d198a-5c72-42ec-b5ae-f183194632cf.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 96,
+        "quantity": 1,
+        "octgnid": "5a3d198a-5c72-42ec-b5ae-f183194632cf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a3d198a-5c72-42ec-b5ae-f183194632cf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "octgnid": "93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+    "name": "East Quarter",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "While East Quarter is the active location, the current quest gains battle. (Characters quest using [attack] instead of [willpower].)",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 101,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: If this attack destroys a character, that character's controller must return a location he controls with the highest [threat] to the staging area.",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93bf98f7-fe0f-4c03-bd93-2f8d5753acce.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 101,
+        "quantity": 2,
+        "octgnid": "93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93bf98f7-fe0f-4c03-bd93-2f8d5753acce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
+    "octgnid": "ae5727cb-4d88-4a28-99be-84a565292b67",
+    "name": "Ruined Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "Travel: If there is 1 active location, exhaust a character to travel here. (There are now 2 active locations.)  Forced: After the player who controls Ruined Tower loses control of a location, return Ruined Tower to the staging area.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 103,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae5727cb-4d88-4a28-99be-84a565292b67.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 103,
+        "quantity": 3,
+        "octgnid": "ae5727cb-4d88-4a28-99be-84a565292b67",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae5727cb-4d88-4a28-99be-84a565292b67.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
+    "octgnid": "b5c7bf41-7642-4d25-9794-cb247f540182",
+    "name": "West Quarter",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "While West Quarter is the active location, the current quest gains siege. (Characters quest using [defense] instead of [willpower].)",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 100,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: If this attack destroys a character, that character's controller must return a location he controls with the highest [threat] to the staging area.",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c7bf41-7642-4d25-9794-cb247f540182.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 100,
+        "quantity": 2,
+        "octgnid": "b5c7bf41-7642-4d25-9794-cb247f540182",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c7bf41-7642-4d25-9794-cb247f540182.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+    "octgnid": "bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+    "name": "Uruk Lieutenant",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk. Mordor.",
+    "text": "When Revealed: Add the topmost Orc enemy from the encounter discard pile to the staging area.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 92,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 6,
+    "defense": 2,
+    "health": 3,
+    "engagement": 40,
+    "shadow": "Shadow: Defending player discards an attachment he controls. (All attachments he controls instead if undefended.)",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "6",
+      "defense": "2",
+      "health": "3",
+      "engagement": "40"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bfa3b9da-d0e3-4ad6-8d1d-f32975f69551.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 92,
+        "quantity": 2,
+        "octgnid": "bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bfa3b9da-d0e3-4ad6-8d1d-f32975f69551.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+    "octgnid": "e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+    "name": "The Old Bridge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "The players cannot travel here.\nPlanning Action: Spend 2 resources to place 1 progress token on The Old Bridge. (1 resource instead if there is another Osgiliath location in the staging area.)  Forced: After the player who controls The Old Bridge lets an attack go undefended, return The Old Bridge to the staging area.",
+    "is_unique": true,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 99,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 6,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "6"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e46a15c0-abbe-4a2e-8951-0e9950aa0288.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 99,
+        "quantity": 1,
+        "octgnid": "e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e46a15c0-abbe-4a2e-8951-0e9950aa0288.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
+    "octgnid": "f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
+    "name": "Uruk Soldier",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk. Mordor.",
+    "text": "Forced: After Uruk Soldier attacks and destroys a character, that character's controller returns a location he controls to the staging area, if able.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 93,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 4,
+    "defense": 1,
+    "health": 2,
+    "engagement": 30,
+    "shadow": "Shadow: Defending player raises his threat by 1 for each location he controls.",
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "4",
+      "defense": "1",
+      "health": "2",
+      "engagement": "30"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f89b8962-1081-4f61-bc08-b2ca4eb08ba8.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 93,
+        "quantity": 4,
+        "octgnid": "f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f89b8962-1081-4f61-bc08-b2ca4eb08ba8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+    "octgnid": "fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+    "name": "The King's Library",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "Travel: Reveal the top card of the encounter deck and add it to the staging area to travel here.  Forced: After the player who controls The King's Library lets an attack go undefended, return The King's Library to the staging area.",
+    "is_unique": true,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 97,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa9df618-126b-4ea9-95d7-22cd5dad6d2f.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 97,
+        "quantity": 1,
+        "octgnid": "fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa9df618-126b-4ea9-95d7-22cd5dad6d2f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
+    "octgnid": "fb301d7d-7936-49b6-a938-40ff0ca549cb",
+    "name": "Ruined Square",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Osgiliath.",
+    "text": "Surge.\nResponse: After an enemy is defeated, place 1 progress token on Ruined Square.  Forced: If a player controls Ruined Square when a character leaves play, return Ruined Square to the staging area.",
+    "is_unique": false,
+    "pack_code": "AoO",
+    "pack_name": "Assault on Osgiliath",
+    "position": 102,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 2,
+    "encounter_set": "Assault on Osgiliath",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb301d7d-7936-49b6-a938-40ff0ca549cb.jpg",
+    "packs": [
+      {
+        "pack_code": "AoO",
+        "pack_name": "Assault on Osgiliath",
+        "position": 102,
+        "quantity": 3,
+        "octgnid": "fb301d7d-7936-49b6-a938-40ff0ca549cb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb301d7d-7936-49b6-a938-40ff0ca549cb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  }
+]

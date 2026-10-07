@@ -1,3 +1,4 @@
+import { druadanForestAttackStat } from "../game/druadan-forest";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
 import { amonPlayerCannotDeclareAttack } from "../game/amon-din-player-cards";
 import { useEffect, useId, useRef, useState } from "react";
@@ -168,11 +169,23 @@ export function DecisionCard({
   );
 }
 
-export function DecisionStats({ s, u }: { s: GameState; u: Unit }) {
+export function DecisionStats({
+  s,
+  u,
+  attackStat = "attack",
+}: {
+  s: GameState;
+  u: Unit;
+  attackStat?: "attack" | "will";
+}) {
   const st = stats(s, u);
   return (
     <span className="decision-stats">
-      <StatBadge kind="attack" value={st.attack} caption />
+      <StatBadge
+        kind={attackStat === "will" ? "willpower" : "attack"}
+        value={st[attackStat]}
+        caption
+      />
       <StatBadge kind="defense" value={st.defense} caption />
       <StatBadge
         kind="health"
@@ -276,8 +289,9 @@ export function CombatDialog({
     ? defendersFor(s, enemy)
     : attackersFor(s, enemy);
   const picked = candidates.filter((u) => selected.includes(u.id));
+  const attackStat = druadanForestAttackStat(s);
   const total = picked.reduce(
-    (sum, u) => sum + stats(s, u)[defending ? "defense" : "attack"],
+    (sum, u) => sum + stats(s, u)[defending ? "defense" : attackStat],
     0,
   );
   const ownAttacker = picked.some((u) => ownerOf(s, u) === activeSeat(s));
@@ -319,7 +333,9 @@ export function CombatDialog({
           ? s.standTogether
             ? "Stand Together: select ready defenders, then confirm."
             : "Select one ready character to stand against this enemy."
-          : "Select ready characters to combine their attack, then confirm."
+          : attackStat === "will"
+            ? "Combine current willpower to place progress on the enemy instead of dealing damage."
+            : "Select ready characters to combine their attack, then confirm."
       }
       onClose={onClose}
       footer={
@@ -329,7 +345,7 @@ export function CombatDialog({
               {undefended
                 ? "Undefended attack"
                 : picked.length
-                  ? `${picked.map(name).join(" + ")} · ${total} ${defending ? "defense" : "attack"}`
+                  ? `${picked.map(name).join(" + ")} · ${total} ${defending ? "defense" : attackStat === "will" ? "willpower" : "attack"}`
                   : "No character selected"}
             </strong>
             <small>
@@ -392,7 +408,11 @@ export function CombatDialog({
                     : undefined
                 }
               >
-                <DecisionStats s={s} u={u} />
+                <DecisionStats
+                  s={s}
+                  u={u}
+                  attackStat={!defending ? attackStat : "attack"}
+                />
               </DecisionCard>
             ))}
           </div>
@@ -415,11 +435,13 @@ export function CombatDialog({
               <span>
                 <strong>Leave undefended</strong>
                 <small>
-                  {s.scenarioId === "siege-of-cair-andros" && s.stage === 1
-                    ? "All attack damage goes to the lowest-threat Battleground. Excess damage does not carry over."
-                    : druadanPlayerUndefendedTargets(s).length
-                      ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
-                      : "All attack damage goes to one hero. Its defense does not count."}
+                  {s.scenarioId === "encounter-at-amon-din" && s.stage === 2
+                    ? "Discard rescued villagers equal to the enemy’s attack instead of damaging a hero."
+                    : s.scenarioId === "siege-of-cair-andros" && s.stage === 1
+                      ? "All attack damage goes to the lowest-threat Battleground. Excess damage does not carry over."
+                      : druadanPlayerUndefendedTargets(s).length
+                        ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
+                        : "All attack damage goes to one hero. Its defense does not count."}
                 </small>
               </span>
               {undefended && <Check size={19} />}

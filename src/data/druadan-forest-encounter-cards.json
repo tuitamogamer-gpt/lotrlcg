@@ -1,0 +1,430 @@
+[
+  {
+    "code": "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
+    "octgnid": "0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
+    "name": "Ancestral Clearing",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "The cost to play each player card is increased by 1.  Travel: Exhaust a hero to travel here.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 50,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 3,
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 50,
+        "quantity": 1,
+        "octgnid": "0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
+    "octgnid": "19b732b9-a26a-4535-a438-7dd83cd4ecf2",
+    "name": "Dru-buri-Dru",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wose.",
+    "text": "Allies cannot defend against Dru-buri-Dru.  While Dru-buri-Dru is in the victory display, characters get +1 [willpower] and +1 [defense].  Unless Drû-buri-Drû is in the victory display, the players cannot win.",
+    "is_unique": true,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 45,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 1,
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19b732b9-a26a-4535-a438-7dd83cd4ecf2.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 45,
+        "quantity": 1,
+        "octgnid": "19b732b9-a26a-4535-a438-7dd83cd4ecf2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19b732b9-a26a-4535-a438-7dd83cd4ecf2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
+    "octgnid": "24e431be-cde9-4f93-943a-de5e5ca9108b",
+    "name": "Men in the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each hero must pay 1 resource or take 1 damage. If no hero takes damage from this effect, Men in the Dark gains surge.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 53,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each hero the defending player controls with no resources.",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24e431be-cde9-4f93-943a-de5e5ca9108b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 53,
+        "quantity": 3,
+        "octgnid": "24e431be-cde9-4f93-943a-de5e5ca9108b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24e431be-cde9-4f93-943a-de5e5ca9108b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+    "octgnid": "41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+    "name": "Garden of Poisons",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Heroes cannot gain resources from card effects.  Travel: Each player must pay 1 resource to travel here.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 51,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41c3779a-a28a-44db-8b9b-bc5e81d1111a.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 51,
+        "quantity": 3,
+        "octgnid": "41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41c3779a-a28a-44db-8b9b-bc5e81d1111a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgnid": "607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "name": "Drúadan Elite",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wose.",
+    "text": "Archery 2. Prowl X.  X is the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 47,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 35,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks unless any player pays 1 resource.",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/607c3e44-5add-4c80-bb3b-55b016b6cd0e.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 47,
+        "quantity": 3,
+        "octgnid": "607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/607c3e44-5add-4c80-bb3b-55b016b6cd0e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgnid": "7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "name": "Stars in Sky",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Prowl 2.\nWhen Revealed: Each questing hero must pay 1 resource or it is removed from the quest.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 54,
+    "quantity": 3,
+    "shadow": "Shadow: Discard all resources from the defending character's resource pool.",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cbf23fd-28c4-494c-97aa-b7fed050ad8b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 54,
+        "quantity": 3,
+        "octgnid": "7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7cbf23fd-28c4-494c-97aa-b7fed050ad8b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
+    "octgnid": "801078c6-56a9-45f2-b5a4-7e38cb5bc507",
+    "name": "Glade of Cleansing",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Each Wose enemy gains Archery 1.  X is equal to the total archery value of the highest archery Wose enemy in play.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 52,
+    "quantity": 3,
+    "quest": 5,
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/801078c6-56a9-45f2-b5a4-7e38cb5bc507.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "801078c6-56a9-45f2-b5a4-7e38cb5bc507",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/801078c6-56a9-45f2-b5a4-7e38cb5bc507.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "octgnid": "809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "name": "Drúadan Hunter",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wose.",
+    "text": "Prowl 1. Archery X.  X is the number of heroes in play with no resources in their resource pool.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 48,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/809ff5de-8273-4491-adfb-3a27d4b316f3.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 48,
+        "quantity": 4,
+        "octgnid": "809ff5de-8273-4491-adfb-3a27d4b316f3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/809ff5de-8273-4491-adfb-3a27d4b316f3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgnid": "85045e14-3abc-4d58-824f-249b1fb3643d",
+    "name": "Drúadan Thief",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wose.",
+    "text": "Surge. Prowl 1.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 49,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 5,
+    "shadow": "Shadow: Return attacking enemy to the staging area after it attacks unless any player pays 1 resource.",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85045e14-3abc-4d58-824f-249b1fb3643d.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 49,
+        "quantity": 3,
+        "octgnid": "85045e14-3abc-4d58-824f-249b1fb3643d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85045e14-3abc-4d58-824f-249b1fb3643d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
+    "octgnid": "9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
+    "name": "Leaves on Tree",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Each player must pay 1 resource for each attachment he controls or discard all attachments he controls.",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 55,
+    "quantity": 2,
+    "shadow": "Shadow: Discard an attachment from the defending character.",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9dda3cf1-e5bd-4cab-8c3b-b29db1220249.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 55,
+        "quantity": 2,
+        "octgnid": "9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9dda3cf1-e5bd-4cab-8c3b-b29db1220249.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
+    "octgnid": "e2c02f11-fdfb-402b-89de-1729d1364e4c",
+    "name": "Drúadan Drummer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Wose.",
+    "text": "Each Wose enemy in the staging area gets +2 [threat].",
+    "is_unique": false,
+    "pack_code": "TDF",
+    "pack_name": "The Drúadan Forest",
+    "position": 46,
+    "quantity": 3,
+    "threat": 0,
+    "attack": 1,
+    "defense": 2,
+    "health": 2,
+    "engagement": 40,
+    "shadow": "Shadow: Each Wose enemy engaged with the defending player gets +1 [attack].",
+    "encounter_set": "The Druadan Forest",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "1",
+      "defense": "2",
+      "health": "2",
+      "engagement": "40"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2c02f11-fdfb-402b-89de-1729d1364e4c.jpg",
+    "packs": [
+      {
+        "pack_code": "TDF",
+        "pack_name": "The Drúadan Forest",
+        "position": 46,
+        "quantity": 3,
+        "octgnid": "e2c02f11-fdfb-402b-89de-1729d1364e4c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2c02f11-fdfb-402b-89de-1729d1364e4c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]
