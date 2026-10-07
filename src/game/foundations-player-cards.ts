@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { reorderPlayerDeck } from "./core";
 // Foundations of Stone: exact active rules beyond shared Dwarf/Elf attachments.
 import { card } from "./cards";
@@ -223,7 +224,7 @@ export function handleFoundationsPlayerEffect(
     case "foundationsScoutForced": {
       const scout = get(s, e.source);
       if (scout?.code !== "04104" || scout.blanked) return true;
-      if (!s.hand.length) {
+      if (!movableHand(s).length) {
         discardCharacter(s, scout);
         return true;
       }
@@ -234,7 +235,9 @@ export function handleFoundationsPlayerEffect(
           code: scout.code,
           effects: [fx("foundationsScoutDiscard", { source: scout.id })],
         },
-        ...opts(s.hand, (u) => [fx("foundationsScoutHand", { target: u.id })]),
+        ...opts(movableHand(s), (u) => [
+          fx("foundationsScoutHand", { target: u.id }),
+        ]),
       ]);
       return true;
     }

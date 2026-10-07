@@ -1,3 +1,5 @@
+import * as Fords from "./fords-isen";
+import { canLeaveHand } from "./hand-rules";
 import {
   finalRingAllyEntering,
   finalRingAllyEntered,
@@ -179,7 +181,7 @@ import {
   rohanPhaseEnd,
   rohanOathPlayers,
 } from "./rohan-player-cards";
-import { effectiveTraits } from "./expansion-passives";
+import { attachmentHasTrait, effectiveTraits } from "./expansion-passives";
 import {
   watcherPlayerLeavesPlay,
   watcherPlayerLocationEntered,
@@ -484,6 +486,7 @@ export function discardPlayerDeck(
 export function discardHandCard(s: GameState, id: string): Unit {
   const index = s.hand.findIndex((u) => u.id === id);
   requireRule(index >= 0, "That physical card must remain in your hand.");
+  if (!canLeaveHand(s.hand[index])) return s.hand[index];
   const u = s.hand.splice(index, 1)[0];
   ringMakerCharacterLeft(s, u.id);
   forOwner(s, u.owner ?? activeSeat(s), () => {
@@ -793,6 +796,7 @@ export function check(s: GameState) {
     Amon.amonDinCheck(s);
     BloodQuest.bloodGondorCheck(s);
     MorgulQuest.morgulValeCheck(s);
+    Fords.fordsCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -925,6 +929,7 @@ export function damage(
     Amon.amonDinCharacterDestroyed(s, u, context);
     BloodQuest.bloodGondorCharacterDestroyed(s, u, context);
     MorgulQuest.morgulCharacterDestroyed(s, u, context);
+    Fords.fordsCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1336,6 +1341,7 @@ export function advanceQuest(s: GameState) {
   if (Amon.advanceAmonDin(s)) return;
   if (BloodQuest.advanceBloodGondor(s)) return;
   if (MorgulQuest.advanceMorgulVale(s)) return;
+  if (Fords.advanceFordsIsen(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1579,6 +1585,7 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
 }
 
 export function nextRound(s: GameState) {
+  for (const u of globalUnits(s)) delete u.roundThreat;
   heirsRoundEnd(s);
   for (const u of globalCharacters(s)) {
     delete u.roundKeywords;
@@ -1596,7 +1603,11 @@ export function nextRound(s: GameState) {
       if (!isSacked(h) && khazadResourcePhase(s))
         h.resources += 1 + resourcePhaseBonus(h);
     for (const ally of s.allies)
-      if (["02059", "08146"].includes(ally.code) && !ally.blanked)
+      if (
+        ["02059", "08146"].includes(ally.code) &&
+        !ally.blanked &&
+        canGainResources(s, ally)
+      )
         ally.resources++;
     draw(
       s,
@@ -1623,6 +1634,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   log(s, `${name(u)} engages your fellowship.`, "danger");
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
+  Fords.fordsEngaged(s, u);
   longDarkEngaged(s, u);
   foundationsEngaged(s, u);
   heirsEngaged(s, u, activeSeat(s), optional);
@@ -1801,7 +1813,8 @@ export function resolveReveal(
   if (
     /(?:^|[.\n]\s*)Surge(?:[.\s]|$)/i.test(c.text ?? "") ||
     emynSurge ||
-    longDarkRevealSurge(s, code)
+    longDarkRevealSurge(s, code) ||
+    Fords.fordsRevealSurge(s, code)
   )
     prepend(s, fx("amonSurgeWindow", { code }), fx("reveal"));
   if (revealOrigin === "encounter" && c.type_code === "treachery")
@@ -1817,6 +1830,7 @@ export function resolveReveal(
   const when =
     (c.text ?? "").includes("When Revealed") &&
     code !== CARROCK.sacked &&
+    !Fords.fordsCannotCancel(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
     !stewardFearCannotCancel(code) &&
@@ -2005,6 +2019,7 @@ export function placeEncounter(
   if (Osgiliath.assaultOsgiliathEncounter(s, code)) return;
   if (BloodQuest.bloodGondorEncounter(s, code)) return;
   if (MorgulQuest.morgulEncounter(s, code)) return;
+  if (Fords.fordsEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2364,15 +2379,15 @@ export function allyEntryResponses(
     }
     case "01061":
       choose(s, "Miner of the Iron Hills", [
-        ...allCharacters(s).flatMap((h) =>
+        ...[
+          ...units(s),
+          ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+        ].flatMap((h) =>
           h.attachments
             .filter(
               (a) =>
-                !a.blanked &&
-                !card(a.code).text?.includes("Permanent") &&
-                /condition/i.test(
-                  `${card(a.code).traits ?? ""} ${card(a.code).text ?? ""}`,
-                ),
+                attachmentHasTrait(a, "Condition") &&
+                !card(a.code).text?.includes("Permanent"),
             )
             .map((a) => ({
               id: a.id,
@@ -2454,6 +2469,7 @@ export function shadow(s: GameState, code: string) {
   if (Osgiliath.assaultOsgiliathShadow(s, code)) return;
   if (BloodQuest.bloodGondorShadow(s, code)) return;
   if (MorgulQuest.morgulShadow(s, code)) return;
+  if (Fords.fordsShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

@@ -53,6 +53,7 @@ export function observe(
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
     "Staging threat": String(getStagingThreat(s)),
+    ...(s.fordsIsen ? { "Quest time counters": String(s.fordsIsen.time) } : {}),
     ...(s.bloodGondor
       ? Object.fromEntries(
           seatIndices(s).map((p) => [
@@ -70,7 +71,7 @@ export function observe(
   const add = (u: Unit, zone: string) => {
     const c = card(u.code),
       stats = getStats(s, u);
-    const character = c.type_code === "hero" || c.type_code === "ally";
+    const character = ["hero", "ally", "objective-ally"].includes(c.type_code);
     const enemy = c.type_code === "enemy";
     seen[u.id] = {
       code: u.code,

@@ -1,3 +1,4 @@
+import * as Fords from "./fords-isen";
 import * as Isengard from "./voice-isengard";
 import { ringMakerSecrecy } from "./ring-maker-player";
 import { finalRingFollowFirst } from "./ring-maker-final-player";
@@ -191,7 +192,9 @@ export const skip: Option = {
 
 /** Positive resource gains include transfers; the resource phase is not a card effect. */
 export const canGainResources = (s: GameState, u: Unit, cardEffect = true) =>
-  !isSacked(u) && !druadanForestCannotGainResources(s, u, cardEffect);
+  !isSacked(u) &&
+  !druadanForestCannotGainResources(s, u, cardEffect) &&
+  !Fords.fordsCannotGainResources(s, cardEffect);
 
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
@@ -466,6 +469,7 @@ export function stats(s: GameState, u: Unit) {
       : (namelessX ?? c.attack ?? 0) +
         foundationsBonus.attack +
         heirsScenarioBonus.attack +
+        Fords.fordsAttackBonus(s, u) +
         amonDinEnemyAttackBonus(s, u) +
         assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
@@ -626,6 +630,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           druadanForestThreat(s, u) ??
           card(u.code).threat ??
           0) +
+          Fords.fordsThreatBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
           emynMuilThreatBonus(s, u) +
@@ -675,6 +680,7 @@ export const locationQuest = (s: GameState, u: Unit) =>
   MorgulQuest.morgulBridgeValue(s, u) ??
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
+    Fords.fordsLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
     BloodQuest.bloodGondorLocationBonus(s, u) +
     stewardFearLocationQuestBonus(s, u);
@@ -903,7 +909,10 @@ export function draw(s: GameState, count: number) {
     if (!foundationsDrawHero(s, u)) s.hand.push(u);
     n++;
   }
-  if (n) log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);
+  if (n) {
+    log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);
+    Fords.fordsCardsDrawn(s);
+  }
 }
 
 export function encounterDraw(s: GameState, shadow = false) {

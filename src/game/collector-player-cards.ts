@@ -3,14 +3,7 @@ import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // Active rules completing the two printed Collector's Edition starter decks.
 import { card, plain } from "./cards";
-import type {
-  Attachment,
-  Card,
-  Effect,
-  GameState,
-  Option,
-  Unit,
-} from "./types";
+import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import {
   canPay,
   choose,
@@ -54,6 +47,7 @@ import {
   seatView,
 } from "./table";
 import {
+  attachmentHasTrait,
   effectiveKeyword,
   effectiveTraits,
   hasResourceIcon,
@@ -119,8 +113,6 @@ const spherePayers = (s: GameState, sphere: string, player = activeSeat(s)) =>
   );
 const groupPayers = (s: GameState, sphere: string) =>
   playerOrder(s).flatMap((player) => spherePayers(s, sphere, player));
-const trait = (c: Card, t: string) =>
-  (c.traits ?? "").split(".").some((x) => x.trim() === t);
 const used = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
 const optional = (s: GameState, title: string, e: Effect, code?: string) =>
@@ -139,7 +131,9 @@ const conditions = (s: GameState) =>
   ].flatMap((u) =>
     u.attachments
       .filter(
-        (a) => !a.blanked && !a.facedown && trait(card(a.code), "Condition"),
+        (a) =>
+          attachmentHasTrait(a, "Condition") &&
+          !card(a.code).text?.includes("Permanent"),
       )
       .map((a) => ({ u, a })),
   );

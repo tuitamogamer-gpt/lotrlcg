@@ -1,6 +1,6 @@
 import { khazadBookNoExhaust } from "./khazad-dum";
 import definitions from "../data/passive-player-cards.json";
-import type { Card, GameState, Unit } from "./types";
+import type { Attachment, Card, GameState, Unit } from "./types";
 import { card } from "./cards";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
 import { marshPlayerNoQuestExhaust } from "./marsh-player-cards";
@@ -178,6 +178,16 @@ export function effectiveTraits(u: Unit): string[] {
 }
 export const hasTrait = (u: Unit, trait: string) =>
   effectiveTraits(u).includes(trait);
+/** Encounter treacheries can become Condition attachments without a printed trait line. */
+export function attachmentHasTrait(a: Attachment, trait: string) {
+  if (a.blanked || a.facedown || a.namelessCard) return false;
+  return (
+    (card(a.code).traits ?? "").split(".").some((t) => t.trim() === trait) ||
+    !!a.dynamicTraits?.includes(trait) ||
+    (trait === "Condition" &&
+      /counts as a Condition attachment/i.test(card(a.code).text ?? ""))
+  );
+}
 export function effectiveKeyword(u: Unit, keyword: string): boolean {
   const printed = (card(u.code).text ?? "").replace(/<[^>]*>/g, "");
   const exact = new RegExp(`(?:^|[.\\n]\\s*)${keyword}(?:[.\\s]|$)`, "i");

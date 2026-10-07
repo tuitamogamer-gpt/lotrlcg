@@ -1,3 +1,5 @@
+import { FORDS, fordsTimeLimit } from "../game/fords-isen-support";
+import { allCharacters } from "../game/table";
 import type { Card, GameState, Unit } from "../game/types";
 import { card } from "../game/cards";
 import { playerOrder, seatName } from "../game/table";
@@ -12,7 +14,12 @@ export function ScenarioState({
   s: GameState;
   inspect: (c: Card) => void;
 }) {
-  if (!s.bloodGondor && !s.morgulVale && !s.isengard?.outOfPlay.length)
+  if (
+    !s.fordsIsen &&
+    !s.bloodGondor &&
+    !s.morgulVale &&
+    !s.isengard?.outOfPlay.length
+  )
     return null;
   return (
     <div className="scenario-state-summary" aria-label="Scenario counters">
@@ -32,6 +39,32 @@ export function ScenarioState({
             </span>
           </div>
         ))}
+      {s.fordsIsen && (
+        <div className="tower-counter">
+          <strong>
+            Time · {s.fordsIsen.time} / {fordsTimeLimit(s.stage)}
+          </strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.fordsIsen.time}
+            max={fordsTimeLimit(s.stage)}
+          />
+          <span>
+            {s.stage === 1
+              ? "Rescue Gríma before time runs out."
+              : s.stage === 2
+                ? "When time runs out, take damage equal to your hand size."
+                : "When time runs out, more enemies may arrive."}
+          </span>
+          <button onClick={() => inspect(card(FORDS.grima))}>
+            {allCharacters(s).some((u) => u.code === FORDS.grima)
+              ? "Gríma is rescued"
+              : s.staging.some((u) => u.code === FORDS.grima)
+                ? "Gríma is guarded by The Islet"
+                : "Gríma has left play"}
+          </button>
+        </div>
+      )}
       {s.morgulVale && (
         <div className="tower-counter">
           <strong>To the Tower · {morgulTowerProgress(s)} / 10</strong>

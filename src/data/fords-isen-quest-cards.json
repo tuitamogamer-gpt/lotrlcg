@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgnid": "74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "name": "Fight at the Fords",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Islet to the staging area and attach Grima to that location. Each player searches the encounter deck for 1 different Dunland enemy and adds it to the staging area.  Shuffle the Encounter Deck.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 59,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Fords of Isen",
+    "side": "A",
+    "back_name": "Fight at the Fords",
+    "back_text": "Time 5. Forced: After the last time counter is removed from this stage, discard Grima from play.  The players cannot advance unless the first player controls Grima.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f297ed-3cb6-4c2d-83d8-c27b447a9250.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f297ed-3cb6-4c2d-83d8-c27b447a9250.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 59,
+        "quantity": 1,
+        "octgnid": "74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f297ed-3cb6-4c2d-83d8-c27b447a9250.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:93ece501-fae4-46e8-9720-316383b86688",
+    "octgnid": "93ece501-fae4-46e8-9720-316383b86688",
+    "name": "Dunlending Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 60,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Fords of Isen",
+    "side": "A",
+    "back_name": "Dunlending Attack",
+    "back_text": "When Revealed: Each player searches the encounter deck and discard pile for 1 different Dunland enemy and adds it to the staging area. Shuffle the Encounter Deck.  Time 2. Forced: After the last time counter is removed from this stage, each player assigns X damage among characters he controls where X is the number of cards in his hand. Place 2 time counters on this stage.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93ece501-fae4-46e8-9720-316383b86688.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93ece501-fae4-46e8-9720-316383b86688.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 60,
+        "quantity": 1,
+        "octgnid": "93ece501-fae4-46e8-9720-316383b86688",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93ece501-fae4-46e8-9720-316383b86688.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
+    "octgnid": "0cdc4034-738d-487d-9a8c-8ef364772076",
+    "name": "Hold the Fords",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for a different Dunland enemy and adds it to the staging area.  Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 61,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Fords of Isen",
+    "side": "A",
+    "back_name": "Hold the Fords",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this stage, discard the top X cards of the encounter deck.  X is the number of card's in the first player's hand.  Add each enemy discarded this way to the staging area.  Put 3 time counters on this stage.  While there is at least 1 enemy in play, the players cannot defeat this stage.  If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0cdc4034-738d-487d-9a8c-8ef364772076.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0cdc4034-738d-487d-9a8c-8ef364772076.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 61,
+        "quantity": 1,
+        "octgnid": "0cdc4034-738d-487d-9a8c-8ef364772076",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0cdc4034-738d-487d-9a8c-8ef364772076.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -171,7 +172,7 @@ export function longDarkPlayerAbilityProblem(
 ): string | undefined {
   if (
     u.code === "04077" &&
-    (markerExists(s, `round:erestor:${u.id}`) || !s.hand.length)
+    (markerExists(s, `round:erestor:${u.id}`) || !movableHand(s).length)
   )
     return "Erestor needs a hand card and can act once per round.";
   if (
@@ -191,7 +192,7 @@ export function useLongDarkPlayerAbility(s: GameState, u: Unit): boolean {
     choose(
       s,
       "Erestor · Discard your card",
-      opts(s.hand, (hand) => [
+      opts(movableHand(s), (hand) => [
         fx("longDarkErestorDiscard", { source: u.id, target: hand.id }),
       ]),
     );
@@ -345,7 +346,9 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Háma · Then discard one card",
-        opts(s.hand, (u) => [fx("longDarkHamaDiscard", { target: u.id })]),
+        opts(movableHand(s), (u) => [
+          fx("longDarkHamaDiscard", { target: u.id }),
+        ]),
       );
       return true;
     }

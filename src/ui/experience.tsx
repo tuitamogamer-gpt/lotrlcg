@@ -1,3 +1,4 @@
+import { fordsMandatoryTravel } from "../game/fords-isen";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
@@ -102,7 +103,7 @@ const offTurn = (s: GameState) =>
     "attack",
   ].includes(s.phase);
 export const nextAction = (s: GameState): Action | null =>
-  s.flow?.pending
+  s.flow?.pending || (s.phase === "travel" && fordsMandatoryTravel(s))
     ? null
     : s.escapeTest
       ? s.choice ||
@@ -126,46 +127,52 @@ export const nextAction = (s: GameState): Action | null =>
                   ? { type: "END_ATTACKS" }
                   : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
-  s.escapeTest
-    ? s.escapeTest.phase === "preparing"
-      ? "Begin escape test"
-      : s.escapeTest.phase === "actions"
-        ? "Resolve escape test"
-        : "Choose escape characters"
-    : offTurn(s)
-      ? `Continue as Player ${s.table!.turn + 1}`
-      : s.phase === "attack" && s.earlyAttackPlayers?.length
-        ? "Continue to enemy attacks"
-        : requiredQuestSelections(s) > 0
-          ? `Select ${requiredQuestSelections(s)} more characters`
-          : s.table &&
-              ["resource", "planning", "quest", "encounter", "attack"].includes(
-                s.phase,
-              )
-            ? {
-                resource: "Finish resource actions",
-                planning: "Finish planning",
-                quest: "Commit this fellowship",
-                encounter: "Finish engagement choices",
-                attack: "Finish attacks",
-              }[
-                s.phase as
-                  "resource" | "planning" | "quest" | "encounter" | "attack"
-              ]
-            : {
-                setup: "Keep hand",
-                resource: "Begin planning",
-                planning: "Begin quest",
-                quest: "Commit & reveal",
-                staging: "Resolve quest",
-                travel: allActiveLocations(s).length
-                  ? "Continue to encounter"
-                  : "Continue without travel",
-                encounter: "Engagement checks",
-                defense: "Choose an enemy",
-                attack: "Finish combat",
-                refresh: "Begin next round",
-              }[s.phase];
+  s.phase === "travel" && fordsMandatoryTravel(s)
+    ? "Travel to The King’s Road"
+    : s.escapeTest
+      ? s.escapeTest.phase === "preparing"
+        ? "Begin escape test"
+        : s.escapeTest.phase === "actions"
+          ? "Resolve escape test"
+          : "Choose escape characters"
+      : offTurn(s)
+        ? `Continue as Player ${s.table!.turn + 1}`
+        : s.phase === "attack" && s.earlyAttackPlayers?.length
+          ? "Continue to enemy attacks"
+          : requiredQuestSelections(s) > 0
+            ? `Select ${requiredQuestSelections(s)} more characters`
+            : s.table &&
+                [
+                  "resource",
+                  "planning",
+                  "quest",
+                  "encounter",
+                  "attack",
+                ].includes(s.phase)
+              ? {
+                  resource: "Finish resource actions",
+                  planning: "Finish planning",
+                  quest: "Commit this fellowship",
+                  encounter: "Finish engagement choices",
+                  attack: "Finish attacks",
+                }[
+                  s.phase as
+                    "resource" | "planning" | "quest" | "encounter" | "attack"
+                ]
+              : {
+                  setup: "Keep hand",
+                  resource: "Begin planning",
+                  planning: "Begin quest",
+                  quest: "Commit & reveal",
+                  staging: "Resolve quest",
+                  travel: allActiveLocations(s).length
+                    ? "Continue to encounter"
+                    : "Continue without travel",
+                  encounter: "Engagement checks",
+                  defense: "Choose an enemy",
+                  attack: "Finish combat",
+                  refresh: "Begin next round",
+                }[s.phase];
 export function TurnActions({
   s,
   dispatch,

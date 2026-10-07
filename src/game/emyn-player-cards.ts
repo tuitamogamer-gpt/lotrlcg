@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { takePlayerDeck, putPlayerDeck, reorderPlayerDeck } from "./core";
 // Exact active and triggered rules from The Hills of Emyn Muil.
 import { card, plain } from "./cards";
@@ -404,14 +405,14 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
           (e.count ?? Infinity) <= s.deck.length,
         "Choose one of the viewed top cards.",
       );
-      if (!s.hand.length) {
+      if (!movableHand(s).length) {
         gildorOrder(s, e.count!);
         return true;
       }
       choose(
         s,
         "Gildor Inglorion · Card from hand",
-        opts(s.hand, (hand) => [
+        opts(movableHand(s), (hand) => [
           fx("emynGildorSwap", {
             source: hand.id,
             value: e.value,
@@ -423,7 +424,9 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "emynGildorSwap": {
-      const index = s.hand.findIndex((u) => u.id === e.source),
+      const index = s.hand.findIndex(
+          (u) => u.id === e.source && movableHand(s).includes(u),
+        ),
         deckIndex = e.value ?? -1;
       requireRule(
         index >= 0 &&

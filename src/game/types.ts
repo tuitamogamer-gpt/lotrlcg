@@ -89,6 +89,8 @@ export interface Unit {
   /** Physical shadow visibility is independent of resolved shadow effects. */
   faceupShadows?: boolean[];
   morgulExtraAttacks?: number;
+  /** Dunland Tribesman bonuses expire at round end. */
+  roundThreat?: number;
   /** Resolved shadow protections expire when the attached shadows are discarded. */
   shadowCancelsDamage?: boolean;
   shadowCancelsCombatDamage?: boolean;
@@ -158,6 +160,7 @@ export type ScenarioId =
   | "assault-on-osgiliath"
   | "the-blood-of-gondor"
   | "the-morgul-vale"
+  | "fords-of-isen"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -268,6 +271,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  fordsIsen?: import("./fords-isen-support").FordsIsenState;
   morgulVale?: import("./morgul-vale-support").MorgulValeState;
   druadanForest?: import("./druadan-forest-support").DruadanForestState;
   amonDin?: import("./amon-din-support").AmonDinState;
@@ -392,6 +396,8 @@ export interface GameState {
     heirsScrollDamage?: boolean;
     bloodTurnOnKill?: boolean;
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
+    fordsTimeOnKill?: number;
+    fordsExtraAttacks?: number;
     morgulProgressOnKill?: boolean;
     morgulKilledCharacter?: boolean;
     amonDinKilledCharacter?: boolean;

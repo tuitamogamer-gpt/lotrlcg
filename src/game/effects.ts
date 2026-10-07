@@ -1,3 +1,4 @@
+import * as Fords from "./fords-isen";
 import { ringMakerEffect, ringMakerRoundEnd } from "./ring-maker-player";
 import {
   finalRingEffect,
@@ -330,6 +331,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Osgiliath.assaultOsgiliathEffect(s, e)) return;
   if (BloodQuest.bloodGondorEffect(s, e)) return;
   if (MorgulQuest.morgulEffect(s, e)) return;
+  if (Fords.fordsEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -744,6 +746,7 @@ function handleEffect(s: GameState, e: Effect) {
         longDarkPlayerTravelled(s, u);
         watcherWaterTravelEntered(s, u);
         stewardFearTravelEntered(s, u);
+        Fords.fordsTravelEntered(s, u);
         log(s, `Travelled to ${name(u)}.`, "good");
         if (u.code === "01087") progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
@@ -906,6 +909,7 @@ function handleEffect(s: GameState, e: Effect) {
             Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
             BloodQuest.bloodGondorEncounter(s, e.code, true) ||
             MorgulQuest.morgulEncounter(s, e.code, true) ||
+            Fords.fordsEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1090,6 +1094,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "phaseEnd":
       phaseEnd(s);
+      if (s.phase === "refresh") Fords.fordsRemoveTime(s);
       break;
     case "startQuest":
       startPhase(s, "quest");
@@ -1637,6 +1642,7 @@ function handleEffect(s: GameState, e: Effect) {
           Druadan.druadanForestAttackFinished(s, enemy, completed);
           Amon.amonDinAttackFinished(s, enemy, completed);
           MorgulQuest.morgulAttackFinished(s, enemy, attackPlayer, completed);
+          Fords.fordsAttackFinished(s, enemy, attackPlayer, completed);
         }
         BloodQuest.bloodGondorAttackFinished(s, completed);
         prepend(s, ...heirsAttackFinished(s, completed));
@@ -1791,6 +1797,11 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "fordsStageReady",
+      "fordsRemoveTime",
+      "fordsTimeExpired",
+      "fordsResetTime",
+      "fordsDrawReactions",
       "ringDelayedReturn",
       "dunlandCloseWindow",
       "dunlandCloseResume",

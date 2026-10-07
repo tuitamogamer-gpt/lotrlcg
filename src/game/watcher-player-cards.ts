@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { globalPlayerOrder } from "./table";
 import { stewardFearLocationLeft } from "./steward-fear";
 import { engagedEnemies } from "./considered-engagement";
@@ -219,7 +220,9 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
           code: "04056",
           effects: [fx("watcherBruinenDiscard", { target: watcher.id })],
         },
-        ...opts(s.hand, (u) => [fx("watcherBruinenHand", { source: u.id })]),
+        ...opts(movableHand(s), (u) => [
+          fx("watcherBruinenHand", { source: u.id }),
+        ]),
       ]);
       return true;
     }

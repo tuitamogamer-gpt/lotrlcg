@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "fords-of-isen": {
+    name: "Fords of Isen",
+    detail: "Hold the crossing against the Dunlendings",
+  },
   "the-blood-of-gondor": {
     name: "The Blood of Gondor",
     detail: "An ambush in Ithilien",
@@ -132,6 +136,7 @@ export const PLAYMAT_CHOICES = [
   "assault-on-osgiliath",
   "the-blood-of-gondor",
   "the-morgul-vale",
+  "fords-of-isen",
   "shadow-and-flame",
 ] as const;
 

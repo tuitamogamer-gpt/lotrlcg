@@ -1,3 +1,4 @@
+import { currentQuestUnit } from "./quest-state";
 // Doomed applies when a player card is played or put into play (Voice of Isengard rulesheet).
 import type { Card, Effect, GameState, Unit } from "./types";
 import { card, name, plain } from "./cards";
@@ -217,18 +218,19 @@ export const faceupShadowCards = (u: Unit) =>
     u.faceupShadows?.[index] ? [{ index, code, name: card(code).name }] : [],
   );
 const conditions = (s: GameState) =>
-  units(s).flatMap((u) =>
-    u.attachments
-      .filter(
-        (a) =>
-          !a.blanked &&
-          !a.facedown &&
-          !/Permanent/i.test(card(a.code).text ?? "") &&
-          /\bCondition\b/i.test(
-            `${card(a.code).traits ?? ""} ${card(a.code).text ?? ""}`,
-          ),
-      )
-      .map((a) => ({ u, a })),
+  [...units(s), ...[currentQuestUnit(s)].filter((u): u is Unit => !!u)].flatMap(
+    (u) =>
+      u.attachments
+        .filter(
+          (a) =>
+            !a.blanked &&
+            !a.facedown &&
+            !/Permanent/i.test(card(a.code).text ?? "") &&
+            /\bCondition\b/i.test(
+              `${card(a.code).traits ?? ""} ${card(a.code).text ?? ""}`,
+            ),
+        )
+        .map((a) => ({ u, a })),
   );
 export function isengardEventProblem(s: GameState, code: string) {
   if (code === "07011" && !allHeroes(s).some((h) => canGainResources(s, h)))

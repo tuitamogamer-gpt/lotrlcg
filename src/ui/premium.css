@@ -16,6 +16,8 @@
   --mat-tint: #173127;
 }
 .redbook[data-playmat="anduin"],
+.redbook[data-playmat="fords-of-isen"],
+.mat-fords-of-isen,
 .redbook[data-playmat="hunt-for-gollum"],
 .redbook[data-playmat="conflict-at-the-carrock"],
 .mat-anduin,
@@ -623,6 +625,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
+.tower-counter button,
 .scenario-captives button,
 .faceup-shadows button {
   color: inherit;

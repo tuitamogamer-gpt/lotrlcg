@@ -1,3 +1,4 @@
+import { setupFordsIsen } from "./fords-isen";
 import { setupBloodGondor } from "./blood-gondor";
 import { BUILT_IN_DECKS } from "./built-in-decks";
 import { setupMorgulVale } from "./morgul-vale";
@@ -117,6 +118,11 @@ export function createGame(
   const scenarioId = options.scenarioId ?? "mirkwood";
   const playMode = options.playMode ?? "normal";
   const chosenHeroes = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
+  requireRule(
+    scenarioId !== "fords-of-isen" ||
+      !chosenHeroes.some((c) => card(c).name === "Gríma"),
+    "Gríma is reserved by this scenario; choose another hero.",
+  );
   requireRule(
     !["the-blood-of-gondor", "the-morgul-vale"].includes(scenarioId) ||
       !chosenHeroes.some((c) => card(c).name === "Faramir"),
@@ -358,6 +364,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "fords-of-isen") {
+    setupFordsIsen(s);
   } else if (scenarioId === "the-morgul-vale") {
     setupMorgulVale(s);
   } else if (scenarioId === "assault-on-osgiliath") {

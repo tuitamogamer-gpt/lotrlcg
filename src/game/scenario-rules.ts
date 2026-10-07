@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { heirsShadowDealt } from "./heirs-numenor";
 import { longDarkEffect } from "./long-dark";
 import { shadowFlameEffect, shadowFlameQuestEnd } from "./shadow-flame";
@@ -294,7 +295,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Discard a card",
-        opts(s.hand, (x) => [fx("discardHandCard", { target: x.id })]),
+        opts(movableHand(s), (x) => [fx("discardHandCard", { target: x.id })]),
       );
       break;
     case "discardHandCard": {

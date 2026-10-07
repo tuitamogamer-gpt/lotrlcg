@@ -1,6 +1,6 @@
 # There & Back Again
 
-A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes 27 original/easy scenarios: the Core Set, Shadows of Mirkwood, Khazad-dûm, Dwarrowdelf, Heirs of Númenor and all six Against the Shadow adventures. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
+A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes 28 original/easy scenarios: the Core Set, Shadows of Mirkwood, Khazad-dûm, Dwarrowdelf, Heirs of Númenor, all six Against the Shadow adventures and Fords of Isen from The Voice of Isengard. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
 
 ## Run
 
@@ -35,6 +35,8 @@ npm run test:browser
 `npm run test:against-shadow-finale` checks The Blood of Gondor, The Morgul Vale and The Voice of Isengard player interactions, including reload and responsive layouts.
 
 `npm run test:precons` checks every added built-in starter deck, hero art, saved games and four-player setup. `npm run test:ring-maker-players` checks all six Ring-maker player packs through actual payments and choices, including reload at desktop and mobile widths.
+
+`npm run test:ring-maker-quests` checks Fords of Isen: Time, Gríma, Dunland card-draw reactions, hand restrictions, save/reload and 1–4-player setup at 1280/390/320px. See [scenario rules](docs/FORDS-ISEN-RULES.md).
 
 Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run preview -- --port 5178` serves the production build.
 

@@ -1,3 +1,4 @@
+import { validateFordsIsenState } from "./fords-isen-support";
 import { validateIsengard } from "./voice-isengard";
 import { validateRingMaker } from "./ring-maker-player";
 import { validateBloodGondorState } from "./blood-gondor-support";
@@ -122,6 +123,9 @@ export function validateSave(
         ) &&
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
+      [c.fordsExtraAttacks, c.fordsTimeOnKill].every(
+        (v) => v === undefined || (integer(v) && v >= 0),
+      ) &&
       (c.amonDinShadowVillagers === undefined ||
         (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
@@ -226,6 +230,8 @@ export function validateSave(
           (a.owner === undefined ||
             (integer(a.owner) && a.owner >= 0 && a.owner <= 3)),
       ) &&
+      (u.roundThreat === undefined ||
+        (integer(u.roundThreat) && u.roundThreat >= 0)) &&
       (u.morgulExtraAttacks === undefined ||
         (integer(u.morgulExtraAttacks) && u.morgulExtraAttacks >= 0)) &&
       codes(u.shadows) &&
@@ -300,6 +306,7 @@ export function validateSave(
         !validateRingMaker(s, seatCount) ||
         !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
         !validateMorgulValeState(s) ||
+        !validateFordsIsenState(s) ||
         !validateAssaultOsgiliathState(
           s,
           validUnit as (value: unknown) => boolean,

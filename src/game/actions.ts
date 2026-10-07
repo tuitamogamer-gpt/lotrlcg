@@ -1,3 +1,6 @@
+import { movableHand } from "./hand-rules";
+import * as Fords from "./fords-isen";
+import { FORDS } from "./fords-isen-support";
 import {
   finalRingPlayProblem,
   finalRingPlayTargets,
@@ -403,6 +406,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   )
     return "Choose a location in staging.";
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
+  if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
+    return "You must travel to The King’s Road.";
   const druadanProblem = Druadan.druadanForestTravelProblem(s, u);
   if (druadanProblem) return druadanProblem;
   const osgiliathProblem = Osgiliath.assaultOsgiliathTravelProblem(s, u);
@@ -496,6 +501,8 @@ export function canPlay(
   const c = options.playOrigin
     ? { ...card(u.code), playOrigin: options.playOrigin }
     : card(u.code);
+  if (c.code === FORDS.tidings)
+    return "Ill Tidings cannot leave your hand or be played.";
   const printedPhase =
     c.type_code === "event"
       ? /(?:^|>)\s*(Combat|Quest|Refresh|Planning|Resource|Travel|Encounter) Action:/i
@@ -1298,6 +1305,13 @@ export const responseCards = [
 
 export function availableAbilities(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
+  if (u.code === FORDS.grima)
+    return [
+      {
+        label: "Exhaust Gríma to draw a card",
+        disabled: !!Fords.fordsAbilityProblem(s, u),
+      },
+    ];
   const bloodScenarioLabel = BloodQuest.bloodGondorAbilityLabel(u.code);
   if (bloodScenarioLabel)
     return [
@@ -1488,7 +1502,7 @@ export function availableAbilities(s: GameState, u: Unit) {
       label: heroAbility[u.code],
       disabled:
         u.code === "01007"
-          ? s.eowynUsed || !s.hand.length
+          ? s.eowynUsed || !movableHand(s).length
           : u.code === "01011"
             ? s.used.includes(u.id) ||
               u.resources < 1 ||
@@ -1815,6 +1829,10 @@ export function applyAction(input: GameState, action: Action): GameState {
       } else if (s.phase === "travel") {
         if (foundationsTravelNext(s)) break;
         requireRule(
+          !Fords.fordsMandatoryTravel(s),
+          "You must travel to The King’s Road.",
+        );
+        requireRule(
           allActiveLocations(s).length > 0 ||
             !s.staging.some((u) => u.code === "01088"),
           "You must travel to The East Bight.",
@@ -1921,7 +1939,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (
         u &&
         !action.attachmentId &&
-        (BloodQuest.bloodGondorAbility(s, u) ||
+        (Fords.fordsAbility(s, u) ||
+          BloodQuest.bloodGondorAbility(s, u) ||
           Osgiliath.useAssaultOsgiliathAbility(s, u) ||
           useFoundationsAbility(s, u) ||
           useHeirsAbility(s, u))
@@ -2380,6 +2399,7 @@ export function publicState(s: GameState) {
           pendingUnderworldCount: s.stewardFear.pendingUnderworld.length,
         }
       : {}),
+    ...(s.fordsIsen ? { timeCounters: s.fordsIsen.time } : {}),
     outOfPlay:
       s.isengard?.outOfPlay.flatMap((g) =>
         g.cards.map((u) => ({

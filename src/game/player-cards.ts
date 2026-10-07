@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import * as Isengard from "./voice-isengard";
 import { morgulCannotLeave } from "./morgul-vale";
 import { canGainResources } from "./core";
@@ -446,13 +447,14 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
       case "01070": {
         const key = `protector:${a.id}`;
         requireRule(
-          s.used.filter((k) => k === key).length < 3 && s.hand.length > 0,
+          s.used.filter((k) => k === key).length < 3 &&
+            movableHand(s).length > 0,
           "Protector of Lórien can be used 3 times per phase and requires a card to discard.",
         );
         choose(
           s,
           "Protector of Lórien",
-          s.hand.flatMap((h) => [
+          movableHand(s).flatMap((h) => [
             {
               id: `${h.id}-will`,
               label: `Discard ${name(h)} · +1 willpower`,
@@ -511,13 +513,13 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
   switch (u.code) {
     case "01007":
       requireRule(
-        !s.eowynUsed && s.hand.length > 0,
+        !s.eowynUsed && movableHand(s).length > 0,
         "Éowyn requires a card to discard and can act once per round.",
       );
       choose(
         s,
         "Éowyn · Strength of spirit",
-        s.hand.map((h) => ({
+        movableHand(s).map((h) => ({
           id: h.id,
           label: name(h),
           code: h.code,

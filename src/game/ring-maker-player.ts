@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 // Remaining player cards from The Three Trials and Trouble in Tharbad.
 import { card, plain, SCRIPTED } from "./cards";
 import { finalRingEventPlayed } from "./ring-maker-final-player";
@@ -424,7 +425,9 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
     }
     case "ringMessageCard":
       choose(s, "Message from Elrond · Choose a card to pass", [
-        ...opts(s.hand, (u) => [fx("ringMessageRecipient", { target: u.id })]),
+        ...opts(movableHand(s), (u) => [
+          fx("ringMessageRecipient", { target: u.id }),
+        ]),
         skip,
       ]);
       return true;
@@ -444,7 +447,10 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
     case "ringMessagePass": {
       const u = s.hand.find((u) => u.id === e.target);
       requireRule(
-        u && e.value !== activeSeat(s) && playerOrder(s).includes(e.value!),
+        u &&
+          movableHand(s).includes(u) &&
+          e.value !== activeSeat(s) &&
+          playerOrder(s).includes(e.value!),
         "Choose a card in your hand and another player.",
       );
       const owner = u.owner ?? activeSeat(s);

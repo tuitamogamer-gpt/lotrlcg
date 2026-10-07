@@ -1,3 +1,4 @@
+import { FORDS_ISEN_QUESTS } from "./fords-isen-support";
 import { BLOOD_GONDOR_QUESTS } from "./blood-gondor-support";
 import { MORGUL_VALE_QUESTS } from "./morgul-vale-support";
 import { DRUADAN_FOREST_QUESTS } from "./druadan-forest-support";
@@ -42,6 +43,7 @@ const questImage = (code: string) => {
     ...ASSAULT_OSGILIATH_QUESTS,
     ...BLOOD_GONDOR_QUESTS,
     ...MORGUL_VALE_QUESTS,
+    ...FORDS_ISEN_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -849,6 +851,24 @@ export const SCENARIOS = [
         cardCode: q.code,
         questImage: questImage(q.code),
       })),
+  },
+  {
+    id: "fords-of-isen",
+    name: "Fords of Isen",
+    shortName: "Fords of Isen",
+    chapter: "XXVIII",
+    difficulty: 5,
+    tagline: "Hold the crossing before time runs out",
+    description:
+      "Rescue Gríma from the Islet and hold the Fords against the Dunlendings. Every card you draw can strengthen the raiders.",
+    sets: ["Fords of Isen", "Dunland Raiders", "Dunland Warriors"],
+    stages: FORDS_ISEN_QUESTS.map((q) => ({
+      name: q.name,
+      cardCode: q.code,
+      quest: q.back_quest!,
+      story: q.back_text!,
+      questImage: questImage(q.code),
+    })),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

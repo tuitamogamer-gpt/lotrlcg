@@ -2753,11 +2753,13 @@ kbd {
 .easy-toggle {
   margin-top: 12px;
 }
+.adventure-fords-of-isen .forest-bg,
 .adventure-hunt-for-gollum .forest-bg {
   background-image:
     linear-gradient(90deg, #071612dc, #07161210), url("/art/anduin.jpg");
   filter: none;
 }
+.board-fords-of-isen,
 .board-hunt-for-gollum {
   background-image:
     linear-gradient(#15231ff2, #13221cf7), url("/art/anduin.jpg");

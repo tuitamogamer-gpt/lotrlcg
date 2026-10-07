@@ -1,3 +1,4 @@
+import { movableHand } from "./hand-rules";
 import { takePlayerDeck } from "./core";
 // Exact Elves of Lórien main-list rules. The original printings remain in the catalog.
 // Primary guide: https://images-cdn.fantasyflightgames.com/filer_public/72/d2/72d27c2e-e5d0-4d43-9e66-aa332dbf7423/mec104_rules.pdf
@@ -289,7 +290,7 @@ export function elfEventEffect(s: GameState, code: string, target?: string) {
       choose(
         s,
         "Daeron's Runes · Discard one card",
-        opts(s.hand, (u) => [fx("elfRunesDiscard", { target: u.id })]),
+        opts(movableHand(s), (u) => [fx("elfRunesDiscard", { target: u.id })]),
       );
   } else if (code === "04059") {
     const u = councilTargets(s).find((u) => u.id === target);
