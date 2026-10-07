@@ -1,3 +1,4 @@
+import { dunlandDrawEffects } from "./dunland-trap";
 import { removeQuestTime } from "./quest-time";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -193,7 +194,7 @@ export function fordsTravelEntered(s: GameState, u: Unit) {
     );
 }
 export function fordsCardsDrawn(s: GameState, player = activeSeat(s)) {
-  const effects: Effect[] = [];
+  const effects: Effect[] = dunlandDrawEffects(s, player);
   for (const u of enemies(s)) {
     if (u.blanked) continue;
     if (u.code === F.tribesman)

@@ -1,0 +1,430 @@
+[
+  {
+    "code": "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
+    "octgnid": "0a0e6044-c5ab-43ed-832a-71516c7d035a",
+    "name": "Boar Clan Stalker",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Boar Clan.",
+    "text": "Boar Clan Stalker gets +1 [attack] and +1 [defense] for each resource token on it (limit +4).      Forced: After the engaged player draws any number of cards, put a resource token on Boar Clan Stalker.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 17,
+    "quantity": 3,
+    "threat": 3,
+    "willpower": 0,
+    "attack": 0,
+    "defense": 0,
+    "health": 5,
+    "engagement": 28,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "3",
+      "willpower": "0",
+      "attack": "0",
+      "defense": "0",
+      "health": "5",
+      "engagement": "28"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a0e6044-c5ab-43ed-832a-71516c7d035a.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "0a0e6044-c5ab-43ed-832a-71516c7d035a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a0e6044-c5ab-43ed-832a-71516c7d035a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:07690f5d-cc91-437e-bcdf-5010bc69d712",
+    "octgnid": "07690f5d-cc91-437e-bcdf-5010bc69d712",
+    "name": "Boar Clan Warrior",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Boar Clan.",
+    "text": "Forced: After the engaged player draws any number of cards, deal Boar Clan Warrior a shadow card.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 18,
+    "quantity": 4,
+    "threat": 2,
+    "willpower": 0,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 20,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each shadow card on it.",
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "2",
+      "willpower": "0",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07690f5d-cc91-437e-bcdf-5010bc69d712.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 18,
+        "quantity": 4,
+        "octgnid": "07690f5d-cc91-437e-bcdf-5010bc69d712",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07690f5d-cc91-437e-bcdf-5010bc69d712.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
+    "octgnid": "0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
+    "name": "Hithaeglir Foothills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Enedwaith. Hills.",
+    "text": "Surge\nX is the number of resource tokens on this card.       Forced: After a player draws any number of cards, place 1 resource token here.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 19,
+    "quantity": 2,
+    "quest": 4,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e9fb174-59a2-4e7b-8eab-1f9185f75ea7.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 19,
+        "quantity": 2,
+        "octgnid": "0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e9fb174-59a2-4e7b-8eab-1f9185f75ea7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
+    "octgnid": "15602096-12af-47a0-9f9a-01778d2b0a7b",
+    "name": "Hills of Dunland",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Enedwaith. Hills.",
+    "text": "While Hills of Dunland is in the staging area, it gains: 'Forced: After a player draws any number of cards, discard the top card of the encounter deck. If the discarded card is a Dunland enemy, put it into play engaged with that player. This ability does not stack with other copies of Hills of Dunland.      Travel: Each player draws a card to travel here.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 20,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15602096-12af-47a0-9f9a-01778d2b0a7b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 20,
+        "quantity": 4,
+        "octgnid": "15602096-12af-47a0-9f9a-01778d2b0a7b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/15602096-12af-47a0-9f9a-01778d2b0a7b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
+    "octgnid": "7c92fba9-f79a-4004-886b-eb36698d1d34",
+    "name": "Plains of Enedwaith",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Enedwaith. Plains.",
+    "text": "While Plains of Enedwaith is the active location, players do not draw a card during the resource phase.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 21,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if undefended).",
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c92fba9-f79a-4004-886b-eb36698d1d34.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "7c92fba9-f79a-4004-886b-eb36698d1d34",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c92fba9-f79a-4004-886b-eb36698d1d34.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
+    "octgnid": "2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
+    "name": "Hithaeglir Stream",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Enedwaith. River.",
+    "text": "Surge\nWhile Hithaeglir Stream is the active location, players draw 2 cards during the resource phase instead of 1.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 22,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 4,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. Deal it an additional shadow card.",
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ba77eca-870d-41d9-84cb-f0f33b6d9f15.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 22,
+        "quantity": 4,
+        "octgnid": "2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ba77eca-870d-41d9-84cb-f0f33b6d9f15.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
+    "octgnid": "32ac7351-b154-4e94-8348-ed31385fb3a4",
+    "name": "Frenzied Attack",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player draws a card. Each player discards each ally from his hand. If no allies are discarded this way, Frenzied Attack gains surge.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 23,
+    "quantity": 3,
+    "shadow": "Shadow: Until the end of the round, attacking enemy cannot take damage.",
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32ac7351-b154-4e94-8348-ed31385fb3a4.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 23,
+        "quantity": 3,
+        "octgnid": "32ac7351-b154-4e94-8348-ed31385fb3a4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32ac7351-b154-4e94-8348-ed31385fb3a4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
+    "octgnid": "90ba49e5-142b-4c40-8085-8087342d9b92",
+    "name": "Dunlending Ambush",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge\nWhen Revealed: Attach to the active location. (Counts as a Condition attachment with the text: 'Limit 1 per location. Forced: After attached location is explored, each player searches the encounter deck and discard pile for a Dunland enemy and puts it into play engaged with him. Shuffle the encounter deck.')",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 24,
+    "quantity": 3,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90ba49e5-142b-4c40-8085-8087342d9b92.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 24,
+        "quantity": 3,
+        "octgnid": "90ba49e5-142b-4c40-8085-8087342d9b92",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90ba49e5-142b-4c40-8085-8087342d9b92.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
+    "octgnid": "6b1a56ae-f173-4842-984c-d07b0545ad23",
+    "name": "Chief Turch",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Boar Clan.",
+    "text": "Cannot have attachments.      Cannot leave play.      Chief Turch engages the first player.     Forced: After an enemy engages a player, remove 1 time counter from the current quest.",
+    "is_unique": true,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 14,
+    "quantity": 1,
+    "threat": 3,
+    "willpower": 0,
+    "attack": 5,
+    "defense": 3,
+    "health": 5,
+    "engagement": 50,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "3",
+      "willpower": "0",
+      "attack": "5",
+      "defense": "3",
+      "health": "5",
+      "engagement": "50"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b1a56ae-f173-4842-984c-d07b0545ad23.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "6b1a56ae-f173-4842-984c-d07b0545ad23",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b1a56ae-f173-4842-984c-d07b0545ad23.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
+    "octgnid": "c34384a8-44de-4c55-8d49-ec68a69fc3f0",
+    "name": "Munuv Dûv Ravine",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Enedwaith. Hills. River.",
+    "text": "Dunland enemies get +1 [attack] and +1 [defense].",
+    "is_unique": true,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 15,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 6,
+    "victory": 3,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "6",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c34384a8-44de-4c55-8d49-ec68a69fc3f0.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "c34384a8-44de-4c55-8d49-ec68a69fc3f0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c34384a8-44de-4c55-8d49-ec68a69fc3f0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "octgnid": "bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "name": "Old South Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Road.",
+    "text": "Forced: At the end of the refresh phase, remove 1 time counter from the current quest.",
+    "is_unique": true,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 16,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "The Dunland Trap",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bc4f2e17-197c-4131-ad81-b892fe66ad88.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "bc4f2e17-197c-4131-ad81-b892fe66ad88",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bc4f2e17-197c-4131-ad81-b892fe66ad88.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

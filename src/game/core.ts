@@ -1,3 +1,4 @@
+import * as DunlandQuest from "./dunland-trap";
 import { FANGORN } from "./fangorn-support";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
@@ -482,6 +483,7 @@ export function stats(s: GameState, u: Unit) {
         heirsScenarioBonus.attack +
         Fords.fordsAttackBonus(s, u) +
         Catch.catchAttackBonus(s, u) +
+        DunlandQuest.dunlandCombatBonus(s, u) +
         amonDinEnemyAttackBonus(s, u) +
         assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
@@ -520,6 +522,7 @@ export function stats(s: GameState, u: Unit) {
             (u.roundDefense ?? 0) +
             foundationsBonus.defense +
             heirsScenarioBonus.defense +
+            DunlandQuest.dunlandCombatBonus(s, u) +
             druadanScenarioBonus.defense +
             osgiliathBonus.defense +
             druadanBonus.defense +
@@ -644,6 +647,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           0) +
           Fords.fordsThreatBonus(s, u) +
           Catch.catchThreatBonus(s, u) +
+          DunlandQuest.dunlandThreatBonus(s, u) +
           Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +

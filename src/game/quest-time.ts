@@ -7,7 +7,7 @@ import { firstPlayer } from "./table";
 
 /** Only the active quest's Time keyword loses a counter at refresh phase end. */
 export const questTime = (s: GameState) =>
-  s.fordsIsen ?? s.catchOrc ?? s.fangorn;
+  s.fordsIsen ?? s.catchOrc ?? s.fangorn ?? s.dunlandTrap;
 export function removeQuestTime(s: GameState, count = 1) {
   const timer = questTime(s);
   if (!timer?.time || count <= 0) return;
@@ -26,7 +26,9 @@ export function removeQuestTime(s: GameState, count = 1) {
           ? "fordsTimeExpired"
           : s.catchOrc
             ? "catchTimeExpired"
-            : "fangornTimeExpired",
+            : s.dunlandTrap
+              ? "dunlandTimeExpired"
+              : "fangornTimeExpired",
         {
           value: s.stage,
           player: firstPlayer(s),

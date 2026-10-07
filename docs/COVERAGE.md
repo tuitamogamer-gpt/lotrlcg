@@ -2,6 +2,7 @@
 
 ## Included
 
+- **The Dunland Trap**, original/easy: all three stages and eleven new encounters, sharing seven existing definitions; draw reactions, Boar searches, equipment and ally loss, Time deadlines, Chief Turch, final engagement checks/attacks, hero-destruction loss, Conditions, travel, shadows and saved continuations. See [rules notes](DUNLAND-TRAP-RULES.md).
 - **Into Fangorn**, original/easy: all three stages and thirteen encounter designs; guarded Mugash and damage-triggered escape, branching Time deadlines, Hinder, resource-phase attacks, forest auras, paid travel, Conditions, refresh choices and all shadows. See [rules notes](FANGORN-RULES.md).
 - **To Catch an Orc**, original/easy: all three stages and fourteen encounter designs, physical hidden decks prepared after mulligans, Searches, positive-progress Time responses, Mugash capture/escape/control, Orc hunting parties and printed shadows. See [rules notes](CATCH-ORC-RULES.md).
 

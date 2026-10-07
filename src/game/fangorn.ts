@@ -1,3 +1,4 @@
+import { dunlandRefreshEffects } from "./dunland-trap";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -225,6 +226,7 @@ export function fangornRefreshTime(s: GameState) {
       .filter((a) => a.code === F.offTrack && !a.blanked)
       .map((a) => fx("removeQuestTime", { code: a.code, source: a.id })),
   );
+  extra.push(...dunlandRefreshEffects(s));
   if (!extra.length) return false;
   prepend(
     s,

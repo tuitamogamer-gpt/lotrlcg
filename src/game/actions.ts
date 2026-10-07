@@ -1,3 +1,4 @@
+import * as DunlandQuest from "./dunland-trap";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import { questTime } from "./quest-time";
@@ -412,6 +413,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const dunlandProblem = DunlandQuest.dunlandTravelProblem(s, u);
+  if (dunlandProblem) return dunlandProblem;
   const fangornProblem = Fangorn.fangornTravelProblem(s, u);
   if (fangornProblem) return fangornProblem;
   const druadanProblem = Druadan.druadanForestTravelProblem(s, u);
@@ -1768,7 +1771,12 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "KEEP":
       requireRule(s.phase === "setup", "Your opening hand is already kept.");
-      if (passSeat(s) && !Catch.catchOpeningHandsKept(s)) nextRound(s);
+      if (
+        passSeat(s) &&
+        !Catch.catchOpeningHandsKept(s) &&
+        !DunlandQuest.dunlandOpeningHandsKept(s)
+      )
+        nextRound(s);
       break;
     case "TOGGLE_QUEST": {
       requireRule(
@@ -2074,6 +2082,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        DunlandQuest.dunlandTravel(s, u) ??
         Fangorn.fangornTravel(s, u) ??
         Catch.catchTravel(s, u) ??
         BloodQuest.bloodGondorTravel(s, u) ??

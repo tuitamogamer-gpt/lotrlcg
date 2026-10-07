@@ -1,0 +1,123 @@
+[
+  {
+    "code": "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
+    "octgnid": "174507ac-5617-4e3c-998b-75eeceb9db33",
+    "name": "The Road to Tharbad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Chief Turch and Munuv Duv Ravine aside, out of play. Make Old South Road the active location. Each player searches the encounter deck for a Boar Clan enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 11,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Dunland Trap",
+    "side": "A",
+    "back_name": "The Road to Tharbad",
+    "back_text": "Time 2. Forced: After the last time counter is removed from this stage, each player discards his hand and draws 2 cards. Place 2 time counters on this stage.",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/174507ac-5617-4e3c-998b-75eeceb9db33.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/174507ac-5617-4e3c-998b-75eeceb9db33.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "174507ac-5617-4e3c-998b-75eeceb9db33",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/174507ac-5617-4e3c-998b-75eeceb9db33.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
+    "octgnid": "2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
+    "name": "A Well Laid Trap",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Make Munuv Duv Ravine the active location (returning any previous active location to the staging area). Each player discards each Item and each Mount attachment he controls. Each player chooses 1 ally he controls and discards each other ally he controls.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 12,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Dunland Trap",
+    "side": "A",
+    "back_name": "A Well Laid Trap",
+    "back_text": "When Revealed: Each player searches the encounter deck and discard pile for a Boar Clan enemy and puts it into play engaged with him. Shuffle the encounter deck. Each player shuffles his discard pile into his draw deck and draws 1 card.     Forced: At the end of the combat phase, advance to stage 3A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2087cb2d-ce6f-4d3a-befc-01859ec82e6c.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2087cb2d-ce6f-4d3a-befc-01859ec82e6c.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2087cb2d-ce6f-4d3a-befc-01859ec82e6c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
+    "octgnid": "c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
+    "name": "No Way Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Put Chief Turch into play, engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "TDT",
+    "pack_name": "The Dunland Trap",
+    "position": 13,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Dunland Trap",
+    "side": "A",
+    "back_name": "No Way Out",
+    "back_text": "Time X. X is 5 times the number of players in the game.       If a hero is destroyed at this stage, the players lose the game.      Forced: After the last time counter is removed from this stage, the players make engagement checks. Then, each engaged enemy makes an attack. If no heroes are destroyed by these attacks, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5215a42-f064-46cc-a9a2-75ef4d57fcd2.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5215a42-f064-46cc-a9a2-75ef4d57fcd2.jpg",
+    "packs": [
+      {
+        "pack_code": "TDT",
+        "pack_name": "The Dunland Trap",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5215a42-f064-46cc-a9a2-75ef4d57fcd2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

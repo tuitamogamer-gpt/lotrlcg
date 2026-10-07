@@ -93,6 +93,8 @@ export interface Unit {
   roundThreat?: number;
   /** Resolved shadow protections expire when the attached shadows are discarded. */
   shadowCancelsDamage?: boolean;
+  /** Frenzied Attack lasts through refresh, until the round ends. */
+  roundCannotTakeDamage?: boolean;
   shadowCancelsCombatDamage?: boolean;
   /** Derived global continuous traits and keywords. */
   dynamicTraits?: string[];
@@ -163,6 +165,7 @@ export type ScenarioId =
   | "fords-of-isen"
   | "to-catch-an-orc"
   | "into-fangorn"
+  | "the-dunland-trap"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -273,6 +276,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  dunlandTrap?: import("./dunland-trap-support").DunlandTrapState;
   fangorn?: import("./fangorn-support").FangornState;
   refreshReadied?: Record<number, string[]>;
   catchOrc?: import("./catch-orc-support").CatchOrcState;

@@ -8,7 +8,7 @@ The requested goal is automation of the complete official published library, inc
 
 Run `npm run audit:rules` to regenerate `public/automation-coverage.json`. It records the exact reference-catalog SHA-256, implemented and pending card identities, scenario variants, and per-product coverage. The manifest is an inventory, not a substitute for semantic rules tests. Reprints reuse canonical handlers while preserving their product provenance. Nightmare and campaign variants have separate support gates.
 
-The 2026-10-07 local inventory registers 424 player definitions (48 heroes and 376 deck cards), 407 encounter definitions and 30 scenario designs. It resolves 932 of 4,183 reference identities and 60 of 355 setup recipes to registered automation; 3,251 reference identities remain pending. The six complete retail/Collector main deck recipes preserve their printed lists and join all four Core learning decks directly in every fellowship menu. These counts describe registration coverage, with the corresponding semantic and client evidence recorded separately.
+The 2026-10-07 local inventory registers 424 player definitions (48 heroes and 376 deck cards), 418 encounter definitions and 31 scenario designs. It resolves 946 of 4,183 reference identities and 62 of 355 setup recipes to registered automation; 3,237 reference identities remain pending. The six complete retail/Collector main deck recipes preserve their printed lists and join all four Core learning decks directly in every fellowship menu. These counts describe registration coverage, with the corresponding semantic and client evidence recorded separately.
 
 ## Implementation batches
 
@@ -32,3 +32,5 @@ These batches are implementation order, not a reduced requested scope. `automati
 - Existing deterministic games and focused browser journeys pass; newly introduced mechanics have real interactions and edge cases, not only registration tests.
 
 Rules sources and scenario-specific findings are recorded in the corresponding implementation documents, beginning with [CARROCK-RULES.md](CARROCK-RULES.md). Full-import provenance is in [CONTENT-IMPORT.md](CONTENT-IMPORT.md).
+
+The Dunland Trap original/easy quest is now implemented and registered, with all eleven new encounters and three quests. Shared draw reactions, the two-sided trap, round-duration shadow protection and Chief Turch's final assault have dedicated semantic and responsive browser checks. Next chronological Ring-maker quest: The Three Trials. See [rules and evidence](DUNLAND-TRAP-RULES.md).

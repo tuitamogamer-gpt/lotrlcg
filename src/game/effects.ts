@@ -1,3 +1,4 @@
+import * as DunlandQuest from "./dunland-trap";
 import { enemyAttackPrevented } from "./core";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
@@ -339,6 +340,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Fords.fordsEffect(s, e)) return;
   if (Catch.catchEffect(s, e)) return;
   if (Fangorn.fangornEffect(s, e)) return;
+  if (DunlandQuest.dunlandTrapEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -930,6 +932,7 @@ function handleEffect(s: GameState, e: Effect) {
             Fords.fordsEncounter(s, e.code, true) ||
             Catch.catchEncounter(s, e.code, true) ||
             Fangorn.fangornEncounter(s, e.code, true) ||
+            DunlandQuest.dunlandEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1213,6 +1216,7 @@ function handleEffect(s: GameState, e: Effect) {
             .filter((u) => u.code === "01083")
             .map((u) => fx("chooseDamage", { value: 1, source: u.id, player })),
         ),
+        ...DunlandQuest.dunlandCombatEndEffects(s),
         fx("khazadCombatEnd"),
         fx("refreshReady"),
       );
@@ -1842,6 +1846,16 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "dunlandSetup",
+      "dunlandShuffle",
+      "dunlandAdvance",
+      "dunlandTrapBack",
+      "dunlandStageThreeReady",
+      "dunlandTimeExpired",
+      "dunlandResetTime",
+      "dunlandFinalAttacks",
+      "dunlandVictory",
+      "dunlandFrenziedDone",
       "fangornOrder",
       "fangornAdvance",
       "fangornTimeExpired",
@@ -1961,6 +1975,16 @@ export function flush(s: GameState) {
         "endCombat",
         "refreshReady",
         "resourceCollect",
+        "dunlandSetup",
+        "dunlandShuffle",
+        "dunlandAdvance",
+        "dunlandTrapBack",
+        "dunlandStageThreeReady",
+        "dunlandTimeExpired",
+        "dunlandResetTime",
+        "dunlandFinalAttacks",
+        "dunlandVictory",
+        "dunlandFrenziedDone",
         "fangornOrder",
         "fangornAdvance",
         "fangornTimeExpired",

@@ -1,3 +1,4 @@
+import { DUNLAND_TRAP, dunlandTimeLimit } from "../game/dunland-trap-support";
 import { FANGORN, fangornTimeLimit } from "../game/fangorn-support";
 import { fangornCarrier } from "../game/fangorn";
 import { FORDS, fordsTimeLimit } from "../game/fords-isen-support";
@@ -22,6 +23,7 @@ export function ScenarioState({
     !s.fordsIsen &&
     !s.catchOrc &&
     !s.fangorn &&
+    !s.dunlandTrap &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -80,6 +82,36 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.dunlandTrap && (
+        <div className="tower-counter">
+          <strong>
+            {!s.dunlandTrap.initialized
+              ? "Prepare the ambush"
+              : s.stage === 2
+                ? "A Well Laid Trap"
+                : `Time · ${s.dunlandTrap.time} / ${dunlandTimeLimit(s)}`}
+          </strong>
+          {s.dunlandTrap.initialized && s.stage !== 2 && (
+            <progress
+              aria-label="Quest time counters"
+              value={s.dunlandTrap.time}
+              max={dunlandTimeLimit(s)}
+            />
+          )}
+          <span>
+            {!s.dunlandTrap.initialized
+              ? "Keep your opening hands before choosing a Boar Clan enemy."
+              : s.stage === 1
+                ? "When time runs out, discard your hand and draw 2 cards."
+                : s.stage === 2
+                  ? "Survive until the end of combat to confront Chief Turch."
+                  : "Protect every hero. Survive the final attacks when time runs out."}
+          </span>
+          <button onClick={() => inspect(card(DUNLAND_TRAP.turch))}>
+            Chief Turch · the Boar Clan leader
+          </button>
         </div>
       )}
       {s.fangorn && (

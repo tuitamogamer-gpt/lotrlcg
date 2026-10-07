@@ -1,3 +1,4 @@
+import { DUNLAND_TRAP_QUESTS } from "./dunland-trap-support";
 import { FANGORN_QUESTS } from "./fangorn-support";
 import { CATCH_ORC_QUESTS } from "./catch-orc-support";
 import { FORDS_ISEN_QUESTS } from "./fords-isen-support";
@@ -48,6 +49,7 @@ const questImage = (code: string) => {
     ...FORDS_ISEN_QUESTS,
     ...CATCH_ORC_QUESTS,
     ...FANGORN_QUESTS,
+    ...DUNLAND_TRAP_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -903,6 +905,24 @@ export const SCENARIOS = [
       "Pursue Mugash beneath the boughs of Fangorn. Outrun the Huorns, keep your captive safe and escape before time runs out.",
     sets: ["Into Fangorn", "Ancient Forest", "Weary Travellers"],
     stages: FANGORN_QUESTS.map((q) => ({
+      name: q.name,
+      cardCode: q.code,
+      quest: q.back_quest ?? 0,
+      story: q.back_text!,
+      questImage: questImage(q.code),
+    })),
+  },
+  {
+    id: "the-dunland-trap",
+    name: "The Dunland Trap",
+    shortName: "The Dunland Trap",
+    chapter: "XXXI",
+    difficulty: 7,
+    tagline: "Survive the ambush of Chief Turch",
+    description:
+      "Travel the old road to Tharbad, endure the Boar Clan's trap and protect every hero through a final assault.",
+    sets: ["The Dunland Trap", "Dunland Warriors", "Weary Travellers"],
+    stages: DUNLAND_TRAP_QUESTS.map((q) => ({
       name: q.name,
       cardCode: q.code,
       quest: q.back_quest ?? 0,

@@ -642,6 +642,19 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.dunlandTrap)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 1
+            ? "Reach 18 quest progress to spring the trap"
+            : s.stage === 2
+              ? "Advance at the end of combat"
+              : "Keep every hero alive through the final assault"}
+        </span>
+      </div>
+    );
   if (s.fangorn) {
     const captured = !!fangornCarrier(s),
       target = s.stage === 1 ? 9 : s.stage === 2 ? 12 : 6;

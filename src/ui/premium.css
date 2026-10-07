@@ -18,6 +18,8 @@
   --mat-tint: #173127;
 }
 .redbook[data-playmat="anduin"],
+.redbook[data-playmat="the-dunland-trap"],
+.mat-the-dunland-trap,
 .redbook[data-playmat="fords-of-isen"],
 .mat-fords-of-isen,
 .redbook[data-playmat="hunt-for-gollum"],

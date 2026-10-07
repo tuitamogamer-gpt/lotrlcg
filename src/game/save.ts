@@ -1,3 +1,4 @@
+import { validateDunlandTrapState } from "./dunland-trap-support";
 import { validateFangornState } from "./fangorn-support";
 import { validateCatchOrcState } from "./catch-orc-support";
 import { validateFordsIsenState } from "./fords-isen-support";
@@ -174,9 +175,11 @@ export function validateSave(
           u.controller < seatCount)) &&
       (u.noEngagementRound === undefined ||
         (integer(u.noEngagementRound) && u.noEngagementRound >= 1)) &&
-      [u.shadowCancelsDamage, u.shadowCancelsCombatDamage].every(
-        (v) => v === undefined || typeof v === "boolean",
-      ) &&
+      [
+        u.shadowCancelsDamage,
+        u.shadowCancelsCombatDamage,
+        u.roundCannotTakeDamage,
+      ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
         (integer(u.owner) && u.owner >= 0 && u.owner <= 3)) &&
@@ -328,6 +331,7 @@ export function validateSave(
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
+        !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
           s,
           validUnit as (u: unknown) => boolean,
@@ -860,6 +864,7 @@ export function validateSave(
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
+      ...(s.dunlandTrap?.setAside ?? []),
       ...(s.catchOrc
         ? [
             ...Object.values(s.catchOrc.decks).flat(),

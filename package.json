@@ -35,7 +35,7 @@
     "test:against-shadow-quests": "node --import tsx scripts/browser-druadan-forest.mjs && node --import tsx scripts/browser-amon-din-quest.mjs && node --import tsx scripts/browser-assault-osgiliath.mjs",
     "test:against-shadow-finale": "node --import tsx scripts/browser-against-shadow-finale.mjs",
     "test:precons": "node --import tsx scripts/browser-preconstructed-decks.mjs",
-    "test:ring-maker-quests": "node --import tsx scripts/browser-fords-isen.mjs && node --import tsx scripts/browser-catch-orc.mjs && node --import tsx scripts/browser-fangorn.mjs",
+    "test:ring-maker-quests": "node --import tsx scripts/browser-fords-isen.mjs && node --import tsx scripts/browser-catch-orc.mjs && node --import tsx scripts/browser-fangorn.mjs && node --import tsx scripts/browser-dunland-trap.mjs",
     "test:ring-maker-players": "node --import tsx scripts/browser-dunland-players.mjs && node --import tsx scripts/browser-trials-tharbad-players.mjs && node --import tsx scripts/browser-ring-maker-final-players.mjs"
   },
   "dependencies": {

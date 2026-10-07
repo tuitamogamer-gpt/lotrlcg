@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 407,
-    "scenarios": 30,
+    "encounterCards": 418,
+    "scenarios": 31,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -37,17 +37,18 @@
       "the-morgul-vale",
       "fords-of-isen",
       "to-catch-an-orc",
-      "into-fangorn"
+      "into-fangorn",
+      "the-dunland-trap"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 932,
-    "pending": 3251
+    "scripted": 946,
+    "pending": 3237
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 60
+    "scripted": 62
   },
   "registeredCodes": [
     "01001",
@@ -535,24 +536,30 @@
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
+    "octgn:07690f5d-cc91-437e-bcdf-5010bc69d712",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
+    "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0e0b125c-ffed-4473-9a64-7d709b16cca5",
+    "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
+    "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
+    "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -564,11 +571,13 @@
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+    "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
@@ -853,6 +862,7 @@
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
@@ -861,6 +871,7 @@
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
+    "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
@@ -879,6 +890,7 @@
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
+    "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
@@ -901,14 +913,17 @@
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
+    "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+    "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
@@ -1518,7 +1533,7 @@
     {
       "product": "the-dunland-trap",
       "total": 24,
-      "scripted": 10,
+      "scripted": 24,
       "player": 10,
       "playerScripted": 10
     },
@@ -11261,7 +11276,7 @@
       "name": "Boar Clan Warrior",
       "type": "enemy",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -11429,7 +11444,7 @@
       "name": "Boar Clan Stalker",
       "type": "enemy",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -11781,7 +11796,7 @@
       "name": "Hithaeglir Foothills",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -12269,7 +12284,7 @@
       "name": "Hills of Dunland",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -12437,7 +12452,7 @@
       "name": "The Road to Tharbad",
       "type": "quest",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -13181,7 +13196,7 @@
       "name": "A Well Laid Trap",
       "type": "quest",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -14253,7 +14268,7 @@
       "name": "Hithaeglir Stream",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -14901,7 +14916,7 @@
       "name": "Frenzied Attack",
       "type": "treachery",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -22245,7 +22260,7 @@
       "name": "Chief Turch",
       "type": "enemy",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -23741,7 +23756,7 @@
       "name": "Plains of Enedwaith",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -25589,7 +25604,7 @@
       "name": "Dunlending Ambush",
       "type": "treachery",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -29533,7 +29548,7 @@
       "name": "Old South Road",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -29997,7 +30012,7 @@
       "name": "Munuv Dûv Ravine",
       "type": "location",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -30213,7 +30228,7 @@
       "name": "No Way Out",
       "type": "quest",
       "pack": "The Dunland Trap",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dunland-trap"
     },
     {
@@ -35638,8 +35653,8 @@
       "id": "E04.4",
       "name": "The Dunland Trap (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dunland-trap",
+      "state": "scripted"
     },
     {
       "id": "E04.5",
@@ -37129,8 +37144,8 @@
       "id": "Q04.4",
       "name": "The Dunland Trap",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dunland-trap",
+      "state": "scripted"
     },
     {
       "id": "Q04.5",
