@@ -1,4 +1,6 @@
 import { FORDS, fordsTimeLimit } from "../game/fords-isen-support";
+import { CATCH_ORC } from "../game/catch-orc-support";
+import { mugashCarrier } from "../game/catch-orc";
 import { allCharacters } from "../game/table";
 import type { Card, GameState, Unit } from "../game/types";
 import { card } from "../game/cards";
@@ -16,6 +18,7 @@ export function ScenarioState({
 }) {
   if (
     !s.fordsIsen &&
+    !s.catchOrc &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -75,6 +78,53 @@ export function ScenarioState({
           />
           <span>Rescue Faramir before the tenth progress.</span>
         </div>
+      )}
+      {s.catchOrc && (
+        <>
+          <div className="tower-counter">
+            <strong>
+              {s.catchOrc.initialized
+                ? `Time · ${s.catchOrc.time}`
+                : "Prepare the search"}
+            </strong>
+            <span>
+              {!s.catchOrc.initialized
+                ? "Keep your opening hands before preparing the out-of-play decks."
+                : s.stage === 2
+                  ? "Quest beyond the active location to gain time or pursue Mugash."
+                  : "Guard Mugash and return before he escapes."}
+            </span>
+            {s.catchOrc.initialized && (
+              <button onClick={() => inspect(card(CATCH_ORC.mugash))}>
+                {mugashCarrier(s)
+                  ? `Mugash · guarded by ${card(mugashCarrier(s)!.code).name}`
+                  : [
+                        ...s.staging,
+                        ...s.engaged,
+                        ...(s.table?.seats.flatMap((p) => p.engaged) ?? []),
+                      ].some((u) => u.code === CATCH_ORC.mugash)
+                    ? "Mugash is free"
+                    : "Find Mugash"}
+              </button>
+            )}
+          </div>
+          {s.catchOrc.initialized &&
+            playerOrder(s).map((p) => (
+              <div
+                className="hidden-card-count"
+                key={`search-${p}`}
+                aria-label={`${seatName(s, p)}: ${s.catchOrc!.decks[p]?.length ?? 0} out-of-play cards`}
+              >
+                <CardBack />
+                <span>
+                  {seatName(s, p)}
+                  <strong>
+                    {s.catchOrc!.decks[p]?.length ?? 0} out-of-play cards
+                  </strong>
+                </span>
+              </div>
+            ))}
+        </>
       )}
       {!!s.bloodGondor?.captured.length && (
         <div className="scenario-captives">

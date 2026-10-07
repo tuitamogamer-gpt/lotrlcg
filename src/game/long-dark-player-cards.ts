@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -32,7 +33,7 @@ import {
   hasResourceIcon,
   hasTrait,
 } from "./expansion-passives";
-import { khazadCannotExhaust, khazadCannotReady } from "./khazad-dum";
+import { khazadCannotExhaust } from "./khazad-dum";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import {
@@ -62,7 +63,7 @@ const canReadyWarden = (s: GameState, source?: string) => {
   return (
     !!u &&
     u.exhausted &&
-    !khazadCannotReady(u) &&
+    !cannotReady(u) &&
     lorePayers(s).reduce((n, h) => n + h.resources, 0) >= 2
   );
 };
@@ -418,7 +419,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
       if (
         target &&
         a &&
-        (s.threat > 0 || (target.exhausted && !khazadCannotReady(target)))
+        (s.threat > 0 || (target.exhausted && !cannotReady(target)))
       )
         choose(s, "Ever My Heart Rises · Travelled", [
           {

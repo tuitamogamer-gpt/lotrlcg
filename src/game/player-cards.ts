@@ -1,7 +1,7 @@
 import { movableHand } from "./hand-rules";
 import * as Isengard from "./voice-isengard";
 import { morgulCannotLeave } from "./morgul-vale";
-import { canGainResources } from "./core";
+import { canGainResources, cannotReady } from "./core";
 import { engagedEnemies, consideredEngaged } from "./considered-engagement";
 import { dunlandEvent } from "./dunland-trap-player";
 import { ringMakerEvent } from "./ring-maker-player";
@@ -163,7 +163,9 @@ export function eventEffect(
           s,
           "Common Cause",
           opts(
-            allHeroes(s).filter((h) => h.id !== u.id && h.exhausted),
+            allHeroes(s).filter(
+              (h) => h.id !== u.id && h.exhausted && !cannotReady(h),
+            ),
             (h) => [fx("ready", { target: h.id })],
           ),
         );
@@ -428,7 +430,10 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         log(s, `Steward of Gondor gives ${name(u)} 2 resources.`, "good");
         return;
       case "01057":
-        requireRule(u.exhausted, "This hero is already ready.");
+        requireRule(
+          u.exhausted && !cannotReady(u),
+          "This hero cannot be readied.",
+        );
         a.exhausted = true;
         readyCharacter(s, u);
         return;

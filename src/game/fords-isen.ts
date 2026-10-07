@@ -1,3 +1,4 @@
+import { removeQuestTime } from "./quest-time";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -149,20 +150,7 @@ export function advanceFordsIsen(s: GameState) {
   );
   return true;
 }
-export function fordsRemoveTime(s: GameState, count = 1) {
-  if (!s.fordsIsen || !s.fordsIsen.time || count <= 0) return;
-  s.fordsIsen.time = Math.max(0, s.fordsIsen.time - count);
-  log(
-    s,
-    `${card(currentQuestCode(s)!).name} · ${s.fordsIsen.time} time counters.`,
-    "danger",
-  );
-  if (s.fordsIsen.time) return;
-  prepend(
-    s,
-    fx("fordsTimeExpired", { value: s.stage, player: firstPlayer(s) }),
-  );
-}
+export const fordsRemoveTime = removeQuestTime;
 export const fordsCannotGainResources = (s: GameState, cardEffect: boolean) =>
   cardEffect && s.staging.some((u) => u.code === F.fords && !u.blanked);
 export const fordsLocationBonus = (s: GameState, u: Unit) =>
@@ -249,15 +237,23 @@ export function fordsCharacterDestroyed(
   context: DamageContext,
 ) {
   if (
-    !s.combat?.fordsTimeOnKill ||
+    !(s.combat?.fordsTimeOnKill || s.combat?.timeOnKill) ||
     !context.combatDamage ||
     context.enemyId !== s.combat.enemyId ||
     !["hero", "ally", "objective-ally"].includes(card(u.code).type_code)
   )
     return;
-  const count = s.combat.fordsTimeOnKill;
+  const count = (s.combat.fordsTimeOnKill ?? 0) + (s.combat.timeOnKill ?? 0);
+  s.combat.timeOnKill = 0;
   s.combat.fordsTimeOnKill = 0;
-  prepend(s, fx("fordsRemoveTime", { value: count, player: firstPlayer(s) }));
+  // Each physical shadow supplies a separate Forced trigger. A timeout resolves
+  // completely before the next copy removes its counter from the current quest.
+  prepend(
+    s,
+    ...Array.from({ length: count }, () =>
+      fx("removeQuestTime", { player: firstPlayer(s) }),
+    ),
+  );
 }
 export function fordsAttackFinished(
   s: GameState,
@@ -267,8 +263,9 @@ export function fordsAttackFinished(
 ) {
   prepend(
     s,
-    ...Array.from({ length: combat.fordsExtraAttacks ?? 0 }, () =>
-      fx("immediateAttack", { target: u.id, player }),
+    ...Array.from(
+      { length: (combat.fordsExtraAttacks ?? 0) + (combat.extraAttacks ?? 0) },
+      () => fx("immediateAttack", { target: u.id, player }),
     ),
   );
 }

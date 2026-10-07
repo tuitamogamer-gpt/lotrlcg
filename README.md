@@ -1,6 +1,6 @@
 # There & Back Again
 
-A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes 28 original/easy scenarios: the Core Set, Shadows of Mirkwood, Khazad-dûm, Dwarrowdelf, Heirs of Númenor, all six Against the Shadow adventures and Fords of Isen from The Voice of Isengard. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
+A cinematic, local-first **Lord of the Rings LCG** fan game built with React, TypeScript, and Vite. The automated adventure atlas includes 29 original/easy scenarios: the Core Set, Shadows of Mirkwood, Khazad-dûm, Dwarrowdelf, Heirs of Númenor, all six Against the Shadow adventures and Fords of Isen and To Catch an Orc from The Voice of Isengard. The Core quests also form the connected **Mirkwood Paths campaign**. Play classic solo or **1–4 players in local hot-seat**, each with a separate fellowship and deck. Original Core learning decks and fully scripted published starter decks are selectable; hero and card inspection retain original/reprint product provenance.
 
 ## Run
 
@@ -36,7 +36,7 @@ npm run test:browser
 
 `npm run test:precons` checks every added built-in starter deck, hero art, saved games and four-player setup. `npm run test:ring-maker-players` checks all six Ring-maker player packs through actual payments and choices, including reload at desktop and mobile widths.
 
-`npm run test:ring-maker-quests` checks Fords of Isen: Time, Gríma, Dunland card-draw reactions, hand restrictions, save/reload and 1–4-player setup at 1280/390/320px. See [scenario rules](docs/FORDS-ISEN-RULES.md).
+`npm run test:ring-maker-quests` checks Fords of Isen: Time, Gríma, Dunland card-draw reactions, hand restrictions, save/reload and 1–4-player setup at 1280/390/320px. It also checks To Catch an Orc: full-deck mulligans, hidden Search decks, capture, escape and victory. See [Fords rules](docs/FORDS-ISEN-RULES.md) and [Orc rules](docs/CATCH-ORC-RULES.md).
 
 Browser checks expect the app at port 5178; override with `GAME_URL`. `npm run preview -- --port 5178` serves the production build.
 

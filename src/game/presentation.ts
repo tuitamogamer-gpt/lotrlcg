@@ -1,3 +1,4 @@
+import { questTime } from "./quest-time";
 import { allActiveLocations } from "./table";
 import { card } from "./cards";
 import { locationQuest } from "./core";
@@ -53,7 +54,17 @@ export function observe(
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
     "Staging threat": String(getStagingThreat(s)),
-    ...(s.fordsIsen ? { "Quest time counters": String(s.fordsIsen.time) } : {}),
+    ...(questTime(s)
+      ? { "Quest time counters": String(questTime(s)!.time) }
+      : {}),
+    ...(s.catchOrc
+      ? Object.fromEntries(
+          seatIndices(s).map((p) => [
+            `${seatName(s, p)} · Out-of-play deck`,
+            String(s.catchOrc!.decks[p]?.length ?? 0),
+          ]),
+        )
+      : {}),
     ...(s.bloodGondor
       ? Object.fromEntries(
           seatIndices(s).map((p) => [

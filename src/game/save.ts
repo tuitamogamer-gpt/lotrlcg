@@ -1,3 +1,4 @@
+import { validateCatchOrcState } from "./catch-orc-support";
 import { validateFordsIsenState } from "./fords-isen-support";
 import { validateIsengard } from "./voice-isengard";
 import { validateRingMaker } from "./ring-maker-player";
@@ -123,9 +124,12 @@ export function validateSave(
         ) &&
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
-      [c.fordsExtraAttacks, c.fordsTimeOnKill].every(
-        (v) => v === undefined || (integer(v) && v >= 0),
-      ) &&
+      [
+        c.fordsExtraAttacks,
+        c.fordsTimeOnKill,
+        c.extraAttacks,
+        c.timeOnKill,
+      ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.amonDinShadowVillagers === undefined ||
         (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
@@ -307,6 +311,11 @@ export function validateSave(
         !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
+        !validateCatchOrcState(
+          s,
+          validUnit as (u: unknown) => boolean,
+          (code) => card(code).sphere_code !== "encounter",
+        ) ||
         !validateAssaultOsgiliathState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -834,6 +843,14 @@ export function validateSave(
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
+      ...(s.catchOrc
+        ? [
+            ...Object.values(s.catchOrc.decks).flat(),
+            ...s.catchOrc.searched,
+            ...s.catchOrc.setAside,
+            ...(s.catchOrc.capturing ? [s.catchOrc.capturing] : []),
+          ]
+        : []),
     ]
       .flatMap((u) => [
         u.id,

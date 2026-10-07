@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "to-catch-an-orc": {
+    name: "To Catch an Orc",
+    detail: "Search the heights of Methedras",
+  },
   "fords-of-isen": {
     name: "Fords of Isen",
     detail: "Hold the crossing against the Dunlendings",
@@ -137,6 +141,7 @@ export const PLAYMAT_CHOICES = [
   "the-blood-of-gondor",
   "the-morgul-vale",
   "fords-of-isen",
+  "to-catch-an-orc",
   "shadow-and-flame",
 ] as const;
 

@@ -641,6 +641,41 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.catchOrc) {
+    const captured = allHeroes(s).some((h) =>
+      h.attachments.some((a) => card(a.code).name === "Mugash"),
+    );
+    const found =
+      captured ||
+      [...s.staging, ...allEngaged(s)].some(
+        (u) => card(u.code).name === "Mugash",
+      );
+    const goals =
+      s.stage < 3
+        ? [
+            { label: "Find Mugash in an out-of-play deck", done: found },
+            {
+              label: "Quest beyond the active location, then choose to advance",
+              done: false,
+            },
+          ]
+        : [
+            { label: "Capture Mugash on a hero", done: captured },
+            {
+              label: "Place 15 quest progress while guarding him",
+              done: s.progress >= 15,
+            },
+          ];
+    return (
+      <div className="quest-goals">
+        {goals.map((g) => (
+          <span key={g.label} className={g.done ? "done" : ""}>
+            {g.done ? <Check size={12} /> : <Shield size={12} />} {g.label}
+          </span>
+        ))}
+      </div>
+    );
+  }
   const objectives = allHeroes(s)
     .flatMap((h) => h.attachments)
     .filter((a) => ["01108", "01109", "01110"].includes(a.code)).length;

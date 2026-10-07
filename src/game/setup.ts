@@ -1,3 +1,4 @@
+import { setupCatchOrc } from "./catch-orc";
 import { setupFordsIsen } from "./fords-isen";
 import { setupBloodGondor } from "./blood-gondor";
 import { BUILT_IN_DECKS } from "./built-in-decks";
@@ -364,6 +365,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "to-catch-an-orc") {
+    setupCatchOrc(s);
   } else if (scenarioId === "fords-of-isen") {
     setupFordsIsen(s);
   } else if (scenarioId === "the-morgul-vale") {

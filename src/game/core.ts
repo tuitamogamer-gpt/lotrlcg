@@ -1,3 +1,4 @@
+import * as Catch from "./catch-orc";
 import * as Fords from "./fords-isen";
 import * as Isengard from "./voice-isengard";
 import { ringMakerSecrecy } from "./ring-maker-player";
@@ -84,6 +85,7 @@ import {
   watcherWaterLocationQuest,
   watcherWaterZeroCombatStats,
   watcherWaterCannotExhaust,
+  watcherWaterCannotReady,
 } from "./watcher-water";
 import {
   longDarkPlayerEnemyCannotAttack,
@@ -102,6 +104,7 @@ import {
   khazadCannotPlay,
   KHAZAD,
   khazadCannotExhaust,
+  khazadCannotReady,
 } from "./khazad-dum";
 // Shared helpers: state access, randomness, logging, effect queue helpers, statistics and payments.
 import { card, name } from "./cards";
@@ -195,6 +198,11 @@ export const canGainResources = (s: GameState, u: Unit, cardEffect = true) =>
   !isSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
+
+export const cannotReady = (u: Unit) =>
+  khazadCannotReady(u) ||
+  watcherWaterCannotReady(u) ||
+  Catch.catchCannotReady(u);
 
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
@@ -470,6 +478,7 @@ export function stats(s: GameState, u: Unit) {
         foundationsBonus.attack +
         heirsScenarioBonus.attack +
         Fords.fordsAttackBonus(s, u) +
+        Catch.catchAttackBonus(s, u) +
         amonDinEnemyAttackBonus(s, u) +
         assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
@@ -631,6 +640,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           card(u.code).threat ??
           0) +
           Fords.fordsThreatBonus(s, u) +
+          Catch.catchThreatBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
           emynMuilThreatBonus(s, u) +

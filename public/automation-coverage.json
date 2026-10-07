@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 380,
-    "scenarios": 28,
+    "encounterCards": 394,
+    "scenarios": 29,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -35,17 +35,18 @@
       "assault-on-osgiliath",
       "the-blood-of-gondor",
       "the-morgul-vale",
-      "fords-of-isen"
+      "fords-of-isen",
+      "to-catch-an-orc"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 899,
-    "pending": 3284
+    "scripted": 916,
+    "pending": 3267
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 56
+    "scripted": 58
   },
   "registeredCodes": [
     "01001",
@@ -532,14 +533,17 @@
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
+    "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
+    "octgn:0e0b125c-ffed-4473-9a64-7d709b16cca5",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
+    "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -842,22 +846,30 @@
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
+    "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
+    "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+    "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
+    "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
@@ -870,6 +882,7 @@
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
+    "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
@@ -877,18 +890,23 @@
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:de212258-f124-4cda-baab-4f696c2b5766",
+    "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
@@ -1812,7 +1830,7 @@
     {
       "product": "the-voice-of-isengard",
       "total": 67,
-      "scripted": 34,
+      "scripted": 51,
       "player": 15,
       "playerScripted": 15
     },
@@ -11130,7 +11148,7 @@
       "name": "Methedras",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -11674,7 +11692,7 @@
       "name": "Orders from Orthanc",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -11986,7 +12004,7 @@
       "name": "Orc Hound",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -22250,7 +22268,7 @@
       "name": "Mugash",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -23682,7 +23700,7 @@
       "name": "Prowling Wolf",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -23770,7 +23788,7 @@
       "name": "Mugash's Guard",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -24386,7 +24404,7 @@
       "name": "Broken Lands",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -24450,7 +24468,7 @@
       "name": "Searching for Mugash",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -24754,7 +24772,7 @@
       "name": "Orc Territory",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -25322,7 +25340,7 @@
       "name": "Mugash's Lair",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -25442,7 +25460,7 @@
       "name": "Take Cover!",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -27394,7 +27412,7 @@
       "name": "Orc Hunter",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -29474,7 +29492,7 @@
       "name": "Orc Hunting Party",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -30378,7 +30396,7 @@
       "name": "The Wizard's Prize",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -30874,7 +30892,7 @@
       "name": "Methedras Orc",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -32098,7 +32116,7 @@
       "name": "Orc Cave",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -32130,7 +32148,7 @@
       "name": "Orc Skirmisher",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -35589,8 +35607,8 @@
       "id": "E04.2",
       "name": "To Catch an Orc (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "to-catch-an-orc",
+      "state": "scripted"
     },
     {
       "id": "E04.3",
@@ -37080,8 +37098,8 @@
       "id": "Q04.2",
       "name": "To Catch an Orc",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "to-catch-an-orc",
+      "state": "scripted"
     },
     {
       "id": "Q04.3",

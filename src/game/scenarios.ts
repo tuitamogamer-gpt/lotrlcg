@@ -1,3 +1,4 @@
+import { CATCH_ORC_QUESTS } from "./catch-orc-support";
 import { FORDS_ISEN_QUESTS } from "./fords-isen-support";
 import { BLOOD_GONDOR_QUESTS } from "./blood-gondor-support";
 import { MORGUL_VALE_QUESTS } from "./morgul-vale-support";
@@ -44,6 +45,7 @@ const questImage = (code: string) => {
     ...BLOOD_GONDOR_QUESTS,
     ...MORGUL_VALE_QUESTS,
     ...FORDS_ISEN_QUESTS,
+    ...CATCH_ORC_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -866,6 +868,24 @@ export const SCENARIOS = [
       name: q.name,
       cardCode: q.code,
       quest: q.back_quest!,
+      story: q.back_text!,
+      questImage: questImage(q.code),
+    })),
+  },
+  {
+    id: "to-catch-an-orc",
+    name: "To Catch an Orc",
+    shortName: "To Catch an Orc",
+    chapter: "XXIX",
+    difficulty: 4,
+    tagline: "Hunt the Orc captain through the mountains",
+    description:
+      "Search hidden mountain trails for Mugash, capture him alive and guard him on the journey to Isengard. Keep ahead of the Orc hunting parties.",
+    sets: ["To Catch an Orc", "Misty Mountain Orcs", "Broken Lands"],
+    stages: CATCH_ORC_QUESTS.map((q) => ({
+      name: q.name,
+      cardCode: q.code,
+      quest: q.back_quest ?? 0,
       story: q.back_text!,
       questImage: questImage(q.code),
     })),

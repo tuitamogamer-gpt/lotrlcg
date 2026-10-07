@@ -1,3 +1,5 @@
+import { cannotReady } from "./core";
+import * as Catch from "./catch-orc";
 import * as Fords from "./fords-isen";
 import { canLeaveHand } from "./hand-rules";
 import {
@@ -127,7 +129,6 @@ import {
 import {
   advanceWatcherWater,
   watcherWaterCannotExhaust,
-  watcherWaterCannotReady,
   watcherWaterProgressLocation,
   watcherWaterProgressCapacity,
   watcherWaterProgressPlaced,
@@ -198,7 +199,6 @@ import {
 } from "./road-player-cards";
 import {
   advanceKhazad,
-  khazadCannotReady,
   khazadDamageCancelled,
   khazadAttachmentLeaves,
   khazadExplored,
@@ -455,7 +455,7 @@ export function charactersCommitted(
 
 export function readyCharacter(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
-  if (khazadCannotReady(u) || watcherWaterCannotReady(u)) return;
+  if (cannotReady(u)) return;
   const wasExhausted = u.exhausted;
   u.exhausted = false;
   if (wasExhausted) marshPlayerCharacterReadied(s, u);
@@ -666,6 +666,7 @@ export function check(s: GameState) {
       }
       Osgiliath.assaultOsgiliathPlayerEliminated(s, i);
       BloodQuest.bloodGondorEliminated(s, i);
+      Catch.catchPlayerEliminated(s, i);
       s.table!.seats[i].eliminated = true;
       log(
         s,
@@ -797,6 +798,7 @@ export function check(s: GameState) {
     BloodQuest.bloodGondorCheck(s);
     MorgulQuest.morgulValeCheck(s);
     Fords.fordsCheck(s);
+    Catch.catchCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -930,6 +932,7 @@ export function damage(
     BloodQuest.bloodGondorCharacterDestroyed(s, u, context);
     MorgulQuest.morgulCharacterDestroyed(s, u, context);
     Fords.fordsCharacterDestroyed(s, u, context);
+    Catch.catchCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -944,6 +947,7 @@ export function discardAttachment(
   leaving = false,
 ) {
   if (!leaving && card(a.code).text?.includes("Permanent")) return;
+  Catch.catchAttachmentLeaves(s, u, a, leaving);
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
   if (u.id.startsWith("quest:"))
     (s.questAttachments ??= {})[u.code] = u.attachments;
@@ -1080,7 +1084,10 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
     } else if (c.victory) addVictoryCard(s, u.code);
-    else if (!(s.combat?.returnWolf && s.combat.enemyId === u.id))
+    else if (
+      !Catch.catchEnemyDefeated(s, u, destruction) &&
+      !(s.combat?.returnWolf && s.combat.enemyId === u.id)
+    )
       s.encounterDiscard.push(u.code);
     if (u.code === "01102") s.nazgulDefeated = true;
     if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
@@ -1156,6 +1163,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
 export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
+  if (Catch.catchLocationProgressBlocked(s, u)) return;
   if (heirsLocationProgressBlocked(s, u)) return;
   if (shadowFlameLocationProgressBlocked(s, u)) return;
   if (longDarkProgressLocation(s, u, value)) return;
@@ -1186,6 +1194,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   stewardFearLocationLeft(s, u, true, wasActive);
   Amon.amonDinLocationLeft(s, u, true);
   BloodQuest.bloodGondorExplored(s, u);
+  Catch.catchExplored(s, u);
   MorgulQuest.morgulExplored(s, u);
   foundationsLocationExplored(s, u);
   heirsExplored(s, u);
@@ -1293,6 +1302,7 @@ export function progress(
     progressLocation(s, location, toLocation);
     n -= toLocation;
   }
+  if (fromSuccessfulQuest && s.catchOrc?.cancelQuestProgress) return;
   if (
     n > 0 &&
     fromSuccessfulQuest &&
@@ -1306,6 +1316,7 @@ export function progress(
   )
     return;
   if (n <= 0 || s.status !== "playing") return;
+  if (Catch.catchProgressBlocked(s)) return;
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
@@ -1342,6 +1353,7 @@ export function advanceQuest(s: GameState) {
   if (BloodQuest.advanceBloodGondor(s)) return;
   if (MorgulQuest.advanceMorgulVale(s)) return;
   if (Fords.advanceFordsIsen(s)) return;
+  if (Catch.advanceCatchOrc(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1635,6 +1647,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
   Fords.fordsEngaged(s, u);
+  Catch.catchEngaged(s, u);
   longDarkEngaged(s, u);
   foundationsEngaged(s, u);
   heirsEngaged(s, u, activeSeat(s), optional);
@@ -2020,6 +2033,7 @@ export function placeEncounter(
   if (BloodQuest.bloodGondorEncounter(s, code)) return;
   if (MorgulQuest.morgulEncounter(s, code)) return;
   if (Fords.fordsEncounter(s, code)) return;
+  if (Catch.catchEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2470,6 +2484,7 @@ export function shadow(s: GameState, code: string) {
   if (BloodQuest.bloodGondorShadow(s, code)) return;
   if (MorgulQuest.morgulShadow(s, code)) return;
   if (Fords.fordsShadow(s, code)) return;
+  if (Catch.catchShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

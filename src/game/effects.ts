@@ -1,3 +1,5 @@
+import * as Catch from "./catch-orc";
+import { removeQuestTime } from "./quest-time";
 import * as Fords from "./fords-isen";
 import { ringMakerEffect, ringMakerRoundEnd } from "./ring-maker-player";
 import {
@@ -332,6 +334,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (BloodQuest.bloodGondorEffect(s, e)) return;
   if (MorgulQuest.morgulEffect(s, e)) return;
   if (Fords.fordsEffect(s, e)) return;
+  if (Catch.catchEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -495,7 +498,13 @@ function handleEffect(s: GameState, e: Effect) {
         ...(s.scenarioId === "hunt-for-gollum"
           ? [fx("huntClaim", { player: first })]
           : []),
+        ...(s.catchOrc
+          ? [fx("catchQuestResponse", { value: e.value, player: first })]
+          : []),
         fx("successfulQuestProgress", { value: e.value, player: first }),
+        ...(s.catchOrc
+          ? [fx("catchQuestProgressDone", { player: first })]
+          : []),
       );
       break;
     }
@@ -910,6 +919,7 @@ function handleEffect(s: GameState, e: Effect) {
             BloodQuest.bloodGondorEncounter(s, e.code, true) ||
             MorgulQuest.morgulEncounter(s, e.code, true) ||
             Fords.fordsEncounter(s, e.code, true) ||
+            Catch.catchEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1092,9 +1102,12 @@ function handleEffect(s: GameState, e: Effect) {
         "An encounter has been revealed. Use actions, then resolve the quest.",
       );
       break;
+    case "removeQuestTime":
+      removeQuestTime(s, e.value ?? 1);
+      break;
     case "phaseEnd":
       phaseEnd(s);
-      if (s.phase === "refresh") Fords.fordsRemoveTime(s);
+      if (s.phase === "refresh") removeQuestTime(s);
       break;
     case "startQuest":
       startPhase(s, "quest");
@@ -1116,6 +1129,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "startEncounter":
       startPhase(s, "encounter");
       returnMirkwoodEncounterStart(s);
+      Catch.catchEncounterStart(s);
       globalEachSeat(s, () => {
         s.optionalEngagement = false;
       });
@@ -1156,6 +1170,12 @@ function handleEffect(s: GameState, e: Effect) {
         ]) {
           delete enemy.shadowCancelsDamage;
           delete enemy.shadowCancelsCombatDamage;
+          if (s.staging.some((u) => u.id === enemy.id)) {
+            s.encounterDiscard.push(...enemy.shadows);
+            enemy.shadows = [];
+            delete enemy.faceupShadows;
+            enemy.revealedShadowCount = 0;
+          }
         }
       });
       globalEachSeat(s, () => {
@@ -1797,6 +1817,19 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "removeQuestTime",
+      "catchSetup",
+      "catchStageTwo",
+      "catchQuestResponse",
+      "catchQuestTime",
+      "catchAdvance",
+      "catchQuestProgressDone",
+      "catchTimeExpired",
+      "catchResetTime",
+      "catchEscape",
+      "catchCapture",
+      "catchTerritoryAttacks",
+      "catchCaveTravel",
       "fordsStageReady",
       "fordsRemoveTime",
       "fordsTimeExpired",

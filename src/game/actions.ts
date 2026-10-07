@@ -1,3 +1,6 @@
+import * as Catch from "./catch-orc";
+import { questTime } from "./quest-time";
+import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
 import * as Fords from "./fords-isen";
 import { FORDS } from "./fords-isen-support";
@@ -1186,12 +1189,16 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   }
   if (u.code === "01020")
     return allCharacters(s).filter(
-      (a) => card(a.code).type_code === "ally" && a.exhausted,
+      (a) =>
+        card(a.code).type_code === "ally" && a.exhausted && !cannotReady(a),
     );
   if (u.code === "01021")
     return s.heroes.filter(
       (a) =>
-        !a.exhausted && allHeroes(s).some((h) => h.id !== a.id && h.exhausted),
+        !a.exhausted &&
+        allHeroes(s).some(
+          (h) => h.id !== a.id && h.exhausted && !cannotReady(h),
+        ),
     );
   if (u.code === "01032") return allCharacters(s);
   if (u.code === "01033")
@@ -1607,6 +1614,7 @@ export function availableAbilities(s: GameState, u: Unit) {
           !!heirsPlayerAbilityProblem(s, u, a.id) ||
           !!shadowFlamePlayerAbilityProblem(s, u, a.id) ||
           (a.code === "01026" && !canGainResources(s, u)) ||
+          (a.code === "01057" && (!u.exhausted || cannotReady(u))) ||
           !!huntAbilityProblem(s, u, a.id) ||
           !!utilityAbilityProblem(s, u, a.id) ||
           !!marshPlayerAbilityProblem(s, u, a.id) ||
@@ -1757,7 +1765,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "KEEP":
       requireRule(s.phase === "setup", "Your opening hand is already kept.");
-      if (passSeat(s)) nextRound(s);
+      if (passSeat(s) && !Catch.catchOpeningHandsKept(s)) nextRound(s);
       break;
     case "TOGGLE_QUEST": {
       requireRule(
@@ -2062,6 +2070,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Catch.catchTravel(s, u) ??
         BloodQuest.bloodGondorTravel(s, u) ??
         Amon.amonDinTravelEffects(s, u) ??
         Osgiliath.assaultOsgiliathTravelEffects(s, u) ??
@@ -2399,7 +2408,16 @@ export function publicState(s: GameState) {
           pendingUnderworldCount: s.stewardFear.pendingUnderworld.length,
         }
       : {}),
-    ...(s.fordsIsen ? { timeCounters: s.fordsIsen.time } : {}),
+    ...(questTime(s) ? { timeCounters: questTime(s)!.time } : {}),
+    ...(s.catchOrc
+      ? {
+          outOfPlayDecks: playerOrder(s).map((player) => ({
+            player,
+            count: s.catchOrc!.decks[player]?.length ?? 0,
+          })),
+          mugashCaptured: !!Catch.mugashCarrier(s),
+        }
+      : {}),
     outOfPlay:
       s.isengard?.outOfPlay.flatMap((g) =>
         g.cards.map((u) => ({

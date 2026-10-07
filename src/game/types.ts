@@ -161,6 +161,7 @@ export type ScenarioId =
   | "the-blood-of-gondor"
   | "the-morgul-vale"
   | "fords-of-isen"
+  | "to-catch-an-orc"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -271,6 +272,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  catchOrc?: import("./catch-orc-support").CatchOrcState;
   fordsIsen?: import("./fords-isen-support").FordsIsenState;
   morgulVale?: import("./morgul-vale-support").MorgulValeState;
   druadanForest?: import("./druadan-forest-support").DruadanForestState;
@@ -396,6 +398,8 @@ export interface GameState {
     heirsScrollDamage?: boolean;
     bloodTurnOnKill?: boolean;
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
+    timeOnKill?: number;
+    extraAttacks?: number;
     fordsTimeOnKill?: number;
     fordsExtraAttacks?: number;
     morgulProgressOnKill?: boolean;

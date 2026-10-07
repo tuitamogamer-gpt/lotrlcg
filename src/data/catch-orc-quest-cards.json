@@ -1,0 +1,123 @@
+[
+  {
+    "code": "octgn:0e0b125c-ffed-4473-9a64-7d709b16cca5",
+    "octgnid": "0e0b125c-ffed-4473-9a64-7d709b16cca5",
+    "name": "Orders from Orthanc",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each player removes the top 20 cards of his deck and places them aside, as an out-of-play deck,  The first player takes Mugash plus 1 Mugash's Guard for each other player in the game and randomly shuffles one facedown into each player's out of play deck. Place any remaining copies of Mugash's Guard aide, out of play.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 62,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "To Catch an Orc",
+    "side": "A",
+    "back_name": "Orders from Orthanc",
+    "back_text": "When Revealed: Each player searches the encounter deck for a Mountain location and adds it to the staging area. Shuffle the encounter deck. Then, advance to Stage 2",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e0b125c-ffed-4473-9a64-7d709b16cca5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e0b125c-ffed-4473-9a64-7d709b16cca5.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 62,
+        "quantity": 1,
+        "octgnid": "0e0b125c-ffed-4473-9a64-7d709b16cca5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e0b125c-ffed-4473-9a64-7d709b16cca5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
+    "octgnid": "8472068c-fdd7-4197-8046-b9da12c29135",
+    "name": "Searching for Mugash",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 63,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "To Catch an Orc",
+    "side": "A",
+    "back_name": "Searching for Mugash",
+    "back_text": "Time 2. Forced: After the last time counter is removed from this stage, shuffle the discard pile into the encounter deck and reveal 2 encounter cards per player. Place 2 time counters on this stage.  Response: After questing successfully, cancel all progress that would be placed on this stage. Then, place 1 time counter on this stage. Or, if Mugash is in play, advance to stage 3.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8472068c-fdd7-4197-8046-b9da12c29135.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8472068c-fdd7-4197-8046-b9da12c29135.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "8472068c-fdd7-4197-8046-b9da12c29135",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8472068c-fdd7-4197-8046-b9da12c29135.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
+    "octgnid": "c71fa40c-524e-43ec-b058-7ea239fdfd1d",
+    "name": "The Wizard's Prize",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 64,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "To Catch an Orc",
+    "side": "A",
+    "back_name": "The Wizard's Prize",
+    "back_text": "Time 3.  Forced: After the last time counter is removed from this stage, return Mugash to the staging area and reveal X encounter cards.  X is the number of players in the game minus 1.  Place 3 time counters on this stage.  Progress cannot be placed on this stage unless Mugash is attached to a hero.  If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c71fa40c-524e-43ec-b058-7ea239fdfd1d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c71fa40c-524e-43ec-b058-7ea239fdfd1d.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "c71fa40c-524e-43ec-b058-7ea239fdfd1d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c71fa40c-524e-43ec-b058-7ea239fdfd1d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

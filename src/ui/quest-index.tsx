@@ -20,6 +20,11 @@ const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
   "fords-of-isen": { lead: "Stand at", tail: "the ", em: "Fords of Isen." },
+  "to-catch-an-orc": {
+    lead: "Hunt through",
+    tail: "the heights of ",
+    em: "Methedras.",
+  },
   mirkwood: { lead: "Into the heart", tail: "of ", em: "Mirkwood." },
   anduin: { lead: "Along the", em: "great river." },
   "dol-guldur": { lead: "Escape from", em: "Dol Guldur." },

@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 // The Nîn-in-Eilph, Celebrimbor's Secret and The Antlered Crown.
 import { card, name, plain } from "./cards";
 import type { Effect, GameState, Option, Unit } from "./types";
@@ -34,8 +35,8 @@ import {
 } from "./table";
 import { hasTrait } from "./expansion-passives";
 import { engagedEnemies } from "./considered-engagement";
-import { khazadCannotReady, khazadDamageCancelled } from "./khazad-dum";
-import { watcherWaterCannotReady } from "./watcher-water";
+import { khazadDamageCancelled } from "./khazad-dum";
+
 import { morgulCannotLeave } from "./morgul-vale";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 
@@ -46,12 +47,7 @@ const immune = (u: Unit) =>
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
 const readyTargets = (s: GameState) =>
   allCharacters(s).filter(
-    (u) =>
-      hasTrait(u, "Ent") &&
-      u.exhausted &&
-      !immune(u) &&
-      !khazadCannotReady(u) &&
-      !watcherWaterCannotReady(u),
+    (u) => hasTrait(u, "Ent") && u.exhausted && !immune(u) && !cannotReady(u),
   );
 const beltsTargets = (s: GameState) =>
   s.heroes.filter(
@@ -175,6 +171,8 @@ export function finalRingEvent(
       return false;
   }
 }
+export const finalRingReplacesQuestProgress = (s: GameState) =>
+  s.used.some((k) => k.startsWith(RIDE));
 export function finalRingQuestProgress(s: GameState, amount: number) {
   const effect = s.used.find((k) => k.startsWith(RIDE));
   if (!effect) return false;

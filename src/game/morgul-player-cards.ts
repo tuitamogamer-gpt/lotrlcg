@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // The Morgul Vale: continuous bonuses, optional quest readying, and paid Record replays.
@@ -15,8 +16,7 @@ import {
 } from "./core";
 import { discardAttachment, readyCharacter } from "./board";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
-import { khazadCannotReady } from "./khazad-dum";
-import { watcherWaterCannotReady } from "./watcher-water";
+
 import {
   activeSeat,
   allCharacters,
@@ -150,8 +150,7 @@ function canSteedReady(s: GameState, u: Unit, id?: string) {
     u.exhausted &&
     u.resources >= 1 &&
     heirsCanSpendResources(s, u) &&
-    !khazadCannotReady(u) &&
-    !watcherWaterCannotReady(u)
+    !cannotReady(u)
   );
 }
 

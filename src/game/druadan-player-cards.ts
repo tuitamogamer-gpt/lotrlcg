@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 import { globalPlayerOrder } from "./table";
 // The Drúadan Forest: printed-sphere restrictions and exact lasting responses.
 import { card, cards, plain } from "./cards";
@@ -9,8 +10,7 @@ import {
   hasResourceIcon,
   hasTrait,
 } from "./expansion-passives";
-import { khazadCannotReady } from "./khazad-dum";
-import { watcherWaterCannotReady } from "./watcher-water";
+
 import {
   allCharacters,
   allEngaged,
@@ -31,8 +31,7 @@ const readyableAllies = (s: GameState) =>
     (u) =>
       ["ally", "objective-ally"].includes(card(u.code).type_code) &&
       u.exhausted &&
-      !khazadCannotReady(u) &&
-      !watcherWaterCannotReady(u),
+      !cannotReady(u),
   );
 const phaseGroup: Record<Phase, string> = {
   setup: "setup",

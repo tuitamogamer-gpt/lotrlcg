@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 // The Dunland Trap player cards; Celeborn, Naith Guide, Firefoot, Tree People
 // and Blue Mountain Trader use the complete Silvan/Rohan/Collector implementations.
 import { card, plain } from "./cards";
@@ -35,8 +36,7 @@ import {
   seatView,
   selectSeat,
 } from "./table";
-import { khazadCannotReady } from "./khazad-dum";
-import { watcherWaterCannotReady } from "./watcher-water";
+
 import { roadRivendellCannotCancel } from "./road-rivendell";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import { returnPlayedEventToHand } from "./event-resolution";
@@ -52,13 +52,7 @@ const immune = (u: Unit) =>
   !u.blanked &&
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
 const readyTargets = (s: GameState) =>
-  s.heroes.filter(
-    (u) =>
-      u.exhausted &&
-      !immune(u) &&
-      !khazadCannotReady(u) &&
-      !watcherWaterCannotReady(u),
-  );
+  s.heroes.filter((u) => u.exhausted && !immune(u) && !cannotReady(u));
 const resourceTargets = (s: GameState) =>
   s.heroes.filter((u) => !immune(u) && canGainResources(s, u));
 

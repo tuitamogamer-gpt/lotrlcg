@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
 // Remaining player cards from The Three Trials and Trouble in Tharbad.
 import { card, plain, SCRIPTED } from "./cards";
@@ -40,8 +41,7 @@ import {
 import { effectiveKeyword } from "./expansion-passives";
 import { engagedEnemies } from "./considered-engagement";
 import { returnPlayedEventToHand } from "./event-resolution";
-import { khazadCannotReady } from "./khazad-dum";
-import { watcherWaterCannotReady } from "./watcher-water";
+
 import { morgulCannotLeave } from "./morgul-vale";
 
 type DelayedReturn = {
@@ -61,11 +61,7 @@ const sphereKey = (sphere: string) => `round:ring-sphere:${sphere}`;
 const immune = (u: Unit) =>
   !u.blanked &&
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
-const canReady = (u: Unit) =>
-  u.exhausted &&
-  !immune(u) &&
-  !khazadCannotReady(u) &&
-  !watcherWaterCannotReady(u);
+const canReady = (u: Unit) => u.exhausted && !immune(u) && !cannotReady(u);
 const affectedEnemies = (s: GameState) =>
   [
     ...new Map(

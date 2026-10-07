@@ -1,3 +1,4 @@
+import { cannotReady } from "./core";
 import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
 import { takePlayerDiscard } from "./board";
@@ -42,7 +43,6 @@ import {
 import { isSacked } from "./carrock";
 import {
   khazadCannotExhaust,
-  khazadCannotReady,
   khazadCanAttack,
   khazadCanRangedAttack,
 } from "./khazad-dum";
@@ -311,7 +311,7 @@ function miruvorChoose(s: GameState, e: Effect) {
     {
       id: "ready",
       label: "Ready attached hero",
-      valid: !!u?.exhausted && !khazadCannotReady(u),
+      valid: !!u?.exhausted && !cannotReady(u),
     },
     {
       id: "resource",
@@ -484,7 +484,7 @@ export function handleShadowFlamePlayerEffect(
       );
       if (mode === "ready") {
         requireRule(
-          u?.exhausted && !khazadCannotReady(u),
+          u?.exhausted && !cannotReady(u),
           "The hero must be able to ready.",
         );
         readyCharacter(s, u);
