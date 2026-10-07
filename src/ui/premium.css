@@ -1,6 +1,8 @@
 /* Tabletop artwork; every counter and control remains live HTML. */
 .redbook[data-playmat="mirkwood"],
 .mat-mirkwood,
+.redbook[data-playmat="into-fangorn"],
+.mat-into-fangorn,
 .redbook[data-playmat="return-to-mirkwood"],
 .mat-return-to-mirkwood {
   --playmat-art: url("/art/premium/mirkwood.webp");

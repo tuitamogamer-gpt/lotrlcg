@@ -1,3 +1,4 @@
+import { fangornCarrier } from "./fangorn";
 import { questTime } from "./quest-time";
 import { allActiveLocations } from "./table";
 import { card } from "./cards";
@@ -56,6 +57,9 @@ export function observe(
     "Staging threat": String(getStagingThreat(s)),
     ...(questTime(s)
       ? { "Quest time counters": String(questTime(s)!.time) }
+      : {}),
+    ...(s.fangorn
+      ? { Mugash: fangornCarrier(s) ? "Captured" : "Unclaimed" }
       : {}),
     ...(s.catchOrc
       ? Object.fromEntries(

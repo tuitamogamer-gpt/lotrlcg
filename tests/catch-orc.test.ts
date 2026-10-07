@@ -339,7 +339,7 @@ test("The stage-two response is optional and card-effect progress never offers i
   assert.equal(s.progress, 5);
   assert.equal(s.choice, null);
 });
-test("Stage advancement finishes quest-attachment responses before moving on and cancelling the quest progress", () => {
+test("Advancing by the stage-two response discards quest attachments without a defeat response", () => {
   let s = base();
   captive(s);
   s.questAttachments = {
@@ -348,9 +348,8 @@ test("Stage advancement finishes quest-attachment responses before moving on and
   effect(s, fx("questSucceeded", { value: 3 }));
   flush(s);
   s = choose(reload(s), "advance");
-  assert.match(s.choice!.title, /The Long Defeat/);
-  assert.equal(s.stage, 2);
-  s = choose(reload(s), "skip");
+  assert.equal(s.choice, null);
+  assert.ok(s.discard.includes("10122"));
   assert.equal(s.stage, 3);
   assert.equal(s.progress, 0);
   assert.equal(s.pendingQuestDefeat, undefined);

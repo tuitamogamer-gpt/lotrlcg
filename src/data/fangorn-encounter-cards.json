@@ -1,0 +1,477 @@
+[
+  {
+    "code": "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
+    "octgnid": "16b71211-85c1-4ad4-8879-831bc7b50ac4",
+    "name": "Mugash",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Guarded.\nAction: Exhaust a hero to claim this objective when it is free of encounters. Attach Mugash to that hero.  Forced: After attached hero takes damage, return Mugash to the top of the encounter deck.",
+    "is_unique": true,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 31,
+    "quantity": 1,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16b71211-85c1-4ad4-8879-831bc7b50ac4.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "16b71211-85c1-4ad4-8879-831bc7b50ac4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16b71211-85c1-4ad4-8879-831bc7b50ac4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "octgnid": "20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "name": "Edge of Fangorn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Immune to player card effects.\nTravel: Search the encounter deck and discard pile for a Huorn enemy and add it to the staging area to travel here (2 Huorn enemies instead if there are 3 or more players in the game).",
+    "is_unique": true,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 32,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 1,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 32,
+        "quantity": 1,
+        "octgnid": "20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgnid": "eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "name": "Dark-Hearted Huorn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Huorn.",
+    "text": "Hinder. Cannot have attachments.\nForced:  At the beginning of each resource phase, the engaged player must raise his threat by 2.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 33,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 4,
+    "health": 5,
+    "engagement": 1,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "4",
+      "health": "5",
+      "engagement": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 33,
+        "quantity": 4,
+        "octgnid": "eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
+    "octgnid": "25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
+    "name": "Angry Huorn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Huorn.",
+    "text": "Hinder. Cannot have attachments.\nForced:  At the beginning of each resource phase, Angry Huorn attacks the engaged player.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 34,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 8,
+    "engagement": 38,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "8",
+      "engagement": "38"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 34,
+        "quantity": 3,
+        "octgnid": "25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
+    "octgnid": "cd628acc-acdf-48c5-a9cc-136eb9bc3095",
+    "name": "Deadly Huorn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Huorn.",
+    "text": "Hinder. Cannot have attachments.\nForced:  At the beginning of each resource phase, the engaged player must deal 3 damage to a character he controls.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 35,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 4,
+    "health": 6,
+    "engagement": 34,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "4",
+      "health": "6",
+      "engagement": "34"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cd628acc-acdf-48c5-a9cc-136eb9bc3095.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 35,
+        "quantity": 3,
+        "octgnid": "cd628acc-acdf-48c5-a9cc-136eb9bc3095",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cd628acc-acdf-48c5-a9cc-136eb9bc3095.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+    "octgnid": "c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+    "name": "Heart of Fangorn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Heart of Fangorn is in the staging area, each player cannot refresh more than 5 characters during the refresh phase",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 36,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3907d39-6fd7-4b33-8fe2-215fd9f90be2.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 36,
+        "quantity": 3,
+        "octgnid": "c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3907d39-6fd7-4b33-8fe2-215fd9f90be2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgnid": "3bc03452-6c37-45e2-9241-e626ea51f382",
+    "name": "The Forest's Malice",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each Huorn enemy engaged with a player makes an immediate attack.  If no attack was made as a result of this effect, each player must search the encounter deck and discard pile for a Huorn enemy and put it into play engaged with him.  This effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 37,
+    "quantity": 4,
+    "encounter_set": "Into Fangorn",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3bc03452-6c37-45e2-9241-e626ea51f382.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 37,
+        "quantity": 4,
+        "octgnid": "3bc03452-6c37-45e2-9241-e626ea51f382",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3bc03452-6c37-45e2-9241-e626ea51f382.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+    "octgnid": "c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+    "name": "Ancient Forest",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Ancient Forest is in the staging area, each Forest location in the staging area gets +1 [threat] and +3 quest points.  This ability does not stack with other copies of Ancient Forest.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 50,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 5,
+    "shadow": "Shadow: Defending player exhausts a character he controls.",
+    "encounter_set": "Ancient Forest",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c319315a-e506-45a2-8ec0-c98e4bd9bad5.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 50,
+        "quantity": 3,
+        "octgnid": "c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c319315a-e506-45a2-8ec0-c98e4bd9bad5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
+    "octgnid": "be6cf29d-bb8b-494a-9635-85ee9322a690",
+    "name": "Tangled Woods",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Tangled Woods is in the staging area, each Forest location in play gains: 'Travel: Exhaust a hero to travel here'.  This ability does not stack with other copies of Tangled Woods.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 51,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Ancient Forest",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be6cf29d-bb8b-494a-9635-85ee9322a690.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 51,
+        "quantity": 3,
+        "octgnid": "be6cf29d-bb8b-494a-9635-85ee9322a690",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be6cf29d-bb8b-494a-9635-85ee9322a690.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
+    "octgnid": "6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
+    "name": "Turned Around",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either remove 1 time counter from a card in play, or return the active location to the staging area.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 52,
+    "quantity": 3,
+    "shadow": "Shadow: If this attack is undefended, return the active location to the staging area.",
+    "encounter_set": "Ancient Forest",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6fe8d036-9b7a-4ca4-bab4-272d2a6a8949.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6fe8d036-9b7a-4ca4-bab4-272d2a6a8949.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
+    "octgnid": "5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
+    "name": "Low on Provisions",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed:  Each player must assign X damage among characters he controls where X is the number of characters that player controls.",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 56,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack](+2 [attack] instead if the defending character is undamaged.)",
+    "encounter_set": "Weary Travellers",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5f18c4ca-fcda-46d2-874b-3a1a73ef7c53.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 56,
+        "quantity": 3,
+        "octgnid": "5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5f18c4ca-fcda-46d2-874b-3a1a73ef7c53.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
+    "octgnid": "7fc629f3-3115-47df-b997-4a5026d97d2b",
+    "name": "Off Track",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Attach to a location in play. (Counts as a Condition attachment with the text: \"Limit 1 per location. Attached location gets +2 quest points and gains: 'Forced: Remove and additional time counter from the current quest at the end of each refresh phase, if able.'\"",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 57,
+    "quantity": 2,
+    "encounter_set": "Weary Travellers",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fc629f3-3115-47df-b997-4a5026d97d2b.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 57,
+        "quantity": 2,
+        "octgnid": "7fc629f3-3115-47df-b997-4a5026d97d2b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7fc629f3-3115-47df-b997-4a5026d97d2b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "octgnid": "3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "name": "In Need of Rest",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove a hero from the quest and attach In Need of Rest to that hero. (Counts as a Condition attachment with the text: 'Limit 1 per hero.  Forced:  After a time counter is removed from the current quest, attached hero takes 1 damage.')",
+    "is_unique": false,
+    "pack_code": "VoI",
+    "pack_name": "The Voice of Isengard",
+    "position": 58,
+    "quantity": 2,
+    "encounter_set": "Weary Travellers",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3a8869dc-077e-4b8c-b3d5-474e4f9c14ba.jpg",
+    "packs": [
+      {
+        "pack_code": "VoI",
+        "pack_name": "The Voice of Isengard",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3a8869dc-077e-4b8c-b3d5-474e4f9c14ba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

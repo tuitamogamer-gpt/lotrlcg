@@ -1,3 +1,4 @@
+import { hasHinder } from "./fangorn";
 // Virtual engagement never duplicates or moves the physical staging-area enemy.
 import type { GameState, Unit } from "./types";
 import { SHADOW_FLAME } from "./shadow-flame-support";
@@ -30,6 +31,7 @@ export function normalAttackPending(
   u: Unit,
   player = activeSeat(s),
 ): boolean {
+  if (hasHinder(u)) return false;
   return consideredEngaged(s, u, player)
     ? !(u as ConsideredEnemy).consideredEnemyAttackedBy?.includes(player)
     : seatView(s, player).engaged.some((e) => e.id === u.id) && !u.attacked;
@@ -56,6 +58,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
     delete u.faceupShadows;
     return;
   }
+  if (hasHinder(u)) return;
   const code = encounterDraw(s, true);
   if (code) u.shadows.push(code);
   if (code) heirsShadowDealt(s, u);

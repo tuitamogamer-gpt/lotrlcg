@@ -1,3 +1,5 @@
+import { enemyAttackPrevented } from "./core";
+import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import { removeQuestTime } from "./quest-time";
 import * as Fords from "./fords-isen";
@@ -206,6 +208,7 @@ import {
   engage,
   enterAlly,
   nextRound,
+  collectResources,
   phaseEnd,
   placeEncounter,
   progressLocation,
@@ -335,6 +338,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (MorgulQuest.morgulEffect(s, e)) return;
   if (Fords.fordsEffect(s, e)) return;
   if (Catch.catchEffect(s, e)) return;
+  if (Fangorn.fangornEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -376,7 +380,12 @@ function handleEffect(s: GameState, e: Effect) {
       amonPlayerSurgeRevealed(s, { ...make(s, e.code!), code: e.code! });
       break;
     case "immediateAttack": {
-      if (!u || card(u.code).type_code !== "enemy") break;
+      if (
+        !u ||
+        card(u.code).type_code !== "enemy" ||
+        enemyAttackPrevented(s, u)
+      )
+        break;
       const previous = {
         shadows: [...u.shadows],
         faceup: u.faceupShadows?.slice(),
@@ -920,6 +929,7 @@ function handleEffect(s: GameState, e: Effect) {
             MorgulQuest.morgulEncounter(s, e.code, true) ||
             Fords.fordsEncounter(s, e.code, true) ||
             Catch.catchEncounter(s, e.code, true) ||
+            Fangorn.fangornEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1107,7 +1117,8 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "phaseEnd":
       phaseEnd(s);
-      if (s.phase === "refresh") removeQuestTime(s);
+      if (s.phase === "refresh" && !Fangorn.fangornRefreshTime(s))
+        removeQuestTime(s);
       break;
     case "startQuest":
       startPhase(s, "quest");
@@ -1212,16 +1223,21 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "refreshReady":
       startPhase(s, "refresh");
-      globalEachSeat(s, () => {
+      s.refreshReadied = {};
+      globalEachSeat(s, (player) => {
+        const fangornReady = Fangorn.fangornRefreshCharacters(s, player);
         for (const u of characters(s)) {
           u.committed = false;
           u.attacked = false;
           u.boost = 0;
           for (const a of u.attachments) a.exhausted = false;
-          if (!has(u, "01080")) readyCharacter(s, u);
-          else enqueue(s, fx("webRefresh", { target: u.id }));
+          if (!fangornReady) {
+            if (!has(u, "01080")) readyCharacter(s, u);
+            else enqueue(s, fx("webRefresh", { target: u.id, player }));
+          }
         }
         s.eowynUsed = false;
+        if (fangornReady) enqueue(s, ...fangornReady);
       });
       enqueue(s, fx("refreshEnd"));
       break;
@@ -1297,6 +1313,9 @@ function handleEffect(s: GameState, e: Effect) {
       });
       Osgiliath.assaultOsgiliathRoundEnd(s);
       enqueue(s, fx("nextRound"));
+      break;
+    case "resourceCollect":
+      collectResources(s);
       break;
     case "nextRound":
       nextRound(s);
@@ -1399,6 +1418,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "combatStartEffects":
       heirsCombatStart(s);
       Druadan.druadanForestCombatStart(s);
+      Fangorn.fangornCombatStart(s);
       break;
     case "prepareCombat":
       globalEachSeat(s, () => {
@@ -1698,7 +1718,12 @@ function handleEffect(s: GameState, e: Effect) {
       const cost =
         (u?.attachments.filter((a) => !a.blanked && a.code === "01080")
           .length ?? 0) * 2;
-      if (u?.exhausted && cost && u.resources >= cost)
+      if (
+        u?.exhausted &&
+        !Fangorn.fangornCannotReady(s, u) &&
+        cost &&
+        u.resources >= cost
+      )
         choose(s, `Free ${name(u)} from the web?`, [
           {
             id: "pay",
@@ -1817,6 +1842,14 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "fangornOrder",
+      "fangornAdvance",
+      "fangornTimeExpired",
+      "fangornResetTime",
+      "fangornMaliceDone",
+      "fangornShuffle",
+      "fangornHinder",
+      "resourceCollect",
       "removeQuestTime",
       "catchSetup",
       "catchStageTwo",
@@ -1927,6 +1960,13 @@ export function flush(s: GameState) {
         "startEncounter",
         "endCombat",
         "refreshReady",
+        "resourceCollect",
+        "fangornOrder",
+        "fangornAdvance",
+        "fangornTimeExpired",
+        "fangornResetTime",
+        "fangornMaliceDone",
+        "fangornShuffle",
         "endRound",
         "endRoundAfterCollector",
         "finishQuestDefeat",

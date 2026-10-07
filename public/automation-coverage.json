@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 394,
-    "scenarios": 29,
+    "encounterCards": 407,
+    "scenarios": 30,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -36,17 +36,18 @@
       "the-blood-of-gondor",
       "the-morgul-vale",
       "fords-of-isen",
-      "to-catch-an-orc"
+      "to-catch-an-orc",
+      "into-fangorn"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 916,
-    "pending": 3267
+    "scripted": 932,
+    "pending": 3251
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 58
+    "scripted": 60
   },
   "registeredCodes": [
     "01001",
@@ -545,12 +546,14 @@
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
+    "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
@@ -558,6 +561,7 @@
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
@@ -567,6 +571,8 @@
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -843,10 +849,12 @@
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
@@ -855,6 +863,7 @@
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
+    "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
@@ -873,6 +882,7 @@
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
+    "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
@@ -891,18 +901,24 @@
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
+    "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
+    "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+    "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
+    "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
+    "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
@@ -913,6 +929,7 @@
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
@@ -1830,7 +1847,7 @@
     {
       "product": "the-voice-of-isengard",
       "total": 67,
-      "scripted": 51,
+      "scripted": 67,
       "player": 15,
       "playerScripted": 15
     },
@@ -12380,7 +12397,7 @@
       "name": "Mugash",
       "type": "objective",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -13188,7 +13205,7 @@
       "name": "Edge of Fangorn",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -13684,7 +13701,7 @@
       "name": "Angry Huorn",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -15564,7 +15581,7 @@
       "name": "In Need of Rest",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -15628,7 +15645,7 @@
       "name": "The Forest's Malice",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -21428,7 +21445,7 @@
       "name": "Low on Provisions",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -22604,7 +22621,7 @@
       "name": "Turned Around",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -24012,7 +24029,7 @@
       "name": "Off Track",
       "type": "treachery",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -26236,7 +26253,7 @@
       "name": "Into the Woods",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -29636,7 +29653,7 @@
       "name": "Tangled Woods",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -29964,7 +29981,7 @@
       "name": "Ancient Forest",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -30012,7 +30029,7 @@
       "name": "Heart of Fangorn",
       "type": "location",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -30492,7 +30509,7 @@
       "name": "Escape from Fangorn",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -30884,7 +30901,7 @@
       "name": "Deadly Huorn",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -31764,7 +31781,7 @@
       "name": "The Angry Forest",
       "type": "quest",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -33484,7 +33501,7 @@
       "name": "Dark-Hearted Huorn",
       "type": "enemy",
       "pack": "The Voice of Isengard",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-voice-of-isengard"
     },
     {
@@ -35614,8 +35631,8 @@
       "id": "E04.3",
       "name": "Into Fangorn (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-fangorn",
+      "state": "scripted"
     },
     {
       "id": "E04.4",
@@ -37105,8 +37122,8 @@
       "id": "Q04.3",
       "name": "Into Fangorn",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "into-fangorn",
+      "state": "scripted"
     },
     {
       "id": "Q04.4",

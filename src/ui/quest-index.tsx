@@ -19,6 +19,7 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "into-fangorn": { lead: "Escape from", em: "Fangorn." },
   "fords-of-isen": { lead: "Stand at", tail: "the ", em: "Fords of Isen." },
   "to-catch-an-orc": {
     lead: "Hunt through",

@@ -52,7 +52,7 @@ const immune = (u: Unit) =>
   !u.blanked &&
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
 const readyTargets = (s: GameState) =>
-  s.heroes.filter((u) => u.exhausted && !immune(u) && !cannotReady(u));
+  s.heroes.filter((u) => u.exhausted && !immune(u) && !cannotReady(u, s));
 const resourceTargets = (s: GameState) =>
   s.heroes.filter((u) => !immune(u) && canGainResources(s, u));
 

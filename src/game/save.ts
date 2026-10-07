@@ -1,3 +1,4 @@
+import { validateFangornState } from "./fangorn-support";
 import { validateCatchOrcState } from "./catch-orc-support";
 import { validateFordsIsenState } from "./fords-isen-support";
 import { validateIsengard } from "./voice-isengard";
@@ -45,6 +46,21 @@ export function validateSave(
     const s = value as GameState;
     const seatCount = inheritedSeatCount ?? s.table?.seats.length ?? 1;
     if (!validFlow(s.flow)) return false;
+    if (
+      s.refreshReadied !== undefined &&
+      (!s.refreshReadied ||
+        typeof s.refreshReadied !== "object" ||
+        Array.isArray(s.refreshReadied) ||
+        Object.entries(s.refreshReadied).some(
+          ([key, ids]) =>
+            !/^\d+$/.test(key) ||
+            +key >= seatCount ||
+            !Array.isArray(ids) ||
+            ids.some((id) => typeof id !== "string") ||
+            new Set(ids).size !== ids.length,
+        ))
+    )
+      return false;
     const integer = (n: unknown) =>
       typeof n === "number" && Number.isInteger(n) && Number.isFinite(n);
     const codes = (v: unknown): v is string[] =>
@@ -311,6 +327,7 @@ export function validateSave(
         !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
+        !validateFangornState(s) ||
         !validateCatchOrcState(
           s,
           validUnit as (u: unknown) => boolean,

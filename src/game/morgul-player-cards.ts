@@ -150,7 +150,7 @@ function canSteedReady(s: GameState, u: Unit, id?: string) {
     u.exhausted &&
     u.resources >= 1 &&
     heirsCanSpendResources(s, u) &&
-    !cannotReady(u)
+    !cannotReady(u, s)
   );
 }
 

@@ -1,3 +1,4 @@
+import { FANGORN_QUESTS } from "./fangorn-support";
 import { CATCH_ORC_QUESTS } from "./catch-orc-support";
 import { FORDS_ISEN_QUESTS } from "./fords-isen-support";
 import { BLOOD_GONDOR_QUESTS } from "./blood-gondor-support";
@@ -46,6 +47,7 @@ const questImage = (code: string) => {
     ...MORGUL_VALE_QUESTS,
     ...FORDS_ISEN_QUESTS,
     ...CATCH_ORC_QUESTS,
+    ...FANGORN_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -883,6 +885,24 @@ export const SCENARIOS = [
       "Search hidden mountain trails for Mugash, capture him alive and guard him on the journey to Isengard. Keep ahead of the Orc hunting parties.",
     sets: ["To Catch an Orc", "Misty Mountain Orcs", "Broken Lands"],
     stages: CATCH_ORC_QUESTS.map((q) => ({
+      name: q.name,
+      cardCode: q.code,
+      quest: q.back_quest ?? 0,
+      story: q.back_text!,
+      questImage: questImage(q.code),
+    })),
+  },
+  {
+    id: "into-fangorn",
+    name: "Into Fangorn",
+    shortName: "Into Fangorn",
+    chapter: "XXX",
+    difficulty: 6,
+    tagline: "Escape the forest with Mugash in custody",
+    description:
+      "Pursue Mugash beneath the boughs of Fangorn. Outrun the Huorns, keep your captive safe and escape before time runs out.",
+    sets: ["Into Fangorn", "Ancient Forest", "Weary Travellers"],
+    stages: FANGORN_QUESTS.map((q) => ({
       name: q.name,
       cardCode: q.code,
       quest: q.back_quest ?? 0,

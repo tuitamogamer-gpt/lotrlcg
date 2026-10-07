@@ -164,7 +164,7 @@ export function eventEffect(
           "Common Cause",
           opts(
             allHeroes(s).filter(
-              (h) => h.id !== u.id && h.exhausted && !cannotReady(h),
+              (h) => h.id !== u.id && h.exhausted && !cannotReady(h, s),
             ),
             (h) => [fx("ready", { target: h.id })],
           ),
@@ -431,7 +431,7 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         return;
       case "01057":
         requireRule(
-          u.exhausted && !cannotReady(u),
+          u.exhausted && !cannotReady(u, s),
           "This hero cannot be readied.",
         );
         a.exhausted = true;

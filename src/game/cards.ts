@@ -1,3 +1,4 @@
+import { FANGORN_ENCOUNTERS, FANGORN_QUESTS } from "./fangorn-support";
 import { CATCH_ORC_ENCOUNTERS, CATCH_ORC_QUESTS } from "./catch-orc-support";
 import { FORDS_ISEN_ENCOUNTERS, FORDS_ISEN_QUESTS } from "./fords-isen-support";
 import recipes from "../data/official-starter-decks.json";
@@ -157,6 +158,7 @@ export const encounterCards = [
   ...MORGUL_VALE_ENCOUNTERS,
   ...FORDS_ISEN_ENCOUNTERS,
   ...CATCH_ORC_ENCOUNTERS,
+  ...FANGORN_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -184,6 +186,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...MORGUL_VALE_QUESTS,
     ...FORDS_ISEN_QUESTS,
     ...CATCH_ORC_QUESTS,
+    ...FANGORN_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -284,6 +287,7 @@ export const SCRIPTED = new Set(
     ...MORGUL_VALE_QUESTS,
     ...FORDS_ISEN_QUESTS,
     ...CATCH_ORC_QUESTS,
+    ...FANGORN_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

@@ -1,3 +1,4 @@
+import { setupFangorn } from "./fangorn";
 import { setupCatchOrc } from "./catch-orc";
 import { setupFordsIsen } from "./fords-isen";
 import { setupBloodGondor } from "./blood-gondor";
@@ -365,6 +366,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "into-fangorn") {
+    setupFangorn(s);
   } else if (scenarioId === "to-catch-an-orc") {
     setupCatchOrc(s);
   } else if (scenarioId === "fords-of-isen") {

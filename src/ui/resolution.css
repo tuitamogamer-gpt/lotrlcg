@@ -1167,3 +1167,7 @@
 .event-landscape-hunt-for-gollum {
   --event-art: url("/art/premium/anduin.webp");
 }
+
+.event-landscape-into-fangorn {
+  --event-art: url("/art/premium/mirkwood.webp");
+}

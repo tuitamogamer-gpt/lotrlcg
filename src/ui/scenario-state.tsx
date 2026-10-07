@@ -1,3 +1,5 @@
+import { FANGORN, fangornTimeLimit } from "../game/fangorn-support";
+import { fangornCarrier } from "../game/fangorn";
 import { FORDS, fordsTimeLimit } from "../game/fords-isen-support";
 import { CATCH_ORC } from "../game/catch-orc-support";
 import { mugashCarrier } from "../game/catch-orc";
@@ -19,6 +21,7 @@ export function ScenarioState({
   if (
     !s.fordsIsen &&
     !s.catchOrc &&
+    !s.fangorn &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -77,6 +80,28 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.fangorn && (
+        <div className="tower-counter">
+          <strong>
+            Time · {s.fangorn.time} / {fangornTimeLimit(s.stage)}
+          </strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.fangorn.time}
+            max={fangornTimeLimit(s.stage)}
+          />
+          <span>
+            {s.stage === 3
+              ? "Find Mugash and place 6 progress to resume your escape."
+              : "Escape before Mugash disappears into the forest."}
+          </span>
+          <button onClick={() => inspect(card(FANGORN.mugash))}>
+            {fangornCarrier(s)
+              ? "Mugash is captured"
+              : "Mugash must be recaptured"}
+          </button>
         </div>
       )}
       {s.catchOrc && (

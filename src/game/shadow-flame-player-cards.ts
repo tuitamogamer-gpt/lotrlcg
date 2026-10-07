@@ -311,7 +311,7 @@ function miruvorChoose(s: GameState, e: Effect) {
     {
       id: "ready",
       label: "Ready attached hero",
-      valid: !!u?.exhausted && !cannotReady(u),
+      valid: !!u?.exhausted && !cannotReady(u, s),
     },
     {
       id: "resource",
@@ -484,7 +484,7 @@ export function handleShadowFlamePlayerEffect(
       );
       if (mode === "ready") {
         requireRule(
-          u?.exhausted && !cannotReady(u),
+          u?.exhausted && !cannotReady(u, s),
           "The hero must be able to ready.",
         );
         readyCharacter(s, u);

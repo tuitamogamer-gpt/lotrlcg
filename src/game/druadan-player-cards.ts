@@ -31,7 +31,7 @@ const readyableAllies = (s: GameState) =>
     (u) =>
       ["ally", "objective-ally"].includes(card(u.code).type_code) &&
       u.exhausted &&
-      !cannotReady(u),
+      !cannotReady(u, s),
   );
 const phaseGroup: Record<Phase, string> = {
   setup: "setup",

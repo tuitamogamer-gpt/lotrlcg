@@ -1,3 +1,5 @@
+import { FANGORN } from "./fangorn-support";
+import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import * as Fords from "./fords-isen";
 import * as Isengard from "./voice-isengard";
@@ -199,10 +201,11 @@ export const canGainResources = (s: GameState, u: Unit, cardEffect = true) =>
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
 
-export const cannotReady = (u: Unit) =>
+export const cannotReady = (u: Unit, s?: GameState) =>
   khazadCannotReady(u) ||
   watcherWaterCannotReady(u) ||
-  Catch.catchCannotReady(u);
+  Catch.catchCannotReady(u) ||
+  (!!s && Fangorn.fangornCannotReady(s, u));
 
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
@@ -641,6 +644,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           0) +
           Fords.fordsThreatBonus(s, u) +
           Catch.catchThreatBonus(s, u) +
+          Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
           emynMuilThreatBonus(s, u) +
@@ -691,6 +695,7 @@ export const locationQuest = (s: GameState, u: Unit) =>
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
     Fords.fordsLocationBonus(s, u) +
+    Fangorn.fangornLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
     BloodQuest.bloodGondorLocationBonus(s, u) +
     stewardFearLocationQuestBonus(s, u);
@@ -724,6 +729,7 @@ export const enemyAttackPrevented = (
   u: Unit,
   player = activeSeat(s),
 ) =>
+  (["defense", "attack"].includes(s.phase) && Fangorn.hasHinder(u)) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
   has(u, "01069") ||
@@ -747,6 +753,7 @@ export const objectiveFree = (s: GameState, u: Unit) =>
   ((heirsObjectiveFree(s, u) ||
     stewardFearIsClue(u.code) ||
     OBJECTIVES.includes(u.code) ||
+    u.code === FANGORN.mugash ||
     u.code === RHOS.athelas ||
     u.code === KHAZAD.book ||
     u.code === KHAZAD.tools) &&

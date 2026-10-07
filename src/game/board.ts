@@ -1,3 +1,5 @@
+import { FANGORN } from "./fangorn-support";
+import * as Fangorn from "./fangorn";
 import { cannotReady } from "./core";
 import * as Catch from "./catch-orc";
 import * as Fords from "./fords-isen";
@@ -455,9 +457,10 @@ export function charactersCommitted(
 
 export function readyCharacter(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
-  if (cannotReady(u)) return;
+  if (cannotReady(u, s)) return;
   const wasExhausted = u.exhausted;
   u.exhausted = false;
+  if (wasExhausted) Fangorn.fangornCharacterReadied(s, u);
   if (wasExhausted) marshPlayerCharacterReadied(s, u);
   if (wasExhausted) stewardFearCharacterReadied(s, u);
 }
@@ -799,6 +802,7 @@ export function check(s: GameState) {
     MorgulQuest.morgulValeCheck(s);
     Fords.fordsCheck(s);
     Catch.catchCheck(s);
+    Fangorn.fangornCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -903,6 +907,7 @@ export function damage(
   )
     return false;
   u.damage += value;
+  Fangorn.fangornDamageTaken(s, u);
   finalRingDamageTaken(s, u);
   Druadan.druadanForestDamageDealt(s, u, value);
   heirsDamageDealt(s, u, value, context);
@@ -1323,20 +1328,26 @@ export function progress(
   if (["assault-on-osgiliath", "the-morgul-vale"].includes(s.scenarioId))
     return;
   s.progress += n;
+  Fangorn.fangornProgressPlaced(s);
   if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
     rescuePrisoner(s);
   advanceQuest(s);
 }
 
-/** Discard physical quest attachments and finish their responses before changing stages. */
+/** Leaving a quest discards its attachments; merely advancing does not defeat it. */
+export function discardQuestAttachments(s: GameState, code: string) {
+  const host = currentQuestUnit(s);
+  if (!host || host.code !== code) return [];
+  const attachments = [...host.attachments];
+  for (const a of attachments) discardAttachment(s, host, a);
+  if (s.questAttachments) delete s.questAttachments[code];
+  return attachments;
+}
+/** Discard physical quest attachments and finish defeat responses before changing stages. */
 export function questDefeated(s: GameState, code: string): boolean {
   if (s.pendingQuestDefeat === code) return true;
-  const attachments = [...(s.questAttachments?.[code] ?? [])];
+  const attachments = discardQuestAttachments(s, code);
   if (!attachments.length) return false;
-  const host = currentQuestUnit(s);
-  if (!host || host.code !== code) return false;
-  for (const a of attachments) discardAttachment(s, host, a);
-  delete s.questAttachments![code];
   const before = s.queue.length;
   collectorQuestDefeated(s, code, attachments);
   const responses = s.queue.splice(0, s.queue.length - before);
@@ -1354,6 +1365,7 @@ export function advanceQuest(s: GameState) {
   if (MorgulQuest.advanceMorgulVale(s)) return;
   if (Fords.advanceFordsIsen(s)) return;
   if (Catch.advanceCatchOrc(s)) return;
+  if (Fangorn.advanceFangorn(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1607,10 +1619,18 @@ export function nextRound(s: GameState) {
   startPhase(s, "resource");
   s.alliesPlayed = 0;
   s.mendorBoost = false;
-  globalEachSeat(s, (player) => {
+  delete s.refreshReadied;
+  globalEachSeat(s, () => {
     s.used = s.used.filter((key) => key.startsWith("game:"));
     s.peek = null;
     s.optionalEngagement = false;
+  });
+  if (Fangorn.fangornResourceStart(s)) return;
+  collectResources(s);
+}
+
+export function collectResources(s: GameState) {
+  globalEachSeat(s, (player) => {
     for (const h of s.heroes)
       if (!isSacked(h) && khazadResourcePhase(s))
         h.resources += 1 + resourcePhaseBonus(h);
@@ -1843,6 +1863,7 @@ export function resolveReveal(
   const when =
     (c.text ?? "").includes("When Revealed") &&
     code !== CARROCK.sacked &&
+    code !== FANGORN.malice &&
     !Fords.fordsCannotCancel(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
@@ -2034,6 +2055,7 @@ export function placeEncounter(
   if (MorgulQuest.morgulEncounter(s, code)) return;
   if (Fords.fordsEncounter(s, code)) return;
   if (Catch.catchEncounter(s, code)) return;
+  if (Fangorn.fangornEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2485,6 +2507,7 @@ export function shadow(s: GameState, code: string) {
   if (MorgulQuest.morgulShadow(s, code)) return;
   if (Fords.fordsShadow(s, code)) return;
   if (Catch.catchShadow(s, code)) return;
+  if (Fangorn.fangornShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

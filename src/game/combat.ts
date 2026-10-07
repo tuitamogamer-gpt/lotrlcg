@@ -1,3 +1,4 @@
+import { fangornAttackStarted } from "./fangorn";
 import { catchAttackStarted } from "./catch-orc";
 import * as Isengard from "./voice-isengard";
 import * as MorgulQuest from "./morgul-vale";
@@ -373,6 +374,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   Amon.amonDinAttackStarted(s, enemy);
   MorgulQuest.morgulAttackStarted(s, enemy);
   catchAttackStarted(s, enemy, player);
+  fangornAttackStarted(s);
 }
 
 export function applyCombatDamageConsequences(

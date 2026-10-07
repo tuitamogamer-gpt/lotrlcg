@@ -47,7 +47,8 @@ const immune = (u: Unit) =>
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
 const readyTargets = (s: GameState) =>
   allCharacters(s).filter(
-    (u) => hasTrait(u, "Ent") && u.exhausted && !immune(u) && !cannotReady(u),
+    (u) =>
+      hasTrait(u, "Ent") && u.exhausted && !immune(u) && !cannotReady(u, s),
   );
 const beltsTargets = (s: GameState) =>
   s.heroes.filter(

@@ -1,3 +1,4 @@
+import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
@@ -276,6 +277,7 @@ const objectiveClaimCode = (s: GameState, id: string) =>
     .flatMap((h) => h.attachments)
     .find((a) => a.id === id)?.code;
 const claimableObjectives: string[] = [
+  FANGORN.mugash,
   ...OBJECTIVES,
   RHOS.athelas,
   KHAZAD.book,
@@ -295,9 +297,10 @@ const exhaustedClaimObjectives: string[] = [
   ...STEWARD_CLUES,
 ];
 const objectiveClaimExhausts = (s: GameState, id: string) =>
+  s.staging.some((u) => u.id === id && u.code === FANGORN.mugash) ||
   exhaustedClaimObjectives.includes(objectiveClaimCode(s, id) ?? "");
 const objectiveClaimRestricted = (s: GameState, id: string) =>
-  ![RHOS.athelas, H.scroll, ...STEWARD_CLUES].includes(
+  ![RHOS.athelas, H.scroll, FANGORN.mugash, ...STEWARD_CLUES].includes(
     objectiveClaimCode(s, id) ?? "",
   );
 const objectiveClaimDescription = (s: GameState, id: string) => {

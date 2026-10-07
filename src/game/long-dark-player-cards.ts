@@ -63,7 +63,7 @@ const canReadyWarden = (s: GameState, source?: string) => {
   return (
     !!u &&
     u.exhausted &&
-    !cannotReady(u) &&
+    !cannotReady(u, s) &&
     lorePayers(s).reduce((n, h) => n + h.resources, 0) >= 2
   );
 };
@@ -419,7 +419,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
       if (
         target &&
         a &&
-        (s.threat > 0 || (target.exhausted && !cannotReady(target)))
+        (s.threat > 0 || (target.exhausted && !cannotReady(target, s)))
       )
         choose(s, "Ever My Heart Rises · Travelled", [
           {

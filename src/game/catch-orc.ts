@@ -24,6 +24,7 @@ import {
   exhaustCharacter,
   placeEncounter,
   questDefeated,
+  discardQuestAttachments,
   win,
 } from "./board";
 import {
@@ -436,11 +437,7 @@ export function catchEffect(s: GameState, e: Effect): boolean {
       break;
     case "catchAdvance":
       if (q && s.stage === 2 && mugashInPlay(s)) {
-        const pending = s.queue.length;
-        if (questDefeated(s, currentQuestCode(s)!)) {
-          s.queue.splice(s.queue.length - pending, 0, e);
-          break;
-        }
+        discardQuestAttachments(s, currentQuestCode(s)!);
         s.stage = 3;
         s.progress = 0;
         q.time = 3;

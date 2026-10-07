@@ -1,3 +1,4 @@
+import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
@@ -641,6 +642,24 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.fangorn) {
+    const captured = !!fangornCarrier(s),
+      target = s.stage === 1 ? 9 : s.stage === 2 ? 12 : 6;
+    return (
+      <div className="quest-goals">
+        <span className={captured ? "done" : ""}>
+          {captured ? <Check size={12} /> : <Shield size={12} />} Capture Mugash
+          on a hero
+        </span>
+        <span className={s.progress >= target ? "done" : ""}>
+          <Shield size={12} />
+          {s.stage === 3
+            ? "Place quest progress while holding Mugash, reaching at least 6"
+            : `Reach ${target} quest progress before time runs out`}
+        </span>
+      </div>
+    );
+  }
   if (s.catchOrc) {
     const captured = allHeroes(s).some((h) =>
       h.attachments.some((a) => card(a.code).name === "Mugash"),

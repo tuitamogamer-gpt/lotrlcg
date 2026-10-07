@@ -1,3 +1,4 @@
+import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import { questTime } from "./quest-time";
 import { cannotReady } from "./core";
@@ -411,6 +412,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const fangornProblem = Fangorn.fangornTravelProblem(s, u);
+  if (fangornProblem) return fangornProblem;
   const druadanProblem = Druadan.druadanForestTravelProblem(s, u);
   if (druadanProblem) return druadanProblem;
   const osgiliathProblem = Osgiliath.assaultOsgiliathTravelProblem(s, u);
@@ -1190,14 +1193,14 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   if (u.code === "01020")
     return allCharacters(s).filter(
       (a) =>
-        card(a.code).type_code === "ally" && a.exhausted && !cannotReady(a),
+        card(a.code).type_code === "ally" && a.exhausted && !cannotReady(a, s),
     );
   if (u.code === "01021")
     return s.heroes.filter(
       (a) =>
         !a.exhausted &&
         allHeroes(s).some(
-          (h) => h.id !== a.id && h.exhausted && !cannotReady(h),
+          (h) => h.id !== a.id && h.exhausted && !cannotReady(h, s),
         ),
     );
   if (u.code === "01032") return allCharacters(s);
@@ -1614,7 +1617,7 @@ export function availableAbilities(s: GameState, u: Unit) {
           !!heirsPlayerAbilityProblem(s, u, a.id) ||
           !!shadowFlamePlayerAbilityProblem(s, u, a.id) ||
           (a.code === "01026" && !canGainResources(s, u)) ||
-          (a.code === "01057" && (!u.exhausted || cannotReady(u))) ||
+          (a.code === "01057" && (!u.exhausted || cannotReady(u, s))) ||
           !!huntAbilityProblem(s, u, a.id) ||
           !!utilityAbilityProblem(s, u, a.id) ||
           !!marshPlayerAbilityProblem(s, u, a.id) ||
@@ -2033,6 +2036,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         objective && objectiveFree(s, objective) && hero,
         "Choose an unguarded objective and a free hero.",
       );
+      if (Fangorn.fangornClaim(s, objective, hero)) break;
       if (stewardFearClaim(s, objective, hero)) break;
       if (heirsClaim(s, objective, hero)) break;
       if (khazadClaim(s, objective, hero)) break;
@@ -2070,6 +2074,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Fangorn.fangornTravel(s, u) ??
         Catch.catchTravel(s, u) ??
         BloodQuest.bloodGondorTravel(s, u) ??
         Amon.amonDinTravelEffects(s, u) ??
@@ -2409,6 +2414,7 @@ export function publicState(s: GameState) {
         }
       : {}),
     ...(questTime(s) ? { timeCounters: questTime(s)!.time } : {}),
+    ...(s.fangorn ? { mugashCaptured: !!Fangorn.fangornCarrier(s) } : {}),
     ...(s.catchOrc
       ? {
           outOfPlayDecks: playerOrder(s).map((player) => ({

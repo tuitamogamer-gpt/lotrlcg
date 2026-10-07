@@ -1,3 +1,4 @@
+import { FANGORN } from "../src/game/fangorn-support.ts";
 import { applyAction } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -130,6 +131,7 @@ function run(
       .find(
         (h) =>
           (![
+            FANGORN.mugash,
             RHOS.athelas,
             KHAZAD.book,
             KHAZAD.tools,

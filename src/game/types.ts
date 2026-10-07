@@ -162,6 +162,7 @@ export type ScenarioId =
   | "the-morgul-vale"
   | "fords-of-isen"
   | "to-catch-an-orc"
+  | "into-fangorn"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -272,6 +273,8 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  fangorn?: import("./fangorn-support").FangornState;
+  refreshReadied?: Record<number, string[]>;
   catchOrc?: import("./catch-orc-support").CatchOrcState;
   fordsIsen?: import("./fords-isen-support").FordsIsenState;
   morgulVale?: import("./morgul-vale-support").MorgulValeState;

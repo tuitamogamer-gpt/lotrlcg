@@ -61,7 +61,8 @@ const sphereKey = (sphere: string) => `round:ring-sphere:${sphere}`;
 const immune = (u: Unit) =>
   !u.blanked &&
   /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
-const canReady = (u: Unit) => u.exhausted && !immune(u) && !cannotReady(u);
+const canReady = (s: GameState, u: Unit) =>
+  u.exhausted && !immune(u) && !cannotReady(u, s);
 const affectedEnemies = (s: GameState) =>
   [
     ...new Map(
@@ -150,7 +151,7 @@ export function ringMakerLocationExplored(s: GameState) {
   prepend(
     s,
     ...allHeroes(s)
-      .filter((h) => h.code === "08025" && !h.blanked && canReady(h))
+      .filter((h) => h.code === "08025" && !h.blanked && canReady(s, h))
       .map((h) =>
         fx("ringIdraenOffer", { target: h.id, player: ownerOf(s, h) }),
       ),
@@ -289,7 +290,7 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
     case "ringIdraenOffer": {
       const h = get(s, e.target);
-      if (h && !h.blanked && canReady(h))
+      if (h && !h.blanked && canReady(s, h))
         choose(s, "Idraen · Location explored", [
           {
             id: "ready",

@@ -1,7 +1,6 @@
 import { isengardShadowDealt } from "./voice-isengard";
 import { bloodGondorArchery } from "./blood-gondor";
 import { morgulShadowDealt } from "./morgul-vale";
-import { MORGUL_VALE } from "./morgul-vale-support";
 import { druadanForestArcheryTargets } from "./druadan-forest";
 import { assaultOsgiliathArcheryBonus } from "./assault-osgiliath";
 // Heirs of Númenor: physical objectives, branching quests and explicit encounter decisions.
@@ -372,7 +371,10 @@ export const heirsEngagementCost = (
     ? 0
     : null;
 export const heirsCannotHaveAttachments = (u: Unit) =>
-  [H.mumak, MORGUL_VALE.nazgul].includes(u.code) && !u.blanked;
+  !u.blanked &&
+  /cannot have attachments/i.test(
+    (card(u.code).text ?? "").replace(/<[^>]*>/g, ""),
+  );
 export const heirsLocationProgressBlocked = (s: GameState, u: Unit) =>
   u.code === H.camp &&
   !u.blanked &&
