@@ -58,7 +58,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: node --import tsx --test --test-name-pattern="^hot-seat ${{ matrix.scenario }} (normal|campaign): complete seeded games with save checks$" tests/hotseat.test.ts
+      - run: >-
+          node --import tsx --test
+          --test-name-pattern="^hot-seat ${{ matrix.scenario }} (normal|campaign): complete seeded games with save checks$"
+          tests/hotseat.test.ts
 
   browser:
     name: Browser checks (${{ matrix.group }})
