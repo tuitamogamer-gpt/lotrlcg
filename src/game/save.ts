@@ -2,7 +2,19 @@ import {
   validateDeadmensDike,
   dikeLocationTimeLimit,
 } from "./deadmens-dike-support";
-import { validateChetwood, chetwoodSideTime } from "./chetwood-support";
+import { validateWastes } from "./wastes-eriador-support";
+import { validateMountGram, gramSideTime } from "./mount-gram-support";
+import { validateEttenmoors } from "./ettenmoors-support";
+import { validateRhudaur } from "./rhudaur-support";
+import { validateCarnDum } from "./carn-dum-support";
+import { validateDreadRealm, DREAD } from "./dread-realm-support";
+import { isHero, isAlly } from "./card-types";
+import { ANGMAR } from "./angmar-player-support";
+import {
+  validateChetwood,
+  chetwoodSideTime,
+  CHETWOOD,
+} from "./chetwood-support";
 import { validateWeather, weatherSideTime } from "./weather-hills-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { validateAntlered, printedLocationTime } from "./antlered-support";
@@ -39,6 +51,7 @@ import {
   seatIndices,
   seatView,
   syncSeat,
+  PLAYER_FIELDS,
 } from "./table";
 
 import { validFlow } from "./presentation";
@@ -81,7 +94,10 @@ export function validateSave(
       typeof n === "number" && Number.isInteger(n) && Number.isFinite(n);
     const codes = (v: unknown): v is string[] =>
       Array.isArray(v) &&
-      v.every((c) => typeof c === "string" && SCRIPTED.has(c));
+      v.every(
+        (c) =>
+          typeof c === "string" && SCRIPTED.has(c) && c !== DREAD.reanimated,
+      );
     const customList = (v: unknown) => {
       if (!v || typeof v !== "object" || Array.isArray(v)) return false;
       try {
@@ -218,6 +234,8 @@ export function validateSave(
         c.dikeCharacterKilled,
         c.chetwoodReturnOnAllyKill,
         c.chetwoodReturnAfterAttack,
+        c.wastesCharacterKilled,
+        c.gramCaptureDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
         undefined ||
@@ -240,7 +258,34 @@ export function validateSave(
         c.fordsTimeOnKill,
         c.extraAttacks,
         c.timeOnKill,
+        c.wastesNextPlayerAttacks,
+        c.wastesExtraAttacks,
+        c.wastesRemoveQuestOnKill,
+        c.dreadReanimateOnKill,
+        c.dreadRevealOnKill,
+        c.rhudaurProgressPerDamage,
+        c.rhudaurDestroyedWill,
+        c.rhudaurCovenantShadows,
+        c.carnFlipAfter,
+        c.carnExtraAttacks,
+        c.carnVileSearch,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
+      (c.dreadKilled === undefined ||
+        (Array.isArray(c.dreadKilled) &&
+          c.dreadKilled.every(
+            (u) =>
+              !!u &&
+              typeof u.id === "string" &&
+              SCRIPTED.has(u.code) &&
+              [u.player, u.owner].every(
+                (p) => integer(p) && p >= 0 && p < seatCount,
+              ),
+          ))) &&
+      (c.carnKilledAllies === undefined ||
+        (Array.isArray(c.carnKilledAllies) &&
+          c.carnKilledAllies.every(
+            (code) => SCRIPTED.has(code) && card(code).type_code === "ally",
+          ))) &&
       (c.amonDinShadowVillagers === undefined ||
         (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
@@ -275,6 +320,7 @@ export function validateSave(
             Math.max(
               chetwoodSideTime(u.code),
               weatherSideTime(u.code),
+              gramSideTime(u.code),
               dikeLocationTimeLimit(s, u.code, seatCount),
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
@@ -300,7 +346,7 @@ export function validateSave(
       ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
-        (integer(u.owner) && u.owner >= 0 && u.owner <= 3)) &&
+        (integer(u.owner) && u.owner >= 0 && u.owner < seatCount)) &&
       (u.consideredEnemyAttackedBy === undefined ||
         (Array.isArray(u.consideredEnemyAttackedBy) &&
           new Set(u.consideredEnemyAttackedBy).size ===
@@ -370,7 +416,7 @@ export function validateSave(
               [F.nameless, F.elder].includes(u.code as typeof F.nameless))) &&
           (a.blanked === undefined || typeof a.blanked === "boolean") &&
           (a.owner === undefined ||
-            (integer(a.owner) && a.owner >= 0 && a.owner <= 3)),
+            (integer(a.owner) && a.owner >= 0 && a.owner < seatCount)),
       ) &&
       (u.roundThreat === undefined ||
         (integer(u.roundThreat) && u.roundThreat >= 0)) &&
@@ -390,7 +436,90 @@ export function validateSave(
         (typeof u.facedownCardId === "string" && !!u.facedownCard)) &&
       (u.facedownCard === undefined ||
         (SCRIPTED.has(u.facedownCard) &&
-          card(u.facedownCard).sphere_code !== "encounter"));
+          card(u.facedownCard).sphere_code !== "encounter")) &&
+      (u.code !== DREAD.reanimated ||
+        (s.scenarioId === "the-dread-realm" &&
+          typeof u.facedownCard === "string" &&
+          u.facedownCardId === u.id &&
+          integer(u.owner) &&
+          u.owner! >= 0 &&
+          u.owner! < seatCount));
+    if (
+      s.threatAttachments !== undefined &&
+      (!Array.isArray(s.threatAttachments) ||
+        s.threatAttachments.length > 1 ||
+        !s.threatAttachments.every(
+          (a) =>
+            validAttachment(a) &&
+            a.code === ANGMAR.favor &&
+            !a.facedown &&
+            (a.controller === undefined ||
+              inheritedSeatCount !== undefined ||
+              a.controller === (s.table?.active ?? 0)),
+        ))
+    )
+      return false;
+    if (
+      s.pendingPlayerPlays !== undefined &&
+      (!Array.isArray(s.pendingPlayerPlays) ||
+        !s.pendingPlayerPlays.every(
+          (entry) =>
+            entry &&
+            validUnit(entry.unit) &&
+            card(entry.unit.code).sphere_code !== "encounter" &&
+            ["ally", "attachment", "event", "player-side-quest"].includes(
+              card(entry.unit.code).type_code,
+            ) &&
+            integer(entry.player) &&
+            entry.player >= 0 &&
+            entry.player < seatCount &&
+            [entry.effectiveCost, entry.amount].every(
+              (n) => typeof n === "number" && Number.isFinite(n) && n >= 0,
+            ) &&
+            [entry.played, entry.fromHand, entry.bottom].every(
+              (b) => typeof b === "boolean",
+            ) &&
+            (entry.target === undefined || typeof entry.target === "string"),
+        ))
+    )
+      return false;
+    if (
+      s.encounterHiddenHands !== undefined &&
+      (!s.encounterHiddenHands ||
+        typeof s.encounterHiddenHands !== "object" ||
+        Array.isArray(s.encounterHiddenHands) ||
+        Object.entries(s.encounterHiddenHands).some(
+          ([p, list]) =>
+            !/^c\d+$/.test(p) ||
+            !Array.isArray(list) ||
+            !list.every(
+              (u) => validUnit(u) && card(u.code).sphere_code !== "encounter",
+            ),
+        ))
+    )
+      return false;
+    if (inheritedSeatCount === undefined && s.encounterHiddenHands) {
+      const rescues = [
+        ...(s.queue ?? []),
+        ...(s.choice?.options.flatMap((option) => option.effects) ?? []),
+      ];
+      for (const [id, list] of Object.entries(s.encounterHiddenHands))
+        if (
+          list.length &&
+          !globalUnits(s).some(
+            (u) => u.id === id && u.code === CHETWOOD.wilderness,
+          ) &&
+          !rescues.some(
+            (e) =>
+              e.kind === "chetRescueCards" &&
+              e.target === id &&
+              e.code === CHETWOOD.wilderness,
+          )
+        )
+          return false;
+    }
+    if (s.removedEncounter !== undefined && !codes(s.removedEncounter))
+      return false;
     if (
       s.resolvingEvents !== undefined &&
       (!Array.isArray(s.resolvingEvents) ||
@@ -461,6 +590,16 @@ export function validateSave(
         !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
         !validateWeather(s, validUnit as (u: unknown) => boolean) ||
         !validateDeadmensDike(s, validUnit as (u: unknown) => boolean) ||
+        !validateWastes(s, validUnit as (u: unknown) => boolean) ||
+        !validateMountGram(s, validUnit as (u: unknown) => boolean, (u) =>
+          ["hero", "ally", "objective-ally", "attachment"].includes(
+            card(u.code).type_code,
+          ),
+        ) ||
+        !validateEttenmoors(s, validUnit as (u: unknown) => boolean) ||
+        !validateRhudaur(s, validUnit as (u: unknown) => boolean) ||
+        !validateCarnDum(s, validUnit as (u: unknown) => boolean) ||
+        !validateDreadRealm(s, validUnit as (u: unknown) => boolean) ||
         !validateChetwood(s, validUnit as (u: unknown) => boolean, (code) =>
           ["ally", "attachment", "event", "player-side-quest"].includes(
             card(code).type_code,
@@ -641,10 +780,8 @@ export function validateSave(
     )
       return false;
     if (
-      !s.heroes.every((u) => card(u.code).type_code === "hero") ||
-      !s.allies.every((u) =>
-        ["ally", "objective-ally"].includes(card(u.code).type_code),
-      ) ||
+      !s.heroes.every(isHero) ||
+      !s.allies.every(isAlly) ||
       !s.engaged.every((u) => card(u.code).type_code === "enemy")
     )
       return false;
@@ -936,14 +1073,16 @@ export function validateSave(
       )
         return false;
       for (const p of t.seats) {
+        const player = { ...s, ...p };
+        for (const key of PLAYER_FIELDS)
+          if (p[key] === undefined) delete player[key];
         if (
           typeof p.eliminated !== "boolean" ||
           p.startingHeroes.length < 1 ||
           p.startingHeroes.length > 3 ||
           !validateSave(
             {
-              ...s,
-              ...p,
+              ...player,
               used: p.used.filter(
                 (key) => !key.startsWith("game:foundations-hero-deck:"),
               ),
@@ -955,6 +1094,7 @@ export function validateSave(
               longDark: undefined,
               shadowFlame: undefined,
               resolvingEvents: undefined,
+              pendingPlayerPlays: undefined,
               watcherWater: undefined,
               questAttachments: undefined,
               pendingQuestDefeat: undefined,
@@ -1010,6 +1150,7 @@ export function validateSave(
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
+      ...(s.pendingPlayerPlays?.map((entry) => entry.unit) ?? []),
       ...(s.dunlandTrap?.setAside ?? []),
       ...(s.tharbad?.setAside ?? []),
       ...(s.ninEilph?.setAside ?? []),
@@ -1017,6 +1158,15 @@ export function validateSave(
       ...(s.antlered?.setAside ?? []),
       ...(s.weatherHills?.setAside ?? []),
       ...(s.deadmensDike?.setAside ?? []),
+      ...(s.wastesEriador?.setAside ?? []),
+      ...(s.mountGram?.setAside ?? []),
+      ...(s.mountGram?.removedQuests ?? []),
+      ...(s.mountGram?.areas.map((a) => a.quest) ?? []),
+      ...Object.values(s.mountGram?.capturedDecks ?? {}).flat(),
+      ...Object.values(s.mountGram?.captured ?? {}).flat(),
+      ...(s.rhudaur?.setAside ?? []),
+      ...(s.dreadRealm?.setAside ?? []),
+      ...(s.dreadRealm?.pendingWraiths ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),
       ...(s.threeTrials
@@ -1034,13 +1184,22 @@ export function validateSave(
       .flatMap((u) => [
         u.id,
         ...u.attachments.map((a) => a.id),
-        ...(u.facedownCardId ? [u.facedownCardId] : []),
+        ...(u.facedownCardId && u.facedownCardId !== u.id
+          ? [u.facedownCardId]
+          : []),
       ])
       .concat(
         Object.values(s.questAttachments ?? {})
           .flat()
           .map((a) => a.id),
         hiddenIds as string[],
+        Object.values(s.encounterHiddenHands ?? {})
+          .flat()
+          .map((u) => u.id),
+        seatIndices(s)
+          .flatMap((i) => seatView(s, i).threatAttachments ?? [])
+          .map((a) => a.id),
+        s.dreadRealm?.discardBindings.map((b) => b.id) ?? [],
       );
     return new Set(ids).size === ids.length;
   } catch {

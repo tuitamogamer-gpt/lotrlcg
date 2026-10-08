@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+    "octgnid": "a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+    "name": "Into the Ettenmoors",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set aside each of the 3 Across the Ettenmoors side quests and each of the 4 locations with the safe keyword. Reveal 1 of those side quests at random and 1 of those safe locations at random, adding them to the staging area with the safe location guarded by the side quest. Search the encounter deck for 1 copy of Savage Trollspawn per player and add them to the staging area. Shuffle the remaining side quests and safe locations back into the encounter deck. The first player gains control of Amarthiul.",
+    "is_unique": false,
+    "pack_code": "AtE",
+    "pack_name": "Across the Ettenmoors",
+    "position": 64,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Across the Ettenmoors",
+    "side": "A",
+    "back_name": "Into the Ettenmoors",
+    "back_text": "Forced: At the beginning of the quest phase, if there are no encounter side quests in play, discard cards from the top of the encounter deck until a side quest is discarded, and add it to the staging area.  Forced: When a side quest is defeated, place progress tokens on Into the Ettenmoors equal to that side quest's quest points.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg",
+    "packs": [
+      {
+        "pack_code": "AtE",
+        "pack_name": "Across the Ettenmoors",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+    "octgnid": "3e905158-737c-45c4-a32d-e88061e94564",
+    "name": "A Miserable Journey",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a side quest is discarded. Reveal that side quest and add it to the staging area, if able.",
+    "is_unique": false,
+    "pack_code": "AtE",
+    "pack_name": "Across the Ettenmoors",
+    "position": 65,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Across the Ettenmoors",
+    "side": "A",
+    "back_name": "A Miserable Journey",
+    "back_text": "Reveal 1 additional encounter card during the quest phase unless there is an active location with the safe keyword.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/3e905158-737c-45c4-a32d-e88061e94564.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/3e905158-737c-45c4-a32d-e88061e94564.jpg",
+    "packs": [
+      {
+        "pack_code": "AtE",
+        "pack_name": "Across the Ettenmoors",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "3e905158-737c-45c4-a32d-e88061e94564",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e905158-737c-45c4-a32d-e88061e94564.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+    "octgnid": "d9da588c-c96d-4971-813a-40e439e46764",
+    "name": "Journey's End",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a side quest is discarded. Reveal that side quest and add it to the staging area, if able.",
+    "is_unique": false,
+    "pack_code": "AtE",
+    "pack_name": "Across the Ettenmoors",
+    "position": 66,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Across the Ettenmoors",
+    "side": "A",
+    "back_name": "Journey's End",
+    "back_text": "Each damaged character gets -2 [willpower] unless there is an active location with the safe keyword.  If the players defeat this stage, they have escaped the Ettenmoors with their lives, and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 17,
+    "back_imagesrc": "/cards/d9da588c-c96d-4971-813a-40e439e46764.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/d9da588c-c96d-4971-813a-40e439e46764.jpg",
+    "packs": [
+      {
+        "pack_code": "AtE",
+        "pack_name": "Across the Ettenmoors",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "d9da588c-c96d-4971-813a-40e439e46764",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9da588c-c96d-4971-813a-40e439e46764.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

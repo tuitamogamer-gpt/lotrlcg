@@ -1,0 +1,687 @@
+[
+  {
+    "code": "octgn:0e205159-5e62-4d24-b0df-635853aea9c0",
+    "octgnid": "0e205159-5e62-4d24-b0df-635853aea9c0",
+    "name": "Forbidden Descent",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "While Forbidden Descent is in the staging area, the first 2 progress that would be placed on a quest each round must be placed on Forbidden Descent, instead.  Forced: If Forbidden Descent leaves play from the staging area, raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 101,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 6,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/0e205159-5e62-4d24-b0df-635853aea9c0.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 101,
+        "quantity": 2,
+        "octgnid": "0e205159-5e62-4d24-b0df-635853aea9c0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e205159-5e62-4d24-b0df-635853aea9c0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
+    "octgnid": "125e7884-7f75-42cd-80ba-065cf88eef9a",
+    "name": "The Great Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "Forced: When The Great Hall is explored, each player discards the top 5 cards of the encounter deck and chooses an Undead enemy he discarded in this way to add to the staging area.",
+    "is_unique": true,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 97,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 8,
+    "victory": 2,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "8",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/125e7884-7f75-42cd-80ba-065cf88eef9a.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 97,
+        "quantity": 1,
+        "octgnid": "125e7884-7f75-42cd-80ba-065cf88eef9a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/125e7884-7f75-42cd-80ba-065cf88eef9a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
+    "octgnid": "152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
+    "name": "Curse of the Years",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: Deal 1 damage to each exhausted character. Each player with a threat of 35 or higher must also discard each exhausted attachment he controls.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 106,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the defending player does not control at least 1 Clue objective).",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 106,
+        "quantity": 3,
+        "octgnid": "152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
+    "octgnid": "5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
+    "name": "Wight of Rhudaur",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wight.",
+    "text": "While the current quest has 1 or more progress on it, Wight of Rhudaur gains surge.  While the current quest has 0 progress on it, Wight of Rhudaur gains doomed 2.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 99,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 3,
+    "health": 5,
+    "engagement": 23,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "3",
+      "health": "5",
+      "engagement": "23"
+    },
+    "imagesrc": "/cards/5c5ce14a-332a-40fe-8f55-cfa2f53e8592.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 99,
+        "quantity": 2,
+        "octgnid": "5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5c5ce14a-332a-40fe-8f55-cfa2f53e8592.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
+    "octgnid": "5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
+    "name": "Amarthiúl",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dunedain. Ranger. Warrior.",
+    "text": "Response: After an enemy engages a player, give control of Amarthiul to that player.  If Amarthiul leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 96,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 3,
+    "defense": 3,
+    "health": 3,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "3",
+      "defense": "3",
+      "health": "3"
+    },
+    "imagesrc": "/cards/5df1bf1c-8dc0-4534-9380-6af6812dc6f8.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 96,
+        "quantity": 1,
+        "octgnid": "5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5df1bf1c-8dc0-4534-9380-6af6812dc6f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
+    "octgnid": "6709bafa-87b5-483e-9895-0f2edea7e47a",
+    "name": "Quiet the Spirits",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Quiet the Spirits is the current quest, each Undead enemy that enters play immediately engages the player with the highest threat. Enemies that engage a player from this effect contribute their [threat] to the total [threat] in the staging area until the end of the phase.  Forced: After an enemy is destroyed, place 2 progress on Quiet the Spirits.  When this quest is defeated, flip it over.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 109,
+    "quantity": 1,
+    "quest": 16,
+    "encounter_set": "The Treachery of Rhudaur",
+    "back_name": "Daechanar's Brand",
+    "back_text": "Action: Exhaust Amarthiul or a hero to claim Daechanar's Brand. Then, attach Daechanar's Brand to that character.  Attached character gets +1 [attack] while attacking Undead enemies.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/6709bafa-87b5-483e-9895-0f2edea7e47a.B.jpg",
+    "printed_stats": {
+      "quest": "16"
+    },
+    "imagesrc": "/cards/6709bafa-87b5-483e-9895-0f2edea7e47a.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 109,
+        "quantity": 1,
+        "octgnid": "6709bafa-87b5-483e-9895-0f2edea7e47a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6709bafa-87b5-483e-9895-0f2edea7e47a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
+    "octgnid": "768bab66-1707-41a4-adf3-3baad2e7daad",
+    "name": "Decipher Ancient Texts",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Decipher Ancient Texts is the current quest, allies get -2 [willpower].  Action: Pay 1 resource to place 1 progress on Decipher Ancient Texts. (Any player may trigger this action. Limit 3 times per round.)  When this quest is defeated, flip it over.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 113,
+    "quantity": 1,
+    "quest": 14,
+    "encounter_set": "The Treachery of Rhudaur",
+    "back_name": "Orders from Angmar",
+    "back_text": "Action: Exhaust Amarthiul or a hero to claim Orders from Angmar. Then, attach Orders from Angmar to that character.  Attached character gets +1 [defense] while defending against Undead enemies.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/768bab66-1707-41a4-adf3-3baad2e7daad.B.jpg",
+    "printed_stats": {
+      "quest": "14"
+    },
+    "imagesrc": "/cards/768bab66-1707-41a4-adf3-3baad2e7daad.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 113,
+        "quantity": 1,
+        "octgnid": "768bab66-1707-41a4-adf3-3baad2e7daad",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/768bab66-1707-41a4-adf3-3baad2e7daad.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
+    "octgnid": "7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
+    "name": "Dark Covenant",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: Discard the top 3 cards of the encounter deck. The first player must either remove X progress from among the quests in play, or assign X damage among characters he controls. X is the total [threat] of the discarded cards.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 107,
+    "quantity": 3,
+    "shadow": "Shadow: If this attack destroys a character, raise your threat by the destroyed character's [willpower].",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/7aa7f695-f5b5-4fb4-9296-53ec517d6a30.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 107,
+        "quantity": 3,
+        "octgnid": "7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7aa7f695-f5b5-4fb4-9296-53ec517d6a30.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
+    "octgnid": "7aa9b24a-7b10-4457-be9e-5bfb78bff865",
+    "name": "Centuries of Sorrow",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: The first player must choose a new quest to be the current quest, if able.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 105,
+    "quantity": 2,
+    "shadow": "Shadow: If the defending player does not control at least 1 Clue objective, this attack is considered undefended.",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/7aa9b24a-7b10-4457-be9e-5bfb78bff865.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 105,
+        "quantity": 2,
+        "octgnid": "7aa9b24a-7b10-4457-be9e-5bfb78bff865",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7aa9b24a-7b10-4457-be9e-5bfb78bff865.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
+    "octgnid": "7f458303-66c1-45db-bf3f-20669fea6ff4",
+    "name": "Haunting Fog",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: Each player must exhaust a character he controls. Attach Haunting Fog to the current quest. (Counts as a Condition attachment with the text: \"Attached quest gets +6 quest points.\")",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 108,
+    "quantity": 3,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/7f458303-66c1-45db-bf3f-20669fea6ff4.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 108,
+        "quantity": 3,
+        "octgnid": "7f458303-66c1-45db-bf3f-20669fea6ff4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f458303-66c1-45db-bf3f-20669fea6ff4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "octgnid": "a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+    "name": "Eerie Halls",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "Action: Raise your threat by 1 to lower the [threat] of Eerie Halls by 1 until the end of the phase. Any player may trigger this action.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 102,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 4,
+    "shadow": "Shadow: If the defending player does not control at least 1 Clue objective, the attacking enemy makes an additional attack after this one.",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/a1a8bd6e-4cd1-4641-9cb1-f693f053f62e.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 102,
+        "quantity": 2,
+        "octgnid": "a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a1a8bd6e-4cd1-4641-9cb1-f693f053f62e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
+    "octgnid": "bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
+    "name": "Sift Through the Debris",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Sift Through the Debris is the current quest, each location in the staging area gets +1 [threat].  Forced: After a location is explored, place 2 progress on Sift through the Debris.  When this quest is defeated, flip it over.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 111,
+    "quantity": 1,
+    "quest": 18,
+    "encounter_set": "The Treachery of Rhudaur",
+    "back_name": "Heirloom of Iârchon",
+    "back_text": "Action: Exhaust Amarthiul or a hero to claim Heirloom of Iarchon. Then, attach Heirloom of Iarchon to that character.  Attached character gets +1 [willpower].",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/bf925a7c-b427-4fb6-ba6b-dbc86304a69f.B.jpg",
+    "printed_stats": {
+      "quest": "18"
+    },
+    "imagesrc": "/cards/bf925a7c-b427-4fb6-ba6b-dbc86304a69f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 111,
+        "quantity": 1,
+        "octgnid": "bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bf925a7c-b427-4fb6-ba6b-dbc86304a69f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
+    "octgnid": "c35f2635-fa68-44be-9ce9-80446831f0e0",
+    "name": "Ghostly Ruins",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "Any time the encounter deck runs out of cards, return the topmost Undead enemy in the encounter discard pile to the staging area before resetting the encounter deck.  Travel: Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 103,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c35f2635-fa68-44be-9ce9-80446831f0e0.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 103,
+        "quantity": 2,
+        "octgnid": "c35f2635-fa68-44be-9ce9-80446831f0e0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c35f2635-fa68-44be-9ce9-80446831f0e0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
+    "octgnid": "d658967b-662e-4dfb-afb6-4b3444074b79",
+    "name": "Thaurdir",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Indestructible. Cannot have attachments.\nForced: After a treachery card with the Sorcery trait is revealed from the encounter deck, Thaurdir heals 3 damage and makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 98,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 1,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "1"
+    },
+    "imagesrc": "/cards/d658967b-662e-4dfb-afb6-4b3444074b79.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 98,
+        "quantity": 1,
+        "octgnid": "d658967b-662e-4dfb-afb6-4b3444074b79",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d658967b-662e-4dfb-afb6-4b3444074b79.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e1edac2f-1d9c-44e6-af0a-10c3101f2709",
+    "octgnid": "e1edac2f-1d9c-44e6-af0a-10c3101f2709",
+    "name": "Traitorous Wight",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wight.",
+    "text": "Forced: When Traitorous Wight engages a player, remove 2 progress from each quest card in play.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 100,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 4,
+    "engagement": 32,
+    "shadow": "Shadow: For each point of damage dealt by this attack, remove 1 progress from each quest in play.",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "4",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/e1edac2f-1d9c-44e6-af0a-10c3101f2709.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 100,
+        "quantity": 3,
+        "octgnid": "e1edac2f-1d9c-44e6-af0a-10c3101f2709",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1edac2f-1d9c-44e6-af0a-10c3101f2709.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
+    "octgnid": "fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
+    "name": "Decrepit Remains",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "While Decrepit Remains is in the staging area, each location and quest in the staging area gets +2 quest points.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 104,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 3,
+    "shadow": "Shadow: For each point of damage dealt by this attack, remove 1 progress from each quest in play.",
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/fd3e323b-0fea-49ce-90d2-cbfea27be8cd.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 104,
+        "quantity": 2,
+        "octgnid": "fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd3e323b-0fea-49ce-90d2-cbfea27be8cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
+    "octgnid": "2e5e6e97-003b-4500-8372-495f5ee86051",
+    "name": "Heirloom of Iârchon",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust Amarthiul or a hero to claim Heirloom of Iarchon. Then, attach Heirloom of Iarchon to that character.  Attached character gets +1 [willpower].",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 112,
+    "quantity": 0,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/2e5e6e97-003b-4500-8372-495f5ee86051.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 112,
+        "quantity": 0,
+        "octgnid": "2e5e6e97-003b-4500-8372-495f5ee86051",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e5e6e97-003b-4500-8372-495f5ee86051.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87c33692-599d-4914-a513-4353906fc6d4",
+    "octgnid": "87c33692-599d-4914-a513-4353906fc6d4",
+    "name": "Daechanar's Brand",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust Amarthiul or a hero to claim Daechanar's Brand. Then, attach Daechanar's Brand to that character.  Attached character gets +1 [attack] while attacking Undead enemies.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 110,
+    "quantity": 0,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/87c33692-599d-4914-a513-4353906fc6d4.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 110,
+        "quantity": 0,
+        "octgnid": "87c33692-599d-4914-a513-4353906fc6d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87c33692-599d-4914-a513-4353906fc6d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
+    "octgnid": "d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
+    "name": "Orders from Angmar",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Clue.",
+    "text": "Action: Exhaust Amarthiul or a hero to claim Orders from Angmar. Then, attach Orders from Angmar to that character.  Attached character gets +1 [defense] while defending against Undead enemies.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 114,
+    "quantity": 0,
+    "encounter_set": "The Treachery of Rhudaur",
+    "printed_stats": {},
+    "imagesrc": "/cards/d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 114,
+        "quantity": 0,
+        "octgnid": "d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

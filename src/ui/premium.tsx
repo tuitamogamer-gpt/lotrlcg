@@ -3,6 +3,31 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "wastes-of-eriador": {
+    name: "The Wastes of Eriador",
+    detail: "Wargs beneath the shifting skies of Arnor",
+  },
+  "escape-from-mount-gram": {
+    name: "Mount Gram",
+    detail: "Rescue the prisoners from Gornákh’s dungeons",
+  },
+  "across-the-ettenmoors": {
+    name: "The Ettenmoors",
+    detail: "Seek shelter among the wild northern moors",
+  },
+  "the-treachery-of-rhudaur": {
+    name: "Rhudaur",
+    detail: "Search the haunted halls for hidden clues",
+  },
+  "the-battle-of-carn-dum": {
+    name: "Carn Dûm",
+    detail: "Thaurdir’s armies before the fortress walls",
+  },
+  "the-dread-realm": {
+    name: "The Dread Realm",
+    detail: "Confront Daechanar beneath Angmar",
+  },
+
   "deadmens-dike": {
     name: "Deadmen's Dike",
     detail: "Undead shadows over the ruins of Fornost",
@@ -192,6 +217,12 @@ export const PLAYMAT_CHOICES = [
   "intruders-in-chetwood",
   "the-weather-hills",
   "deadmens-dike",
+  "wastes-of-eriador",
+  "escape-from-mount-gram",
+  "across-the-ettenmoors",
+  "the-treachery-of-rhudaur",
+  "the-battle-of-carn-dum",
+  "the-dread-realm",
   "shadow-and-flame",
 ] as const;
 

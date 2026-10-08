@@ -51,7 +51,19 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          [mirkwood, anduin, dol-guldur, the-weather-hills, deadmens-dike]
+          [
+            mirkwood,
+            anduin,
+            dol-guldur,
+            the-weather-hills,
+            deadmens-dike,
+            wastes-of-eriador,
+            escape-from-mount-gram,
+            across-the-ettenmoors,
+            the-treachery-of-rhudaur,
+            the-battle-of-carn-dum,
+            the-dread-realm,
+          ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -78,6 +90,8 @@ jobs:
             suite: test:browser-players
           - group: ring-maker
             suite: test:browser-ring-maker
+          - group: angmar-awakened
+            suite: test:browser-angmar
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

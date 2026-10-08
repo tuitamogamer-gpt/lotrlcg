@@ -18,7 +18,6 @@ import {
   fx,
   get,
   log,
-  make,
   opts,
   prepend,
   requireRule,
@@ -36,6 +35,7 @@ import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { consumeLeaveCard, leaveCardAvailable } from "./leave-consumption";
+import { takePlayerDiscard } from "./board";
 import {
   firstPlayer,
   activeSeat,
@@ -443,8 +443,7 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
       returnAlly(s, landroval);
       const code = e.code;
       forOwner(s, owner, () => {
-        s.discard.splice(s.discard.lastIndexOf(code), 1);
-        const recovered = make(s, code);
+        const recovered = takePlayerDiscard(s, s.discard.lastIndexOf(code));
         recovered.owner = owner;
         recovered.damage = 1;
         s.heroes.push(recovered);
@@ -505,8 +504,7 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
       consumeLeaveCard(s, e.target!);
       const code = e.code;
       forOwner(s, owner, () => {
-        s.discard.splice(s.discard.lastIndexOf(code), 1);
-        const fresh = make(s, code);
+        const fresh = takePlayerDiscard(s, s.discard.lastIndexOf(code));
         fresh.owner = owner;
         s.hand.push(fresh);
       });

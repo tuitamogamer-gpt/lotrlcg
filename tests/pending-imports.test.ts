@@ -80,9 +80,15 @@ test("Chetwood source snapshots now resolve to scripted normal/easy rules", () =
     assert.equal(automatedScenarioId(r), "intruders-in-chetwood");
 });
 
-for (const [slug, count, faces, encounterDeck] of [
-  ["the-weather-hills", 23, 26, 31],
-  ["deadmen-s-dike", 21, 23, 41],
+for (const [slug, count, faces, encounterDeck, engineId] of [
+  ["the-weather-hills", 23, 26, 31, "the-weather-hills"],
+  ["deadmen-s-dike", 21, 23, 41, "deadmens-dike"],
+  ["the-wastes-of-eriador", 25, 29, 44, "wastes-of-eriador"],
+  ["escape-from-mount-gram", 20, 23, 20, "escape-from-mount-gram"],
+  ["across-the-ettenmoors", 30, 34, 36, "across-the-ettenmoors"],
+  ["the-treachery-of-rhudaur", 27, 33, 41, "the-treachery-of-rhudaur"],
+  ["the-battle-of-carn-dum", 23, 27, 42, "the-battle-of-carn-dum"],
+  ["the-dread-realm", 24, 28, 46, "the-dread-realm"],
 ] as const) {
   test(`${slug}: original definitions, every recipe zone and local faces remain intact as scripted support expands`, () => {
     const bundle = JSON.parse(
@@ -100,17 +106,18 @@ for (const [slug, count, faces, encounterDeck] of [
       if (c.back_imagesrc) restored.back_imagesrc = source.back_imagesrc;
       assert.deepEqual(restored, source);
       assert.equal(isAutomatedCard(c), SCRIPTED.has(c.engine_code ?? c.code));
-      assert.ok(isAutomatedCard(c));
+      assert.equal(
+        isAutomatedCard(c),
+        c.type_code !== "rules",
+        `${c.name}: rulesheet references remain outside the playable card pool`,
+      );
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(
         recipe,
         recipes.find((r: { id: string }) => r.id === recipe.id),
       );
-      assert.equal(
-        automatedScenarioId(recipe),
-        slug === "the-weather-hills" ? "the-weather-hills" : "deadmens-dike",
-      );
+      assert.equal(automatedScenarioId(recipe), engineId);
       if (recipe.mode === "standard")
         assert.equal(
           Object.values(recipe.sections.sharedEncounterDeck).reduce(

@@ -1,0 +1,123 @@
+[
+  {
+    "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+    "octgnid": "e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+    "name": "The Catacombs of Carn Dûm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Daechanar and Altar of Midwinter aside, out of play. Each player reveals an encounter card from the top of the encounter deck. Each player reanimates the top card of his deck.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 150,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Dread Realm",
+    "side": "A",
+    "back_name": "The Catacombs of Carn Dûm",
+    "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.   When the players advance to stage 2, all Sorcery cards attached to this stage are attached to stage 2B.",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 150,
+        "quantity": 1,
+        "octgnid": "e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 18
+  },
+  {
+    "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+    "octgnid": "b7c19049-9587-48bc-8807-5cc7334399b9",
+    "name": "Angmar Awakened",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Daechanar to the staging area. Make Altar of Midwinter the active location, returning any previously active location to the staging area. Each player reanimates the top card of his deck.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 151,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Dread Realm",
+    "side": "A",
+    "back_name": "Angmar Awakened",
+    "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.  When Daechanar is defeated, advance to the next stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 151,
+        "quantity": 1,
+        "octgnid": "b7c19049-9587-48bc-8807-5cc7334399b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7c19049-9587-48bc-8807-5cc7334399b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 0
+  },
+  {
+    "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgnid": "73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "name": "Daechanar's Fall",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If there are less than X locations in the staging area, search the encounter deck and discard pile and add locations to the staging area until there are X locations in staging area. X is the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 152,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Dread Realm",
+    "side": "A",
+    "back_name": "Daechanar's Fall",
+    "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.  Progress that would be placed on this quest is instead placed on locations in the staging area, divided as you choose.  Forced: At the end of the quest phase, if there are any locations in play, deal 1 damage to all characters in play. If there are no locations in play, the players have escaped Carn Dum, and win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 152,
+        "quantity": 1,
+        "octgnid": "73969b8e-9591-4ab0-bd28-75c7780875b0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 0
+  }
+]

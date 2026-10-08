@@ -1,4 +1,5 @@
 import { DIKE_QUESTS } from "./deadmens-dike-support";
+import { ANGMAR_ADVENTURES } from "./angmar-scenario-data";
 import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
@@ -1103,6 +1104,7 @@ export const SCENARIOS = [
       questImage: questImage(c.code),
     })),
   },
+  ...ANGMAR_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

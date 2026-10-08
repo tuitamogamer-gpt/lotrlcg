@@ -1,0 +1,1475 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Battle of Carn Dûm",
+  "slug": "the-battle-of-carn-dum",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+      "octgnid": "21eb71b5-6b96-4388-bd95-e2576483a95a",
+      "name": "Furious Charge",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: When at least 1 progress is placed on Furious Charge, each character gets -2 [defense] until the end of the round. If Thaurdir is Captain side faceup, flip him.  Response: After Furious Charge is defeated, add 10 progress to the main quest.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 139,
+      "quantity": 1,
+      "quest": 5,
+      "victory": 10,
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "quest": "5",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/21eb71b5-6b96-4388-bd95-e2576483a95a.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 139,
+          "quantity": 1,
+          "octgnid": "21eb71b5-6b96-4388-bd95-e2576483a95a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21eb71b5-6b96-4388-bd95-e2576483a95a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+      "octgnid": "23670d99-7a26-4838-a112-2f6d8a7186f8",
+      "name": "Blight of Carn Dûm",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blight. Plains.",
+      "text": "Forced: After an enemy attacks, heal 1 damage from it. Travel: Deal each enemy in play 1 shadow card to travel here.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 134,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: If the attacking enemy is Thaurdir, heal 3 damage from him.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/23670d99-7a26-4838-a112-2f6d8a7186f8.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 134,
+          "quantity": 3,
+          "octgnid": "23670d99-7a26-4838-a112-2f6d8a7186f8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23670d99-7a26-4838-a112-2f6d8a7186f8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+      "octgnid": "57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+      "name": "Werewolf of Angmar",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Werewolf.",
+      "text": "Forced: After an event card is played, deal 1 shadow card to Werewolf of Angmar.   Forced: If there are 3 shadow cards dealt to Werewolf of Angmar and it is in the staging area, it engages the first player and makes an immediate attack (do not deal it another shadow card for this attack).",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 131,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 5,
+      "defense": 4,
+      "health": 6,
+      "engagement": 35,
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "4",
+        "health": "6",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/57b1cf62-1841-4f65-b9eb-fc82b1eac918.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 131,
+          "quantity": 2,
+          "octgnid": "57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57b1cf62-1841-4f65-b9eb-fc82b1eac918.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+      "octgnid": "5fd6638a-3135-460f-bf5e-b3cb0128f939",
+      "name": "Daechanar's Will",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Flip Thaurdir. Then, if he is Captain side face-up, Daechanar's Will gains surge.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 138,
+      "quantity": 2,
+      "shadow": "Shadow: Flip Thaurdir after this attack.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/5fd6638a-3135-460f-bf5e-b3cb0128f939.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 138,
+          "quantity": 2,
+          "octgnid": "5fd6638a-3135-460f-bf5e-b3cb0128f939",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5fd6638a-3135-460f-bf5e-b3cb0128f939.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+      "octgnid": "9ca8dc18-a6f5-478b-8870-e151d853a28d",
+      "name": "The Battle of Carn Dûm",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card Side 1",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Battle of Carn Dum",
+      "back_name": "The Battle of Carn Dûm",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/9ca8dc18-a6f5-478b-8870-e151d853a28d.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/9ca8dc18-a6f5-478b-8870-e151d853a28d.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "9ca8dc18-a6f5-478b-8870-e151d853a28d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ca8dc18-a6f5-478b-8870-e151d853a28d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "name": "Angmar Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Either discard 1 ally from play, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 43,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, return attacking enemy to the staging area.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 43,
+          "quantity": 3,
+          "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+      "octgnid": "9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+      "name": "Carn Dûm Garrison",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Carn Dum Garrison gets +1 [threat] for each shadow card currently dealt to it.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 129,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each shadow card currently dealt to it.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 129,
+          "quantity": 4,
+          "octgnid": "9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "name": "Heavy Curse",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Surge.\nWhen Revealed: Attach to the current quest. (Counts as a Condition attachment with the text: \"When a player plays a card, increase its cost by 1 if there is a card that has the same title in its owner's discard pile.\")",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 66,
+      "quantity": 3,
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+      "octgnid": "afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+      "name": "Mountains of Angmar",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "While Mountains of Angmar is the active location, each shadow card with no shadow effect gains \"Shadow: Raise defending player's threat by 2.\"",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 133,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "shadow": "Shadow: Raise defending player's threat by 2.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/afd48fc2-1bca-44d1-9b30-380d2035f2fb.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 133,
+          "quantity": 2,
+          "octgnid": "afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/afd48fc2-1bca-44d1-9b30-380d2035f2fb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+      "octgnid": "b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+      "name": "The Clutches of Carn Dûm",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Thaurdir to the staging area, Captain side face-up. Add 1 copy of Carn Dum Garrison per player to the staging area. Search the encounter deck for 1 copy of Accursed Battlefield and make it the active location. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 125,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Battle of Carn Dum",
+      "side": "A",
+      "back_name": "The Clutches of Carn Dûm",
+      "back_text": "Thaurdir cannot leave the staging area and cannot take damage. At the end of the round, if Thaurdir is Champion side face-up, flip him.  Do not discard unresolved shadow cards at the end of the combat phase.  Forced: If there are 3 shadow cards dealt to Thaurdir, flip him.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 125,
+          "quantity": 1,
+          "octgnid": "b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "name": "Angmar Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Marauder attacks and destroys an ally, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 44,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally the defending player controls.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+      "octgnid": "b659e2a1-55b1-4562-ab2c-0e36772d8183",
+      "name": "Midwinter's Crux",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Raise each player's threat by X, where X is the number of shadow cards in play. If Thaurdir is Captain side face-up, flip him.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 126,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Battle of Carn Dum",
+      "side": "A",
+      "back_name": "Midwinter's Crux",
+      "back_text": "Thaurdir cannot leave the staging area, is considered to be engaged with each player, and attacks each player in turn during the combat phase (deal and discard a new shadow card for each attack). At the end of the round, if Thaurdir is Captain side face-up, flip him.  While Sever the Head has 15 or more progress on it, Thaurdir loses Indestructible.  You cannot defeat this stage while Thaurdir is in play. If Thaurdir is defeated, you win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 126,
+          "quantity": 1,
+          "octgnid": "b659e2a1-55b1-4562-ab2c-0e36772d8183",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+      "octgnid": "be784402-7f83-43aa-9e77-c2aac8dd3526",
+      "name": "Fortress Walls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum.",
+      "text": "While Fortress Walls is the active location, for each resource spent by a player, raise that player's threat by 1.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 135,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 3,
+      "shadow": "Shadow: If your threat is 40 or higher, attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/be784402-7f83-43aa-9e77-c2aac8dd3526.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 135,
+          "quantity": 3,
+          "octgnid": "be784402-7f83-43aa-9e77-c2aac8dd3526",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be784402-7f83-43aa-9e77-c2aac8dd3526.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "name": "The Power of Angmar",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nCards in each player's discard pile cannot leave that player's discard pile by player card effect.  Forced: After this stage is defeated, each player shuffl es the top 5 cards of his discard pile back into his deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 67,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+      "octgnid": "c73317e6-133e-4e35-af48-ad3ffc9f252d",
+      "name": "Thaurdir",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Wraith. Captain.",
+      "text": "Indestructible. Cannot have attachments\nEach other enemy has +10 engagement cost. Forced: After Thaurdir is flipped or a treachery card with the Sorcery trait is revealed, deal 1 shadow card to each enemy in play.",
+      "is_unique": true,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 127,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 50,
+      "encounter_set": "The Battle of Carn Dum",
+      "back_name": "Thaurdir",
+      "back_text": "Indestructible. Cannot have attachments\nEach other enemy has -10 engagement cost. Forced: After Thaurdir is flipped or a treachery card with the Sorcery trait is revealed, Thaurdir heals 3 damage and makes an immediate attack against the first player.",
+      "back_type_code": "enemy",
+      "back_imagesrc": "/cards/c73317e6-133e-4e35-af48-ad3ffc9f252d.B.jpg",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/c73317e6-133e-4e35-af48-ad3ffc9f252d.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 127,
+          "quantity": 1,
+          "octgnid": "c73317e6-133e-4e35-af48-ad3ffc9f252d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c73317e6-133e-4e35-af48-ad3ffc9f252d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "name": "Angmar Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Captain attacks and destroys an ally, discard the top card of the defending player's deck. If the discarded card is an ally, Angmar Captain makes an additional attack against the defending player.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 45,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+      "octgnid": "d3a3d024-2321-4707-b319-eb62537e6d92",
+      "name": "Vile Affliction",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Each player must distribute damage among questing characters he controls equal to the printed cost of the highest cost card in that player's discard pile.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 137,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, search your deck for another copy of that ally and discard it, if able.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/d3a3d024-2321-4707-b319-eb62537e6d92.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 137,
+          "quantity": 3,
+          "octgnid": "d3a3d024-2321-4707-b319-eb62537e6d92",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3a3d024-2321-4707-b319-eb62537e6d92.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "name": "Terror of the North",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Each player discards the top 3 cards of his deck. Until the end of the round, add 2 to the total [threat] in the staging area for each different card type discarded this way.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 64,
+      "quantity": 3,
+      "shadow": "Shadow: Defending player discards the top 3 cards of his deck. Attacking enemy gets +1 [attack] for each different card type discarded this way.",
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "name": "Orc Ambush",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each Orc enemy gets +1 [threat], +1 [attack], and +1 [defense].\nWhen Revealed: Each player must search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 46,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+      "octgnid": "f330efb5-6263-48a1-9f08-0911f214bd96",
+      "name": "The Sky Darkens",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Each player must discard a random card from his hand. Each player then searches his deck for each other copy of the card he discarded, and discards those as well. Shuffle each searched deck.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 136,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a random card from the defending player's hand.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {},
+      "imagesrc": "/cards/f330efb5-6263-48a1-9f08-0911f214bd96.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 136,
+          "quantity": 2,
+          "octgnid": "f330efb5-6263-48a1-9f08-0911f214bd96",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f330efb5-6263-48a1-9f08-0911f214bd96.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+      "octgnid": "f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+      "name": "Orc Grunts",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Doomed 1. Surge.\nAny time progress is placed on the current quest, reduce the amount of progress placed by 1.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 130,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 8,
+      "shadow": "Shadow: Add Orc Grunts to the staging area.",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "8"
+      },
+      "imagesrc": "/cards/f41fb428-d21c-47b2-9bd7-cc97202c2a7e.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 130,
+          "quantity": 4,
+          "octgnid": "f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f41fb428-d21c-47b2-9bd7-cc97202c2a7e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+      "octgnid": "f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+      "name": "Accursed Battlefield",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum.",
+      "text": "While Accursed Battlefield is the active location, each quest card in play gains the battle keyword.",
+      "is_unique": false,
+      "pack_code": "BoCD",
+      "pack_name": "The Battle of Carn Dûm",
+      "position": 132,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if the defending player's threat is higher than the attacking enemy's engagement cost).",
+      "encounter_set": "The Battle of Carn Dum",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f49b1e33-6190-4e21-8779-ecfb3a39bb75.jpg",
+      "packs": [
+        {
+          "pack_code": "BoCD",
+          "pack_name": "The Battle of Carn Dûm",
+          "position": 132,
+          "quantity": 3,
+          "octgnid": "f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f49b1e33-6190-4e21-8779-ecfb3a39bb75.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "name": "Dark Sorcery",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Doomed 2.\nWhen Revealed: Each player discards each ally he controls that has the same title as a card in his discard pile.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the defending character if there is a copy of that character in its owner's discard pile.",
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.8",
+      "name": "The Battle of Carn Dûm (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "BoCD",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+        "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+        "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+        "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+        "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+        "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+        "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+        "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+        "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+        "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+        "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+        "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+        "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+        "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+        "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+        "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+          "quantity": 3,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e": 1,
+          "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e": 2,
+          "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75": 2,
+          "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb": 2,
+          "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8": 3,
+          "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526": 1,
+          "octgn:d3a3d024-2321-4707-b319-eb62537e6d92": 3,
+          "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939": 1,
+          "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a": 1,
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 2,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 1,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22": 2,
+          "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d": 1,
+          "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260": 1,
+          "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa": 1
+        },
+        "sharedSetAside": {
+          "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d": 1
+        },
+        "sharedStagingArea": {
+          "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d": 1,
+          "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae": 3
+        },
+        "sharedActiveLocation": {
+          "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.8",
+      "name": "The Battle of Carn Dûm",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "BoCD",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+        "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+        "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+        "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+        "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+        "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+        "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+        "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+        "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+        "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+        "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+        "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+        "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+        "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+        "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+        "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+        "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+        "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e": 1,
+          "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e": 4,
+          "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918": 2,
+          "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75": 2,
+          "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb": 2,
+          "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8": 3,
+          "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526": 3,
+          "octgn:f330efb5-6263-48a1-9f08-0911f214bd96": 2,
+          "octgn:d3a3d024-2321-4707-b319-eb62537e6d92": 3,
+          "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939": 2,
+          "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a": 1,
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 3,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 2,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22": 3,
+          "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d": 2,
+          "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260": 3,
+          "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa": 1
+        },
+        "sharedSetAside": {
+          "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d": 1
+        },
+        "sharedStagingArea": {
+          "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d": 1,
+          "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae": 4
+        },
+        "sharedActiveLocation": {
+          "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21eb71b5-6b96-4388-bd95-e2576483a95a.jpg",
+      "localPath": "/cards/21eb71b5-6b96-4388-bd95-e2576483a95a.jpg",
+      "bytes": 155890,
+      "sha256": "56de97bf7cbdca358f410dffb565d5eb0925a06505d6502448f7d5154b44fc45"
+    },
+    {
+      "code": "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23670d99-7a26-4838-a112-2f6d8a7186f8.jpg",
+      "localPath": "/cards/23670d99-7a26-4838-a112-2f6d8a7186f8.jpg",
+      "bytes": 141625,
+      "sha256": "744819180c33f360c9ce02a87e175fbe95c0db10e3068ec29e0b047b2b110848"
+    },
+    {
+      "code": "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57b1cf62-1841-4f65-b9eb-fc82b1eac918.jpg",
+      "localPath": "/cards/57b1cf62-1841-4f65-b9eb-fc82b1eac918.jpg",
+      "bytes": 148046,
+      "sha256": "19946fdac869266c44d7f3d25e8b226b776b7f9a07ff003249712fcb1f9d7cb6"
+    },
+    {
+      "code": "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5fd6638a-3135-460f-bf5e-b3cb0128f939.jpg",
+      "localPath": "/cards/5fd6638a-3135-460f-bf5e-b3cb0128f939.jpg",
+      "bytes": 142126,
+      "sha256": "274f868fb9ef941eba9a2dedb1891bfde8704fb8550e074487e699fca433c473"
+    },
+    {
+      "code": "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ca8dc18-a6f5-478b-8870-e151d853a28d.jpg",
+      "localPath": "/cards/9ca8dc18-a6f5-478b-8870-e151d853a28d.jpg",
+      "bytes": 168871,
+      "sha256": "8f8610706fb7f844cd2217af20f268f483da03529cd9654ccb45ab43d9531a3b"
+    },
+    {
+      "code": "octgn:9ca8dc18-a6f5-478b-8870-e151d853a28d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ca8dc18-a6f5-478b-8870-e151d853a28d.B.jpg",
+      "localPath": "/cards/9ca8dc18-a6f5-478b-8870-e151d853a28d.B.jpg",
+      "bytes": 102743,
+      "sha256": "081d142bd940a528a7b34ab2fba5bef1c54ab257c320af36fc51358c7d469ea3"
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "localPath": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "bytes": 145957,
+      "sha256": "d36c76866b85dd1bf89f24943cf0d9bf363c6f069c429a3c866c15d3474a456e"
+    },
+    {
+      "code": "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae.jpg",
+      "localPath": "/cards/9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae.jpg",
+      "bytes": 145388,
+      "sha256": "ab4707db04de828d61100cb2122eec2a99b3fbb7f8856a8c50fc1f985d28ac08"
+    },
+    {
+      "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "localPath": "/cards/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "bytes": 150384,
+      "sha256": "459cefad1e4fb588e85e41371766b3e0578f3484d80bf32cbd9b6fe2191aad34"
+    },
+    {
+      "code": "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/afd48fc2-1bca-44d1-9b30-380d2035f2fb.jpg",
+      "localPath": "/cards/afd48fc2-1bca-44d1-9b30-380d2035f2fb.jpg",
+      "bytes": 154651,
+      "sha256": "6f92d0a249479d90ad77f33df34f3d78a25d8facfd66a915084c22d280f5ddc1"
+    },
+    {
+      "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg",
+      "localPath": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg",
+      "bytes": 145084,
+      "sha256": "7be50b0a1f178813e17b010411dcb34b3ff626f6314448d49e649d302251c38c"
+    },
+    {
+      "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1662195-6d46-474c-9ee9-ccbf14c7b70e.B.jpg",
+      "localPath": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.B.jpg",
+      "bytes": 137766,
+      "sha256": "fab7e9b99d269bbe47bfbf2fb27a8b92b3dfea1151ca8c8473e46531c62314d7"
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "localPath": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "bytes": 150176,
+      "sha256": "19c0a92457e6b21cf0238a15da3f76ba2d7ed5e1c64eba183e747fa4f5142174"
+    },
+    {
+      "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg",
+      "localPath": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg",
+      "bytes": 145231,
+      "sha256": "a92bf73a388c6ccbb9dddb69956e81b8ea6422e755fefa7a2caf628eec8eacbe"
+    },
+    {
+      "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b659e2a1-55b1-4562-ab2c-0e36772d8183.B.jpg",
+      "localPath": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.B.jpg",
+      "bytes": 152815,
+      "sha256": "0b623dbcd37034cb7090ea3a01d018e4bd6673057a268f74c99b161d6f0c592e"
+    },
+    {
+      "code": "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be784402-7f83-43aa-9e77-c2aac8dd3526.jpg",
+      "localPath": "/cards/be784402-7f83-43aa-9e77-c2aac8dd3526.jpg",
+      "bytes": 148653,
+      "sha256": "335afb6b0ffe6f940a88904a16c1ac53339b54d3e3dfd44e3ea9fcf22e6be682"
+    },
+    {
+      "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "localPath": "/cards/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "bytes": 150438,
+      "sha256": "86b9b59c9c094b22025af825c6558361ac5eeefb859b0f6a71858712e845abba"
+    },
+    {
+      "code": "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c73317e6-133e-4e35-af48-ad3ffc9f252d.jpg",
+      "localPath": "/cards/c73317e6-133e-4e35-af48-ad3ffc9f252d.jpg",
+      "bytes": 159355,
+      "sha256": "a496f7e103920338ff0a06d5a8e1cfb6df69e86eda61170f7751f5987cec036b"
+    },
+    {
+      "code": "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c73317e6-133e-4e35-af48-ad3ffc9f252d.B.jpg",
+      "localPath": "/cards/c73317e6-133e-4e35-af48-ad3ffc9f252d.B.jpg",
+      "bytes": 152487,
+      "sha256": "2fa8241555cd8697c04f2614e3540991d3e2c17768c2f5ba92da8956a7b3b53c"
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "localPath": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "bytes": 158126,
+      "sha256": "ecb47979db3de692e4b55329056e6a026d23eefb475a90a25495248681685538"
+    },
+    {
+      "code": "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3a3d024-2321-4707-b319-eb62537e6d92.jpg",
+      "localPath": "/cards/d3a3d024-2321-4707-b319-eb62537e6d92.jpg",
+      "bytes": 150489,
+      "sha256": "5cfd3409b9f0ebc20c3dbed532728019ae0b25da21ac982c553503ebab2dd3ba"
+    },
+    {
+      "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "localPath": "/cards/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "bytes": 160047,
+      "sha256": "5506f5b1c5bf37ff8bcea372168c3ac5774e6ef452ef1eca5e1792760022d76a"
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "localPath": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "bytes": 148568,
+      "sha256": "22a5486ce53305e79c0cef1bf04124a3590ea8e0cc4c12d7e81982bf4860f16a"
+    },
+    {
+      "code": "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f330efb5-6263-48a1-9f08-0911f214bd96.jpg",
+      "localPath": "/cards/f330efb5-6263-48a1-9f08-0911f214bd96.jpg",
+      "bytes": 153684,
+      "sha256": "d15a58efd9219755a86f7ee0f66d26b8c9b750e3831e42af1fe1260185003f9e"
+    },
+    {
+      "code": "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f41fb428-d21c-47b2-9bd7-cc97202c2a7e.jpg",
+      "localPath": "/cards/f41fb428-d21c-47b2-9bd7-cc97202c2a7e.jpg",
+      "bytes": 148386,
+      "sha256": "106972cc8bc20261a0338ce2bf3d516e790e21dcb063c3acf42756b3d656c607"
+    },
+    {
+      "code": "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f49b1e33-6190-4e21-8779-ecfb3a39bb75.jpg",
+      "localPath": "/cards/f49b1e33-6190-4e21-8779-ecfb3a39bb75.jpg",
+      "bytes": 154986,
+      "sha256": "0203adef72a3f61bbfcfc891ae4084c2f9f76b9ab4bfcf522148d748b01ee6eb"
+    },
+    {
+      "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "localPath": "/cards/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "bytes": 154567,
+      "sha256": "a281d338b9ce399c548b82c6750f83e0a0ab54f38383a0eafd3541337a0e85ca"
+    }
+  ]
+}

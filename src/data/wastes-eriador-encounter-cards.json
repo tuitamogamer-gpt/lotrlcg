@@ -1,0 +1,507 @@
+[
+  {
+    "code": "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+    "octgnid": "019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+    "name": "Warg's Den",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor.",
+    "text": "Immune to player card effects.\nTravel: The first player searches the encounter deck and discard pile for a Warg enemy, reveals it, and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 24,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 1,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+    "octgnid": "207b12bd-20b4-470d-81cc-7896904334d5",
+    "name": "Amarthiúl",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dunedain. Ranger. Warrior.",
+    "text": "Response: After an enemy engages a player, give control of Amarthiúl to that player.\nIf Amarthiúl leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 16,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 3,
+    "defense": 3,
+    "health": 3,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "3",
+      "defense": "3",
+      "health": "3"
+    },
+    "imagesrc": "/cards/207b12bd-20b4-470d-81cc-7896904334d5.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "207b12bd-20b4-470d-81cc-7896904334d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/207b12bd-20b4-470d-81cc-7896904334d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+    "octgnid": "22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+    "name": "White Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Forced: After White Warg engages you, deal 1 damage to a character you control (2 damage instead if it is Night).",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 21,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 3,
+    "health": 3,
+    "engagement": 20,
+    "shadow": "Shadow: If it is Night, attacking enemy makes an additional attack after this one.",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "3",
+      "health": "3",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+    "octgnid": "3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+    "name": "Daybreak",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Time.",
+    "text": "It is Day. Enemies do not make engagement checks.\nForced: When it becomes Day, return each enemy in play to the staging area.  Forced: At the end of the round, flip this objective.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 11,
+    "quantity": 1,
+    "encounter_set": "The Wastes of Eriador",
+    "back_name": "Nightfall",
+    "back_text": "It is Night. Progress cannot be placed on quest cards. Encounter card effects cannot be canceled.\nForced: When it becomes Night, reveal an encounter card.  Forced: At the end of the round, flip this objective.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+    "octgnid": "41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+    "name": "Eriador Wastes",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Plains.",
+    "text": "While Eriador Wastes is in the staging area, no more than 5 progress can be placed on the current quest each round.  Travel: The first player engages a Warg enemy in the staging area and deals it a shadow card.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 23,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+    "octgnid": "4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+    "name": "Northern Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "When Revealed: Each Warg enemy gets +1 [threat] until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 18,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 30,
+    "shadow": "Shadow: After this attack, attacking enemy engages the next player, then makes an immediate attack (deal a new shadow card for that attack).",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 18,
+        "quantity": 4,
+        "octgnid": "4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+    "octgnid": "77dd117d-b2b6-4324-aa59-09fd1343fde9",
+    "name": "Pack Leader",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Cannot have attachments. Cannot be optionally engaged.\nForced: After Pack Leader engages you, exhaust a character you control for each Warg enemy engaged with you.",
+    "is_unique": true,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 17,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 4,
+    "health": 8,
+    "engagement": 1,
+    "victory": 3,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "4",
+      "health": "8",
+      "engagement": "1",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "77dd117d-b2b6-4324-aa59-09fd1343fde9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+    "octgnid": "92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+    "name": "Predatory Wolves",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either discard the highest cost ally he controls, or search the encounter deck and discard pile for a Warg enemy, reveal it, and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 27,
+    "quantity": 3,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {},
+    "imagesrc": "/cards/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+    "octgnid": "9feef7b4-4ca7-4adc-aeb7-56947254588a",
+    "name": "Blood-thirsty Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "While Blood-thirsty Warg is in the staging area, it gains: \"Forced: When it becomes Night, Blood-thirsty Warg engages the first player and makes an immediate attack.\"",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 19,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 35,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 19,
+        "quantity": 2,
+        "octgnid": "9feef7b4-4ca7-4adc-aeb7-56947254588a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+    "octgnid": "cf33276f-22e5-467d-9543-6b345d17e7bc",
+    "name": "Sudden Darkness",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: If it is Night, raise each player's threat by 4. If it is Day, flip the Time objective to Nightfall.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 26,
+    "quantity": 2,
+    "shadow": "Shadow: Put the topmost Warg enemy from the discard pile into play engaged with you and deal it a shadow card.",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {},
+    "imagesrc": "/cards/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "cf33276f-22e5-467d-9543-6b345d17e7bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+    "octgnid": "d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+    "name": "North Downs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "While it is Night, North Downs gets +2 [threat].",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 25,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 4,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, remove all progress from the current quest.",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 25,
+        "quantity": 3,
+        "octgnid": "d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+    "octgnid": "da6d1bd2-575b-4292-9757-3792b79a4b78",
+    "name": "Hunting Pack",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Cannot have attachments.\nWhile a player is making an engagement check against Hunting Pack, it gets -1 engagement cost for each damaged character that player controls.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 20,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 6,
+    "engagement": 40,
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "6",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "da6d1bd2-575b-4292-9757-3792b79a4b78",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+    "octgnid": "e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+    "name": "Wolf of Angmar",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Surge.\nWhile it is Night, Wolf of Angmar gets +2 [attack].",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 22,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it is Night).",
+    "encounter_set": "The Wastes of Eriador",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 22,
+        "quantity": 3,
+        "octgnid": "e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

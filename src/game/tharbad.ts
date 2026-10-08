@@ -39,6 +39,7 @@ import { heirsShadowDealt } from "./heirs-numenor";
 import { canRemoveQuestTime } from "./quest-time";
 import { reduceThreat } from "./threat-reduction";
 import { consumeLeaveCard } from "./leave-consumption";
+import { takePlayerDiscard } from "./board";
 import { THARBAD as T, tharbadTimeLimit } from "./tharbad-support";
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
@@ -616,7 +617,9 @@ export function tharbadEffect(s: GameState, e: Effect) {
             (c, i) => i >= (e.value ?? 0) && c === e.code,
           );
           if (i >= 0) {
-            p.discard.splice(i, 1);
+            forOwner(s, owner, () => {
+              takePlayerDiscard(s, i, { encounterEffect: true });
+            });
             p.removed.push(e.code);
           }
         }

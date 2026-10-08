@@ -1,3 +1,5 @@
+import { isHero } from "../game/card-types";
+import { gramQuestUnit } from "../game/mount-gram-support";
 import { selectedSideQuest } from "../game/side-quest-support";
 import {
   Coins,
@@ -133,6 +135,11 @@ export function JourneyArea({
   const active = allActiveLocations(s);
   const quest = currentQuestUnit(s);
   const sideQuest = selectedSideQuest(s);
+  const captiveQuest = !sideQuest && !!s.mountGram && s.stage === 2;
+  const dungeon = captiveQuest ? gramQuestUnit(s) : undefined;
+  const captives = dungeon
+    ? (s.mountGram!.captured[dungeon.id]?.length ?? 0)
+    : 0;
   const resourceQuest =
     !sideQuest && s.scenarioId === "the-stewards-fear" && s.stage < 3;
   const villagerQuest =
@@ -246,22 +253,36 @@ export function JourneyArea({
       )}
       <div
         className="tabletop-progress"
-        aria-label={`Quest ${villagerQuest ? "villagers" : resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`}
+        aria-label={
+          captiveQuest
+            ? `Dungeon captives: ${captives} remaining`
+            : `Quest ${villagerQuest ? "villagers" : resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`
+        }
       >
         <TableToken
-          kind={resourceQuest || villagerQuest ? "resource" : "progress"}
-          value={questValue}
+          kind={
+            resourceQuest || villagerQuest || captiveQuest
+              ? "resource"
+              : "progress"
+          }
+          value={captiveQuest ? captives : questValue}
         />
         <div>
           <b>
-            {questGoal ? `${questValue} / ${questGoal}` : "Special objective"}
+            {captiveQuest
+              ? `${captives} captives remaining`
+              : questGoal
+                ? `${questValue} / ${questGoal}`
+                : "Special objective"}
           </b>
           <span>
-            {villagerQuest
-              ? "Villagers to rescue"
-              : resourceQuest
-                ? "Quest resources"
-                : "Progress"}
+            {captiveQuest
+              ? "Progress rescues prisoners"
+              : villagerQuest
+                ? "Villagers to rescue"
+                : resourceQuest
+                  ? "Quest resources"
+                  : "Progress"}
           </span>
         </div>
         {questGoal > 0 && (
@@ -521,8 +542,7 @@ export function OtherFellowships({
                       alt={name(u)}
                     />
                     <span className="companion-tokens">
-                      {(card(u.code).type_code === "hero" ||
-                        ["02059", "08146"].includes(u.code)) && (
+                      {(isHero(u) || ["02059", "08146"].includes(u.code)) && (
                         <TableToken kind="resource" value={u.resources} />
                       )}
                       {u.damage > 0 && (

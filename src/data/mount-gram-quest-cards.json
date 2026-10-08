@@ -1,0 +1,120 @@
+[
+  {
+    "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+    "octgnid": "d1a3a535-7679-4757-871c-80c50c003cff",
+    "name": "Unexpected Rescue",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player shuffles his starting hand into his deck. Each player prepares a separate captured deck (see insert) and chooses only 1 hero to be his starting hero. Each player adds 2 resources to his starting hero and sets his threat to that hero's threat cost. Set Southern Gate, Jailor Gornakh and the Angmar Orcs encounter set aside, out of play. Shuffle the encounter deck. Each player draws a new starting hand 3 cards.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 38,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Escape from Mount Gram",
+    "side": "A",
+    "back_name": "Unexpected Rescue",
+    "back_text": "When Revealed: Each player creates his own staging area and advances to a different stage 2A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 38,
+        "quantity": 1,
+        "octgnid": "d1a3a535-7679-4757-871c-80c50c003cff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1a3a535-7679-4757-871c-80c50c003cff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+    "octgnid": "e3d50c1b-4626-4bff-a247-f965166f9d2f",
+    "name": "Gornákh's Dungeons",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Capture 7.\nWhen Revealed: Search the encounter deck for 1 copy of Prison Cell, reveal it, and add it to your staging area. Then, capture an additional 2 cards from the top of your captured deck underneath that copy of Prison Cell.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 39,
+    "quantity": 4,
+    "cost": 2,
+    "encounter_set": "Escape from Mount Gram",
+    "side": "A",
+    "back_name": "Gornákh's Dungeons",
+    "back_text": "Any time players would place progress tokens on this quest, rescue an equal number of captured cards at random from underneath it instead. (Progress is placed on the active location before triggering this effect.)   Forced: If there are no captured cards underneath Gornakh's Dungeons, join another player at the beginning of the travel phase. If you cannot join another player, all players advance to stage 3A together.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 39,
+        "quantity": 4,
+        "octgnid": "e3d50c1b-4626-4bff-a247-f965166f9d2f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+    "octgnid": "e83f33da-6723-4730-8691-8d1a48b1f8e0",
+    "name": "Flight from Mount Gram",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Southern Gate and Jailor Gornakh to the staging area. Shuffle the Angmar Orcs encounter set into the encounter deck. Then, reveal 1 encounter card per player from the top of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 40,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Escape from Mount Gram",
+    "side": "A",
+    "back_name": "Flight from Mount Gram",
+    "back_text": "Players cannot travel to Southern Gate unless there is at least 16 progress on this stage.  Players cannot defeat this stage while Southern Gate is in play. If the players defeat this stage, they have escaped Mount Gram and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "e83f33da-6723-4730-8691-8d1a48b1f8e0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

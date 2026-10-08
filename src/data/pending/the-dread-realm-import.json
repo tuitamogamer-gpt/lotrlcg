@@ -1,0 +1,1501 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Dread Realm",
+  "slug": "the-dread-realm",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+      "octgnid": "06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+      "name": "Tombs of Carn Dûm",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum. Underground.",
+      "text": "Forced: At the end of the round, discard the top card of each player's deck. Each player must reanimate each ally discarded by this effect.  Travel: Deal 1 shadow card to each Undead enemy in play to travel here.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 159,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 159,
+          "quantity": 3,
+          "octgnid": "06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+      "octgnid": "0771f1dc-4baa-4181-9344-4ddd1e59136b",
+      "name": "Dwimmerlaik",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Wraith.",
+      "text": "Forced: After Dwimmerlaik attacks and destroys a character, the defending player reanimates that character and deals it 1 shadow card.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 155,
+      "quantity": 3,
+      "threat": 4,
+      "attack": 5,
+      "defense": 0,
+      "health": 9,
+      "engagement": 34,
+      "shadow": "Shadow: If this attack destroys a character, reanimate that character and deal it 1 shadow card.",
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "0",
+        "health": "9",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 155,
+          "quantity": 3,
+          "octgnid": "0771f1dc-4baa-4181-9344-4ddd1e59136b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+      "octgnid": "123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+      "name": "Restless Evil",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each Undead enemy gets +1 [threat], +1 [attack], and +1 [defense] until the end of the round. If there are no Undead enemies in play, Restless Evil gains surge.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 62,
+      "quantity": 2,
+      "shadow": "Shadow: Each Undead enemy engaged with you gets +1 [attack] and +1 [defense] until the end of the round.",
+      "encounter_set": "Cursed Dead",
+      "printed_stats": {},
+      "imagesrc": "/cards/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 62,
+          "quantity": 2,
+          "octgnid": "123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+      "octgnid": "160c8dcb-baa1-4176-9308-7328e500d62e",
+      "name": "Wraith of Carn Dûm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Wraith.",
+      "text": "Forced: When Wraith of Carn Dum leaves play, attach it to a character in play. (Counts as a Sorcery attachment with the text: \"Attached character has -1 [willpower], -1 [attack], and -1 [defense]. If the attached character leaves play, return Wraith of Carn Dum to the staging area as an enemy.\")",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 157,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 0,
+      "health": 5,
+      "engagement": 18,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "0",
+        "health": "5",
+        "engagement": "18"
+      },
+      "imagesrc": "/cards/160c8dcb-baa1-4176-9308-7328e500d62e.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 157,
+          "quantity": 2,
+          "octgnid": "160c8dcb-baa1-4176-9308-7328e500d62e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/160c8dcb-baa1-4176-9308-7328e500d62e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+      "octgnid": "1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+      "name": "Altar of Midwinter",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum. Underground.",
+      "text": "While Daechanar is in play, progress cannot be placed on Altar of Midwinter.\nForced: At the end of the staging step, the first player must either reveal 1 additional card from the encounter deck, or reanimate the top card of his deck.",
+      "is_unique": true,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 154,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 9,
+      "victory": 5,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "9",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 154,
+          "quantity": 1,
+          "octgnid": "1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+      "octgnid": "205f938d-8dc8-4366-adc0-35897aaef600",
+      "name": "Death and Calamity",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Attach Death and Calamity to the current quest. Then, the first player reanimates the top X cards of his deck, where X is the number of copies of Death and Calamity in play.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 164,
+      "quantity": 4,
+      "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the number of Sorcery cards in play.",
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {},
+      "imagesrc": "/cards/205f938d-8dc8-4366-adc0-35897aaef600.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 164,
+          "quantity": 4,
+          "octgnid": "205f938d-8dc8-4366-adc0-35897aaef600",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/205f938d-8dc8-4366-adc0-35897aaef600.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+      "octgnid": "21fec323-3155-4b64-8506-fa87d44f01fc",
+      "name": "Cursed Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "When Revealed: Put each copy of Cursed Dead in the discard pile into play in the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 61,
+      "quantity": 5,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 27,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if there is a copy of the defending character in its owner's discard pile).",
+      "encounter_set": "Cursed Dead",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "27"
+      },
+      "imagesrc": "/cards/21fec323-3155-4b64-8506-fa87d44f01fc.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 61,
+          "quantity": 5,
+          "octgnid": "21fec323-3155-4b64-8506-fa87d44f01fc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21fec323-3155-4b64-8506-fa87d44f01fc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+      "octgnid": "3385b644-5fd6-4473-9fec-45d7262f5824",
+      "name": "Unholy Crypt",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum. Underground.",
+      "text": "Unholy Crypt gets +1 [threat] for each Reanimated Dead in play.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 161,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 7,
+      "shadow": "Shadow: If this attack destroys a character, reanimate that character and deal it 1 shadow card.",
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "7"
+      },
+      "imagesrc": "/cards/3385b644-5fd6-4473-9fec-45d7262f5824.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 161,
+          "quantity": 3,
+          "octgnid": "3385b644-5fd6-4473-9fec-45d7262f5824",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3385b644-5fd6-4473-9fec-45d7262f5824.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+      "octgnid": "432c306a-7a68-45f9-8621-d7ea2126ae0b",
+      "name": "Dark Halls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum. Underground.",
+      "text": "While Dark Halls is in the staging area, each Reanimated Dead gets +1 [attack] and +1 [defense].",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 160,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: If there is a copy of the defending character in your discard pile, reanimate it and deal it 1 shadow card.",
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 160,
+          "quantity": 2,
+          "octgnid": "432c306a-7a68-45f9-8621-d7ea2126ae0b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+      "octgnid": "7295a9fb-961f-42ad-b07d-33793e2f2274",
+      "name": "Seal the Tomb",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nForced: At the end of the refresh phase, discard the top 3 cards of the encounter deck. Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 63,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Cursed Dead",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "7295a9fb-961f-42ad-b07d-33793e2f2274",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+      "octgnid": "73969b8e-9591-4ab0-bd28-75c7780875b0",
+      "name": "Daechanar's Fall",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If there are less than X locations in the staging area, search the encounter deck and discard pile and add locations to the staging area until there are X locations in staging area. X is the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 152,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Dread Realm",
+      "side": "A",
+      "back_name": "Daechanar's Fall",
+      "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.  Progress that would be placed on this quest is instead placed on locations in the staging area, divided as you choose.  Forced: At the end of the quest phase, if there are any locations in play, deal 1 damage to all characters in play. If there are no locations in play, the players have escaped Carn Dum, and win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 152,
+          "quantity": 1,
+          "octgnid": "73969b8e-9591-4ab0-bd28-75c7780875b0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+      "octgnid": "74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+      "name": "The Dread Realm",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card Side 1",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Dread Realm",
+      "back_name": "The Dread Realm",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+      "octgnid": "8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+      "name": "Witch of Angmar",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Sorcerer.",
+      "text": "Forced: When you resolve shadow cards dealt to Witch of Angmar, if they have the Sorcery trait, resolve their \"when revealed\" effects. (Resolve any shadow effects first.)",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 156,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 26,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "26"
+      },
+      "imagesrc": "/cards/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 156,
+          "quantity": 3,
+          "octgnid": "8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+      "octgnid": "8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+      "name": "Daechanar",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Dunedain. Sorcerer.",
+      "text": "Cannot have attachments.  Daechanar gets +1 [attack] for each Sorcery card in play, and gains indestructible while at least 1 Sorcery card is in play.  Forced: When Daechanar is damaged, if there is at least 1 Sorcery card in play, cancel all damage just dealt and remove a Sorcery card from the game.",
+      "is_unique": true,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 153,
+      "quantity": 1,
+      "threat": 5,
+      "attack": 4,
+      "defense": 5,
+      "health": 12,
+      "engagement": 1,
+      "victory": 10,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "5",
+        "attack": "4",
+        "defense": "5",
+        "health": "12",
+        "engagement": "1",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 153,
+          "quantity": 1,
+          "octgnid": "8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "name": "Heavy Curse",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Surge.\nWhen Revealed: Attach to the current quest. (Counts as a Condition attachment with the text: \"When a player plays a card, increase its cost by 1 if there is a card that has the same title in its owner's discard pile.\")",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 66,
+      "quantity": 3,
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+      "octgnid": "aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+      "name": "Dead Lord",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: After Dead Lord engages you, put the topmost Undead enemy in the discard pile into play engaged with you.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 60,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 2,
+      "health": 3,
+      "engagement": 33,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, reveal 1 encounter card.",
+      "encounter_set": "Cursed Dead",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "2",
+        "health": "3",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+      "octgnid": "b7c19049-9587-48bc-8807-5cc7334399b9",
+      "name": "Angmar Awakened",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Daechanar to the staging area. Make Altar of Midwinter the active location, returning any previously active location to the staging area. Each player reanimates the top card of his deck.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 151,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Dread Realm",
+      "side": "A",
+      "back_name": "Angmar Awakened",
+      "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.  When Daechanar is defeated, advance to the next stage.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 151,
+          "quantity": 1,
+          "octgnid": "b7c19049-9587-48bc-8807-5cc7334399b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7c19049-9587-48bc-8807-5cc7334399b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "name": "The Power of Angmar",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nCards in each player's discard pile cannot leave that player's discard pile by player card effect.  Forced: After this stage is defeated, each player shuffl es the top 5 cards of his discard pile back into his deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 67,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "name": "Terror of the North",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: Each player discards the top 3 cards of his deck. Until the end of the round, add 2 to the total [threat] in the staging area for each different card type discarded this way.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 64,
+      "quantity": 3,
+      "shadow": "Shadow: Defending player discards the top 3 cards of his deck. Attacking enemy gets +1 [attack] for each different card type discarded this way.",
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+      "octgnid": "e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+      "name": "A Fell Dread",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "When Revealed: The player with the highest threat must attach A Fell Dread to a hero he controls without A Fell Dread attached. (Counts as a Condition attachment with the text: \"Attached hero's [willpower] is reduced to 0. During the quest phase, attached hero must commit to the quest, if able.\")",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 163,
+      "quantity": 2,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {},
+      "imagesrc": "/cards/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 163,
+          "quantity": 2,
+          "octgnid": "e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+      "octgnid": "e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+      "name": "The Catacombs of Carn Dûm",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Daechanar and Altar of Midwinter aside, out of play. Each player reveals an encounter card from the top of the encounter deck. Each player reanimates the top card of his deck.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 150,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Dread Realm",
+      "side": "A",
+      "back_name": "The Catacombs of Carn Dûm",
+      "back_text": "Reanimated Dead are Undead enemies with 2 [threat], 2 [attack], 2 [defense] and 2 hit points.   When the players advance to stage 2, all Sorcery cards attached to this stage are attached to stage 2B.",
+      "back_type_code": "quest",
+      "back_quest": 18,
+      "back_imagesrc": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 150,
+          "quantity": 1,
+          "octgnid": "e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+      "octgnid": "ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+      "name": "Sinister Dungeon",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Carn Dum. Underground.",
+      "text": "Forced: When Sinister Dungeon is explored, the first player reanimates a random card from his hand and deals Sinister Dungeon to it as a shadow card.",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 158,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 1,
+      "shadow": "Shadow: Discard the top 2 cards of the encounter deck. Resolve the \"when revealed\" effects of each Sorcery card discarded by this effect.",
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 158,
+          "quantity": 3,
+          "octgnid": "ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "name": "Dark Sorcery",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Doomed 2.\nWhen Revealed: Each player discards each ally he controls that has the same title as a card in his discard pile.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the defending character if there is a copy of that character in its owner's discard pile.",
+      "encounter_set": "Dark Sorcery",
+      "printed_stats": {},
+      "imagesrc": "/cards/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+      "octgnid": "fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+      "name": "Possession",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Sorcery.",
+      "text": "Doomed 1.\nWhen Revealed: Destroy the highest cost ally in play. That ally's controller reanimates that character, adds it to the staging area, and attaches Possession to it. (Counts as a Condition attachment with the text: \"If Possession is discarded, the attached card is also discarded.\")",
+      "is_unique": false,
+      "pack_code": "TDR",
+      "pack_name": "The Dread Realm",
+      "position": 162,
+      "quantity": 2,
+      "encounter_set": "The Dread Realm",
+      "printed_stats": {},
+      "imagesrc": "/cards/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg",
+      "packs": [
+        {
+          "pack_code": "TDR",
+          "pack_name": "The Dread Realm",
+          "position": 162,
+          "quantity": 2,
+          "octgnid": "fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.9",
+      "name": "The Dread Realm (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TDR",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+        "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+        "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+        "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+        "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+        "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+        "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+        "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+        "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+        "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+        "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+        "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+        "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+        "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+        "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+        "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+        "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+        "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+        "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+        "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+        "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+        "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244"
+      ],
+      "cards": [
+        {
+          "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a": 1,
+          "octgn:b7c19049-9587-48bc-8807-5cc7334399b9": 1,
+          "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b": 1,
+          "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35": 2,
+          "octgn:160c8dcb-baa1-4176-9308-7328e500d62e": 2,
+          "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3": 3,
+          "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b": 2,
+          "octgn:3385b644-5fd6-4473-9fec-45d7262f5824": 3,
+          "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660": 2,
+          "octgn:205f938d-8dc8-4366-adc0-35897aaef600": 2,
+          "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee": 1,
+          "octgn:21fec323-3155-4b64-8506-fa87d44f01fc": 4,
+          "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4": 1,
+          "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274": 1,
+          "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22": 2,
+          "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d": 1,
+          "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260": 1,
+          "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa": 1
+        },
+        "sharedSetAside": {
+          "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9": 1,
+          "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b": 1,
+          "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.9",
+      "name": "The Dread Realm",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TDR",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+        "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+        "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+        "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+        "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+        "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+        "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+        "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+        "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+        "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+        "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+        "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+        "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+        "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+        "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+        "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+        "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+        "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+        "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+        "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+        "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+        "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+        "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+        "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244"
+      ],
+      "cards": [
+        {
+          "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+          "quantity": 5,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a": 1,
+          "octgn:b7c19049-9587-48bc-8807-5cc7334399b9": 1,
+          "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b": 3,
+          "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35": 3,
+          "octgn:160c8dcb-baa1-4176-9308-7328e500d62e": 2,
+          "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3": 3,
+          "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69": 3,
+          "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b": 2,
+          "octgn:3385b644-5fd6-4473-9fec-45d7262f5824": 3,
+          "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260": 2,
+          "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660": 2,
+          "octgn:205f938d-8dc8-4366-adc0-35897aaef600": 4,
+          "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee": 2,
+          "octgn:21fec323-3155-4b64-8506-fa87d44f01fc": 5,
+          "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4": 2,
+          "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274": 1,
+          "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22": 3,
+          "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d": 2,
+          "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260": 3,
+          "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa": 1
+        },
+        "sharedSetAside": {
+          "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9": 1,
+          "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b": 1,
+          "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg",
+      "localPath": "/cards/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg",
+      "bytes": 154718,
+      "sha256": "5f0b760217fbf241d527c3ee9d054355264480d909922821eaa5f65c321ba1a4"
+    },
+    {
+      "code": "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg",
+      "localPath": "/cards/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg",
+      "bytes": 143444,
+      "sha256": "48863cb1d62ab101f0a5f9b36306711ec63c2817b12b7ecd5ef22c5b0d8e3a59"
+    },
+    {
+      "code": "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg",
+      "localPath": "/cards/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg",
+      "bytes": 156352,
+      "sha256": "cd74215238234726a0174f40f35baa60f5fb0b5bf711d26d5ed853e470ee8214"
+    },
+    {
+      "code": "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/160c8dcb-baa1-4176-9308-7328e500d62e.jpg",
+      "localPath": "/cards/160c8dcb-baa1-4176-9308-7328e500d62e.jpg",
+      "bytes": 155155,
+      "sha256": "4893a0c545105ae9f69dc50888c6177279b881f5af49ab863c7ef04a717b05f3"
+    },
+    {
+      "code": "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg",
+      "localPath": "/cards/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg",
+      "bytes": 163023,
+      "sha256": "0a62659a2ee538f802f85216d6f4958454508ffba4cbcb545f2dcfbfd9f0289e"
+    },
+    {
+      "code": "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/205f938d-8dc8-4366-adc0-35897aaef600.jpg",
+      "localPath": "/cards/205f938d-8dc8-4366-adc0-35897aaef600.jpg",
+      "bytes": 168552,
+      "sha256": "6fb7e49daf48bf263498adbdf8da5ee8a44d533365a5fe6641438eaee090399c"
+    },
+    {
+      "code": "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21fec323-3155-4b64-8506-fa87d44f01fc.jpg",
+      "localPath": "/cards/21fec323-3155-4b64-8506-fa87d44f01fc.jpg",
+      "bytes": 160191,
+      "sha256": "c2b58fe0eae7ea75e0d5ab91f4f79b585c28733b22f64ce6c7d19b19c167e5d0"
+    },
+    {
+      "code": "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3385b644-5fd6-4473-9fec-45d7262f5824.jpg",
+      "localPath": "/cards/3385b644-5fd6-4473-9fec-45d7262f5824.jpg",
+      "bytes": 148318,
+      "sha256": "d252e5cd4fe9c4deba9e642831f3ce5ef43e91be34463e2bd7c8d894f5978e9e"
+    },
+    {
+      "code": "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg",
+      "localPath": "/cards/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg",
+      "bytes": 155521,
+      "sha256": "81d95ae948028cced01d478d02ed0e9ccc24c0401542d801b324923cf4939513"
+    },
+    {
+      "code": "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg",
+      "localPath": "/cards/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg",
+      "bytes": 157887,
+      "sha256": "d9e2854a1263c1ac204556172b0fab6d9182c7e9487562d838f080ff31d53404"
+    },
+    {
+      "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg",
+      "localPath": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.jpg",
+      "bytes": 156413,
+      "sha256": "586886f8f5ec37f3f2f5d9753c66a09b51df4d2bdaf8da8d6feadf3690cfdb5b"
+    },
+    {
+      "code": "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73969b8e-9591-4ab0-bd28-75c7780875b0.B.jpg",
+      "localPath": "/cards/73969b8e-9591-4ab0-bd28-75c7780875b0.B.jpg",
+      "bytes": 152510,
+      "sha256": "0524e900bc5bd160f5aab0508d37ca29af30fc1bcf6ef7eed8cfec4011d28b69"
+    },
+    {
+      "code": "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.jpg",
+      "localPath": "/cards/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.jpg",
+      "bytes": 156998,
+      "sha256": "dede3131fff79a13249448510f9371ed7cfd0b48e8d4745467e8e7e511694155"
+    },
+    {
+      "code": "octgn:74f12c0b-6c63-4b2e-a15f-41b179b9dec9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.B.jpg",
+      "localPath": "/cards/74f12c0b-6c63-4b2e-a15f-41b179b9dec9.B.jpg",
+      "bytes": 102743,
+      "sha256": "4c3dbae3043443c4a22c95bf994579a649168ca66fba8d85335df14380944eca"
+    },
+    {
+      "code": "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg",
+      "localPath": "/cards/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg",
+      "bytes": 138006,
+      "sha256": "bc9db97ed130d4b7872006e9942ee76c6542fddc4d657371084457134d0040e0"
+    },
+    {
+      "code": "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg",
+      "localPath": "/cards/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg",
+      "bytes": 154190,
+      "sha256": "59ce6c8b6a86d622845e5350c946c4893d1558f5dedad1b639104fdc20ff8e1c"
+    },
+    {
+      "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "localPath": "/cards/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+      "bytes": 150384,
+      "sha256": "459cefad1e4fb588e85e41371766b3e0578f3484d80bf32cbd9b6fe2191aad34"
+    },
+    {
+      "code": "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg",
+      "localPath": "/cards/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg",
+      "bytes": 154502,
+      "sha256": "09a2dfe7f74f0c4ef2431176e6620704a8f5581d484075d0033daacc5a691f0e"
+    },
+    {
+      "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7c19049-9587-48bc-8807-5cc7334399b9.jpg",
+      "localPath": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.jpg",
+      "bytes": 151970,
+      "sha256": "dca1cf89a80e642211074321e8b8f44f3f4a2c2c6386f432cba6828736281c22"
+    },
+    {
+      "code": "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7c19049-9587-48bc-8807-5cc7334399b9.B.jpg",
+      "localPath": "/cards/b7c19049-9587-48bc-8807-5cc7334399b9.B.jpg",
+      "bytes": 154857,
+      "sha256": "c2a1b5359bce2673cd0d31b2e6b9ce57fad215671e6d3e19fe80799e35076f65"
+    },
+    {
+      "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "localPath": "/cards/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+      "bytes": 150438,
+      "sha256": "86b9b59c9c094b22025af825c6558361ac5eeefb859b0f6a71858712e845abba"
+    },
+    {
+      "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "localPath": "/cards/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+      "bytes": 160047,
+      "sha256": "5506f5b1c5bf37ff8bcea372168c3ac5774e6ef452ef1eca5e1792760022d76a"
+    },
+    {
+      "code": "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg",
+      "localPath": "/cards/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg",
+      "bytes": 142410,
+      "sha256": "1829b366a3faa8e6c9f33b159c22c82df03d342fe2d7fcc3054eec3136947815"
+    },
+    {
+      "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg",
+      "localPath": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.jpg",
+      "bytes": 149602,
+      "sha256": "fe9900a80c66ec2bc7bf670eb748931a9107c62af89872364860b9cfcb8b24a2"
+    },
+    {
+      "code": "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.B.jpg",
+      "localPath": "/cards/e2f901ad-f5bc-4d29-b6c3-50c261e5668a.B.jpg",
+      "bytes": 141739,
+      "sha256": "cc3e760818e5a2329b8ee906ba7809d4e49b1d77090b335eba5e1c446305cea3"
+    },
+    {
+      "code": "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg",
+      "localPath": "/cards/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg",
+      "bytes": 161641,
+      "sha256": "0d449a977be9df8b98ee00c8c5a522558abb87d33801872f6fe7505481b7d618"
+    },
+    {
+      "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "localPath": "/cards/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+      "bytes": 154567,
+      "sha256": "a281d338b9ce399c548b82c6750f83e0a0ab54f38383a0eafd3541337a0e85ca"
+    },
+    {
+      "code": "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg",
+      "localPath": "/cards/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg",
+      "bytes": 157097,
+      "sha256": "6d08d844108aadd69be4b8d21ae00d6a89c66b4d82434a83289e17b6f3a85b1d"
+    }
+  ]
+}

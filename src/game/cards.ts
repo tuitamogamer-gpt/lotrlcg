@@ -4,6 +4,8 @@ import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
 import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
 import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
+import angmarPlayers from "../data/angmar-player-cards.json";
+import { ANGMAR_ENCOUNTERS, ANGMAR_QUESTS } from "./angmar-scenario-data";
 import { ANTLERED_ENCOUNTERS, ANTLERED_QUESTS } from "./antlered-support";
 import {
   CELEBRIMBOR_ENCOUNTERS,
@@ -128,6 +130,7 @@ export const playerCards = [
       ...(trialsTharbadPlayers as Card[]),
       ...(finalRingPlayers as Card[]),
       ...(lostRealmPlayers as Card[]),
+      ...(angmarPlayers as Card[]),
       ...(lostRealmSideQuests as Card[]),
       ...(rangerPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
@@ -193,6 +196,7 @@ export const encounterCards = [
   ...CHETWOOD_ENCOUNTERS,
   ...WEATHER_ENCOUNTERS,
   ...DIKE_ENCOUNTERS,
+  ...ANGMAR_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -230,6 +234,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CHETWOOD_QUESTS,
     ...WEATHER_QUESTS,
     ...DIKE_QUESTS,
+    ...ANGMAR_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -311,6 +316,7 @@ export const SCRIPTED = new Set(
   [
     ...playerCards,
     ...encounterCards,
+    ...ANGMAR_QUESTS,
     ...RHOSGOBEL_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
@@ -356,7 +362,7 @@ export const cachedImageSource = (src: string | undefined) =>
 export const imageUrl = (c: Card) =>
   scriptedScenarioArt[c.imagesrc as keyof typeof scriptedScenarioArt] ??
   referenceScenarioArt[c.imagesrc as keyof typeof referenceScenarioArt] ??
-  (c.imagesrc?.startsWith("/cards/")
+  (c.imagesrc?.startsWith("/cards/") || c.imagesrc?.startsWith("/art/")
     ? c.imagesrc
     : c.pack_name === "Core Set" && c.type_code !== "quest" && cards[c.code]
       ? `/cards/${c.code}.${c.sphere_code === "encounter" ? "jpg" : "png"}`

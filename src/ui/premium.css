@@ -19,6 +19,10 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="wastes-of-eriador"],
+.mat-wastes-of-eriador,
+.redbook[data-playmat="across-the-ettenmoors"],
+.mat-across-the-ettenmoors,
 .redbook[data-playmat="anduin"],
 .redbook[data-playmat="the-dunland-trap"],
 .mat-the-dunland-trap,
@@ -55,6 +59,14 @@
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
+.redbook[data-playmat="escape-from-mount-gram"],
+.mat-escape-from-mount-gram,
+.redbook[data-playmat="the-treachery-of-rhudaur"],
+.mat-the-treachery-of-rhudaur,
+.redbook[data-playmat="the-battle-of-carn-dum"],
+.mat-the-battle-of-carn-dum,
+.redbook[data-playmat="the-dread-realm"],
+.mat-the-dread-realm,
 .redbook[data-playmat="dol-guldur"],
 .mat-dol-guldur,
 .redbook[data-playmat="deadmens-dike"],

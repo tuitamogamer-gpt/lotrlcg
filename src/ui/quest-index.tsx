@@ -19,6 +19,16 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "wastes-of-eriador": { lead: "Survive", em: "the Wastes of Eriador." },
+  "escape-from-mount-gram": { lead: "Escape from", em: "Mount Gram." },
+  "across-the-ettenmoors": { lead: "Cross", em: "the Ettenmoors." },
+  "the-treachery-of-rhudaur": {
+    lead: "Uncover",
+    em: "the treachery of Rhudaur.",
+  },
+  "the-battle-of-carn-dum": { lead: "Battle at", em: "Carn Dûm." },
+  "the-dread-realm": { lead: "Descend into", em: "the Dread Realm." },
+
   "the-weather-hills": { lead: "Hunt through", em: "the Weather Hills." },
   "intruders-in-chetwood": { lead: "Guard", em: "the borders of Bree-land." },
   "the-antlered-crown": { lead: "Unite", em: "the clans of Dunland." },

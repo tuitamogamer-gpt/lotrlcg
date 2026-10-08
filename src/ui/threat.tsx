@@ -2,7 +2,8 @@ import { threatElimination } from "../game/tharbad-support";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Eye } from "@phosphor-icons/react";
-import type { GameState } from "../game/types";
+import type { Card, GameState } from "../game/types";
+import { card } from "../game/cards";
 import { activeSeat } from "../game/table";
 import "./threat.css";
 
@@ -177,12 +178,37 @@ function ThreatDial({
 
 // A different seat or adventure has its own physical counter. Remounting avoids
 // inventing a threat increase/decrease when merely looking at another player.
-export function ThreatCounter({ s }: { s: GameState }) {
+export function ThreatCounter({
+  s,
+  inspect,
+}: {
+  s: GameState;
+  inspect?: (c: Card) => void;
+}) {
   return (
-    <ThreatDial
-      elimination={threatElimination(s)}
-      key={`${s.originalSeed}:${s.scenarioId}:${activeSeat(s)}`}
-      threat={s.threat}
-    />
+    <div className="threat-dial-area">
+      <ThreatDial
+        elimination={threatElimination(s)}
+        key={`${s.originalSeed}:${s.scenarioId}:${activeSeat(s)}`}
+        threat={s.threat}
+      />
+      {!!s.threatAttachments?.length && (
+        <div
+          className="threat-attachments"
+          aria-label="Attachments on your threat dial"
+        >
+          {s.threatAttachments.map((a) => (
+            <button
+              key={a.id}
+              onClick={() => inspect?.(card(a.code))}
+              title="Read attachment on your threat dial"
+            >
+              {card(a.code).name}
+              {a.blanked ? " · Text blanked" : ""}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

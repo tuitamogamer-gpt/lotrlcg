@@ -142,6 +142,12 @@ test("account database enforces ownership on reads, writes, upserts and deletes"
     for (const [scenario, title] of [
       ["the-weather-hills", "The Weather Hills"],
       ["deadmens-dike", "Deadmen's Dike"],
+      ["wastes-of-eriador", "The Wastes of Eriador"],
+      ["escape-from-mount-gram", "Escape from Mount Gram"],
+      ["across-the-ettenmoors", "Across the Ettenmoors"],
+      ["the-treachery-of-rhudaur", "The Treachery of Rhudaur"],
+      ["the-battle-of-carn-dum", "The Battle of Carn Dûm"],
+      ["the-dread-realm", "The Dread Realm"],
     ]) {
       const scenarioChoices = {
         ...choices,

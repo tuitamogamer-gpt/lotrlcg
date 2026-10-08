@@ -2,7 +2,23 @@ import { dikeSideDefeated } from "./deadmens-dike";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
 import { weatherSideDefeated } from "./weather-hills";
-import type { Effect, GameState } from "./types";
+import { ettenProgressPlaced, ettenSideDefeated } from "./ettenmoors";
+import {
+  rhudaurFlipSide,
+  rhudaurMainQuestAvailable,
+  rhudaurQuestPoints,
+  rhudaurRedirectProgress,
+} from "./rhudaur";
+import {
+  carnAfterQuestProgress,
+  carnProgress,
+  carnSideDefeated,
+} from "./carn-dum";
+import { dreadSideDefeated } from "./dread-realm";
+import { gramProgress } from "./mount-gram";
+import { wastesProgress } from "./wastes-eriador";
+import { angmarSideDefeated } from "./angmar-player";
+import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
   choose,
@@ -26,7 +42,7 @@ import {
   playerOrder,
 } from "./table";
 import { collectorQuestDefeated } from "./collector-player-cards";
-import { mainQuestCode } from "./quest-state";
+import { currentQuestUnit, mainQuestCode, mainQuestUnit } from "./quest-state";
 import {
   selectedSideQuest,
   selectedSideQuestUnit,
@@ -51,25 +67,77 @@ export function sideQuestStart(s: GameState) {
 
 /** Direct quest progress bypasses the active location, but never the selected quest. */
 export function addCurrentQuestProgress(s: GameState, amount: number) {
-  if (amount <= 0) return;
-  const selected = selectedSideQuest(s);
-  if (!selected) {
-    s.progress += chetwoodProgress(s, amount);
+  const quest = currentQuestUnit(s);
+  if (quest) addQuestProgress(s, quest, amount);
+}
+
+export const sideQuestGoal = (s: GameState, quest: Unit) =>
+  Math.max(0, (card(quest.code).quest ?? 0) + rhudaurQuestPoints(s, quest));
+
+/** Place progress on an explicit physical quest without changing the phase's current quest. */
+export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
+  if (amount <= 0 || s.status !== "playing") return;
+  const main = mainQuestUnit(s),
+    isMain = main?.id === quest.id && main.code === quest.code;
+  const physical = isMain
+    ? main!
+    : s.staging.find((u) => u.id === quest.id && u.code === quest.code);
+  if (
+    !physical ||
+    (!isMain &&
+      !["player-side-quest", "encounter-side-quest"].includes(
+        card(physical.code).type_code,
+      ))
+  )
     return;
-  }
-  const quest = selectedSideQuestUnit(s);
-  if (!quest) return; // A defeated side quest stays current until quest phase end.
-  const goal = card(quest.code).quest ?? 0;
-  quest.progress += chetwoodProgress(
-    s,
-    Math.min(goal - quest.progress, amount),
-  );
+  if (rhudaurRedirectProgress(s, physical, amount)) return;
+  const isCurrent = currentQuestUnit(s)?.id === physical.id;
+  let placed = isMain
+    ? amount
+    : Math.max(
+        0,
+        Math.min(sideQuestGoal(s, physical) - physical.progress, amount),
+      );
+  if (isCurrent) placed = carnProgress(s, placed);
+  placed = wastesProgress(s, placed, physical);
+  placed = chetwoodProgress(s, placed, physical);
+  if (placed <= 0) return;
+  if (isMain && gramProgress(s, placed)) return;
+  if (isMain) s.progress += placed;
+  else physical.progress += placed;
+  ettenProgressPlaced(s, physical, placed);
+  carnAfterQuestProgress(s, physical, placed);
+  if (!isMain) defeatSideQuest(s, physical);
+}
+
+/** Continuous quest-point changes can defeat a side quest without new progress. */
+export function checkSideQuestDefeats(s: GameState) {
+  for (const quest of [...s.staging].filter((u) =>
+    ["player-side-quest", "encounter-side-quest"].includes(
+      card(u.code).type_code,
+    ),
+  ))
+    defeatSideQuest(s, quest);
+}
+function defeatSideQuest(s: GameState, quest: Unit) {
+  const goal = sideQuestGoal(s, quest);
   if (quest.progress < goal) return;
-  selected.defeated = true;
+  const selected = selectedSideQuest(s);
+  if (selected?.id === quest.id) selected.defeated = true;
+  const originalCode = quest.code;
   const attachments = discardQuestAttachments(s, quest.code, quest.id);
-  s.staging = s.staging.filter((u) => u.id !== quest.id);
-  addVictoryCard(s, quest.code);
-  log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
+  const original = { ...quest, attachments: [...quest.attachments] };
+  if (!quest.blanked && rhudaurFlipSide(s, quest)) {
+    log(
+      s,
+      `${card(originalCode).name} defeated · Turned over to its Clue.`,
+      "good",
+    );
+  } else {
+    s.staging = s.staging.filter((u) => u.id !== quest.id);
+    addVictoryCard(s, quest.code);
+    log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
+  }
   if (quest.code === "09014" && !quest.blanked)
     prepend(
       s,
@@ -78,10 +146,14 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
         player: quest.controller ?? quest.owner ?? firstPlayer(s),
       }),
     );
-  collectorQuestDefeated(s, quest.code, attachments);
-  chetwoodSideDefeated(s, quest);
-  weatherSideDefeated(s, quest);
-  dikeSideDefeated(s, quest);
+  collectorQuestDefeated(s, originalCode, attachments);
+  chetwoodSideDefeated(s, original);
+  weatherSideDefeated(s, original);
+  dikeSideDefeated(s, original);
+  ettenSideDefeated(s, original, goal);
+  carnSideDefeated(s, original);
+  dreadSideDefeated(s, original);
+  angmarSideDefeated(s, original);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);
@@ -104,18 +176,25 @@ export function removeCurrentQuestProgress(s: GameState, amount: number) {
 export function sideQuestEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("sideQuest")) return false;
   switch (e.kind) {
+    case "sideQuestStart":
+      sideQuestStart(s);
+      break;
     case "sideQuestChoose": {
       const main = mainQuestCode(s);
       choose(
         s,
         "Choose the current quest",
         [
-          {
-            id: "main",
-            code: main,
-            label: `Main quest · ${main ? card(main).name : "Continue the adventure"}`,
-            effects: [],
-          },
+          ...(rhudaurMainQuestAvailable(s)
+            ? [
+                {
+                  id: "main",
+                  code: main,
+                  label: `Main quest · ${main ? card(main).name : "Continue the adventure"}`,
+                  effects: [],
+                },
+              ]
+            : []),
           ...s.staging
             .filter((u) =>
               ["player-side-quest", "encounter-side-quest"].includes(
@@ -125,7 +204,7 @@ export function sideQuestEffect(s: GameState, e: Effect) {
             .map((u) => ({
               id: u.id,
               code: u.code,
-              label: `${name(u)} · ${u.progress}/${card(u.code).quest} progress`,
+              label: `${name(u)} · ${u.progress}/${sideQuestGoal(s, u)} progress`,
               effects: [fx("sideQuestSelect", { target: u.id, code: u.code })],
             })),
         ],

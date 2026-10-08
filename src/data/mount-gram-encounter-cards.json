@@ -1,0 +1,482 @@
+[
+  {
+    "code": "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+    "octgnid": "0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+    "name": "Patrol Room",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mount Gram. Underground.",
+    "text": "Capture 2.\nTravel: Each player raises his threat by 3 to travel here.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 47,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending player's threat is 20 or higher).",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 47,
+        "quantity": 2,
+        "octgnid": "0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "octgnid": "18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "name": "Prison Cell",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mount Gram. Underground.",
+    "text": "Capture 1.\nResponse: After the players travel to Prison Cell, look at the captured card(s) underneath it and choose 1 to put into play at no cost. Place the other cards back underneath Prison Cell.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 46,
+    "quantity": 4,
+    "threat": 1,
+    "quest": 3,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 46,
+        "quantity": 4,
+        "octgnid": "18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+    "octgnid": "275c7232-3671-4092-bb9a-9a62f9538225",
+    "name": "Sound the Alarm!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 3.\nWhen Revealed: Until the end of the round, each enemy gets -10 engagement cost and +1 [attack]. If there are no enemies in play, search the encounter deck and discard pile for an enemy and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 49,
+    "quantity": 2,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {},
+    "imagesrc": "/cards/275c7232-3671-4092-bb9a-9a62f9538225.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 49,
+        "quantity": 2,
+        "octgnid": "275c7232-3671-4092-bb9a-9a62f9538225",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/275c7232-3671-4092-bb9a-9a62f9538225.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+    "octgnid": "2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+    "name": "Goblin Tormentor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Capture 1.\nX is the number of cards in play with 1 or more captured cards underneath them.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 45,
+    "quantity": 2,
+    "threat": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 28,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it has no captured cards underneath it).",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "X",
+      "defense": "1",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+    "octgnid": "414353af-e004-4e7c-b288-e168e2acfee7",
+    "name": "Stop the Executioners!",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Capture 5.\nTime 4. Forced: When the last time counter is removed from this quest, discard its captured cards and remove this quest from the game. Then, raise each player's threat by 3 for each of his characters that was discarded by this effect.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 53,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/414353af-e004-4e7c-b288-e168e2acfee7.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "414353af-e004-4e7c-b288-e168e2acfee7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/414353af-e004-4e7c-b288-e168e2acfee7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+    "octgnid": "51e187ea-691c-46bc-b74f-c03d110d02cd",
+    "name": "Captives of Gornákh",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player chooses one of their allies and captures it underneath the encounter card with the highest [threat].",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 51,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack would damage an ally, capture that ally underneath the attacking enemy instead.",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {},
+    "imagesrc": "/cards/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "51e187ea-691c-46bc-b74f-c03d110d02cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+    "octgnid": "663a47fc-e264-485b-832d-2c327aa1a493",
+    "name": "Interrogation",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards the top card of his captured deck and raises his threat by that card's printed resource cost. If at least 1 player discarded no cards from this effect, Interrogation gains doomed 2.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 52,
+    "quantity": 2,
+    "shadow": "Shadow: Discard a random card from your hand and raise your threat by its printed cost.",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {},
+    "imagesrc": "/cards/663a47fc-e264-485b-832d-2c327aa1a493.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 52,
+        "quantity": 2,
+        "octgnid": "663a47fc-e264-485b-832d-2c327aa1a493",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/663a47fc-e264-485b-832d-2c327aa1a493.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+    "octgnid": "6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+    "name": "Tunnels of Mount Gram",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mount Gram. Underground.",
+    "text": "Capture 1.\nX is the number of cards captured underneath Tunnels of Mount Gram.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 48,
+    "quantity": 2,
+    "quest": 4,
+    "shadow": "Shadow: Capture each attachment attached to the defending character underneath the attacking enemy.",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 48,
+        "quantity": 2,
+        "octgnid": "6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+    "octgnid": "d69092af-f96b-4885-a194-5d5f31d90e6d",
+    "name": "Feeble and Weary",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must either deal 1 damage to each exhausted character he controls, or remove each exhausted character he controls from the quest.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 50,
+    "quantity": 2,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {},
+    "imagesrc": "/cards/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "d69092af-f96b-4885-a194-5d5f31d90e6d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+    "octgnid": "d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+    "name": "Southern Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "Immune to player card effects.\nWhile Southern Gate is the active location, each Orc enemy gets +2 [attack].  Forced: After Southern Gate becomes the active location, each player with less than 35 threat must raise their threat to 35.",
+    "is_unique": true,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 42,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 8,
+    "victory": 2,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "8",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+    "octgnid": "e15ba98d-806f-4847-823c-ca90c0f58f0b",
+    "name": "Cruel Torturer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Capture 1.\nForced: When Cruel Torturer would damage an ally by an attack, capture that ally underneath Cruel Torturer instead.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 43,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 36,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 43,
+        "quantity": 2,
+        "octgnid": "e15ba98d-806f-4847-823c-ca90c0f58f0b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+    "octgnid": "e920ecab-29dc-48a6-908d-f4919d5b468d",
+    "name": "Dungeon Guard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Capture 1.\nResponse: After the captured card(s) underneath Dungeon Guard are rescued, the players may put 1 of them into play at no cost.",
+    "is_unique": false,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 44,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 16,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "16"
+    },
+    "imagesrc": "/cards/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "e920ecab-29dc-48a6-908d-f4919d5b468d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+    "octgnid": "f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+    "name": "Jailor Gornákh",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Forced: After 1 or more captured cards are rescued, Jailor Gornákh engages the player with the highest threat and makes an immediate attack.",
+    "is_unique": true,
+    "pack_code": "EfMG",
+    "pack_name": "Escape from Mount Gram",
+    "position": 41,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 5,
+    "defense": 3,
+    "health": 8,
+    "engagement": 44,
+    "victory": 5,
+    "encounter_set": "Escape from Mount Gram",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "3",
+      "health": "8",
+      "engagement": "44",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg",
+    "packs": [
+      {
+        "pack_code": "EfMG",
+        "pack_name": "Escape from Mount Gram",
+        "position": 41,
+        "quantity": 1,
+        "octgnid": "f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

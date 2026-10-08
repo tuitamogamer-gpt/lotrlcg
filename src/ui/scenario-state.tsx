@@ -21,6 +21,7 @@ import { playerOrder, seatName } from "../game/table";
 import { morgulTowerProgress } from "../game/morgul-vale";
 import { faceupShadowCards } from "../game/voice-isengard";
 import { CardBack } from "./tabletop";
+import { AngmarScenarioState } from "./angmar-state";
 
 export function ScenarioState({
   s,
@@ -40,6 +41,12 @@ export function ScenarioState({
     !s.antlered &&
     !s.weatherHills &&
     !s.deadmensDike &&
+    !s.wastesEriador &&
+    !s.mountGram &&
+    !s.ettenmoors &&
+    !s.rhudaur &&
+    !s.carnDum &&
+    !s.dreadRealm &&
     !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
@@ -48,6 +55,7 @@ export function ScenarioState({
     return null;
   return (
     <div className="scenario-state-summary" aria-label="Scenario counters">
+      <AngmarScenarioState s={s} inspect={inspect} />
       {s.deadmensDike && (
         <>
           <div className="tower-counter">

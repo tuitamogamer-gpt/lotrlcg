@@ -1,3 +1,4 @@
+import { wastesCancelAllowed } from "./wastes-eriador";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 import { heirsShadowDealt } from "./heirs-numenor";
@@ -152,6 +153,7 @@ export function roadRivendellCharacterExhausted(s: GameState, u: Unit) {
     );
 }
 export const roadRivendellCannotCancel = (s: GameState) =>
+  !wastesCancelAllowed(s) ||
   s.staging.some((u) => u.code === ROAD.crebain && !u.blanked);
 export const roadRivendellHealingAllowed = (s: GameState, u: Unit) =>
   !(

@@ -18,7 +18,12 @@ import {
   hasClue,
   newCampaign,
   validateSave,
+  restoreSave,
 } from "../src/game/engine.ts";
+import { dreadMustCommit, dreadIndestructible } from "../src/game/dread-realm";
+import { dikeIndestructible } from "../src/game/deadmens-dike";
+import { rhudaurIndestructible } from "../src/game/rhudaur";
+import { carnIndestructible } from "../src/game/carn-dum";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
 import { defendersFor, attackersFor } from "../src/game/table.ts";
@@ -61,6 +66,14 @@ if (
   );
 let registeredCases = 0;
 const selectedCases: string[] = [];
+const angmarScenarios: ScenarioId[] = [
+  "wastes-of-eriador",
+  "escape-from-mount-gram",
+  "across-the-ettenmoors",
+  "the-treachery-of-rhudaur",
+  "the-battle-of-carn-dum",
+  "the-dread-realm",
+];
 const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   const index = registeredCases++;
   if (index % shardCount !== shardIndex) return;
@@ -289,6 +302,8 @@ function run(
           ),
         )
         .map((u) => u.id);
+      for (const u of ready.filter((u) => dreadMustCommit(s, u)))
+        if (!selected.includes(u.id)) selected.push(u.id);
       const missing = selected.find((id) => !s.committedIds.includes(id));
       action = missing
         ? { type: "TOGGLE_QUEST", id: missing }
@@ -363,11 +378,21 @@ function run(
       validateSave(s),
       `${scenarioId}/${playMode}/${id}/seed${seed}: valid save after ${action.type}`,
     );
+    if (angmarScenarios.includes(scenarioId)) {
+      const restored = restoreSave(JSON.parse(JSON.stringify(s)));
+      assert.ok(restored, `${scenarioId}: restore every action`);
+      s = restored;
+    }
     assert.ok(Number.isFinite(s.threat));
     assert.ok(s.heroes.every((h) => h.resources >= 0));
     assert.ok(
       [...s.heroes, ...s.allies, ...s.engaged].every(
-        (u) => u.damage < stats(s, u).health,
+        (u) =>
+          u.damage < stats(s, u).health ||
+          dikeIndestructible(s, u) ||
+          rhudaurIndestructible(s, u) ||
+          carnIndestructible(s, u) ||
+          dreadIndestructible(s, u),
       ),
     );
     assert.equal(

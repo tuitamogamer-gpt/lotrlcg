@@ -1,5 +1,8 @@
 import { dikeAttackDeclared } from "./deadmens-dike";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
+import * as Rhudaur from "./rhudaur";
+import { carnShadowDealt } from "./carn-dum";
 import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
@@ -189,6 +192,7 @@ export function playerAttack(
   attackers.forEach((u) => {
     if (
       abilityMode !== "hands-upon-bow" &&
+      !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
         abilityMode === "haldir" ||
         (!pathOfNeed(s, u!) && !foundationsPlayerNoAttackExhaust(u!)))
@@ -239,6 +243,7 @@ export function playerAttack(
   longDarkPlayerAttackersDeclared(s, ids);
   collectorAttackersDeclared(s, ids);
   prepend(s, ...watcherWaterPlayerAttackEffects(s, enemy, ids));
+  Angmar.angmarAttackDeclared(s, enemy, attackers as Unit[]);
 }
 
 export function resolvePlayerAttack(
@@ -260,6 +265,7 @@ export function resolvePlayerAttack(
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
           watcherPlayerAttackBonus(s, u, enemy) +
+          Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (card(enemy.code).traits?.includes("Orc")
             ? u.attachments.filter((a) => !a.blanked && a.code === "01039")
                 .length
@@ -342,6 +348,7 @@ export function playerAttackKilled(
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
   Realm.realmAttackKilled(s, ids);
+  Angmar.angmarAttackKilled(s, enemy, ids);
   Isengard.isengardAttackKilled(s, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
   collectorAttackKilled(s, enemy, ids, lastKnownTraits);
@@ -370,6 +377,22 @@ export function combatDamage(
   if (!damage(s, target.id, amount, { enemyId: enemy.id, combatDamage: true }))
     return;
   applyCombatDamageConsequences(s, target, enemy, amount, remainingHealth);
+}
+
+/** Each actual defender receives its own conditional and declared-defense bonuses. */
+export function combatDefenderDefense(
+  s: GameState,
+  defender: Unit,
+  enemy: Unit,
+  combat: NonNullable<GameState["combat"]>,
+) {
+  return Math.max(
+    0,
+    stats(s, defender).defense +
+      Angmar.angmarDefenseBonus(s, defender, enemy) +
+      Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
+      (combat.defensePenalty ?? 0),
+  );
 }
 
 /** The attack actually begins once, before its declaration and response windows. */
@@ -472,6 +495,7 @@ export function beginEnemyAttack(
     if (code) {
       enemy.shadows.push(code);
       heirsShadowDealt(s, enemy);
+      carnShadowDealt(s, enemy);
       log(
         s,
         "Dol Guldur Beastmaster receives an additional facedown shadow before the defender is declared.",
@@ -488,6 +512,7 @@ export function beginEnemyAttack(
   for (const d of defenders.filter((d) => d && get(s, d.id)))
     if (
       !Antlered.antleredNoDefenseExhaust(d!) &&
+      !Angmar.angmarNoCombatExhaust(s, d!) &&
       !heirsPlayerNoDefenseExhaust(s, d!) &&
       !watcherPlayerNoDefenseExhaust(d!) &&
       !carrockNoExhaustDefender(enemy, d!) &&
@@ -536,6 +561,8 @@ export function beginEnemyAttack(
   );
   collectorDefendersDeclared(s, ids);
   heirsPlayerDefendersDeclared(s, enemy, ids);
+  for (const d of defenders.filter((d): d is Unit => !!d && !!get(s, d.id)))
+    Angmar.angmarDefenderDeclared(s, d);
   const beforeSmall = s.queue.length;
   amonPlayerDefendersExhausted(s, enemy, actuallyExhausted);
   const smallResponses = s.queue.splice(0, s.queue.length - beforeSmall);

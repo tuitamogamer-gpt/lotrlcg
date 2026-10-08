@@ -6,6 +6,7 @@ import { trialsCurrentQuest } from "./three-trials-support";
 import type { Attachment, GameState, Unit } from "./types";
 import { scenario } from "./scenarios";
 import { foundationsCurrentQuest } from "./foundations-stone-support";
+import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -22,6 +23,8 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (nin) return nin;
   const trial = trialsCurrentQuest(s);
   if (trial) return trial;
+  const gram = gramCurrentQuest(s);
+  if (gram) return gram;
   const foundations = foundationsCurrentQuest(s);
   if (foundations) return foundations;
   if (s.scenarioId === "flight-from-moria") return s.khazad?.activeQuest;
@@ -35,6 +38,11 @@ export function mainQuestCode(s: GameState): string | undefined {
 
 /** This view never increments card IDs or changes the hidden quest deck. */
 export function mainQuestUnit(s: GameState): Unit | undefined {
+  const gram = gramQuestUnit(s);
+  if (gram) {
+    gram.progress = s.progress;
+    return gram;
+  }
   const code = mainQuestCode(s);
   if (!code) return undefined;
   return {
@@ -63,6 +71,11 @@ export function attachToQuest(
     return true;
   }
   if (mainQuestCode(s) !== code) return false;
+  const gram = gramQuestUnit(s);
+  if (gram) {
+    gram.attachments.push(attachment);
+    return true;
+  }
   const state = s as QuestAttachmentState;
   (state.questAttachments ??= {})[code] ??= [];
   state.questAttachments[code].push(attachment);

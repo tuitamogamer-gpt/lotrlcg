@@ -1,0 +1,1590 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Wastes of Eriador",
+  "slug": "the-wastes-of-eriador",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+      "octgnid": "019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+      "name": "Warg's Den",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "Immune to player card effects.\nTravel: The first player searches the encounter deck and discard pile for a Warg enemy, reveals it, and puts it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 24,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 1,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+      "octgnid": "207b12bd-20b4-470d-81cc-7896904334d5",
+      "name": "Amarthiúl",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Dunedain. Ranger. Warrior.",
+      "text": "Response: After an enemy engages a player, give control of Amarthiul to that player.  If Amarthiul leaves play, the player lose the game.",
+      "is_unique": true,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 16,
+      "quantity": 1,
+      "willpower": 1,
+      "attack": 3,
+      "defense": 3,
+      "health": 3,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "willpower": "1",
+        "attack": "3",
+        "defense": "3",
+        "health": "3"
+      },
+      "imagesrc": "/cards/207b12bd-20b4-470d-81cc-7896904334d5.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 16,
+          "quantity": 1,
+          "octgnid": "207b12bd-20b4-470d-81cc-7896904334d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/207b12bd-20b4-470d-81cc-7896904334d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+      "octgnid": "22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+      "name": "White Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Forced: After White Warg engages you, deal 1 damage to a character you control (2 damage instead if it is Night).",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 21,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 20,
+      "shadow": "Shadow: If it is Night, attacking enemy makes an additional attack after this one.",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "name": "Rugged Country",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "If the current quest is a side quest, Rugged Country gets +2 [threat].",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 47,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 47,
+          "quantity": 3,
+          "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+      "octgnid": "3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+      "name": "Daybreak",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Time.",
+      "text": "It is Day. Enemies do not make engagement checks.\nForced: When it becomes Day, return each enemy in play to the staging area.  Forced: At the end of the round, flip this objective.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 11,
+      "quantity": 1,
+      "encounter_set": "The Wastes of Eriador",
+      "back_name": "Nightfall",
+      "back_text": "It is Night. Progress cannot be placed on quest cards. Encounter card effects cannot be canceled.\nForced: When it becomes Night, reveal an encounter card.  Forced: At the end of the round, flip this objective.",
+      "back_type_code": "objective",
+      "back_imagesrc": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+      "octgnid": "41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+      "name": "Eriador Wastes",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Plains.",
+      "text": "While Eriador Wastes is in the staging area, no more than 5 progress can be placed on the current quest each round.  Travel: The first player engages a Warg enemy in the staging area and deals it a shadow card.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 23,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+      "octgnid": "43509bf0-3250-420f-b743-e56c3ad5cd90",
+      "name": "Howling at Night",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top of the encounter deck until X Warg enemies are discarded. X is the number of players in the game. Add each discarded enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 14,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Wastes of Eriador",
+      "side": "A",
+      "back_name": "Howling at Night",
+      "back_text": "Forced: When it becomes Day, each player draws 1 card.  Forced: When it becomes Night, discard 1 non-objective ally from play (discard 2 non-objective allies instead if there are 3 or more players in the game).",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "43509bf0-3250-420f-b743-e56c3ad5cd90",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+      "octgnid": "4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+      "name": "Northern Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "When Revealed: Each Warg enemy gets +1 [threat] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 18,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: After this attack, attacking enemy engages the next player, then makes an immediate attack (deal a new shadow card for that attack).",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 18,
+          "quantity": 4,
+          "octgnid": "4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+      "name": "Make Camp",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nCharacters cannot be healed.  Response: After Make Camp is defeated, each player heals up to 3 damage from a hero he controls.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 55,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 55,
+          "quantity": 1,
+          "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+      "octgnid": "77dd117d-b2b6-4324-aa59-09fd1343fde9",
+      "name": "Pack Leader",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Cannot have attachments. Cannot be optionally engaged.\nForced: After Pack Leader engages you, exhaust a character you control for each Warg enemy engaged with you.",
+      "is_unique": true,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 17,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 4,
+      "health": 8,
+      "engagement": 1,
+      "victory": 3,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "4",
+        "health": "8",
+        "engagement": "1",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 17,
+          "quantity": 1,
+          "octgnid": "77dd117d-b2b6-4324-aa59-09fd1343fde9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "name": "Weight of Responsibility",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card for each quest card in play.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 50,
+      "quantity": 2,
+      "shadow": "Shadow: Defending player discards 1 attachment he controls for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "name": "Biting Wind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Assign X damage among characters committed to the quest. X is the number of characters committed to the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 52,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 52,
+          "quantity": 3,
+          "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+      "octgnid": "92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+      "name": "Predatory Wolves",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either discard the highest cost ally he controls, or search the encounter deck and discard pile for a Warg enemy, reveal it, and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 27,
+      "quantity": 3,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {},
+      "imagesrc": "/cards/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "name": "Cold from Angmar",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player deals 1 damage to a hero he controls. Then, attach Cold from Angmar to the current quest. (Counts as a Condition attachment with the text: \"Treat each damaged character's printed text box as if it were blank, except for keywords and Traits.\")",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 54,
+      "quantity": 3,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+      "octgnid": "9feef7b4-4ca7-4adc-aeb7-56947254588a",
+      "name": "Blood-thirsty Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "While Blood-thirsty Warg is in the staging area, it gains: \"Forced: When it becomes Night, Blood-thirsty Warg engages the first player and makes an immediate attack.\"",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 19,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "9feef7b4-4ca7-4adc-aeb7-56947254588a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+      "octgnid": "b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+      "name": "Across the Wastes",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Pack Leader aside, out of play. Make Shrouded Hills the active location. Add the Time objective to the staging area with Daybreak faceup. The first player takes control of Amarthiul. Shuffle the encounter deck. Reveal 1 card from the encounter deck per player.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 13,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Wastes of Eriador",
+      "side": "A",
+      "back_name": "Across the Wastes",
+      "back_text": "While it is Day, heroes get +1 [willpower].  Forced: When it becomes Night, raise each player's threat by 1.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "name": "Freezing Blast",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "Doomed 2.\nWhen Revealed: Remove each damaged character from the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 53,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+      "octgnid": "cf33276f-22e5-467d-9543-6b345d17e7bc",
+      "name": "Sudden Darkness",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: If it is Night, raise each player's threat by 4. If it is Day, flip the Time objective to Nightfall.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 26,
+      "quantity": 2,
+      "shadow": "Shadow: Put the topmost Warg enemy from the discard pile into play engaged with you and deal it a shadow card.",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {},
+      "imagesrc": "/cards/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "cf33276f-22e5-467d-9543-6b345d17e7bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+      "octgnid": "d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+      "name": "North Downs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "While it is Night, North Downs gets +2 [threat].",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 25,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, remove all progress from the current quest.",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 25,
+          "quantity": 3,
+          "octgnid": "d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+      "octgnid": "da6d1bd2-575b-4292-9757-3792b79a4b78",
+      "name": "Hunting Pack",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Cannot have attachments.\nWhen a player is making an engagement check against Hunting Pack, it gets -1 engagement cost for each damaged character that player controls.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 20,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 6,
+      "engagement": 40,
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "6",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "da6d1bd2-575b-4292-9757-3792b79a4b78",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "name": "Shrouded Hills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "X is the number of quest cards in play.\nWhile there is only 1 quest card in play, Shrouded Hills gains surge.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 48,
+      "quantity": 2,
+      "quest": 5,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+      "octgnid": "e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+      "name": "Wolf of Angmar",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Surge.\nWhile it is Night, Wolf of Angmar gets +2 [attack].",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 22,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it is Night).",
+      "encounter_set": "The Wastes of Eriador",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 22,
+          "quantity": 3,
+          "octgnid": "e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "name": "Lost in the Wilderness",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player places all cards in his hand facedown underneath Lost in the Wilderness.  Forced: When Lost in the Wilderness is defeated, return each card underneath to its owner's hand.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 51,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+      "octgnid": "fac30859-0ad6-4d07-8b73-b5e2af044a52",
+      "name": "Battle with the Pack",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Flip the Time objective to Nightfall. Add Pack Leader to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top of the encounter deck until X Warg enemies are discarded. X is 1 less than the number of players in the game. Add each discarded enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "WoE",
+      "pack_name": "The Wastes of Eriador",
+      "position": 15,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Wastes of Eriador",
+      "side": "A",
+      "back_name": "Battle with the Pack",
+      "back_text": "Pack Leader cannot take damage unless there are at least 5 progress tokens on this stage.  Forced: When it becomes Day, discard all progress from this stage.  The players cannot defeat this stage while Pack Leader is in play. If Pack Leader is destroyed, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg",
+      "packs": [
+        {
+          "pack_code": "WoE",
+          "pack_name": "The Wastes of Eriador",
+          "position": 15,
+          "quantity": 1,
+          "octgnid": "fac30859-0ad6-4d07-8b73-b5e2af044a52",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+      "name": "Pressing Needs",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: Either search the encounter deck and discard pile for an encounter side quest and reveal it, or choose a different quest card in play to be the current quest until the end of the phase. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 49,
+      "quantity": 2,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.4",
+      "name": "The Wastes of Eriador (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TLR",
+        "WoE"
+      ],
+      "card_codes": [
+        "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+        "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+        "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+        "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+        "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+        "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+        "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+        "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+        "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+        "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+        "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+        "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+        "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+        "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+        "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c": 1,
+          "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90": 1,
+          "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9": 3,
+          "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a": 1,
+          "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78": 1,
+          "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391": 3,
+          "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208": 2,
+          "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49": 1,
+          "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a": 1,
+          "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23": 3,
+          "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc": 1,
+          "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be": 2,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 2,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 1,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 2,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 1,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 1,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedSetAside": {
+          "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921": 1,
+          "octgn:207b12bd-20b4-470d-81cc-7896904334d5": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.4",
+      "name": "The Wastes of Eriador",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TLR",
+        "WoE"
+      ],
+      "card_codes": [
+        "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+        "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+        "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+        "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+        "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+        "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+        "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+        "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+        "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+        "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+        "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+        "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+        "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+        "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+        "octgn:207b12bd-20b4-470d-81cc-7896904334d5"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c": 1,
+          "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90": 1,
+          "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9": 4,
+          "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a": 2,
+          "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78": 2,
+          "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391": 3,
+          "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208": 3,
+          "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49": 2,
+          "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a": 2,
+          "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23": 3,
+          "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc": 2,
+          "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be": 3,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 3,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 2,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 3,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 1,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 2,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 2,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedSetAside": {
+          "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921": 1,
+          "octgn:207b12bd-20b4-470d-81cc-7896904334d5": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg",
+      "localPath": "/cards/019ebbd1-9632-4c0a-bd98-4ecef29afb1a.jpg",
+      "bytes": 156069,
+      "sha256": "abfb62c2d073a966c514f6c227a94cb81748dafcee03af24842be28da8eeec17"
+    },
+    {
+      "code": "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/207b12bd-20b4-470d-81cc-7896904334d5.jpg",
+      "localPath": "/cards/207b12bd-20b4-470d-81cc-7896904334d5.jpg",
+      "bytes": 141952,
+      "sha256": "b04abd179d190f65263699a5dd05f67df4b8fdd20cdcdc1556b58f7d8b2d6d66"
+    },
+    {
+      "code": "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg",
+      "localPath": "/cards/22d6a151-ee2a-4ad0-9d97-5eddd5cc0391.jpg",
+      "bytes": 149886,
+      "sha256": "58de494bf583b41233024f0266ea710b71ca294e09f295911486d5c7990974db"
+    },
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "localPath": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "bytes": 144055,
+      "sha256": "48d99e2b12bef7493f458404553282dcc3f29f41d4c3195d68825d13e0b10f44"
+    },
+    {
+      "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg",
+      "localPath": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.jpg",
+      "bytes": 127901,
+      "sha256": "72f6184b90c9d3ab5bb9116d4fcd84a7235e487e2b834653271cab7739050b56"
+    },
+    {
+      "code": "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.B.jpg",
+      "localPath": "/cards/3e471bd0-5ee5-4846-815d-fd6a5cd5f921.B.jpg",
+      "bytes": 130255,
+      "sha256": "2128aadeec2b17e2f4aca14d94cd43e69d48b3cbd6392acda979537e450f943a"
+    },
+    {
+      "code": "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg",
+      "localPath": "/cards/41b47c87-94c4-47ff-b8c6-3f25dba0ca49.jpg",
+      "bytes": 148943,
+      "sha256": "2d62c02417f4a4e1953df0000e5cf34debeb73fc0d07ba825d5d66d5adc2d44b"
+    },
+    {
+      "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg",
+      "localPath": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg",
+      "bytes": 150792,
+      "sha256": "af8d6ef7d5b5ed3b4322425b59876fb098e770899a5e729469c175d87d5717cf"
+    },
+    {
+      "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43509bf0-3250-420f-b743-e56c3ad5cd90.B.jpg",
+      "localPath": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.B.jpg",
+      "bytes": 142895,
+      "sha256": "e5035e849fc34582c6f859554d5467f8731d455eebb54799d031d9c8da0acc05"
+    },
+    {
+      "code": "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg",
+      "localPath": "/cards/4c68d3ef-2309-47db-ba21-08bf2f7336b9.jpg",
+      "bytes": 160366,
+      "sha256": "fb4b39f8c650683817a600833232c907b9b369cbab39eaf7344e3a373dd610ba"
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "localPath": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "bytes": 147589,
+      "sha256": "4b1557d6d6bbbc12c3bf3ee46ad0bce51dd0f7b22a43ed22df74396e44c4fc7a"
+    },
+    {
+      "code": "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg",
+      "localPath": "/cards/77dd117d-b2b6-4324-aa59-09fd1343fde9.jpg",
+      "bytes": 151022,
+      "sha256": "818e6bb8d78315a2140e46001ea3f9a227b0e42969f7ee71c6b006bf8d1179e0"
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "localPath": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "bytes": 148500,
+      "sha256": "a472014e1f6715ecb244b4281c16afa6ec2825ad4b17d9610e3a0fb556d9f1ab"
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "localPath": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "bytes": 148119,
+      "sha256": "ac55a4c8ee7513d8648ae6d1fdeeea4eedcc40e2c3ba6bed99746bb405c86501"
+    },
+    {
+      "code": "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg",
+      "localPath": "/cards/92ef70d1-b46c-454d-ab7d-2ab56227d9be.jpg",
+      "bytes": 151802,
+      "sha256": "6441d3f8c5bfa1d7236412181c8c2c311dd1e80d77b3fdf7d8f65f01059c4001"
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "localPath": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "bytes": 158864,
+      "sha256": "2089b05546d50e14b6c725e401d91acbae469307f4be0921443ae0db00710ef6"
+    },
+    {
+      "code": "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg",
+      "localPath": "/cards/9feef7b4-4ca7-4adc-aeb7-56947254588a.jpg",
+      "bytes": 151605,
+      "sha256": "b37f98208b9812e8da42312fa2b96deee02942ddd5d9318cac0802014e98b269"
+    },
+    {
+      "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg",
+      "localPath": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg",
+      "bytes": 149009,
+      "sha256": "3aebe03dbdcd3dbae926efa03fde38df1ab07c3f0052f769598c6c77514350f4"
+    },
+    {
+      "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b6af7b48-e072-45e8-a745-4de2ac8ded8c.B.jpg",
+      "localPath": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.B.jpg",
+      "bytes": 148778,
+      "sha256": "2794b82ef154bbd2e21d1efd75d3ee705606dfcc2b5de1b756288af5c225702e"
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "localPath": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "bytes": 149933,
+      "sha256": "a0562b4727bd9f1dd56b360092bbe0963ea26467b6ed623bc7d27dc652ba1bce"
+    },
+    {
+      "code": "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg",
+      "localPath": "/cards/cf33276f-22e5-467d-9543-6b345d17e7bc.jpg",
+      "bytes": 148091,
+      "sha256": "bb91b0df49020e7ce847845103ee6fa08b40793d67b5cc4c3003cf6706ff3a25"
+    },
+    {
+      "code": "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg",
+      "localPath": "/cards/d960e5a1-73eb-4699-b3c1-2eadeb2c6f23.jpg",
+      "bytes": 143372,
+      "sha256": "e26682f4edc12172e77752c82719b9db74deee4935e209cf43736c0a2f7f2559"
+    },
+    {
+      "code": "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg",
+      "localPath": "/cards/da6d1bd2-575b-4292-9757-3792b79a4b78.jpg",
+      "bytes": 152245,
+      "sha256": "1ba3814b28901466c5e0628a39f98c20639d1328e586f5a35ed70f95635d6dff"
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "localPath": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "bytes": 142068,
+      "sha256": "22848d29316ca1ed12423b06c8529dcb6047d0b8e1efb1613af7f5c258f35a5a"
+    },
+    {
+      "code": "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg",
+      "localPath": "/cards/e49be9ae-10f1-44fe-a1b8-fc931be2d208.jpg",
+      "bytes": 146781,
+      "sha256": "e409d50ddd8ea94597d02290162fa3240a37aa1007d7f8a8037f55396fdfbcb1"
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "localPath": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "bytes": 138699,
+      "sha256": "ace5352d0fd881d260489a343179a0843cfe81f0c5d63131f207a730dde43f8a"
+    },
+    {
+      "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg",
+      "localPath": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg",
+      "bytes": 152837,
+      "sha256": "bfb1f45581393f5ab0d07184054276ba7d650d4ddd928b99b6eb7c40c350372f"
+    },
+    {
+      "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fac30859-0ad6-4d07-8b73-b5e2af044a52.B.jpg",
+      "localPath": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.B.jpg",
+      "bytes": 144422,
+      "sha256": "235db3c383f1b4e8aa2181c8a68d35ded620517b3826d9d50c6b68246f552e3c"
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "localPath": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "bytes": 150920,
+      "sha256": "ca7ed1394295a0fb471ff1829b8d5e8da97286bc1b9b5e3502aca6a04fd885aa"
+    }
+  ]
+}

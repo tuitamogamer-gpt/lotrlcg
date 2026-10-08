@@ -1,0 +1,1847 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Across the Ettenmoors",
+  "slug": "across-the-ettenmoors",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+      "octgnid": "0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+      "name": "Arador's Bane",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player must either engage an enemy in the staging area with a higher engagement cost than his threat, or search the encounter deck and discard pile for a Troll or Giant enemy and add it to the staging area. Deal each enemy that engages a player through this effect 2 shadow cards.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 79,
+      "quantity": 2,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {},
+      "imagesrc": "/cards/0f5ffc36-fe0f-4097-ad67-dafda700d96f.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 79,
+          "quantity": 2,
+          "octgnid": "0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f5ffc36-fe0f-4097-ad67-dafda700d96f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+      "octgnid": "1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+      "name": "Abandoned Camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors.",
+      "text": "Guarded. Safe. Immune to player card effects.\nResponse: After you travel to Abandoned Camp, each player may return 1 card from his discard pile to his hand.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 70,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 1,
+      "victory": 5,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "1",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/1339dfb5-49c1-46ce-a4c9-970d0e118cfa.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1339dfb5-49c1-46ce-a4c9-970d0e118cfa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+      "octgnid": "1c9d4501-fa65-41b9-977f-896f2286511d",
+      "name": "No Rest",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to an exhausted hero, or to a ready hero if there are no exhausted heroes. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Attached hero cannot ready and does not collect resources during the resource phase. Discard No Rest if the players travel to a safe location.\")",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 80,
+      "quantity": 3,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {},
+      "imagesrc": "/cards/1c9d4501-fa65-41b9-977f-896f2286511d.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 80,
+          "quantity": 3,
+          "octgnid": "1c9d4501-fa65-41b9-977f-896f2286511d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c9d4501-fa65-41b9-977f-896f2286511d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+      "octgnid": "23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+      "name": "Cruel Mountain-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "For each excess point of combat damage dealt by Cruel Mountain-troll (damage that is dealt beyond the remaining hit points of the character damaged by its attack) you must remove 1 progress from each quest card in play.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 74,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 2,
+      "health": 9,
+      "engagement": 46,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "2",
+        "health": "9",
+        "engagement": "46"
+      },
+      "imagesrc": "/cards/23dec64e-9e30-4329-9df7-4d2628d2a7a8.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 74,
+          "quantity": 2,
+          "octgnid": "23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23dec64e-9e30-4329-9df7-4d2628d2a7a8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "name": "Rugged Country",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "If the current quest is a side quest, Rugged Country gets +2 [threat].",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 47,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 47,
+          "quantity": 3,
+          "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+      "octgnid": "26bb74c2-3c66-4828-8188-404bc42e713e",
+      "name": "Secluded Cave",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors. Cave.",
+      "text": "Guarded. Safe. Immune to player card effects.\nResponse: After you travel to Secluded Cave, each player draws 3 cards.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 68,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 7,
+      "victory": 5,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "7",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/26bb74c2-3c66-4828-8188-404bc42e713e.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "26bb74c2-3c66-4828-8188-404bc42e713e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26bb74c2-3c66-4828-8188-404bc42e713e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+      "octgnid": "34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+      "name": "Amarthiúl",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Dunedain. Ranger. Warrior.",
+      "text": "Response: After an enemy engages a player, give control of Amarthiul to that player.  If Amarthiul leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 67,
+      "quantity": 1,
+      "willpower": 1,
+      "attack": 3,
+      "defense": 3,
+      "health": 3,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "willpower": "1",
+        "attack": "3",
+        "defense": "3",
+        "health": "3"
+      },
+      "imagesrc": "/cards/34a59958-0d34-49a9-8beb-b6f8ba8dcd4c.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34a59958-0d34-49a9-8beb-b6f8ba8dcd4c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+      "octgnid": "35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+      "name": "Barren Moorland",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors.",
+      "text": "While Barren Moorland is in the staging area, it gains: \"Forced: When an ally enters play, you must either exhaust it or deal 1 damage to it.\"  Travel: Deal 1 damage to each exhausted character.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 78,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/35b3cfde-9964-4173-88c5-e5e5cb8f84ac.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 78,
+          "quantity": 2,
+          "octgnid": "35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35b3cfde-9964-4173-88c5-e5e5cb8f84ac.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+      "octgnid": "397ef92c-981b-4495-a2a0-681ea886d30c",
+      "name": "Lie Low",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: At the end of the quest phase, if no progress was placed on Lie Low this round, each enemy gets -20 engagement cost until the end of the round.  Response: After this stage is defeated, choose an enemy in the staging area and shuffle it into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 81,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/397ef92c-981b-4495-a2a0-681ea886d30c.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 81,
+          "quantity": 1,
+          "octgnid": "397ef92c-981b-4495-a2a0-681ea886d30c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/397ef92c-981b-4495-a2a0-681ea886d30c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+      "octgnid": "3e905158-737c-45c4-a32d-e88061e94564",
+      "name": "A Miserable Journey",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a side quest is discarded. Reveal that side quest and add it to the staging area, if able.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 65,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Across the Ettenmoors",
+      "side": "A",
+      "back_name": "A Miserable Journey",
+      "back_text": "Reveal 1 additional encounter card during the quest phase unless there is an active location with the safe keyword.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/3e905158-737c-45c4-a32d-e88061e94564.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/3e905158-737c-45c4-a32d-e88061e94564.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "3e905158-737c-45c4-a32d-e88061e94564",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e905158-737c-45c4-a32d-e88061e94564.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+      "name": "Make Camp",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nCharacters cannot be healed.  Response: After Make Camp is defeated, each player heals up to 3 damage from a hero he controls.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 55,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 55,
+          "quantity": 1,
+          "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+      "octgnid": "788819a1-c0b5-4dd0-b778-f3011ca05175",
+      "name": "Across the Ettenmoors",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card Side 1",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "Across the Ettenmoors",
+      "back_name": "Across the Ettenmoors",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/788819a1-c0b5-4dd0-b778-f3011ca05175.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/788819a1-c0b5-4dd0-b778-f3011ca05175.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "788819a1-c0b5-4dd0-b778-f3011ca05175",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/788819a1-c0b5-4dd0-b778-f3011ca05175.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "name": "Weight of Responsibility",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card for each quest card in play.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 50,
+      "quantity": 2,
+      "shadow": "Shadow: Defending player discards 1 attachment he controls for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "name": "Biting Wind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Assign X damage among characters committed to the quest. X is the number of characters committed to the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 52,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 52,
+          "quantity": 3,
+          "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+      "octgnid": "976d7409-0e67-43f1-b1bd-56cdeac073ef",
+      "name": "Patch of Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors. Forest.",
+      "text": "Guarded. Safe. Immune to player card effects.\nResponse: After you travel to Patch of Woods, each player adds 1 resource to each of his heroes' resource pools.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 71,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 5,
+      "victory": 5,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "5",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/976d7409-0e67-43f1-b1bd-56cdeac073ef.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "976d7409-0e67-43f1-b1bd-56cdeac073ef",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/976d7409-0e67-43f1-b1bd-56cdeac073ef.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+      "octgnid": "97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+      "name": "Savage Trollspawn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Savage Trollspawn gets +1 [attack] for each damaged character the engaged player controls.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 72,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 2,
+      "defense": 3,
+      "health": 6,
+      "engagement": 36,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "3",
+        "health": "6",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/97f3e879-eeee-4cc2-beb9-dc7c49c681ac.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 72,
+          "quantity": 4,
+          "octgnid": "97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97f3e879-eeee-4cc2-beb9-dc7c49c681ac.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "name": "Cold from Angmar",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player deals 1 damage to a hero he controls. Then, attach Cold from Angmar to the current quest. (Counts as a Condition attachment with the text: \"Treat each damaged character's printed text box as if it were blank, except for keywords and Traits.\")",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 54,
+      "quantity": 3,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+      "octgnid": "a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+      "name": "Into the Ettenmoors",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set aside each of the 3 Across the Ettenmoors side quests and each of the 4 locations with the safe keyword. Reveal 1 of those side quests at random and 1 of those safe locations at random, adding them to the staging area with the safe location guarded by the side quest. Search the encounter deck for 1 copy of Savage Trollspawn per player and add them to the staging area. Shuffle the remaining side quests and safe locations back into the encounter deck. The first player gains control of Amarthiul.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 64,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Across the Ettenmoors",
+      "side": "A",
+      "back_name": "Into the Ettenmoors",
+      "back_text": "Forced: At the beginning of the quest phase, if there are no encounter side quests in play, discard cards from the top of the encounter deck until a side quest is discarded, and add it to the staging area.  Forced: When a side quest is defeated, place progress tokens on Into the Ettenmoors equal to that side quest's quest points.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 64,
+          "quantity": 1,
+          "octgnid": "a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+      "octgnid": "b70846d1-3216-421a-9098-af2a4540b530",
+      "name": "Coldfell Giant",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Giant.",
+      "text": "Forced: After Coldfell Giant engages you, deal 1 damage to 3 different characters you control.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 73,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 4,
+      "health": 7,
+      "engagement": 41,
+      "shadow": "Shadow: If the defending character has at least 1 damage token on it, attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "4",
+        "health": "7",
+        "engagement": "41"
+      },
+      "imagesrc": "/cards/b70846d1-3216-421a-9098-af2a4540b530.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "b70846d1-3216-421a-9098-af2a4540b530",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b70846d1-3216-421a-9098-af2a4540b530.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+      "octgnid": "b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+      "name": "Forage for Food",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After 1 or more resources are spent from a hero's resource pool, deal 1 damage to that hero.  Response: After this stage is defeated, heal 1 damage from each hero.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 82,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/b793d1f1-012e-4e13-aad0-d91833f6f8c6.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 82,
+          "quantity": 1,
+          "octgnid": "b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b793d1f1-012e-4e13-aad0-d91833f6f8c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "name": "Freezing Blast",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "Doomed 2.\nWhen Revealed: Remove each damaged character from the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 53,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+      "octgnid": "b81a014a-af32-41a9-abdf-8dbebf29f685",
+      "name": "The Hoarwell",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors. River.",
+      "text": "Guarded. Safe. Immune to player card effects.\nResponse: After you travel to The Hoarwell, heal 1 damage from each character in play.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 69,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 3,
+      "victory": 5,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "3",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/b81a014a-af32-41a9-abdf-8dbebf29f685.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "b81a014a-af32-41a9-abdf-8dbebf29f685",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b81a014a-af32-41a9-abdf-8dbebf29f685.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+      "octgnid": "c1db9a5b-1377-49b2-833f-4d8e95928b60",
+      "name": "Goblin Pursuer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Damaged characters cannot be declared as attackers or defenders against Goblin Pursuer.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 76,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 16,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+3 [attack] instead if this attack is undefended).",
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "16"
+      },
+      "imagesrc": "/cards/c1db9a5b-1377-49b2-833f-4d8e95928b60.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 76,
+          "quantity": 2,
+          "octgnid": "c1db9a5b-1377-49b2-833f-4d8e95928b60",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1db9a5b-1377-49b2-833f-4d8e95928b60.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+      "octgnid": "c75d2227-2fa6-4dba-a48a-64938b632efd",
+      "name": "Troll-fells",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ettenmoors.",
+      "text": "While Troll-fells is the active location, Weather cards gain doomed 1.  When Revealed: If Troll-fells is not revealed guarding a safe location, search the encounter deck and discard pile for a location with the safe keyword and attach it to Troll-fells, guarded. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 77,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 6,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/c75d2227-2fa6-4dba-a48a-64938b632efd.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 77,
+          "quantity": 2,
+          "octgnid": "c75d2227-2fa6-4dba-a48a-64938b632efd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c75d2227-2fa6-4dba-a48a-64938b632efd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+      "octgnid": "c898c9f0-d4a7-4821-b075-1e412cde86a7",
+      "name": "Scavenge for Supplies",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "The cost to play each player card is increased by 1.  Forced: When this stage is defeated, search the encounter deck and discard pile for a Troll enemy and put it into play engaged with the player with the highest threat. Each player may play a card from his hand, at no cost.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 83,
+      "quantity": 1,
+      "quest": 7,
+      "victory": 10,
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "quest": "7",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c898c9f0-d4a7-4821-b075-1e412cde86a7.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "c898c9f0-d4a7-4821-b075-1e412cde86a7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c898c9f0-d4a7-4821-b075-1e412cde86a7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+      "octgnid": "d9da588c-c96d-4971-813a-40e439e46764",
+      "name": "Journey's End",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Discard cards from the top of the encounter deck until a side quest is discarded. Reveal that side quest and add it to the staging area, if able.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 66,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Across the Ettenmoors",
+      "side": "A",
+      "back_name": "Journey's End",
+      "back_text": "Each damaged character gets -2 [willpower] unless there is an active location with the safe keyword.  If the players defeat this stage, they have escaped the Ettenmoors with their lives, and win the game.",
+      "back_type_code": "quest",
+      "back_quest": 17,
+      "back_imagesrc": "/cards/d9da588c-c96d-4971-813a-40e439e46764.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/d9da588c-c96d-4971-813a-40e439e46764.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "d9da588c-c96d-4971-813a-40e439e46764",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9da588c-c96d-4971-813a-40e439e46764.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "name": "Shrouded Hills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "X is the number of quest cards in play.\nWhile there is only 1 quest card in play, Shrouded Hills gains surge.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 48,
+      "quantity": 2,
+      "quest": 5,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+      "octgnid": "e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+      "name": "Ruthless Hill-troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Ruthless Hill-troll gets +2 [attack] and +2 [defense] while it has 3 or more damage on it.",
+      "is_unique": false,
+      "pack_code": "AtE",
+      "pack_name": "Across the Ettenmoors",
+      "position": 75,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 12,
+      "engagement": 31,
+      "shadow": "Shadow: Shuffle 1 location with the safe keyword (but not its attached encounter) back into the encounter deck.",
+      "encounter_set": "Across the Ettenmoors",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "12",
+        "engagement": "31"
+      },
+      "imagesrc": "/cards/e35e9d1e-48bb-41f3-95c9-402f84e46ef8.jpg",
+      "packs": [
+        {
+          "pack_code": "AtE",
+          "pack_name": "Across the Ettenmoors",
+          "position": 75,
+          "quantity": 2,
+          "octgnid": "e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e35e9d1e-48bb-41f3-95c9-402f84e46ef8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "name": "Lost in the Wilderness",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player places all cards in his hand facedown underneath Lost in the Wilderness.  Forced: When Lost in the Wilderness is defeated, return each card underneath to its owner's hand.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 51,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+      "name": "Pressing Needs",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: Either search the encounter deck and discard pile for an encounter side quest and reveal it, or choose a different quest card in play to be the current quest until the end of the phase. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 49,
+      "quantity": 2,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.6",
+      "name": "Across the Ettenmoors (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "AtE",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+        "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+        "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+        "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+        "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+        "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+        "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+        "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+        "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+        "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+        "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+        "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+        "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+        "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+        "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+        "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+        "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c"
+      ],
+      "cards": [
+        {
+          "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1": 1,
+          "octgn:3e905158-737c-45c4-a32d-e88061e94564": 1,
+          "octgn:d9da588c-c96d-4971-813a-40e439e46764": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8": 2,
+          "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60": 2,
+          "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd": 2,
+          "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f": 1,
+          "octgn:1c9d4501-fa65-41b9-977f-896f2286511d": 3,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 2,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 1,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 2,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 1,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 1,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 1,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedSetAside": {
+          "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175": 1,
+          "octgn:397ef92c-981b-4495-a2a0-681ea886d30c": 1,
+          "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6": 1,
+          "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7": 1,
+          "octgn:26bb74c2-3c66-4828-8188-404bc42e713e": 1,
+          "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685": 1,
+          "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa": 1,
+          "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef": 1,
+          "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac": 4
+        },
+        "player1Play1": {
+          "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.6",
+      "name": "Across the Ettenmoors",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "AtE",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+        "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+        "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+        "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+        "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+        "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+        "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+        "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+        "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+        "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+        "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+        "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+        "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+        "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+        "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+        "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+        "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+        "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+        "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+        "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c"
+      ],
+      "cards": [
+        {
+          "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1": 1,
+          "octgn:3e905158-737c-45c4-a32d-e88061e94564": 1,
+          "octgn:d9da588c-c96d-4971-813a-40e439e46764": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:b70846d1-3216-421a-9098-af2a4540b530": 2,
+          "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8": 2,
+          "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8": 2,
+          "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60": 2,
+          "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd": 2,
+          "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac": 2,
+          "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f": 2,
+          "octgn:1c9d4501-fa65-41b9-977f-896f2286511d": 3,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 3,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 2,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 3,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 2,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 2,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 2,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedSetAside": {
+          "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175": 1,
+          "octgn:397ef92c-981b-4495-a2a0-681ea886d30c": 1,
+          "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6": 1,
+          "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7": 1,
+          "octgn:26bb74c2-3c66-4828-8188-404bc42e713e": 1,
+          "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685": 1,
+          "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa": 1,
+          "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef": 1,
+          "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac": 4
+        },
+        "player1Play1": {
+          "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f5ffc36-fe0f-4097-ad67-dafda700d96f.jpg",
+      "localPath": "/cards/0f5ffc36-fe0f-4097-ad67-dafda700d96f.jpg",
+      "bytes": 154557,
+      "sha256": "5c4852d8ec0aa8dfbd8a7d072dec95eedc1baba67ed2eafd548e8a25962f2536"
+    },
+    {
+      "code": "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1339dfb5-49c1-46ce-a4c9-970d0e118cfa.jpg",
+      "localPath": "/cards/1339dfb5-49c1-46ce-a4c9-970d0e118cfa.jpg",
+      "bytes": 147136,
+      "sha256": "9a3f66a51fdf67f0ac9ddc1b80700c66f4ea6eb7c64f1f3f54cc3637ea1339fa"
+    },
+    {
+      "code": "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c9d4501-fa65-41b9-977f-896f2286511d.jpg",
+      "localPath": "/cards/1c9d4501-fa65-41b9-977f-896f2286511d.jpg",
+      "bytes": 145203,
+      "sha256": "2e10d83db66e34c6135afe783535d9a11872f19e2a02011f78654bc34d3e26e0"
+    },
+    {
+      "code": "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23dec64e-9e30-4329-9df7-4d2628d2a7a8.jpg",
+      "localPath": "/cards/23dec64e-9e30-4329-9df7-4d2628d2a7a8.jpg",
+      "bytes": 154842,
+      "sha256": "0c32a9b49b5d854a59267606cb5a03fe2404f369c80a513abc105d2a78e6ebbf"
+    },
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "localPath": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "bytes": 144055,
+      "sha256": "48d99e2b12bef7493f458404553282dcc3f29f41d4c3195d68825d13e0b10f44"
+    },
+    {
+      "code": "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26bb74c2-3c66-4828-8188-404bc42e713e.jpg",
+      "localPath": "/cards/26bb74c2-3c66-4828-8188-404bc42e713e.jpg",
+      "bytes": 152415,
+      "sha256": "a578a993b017b959010fc21f27c553fb6602d78d6fb7a150b107f066d5a2671a"
+    },
+    {
+      "code": "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34a59958-0d34-49a9-8beb-b6f8ba8dcd4c.jpg",
+      "localPath": "/cards/34a59958-0d34-49a9-8beb-b6f8ba8dcd4c.jpg",
+      "bytes": 144512,
+      "sha256": "44dbd711f45fab050696d0eef1404d3805898483008c846ed825f79295e95594"
+    },
+    {
+      "code": "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35b3cfde-9964-4173-88c5-e5e5cb8f84ac.jpg",
+      "localPath": "/cards/35b3cfde-9964-4173-88c5-e5e5cb8f84ac.jpg",
+      "bytes": 154162,
+      "sha256": "328dd4ea7e18a8d712887434b8cdf5acc7b148d860f243fa6f9cd2dde433f6d8"
+    },
+    {
+      "code": "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/397ef92c-981b-4495-a2a0-681ea886d30c.jpg",
+      "localPath": "/cards/397ef92c-981b-4495-a2a0-681ea886d30c.jpg",
+      "bytes": 141964,
+      "sha256": "da7bae40ba4005b365d9100e109730335277476be3858fc1c03be5ada1eac886"
+    },
+    {
+      "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e905158-737c-45c4-a32d-e88061e94564.jpg",
+      "localPath": "/cards/3e905158-737c-45c4-a32d-e88061e94564.jpg",
+      "bytes": 155450,
+      "sha256": "b4783ea1542550e5ea3f50560044ddded80b6775c4a4c6f341f6ab1fdd091e3e"
+    },
+    {
+      "code": "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e905158-737c-45c4-a32d-e88061e94564.B.jpg",
+      "localPath": "/cards/3e905158-737c-45c4-a32d-e88061e94564.B.jpg",
+      "bytes": 166400,
+      "sha256": "5bccf26283ca05a94c5613196bcd14a6b7157ff256bc57ceca4ed22ba15871c7"
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "localPath": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "bytes": 147589,
+      "sha256": "4b1557d6d6bbbc12c3bf3ee46ad0bce51dd0f7b22a43ed22df74396e44c4fc7a"
+    },
+    {
+      "code": "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/788819a1-c0b5-4dd0-b778-f3011ca05175.jpg",
+      "localPath": "/cards/788819a1-c0b5-4dd0-b778-f3011ca05175.jpg",
+      "bytes": 164355,
+      "sha256": "ab7678faf8b18b710abd77098a59122673ef2ca3bfcdc4459b81a1c51b0ec2de"
+    },
+    {
+      "code": "octgn:788819a1-c0b5-4dd0-b778-f3011ca05175",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/788819a1-c0b5-4dd0-b778-f3011ca05175.B.jpg",
+      "localPath": "/cards/788819a1-c0b5-4dd0-b778-f3011ca05175.B.jpg",
+      "bytes": 178886,
+      "sha256": "ce6fd91f939261e96fd04177439e89c14a1beba1826b99951331ae3f1caa6998"
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "localPath": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "bytes": 148500,
+      "sha256": "a472014e1f6715ecb244b4281c16afa6ec2825ad4b17d9610e3a0fb556d9f1ab"
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "localPath": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "bytes": 148119,
+      "sha256": "ac55a4c8ee7513d8648ae6d1fdeeea4eedcc40e2c3ba6bed99746bb405c86501"
+    },
+    {
+      "code": "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/976d7409-0e67-43f1-b1bd-56cdeac073ef.jpg",
+      "localPath": "/cards/976d7409-0e67-43f1-b1bd-56cdeac073ef.jpg",
+      "bytes": 146614,
+      "sha256": "a6e4dcec3d7e37fbb68ed013b0d861b896ca8e038cc7196b531a912558cdc3fb"
+    },
+    {
+      "code": "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97f3e879-eeee-4cc2-beb9-dc7c49c681ac.jpg",
+      "localPath": "/cards/97f3e879-eeee-4cc2-beb9-dc7c49c681ac.jpg",
+      "bytes": 143385,
+      "sha256": "f39dedffbed282ab1847d47a7cb804d1c2a723922cbd057e48f11fe49031fc57"
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "localPath": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "bytes": 158864,
+      "sha256": "2089b05546d50e14b6c725e401d91acbae469307f4be0921443ae0db00710ef6"
+    },
+    {
+      "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg",
+      "localPath": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.jpg",
+      "bytes": 156436,
+      "sha256": "a65d881a85964ab142b07de669ab37ea4f80081bbd382e9a6b4240aa853cff14"
+    },
+    {
+      "code": "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8980fe0-a42b-4de5-a8ab-388bea8038b1.B.jpg",
+      "localPath": "/cards/a8980fe0-a42b-4de5-a8ab-388bea8038b1.B.jpg",
+      "bytes": 143935,
+      "sha256": "948586229b093dafa2e47e16e44c08bb32acf140aafed92bd4f6ef39e0376084"
+    },
+    {
+      "code": "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b70846d1-3216-421a-9098-af2a4540b530.jpg",
+      "localPath": "/cards/b70846d1-3216-421a-9098-af2a4540b530.jpg",
+      "bytes": 158901,
+      "sha256": "40411536d1581c9bcf3161b8b8a622e676dbb0abcfbea4bab5d3479fb9089367"
+    },
+    {
+      "code": "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b793d1f1-012e-4e13-aad0-d91833f6f8c6.jpg",
+      "localPath": "/cards/b793d1f1-012e-4e13-aad0-d91833f6f8c6.jpg",
+      "bytes": 158123,
+      "sha256": "6649a3f0dbf114101b776e7db7c574e844c61dd438d4a8484876540fe25bb39c"
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "localPath": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "bytes": 149933,
+      "sha256": "a0562b4727bd9f1dd56b360092bbe0963ea26467b6ed623bc7d27dc652ba1bce"
+    },
+    {
+      "code": "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b81a014a-af32-41a9-abdf-8dbebf29f685.jpg",
+      "localPath": "/cards/b81a014a-af32-41a9-abdf-8dbebf29f685.jpg",
+      "bytes": 146089,
+      "sha256": "976bdfdc96b80133830c0d101b7d68a1d3a8b3ac4964d622b4120cff7e259032"
+    },
+    {
+      "code": "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1db9a5b-1377-49b2-833f-4d8e95928b60.jpg",
+      "localPath": "/cards/c1db9a5b-1377-49b2-833f-4d8e95928b60.jpg",
+      "bytes": 151883,
+      "sha256": "8e1db30d6eff6886d21d18842dc1e8da6ac0adaf5511cff0853cef57473f8a8a"
+    },
+    {
+      "code": "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c75d2227-2fa6-4dba-a48a-64938b632efd.jpg",
+      "localPath": "/cards/c75d2227-2fa6-4dba-a48a-64938b632efd.jpg",
+      "bytes": 156492,
+      "sha256": "a88971e748dd4c75e6469ed4cdf966314b469ffcca703f94c86f2182309f439d"
+    },
+    {
+      "code": "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c898c9f0-d4a7-4821-b075-1e412cde86a7.jpg",
+      "localPath": "/cards/c898c9f0-d4a7-4821-b075-1e412cde86a7.jpg",
+      "bytes": 166687,
+      "sha256": "7235a35fa11bde333e4e3e32a857bb8c21dc74a3f68c3457ffae0ed443c7d7c8"
+    },
+    {
+      "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9da588c-c96d-4971-813a-40e439e46764.jpg",
+      "localPath": "/cards/d9da588c-c96d-4971-813a-40e439e46764.jpg",
+      "bytes": 142699,
+      "sha256": "79c2db0dd66e5338981a9303efb636a5d663d2be723378ad58515e5dfcd11589"
+    },
+    {
+      "code": "octgn:d9da588c-c96d-4971-813a-40e439e46764",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9da588c-c96d-4971-813a-40e439e46764.B.jpg",
+      "localPath": "/cards/d9da588c-c96d-4971-813a-40e439e46764.B.jpg",
+      "bytes": 138935,
+      "sha256": "9f6a612ef2236784ee68d4e4d5fc7469975c377638de24b08c9d1e898a971ef8"
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "localPath": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "bytes": 142068,
+      "sha256": "22848d29316ca1ed12423b06c8529dcb6047d0b8e1efb1613af7f5c258f35a5a"
+    },
+    {
+      "code": "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e35e9d1e-48bb-41f3-95c9-402f84e46ef8.jpg",
+      "localPath": "/cards/e35e9d1e-48bb-41f3-95c9-402f84e46ef8.jpg",
+      "bytes": 150432,
+      "sha256": "e38cb92a906be3e6938e726bc418acce9bb227ab29439f180bfcf97a686785b1"
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "localPath": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "bytes": 138699,
+      "sha256": "ace5352d0fd881d260489a343179a0843cfe81f0c5d63131f207a730dde43f8a"
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "localPath": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "bytes": 150920,
+      "sha256": "ca7ed1394295a0fb471ff1829b8d5e8da97286bc1b9b5e3502aca6a04fd885aa"
+    }
+  ]
+}

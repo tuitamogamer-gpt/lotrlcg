@@ -5,6 +5,12 @@ import { SHADOW_FLAME } from "./shadow-flame-support";
 import { activeSeat, playerOrder, seatView } from "./table";
 import { encounterDraw } from "./core";
 import { heirsShadowDealt } from "./heirs-numenor";
+import {
+  carnConsideredEngaged,
+  carnShadowDealt,
+  carnFinishEnemyShadows,
+  carnImmediateShadows,
+} from "./carn-dum";
 type ConsideredEnemy = Unit & { consideredEnemyAttackedBy?: number[] };
 export function consideredEngaged(
   s: GameState,
@@ -12,11 +18,12 @@ export function consideredEngaged(
   player = activeSeat(s),
 ): boolean {
   return (
-    u.code === SHADOW_FLAME.bane &&
-    !u.blanked &&
-    s.staging.some((c) => c.id === u.id) &&
-    playerOrder(s).includes(player) &&
-    seatView(s, player).threat >= 1
+    carnConsideredEngaged(s, u, player) ||
+    (u.code === SHADOW_FLAME.bane &&
+      !u.blanked &&
+      s.staging.some((c) => c.id === u.id) &&
+      playerOrder(s).includes(player) &&
+      seatView(s, player).threat >= 1)
   );
 }
 export function engagedEnemies(s: GameState, player = activeSeat(s)): Unit[] {
@@ -37,7 +44,10 @@ export function normalAttackPending(
     : seatView(s, player).engaged.some((e) => e.id === u.id) && !u.attacked;
 }
 export function markEnemyAttack(s: GameState, u: Unit, player = activeSeat(s)) {
-  if (u.code === SHADOW_FLAME.bane && s.staging.some((c) => c.id === u.id)) {
+  if (
+    (u.code === SHADOW_FLAME.bane || carnConsideredEngaged(s, u, player)) &&
+    s.staging.some((c) => c.id === u.id)
+  ) {
     const ledger = ((u as ConsideredEnemy).consideredEnemyAttackedBy ??= []);
     if (!ledger.includes(player)) ledger.push(player);
   } else u.attacked = true;
@@ -53,6 +63,8 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
   u.revealedShadowCount = 0;
   delete u.shadowCancelsDamage;
   delete u.shadowCancelsCombatDamage;
+  // Midwinter's Crux deals its shadow when Thaurdir attacks, including immediate attacks.
+  if (carnConsideredEngaged(s, u)) return;
   if (u.code === SHADOW_FLAME.bane && !u.blanked) {
     u.shadows = [];
     delete u.faceupShadows;
@@ -62,9 +74,11 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
   const code = encounterDraw(s, true);
   if (code) u.shadows.push(code);
   if (code) heirsShadowDealt(s, u);
+  if (code) carnShadowDealt(s, u);
 }
 /** Call when this considered-engaged enemy actually initiates any attack. */
 export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {
+  if (carnConsideredEngaged(s, u)) return carnImmediateShadows(s, u);
   if (u.code !== SHADOW_FLAME.bane || u.blanked) return false;
   // Immediate attacks suspend their original shadows separately before this call.
   // A normal attack must never lose a physical card left by an earlier attack.
@@ -84,6 +98,7 @@ export function finishEnemyShadows(
   u: Unit,
   startedWithFreshShadow = false,
 ): boolean {
+  if (carnFinishEnemyShadows(s, u)) return true;
   if (u.code !== SHADOW_FLAME.bane || (u.blanked && !startedWithFreshShadow))
     return false;
   s.encounterDiscard.push(...u.shadows);

@@ -1,6 +1,7 @@
 import { applyAction as act } from "./pass-resource-window.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
+import { appendFileSync, writeFileSync } from "node:fs";
 import { STARTERS, card } from "../src/game/cards";
 import {
   createGame,
@@ -12,6 +13,7 @@ import {
   retryAdventure,
   playTargets,
   canPlay,
+  canCommit,
   characters,
   newCampaign,
 } from "../src/game/engine";
@@ -28,6 +30,10 @@ import {
   livingSeats,
   ownerOf,
 } from "../src/game/table";
+import {
+  engagedEnemies,
+  normalAttackPending,
+} from "../src/game/considered-engagement";
 import type { GameState, Unit, ScenarioId, Action } from "../src/game/types";
 const config = [
   { heroes: ["01001"], deckId: "leadership" },
@@ -411,11 +417,26 @@ test("invalid seat indices, duplicate heroes and corrupt saves are rejected", ()
 });
 const coreScenarios = ["mirkwood", "anduin", "dol-guldur"] as const;
 const importedLostRealmScenario = (id: ScenarioId) =>
-  id === "the-weather-hills" || id === "deadmens-dike";
+  id === "the-weather-hills" ||
+  id === "deadmens-dike" ||
+  [
+    "wastes-of-eriador",
+    "escape-from-mount-gram",
+    "across-the-ettenmoors",
+    "the-treachery-of-rhudaur",
+    "the-battle-of-carn-dum",
+    "the-dread-realm",
+  ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
   "the-weather-hills",
   "deadmens-dike",
+  "wastes-of-eriador",
+  "escape-from-mount-gram",
+  "across-the-ettenmoors",
+  "the-treachery-of-rhudaur",
+  "the-battle-of-carn-dum",
+  "the-dread-realm",
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -430,6 +451,16 @@ for (const scenarioId of [
         : [false])
         for (const n of [1, 2, 3, 4])
           for (let seed = 1; seed <= 8; seed++) {
+            if (
+              process.env.LOTR_HOTSEAT_CASE &&
+              process.env.LOTR_HOTSEAT_CASE !==
+                `${easy ? "easy" : "normal"}/${n}/${seed}`
+            )
+              continue;
+            if (process.env.LOTR_HOTSEAT_TRACE === "1")
+              console.error(
+                `start ${scenarioId}/${easy ? "easy" : "normal"}/${n}/${seed}`,
+              );
             const d = STARTERS[0],
               heroes = playerConfig.slice(0, n).flatMap((p) => p.heroes),
               c = campaign ? newCampaign(heroes) : undefined;
@@ -457,6 +488,10 @@ for (const scenarioId of [
               (s.status === "playing" || s.flow?.pending) &&
               steps++ < 4000
             ) {
+              if (process.env.LOTR_HOTSEAT_TRACE === "1" && steps % 200 === 0)
+                console.error(
+                  `progress ${scenarioId}/${easy ? "easy" : "normal"}/${n}/${seed}: step ${steps}, round ${s.round}, phase ${s.phase}, choice ${s.choice?.title ?? "none"}`,
+                );
               let a: Action;
               if (s.flow?.pending)
                 a = { type: "CONTINUE", stepId: s.flow.pending.id };
@@ -477,13 +512,13 @@ for (const scenarioId of [
                 a = u ? { type: "PLAY", id: u.id } : { type: "NEXT" };
               } else if (s.phase === "quest") {
                 const u = characters(s).find(
-                  (u) => !u.exhausted && !s.committedIds.includes(u.id),
+                  (u) => canCommit(s, u) && !s.committedIds.includes(u.id),
                 );
                 a = u ? { type: "TOGGLE_QUEST", id: u.id } : { type: "COMMIT" };
               } else if (s.phase === "defense") {
-                const e = s.engaged.find(
+                const e = engagedEnemies(s).find(
                   (u) =>
-                    !u.attacked &&
+                    normalAttackPending(s, u) &&
                     !u.feinted &&
                     !u.attachments.some((a) => a.code === "01069"),
                 );
@@ -491,10 +526,10 @@ for (const scenarioId of [
                 a = {
                   type: "DEFEND",
                   enemyId: e.id,
-                  defenderId: defendersFor(s)[0]?.id ?? null,
+                  defenderId: defendersFor(s, e)[0]?.id ?? null,
                 };
               } else if (s.phase === "attack") {
-                const e = s.engaged.find(
+                const e = engagedEnemies(s).find(
                   (e) =>
                     !e.attackedBy?.includes(activeSeat(s)) &&
                     attackersFor(s, e).some(
@@ -519,19 +554,76 @@ for (const scenarioId of [
                 };
               else a = { type: "NEXT" };
               try {
+                if (process.env.LOTR_HOTSEAT_CASE)
+                  appendFileSync(
+                    `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,
+                    JSON.stringify({
+                      step: steps,
+                      point: "before",
+                      action: a,
+                      phase: s.phase,
+                      round: s.round,
+                      active: s.table?.active,
+                      turn: s.table?.turn,
+                      pending: s.flow?.pending?.id,
+                    }) + "\n",
+                  );
                 s = act(s, a);
+                if (process.env.LOTR_HOTSEAT_CASE) {
+                  appendFileSync(
+                    `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,
+                    JSON.stringify({
+                      step: steps,
+                      point: "acted",
+                      phase: s.phase,
+                      round: s.round,
+                      active: s.table?.active,
+                      turn: s.table?.turn,
+                      pending: s.flow?.pending?.id,
+                    }) + "\n",
+                  );
+                  if (s.phase === "staging")
+                    writeFileSync(
+                      `/tmp/hotseat-staging-${scenarioId}-${n}-${seed}.json`,
+                      JSON.stringify(s),
+                    );
+                }
               } catch (e) {
+                if (process.env.LOTR_HOTSEAT_TRACE === "1")
+                  writeFileSync(
+                    `/tmp/hotseat-failure-${scenarioId}-${n}-${seed}.json`,
+                    JSON.stringify({ state: s, action: a }),
+                  );
                 throw new Error(
                   `${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} seat ${activeSeat(s)} ${JSON.stringify(a)}: ${e}`,
                 );
               }
+              if (!importedLostRealmScenario(scenarioId))
+                assert.ok(validateSave(s));
+              const restored = restoreSave(JSON.parse(JSON.stringify(s)));
+              if (!restored && process.env.LOTR_HOTSEAT_TRACE === "1")
+                writeFileSync(
+                  `/tmp/hotseat-invalid-save-${scenarioId}-${n}-${seed}.json`,
+                  JSON.stringify(s),
+                );
               assert.ok(
-                validateSave(s),
+                restored,
                 `invalid save ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} step ${steps}`,
               );
-              const restored = restoreSave(JSON.parse(JSON.stringify(s)));
-              assert.ok(restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
+              if (process.env.LOTR_HOTSEAT_CASE)
+                appendFileSync(
+                  `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,
+                  JSON.stringify({
+                    step: steps,
+                    point: "restored",
+                    phase: s.phase,
+                    round: s.round,
+                    active: s.table?.active,
+                    turn: s.table?.turn,
+                    pending: s.flow?.pending?.id,
+                  }) + "\n",
+                );
               assert.ok(
                 allCharacters(s).every((u) => u.damage < stats(s, u).health),
               );
@@ -546,14 +638,17 @@ for (const scenarioId of [
               `stuck ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} phase ${s.phase}`,
             );
             outcomes[easy ? "easy" : "normal"][s.status as "won" | "lost"]++;
+            if (process.env.LOTR_HOTSEAT_TRACE === "1")
+              console.error(
+                `finish ${scenarioId}/${easy ? "easy" : "normal"}/${n}/${seed}: ${s.status}, ${steps} steps`,
+              );
           }
       if (importedLostRealmScenario(scenarioId)) {
-        assert.equal(outcomes.normal.won + outcomes.normal.lost, 32);
-        assert.equal(outcomes.easy.won + outcomes.easy.lost, 32);
-        const title =
-          scenarioId === "the-weather-hills"
-            ? "Weather Hills"
-            : "Deadmen's Dike";
+        if (!process.env.LOTR_HOTSEAT_CASE) {
+          assert.equal(outcomes.normal.won + outcomes.normal.lost, 32);
+          assert.equal(outcomes.easy.won + outcomes.easy.lost, 32);
+        }
+        const title = scenarioId;
         t.diagnostic(`${title} complete games: ${JSON.stringify(outcomes)}`);
       }
     });

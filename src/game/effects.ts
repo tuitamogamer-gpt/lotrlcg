@@ -9,14 +9,122 @@ import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
 import { removeCurrentQuestProgress } from "./side-quests";
-import { sideQuestEffect, sideQuestStart } from "./side-quests";
+import { sideQuestEffect } from "./side-quests";
 import { rangerEffect } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
+import * as Wastes from "./wastes-eriador";
+import * as Gram from "./mount-gram";
+import * as Etten from "./ettenmoors";
+import * as Rhudaur from "./rhudaur";
+import * as Carn from "./carn-dum";
+import * as Dread from "./dread-realm";
+/** Shared continuations must finish even if the player resolving a cost was eliminated. */
+const ANGMAR_SHARED_EFFECTS = new Set([
+  "ettenSetup",
+  "ettenStageReveal",
+  "ettenFindSide",
+  "ettenMainProgress",
+  "ettenLieLowPenalty",
+  "ettenSafeVictory",
+  "ettenFellsSearch",
+  "ettenFellsTake",
+  "ettenRemoveAllQuestProgress",
+  "ettenShuffleSafe",
+  "ettenShuffleSafeTake",
+  "ettenLieLowShuffle",
+  "ettenLieLowTake",
+  "ettenScavengeTroll",
+  "ettenScavengeTake",
+  "rhudaurSetup",
+  "rhudaurStageTwo",
+  "rhudaurTimeExpired",
+  "rhudaurShuffle",
+  "rhudaurAddProgress",
+  "rhudaurDescentProgress",
+  "rhudaurResumeProgress",
+  "rhudaurHall",
+  "rhudaurReturnUndead",
+  "rhudaurThaurdirSorcery",
+  "rhudaurRemoveQuestProgress",
+  "rhudaurSwitchQuest",
+  "rhudaurSelectQuest",
+  "rhudaurAttachFog",
+  "rhudaurQuietChoose",
+  "carnSetup",
+  "carnDealAll",
+  "carnFlip",
+  "carnBossForced",
+  "carnWolf",
+  "carnWill",
+  "carnWillSurge",
+  "carnStageTwo",
+  "carnStageReady",
+  "carnMainProgress",
+  "carnCurse",
+  "carnTerror",
+  "carnAttackEffects",
+  "carnAttackFinished",
+  "carnHealEnemy",
+  "dreadSetup",
+  "dreadStageReady",
+  "dreadStageTwo",
+  "dreadStageThree",
+  "dreadFindLocations",
+  "dreadAddLocation",
+  "dreadWraithAttach",
+  "dreadAttachWraith",
+  "dreadRemoveSorcery",
+  "dreadRemoveSorceryCard",
+  "dreadQuestAttach",
+  "dreadFellPlayer",
+  "dreadPossession",
+  "dreadPossessAlly",
+  "dreadSeal",
+  "dreadAltar",
+  "dreadTombs",
+  "dreadTombsTravel",
+  "dreadEscape",
+  "dreadDivideProgress",
+  "dreadPlaceProgress",
+  "dreadDungeonExplored",
+  "dreadDungeonShadow",
+  "dreadShadowSorcery",
+  "dreadDiscardSorcery",
+  "dreadTerror",
+  "dreadTerrorShadow",
+  "dreadDiscardPossessed",
+  "gramCreateAreas",
+  "gramStageTwoSetup",
+  "gramStageReady",
+  "gramAreaStaging",
+  "gramAreaQuestDone",
+  "gramJoinOrder",
+  "gramJoin",
+  "gramStageThree",
+  "gramTravelReady",
+  "wastesSetup",
+  "wastesStage",
+  "wastesStageReady",
+  "wastesFlip",
+  "wastesAllThreat",
+  "wastesReturnEnemies",
+  "wastesClearStage",
+  "wastesClearCurrentQuest",
+  "wastesShuffle",
+]);
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
 import { ninNoCardEconomy } from "./nin-eilph-support";
-import { commitCharacters } from "./actions";
+import {
+  commitCharacters,
+  freeHandPlayProblem,
+  playCardFromHandEffect,
+  effectCardPlayTargets,
+  needsTarget,
+  handlePaidPlayerCardEntry,
+} from "./actions";
 import * as Nin from "./nin-eilph";
 import { reduceThreat } from "./threat-reduction";
 import * as Tharbad from "./tharbad";
@@ -256,6 +364,7 @@ import {
   playerAttack,
   playerAttackResolved,
   enemyAttackStarted,
+  combatDefenderDefense,
 } from "./combat";
 import { orcGuard, scenarioEffect } from "./scenario-rules";
 import {
@@ -349,9 +458,37 @@ export function handle(s: GameState, e: Effect) {
       ...s.queue.filter((effect) => continuation.has(effect)),
     ];
   }
+  const costForced = s.queue.filter(
+    (effect) =>
+      ["ettenForageDamage", "carnResourceTax"].includes(effect.kind) &&
+      !continuation.has(effect),
+  );
+  if (costForced.length) {
+    const mandatory = new Set(costForced);
+    s.queue = [
+      ...costForced,
+      ...s.queue.filter((effect) => !mandatory.has(effect)),
+    ];
+  }
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (handlePaidPlayerCardEntry(s, e)) return;
+  if (e.kind === "finishQuestPhase" && e.text !== "angmar-quest-end") {
+    prepend(s, { ...e, text: "angmar-quest-end" });
+    eachArea(s, () => {
+      Etten.ettenEndQuest(s);
+      prepend(s, ...Dread.dreadQuestEnd(s));
+    });
+    return;
+  }
+  if (e.kind === "startTravel" && s.mountGram?.split) startPhase(s, "travel");
+  if (Wastes.wastesEffect(s, e)) return;
+  if (Gram.gramEffect(s, e)) return;
+  if (Etten.ettenEffect(s, e)) return;
+  if (Rhudaur.rhudaurEffect(s, e)) return;
+  if (Carn.carnEffect(s, e)) return;
+  if (Dread.dreadEffect(s, e)) return;
   if (coreBoardResponse(s, e)) return;
   if (dunlandEffect(s, e)) return;
   if (ringMakerEffect(s, e)) return;
@@ -362,6 +499,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Weather.weatherEffect(s, e)) return;
   if (Dike.dikeEffect(s, e)) return;
   if (Realm.realmEffect(s, e)) return;
+  if (Angmar.angmarEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
   if (Druadan.handleDruadanForestEffect(s, e)) return;
@@ -443,6 +581,7 @@ function handleEffect(s: GameState, e: Effect) {
         enemyAttackPrevented(s, u)
       )
         break;
+      const existingCarnShadows = Carn.carnUsesExistingShadows(s, u);
       const previous = {
         shadows: [...u.shadows],
         faceup: u.faceupShadows?.slice(),
@@ -466,21 +605,28 @@ function handleEffect(s: GameState, e: Effect) {
         immediate: true,
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
-        immediatePreviousShadows: previous.shadows,
-        immediatePreviousFaceupShadows: previous.faceup,
-        immediatePreviousRevealedShadowCount: previous.revealed,
-        immediatePreviousShadowCancelsDamage: previous.damage,
-        immediatePreviousShadowCancelsCombatDamage: previous.combat,
+        ...(!existingCarnShadows
+          ? {
+              immediatePreviousShadows: previous.shadows,
+              immediatePreviousFaceupShadows: previous.faceup,
+              immediatePreviousRevealedShadowCount: previous.revealed,
+              immediatePreviousShadowCancelsDamage: previous.damage,
+              immediatePreviousShadowCancelsCombatDamage: previous.combat,
+            }
+          : {}),
       };
-      u.shadows = [];
-      delete u.faceupShadows;
-      u.revealedShadowCount = 0;
-      delete u.shadowCancelsDamage;
-      delete u.shadowCancelsCombatDamage;
-      const code = encounterDraw(s, true);
-      if (code) {
-        u.shadows.push(code);
-        heirsShadowDealt(s, u);
+      if (!Carn.carnImmediateShadows(s, u, !!e.flag)) {
+        u.shadows = [];
+        delete u.faceupShadows;
+        u.revealedShadowCount = 0;
+        delete u.shadowCancelsDamage;
+        delete u.shadowCancelsCombatDamage;
+        const code = encounterDraw(s, true);
+        if (code) {
+          u.shadows.push(code);
+          heirsShadowDealt(s, u);
+          Carn.carnShadowDealt(s, u);
+        }
       }
       prepend(
         s,
@@ -542,6 +688,45 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "startPlanning":
       startPhase(s, "planning");
+      break;
+    case "freeHandPlay":
+      choose(s, "Play a card from your hand at no cost", [
+        ...opts(
+          s.hand.filter((h) => !freeHandPlayProblem(s, h)),
+          (h) => [
+            fx("freeHandPlayChoose", { target: h.id, player: activeSeat(s) }),
+          ],
+        ),
+        skip,
+      ]);
+      break;
+    case "freeHandPlayChoose": {
+      const physical = s.hand.find((h) => h.id === e.target);
+      if (!physical || freeHandPlayProblem(s, physical)) break;
+      if (needsTarget(physical))
+        choose(
+          s,
+          `${name(physical)} · Choose a target`,
+          opts(effectCardPlayTargets(s, physical), (host) => [
+            fx("freeHandPlayResolve", {
+              target: physical.id,
+              source: host.id,
+              player: activeSeat(s),
+            }),
+          ]),
+        );
+      else
+        prepend(
+          s,
+          fx("freeHandPlayResolve", {
+            target: physical.id,
+            player: activeSeat(s),
+          }),
+        );
+      break;
+    }
+    case "freeHandPlayResolve":
+      if (e.target) playCardFromHandEffect(s, e.target, e.source);
       break;
     case "finishQuestDefeat":
       if (s.pendingQuestDefeat === e.code) delete s.pendingQuestDefeat;
@@ -647,6 +832,14 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "failedQuest":
+      if (Angmar.angmarPreventQuestThreat(s)) {
+        log(
+          s,
+          "Doom Hangs Still prevents threat from this unsuccessful quest.",
+          "good",
+        );
+        break;
+      }
       if (e.text !== "heirsFailureResolved") {
         const continuationCount = s.queue.length;
         if (heirsQuestFailed(s)) break;
@@ -686,6 +879,12 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "commitSeat": {
       if (!passSeat(s)) break;
+      if (Angmar.angmarSkipQuest(s)) {
+        log(s, "Doom Hangs Still · Skip the quest phase.", "good");
+        prepend(s, fx("finishQuestPhase", { player: firstPlayer(s) }));
+        break;
+      }
+      if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
       const reveals = rohanRevealReduction(
         s,
@@ -697,6 +896,7 @@ function handleEffect(s: GameState, e: Effect) {
                 (s.scenarioId === "anduin" && s.stage === 2 ? 1 : 0) +
                 heirsStagingCountBonus(s) +
                 Weather.weatherStagingCountBonus(s) +
+                Etten.ettenExtraReveals(s) +
                 stewardFearExtraRevealCount(s),
         ),
       );
@@ -814,6 +1014,7 @@ function handleEffect(s: GameState, e: Effect) {
         redhornCanMakeActive(u) &&
         !Trials.trialsCannotMakeActive(s, u) &&
         !Tharbad.tharbadCannotMakeActive(u) &&
+        !Etten.ettenTravelProblem(s, u) &&
         s.staging.some((x) => x.id === u.id)
       ) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
@@ -833,6 +1034,10 @@ function handleEffect(s: GameState, e: Effect) {
         Fords.fordsTravelEntered(s, u);
         Trials.trialsTravelEntered(s, u);
         Tharbad.tharbadTravelEntered(s, u);
+        Etten.ettenTravelEntered(s, u);
+        Gram.gramTraveled(s, u);
+        Gram.gramActiveLocationChanged(s, u);
+        Angmar.angmarTraveled(s);
         log(s, `Travelled to ${name(u)}.`, "good");
         if (u.code === "01087") progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
@@ -846,7 +1051,7 @@ function handleEffect(s: GameState, e: Effect) {
           ...playerOrder(s).map((player) =>
             fx("strengthOfWill", { target: u.id, player }),
           ),
-          ...(e.flag ? [] : [fx("travelDone")]),
+          ...(e.flag ? [] : [fx("travelDone", { player: firstPlayer(s) })]),
         ];
         if (e.flag) prepend(s, ...responses);
         else enqueue(s, ...responses);
@@ -1014,6 +1219,18 @@ function handleEffect(s: GameState, e: Effect) {
       Weather.weatherAfterReveal(s, e.code!);
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
       Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);
+      Rhudaur.rhudaurAfterReveal(s, e.code!, e.revealOrigin);
+      Carn.carnAfterReveal(s, e.code!, e.revealOrigin);
+      break;
+    case "revealCard":
+      if (e.code)
+        revealed(
+          s,
+          e.code,
+          e.source,
+          e.revealOrigin,
+          e.text === "angmar-resume",
+        );
       break;
     case "placeEncounter":
       placeEncounter(
@@ -1029,13 +1246,19 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "reveal": {
       const code = encounterDraw(s);
-      if (code) revealed(s, code, e.source);
+      if (code) revealed(s, code, e.source, e.revealOrigin);
       break;
     }
     case "resolvePrintedWhenRevealed":
       if (e.code)
         requireRule(
-          Druadan.druadanForestEncounter(s, e.code, true) ||
+          Wastes.wastesEncounter(s, e.code, true) ||
+            Gram.gramEncounter(s, e.code, true) ||
+            Etten.ettenEncounter(s, e.code, true) ||
+            Rhudaur.rhudaurEncounter(s, e.code, true) ||
+            Carn.carnEncounter(s, e.code, true) ||
+            Dread.dreadEncounter(s, e.code, true) ||
+            Druadan.druadanForestEncounter(s, e.code, true) ||
             Amon.amonDinEncounter(s, e.code, true) ||
             Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
             BloodQuest.bloodGondorEncounter(s, e.code, true) ||
@@ -1253,6 +1476,11 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "questReady":
       if (!e.flag && Chetwood.chetwoodEndStaging(s)) break;
+      if (e.text !== "angmar-staging-end") {
+        prepend(s, { ...e, text: "angmar-staging-end" });
+        Dread.dreadStagingEnd(s);
+        break;
+      }
       if (Osgiliath.assaultOsgiliathPrepareQuest(s, e)) break;
       s.phase = "staging";
       log(
@@ -1270,6 +1498,8 @@ function handleEffect(s: GameState, e: Effect) {
         Chetwood.chetwoodRefreshEnd(s);
         Weather.weatherRefreshEnd(s);
         Dike.dikeRefreshEnd(s);
+        Gram.gramRefreshEnd(s);
+        eachArea(s, () => Dread.dreadRefreshEnd(s));
       }
       if (
         s.phase === "refresh" &&
@@ -1282,6 +1512,11 @@ function handleEffect(s: GameState, e: Effect) {
       commitCharacters(s);
       break;
     case "startQuest":
+      if (Angmar.angmarSkipQuest(s)) {
+        log(s, "Doom Hangs Still · Skip the quest phase.", "good");
+        prepend(s, fx("startTravel", { player: firstPlayer(s) }));
+        break;
+      }
       startPhase(s, "quest");
       emynMuilQuestStart(s);
       rhosgobelQuestStart(s);
@@ -1297,7 +1532,10 @@ function handleEffect(s: GameState, e: Effect) {
         prepend(s, fx("huntLook", { count: 2, player: firstPlayer(s) }));
       Chetwood.chetwoodQuestStart(s);
       Weather.weatherQuestStart(s);
-      sideQuestStart(s);
+      Rhudaur.rhudaurQuestStart(s);
+      // Ettenmoors may first find a missing encounter side quest.
+      prepend(s, fx("sideQuestStart", { player: firstPlayer(s) }));
+      Etten.ettenQuestStart(s);
       break;
     case "startTravel":
       startPhase(s, "travel");
@@ -1344,6 +1582,7 @@ function handleEffect(s: GameState, e: Effect) {
           ...allEngaged(s),
           ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
         ]) {
+          if (Carn.carnCombatEndShadows(s, enemy)) continue;
           delete enemy.shadowCancelsDamage;
           delete enemy.shadowCancelsCombatDamage;
           if (s.staging.some((u) => u.id === enemy.id)) {
@@ -1356,6 +1595,10 @@ function handleEffect(s: GameState, e: Effect) {
       });
       globalEachSeat(s, () => {
         for (const enemy of s.engaged) {
+          if (Carn.carnCombatEndShadows(s, enemy)) {
+            enemy.attacked = false;
+            continue;
+          }
           s.encounterDiscard.push(...enemy.shadows);
           enemy.shadows = [];
           delete enemy.faceupShadows;
@@ -1420,6 +1663,8 @@ function handleEffect(s: GameState, e: Effect) {
       eachArea(s, () => {
         passives.push(...bloodPlayerRoundEndEffects(s));
         passives.push(...Isengard.isengardRoundEnd(s));
+        passives.push(...Angmar.angmarRoundEnd(s));
+        forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
         forced.push(
@@ -1433,7 +1678,23 @@ function handleEffect(s: GameState, e: Effect) {
       prepend(s, ...passives, ...forced, fx("endRoundAfterCollector"));
       break;
     }
-    case "endRoundAfterCollector":
+    case "endRoundAfterCollector": {
+      const before = s.queue.length;
+      eachArea(s, () => {
+        Wastes.wastesEndRound(s);
+        Carn.carnEndRound(s);
+      });
+      const added = s.queue.length - before;
+      if (added)
+        s.queue.splice(
+          added,
+          0,
+          fx("endRoundScenarioDone", { player: firstPlayer(s) }),
+        );
+      else handleEffect(s, fx("endRoundScenarioDone"));
+      break;
+    }
+    case "endRoundScenarioDone":
       Antlered.antleredEndRound(s);
       Nin.ninEndRound(s);
       shadowFlameRoundEnd(s);
@@ -1531,7 +1792,9 @@ function handleEffect(s: GameState, e: Effect) {
         druadanPlayerNoEngagementChecks(s) ||
         heirsNoEngagementChecks(s) ||
         Tharbad.tharbadNoEngagementChecks(s) ||
-        Chetwood.chetwoodNoEngagementChecks(s)
+        Chetwood.chetwoodNoEngagementChecks(s) ||
+        !Wastes.wastesEngagementChecksAllowed(s) ||
+        Etten.ettenNoEngagementChecks(s)
       )
         break;
       if (s.scenarioId === "anduin" && s.stage === 2) break;
@@ -1539,6 +1802,7 @@ function handleEffect(s: GameState, e: Effect) {
         s.staging.some(
           (u) =>
             card(u.code).type_code === "enemy" &&
+            !Carn.carnCannotEngage(s, u) &&
             amonPlayerCanEngage(s, u, i) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
@@ -1571,13 +1835,16 @@ function handleEffect(s: GameState, e: Effect) {
         druadanPlayerNoEngagementChecks(s) ||
         heirsNoEngagementChecks(s) ||
         Tharbad.tharbadNoEngagementChecks(s) ||
-        Chetwood.chetwoodNoEngagementChecks(s)
+        Chetwood.chetwoodNoEngagementChecks(s) ||
+        !Wastes.wastesEngagementChecksAllowed(s) ||
+        Etten.ettenNoEngagementChecks(s)
       )
         break;
       const enemy = s.staging
         .filter(
           (u) =>
             card(u.code).type_code === "enemy" &&
+            !Carn.carnCannotEngage(s, u) &&
             amonPlayerCanEngage(s, u, activeSeat(s)) &&
             !celebrimborProtected(s, u) &&
             shadowFlameCanMove(s, u) &&
@@ -1646,16 +1913,26 @@ function handleEffect(s: GameState, e: Effect) {
       const unrevealed = enemy.shadows.slice(enemy.revealedShadowCount ?? 0);
       if (!unrevealed.includes(e.code!)) break;
       enemy.revealedShadowCount = (enemy.revealedShadowCount ?? 0) + 1;
+      const shadowText = Carn.carnShadowText(s, e.code!);
+      // This completion survives cancellation of the triggered shadow effect.
+      prepend(
+        s,
+        fx("shadowResolved", {
+          code: e.code,
+          source: enemy.id,
+          player: s.combat?.attackPlayer ?? activeSeat(s),
+        }),
+      );
       log(
         s,
-        `Shadow: ${card(e.code!).name}${card(e.code!).shadow ? " — " + card(e.code!).shadow : " · no effect"}.`,
+        `Shadow: ${card(e.code!).name}${shadowText ? " — " + shadowText : " · no effect"}.`,
       );
       if (s.flow) {
         prepend(s, fx("shadowResponse", { code: e.code }));
         pauseFor(s, {
           kind: "shadow",
           title: `Shadow · ${card(e.code!).name}`,
-          detail: card(e.code!).shadow
+          detail: shadowText
             ? "The shadow is faceup. Review it before its response window and effect."
             : "This card has no shadow effect. Normal encounter text does not resolve here.",
           cards: [{ code: e.code!, label: "Revealed shadow" }],
@@ -1668,6 +1945,11 @@ function handleEffect(s: GameState, e: Effect) {
     case "shadowResponse":
       shadowResponse(s, e.code!);
       break;
+    case "shadowResolved": {
+      const enemy = get(s, e.source);
+      if (enemy && e.code) Dread.dreadShadowResolved(s, enemy, e.code);
+      break;
+    }
     case "shadowEffect": {
       const enemyId = s.combat?.enemyId,
         before = s.queue.length;
@@ -1711,8 +1993,7 @@ function handleEffect(s: GameState, e: Effect) {
       const defense = c.ignoreDefense
         ? 0
         : defenders.reduce(
-            (n, d) =>
-              n + Math.max(0, stats(s, d).defense - (c.defensePenalty ?? 0)),
+            (n, d) => n + combatDefenderDefense(s, d, enemy, c),
             0,
           );
       const amount = Math.max(0, power - defense);
@@ -1799,7 +2080,8 @@ function handleEffect(s: GameState, e: Effect) {
         if (
           immediate &&
           skipped &&
-          completed?.immediatePreviousShadows === undefined
+          completed?.immediatePreviousShadows === undefined &&
+          !Carn.carnUsesExistingShadows(s, skipped)
         ) {
           skipped.attacked = !!previousAttacked;
           if (!["defense", "attack"].includes(s.phase)) {
@@ -1868,6 +2150,10 @@ function handleEffect(s: GameState, e: Effect) {
         Chetwood.chetwoodAttackFinished(s, completed);
         Weather.weatherAttackFinished(s, completed);
         Dike.dikeAttackFinished(s, completed);
+        Wastes.wastesAttackFinished(s, completed);
+        Rhudaur.rhudaurAttackFinished(s, completed);
+        Carn.carnAttackFinished(s, completed);
+        Dread.dreadAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -1893,7 +2179,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (
         immediate &&
         enemy &&
-        completed?.immediatePreviousShadows === undefined
+        completed?.immediatePreviousShadows === undefined &&
+        !Carn.carnUsesExistingShadows(s, enemy)
       ) {
         enemy.attacked = !!previousAttacked;
         if (!["defense", "attack"].includes(s.phase)) {
@@ -1967,27 +2254,32 @@ function handleEffect(s: GameState, e: Effect) {
 }
 
 export function shadowResponse(s: GameState, code: string) {
+  if (!Wastes.wastesCancelAllowed(s)) {
+    prepend(s, fx("shadowEffect", { code }));
+    return;
+  }
+  const shadowText = Carn.carnShadowText(s, code);
   const erkenbrand =
     roadRivendellCannotCancel(s) ||
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
-      : finalRingShadowOptions(s, code);
+      : finalRingShadowOptions(s, code, !!shadowText);
   const eligible = playerOrder(s).filter((i) => {
     const p = seatView(s, i);
     return (
       !roadRivendellCannotCancel(s) &&
       !allActiveLocations(s).some((l) => l.code === "02016") &&
-      card(code).shadow &&
+      shadowText &&
       p.hand.some((u) => u.code === "01048") &&
       canPay(p, card("01048"))
     );
   });
   const brand = roadRivendellCannotCancel(s)
     ? []
-    : expansionShadowOptions(s, code);
+    : expansionShadowOptions(s, code, !!shadowText);
   const watcher = roadRivendellCannotCancel(s)
     ? []
-    : marshPlayerShadowOptions(s, code);
+    : marshPlayerShadowOptions(s, code, !!shadowText);
   if (eligible.length || brand.length || watcher.length || erkenbrand.length)
     choose(
       s,
@@ -2021,7 +2313,7 @@ export function shadowResponse(s: GameState, code: string) {
           effects: [fx("shadowEffect", { code })],
         },
       ],
-      card(code).shadow,
+      shadowText,
     );
   else prepend(s, fx("shadowEffect", { code }));
 }
@@ -2035,8 +2327,17 @@ export function flush(s: GameState) {
     s.status === "playing"
   ) {
     requireRule(++n < 200, "Effect queue overflow.");
+    // Actual spending may originate in an action before its card effects enqueue.
+    const costIndex = s.queue.findIndex((effect) =>
+      ["ettenForageDamage", "carnResourceTax"].includes(effect.kind),
+    );
+    if (costIndex > 0) s.queue.unshift(s.queue.splice(costIndex, 1)[0]);
     const effect = s.queue.shift()!;
     const sharedEffect =
+      ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
+      ["shadowResolved", "endRoundScenarioDone", "revealCard"].includes(
+        effect.kind,
+      ) ||
       (effect.kind === "dikeDiscardDeck" && !!effect.ids) ||
       [
         "dikeSetup",
@@ -2248,6 +2549,9 @@ export function flush(s: GameState) {
       [
         "dikeMill",
         "dikeMillDone",
+        "dreadMill",
+        "gramInterrogation",
+        "paidPlayerCardEntry",
         "playerAbilityFinish",
         "nextRound",
         "phaseEnd",
@@ -2319,6 +2623,7 @@ export function flush(s: GameState) {
     ].includes(s.phase)
   )
     selectSeat(s, s.table.turn);
+  Gram.gramIdleActor(s);
   syncSeat(s);
 }
 

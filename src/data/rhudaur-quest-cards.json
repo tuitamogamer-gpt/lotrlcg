@@ -1,0 +1,81 @@
+[
+  {
+    "code": "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
+    "octgnid": "a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
+    "name": "Secrets of Rhudaur",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Make The Great Hall the active location. Set Thaurdir aside, out of play. Add the 3 Treachery of Rhudaur side quests to the staging area, quest side faceup. Search the encounter deck for 1 copy of Ancient Causeway, and add it to the staging area (2 copies instead if there are 3 or 4 players in the game). The first player gains control of Amarthiul.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 94,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Treachery of Rhudaur",
+    "side": "A",
+    "back_name": "Secrets of Rhudaur",
+    "back_text": "Time 5. Forced: After the last time counter is removed from Secrets of Rhudaur, remove each Treachery of Rhudaur side quest from the game and immediately advance to stage 2.  During the quest phase, Secrets of Rhudaur cannot be chosen as the current quest.  If there are no Treachery of Rhudaur side quests in play, immediately advance to stage 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/a7231cbd-0620-4b15-9c2c-68d4e7c79a8f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/a7231cbd-0620-4b15-9c2c-68d4e7c79a8f.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 94,
+        "quantity": 1,
+        "octgnid": "a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7231cbd-0620-4b15-9c2c-68d4e7c79a8f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
+    "octgnid": "fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
+    "name": "Thaurdir's Pursuit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Thaurdir to the staging area. Each player searches the encounter deck and discard pile for an Undead enemy and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ToR",
+    "pack_name": "The Treachery of Rhudaur",
+    "position": 95,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Treachery of Rhudaur",
+    "side": "A",
+    "back_name": "Thaurdir's Pursuit",
+    "back_text": "Thaurdir's Pursuit has -5 quest points for each Clue objective attached to a character.  This stage cannot be defeated while Thaurdir has any hit points remaining. When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 30,
+    "back_imagesrc": "/cards/fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc.jpg",
+    "packs": [
+      {
+        "pack_code": "ToR",
+        "pack_name": "The Treachery of Rhudaur",
+        "position": 95,
+        "quantity": 1,
+        "octgnid": "fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

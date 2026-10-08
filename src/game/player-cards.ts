@@ -4,6 +4,7 @@ import {
 } from "./deadmens-discard";
 import { rangerEvent } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { movableHand } from "./hand-rules";
@@ -137,6 +138,7 @@ export function eventEffect(
   if (ringMakerEvent(s, code, target)) return;
   if (rangerEvent(s, code)) return;
   if (Realm.realmEvent(s, code, target)) return;
+  if (Angmar.angmarEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;
@@ -407,6 +409,7 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
   if (Realm.useRealmAbility(s, u, attachmentId)) return;
+  if (Angmar.useAngmarAbility(s, u, attachmentId)) return;
   if (useFinalRingAbility(s, u, attachmentId)) return;
   if (Isengard.useIsengardAbility(s, u, attachmentId)) return;
   if (useOsgiliathPlayerAbility(s, u, attachmentId)) return;

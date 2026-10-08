@@ -29,7 +29,6 @@ import {
   fx,
   get,
   log,
-  make,
   opts,
   prepend,
   requireRule,
@@ -675,9 +674,8 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
           numericCost(code) <= budget,
         "Choose an eligible ally discarded by this tale within the remaining budget.",
       );
-      s.discard.splice(s.discard.lastIndexOf(code), 1);
       remaining.splice(index, 1);
-      enterAlly(s, make(s, code));
+      enterAlly(s, takePlayerDiscard(s, s.discard.lastIndexOf(code)));
       // Continue the event before any optional enters-play responses resolve.
       prepend(
         s,
@@ -945,8 +943,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         s.discard.includes("12066") && allyCanEnter(s, "12066"),
         "This Miner must remain in your discard pile.",
       );
-      s.discard.splice(s.discard.lastIndexOf("12066"), 1);
-      enterAlly(s, make(s, "12066"));
+      enterAlly(s, takePlayerDiscard(s, s.discard.lastIndexOf("12066")));
       return true;
     case "dwarfCacheResources": {
       const hero = s.heroes.find(

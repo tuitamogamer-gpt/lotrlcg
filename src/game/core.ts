@@ -3,6 +3,15 @@ import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
 import { selectedSideQuest } from "./side-quest-support";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
+import * as Wastes from "./wastes-eriador";
+import * as Gram from "./mount-gram";
+import * as Etten from "./ettenmoors";
+import * as Dread from "./dread-realm";
+import * as Rhu from "./rhudaur";
+import * as Carn from "./carn-dum";
+import { gramAllAreaUnits, gramStageInfo } from "./mount-gram-support";
+import { isHero } from "./card-types";
 import * as Antlered from "./antlered";
 import * as Celebrimbor from "./celebrimbor";
 import { imageUrl } from "./cards";
@@ -230,7 +239,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
   khazadCannotReady(u) ||
   watcherWaterCannotReady(u) ||
   Catch.catchCannotReady(u) ||
-  (!!s && Fangorn.fangornCannotReady(s, u));
+  (!!s && (Fangorn.fangornCannotReady(s, u) || Etten.ettenCannotReady(s, u)));
 
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
@@ -246,14 +255,19 @@ export const units = (s: GameState) => [
 export const globalUnits = (s: GameState) => [
   ...globalCharacters(s),
   ...globalEngaged(s),
-  ...foundationsAllAreaUnits(s),
+  ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
   ...(s.assaultOsgiliath?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
 ];
 
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
-  (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined);
+  (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined) ??
+  (id &&
+  /^threat:[0-3]$/.test(id) &&
+  playerOrder(s).includes(Number(id.split(":")[1]))
+    ? Angmar.angmarThreatTarget(s, Number(id.split(":")[1]))
+    : undefined);
 /** Moving a physical shadow preserves which remaining cards are still facedown. */
 export function removeShadowCard(enemy: Unit, index: number) {
   if (index < 0 || index >= enemy.shadows.length) return undefined;
@@ -473,12 +487,18 @@ export function stats(s: GameState, u: Unit) {
   const heirsScenarioBonus = heirsStats(s, u);
   const druadanScenarioBonus = druadanForestStats(s, u);
   const chetwoodBonus = Chetwood.chetwoodStats(s, u);
+  const angmarBonus = Angmar.angmarStats(s, u);
   const result = {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
         [
           chetwoodBonus.will,
+          angmarBonus.will,
+          Wastes.wastesWillBonus(s, u),
+          Etten.ettenWillPenalty(s, u),
+          Dread.dreadStats(s, u).will,
+          Rhu.rhudaurStats(s, u).will,
           Weather.weatherWillPenalty(s, u),
           foundationsBonus.will,
           druadanScenarioBonus.will,
@@ -516,6 +536,11 @@ export function stats(s: GameState, u: Unit) {
       ? 0
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
+        angmarBonus.attack +
+        Wastes.wastesAttackBonus(s, u) +
+        Gram.gramStats(s, u).attack +
+        Etten.ettenStats(s, u).attack +
+        Dread.dreadStats(s, u).attack +
         foundationsBonus.attack +
         heirsScenarioBonus.attack +
         Fords.fordsAttackBonus(s, u) +
@@ -562,6 +587,10 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
+            angmarBonus.defense +
+            Etten.ettenStats(s, u).defense +
+            Dread.dreadStats(s, u).defense +
+            Carn.carnStats(s, u).defense +
             foundationsBonus.defense +
             heirsScenarioBonus.defense +
             DunlandQuest.dunlandCombatBonus(s, u) +
@@ -591,10 +620,12 @@ export function stats(s: GameState, u: Unit) {
     health:
       (namelessX ?? c.health ?? 0) +
       foundationsBonus.health +
+      Dread.dreadStats(s, u).health +
       stewardBonus.health +
       bonus.health +
       u.attachments.filter((a) => !a.blanked && a.code === "01040").length * 4,
   };
+  if (Dread.dreadWillZero(s, u)) result.will = 0;
   if (druadanPlayerDefenseStat(s, u)) result.defense = result.will;
   result.attack = Math.max(0, result.attack);
   return result;
@@ -677,68 +708,87 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
       target,
     ),
   );
-  return Realm.realmPlayCost(
+  return Angmar.angmarPlayCost(
     s,
     c,
-    Isengard.isengardCost(
+    Realm.realmPlayCost(
       s,
       c,
-      bloodPlayerCost(
+      Isengard.isengardCost(
         s,
         c,
-        osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+        bloodPlayerCost(
+          s,
+          c,
+          osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+        ),
       ),
-    ),
+    ) +
+      Etten.ettenPlayCost(s, c) +
+      Dread.dreadPlayCost(s, c, c.playOwner ?? activeSeat(s)) +
+      Carn.carnPlayCost(s, c, c.playOwner ?? activeSeat(s)),
   );
 }
 /** Current printed/modifier threat. Suppression only applies in staging. */
 export const threatOf = (s: GameState, u: Unit) =>
-  (u.suppressed || u.ignoreThreatRound === s.round) &&
-  s.staging.some((x) => x.id === u.id)
+  card(u.code).objectiveLocation
     ? 0
-    : Math.max(
-        0,
-        (BloodQuest.bloodGondorThreat(s, u) ??
-          Dike.dikeLocationThreat(s, u) ??
-          Weather.weatherLocationThreat(s, u) ??
-          MorgulQuest.morgulBridgeValue(s, u) ??
-          druadanForestThreat(s, u) ??
-          card(u.code).threat ??
-          0) +
-          Chetwood.chetwoodThreatBonus(s, u) +
-          Fords.fordsThreatBonus(s, u) +
-          Catch.catchThreatBonus(s, u) +
-          DunlandQuest.dunlandThreatBonus(s, u) +
-          Trials.trialsThreatBonus(s, u) +
-          Tharbad.tharbadThreatBonus(s, u) +
-          Nin.ninThreatBonus(s, u) +
-          Celebrimbor.celebrimborThreatBonus(s, u) +
-          Fangorn.fangornForestBonus(s, u) +
-          druadanForestThreatBonus(s, u) +
-          carrockThreatBonus(s, u) +
-          emynMuilThreatBonus(s, u) +
-          rhosgobelThreatBonus(s, u) +
-          khazadThreatBonus(s, u) +
-          heirsPlayerThreatModifier(u) +
-          heirsStats(s, u).threat +
-          longDarkThreatBonus(s, u) +
-          (u.code === "02021" ? 2 * cluesInPlay(s) : 0) +
-          (u.code === "02015"
-            ? allCharacters(s).filter((x) => card(x.code).type_code === "ally")
-                .length
-            : 0) +
-          (card(u.code).type_code === "location" &&
-          s.staging.some((x) => x.id === u.id)
-            ? (s.fog ?? 0)
-            : 0) +
-          (u.tempThreat ?? 0) -
-          Realm.realmThreatPenalty(u) -
-          u.attachments.filter((a) => !a.blanked && a.code === "01056").length,
-      );
+    : (u.suppressed || u.ignoreThreatRound === s.round) &&
+        s.staging.some((x) => x.id === u.id)
+      ? 0
+      : Math.max(
+          0,
+          (BloodQuest.bloodGondorThreat(s, u) ??
+            Dike.dikeLocationThreat(s, u) ??
+            Wastes.wastesLocationThreat(s, u) ??
+            Gram.gramLocationThreat(s, u) ??
+            Dread.dreadLocationThreat(s, u) ??
+            Weather.weatherLocationThreat(s, u) ??
+            MorgulQuest.morgulBridgeValue(s, u) ??
+            druadanForestThreat(s, u) ??
+            card(u.code).threat ??
+            0) +
+            Chetwood.chetwoodThreatBonus(s, u) +
+            Rhu.rhudaurThreatBonus(s, u) +
+            Carn.carnThreatBonus(s, u) +
+            Fords.fordsThreatBonus(s, u) +
+            Catch.catchThreatBonus(s, u) +
+            DunlandQuest.dunlandThreatBonus(s, u) +
+            Trials.trialsThreatBonus(s, u) +
+            Tharbad.tharbadThreatBonus(s, u) +
+            Nin.ninThreatBonus(s, u) +
+            Celebrimbor.celebrimborThreatBonus(s, u) +
+            Fangorn.fangornForestBonus(s, u) +
+            druadanForestThreatBonus(s, u) +
+            carrockThreatBonus(s, u) +
+            emynMuilThreatBonus(s, u) +
+            rhosgobelThreatBonus(s, u) +
+            khazadThreatBonus(s, u) +
+            heirsPlayerThreatModifier(u) +
+            heirsStats(s, u).threat +
+            longDarkThreatBonus(s, u) +
+            (u.code === "02021" ? 2 * cluesInPlay(s) : 0) +
+            (u.code === "02015"
+              ? allCharacters(s).filter(
+                  (x) => card(x.code).type_code === "ally",
+                ).length
+              : 0) +
+            (card(u.code).type_code === "location" &&
+            s.staging.some((x) => x.id === u.id)
+              ? (s.fog ?? 0)
+              : 0) +
+            (u.tempThreat ?? 0) -
+            Realm.realmThreatPenalty(u) -
+            u.attachments.filter((a) => !a.blanked && a.code === "01056")
+              .length,
+        );
 
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
   Dike.dikeStagingThreat(s) +
+  Rhu.rhudaurStagingThreat(s) +
+  Carn.carnStagingThreat(s) +
+  Dread.dreadStagingThreat(s) +
   heirsStagingThreatBonus(s) +
   BloodQuest.bloodGondorStagingBonus(s) +
   s.staging
@@ -756,12 +806,17 @@ export const questWill = (s: GameState) =>
     .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
 
 export const questStat = (s: GameState) =>
-  selectedSideQuest(s)
-    ? druadanPlayerQuestStat(s)
+  Carn.carnQuestStat(s) ??
+  (selectedSideQuest(s)
+    ? /\bBattle\b/.test(card(selectedSideQuest(s)!.code).text ?? "")
+      ? "attack"
+      : /\bSiege\b/.test(card(selectedSideQuest(s)!.code).text ?? "")
+        ? "defense"
+        : druadanPlayerQuestStat(s)
     : (BloodQuest.bloodGondorQuestStat(s) ??
       assaultOsgiliathQuestStat(s) ??
       heirsQuestStat(s) ??
-      druadanPlayerQuestStat(s));
+      druadanPlayerQuestStat(s)));
 
 export const locationQuest = (s: GameState, u: Unit) =>
   MorgulQuest.morgulBridgeValue(s, u) ??
@@ -773,15 +828,20 @@ export const locationQuest = (s: GameState, u: Unit) =>
     Fangorn.fangornLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
     BloodQuest.bloodGondorLocationBonus(s, u) +
-    stewardFearLocationQuestBonus(s, u);
+    stewardFearLocationQuestBonus(s, u) +
+    Rhu.rhudaurLocationQuestBonus(s, u);
 export const engagementCost = (s: GameState, u: Unit) =>
+  Wastes.wastesEngagementCost(s, u) ??
   heirsEngagementCost(s, u) ??
   Math.max(
     0,
     (card(u.code).engagement ?? 0) +
       (u.tempEngagement ?? 0) +
       Tharbad.tharbadEngagementModifier(s, u) +
-      Nin.ninEngagementModifier(s, u),
+      Nin.ninEngagementModifier(s, u) +
+      Gram.gramEngagementCost(s, u) +
+      Etten.ettenEngagementModifier(s) +
+      Carn.carnEngagementModifier(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
@@ -796,12 +856,28 @@ export const mainStageInfo = (s: GameState) => {
     };
   const trial = trialsStageInfo(s);
   if (trial) return trial;
+  const gram = gramStageInfo(s);
+  if (gram) return gram;
   const foundations = foundationsStageInfo(s);
   if (foundations) return foundations;
   const dynamic = khazadStageInfo(s);
   if (dynamic) return dynamic;
-  if (s.scenarioId !== "mirkwood" || s.stage < 3)
-    return scenario(s.scenarioId).stages[s.stage - 1];
+  if (s.scenarioId !== "mirkwood" || s.stage < 3) {
+    const stage = scenario(s.scenarioId).stages[s.stage - 1];
+    return stage && s.scenarioId === "the-treachery-of-rhudaur"
+      ? {
+          ...stage,
+          quest: Math.max(
+            0,
+            stage.quest +
+              Rhu.rhudaurMainQuestReduction(s) +
+              (mainQuestUnit(s)
+                ? Rhu.rhudaurQuestPoints(s, mainQuestUnit(s)!)
+                : 0),
+          ),
+        }
+      : stage;
+  }
   return s.branch === "beorn"
     ? {
         name: "Beorn’s Path",
@@ -832,6 +908,7 @@ export const enemyAttackPrevented = (
 
 export const canFight = (u: Unit) =>
   (u.code !== "08112" || !!u.blanked) &&
+  (u.code !== "10089" || !!u.blanked) &&
   returnMirkwoodCanFight(u) &&
   u.code !== "03011" &&
   (u.code !== "12117" || !!u.blanked) &&
@@ -908,13 +985,13 @@ export function spendResources(s: GameState, hero: Unit, amount: number) {
     "Not enough resources.",
   );
   requireRule(
-    amount === 0 ||
-      card(hero.code).type_code !== "hero" ||
-      heirsCanSpendResources(s, hero),
+    amount === 0 || !isHero(hero) || heirsCanSpendResources(s, hero),
     "Orc Vanguard prevents this hero from spending resources.",
   );
   hero.resources -= amount;
   if (amount > 0) hero.resourcesSpentRound = s.round;
+  Etten.ettenResourcesSpent(s, hero, amount);
+  Carn.carnResourceSpent(s, hero, amount);
 }
 
 const hasTraitCard = (c: Card, trait: string) =>
@@ -924,7 +1001,7 @@ const hasTraitCard = (c: Card, trait: string) =>
 export const canPay = (s: GameState, c: Card) =>
   !Antlered.antleredPlayProblem(s, c.code) &&
   !Nin.ninPlayProblem(s, c.code) &&
-  (!["01036", "08143"].includes(c.code) ||
+  (!["01036", "08143", "10085"].includes(c.code) ||
     (playCost(s, c) >= 3 &&
       eligiblePayers(s, c).filter(
         (h) => h.resources > 0 && s.heroes.some((u) => u.id === h.id),
@@ -958,7 +1035,7 @@ export function pay(
   );
   let cost = playCost(s, c, target);
   const payers = eligiblePayers(s, c, target);
-  if (["01036", "08143"].includes(c.code))
+  if (["01036", "08143", "10085"].includes(c.code))
     requireRule(
       payment &&
         Object.entries(payment).filter(
@@ -1032,6 +1109,7 @@ export function draw(s: GameState, count: number, cardEffect = true) {
 
 export function encounterDraw(s: GameState, shadow = false) {
   Antlered.antleredRoutePiles(s);
+  Rhu.rhudaurBeforeEncounterReset(s);
   if (
     !s.encounterDeck.length &&
     !shadow &&
@@ -1039,9 +1117,12 @@ export function encounterDraw(s: GameState, shadow = false) {
     s.encounterDiscard.length
   ) {
     s.encounterDeck = shuffle(s, s.encounterDiscard.splice(0));
+    if (s.rhudaur) s.rhudaur.deckEmptyHandled = false;
     log(s, "The encounter discard pile is shuffled back into its deck.");
   }
-  return s.encounterDeck.shift();
+  const code = s.encounterDeck.shift();
+  Rhu.rhudaurBeforeEncounterReset(s);
+  return code;
 }
 
 export const stageInfo = (s: GameState) => {
@@ -1050,7 +1131,12 @@ export const stageInfo = (s: GameState) => {
   const c = card(side.code);
   return {
     name: c.name,
-    quest: c.quest ?? 0,
+    quest:
+      (c.quest ?? 0) +
+      Rhu.rhudaurQuestPoints(
+        s,
+        s.staging.find((u) => u.id === side.id) ?? mainQuestUnit(s)!,
+      ),
     cardCode: c.code,
     story: c.text ?? "",
     questImage: imageUrl(c),

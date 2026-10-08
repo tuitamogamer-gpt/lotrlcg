@@ -319,3 +319,23 @@
     will-change: auto;
   }
 }
+
+.threat-dial-area {
+  min-width: 0;
+}
+.threat-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 12px;
+}
+.threat-attachments button {
+  color: #f0dfba;
+  background: #302a20;
+  border: 1px solid #a68d5966;
+  border-radius: 5px;
+  padding: 6px 9px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}

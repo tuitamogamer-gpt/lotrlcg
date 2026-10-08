@@ -1,0 +1,1294 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Escape from Mount Gram",
+  "slug": "escape-from-mount-gram",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+      "octgnid": "0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+      "name": "Patrol Room",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mount Gram. Underground.",
+      "text": "Capture 2.\nTravel: Each player raises his threat by 3 to travel here.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 47,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending player's threat is 20 or higher).",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+      "octgnid": "18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+      "name": "Prison Cell",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mount Gram. Underground.",
+      "text": "Capture 1.\nResponse: After the players travel to Prison Cell, look at the captured card(s) underneath it and choose 1 to put into play at no cost. Place the other cards back underneath Prison Cell.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 46,
+      "quantity": 4,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 46,
+          "quantity": 4,
+          "octgnid": "18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+      "octgnid": "275c7232-3671-4092-bb9a-9a62f9538225",
+      "name": "Sound the Alarm!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 3.\nWhen Revealed: If there are no enemies in play, search the encounter deck and discard pile for an enemy and add it to the staging area. Until the end of the round, each enemy gets -10 engagement cost and +1 [attack].",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 49,
+      "quantity": 2,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {},
+      "imagesrc": "/cards/275c7232-3671-4092-bb9a-9a62f9538225.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "275c7232-3671-4092-bb9a-9a62f9538225",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/275c7232-3671-4092-bb9a-9a62f9538225.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+      "octgnid": "2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+      "name": "Goblin Tormentor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "X is the number of cards in play with 1 or more captured cards underneath it.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 45,
+      "quantity": 2,
+      "threat": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it has no captured cards underneath it).",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "X",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+      "octgnid": "414353af-e004-4e7c-b288-e168e2acfee7",
+      "name": "Stop the Executioners!",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Capture 5.\nTime 4. Forced: When the last time counter is removed from this quest, discard its captured cards and remove this quest from the game. Then, raise each player's threat by 3 for each of his characters that was discarded by this effect.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 53,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/414353af-e004-4e7c-b288-e168e2acfee7.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "414353af-e004-4e7c-b288-e168e2acfee7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/414353af-e004-4e7c-b288-e168e2acfee7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+      "octgnid": "51e187ea-691c-46bc-b74f-c03d110d02cd",
+      "name": "Captives of Gornákh",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player chooses one of their allies and captures it underneath the encounter card with the highest [threat].",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 51,
+      "quantity": 2,
+      "shadow": "Shadow: If this attack damages a character, capture that character underneath the attacking enemy instead of dealing damage.",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {},
+      "imagesrc": "/cards/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "51e187ea-691c-46bc-b74f-c03d110d02cd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+      "octgnid": "663a47fc-e264-485b-832d-2c327aa1a493",
+      "name": "Interrogation",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards the top card of his captured deck and raises his threat by that card's printed resource cost. If at least 1 player discarded no cards from this effect, Interrogation gains doomed 2.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 52,
+      "quantity": 2,
+      "shadow": "Shadow: Shuffle 2 random cards from your hand into your captured deck.",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {},
+      "imagesrc": "/cards/663a47fc-e264-485b-832d-2c327aa1a493.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "663a47fc-e264-485b-832d-2c327aa1a493",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/663a47fc-e264-485b-832d-2c327aa1a493.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+      "octgnid": "6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+      "name": "Tunnels of Mount Gram",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mount Gram. Underground.",
+      "text": "Capture 1.\nX is the number of cards captured underneath Tunnels of Mount Gram.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 48,
+      "quantity": 2,
+      "quest": 4,
+      "shadow": "Shadow: Capture each attachment attached to the defending character underneath the attacking enemy.",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "name": "Angmar Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Either discard 1 ally from play, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 43,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, return attacking enemy to the staging area.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 43,
+          "quantity": 3,
+          "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "name": "Angmar Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Marauder attacks and destroys an ally, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 44,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally the defending player controls.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "name": "Angmar Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Captain attacks and destroys an ally, discard the top card of the defending player's deck. If the discarded card is an ally, Angmar Captain makes an additional attack against the defending player.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 45,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+      "octgnid": "d1a3a535-7679-4757-871c-80c50c003cff",
+      "name": "Unexpected Rescue",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Each player shuffles his starting hand into his deck. Each player prepares a separate captured deck (see insert) and chooses only 1 hero to be his starting hero. Each player adds 2 resources to his starting hero and sets his threat to that hero's threat cost. Set Southern Gate, Jailor Gornakh and the Angmar Orcs encounter set aside, out of play. Shuffle the encounter deck. Each player draws a new starting hand 3 cards.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 38,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Escape from Mount Gram",
+      "side": "A",
+      "back_name": "Unexpected Rescue",
+      "back_text": "When Revealed: Each player creates his own staging area and advances to a different stage 2A.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 38,
+          "quantity": 1,
+          "octgnid": "d1a3a535-7679-4757-871c-80c50c003cff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1a3a535-7679-4757-871c-80c50c003cff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+      "octgnid": "d69092af-f96b-4885-a194-5d5f31d90e6d",
+      "name": "Feeble and Weary",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must either deal 1 damage to each exhausted character he controls, or remove each exhausted character he controls from the quest.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 50,
+      "quantity": 2,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {},
+      "imagesrc": "/cards/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "d69092af-f96b-4885-a194-5d5f31d90e6d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+      "octgnid": "d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+      "name": "Southern Gate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mount Gram.",
+      "text": "Immune to player card effects.\nWhile Southern Gate is the active location, each Orc enemy gets +2 [attack].  Forced: After Souther Gate becomes the active location, each player with less than 35 threat must raise their threat to 35.",
+      "is_unique": true,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 42,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 8,
+      "victory": 2,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "8",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 42,
+          "quantity": 1,
+          "octgnid": "d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+      "octgnid": "e15ba98d-806f-4847-823c-ca90c0f58f0b",
+      "name": "Cruel Torturer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Capture 1.\nForced: When Cruel Torturer would damage a character by an attack, capture that character underneath Cruel Torturer instead.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 43,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 36,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 43,
+          "quantity": 2,
+          "octgnid": "e15ba98d-806f-4847-823c-ca90c0f58f0b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "name": "Orc Ambush",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each Orc enemy gets +1 [threat], +1 [attack], and +1 [defense].\nWhen Revealed: Each player must search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 46,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+      "octgnid": "e3d50c1b-4626-4bff-a247-f965166f9d2f",
+      "name": "Gornákh's Dungeons",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Capture 7.\nWhen Revealed: Search the encounter deck for 1 copy of Prison Cell and add it to your staging area. Then, capture an additional 2 cards from the top of your captured deck underneath that copy of Prison Cell.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 39,
+      "quantity": 4,
+      "cost": 2,
+      "encounter_set": "Escape from Mount Gram",
+      "side": "A",
+      "back_name": "Gornákh's Dungeons",
+      "back_text": "Any time players would place progress tokens on this quest, rescue an equal number of captured cards at random from underneath it instead. (Progress is placed on the active location before triggering this effect.)   Forced: If there are no captured cards underneath Gornakh's Dungeons, join another player at the beginning of the travel phase. If you cannot join another player, all players advance to stage 3A together.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 39,
+          "quantity": 4,
+          "octgnid": "e3d50c1b-4626-4bff-a247-f965166f9d2f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+      "octgnid": "e83f33da-6723-4730-8691-8d1a48b1f8e0",
+      "name": "Flight from Mount Gram",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Southern Gate and Jailor Gornakh to the staging area. Shuffle the Angmar Orcs encounter set into the encounter deck. Then, reveal 1 encounter card per player from the top of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 40,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Escape from Mount Gram",
+      "side": "A",
+      "back_name": "Flight from Mount Gram",
+      "back_text": "Players cannot travel to Southern Gate unless there is at least 14 progress on this stage.  Players cannot defeat this stage while Southern Gate is in play. If the players defeat this stage, they have escaped Mount Gram and win the game.",
+      "back_type_code": "quest",
+      "back_quest": 14,
+      "back_imagesrc": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "e83f33da-6723-4730-8691-8d1a48b1f8e0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+      "octgnid": "e920ecab-29dc-48a6-908d-f4919d5b468d",
+      "name": "Dungeon Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Capture 1.\nResponse: After the captured card(s) underneath Dungeon Guard are rescued, the players may put 1 of them into play at no cost.",
+      "is_unique": false,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 44,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 16,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "16"
+      },
+      "imagesrc": "/cards/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "e920ecab-29dc-48a6-908d-f4919d5b468d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+      "octgnid": "f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+      "name": "Jailor Gornákh",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Forced: When 1 or more captured cards are rescued, Jailor Gornakh engages the player with the highest threat and makes an immediate attack.",
+      "is_unique": true,
+      "pack_code": "EfMG",
+      "pack_name": "Escape from Mount Gram",
+      "position": 41,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 8,
+      "engagement": 44,
+      "victory": 5,
+      "encounter_set": "Escape from Mount Gram",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "8",
+        "engagement": "44",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg",
+      "packs": [
+        {
+          "pack_code": "EfMG",
+          "pack_name": "Escape from Mount Gram",
+          "position": 41,
+          "quantity": 1,
+          "octgnid": "f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.5",
+      "name": "Escape from Mount Gram (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "EfMG",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+        "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+        "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+        "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+        "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+        "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+        "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+        "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+        "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+        "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+        "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+        "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+        "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+        "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+          "quantity": 4,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d1a3a535-7679-4757-871c-80c50c003cff": 1,
+          "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f": 4,
+          "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b": 2,
+          "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d": 3,
+          "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8": 2,
+          "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948": 2,
+          "octgn:275c7232-3671-4092-bb9a-9a62f9538225": 1,
+          "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d": 2,
+          "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd": 1,
+          "octgn:663a47fc-e264-485b-832d-2c327aa1a493": 2,
+          "octgn:414353af-e004-4e7c-b288-e168e2acfee7": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 3,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 2,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1
+        },
+        "sharedSetAside": {
+          "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f": 1,
+          "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18": 1
+        },
+        "sharedStagingArea": {
+          "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.5",
+      "name": "Escape from Mount Gram",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "EfMG",
+        "TLR"
+      ],
+      "card_codes": [
+        "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+        "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+        "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+        "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+        "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+        "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+        "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+        "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+        "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+        "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+        "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+        "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+        "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+        "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+        "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+          "quantity": 4,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d1a3a535-7679-4757-871c-80c50c003cff": 1,
+          "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f": 4,
+          "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b": 2,
+          "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d": 3,
+          "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2": 2,
+          "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8": 2,
+          "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948": 2,
+          "octgn:275c7232-3671-4092-bb9a-9a62f9538225": 2,
+          "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d": 2,
+          "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd": 2,
+          "octgn:663a47fc-e264-485b-832d-2c327aa1a493": 2,
+          "octgn:414353af-e004-4e7c-b288-e168e2acfee7": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 3,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 2,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1
+        },
+        "sharedSetAside": {
+          "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f": 1,
+          "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18": 1
+        },
+        "sharedStagingArea": {
+          "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg",
+      "localPath": "/cards/0a6774e7-f110-4917-84b5-1f81a7aefbf8.jpg",
+      "bytes": 156896,
+      "sha256": "2095f12b98e82ddcc332a80b7eb9a56af1d4a1728b6b47ca8f45e8df8f7b4d02"
+    },
+    {
+      "code": "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg",
+      "localPath": "/cards/18d6f0aa-a62e-4ce5-b169-cae8836d8442.jpg",
+      "bytes": 168940,
+      "sha256": "a660cc6227efe6bd29de65c0dfbf920fb558ebeb3cbc8772f7e42555b62cb4e5"
+    },
+    {
+      "code": "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/275c7232-3671-4092-bb9a-9a62f9538225.jpg",
+      "localPath": "/cards/275c7232-3671-4092-bb9a-9a62f9538225.jpg",
+      "bytes": 147529,
+      "sha256": "92c5cdbe454632ae01984d197325477467ec20624045812c9909621588a9802a"
+    },
+    {
+      "code": "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg",
+      "localPath": "/cards/2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2.jpg",
+      "bytes": 159274,
+      "sha256": "be3539dcdd45831827ddf7af310874e53766240a1e5465042cd3cfeea99ed473"
+    },
+    {
+      "code": "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/414353af-e004-4e7c-b288-e168e2acfee7.jpg",
+      "localPath": "/cards/414353af-e004-4e7c-b288-e168e2acfee7.jpg",
+      "bytes": 147635,
+      "sha256": "9fce2bebc5dbee4d14e2e36f8fc39ffb8d28b3ae624e994cbc405930e4e1f669"
+    },
+    {
+      "code": "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg",
+      "localPath": "/cards/51e187ea-691c-46bc-b74f-c03d110d02cd.jpg",
+      "bytes": 145517,
+      "sha256": "6685dfebe2956dbcf75280784125350a6cf59c29684ab6052e5d9430e6d02a2f"
+    },
+    {
+      "code": "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/663a47fc-e264-485b-832d-2c327aa1a493.jpg",
+      "localPath": "/cards/663a47fc-e264-485b-832d-2c327aa1a493.jpg",
+      "bytes": 162922,
+      "sha256": "d78cb5e4b27b002d3dbe6d8254883633156ccf2c465efd0759c169b6a020d195"
+    },
+    {
+      "code": "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg",
+      "localPath": "/cards/6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948.jpg",
+      "bytes": 152395,
+      "sha256": "f5110af6883e9e8922f783d2c3f0bffdfc25c291903a0aaa8baae9a827849783"
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "localPath": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "bytes": 145957,
+      "sha256": "d36c76866b85dd1bf89f24943cf0d9bf363c6f069c429a3c866c15d3474a456e"
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "localPath": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "bytes": 150176,
+      "sha256": "19c0a92457e6b21cf0238a15da3f76ba2d7ed5e1c64eba183e747fa4f5142174"
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "localPath": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "bytes": 158126,
+      "sha256": "ecb47979db3de692e4b55329056e6a026d23eefb475a90a25495248681685538"
+    },
+    {
+      "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1a3a535-7679-4757-871c-80c50c003cff.jpg",
+      "localPath": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.jpg",
+      "bytes": 156680,
+      "sha256": "129c3ec434357dfaa54cf2579bdf89a790a6d883a42b3002cf2d0eeae4cab3f4"
+    },
+    {
+      "code": "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d1a3a535-7679-4757-871c-80c50c003cff.B.jpg",
+      "localPath": "/cards/d1a3a535-7679-4757-871c-80c50c003cff.B.jpg",
+      "bytes": 153851,
+      "sha256": "d32db7464fe04e16461af38a76abebc9166740a4f9793947bb0f3efb04711618"
+    },
+    {
+      "code": "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg",
+      "localPath": "/cards/d69092af-f96b-4885-a194-5d5f31d90e6d.jpg",
+      "bytes": 149774,
+      "sha256": "05cf4da7d0d72175e901fa60f020972c7373bda70de2f7705ea6a60ef554cf32"
+    },
+    {
+      "code": "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg",
+      "localPath": "/cards/d760ba6c-e377-4d22-ac46-04bfb2b3c65f.jpg",
+      "bytes": 156639,
+      "sha256": "97f2e9132f95093021a141ac60fe28916b06ef61a46f9ccc5e32085ddfd9854d"
+    },
+    {
+      "code": "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg",
+      "localPath": "/cards/e15ba98d-806f-4847-823c-ca90c0f58f0b.jpg",
+      "bytes": 155101,
+      "sha256": "f1433daa73c19a990f95fd4a35af8119a3c8bcc6c3a00d605dfb046e8f1220c9"
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "localPath": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "bytes": 148568,
+      "sha256": "22a5486ce53305e79c0cef1bf04124a3590ea8e0cc4c12d7e81982bf4860f16a"
+    },
+    {
+      "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg",
+      "localPath": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.jpg",
+      "bytes": 152623,
+      "sha256": "324d0527204771e68c4236aaac24fbae11717e1212238b1f290f07c8af98d6e0"
+    },
+    {
+      "code": "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3d50c1b-4626-4bff-a247-f965166f9d2f.B.jpg",
+      "localPath": "/cards/e3d50c1b-4626-4bff-a247-f965166f9d2f.B.jpg",
+      "bytes": 161984,
+      "sha256": "1a9b652e30e19b1be74f32aa1f1d1567382f70699c461c7fff28d6b988e9b6ca"
+    },
+    {
+      "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg",
+      "localPath": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.jpg",
+      "bytes": 157122,
+      "sha256": "e10ddc1a5485a6ab1fcf4f3a4ee69896d37df0213d30872b7f18833462ffb7b7"
+    },
+    {
+      "code": "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e83f33da-6723-4730-8691-8d1a48b1f8e0.B.jpg",
+      "localPath": "/cards/e83f33da-6723-4730-8691-8d1a48b1f8e0.B.jpg",
+      "bytes": 153283,
+      "sha256": "0a04c8313ee8d090c28f72ccf5c79ef6d2af067e5c3bf92a34492ef68087e1f4"
+    },
+    {
+      "code": "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg",
+      "localPath": "/cards/e920ecab-29dc-48a6-908d-f4919d5b468d.jpg",
+      "bytes": 160874,
+      "sha256": "3be7e528bbb4dc73ae01097cd16ce07ecdef732203ea23e3e57eead4a4594f5a"
+    },
+    {
+      "code": "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg",
+      "localPath": "/cards/f92ddbe7-0db6-494f-bdab-b5bd20439c18.jpg",
+      "bytes": 159134,
+      "sha256": "12fbc8cfa561c3fea1c040367be721c0f69d3ee74b2881f9f6c736915389585a"
+    }
+  ]
+}

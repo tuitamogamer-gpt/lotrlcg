@@ -47,7 +47,11 @@
     "prepare:scenario-import": "node scripts/prepare-scenario-import.mjs",
     "test:pending-import": "node scripts/browser-pending-import.mjs",
     "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs && node --import tsx scripts/browser-weather-hills.mjs && node --import tsx scripts/browser-deadmens-dike.mjs",
-    "test:significant-moments": "node --import tsx scripts/browser-significant-moments.mjs"
+    "test:significant-moments": "node --import tsx scripts/browser-significant-moments.mjs",
+    "test:angmar-quests": "node --import tsx scripts/browser-angmar-quests.mjs",
+    "test:angmar-players": "node --import tsx scripts/browser-angmar-players.mjs",
+    "test:browser-angmar": "npm run test:angmar-quests && npm run test:angmar-players",
+    "test:angmar-simulation": "node --import tsx --test --test-name-pattern=\"^hot-seat (wastes-of-eriador|escape-from-mount-gram|across-the-ettenmoors|the-treachery-of-rhudaur|the-battle-of-carn-dum|the-dread-realm) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

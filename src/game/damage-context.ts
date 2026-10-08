@@ -8,6 +8,7 @@ export interface DamageContext {
   bypassDori?: boolean;
   bypassDiscipline?: boolean;
   bypassCloseCall?: boolean;
+  bypassAngmar?: boolean;
   mockingVisited?: string[];
 }
 
@@ -42,6 +43,7 @@ export function readDamageContext(effect: {
       "bypassDori",
       "bypassDiscipline",
       "bypassCloseCall",
+      "bypassAngmar",
     ] as const)
       if (key in raw && typeof values[key] === "boolean")
         context[key] = values[key] as boolean;

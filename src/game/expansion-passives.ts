@@ -4,6 +4,7 @@ import { khazadBookNoExhaust } from "./khazad-dum";
 import definitions from "../data/passive-player-cards.json";
 import type { Attachment, Card, GameState, Unit } from "./types";
 import { card } from "./cards";
+import { isHero, isAlly, unitType } from "./card-types";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
 import { marshPlayerNoQuestExhaust } from "./marsh-player-cards";
 
@@ -162,11 +163,14 @@ const rules: Record<string, AttachmentRule> = {
 };
 export const passiveRule = (code: string) => rules[code];
 export function effectiveTraits(u: Unit): string[] {
+  const c = card(u.code) as Card & { back_traits?: string };
   return [
     ...new Set([
       ...(u.blanked && !u.printedKeywordsPreserved
         ? ""
-        : (card(u.code).traits ?? "")
+        : u.flipped
+          ? (c.back_traits ?? c.traits ?? "")
+          : (c.traits ?? "")
       )
         .split(".")
         .map((t) => t.trim())
@@ -194,7 +198,10 @@ export function attachmentHasTrait(a: Attachment, trait: string) {
   );
 }
 export function effectiveKeyword(u: Unit, keyword: string): boolean {
-  const printed = (card(u.code).text ?? "").replace(/<[^>]*>/g, "");
+  const c = card(u.code);
+  const printed = (
+    (u.flipped ? (c.back_text ?? c.text) : c.text) ?? ""
+  ).replace(/<[^>]*>/g, "");
   const exact = new RegExp(`(?:^|[.\\n]\\s*)${keyword}(?:[.\\s]|$)`, "i");
   return (
     !!u.dynamicKeywords?.some(
@@ -216,6 +223,7 @@ export function hasResourceIcon(u: Unit, sphere: string) {
     sphere === "neutral" ||
     card(u.code).sphere_code === sphere ||
     !!u.phaseResourceIcons?.includes(sphere) ||
+    !!u.dynamicResourceIcons?.includes(sphere) ||
     u.attachments.some(
       (a) =>
         !a.blanked &&
@@ -247,7 +255,11 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     )
       return false;
     if (playerCardImmune(u)) return false;
-    if (rule.type && card(u.code).type_code !== rule.type) return false;
+    if (
+      rule.type &&
+      (rule.type === "ally" ? !isAlly(u) : unitType(u) !== rule.type)
+    )
+      return false;
     if (rule.unique && !card(u.code).is_unique) return false;
     if (
       c.code === "08093" &&
@@ -327,7 +339,7 @@ export function questExhausts(s: GameState, u: Unit) {
   );
 }
 export const pathOfNeed = (s: GameState, u: Unit) =>
-  card(u.code).type_code === "hero" &&
+  isHero(u) &&
   allActiveLocations(s).some((l) =>
     l.attachments.some((a) => !a.blanked && a.code === "04103"),
   );
@@ -380,7 +392,7 @@ export function expansionStats(s: GameState, u: Unit) {
       allCharacters(s).some(
         (h) =>
           h.id !== u.id &&
-          card(h.code).type_code === "hero" &&
+          isHero(h) &&
           h.attachments.some((x) => x.code === "146012"),
       )
     )
@@ -408,7 +420,7 @@ export function expansionStats(s: GameState, u: Unit) {
       host.code === "05002" &&
       !host.blanked &&
       host.resources > 0 &&
-      card(u.code).type_code === "ally" &&
+      isAlly(u) &&
       hasTrait(u, "Gondor")
     )
       result.attack++;

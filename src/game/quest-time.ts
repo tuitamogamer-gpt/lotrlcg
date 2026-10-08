@@ -5,12 +5,12 @@ import { fangornTimeRemoved } from "./fangorn";
 import type { GameState } from "./types";
 import { card } from "./cards";
 import { fx, log, prepend } from "./core";
-import { currentQuestCode } from "./quest-state";
+import { currentQuestCode, mainQuestCode } from "./quest-state";
 import { firstPlayer } from "./table";
 
-/** Only the active quest's Time keyword loses a counter at refresh phase end. */
+/** Printed main-quest Time remains in play while a side quest is current. */
 export const questTime = (s: GameState) =>
-  selectedSideQuest(s)
+  selectedSideQuest(s) && s.phase !== "refresh"
     ? undefined
     : (s.fordsIsen ??
       s.catchOrc ??
@@ -19,7 +19,8 @@ export const questTime = (s: GameState) =>
       s.tharbad ??
       s.ninEilph ??
       s.celebrimbor ??
-      s.antlered);
+      s.antlered ??
+      s.rhudaur);
 export const canRemoveQuestTime = (s: GameState) =>
   !!questTime(s)?.time && !tharbadTimeBlocked(s);
 export function removeQuestTime(s: GameState, count = 1) {
@@ -29,7 +30,7 @@ export function removeQuestTime(s: GameState, count = 1) {
   timer.time -= removed;
   log(
     s,
-    `${card(currentQuestCode(s)!).name} · ${timer.time} time counters.`,
+    `${card(s.phase === "refresh" ? mainQuestCode(s)! : currentQuestCode(s)!).name} · ${timer.time} time counters.`,
     "danger",
   );
   const effects = [
@@ -40,24 +41,26 @@ export function removeQuestTime(s: GameState, count = 1) {
   if (!timer.time)
     effects.push(
       fx(
-        s.antlered
-          ? "crownTimeExpired"
-          : s.celebrimbor
-            ? "celebTimeExpired"
-            : s.ninEilph
-              ? "ninTimeExpired"
-              : s.tharbad
-                ? "tharbadTimeExpired"
-                : s.fordsIsen
-                  ? "fordsTimeExpired"
-                  : s.catchOrc
-                    ? "catchTimeExpired"
-                    : s.dunlandTrap
-                      ? "dunlandTimeExpired"
-                      : "fangornTimeExpired",
+        s.rhudaur
+          ? "rhudaurTimeExpired"
+          : s.antlered
+            ? "crownTimeExpired"
+            : s.celebrimbor
+              ? "celebTimeExpired"
+              : s.ninEilph
+                ? "ninTimeExpired"
+                : s.tharbad
+                  ? "tharbadTimeExpired"
+                  : s.fordsIsen
+                    ? "fordsTimeExpired"
+                    : s.catchOrc
+                      ? "catchTimeExpired"
+                      : s.dunlandTrap
+                        ? "dunlandTimeExpired"
+                        : "fangornTimeExpired",
         {
           value: s.stage,
-          code: currentQuestCode(s),
+          code: s.phase === "refresh" ? mainQuestCode(s) : currentQuestCode(s),
           player: firstPlayer(s),
         },
       ),

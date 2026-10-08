@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+    "octgnid": "b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+    "name": "The Clutches of Carn Dûm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Thaurdir to the staging area, Captain side face-up. Add 1 copy of Carn Dum Garrison per player to the staging area. Search the encounter deck for 1 copy of Accursed Battlefield and make it the active location. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "BoCD",
+    "pack_name": "The Battle of Carn Dûm",
+    "position": 125,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Battle of Carn Dum",
+    "side": "A",
+    "back_name": "The Clutches of Carn Dûm",
+    "back_text": "Thaurdir cannot leave the staging area and cannot take damage. At the end of the round, if Thaurdir is Champion side face-up, flip him.  Do not discard unresolved shadow cards at the end of the combat phase.  Forced: If there are 3 shadow cards dealt to Thaurdir, flip him.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg",
+    "packs": [
+      {
+        "pack_code": "BoCD",
+        "pack_name": "The Battle of Carn Dûm",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1662195-6d46-474c-9ee9-ccbf14c7b70e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
+    "octgnid": "b659e2a1-55b1-4562-ab2c-0e36772d8183",
+    "name": "Midwinter's Crux",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Raise each player's threat by X, where X is the number of shadow cards in play. If Thaurdir is Captain side face-up, flip him.",
+    "is_unique": false,
+    "pack_code": "BoCD",
+    "pack_name": "The Battle of Carn Dûm",
+    "position": 126,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Battle of Carn Dum",
+    "side": "A",
+    "back_name": "Midwinter's Crux",
+    "back_text": "Thaurdir cannot leave the staging area, is considered to be engaged with each player, and attacks each player in turn during the combat phase (deal and discard a new shadow card for each attack). At the end of the round, if Thaurdir is Captain side face-up, flip him.  While Midwinter's Crux has 15 or more progress on it, Thaurdir loses Indestructible.  You cannot defeat this stage while Thaurdir is in play. If Thaurdir is defeated, you win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg",
+    "packs": [
+      {
+        "pack_code": "BoCD",
+        "pack_name": "The Battle of Carn Dûm",
+        "position": 126,
+        "quantity": 1,
+        "octgnid": "b659e2a1-55b1-4562-ab2c-0e36772d8183",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b659e2a1-55b1-4562-ab2c-0e36772d8183.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

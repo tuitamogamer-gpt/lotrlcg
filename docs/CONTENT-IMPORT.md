@@ -82,7 +82,7 @@ All card identities, pack membership, required source fields, record quantities,
 
 ## Automation boundary
 
-Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The four existing curated scenarios and the four original Core learning decks retain their existing automation. `SCRIPTED` is still derived only from curated engine fixtures. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
+Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 45 original standard/easy adventures and 496 player definitions, including all six Angmar Awakened packs. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
 
 The importer writes:
 

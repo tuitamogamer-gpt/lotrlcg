@@ -1,0 +1,83 @@
+import definitions from "../data/angmar-player-cards.json";
+import type { Card, GameState } from "./types";
+
+export const ANGMAR_PLAYER_CARDS = definitions as Card[];
+export const ANGMAR_PLAYER_CODES = [
+  ...ANGMAR_PLAYER_CARDS.map((c) => c.code),
+  "10093",
+  "10122",
+];
+export const ANGMAR = {
+  merry: "10001",
+  ingold: "10002",
+  rally: "10003",
+  guard: "10004",
+  helm: "10005",
+  brandybuck: "10006",
+  pony: "10007",
+  ranger: "10008",
+  scout: "10009",
+  cardolan: "10010",
+  rossiel: "10028",
+  veteran: "10029",
+  descendants: "10030",
+  warrior: "10031",
+  boomed: "10032",
+  jeweler: "10033",
+  double: "10034",
+  trace: "10035",
+  stars: "10036",
+  lances: "10037",
+  dori: "10054",
+  provisions: "10055",
+  message: "10056",
+  sentry: "10057",
+  delay: "10058",
+  steed: "10059",
+  fair: "10060",
+  preserver: "10061",
+  none: "10062",
+  hope: "10063",
+  erestor: "10084",
+  reinforcements: "10085",
+  aid: "10086",
+  spear: "10087",
+  cry: "10088",
+  weaver: "10089",
+  harp: "10090",
+  galdor: "10091",
+  door: "10092",
+  friend: "10093",
+  amarthiul: "10115",
+  guardian: "10116",
+  doom: "10117",
+  beechbone: "10118",
+  ground: "10119",
+  lindir: "10120",
+  lords: "10121",
+  defeat: "10122",
+  ears: "10123",
+  favor: "10124",
+  arwen: "10140",
+  eothain: "10141",
+  sword: "10142",
+  bowman: "10143",
+  wrath: "10144",
+  light: "10145",
+  tale: "10146",
+  healer: "10147",
+  cloak: "10148",
+  thain: "10149",
+} as const;
+
+/** Valour checks the initiating player's current threat, including a remote response. */
+export const angmarValour = (s: GameState) => s.threat >= 40;
+export { isHero as angmarIsHero } from "./card-types";
+export const angmarDiscardEvents = [ANGMAR.light, ANGMAR.lords] as string[];
+export const angmarResponseEvents = [
+  ANGMAR.boomed,
+  ANGMAR.trace,
+  ANGMAR.none,
+  ANGMAR.door,
+  ANGMAR.ears,
+] as string[];

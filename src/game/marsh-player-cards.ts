@@ -154,11 +154,12 @@ export function marshPlayerAttackResolved(
       fx("marshVassalDiscard", { target: u.id, player: ownerOf(s, u) }),
     );
 }
-export function marshPlayerShadowOptions(s: GameState, code: string): Option[] {
-  if (
-    !card(code).shadow ||
-    allActiveLocations(s).some((u) => u.code === "02016")
-  )
+export function marshPlayerShadowOptions(
+  s: GameState,
+  code: string,
+  effectiveShadow = !!card(code).shadow,
+): Option[] {
+  if (!effectiveShadow || allActiveLocations(s).some((u) => u.code === "02016"))
     return [];
   return playerOrder(s)
     .flatMap((player) => [

@@ -42,6 +42,7 @@ import { khazadDamageCancelled } from "./khazad-dum";
 
 import { morgulCannotLeave } from "./morgul-vale";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
+import { carnShadowText } from "./carn-dum";
 
 const BELTS = "round:tighten-belts";
 const RIDE = "phase:ride-them-down:";
@@ -304,8 +305,12 @@ export function useFinalRingAbility(
   return true;
 }
 
-export function finalRingShadowOptions(s: GameState, code: string): Option[] {
-  if (!card(code).shadow) return [];
+export function finalRingShadowOptions(
+  s: GameState,
+  code: string,
+  effectiveShadow = !!card(code).shadow,
+): Option[] {
+  if (!effectiveShadow) return [];
   const defenders =
     s.combat?.defenderIds ??
     (s.combat?.defenderId ? [s.combat.defenderId] : []);
@@ -486,7 +491,7 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
       const h = get(s, e.target);
       requireRule(
         h &&
-          finalRingShadowOptions(s, e.code!).some(
+          finalRingShadowOptions(s, e.code!, !!carnShadowText(s, e.code!)).some(
             (o) => o.id === `erkenbrand-${h.id}`,
           ),
         "Erkenbrand must be defending and able to pay the damage cost.",

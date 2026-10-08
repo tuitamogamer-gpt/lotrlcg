@@ -1,4 +1,10 @@
 import { setupDeadmensDike } from "./deadmens-dike";
+import * as Wastes from "./wastes-eriador";
+import * as Gram from "./mount-gram";
+import * as Etten from "./ettenmoors";
+import * as Dread from "./dread-realm";
+import * as Carn from "./carn-dum";
+import * as Rhudaur from "./rhudaur";
 import { setupChetwood } from "./chetwood";
 import { setupWeather } from "./weather-hills";
 import { hasEncounterKeyword } from "./encounter-keyword";
@@ -393,6 +399,18 @@ export function createGame(
     setupWeather(s);
   } else if (scenarioId === "deadmens-dike") {
     setupDeadmensDike(s);
+  } else if (scenarioId === "wastes-of-eriador") {
+    Wastes.setupWastes(s);
+  } else if (scenarioId === "escape-from-mount-gram") {
+    Gram.setupMountGram(s);
+  } else if (scenarioId === "across-the-ettenmoors") {
+    Etten.setupEttenmoors(s);
+  } else if (scenarioId === "the-dread-realm") {
+    Dread.setupDreadRealm(s);
+  } else if (scenarioId === "the-battle-of-carn-dum") {
+    Carn.setupCarnDum(s);
+  } else if (scenarioId === "the-treachery-of-rhudaur") {
+    Rhudaur.setupRhudaur(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

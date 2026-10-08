@@ -81,7 +81,7 @@ export function putPlayedEventInVictory(s: GameState, code: string) {
   else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
     if (index >= 0) {
-      s.discard.splice(index, 1);
+      takePlayerDiscard(s, index);
       addVictoryCard(s, code);
     }
   }
@@ -97,7 +97,7 @@ export function removePlayedEvent(s: GameState, code: string) {
   if (pending) pending.destination = "removed";
   else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
-    if (index >= 0) s.discard.splice(index, 1);
+    if (index >= 0) takePlayerDiscard(s, index);
     s.removed.push(code);
   }
 }

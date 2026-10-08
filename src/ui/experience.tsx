@@ -1,4 +1,5 @@
 import { selectedSideQuest } from "../game/side-quest-support";
+import { AngmarQuestGoals } from "./angmar-goals";
 import { DIKE } from "../game/deadmens-dike-support";
 import { currentQuestProgress } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
@@ -658,6 +659,15 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
+  if (
+    s.wastesEriador ||
+    s.mountGram ||
+    s.ettenmoors ||
+    s.rhudaur ||
+    s.carnDum ||
+    s.dreadRealm
+  )
+    return <AngmarQuestGoals s={s} />;
   if (s.deadmensDike) {
     const thaurdir = [...s.staging, ...allEngaged(s)].find(
       (u) => u.code === DIKE.thaurdir,

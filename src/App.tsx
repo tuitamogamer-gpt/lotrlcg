@@ -22,7 +22,12 @@ import { HEIRS_NUMENOR as H } from "./game/heirs-numenor-support";
 import { STEWARD_FEAR as S, STEWARD_CLUES } from "./game/steward-fear-support";
 import { watcherWaterCannotExhaust } from "./game/watcher-water";
 import { amonPlayerCannotDeclareAttack } from "./game/amon-din-player-cards";
-import { eventXMaximum } from "./game/actions";
+import {
+  eventXMaximum,
+  replayEventProblem,
+  eventReplayPayments,
+} from "./game/actions";
+import { isHero } from "./game/card-types";
 import {
   useState,
   useEffect,
@@ -185,6 +190,7 @@ import {
   allEngaged,
   ownerOf,
   seatName,
+  seatView,
   attackersFor,
   livingSeats,
 } from "./game/table";
@@ -335,12 +341,15 @@ const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
   return {
     ...c,
     playOwner: u.owner ?? activeSeat(s),
+    ...(u.id.startsWith("discard-play:")
+      ? { playOrigin: "discard" as const }
+      : {}),
     ...(c.cost === "X" && amount !== undefined ? { cost: amount } : {}),
   };
 };
 function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
   const payers = eligiblePayers(s, c, target);
-  if (["01036", "08143"].includes(c.code)) {
+  if (["01036", "08143", "10085"].includes(c.code)) {
     const heroes = payers
       .filter((u) => u.resources > 0 && s.heroes.some((h) => h.id === u.id))
       .slice(0, 3);
@@ -470,7 +479,7 @@ function CardDetail({
   onClose,
   action,
 }: {
-  c: Card & { attachmentResourceTokens?: number };
+  c: Card & { attachmentResourceTokens?: number; initialReverse?: boolean };
   onClose: () => void;
   action?: ReactNode;
 }) {
@@ -482,9 +491,22 @@ function CardDetail({
   };
   const printedNumber =
     printing.position ?? (!c.code.startsWith("octgn:") ? c.code : undefined);
-  const [reverse, setReverse] = useState(false);
+  const [reverse, setReverse] = useState(!!c.initialReverse);
+  const shown = reverse
+    ? {
+        ...c,
+        name: c.back_name ?? c.name,
+        traits: c.back_traits ?? c.traits,
+        text: c.back_text ?? c.text,
+        imagesrc: c.back_imagesrc ?? c.imagesrc,
+        quest: c.back_quest ?? c.quest,
+      }
+    : c;
+  const otherName = reverse ? c.name : (c.back_name ?? "Reverse side");
+  const otherTraits = reverse ? c.traits : c.back_traits;
+  const otherText = reverse ? c.text : c.back_text;
   return (
-    <Modal title={c.name} onClose={onClose} wide>
+    <Modal title={shown.name} onClose={onClose} wide>
       <div className="card-detail">
         {c.back_imagesrc ? (
           <div className="card-detail-art">
@@ -498,15 +520,7 @@ function CardDetail({
                   : ""
               }
               imageSrc={reverse ? c.back_imagesrc : undefined}
-              c={
-                reverse
-                  ? {
-                      ...c,
-                      imagesrc: c.back_imagesrc,
-                      name: c.back_name ?? c.name,
-                    }
-                  : c
-              }
+              c={shown}
             />
             <button
               className="secondary"
@@ -529,54 +543,59 @@ function CardDetail({
           />
         )}
         <div>
-          <div className="detail-type">
-            <Sphere sphere={c.sphere_code} />
-            {c.type_code} · {c.sphere_code}
-          </div>
-          <h3>{c.name}</h3>
-          <p className="traits">{c.traits}</p>
-          {(c.health !== undefined || c.printed_stats?.health) && (
-            <div className="detail-stats">
-              {c.type_code === "enemy" ? (
-                <StatBadge
-                  kind="threat"
-                  value={c.threat ?? c.printed_stats?.threat}
-                  caption
-                />
-              ) : (
-                <StatBadge
-                  kind="willpower"
-                  value={c.willpower ?? c.printed_stats?.willpower}
-                  caption
-                />
-              )}
-              <StatBadge
-                kind="attack"
-                value={c.attack ?? c.printed_stats?.attack}
-                caption
-              />
-              <StatBadge
-                kind="defense"
-                value={c.defense ?? c.printed_stats?.defense}
-                caption
-              />
-              <StatBadge
-                kind="health"
-                value={c.health ?? c.printed_stats?.health}
-                caption
-              />
+          <div className="card-detail-primary" data-card-primary-face>
+            <div className="detail-type">
+              <Sphere sphere={c.sphere_code} />
+              {c.type_code} · {c.sphere_code}
             </div>
-          )}
-          {(c.text || c.type_code !== "quest") && (
-            <p className="rules-text">
-              {plain(c.text) || "No additional abilities."}
+            <h3 data-card-primary-name>{shown.name}</h3>
+            <p className="traits" data-card-primary-traits>
+              {shown.traits}
             </p>
-          )}
-          {c.shadow && <p className="shadow-text">{plain(c.shadow)}</p>}
-          {c.back_text && (
-            <div className="card-back-rules">
-              <h4>{c.back_name ?? "Reverse side"}</h4>
-              <p className="rules-text">{plain(c.back_text)}</p>
+            {(c.health !== undefined || c.printed_stats?.health) && (
+              <div className="detail-stats">
+                {c.type_code === "enemy" ? (
+                  <StatBadge
+                    kind="threat"
+                    value={c.threat ?? c.printed_stats?.threat}
+                    caption
+                  />
+                ) : (
+                  <StatBadge
+                    kind="willpower"
+                    value={c.willpower ?? c.printed_stats?.willpower}
+                    caption
+                  />
+                )}
+                <StatBadge
+                  kind="attack"
+                  value={c.attack ?? c.printed_stats?.attack}
+                  caption
+                />
+                <StatBadge
+                  kind="defense"
+                  value={c.defense ?? c.printed_stats?.defense}
+                  caption
+                />
+                <StatBadge
+                  kind="health"
+                  value={c.health ?? c.printed_stats?.health}
+                  caption
+                />
+              </div>
+            )}
+            {(shown.text || c.type_code !== "quest") && (
+              <p className="rules-text" data-card-primary-rules>
+                {plain(shown.text) || "No additional abilities."}
+              </p>
+            )}
+            {c.shadow && <p className="shadow-text">{plain(c.shadow)}</p>}
+          </div>
+          {otherText && (
+            <div className="card-back-rules" data-card-other-face>
+              <h4>Other printed face · {otherName}</h4>
+              {otherTraits && <p className="traits">{otherTraits}</p>}
+              <p className="rules-text">{plain(otherText)}</p>
             </div>
           )}
           {action}
@@ -824,6 +843,7 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [sound, setSound] = useState(false);
   const [playCard, setPlayCard] = useState<Unit | null>(null);
+  const [playDiscardIndex, setPlayDiscardIndex] = useState<number | null>(null);
   const [target, setTarget] = useState("");
   const [payment, setPayment] = useState<Record<string, number>>({});
   const [xCost, setXCost] = useState(1);
@@ -1207,6 +1227,7 @@ export default function App() {
   };
   const beginPlay = (u: Unit) => {
     if (!game) return;
+    setPlayDiscardIndex(null);
     const reason = playReason(game, u);
     if (reason) {
       notify(reason);
@@ -1221,6 +1242,35 @@ export default function App() {
       ? Math.min(...legalTargets.map((host) => playCost(game, costing, host)))
       : playCost(game, costing);
     setPayment(planCardPayment(game, costing, cost));
+    setPlayCard(u);
+  };
+  const discardPreview = (s: GameState, index: number): Unit => ({
+    id: `discard-play:${index}`,
+    code: s.discard[index],
+    owner: activeSeat(s),
+    exhausted: false,
+    damage: 0,
+    progress: 0,
+    resources: 0,
+    committed: false,
+    attachments: [],
+    boost: 0,
+    attacked: false,
+    shadows: [],
+  });
+  const beginDiscardPlay = (index: number) => {
+    if (!game) return;
+    const u = discardPreview(game, index);
+    const reason = replayEventProblem(game, u);
+    if (reason) {
+      notify(reason);
+      return;
+    }
+    setTarget("");
+    setXCost(1);
+    setPlayDiscardIndex(index);
+    setPayment(eventReplayPayments(game, u)[0] ?? {});
+    setShowPiles(false);
     setPlayCard(u);
   };
   const exportSave = () => {
@@ -2784,7 +2834,7 @@ export default function App() {
                 />
               </section>
               <aside className="turn-panel">
-                <ThreatCounter s={game} />
+                <ThreatCounter s={game} inspect={setDetail} />
                 <div className="turn-panel-top">
                   <span className="green-dot" />{" "}
                   {game.table
@@ -3345,19 +3395,41 @@ export default function App() {
             {[...(pile === "player" ? game.discard : game.encounterDiscard)]
               .reverse()
               .map((code, i) => (
-                <button
-                  key={`${code}-${i}`}
-                  onClick={() => setDetail(card(code))}
-                >
-                  <Art c={card(code)} />
-                  <span>
-                    <strong>{card(code).name}</strong>
-                    <small>
-                      {card(code).type_code} · {card(code).sphere_code}
-                    </small>
-                  </span>
-                  <Info size={17} />
-                </button>
+                <div className="pile-entry" key={`${code}-${i}`}>
+                  <button onClick={() => setDetail(card(code))}>
+                    <Art c={card(code)} />
+                    <span>
+                      <strong>{card(code).name}</strong>
+                      <small>
+                        {card(code).type_code} · {card(code).sphere_code}
+                      </small>
+                    </span>
+                    <Info size={17} />
+                  </button>
+                  {pile === "player" &&
+                    ["10121", "10145"].includes(code) &&
+                    (() => {
+                      const index = game.discard.length - 1 - i;
+                      const reason = replayEventProblem(
+                        game,
+                        discardPreview(game, index),
+                      );
+                      return (
+                        <button
+                          className="discard-play-button"
+                          disabled={
+                            !!reason || !!game.choice || !!game.flow?.pending
+                          }
+                          title={
+                            reason ?? "Play this event from your discard pile"
+                          }
+                          onClick={() => beginDiscardPlay(index)}
+                        >
+                          Play {card(code).name} from discard
+                        </button>
+                      );
+                    })()}
+                </div>
               ))}
           </div>
           {!(pile === "player" ? game.discard : game.encounterDiscard)
@@ -3562,9 +3634,11 @@ export default function App() {
           title={`Play ${name(playCard)}`}
           onClose={() => setPlayCard(null)}
           description={
-            needsTarget(playCard)
-              ? "Choose a target card, check your payment, then play."
-              : "Check the card and your payment, then play."
+            playCard.code === "10124"
+              ? "Choose a player’s threat dial, check your payment, then play."
+              : needsTarget(playCard)
+                ? "Choose a target card, check your payment, then play."
+                : "Check the card and your payment, then play."
           }
           footer={
             <>
@@ -3587,7 +3661,29 @@ export default function App() {
                   className="primary"
                   disabled={
                     (needsTarget(playCard) && !target) ||
-                    (["01036", "08143"].includes(playCard.code) &&
+                    (playDiscardIndex !== null &&
+                      (!!replayEventProblem(
+                        game,
+                        playCard,
+                        target || undefined,
+                        xCost,
+                      ) ||
+                        !eventReplayPayments(
+                          game,
+                          playCard,
+                          target || undefined,
+                          xCost,
+                        ).some((candidate) =>
+                          [
+                            ...new Set([
+                              ...Object.keys(candidate),
+                              ...Object.keys(payment),
+                            ]),
+                          ].every(
+                            (id) => (candidate[id] ?? 0) === (payment[id] ?? 0),
+                          ),
+                        ))) ||
+                    (["01036", "08143", "10085"].includes(playCard.code) &&
                       Object.entries(payment).filter(
                         ([id, n]) =>
                           n > 0 && game.heroes.some((h) => h.id === id),
@@ -3613,13 +3709,23 @@ export default function App() {
                   }
                   onClick={() => {
                     if (
-                      dispatch({
-                        type: "PLAY",
-                        id: playCard.id,
-                        target,
-                        payment,
-                        amount: xCost,
-                      })
+                      dispatch(
+                        playDiscardIndex === null
+                          ? {
+                              type: "PLAY",
+                              id: playCard.id,
+                              target,
+                              payment,
+                              amount: xCost,
+                            }
+                          : {
+                              type: "PLAY_DISCARD",
+                              index: playDiscardIndex,
+                              target,
+                              payment,
+                              amount: xCost,
+                            },
+                      )
                     )
                       setPlayCard(null);
                   }}
@@ -3648,20 +3754,27 @@ export default function App() {
                         key={u.id}
                         unitId={u.id}
                         c={
-                          u.id.startsWith("quest:")
-                            ? { ...card(u.code), imagesrc: questFace(game) }
-                            : card(u.code)
+                          u.id.startsWith("threat:")
+                            ? {
+                                ...card(u.code),
+                                name: `${seatName(game, Number(u.id.split(":")[1]))}’s threat dial`,
+                              }
+                            : u.id.startsWith("quest:")
+                              ? { ...card(u.code), imagesrc: questFace(game) }
+                              : card(u.code)
                         }
                         selected={target === u.id}
                         inspect={setDetail}
                         detail={
-                          u.id.startsWith("quest:")
-                            ? "Current encounter quest"
-                            : game.table
-                              ? u.id.startsWith("discard-")
-                                ? `${seatName(game, Number(u.id.split("-")[1]))}’s discard`
-                                : `${seatName(game, ownerOf(game, u))}’s fellowship`
-                              : undefined
+                          u.id.startsWith("threat:")
+                            ? `${seatView(game, Number(u.id.split(":")[1])).threat} threat · Attach Favor of the Valar`
+                            : u.id.startsWith("quest:")
+                              ? "Current encounter quest"
+                              : game.table
+                                ? u.id.startsWith("discard-")
+                                  ? `${seatName(game, Number(u.id.split("-")[1]))}’s discard`
+                                  : `${seatName(game, ownerOf(game, u))}’s fellowship`
+                                : undefined
                         }
                         onSelect={() => {
                           setTarget(u.id);
@@ -3672,16 +3785,23 @@ export default function App() {
                               : xCost;
                           if (playCard.code === "01051") setXCost(amount);
                           setPayment(
-                            planCardPayment(
-                              game,
-                              c.cost === "X" ? { ...c, cost: amount } : c,
-                              playCost(
-                                game,
-                                c.cost === "X" ? { ...c, cost: amount } : c,
-                                u,
-                              ),
-                              u,
-                            ),
+                            playDiscardIndex !== null
+                              ? (eventReplayPayments(
+                                  game,
+                                  playCard,
+                                  u.id,
+                                  amount,
+                                )[0] ?? {})
+                              : planCardPayment(
+                                  game,
+                                  c.cost === "X" ? { ...c, cost: amount } : c,
+                                  playCost(
+                                    game,
+                                    c.cost === "X" ? { ...c, cost: amount } : c,
+                                    u,
+                                  ),
+                                  u,
+                                ),
                           );
                         }}
                       >
@@ -3708,7 +3828,7 @@ export default function App() {
                 )}{" "}
                 resources
               </h3>
-              {["01036", "08143"].includes(playCard.code) && (
+              {["01036", "08143", "10085"].includes(playCard.code) && (
                 <p>Use resources from three different heroes.</p>
               )}
               {["01067", "06083"].includes(playCard.code) && (
@@ -4349,14 +4469,29 @@ function BoardCard({
           <span>Iârion captured · Defeat this quest before Time runs out</span>
         </div>
       )}
-      {!!s.chetwood?.hiddenHands[u.id]?.length && (
+      {!!s.mountGram?.captured[u.id]?.length && (
         <div
           className="objective-status"
-          aria-label={`${s.chetwood.hiddenHands[u.id].length} facedown hand cards`}
+          aria-label={`${s.mountGram.captured[u.id].length} captured cards beneath this encounter card`}
         >
           <span>
-            {s.chetwood.hiddenHands[u.id].length} facedown hand cards · Returned
-            to their owners on defeat
+            {s.mountGram.captured[u.id].length} captured cards · Rescue them
+            when this card leaves play
+          </span>
+        </div>
+      )}
+      {!!(
+        s.chetwood?.hiddenHands[u.id]?.length ??
+        s.encounterHiddenHands?.[u.id]?.length
+      ) && (
+        <div
+          className="objective-status"
+          aria-label={`${s.chetwood?.hiddenHands[u.id]?.length ?? s.encounterHiddenHands?.[u.id]?.length} facedown hand cards`}
+        >
+          <span>
+            {s.chetwood?.hiddenHands[u.id]?.length ??
+              s.encounterHiddenHands?.[u.id]?.length}{" "}
+            facedown hand cards · Returned to their owners on defeat
           </span>
         </div>
       )}
@@ -4470,7 +4605,7 @@ function CharacterCard({
   return (
     <MovingCard
       id={u.id}
-      className={`character-card ${c.type_code === "hero" ? "hero-card" : "ally-card"} ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
+      className={`character-card ${isHero(u) ? "hero-card" : "ally-card"} ${u.exhausted ? "exhausted" : ""} ${selected ? "committed" : ""} ${u.attachments.length ? "has-attachments" : ""}`}
     >
       <AttachmentStack u={u} inspect={inspectCard} />
       <button
@@ -4500,7 +4635,7 @@ function CharacterCard({
           </span>
         )}
         <span className="card-table-tokens">
-          {(c.type_code === "hero" ||
+          {(isHero(u) ||
             u.code === CARROCK.grimbeorn ||
             ["02059", "08146"].includes(u.code)) && (
             <TableToken kind="resource" value={u.resources} />

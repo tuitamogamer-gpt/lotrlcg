@@ -449,6 +449,7 @@ export function recordObservation(
           KEEP: "Opening hand kept",
           MULLIGAN: "Your new opening hand",
           PLAY: "Card played",
+          PLAY_DISCARD: "Event played from discard",
           ABILITY: "Ability used",
           COMMIT: "Characters committed",
           RESOLVE_ESCAPE: "Escape test",

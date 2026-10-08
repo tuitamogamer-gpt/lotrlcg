@@ -1,4 +1,6 @@
+import { isHero } from "./card-types";
 import type { Effect, GameState, Option, Phase, Unit } from "./types";
+import { isAngmarAdventure } from "./angmar-scenario-ids";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
 import {
@@ -63,6 +65,31 @@ const weatherCard = (code: string) =>
   card(code).type_code === "treachery" &&
   (card(code).traits ?? "").split(".").some((t) => t.trim() === "Weather");
 const skip: Option = { id: "skip", label: "Skip the response", effects: [] };
+const sharedCards = [
+  W.wind,
+  W.cold,
+  W.blast,
+  W.camp,
+  W.search,
+  W.ruins,
+  W.discovery,
+  W.causeway,
+];
+const sharedEffects = [
+  "weatherAllThreat",
+  "weatherPlayerThreat",
+  "weatherHeroDamage",
+  "weatherAssignDamage",
+  "weatherColdAttach",
+  "weatherUndefendedChoice",
+  "weatherMakeUndefended",
+  "weatherHealResponse",
+  "weatherHealHero",
+  "weatherSearchResponse",
+  "weatherReduceAllThreat",
+];
+const sharedRules = (s: GameState) =>
+  !!s.weatherHills || isAngmarAdventure(s.scenarioId);
 
 /** Assigning damage to one character creates one damage event for that total. */
 function mergeAssignedDamage(effects: Effect[]) {
@@ -156,7 +183,7 @@ export function weatherAfterReveal(s: GameState, code: string) {
   }
 }
 export function weatherCanceled(s: GameState, code: string) {
-  if (!s.weatherHills || card(code).type_code !== "treachery") return;
+  if (!sharedRules(s) || card(code).type_code !== "treachery") return;
   ordered(
     s,
     live(s, W.ruins).map((u) =>
@@ -196,7 +223,7 @@ export function weatherCharacterDestroyed(
   context: DamageContext,
 ) {
   if (
-    s.weatherHills &&
+    sharedRules(s) &&
     character(u) &&
     s.combat &&
     context.combatDamage &&
@@ -208,10 +235,10 @@ export function weatherAttackFinished(
   s: GameState,
   c: NonNullable<GameState["combat"]>,
 ) {
-  if (!s.weatherHills || !c.weatherCharacterKilled) return;
+  if (!sharedRules(s) || !c.weatherCharacterKilled) return;
   const effects: Effect[] = [];
   const m = mission(s);
-  if (m?.flipped && !m.blanked)
+  if (s.weatherHills && m?.flipped && !m.blanked)
     effects.push(
       fx("weatherRemoveMission", {
         target: m.id,
@@ -259,9 +286,9 @@ export function weatherOrcAdded(s: GameState, u: Unit) {
     );
 }
 export function weatherExplored(s: GameState, u: Unit, wasActive: boolean) {
-  if (!s.weatherHills) return;
+  if (!sharedRules(s)) return;
   // "When explored" resolves before "After the active location is explored".
-  if (s.stage === 1 && wasActive)
+  if (s.weatherHills && s.stage === 1 && wasActive)
     prepend(
       s,
       fx("weatherRevealOrcs", {
@@ -278,13 +305,13 @@ export function weatherExplored(s: GameState, u: Unit, wasActive: boolean) {
         player: firstPlayer(s),
       }),
     );
-  if (wasActive && !u.blanked && u.code === W.orcCamp)
+  if (s.weatherHills && wasActive && !u.blanked && u.code === W.orcCamp)
     prepend(s, fx("weatherCampTokenResponse", { player: firstPlayer(s) }));
-  if (wasActive && !u.blanked && u.code === W.valley)
+  if (s.weatherHills && wasActive && !u.blanked && u.code === W.valley)
     prepend(s, fx("weatherValleyResponse", { player: firstPlayer(s) }));
 }
 export function weatherRefreshEnd(s: GameState) {
-  if (!s.weatherHills) return;
+  if (!sharedRules(s)) return;
   const effects: Effect[] = s.staging
     .filter((u) => u.code === W.search && !u.blanked)
     .map((u) =>
@@ -296,13 +323,18 @@ export function weatherRefreshEnd(s: GameState) {
       }),
     );
   for (const l of allActiveLocations(s).filter(
-    (u) => u.code === W.ridge && !u.blanked,
+    (u) => !!s.weatherHills && u.code === W.ridge && !u.blanked,
   ))
     effects.push(
       fx("weatherRidgeDamage", { code: l.code, player: firstPlayer(s) }),
     );
   for (const u of s.staging) {
-    if (!u.blanked && weatherSideTime(u.code) && u.timeCounters) {
+    if (
+      s.weatherHills &&
+      !u.blanked &&
+      weatherSideTime(u.code) &&
+      u.timeCounters
+    ) {
       u.timeCounters--;
       if (!u.timeCounters)
         effects.push(
@@ -367,7 +399,7 @@ export function weatherTravel(s: GameState, u: Unit): Effect[] | undefined {
   return undefined;
 }
 export function weatherSideDefeated(s: GameState, u: Unit) {
-  if (!s.weatherHills) return;
+  if (!sharedRules(s)) return;
   if (u.code === W.camp)
     prepend(s, fx("weatherHealResponse", { player: firstPlayer(s) }));
   if (u.code === W.search)
@@ -375,7 +407,11 @@ export function weatherSideDefeated(s: GameState, u: Unit) {
 }
 
 export function weatherEncounter(s: GameState, code: string, replay = false) {
-  if (!s.weatherHills) return false;
+  if (
+    !s.weatherHills &&
+    !(isAngmarAdventure(s.scenarioId) && sharedCards.includes(code))
+  )
+    return false;
   if (code === W.wind) {
     const ids = allCharacters(s)
       .filter((u) => committed(s, u))
@@ -437,7 +473,12 @@ export function weatherEncounter(s: GameState, code: string, replay = false) {
 }
 export function weatherShadow(s: GameState, code: string) {
   const c = s.combat;
-  if (!s.weatherHills || !c) return false;
+  if (
+    (!s.weatherHills &&
+      !(isAngmarAdventure(s.scenarioId) && sharedCards.includes(code))) ||
+    !c
+  )
+    return false;
   const player = c.attackPlayer ?? activeSeat(s);
   if (code === W.cornered) {
     const defenders = (
@@ -598,17 +639,21 @@ function successor(phase: Phase) {
 export function weatherEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("weather")) return false;
   const q = s.weatherHills;
-  if (!q) return true;
+  if (
+    !q &&
+    !(isAngmarAdventure(s.scenarioId) && sharedEffects.includes(e.kind))
+  )
+    return true;
   const u = get(s, e.target);
   switch (e.kind) {
     case "weatherSetup": {
-      q.initialized = true;
+      q!.initialized = true;
       const m = make(s, W.mission);
       m.flipped = false;
       s.staging.push(m, make(s, W.hilltop));
       s.activeLocation = make(s, W.ridge);
       shuffle(s, s.encounterDeck);
-      shuffle(s, q.orcDeck);
+      shuffle(s, q!.orcDeck);
       break;
     }
     case "weatherEnemyToken": {
@@ -616,7 +661,7 @@ export function weatherEffect(s: GameState, e: Effect) {
       u.resources++;
       if (!u.flipped && u.resources >= 3 + (s.table?.seats.length ?? 1)) {
         u.flipped = true;
-        q.advancing = true;
+        q!.advancing = true;
         prepend(s, fx("weatherAdvanceStage", { player: firstPlayer(s) }));
       }
       break;
@@ -632,11 +677,11 @@ export function weatherEffect(s: GameState, e: Effect) {
     case "weatherStageTwoSetup": {
       s.encounterDeck.push(
         ...s.encounterDiscard.splice(0),
-        ...q.orcDeck.splice(0),
+        ...q!.orcDeck.splice(0),
       );
       shuffle(s, s.encounterDeck);
       const effects = [CHETWOOD.ambush, W.forn].flatMap((code) =>
-        q.setAside.some((u) => u.code === code)
+        q!.setAside.some((u) => u.code === code)
           ? [fx("weatherRevealAside", { code, player: firstPlayer(s) })]
           : [],
       );
@@ -651,12 +696,12 @@ export function weatherEffect(s: GameState, e: Effect) {
       if (e.code) revealed(s, e.code);
       break;
     case "weatherStageReady":
-      q.advancing = false;
+      q!.advancing = false;
       s.stageRevealing = false;
       prepend(s, fx(successor(e.text as Phase), { player: firstPlayer(s) }));
       break;
     case "weatherRevealOrcs": {
-      const code = q.orcDeck.shift();
+      const code = q!.orcDeck.shift();
       if (code) {
         if ((e.value ?? 1) > 1)
           prepend(
@@ -865,10 +910,7 @@ export function weatherEffect(s: GameState, e: Effect) {
       break;
     case "weatherHealResponse":
       if (
-        allCharacters(s).some(
-          (u) =>
-            card(u.code).type_code === "hero" && rhosgobelHealingAllowed(s, u),
-        )
+        allCharacters(s).some((u) => isHero(u) && rhosgobelHealingAllowed(s, u))
       )
         choose(
           s,

@@ -12,6 +12,7 @@ import {
   type DamageContext,
 } from "./damage-context";
 import { takePlayerDeck } from "./core";
+import { takePlayerDiscard } from "./board";
 import { roadRivendellCannotCancel } from "./road-rivendell";
 // Exact active and triggered abilities from Hunt for Gollum and Conflict at Carrock.
 // Static modifiers, attachment limits and Song icons live in expansion-passives.
@@ -26,7 +27,6 @@ import {
   fx,
   get,
   log,
-  make,
   opts,
   playCost,
   prepend,
@@ -142,9 +142,13 @@ export function expansionEventEffect(
         while (index >= 0 && card(s.discard[index]).type_code !== "attachment")
           index--;
         if (index < 0) return;
-        const [code] = s.discard.splice(index, 1);
-        s.hand.push(make(s, code));
-        log(s, `Second Breakfast returns ${card(code).name} to hand.`, "good");
+        const physical = takePlayerDiscard(s, index);
+        s.hand.push(physical);
+        log(
+          s,
+          `Second Breakfast returns ${card(physical.code).name} to hand.`,
+          "good",
+        );
       });
       return true;
     default:
@@ -343,11 +347,9 @@ export function expansionLeavesPlay(s: GameState, u: Unit, controller: number) {
 export function expansionShadowOptions(
   s: GameState,
   shadowCode: string,
+  effectiveShadow = !!card(shadowCode).shadow,
 ): Option[] {
-  if (
-    !card(shadowCode).shadow ||
-    allActiveLocations(s).some((u) => u.code === "02016")
-  )
+  if (!effectiveShadow || allActiveLocations(s).some((u) => u.code === "02016"))
     return [];
   const defenders =
     s.combat?.defenderIds ??

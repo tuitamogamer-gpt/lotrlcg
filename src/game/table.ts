@@ -9,6 +9,15 @@ import { rohanStagingAttack } from "./rohan-player-cards";
 import { khazadCanAttack, khazadCanRangedAttack, KHAZAD } from "./khazad-dum";
 import type { Attachment, Effect, GameState, PlayerSeat, Unit } from "./types";
 import { card } from "./cards";
+import { isHero } from "./card-types";
+import {
+  gramAreaPlayers,
+  gramAreaView,
+  gramSyncArea,
+  gramSelectArea,
+} from "./mount-gram-support";
+import { ettenCanAttack, ettenCanDefend } from "./ettenmoors";
+import { angmarNoCombatExhaust } from "./angmar-player";
 import { effectiveKeyword } from "./expansion-passives";
 import { rhosgobelCanFight } from "./rhosgobel";
 import { foundationsCanFight } from "./foundations-stone";
@@ -28,6 +37,7 @@ export const PLAYER_FIELDS = [
   "startingHeroes",
   "startingThreat",
   "threat",
+  "threatAttachments",
   "heroes",
   "allies",
   "hand",
@@ -56,13 +66,19 @@ export function snapshotSeat(s: GameState): PlayerSeat {
 }
 export function syncSeat(s: GameState) {
   foundationsSyncArea(s);
-  if (s.table) Object.assign(s.table.seats[s.table.active], snapshotSeat(s));
+  gramSyncArea(s);
+  if (s.table) {
+    const seat = s.table.seats[s.table.active];
+    for (const key of PLAYER_FIELDS) if (s[key] === undefined) delete seat[key];
+    Object.assign(seat, snapshotSeat(s));
+  }
 }
 export function selectSeat(s: GameState, i: number) {
   if (!s.table || i === s.table.active) return;
   syncSeat(s);
   s.table.active = i;
   foundationsSelectArea(s, i);
+  gramSelectArea(s, i);
   for (const key of PLAYER_FIELDS) {
     if (s.table.seats[i][key] === undefined) delete s[key];
     else Object.assign(s, { [key]: s.table.seats[i][key] });
@@ -71,13 +87,16 @@ export function selectSeat(s: GameState, i: number) {
 export function seatView(s: GameState, i: number): GameState {
   if (!s.table || i === s.table.active) return s;
   foundationsSyncArea(s);
+  gramSyncArea(s);
   const view = {
     ...s,
     ...s.table.seats[i],
     ...foundationsAreaView(s, i),
+    ...gramAreaView(s, i),
     table: { ...s.table, active: i },
   };
-  if (s.table.seats[i].customDeck === undefined) delete view.customDeck;
+  for (const key of PLAYER_FIELDS)
+    if (s.table.seats[i][key] === undefined) delete view[key];
   return view;
 }
 export const seatIndices = (s: GameState) =>
@@ -85,7 +104,7 @@ export const seatIndices = (s: GameState) =>
 export const globalLivingSeats = (s: GameState) =>
   seatIndices(s).filter((i) => !s.table?.seats[i].eliminated);
 export const livingSeats = (s: GameState) => {
-  const area = foundationsAreaPlayers(s);
+  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
   return globalLivingSeats(s).filter((i) => !area || area.includes(i));
 };
 export function globalPlayerOrder(s: GameState) {
@@ -96,7 +115,7 @@ export function globalPlayerOrder(s: GameState) {
   );
 }
 export const playerOrder = (s: GameState) => {
-  const area = foundationsAreaPlayers(s);
+  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
   return globalPlayerOrder(s).filter((i) => !area || area.includes(i));
 };
 export const firstPlayer = (s: GameState) =>
@@ -117,7 +136,7 @@ export function eachSeat(
   includeEliminated = false,
 ) {
   const previous = activeSeat(s);
-  const area = foundationsAreaPlayers(s);
+  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
   const players = includeEliminated
     ? seatIndices(s).filter((i) => !area || area.includes(i))
     : playerOrder(s);
@@ -160,19 +179,18 @@ export const globalCharacters = (s: GameState) =>
     return [...p.heroes, ...p.allies];
   });
 export const allCharacters = (s: GameState) => {
-  const area = foundationsAreaPlayers(s);
+  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
   return globalCharacters(s).filter(
     (u) => !area || area.includes(ownerOf(s, u)),
   );
 };
 export const globalHeroes = (s: GameState) =>
-  globalCharacters(s).filter((u) => card(u.code).type_code === "hero");
-export const allHeroes = (s: GameState) =>
-  allCharacters(s).filter((u) => card(u.code).type_code === "hero");
+  globalCharacters(s).filter(isHero);
+export const allHeroes = (s: GameState) => allCharacters(s).filter(isHero);
 export const globalEngaged = (s: GameState) =>
   seatIndices(s).flatMap((i) => seatView(s, i).engaged);
 export const allEngaged = (s: GameState) => {
-  const area = foundationsAreaPlayers(s);
+  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
   return globalEngaged(s).filter((u) => !area || area.includes(ownerOf(s, u)));
 };
 export const allActiveLocations = (s: GameState) => [
@@ -253,12 +271,13 @@ export const hasKeyword = (u: Unit, keyword: string) =>
 export const defendersFor = (s: GameState, enemy?: Unit) =>
   allCharacters(s).filter(
     (u) =>
-      !u.exhausted &&
+      (!u.exhausted || angmarNoCombatExhaust(s, u)) &&
       canFight(u) &&
       (!enemy ||
         (rhosgobelCanFight(enemy, u) &&
           redhornCanDefend(enemy, u) &&
           foundationsCanFight(enemy, u) &&
+          ettenCanDefend(s, enemy, u) &&
           heirsCanDefend(s, enemy, u) &&
           druadanForestCanDefend(s, enemy, u))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
@@ -267,13 +286,14 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
 export const attackersFor = (s: GameState, enemy: Unit) =>
   allCharacters(s).filter(
     (u) =>
-      !u.exhausted &&
+      (!u.exhausted || angmarNoCombatExhaust(s, u)) &&
       longDarkCanAttack(s, enemy) &&
       canFight(u) &&
       khazadCanAttack(u) &&
       khazadCanRangedAttack(s, enemy, u, ownerOf(s, enemy) !== ownerOf(s, u)) &&
       rhosgobelCanFight(enemy, u) &&
       foundationsCanFight(enemy, u) &&
+      ettenCanAttack(s, enemy, u) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108") &&
       (amonPlayerCanAttackEnemy(s, enemy, u) ||
         (ownerOf(s, u) === activeSeat(s) &&

@@ -1285,7 +1285,8 @@ kbd {
   max-height: 55dvh;
   overflow: auto;
 }
-.pile-list > button {
+.pile-list > button,
+.pile-entry > button {
   display: flex;
   align-items: center;
   text-align: left;
@@ -1301,7 +1302,8 @@ kbd {
   object-fit: cover;
   border-radius: 4px;
 }
-.pile-list > button > span {
+.pile-list > button > span,
+.pile-entry > button > span {
   flex: 1;
 }
 .pile-list strong {
@@ -2765,4 +2767,24 @@ kbd {
 .board-hunt-for-gollum {
   background-image:
     linear-gradient(#15231ff2, #13221cf7), url("/art/anduin.jpg");
+}
+
+.pile-entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+.pile-entry > button:first-child {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.pile-entry .discard-play-button {
+  flex: 0 1 auto;
+  font-size: var(--text-small);
+  color: var(--gold);
+}
+.pile-entry .discard-play-button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }

@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+    "octgnid": "b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+    "name": "Across the Wastes",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Pack Leader aside, out of play. Make Shrouded Hills the active location. Add the Time objective to the staging area with Daybreak faceup. The first player takes control of Amarthiul. Shuffle the encounter deck. Reveal 1 card from the encounter deck per player.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 13,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Wastes of Eriador",
+    "side": "A",
+    "back_name": "Across the Wastes",
+    "back_text": "While it is Day, heroes get +1 [willpower].  Forced: When it becomes Night, raise each player's threat by 1.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "b6af7b48-e072-45e8-a745-4de2ac8ded8c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b6af7b48-e072-45e8-a745-4de2ac8ded8c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
+    "octgnid": "43509bf0-3250-420f-b743-e56c3ad5cd90",
+    "name": "Howling at Night",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top of the encounter deck until X Warg enemies are discarded. X is the number of players in the game. Add each discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 14,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Wastes of Eriador",
+    "side": "A",
+    "back_name": "Howling at Night",
+    "back_text": "Forced: When it becomes Day, each player draws 1 card.  Forced: When it becomes Night, discard 1 non-objective ally from play (discard 2 non-objective allies instead if there are 3 or more players in the game).",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "43509bf0-3250-420f-b743-e56c3ad5cd90",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43509bf0-3250-420f-b743-e56c3ad5cd90.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
+    "octgnid": "fac30859-0ad6-4d07-8b73-b5e2af044a52",
+    "name": "Battle with the Pack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Flip the Time objective to Nightfall. Add Pack Leader to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top of the encounter deck until X Warg enemies are discarded. X is 1 less than the number of players in the game. Add each discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "WoE",
+    "pack_name": "The Wastes of Eriador",
+    "position": 15,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Wastes of Eriador",
+    "side": "A",
+    "back_name": "Battle with the Pack",
+    "back_text": "Pack Leader cannot take damage unless there are at least 5 progress tokens on this stage.  Forced: When it becomes Day, discard all progress from this stage.  The players cannot defeat this stage while Pack Leader is in play. If Pack Leader is destroyed, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg",
+    "packs": [
+      {
+        "pack_code": "WoE",
+        "pack_name": "The Wastes of Eriador",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "fac30859-0ad6-4d07-8b73-b5e2af044a52",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fac30859-0ad6-4d07-8b73-b5e2af044a52.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

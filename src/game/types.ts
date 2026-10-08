@@ -8,6 +8,8 @@ export interface Card {
   code: string;
   name: string;
   type_code: string;
+  /** Objective-locations follow every location rule and retain their printed card kind. */
+  objectiveLocation?: boolean;
   sphere_code: string;
   cost?: number | string;
   threat?: number;
@@ -42,6 +44,7 @@ export interface Card {
   back_text?: string;
   back_quest?: number;
   back_name?: string;
+  back_traits?: string;
   back_imagesrc?: string;
   /** Printed X, dash or variable values retained alongside numeric game fields. */
   printed_stats?: Partial<
@@ -116,6 +119,8 @@ export interface Unit {
   blanked?: boolean;
   /** Lasting grants remain until phase end even if their source leaves play. */
   phaseResourceIcons?: string[];
+  /** Derived resource icons granted by current engagement conditions. */
+  dynamicResourceIcons?: string[];
   owner?: number;
   consideredEnemyAttackedBy?: number[];
   attackedBy?: number[];
@@ -180,6 +185,12 @@ export type ScenarioId =
   | "intruders-in-chetwood"
   | "the-weather-hills"
   | "deadmens-dike"
+  | "wastes-of-eriador"
+  | "escape-from-mount-gram"
+  | "across-the-ettenmoors"
+  | "the-treachery-of-rhudaur"
+  | "the-battle-of-carn-dum"
+  | "the-dread-realm"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -308,6 +319,17 @@ export interface GameState {
   chetwood?: import("./chetwood-support").ChetwoodState;
   weatherHills?: import("./weather-hills-support").WeatherState;
   deadmensDike?: import("./deadmens-dike-support").DeadmensDikeState;
+  wastesEriador?: import("./wastes-eriador-support").WastesState;
+  mountGram?: import("./mount-gram-support").MountGramState;
+  carnDum?: import("./carn-dum-support").CarnDumState;
+  ettenmoors?: import("./ettenmoors-support").EttenmoorsState;
+  rhudaur?: import("./rhudaur-support").RhudaurState;
+  dreadRealm?: import("./dread-realm-support").DreadRealmState;
+  /** Physical player hands hidden under the shared Lost in the Wilderness side quest. */
+  encounterHiddenHands?: Record<string, Unit[]>;
+  removedEncounter?: string[];
+  /** Player cards attached to this player's threat dial, independent of characters. */
+  threatAttachments?: Attachment[];
   antlered?: import("./antlered-support").AntleredState;
   celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
@@ -329,6 +351,17 @@ export interface GameState {
     unit: Unit;
     player: number;
     destination: "discard" | "bottom" | "removed" | "victory" | "hand";
+  }[];
+  /** Paid physical cards wait out mandatory cost triggers before entering play. */
+  pendingPlayerPlays?: {
+    unit: Unit;
+    player: number;
+    target?: string;
+    effectiveCost: number;
+    played: boolean;
+    fromHand: boolean;
+    bottom: boolean;
+    amount: number;
   }[];
   shadowFlame?: { roundAttackBonus: number; heroCommittedRound?: number };
   longDark?: {
@@ -446,6 +479,21 @@ export interface GameState {
     extraAttacks?: number;
     chetwoodAllyKilled?: boolean;
     weatherCharacterKilled?: boolean;
+    wastesNextPlayerAttacks?: number;
+    wastesExtraAttacks?: number;
+    wastesRemoveQuestOnKill?: number;
+    wastesCharacterKilled?: boolean;
+    gramCaptureDamage?: boolean;
+    dreadKilled?: import("./dread-realm-support").DreadKilledCharacter[];
+    dreadReanimateOnKill?: number;
+    dreadRevealOnKill?: number;
+    rhudaurProgressPerDamage?: number;
+    rhudaurDestroyedWill?: number;
+    rhudaurCovenantShadows?: number;
+    carnFlipAfter?: number;
+    carnExtraAttacks?: number;
+    carnVileSearch?: number;
+    carnKilledAllies?: string[];
     dikeDestroyedPlayers?: number[];
     dikeRevealOnCharacterKill?: number;
     dikeCharacterKilled?: boolean;
@@ -533,6 +581,13 @@ export type Action =
       amount?: number;
     }
   | { type: "ABILITY"; id: string; attachmentId?: string }
+  | {
+      type: "PLAY_DISCARD";
+      index: number;
+      target?: string;
+      payment?: Record<string, number>;
+      amount?: number;
+    }
   | { type: "TRAVEL" | "ENGAGE"; id: string }
   | { type: "CLAIM"; id: string; heroId: string }
   | {
@@ -556,6 +611,7 @@ export type PlayerSeat = Pick<
   | "startingHeroes"
   | "startingThreat"
   | "threat"
+  | "threatAttachments"
   | "heroes"
   | "allies"
   | "hand"

@@ -9,13 +9,25 @@ import * as Dike from "./deadmens-dike";
 import { CHETWOOD } from "./chetwood-support";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
-import { removeCurrentQuestProgress } from "./side-quests";
+import {
+  removeCurrentQuestProgress,
+  checkSideQuestDefeats,
+} from "./side-quests";
 import { selectedSideQuest } from "./side-quest-support";
 import { addCurrentQuestProgress } from "./side-quests";
 import { mainStageInfo } from "./core";
 import { RANGER_NORTH, rangerRevealed } from "./ranger-north";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
+import * as Wastes from "./wastes-eriador";
+import * as Gram from "./mount-gram";
+import { gramState, isMountGram } from "./mount-gram-support";
+import * as Etten from "./ettenmoors";
+import * as Dread from "./dread-realm";
+import * as Rhudaur from "./rhudaur";
+import * as Carn from "./carn-dum";
+import { isHero, isAlly, unitType } from "./card-types";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
@@ -430,6 +442,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
 /** Every addition to staging shares the response timing, including a return from engagement. */
 export function enemyAddedToStaging(s: GameState, u: Unit) {
   Weather.weatherOrcAdded(s, u);
+  Rhudaur.rhudaurEnemyAdded(s, u);
   amonPlayerEnemyAddedToStaging(s, u);
   heirsPlayerEnemyAddedToStaging(s, u);
   bloodPlayerEnemyAddedToStaging(s, u);
@@ -451,6 +464,10 @@ export function charactersCommitted(
   elfCharactersCommitted(s, actual);
   rohanCharactersCommitted(s, actual);
   foundationsPlayerCharactersCommitted(s, actual, exhaustedIds);
+  Angmar.angmarCharactersCommitted(
+    s,
+    actual.map((u) => u.id),
+  );
   // Preserve the Core response order so Théodred can fund Aragorn's ready cost.
   for (const u of [
     ...actual.filter((u) => u.code === "01002"),
@@ -545,6 +562,7 @@ export function readyCharacter(s: GameState, u: Unit) {
   if (wasExhausted) Fangorn.fangornCharacterReadied(s, u);
   if (wasExhausted) marshPlayerCharacterReadied(s, u);
   if (wasExhausted) stewardFearCharacterReadied(s, u);
+  if (wasExhausted) Angmar.angmarCharacterReadied(s, u);
 }
 /** Move actual top cards atomically; deck-discard responses run after the causing effect. */
 export function discardPlayerDeck(
@@ -561,6 +579,7 @@ export function discardPlayerDeck(
       forOwner(s, u.owner ?? player, () => {
         s.discard.push(u.code);
         foundationsPlayerCardDiscarded(s, u);
+        Dread.dreadPlayerCardDiscarded(s, u);
       });
       discarded.push(u.code);
     }
@@ -571,6 +590,7 @@ export function discardPlayerDeck(
 }
 /** Preserve an event's physical phase identity across discard and recovery. */
 export function discardHandCard(s: GameState, id: string): Unit {
+  const controller = activeSeat(s);
   const index = s.hand.findIndex((u) => u.id === id);
   requireRule(index >= 0, "That physical card must remain in your hand.");
   if (!canLeaveHand(s.hand[index])) return s.hand[index];
@@ -579,6 +599,8 @@ export function discardHandCard(s: GameState, id: string): Unit {
   forOwner(s, u.owner ?? activeSeat(s), () => {
     s.discard.push(u.code);
     foundationsPlayerCardDiscarded(s, u);
+    Dread.dreadPlayerCardDiscarded(s, u);
+    Angmar.angmarHandDiscarded(s, u, controller, s.discard.length - 1);
   });
   return u;
 }
@@ -597,7 +619,9 @@ export function takePlayerDiscard(
     index >= 0 && index < s.discard.length,
     "Choose an actual card in your discard pile.",
   );
-  const identity = foundationsPlayerDiscardTaken(s, index),
+  Angmar.angmarDiscardTaken(s, index);
+  const dreadIdentity = Dread.dreadPlayerDiscardTaken(s, index);
+  const identity = foundationsPlayerDiscardTaken(s, index) ?? dreadIdentity,
     u = make(s, s.discard.splice(index, 1)[0]);
   if (identity) u.id = identity;
   return u;
@@ -615,6 +639,15 @@ export function advanceDefense(s: GameState) {
           "dikeAttackEffects",
           "dikeAttackFinished",
           "dikeStageReady",
+          "carnAttackEffects",
+          "carnAttackFinished",
+          "carnStageReady",
+          "carnFlip",
+          "carnBossForced",
+          "carnDealAll",
+          "carnWolf",
+          "wastesAttackEffects",
+          "wastesAttackFinished",
           "combatStartEffects",
           "prepareCombat",
           "bloodTurnAll",
@@ -664,6 +697,7 @@ export function check(s: GameState) {
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
   finalRingFollowFirst(s);
+  Angmar.angmarSyncSwordThain(s);
   globalEachSeat(s, () => {
     for (const denethor of amonPlayerDiscardAtZero(s))
       if (get(s, denethor.id)) discardCharacter(s, denethor);
@@ -729,6 +763,9 @@ export function check(s: GameState) {
       (u) =>
         !shadowFlameIndestructible(u) &&
         !Dike.dikeIndestructible(s, u) &&
+        !Dread.dreadIndestructible(s, u) &&
+        !Rhudaur.rhudaurIndestructible(s, u) &&
+        !Carn.carnIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
         u.damage >= stats(s, u).health,
@@ -742,12 +779,14 @@ export function check(s: GameState) {
   }
   if (s.table) {
     globalEachSeat(s, (i) => {
+      Angmar.angmarFavor(s, threatElimination(s));
       if (
         !Dike.dikePlayerDeckEmpty(s, i) &&
         s.threat < threatElimination(s) &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
-          foundationsHeroMissingAllowed(s, i))
+          foundationsHeroMissingAllowed(s, i) ||
+          Gram.gramHeroMissingAllowed(s, i))
       )
         return;
       if (s.table!.seats[i].eliminated) return;
@@ -778,6 +817,7 @@ export function check(s: GameState) {
       BloodQuest.bloodGondorEliminated(s, i);
       Catch.catchPlayerEliminated(s, i);
       Chetwood.chetwoodPlayerEliminated(s, i);
+      Gram.gramPlayerEliminated(s, i);
       s.table!.seats[i].eliminated = true;
       log(
         s,
@@ -858,9 +898,13 @@ export function check(s: GameState) {
       if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
     }
   } else if (
-    Dike.dikePlayerDeckEmpty(s, 0) ||
+    (Angmar.angmarFavor(s, threatElimination(s)),
+    Dike.dikePlayerDeckEmpty(s, 0)) ||
     s.threat >= threatElimination(s) ||
-    (!s.heroes.length && !s.prisoner && !foundationsHeroMissingAllowed(s, 0))
+    (!s.heroes.length &&
+      !s.prisoner &&
+      !foundationsHeroMissingAllowed(s, 0) &&
+      !Gram.gramHeroMissingAllowed(s, 0))
   ) {
     s.status = "lost";
     s.reason = Dike.dikePlayerDeckEmpty(s, 0)
@@ -870,6 +914,14 @@ export function check(s: GameState) {
         : "The last hero has fallen.";
   }
   if (s.status === "lost") {
+    const pending = s.pendingPlayerPlays ?? [];
+    delete s.pendingPlayerPlays;
+    for (const play of pending)
+      forOwner(s, play.unit.owner ?? play.player, () => {
+        s.discard.push(play.unit.code);
+        foundationsPlayerCardDiscarded(s, play.unit);
+        Dread.dreadPlayerCardDiscarded(s, play.unit);
+      });
     s.choice = null;
     s.queue = [];
     delete s.escapeTest;
@@ -922,6 +974,11 @@ export function check(s: GameState) {
     Antlered.antleredCheck(s);
     Chetwood.chetwoodCheck(s);
     Weather.weatherCheck(s);
+    Wastes.wastesCheck(s);
+    Etten.ettenCheck(s);
+    Rhudaur.rhudaurCheck(s);
+    Carn.carnCheck(s);
+    checkSideQuestDefeats(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -1023,13 +1080,16 @@ export function damage(
     !u ||
     Trials.trialsCannotDamage(s, u) ||
     Antlered.antleredCannotDamage(s, u) ||
-    Chetwood.chetwoodCannotDamage(s, u)
+    Chetwood.chetwoodCannotDamage(s, u) ||
+    Wastes.wastesCannotDamage(s, u) ||
+    Carn.carnCannotDamage(s, u)
   )
     return false;
   if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
     return false;
   value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
   if (value <= 0) return false;
+  if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
     value > 0 &&
     (u.roundCannotTakeDamage ||
@@ -1038,6 +1098,16 @@ export function damage(
   )
     return false;
   if (khazadDamageCancelled(s, u, value)) return false;
+  if (context.combatDamage && context.enemyId) {
+    const enemy = get(s, context.enemyId);
+    if (enemy && Gram.gramCombatDamage(s, u, enemy, value)) return false;
+  }
+  if (
+    !context.cost &&
+    !context.bypassAngmar &&
+    Angmar.offerAngmarDamage(s, u, value, context)
+  )
+    return false;
   if (!context.cost && offerGondorianDiscipline(s, u, value, context))
     return false;
   if (!context.cost && offerCloseCall(s, u, value, context)) return false;
@@ -1056,9 +1126,12 @@ export function damage(
   )
     return false;
   u.damage += value;
+  Etten.ettenDamageDealt(s, u, value, context);
+  Rhudaur.rhudaurDamageDealt(s, u, value, context);
   syncAttachmentText(s, u);
   Fangorn.fangornDamageTaken(s, u);
   finalRingDamageTaken(s, u);
+  Angmar.angmarDamageTaken(s, u, value);
   Druadan.druadanForestDamageDealt(s, u, value);
   heirsDamageDealt(s, u, value, context);
   longDarkDamageDealt(s, context.enemyId, value);
@@ -1094,7 +1167,7 @@ export function damage(
   }
   log(s, `${name(u)} takes ${value} damage.`, value > 1 ? "danger" : "normal");
   // Signs of Gollum: a damaged bearer returns the clue to the top of the encounter deck.
-  if (value > 0 && card(u.code).type_code === "hero")
+  if (value > 0 && isHero(u))
     for (const a of [...u.attachments].filter(
       (a) => !a.blanked && a.code === CLUE,
     ))
@@ -1113,6 +1186,10 @@ export function damage(
     Chetwood.chetwoodCharacterDestroyed(s, u, context);
     Weather.weatherCharacterDestroyed(s, u, context);
     Dike.dikeCharacterDestroyed(s, u, context);
+    Wastes.wastesCharacterDestroyed(s, u, context);
+    Dread.dreadCharacterDestroyed(s, u, context);
+    Rhudaur.rhudaurCharacterDestroyed(s, u, context);
+    Carn.carnCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1132,6 +1209,8 @@ export function discardAttachment(
   if (u.id.startsWith("quest:"))
     (s.questAttachments ??= {})[u.code] = u.attachments;
   syncAttachmentText(s);
+  if (Dread.dreadAttachmentLeaves(s, u, a, leaving)) return;
+  if (Rhudaur.rhudaurAttachmentLeaves(s, u, a)) return;
   if (Celebrimbor.celebrimborAttachmentLeaves(s, u, a, leaving)) return;
   if (Trials.trialsAttachmentLeaves(s, a)) return;
   if (khazadAttachmentLeaves(s, u, a)) return;
@@ -1165,7 +1244,11 @@ export function characterLeftPlay(
   destination: LeaveDestination,
   lastKnownAttack = stats(s, u).attack,
   lastKnownTraits = effectiveTraits(u),
+  byCardEffect = false,
+  lastKnownType = unitType(u),
 ) {
+  Gram.gramCardLeaves(s, u);
+  Dread.dreadCharacterLeft(s, u, destination);
   if (!hasEncounterKeyword(card(u.code)))
     Celebrimbor.celebrimborCharacterLeft(s, u, destination);
   Tharbad.tharbadCharacterLeft(s, u, controller);
@@ -1203,6 +1286,14 @@ export function characterLeftPlay(
   redhornCheck(s);
   roadRivendellCheck(s);
   if (s.status !== "playing") return;
+  Angmar.angmarCharacterLeft(
+    s,
+    u,
+    controller,
+    destination,
+    byCardEffect,
+    lastKnownType,
+  );
   rohanCharactersLeft(s, [u], controller, lastKnownTraits);
   watcherPlayerLeavesPlay(s, u, controller, lastKnownAttack);
   expansionLeavesPlay(s, u, controller);
@@ -1226,22 +1317,49 @@ export function destroy(
   u: Unit,
   destruction = true,
   destination: "discard" | "removed" = "discard",
+  byCardEffect = !destruction,
 ) {
   syncAttachmentText(s);
   if (DunlandQuest.dunlandCannotLeave(u) || Trials.trialsCannotLeave(s, u))
     return;
   if (
     destruction &&
-    (shadowFlameIndestructible(u) || Dike.dikeIndestructible(s, u))
+    (shadowFlameIndestructible(u) ||
+      Dike.dikeIndestructible(s, u) ||
+      Dread.dreadIndestructible(s, u) ||
+      Rhudaur.rhudaurIndestructible(s, u) ||
+      Carn.carnIndestructible(s, u))
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   const previous = activeSeat(s);
+  const c = card(u.code);
+  const splitGram = isMountGram(s) ? gramState(s) : undefined;
+  const stagingArea =
+    c.type_code === "enemy" && splitGram?.split
+      ? splitGram.areas.find((area) =>
+          (area.id === splitGram.activeArea && area.players.includes(previous)
+            ? s.staging
+            : area.staging
+          ).some((enemy) => enemy.id === u.id),
+        )
+      : undefined;
+  // A staged enemy's original owner may have left its merged dungeon. Remove
+  // it in the physical area's projection without changing card ownership.
+  const stagingPlayer = stagingArea
+    ? stagingArea.players.includes(previous) &&
+      !s.table?.seats[previous].eliminated
+      ? previous
+      : (globalPlayerOrder(s).find((player) =>
+          stagingArea.players.includes(player),
+        ) ?? stagingArea.players[0])
+    : undefined;
+  if (stagingPlayer !== undefined) selectSeat(s, stagingPlayer);
   const lastKnownAttack = stats(s, u).attack;
   const lastKnownTraits = effectiveTraits(u);
+  const lastKnownType = unitType(u);
   const lastAttachments = [...u.attachments];
-  selectSeat(s, ownerOf(s, u));
-  const c = card(u.code);
+  selectSeat(s, stagingPlayer ?? ownerOf(s, u));
   if (hasEncounterKeyword(c)) destination = "removed";
   if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
     for (const h of allHeroes(s))
@@ -1288,12 +1406,18 @@ export function destroy(
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (c.type_code === "enemy") {
+    Gram.gramCardLeaves(s, u);
     s.staging = s.staging.filter((x) => x.id !== u.id);
     s.engaged = s.engaged.filter((x) => x.id !== u.id);
     s.encounterDiscard.push(...u.shadows);
     if (u.facedownCard)
       forOwner(s, u.owner ?? activeSeat(s), () => {
         s.discard.push(u.facedownCard!);
+        Dread.dreadPlayerCardDiscarded(s, {
+          ...u,
+          id: u.facedownCardId ?? u.id,
+          code: u.facedownCard!,
+        });
         if (u.facedownCardId)
           foundationsPlayerCardDiscarded(s, {
             ...u,
@@ -1301,7 +1425,8 @@ export function destroy(
             code: u.facedownCard!,
           });
       });
-    else if (u.code === "01115") {
+    else if (Dread.dreadEnemyLeaves(s, u)) {
+    } else if (u.code === "01115") {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
     } else if (c.victory) addVictoryCard(s, u.code);
@@ -1313,6 +1438,11 @@ export function destroy(
       s.encounterDiscard.push(u.code);
     if (destruction) Realm.realmEnemyDestroyed(s, u, lastAttachments);
     if (destruction) Weather.weatherEnemyDefeated(s, u);
+    if (destruction) Wastes.wastesEnemyDefeated(s, u);
+    if (destruction) Angmar.angmarEnemyDestroyed(s, u, []);
+    Dread.dreadEnemyDefeated(s, u, destruction);
+    if (destruction) Rhudaur.rhudaurEnemyDestroyed(s, u);
+    if (destruction) Carn.carnEnemyDefeated(s, u);
     Antlered.antleredRoutePiles(s);
     if (u.code === "01102") s.nazgulDefeated = true;
     if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
@@ -1353,7 +1483,7 @@ export function destroy(
         ? s.encounterDiscard
         : seatView(s, u.owner ?? activeSeat(s)).discard
       ).push(u.code);
-    if (c.type_code === "hero") s.fallenThreat += c.threat ?? 0;
+    if (lastKnownType === "hero") s.fallenThreat += c.threat ?? 0;
     log(
       s,
       destruction
@@ -1383,12 +1513,14 @@ export function destroy(
       },
       lastKnownAttack,
       lastKnownTraits,
+      byCardEffect,
+      lastKnownType,
     );
     if (destruction) rhosgobelCharacterDestroyed(s, u, activeSeat(s));
     if (destruction) dunlandFallResponses(s, u, lastAttachments, activeSeat(s));
-    if (["ally", "objective-ally"].includes(c.type_code))
+    if (["ally", "objective-ally"].includes(lastKnownType))
       enqueue(s, fx("valiant"));
-    if (c.type_code === "hero" && c.traits?.includes("Dwarf"))
+    if (lastKnownType === "hero" && lastKnownTraits.includes("Dwarf"))
       enqueue(s, fx("brok"));
   }
   DunlandQuest.dunlandCharacterDestroyed(s, u, destruction);
@@ -1399,8 +1531,31 @@ export function destroy(
 
 export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
+/** Discard a physical location without exploring it or claiming its victory points. */
+export function discardLocation(s: GameState, u: Unit) {
+  requireRule(
+    !playerCardImmune(u),
+    "This location is immune to player card effects.",
+  );
+  const wasActive = allActiveLocations(s).some(
+    (location) => location.id === u.id,
+  );
+  if (!wasActive && !s.staging.some((location) => location.id === u.id)) return;
+  if (wasActive) removeActiveLocation(s, u.id);
+  else s.staging = s.staging.filter((location) => location.id !== u.id);
+  Gram.gramCardLeaves(s, u);
+  Rhudaur.rhudaurLocationLeft(s, u, wasActive);
+  stewardFearLocationLeft(s, u, false, wasActive);
+  Amon.amonDinLocationLeft(s, u, false);
+  for (const attachment of [...u.attachments])
+    discardAttachment(s, u, attachment, true);
+  s.encounterDiscard.push(u.code);
+  log(s, `${name(u)} is discarded.`);
+}
+
 export function progressLocation(s: GameState, u: Unit, value: number) {
   if (Trials.trialsRedirectProgress(s, value, u)) return;
+  if (Dread.dreadLocationProgressBlocked(s, u)) return;
   if (Tharbad.tharbadLocationBlocked(s, u)) return;
   if (Catch.catchLocationProgressBlocked(s, u)) return;
   if (heirsLocationProgressBlocked(s, u)) return;
@@ -1436,6 +1591,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   BloodQuest.bloodGondorExplored(s, u);
   Catch.catchExplored(s, u);
   Weather.weatherExplored(s, u, wasActive);
+  Rhudaur.rhudaurExplored(s, u, wasActive);
+  Rhudaur.rhudaurLocationLeft(s, u, wasActive);
   Dike.dikeExplored(s, u, wasActive);
   DunlandQuest.dunlandExplored(s, u);
   Tharbad.tharbadExplored(s, u);
@@ -1448,6 +1605,15 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (!captured) for (const a of [...u.attachments]) discardAttachment(s, u, a);
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
+  Angmar.angmarLocationExplored(
+    s,
+    u,
+    exploredDiscardIndex,
+    exploredAttachments,
+    wasActive,
+  );
+  Gram.gramCardLeaves(s, u);
+  Dread.dreadExplored(s, u);
   ringMakerLocationExplored(s);
   rhosgobelExplored(s, u);
   returnMirkwoodExplored(s, u);
@@ -1483,7 +1649,14 @@ export function progress(
     log(s, "The active location is immune to this progress effect.");
     return;
   }
-  if (locations.some((l) => shadowFlameLocationProgressBlocked(s, l))) return;
+  if (
+    locations.some(
+      (l) =>
+        shadowFlameLocationProgressBlocked(s, l) ||
+        Dread.dreadLocationProgressBlocked(s, l),
+    )
+  )
+    return;
   if (locations.length > 1) {
     const remaining = (l: Unit) =>
       Math.max(
@@ -1578,6 +1751,8 @@ export function progress(
     addCurrentQuestProgress(s, n);
     return;
   }
+  if (Gram.gramProgress(s, n)) return;
+  if (Dread.dreadQuestProgress(s, n, playerEffect)) return;
   if (Catch.catchProgressBlocked(s)) return;
   if (Trials.trialsQuestProgress(s, n)) return;
   if (Tharbad.tharbadQuestProgress(s, n)) return;
@@ -1605,9 +1780,13 @@ export function discardQuestAttachments(
     mainQuestUnit(s);
   if (!host || host.code !== code) return [];
   const attachments = [...host.attachments];
-  for (const a of attachments) discardAttachment(s, host, a);
-  if (s.questAttachments) delete s.questAttachments[code];
-  return attachments;
+  const discarded = attachments.filter(
+    (a) => !Dread.dreadPreserveQuestAttachment(s, code, a),
+  );
+  for (const a of discarded) discardAttachment(s, host, a);
+  if (s.questAttachments && !host.attachments.length)
+    delete s.questAttachments[code];
+  return discarded;
 }
 /** Discard physical quest attachments and finish defeat responses before changing stages. */
 export function questDefeated(s: GameState, code: string): boolean {
@@ -1640,6 +1819,12 @@ export function advanceQuest(s: GameState) {
   if (Antlered.advanceAntlered(s)) return;
   if (Chetwood.advanceChetwood(s)) return;
   if (Weather.weatherAdvance(s)) return;
+  if (Wastes.wastesAdvance(s)) return;
+  if (Gram.gramAdvance(s)) return;
+  if (Etten.ettenAdvance(s)) return;
+  if (Dread.dreadAdvance(s)) return;
+  if (Rhudaur.rhudaurAdvance(s)) return;
+  if (Carn.carnAdvance(s)) return;
   if (Dike.dikeAdvance(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
@@ -1726,6 +1911,7 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
+  eachArea(s, () => Angmar.angmarPhaseEnd(s));
   const bloodEffects: Effect[] = [];
   eachArea(s, () => bloodEffects.push(...bloodPlayerPhaseEndEffects(s)));
   const departures = globalCharacters(s)
@@ -1782,6 +1968,7 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
     owner = u.owner ?? controller;
   const lastKnownAttack = stats(s, u).attack;
   const lastKnownTraits = effectiveTraits(u);
+  const lastKnownType = unitType(u);
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   forOwner(s, controller, () => {
     s.allies = s.allies.filter((a) => a.id !== u.id);
@@ -1814,23 +2001,22 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
     },
     lastKnownAttack,
     lastKnownTraits,
+    false,
+    lastKnownType,
   );
 }
 
 /** Simultaneous returns leave every card out of play before any response is offered. */
 export function returnAlliesToHand(s: GameState, allies: Unit[]) {
   const moves = [...new Map(allies.map((u) => [u.id, u])).values()]
-    .filter(
-      (u) =>
-        allCharacters(s).some((c) => c.id === u.id) &&
-        ["ally", "objective-ally"].includes(card(u.code).type_code),
-    )
+    .filter((u) => allCharacters(s).some((c) => c.id === u.id) && isAlly(u))
     .map((u) => ({
       u,
       controller: ownerOf(s, u),
       owner: u.owner ?? ownerOf(s, u),
       lastKnownAttack: stats(s, u).attack,
       lastKnownTraits: effectiveTraits(u),
+      lastKnownType: unitType(u),
       id: "",
     }));
   for (const move of moves) {
@@ -1884,6 +2070,8 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
       },
       move.lastKnownAttack,
       move.lastKnownTraits,
+      false,
+      move.lastKnownType,
     );
   }
   return moves
@@ -1920,8 +2108,16 @@ export function collectResources(s: GameState) {
   const draws: Effect[] = [];
   globalEachSeat(s, (player) => {
     for (const h of s.heroes)
-      if (!isSacked(h) && khazadResourcePhase(s))
-        h.resources += 1 + (ninNoCardEconomy(s) ? 0 : resourcePhaseBonus(h));
+      if (
+        !isSacked(h) &&
+        khazadResourcePhase(s) &&
+        !Etten.ettenCannotCollectResources(s, h)
+      )
+        h.resources +=
+          1 +
+          (ninNoCardEconomy(s)
+            ? 0
+            : resourcePhaseBonus(h) + Angmar.angmarResourceBonus(s, h));
     for (const ally of s.allies)
       if (
         ["02059", "08146"].includes(ally.code) &&
@@ -1935,7 +2131,8 @@ export function collectResources(s: GameState) {
         ? 0
         : frameworkDraw +
           huntResourceDrawBonus(s, player) +
-          dwarfResourceDrawBonus(s, player);
+          dwarfResourceDrawBonus(s, player) +
+          Angmar.angmarResourceDrawBonus(s, player);
     // Resolve each player's draw reactions before moving to the next player.
     if (s.dunlandTrap) draws.push(fx("draw", { value: count, player }));
     else if (ninNoCardEconomy(s)) draw(s, frameworkDraw, false);
@@ -1946,7 +2143,7 @@ export function collectResources(s: GameState) {
 }
 
 export function engage(s: GameState, u: Unit, optional = false) {
-  if (celebrimborProtected(s, u)) return;
+  if (celebrimborProtected(s, u) || Carn.carnCannotEngage(s, u)) return;
   if (!shadowFlameCanMove(s, u) || !amonPlayerCanEngage(s, u, activeSeat(s)))
     return;
   if (allEngaged(s).some((e) => e.id === u.id))
@@ -1967,6 +2164,11 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Fords.fordsEngaged(s, u);
   Antlered.antleredEngaged(s, u);
   Weather.weatherEngaged(s, u);
+  Wastes.wastesEngaged(s, u);
+  Etten.ettenEngaged(s, u);
+  Dread.dreadEngaged(s, u);
+  Rhudaur.rhudaurEngaged(s, u);
+  Angmar.angmarEngaged(s, u);
   Dike.dikeEngaged(s, u);
   Catch.catchEngaged(s, u);
   DunlandQuest.dunlandEngaged(s, u);
@@ -1998,7 +2200,45 @@ export function revealed(
   code: string,
   guarding?: string,
   revealOrigin: Effect["revealOrigin"] = "encounter",
+  resumed = false,
 ) {
+  if (!resumed) Angmar.angmarRevealed(s, code, revealOrigin);
+  const thalinDefeats =
+    revealOrigin === "encounter" &&
+    card(code).type_code === "enemy" &&
+    (card(code).health ?? 0) <= 1 &&
+    allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed);
+  if (
+    !resumed &&
+    !thalinDefeats &&
+    Wastes.wastesCancelAllowed(s) &&
+    !allActiveLocations(s).some((l) => l.code === "02016")
+  ) {
+    const resume = fx("revealCard", {
+      code,
+      source: guarding,
+      revealOrigin,
+      text: "angmar-resume",
+    });
+    const options = Angmar.angmarRevealOptions(s, code, revealOrigin, resume);
+    if (options.length) {
+      choose(
+        s,
+        `Revealed · ${card(code).name}`,
+        [
+          ...options,
+          {
+            id: "resolve",
+            label: "Continue the reveal",
+            code,
+            effects: [resume],
+          },
+        ],
+        card(code).text,
+      );
+      return;
+    }
+  }
   if (revealOrigin === "encounter" && amonPlayerInterceptReveal(s, code)) {
     ringMakerLocationRevealed(s, code, true);
     return;
@@ -2133,8 +2373,16 @@ export function resolveReveal(
       return;
     }
   }
-  const doomed = /Doomed (\d+)/.exec(c.text ?? "");
-  if (doomed && !doomedResolved) {
+  const revealText =
+    c.type_code === "encounter-side-quest" && Etten.ettenSafeActive(s)
+      ? ""
+      : (c.text ?? "");
+  const doomed = /Doomed (\d+)/.exec(revealText);
+  const doomedAmount =
+    Number(doomed?.[1] ?? 0) +
+    Etten.ettenRevealDoomed(s, code) +
+    Rhudaur.rhudaurRevealDoomed(s, code);
+  if (doomedAmount && !doomedResolved) {
     prepend(
       s,
       fx("resolveReveal", {
@@ -2146,17 +2394,18 @@ export function resolveReveal(
         value: thalin ? 1 : 0,
       }),
     );
-    Isengard.resolveDoomed(s, Number(doomed[1]), "encounter");
+    Isengard.resolveDoomed(s, doomedAmount, "encounter");
     return;
   }
   const emynSurge = emynMuilRevealSurge(s, code);
   if (
-    /(?:^|[.\n]\s*)Surge(?:[.\s]|$)/i.test(c.text ?? "") ||
+    /(?:^|[.\n]\s*)Surge(?:[.\s]|$)/i.test(revealText) ||
     emynSurge ||
     longDarkRevealSurge(s, code) ||
     Fords.fordsRevealSurge(s, code) ||
     Weather.weatherRevealSurge(s, code, revealOrigin) ||
     Dike.dikeRevealSurge(s, code, revealOrigin) ||
+    Rhudaur.rhudaurRevealSurge(s, code) ||
     (code === CHETWOOD.hills && Chetwood.chetwoodQuestCount(s) === 1)
   )
     prepend(s, fx("amonSurgeWindow", { code }), fx("reveal"));
@@ -2181,6 +2430,8 @@ export function resolveReveal(
     code !== FANGORN.malice &&
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
+    Wastes.wastesCancelAllowed(s) &&
+    !Etten.ettenIgnoreWhenRevealed(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
     !stewardFearCannotCancel(code) &&
@@ -2344,6 +2595,8 @@ export function placeEncounter(
     Chetwood.chetwoodCardEntered(s, fresh, fromReveal);
     Dike.dikeCardEntered(s, fresh, fromReveal);
     Weather.weatherCardEntered(s, fresh, fromReveal);
+    Gram.gramCardEntered(s, fresh, fromReveal);
+    Etten.ettenCardEntered(s, fresh, fromReveal, guarding);
     fresh.progress = initialProgress;
     fresh.damage =
       initialDamage && khazadDamageCancelled(s, fresh, initialDamage)
@@ -2393,6 +2646,15 @@ export function placeEncounter(
     log(s, `${c.name}’s when-revealed effect was cancelled.`, "good");
     return;
   }
+  if (c.type_code === "encounter-side-quest" && Etten.ettenSafeActive(s)) {
+    syncAttachmentText(s);
+    return;
+  }
+  if (Etten.ettenIgnoreWhenRevealed(s, code)) {
+    if (c.type_code === "treachery") s.encounterDiscard.push(code);
+    log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
+    return;
+  }
   if (shadowFlameEncounter(s, code)) return;
   if (Druadan.druadanForestEncounter(s, code)) return;
   if (Amon.amonDinEncounter(s, code)) return;
@@ -2409,6 +2671,12 @@ export function placeEncounter(
   if (Celebrimbor.celebrimborEncounter(s, code)) return;
   if (Antlered.antleredEncounter(s, code)) return;
   if (Chetwood.chetwoodEncounter(s, code)) return;
+  if (Wastes.wastesEncounter(s, code)) return;
+  if (Gram.gramEncounter(s, code)) return;
+  if (Etten.ettenEncounter(s, code)) return;
+  if (Dread.dreadEncounter(s, code)) return;
+  if (Rhudaur.rhudaurEncounter(s, code)) return;
+  if (Carn.carnEncounter(s, code)) return;
   if (Weather.weatherEncounter(s, code)) return;
   if (Dike.dikeEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
@@ -2638,6 +2906,7 @@ export function enterAlly(
   u.temporary = temporary;
   s.allies.push(u);
   finalRingAllyEntering(u);
+  Angmar.angmarAllyEntering(u);
   if (offerRingMakerDoomed(s, u, played, fromHand)) return;
   resolveAllyKeywords(s, u, played, fromHand);
 }
@@ -2690,6 +2959,8 @@ export function allyEntryResponses(
   ringMakerAllyEntered(s, u, played, fromHand);
   finalRingAllyEntered(s, u);
   Realm.realmAllyEntered(s, u);
+  Angmar.angmarAllyEntered(s, u);
+  Etten.ettenAllyEntered(s, u);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);
@@ -2709,7 +2980,7 @@ export function allyEntryResponses(
             [
               ...s.staging.filter((x) => card(x.code).type_code === "location"),
               ...allActiveLocations(s),
-            ].filter((x) => x.code !== CARROCK.carrock),
+            ].filter((x) => x.code !== CARROCK.carrock && !playerCardImmune(x)),
             (x) => [fx("locationProgress", { target: x.id, value: 1 })],
           ),
           skip,
@@ -2728,7 +2999,7 @@ export function allyEntryResponses(
             [
               ...s.staging.filter((x) => card(x.code).type_code === "enemy"),
               ...allEngaged(s).filter((x) => ownerOf(s, x) !== activeSeat(s)),
-            ],
+            ].filter((x) => !Carn.carnCannotEngage(s, x)),
             (x) => [fx("engage", { target: x.id })],
           ),
           skip,
@@ -2776,8 +3047,7 @@ export function allyEntryResponses(
           break;
         }
         const i = s.discard.lastIndexOf(attachment);
-        s.discard.splice(i, 1);
-        s.hand.push(make(s, attachment));
+        s.hand.push(takePlayerDiscard(s, i));
         log(
           s,
           `Erebor Hammersmith returns ${card(attachment).name} to your hand.`,
@@ -2858,6 +3128,8 @@ export function spendEvent(
   redhornPlayerEventPlayed(s, code);
   dunlandEventPlayed(s, code);
   ringMakerEventPlayed(s, code);
+  Angmar.angmarEventPlayed(s, code);
+  Carn.carnEventPlayed(s, code);
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
   if (s.ninEilph) s.used.push("nin:played");
@@ -2911,6 +3183,12 @@ export function shadow(s: GameState, code: string) {
   if (Celebrimbor.celebrimborShadow(s, code)) return;
   if (Antlered.antleredShadow(s, code)) return;
   if (Chetwood.chetwoodShadow(s, code)) return;
+  if (Wastes.wastesShadow(s, code)) return;
+  if (Gram.gramShadow(s, code)) return;
+  if (Etten.ettenShadow(s, code)) return;
+  if (Dread.dreadShadow(s, code)) return;
+  if (Rhudaur.rhudaurShadow(s, code)) return;
+  if (Carn.carnShadow(s, code)) return;
   if (Weather.weatherShadow(s, code)) return;
   if (Dike.dikeShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
@@ -3044,7 +3322,7 @@ export function shadow(s: GameState, code: string) {
         ...allCharacters(s)
           .filter(
             (x) =>
-              card(x.code).type_code === "ally" &&
+              unitType(x) === "ally" &&
               (Number(card(x.code).cost) || 0) < rivers,
           )
           .map((x) =>

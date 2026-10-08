@@ -12,6 +12,7 @@ import { engagedEnemies } from "./considered-engagement";
 import { card } from "./cards";
 import { redhornCanMakeActive } from "./redhorn-gate";
 import type { Effect, GameState, Unit } from "./types";
+import { gramActiveLocationChanged } from "./mount-gram";
 import {
   canPay,
   choose,
@@ -41,7 +42,7 @@ import {
 } from "./table";
 
 export interface LeaveDestination {
-  zone: "discard" | "hand" | "deck" | "removed";
+  zone: "discard" | "hand" | "deck" | "removed" | "captured";
   player: number;
   id?: string;
   index?: number;
@@ -313,6 +314,12 @@ function dawnOptions(s: GameState) {
 }
 function sourceAvailable(s: GameState, e: Effect): boolean {
   if (!leaveCardAvailable(s, e.source)) return false;
+  if (e.text === "captured")
+    return (
+      s.mountGram?.captured[e.target!]?.some(
+        (u) => u.id === e.source && u.code === e.code,
+      ) ?? false
+    );
   if (e.text === "discard" && dikeCannotLeaveDiscard(s, e.owner)) return false;
   const p = seatView(s, e.owner ?? 0);
   if (e.text === "hand")
@@ -327,7 +334,14 @@ function takeLeaveCard(s: GameState, e: Effect) {
     "This exact Eagle card has already left its recorded destination.",
   );
   const p = seatView(s, e.owner ?? 0);
-  if (e.text === "hand")
+  if (e.text === "captured") {
+    const cards = s.mountGram!.captured[e.target!];
+    cards.splice(
+      cards.findIndex((u) => u.id === e.source && u.code === e.code),
+      1,
+    );
+    if (!cards.length) delete s.mountGram!.captured[e.target!];
+  } else if (e.text === "hand")
     p.hand.splice(
       p.hand.findIndex((u) => u.id === e.target),
       1,
@@ -532,6 +546,7 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
           u.id === old.id ? next : u,
         );
       stewardFearTravelEntered(s, next);
+      gramActiveLocationChanged(s, next);
       log(
         s,
         "West Road Traveller switches locations, keeping their progress and attachments; no travel occurs.",

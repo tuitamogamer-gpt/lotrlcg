@@ -7,6 +7,7 @@ import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { takePlayerDeck } from "./core";
+import { takePlayerDiscard } from "./board";
 // Exact Elves of Lórien main-list rules. The original printings remain in the catalog.
 // Primary guide: https://images-cdn.fantasyflightgames.com/filer_public/72/d2/72d27c2e-e5d0-4d43-9e66-aa332dbf7423/mec104_rules.pdf
 import { card, name } from "./cards";
@@ -17,7 +18,6 @@ import {
   fx,
   get,
   log,
-  make,
   opts,
   prepend,
   requireRule,
@@ -669,8 +669,7 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
         s.discard[e.count!] === e.code,
         "Choose the Silvan ally in your discard pile.",
       );
-      s.discard.splice(e.count!, 1);
-      s.hand.push(make(s, e.code!));
+      s.hand.push(takePlayerDiscard(s, e.count!));
       break;
     }
     case "elfSearchTake": {

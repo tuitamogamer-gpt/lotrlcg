@@ -1,0 +1,452 @@
+[
+  {
+    "code": "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+    "octgnid": "06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+    "name": "Tombs of Carn Dûm",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Carn Dum. Underground.",
+    "text": "Forced: At the end of the round, discard the top card of each player's deck. Each player must reanimate each ally discarded by this effect.  Travel: Deal 1 shadow card to each Undead enemy in play to travel here.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 159,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 159,
+        "quantity": 3,
+        "octgnid": "06c4f297-b2a4-43a6-8d56-aa3385da3b69",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06c4f297-b2a4-43a6-8d56-aa3385da3b69.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+    "octgnid": "0771f1dc-4baa-4181-9344-4ddd1e59136b",
+    "name": "Dwimmerlaik",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Forced: After Dwimmerlaik attacks and destroys a character, the defending player reanimates that character and deals it 1 shadow card.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 155,
+    "quantity": 3,
+    "threat": 4,
+    "attack": 5,
+    "defense": 0,
+    "health": 9,
+    "engagement": 34,
+    "shadow": "Shadow: If this attack destroys a character, reanimate that character and deal it 1 shadow card.",
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "0",
+      "health": "9",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 155,
+        "quantity": 3,
+        "octgnid": "0771f1dc-4baa-4181-9344-4ddd1e59136b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0771f1dc-4baa-4181-9344-4ddd1e59136b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+    "octgnid": "160c8dcb-baa1-4176-9308-7328e500d62e",
+    "name": "Wraith of Carn Dûm",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Forced: When Wraith of Carn Dum leaves play, attach it to a character in play. (Counts as a Sorcery attachment with the text: \"Attached character has -1 [willpower], -1 [attack], and -1 [defense]. If the attached character leaves play, return Wraith of Carn Dum to the staging area as an enemy.\")",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 157,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 4,
+    "defense": 0,
+    "health": 5,
+    "engagement": 18,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "0",
+      "health": "5",
+      "engagement": "18"
+    },
+    "imagesrc": "/cards/160c8dcb-baa1-4176-9308-7328e500d62e.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 157,
+        "quantity": 2,
+        "octgnid": "160c8dcb-baa1-4176-9308-7328e500d62e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/160c8dcb-baa1-4176-9308-7328e500d62e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+    "octgnid": "1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+    "name": "Altar of Midwinter",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Carn Dum. Underground.",
+    "text": "While Daechanar is in play, progress cannot be placed on Altar of Midwinter.\nForced: At the end of the staging step, the first player must either reveal 1 additional card from the encounter deck, or reanimate the top card of his deck.",
+    "is_unique": true,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 154,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 9,
+    "victory": 5,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "9",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 154,
+        "quantity": 1,
+        "octgnid": "1cdc36d4-fd78-4ebe-850b-13f24ee73244",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1cdc36d4-fd78-4ebe-850b-13f24ee73244.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+    "octgnid": "205f938d-8dc8-4366-adc0-35897aaef600",
+    "name": "Death and Calamity",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: Attach Death and Calamity to the current quest. Then, the first player reanimates the top X cards of his deck, where X is the number of copies of Death and Calamity in play.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 164,
+    "quantity": 4,
+    "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the number of Sorcery cards in play.",
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {},
+    "imagesrc": "/cards/205f938d-8dc8-4366-adc0-35897aaef600.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 164,
+        "quantity": 4,
+        "octgnid": "205f938d-8dc8-4366-adc0-35897aaef600",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/205f938d-8dc8-4366-adc0-35897aaef600.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+    "octgnid": "3385b644-5fd6-4473-9fec-45d7262f5824",
+    "name": "Unholy Crypt",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Carn Dum. Underground.",
+    "text": "Unholy Crypt gets +1 [threat] for each Reanimated Dead in play.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 161,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 7,
+    "shadow": "Shadow: If this attack destroys a character, reanimate that character and deal it 1 shadow card.",
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "7"
+    },
+    "imagesrc": "/cards/3385b644-5fd6-4473-9fec-45d7262f5824.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 161,
+        "quantity": 3,
+        "octgnid": "3385b644-5fd6-4473-9fec-45d7262f5824",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3385b644-5fd6-4473-9fec-45d7262f5824.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+    "octgnid": "432c306a-7a68-45f9-8621-d7ea2126ae0b",
+    "name": "Dark Halls",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Carn Dum. Underground.",
+    "text": "While Dark Halls is in the staging area, each Reanimated Dead gets +1 [attack] and +1 [defense].",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 160,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: If there is a copy of the defending character in your discard pile, reanimate it and deal it 1 shadow card.",
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 160,
+        "quantity": 2,
+        "octgnid": "432c306a-7a68-45f9-8621-d7ea2126ae0b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/432c306a-7a68-45f9-8621-d7ea2126ae0b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+    "octgnid": "8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+    "name": "Witch of Angmar",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Sorcerer.",
+    "text": "Forced: When you resolve shadow cards dealt to Witch of Angmar, if they have the Sorcery trait, resolve their \"when revealed\" effects. (Resolve any shadow effects first.)",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 156,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 2,
+    "defense": 2,
+    "health": 4,
+    "engagement": 26,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "2",
+      "health": "4",
+      "engagement": "26"
+    },
+    "imagesrc": "/cards/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 156,
+        "quantity": 3,
+        "octgnid": "8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b7c17f3-09d1-45a4-93ff-3b17a3285f35.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+    "octgnid": "8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+    "name": "Daechanar",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Dunedain. Sorcerer.",
+    "text": "Cannot have attachments.  Daechanar gets +1 [attack] for each Sorcery card in play, and gains indestructible while at least 1 Sorcery card is in play.  Forced: When Daechanar is damaged, if there is at least 1 Sorcery card in play, cancel all damage just dealt and remove a Sorcery card from the game.",
+    "is_unique": true,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 153,
+    "quantity": 1,
+    "threat": 5,
+    "attack": 4,
+    "defense": 5,
+    "health": 12,
+    "engagement": 1,
+    "victory": 10,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "5",
+      "attack": "4",
+      "defense": "5",
+      "health": "12",
+      "engagement": "1",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 153,
+        "quantity": 1,
+        "octgnid": "8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bb270a0-72b4-49d5-a4d3-a962edd5f67b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+    "octgnid": "e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+    "name": "A Fell Dread",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: The player with the highest threat must attach A Fell Dread to a hero he controls without A Fell Dread attached. (Counts as a Condition attachment with the text: \"Attached hero's [willpower] is reduced to 0. During the quest phase, attached hero must commit to the quest, if able.\")",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 163,
+    "quantity": 2,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {},
+    "imagesrc": "/cards/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 163,
+        "quantity": 2,
+        "octgnid": "e2e8fe14-f019-4fd9-af2c-81f1a4282660",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2e8fe14-f019-4fd9-af2c-81f1a4282660.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+    "octgnid": "ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+    "name": "Sinister Dungeon",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Carn Dum. Underground.",
+    "text": "Forced: When Sinister Dungeon is explored, the first player reanimates a random card from his hand and deals Sinister Dungeon to it as a shadow card.",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 158,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 1,
+    "shadow": "Shadow: Discard the top 2 cards of the encounter deck. Resolve the \"when revealed\" effects of each Sorcery card discarded by this effect.",
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 158,
+        "quantity": 3,
+        "octgnid": "ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee30a928-cdf8-40c0-87b3-13115bc16cd3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+    "octgnid": "fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+    "name": "Possession",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "Doomed 1.\nWhen Revealed: Destroy the highest cost ally in play. That ally's controller reanimates that character, adds it to the staging area, and attaches Possession to it. (Counts as a Condition attachment with the text: \"If Possession is discarded, the attached card is also discarded.\")",
+    "is_unique": false,
+    "pack_code": "TDR",
+    "pack_name": "The Dread Realm",
+    "position": 162,
+    "quantity": 2,
+    "encounter_set": "The Dread Realm",
+    "printed_stats": {},
+    "imagesrc": "/cards/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg",
+    "packs": [
+      {
+        "pack_code": "TDR",
+        "pack_name": "The Dread Realm",
+        "position": 162,
+        "quantity": 2,
+        "octgnid": "fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb40f70e-0d36-4d18-ae51-23be5f1a3260.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

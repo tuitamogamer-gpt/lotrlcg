@@ -10,6 +10,15 @@ import { WEATHER } from "./weather-hills-support";
 import { currentQuestProgress } from "./quest-state";
 import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
+import * as Angmar from "./angmar-player";
+import { angmarDiscardEvents } from "./angmar-player-support";
+import { isHero } from "./card-types";
+import * as Wastes from "./wastes-eriador";
+import * as Gram from "./mount-gram";
+import * as Etten from "./ettenmoors";
+import * as Dread from "./dread-realm";
+import * as Carn from "./carn-dum";
+import * as Rhudaur from "./rhudaur";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
@@ -169,6 +178,7 @@ import {
   SHADOW_FLAME_ATTACHMENT_ACTIONS,
 } from "./shadow-flame-player-cards";
 import {
+  foundationsPlayerCardDiscarded,
   foundationsPlayerPlayProblem,
   foundationsPlayerAbilityLabel,
   foundationsPlayerAbilityProblem,
@@ -413,6 +423,12 @@ export function commitCharacters(s: GameState) {
         .every((u) => s.committedIds.includes(u.id)),
       "The Falls of Rauros requires every eligible ready character to commit to the quest.",
     );
+  requireRule(
+    characters(s)
+      .filter((u) => Dread.dreadMustCommit(s, u) && canCommit(s, u))
+      .every((u) => s.committedIds.includes(u.id)),
+    "A Fell Dread requires its attached character to commit if able.",
+  );
   const exhaustedIds: string[] = [];
   for (const u of characters(s).filter((u) => s.committedIds.includes(u.id))) {
     requireRule(!u.exhausted, "A selected character is exhausted.");
@@ -468,6 +484,18 @@ export function canTravel(s: GameState, u: Unit): string | null {
     return "You must travel to The King’s Road.";
   const chetwoodProblem = Chetwood.chetwoodTravelProblem(s, u);
   if (chetwoodProblem) return chetwoodProblem;
+  const wastesProblem = Wastes.wastesTravelProblem(s, u);
+  if (wastesProblem) return wastesProblem;
+  const gramProblem = Gram.gramTravelProblem(s, u);
+  if (gramProblem) return gramProblem;
+  const ettenProblem = Etten.ettenTravelProblem(s, u);
+  if (ettenProblem) return ettenProblem;
+  const carnProblem = Carn.carnTravelProblem(s, u);
+  if (carnProblem) return carnProblem;
+  const rhudaurProblem = Rhudaur.rhudaurTravelProblem(s, u);
+  if (rhudaurProblem) return rhudaurProblem;
+  const dreadProblem = Dread.dreadTravelProblem(s, u);
+  if (dreadProblem) return dreadProblem;
   const dikeProblem = Dike.dikeTravelProblem(s, u);
   if (dikeProblem) return dikeProblem;
   const weatherProblem = Weather.weatherTravelProblem(s, u);
@@ -544,6 +572,8 @@ export function optionalEngagementProblem(
     !s.staging.some((enemy) => enemy.id === u.id)
   )
     return "Choose an enemy in staging.";
+  if (!Wastes.wastesOptionalEngagementAllowed(s, u))
+    return "This enemy cannot be optionally engaged during the day.";
   if (
     u.code === "01083" &&
     s.staging.some(
@@ -555,6 +585,8 @@ export function optionalEngagementProblem(
     return "This quest stage prevents optional engagement.";
   const stewardProblem = stewardFearOptionalEngagementProblem(s, u);
   if (stewardProblem) return stewardProblem;
+  if (Carn.carnCannotEngage(s, u))
+    return "Thaurdir cannot leave the staging area.";
   if (!shadowFlameCanMove(s, u))
     return "Durin’s Bane remains in staging and cannot be optionally engaged.";
   if (celebrimborProtected(s, u))
@@ -654,6 +686,12 @@ export function canPlay(
   if (rangerProblem) return rangerProblem;
   const realmProblem = Realm.realmPlayProblem(s, c.code);
   if (realmProblem) return realmProblem;
+  const angmarProblem = Angmar.angmarPlayProblem(
+    s,
+    c.code,
+    options.playOrigin ?? "hand",
+  );
+  if (angmarProblem) return angmarProblem;
   const finalRingProblem = finalRingPlayProblem(s, c.code);
   if (finalRingProblem) return finalRingProblem;
   const dunlandProblem = dunlandPlayProblem(s, c.code);
@@ -728,7 +766,7 @@ export function canPlay(
   )
     return "There is no damaged character that can be healed.";
   if (
-    ["01036", "08143"].includes(u.code) &&
+    ["01036", "08143", "10085"].includes(u.code) &&
     (options.noCost ||
       playCost(s, c) < 3 ||
       eligiblePayers(s, c).filter(
@@ -781,6 +819,47 @@ export function canPlay(
 }
 export const canPlayAtNoCost = (s: GameState, u: Unit) =>
   canPlay(s, u, { noCost: true, resolvingEffect: true });
+
+/** A printed free play still checks restrictions and uses the actual hand card. */
+export function freeHandPlayProblem(s: GameState, u: Unit): string | null {
+  if (!s.hand.some((h) => h.id === u.id)) return "Choose a card in your hand.";
+  const problem = canPlay(s, u, {
+    noCost: true,
+    resolvingEffect: true,
+    playOrigin: "hand",
+  });
+  if (problem) return problem;
+  if (["01067", "06083"].includes(u.code))
+    return "At no cost, X is zero and this event cannot change the game state.";
+  if (needsTarget(u) && !effectCardPlayTargets(s, u).length)
+    return "This card has no legal target.";
+  return null;
+}
+
+export function playCardFromHandEffect(
+  s: GameState,
+  id: string,
+  target?: string,
+) {
+  const u = s.hand.find((h) => h.id === id);
+  requireRule(u, "Choose the actual card in your hand.");
+  const problem = freeHandPlayProblem(s, u);
+  requireRule(!problem, problem ?? "");
+  if (needsTarget(u))
+    requireRule(
+      effectCardPlayTargets(s, u).some((t) => t.id === target),
+      "Choose a legal target.",
+    );
+  s.hand = s.hand.filter((h) => h.id !== id);
+  if (card(u.code).type_code === "event") {
+    redhornPlayerEventPlayed(s, u.code);
+    dunlandEventPlayed(s, u.code);
+    ringMakerEventPlayed(s, u.code);
+    Angmar.angmarEventPlayed(s, u.code);
+    Carn.carnEventPlayed(s, u.code);
+  }
+  resolvePlayerCard(s, u, target, 0, true, true, false, 0);
+}
 
 /** Trusted card-effect entry retains restrictions; only cost and framework timing are bypassed. */
 export function effectCardPlayProblem(
@@ -930,7 +1009,7 @@ export function eventReplayPayments(
         left === 0 &&
         (!singlePoolCard(c) ||
           Object.values(payment).filter((n) => n > 0).length <= 1) &&
-        (!["01036", "08143"].includes(u.code) ||
+        (!["01036", "08143", "10085"].includes(u.code) ||
           Object.values(payment).filter((n) => n > 0).length === 3)
       )
         result.push(payment);
@@ -1009,7 +1088,7 @@ export function playEventFromDiscardEffect(
       playTargets(s, preview).some((target) => target.id === options.target),
       "Choose a legal event target.",
     );
-  if (["01036", "08143"].includes(preview.code))
+  if (["01036", "08143", "10085"].includes(preview.code))
     requireRule(
       options.payment &&
         Object.values(options.payment).filter((n) => n > 0).length === 3,
@@ -1036,10 +1115,7 @@ export function playEventFromDiscardEffect(
         ? `discard-${selected.player}-${selected.index - 1}`
         : `discard-${selected.index - 1}`;
   }
-  redhornPlayerEventPlayed(s, physical.code);
-  dunlandEventPlayed(s, physical.code);
-  ringMakerEventPlayed(s, physical.code);
-  resolvePlayerCard(
+  resolvePaidPlayerCard(
     s,
     physical,
     target,
@@ -1050,7 +1126,111 @@ export function playEventFromDiscardEffect(
     options.amount ?? effectiveCost,
   );
 }
-function resolvePlayerCard(
+/** Mandatory reactions to actual resource payment finish before the paid card is played. */
+export function resolvePaidPlayerCard(
+  s: GameState,
+  u: Unit,
+  target: string | undefined,
+  effectiveCost: number,
+  played: boolean,
+  fromHand: boolean,
+  bottom = false,
+  amount = 0,
+) {
+  const costs = s.queue.filter((e) =>
+    ["ettenForageDamage", "carnResourceTax"].includes(e.kind),
+  );
+  if (!costs.length) {
+    if (played && card(u.code).type_code === "event") paidEventPlayed(s, u);
+    resolvePlayerCard(
+      s,
+      u,
+      target,
+      effectiveCost,
+      played,
+      fromHand,
+      bottom,
+      amount,
+    );
+    return;
+  }
+  const costSet = new Set(costs);
+  s.queue = s.queue.filter((e) => !costSet.has(e));
+  (s.pendingPlayerPlays ??= []).push({
+    unit: u,
+    player: activeSeat(s),
+    target,
+    effectiveCost,
+    played,
+    fromHand,
+    bottom,
+    amount,
+  });
+  prepend(
+    s,
+    ...costs,
+    fx("paidPlayerCardEntry", { target: u.id, player: activeSeat(s) }),
+  );
+}
+function paidEventPlayed(s: GameState, u: Unit) {
+  redhornPlayerEventPlayed(s, u.code);
+  dunlandEventPlayed(s, u.code);
+  ringMakerEventPlayed(s, u.code);
+  Angmar.angmarEventPlayed(s, u.code);
+  Carn.carnEventPlayed(s, u.code);
+}
+/** Resume the reserved physical card once; costs have already been paid and resolved. */
+export function handlePaidPlayerCardEntry(s: GameState, e: Effect): boolean {
+  if (e.kind !== "paidPlayerCardEntry") return false;
+  const pending = s.pendingPlayerPlays?.find(
+    (entry) => entry.unit.id === e.target,
+  );
+  if (!pending) return true;
+  s.pendingPlayerPlays = s.pendingPlayerPlays!.filter(
+    (entry) => entry !== pending,
+  );
+  if (!s.pendingPlayerPlays.length) delete s.pendingPlayerPlays;
+  const discardReserved = () =>
+    forOwner(s, pending.unit.owner ?? pending.player, () => {
+      s.discard.push(pending.unit.code);
+      foundationsPlayerCardDiscarded(s, pending.unit);
+      Dread.dreadPlayerCardDiscarded(s, pending.unit);
+    });
+  if (s.status !== "playing" || s.table?.seats[pending.player]?.eliminated) {
+    discardReserved();
+    return true;
+  }
+  forOwner(s, pending.player, () => {
+    if (
+      card(pending.unit.code).type_code === "attachment" &&
+      !playTargets(s, pending.unit).some(
+        (target) => target.id === pending.target,
+      )
+    ) {
+      discardReserved();
+      log(
+        s,
+        `${card(pending.unit.code).name} is discarded because its target left play or became ineligible during payment.`,
+      );
+      return;
+    }
+    if (pending.played && card(pending.unit.code).type_code === "event")
+      paidEventPlayed(s, pending.unit);
+    resolvePlayerCard(
+      s,
+      pending.unit,
+      pending.target,
+      pending.effectiveCost,
+      pending.played,
+      pending.fromHand,
+      pending.bottom,
+      pending.amount,
+    );
+  });
+  return true;
+}
+
+export function resolvePlayerCard(
   s: GameState,
   u: Unit,
   target: string | undefined,
@@ -1096,7 +1276,14 @@ function resolvePlayerCard(
         attachToQuest(s, host.code, attachment),
         "Choose the current encounter quest.",
       );
-    else host.attachments.push(attachment);
+    else if (host.id.startsWith("threat:")) {
+      const player = Number(host.id.slice(7));
+      requireRule(
+        playerOrder(s).includes(player),
+        "Choose a living player's threat dial.",
+      );
+      forOwner(s, player, () => (s.threatAttachments ??= []).push(attachment));
+    } else host.attachments.push(attachment);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     roadPlayerAttachmentEntered(s, host, attachment);
@@ -1176,6 +1363,8 @@ export function playCardFromEffect(
     redhornPlayerEventPlayed(s, u.code);
     dunlandEventPlayed(s, u.code);
     ringMakerEventPlayed(s, u.code);
+    Angmar.angmarEventPlayed(s, u.code);
+    Carn.carnEventPlayed(s, u.code);
   }
   // Printed X defaults to zero when an effect pays no cost.
   resolvePlayerCard(
@@ -1206,6 +1395,10 @@ export function playTargets(
       !playerCardImmune(target) &&
       (card(u.code).type_code !== "attachment" ||
         (!Dike.dikeCannotAttach(s, target) &&
+          !Wastes.wastesCannotAttach(s, target) &&
+          !Dread.dreadCannotAttach(s, target) &&
+          !Carn.carnCannotAttach(s, target) &&
+          !Rhudaur.rhudaurCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
@@ -1230,6 +1423,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   if (ringMakerTargets) return ringMakerTargets;
   const realmTargets = Realm.realmPlayTargets(s, c.code);
   if (realmTargets) return realmTargets;
+  const angmarTargets = Angmar.angmarPlayTargets(s, c.code);
+  if (angmarTargets) return angmarTargets;
   const finalRingTargets = finalRingPlayTargets(s, c.code);
   if (finalRingTargets) return finalRingTargets;
   const dunlandTargets = dunlandPlayTargets(s, c.code);
@@ -1452,10 +1647,15 @@ export function availableAbilities(s: GameState, u: Unit) {
     ];
   if (s.hand.some((x) => x.id === u.id)) {
     const bloodHandLabel = bloodPlayerHandAbilityLabel(u.code);
-    const label = bloodHandLabel ?? redhornPlayerHandAbilityLabel(u.code);
-    const problem = bloodHandLabel
-      ? bloodPlayerHandAbilityProblem(s, u)
-      : redhornPlayerHandAbilityProblem(s, u);
+    const label =
+      Angmar.angmarAbilityLabel(u.code) ??
+      bloodHandLabel ??
+      redhornPlayerHandAbilityLabel(u.code);
+    const problem = Angmar.angmarAbilityLabel(u.code)
+      ? Angmar.angmarAbilityProblem(s, u)
+      : bloodHandLabel
+        ? bloodPlayerHandAbilityProblem(s, u)
+        : redhornPlayerHandAbilityProblem(s, u);
     return label
       ? [
           {
@@ -1465,7 +1665,16 @@ export function availableAbilities(s: GameState, u: Unit) {
         ]
       : [];
   }
+  const rhudaurLabel = Rhudaur.rhudaurAbilityLabel(s, u);
+  if (rhudaurLabel)
+    return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const angmarLabel = Angmar.angmarAbilityLabel(u.code);
+  if (angmarLabel)
+    results.push({
+      label: angmarLabel,
+      disabled: !!Angmar.angmarAbilityProblem(s, u),
+    });
   const finalRingLabel = finalRingAbilityLabel(u.code);
   if (finalRingLabel)
     results.push({
@@ -1635,6 +1844,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const angmarLabel = Angmar.angmarAbilityLabel(a.code);
+    if (angmarLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: angmarLabel,
+        disabled: !!Angmar.angmarAbilityProblem(s, u, a.id),
+      });
     const realmLabel = Realm.realmAbilityLabel(a.code);
     if (realmLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -1761,6 +1977,7 @@ export function resolveQuestResult(s: GameState) {
   )
     return;
   if (foundationsResolveQuest(s)) return;
+  if (Gram.gramResolveQuest(s)) return;
   if (redhornBeforeQuestResolution(s)) return;
   const will = questWill(s),
     threat = stagingThreat(s),
@@ -1898,7 +2115,13 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Antlered.antleredOpeningHandsKept(s) &&
         !Chetwood.chetwoodOpeningHandsKept(s) &&
         !Weather.weatherOpeningHandsKept(s) &&
-        !Dike.dikeOpeningHandsKept(s)
+        !Dike.dikeOpeningHandsKept(s) &&
+        !Wastes.wastesOpeningHandsKept(s) &&
+        !Gram.gramOpeningHandsKept(s) &&
+        !Etten.ettenOpeningHandsKept(s) &&
+        !Rhudaur.rhudaurOpeningHandsKept(s) &&
+        !Carn.carnOpeningHandsKept(s) &&
+        !Dread.dreadOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -1942,7 +2165,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       } else if (s.phase === "staging") {
         resolveQuestResult(s);
       } else if (s.phase === "travel") {
-        if (foundationsTravelNext(s)) break;
+        if (Gram.gramTravelNext(s) || foundationsTravelNext(s)) break;
         requireRule(
           !Fords.fordsMandatoryTravel(s),
           "You must travel to The King’s Road.",
@@ -1960,6 +2183,24 @@ export function applyAction(input: GameState, action: Action): GameState {
       } else if (s.phase === "refresh") {
         enqueue(s, fx("phaseEnd"), fx("endRound"));
       } else throw new RuleError("Finish the current phase action first.");
+      break;
+    }
+    case "PLAY_DISCARD": {
+      requireRule(
+        Number.isSafeInteger(action.index) &&
+          action.index >= 0 &&
+          action.index < s.discard.length,
+        "Choose an actual event in your discard pile.",
+      );
+      requireRule(
+        angmarDiscardEvents.includes(s.discard[action.index]),
+        "This event needs a card effect to play it from discard.",
+      );
+      playEventFromDiscardEffect(s, action.index, {
+        target: action.target,
+        payment: action.payment,
+        amount: action.amount,
+      });
       break;
     }
     case "PLAY": {
@@ -1988,7 +2229,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           s.hand.some((a) => allyCanEnter(s, a.code)),
           "You need an eligible ally in hand.",
         );
-      if (["01036", "08143"].includes(u.code))
+      if (["01036", "08143", "10085"].includes(u.code))
         requireRule(
           action.payment &&
             Object.values(action.payment).filter((v) => v > 0).length === 3,
@@ -2017,11 +2258,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         action.payment,
         get(s, action.target),
       );
-      if (c.type_code === "event") redhornPlayerEventPlayed(s, u.code);
-      if (c.type_code === "event") dunlandEventPlayed(s, u.code);
-      if (c.type_code === "event") ringMakerEventPlayed(s, u.code);
       s.hand = s.hand.filter((x) => x.id !== u.id);
-      resolvePlayerCard(
+      resolvePaidPlayerCard(
         s,
         u,
         action.target,
@@ -2059,7 +2297,8 @@ export function applyAction(input: GameState, action: Action): GameState {
           if (handUnit) {
             requireRule(
               !action.attachmentId &&
-                (useBloodPlayerHandAbility(s, handUnit) ||
+                (Angmar.useAngmarAbility(s, handUnit) ||
+                  useBloodPlayerHandAbility(s, handUnit) ||
                   useRedhornPlayerHandAbility(s, handUnit)),
               "This card has no action from hand.",
             );
@@ -2073,7 +2312,8 @@ export function applyAction(input: GameState, action: Action): GameState {
               BloodQuest.bloodGondorAbility(s, u) ||
               Osgiliath.useAssaultOsgiliathAbility(s, u) ||
               useFoundationsAbility(s, u) ||
-              useHeirsAbility(s, u))
+              useHeirsAbility(s, u) ||
+              Rhudaur.rhudaurAbility(s, u))
           )
             return;
           if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
@@ -2112,7 +2352,8 @@ export function applyAction(input: GameState, action: Action): GameState {
               heirsCanSpendResources(s, u),
               "Orc Vanguard prevents Glorfindel from spending the resource cost.",
             );
-          if (useStewardFearAbility(s, u, action.attachmentId)) {
+          if (Angmar.useAngmarAbility(s, u, action.attachmentId)) {
+          } else if (useStewardFearAbility(s, u, action.attachmentId)) {
           } else if (u.code === CARROCK.grimbeorn && !action.attachmentId)
             enqueue(s, fx("carrockContribute", { target: u.id }));
           else if (useAmonPlayerAbility(s, u, action.attachmentId)) {
@@ -2134,7 +2375,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             useAbility(s, u, action.attachmentId);
           if (
             !action.attachmentId &&
-            card(u.code).type_code === "hero" &&
+            isHero(u) &&
             !["01007", "01011", "03002", "02095", "08056", "06107"].includes(
               u.code,
             )
@@ -2198,6 +2439,12 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Wastes.wastesTravel(s, u) ??
+        Gram.gramTravel(s, u) ??
+        Etten.ettenTravelEffects(s, u) ??
+        Rhudaur.rhudaurTravelEffects(s, u) ??
+        Carn.carnTravel(s, u) ??
+        Dread.dreadTravel(s, u) ??
         Dike.dikeTravel(s, u) ??
         Weather.weatherTravel(s, u) ??
         Chetwood.chetwoodTravel(s, u) ??
@@ -2414,6 +2661,88 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.wastesEriador
+      ? {
+          wastesEriador: {
+            initialized: s.wastesEriador.initialized,
+            timeOfDay: Wastes.wastesIsNight(s) ? "night" : "day",
+            progressThisRound: Object.values(
+              s.wastesEriador.progressPlaced,
+            ).reduce((a, b) => a + b, 0),
+          },
+        }
+      : {}),
+    ...(s.mountGram
+      ? {
+          mountGram: {
+            initialized: s.mountGram.initialized,
+            split: s.mountGram.split,
+            activeArea: s.mountGram.activeArea,
+            areas: s.mountGram.areas.map((a) => ({
+              id: a.id,
+              players: a.players,
+              quest: a.quest.code,
+              progress: a.progress,
+            })),
+            capturedDecks: Object.entries(s.mountGram.capturedDecks).map(
+              ([player, cards]) => ({
+                player: Number(player),
+                count: cards.length,
+              }),
+            ),
+            captured: Object.entries(s.mountGram.captured).map(
+              ([host, cards]) => ({ host, count: cards.length }),
+            ),
+            orcDeck: s.mountGram.orcDeck.length,
+          },
+        }
+      : {}),
+    ...(s.ettenmoors
+      ? {
+          ettenmoors: {
+            safe: Etten.ettenSafeActive(s),
+            engagementChecks: !Etten.ettenNoEngagementChecks(s),
+          },
+        }
+      : {}),
+    ...(s.rhudaur
+      ? {
+          rhudaur: {
+            initialized: s.rhudaur.initialized,
+            time: s.rhudaur.time,
+            setAside: s.rhudaur.setAside.map((u) => ({
+              id: u.id,
+              code: u.code,
+            })),
+          },
+        }
+      : {}),
+    ...(s.carnDum
+      ? {
+          carnDum: {
+            initialized: s.carnDum.initialized,
+            defensePenalty:
+              s.carnDum.furiousRound === s.round ? s.carnDum.furiousPenalty : 0,
+            terrorThreat:
+              s.carnDum.terrorRound === s.round ? s.carnDum.terrorThreat : 0,
+          },
+        }
+      : {}),
+    ...(s.dreadRealm
+      ? {
+          dreadRealm: {
+            initialized: s.dreadRealm.initialized,
+            daechanarDefeated: s.dreadRealm.daechanarDefeated,
+            reanimated: globalUnits(s)
+              .filter((u) => u.code === "dread:reanimated-dead")
+              .map((u) => ({ id: u.id, owner: u.owner })),
+            terrorThreat:
+              s.dreadRealm.terrorRound === s.round
+                ? s.dreadRealm.terrorThreat
+                : 0,
+          },
+        }
+      : {}),
     ...(s.weatherHills
       ? {
           weatherHills: {
@@ -2548,6 +2877,7 @@ export function publicState(s: GameState) {
               deckId: p.deckId,
               eliminated: s.table!.seats[i].eliminated,
               threat: p.threat,
+              threatAttachments: p.threatAttachments ?? [],
               hand: p.hand.map((u) => ({ id: u.id, code: u.code })),
               deckCount: p.deck.length,
               heroes: p.heroes,
@@ -2594,6 +2924,7 @@ export function publicState(s: GameState) {
     round: s.round,
     phase: s.phase,
     threat: s.threat,
+    threatAttachments: s.threatAttachments ?? [],
     quest: {
       ...stageInfo(s),
       stage: s.stage,

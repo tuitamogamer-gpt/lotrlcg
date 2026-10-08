@@ -9,6 +9,8 @@ import { emynMuilAttachmentsBlanked } from "./emyn-muil";
 import { allActiveLocations, allCharacters, allEngaged } from "./table";
 import { allQuestUnits } from "./quest-state";
 import { WEATHER } from "./weather-hills-support";
+import * as Angmar from "./angmar-player";
+import { ettenSideQuestBlanked } from "./ettenmoors";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
  * Blanking removes traits, keywords and abilities within the printed text box.
@@ -44,11 +46,12 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     const normalBlanking =
       khazadBlanked(host) ||
       (card(host.code).type_code === "attachment" && blanked);
+    const safeBlanking = ettenSideQuestBlanked(s, host);
     const coldBlanking =
       cold &&
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
-    if (normalBlanking || coldBlanking) host.blanked = true;
+    if (normalBlanking || coldBlanking || safeBlanking) host.blanked = true;
     else delete host.blanked;
     if (coldBlanking && !normalBlanking) host.printedKeywordsPreserved = true;
     else delete host.printedKeywordsPreserved;
@@ -60,9 +63,15 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ];
     if (traits.length) host.dynamicTraits = traits;
     else delete host.dynamicTraits;
+    const icons = Angmar.angmarResourceIcons(s, host);
+    if (icons.length) host.dynamicResourceIcons = icons;
+    else delete host.dynamicResourceIcons;
   }
   for (const host of hosts) {
-    const keywords = rohanDynamicKeywords(s, host);
+    const keywords = [
+      ...rohanDynamicKeywords(s, host),
+      ...Angmar.angmarDynamicKeywords(s, host),
+    ];
     if (keywords.length) host.dynamicKeywords = keywords;
     else delete host.dynamicKeywords;
   }
