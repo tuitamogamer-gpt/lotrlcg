@@ -51,6 +51,32 @@ function settle(s: GameState) {
   return s;
 }
 
+test("Angmar Orc discards an ally without triggering destruction-only Horn of Gondor", () => {
+  let s = base();
+  const discarded = ally(s);
+  const heroId = s.heroes[0].id,
+    resources = s.heroes[0].resources;
+  s.heroes[0].attachments.push({
+    id: `a${s.nextId++}`,
+    code: "01042",
+    owner: 0,
+    exhausted: false,
+  });
+  revealed(s, C.orc);
+  flush(s);
+  s = choose(reload(s), discarded.id);
+  assert.ok(s.discard.includes(discarded.code));
+  assert.equal(get(s, discarded.id), undefined);
+  assert.equal(get(s, heroId)!.resources, resources);
+  assert.equal(s.encounterDeck.length, 30);
+  s = base();
+  const iarionId = s.allies[0].id;
+  revealed(s, C.orc);
+  flush(s);
+  s = choose(reload(s), iarionId);
+  assert.equal(s.status, "lost");
+  assert.match(s.reason, /Iârion/);
+});
 test("Angmar Marauder returns only after its combat damage destroys an ally", () => {
   let s = base(),
     u = enemy(s, C.marauder),

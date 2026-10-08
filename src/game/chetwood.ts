@@ -14,7 +14,7 @@ import {
 } from "./core";
 import {
   discardPlayerDeck,
-  destroy,
+  discardCharacter,
   enemyAddedToStaging,
   engage,
   questDefeated,
@@ -638,7 +638,7 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       break;
     }
     case "chetDiscardAlly":
-      if (u) destroy(s, u);
+      if (u) discardCharacter(s, u);
       break;
     case "chetTravelEngage":
       choose(
