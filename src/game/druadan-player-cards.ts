@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { globalPlayerOrder } from "./table";
 // The Drúadan Forest: printed-sphere restrictions and exact lasting responses.
@@ -45,9 +46,7 @@ const phaseGroup: Record<Phase, string> = {
   attack: "combat",
   refresh: "refresh",
 };
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
     (u) => card(u.code).type_code === "enemy" && !immune(u),

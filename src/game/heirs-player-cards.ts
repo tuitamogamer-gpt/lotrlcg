@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -42,9 +43,7 @@ import {
 import { currentQuestUnit } from "./quest-state";
 import { consumeLeaveCard, leaveCardAvailable } from "./leave-consumption";
 
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const allHosts = (s: GameState): Unit[] => [
   ...new Map(
     [

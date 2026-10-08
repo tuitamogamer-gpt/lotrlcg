@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
 import { canGainResources } from "./core";
@@ -85,9 +86,7 @@ const markerExists = (s: GameState, marker: string) =>
   playerOrder(s).some((i) => seatView(s, i).used.includes(marker));
 const stagedEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) =>
-      card(u.code).type_code === "enemy" &&
-      !/immune to player card effects/i.test(card(u.code).text ?? ""),
+    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
   );
 export function longDarkPlayerStats(s: GameState, u: Unit) {
   const attack =

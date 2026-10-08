@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 // The Dunland Trap player cards; Celeborn, Naith Guide, Firefoot, Tree People
 // and Blue Mountain Trader use the complete Silvan/Rohan/Collector implementations.
@@ -48,9 +49,7 @@ import {
 } from "./damage-context";
 
 const SWIFT = "round:swift-and-silent";
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const readyTargets = (s: GameState) =>
   s.heroes.filter((u) => u.exhausted && !immune(u) && !cannotReady(u, s));
 const resourceTargets = (s: GameState) =>

@@ -1,7 +1,8 @@
+import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { takePlayerDeck, putPlayerDeck, reorderPlayerDeck } from "./core";
 // Exact active and triggered rules from The Hills of Emyn Muil.
-import { card, plain } from "./cards";
+import { card } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 import { choose, fx, get, log, opts, prepend, requireRule, skip } from "./core";
 import {
@@ -29,13 +30,11 @@ const locations = (s: GameState) =>
     (u) =>
       card(u.code).type_code === "location" &&
       u.code !== CARROCK.carrock &&
-      !/immune to player card effects/i.test(plain(card(u.code).text)),
+      !playerCardImmune(u),
   );
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) =>
-      card(u.code).type_code === "enemy" &&
-      !/immune to player card effects/i.test(plain(card(u.code).text)),
+    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
   );
 const leadershipAllies = (s: GameState) =>
   s.allies.filter(

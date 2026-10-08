@@ -3,6 +3,8 @@
 .mat-mirkwood,
 .redbook[data-playmat="into-fangorn"],
 .mat-into-fangorn,
+.redbook[data-playmat="the-three-trials"],
+.mat-the-three-trials,
 .redbook[data-playmat="return-to-mirkwood"],
 .mat-return-to-mirkwood {
   --playmat-art: url("/art/premium/mirkwood.webp");

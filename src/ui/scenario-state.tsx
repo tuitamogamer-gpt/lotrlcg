@@ -1,3 +1,6 @@
+import { TRIALS } from "../game/three-trials-support";
+import { trialsKeys } from "../game/three-trials";
+import { allEngaged } from "../game/table";
 import { DUNLAND_TRAP, dunlandTimeLimit } from "../game/dunland-trap-support";
 import { FANGORN, fangornTimeLimit } from "../game/fangorn-support";
 import { fangornCarrier } from "../game/fangorn";
@@ -24,6 +27,7 @@ export function ScenarioState({
     !s.catchOrc &&
     !s.fangorn &&
     !s.dunlandTrap &&
+    !s.threeTrials &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -82,6 +86,32 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.threeTrials && (
+        <div className="tower-counter">
+          <strong>
+            Trials completed · {s.threeTrials.completed.length} / 3
+          </strong>
+          <span>Keys held · {trialsKeys(s).length} / 3</span>
+          <span>
+            {s.stage === 3
+              ? "Explore Hallowed Circle, then place 1 quest progress."
+              : s.threeTrials.activeQuest === TRIALS.intuition
+                ? "Quest progress searches the encounter deck for the current Key."
+                : s.threeTrials.activeQuest === TRIALS.perseverance
+                  ? "Explore the Barrow. Its Guardian cannot be damaged."
+                  : s.stage === 1
+                    ? "Keep your hand, then choose the first trial."
+                    : "Defeat the Guardian. Barrows cannot be active during this trial."}
+          </span>
+          {[...s.staging, ...allEngaged(s)]
+            .filter((u) => u.timeCounters !== undefined)
+            .map((u) => (
+              <button key={u.id} onClick={() => inspect(card(u.code))}>
+                {card(u.code).name} · Time {u.timeCounters}
+              </button>
+            ))}
         </div>
       )}
       {s.dunlandTrap && (

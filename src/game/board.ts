@@ -1,3 +1,5 @@
+import * as Trials from "./three-trials";
+import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import { FANGORN } from "./fangorn-support";
 import * as Fangorn from "./fangorn";
@@ -590,6 +592,7 @@ export function check(s: GameState) {
   redhornCheck(s);
   roadRivendellCheck(s);
   if (s.status !== "playing") return;
+  Trials.trialsDiscardedKeys(s);
   if (s.prisoner) {
     const p = seatView(s, s.prisoner.owner ?? 0);
     if (
@@ -629,6 +632,7 @@ export function check(s: GameState) {
       (u) =>
         !shadowFlameIndestructible(u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
+        !Trials.trialsCannotLeave(s, u) &&
         u.damage >= stats(s, u).health,
     );
     if (unit) doomed = { unit, player: activeSeat(s) };
@@ -808,6 +812,7 @@ export function check(s: GameState) {
     Catch.catchCheck(s);
     Fangorn.fangornCheck(s);
     DunlandQuest.dunlandCheck(s);
+    Trials.trialsCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -826,41 +831,43 @@ export function win(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "the-dunland-trap"
-      ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
-      : s.scenarioId === "the-druadan-forest"
-        ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
-        : s.scenarioId === "encounter-at-amon-din"
-          ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
-          : s.scenarioId === "assault-on-osgiliath"
-            ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
-            : s.scenarioId === "mirkwood"
-              ? "Your fellowship has passed safely through Mirkwood."
-              : s.scenarioId === "anduin"
-                ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-                : s.scenarioId === "hunt-for-gollum"
-                  ? "You have found a true sign of Gollum’s passing. The trail leads on."
-                  : s.scenarioId === "conflict-at-the-carrock"
-                    ? "The Trolls are defeated and the Carrock is free."
-                    : s.scenarioId === "hills-of-emyn-muil"
-                      ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
-                      : s.scenarioId === "journey-to-rhosgobel"
-                        ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
-                        : s.scenarioId === "dead-marshes"
-                          ? "Your fellowship captures Gollum in the Dead Marshes."
-                          : s.scenarioId === "return-to-mirkwood"
-                            ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
-                            : s.scenarioId === "road-to-rivendell"
-                              ? "Arwen arrives safely in Rivendell with your fellowship."
-                              : s.scenarioId === "redhorn-gate"
-                                ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
-                                : s.scenarioId === "into-the-pit"
-                                  ? "Your fellowship survives the depths beneath the East-gate of Moria."
-                                  : s.scenarioId === "the-seventh-level"
-                                    ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
-                                    : s.scenarioId === "flight-from-moria"
-                                      ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                                      : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+    s.scenarioId === "the-three-trials"
+      ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
+      : s.scenarioId === "the-dunland-trap"
+        ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
+        : s.scenarioId === "the-druadan-forest"
+          ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
+          : s.scenarioId === "encounter-at-amon-din"
+            ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
+            : s.scenarioId === "assault-on-osgiliath"
+              ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
+              : s.scenarioId === "mirkwood"
+                ? "Your fellowship has passed safely through Mirkwood."
+                : s.scenarioId === "anduin"
+                  ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+                  : s.scenarioId === "hunt-for-gollum"
+                    ? "You have found a true sign of Gollum’s passing. The trail leads on."
+                    : s.scenarioId === "conflict-at-the-carrock"
+                      ? "The Trolls are defeated and the Carrock is free."
+                      : s.scenarioId === "hills-of-emyn-muil"
+                        ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
+                        : s.scenarioId === "journey-to-rhosgobel"
+                          ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
+                          : s.scenarioId === "dead-marshes"
+                            ? "Your fellowship captures Gollum in the Dead Marshes."
+                            : s.scenarioId === "return-to-mirkwood"
+                              ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
+                              : s.scenarioId === "road-to-rivendell"
+                                ? "Arwen arrives safely in Rivendell with your fellowship."
+                                : s.scenarioId === "redhorn-gate"
+                                  ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
+                                  : s.scenarioId === "into-the-pit"
+                                    ? "Your fellowship survives the depths beneath the East-gate of Moria."
+                                    : s.scenarioId === "the-seventh-level"
+                                      ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                      : s.scenarioId === "flight-from-moria"
+                                        ? "Your fellowship finds an exit and escapes the darkness of Moria."
+                                        : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -884,7 +891,7 @@ export function damage(
 ): boolean {
   syncAttachmentText(s);
   const u = get(s, id);
-  if (!u) return false;
+  if (!u || Trials.trialsCannotDamage(s, u)) return false;
   if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
     return false;
   value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
@@ -946,6 +953,7 @@ export function damage(
     MorgulQuest.morgulCharacterDestroyed(s, u, context);
     Fords.fordsCharacterDestroyed(s, u, context);
     Catch.catchCharacterDestroyed(s, u, context);
+    Trials.trialsCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -964,6 +972,7 @@ export function discardAttachment(
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
   if (u.id.startsWith("quest:"))
     (s.questAttachments ??= {})[u.code] = u.attachments;
+  if (Trials.trialsAttachmentLeaves(s, a)) return;
   if (khazadAttachmentLeaves(s, u, a)) return;
   if (heirsAttachmentLeaves(s, u, a)) return;
   if (a.code === CLUE && leaving) {
@@ -1050,7 +1059,8 @@ export function characterLeftPlay(
 /** Destruction is distinct from discard costs and forced discard effects. */
 export function destroy(s: GameState, u: Unit, destruction = true) {
   syncAttachmentText(s);
-  if (DunlandQuest.dunlandCannotLeave(u)) return;
+  if (DunlandQuest.dunlandCannotLeave(u) || Trials.trialsCannotLeave(s, u))
+    return;
   if (destruction && shadowFlameIndestructible(u)) return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   const previous = activeSeat(s);
@@ -1178,6 +1188,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
 export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
+  if (Trials.trialsRedirectProgress(s, value, u)) return;
   if (Catch.catchLocationProgressBlocked(s, u)) return;
   if (heirsLocationProgressBlocked(s, u)) return;
   if (shadowFlameLocationProgressBlocked(s, u)) return;
@@ -1236,11 +1247,19 @@ export function progress(
   fromSuccessfulQuest = false,
 ) {
   if (n <= 0 || s.status !== "playing") return;
+  if (
+    Trials.trialsRedirectProgress(
+      s,
+      n,
+      undefined,
+      playerEffect,
+      fromSuccessfulQuest,
+    )
+  )
+    return;
   const allLocations = allActiveLocations(s);
   const locations = allLocations.filter(
-    (l) =>
-      !playerEffect ||
-      !/immune to (?:player )?card effects/i.test(card(l.code).text ?? ""),
+    (l) => !playerEffect || !playerCardImmune(l),
   );
   if (playerEffect && allLocations.length && !locations.length) {
     log(s, "The active location is immune to this progress effect.");
@@ -1333,6 +1352,7 @@ export function progress(
     return;
   if (n <= 0 || s.status !== "playing") return;
   if (Catch.catchProgressBlocked(s)) return;
+  if (Trials.trialsQuestProgress(s, n)) return;
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
@@ -1378,6 +1398,7 @@ export function advanceQuest(s: GameState) {
   if (Catch.advanceCatchOrc(s)) return;
   if (Fangorn.advanceFangorn(s)) return;
   if (DunlandQuest.advanceDunlandTrap(s)) return;
+  if (Trials.advanceThreeTrials(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -2027,7 +2048,8 @@ export function placeEncounter(
 ) {
   const c = card(code);
   if (c.type_code !== "treachery") {
-    const fresh = make(s, code);
+    const fresh = Trials.trialsRevealedUnit(s, code) ?? make(s, code);
+    Trials.trialsCardEntered(s, fresh, fromReveal);
     fresh.progress = initialProgress;
     fresh.damage =
       initialDamage && khazadDamageCancelled(s, fresh, initialDamage)
@@ -2081,6 +2103,7 @@ export function placeEncounter(
   if (Catch.catchEncounter(s, code)) return;
   if (Fangorn.fangornEncounter(s, code)) return;
   if (DunlandQuest.dunlandEncounter(s, code)) return;
+  if (Trials.trialsEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2534,6 +2557,7 @@ export function shadow(s: GameState, code: string) {
   if (Catch.catchShadow(s, code)) return;
   if (Fangorn.fangornShadow(s, code)) return;
   if (DunlandQuest.dunlandShadow(s, code)) return;
+  if (Trials.trialsShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

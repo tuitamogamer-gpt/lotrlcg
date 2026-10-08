@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
 // Remaining player cards from The Three Trials and Trouble in Tharbad.
@@ -58,9 +59,7 @@ const state = (s: GameState) => (s.ringMaker ??= { returns: [] });
 const firstLocation = "round:ring-first-location";
 const eventKey = (code: string) => `round:ring-event:${code}`;
 const sphereKey = (sphere: string) => `round:ring-sphere:${sphere}`;
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const canReady = (s: GameState, u: Unit) =>
   u.exhausted && !immune(u) && !cannotReady(u, s);
 const affectedEnemies = (s: GameState) =>

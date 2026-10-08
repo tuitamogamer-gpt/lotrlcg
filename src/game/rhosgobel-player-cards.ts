@@ -1,7 +1,8 @@
+import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { spendResources } from "./core";
 // Exact active and triggered player rules from A Journey to Rhosgobel.
-import { card, name, plain } from "./cards";
+import { card, name } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -41,9 +42,7 @@ import {
 
 const enemies = (s: GameState) =>
   [...allEngaged(s), ...s.staging].filter(
-    (u) =>
-      card(u.code).type_code === "enemy" &&
-      !/immune to player card effects/i.test(plain(card(u.code).text)),
+    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
   );
 const giftsRecipients = (s: GameState, source: Unit) =>
   allHeroes(s).filter((u) => u.id !== source.id && canGainResources(s, u));

@@ -1,6 +1,7 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 // The Nîn-in-Eilph, Celebrimbor's Secret and The Antlered Crown.
-import { card, name, plain } from "./cards";
+import { card, name } from "./cards";
 import type { Effect, GameState, Option, Unit } from "./types";
 import {
   canGainResources,
@@ -42,9 +43,7 @@ import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 
 const BELTS = "round:tighten-belts";
 const RIDE = "phase:ride-them-down:";
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const readyTargets = (s: GameState) =>
   allCharacters(s).filter(
     (u) =>

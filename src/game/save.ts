@@ -1,3 +1,7 @@
+import {
+  validateThreeTrialsState,
+  guardianTimeLimit,
+} from "./three-trials-support";
 import { validateDunlandTrapState } from "./dunland-trap-support";
 import { validateFangornState } from "./fangorn-support";
 import { validateCatchOrcState } from "./catch-orc-support";
@@ -142,6 +146,8 @@ export function validateSave(
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
       [
+        c.trialsGuardianThreat,
+        c.trialsTimeOnKill,
         c.fordsExtraAttacks,
         c.fordsTimeOnKill,
         c.extraAttacks,
@@ -164,6 +170,10 @@ export function validateSave(
           new Set(c.desperateDefenderIds).size ===
             c.desperateDefenderIds.length));
     const validUnit = (u: Unit) =>
+      (u.timeCounters === undefined ||
+        (integer(u.timeCounters) &&
+          u.timeCounters >= 0 &&
+          u.timeCounters <= guardianTimeLimit(u.code))) &&
       [u?.resourcesSpentRound, u?.ignoreThreatRound, u?.roundDefense].every(
         (n) => n === undefined || (integer(n) && n >= 0),
       ) &&
@@ -179,6 +189,7 @@ export function validateSave(
         u.shadowCancelsDamage,
         u.shadowCancelsCombatDamage,
         u.roundCannotTakeDamage,
+        u.immuneToPlayerEffects,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
@@ -331,6 +342,7 @@ export function validateSave(
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
+        !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
           s,
@@ -865,6 +877,9 @@ export function validateSave(
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
       ...(s.dunlandTrap?.setAside ?? []),
+      ...(s.threeTrials
+        ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
+        : []),
       ...(s.catchOrc
         ? [
             ...Object.values(s.catchOrc.decks).flat(),

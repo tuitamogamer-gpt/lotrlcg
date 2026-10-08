@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -89,8 +90,7 @@ const codes = {
   archer: "08087",
   pursuing: "08060",
 } as const;
-const affected = (u: Unit) =>
-  !/immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const affected = (u: Unit) => !playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
     (u) => card(u.code).type_code === "enemy" && affected(u),

@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { globalPlayerOrder } from "./table";
 import { stewardFearLocationLeft } from "./steward-fear";
@@ -40,9 +41,7 @@ const hobbits = (s: GameState) =>
   );
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
-    (u) =>
-      card(u.code).type_code === "location" &&
-      !/immune to (?:player )?card effects/i.test(plain(card(u.code).text)),
+    (u) => card(u.code).type_code === "location" && !playerCardImmune(u),
   );
 const roundValue = (s: GameState, prefix: string) =>
   globalPlayerOrder(s).reduce(

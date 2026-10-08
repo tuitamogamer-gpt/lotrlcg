@@ -1169,6 +1169,7 @@
   --event-art: url("/art/premium/anduin.webp");
 }
 
+.event-landscape-the-three-trials,
 .event-landscape-into-fangorn {
   --event-art: url("/art/premium/mirkwood.webp");
 }

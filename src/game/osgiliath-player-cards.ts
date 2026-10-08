@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // Assault on Osgiliath: exact printed-icon passives and serializable choices.
@@ -54,9 +55,7 @@ import {
   replayEventProblem,
 } from "./actions";
 
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const active = (a: Attachment) => !a.blanked && !a.facedown;
 const liveCharacter = (s: GameState, u: Unit) =>
   allCharacters(s).some((candidate) => candidate.id === u.id);

@@ -1,3 +1,4 @@
+import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
@@ -642,6 +643,23 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.threeTrials)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 3
+            ? "Explore Hallowed Circle and reach 1 quest progress"
+            : s.stage === 1
+              ? "Choose your first trial"
+              : s.threeTrials.activeQuest === TRIALS.strength
+                ? "Defeat the Guardian and claim its Key"
+                : s.threeTrials.activeQuest === TRIALS.perseverance
+                  ? "Explore the Barrow and claim its Key"
+                  : "Find the hidden Key in the encounter deck"}
+        </span>
+      </div>
+    );
   if (s.dunlandTrap)
     return (
       <div className="quest-goals">

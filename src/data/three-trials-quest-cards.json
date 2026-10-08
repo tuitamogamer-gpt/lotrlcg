@@ -1,0 +1,203 @@
+[
+  {
+    "code": "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+    "octgnid": "460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+    "name": "The Trials Begin",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set aside all 3 Guardian enemies, all 3 Key objectives, all 3 Barrow locations, and Hallowed Circle.",
+    "is_unique": false,
+    "pack_code": "TTT",
+    "pack_name": "The Three Trials",
+    "position": 35,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Three Trials",
+    "side": "A",
+    "back_name": "The Trials Begin",
+    "back_text": "When Revealed: The players advance to a stage 2A quest of their choice.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/460a1e18-8a57-44a5-bd06-f0c1b13c86b5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/460a1e18-8a57-44a5-bd06-f0c1b13c86b5.jpg",
+    "packs": [
+      {
+        "pack_code": "TTT",
+        "pack_name": "The Three Trials",
+        "position": 35,
+        "quantity": 1,
+        "octgnid": "460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/460a1e18-8a57-44a5-bd06-f0c1b13c86b5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
+    "octgnid": "47f627da-150c-41b2-9442-390d8d2a897a",
+    "name": "The Antlered Crown",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Hallowed Circle to the staging area. Reveal each Guardian enemy in the victory display, adding them to the staging area.",
+    "is_unique": false,
+    "pack_code": "TTT",
+    "pack_name": "The Three Trials",
+    "position": 39,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Three Trials",
+    "side": "A",
+    "back_name": "The Antlered Crown",
+    "back_text": "Each Guardian enemy engages the player who controls the Key objective with a Trait shared by that enemy.  Players cannot defeat this stage unless Hallowed Circle is in the victory display. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 1,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47f627da-150c-41b2-9442-390d8d2a897a.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47f627da-150c-41b2-9442-390d8d2a897a.jpg",
+    "packs": [
+      {
+        "pack_code": "TTT",
+        "pack_name": "The Three Trials",
+        "position": 39,
+        "quantity": 1,
+        "octgnid": "47f627da-150c-41b2-9442-390d8d2a897a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47f627da-150c-41b2-9442-390d8d2a897a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
+    "octgnid": "8a0c8aef-d820-495f-b8f6-f2148f0786ba",
+    "name": "The Trial of Intuition",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Randomly choose 1 of the remaining set aside Guardian enemies and 1 of the remaining set aside Barrow locations, reveal them, and add them to the staging area. Shuffle the encounter discard pile into the encounter deck. Find the set aside Key objective that shares a Trait with the just revealed Guardian enemy and shuffle it into the bottom 10 cards of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TTT",
+    "pack_name": "The Three Trials",
+    "position": 38,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Three Trials",
+    "side": "A",
+    "back_name": "The Trial of Intuition",
+    "back_text": "Each Guardian enemy engages the first player. Any time players would place progress on this quest, discard an equal number of cards from the encounter deck instead. (Progress is placed on the active location before triggering this effect.)  When the players control the current trial's Key objective, add all Guardian enemies and Barrow locations in play to the victory display and immediately advance to a stage 2A of the players' choice. If all stage 2 quests have been defeated, advance to stage 3A, instead.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0c8aef-d820-495f-b8f6-f2148f0786ba.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0c8aef-d820-495f-b8f6-f2148f0786ba.jpg",
+    "packs": [
+      {
+        "pack_code": "TTT",
+        "pack_name": "The Three Trials",
+        "position": 38,
+        "quantity": 1,
+        "octgnid": "8a0c8aef-d820-495f-b8f6-f2148f0786ba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0c8aef-d820-495f-b8f6-f2148f0786ba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
+    "octgnid": "8e6fe06e-36a6-491d-ae17-6580ddfd8014",
+    "name": "The Trial of Strength",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Randomly choose 1 of the remaining set aside Guardian enemies and 1 of the remaining set aside Barrow locations, reveal them, and add them to the staging area. Find the set aside Key objective that shares a Trait with the just revealed Guardian enemy and attach it to that enemy.",
+    "is_unique": false,
+    "pack_code": "TTT",
+    "pack_name": "The Three Trials",
+    "position": 36,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Three Trials",
+    "side": "A",
+    "back_name": "The Trial of Strength",
+    "back_text": "Each Guardian enemy engages the first player. Barrow locations cannot be the active location and are immune to player card effects.  When the players control the current trial's Key objective, add all Barrow locations in play to the victory display and immediately advance to a stage 2A of the players' choice. If all stage 2 quests have been defeated, advance to stage 3A, instead.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e6fe06e-36a6-491d-ae17-6580ddfd8014.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e6fe06e-36a6-491d-ae17-6580ddfd8014.jpg",
+    "packs": [
+      {
+        "pack_code": "TTT",
+        "pack_name": "The Three Trials",
+        "position": 36,
+        "quantity": 1,
+        "octgnid": "8e6fe06e-36a6-491d-ae17-6580ddfd8014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e6fe06e-36a6-491d-ae17-6580ddfd8014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
+    "octgnid": "be43a52a-370a-4481-bc84-8e004ecbfdca",
+    "name": "The Trial of Perseverance",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Randomly choose 1 of the remaining set aside Barrow locations and add it to the staging area. Then, randomly choose 1 of the remaining set aside Key objectives and attach it to that Barrow location. Find the set aside Guardian enemy that shares a Trait with the Key objective in play and reveal it, adding it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TTT",
+    "pack_name": "The Three Trials",
+    "position": 37,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Three Trials",
+    "side": "A",
+    "back_name": "The Trial of Perseverance",
+    "back_text": "Each Guardian enemy engages the first player. Guardian enemies cannot be damaged or leave play except by quest effect.  When the players control the current trial's Key objective, add all Guardian enemies in play to the victory display and immediately advance to a stage 2A of the players' choice. If all stage 2 quests have been defeated, advance to stage 3A, instead.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be43a52a-370a-4481-bc84-8e004ecbfdca.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be43a52a-370a-4481-bc84-8e004ecbfdca.jpg",
+    "packs": [
+      {
+        "pack_code": "TTT",
+        "pack_name": "The Three Trials",
+        "position": 37,
+        "quantity": 1,
+        "octgnid": "be43a52a-370a-4481-bc84-8e004ecbfdca",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be43a52a-370a-4481-bc84-8e004ecbfdca.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

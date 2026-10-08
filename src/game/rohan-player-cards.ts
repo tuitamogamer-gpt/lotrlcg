@@ -1,9 +1,10 @@
+import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
 import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
 // Exact Riders of Rohan main-list rules; original printings remain in the catalog.
 // Primary list: https://images-cdn.fantasyflightgames.com/filer_public/1d/d6/1dd6170d-344d-4f9e-977b-7ef79c2d5c6c/mec106_rules.pdf
-import { card, name, plain } from "./cards";
+import { card, name } from "./cards";
 import type { Card, Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -71,8 +72,7 @@ const rohanCode = {
   firefoot: "08004",
   forth: "06138",
 } as const;
-const affected = (u: Unit) =>
-  !/immune to player card effects/i.test(plain(card(u.code).text));
+const affected = (u: Unit) => !playerCardImmune(u);
 const uniqueAllowed = (s: GameState, code: string) =>
   !card(code).is_unique ||
   !globalCharacters(s).some((u) => card(u.code).name === card(code).name);

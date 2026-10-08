@@ -1,9 +1,10 @@
+import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // Road to Rivendell beyond the shared Dwarf and Rivendell Blade rules.
 import { engagedEnemies } from "./considered-engagement";
 import { putPlayedEventInVictory } from "./event-resolution";
-import { card, plain } from "./cards";
+import { card } from "./cards";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -45,9 +46,7 @@ const readyOwn = (s: GameState) =>
   );
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) =>
-      card(u.code).type_code === "enemy" &&
-      !/immune to player card effects/i.test(plain(card(u.code).text)),
+    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
   );
 const spiritPayers = (s: GameState) =>
   s.heroes.filter(

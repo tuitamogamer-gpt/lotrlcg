@@ -1,3 +1,6 @@
+import { threatOf } from "./core";
+import * as Trials from "./three-trials";
+import { playerCardImmune } from "./card-immunity";
 import { fangornAttackStarted } from "./fangorn";
 import { catchAttackStarted } from "./catch-orc";
 import * as Isengard from "./voice-isengard";
@@ -152,9 +155,7 @@ export function playerAttack(
     requireRule(
       ids.length === 1 &&
         s.staging.some((u) => u.id === enemy.id) &&
-        !/immune to (?:player )?card effects/i.test(
-          card(enemy.code).text ?? "",
-        ),
+        !playerCardImmune(enemy),
       "Hands Upon the Bow declares its single paid Ranged attacker against an eligible staging enemy.",
     );
   requireRule(
@@ -375,6 +376,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   MorgulQuest.morgulAttackStarted(s, enemy);
   catchAttackStarted(s, enemy, player);
   fangornAttackStarted(s);
+  Trials.trialsAttackStarted(s, enemy);
 }
 
 export function applyCombatDamageConsequences(
@@ -486,6 +488,9 @@ export function beginEnemyAttack(
   const exhaustionResponses = s.queue.splice(0, s.queue.length - priorQueue);
   s.combat = {
     enemyId: enemy.id,
+    ...(Trials.trialsGuardian(enemy)
+      ? { trialsGuardianThreat: threatOf(s, enemy) }
+      : {}),
     attackPlayer: activeSeat(s),
     damageDealt: 0,
     defenderId: ids[0] ?? null,

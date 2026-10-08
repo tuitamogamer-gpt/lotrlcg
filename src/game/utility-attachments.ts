@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import type { GameState, Unit } from "./types";
 import { card } from "./cards";
 import {
@@ -11,9 +12,7 @@ import { rhosgobelHealingAllowed } from "./rhosgobel";
 
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
-    (u) =>
-      card(u.code).type_code === "location" &&
-      !/immune to (?:player )?card effects/i.test(card(u.code).text ?? ""),
+    (u) => card(u.code).type_code === "location" && !playerCardImmune(u),
   );
 export function utilityAbilityProblem(
   s: GameState,
@@ -90,8 +89,7 @@ export function utilityAttackDeclared(
   enemy: Unit,
   attackers: Unit[],
 ) {
-  if (/immune to (?:player )?card effects/i.test(card(enemy.code).text ?? ""))
-    return;
+  if (playerCardImmune(enemy)) return;
   const blades = attackers.reduce(
     (n, u) =>
       n + u.attachments.filter((a) => !a.blanked && a.code === "04031").length,

@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { reorderPlayerDeck } from "./core";
 // Foundations of Stone: exact active rules beyond shared Dwarf/Elf attachments.
@@ -67,9 +68,7 @@ export function foundationsPlayerDiscardTaken(
 }
 const heavyEnemy = (s: GameState, id?: string) => {
   const u = get(s, id);
-  return u &&
-    card(u.code).type_code === "enemy" &&
-    !/immune to (?:player )?card effects/i.test(card(u.code).text ?? "")
+  return u && card(u.code).type_code === "enemy" && !playerCardImmune(u)
     ? u
     : undefined;
 };

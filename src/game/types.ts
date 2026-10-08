@@ -95,6 +95,10 @@ export interface Unit {
   shadowCancelsDamage?: boolean;
   /** Frenzied Attack lasts through refresh, until the round ends. */
   roundCannotTakeDamage?: boolean;
+  /** Time tokens on revealed encounter cards, independent of resource pools. */
+  timeCounters?: number;
+  /** Derived immunity granted by an active scenario effect. */
+  immuneToPlayerEffects?: boolean;
   shadowCancelsCombatDamage?: boolean;
   /** Derived global continuous traits and keywords. */
   dynamicTraits?: string[];
@@ -166,6 +170,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "the-three-trials"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
 export interface CampaignState {
@@ -276,6 +281,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  threeTrials?: import("./three-trials-support").ThreeTrialsState;
   dunlandTrap?: import("./dunland-trap-support").DunlandTrapState;
   fangorn?: import("./fangorn-support").FangornState;
   refreshReadied?: Record<number, string[]>;
@@ -407,6 +413,8 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    trialsTimeOnKill?: number;
+    trialsGuardianThreat?: number;
     fordsTimeOnKill?: number;
     fordsExtraAttacks?: number;
     morgulProgressOnKill?: boolean;

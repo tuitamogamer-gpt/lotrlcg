@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 // Encounter at Amon Dîn: exact optional responses and lasting permissions.
 import { card, name, plain } from "./cards";
 import type { Card, Effect, GameState, Unit } from "./types";
@@ -53,9 +54,7 @@ import {
   replayEventProblem,
 } from "./actions";
 
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const marker = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
 const allHobbits = (s: GameState, player = activeSeat(s)) => {

@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
@@ -61,8 +62,7 @@ import {
 } from "./actions";
 import { playerAttack } from "./combat";
 
-const immune = (u: Unit) =>
-  /immune to (?:player )?card effects/i.test(card(u.code).text ?? "");
+const immune = (u: Unit) => playerCardImmune(u);
 const stagingEnemies = (s: GameState) =>
   s.staging.filter((u) => card(u.code).type_code === "enemy" && !immune(u));
 const readyHeroes = (s: GameState) =>

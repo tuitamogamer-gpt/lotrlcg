@@ -102,7 +102,12 @@ export function observe(
               Willpower: String(stats.will),
             }
           : {}),
-        ...(c.type_code === "hero" ? { Resources: String(u.resources) } : {}),
+        ...(c.type_code === "hero" || u.resources > 0
+          ? { Resources: String(u.resources) }
+          : {}),
+        ...(u.timeCounters !== undefined
+          ? { Time: String(u.timeCounters) }
+          : {}),
         ...(c.name === "To the Tower"
           ? { "Tower progress": `${u.progress} / 10` }
           : {}),

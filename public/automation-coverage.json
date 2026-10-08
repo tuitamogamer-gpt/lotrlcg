@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 418,
-    "scenarios": 31,
+    "encounterCards": 434,
+    "scenarios": 32,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -38,17 +38,18 @@
       "fords-of-isen",
       "to-catch-an-orc",
       "into-fangorn",
-      "the-dunland-trap"
+      "the-dunland-trap",
+      "the-three-trials"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 946,
-    "pending": 3237
+    "scripted": 967,
+    "pending": 3216
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 62
+    "scripted": 64
   },
   "registeredCodes": [
     "01001",
@@ -563,6 +564,7 @@
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
+    "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
@@ -577,11 +579,14 @@
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+    "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -589,7 +594,9 @@
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
+    "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
+    "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9006",
@@ -869,6 +876,7 @@
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
@@ -881,29 +889,39 @@
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
+    "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
+    "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
+    "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
+    "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
+    "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
+    "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
+    "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
+    "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
@@ -911,9 +929,11 @@
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
+    "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
@@ -940,6 +960,7 @@
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
+    "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
@@ -948,6 +969,7 @@
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
+    "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
@@ -1820,7 +1842,7 @@
     {
       "product": "the-three-trials",
       "total": 31,
-      "scripted": 10,
+      "scripted": 31,
       "player": 10,
       "playerScripted": 10
     },
@@ -13396,7 +13418,7 @@
       "name": "The Guardian's Fury",
       "type": "treachery",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -14740,7 +14762,7 @@
       "name": "Hallowed Circle",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -15276,7 +15298,7 @@
       "name": "Stone Barrow",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -15716,7 +15738,7 @@
       "name": "Boar's Guardian",
       "type": "enemy",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -16412,7 +16434,7 @@
       "name": "The Trials Begin",
       "type": "quest",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -16588,7 +16610,7 @@
       "name": "The Antlered Crown",
       "type": "quest",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -23484,7 +23506,7 @@
       "name": "Curse of the Wild Men",
       "type": "treachery",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -24700,7 +24722,7 @@
       "name": "Spirit of the Wild",
       "type": "enemy",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -24764,7 +24786,7 @@
       "name": "Key of the Raven",
       "type": "objective",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -24980,7 +25002,7 @@
       "name": "The Trial of Intuition",
       "type": "quest",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -25212,7 +25234,7 @@
       "name": "Wolf's Guardian",
       "type": "enemy",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -25420,7 +25442,7 @@
       "name": "The Trial of Strength",
       "type": "quest",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -25876,7 +25898,7 @@
       "name": "Cursed Forest",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -26284,7 +26306,7 @@
       "name": "Raven's Guardian",
       "type": "enemy",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -26372,7 +26394,7 @@
       "name": "Key of the Wolf",
       "type": "objective",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -26996,7 +27018,7 @@
       "name": "Grim Foothills",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -27380,7 +27402,7 @@
       "name": "Cave Barrow",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -28628,7 +28650,7 @@
       "name": "Hill Barrow",
       "type": "location",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -29660,7 +29682,7 @@
       "name": "The Trial of Perseverance",
       "type": "quest",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -32444,7 +32466,7 @@
       "name": "Key of the Boar",
       "type": "objective",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -34004,7 +34026,7 @@
       "name": "Wild Tenacity",
       "type": "treachery",
       "pack": "The Three Trials",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-three-trials"
     },
     {
@@ -35660,8 +35682,8 @@
       "id": "E04.5",
       "name": "The Three Trials (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-three-trials",
+      "state": "scripted"
     },
     {
       "id": "E04.6",
@@ -37151,8 +37173,8 @@
       "id": "Q04.5",
       "name": "The Three Trials",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-three-trials",
+      "state": "scripted"
     },
     {
       "id": "Q04.6",

@@ -1,9 +1,10 @@
+import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import { stewardFearTravelEntered } from "./steward-fear";
 // Exact active/triggered Return to Mirkwood player rules; Dáin reuses dwarfStats.
 import { engagedEnemies } from "./considered-engagement";
-import { card, plain } from "./cards";
+import { card } from "./cards";
 import { redhornCanMakeActive } from "./redhorn-gate";
 import type { Effect, GameState, Unit } from "./types";
 import {
@@ -40,8 +41,7 @@ export interface LeaveDestination {
   id?: string;
   index?: number;
 }
-const affected = (u: Unit) =>
-  !/immune to player card effects/i.test(plain(card(u.code).text));
+const affected = (u: Unit) => !playerCardImmune(u);
 const locations = (s: GameState) =>
   s.staging.filter(
     (u) =>

@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { currentQuestUnit } from "./quest-state";
 // Doomed applies when a player card is played or put into play (Voice of Isengard rulesheet).
 import type { Card, Effect, GameState, Unit } from "./types";
@@ -33,9 +34,7 @@ const GRIMA = "round:grima-next";
 // Optional grants mention Doomed in their ability text but have no printed keyword.
 const printedDoomed = (code: string) =>
   /(?:^|[.\n]\s*)Doomed\s+(\d+|X)\b/i.exec(plain(card(code).text))?.[1];
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 export interface IsengardState {
   outOfPlay: { source: string; cards: Unit[] }[];
 }

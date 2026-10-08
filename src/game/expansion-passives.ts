@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { khazadBookNoExhaust } from "./khazad-dum";
 import definitions from "../data/passive-player-cards.json";
 import type { Attachment, Card, GameState, Unit } from "./types";
@@ -241,8 +242,7 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
       (rule.restricted ?? 0) > 0
     )
       return false;
-    if (/immune to player card effects/i.test(card(u.code).text ?? ""))
-      return false;
+    if (playerCardImmune(u)) return false;
     if (rule.type && card(u.code).type_code !== rule.type) return false;
     if (rule.unique && !card(u.code).is_unique) return false;
     if (

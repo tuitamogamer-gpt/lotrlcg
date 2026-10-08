@@ -1,3 +1,6 @@
+import { trialsStageInfo } from "./three-trials-support";
+import * as Trials from "./three-trials";
+import { trialsGrantedImmunity } from "./three-trials-support";
 import * as DunlandQuest from "./dunland-trap";
 import { FANGORN } from "./fangorn-support";
 import * as Fangorn from "./fangorn";
@@ -268,6 +271,7 @@ export function shuffle<T>(s: GameState, a: T[]) {
 export function make(s: GameState, code: string): Unit {
   return {
     id: `c${s.nextId++}`,
+    ...(trialsGrantedImmunity(s, code) ? { immuneToPlayerEffects: true } : {}),
     ...(s.table ? { owner: activeSeat(s) } : {}),
     code,
     exhausted: false,
@@ -484,6 +488,7 @@ export function stats(s: GameState, u: Unit) {
         Fords.fordsAttackBonus(s, u) +
         Catch.catchAttackBonus(s, u) +
         DunlandQuest.dunlandCombatBonus(s, u) +
+        Trials.trialsAttackBonus(s, u) +
         amonDinEnemyAttackBonus(s, u) +
         assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
@@ -648,6 +653,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           Fords.fordsThreatBonus(s, u) +
           Catch.catchThreatBonus(s, u) +
           DunlandQuest.dunlandThreatBonus(s, u) +
+          Trials.trialsThreatBonus(s, u) +
           Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
@@ -708,6 +714,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
   Math.max(0, (card(u.code).engagement ?? 0) + (u.tempEngagement ?? 0));
 
 export const stageInfo = (s: GameState) => {
+  const trial = trialsStageInfo(s);
+  if (trial) return trial;
   const foundations = foundationsStageInfo(s);
   if (foundations) return foundations;
   const dynamic = khazadStageInfo(s);

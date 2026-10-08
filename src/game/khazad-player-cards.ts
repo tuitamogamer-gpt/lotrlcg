@@ -1,6 +1,7 @@
+import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 // Exact Khazad-dûm player mechanics beyond the existing Dwarf/Song/passive rules.
-import { card, playerCards, plain } from "./cards";
+import { card, playerCards } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -33,8 +34,7 @@ import {
   seatName,
   seatView,
 } from "./table";
-const affected = (u: Unit) =>
-  !/immune to player card effects/i.test(plain(card(u.code).text));
+const affected = (u: Unit) => !playerCardImmune(u);
 const ownDwarves = (s: GameState) =>
   [...s.heroes, ...s.allies].filter((u) => hasTrait(u, "Dwarf"));
 const active = (s: GameState) => allActiveLocations(s).filter(affected);

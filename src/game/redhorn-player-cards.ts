@@ -1,10 +1,11 @@
+import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import { takePlayerDeck } from "./core";
 import { engagementCost } from "./core";
 // Redhorn Gate actions and response windows, with physical Keeping Count tokens.
-import { card, plain } from "./cards";
+import { card } from "./cards";
 import type { Attachment, Card, Effect, GameState, Unit } from "./types";
 import {
   canPay,
@@ -44,8 +45,7 @@ import {
   seatName,
   seatView,
 } from "./table";
-const affected = (u: Unit) =>
-  !/immune to player card effects/i.test(plain(card(u.code).text));
+const affected = (u: Unit) => !playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
     (u) => card(u.code).type_code === "enemy" && affected(u),

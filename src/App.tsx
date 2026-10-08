@@ -4189,7 +4189,11 @@ function BoardCard({
         <span className="card-table-tokens">
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
-          {(u.code === CARROCK.grimbeorn ||
+          {u.timeCounters !== undefined && (
+            <TableToken kind="time" value={u.timeCounters} />
+          )}
+          {(u.resources > 0 ||
+            u.code === CARROCK.grimbeorn ||
             u.code === DEAD.gollum ||
             u.code === S.flames ||
             (s.scenarioId === "encounter-at-amon-din" &&

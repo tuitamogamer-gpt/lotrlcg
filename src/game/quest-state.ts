@@ -1,3 +1,4 @@
+import { trialsCurrentQuest } from "./three-trials-support";
 // Physical player attachments on the current encounter quest.
 import type { Attachment, GameState, Unit } from "./types";
 import { scenario } from "./scenarios";
@@ -14,6 +15,8 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function currentQuestCode(s: GameState): string | undefined {
+  const trial = trialsCurrentQuest(s);
+  if (trial) return trial;
   const foundations = foundationsCurrentQuest(s);
   if (foundations) return foundations;
   if (s.scenarioId === "flight-from-moria") return s.khazad?.activeQuest;

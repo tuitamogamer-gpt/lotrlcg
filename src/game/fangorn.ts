@@ -1,3 +1,4 @@
+import { trialsTimeOptions } from "./three-trials";
 import { dunlandRefreshEffects } from "./dunland-trap";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
@@ -579,7 +580,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       );
       break;
     case "fangornTurned": {
-      const options = [];
+      const options: import("./types").Option[] = trialsTimeOptions(s);
       if (questTime(s)?.time)
         options.push({
           id: "time",

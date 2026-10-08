@@ -1,3 +1,4 @@
+import { setupThreeTrials } from "./three-trials";
 import { setupDunlandTrap } from "./dunland-trap";
 import { setupFangorn } from "./fangorn";
 import { setupCatchOrc } from "./catch-orc";
@@ -367,6 +368,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "the-three-trials") {
+    setupThreeTrials(s);
   } else if (scenarioId === "the-dunland-trap") {
     setupDunlandTrap(s);
   } else if (scenarioId === "into-fangorn") {

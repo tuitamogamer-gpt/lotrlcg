@@ -1,3 +1,4 @@
+import { trialsGrantedImmunity } from "./three-trials-support";
 import { card } from "./cards";
 import { heirsPlayerTraitGrants } from "./heirs-player-cards";
 import { currentQuestUnit } from "./quest-state";
@@ -25,6 +26,8 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
+    if (trialsGrantedImmunity(s, host.code)) host.immuneToPlayerEffects = true;
+    else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
       if (blanked || attachment.facedown || attachment.namelessCard)
         attachment.blanked = true;

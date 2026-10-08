@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 // The Blood of Gondor: actual discard cards, player choices and delayed effects.
 import { card, name, plain } from "./cards";
 import type { Card, Effect, GameState, Unit } from "./types";
@@ -57,9 +58,7 @@ import { dwarfDeckDiscarded } from "./dwarf-player-cards";
 import { foundationsPlayerCardDiscarded } from "./foundations-player-cards";
 import { roadPlayerAttachmentEntered } from "./road-player-cards";
 
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const rawTrait = (c: Card, trait: string) =>
   (c.traits ?? "").split(".").some((t) => t.trim() === trait);
 const canExhaust = (u: Unit) =>

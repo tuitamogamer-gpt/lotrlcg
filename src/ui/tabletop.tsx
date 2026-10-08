@@ -1,5 +1,6 @@
 import {
   Coins,
+  Hourglass,
   Compass,
   Crown,
   Heart,
@@ -78,14 +79,26 @@ export function TableToken({
   kind,
   value,
 }: {
-  kind: "resource" | "damage" | "progress";
+  kind: "resource" | "damage" | "progress" | "time";
   value: number;
 }) {
-  const Icon = kind === "resource" ? Coins : kind === "damage" ? Heart : Leaf;
-  const label = kind === "resource" ? "resources" : kind;
+  const Icon =
+    kind === "time"
+      ? Hourglass
+      : kind === "resource"
+        ? Coins
+        : kind === "damage"
+          ? Heart
+          : Leaf;
+  const label =
+    kind === "time"
+      ? "time counters"
+      : kind === "resource"
+        ? "resources"
+        : kind;
   return (
     <span
-      className={`table-token token-${kind}`}
+      className={`table-token token-${kind === "time" ? "resource token-time" : kind}`}
       title={`${value} ${label}`}
       aria-label={`${value} ${label}`}
     >
@@ -138,7 +151,9 @@ export function JourneyArea({
           data-card-code={u.code}
         />
         <TableToken kind="progress" value={u.progress} />
-        {s.amonDin && <TableToken kind="resource" value={u.resources} />}
+        {(s.amonDin || u.resources > 0) && (
+          <TableToken kind="resource" value={u.resources} />
+        )}
         {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
       </motion.button>
       <AttachmentStack u={u} inspect={inspect} />

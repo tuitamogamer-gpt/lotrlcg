@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -67,9 +68,7 @@ const resourceRecipients = (s: GameState) =>
 const numericCost = (code: string) => Number(card(code).cost) || 0;
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
-    (u) =>
-      card(u.code).type_code === "location" &&
-      !/immune to player card effects/i.test(plain(card(u.code).text)),
+    (u) => card(u.code).type_code === "location" && !playerCardImmune(u),
   );
 const mapLocations = (s: GameState) =>
   s.staging.filter(

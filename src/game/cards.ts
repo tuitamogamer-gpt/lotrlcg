@@ -1,4 +1,8 @@
 import {
+  THREE_TRIALS_ENCOUNTERS,
+  THREE_TRIALS_QUESTS,
+} from "./three-trials-support";
+import {
   DUNLAND_TRAP_ENCOUNTERS,
   DUNLAND_TRAP_QUESTS,
 } from "./dunland-trap-support";
@@ -164,6 +168,7 @@ export const encounterCards = [
   ...CATCH_ORC_ENCOUNTERS,
   ...FANGORN_ENCOUNTERS,
   ...DUNLAND_TRAP_ENCOUNTERS,
+  ...THREE_TRIALS_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -193,6 +198,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CATCH_ORC_QUESTS,
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
+    ...THREE_TRIALS_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -295,6 +301,7 @@ export const SCRIPTED = new Set(
     ...CATCH_ORC_QUESTS,
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
+    ...THREE_TRIALS_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

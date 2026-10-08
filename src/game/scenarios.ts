@@ -1,3 +1,4 @@
+import { TRIALS, THREE_TRIALS_QUESTS } from "./three-trials-support";
 import { DUNLAND_TRAP_QUESTS } from "./dunland-trap-support";
 import { FANGORN_QUESTS } from "./fangorn-support";
 import { CATCH_ORC_QUESTS } from "./catch-orc-support";
@@ -50,6 +51,7 @@ const questImage = (code: string) => {
     ...CATCH_ORC_QUESTS,
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
+    ...THREE_TRIALS_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -929,6 +931,27 @@ export const SCENARIOS = [
       story: q.back_text!,
       questImage: questImage(q.code),
     })),
+  },
+  {
+    id: "the-three-trials",
+    name: "The Three Trials",
+    shortName: "The Three Trials",
+    chapter: "XXXII",
+    difficulty: 5,
+    tagline: "Win three keys from the ancient Guardians",
+    description:
+      "Choose the order of three trials, earn the Keys of Boar, Wolf and Raven, and enter the Hallowed Circle to reclaim the Antlered Crown.",
+    sets: ["The Three Trials", "Ancient Forest"],
+    stages: [TRIALS.begin, TRIALS.strength, TRIALS.crown].map((code) => {
+      const q = THREE_TRIALS_QUESTS.find((c) => c.code === code)!;
+      return {
+        name: q.name,
+        cardCode: q.code,
+        quest: q.back_quest ?? 0,
+        story: q.back_text!,
+        questImage: questImage(q.code),
+      };
+    }),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

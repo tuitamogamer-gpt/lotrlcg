@@ -1,3 +1,5 @@
+import * as Trials from "./three-trials";
+import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
@@ -222,6 +224,7 @@ import type { Action, Card, Effect, GameState, Unit } from "./types";
 
 import {
   firstPlayer,
+  ownerOf,
   activeSeat,
   allCharacters,
   allActiveLocations,
@@ -413,6 +416,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const trialsProblem = Trials.trialsTravelProblem(s, u);
+  if (trialsProblem) return trialsProblem;
   const dunlandProblem = DunlandQuest.dunlandTravelProblem(s, u);
   if (dunlandProblem) return dunlandProblem;
   const fangornProblem = Fangorn.fangornTravelProblem(s, u);
@@ -1106,12 +1111,10 @@ export function playTargets(
 ): Unit[] {
   return rawPlayTargets(s, u).filter(
     (target) =>
-      (target.blanked ||
-        !/immune to (?:player )?card effects/i.test(
-          plain(card(target.code).text),
-        )) &&
+      !playerCardImmune(target) &&
       (card(u.code).type_code !== "attachment" ||
-        !heirsCannotHaveAttachments(target)) &&
+        (!heirsCannotHaveAttachments(target) &&
+          Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
         target.blanked ||
         !restrictedAttachment(u.code) ||
@@ -1774,7 +1777,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (
         passSeat(s) &&
         !Catch.catchOpeningHandsKept(s) &&
-        !DunlandQuest.dunlandOpeningHandsKept(s)
+        !DunlandQuest.dunlandOpeningHandsKept(s) &&
+        !Trials.trialsOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2082,6 +2086,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Trials.trialsTravel(s, u) ??
         DunlandQuest.dunlandTravel(s, u) ??
         Fangorn.fangornTravel(s, u) ??
         Catch.catchTravel(s, u) ??
@@ -2288,6 +2293,20 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.threeTrials
+      ? {
+          currentTrial: s.threeTrials.activeQuest,
+          completedTrials: s.threeTrials.completed,
+          keysHeld: Trials.trialsKeys(s).map((x) => ({
+            code: x.key.code,
+            hero: x.hero.id,
+            player: ownerOf(s, x.hero),
+          })),
+          enemyTime: [...s.staging, ...allEngaged(s)]
+            .filter((u) => u.timeCounters !== undefined)
+            .map((u) => ({ id: u.id, code: u.code, time: u.timeCounters })),
+        }
+      : {}),
     ...(s.bloodGondor
       ? {
           hiddenCards: playerOrder(s).map((player) => ({

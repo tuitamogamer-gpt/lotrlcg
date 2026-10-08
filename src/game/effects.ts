@@ -1,3 +1,6 @@
+import { threatOf } from "./core";
+import * as Trials from "./three-trials";
+import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import { enemyAttackPrevented } from "./core";
 import * as Fangorn from "./fangorn";
@@ -341,6 +344,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Catch.catchEffect(s, e)) return;
   if (Fangorn.fangornEffect(s, e)) return;
   if (DunlandQuest.dunlandTrapEffect(s, e)) return;
+  if (Trials.trialsEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -404,6 +408,9 @@ function handleEffect(s: GameState, e: Effect) {
         defenderIds: [],
         attackBonus: 0,
         damageDealt: 0,
+        ...(Trials.trialsGuardian(u)
+          ? { trialsGuardianThreat: threatOf(s, u) }
+          : {}),
         immediate: true,
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
@@ -750,6 +757,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (
         u &&
         redhornCanMakeActive(u) &&
+        !Trials.trialsCannotMakeActive(s, u) &&
         s.staging.some((x) => x.id === u.id)
       ) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
@@ -767,6 +775,7 @@ function handleEffect(s: GameState, e: Effect) {
         watcherWaterTravelEntered(s, u);
         stewardFearTravelEntered(s, u);
         Fords.fordsTravelEntered(s, u);
+        Trials.trialsTravelEntered(s, u);
         log(s, `Travelled to ${name(u)}.`, "good");
         if (u.code === "01087") progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
@@ -933,6 +942,7 @@ function handleEffect(s: GameState, e: Effect) {
             Catch.catchEncounter(s, e.code, true) ||
             Fangorn.fangornEncounter(s, e.code, true) ||
             DunlandQuest.dunlandEncounter(s, e.code, true) ||
+            Trials.trialsEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -942,11 +952,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (u) engage(s, u);
       break;
     case "locationProgress":
-      if (
-        u &&
-        !/immune to (?:player )?card effects/i.test(card(u.code).text ?? "")
-      )
-        progressLocation(s, u, e.value ?? 0);
+      if (u && !playerCardImmune(u)) progressLocation(s, u, e.value ?? 0);
       break;
     case "discardAttachment": {
       const a = u?.attachments.find((a) => a.id === e.source);
@@ -1120,6 +1126,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "phaseEnd":
       phaseEnd(s);
+      if (s.phase === "refresh") Trials.trialsRemoveEnemyTime(s);
       if (s.phase === "refresh" && !Fangorn.fangornRefreshTime(s))
         removeQuestTime(s);
       break;
@@ -1681,6 +1688,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (enemy && !completed?.redirectedToEnemy)
         shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
       if (completed) {
+        Trials.trialsAttackFinished(s, completed);
         if (enemy) {
           stewardFearAttackFinished(s, enemy, attackPlayer);
           Druadan.druadanForestAttackFinished(s, enemy, completed);
@@ -1846,6 +1854,24 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "trialsChoose",
+      "trialsStart",
+      "trialsComplete",
+      "trialsFinal",
+      "trialsStageReady",
+      "trialsReturnGuardian",
+      "trialsReveal",
+      "trialsRevealDone",
+      "trialsAddAside",
+      "trialsAttachKey",
+      "trialsBuryKey",
+      "trialsCurseSurge",
+      "trialsTimeExpired",
+      "trialsResetTime",
+      "trialsChooseTime",
+      "trialsRemoveTime",
+      "trialsFoothillsProgress",
+      "trialsContinueProgress",
       "dunlandSetup",
       "dunlandShuffle",
       "dunlandAdvance",

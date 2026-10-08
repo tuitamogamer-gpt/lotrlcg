@@ -1,8 +1,9 @@
+import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 // The Morgul Vale: continuous bonuses, optional quest readying, and paid Record replays.
-import { card, name, plain } from "./cards";
+import { card, name } from "./cards";
 import type { Attachment, Card, Effect, GameState, Unit } from "./types";
 import {
   choose,
@@ -34,9 +35,7 @@ import {
   replayEventProblem,
 } from "./actions";
 
-const immune = (u: Unit) =>
-  !u.blanked &&
-  /immune to (?:player )?card effects/i.test(plain(card(u.code).text));
+const immune = (u: Unit) => playerCardImmune(u);
 const activeAttachment = (a: Attachment) => !a.blanked && !a.facedown;
 const live = (s: GameState, u: Unit) =>
   allCharacters(s).some((candidate) => candidate.id === u.id);

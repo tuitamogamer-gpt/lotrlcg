@@ -1,3 +1,4 @@
+import { playerCardImmune } from "./card-immunity";
 // Original/easy The Steward's Fear and the shared Streets of Gondor encounter set.
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -482,13 +483,7 @@ export function stewardFearAbilityProblem(
   attachmentId?: string,
 ): string | undefined {
   if (!stewardFearAbilityLabel(u, attachmentId)) return undefined;
-  if (
-    !allActiveLocations(s).some(
-      (l) =>
-        l.blanked ||
-        !/immune to (?:player )?card effects/i.test(card(l.code).text ?? ""),
-    )
-  )
+  if (!allActiveLocations(s).some((l) => l.blanked || !playerCardImmune(l)))
     return "Secret Map requires an active location that can receive progress.";
   return undefined;
 }
@@ -503,9 +498,7 @@ export function useStewardFearAbility(
     stewardFearAbilityProblem(s, u, attachmentId) ?? "",
   );
   const locations = allActiveLocations(s).filter(
-    (l) =>
-      l.blanked ||
-      !/immune to (?:player )?card effects/i.test(card(l.code).text ?? ""),
+    (l) => l.blanked || !playerCardImmune(l),
   );
   choose(
     s,

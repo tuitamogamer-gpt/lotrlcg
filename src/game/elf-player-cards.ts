@@ -1,8 +1,9 @@
+import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { takePlayerDeck } from "./core";
 // Exact Elves of Lórien main-list rules. The original printings remain in the catalog.
 // Primary guide: https://images-cdn.fantasyflightgames.com/filer_public/72/d2/72d27c2e-e5d0-4d43-9e66-aa332dbf7423/mec104_rules.pdf
-import { card, name, plain } from "./cards";
+import { card, name } from "./cards";
 import type { Card, Effect, GameState, Unit } from "./types";
 import {
   choose,
@@ -59,9 +60,7 @@ const silvanAllies = (s: GameState, player = activeSeat(s)) =>
       hasTrait(u, "Silvan"),
   );
 const influenceTargets = (s: GameState) =>
-  allCharacters(s).filter(
-    (u) => !/immune to player card effects/i.test(plain(card(u.code).text)),
-  );
+  allCharacters(s).filter((u) => !playerCardImmune(u));
 const uniqueNoldor = (s: GameState) =>
   [...s.heroes, ...s.allies].filter(
     (u) => card(u.code).is_unique && hasTrait(u, "Noldor"),
@@ -69,9 +68,7 @@ const uniqueNoldor = (s: GameState) =>
 const councilTargets = (s: GameState) =>
   influenceTargets(s).filter((u) => uniqueNoldor(s).some((n) => n.id !== u.id));
 const enemyTargets = (s: GameState) =>
-  allEngaged(s).filter(
-    (u) => !/immune to player card effects/i.test(plain(card(u.code).text)),
-  );
+  allEngaged(s).filter((u) => !playerCardImmune(u));
 const haldirTargets = (s: GameState, u: Unit) => [
   ...s.staging.filter((x) => card(x.code).type_code === "enemy"),
   ...allEngaged(s).filter((x) => ownerOf(s, x) !== ownerOf(s, u)),
