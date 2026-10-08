@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -480,7 +481,7 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
       if (s.status !== "playing" || s.table?.seats[payer].eliminated)
         return true;
       forOwner(s, other, () => {
-        s.threat = Math.max(0, s.threat - 1);
+        reduceThreat(s, 1, { id: a.id, code: a.code, owner: a.owner ?? payer });
       });
       return true;
     }

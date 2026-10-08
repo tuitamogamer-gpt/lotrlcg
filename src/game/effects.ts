@@ -1,3 +1,5 @@
+import { reduceThreat } from "./threat-reduction";
+import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
@@ -345,6 +347,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Fangorn.fangornEffect(s, e)) return;
   if (DunlandQuest.dunlandTrapEffect(s, e)) return;
   if (Trials.trialsEffect(s, e)) return;
+  if (Tharbad.tharbadEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -411,6 +414,7 @@ function handleEffect(s: GameState, e: Effect) {
         ...(Trials.trialsGuardian(u)
           ? { trialsGuardianThreat: threatOf(s, u) }
           : {}),
+        ...(e.damageTarget ? { undefendedTargetId: e.damageTarget } : {}),
         immediate: true,
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
@@ -474,6 +478,7 @@ function handleEffect(s: GameState, e: Effect) {
         Object.assign(s.combat, {
           immediate: true,
           immediatePendingDeclaration: false,
+          undefendedTargetId: prior.undefendedTargetId,
           attackPlayer: prior.attackPlayer,
           immediatePreviousAttacked: prior.immediatePreviousAttacked,
           immediatePreviousShadows: prior.immediatePreviousShadows,
@@ -758,6 +763,7 @@ function handleEffect(s: GameState, e: Effect) {
         u &&
         redhornCanMakeActive(u) &&
         !Trials.trialsCannotMakeActive(s, u) &&
+        !Tharbad.tharbadCannotMakeActive(u) &&
         s.staging.some((x) => x.id === u.id)
       ) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
@@ -776,6 +782,7 @@ function handleEffect(s: GameState, e: Effect) {
         stewardFearTravelEntered(s, u);
         Fords.fordsTravelEntered(s, u);
         Trials.trialsTravelEntered(s, u);
+        Tharbad.tharbadTravelEntered(s, u);
         log(s, `Travelled to ${name(u)}.`, "good");
         if (u.code === "01087") progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
@@ -815,7 +822,11 @@ function handleEffect(s: GameState, e: Effect) {
         const from = ownerOf(s, u);
         forOwner(s, from, () => {
           s.allies = s.allies.filter((a) => a.id !== u.id);
-          s.threat = Math.max(0, s.threat - 3);
+          reduceThreat(s, 3, {
+            id: u.id,
+            code: u.code,
+            owner: u.owner ?? from,
+          });
         });
         forOwner(s, e.value, () => {
           s.allies.push(u);
@@ -862,7 +873,14 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "threat":
       if ((e.value ?? 0) > 0) raiseThreat(s, e.value!, "player-card");
-      else s.threat = Math.max(0, s.threat + (e.value ?? 0));
+      else
+        reduceThreat(
+          s,
+          -(e.value ?? 0),
+          e.source || e.code
+            ? { id: e.source, code: e.code, owner: e.owner }
+            : undefined,
+        );
       break;
     case "uncommit":
       if (u) u.committed = false;
@@ -943,6 +961,7 @@ function handleEffect(s: GameState, e: Effect) {
             Fangorn.fangornEncounter(s, e.code, true) ||
             DunlandQuest.dunlandEncounter(s, e.code, true) ||
             Trials.trialsEncounter(s, e.code, true) ||
+            Tharbad.tharbadEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -993,7 +1012,13 @@ function handleEffect(s: GameState, e: Effect) {
         {
           id: "threat",
           label: "Reduce threat by 5",
-          effects: [fx("threat", { value: -5 })],
+          effects: [
+            fx("threat", {
+              value: -5,
+              source: e.source,
+              code: e.code ?? "01073",
+            }),
+          ],
         },
         ...opts(
           [...s.staging, ...allEngaged(s)].filter(
@@ -1137,6 +1162,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanQuestBegins(s);
       heirsQuestStart(s);
       BloodQuest.bloodGondorQuestStart(s);
+      Tharbad.tharbadQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
       if (s.scenarioId === "dol-guldur" && s.stage === 3)
@@ -1233,7 +1259,14 @@ function handleEffect(s: GameState, e: Effect) {
       watcherWaterCombatEnd(s);
       break;
     case "refreshReady":
-      startPhase(s, "refresh");
+      if (!e.flag) {
+        startPhase(s, "refresh");
+        const effects = Tharbad.tharbadRefreshStart(s);
+        if (effects.length) {
+          prepend(s, ...effects, fx("refreshReady", { flag: true }));
+          break;
+        }
+      }
       s.refreshReadied = {};
       globalEachSeat(s, (player) => {
         const fangornReady = Fangorn.fangornRefreshCharacters(s, player);
@@ -1320,6 +1353,7 @@ function handleEffect(s: GameState, e: Effect) {
         for (const enemy of [...s.staging, ...allEngaged(s)]) {
           enemy.boost = 0;
           delete enemy.tempEngagement;
+          delete enemy.roundAttack;
         }
       });
       Osgiliath.assaultOsgiliathRoundEnd(s);
@@ -1362,7 +1396,11 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "engagementRound": {
-      if (druadanPlayerNoEngagementChecks(s) || heirsNoEngagementChecks(s))
+      if (
+        druadanPlayerNoEngagementChecks(s) ||
+        heirsNoEngagementChecks(s) ||
+        Tharbad.tharbadNoEngagementChecks(s)
+      )
         break;
       if (s.scenarioId === "anduin" && s.stage === 2) break;
       const eligible = playerOrder(s).some((i) =>
@@ -1397,7 +1435,11 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "automaticEngagement": {
-      if (druadanPlayerNoEngagementChecks(s) || heirsNoEngagementChecks(s))
+      if (
+        druadanPlayerNoEngagementChecks(s) ||
+        heirsNoEngagementChecks(s) ||
+        Tharbad.tharbadNoEngagementChecks(s)
+      )
         break;
       const enemy = s.staging
         .filter(
@@ -1430,6 +1472,7 @@ function handleEffect(s: GameState, e: Effect) {
       heirsCombatStart(s);
       Druadan.druadanForestCombatStart(s);
       Fangorn.fangornCombatStart(s);
+      Tharbad.tharbadCombatStart(s);
       break;
     case "prepareCombat":
       globalEachSeat(s, () => {
@@ -1689,6 +1732,7 @@ function handleEffect(s: GameState, e: Effect) {
         shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
       if (completed) {
         Trials.trialsAttackFinished(s, completed);
+        Tharbad.tharbadAttackFinished(s, completed);
         if (enemy) {
           stewardFearAttackFinished(s, enemy, attackPlayer);
           Druadan.druadanForestAttackFinished(s, enemy, completed);
@@ -1854,6 +1898,15 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "tharbadSetup",
+      "tharbadAdvance",
+      "tharbadStageReady",
+      "tharbadTimeExpired",
+      "tharbadResetTime",
+      "tharbadLocationProgress",
+      "tharbadLotSurge",
+      "tharbadGetDwarf",
+      "tharbadRemoveThreatSource",
       "trialsChoose",
       "trialsStart",
       "trialsComplete",

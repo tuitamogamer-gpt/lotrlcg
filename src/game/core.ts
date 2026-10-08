@@ -1,3 +1,4 @@
+import * as Tharbad from "./tharbad";
 import { trialsStageInfo } from "./three-trials-support";
 import * as Trials from "./three-trials";
 import { trialsGrantedImmunity } from "./three-trials-support";
@@ -511,6 +512,7 @@ export function stats(s: GameState, u: Unit) {
         emynMuilStatBonus(s, u) +
         (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
         (u.tempAttack ?? 0) +
+        (u.roundAttack ?? 0) +
         (u.code === "01004" && !u.blanked ? u.damage : 0) +
         u.attachments.filter((a) => !a.blanked && a.code === "01041").length *
           (c.traits?.includes("Dwarf") ? 2 : 1) +
@@ -654,6 +656,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           Catch.catchThreatBonus(s, u) +
           DunlandQuest.dunlandThreatBonus(s, u) +
           Trials.trialsThreatBonus(s, u) +
+          Tharbad.tharbadThreatBonus(s, u) +
           Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
@@ -704,6 +707,7 @@ export const locationQuest = (s: GameState, u: Unit) =>
   MorgulQuest.morgulBridgeValue(s, u) ??
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
+    Tharbad.tharbadLocationQuest(s, u) +
     Fords.fordsLocationBonus(s, u) +
     Fangorn.fangornLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
@@ -711,7 +715,12 @@ export const locationQuest = (s: GameState, u: Unit) =>
     stewardFearLocationQuestBonus(s, u);
 export const engagementCost = (s: GameState, u: Unit) =>
   heirsEngagementCost(s, u) ??
-  Math.max(0, (card(u.code).engagement ?? 0) + (u.tempEngagement ?? 0));
+  Math.max(
+    0,
+    (card(u.code).engagement ?? 0) +
+      (u.tempEngagement ?? 0) +
+      Tharbad.tharbadEngagementModifier(s, u),
+  );
 
 export const stageInfo = (s: GameState) => {
   const trial = trialsStageInfo(s);

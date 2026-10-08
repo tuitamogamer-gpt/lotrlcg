@@ -1,3 +1,4 @@
+import { THARBAD_ENCOUNTERS, THARBAD_QUESTS } from "./tharbad-support";
 import {
   THREE_TRIALS_ENCOUNTERS,
   THREE_TRIALS_QUESTS,
@@ -169,6 +170,7 @@ export const encounterCards = [
   ...FANGORN_ENCOUNTERS,
   ...DUNLAND_TRAP_ENCOUNTERS,
   ...THREE_TRIALS_ENCOUNTERS,
+  ...THARBAD_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -199,6 +201,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
     ...THREE_TRIALS_QUESTS,
+    ...THARBAD_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -302,6 +305,7 @@ export const SCRIPTED = new Set(
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
     ...THREE_TRIALS_QUESTS,
+    ...THARBAD_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

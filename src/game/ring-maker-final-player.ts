@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 // The Nîn-in-Eilph, Celebrimbor's Secret and The Antlered Crown.
@@ -128,7 +129,7 @@ export function finalRingEvent(
       );
       return true;
     case "08090":
-      s.threat = Math.max(0, s.threat - amount);
+      reduceThreat(s, amount, code);
       return true;
     case "08116":
       for (const u of allCharacters(s))

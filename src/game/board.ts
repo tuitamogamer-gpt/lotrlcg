@@ -1,3 +1,5 @@
+import { threatElimination } from "./tharbad-support";
+import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
@@ -645,7 +647,7 @@ export function check(s: GameState) {
   if (s.table) {
     globalEachSeat(s, (i) => {
       if (
-        s.threat < 50 &&
+        s.threat < threatElimination(s) &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
           foundationsHeroMissingAllowed(s, i))
@@ -756,13 +758,13 @@ export function check(s: GameState) {
       if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
     }
   } else if (
-    s.threat >= 50 ||
+    s.threat >= threatElimination(s) ||
     (!s.heroes.length && !s.prisoner && !foundationsHeroMissingAllowed(s, 0))
   ) {
     s.status = "lost";
     s.reason =
-      s.threat >= 50
-        ? "Your threat reached 50. The shadow has found you."
+      s.threat >= threatElimination(s)
+        ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
         : "The last hero has fallen.";
   }
   if (s.status === "lost") {
@@ -813,6 +815,7 @@ export function check(s: GameState) {
     Fangorn.fangornCheck(s);
     DunlandQuest.dunlandCheck(s);
     Trials.trialsCheck(s);
+    Tharbad.tharbadCheck(s);
     const overloaded = globalCharacters(s).find(
       (u) => restrictedSlots(u) > restrictedLimit(u),
     );
@@ -831,43 +834,45 @@ export function win(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "the-three-trials"
-      ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
-      : s.scenarioId === "the-dunland-trap"
-        ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
-        : s.scenarioId === "the-druadan-forest"
-          ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
-          : s.scenarioId === "encounter-at-amon-din"
-            ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
-            : s.scenarioId === "assault-on-osgiliath"
-              ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
-              : s.scenarioId === "mirkwood"
-                ? "Your fellowship has passed safely through Mirkwood."
-                : s.scenarioId === "anduin"
-                  ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-                  : s.scenarioId === "hunt-for-gollum"
-                    ? "You have found a true sign of Gollum’s passing. The trail leads on."
-                    : s.scenarioId === "conflict-at-the-carrock"
-                      ? "The Trolls are defeated and the Carrock is free."
-                      : s.scenarioId === "hills-of-emyn-muil"
-                        ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
-                        : s.scenarioId === "journey-to-rhosgobel"
-                          ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
-                          : s.scenarioId === "dead-marshes"
-                            ? "Your fellowship captures Gollum in the Dead Marshes."
-                            : s.scenarioId === "return-to-mirkwood"
-                              ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
-                              : s.scenarioId === "road-to-rivendell"
-                                ? "Arwen arrives safely in Rivendell with your fellowship."
-                                : s.scenarioId === "redhorn-gate"
-                                  ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
-                                  : s.scenarioId === "into-the-pit"
-                                    ? "Your fellowship survives the depths beneath the East-gate of Moria."
-                                    : s.scenarioId === "the-seventh-level"
-                                      ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
-                                      : s.scenarioId === "flight-from-moria"
-                                        ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                                        : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+    s.scenarioId === "trouble-in-tharbad"
+      ? "Your heroes and Nalir cross the ruined bridge and escape Tharbad with the map."
+      : s.scenarioId === "the-three-trials"
+        ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
+        : s.scenarioId === "the-dunland-trap"
+          ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
+          : s.scenarioId === "the-druadan-forest"
+            ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
+            : s.scenarioId === "encounter-at-amon-din"
+              ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
+              : s.scenarioId === "assault-on-osgiliath"
+                ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
+                : s.scenarioId === "mirkwood"
+                  ? "Your fellowship has passed safely through Mirkwood."
+                  : s.scenarioId === "anduin"
+                    ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+                    : s.scenarioId === "hunt-for-gollum"
+                      ? "You have found a true sign of Gollum’s passing. The trail leads on."
+                      : s.scenarioId === "conflict-at-the-carrock"
+                        ? "The Trolls are defeated and the Carrock is free."
+                        : s.scenarioId === "hills-of-emyn-muil"
+                          ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
+                          : s.scenarioId === "journey-to-rhosgobel"
+                            ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
+                            : s.scenarioId === "dead-marshes"
+                              ? "Your fellowship captures Gollum in the Dead Marshes."
+                              : s.scenarioId === "return-to-mirkwood"
+                                ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
+                                : s.scenarioId === "road-to-rivendell"
+                                  ? "Arwen arrives safely in Rivendell with your fellowship."
+                                  : s.scenarioId === "redhorn-gate"
+                                    ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
+                                    : s.scenarioId === "into-the-pit"
+                                      ? "Your fellowship survives the depths beneath the East-gate of Moria."
+                                      : s.scenarioId === "the-seventh-level"
+                                        ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                        : s.scenarioId === "flight-from-moria"
+                                          ? "Your fellowship finds an exit and escapes the darkness of Moria."
+                                          : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -1005,6 +1010,7 @@ export function characterLeftPlay(
   lastKnownAttack = stats(s, u).attack,
   lastKnownTraits = effectiveTraits(u),
 ) {
+  Tharbad.tharbadCharacterLeft(s, u, controller);
   ringMakerCharacterLeft(s, u.id);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -1057,7 +1063,12 @@ export function characterLeftPlay(
 }
 
 /** Destruction is distinct from discard costs and forced discard effects. */
-export function destroy(s: GameState, u: Unit, destruction = true) {
+export function destroy(
+  s: GameState,
+  u: Unit,
+  destruction = true,
+  destination: "discard" | "removed" = "discard",
+) {
   syncAttachmentText(s);
   if (DunlandQuest.dunlandCannotLeave(u) || Trials.trialsCannotLeave(s, u))
     return;
@@ -1109,6 +1120,7 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       shuffle(s, s.encounterDeck);
     } else if (c.victory) addVictoryCard(s, u.code);
     else if (
+      !Tharbad.tharbadEnemyDestroyed(s, u, destruction) &&
       !Catch.catchEnemyDefeated(s, u, destruction) &&
       !(s.combat?.returnWolf && s.combat.enemyId === u.id)
     )
@@ -1136,7 +1148,9 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
     const removedByScenario = heirsRemoveCharacter(s, u);
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
-    if (u.code === "rc135") {
+    if (destination === "removed")
+      seatView(s, u.owner ?? activeSeat(s)).removed.push(u.code);
+    else if (u.code === "rc135") {
       s.removed.push(u.code);
       if (s.campaign && s.scenarioId !== "dol-guldur") {
         s.status = "lost";
@@ -1154,7 +1168,9 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       s,
       destruction
         ? `${c.name} has fallen.`
-        : `${c.name} is discarded from play.`,
+        : destination === "removed"
+          ? `${c.name} is removed from the game.`
+          : `${c.name} is discarded from play.`,
       "danger",
     );
     const physicalOwner = u.owner ?? activeSeat(s),
@@ -1164,10 +1180,16 @@ export function destroy(s: GameState, u: Unit, destruction = true) {
       u,
       activeSeat(s),
       {
-        zone: u.code === "rc135" ? "removed" : "discard",
+        zone:
+          u.code === "rc135" || destination === "removed"
+            ? "removed"
+            : "discard",
         player: physicalOwner,
         index:
-          (u.code === "rc135" ? physical.removed : physical.discard).length - 1,
+          (u.code === "rc135" || destination === "removed"
+            ? physical.removed
+            : physical.discard
+          ).length - 1,
       },
       lastKnownAttack,
       lastKnownTraits,
@@ -1189,6 +1211,7 @@ export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
   if (Trials.trialsRedirectProgress(s, value, u)) return;
+  if (Tharbad.tharbadLocationBlocked(s, u)) return;
   if (Catch.catchLocationProgressBlocked(s, u)) return;
   if (heirsLocationProgressBlocked(s, u)) return;
   if (shadowFlameLocationProgressBlocked(s, u)) return;
@@ -1222,6 +1245,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   BloodQuest.bloodGondorExplored(s, u);
   Catch.catchExplored(s, u);
   DunlandQuest.dunlandExplored(s, u);
+  Tharbad.tharbadExplored(s, u);
   MorgulQuest.morgulExplored(s, u);
   foundationsLocationExplored(s, u);
   heirsExplored(s, u);
@@ -1353,6 +1377,7 @@ export function progress(
   if (n <= 0 || s.status !== "playing") return;
   if (Catch.catchProgressBlocked(s)) return;
   if (Trials.trialsQuestProgress(s, n)) return;
+  if (Tharbad.tharbadQuestProgress(s, n)) return;
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
@@ -1399,6 +1424,7 @@ export function advanceQuest(s: GameState) {
   if (Fangorn.advanceFangorn(s)) return;
   if (DunlandQuest.advanceDunlandTrap(s)) return;
   if (Trials.advanceThreeTrials(s)) return;
+  if (Tharbad.advanceTharbad(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1644,6 +1670,7 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
 export function nextRound(s: GameState) {
   for (const u of globalUnits(s)) {
     delete u.roundThreat;
+    delete u.roundAttack;
     delete u.roundCannotTakeDamage;
   }
   heirsRoundEnd(s);
@@ -2104,6 +2131,7 @@ export function placeEncounter(
   if (Fangorn.fangornEncounter(s, code)) return;
   if (DunlandQuest.dunlandEncounter(s, code)) return;
   if (Trials.trialsEncounter(s, code)) return;
+  if (Tharbad.tharbadEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2387,7 +2415,7 @@ export function allyEntryResponses(
   dwarfAllyEntered(s, u, played && fromHand);
   switch (u.code) {
     case "01073":
-      prepend(s, fx("gandalf"));
+      prepend(s, fx("gandalf", { source: u.id, code: u.code }));
       break;
     case "01016":
       choose(
@@ -2558,6 +2586,7 @@ export function shadow(s: GameState, code: string) {
   if (Fangorn.fangornShadow(s, code)) return;
   if (DunlandQuest.dunlandShadow(s, code)) return;
   if (Trials.trialsShadow(s, code)) return;
+  if (Tharbad.tharbadShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

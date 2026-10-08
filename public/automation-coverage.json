@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 434,
-    "scenarios": 32,
+    "encounterCards": 450,
+    "scenarios": 33,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -39,17 +39,18 @@
       "to-catch-an-orc",
       "into-fangorn",
       "the-dunland-trap",
-      "the-three-trials"
+      "the-three-trials",
+      "trouble-in-tharbad"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 967,
-    "pending": 3216
+    "scripted": 985,
+    "pending": 3198
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 64
+    "scripted": 66
   },
   "registeredCodes": [
     "01001",
@@ -534,6 +535,7 @@
     "22143",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
+    "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
@@ -555,8 +557,10 @@
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
+    "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
+    "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
@@ -578,6 +582,7 @@
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
@@ -587,6 +592,7 @@
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
+    "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -594,6 +600,7 @@
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
+    "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
@@ -861,7 +868,9 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9024",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
+    "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
+    "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
@@ -877,6 +886,7 @@
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
+    "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
@@ -893,16 +903,20 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
+    "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
+    "octgn:8b203ead-9fb6-4734-9109-3633fc24d1a9",
     "octgn:8b4dd0c5-3847-46f6-a69b-a4c7ee2b21c8",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
+    "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
+    "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
@@ -937,6 +951,7 @@
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
+    "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
@@ -948,6 +963,7 @@
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
@@ -964,6 +980,8 @@
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
+    "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
+    "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
@@ -973,6 +991,7 @@
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
@@ -1954,7 +1973,7 @@
     {
       "product": "trouble-in-tharbad",
       "total": 28,
-      "scripted": 10,
+      "scripted": 28,
       "player": 10,
       "playerScripted": 10
     },
@@ -10906,7 +10925,7 @@
       "name": "Double Dealings",
       "type": "quest",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -12778,7 +12797,7 @@
       "name": "Conspicuous Lot",
       "type": "treachery",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -12938,7 +12957,7 @@
       "name": "The Empty Mug",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -14626,7 +14645,7 @@
       "name": "Get That Dwarf!",
       "type": "treachery",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -15746,7 +15765,7 @@
       "name": "Ruins of the Second Age",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -16362,7 +16381,7 @@
       "name": "Cornered",
       "type": "treachery",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -20338,7 +20357,7 @@
       "name": "Constant Tail",
       "type": "treachery",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -20954,7 +20973,7 @@
       "name": "Bellach's Marauder",
       "type": "enemy",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -23570,7 +23589,7 @@
       "name": "Nalir",
       "type": "objective-ally",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -25042,7 +25061,7 @@
       "name": "Decrepit Rooftops",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -25154,7 +25173,7 @@
       "name": "The Crossing at Tharbad",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -25330,7 +25349,7 @@
       "name": "Spy from Mordor",
       "type": "enemy",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -25546,7 +25565,7 @@
       "name": "Bellach",
       "type": "enemy",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -29938,7 +29957,7 @@
       "name": "Streets of Tharbad",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -30794,7 +30813,7 @@
       "name": "Hidden Alleyway",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -33322,7 +33341,7 @@
       "name": "Tharbad Hideout",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -33338,7 +33357,7 @@
       "name": "Seedy Inn",
       "type": "location",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -34546,7 +34565,7 @@
       "name": "Escape from Tharbad",
       "type": "quest",
       "pack": "Trouble in Tharbad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "trouble-in-tharbad"
     },
     {
@@ -35689,8 +35708,8 @@
       "id": "E04.6",
       "name": "Trouble in Tharbad (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "trouble-in-tharbad",
+      "state": "scripted"
     },
     {
       "id": "E04.7",
@@ -37180,8 +37199,8 @@
       "id": "Q04.6",
       "name": "Trouble in Tharbad",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "trouble-in-tharbad",
+      "state": "scripted"
     },
     {
       "id": "Q04.7",

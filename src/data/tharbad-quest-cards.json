@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
+    "octgnid": "022c654e-9d4d-40ff-9d67-8e465fda0e78",
+    "name": "Double Dealings",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Bellach and The Crossing of Tharbad aside, out of play. Search the encounter deck for 1 copy of Spy From Mordor per player, and add them to the staging area. Make The Empty Mug the active location. The first player takes control of Nalir, as an ally. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Trouble in Tharbad",
+    "side": "A",
+    "back_name": "Double Dealings",
+    "back_text": "Time 4. Forced: After the last time counter is removed from this quest, reduce each player's threat elimination level by 10 for the remainder of the game. Then, place 4 time counters on this stage.  Forced: After 1 or more progress is placed on this quest, cancel all progress and reduce each player's threat by an equal amount.  When all players have 0 threat, immediately proceed to stage 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/022c654e-9d4d-40ff-9d67-8e465fda0e78.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/022c654e-9d4d-40ff-9d67-8e465fda0e78.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "022c654e-9d4d-40ff-9d67-8e465fda0e78",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/022c654e-9d4d-40ff-9d67-8e465fda0e78.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
+    "octgnid": "f86ef645-bc8b-41a0-b288-80118f5433cc",
+    "name": "Escape from Tharbad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Bellach and The Crossing of Tharbad to the staging area. Then, shuffle the encounter discard pile into the encounter deck and discard cards from the encounter deck until X Orc enemies have been discarded, where X is the number of players in the game. Add all discarded Orc enemies to the staging area.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 67,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Trouble in Tharbad",
+    "side": "A",
+    "back_name": "Escape from Tharbad",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this quest, either raise each player's threat by 3 or Bellach makes an immediate attack against Nalir. Then, place 3 time counters on this stage.  Progress that would be placed on this quest are instead placed on The Crossing of Tharbad.  Forced: After a character leaves play, raise its controller's threat by 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f86ef645-bc8b-41a0-b288-80118f5433cc.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f86ef645-bc8b-41a0-b288-80118f5433cc.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "f86ef645-bc8b-41a0-b288-80118f5433cc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f86ef645-bc8b-41a0-b288-80118f5433cc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

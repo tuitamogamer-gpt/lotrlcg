@@ -1,3 +1,4 @@
+import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
@@ -416,6 +417,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const tharbadProblem = Tharbad.tharbadTravelProblem(s, u);
+  if (tharbadProblem) return tharbadProblem;
   const trialsProblem = Trials.trialsTravelProblem(s, u);
   if (trialsProblem) return trialsProblem;
   const dunlandProblem = DunlandQuest.dunlandTravelProblem(s, u);
@@ -1778,7 +1781,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         passSeat(s) &&
         !Catch.catchOpeningHandsKept(s) &&
         !DunlandQuest.dunlandOpeningHandsKept(s) &&
-        !Trials.trialsOpeningHandsKept(s)
+        !Trials.trialsOpeningHandsKept(s) &&
+        !Tharbad.tharbadOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2086,6 +2090,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Tharbad.tharbadTravel(s, u) ??
         Trials.trialsTravel(s, u) ??
         DunlandQuest.dunlandTravel(s, u) ??
         Fangorn.fangornTravel(s, u) ??
@@ -2293,6 +2298,9 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.tharbad
+      ? { threatElimination: s.tharbad.elimination, questTime: s.tharbad.time }
+      : {}),
     ...(s.threeTrials
       ? {
           currentTrial: s.threeTrials.activeQuest,

@@ -1,3 +1,4 @@
+import { threatElimination } from "../game/tharbad-support";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Eye } from "@phosphor-icons/react";
@@ -67,7 +68,13 @@ function ThreatWheel({
   );
 }
 
-function ThreatDial({ threat }: { threat: number }) {
+function ThreatDial({
+  threat,
+  elimination = 50,
+}: {
+  threat: number;
+  elimination?: number;
+}) {
   const reduced = useReducedMotion();
   const previous = useRef(threat);
   const [feedback, setFeedback] = useState({ amount: 0, serial: 0 });
@@ -79,8 +86,8 @@ function ThreatDial({ threat }: { threat: number }) {
     if (amount) setFeedback((f) => ({ amount, serial: f.serial + 1 }));
   }, [threat]);
 
-  const remaining = Math.max(0, 50 - threat);
-  const danger = threat >= 40;
+  const remaining = Math.max(0, elimination - threat);
+  const danger = remaining <= 10;
   const digits = String(threat).padStart(2, "0");
   const changeText = feedback.amount
     ? `Threat ${feedback.amount > 0 ? "increased" : "decreased"} by ${Math.abs(feedback.amount)}. Now ${threat}.`
@@ -88,15 +95,15 @@ function ThreatDial({ threat }: { threat: number }) {
 
   return (
     <div
-      className={`physical-threat illustrated-threat${danger ? " danger" : ""}${threat >= 45 ? " critical" : ""}`}
+      className={`physical-threat illustrated-threat${danger ? " danger" : ""}${remaining <= 5 ? " critical" : ""}`}
       data-threat={threat}
     >
       <div
         role="meter"
         aria-label="Threat level"
-        aria-valuenow={Math.min(50, threat)}
+        aria-valuenow={Math.min(elimination, threat)}
         aria-valuemin={0}
-        aria-valuemax={50}
+        aria-valuemax={elimination}
         aria-valuetext={`${threat} threat. ${remaining ? `${remaining} until elimination.` : "Threat elimination reached."}`}
       >
         <div className="threat-counter-heading">
@@ -151,8 +158,10 @@ function ThreatDial({ threat }: { threat: number }) {
         </div>
       </div>
       <div className="threat-counter-caption">
-        <span>{remaining ? "Eliminated at 50" : "Elimination reached"}</span>
-        <b>{remaining > 0 ? `${remaining} away` : "50+"}</b>
+        <span>
+          {remaining ? `Eliminated at ${elimination}` : "Elimination reached"}
+        </span>
+        <b>{remaining > 0 ? `${remaining} away` : `${elimination}+`}</b>
       </div>
       <span
         className="threat-announcement"
@@ -171,6 +180,7 @@ function ThreatDial({ threat }: { threat: number }) {
 export function ThreatCounter({ s }: { s: GameState }) {
   return (
     <ThreatDial
+      elimination={threatElimination(s)}
       key={`${s.originalSeed}:${s.scenarioId}:${activeSeat(s)}`}
       threat={s.threat}
     />

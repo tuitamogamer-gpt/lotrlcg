@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "trouble-in-tharbad": {
+    name: "Trouble in Tharbad",
+    detail: "Through ruined streets and hidden alleys",
+  },
   "the-three-trials": {
     name: "The Three Trials",
     detail: "The Keys of Boar, Wolf and Raven",
@@ -157,6 +161,7 @@ export const PLAYMAT_CHOICES = [
   "into-fangorn",
   "the-dunland-trap",
   "the-three-trials",
+  "trouble-in-tharbad",
   "shadow-and-flame",
 ] as const;
 

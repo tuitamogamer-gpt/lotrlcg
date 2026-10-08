@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -620,7 +621,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         );
       return true;
     case "collectorNoriThreat":
-      s.threat = Math.max(0, s.threat - 1);
+      reduceThreat(s, 1, codes.nori);
       return true;
     case "collectorPartnerResponse":
       if (

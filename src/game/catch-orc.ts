@@ -1,3 +1,4 @@
+import { canRemoveQuestTime } from "./quest-time";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -47,7 +48,6 @@ import { finalRingReplacesQuestProgress } from "./ring-maker-final-player";
 import { canLeaveHand } from "./hand-rules";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
-import { questTime } from "./quest-time";
 import { CATCH_ORC as C } from "./catch-orc-support";
 
 const liveEnemies = (s: GameState) =>
@@ -575,7 +575,7 @@ export function catchEffect(s: GameState, e: Effect): boolean {
           label: "Reveal another encounter card",
           effects: [fx("reveal")],
         },
-        ...(questTime(s)?.time
+        ...(canRemoveQuestTime(s)
           ? [
               {
                 id: "time",
@@ -593,7 +593,7 @@ export function catchEffect(s: GameState, e: Effect): boolean {
           (u) => [fx("damage", { target: u.id, value: 3 })],
           () => "Deal 3 damage",
         ),
-        ...(questTime(s)?.time
+        ...(canRemoveQuestTime(s)
           ? [
               {
                 id: "time",
@@ -611,7 +611,7 @@ export function catchEffect(s: GameState, e: Effect): boolean {
           label: "Deal 1 damage to each exhausted character",
           effects: [fx("catchCoverDamage")],
         },
-        ...(questTime(s)?.time
+        ...(canRemoveQuestTime(s)
           ? [
               {
                 id: "time",

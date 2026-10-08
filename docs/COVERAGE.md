@@ -2,6 +2,7 @@
 
 ## Included
 
+- **Trouble in Tharbad**, original/easy: sixteen new encounters, two quest cards and exact 40/32 physical recipes. Nalir, dynamic threat elimination, physical threat-source removal, Time/shadow chains, City travel, Bellach attacks and Crossing victory have semantic and responsive browser checks. See [rules notes](THARBAD-RULES.md).
 - **The Three Trials**, original/easy: all five quest cards, sixteen new encounter designs and exact 36/28 physical recipes. All six trial orders, physical Keys, Guardian Time, granted immunity, Grim Foothills progress replacement, Cave limits, Barrow attacks, final engagement and Circle victory have semantic and responsive browser checks. See [rules notes](THREE-TRIALS-RULES.md).
 
 - **The Dunland Trap**, original/easy: all three stages and eleven new encounters, sharing seven existing definitions; draw reactions, Boar searches, equipment and ally loss, Time deadlines, Chief Turch, final engagement checks/attacks, hero-destruction loss, Conditions, travel, shadows and saved continuations. See [rules notes](DUNLAND-TRAP-RULES.md).

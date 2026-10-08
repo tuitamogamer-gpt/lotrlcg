@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import {
   encodeDamageContext,
   readDamageContext,
@@ -339,7 +340,7 @@ export function handleMarshPlayerEffect(s: GameState, e: Effect): boolean {
         ),
         "Elfhelm must remain ready.",
       );
-      s.threat = Math.max(0, s.threat - 1);
+      reduceThreat(s, 1, { id: e.target, code: "02100" });
       return true;
     case "marshSilvanResponse": {
       const tracker = get(s, e.source),

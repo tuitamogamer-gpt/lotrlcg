@@ -1,3 +1,4 @@
+import { validateTharbad } from "./tharbad-support";
 import {
   validateThreeTrialsState,
   guardianTimeLimit,
@@ -146,6 +147,7 @@ export function validateSave(
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
       [
+        c.tharbadDamageThreat,
         c.trialsGuardianThreat,
         c.trialsTimeOnKill,
         c.fordsExtraAttacks,
@@ -230,6 +232,7 @@ export function validateSave(
         u.tempDefense,
         u.tempThreat,
         u.tempEngagement,
+        u.roundAttack,
       ].every((n) => n === undefined || integer(n)) &&
       SCRIPTED.has(u.code) &&
       [u.damage, u.progress, u.resources, u.boost].every(integer) &&
@@ -342,6 +345,7 @@ export function validateSave(
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
+        !validateTharbad(s, validUnit as (u: unknown) => boolean) ||
         !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
@@ -638,6 +642,7 @@ export function validateSave(
         (integer(e.player) &&
           e.player >= 0 &&
           e.player < (s.table?.seats.length ?? 1))) &&
+      (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
       typeof e.kind === "string" &&
       (!e.code || SCRIPTED.has(e.code) || knownQuest(e.code)) &&
       (e.owner === undefined ||
@@ -877,6 +882,7 @@ export function validateSave(
       ...(s.captiveMendor ? [s.captiveMendor] : []),
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
       ...(s.dunlandTrap?.setAside ?? []),
+      ...(s.tharbad?.setAside ?? []),
       ...(s.threeTrials
         ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
         : []),

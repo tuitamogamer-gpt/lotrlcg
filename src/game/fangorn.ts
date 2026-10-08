@@ -1,3 +1,4 @@
+import { canRemoveQuestTime } from "./quest-time";
 import { trialsTimeOptions } from "./three-trials";
 import { dunlandRefreshEffects } from "./dunland-trap";
 import type { Effect, GameState, Unit } from "./types";
@@ -40,7 +41,6 @@ import { effectiveKeyword, hasTrait } from "./expansion-passives";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { currentQuestCode } from "./quest-state";
-import { questTime } from "./quest-time";
 import { FANGORN as F, fangornTimeLimit } from "./fangorn-support";
 
 const locations = (s: GameState) =>
@@ -581,7 +581,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       break;
     case "fangornTurned": {
       const options: import("./types").Option[] = trialsTimeOptions(s);
-      if (questTime(s)?.time)
+      if (canRemoveQuestTime(s))
         options.push({
           id: "time",
           label: "Remove 1 time counter from the current quest",

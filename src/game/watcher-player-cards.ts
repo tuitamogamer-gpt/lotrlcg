@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { globalPlayerOrder } from "./table";
@@ -119,7 +120,7 @@ export function useWatcherPlayerAbility(s: GameState, u: Unit): boolean {
     !watcherPlayerAbilityProblem(s, u),
     watcherPlayerAbilityProblem(s, u) ?? "",
   );
-  s.threat = startingThreat(s);
+  reduceThreat(s, s.threat - startingThreat(s), u.id);
   s.used.push("game:aragorn-refresh");
   return true;
 }

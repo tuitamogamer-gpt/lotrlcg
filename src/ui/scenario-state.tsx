@@ -1,3 +1,4 @@
+import { tharbadTimeLimit } from "../game/tharbad-support";
 import { TRIALS } from "../game/three-trials-support";
 import { trialsKeys } from "../game/three-trials";
 import { allEngaged } from "../game/table";
@@ -28,6 +29,7 @@ export function ScenarioState({
     !s.fangorn &&
     !s.dunlandTrap &&
     !s.threeTrials &&
+    !s.tharbad &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -86,6 +88,24 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.tharbad && (
+        <div className="tower-counter">
+          <strong>
+            Time · {s.tharbad.time} / {tharbadTimeLimit(s.stage)}
+          </strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.tharbad.time}
+            max={Math.max(s.tharbad.time, tharbadTimeLimit(s.stage))}
+          />
+          <span>Threat elimination · {s.tharbad.elimination}</span>
+          <span>
+            {s.stage === 1
+              ? "Reduce every player's threat to zero. Protect Nalir."
+              : "Explore the Crossing at Tharbad. Protect Nalir."}
+          </span>
         </div>
       )}
       {s.threeTrials && (

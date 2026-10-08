@@ -54,6 +54,9 @@ export function observe(
 ): Observation {
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
+    ...(s.tharbad
+      ? { "Threat elimination level": String(s.tharbad.elimination) }
+      : {}),
     "Staging threat": String(getStagingThreat(s)),
     ...(questTime(s)
       ? { "Quest time counters": String(questTime(s)!.time) }

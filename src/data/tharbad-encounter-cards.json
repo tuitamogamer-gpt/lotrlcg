@@ -1,0 +1,602 @@
+[
+  {
+    "code": "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
+    "octgnid": "1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
+    "name": "Conspicuous Lot",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player raises his threat by 1 for each ally he controls. Then, if any player's threat is 20 or less, this card gains surge.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 81,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+2 [attack] instead if the defending player's threat is 20 or less).",
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b3b1063-e102-4fea-a29b-5692fbfb9cd6.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 81,
+        "quantity": 2,
+        "octgnid": "1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b3b1063-e102-4fea-a29b-5692fbfb9cd6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
+    "octgnid": "1d1adc93-c364-41d0-b987-6038d9df0c07",
+    "name": "The Empty Mug",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Players cannot reduce their threat.\nWhile the Empty Mug is in the victory display, the current quest gains \"Forced: After a player card effect reduces a player's threat, remove it from the game.\"",
+    "is_unique": true,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 69,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d1adc93-c364-41d0-b987-6038d9df0c07.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "1d1adc93-c364-41d0-b987-6038d9df0c07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d1adc93-c364-41d0-b987-6038d9df0c07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+    "octgnid": "2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+    "name": "Get That Dwarf!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The enemy in the staging area with the highest [attack] engages the first player and makes an immediate attack against Nalir. If there are no enemies in the staging area, Get That Dwarf! Gains surge.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 83,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack is undefended, deal 2 damage to Nalir.",
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2f7770cd-3102-4f35-a3bc-bd9afcab8303.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 83,
+        "quantity": 2,
+        "octgnid": "2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2f7770cd-3102-4f35-a3bc-bd9afcab8303.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+    "octgnid": "3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+    "name": "Ruins of the Second Age",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City. Ruins.",
+    "text": "While Ruins of the Second Age is in the staging area, City locations get +1 [threat].  While Ruins of the Second Age is the active location, deal engaged enemies 1 additional shadow card at the beginning of the combat phase.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 76,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d25a41e-6a10-4fd7-a159-2b25bfc54454.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 76,
+        "quantity": 2,
+        "octgnid": "3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d25a41e-6a10-4fd7-a159-2b25bfc54454.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
+    "octgnid": "44c49a79-6396-494c-a311-bf1b25263acb",
+    "name": "Cornered",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player either removes 1 time counter from the current quest or each enemy gets -20 engagement cost and +1 [attack] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 82,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+2 [attack] instead if the defending player's threat is 20 or less).",
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44c49a79-6396-494c-a311-bf1b25263acb.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 82,
+        "quantity": 2,
+        "octgnid": "44c49a79-6396-494c-a311-bf1b25263acb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44c49a79-6396-494c-a311-bf1b25263acb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgnid": "51681809-60af-4819-bfa0-3f568987f4ea",
+    "name": "Constant Tail",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return all engaged enemies to the staging area. Then, the first player either removes 1 time counter from the current quest or each Spy enemy in the staging area gets +2 [threat] until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 80,
+    "quantity": 2,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51681809-60af-4819-bfa0-3f568987f4ea.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 80,
+        "quantity": 2,
+        "octgnid": "51681809-60af-4819-bfa0-3f568987f4ea",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51681809-60af-4819-bfa0-3f568987f4ea.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
+    "octgnid": "57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
+    "name": "Bellach's Marauder",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "While Bellach's Marauder is engaged with a player, it gains: \"Forced: After a time counter is removed from the current quest, deal Bellach's Marauder 2 shadow cards.\"",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 73,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 5,
+    "engagement": 30,
+    "shadow": "Shadow: Remove 1 time counter from the current quest.",
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "5",
+      "engagement": "30"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57f80fa2-0fdb-47b1-a441-939ee4cc6b4e.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 73,
+        "quantity": 2,
+        "octgnid": "57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57f80fa2-0fdb-47b1-a441-939ee4cc6b4e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
+    "octgnid": "79f789a1-8a89-468b-8fb1-7a0292cc963f",
+    "name": "Nalir",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dwarf.",
+    "text": "The first player gains control of Nalir.\nForced: At the beginning of the refresh phase, raise your threat by 1 for each player in the game.  If Nalir leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 68,
+    "quantity": 1,
+    "willpower": 0,
+    "attack": 1,
+    "defense": 2,
+    "health": 3,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "willpower": "0",
+      "attack": "1",
+      "defense": "2",
+      "health": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79f789a1-8a89-468b-8fb1-7a0292cc963f.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "79f789a1-8a89-468b-8fb1-7a0292cc963f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79f789a1-8a89-468b-8fb1-7a0292cc963f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
+    "octgnid": "8a4aebc3-32db-4b2f-965c-548058440a7c",
+    "name": "Decrepit Rooftops",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "While Decrepit Rooftops is the active location, enemies get +1 [threat] and do not make engagement checks.  Forced: After traveling to Decrepit Rooftops, return all engaged enemies to the staging area.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 79,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a4aebc3-32db-4b2f-965c-548058440a7c.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 79,
+        "quantity": 2,
+        "octgnid": "8a4aebc3-32db-4b2f-965c-548058440a7c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a4aebc3-32db-4b2f-965c-548058440a7c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:8b203ead-9fb6-4734-9109-3633fc24d1a9",
+    "octgnid": "8b203ead-9fb6-4734-9109-3633fc24d1a9",
+    "name": "The Crossing at Tharbad",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City. Ruins. River.",
+    "text": "Immune to player card effects. Cannot leave the staging area.\nThe Crossing at Tharbad gets +2 quest points for each player in the game.  When The Crossing at Tharbad is explored, the players win the game.",
+    "is_unique": true,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 71,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 10,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "10"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b203ead-9fb6-4734-9109-3633fc24d1a9.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "8b203ead-9fb6-4734-9109-3633fc24d1a9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b203ead-9fb6-4734-9109-3633fc24d1a9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
+    "octgnid": "8cc366fb-68f0-4401-9df9-20f9258a728c",
+    "name": "Spy from Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Orc. Spy.",
+    "text": "Forced: When Spy from Mordor attacks, remove 1 time counter from the current quest.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 72,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 40,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "40"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cc366fb-68f0-4401-9df9-20f9258a728c.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 72,
+        "quantity": 4,
+        "octgnid": "8cc366fb-68f0-4401-9df9-20f9258a728c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cc366fb-68f0-4401-9df9-20f9258a728c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+    "octgnid": "8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+    "name": "Bellach",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Spy.",
+    "text": "X is the number of players in the game.\nOrc and Creature enemies get -30 engagement cost and +1 [threat].  Forced: When Bellach is destroyed, shuffle him into the encounter deck.",
+    "is_unique": true,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 70,
+    "quantity": 1,
+    "attack": 5,
+    "defense": 4,
+    "health": 7,
+    "engagement": 50,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "5",
+      "defense": "4",
+      "health": "7",
+      "engagement": "50"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f6254c0-a723-4e66-bdc7-4c92eed415f8.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f6254c0-a723-4e66-bdc7-4c92eed415f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
+    "octgnid": "c2181617-ad55-4bf7-a6f3-60979d112ce6",
+    "name": "Streets of Tharbad",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City. Road.",
+    "text": "Progress cannot be placed on Streets of Tharbad while it is in the staging area.\nWhile Streets of Tharbad is the active location, enemeis get -20 engagement cost.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 74,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 1,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2181617-ad55-4bf7-a6f3-60979d112ce6.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 74,
+        "quantity": 2,
+        "octgnid": "c2181617-ad55-4bf7-a6f3-60979d112ce6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2181617-ad55-4bf7-a6f3-60979d112ce6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgnid": "cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "name": "Hidden Alleyway",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Travel: Raise each player's threat by X to travel here. X is the number of enemies in play.  Forced: After traveling to Hidden Alleyway, add 1 time counter to the current quest.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 78,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cafa6a4e-1994-4a22-a465-3c03f1c0a425.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 78,
+        "quantity": 2,
+        "octgnid": "cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cafa6a4e-1994-4a22-a465-3c03f1c0a425.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
+    "octgnid": "eaad2b4a-3ac0-4672-ad43-036152d81322",
+    "name": "Tharbad Hideout",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Surge.\nWhile Tharbad Hideout is the active location, time counters cannot be removed from the current quest.  Forced: At the beginning of the quest phase, place 1 progress on Tharbad Hideout.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 75,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 1,
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eaad2b4a-3ac0-4672-ad43-036152d81322.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 75,
+        "quantity": 2,
+        "octgnid": "eaad2b4a-3ac0-4672-ad43-036152d81322",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eaad2b4a-3ac0-4672-ad43-036152d81322.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
+    "octgnid": "ead7703f-43e0-464e-ac09-304b86a54b50",
+    "name": "Seedy Inn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "Travel: Search the encounter deck and discard pile for a Spy enemy and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TiT",
+    "pack_name": "Trouble in Tharbad",
+    "position": 77,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Raise the defending player's threat by X, where X is the amount of damage dealt by this attack.",
+    "encounter_set": "Trouble in Tharbad",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ead7703f-43e0-464e-ac09-304b86a54b50.jpg",
+    "packs": [
+      {
+        "pack_code": "TiT",
+        "pack_name": "Trouble in Tharbad",
+        "position": 77,
+        "quantity": 2,
+        "octgnid": "ead7703f-43e0-464e-ac09-304b86a54b50",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ead7703f-43e0-464e-ac09-304b86a54b50.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

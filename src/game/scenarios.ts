@@ -1,3 +1,4 @@
+import { THARBAD_QUESTS } from "./tharbad-support";
 import { TRIALS, THREE_TRIALS_QUESTS } from "./three-trials-support";
 import { DUNLAND_TRAP_QUESTS } from "./dunland-trap-support";
 import { FANGORN_QUESTS } from "./fangorn-support";
@@ -52,6 +53,7 @@ const questImage = (code: string) => {
     ...FANGORN_QUESTS,
     ...DUNLAND_TRAP_QUESTS,
     ...THREE_TRIALS_QUESTS,
+    ...THARBAD_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -952,6 +954,26 @@ export const SCENARIOS = [
         questImage: questImage(q.code),
       };
     }),
+  },
+  {
+    id: "trouble-in-tharbad",
+    name: "Trouble in Tharbad",
+    shortName: "Trouble in Tharbad",
+    chapter: "XXXIII",
+    difficulty: 4,
+    tagline: "Escape the spies before your trail is discovered",
+    description:
+      "Protect Nalir, lose your pursuers by reducing every player's threat to zero, then cross the ruined bridge before the narrowing threat limit catches you.",
+    sets: ["Trouble in Tharbad", "Misty Mountain Orcs"],
+    stages: [...THARBAD_QUESTS]
+      .sort((a, b) => Number(a.cost) - Number(b.cost))
+      .map((q) => ({
+        name: q.name,
+        cardCode: q.code,
+        quest: q.back_quest ?? 0,
+        story: q.back_text!,
+        questImage: questImage(q.code),
+      })),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

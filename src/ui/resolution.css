@@ -1173,3 +1173,7 @@
 .event-landscape-into-fangorn {
   --event-art: url("/art/premium/mirkwood.webp");
 }
+
+.event-landscape-trouble-in-tharbad {
+  --event-art: url("/art/premium/dol-guldur.webp");
+}

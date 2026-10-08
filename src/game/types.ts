@@ -91,6 +91,7 @@ export interface Unit {
   morgulExtraAttacks?: number;
   /** Dunland Tribesman bonuses expire at round end. */
   roundThreat?: number;
+  roundAttack?: number;
   /** Resolved shadow protections expire when the attached shadows are discarded. */
   shadowCancelsDamage?: boolean;
   /** Frenzied Attack lasts through refresh, until the round ends. */
@@ -170,6 +171,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "trouble-in-tharbad"
   | "the-three-trials"
   | "shadow-and-flame";
 export type PlayMode = "normal" | "campaign";
@@ -197,6 +199,8 @@ export type Phase =
   | "attack"
   | "refresh";
 export interface Effect {
+  /** Objective that must receive undefended damage from this attack. */
+  damageTarget?: string;
   revealOrigin?: "encounter" | "underworld";
   /** Serializable event resolution retains paid costs and cancellation continuations. */
   effects?: Effect[];
@@ -281,6 +285,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  tharbad?: import("./tharbad-support").TharbadState;
   threeTrials?: import("./three-trials-support").ThreeTrialsState;
   dunlandTrap?: import("./dunland-trap-support").DunlandTrapState;
   fangorn?: import("./fangorn-support").FangornState;
@@ -413,6 +418,7 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    tharbadDamageThreat?: number;
     trialsTimeOnKill?: number;
     trialsGuardianThreat?: number;
     fordsTimeOnKill?: number;

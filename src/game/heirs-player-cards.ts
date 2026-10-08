@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
@@ -244,8 +245,10 @@ export function useHeirsPlayerAbility(
   );
   if (u.code === "05010") {
     const amount = ownEnemies(s).length;
-    s.threat = Math.max(0, s.threat - amount);
+    const owner = u.owner ?? activeSeat(s),
+      index = seatView(s, owner).discard.length;
     discardCharacter(s, u);
+    reduceThreat(s, amount, { id: u.id, code: u.code, owner, index });
     return true;
   }
   requireRule(exhaustCharacter(s, u), "This ally cannot exhaust.");

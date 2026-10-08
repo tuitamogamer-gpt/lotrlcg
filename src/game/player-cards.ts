@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { movableHand } from "./hand-rules";
 import * as Isengard from "./voice-isengard";
 import { morgulCannotLeave } from "./morgul-vale";
@@ -263,17 +264,17 @@ export function eventEffect(
           ...playerOrder(s).map((player) => ({
             id: `player-${player}`,
             label: `Reduce ${seatName(s, player)}’s threat by 6`,
-            effects: [fx("threat", { value: -6, player })],
+            effects: [fx("threat", { value: -6, player, source: u?.id, code })],
           })),
           {
             id: "everyone",
             label: "Reduce every fellowship’s threat by 2",
             effects: playerOrder(s).map((player) =>
-              fx("threat", { value: -2, player }),
+              fx("threat", { value: -2, player, source: u?.id, code }),
             ),
           },
         ]);
-      else s.threat = Math.max(0, s.threat - 6);
+      else reduceThreat(s, 6, u?.id ?? code);
       break;
     case "01049":
       removePlayedEvent(s, code);

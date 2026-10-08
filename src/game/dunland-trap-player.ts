@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 // The Dunland Trap player cards; Celeborn, Naith Guide, Firefoot, Tree People
@@ -281,7 +282,12 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       );
       forOwner(s, e.owner!, () => takePlayerDiscard(s, e.value!));
       addVictoryCard(s, "08007");
-      s.threat = Math.max(0, s.threat - (e.count ?? 0));
+      reduceThreat(s, e.count ?? 0, {
+        id: e.source,
+        code: "08007",
+        owner: e.owner,
+        zone: "victory",
+      });
       return true;
     case "dunlandCloseWindow": {
       if (!get(s, e.target)) return true;

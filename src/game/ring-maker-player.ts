@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
@@ -543,7 +544,7 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "ringFreeReduce":
-      s.threat = Math.max(0, s.threat - (e.value ?? 0));
+      reduceThreat(s, e.value ?? 0, "08060");
       return true;
     default:
       return false;

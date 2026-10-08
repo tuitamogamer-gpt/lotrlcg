@@ -1,3 +1,4 @@
+import { setupTharbad } from "./tharbad";
 import { setupThreeTrials } from "./three-trials";
 import { setupDunlandTrap } from "./dunland-trap";
 import { setupFangorn } from "./fangorn";
@@ -368,6 +369,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "trouble-in-tharbad") {
+    setupTharbad(s);
   } else if (scenarioId === "the-three-trials") {
     setupThreeTrials(s);
   } else if (scenarioId === "the-dunland-trap") {

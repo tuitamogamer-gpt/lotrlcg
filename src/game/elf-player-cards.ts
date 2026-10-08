@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { takePlayerDeck } from "./core";
@@ -84,9 +85,12 @@ const liveAttachment = (s: GameState, e: Effect, code?: string) => {
   );
   return { host, attachment };
 };
-function lowerThreat(s: GameState, amount: number) {
-  const reduction = Math.min(s.threat, amount);
-  s.threat -= reduction;
+function lowerThreat(
+  s: GameState,
+  amount: number,
+  source?: Parameters<typeof reduceThreat>[2],
+) {
+  const reduction = reduceThreat(s, amount, source);
   log(
     s,
     `${seatName(s, activeSeat(s))} reduces threat by ${reduction}.`,
@@ -238,7 +242,9 @@ export function useElfAbility(s: GameState, u: Unit, attachmentId?: string) {
     choose(
       s,
       "Galadriel · Choose a player",
-      playerOptions(s, (player) => [fx("elfGaladriel", { player })]),
+      playerOptions(s, (player) => [
+        fx("elfGaladriel", { player, source: u.id, code: u.code }),
+      ]),
     );
   } else if (code === "08056")
     choose(
@@ -293,7 +299,7 @@ export function elfEventEffect(s: GameState, code: string, target?: string) {
     const u = councilTargets(s).find((u) => u.id === target);
     requireRule(u, "Choose another character for Elrond's Counsel.");
     u.tempWill = (u.tempWill ?? 0) + 1;
-    lowerThreat(s, 3);
+    lowerThreat(s, 3, code);
   } else if (["08009", "08027"].includes(code)) {
     if (code === "08009") s.used.push("phase:tree-people");
     choose(
@@ -443,7 +449,7 @@ function searchChoice(s: GameState, kind: "event" | "silvan") {
 export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
     case "elfGaladriel":
-      lowerThreat(s, 1);
+      lowerThreat(s, 1, { id: e.source, code: e.code });
       draw(s, 1);
       break;
     case "elfHaldir": {
@@ -603,7 +609,9 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
         choose(
           s,
           "Galadriel's Handmaiden · Choose a player",
-          playerOptions(s, (player) => [fx("elfHandmaiden", { player })]),
+          playerOptions(s, (player) => [
+            fx("elfHandmaiden", { player, source: u.id, code: u.code }),
+          ]),
         );
       else if (u.code === "08063") searchChoice(s, "event");
       else if (u.code === "08114")
@@ -637,7 +645,7 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "elfHandmaiden":
-      lowerThreat(s, 1);
+      lowerThreat(s, 1, { id: e.source, code: e.code });
       break;
     case "elfOrophin": {
       requireRule(

@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { movableHand } from "./hand-rules";
@@ -447,7 +448,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
         "The attachment must remain active.",
       );
       readyCharacter(s, target);
-      s.threat = Math.max(0, s.threat - 1);
+      reduceThreat(s, 1, { id: e.text, code: "04082" });
       return true;
     }
     case "longDarkTalesResponse": {

@@ -643,6 +643,18 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.tharbad)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 1
+            ? "Reduce all players to zero threat"
+            : "Explore the Crossing at Tharbad"}
+        </span>
+        <span>Keep Nalir in play · threat limit {s.tharbad.elimination}</span>
+      </div>
+    );
   if (s.threeTrials)
     return (
       <div className="quest-goals">

@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { canGainResources } from "./core";
 import { takePlayerDeck } from "./core";
 // Exact active and triggered rules for the official Defenders of Gondor starter.
@@ -112,7 +113,8 @@ export function gondorEventEffect(
   switch (code) {
     case "22003": {
       const increase = 40 - s.threat;
-      s.threat = 40;
+      if (increase < 0) reduceThreat(s, -increase, code);
+      else s.threat = 40;
       if (increase > 0) draw(s, increase >= 10 ? 4 : 1);
       return true;
     }

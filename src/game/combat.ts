@@ -1,3 +1,4 @@
+import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
@@ -377,6 +378,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   catchAttackStarted(s, enemy, player);
   fangornAttackStarted(s);
   Trials.trialsAttackStarted(s, enemy);
+  Tharbad.tharbadAttackStarted(s, enemy);
 }
 
 export function applyCombatDamageConsequences(

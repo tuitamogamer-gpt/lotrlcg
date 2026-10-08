@@ -1,3 +1,4 @@
+import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -170,7 +171,7 @@ export function redhornPlayerEventEffect(
         c.type_code === "enemy" || c.type_code === "location"
           ? (c.threat ?? 0)
           : 0;
-    s.threat = Math.max(0, s.threat - amount);
+    reduceThreat(s, amount, "04009");
     choose(
       s,
       "Needful to Know · Look at encounter top",
@@ -553,7 +554,7 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
               {
                 id: "threat",
                 label: "Lower threat by 2",
-                effects: [fx("threat", { value: -2, player })],
+                effects: [fx("threat", { value: -2, player, code: "04007" })],
               },
             ]
           : []),
