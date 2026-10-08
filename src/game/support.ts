@@ -1,3 +1,4 @@
+import { hasEncounterKeyword } from "./encounter-keyword";
 import { SCRIPTED, playerCards, encounterCards } from "./cards";
 import { SCENARIOS, CAMPAIGN_CHAPTERS } from "./scenarios";
 import type { Card } from "./types";
@@ -29,15 +30,17 @@ export const isAutomatedCard = (c: Card) =>
 export const automationSummary = () => ({
   playerCards: playerCards.length,
   heroes: playerCards.filter((c) => c.type_code === "hero").length,
-  deckCards: playerCards.filter((c) =>
-    [
-      "ally",
-      "attachment",
-      "event",
-      "player-side-quest",
-      "contract",
-      "treasure",
-    ].includes(c.type_code),
+  deckCards: playerCards.filter(
+    (c) =>
+      !hasEncounterKeyword(c) &&
+      [
+        "ally",
+        "attachment",
+        "event",
+        "player-side-quest",
+        "contract",
+        "treasure",
+      ].includes(c.type_code),
   ).length,
   encounterCards: encounterCards.length,
   scenarios: SCENARIOS.length,

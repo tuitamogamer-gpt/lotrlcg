@@ -1,3 +1,4 @@
+import { hasEncounterKeyword } from "./encounter-keyword";
 import { setupAntlered } from "./antlered";
 import { setupCelebrimbor } from "./celebrimbor";
 import { setupNin } from "./nin-eilph";
@@ -73,6 +74,7 @@ export function validateDeckList(
   for (const [code, n] of Object.entries(deck)) {
     requireRule(
       SCRIPTED.has(code) &&
+        !hasEncounterKeyword(card(code)) &&
         card(code).type_code !== "hero" &&
         card(code).sphere_code !== "encounter" &&
         !code.startsWith("rc"),
@@ -101,6 +103,7 @@ export function createGame(
     reviewMode?: ReviewMode;
     /** Official easy mode: each hero starts with one additional resource. */
     easy?: boolean;
+    rangerReserves?: Record<number, number>;
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -294,6 +297,15 @@ export function createGame(
     s.heroes = heroCodes.map((code) => make(s, code));
     s.threat = startingThreat(heroCodes) + (campaign?.threatPenalty ?? 0);
   }
+  s.rangerReserves = Object.fromEntries(
+    playerOrder(s).map((p) => [p, options.rangerReserves?.[p] ?? 3]),
+  );
+  requireRule(
+    Object.values(s.rangerReserves).every(
+      (n) => Number.isInteger(n) && n >= 0 && n <= 3,
+    ),
+    "Set aside between zero and three Rangers per player.",
+  );
   if (!s.table) s.startingThreat = s.threat;
   if (options.easy) {
     eachSeat(s, () => {

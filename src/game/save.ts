@@ -1,3 +1,4 @@
+import { hasEncounterKeyword } from "./encounter-keyword";
 import { validateAntlered, printedLocationTime } from "./antlered-support";
 import { validateCelebrimbor } from "./celebrimbor-support";
 import { validateNin } from "./nin-eilph-support";
@@ -84,6 +85,26 @@ export function validateSave(
         return false;
       }
     };
+    if (
+      s.rangerReserves !== undefined &&
+      (!s.rangerReserves ||
+        typeof s.rangerReserves !== "object" ||
+        Array.isArray(s.rangerReserves) ||
+        Object.entries(s.rangerReserves).some(
+          ([p, n]) =>
+            !/^\d+$/.test(p) ||
+            +p >= seatCount ||
+            !integer(n) ||
+            n < 0 ||
+            n > 3,
+        ))
+    )
+      return false;
+    if (
+      s.deck?.some((code) => hasEncounterKeyword(card(code))) ||
+      s.hand?.some((u) => hasEncounterKeyword(card(u.code)))
+    )
+      return false;
     const knownQuest = (code: unknown) =>
       typeof code === "string" && card(code).type_code === "quest";
     const validAttachment = (a: Attachment) =>

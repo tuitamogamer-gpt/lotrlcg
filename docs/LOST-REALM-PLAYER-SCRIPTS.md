@@ -2,7 +2,7 @@
 
 This first batch registers eleven new designs: Tactics Aragorn, Halbarad, Weather Hills Watchman, Dúnedain Hunter, Warden of Annúminas, Tireless Hunters, Expert Trackers, Heir of Valandil, Athelas, Secret Vigil and Star Brooch. Sarn Ford Sentry reuses its existing Collector handler. All twelve original faces are local assets.
 
-Ranger Summons, Ranger of the North and Gather Information remain unregistered in this batch. The Encounter keyword and player side quests require their own complete frameworks before those three cards become playable. The three Lost Realm scenarios also remain pending.
+Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information and the three Lost Realm scenarios remain pending until their side-quest framework is complete.
 
 ## Sources and implementation
 
@@ -27,3 +27,15 @@ Ranger Summons, Ranger of the North and Gather Information remain unregistered i
 - Type checking and production build pass. No account-schema migration is required for this batch.
 
 Registration after this batch: 435 player definitions, 50 heroes, 385 deck cards, 485 encounters and 36 scenarios; 1,044 of 4,183 reference identities and 72 of 355 scenario recipes are registered. There are 3,139 reference identities pending.
+
+## Encounter allies follow-up
+
+Ranger Summons and Ranger of the North implement the official Encounter keyword. Every player starts with three Rangers set aside; setup can explicitly request zero to three. Each successful Summons consumes only its controller’s reserve, shuffles one Ranger into the current encounter deck, and removes the resolving physical Summons. Cancellation spends the event without consuming the reserve or resolving self-removal. The reserve survives rounds and reloads; leaving play never replenishes it.
+
+Ranger’s When Revealed cannot be canceled. The first player chooses the receiving fellowship and then resolves either two enemy damage or two location progress before Surge. A shadow Ranger follows the normal encounter discard route without its When Revealed or Surge. A controlled Ranger keeps Ranged/Sentinel and is removed on destruction, discard, return to hand/deck, simultaneous return or controller elimination. Attached player cards retain their ordinary ownership and discard rules.
+
+Encounter allies are excluded from player deck construction, minimum size and ordinary hand plays. RingsDB imports explain their set-aside role without labeling them unimplemented. Save validation rejects invalid reserve counts and Encounter allies in player hands/decks. Older saves without this newly introduced field receive the untouched three-card reserve.
+
+Evidence: 21 focused Ranger cases; 2,443 broad regressions passed before the additional import-report case; twenty complete games with Summons in the 50-card test list plus matching full-game outcomes across all three review modes. Eighteen browser checkpoints at 1280/390/320 exercise actual payment, multiplayer control, both aid modes, Surge, saved choices and Born Aloft removal. Both new faces decode locally, and the mobile first-player decision was visually reviewed. Type checking and production build pass.
+
+Current registration: 437 player definitions, 50 heroes, 386 deck cards and one set-aside Encounter ally; 485 encounter definitions and 36 scenarios; 1,046 of 4,183 catalog identities, with 3,137 pending. Fourteen of the fifteen Lost Realm player designs are implemented.

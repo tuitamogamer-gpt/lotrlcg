@@ -37,7 +37,7 @@
     "test:precons": "node --import tsx scripts/browser-preconstructed-decks.mjs",
     "test:ring-maker-quests": "node --import tsx scripts/browser-fords-isen.mjs && node --import tsx scripts/browser-catch-orc.mjs && node --import tsx scripts/browser-fangorn.mjs && node --import tsx scripts/browser-dunland-trap.mjs && node --import tsx scripts/browser-three-trials.mjs && node --import tsx scripts/browser-tharbad.mjs && node --import tsx scripts/browser-nin-eilph.mjs && node --import tsx scripts/browser-celebrimbor.mjs && node --import tsx scripts/browser-antlered.mjs",
     "test:ring-maker-players": "node --import tsx scripts/browser-dunland-players.mjs && node --import tsx scripts/browser-trials-tharbad-players.mjs && node --import tsx scripts/browser-ring-maker-final-players.mjs",
-    "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs"
+    "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs && node --import tsx scripts/browser-ranger-north.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

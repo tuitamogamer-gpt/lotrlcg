@@ -1,3 +1,4 @@
+import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
@@ -625,6 +626,8 @@ export function canPlay(
   const heirsProblem = heirsPlayerPlayProblem(s, c.code);
   const ringMakerProblem = ringMakerPlayProblem(s, c.code, u.id);
   if (ringMakerProblem) return ringMakerProblem;
+  const rangerProblem = rangerPlayProblem(s, c.code);
+  if (rangerProblem) return rangerProblem;
   const realmProblem = Realm.realmPlayProblem(s, c.code);
   if (realmProblem) return realmProblem;
   const finalRingProblem = finalRingPlayProblem(s, c.code);

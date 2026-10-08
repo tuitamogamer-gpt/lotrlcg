@@ -72,8 +72,7 @@ test("Lost Realm registers eleven new original designs with local art and keeps 
     assert.equal(card(code).pack_name, "The Lost Realm");
     assert.match(imageUrl(card(code)), /^\/cards\//);
   }
-  for (const code of ["09007", "09014", "09015"])
-    assert.ok(!SCRIPTED.has(code), code);
+  for (const code of ["09014"]) assert.ok(!SCRIPTED.has(code), code);
 });
 test("Aragorn reduces only enemies engaged with his controller and honors immunity and blanking", () => {
   const s = fixture(2),

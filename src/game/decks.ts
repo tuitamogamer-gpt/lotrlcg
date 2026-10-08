@@ -1,3 +1,4 @@
+import { hasEncounterKeyword } from "./encounter-keyword";
 export { startingThreat } from "./starting-threat";
 import { card, playerCards, SCRIPTED } from "./cards";
 import { BUILT_IN_DECKS } from "./built-in-decks";
@@ -30,6 +31,7 @@ export const HERO_CARDS: Card[] = playerCards.filter(
 export const DECK_CARDS: Card[] = playerCards.filter(
   (c) =>
     c.type_code !== "hero" &&
+    !hasEncounterKeyword(c) &&
     c.sphere_code !== "encounter" &&
     SCRIPTED.has(c.code) &&
     !c.code.startsWith("rc"),
@@ -188,6 +190,12 @@ export function parseRingsDbDeck(
     if (heroCodes.has(code) || Object.hasOwn(heroEntries, code)) continue;
     const quantity = quantityOf(code, qty);
     if (!quantity) continue;
+    if (known.has(code) && hasEncounterKeyword(known.get(code)!)) {
+      adjustments.push(
+        `${known.get(code)!.name} belongs in the set-aside reserve and does not count toward the player deck's 50-card minimum.`,
+      );
+      continue;
+    }
     if (deckCodes.has(code)) {
       cards[code] = Math.min(3, quantity);
       if (quantity > 3)

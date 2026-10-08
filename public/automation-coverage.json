@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 435,
+    "playerCards": 437,
     "heroes": 50,
-    "deckCards": 385,
+    "deckCards": 386,
     "encounterCards": 485,
     "scenarios": 36,
     "scenarioIds": [
@@ -48,8 +48,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1044,
-    "pending": 3139
+    "scripted": 1046,
+    "pending": 3137
   },
   "scenarioRecipes": {
     "total": 355,
@@ -477,12 +477,14 @@
     "09004",
     "09005",
     "09006",
+    "09007",
     "09008",
     "09009",
     "09010",
     "09011",
     "09012",
     "09013",
+    "09015",
     "10093",
     "10122",
     "12003",
@@ -1762,9 +1764,9 @@
     {
       "product": "the-lost-realm",
       "total": 73,
-      "scripted": 12,
+      "scripted": 14,
       "player": 15,
-      "playerScripted": 12
+      "playerScripted": 14
     },
     {
       "product": "the-lost-realm-nightmare",
@@ -5595,7 +5597,7 @@
       "name": "Ranger Summons",
       "type": "event",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5659,7 +5661,7 @@
       "name": "Ranger of the North",
       "type": "ally",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {

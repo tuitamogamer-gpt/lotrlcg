@@ -285,6 +285,8 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  /** Up to three Encounter allies set aside by each player; never replenished on departure. */
+  rangerReserves?: Record<number, number>;
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;

@@ -1,3 +1,5 @@
+import { RANGER_NORTH, rangerRevealed } from "./ranger-north";
+import { hasEncounterKeyword } from "./encounter-keyword";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
@@ -697,9 +699,11 @@ export function check(s: GameState) {
       const leavingCharacters = [...s.heroes, ...s.allies];
       for (const u of leavingCharacters) {
         for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-        (card(u.code).type_code === "objective-ally"
-          ? s.encounterDiscard
-          : seatView(s, u.owner ?? i).discard
+        (hasEncounterKeyword(card(u.code))
+          ? seatView(s, u.owner ?? i).removed
+          : card(u.code).type_code === "objective-ally"
+            ? s.encounterDiscard
+            : seatView(s, u.owner ?? i).discard
         ).push(u.code);
         if (card(u.code).type_code === "hero")
           s.fallenThreat += card(u.code).threat ?? 0;
@@ -1037,7 +1041,8 @@ export function characterLeftPlay(
   lastKnownAttack = stats(s, u).attack,
   lastKnownTraits = effectiveTraits(u),
 ) {
-  Celebrimbor.celebrimborCharacterLeft(s, u, destination);
+  if (!hasEncounterKeyword(card(u.code)))
+    Celebrimbor.celebrimborCharacterLeft(s, u, destination);
   Tharbad.tharbadCharacterLeft(s, u, controller);
   ringMakerCharacterLeft(s, u.id);
   // A later entry starts a new instance even when its physical card keeps its id.
@@ -1108,6 +1113,7 @@ export function destroy(
   const lastAttachments = [...u.attachments];
   selectSeat(s, ownerOf(s, u));
   const c = card(u.code);
+  if (hasEncounterKeyword(c)) destination = "removed";
   if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
     for (const h of allHeroes(s))
       for (const a of h.attachments)
@@ -1591,6 +1597,10 @@ export function phaseEndPlayer(s: GameState) {
 }
 
 export function returnAlly(s: GameState, u: Unit, toDeck = false) {
+  if (toDeck && hasEncounterKeyword(card(u.code))) {
+    destroy(s, u, false, "removed");
+    return;
+  }
   if (!toDeck) {
     returnAlliesToHand(s, [u]);
     return;
@@ -1657,7 +1667,8 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
       s.allies = s.allies.filter((u) => u.id !== move.u.id);
     });
     forOwner(s, move.owner, () => {
-      if (move.u.code === "rc135") s.removed.push(move.u.code);
+      if (move.u.code === "rc135" || hasEncounterKeyword(card(move.u.code)))
+        s.removed.push(move.u.code);
       else {
         const returned = make(s, move.u.code);
         move.id = returned.id;
@@ -1680,8 +1691,8 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
   for (const move of moves) {
     log(
       s,
-      move.u.code === "rc135"
-        ? "Mendor leaves play and is removed from the game."
+      move.u.code === "rc135" || hasEncounterKeyword(card(move.u.code))
+        ? `${name(move.u)} leaves play and is removed from the game.`
         : `${name(move.u)} returns to ${seatName(s, move.owner)}’s hand.`,
     );
     if (s.status !== "playing") continue;
@@ -1691,7 +1702,10 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
       move.u,
       move.controller,
       {
-        zone: move.u.code === "rc135" ? "removed" : "hand",
+        zone:
+          move.u.code === "rc135" || hasEncounterKeyword(card(move.u.code))
+            ? "removed"
+            : "hand",
         player: move.owner,
         id: move.id,
       },
@@ -1980,6 +1994,7 @@ export function resolveReveal(
   // The Eaves of Mirkwood: encounter card effects cannot be canceled.
   const when =
     (c.text ?? "").includes("When Revealed") &&
+    !hasEncounterKeyword(c) &&
     code !== CARROCK.sacked &&
     code !== FANGORN.malice &&
     code !== NIN.remnants &&
@@ -2162,6 +2177,11 @@ export function placeEncounter(
           : []),
       );
     }
+  }
+  if (code === RANGER_NORTH && fromReveal) {
+    const ranger = [...s.staging].reverse().find((u) => u.code === code);
+    if (ranger) rangerRevealed(s, ranger.id);
+    return;
   }
   if (cancel) {
     if (c.type_code === "treachery") s.encounterDiscard.push(code);

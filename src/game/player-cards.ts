@@ -1,3 +1,4 @@
+import { rangerEvent } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
@@ -131,6 +132,7 @@ export function eventEffect(
 ) {
   if (dunlandEvent(s, code, target)) return;
   if (ringMakerEvent(s, code, target)) return;
+  if (rangerEvent(s, code)) return;
   if (Realm.realmEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
