@@ -47,6 +47,7 @@ import {
   HEIRS_NUMENOR_QUESTS,
 } from "./heirs-numenor-support";
 import scriptedScenarioArt from "../data/scripted-scenario-art.json";
+import referenceScenarioArt from "../data/reference-scenario-art.json";
 import {
   STEWARD_FEAR_ENCOUNTERS,
   STEWARD_FEAR_QUESTS,
@@ -337,9 +338,12 @@ export const card = (code: string): Card => {
   return c;
 };
 export const cachedImageSource = (src: string | undefined) =>
-  scriptedScenarioArt[src as keyof typeof scriptedScenarioArt] ?? src;
+  scriptedScenarioArt[src as keyof typeof scriptedScenarioArt] ??
+  referenceScenarioArt[src as keyof typeof referenceScenarioArt] ??
+  src;
 export const imageUrl = (c: Card) =>
   scriptedScenarioArt[c.imagesrc as keyof typeof scriptedScenarioArt] ??
+  referenceScenarioArt[c.imagesrc as keyof typeof referenceScenarioArt] ??
   (c.imagesrc?.startsWith("/cards/")
     ? c.imagesrc
     : c.pack_name === "Core Set" && c.type_code !== "quest" && cards[c.code]

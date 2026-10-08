@@ -1,0 +1,1471 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Weather Hills",
+  "slug": "the-weather-hills",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+      "octgnid": "00d81c85-395e-4990-b0ff-7cbd9908f541",
+      "name": "Cornered Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Cornered Orc engages a player, it makes an immediate attack.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 25,
+      "quantity": 5,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 20,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 25,
+          "quantity": 5,
+          "octgnid": "00d81c85-395e-4990-b0ff-7cbd9908f541",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+      "octgnid": "047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+      "name": "Search the Ruins",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nForced: At the end of the refresh phase, raise each player's threat by 2.  Response: After Search the Ruins is defeated, reduce each player's threat by 3.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 59,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Ruins of Arnor",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 59,
+          "quantity": 1,
+          "octgnid": "047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+      "octgnid": "0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+      "name": "Find Shelter",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge. Time 4.\nForced: After the last time counter is removed from this quest card, each player deals 4 damage to a hero he controls. Then, place 4 time counters on this quest card.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 32,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+      "octgnid": "18484359-d4b5-4ed6-b7be-e013fae4df43",
+      "name": "Hunting the Orcs",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mission.",
+      "text": "Forced: After an enemy is defeated, place 1 resource token here. Then if there are at least X resource tokens here, flip Hunting the Orcs and place each resource token here on Savage Counterattack. After that, advance to stage 2. X is 3 more than the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 71,
+      "quantity": 1,
+      "encounter_set": "The Weather Hills",
+      "back_name": "Savage Counter-attack",
+      "back_text": "Forced: After Savage Counter-attack enters play, advance to stage 2A.  Forced: After an enemy attacks and destroys a character, discard 1 resource token here.  If there are no resource tokens here, the players lose the game.",
+      "back_type_code": "objective",
+      "back_imagesrc": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "18484359-d4b5-4ed6-b7be-e013fae4df43",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+      "octgnid": "27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+      "name": "Exposed Ridge",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "While Exposed Ridge is the active location, it gains: \"Forced: At the end of the refresh phase, each player deals 1 damage to a character he controls.\"",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 28,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 28,
+          "quantity": 3,
+          "octgnid": "27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+      "octgnid": "3470ed02-38dc-4387-8fe0-265b13fe96a1",
+      "name": "Ice Storm",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player assigns X damage among characters he controls, where X is the number of quest cards in play. Then, exhaust each damaged character.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 31,
+      "quantity": 2,
+      "shadow": "Shadow: Assign X damage among characters you control. X is the number of quest cards in play.",
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {},
+      "imagesrc": "/cards/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 31,
+          "quantity": 2,
+          "octgnid": "3470ed02-38dc-4387-8fe0-265b13fe96a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+      "name": "Make Camp",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nCharacters cannot be healed.  Response: After Make Camp is defeated, each player heals up to 3 damage from a hero he controls.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 55,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 55,
+          "quantity": 1,
+          "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+      "octgnid": "70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+      "name": "Ruins of Arnor",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Ruins.",
+      "text": "Forced: After the \"when revealed\" effect of a treachery card is canceled, raise each player's threat by 2.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 56,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, the defending player raises his threat by 2.",
+      "encounter_set": "Ruins of Arnor",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 56,
+          "quantity": 3,
+          "octgnid": "70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+      "octgnid": "718d940a-2b58-4986-af10-06a81546bc9f",
+      "name": "Sheltered Valley",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "While Sheltered Valley is the active location, it gains: \"Response: When Sheltered Valley is explored, heal all damage from 1 character.\"   Travel: Remove 1 resource token from the Mission objective.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 29,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/718d940a-2b58-4986-af10-06a81546bc9f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "718d940a-2b58-4986-af10-06a81546bc9f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/718d940a-2b58-4986-af10-06a81546bc9f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+      "octgnid": "836a759d-d768-4119-929f-cfe874ba944a",
+      "name": "Weathered Hilltop",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "Weathered Hilltop gets +1 [threat] for each resource token on it.\nForced: After a Weather treachery is revealed from the encounter deck, place 1 resource token here.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 27,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/836a759d-d768-4119-929f-cfe874ba944a.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 27,
+          "quantity": 3,
+          "octgnid": "836a759d-d768-4119-929f-cfe874ba944a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/836a759d-d768-4119-929f-cfe874ba944a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "name": "Biting Wind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Assign X damage among characters committed to the quest. X is the number of characters committed to the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 52,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 52,
+          "quantity": 3,
+          "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+      "octgnid": "8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+      "name": "Concealed Orc-camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "While Concealed Orc-camp is the active location, it gains: \"Response: When Concealed Orc-camp is explored, place 1 resource token on the Mission objective.\"   Travel: The first player searches the encounter deck and discard pile for an Orc enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 30,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 30,
+          "quantity": 3,
+          "octgnid": "8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+      "octgnid": "918c4387-bf40-48f1-bf65-5ad5acb91784",
+      "name": "Scattered Among the Hills",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Orc Ambush and Amon Ford aside, out of play. Create the Orc deck (see insert) and set it next to the quest deck. Make Exposed Ridge the active location. Add Hunting the Orcs and 1 Weathered Hilltop to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 69,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Weather Hills",
+      "side": "A",
+      "back_name": "Scattered Among the Hills",
+      "back_text": "The first Weather treachery revealed each round gains surge.  Forced: After the active location is explored, reveal the top card of the Orc deck and resolve its staging as if it was just revealed from the encounter deck (the top 2 cards instead if there are 3 or more players in the game).",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "918c4387-bf40-48f1-bf65-5ad5acb91784",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+      "octgnid": "95d26956-eda3-43b2-b68b-6f8010d076bd",
+      "name": "Cornered Animals",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: End the current phase. Shuffle the encounter discard pile and the Orc deck into the encounter deck. Reveal Orc Ambush and Amon Ford and add them to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 70,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Weather Hills",
+      "side": "A",
+      "back_name": "Cornered Animals",
+      "back_text": "Each damaged character gets -1 [willpower].  Forced: At the beginning of the quest phase, either discard 1 resource token from Savage Counter-attack, or reveal an additional encounter card this phase.  If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "95d26956-eda3-43b2-b68b-6f8010d076bd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "name": "Angmar Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Either discard 1 ally from play, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 43,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, return attacking enemy to the staging area.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 43,
+          "quantity": 3,
+          "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "name": "Cold from Angmar",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player deals 1 damage to a hero he controls. Then, attach Cold from Angmar to the current quest. (Counts as a Condition attachment with the text: \"Treat each damaged character's printed text box as if it were blank, except for keywords and Traits.\")",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 54,
+      "quantity": 3,
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "name": "Angmar Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Marauder attacks and destroys an ally, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 44,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally the defending player controls.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "name": "Freezing Blast",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "Doomed 2.\nWhen Revealed: Remove each damaged character from the quest.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 53,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+      "encounter_set": "Foul Weather",
+      "printed_stats": {},
+      "imagesrc": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 53,
+          "quantity": 2,
+          "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "name": "Angmar Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Captain attacks and destroys an ally, discard the top card of the defending player's deck. If the discarded card is an ally, Angmar Captain makes an additional attack against the defending player.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 45,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "name": "Orc Ambush",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each Orc enemy gets +1 [threat], +1 [attack], and +1 [defense].\nWhen Revealed: Each player must search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 46,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+      "octgnid": "ea225b12-75e1-4253-9458-c71c1c304a8f",
+      "name": "Amon Forn",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Ruins.",
+      "text": "Immune to player card effects.\nWhile Amon Forn is the active location, it gains: \"Forced: After an Orc enemy is added to the staging area, it makes an immediate attack against the first player.\" The players cannot win while Amon Forn is in play.",
+      "is_unique": true,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 26,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 6,
+      "victory": 3,
+      "encounter_set": "The Weather Hills",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "6",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 26,
+          "quantity": 1,
+          "octgnid": "ea225b12-75e1-4253-9458-c71c1c304a8f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+      "octgnid": "f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+      "name": "Tragic Discovery",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Raise each player's threat by the [threat] of the active location.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 58,
+      "quantity": 2,
+      "shadow": "Shadow: Defending player either raises his threat by 3, or this attack is considered undefended.",
+      "encounter_set": "Ruins of Arnor",
+      "printed_stats": {},
+      "imagesrc": "/cards/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+      "octgnid": "ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+      "name": "Ancient Causeway",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Ruins.",
+      "text": "Forced: When Ancient Causeway is explored, raise each player's threat by 2.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 57,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 2,
+      "encounter_set": "Ruins of Arnor",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 57,
+          "quantity": 2,
+          "octgnid": "ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.2",
+      "name": "The Weather Hills (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": ["TLR"],
+      "card_codes": [
+        "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+        "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+        "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+        "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+        "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+        "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+        "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+        "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+        "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+        "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+        "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+        "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43"
+      ],
+      "cards": [
+        {
+          "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784": 1,
+          "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541": 4,
+          "octgn:836a759d-d768-4119-929f-cfe874ba944a": 2,
+          "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c": 1,
+          "octgn:718d940a-2b58-4986-af10-06a81546bc9f": 2,
+          "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1": 1,
+          "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4": 1,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 2,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 1,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 2,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e": 2,
+          "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169": 2,
+          "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f": 2,
+          "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 2,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 1,
+          "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc": 3
+        },
+        "sharedSetAside": {
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f": 1
+        },
+        "sharedStagingArea": {
+          "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43": 1,
+          "octgn:836a759d-d768-4119-929f-cfe874ba944a": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.2",
+      "name": "The Weather Hills",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": ["TLR"],
+      "card_codes": [
+        "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+        "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+        "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+        "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+        "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+        "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+        "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+        "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+        "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "octgn:5388683d-3240-433a-9602-a7367e428406",
+        "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+        "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+        "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+        "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+        "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43"
+      ],
+      "cards": [
+        {
+          "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+          "quantity": 5,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784": 1,
+          "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541": 5,
+          "octgn:836a759d-d768-4119-929f-cfe874ba944a": 2,
+          "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c": 2,
+          "octgn:718d940a-2b58-4986-af10-06a81546bc9f": 2,
+          "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1": 2,
+          "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4": 1,
+          "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9": 3,
+          "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d": 2,
+          "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7": 3,
+          "octgn:5388683d-3240-433a-9602-a7367e428406": 1,
+          "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e": 3,
+          "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169": 2,
+          "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f": 2,
+          "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 3,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 2,
+          "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc": 3
+        },
+        "sharedSetAside": {
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f": 1
+        },
+        "sharedStagingArea": {
+          "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43": 1,
+          "octgn:836a759d-d768-4119-929f-cfe874ba944a": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg",
+      "localPath": "/cards/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg",
+      "bytes": 150400,
+      "sha256": "502a79552640723312d7dcaacbe3faada485bb309667c187811f681bd555874b"
+    },
+    {
+      "code": "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg",
+      "localPath": "/cards/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg",
+      "bytes": 140240,
+      "sha256": "b6ea5e9d5e540411631fa1e28f23693338a5894ae8514ac25fd8dc6beb07d77d"
+    },
+    {
+      "code": "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg",
+      "localPath": "/cards/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg",
+      "bytes": 144873,
+      "sha256": "f5fb1ff22336ec304722e8e992b2fccee15a88969ef8b1d1eb2788c94c8ea016"
+    },
+    {
+      "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg",
+      "localPath": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg",
+      "bytes": 137329,
+      "sha256": "14ef9e3d39b8a4e96a470e25028dbfa907bf872bb1bd74039bc89b1a396701d2"
+    },
+    {
+      "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18484359-d4b5-4ed6-b7be-e013fae4df43.B.jpg",
+      "localPath": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.B.jpg",
+      "bytes": 141175,
+      "sha256": "dd01da2e2c6a55fd0e61e6d25b6f0982c1b4d8a6f6b9779226f8067273786052"
+    },
+    {
+      "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg",
+      "localPath": "/cards/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg",
+      "bytes": 156892,
+      "sha256": "1cba85fcda012e4b864d848552aa22b95dfe5f2a2bc1c2ef3a0b1deefaf0aafd"
+    },
+    {
+      "code": "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg",
+      "localPath": "/cards/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg",
+      "bytes": 155468,
+      "sha256": "61b4c497ee484f3e1f6417b3bb1b3f4700746d4fe8ac59abe29a681b8117191e"
+    },
+    {
+      "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "localPath": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+      "bytes": 147589,
+      "sha256": "4b1557d6d6bbbc12c3bf3ee46ad0bce51dd0f7b22a43ed22df74396e44c4fc7a"
+    },
+    {
+      "code": "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg",
+      "localPath": "/cards/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg",
+      "bytes": 156013,
+      "sha256": "f49cb8b1bb9e8dfecc9f41499de9a9ef8b5225364b320310c97dd962019d8274"
+    },
+    {
+      "code": "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/718d940a-2b58-4986-af10-06a81546bc9f.jpg",
+      "localPath": "/cards/718d940a-2b58-4986-af10-06a81546bc9f.jpg",
+      "bytes": 140860,
+      "sha256": "8ac6ab472a277b6924ad222b25b016b8d109fcbe0485ab924acf34e8ff5679e3"
+    },
+    {
+      "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/836a759d-d768-4119-929f-cfe874ba944a.jpg",
+      "localPath": "/cards/836a759d-d768-4119-929f-cfe874ba944a.jpg",
+      "bytes": 148097,
+      "sha256": "e6d15c120c42ea11df9dd42e3f4259910c47c3ba509291ca50aac478f20b98fe"
+    },
+    {
+      "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "localPath": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+      "bytes": 148119,
+      "sha256": "ac55a4c8ee7513d8648ae6d1fdeeea4eedcc40e2c3ba6bed99746bb405c86501"
+    },
+    {
+      "code": "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg",
+      "localPath": "/cards/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg",
+      "bytes": 169987,
+      "sha256": "579727ab6b1bd76997244b4ef404303689efefcabf0b9d8ecbbe054f4fd6206c"
+    },
+    {
+      "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg",
+      "localPath": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg",
+      "bytes": 151862,
+      "sha256": "c56155784b31c35d3cab66d45d19e537c67f29e38b5a59b12a568b3bb0f1c200"
+    },
+    {
+      "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/918c4387-bf40-48f1-bf65-5ad5acb91784.B.jpg",
+      "localPath": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.B.jpg",
+      "bytes": 147086,
+      "sha256": "2334a49aaf9bcbfad06b3cebbda788e240eeb0013c300e6ccee50d4eeea6c3c2"
+    },
+    {
+      "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg",
+      "localPath": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg",
+      "bytes": 165437,
+      "sha256": "26ec75f4f169cff5e592a3b0dea2935c71a19fd87085cc35bbe9255c3b9d1689"
+    },
+    {
+      "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/95d26956-eda3-43b2-b68b-6f8010d076bd.B.jpg",
+      "localPath": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.B.jpg",
+      "bytes": 159339,
+      "sha256": "737f08e514c63e059278de7dca941409d45b991cda460fbd2858ef7c257309ff"
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "localPath": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "bytes": 145957,
+      "sha256": "d36c76866b85dd1bf89f24943cf0d9bf363c6f069c429a3c866c15d3474a456e"
+    },
+    {
+      "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "localPath": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+      "bytes": 158864,
+      "sha256": "2089b05546d50e14b6c725e401d91acbae469307f4be0921443ae0db00710ef6"
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "localPath": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "bytes": 150176,
+      "sha256": "19c0a92457e6b21cf0238a15da3f76ba2d7ed5e1c64eba183e747fa4f5142174"
+    },
+    {
+      "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "localPath": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+      "bytes": 149933,
+      "sha256": "a0562b4727bd9f1dd56b360092bbe0963ea26467b6ed623bc7d27dc652ba1bce"
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "localPath": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "bytes": 158126,
+      "sha256": "ecb47979db3de692e4b55329056e6a026d23eefb475a90a25495248681685538"
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "localPath": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "bytes": 148568,
+      "sha256": "22a5486ce53305e79c0cef1bf04124a3590ea8e0cc4c12d7e81982bf4860f16a"
+    },
+    {
+      "code": "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg",
+      "localPath": "/cards/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg",
+      "bytes": 148430,
+      "sha256": "dcac655f78b4a456b7f06b656f66024eda6e28bcd2f5230468f668f4dd8dba6b"
+    },
+    {
+      "code": "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg",
+      "localPath": "/cards/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg",
+      "bytes": 144331,
+      "sha256": "d769b36c339ec7ffc1725f46dcb2c597cecb0e6a4a9c2b0dd9daa71b36d982e2"
+    },
+    {
+      "code": "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg",
+      "localPath": "/cards/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg",
+      "bytes": 154560,
+      "sha256": "db989bbdd24ff3ff2ee1c2aee63b1a3be9e0a800e60267d09defbb4d16e0590d"
+    }
+  ]
+}

@@ -1,0 +1,1189 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Intruders in Chetwood",
+  "slug": "intruders-in-chetwood",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "name": "Rugged Country",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "If the current quest is a side quest, Rugged Country gets +2 [threat].",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 47,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 47,
+          "quantity": 3,
+          "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+      "octgnid": "303b01b8-2d61-4c20-81a0-50800e18d617",
+      "name": "Sudden Assault",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the total [willpower] of characters committed to the quest is greater than the total [threat] in the staging area, each enemy in the staging area makes an immediate attack against the first player. If no attack is made this way, shuffle Sudden Assault and the encounter discard pile into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 21,
+      "quantity": 2,
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {},
+      "imagesrc": "/cards/303b01b8-2d61-4c20-81a0-50800e18d617.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "303b01b8-2d61-4c20-81a0-50800e18d617",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/303b01b8-2d61-4c20-81a0-50800e18d617.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+      "octgnid": "528afc17-e78f-4b02-8080-e936955a77b9",
+      "name": "Borders of Bree-land",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "While Borders of Bree-land is in the staging area, it gains: \"Forced: At the beginning of the quest phase, return 1 enemy engaged with a player to the staging area.\"",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 19,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: Defending character gets -1 [defense] for each quest stage in play.",
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/528afc17-e78f-4b02-8080-e936955a77b9.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "528afc17-e78f-4b02-8080-e936955a77b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/528afc17-e78f-4b02-8080-e936955a77b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "name": "Weight of Responsibility",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card for each quest card in play.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 50,
+      "quantity": 2,
+      "shadow": "Shadow: Defending player discards 1 attachment he controls for each quest card in play.",
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+      "octgnid": "85eb724c-a258-4d94-83ba-5e9f21d82491",
+      "name": "Orc Rearguard",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "No more than 3 progress tokens can be placed on the current quest each round.  While Orc Rearguard is the current quest it gains: \"Forced: At the end of the staging step, reveal 1 card from the encounter deck.\"",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 23,
+      "quantity": 1,
+      "quest": 3,
+      "victory": 10,
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "quest": "3",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "85eb724c-a258-4d94-83ba-5e9f21d82491",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+      "octgnid": "9497ef98-8f38-4647-bf77-28d8007a911a",
+      "name": "Rescue Iârion",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Time 4. When Revealed: The first player loses control of Iarion and places him facedown underneath this stage. When this stage is defeated, the first player takes control of Iarion and exhausts him.   Forced: After the last time counter is removed from this stage, discard Iarion.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 24,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/9497ef98-8f38-4647-bf77-28d8007a911a.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "9497ef98-8f38-4647-bf77-28d8007a911a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9497ef98-8f38-4647-bf77-28d8007a911a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "name": "Angmar Orc",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "When Revealed: Either discard 1 ally from play, or reveal an additional encounter card.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 43,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, return attacking enemy to the staging area.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 43,
+          "quantity": 3,
+          "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "name": "Angmar Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Marauder attacks and destroys an ally, return it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 44,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally the defending player controls.",
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+      "octgnid": "be3ca12f-2550-48b4-9384-e71a1b401d4e",
+      "name": "Stop the War Party",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Put Iarion into play. Add 1 Orc War Party to the staging area. Each player adds 1 different location to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 68,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Intruders in Chetwood",
+      "side": "A",
+      "back_name": "Stop the War Party",
+      "back_text": "Enemies do not make engagement checks.  Forced: At the end of the refresh phase, raise each player's threat by 1 for each enemy in the staging area.  If the players control Iarion and defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 30,
+      "back_imagesrc": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "be3ca12f-2550-48b4-9384-e71a1b401d4e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+      "octgnid": "c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+      "name": "Outlying Homestead",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor.",
+      "text": "Doomed 1.\nWhile Outlying Homestead is in the staging area, players cannot reduce their threat.   Travel: Reveal a card from the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 20,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 8,
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "8"
+      },
+      "imagesrc": "/cards/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 20,
+          "quantity": 3,
+          "octgnid": "c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+      "octgnid": "cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+      "name": "Surprising Speed",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player returns 1 enemy engaged with him to the staging area. If no enemy was returned to the staging area this way, Surprising Speed gains surge and doomed 1.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 22,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {},
+      "imagesrc": "/cards/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 22,
+          "quantity": 3,
+          "octgnid": "cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "name": "Angmar Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Forced: After Angmar Captain attacks and destroys an ally, discard the top card of the defending player's deck. If the discarded card is an ally, Angmar Captain makes an additional attack against the defending player.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 45,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "name": "Shrouded Hills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Hills.",
+      "text": "X is the number of quest cards in play.\nWhile there is only 1 quest card in play, Shrouded Hills gains surge.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 48,
+      "quantity": 2,
+      "quest": 5,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "name": "Orc Ambush",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each Orc enemy gets +1 [threat], +1 [attack], and +1 [defense].\nWhen Revealed: Each player must search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 46,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Angmar Orcs",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+      "octgnid": "e542f4f9-420f-40eb-8c95-d648f2589511",
+      "name": "Orc War Party",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "Cannot have attachments.\nWhile Orc War Party is in the staging area, enemies in the staging area cannot take damage. The players cannot win the game while Orc War Party is in play.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 17,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 6,
+      "engagement": 40,
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "6",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/e542f4f9-420f-40eb-8c95-d648f2589511.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 17,
+          "quantity": 3,
+          "octgnid": "e542f4f9-420f-40eb-8c95-d648f2589511",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e542f4f9-420f-40eb-8c95-d648f2589511.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "name": "Lost in the Wilderness",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player places all cards in his hand facedown underneath Lost in the Wilderness.  Forced: When Lost in the Wilderness is defeated, return each card underneath to its owner's hand.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 51,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+      "octgnid": "f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+      "name": "Iârion",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Dunedain. Ranger.",
+      "text": "X is the number of quest cards in play.  The first player gains control of Iarion.\nResponse: After a side quest is revealed from the encounter deck, ready Iarion. If Iarion leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 16,
+      "quantity": 1,
+      "health": 4,
+      "encounter_set": "Iarion",
+      "printed_stats": {
+        "willpower": "X",
+        "attack": "X",
+        "defense": "X",
+        "health": "4"
+      },
+      "imagesrc": "/cards/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 16,
+          "quantity": 1,
+          "octgnid": "f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+      "octgnid": "f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+      "name": "Chetwood Forest",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Arnor. Forest.",
+      "text": "Travel: One player chooses and engages an enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 18,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Defending player either exhausts a hero he controls, or returns attacking enemy to the staging area after this attack.",
+      "encounter_set": "Intruders in Chetwood",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+      "name": "Pressing Needs",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: Either search the encounter deck and discard pile for an encounter side quest and reveal it, or choose a different quest card in play to be the current quest until the end of the phase. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLR",
+      "pack_name": "The Lost Realm",
+      "position": 49,
+      "quantity": 2,
+      "encounter_set": "Eriador Wilds",
+      "printed_stats": {},
+      "imagesrc": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "packs": [
+        {
+          "pack_code": "TLR",
+          "pack_name": "The Lost Realm",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E05.1",
+      "name": "Intruders in Chetwood (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": ["TLR"],
+      "card_codes": [
+        "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+        "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+        "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+        "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+        "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+        "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+        "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+        "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3"
+      ],
+      "cards": [
+        {
+          "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098": 2,
+          "octgn:528afc17-e78f-4b02-8080-e936955a77b9": 2,
+          "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa": 2,
+          "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e": 2,
+          "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491": 1,
+          "octgn:9497ef98-8f38-4647-bf77-28d8007a911a": 1,
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 2,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 1,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 1,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 1,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 1,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:e542f4f9-420f-40eb-8c95-d648f2589511": 1
+        },
+        "player1Play1": {
+          "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q05.1",
+      "name": "Intruders in Chetwood",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": ["TLR"],
+      "card_codes": [
+        "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+        "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+        "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+        "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+        "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+        "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+        "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+        "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+        "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+        "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+        "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3"
+      ],
+      "cards": [
+        {
+          "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e542f4f9-420f-40eb-8c95-d648f2589511": 2,
+          "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098": 3,
+          "octgn:528afc17-e78f-4b02-8080-e936955a77b9": 2,
+          "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa": 3,
+          "octgn:303b01b8-2d61-4c20-81a0-50800e18d617": 2,
+          "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e": 3,
+          "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491": 1,
+          "octgn:9497ef98-8f38-4647-bf77-28d8007a911a": 1,
+          "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6": 3,
+          "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2": 3,
+          "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0": 2,
+          "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0": 1,
+          "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06": 3,
+          "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43": 2,
+          "octgn:fd2014e3-43df-4378-9c67-61f99353f87f": 2,
+          "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee": 2,
+          "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:e542f4f9-420f-40eb-8c95-d648f2589511": 1
+        },
+        "player1Play1": {
+          "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "localPath": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+      "bytes": 144055,
+      "sha256": "48d99e2b12bef7493f458404553282dcc3f29f41d4c3195d68825d13e0b10f44"
+    },
+    {
+      "code": "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/303b01b8-2d61-4c20-81a0-50800e18d617.jpg",
+      "localPath": "/cards/303b01b8-2d61-4c20-81a0-50800e18d617.jpg",
+      "bytes": 169217,
+      "sha256": "53a80af5d52d589ee16150446f1288c56b506a102adad454701ba764b5fb937b"
+    },
+    {
+      "code": "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/528afc17-e78f-4b02-8080-e936955a77b9.jpg",
+      "localPath": "/cards/528afc17-e78f-4b02-8080-e936955a77b9.jpg",
+      "bytes": 156446,
+      "sha256": "438411a36567d199bf950a4079676d3df3017caabbc5be2ccddcdafc2921e18d"
+    },
+    {
+      "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "localPath": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+      "bytes": 148500,
+      "sha256": "a472014e1f6715ecb244b4281c16afa6ec2825ad4b17d9610e3a0fb556d9f1ab"
+    },
+    {
+      "code": "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg",
+      "localPath": "/cards/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg",
+      "bytes": 142700,
+      "sha256": "a51c227f605988905cae037003e67d8980a1b5e570b35d489eae695350dfa47d"
+    },
+    {
+      "code": "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9497ef98-8f38-4647-bf77-28d8007a911a.jpg",
+      "localPath": "/cards/9497ef98-8f38-4647-bf77-28d8007a911a.jpg",
+      "bytes": 161232,
+      "sha256": "a7562dbc614d477d7e87ce6b55fd0bf6d96ba8179046080d88022e22b08b3703"
+    },
+    {
+      "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "localPath": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+      "bytes": 145957,
+      "sha256": "d36c76866b85dd1bf89f24943cf0d9bf363c6f069c429a3c866c15d3474a456e"
+    },
+    {
+      "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "localPath": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+      "bytes": 150176,
+      "sha256": "19c0a92457e6b21cf0238a15da3f76ba2d7ed5e1c64eba183e747fa4f5142174"
+    },
+    {
+      "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg",
+      "localPath": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg",
+      "bytes": 162897,
+      "sha256": "6ad6f1534e7f41298961faeb76bb1211b9fe79e73a408e1139998058b117610e"
+    },
+    {
+      "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be3ca12f-2550-48b4-9384-e71a1b401d4e.B.jpg",
+      "localPath": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.B.jpg",
+      "bytes": 161355,
+      "sha256": "0786d2fd04a4bf694f50f2699c382d86f44355e1a89bcea1c5346b2843938d8e"
+    },
+    {
+      "code": "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg",
+      "localPath": "/cards/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg",
+      "bytes": 149271,
+      "sha256": "fecc1d4fec3c44000b940d6a68ada31d922f403ab44217aee8c1596a7b194822"
+    },
+    {
+      "code": "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg",
+      "localPath": "/cards/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg",
+      "bytes": 147038,
+      "sha256": "3f67f754d5f2c91b896d0cacb4096baa6a61375d75d2faf5294e12d5589baa4c"
+    },
+    {
+      "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "localPath": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+      "bytes": 158126,
+      "sha256": "ecb47979db3de692e4b55329056e6a026d23eefb475a90a25495248681685538"
+    },
+    {
+      "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "localPath": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+      "bytes": 142068,
+      "sha256": "22848d29316ca1ed12423b06c8529dcb6047d0b8e1efb1613af7f5c258f35a5a"
+    },
+    {
+      "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "localPath": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+      "bytes": 148568,
+      "sha256": "22a5486ce53305e79c0cef1bf04124a3590ea8e0cc4c12d7e81982bf4860f16a"
+    },
+    {
+      "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e542f4f9-420f-40eb-8c95-d648f2589511.jpg",
+      "localPath": "/cards/e542f4f9-420f-40eb-8c95-d648f2589511.jpg",
+      "bytes": 166107,
+      "sha256": "a2832f7942fcd40a58d75a9cfcf027c9d5dee46eaa8f3f36eff9b3ec71a5622e"
+    },
+    {
+      "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "localPath": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+      "bytes": 138699,
+      "sha256": "ace5352d0fd881d260489a343179a0843cfe81f0c5d63131f207a730dde43f8a"
+    },
+    {
+      "code": "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg",
+      "localPath": "/cards/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg",
+      "bytes": 145299,
+      "sha256": "350f8c6d04d5ca1c7a9dbc58e668575a2cdfb214ef460b761c0f8b407d782210"
+    },
+    {
+      "code": "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg",
+      "localPath": "/cards/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg",
+      "bytes": 168008,
+      "sha256": "5a42cc4571197c86a1ede45ec69a0a7af8827d32b51f15a213ad9b129c4a98a5"
+    },
+    {
+      "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "localPath": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+      "bytes": 150920,
+      "sha256": "ca7ed1394295a0fb471ff1829b8d5e8da97286bc1b9b5e3502aca6a04fd885aa"
+    }
+  ]
+}
