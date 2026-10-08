@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -33,7 +34,7 @@ import {
   seatView,
 } from "./table";
 import { attachmentHasTrait, hasTrait } from "./expansion-passives";
-import { currentQuestCode, currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 import { canLeaveHand } from "./hand-rules";
 import { DUNLAND_TRAP as D, dunlandTimeLimit } from "./dunland-trap-support";
 import { heirsShadowDealt } from "./heirs-numenor";
@@ -282,16 +283,16 @@ export function dunlandTrapEffect(s: GameState, e: Effect): boolean {
       if (old !== e.value! - 1) break;
       if (old === 1) {
         const pending = s.queue.length;
-        if (questDefeated(s, currentQuestCode(s)!)) {
+        if (questDefeated(s, mainQuestCode(s)!)) {
           s.queue.splice(s.queue.length - pending, 0, e);
           break;
         }
-      } else discardQuestAttachments(s, currentQuestCode(s)!);
+      } else discardQuestAttachments(s, mainQuestCode(s)!);
       s.stage = e.value!;
       s.progress = 0;
       s.stageRevealing = true;
       q.time = 0;
-      log(s, card(currentQuestCode(s)!).name, "chapter");
+      log(s, card(mainQuestCode(s)!).name, "chapter");
       if (s.stage === 2) {
         for (const l of allActiveLocations(s)) s.staging.push(l);
         s.activeLocation = takeSetAside(s, D.ravine) ?? null;
@@ -322,7 +323,7 @@ export function dunlandTrapEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "dunlandDiscardEquipment": {
-      const quest = currentQuestUnit(s);
+      const quest = mainQuestUnit(s);
       for (const host of [...units(s), ...(quest ? [quest] : [])])
         for (const a of [...host.attachments])
           if (

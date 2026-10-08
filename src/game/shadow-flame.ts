@@ -1,3 +1,5 @@
+import { addCurrentQuestProgress } from "./side-quests";
+import { mainQuestCode } from "./quest-state";
 // Shadow and Flame: one physical Balrog, considered engagement and explicit Pit decisions.
 import type { Effect, GameState, Unit } from "./types";
 import { SHADOW_FLAME as S } from "./shadow-flame-support";
@@ -43,7 +45,7 @@ import {
   seatView,
   selectSeat,
 } from "./table";
-import { currentQuestCode, currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { syncAttachmentText } from "./attachment-text";
@@ -60,7 +62,7 @@ const first = (s: GameState) => s.table?.first ?? 0;
 const bane = (s: GameState) => units(s).find((u) => u.code === S.bane);
 const attachmentHosts = (s: GameState) => [
   ...units(s),
-  ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+  ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
 ];
 const exhaustive = (s: GameState, player = activeSeat(s)) => {
   syncAttachmentText(s);
@@ -104,7 +106,7 @@ export function advanceShadowFlame(s: GameState) {
     (s.stage === 2 &&
       (s.progress >= 16 || (b && b.damage >= stats(s, b).health)))
   ) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage++;
     s.progress = 0;
     log(
@@ -393,7 +395,7 @@ export function shadowFlameEffect(s: GameState, e: Effect): boolean {
       break;
     case "shadowFlameRearProgress":
       if (s.stage === 2) {
-        s.progress += 4;
+        addCurrentQuestProgress(s, 4);
         prepend(s, fx("shadowFlameRearAdvance", { player: first(s) }));
       }
       break;

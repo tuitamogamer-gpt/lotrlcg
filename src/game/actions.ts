@@ -1,3 +1,4 @@
+import { currentQuestProgress } from "./quest-state";
 import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
@@ -669,7 +670,7 @@ export function canPlay(
   if (dwarfProblem) return dwarfProblem;
   if (
     !options.resolvingEffect &&
-    ["ally", "attachment"].includes(c.type_code) &&
+    ["ally", "attachment", "player-side-quest"].includes(c.type_code) &&
     s.table &&
     activeSeat(s) !== s.table.turn
   )
@@ -678,10 +679,10 @@ export function canPlay(
     return "A matching sphere hero is required.";
   if (
     !options.resolvingEffect &&
-    ["ally", "attachment"].includes(c.type_code) &&
+    ["ally", "attachment", "player-side-quest"].includes(c.type_code) &&
     s.phase !== "planning"
   )
-    return "Play allies and attachments during planning.";
+    return "Play allies, attachments and side quests during planning.";
   if (
     c.type_code === "ally" &&
     s.scenarioId === "dol-guldur" &&
@@ -766,7 +767,11 @@ export function effectCardPlayProblem(
 ): string | null {
   const c = card(u.code);
   if (!options.putIntoPlay) {
-    if (!["ally", "attachment", "event"].includes(c.type_code))
+    if (
+      !["ally", "attachment", "event", "player-side-quest"].includes(
+        c.type_code,
+      )
+    )
       return "This card cannot be played from a player deck.";
     const problem = canPlay(s, u, {
       noCost: true,
@@ -779,8 +784,8 @@ export function effectCardPlayProblem(
   } else {
     if (["05017", "06115"].includes(c.code))
       return "This Trap needs a play effect to enter the staging area.";
-    if (!["ally", "attachment"].includes(c.type_code))
-      return "Only allies and attachments have a valid put-into-play area.";
+    if (!["ally", "attachment", "player-side-quest"].includes(c.type_code))
+      return "Only allies, attachments and side quests have a valid put-into-play area.";
     if (c.type_code === "ally" && !allyCanEnter(s, c.code))
       return "The ally's unique title or scenario restriction prevents entry.";
     if (c.type_code === "attachment") {
@@ -1040,7 +1045,10 @@ function resolvePlayerCard(
     u.owner !== activeSeat(s)
   )
     u.controller = activeSeat(s);
-  if (c.type_code === "ally") {
+  if (c.type_code === "player-side-quest") {
+    u.controller = activeSeat(s);
+    s.staging.push(u);
+  } else if (c.type_code === "ally") {
     if (played) s.alliesPlayed++;
     enterAlly(s, u, false, played, fromHand);
   } else if (
@@ -2492,7 +2500,7 @@ export function publicState(s: GameState) {
     quest: {
       ...stageInfo(s),
       stage: s.stage,
-      progress: s.progress,
+      progress: currentQuestProgress(s),
       ...(s.stewardFear ? { resources: s.stewardFear.questResources } : {}),
       ...(s.amonDin ? { villagers: s.amonDin.questVillagers } : {}),
       stat: questStat(s),

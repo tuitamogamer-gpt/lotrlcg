@@ -1,0 +1,44 @@
+[
+  {
+    "code": "09014",
+    "name": "Gather Information",
+    "type_code": "player-side-quest",
+    "type_name": "Player Side Quest",
+    "sphere_code": "neutral",
+    "sphere_name": "Neutral",
+    "cost": "0",
+    "traits": "",
+    "text": "Limit 1 per deck.\n<b>Response:</b> After this stage is defeated, each player may search his deck for 1 card and add it to his hand. Each player shuffles his deck.",
+    "flavor": "Aragorn halted and examined the tracks closely. <cite>The Tower Towers</cite>",
+    "is_unique": false,
+    "deck_limit": 1,
+    "pack_name": "The Lost Realm",
+    "pack_code": "TLR",
+    "position": 14,
+    "illustrator": "Smirtouille",
+    "imagesrc": "/cards/09014.jpg",
+    "url": "https://ringsdb.com/card/09014",
+    "quantity": 3,
+    "octgnid": "128f940d-8a71-4a80-83c2-bdbc014d95c9",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 14,
+        "quantity": 3,
+        "image_code": "09014",
+        "illustrator": "Smirtouille",
+        "octgnid": "128f940d-8a71-4a80-83c2-bdbc014d95c9",
+        "imagesrc": "/bundles/cards/09014.png",
+        "date_release": "2015-04-03"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/09014",
+    "official": true,
+    "nightmare": false,
+    "quest": 4,
+    "victory": 1
+  }
+]

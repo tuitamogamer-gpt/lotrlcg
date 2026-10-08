@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 // The Blood of Gondor: physical hidden cards are kept outside every public play zone.
 import { card, name } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
@@ -37,7 +38,6 @@ import {
 } from "./table";
 import { prepareEnemyShadows } from "./considered-engagement";
 import { pauseFor } from "./presentation";
-import { currentQuestCode } from "./quest-state";
 import { heirsEncounter } from "./heirs-numenor";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
@@ -159,7 +159,7 @@ export function advanceBloodGondor(s: GameState) {
     s.progress < (s.stage === 1 ? 11 : 15)
   )
     return true;
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 2) {
     win(s);
     s.reason =

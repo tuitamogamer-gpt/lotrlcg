@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 // Original/easy Drúadan Forest: group Prowl, Wose Archery and peaceful victory.
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
@@ -34,7 +35,6 @@ import {
   selectSeat,
 } from "./table";
 import { hasTrait } from "./expansion-passives";
-import { currentQuestCode } from "./quest-state";
 import { isSacked } from "./carrock";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
@@ -105,12 +105,12 @@ export function advanceDruadanForest(s: GameState): boolean {
   if (s.stage === 3) {
     if (
       s.victoryCards?.includes(D.boss) &&
-      !questDefeated(s, currentQuestCode(s)!)
+      !questDefeated(s, mainQuestCode(s)!)
     )
       win(s);
     return true;
   }
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   s.stage++;
   s.progress = 0;
   if (s.stage === 3) {

@@ -1,3 +1,4 @@
+import { addCurrentQuestProgress } from "./side-quests";
 // Original/easy Foundations of Stone, including independent stage-four areas.
 import type { Effect, GameState, Unit } from "./types";
 import {
@@ -295,7 +296,11 @@ function splitPlayers(s: GameState) {
   s.progress = 0;
   for (const u of remainingPlayerCards) {
     const a = foundationsArea(s, u.owner ?? players[0]);
-    if (a) a.staging.push(u);
+    if (a) {
+      a.staging.push(u);
+      const selected = s.sideQuestSelections?.shared;
+      if (selected?.id === u.id) s.sideQuestSelections![a.id] = { ...selected };
+    }
   }
   foundationsSelectArea(s, activeSeat(s));
   prepend(
@@ -312,6 +317,11 @@ function enterStageFive(s: GameState) {
     s.staging = area.staging;
     s.activeLocation = area.activeLocation;
     s.extraActiveLocations = area.extraActiveLocations;
+  }
+  if (s.sideQuestSelections) {
+    const selected = area ? s.sideQuestSelections[area.id] : undefined;
+    delete s.sideQuestSelections.shared;
+    if (selected) s.sideQuestSelections.shared = { ...selected };
   }
   d.split = false;
   d.activeArea = undefined;
@@ -985,7 +995,7 @@ export function handleFoundationsStoneEffect(s: GameState, e: Effect): boolean {
         "This character must exhaust to place its willpower as progress.",
       );
       s.used.push(`round:foundations-mithril:${l.id}:${s.round}`);
-      s.progress += will;
+      addCurrentQuestProgress(s, will);
       log(
         s,
         `Mithril Lode places ${will} progress directly on the quest, bypassing the active location.`,

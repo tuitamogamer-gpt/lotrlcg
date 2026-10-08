@@ -1,3 +1,5 @@
+import { card } from "./cards";
+import { selectedSideQuest, selectedSideQuestUnit } from "./side-quest-support";
 import { ninCurrentQuest } from "./nin-eilph-support";
 import { trialsCurrentQuest } from "./three-trials-support";
 // Physical player attachments on the current encounter quest.
@@ -15,7 +17,7 @@ const coreQuests: Record<string, readonly string[]> = {
   "hunt-for-gollum": ["02011", "02012", "02013"],
 };
 
-export function currentQuestCode(s: GameState): string | undefined {
+export function mainQuestCode(s: GameState): string | undefined {
   const nin = ninCurrentQuest(s);
   if (nin) return nin;
   const trial = trialsCurrentQuest(s);
@@ -32,8 +34,8 @@ export function currentQuestCode(s: GameState): string | undefined {
 }
 
 /** This view never increments card IDs or changes the hidden quest deck. */
-export function currentQuestUnit(s: GameState): Unit | undefined {
-  const code = currentQuestCode(s);
+export function mainQuestUnit(s: GameState): Unit | undefined {
+  const code = mainQuestCode(s);
   if (!code) return undefined;
   return {
     id: `quest:${code}`,
@@ -55,9 +57,31 @@ export function attachToQuest(
   code: string,
   attachment: Attachment,
 ): boolean {
-  if (currentQuestCode(s) !== code) return false;
+  const side = selectedSideQuestUnit(s);
+  if (side?.code === code) {
+    side.attachments.push(attachment);
+    return true;
+  }
+  if (mainQuestCode(s) !== code) return false;
   const state = s as QuestAttachmentState;
   (state.questAttachments ??= {})[code] ??= [];
   state.questAttachments[code].push(attachment);
   return true;
 }
+
+export const currentQuestCode = (s: GameState) =>
+  selectedSideQuest(s)?.code ?? mainQuestCode(s);
+export const currentQuestUnit = (s: GameState) =>
+  selectedSideQuest(s) ? selectedSideQuestUnit(s) : mainQuestUnit(s);
+export const currentQuestProgress = (s: GameState) => {
+  const side = selectedSideQuest(s);
+  return side
+    ? side.defeated
+      ? (card(side.code).quest ?? 0)
+      : (selectedSideQuestUnit(s)?.progress ?? 0)
+    : s.progress;
+};
+export const allQuestUnits = (s: GameState): Unit[] => [
+  ...[mainQuestUnit(s)].filter((u): u is Unit => !!u),
+  ...s.staging.filter((u) => card(u.code).type_code === "player-side-quest"),
+];

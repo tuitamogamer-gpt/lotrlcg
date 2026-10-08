@@ -1,3 +1,5 @@
+import { selectedSideQuest } from "../game/side-quest-support";
+import { currentQuestProgress } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
@@ -643,6 +645,18 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  const sideQuest = selectedSideQuest(s);
+  if (sideQuest)
+    return (
+      <div className="quest-goals">
+        <span>
+          {sideQuest.defeated
+            ? "Side quest defeated · Return to the main quest after this quest phase"
+            : `Place ${Math.max(0, stageInfo(s).quest - currentQuestProgress(s))} more progress on ${stageInfo(s).name}`}
+        </span>
+        <span>Main quest rules remain in effect</span>
+      </div>
+    );
   if (s.antlered)
     return (
       <div className="quest-goals">

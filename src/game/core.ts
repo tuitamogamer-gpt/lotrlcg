@@ -1,3 +1,4 @@
+import { selectedSideQuest } from "./side-quest-support";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import * as Celebrimbor from "./celebrimbor";
@@ -97,7 +98,7 @@ import {
   collectorEnemyCannotAttack,
   collectorLocationQuestBonus,
 } from "./collector-player-cards";
-import { currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 import {
   watcherWaterLocationQuest,
   watcherWaterZeroCombatStats,
@@ -249,7 +250,7 @@ export const globalUnits = (s: GameState) => [
 
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
-  (currentQuestUnit(s)?.id === id ? currentQuestUnit(s) : undefined);
+  (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined);
 /** Moving a physical shadow preserves which remaining cards are still facedown. */
 export function removeShadowCard(enemy: Unit, index: number) {
   if (index < 0 || index >= enemy.shadows.length) return undefined;
@@ -734,10 +735,12 @@ export const questWill = (s: GameState) =>
     .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
 
 export const questStat = (s: GameState) =>
-  BloodQuest.bloodGondorQuestStat(s) ??
-  assaultOsgiliathQuestStat(s) ??
-  heirsQuestStat(s) ??
-  druadanPlayerQuestStat(s);
+  selectedSideQuest(s)
+    ? druadanPlayerQuestStat(s)
+    : (BloodQuest.bloodGondorQuestStat(s) ??
+      assaultOsgiliathQuestStat(s) ??
+      heirsQuestStat(s) ??
+      druadanPlayerQuestStat(s));
 
 export const locationQuest = (s: GameState, u: Unit) =>
   MorgulQuest.morgulBridgeValue(s, u) ??
@@ -760,7 +763,7 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Nin.ninEngagementModifier(s, u),
   );
 
-export const stageInfo = (s: GameState) => {
+export const mainStageInfo = (s: GameState) => {
   const nin = NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s));
   if (nin)
     return {
@@ -1019,3 +1022,16 @@ export function encounterDraw(s: GameState, shadow = false) {
   }
   return s.encounterDeck.shift();
 }
+
+export const stageInfo = (s: GameState) => {
+  const side = selectedSideQuest(s);
+  if (!side) return mainStageInfo(s);
+  const c = card(side.code);
+  return {
+    name: c.name,
+    quest: c.quest ?? 0,
+    cardCode: c.code,
+    story: c.text ?? "",
+    questImage: imageUrl(c),
+  };
+};

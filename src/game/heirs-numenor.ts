@@ -1,3 +1,6 @@
+import { removeCurrentQuestProgress } from "./side-quests";
+import { selectedSideQuest } from "./side-quest-support";
+import { mainQuestCode } from "./quest-state";
 import { isengardShadowDealt } from "./voice-isengard";
 import { bloodGondorArchery } from "./blood-gondor";
 import { morgulShadowDealt } from "./morgul-vale";
@@ -57,7 +60,7 @@ import {
 } from "./table";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { syncAttachmentText } from "./attachment-text";
-import { currentQuestCode } from "./quest-state";
+import { currentQuestCode, currentQuestUnit } from "./quest-state";
 import type { DamageContext } from "./damage-context";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
@@ -221,7 +224,7 @@ export function advanceHeirs(s: GameState): boolean {
       : [9, 9, 7, 5, 15][s.stage - 1];
   if (!emptyBattleground && s.progress < goal) return true;
   if (isPeril(s) && s.stage >= 2 && !scrollHero(s)) return true;
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (
     (isPeril(s) && s.stage === 3) ||
     (isIthilien(s) && s.stage === 4) ||
@@ -324,7 +327,7 @@ export function heirsQuestStat(
   return null;
 }
 function questKeyword(s: GameState, keyword: string) {
-  const stat = heirsQuestStat(s),
+  const stat = selectedSideQuest(s) ? null : heirsQuestStat(s),
     code = currentQuestCode(s);
   if (stat) return stat === (keyword === "Battle" ? "attack" : "defense");
   return (
@@ -334,7 +337,9 @@ function questKeyword(s: GameState, keyword: string) {
       )) ||
     (keyword === "Battle" &&
       playerOrder(s).some((p) =>
-        seatView(s, p).used.includes(`phase:trained-war:quest:${code}`),
+        seatView(s, p).used.includes(
+          `phase:trained-war:${currentQuestUnit(s)?.id}`,
+        ),
       ))
   );
 }
@@ -818,7 +823,7 @@ export function heirsShadow(s: GameState, code: string): boolean {
       combat as ScrollCombat & { heirsRepeatAttack?: boolean }
     ).heirsRepeatAttack = true;
   else if ([H.trail, H.glade].includes(code))
-    s.progress = Math.max(0, s.progress - threatOf(s, enemy));
+    removeCurrentQuestProgress(s, threatOf(s, enemy));
   else if (code === H.watcher)
     prepend(
       s,

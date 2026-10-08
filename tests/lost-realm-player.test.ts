@@ -65,14 +65,13 @@ function ability(s: GameState, u: Unit, id: string) {
   return applyAction(s, { type: "ABILITY", id: u.id, attachmentId: id });
 }
 
-test("Lost Realm registers eleven new original designs with local art and keeps unsupported frameworks gated", () => {
-  for (const n of [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13]) {
+test("Lost Realm registers every original player design with local art", () => {
+  for (const n of Array.from({ length: 15 }, (_, i) => i + 1)) {
     const code = `09${String(n).padStart(3, "0")}`;
     assert.ok(SCRIPTED.has(code), code);
     assert.equal(card(code).pack_name, "The Lost Realm");
     assert.match(imageUrl(card(code)), /^\/cards\//);
   }
-  for (const code of ["09014"]) assert.ok(!SCRIPTED.has(code), code);
 });
 test("Aragorn reduces only enemies engaged with his controller and honors immunity and blanking", () => {
   const s = fixture(2),

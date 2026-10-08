@@ -197,10 +197,11 @@ export function parseRingsDbDeck(
       continue;
     }
     if (deckCodes.has(code)) {
-      cards[code] = Math.min(3, quantity);
-      if (quantity > 3)
+      const limit = Math.min(3, known.get(code)?.deck_limit ?? 3);
+      cards[code] = Math.min(limit, quantity);
+      if (quantity > limit)
         adjustments.push(
-          `${known.get(code)?.name ?? code}: ${quantity} copies reduced to the limit of 3.`,
+          `${known.get(code)?.name ?? code}: ${quantity} copies reduced to the limit of ${limit}.`,
         );
     } else
       unsupported.push({

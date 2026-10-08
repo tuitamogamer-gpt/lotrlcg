@@ -364,6 +364,7 @@ const lostRealmDeck = {
       "09011",
       "09012",
       "09013",
+      "09014",
       "02002",
       "01013",
       "09007",
@@ -371,7 +372,7 @@ const lostRealmDeck = {
       "01057",
       "01065",
       "01073",
-    ].map((code) => [code, code === "01073" ? 2 : 3]),
+    ].map((code) => [code, code === "09014" || code === "01073" ? 1 : 3]),
   ),
 };
 for (const scenarioId of ["mirkwood", "trouble-in-tharbad"] as const)

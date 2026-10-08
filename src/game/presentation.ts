@@ -1,3 +1,4 @@
+import { currentQuestProgress } from "./quest-state";
 import { ninQuestName } from "./nin-eilph-support";
 import { fangornCarrier } from "./fangorn";
 import { questTime } from "./quest-time";
@@ -54,7 +55,7 @@ export function observe(
   getThreat?: (s: GameState, u: Unit) => number,
 ): Observation {
   const values: Record<string, string> = {
-    "Quest progress": String(s.progress),
+    "Quest progress": String(currentQuestProgress(s)),
     ...(s.celebrimbor
       ? { "The Orcs’ Search": String(s.celebrimbor.search.length) }
       : {}),
@@ -128,6 +129,9 @@ export function observe(
           : {}),
         ...(character || enemy
           ? { Attack: String(stats.attack), Defense: String(stats.defense) }
+          : {}),
+        ...(c.type_code === "player-side-quest"
+          ? { Progress: `${u.progress} / ${c.quest ?? 0}` }
           : {}),
         ...(c.type_code === "location"
           ? { Progress: `${u.progress} / ${locationQuest(s, u)}` }

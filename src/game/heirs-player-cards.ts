@@ -41,7 +41,7 @@ import {
   playerOrder,
   seatView,
 } from "./table";
-import { currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 import { consumeLeaveCard, leaveCardAvailable } from "./leave-consumption";
 
 const immune = (u: Unit) => playerCardImmune(u);
@@ -52,7 +52,7 @@ const allHosts = (s: GameState): Unit[] => [
       ...allEngaged(s),
       ...s.staging,
       ...allActiveLocations(s),
-      ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+      ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
     ].map((u) => [u.id, u]),
   ).values(),
 ];
@@ -257,9 +257,12 @@ export function useHeirsPlayerAbility(
     choose(
       s,
       "Master of Lore · Name a card type",
-      ["ally", "attachment", "event"].map((type) => ({
+      ["ally", "attachment", "event", "player-side-quest"].map((type) => ({
         id: type,
-        label: type[0].toUpperCase() + type.slice(1),
+        label:
+          type === "player-side-quest"
+            ? "Player side quest"
+            : type[0].toUpperCase() + type.slice(1),
         effects: [fx("heirsMasterType", { text: type })],
       })),
     );
@@ -402,7 +405,9 @@ export function handleHeirsPlayerEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
     case "heirsMasterType":
       requireRule(
-        ["ally", "attachment", "event"].includes(e.text ?? ""),
+        ["ally", "attachment", "event", "player-side-quest"].includes(
+          e.text ?? "",
+        ),
         "Name a playable player-card type.",
       );
       s.used.push(masterMarker(e.text!));

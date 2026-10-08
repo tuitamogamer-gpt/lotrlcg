@@ -1,6 +1,8 @@
+import { removeCurrentQuestProgress } from "./side-quests";
+import { addCurrentQuestProgress } from "./side-quests";
+import { mainQuestCode } from "./quest-state";
 import { hasSilverLamp } from "./voice-isengard";
 import { heirsShadowDealt } from "./heirs-numenor";
-import { currentQuestCode } from "./quest-state";
 // Original Khazad-dûm encounter sets and the three printed scenarios.
 import encounters from "../data/khazad-dum-encounter-cards.json";
 import quests from "../data/khazad-dum-quest-cards.json";
@@ -240,7 +242,7 @@ export function advanceKhazad(s: GameState) {
       s.progress >= 7 &&
       state(s).victoryCards.includes(KHAZAD.bridge)
     ) {
-      if (questDefeated(s, currentQuestCode(s)!)) return true;
+      if (questDefeated(s, mainQuestCode(s)!)) return true;
       s.stage = 2;
       s.progress = 0;
       s.stageRevealing = true;
@@ -258,7 +260,7 @@ export function advanceKhazad(s: GameState) {
       s.stage === 2 &&
       (s.progress >= 11 || allEnemies(s).length === 0)
     ) {
-      if (questDefeated(s, currentQuestCode(s)!)) return true;
+      if (questDefeated(s, mainQuestCode(s)!)) return true;
       s.stage = 3;
       s.progress = 0;
       log(
@@ -269,7 +271,7 @@ export function advanceKhazad(s: GameState) {
     } else if (s.stage === 3 && s.progress >= 12) win(s);
   } else if (s.scenarioId === "the-seventh-level") {
     if (s.stage === 1 && s.progress >= 15) {
-      if (questDefeated(s, currentQuestCode(s)!)) return true;
+      if (questDefeated(s, mainQuestCode(s)!)) return true;
       s.stage = 2;
       s.progress = 0;
       removeBook(s);
@@ -401,9 +403,9 @@ export function khazadRevealedEnemy(s: GameState, u: Unit) {
     ),
   );
   if (hasTrait(u, "Goblin"))
-    s.progress = Math.max(
-      0,
-      s.progress - s.staging.filter((l) => l.code === KHAZAD.tunnels).length,
+    removeCurrentQuestProgress(
+      s,
+      s.staging.filter((l) => l.code === KHAZAD.tunnels).length,
     );
 }
 export function khazadDiscardRevealedEnemy(s: GameState, u: Unit) {
@@ -729,7 +731,7 @@ export function khazadAbility(s: GameState, u: Unit, attachmentId?: string) {
         exhaustCharacter(s, u),
         "This hero cannot exhaust Abandoned Tools.",
       );
-      s.progress++;
+      addCurrentQuestProgress(s, 1);
     } else {
       spendResources(s, u, 3);
       discardAttachment(s, u, a);
@@ -1290,8 +1292,9 @@ export function khazadEffect(s: GameState, e: Effect) {
       break;
     }
     case "khazadCaveInResolve": {
-      const removed = s.progress + (u && !immune(u) ? u.progress : 0);
-      s.progress = 0;
+      const removed =
+        removeCurrentQuestProgress(s, Infinity) +
+        (u && !immune(u) ? u.progress : 0);
       if (u && !immune(u)) u.progress = 0;
       if (!removed) prepend(s, fx("reveal"));
       break;

@@ -1,7 +1,7 @@
 import { trialsGrantedImmunity } from "./three-trials-support";
 import { card } from "./cards";
 import { heirsPlayerTraitGrants } from "./heirs-player-cards";
-import { currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 import { rohanDynamicTraits, rohanDynamicKeywords } from "./rohan-player-cards";
 import { khazadBlanked } from "./khazad-dum";
 import type { GameState, Unit } from "./types";
@@ -14,7 +14,7 @@ import { allActiveLocations, allCharacters, allEngaged } from "./table";
  */
 export function syncAttachmentText(s: GameState, extra?: Unit) {
   const blanked = emynMuilAttachmentsBlanked(s);
-  const quest = currentQuestUnit(s);
+  const quest = mainQuestUnit(s);
   const hosts = [
     ...(quest ? [quest] : []),
     ...allCharacters(s),

@@ -1,4 +1,4 @@
-import { currentQuestCode } from "./quest-state";
+import { mainQuestCode } from "./quest-state";
 // Original Dead Marshes rules, including the escape-test action window.
 import encounters from "../data/dead-marshes-encounter-cards.json";
 import quests from "../data/dead-marshes-quest-cards.json";
@@ -127,7 +127,7 @@ export function advanceDeadMarshes(s: GameState) {
   )
     return true;
   if (s.stage === 1 && s.progress >= 12) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 2;
     s.progress = 0;
     log(

@@ -1,4 +1,5 @@
-import { currentQuestUnit } from "./quest-state";
+import { removeCurrentQuestProgress } from "./side-quests";
+import { mainQuestUnit } from "./quest-state";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import type { LeaveDestination } from "./mirkwood-player-cards";
@@ -705,7 +706,7 @@ export function celebrimborEffect(s: GameState, e: Effect) {
       break;
     }
     case "celebTravelProgress":
-      s.progress = Math.max(0, s.progress - (e.value ?? 0));
+      removeCurrentQuestProgress(s, e.value ?? 0);
       break;
     case "celebHandSearch": {
       if (!s.hand.length) break;
@@ -746,7 +747,7 @@ export function celebrimborEffect(s: GameState, e: Effect) {
       delete q.spiesExhausted;
       break;
     case "celebDiscardAttachment": {
-      const quest = currentQuestUnit(s);
+      const quest = mainQuestUnit(s);
       const options = [...units(s), ...(quest ? [quest] : [])].flatMap((h) =>
         h.attachments
           .filter(

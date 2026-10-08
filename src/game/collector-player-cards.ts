@@ -63,7 +63,7 @@ import {
   playCardFromEffect,
   playTargets,
 } from "./actions";
-import { currentQuestUnit } from "./quest-state";
+import { allQuestUnits, mainQuestUnit } from "./quest-state";
 import { gondorResourcesGained } from "./gondor-player-cards";
 
 const codes = {
@@ -128,7 +128,7 @@ const conditions = (s: GameState) =>
     ...allCharacters(s),
     ...s.staging,
     ...allActiveLocations(s),
-    ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+    ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
   ].flatMap((u) =>
     u.attachments
       .filter(
@@ -387,10 +387,9 @@ export function collectorPlayTargets(
     return s.allies.filter((u) => hasTrait(u, "Silvan"));
   if (code === codes.stone) return allActiveLocations(s).filter(affected);
   if (code === codes.defeat) {
-    const quest = currentQuestUnit(s);
-    return quest && !quest.attachments.some((a) => a.code === codes.defeat)
-      ? [quest]
-      : [];
+    return allQuestUnits(s).filter(
+      (quest) => !quest.attachments.some((a) => a.code === codes.defeat),
+    );
   }
   return null;
 }

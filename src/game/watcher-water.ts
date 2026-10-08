@@ -1,3 +1,5 @@
+import { addCurrentQuestProgress } from "./side-quests";
+import { removeCurrentQuestProgress } from "./side-quests";
 // Original Watcher in the Water. Its shared Misty Mountains cards are independent.
 import type { Effect, GameState, Unit } from "./types";
 import { WATCHER_WATER } from "./watcher-water-support";
@@ -177,7 +179,7 @@ export function watcherWaterProgressLocation(
 ): boolean {
   if (u.code !== WATCHER_WATER.doors || u.blanked) return false;
   if (value > 0) {
-    s.progress += value;
+    addCurrentQuestProgress(s, value);
     log(s, `Doors of Durin redirects ${value} progress to the quest.`);
     advanceQuest(s);
   }
@@ -498,7 +500,7 @@ export function watcherWaterEncounter(s: GameState, code: string): boolean {
 }
 export function watcherWaterShadow(s: GameState, code: string): boolean {
   if ([WATCHER_WATER.swamp, WATCHER_WATER.falls].includes(code))
-    s.progress = Math.max(0, s.progress - 1);
+    removeCurrentQuestProgress(s, 1);
   else if (code === WATCHER_WATER.ill) {
     const enemy = get(s, s.combat?.enemyId);
     if (s.combat && enemy)
@@ -707,7 +709,7 @@ export function watcherWaterEffect(s: GameState, e: Effect): boolean {
         );
       break;
     case "watcherWaterPassage":
-      s.progress += 2;
+      addCurrentQuestProgress(s, 2);
       advanceQuest(s);
       break;
     case "watcherWaterEndDamage":

@@ -1,5 +1,5 @@
 import { playerCardImmune } from "./card-immunity";
-import { currentQuestUnit } from "./quest-state";
+import { mainQuestUnit } from "./quest-state";
 // Doomed applies when a player card is played or put into play (Voice of Isengard rulesheet).
 import type { Card, Effect, GameState, Unit } from "./types";
 import { card, name, plain } from "./cards";
@@ -217,7 +217,7 @@ export const faceupShadowCards = (u: Unit) =>
     u.faceupShadows?.[index] ? [{ index, code, name: card(code).name }] : [],
   );
 const conditions = (s: GameState) =>
-  [...units(s), ...[currentQuestUnit(s)].filter((u): u is Unit => !!u)].flatMap(
+  [...units(s), ...[mainQuestUnit(s)].filter((u): u is Unit => !!u)].flatMap(
     (u) =>
       u.attachments
         .filter(

@@ -1,3 +1,5 @@
+import { selectedSideQuest } from "./side-quest-support";
+import { mainQuestCode } from "./quest-state";
 import { canRemoveQuestTime } from "./quest-time";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -40,7 +42,6 @@ import {
   playerOrder,
   seatView,
 } from "./table";
-import { currentQuestCode } from "./quest-state";
 import { hasTrait } from "./expansion-passives";
 import { foundationsPlayerCardDiscarded } from "./foundations-player-cards";
 import { ringMakerCharacterLeft } from "./ring-maker-player";
@@ -135,7 +136,7 @@ export function advanceCatchOrc(s: GameState) {
     s.stageRevealing
   )
     return true;
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   win(s);
   s.reason =
     "Mugash is captured. You carry the Wizard's prize back to Isengard.";
@@ -399,7 +400,13 @@ export function catchEffect(s: GameState, e: Effect): boolean {
       }
       break;
     case "catchQuestResponse": {
-      if (!q || s.stage !== 2 || finalRingReplacesQuestProgress(s)) break;
+      if (
+        !q ||
+        s.stage !== 2 ||
+        selectedSideQuest(s) ||
+        finalRingReplacesQuestProgress(s)
+      )
+        break;
       const buffer = allActiveLocations(s).reduce(
         (n, u) => n + Math.max(0, locationQuest(s, u) - u.progress),
         0,
@@ -437,7 +444,7 @@ export function catchEffect(s: GameState, e: Effect): boolean {
       break;
     case "catchAdvance":
       if (q && s.stage === 2 && mugashInPlay(s)) {
-        discardQuestAttachments(s, currentQuestCode(s)!);
+        discardQuestAttachments(s, mainQuestCode(s)!);
         s.stage = 3;
         s.progress = 0;
         q.time = 3;

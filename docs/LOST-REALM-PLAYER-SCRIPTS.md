@@ -2,7 +2,7 @@
 
 This first batch registers eleven new designs: Tactics Aragorn, Halbarad, Weather Hills Watchman, Dúnedain Hunter, Warden of Annúminas, Tireless Hunters, Expert Trackers, Heir of Valandil, Athelas, Secret Vigil and Star Brooch. Sarn Ford Sentry reuses its existing Collector handler. All twelve original faces are local assets.
 
-Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information and the three Lost Realm scenarios remain pending until their side-quest framework is complete.
+Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information completes all fifteen player designs in the side-quest follow-up below. The three Lost Realm scenarios remain pending.
 
 ## Sources and implementation
 
@@ -38,4 +38,20 @@ Encounter allies are excluded from player deck construction, minimum size and or
 
 Evidence: 21 focused Ranger cases; 2,443 broad regressions passed before the additional import-report case; twenty complete games with Summons in the 50-card test list plus matching full-game outcomes across all three review modes. Eighteen browser checkpoints at 1280/390/320 exercise actual payment, multiplayer control, both aid modes, Surge, saved choices and Born Aloft removal. Both new faces decode locally, and the mobile first-player decision was visually reviewed. Type checking and production build pass.
 
-Current registration: 437 player definitions, 50 heroes, 386 deck cards and one set-aside Encounter ally; 485 encounter definitions and 36 scenarios; 1,046 of 4,183 catalog identities, with 3,137 pending. Fourteen of the fifteen Lost Realm player designs are implemented.
+Registration after the Encounter batch: 437 player definitions, 50 heroes, 386 deck cards and one set-aside Encounter ally; 485 encounter definitions and 36 scenarios; 1,046 of 4,183 catalog identities, with 3,137 pending. Fourteen of the fifteen Lost Realm player designs are implemented.
+
+## Gather Information and player side quests
+
+Gather Information (`09014`) costs zero, has four quest points, Victory 1 and a one-copy deck limit, verified against its local original printed face. RingsDB import now respects printed copy limits as well as the general maximum of three.
+
+Player side quests enter staging through normal planning plays or valid card effects. At the beginning of each quest phase the first player chooses the main quest or one physical side quest. Active locations buffer progress first. Each side quest retains its own progress between rounds; the main quest retains its existing progress and text. Defeat moves exactly that physical copy into the victory display, discards its attachments and resolves quest-defeat responses. Excess progress is discarded. The selected side quest remains current until the entire quest phase ends, including if it was already defeated or left play. Combat-phase quest progress returns to the main quest.
+
+The engine distinguishes main quest advancement from the current quest. Independent main-stage objectives can still advance. Main-quest attachments and forced effects remain active; Battle/Siege and effects targeting the current quest use the actual selection. The Long Defeat may attach to any quest in play, including an unselected side quest during planning. Conditions on either quest remain active. A separated Foundations of Stone staging area makes its own selection and restricts responses to its own players; save/reload retains those choices and physical progress.
+
+Gather Information offers an optional response. Once accepted, each player independently chooses an indexed physical card in their own deck or declines the search, then shuffles. Taking the card is not a draw and does not trigger Dunland draw reactions. Responses and hidden choices persist across reloads. Main-quest inspection remains available while the side quest is shown in the journey panel.
+
+Timing reference: [Caleb Grace's ruling, 22 April 2015](https://ffg-forum-archive.entropicdreams.com/topic/164372-side-quests-vs-legolas-gondolin-blade-in-combat-phase/) confirms that defeating a side quest early does not resume main-quest progress within the same quest phase. The expansion insert linked above defines first-player selection, active-location buffering, victory and discarded overflow.
+
+Evidence: 39 focused side-quest cases, including real card play, quest selection, location buffering, overflow, retained completed selections, direct progress/removal, independent searches, imported copy limits, main and side attachments, Trained for War, The Long Defeat, Mendor, free plays, tracked hidden identity, saved decisions, independent main-stage advancement and separated staging areas. The dedicated 50-card Lost Realm test list now includes one Gather Information; twenty complete games terminate and all three review modes produce matching outcomes. All twenty seeds remain losses under the test policy. Twenty-four browser checkpoints at 1280/390/320 cover actual play, first-player choice, quest inspection, real successful quest resolution, response searches, decline, and reload during decisions. The original face decodes locally. Final engine/account regression passes 2,483 tests, with 21 hot-seat cases passing separately. Type checking and production build pass. The mobile journey panel was visually reviewed.
+
+Current registration: 438 player definitions, 50 heroes, 387 deck cards and one set-aside Encounter ally; 485 encounter definitions and 36 scenarios; 1,047 of 4,183 reference identities, with 3,136 pending. All fifteen Lost Realm player designs are implemented. No account-schema migration is needed.

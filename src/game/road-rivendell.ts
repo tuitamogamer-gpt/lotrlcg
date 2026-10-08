@@ -1,6 +1,6 @@
+import { mainQuestCode } from "./quest-state";
 import { heirsShadowDealt } from "./heirs-numenor";
 import { druadanPlayerNoEngagementChecks } from "./druadan-player-cards";
-import { currentQuestCode } from "./quest-state";
 import { engagementCost } from "./core";
 import { amonPlayerCanEngage } from "./amon-din-player-cards";
 // Original Road to Rivendell; shared Khazad-dûm sets are scripted independently.
@@ -240,7 +240,7 @@ export function advanceRoadRivendell(s: GameState) {
     win(s);
     return true;
   }
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   s.stage++;
   s.progress = 0;
   s.stageRevealing = true;

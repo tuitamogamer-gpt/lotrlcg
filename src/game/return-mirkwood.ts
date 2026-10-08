@@ -1,4 +1,4 @@
-import { currentQuestCode } from "./quest-state";
+import { mainQuestCode } from "./quest-state";
 // Original Return to Mirkwood: controlled Gollum, guard transfers and all printed encounters.
 import encounters from "../data/return-mirkwood-encounter-cards.json";
 import quests from "../data/return-mirkwood-quest-cards.json";
@@ -126,7 +126,7 @@ export function advanceReturnMirkwood(s: GameState) {
     )
       win(s);
   } else {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage++;
     s.progress = 0;
     log(

@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 import { beginEnemyAttack, enemyAttackStarted } from "./combat";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -36,7 +37,7 @@ import {
   playerOrder,
   seatView,
 } from "./table";
-import { currentQuestCode, currentQuestUnit } from "./quest-state";
+import { currentQuestCode, mainQuestUnit } from "./quest-state";
 import { heirsEnemyEntered, heirsShadowDealt } from "./heirs-numenor";
 import { hasSilverLamp } from "./voice-isengard";
 import {
@@ -446,7 +447,7 @@ export function antleredEffect(s: GameState, e: Effect) {
       }
       break;
     case "crownAdvance": {
-      const code = currentQuestCode(s)!;
+      const code = mainQuestCode(s)!;
       if (!e.flag) {
         const before = s.queue.length;
         questDefeated(s, code);
@@ -488,7 +489,7 @@ export function antleredEffect(s: GameState, e: Effect) {
           fx("crownStageReady"),
         );
       }
-      log(s, card(currentQuestCode(s)!).name, "chapter");
+      log(s, card(mainQuestCode(s)!).name, "chapter");
       break;
     }
     case "crownRavenAdd": {
@@ -636,7 +637,7 @@ export function antleredEffect(s: GameState, e: Effect) {
       }
       break;
     case "crownDiscardAttachment": {
-      const quest = currentQuestUnit(s),
+      const quest = mainQuestUnit(s),
         hosts = [...units(s), ...(quest ? [quest] : [])];
       choose(
         s,

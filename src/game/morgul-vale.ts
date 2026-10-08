@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { encodeDamageContext, readDamageContext } from "./damage-context";
@@ -35,7 +36,6 @@ import {
   ownerOf,
   playerOrder,
 } from "./table";
-import { currentQuestCode } from "./quest-state";
 import { playerAttackKilled, playerAttackResolved } from "./combat";
 import { effectiveTraits } from "./expansion-passives";
 import { heirsShadowDealt } from "./heirs-numenor";
@@ -121,7 +121,7 @@ export function advanceMorgulVale(s: GameState) {
     !s.morgulVale?.defeated.includes(captains[s.stage - 1])
   )
     return true;
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 3) {
     win(s);
     s.reason =

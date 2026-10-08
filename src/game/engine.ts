@@ -35,5 +35,11 @@ export {
 } from "./actions";
 export { validateSave, restoreSave } from "./save";
 
-export { currentQuestCode, currentQuestUnit } from "./quest-state";
+export {
+  currentQuestCode,
+  currentQuestUnit,
+  currentQuestProgress,
+  mainQuestCode,
+  mainQuestUnit,
+} from "./quest-state";
 export { collectorEnemyCannotAttack } from "./collector-player-cards";

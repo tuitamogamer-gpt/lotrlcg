@@ -1,3 +1,5 @@
+import { removeCurrentQuestProgress } from "./side-quests";
+import { mainQuestCode } from "./quest-state";
 import { celebrimborRefreshEffects } from "./celebrimbor";
 import { ninReadyLimit } from "./nin-eilph-support";
 import { canRemoveQuestTime } from "./quest-time";
@@ -373,8 +375,8 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       if (!q || (e.count === 3 && s.stage !== 3)) break;
       const pending = s.queue.length;
       if (s.stage === 3 || e.value === 3)
-        discardQuestAttachments(s, currentQuestCode(s)!);
-      else if (questDefeated(s, currentQuestCode(s)!)) {
+        discardQuestAttachments(s, mainQuestCode(s)!);
+      else if (questDefeated(s, mainQuestCode(s)!)) {
         s.queue.splice(s.queue.length - pending, 0, e);
         break;
       }
@@ -388,7 +390,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       s.progress = 0;
       q.time = fangornTimeLimit(s.stage);
       s.stageRevealing = true;
-      log(s, `${card(currentQuestCode(s)!).name} · Time ${q.time}.`, "chapter");
+      log(s, `${card(mainQuestCode(s)!).name} · Time ${q.time}.`, "chapter");
       prepend(
         s,
         ...(s.stage === 2
@@ -497,8 +499,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "fangornHinder": {
-      const n = Math.min(s.progress, e.value ?? 0);
-      s.progress -= n;
+      const n = removeCurrentQuestProgress(s, e.value ?? 0);
       const remaining = (e.value ?? 0) - n;
       if (remaining > 0) {
         const options = allActiveLocations(s).filter((l) => l.progress > 0);

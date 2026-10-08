@@ -1,3 +1,5 @@
+import { removeCurrentQuestProgress } from "./side-quests";
+import { sideQuestEffect, sideQuestStart } from "./side-quests";
 import { rangerEffect } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
@@ -344,6 +346,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (ringMakerEffect(s, e)) return;
   if (finalRingEffect(s, e)) return;
   if (rangerEffect(s, e)) return;
+  if (sideQuestEffect(s, e)) return;
   if (Realm.realmEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
@@ -1196,6 +1199,7 @@ function handleEffect(s: GameState, e: Effect) {
         eachSeat(s, () => orcGuard(s));
       if (s.scenarioId === "hunt-for-gollum" && s.stage === 2)
         prepend(s, fx("huntLook", { count: 2, player: firstPlayer(s) }));
+      sideQuestStart(s);
       break;
     case "startTravel":
       startPhase(s, "travel");
@@ -1372,7 +1376,7 @@ function handleEffect(s: GameState, e: Effect) {
           (l) => l.code === "02017",
         )) {
           location.progress = Math.max(0, location.progress - 1);
-          s.progress = Math.max(0, s.progress - 1);
+          removeCurrentQuestProgress(s, 1);
           log(
             s,
             "River Ninglor washes away 1 progress from itself and the quest.",
@@ -1718,7 +1722,7 @@ function handleEffect(s: GameState, e: Effect) {
         if (!immediate) markEnemyAttack(s, enemy, attackPlayer);
         carrockAfterAttack(s, enemy);
         if (enemy.code === "01090") enemy.resources++;
-        if (enemy.code === "01111") s.progress = Math.max(0, s.progress - 1);
+        if (enemy.code === "01111") removeCurrentQuestProgress(s, 1);
         if (s.combat?.returnToStaging || s.combat?.returnWolf) {
           s.staging = s.staging.filter((x) => x.id !== enemy.id);
           s.engaged = s.engaged.filter((x) => x.id !== enemy.id);

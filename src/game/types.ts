@@ -287,6 +287,11 @@ export interface GuidedFlow {
 export interface GameState {
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
+  /** Selection survives defeat until the end of this quest phase. */
+  sideQuestSelections?: Record<
+    string,
+    { id: string; code: string; defeated?: boolean }
+  >;
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;

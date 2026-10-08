@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 // Original Long Dark: locate choices and explicitly triggered Lost abilities.
 import type { Effect, GameState, Unit } from "./types";
 import { LONG_DARK as L, LONG_DARK_PASS } from "./long-dark-support";
@@ -45,7 +46,6 @@ import {
   seatView,
   selectSeat,
 } from "./table";
-import { currentQuestCode } from "./quest-state";
 import { khazadCannotExhaust, KHAZAD } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { syncAttachmentText } from "./attachment-text";
@@ -106,7 +106,7 @@ export function advanceLongDark(s: GameState) {
   )
     return true;
   if (s.stage === 1 && s.progress >= 13) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 2;
     s.progress = 0;
     s.stageRevealing = true;

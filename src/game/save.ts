@@ -106,7 +106,27 @@ export function validateSave(
     )
       return false;
     const knownQuest = (code: unknown) =>
-      typeof code === "string" && card(code).type_code === "quest";
+      typeof code === "string" &&
+      ["quest", "player-side-quest"].includes(card(code).type_code);
+    if (
+      s.sideQuestSelections !== undefined &&
+      (!s.sideQuestSelections ||
+        typeof s.sideQuestSelections !== "object" ||
+        Array.isArray(s.sideQuestSelections) ||
+        Object.entries(s.sideQuestSelections).some(
+          ([key, v]) =>
+            !key ||
+            key.length > 100 ||
+            !v ||
+            typeof v.id !== "string" ||
+            !v.id ||
+            typeof v.code !== "string" ||
+            !SCRIPTED.has(v.code) ||
+            card(v.code).type_code !== "player-side-quest" ||
+            (v.defeated !== undefined && typeof v.defeated !== "boolean"),
+        ))
+    )
+      return false;
     const validAttachment = (a: Attachment) =>
       !!a &&
       typeof a.id === "string" &&

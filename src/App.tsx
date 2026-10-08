@@ -1,3 +1,5 @@
+import { currentQuestProgress } from "./game/quest-state";
+import { selectedSideQuest } from "./game/side-quest-support";
 import { realmExtraEngagement } from "./game/lost-realm-player";
 import { CELEBRIMBOR } from "./game/celebrimbor-support";
 import { FANGORN } from "./game/fangorn-support";
@@ -475,7 +477,13 @@ function CardDetail({
           <div className="card-detail-art">
             <Art
               key={`${c.code}-${reverse}`}
-              className={c.type_code === "quest" ? "quest-reference-art" : ""}
+              className={
+                ["quest", "player-side-quest", "encounter-side-quest"].includes(
+                  c.type_code,
+                )
+                  ? "quest-reference-art"
+                  : ""
+              }
               imageSrc={reverse ? c.back_imagesrc : undefined}
               c={
                 reverse
@@ -498,7 +506,13 @@ function CardDetail({
         ) : (
           <Art
             c={c}
-            className={c.type_code === "quest" ? "quest-reference-art" : ""}
+            className={
+              ["quest", "player-side-quest", "encounter-side-quest"].includes(
+                c.type_code,
+              )
+                ? "quest-reference-art"
+                : ""
+            }
           />
         )}
         <div>
@@ -3219,7 +3233,8 @@ export default function App() {
             <QuestGoals s={game} />
             <p>
               <strong>
-                {game.progress} / {stageInfo(game).quest || "Special objective"}
+                {currentQuestProgress(game)} /{" "}
+                {stageInfo(game).quest || "Special objective"}
               </strong>{" "}
               quest progress · Stage {game.stage} of{" "}
               {scenario(game.scenarioId).stages.length}
@@ -4260,6 +4275,16 @@ function BoardCard({
             <StatBadge kind="defense" value={stats(s, u).defense} />
           )}
       </div>
+      {c.type_code === "player-side-quest" && (
+        <div className="objective-status">
+          <span>
+            {selectedSideQuest(s)?.id === u.id
+              ? "Current side quest"
+              : "Side quest"}{" "}
+            · {u.progress} / {c.quest} progress
+          </span>
+        </div>
+      )}
       {c.type_code === "attachment" &&
         c.traits?.split(".").some((trait) => trait.trim() === "Trap") && (
           <div className="objective-status">

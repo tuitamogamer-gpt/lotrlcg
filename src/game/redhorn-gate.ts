@@ -1,5 +1,5 @@
+import { mainQuestCode } from "./quest-state";
 import { realmWillProtected } from "./lost-realm-player";
-import { currentQuestCode } from "./quest-state";
 // Original The Redhorn Gate and its shared Misty Mountains encounter set.
 import encounters from "../data/redhorn-gate-encounter-cards.json";
 import quests from "../data/redhorn-gate-quest-cards.json";
@@ -264,7 +264,7 @@ export function advanceRedhorn(s: GameState) {
   )
     return true;
   if (s.stage === 1 && s.progress >= 9) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 2;
     s.progress = 0;
     s.stageRevealing = true;
@@ -468,7 +468,7 @@ export function redhornEffect(s: GameState, e: Effect) {
       break;
     }
     case "redhornSnowdriftsComplete": {
-      if (questDefeated(s, currentQuestCode(s)!)) {
+      if (questDefeated(s, mainQuestCode(s)!)) {
         enqueue(s, fx(e.kind));
         break;
       }

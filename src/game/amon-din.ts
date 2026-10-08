@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 // Original/easy Encounter at Amon Dîn. Villager tokens are never spendable resources.
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -33,7 +34,6 @@ import {
   seatView,
   selectSeat,
 } from "./table";
-import { currentQuestCode } from "./quest-state";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { isSacked } from "./carrock";
@@ -149,7 +149,7 @@ export function advanceAmonDin(s: GameState): boolean {
   )
     return true;
   if (s.stage === 1 && state(s).questVillagers === 0) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 2;
     s.progress = 0;
     s.stageRevealing = true;
@@ -161,7 +161,7 @@ export function advanceAmonDin(s: GameState): boolean {
       (u) => u.code === A.ghulat && !u.blanked,
     )
   ) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     const alive = rescued(s)?.resources ?? 0,
       lost = dead(s)?.damage ?? 0;
     if (alive > lost) {

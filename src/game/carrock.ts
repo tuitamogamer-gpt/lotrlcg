@@ -1,4 +1,4 @@
-import { currentQuestCode } from "./quest-state";
+import { mainQuestCode } from "./quest-state";
 // Complete original Conflict at the Carrock rules; Nightmare is a separate quest.
 import definitions from "../data/carrock-encounter-cards.json";
 import { card, name } from "./cards";
@@ -122,7 +122,7 @@ export function advanceCarrock(s: GameState) {
   if (s.status !== "playing" || s.stageRevealing || s.phase === "setup")
     return true;
   if (s.stage === 1 && s.progress >= 7) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     const carrock = s.staging.find((u) => u.code === CARROCK.carrock);
     requireRule(
       carrock,

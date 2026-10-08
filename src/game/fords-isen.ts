@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 import { dunlandDrawEffects } from "./dunland-trap";
 import { removeQuestTime } from "./quest-time";
 import type { Effect, GameState, Unit } from "./types";
@@ -44,7 +45,8 @@ import {
 import {
   attachToQuest,
   currentQuestCode,
-  currentQuestUnit,
+  mainQuestUnit,
+  allQuestUnits,
 } from "./quest-state";
 import { hasTrait } from "./expansion-passives";
 import { FORDS as F, fordsTimeLimit } from "./fords-isen-support";
@@ -133,7 +135,7 @@ export function advanceFordsIsen(s: GameState) {
   )
     return true;
   if (s.stage === 3 && enemies(s).length) return true;
-  if (questDefeated(s, currentQuestCode(s)!)) return true;
+  if (questDefeated(s, mainQuestCode(s)!)) return true;
   if (s.stage === 3) {
     win(s);
     s.reason =
@@ -205,7 +207,7 @@ export function fordsCardsDrawn(s: GameState, player = activeSeat(s)) {
     )
       effects.push(fx("immediateAttack", { target: u.id, player }));
   }
-  for (const a of currentQuestUnit(s)?.attachments ?? []) {
+  for (const a of allQuestUnits(s).flatMap((u) => u.attachments)) {
     if (a.blanked || a.facedown) continue;
     if (a.code === F.hatreds)
       effects.push(fx("fordsThreat", { value: 1, code: a.code, player }));
@@ -604,7 +606,7 @@ export function fordsEffect(s: GameState, e: Effect): boolean {
       break;
     }
     case "fordsDiscardAttachments": {
-      const quest = currentQuestUnit(s);
+      const quest = mainQuestUnit(s);
       const eligible = [...units(s), ...(quest ? [quest] : [])].flatMap(
         (host) =>
           host.attachments

@@ -1,3 +1,4 @@
+import { selectedSideQuest } from "../game/side-quest-support";
 import {
   Coins,
   Hourglass,
@@ -25,12 +26,17 @@ import { AnimatedNumber, CountChange, tableSpring } from "./motion";
 import carrockQuests from "../data/carrock-quest-cards.json";
 import emynQuests from "../data/emyn-muil-quest-cards.json";
 import { scenario } from "../game/scenarios";
-import { currentQuestUnit } from "../game/quest-state";
+import {
+  currentQuestUnit,
+  currentQuestProgress,
+  mainQuestCode,
+} from "../game/quest-state";
 import { collectorAbilityAnyPlayer } from "../game/collector-player-cards";
 import { WATCHER_WATER } from "../game/watcher-water-support";
 
 // Presentation only: the engine remains the source of every count and action.
 export function questStageLabel(s: GameState) {
+  if (selectedSideQuest(s)) return "Side quest";
   const stage = stageInfo(s);
   const number = "questNumber" in stage ? stage.questNumber : s.stage;
   const side = "side" in stage ? stage.side : "B";
@@ -126,14 +132,16 @@ export function JourneyArea({
   const reduced = useReducedMotion();
   const active = allActiveLocations(s);
   const quest = currentQuestUnit(s);
-  const resourceQuest = s.scenarioId === "the-stewards-fear" && s.stage < 3;
+  const sideQuest = selectedSideQuest(s);
+  const resourceQuest =
+    !sideQuest && s.scenarioId === "the-stewards-fear" && s.stage < 3;
   const villagerQuest =
-    s.scenarioId === "encounter-at-amon-din" && s.stage === 1;
+    !sideQuest && s.scenarioId === "encounter-at-amon-din" && s.stage === 1;
   const questValue = villagerQuest
     ? (s.amonDin?.questVillagers ?? 0)
     : resourceQuest
       ? (s.stewardFear?.questResources ?? 0)
-      : s.progress;
+      : currentQuestProgress(s);
   const questGoal = villagerQuest ? 5 : resourceQuest ? 4 : q.quest;
   const area = s.foundationsStone?.split ? foundationsArea(s) : undefined;
   const locationCard = (u: Unit) => (
@@ -222,8 +230,20 @@ export function JourneyArea({
           src={questFace(s)}
           alt={`${q.name} · side ${questStageLabel(s)}`}
         />
-        <span className="quest-stage-seal">{questStageLabel(s)}</span>
+        <span
+          className={`quest-stage-seal${sideQuest ? " side-quest-seal" : ""}`}
+        >
+          {questStageLabel(s)}
+        </span>
       </button>
+      {sideQuest && mainQuestCode(s) && (
+        <button
+          className="journey-main-quest"
+          onClick={() => inspect(card(mainQuestCode(s)!))}
+        >
+          Inspect main quest
+        </button>
+      )}
       <div
         className="tabletop-progress"
         aria-label={`Quest ${villagerQuest ? "villagers" : resourceQuest ? "resources" : "progress"}: ${questValue} of ${questGoal || "special objective"}`}

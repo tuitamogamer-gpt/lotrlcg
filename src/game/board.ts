@@ -1,3 +1,7 @@
+import { removeCurrentQuestProgress } from "./side-quests";
+import { selectedSideQuest } from "./side-quest-support";
+import { addCurrentQuestProgress } from "./side-quests";
+import { mainStageInfo } from "./core";
 import { RANGER_NORTH, rangerRevealed } from "./ranger-north";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import * as Realm from "./lost-realm-player";
@@ -134,7 +138,7 @@ import {
   foundationsEncounter,
   foundationsShadow,
 } from "./foundations-stone";
-import { currentQuestCode, currentQuestUnit } from "./quest-state";
+import { mainQuestCode, mainQuestUnit } from "./quest-state";
 import {
   collectorAllyEntered,
   collectorEncounterRevealed,
@@ -283,7 +287,6 @@ import {
   restrictAttachments,
   shuffle,
   skip,
-  stageInfo,
   locationQuest,
   stats,
   units,
@@ -585,12 +588,12 @@ export function check(s: GameState) {
   });
   if (s.status !== "playing") return;
   const activeQuests = new Set(
-    globalPlayerOrder(s).map((player) => currentQuestCode(seatView(s, player))),
+    globalPlayerOrder(s).map((player) => mainQuestCode(seatView(s, player))),
   );
   for (const [code, attachments] of Object.entries(s.questAttachments ?? {})) {
     if (activeQuests.has(code)) continue;
     const host = {
-      ...currentQuestUnit(s)!,
+      ...mainQuestUnit(s)!,
       id: `quest:${code}`,
       code,
       attachments,
@@ -668,7 +671,7 @@ export function check(s: GameState) {
         ...s.staging,
         ...allEngaged(s),
         ...allActiveLocations(s),
-        ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+        ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
       ]) {
         for (const a of [...host.attachments]) {
           if (
@@ -1400,7 +1403,12 @@ export function progress(
     progressLocation(s, location, toLocation);
     n -= toLocation;
   }
-  if (fromSuccessfulQuest && s.catchOrc?.cancelQuestProgress) return;
+  if (
+    !selectedSideQuest(s) &&
+    fromSuccessfulQuest &&
+    s.catchOrc?.cancelQuestProgress
+  )
+    return;
   if (
     n > 0 &&
     fromSuccessfulQuest &&
@@ -1414,6 +1422,10 @@ export function progress(
   )
     return;
   if (n <= 0 || s.status !== "playing") return;
+  if (selectedSideQuest(s)) {
+    addCurrentQuestProgress(s, n);
+    return;
+  }
   if (Catch.catchProgressBlocked(s)) return;
   if (Trials.trialsQuestProgress(s, n)) return;
   if (Tharbad.tharbadQuestProgress(s, n)) return;
@@ -1431,8 +1443,14 @@ export function progress(
 }
 
 /** Leaving a quest discards its attachments; merely advancing does not defeat it. */
-export function discardQuestAttachments(s: GameState, code: string) {
-  const host = currentQuestUnit(s);
+export function discardQuestAttachments(
+  s: GameState,
+  code: string,
+  id?: string,
+) {
+  const host =
+    s.staging.find((u) => u.code === code && (!id || u.id === id)) ??
+    mainQuestUnit(s);
   if (!host || host.code !== code) return [];
   const attachments = [...host.attachments];
   for (const a of attachments) discardAttachment(s, host, a);
@@ -1510,7 +1528,7 @@ export function advanceQuest(s: GameState) {
     else if (s.scenarioId === "hunt-for-gollum" && s.progress >= 8) win(s);
     return;
   }
-  if (s.progress < stageInfo(s).quest) return;
+  if (s.progress < mainStageInfo(s).quest) return;
   if (s.scenarioId === "anduin" && s.stage === 1 && inPlay(s, "01082")) return;
   if (
     s.scenarioId === "dol-guldur" &&
@@ -1518,7 +1536,7 @@ export function advanceQuest(s: GameState) {
       (s.stage === 2 && s.prisoner))
   )
     return;
-  if (questDefeated(s, currentQuestCode(s)!)) return;
+  if (questDefeated(s, mainQuestCode(s)!)) return;
   const mendor = allCharacters(s).find((u) => u.code === "rc135");
   if (mendor) {
     readyCharacter(s, mendor);
@@ -1549,7 +1567,7 @@ export function advanceQuest(s: GameState) {
       fx("stageRevealed"),
     );
   }
-  log(s, `A new chapter: ${stageInfo(s).name}.`, "chapter");
+  log(s, `A new chapter: ${mainStageInfo(s).name}.`, "chapter");
 }
 
 export function phaseEnd(s: GameState) {
@@ -2218,7 +2236,7 @@ export function placeEncounter(
   if (deadMarshesEncounter(s, code)) return;
   switch (code) {
     case "01086":
-      s.progress = Math.max(0, s.progress - 4);
+      removeCurrentQuestProgress(s, 4);
       break;
     case "01104":
       s.threatModifier += livingSeats(s).length;
@@ -2566,7 +2584,7 @@ export function allyEntryResponses(
       choose(s, "Miner of the Iron Hills", [
         ...[
           ...units(s),
-          ...(currentQuestUnit(s) ? [currentQuestUnit(s)!] : []),
+          ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
         ].flatMap((h) =>
           h.attachments
             .filter(
@@ -2721,7 +2739,7 @@ export function shadow(s: GameState, code: string) {
       break;
     }
     case "01111":
-      s.progress = Math.max(0, s.progress - (undefended ? 3 : 1));
+      removeCurrentQuestProgress(s, undefended ? 3 : 1);
       break;
     case "01112": {
       const enemy = get(s, c.enemyId),
@@ -2808,7 +2826,7 @@ export function shadow(s: GameState, code: string) {
       break;
     }
     case "02017":
-      s.progress = Math.max(0, s.progress - (undefended ? 2 : 1));
+      removeCurrentQuestProgress(s, undefended ? 2 : 1);
       break;
     case "02018":
       if (!s.heroes.some(hasClue)) c.returnToStaging = true;

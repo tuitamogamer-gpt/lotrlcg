@@ -1,3 +1,4 @@
+import { mainQuestCode } from "./quest-state";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -44,7 +45,6 @@ import {
 import { hasTrait } from "./expansion-passives";
 import { heirsShadowDealt, heirsCannotHaveAttachments } from "./heirs-numenor";
 import { fangornTravel } from "./fangorn";
-import { currentQuestCode } from "./quest-state";
 import {
   TRIALS as T,
   TRIAL_QUESTS,
@@ -569,7 +569,7 @@ export function trialsEffect(s: GameState, e: Effect): boolean {
         q.completed.includes(e.code)
       )
         break;
-      discardQuestAttachments(s, currentQuestCode(s)!);
+      discardQuestAttachments(s, mainQuestCode(s)!);
       q.activeQuest = e.code;
       q.advancing = false;
       s.stage = 2;

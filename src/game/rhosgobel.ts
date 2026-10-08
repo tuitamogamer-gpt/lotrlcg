@@ -1,4 +1,4 @@
-import { currentQuestCode } from "./quest-state";
+import { mainQuestCode } from "./quest-state";
 import { removePlayedEvent } from "./event-resolution";
 // Complete original A Journey to Rhosgobel quest; Nightmare is a separate ruleset.
 import { shadowFlamePlayerHealed } from "./shadow-flame-player-cards";
@@ -151,7 +151,7 @@ export function advanceRhosgobel(s: GameState) {
   )
     return true;
   if (s.stage === 1 && s.progress >= 8) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 2;
     s.progress = 0;
     log(
@@ -160,7 +160,7 @@ export function advanceRhosgobel(s: GameState) {
       "chapter",
     );
   } else if (s.stage === 2 && s.progress >= 12) {
-    if (questDefeated(s, currentQuestCode(s)!)) return true;
+    if (questDefeated(s, mainQuestCode(s)!)) return true;
     s.stage = 3;
     s.progress = 0;
     s.stageRevealing = true;

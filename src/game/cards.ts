@@ -1,3 +1,4 @@
+import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
 import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
 import { ANTLERED_ENCOUNTERS, ANTLERED_QUESTS } from "./antlered-support";
@@ -123,6 +124,7 @@ export const playerCards = [
       ...(trialsTharbadPlayers as Card[]),
       ...(finalRingPlayers as Card[]),
       ...(lostRealmPlayers as Card[]),
+      ...(lostRealmSideQuests as Card[]),
       ...(rangerPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
       ...HUNT_PLAYER_CARDS,

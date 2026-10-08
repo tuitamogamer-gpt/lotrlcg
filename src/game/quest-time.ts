@@ -1,3 +1,4 @@
+import { selectedSideQuest } from "./side-quest-support";
 import { ninTimeRemoved } from "./nin-eilph";
 import { tharbadTimeBlocked, tharbadTimeRemoved } from "./tharbad";
 import { fangornTimeRemoved } from "./fangorn";
@@ -9,14 +10,16 @@ import { firstPlayer } from "./table";
 
 /** Only the active quest's Time keyword loses a counter at refresh phase end. */
 export const questTime = (s: GameState) =>
-  s.fordsIsen ??
-  s.catchOrc ??
-  s.fangorn ??
-  s.dunlandTrap ??
-  s.tharbad ??
-  s.ninEilph ??
-  s.celebrimbor ??
-  s.antlered;
+  selectedSideQuest(s)
+    ? undefined
+    : (s.fordsIsen ??
+      s.catchOrc ??
+      s.fangorn ??
+      s.dunlandTrap ??
+      s.tharbad ??
+      s.ninEilph ??
+      s.celebrimbor ??
+      s.antlered);
 export const canRemoveQuestTime = (s: GameState) =>
   !!questTime(s)?.time && !tharbadTimeBlocked(s);
 export function removeQuestTime(s: GameState, count = 1) {

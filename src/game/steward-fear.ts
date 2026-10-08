@@ -1,3 +1,6 @@
+import { selectedSideQuest } from "./side-quest-support";
+import { removeCurrentQuestProgress } from "./side-quests";
+import { mainQuestCode } from "./quest-state";
 import { playerCardImmune } from "./card-immunity";
 // Original/easy The Steward's Fear and the shared Streets of Gondor encounter set.
 import type { Effect, GameState, Unit } from "./types";
@@ -51,7 +54,6 @@ import {
   seatView,
   selectSeat,
 } from "./table";
-import { currentQuestCode } from "./quest-state";
 import { hasTrait } from "./expansion-passives";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
@@ -154,12 +156,11 @@ export function advanceStewardFear(s: GameState): boolean {
       s.progress >= 15 &&
       !encounterUnits(s).some((u) => STEWARD_VILLAINS.includes(u.code))
     ) {
-      if (!questDefeated(s, currentQuestCode(s)!)) win(s);
+      if (!questDefeated(s, mainQuestCode(s)!)) win(s);
     }
     return true;
   }
-  if (q.questResources < 4 || questDefeated(s, currentQuestCode(s)!))
-    return true;
+  if (q.questResources < 4 || questDefeated(s, mainQuestCode(s)!)) return true;
   s.stage++;
   s.progress = 0;
   q.questResources = 0;
@@ -211,7 +212,7 @@ export function stewardFearLocationLeft(
       ? [
           fx("stewardQuestToken", {
             value: 1,
-            code: currentQuestCode(s),
+            code: mainQuestCode(s),
             player: first(s),
           }),
         ]
@@ -596,6 +597,10 @@ export function stewardFearShadow(s: GameState, code: string): boolean {
   else if (code === G.cityStreet) c.attackBonus += 2;
   else if (code === S.dissident) {
     if (undefended && isSteward(s)) {
+      if (selectedSideQuest(s)) {
+        removeCurrentQuestProgress(s, 1);
+        return true;
+      }
       const q = state(s);
       if (q.questResources > 0 && s.progress > 0) {
         selectSeat(s, first(s));
@@ -612,7 +617,7 @@ export function stewardFearShadow(s: GameState, code: string): boolean {
           },
         ]);
       } else if (q.questResources > 0) q.questResources--;
-      else s.progress = Math.max(0, s.progress - 1);
+      else removeCurrentQuestProgress(s, 1);
     }
   } else if (code === S.falseLead) c.stewardRemoveTokensIfKilled = true;
   else if (code === G.lostCity) {
@@ -698,10 +703,10 @@ export function handleStewardFearEffect(s: GameState, e: Effect): boolean {
     case "stewardRemoveQuestToken":
       if (e.flag)
         state(s).questResources = Math.max(0, state(s).questResources - 1);
-      else s.progress = Math.max(0, s.progress - 1);
+      else removeCurrentQuestProgress(s, 1);
       break;
     case "stewardQuestToken":
-      if (e.code === currentQuestCode(s) && s.stage < 3) {
+      if (e.code === mainQuestCode(s) && s.stage < 3) {
         state(s).questResources += e.value ?? 1;
         advanceQuest(s);
       }
