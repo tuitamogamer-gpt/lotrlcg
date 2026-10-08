@@ -1,6 +1,6 @@
 import { FANGORN } from "../src/game/fangorn-support.ts";
 import { applyAction } from "./pass-resource-window.ts";
-import test from "node:test";
+import nodeTest from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS, card } from "../src/game/cards.ts";
 import {
@@ -42,10 +42,37 @@ import type {
   Option,
   ReviewMode,
 } from "../src/game/types.ts";
+
+// Partition complete games by registration order, without changing default npm test.
+// Manifest mode is checked separately so CI cannot silently omit or duplicate a case.
+const shardCount = Number(process.env.SIMULATION_SHARDS ?? 1);
+const shardIndex = Number(process.env.SIMULATION_SHARD ?? 0);
+const listOnly = process.env.SIMULATION_LIST_ONLY === "1";
+if (
+  !Number.isInteger(shardCount) ||
+  shardCount < 1 ||
+  shardCount > 16 ||
+  !Number.isInteger(shardIndex) ||
+  shardIndex < 0 ||
+  shardIndex >= shardCount
+)
+  throw new Error(
+    "Invalid simulation shard: require 0 <= SIMULATION_SHARD < SIMULATION_SHARDS <= 16.",
+  );
+let registeredCases = 0;
+const selectedCases: string[] = [];
+const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
+  const index = registeredCases++;
+  if (index % shardCount !== shardIndex) return;
+  selectedCases.push(String(args[0]));
+  if (!listOnly) return nodeTest(...args);
+}) as typeof nodeTest;
 function choose(s: GameState): Option {
   const opts = s.choice!.options;
   const title = s.choice!.title;
   const skip = opts.find((o) => o.id === "skip");
+  if (title === "Choose the current quest")
+    return opts.find((o) => o.code === "09014") ?? opts[0];
   if (title.includes("Cave Torch") && title.includes("Illuminate"))
     return opts.find((o) => o.id.endsWith(":3")) ?? opts[0];
   if (
@@ -98,6 +125,7 @@ function run(
     cards: Record<string, number>;
     heroes: string[];
   },
+  observed?: Set<string>,
 ) {
   const d = deckOverride ?? STARTERS.find((x) => x.id === id)!;
   const campaign = newCampaign(d.heroes);
@@ -221,7 +249,10 @@ function run(
         const playable = s.hand.filter(
           (u) =>
             !canPlay(s, u) &&
-            ["ally", "attachment"].includes(card(u.code).type_code) &&
+            (["ally", "attachment", "player-side-quest"].includes(
+              card(u.code).type_code,
+            ) ||
+              u.code === "09007") &&
             (!needsTarget(u) || playTargets(s, u).length),
         );
         const u = playable.sort(
@@ -310,8 +341,18 @@ function run(
             }
           : { type: "END_ATTACKS" };
     } else action = { type: "NEXT" };
+    if (action.type === "PLAY")
+      observed?.add(`played:${s.hand.find((u) => u.id === action.id)?.code}`);
+    if (
+      action.type === "CHOOSE" &&
+      s.choice?.title === "Choose the current quest"
+    )
+      observed?.add(
+        `selected:${s.choice.options.find((o) => o.id === action.id)?.code}`,
+      );
     try {
       s = applyAction(s, action);
+      if (s.victoryCards?.includes("09014")) observed?.add("defeated:09014");
     } catch (e) {
       throw new Error(
         `${scenarioId}/${playMode}/${id}/seed${seed}/${s.phase}: ${(e as Error).message}`,
@@ -414,6 +455,59 @@ for (const scenarioId of ["mirkwood", "trouble-in-tharbad"] as const)
     }
     console.log("Lost Realm fellowship", scenarioId, results);
   });
+
+test("Lost Realm scenario sweep: played Rangers and selected side quests finish across every supported scenario", () => {
+  const observed = new Set<string>();
+  const results: { scenario: string; won: number; lost: number }[] = [];
+  for (const q of SCENARIOS) {
+    const row = { scenario: q.id, won: 0, lost: 0 };
+    for (const seed of [10, 31]) {
+      const immediate = run(
+        seed,
+        lostRealmDeck.id,
+        q.id,
+        "normal",
+        false,
+        undefined,
+        lostRealmDeck,
+        observed,
+      );
+      row[immediate.status as "won" | "lost"]++;
+      if (seed === 10) {
+        const { flow, ...paced } = run(
+          seed,
+          lostRealmDeck.id,
+          q.id,
+          "normal",
+          true,
+          "decisions",
+          lostRealmDeck,
+        );
+        assert.deepEqual(paced, immediate, `${q.id}: Lost Realm review parity`);
+        assert.equal(flow!.pending, null);
+      }
+    }
+    results.push(row);
+  }
+  assert.ok(observed.has("played:09007"), "Ranger Summons was actually played");
+  assert.ok(
+    observed.has("played:09014"),
+    "Gather Information was actually played",
+  );
+  assert.ok(
+    observed.has("selected:09014"),
+    "Gather Information was actually selected",
+  );
+  assert.ok(
+    observed.has("defeated:09014"),
+    "Gather Information was actually defeated",
+  );
+  console.log(
+    "Lost Realm scenario sweep",
+    JSON.stringify({ results, observed: [...observed].sort() }),
+  );
+});
+
 for (const d of STARTERS)
   test(`${d.subtitle}: 25 seeded complete games terminate without illegal state or stuck decisions`, () => {
     const results = { won: 0, lost: 0 };
@@ -476,3 +570,5 @@ for (const q of SCENARIOS)
           );
         }
     });
+
+if (listOnly) console.log(JSON.stringify({ registeredCases, selectedCases }));

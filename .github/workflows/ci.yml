@@ -17,7 +17,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - run: npm test
+      - run: npm run test:engine
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
@@ -25,10 +25,55 @@ jobs:
           path: dist
           retention-days: 7
 
+  simulation:
+    name: Complete games (${{ matrix.shard }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      SIMULATION_SHARDS: 4
+      SIMULATION_SHARD: ${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:simulation
+
+  multiplayer:
+    name: Multiplayer games (${{ matrix.scenario }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [mirkwood, anduin, dol-guldur]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node --import tsx --test --test-name-pattern="^hot-seat ${{ matrix.scenario }} (normal|campaign): complete seeded games with save checks$" tests/hotseat.test.ts
+
   browser:
-    name: Browser checks (interface and pacing)
+    name: Browser checks (${{ matrix.group }})
     runs-on: ubuntu-latest
     needs: engine
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: core
+            suite: test:browser-core
+          - group: players
+            suite: test:browser-players
+          - group: ring-maker
+            suite: test:browser-ring-maker
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,7 +82,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run build
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
       - name: Serve the production build
         run: |
           npm run preview -- --port 5178 &
@@ -45,18 +93,10 @@ jobs:
             curl -sf http://localhost:5178 > /dev/null && break
             sleep 1
           done
-      - run: npm run test:ui
-      - run: npm run test:pacing
-      - run: npm run test:hotseat
-      - run: npm run test:revisions
-      - run: npm run test:precons
-      - run: npm run test:lost-realm-players
-      - run: npm run test:ring-maker-players
-      - run: npm run test:ring-maker-quests
-      - run: npm run test:against-shadow-finale
+      - run: npm run ${{ matrix.suite }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: browser-evidence
+          name: browser-evidence-${{ matrix.group }}
           path: output
           retention-days: 7

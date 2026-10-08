@@ -37,7 +37,13 @@
     "test:precons": "node --import tsx scripts/browser-preconstructed-decks.mjs",
     "test:ring-maker-quests": "node --import tsx scripts/browser-fords-isen.mjs && node --import tsx scripts/browser-catch-orc.mjs && node --import tsx scripts/browser-fangorn.mjs && node --import tsx scripts/browser-dunland-trap.mjs && node --import tsx scripts/browser-three-trials.mjs && node --import tsx scripts/browser-tharbad.mjs && node --import tsx scripts/browser-nin-eilph.mjs && node --import tsx scripts/browser-celebrimbor.mjs && node --import tsx scripts/browser-antlered.mjs",
     "test:ring-maker-players": "node --import tsx scripts/browser-dunland-players.mjs && node --import tsx scripts/browser-trials-tharbad-players.mjs && node --import tsx scripts/browser-ring-maker-final-players.mjs",
-    "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs && node --import tsx scripts/browser-ranger-north.mjs && node --import tsx scripts/browser-side-quests.mjs"
+    "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs && node --import tsx scripts/browser-ranger-north.mjs && node --import tsx scripts/browser-side-quests.mjs",
+    "test:engine": "node scripts/test-engine.mjs",
+    "test:simulation": "node --import tsx --test tests/simulation.test.ts",
+    "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons",
+    "test:browser-players": "npm run test:lost-realm-players && npm run test:ring-maker-players && npm run test:against-shadow-finale",
+    "test:browser-ring-maker": "npm run test:ring-maker-quests",
+    "test:multiplayer-games": "node --import tsx --test --test-name-pattern=\"^hot-seat .*: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",
