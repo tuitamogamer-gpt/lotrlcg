@@ -115,7 +115,7 @@ test("all thirty final Ring-maker player designs have original provenance and lo
       assert.equal(card(code).pack_name, pack);
       assert.match(imageUrl(card(code)), /^\/cards\//);
     }
-  assert.equal(playerCards.filter((c) => c.type_code === "hero").length, 48);
+  assert.equal(playerCards.filter((c) => c.type_code === "hero").length, 50);
 });
 test("Follow Me draws and transfers the first-player token without moving the active planning turn", () => {
   let s = fixture(2);

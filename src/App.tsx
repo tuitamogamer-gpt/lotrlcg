@@ -1,3 +1,4 @@
+import { realmExtraEngagement } from "./game/lost-realm-player";
 import { CELEBRIMBOR } from "./game/celebrimbor-support";
 import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
@@ -2481,7 +2482,8 @@ export default function App() {
                                   ? () => dispatch({ type: "TRAVEL", id: u.id })
                                   : game.phase === "encounter" &&
                                       card(u.code).type_code === "enemy" &&
-                                      !game.optionalEngagement
+                                      (!game.optionalEngagement ||
+                                        realmExtraEngagement(game))
                                     ? () =>
                                         dispatch({ type: "ENGAGE", id: u.id })
                                     : game.phase === "attack" &&

@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 424,
-    "heroes": 48,
-    "deckCards": 376,
+    "playerCards": 435,
+    "heroes": 50,
+    "deckCards": 385,
     "encounterCards": 485,
     "scenarios": 36,
     "scenarioIds": [
@@ -48,8 +48,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1033,
-    "pending": 3150
+    "scripted": 1044,
+    "pending": 3139
   },
   "scenarioRecipes": {
     "total": 355,
@@ -471,7 +471,18 @@
     "08144",
     "08145",
     "08146",
+    "09001",
+    "09002",
+    "09003",
+    "09004",
     "09005",
+    "09006",
+    "09008",
+    "09009",
+    "09010",
+    "09011",
+    "09012",
+    "09013",
     "10093",
     "10122",
     "12003",
@@ -1751,9 +1762,9 @@
     {
       "product": "the-lost-realm",
       "total": 73,
-      "scripted": 1,
+      "scripted": 12,
       "player": 15,
-      "playerScripted": 1
+      "playerScripted": 12
     },
     {
       "product": "the-lost-realm-nightmare",
@@ -5536,7 +5547,7 @@
       "name": "Aragorn",
       "type": "hero",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5544,7 +5555,7 @@
       "name": "Halbarad",
       "type": "hero",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5552,7 +5563,7 @@
       "name": "Weather Hills Watchman",
       "type": "ally",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5560,7 +5571,7 @@
       "name": "Dúnedain Hunter",
       "type": "ally",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5576,7 +5587,7 @@
       "name": "Warden of Annúminas",
       "type": "ally",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5592,7 +5603,7 @@
       "name": "Tireless Hunters",
       "type": "event",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5600,7 +5611,7 @@
       "name": "Expert Trackers",
       "type": "event",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5608,7 +5619,7 @@
       "name": "Heir of Valandil",
       "type": "attachment",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5616,7 +5627,7 @@
       "name": "Athelas",
       "type": "attachment",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5624,7 +5635,7 @@
       "name": "Secret Vigil",
       "type": "attachment",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -5632,7 +5643,7 @@
       "name": "Star Brooch",
       "type": "attachment",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {

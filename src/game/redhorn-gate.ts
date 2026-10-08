@@ -1,3 +1,4 @@
+import { realmWillProtected } from "./lost-realm-player";
 import { currentQuestCode } from "./quest-state";
 // Original The Redhorn Gate and its shared Misty Mountains encounter set.
 import encounters from "../data/redhorn-gate-encounter-cards.json";
@@ -356,7 +357,8 @@ export function redhornShadow(s: GameState, code: string) {
     )
       .map((id) => get(s, id))
       .filter((u): u is Unit => !!u);
-    for (const u of defenders) u.tempWill = (u.tempWill ?? 0) - 1;
+    for (const u of defenders)
+      if (!realmWillProtected(s, u)) u.tempWill = (u.tempWill ?? 0) - 1;
     state(s).snowShadowIds = [
       ...new Set([
         ...(state(s).snowShadowIds ?? []),

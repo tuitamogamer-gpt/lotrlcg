@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
@@ -230,6 +231,7 @@ import type { Action, Card, Effect, GameState, Unit } from "./types";
 
 import {
   firstPlayer,
+  forOwner,
   ownerOf,
   activeSeat,
   allCharacters,
@@ -515,7 +517,10 @@ export function optionalEngagementProblem(
     return "Resolve the current decision first.";
   if (s.table && activeSeat(s) !== s.table.turn)
     return "Wait for this fellowship’s engagement turn.";
-  if (s.phase !== "encounter" || s.optionalEngagement)
+  if (
+    s.phase !== "encounter" ||
+    (s.optionalEngagement && !Realm.realmExtraEngagement(s))
+  )
     return "You may optionally engage one enemy during the encounter phase.";
   if (
     card(u.code).type_code !== "enemy" ||
@@ -620,6 +625,8 @@ export function canPlay(
   const heirsProblem = heirsPlayerPlayProblem(s, c.code);
   const ringMakerProblem = ringMakerPlayProblem(s, c.code, u.id);
   if (ringMakerProblem) return ringMakerProblem;
+  const realmProblem = Realm.realmPlayProblem(s, c.code);
+  if (realmProblem) return realmProblem;
   const finalRingProblem = finalRingPlayProblem(s, c.code);
   if (finalRingProblem) return finalRingProblem;
   const dunlandProblem = dunlandPlayProblem(s, c.code);
@@ -1185,6 +1192,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const ringMakerTargets = ringMakerPlayTargets(s, c.code);
   if (ringMakerTargets) return ringMakerTargets;
+  const realmTargets = Realm.realmPlayTargets(s, c.code);
+  if (realmTargets) return realmTargets;
   const finalRingTargets = finalRingPlayTargets(s, c.code);
   if (finalRingTargets) return finalRingTargets;
   const dunlandTargets = dunlandPlayTargets(s, c.code);
@@ -1317,44 +1326,46 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
-  !["05017", "06064", "06115"].includes(u.code) &&
-  (card(u.code).type_code === "attachment" ||
-    [
-      "01020",
-      "01021",
-      "01032",
-      "01033",
-      "01034",
-      "01035",
-      "01051",
-      "01052",
-      "01053",
-      "01054",
-      "01063",
-      "01065",
-      "01066",
-      "02052",
-      "02058",
-      "02074",
-      "02076",
-      "02078",
-      "03004",
-      "04084",
-      "04131",
-      "08060",
-      "05006",
-      "06003",
-      "06140",
-      "06089",
-      "06113",
-      "08003",
-      "08033",
-      "08061",
-      "08090",
-      "08142",
-    ].includes(u.code));
+  u.code === "09008" ||
+  (!["05017", "06064", "06115"].includes(u.code) &&
+    (card(u.code).type_code === "attachment" ||
+      [
+        "01020",
+        "01021",
+        "01032",
+        "01033",
+        "01034",
+        "01035",
+        "01051",
+        "01052",
+        "01053",
+        "01054",
+        "01063",
+        "01065",
+        "01066",
+        "02052",
+        "02058",
+        "02074",
+        "02076",
+        "02078",
+        "03004",
+        "04084",
+        "04131",
+        "08060",
+        "05006",
+        "06003",
+        "06140",
+        "06089",
+        "06113",
+        "08003",
+        "08033",
+        "08061",
+        "08090",
+        "08142",
+      ].includes(u.code)));
 
 export const responseCards = [
+  "09009",
   "08144",
   "08062",
   "08005",
@@ -1584,6 +1595,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const realmLabel = Realm.realmAbilityLabel(a.code);
+    if (realmLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: realmLabel,
+        disabled: !!Realm.realmAbilityProblem(s, u, a.id),
+      });
     const finalRingAttachmentLabel = finalRingAbilityLabel(a.code);
     if (
       finalRingAttachmentLabel &&
@@ -2208,6 +2226,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         !optionalEngagementProblem(s, u),
         optionalEngagementProblem(s, u) ?? "",
       );
+      if (s.optionalEngagement) s.used.push("phase:halbarad-extra-engagement");
       s.optionalEngagement = true;
       engage(s, u, true);
       break;
@@ -2233,6 +2252,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         }),
         "Snow Warg can only be defended by a hero.",
       );
+      for (const p of playerOrder(s))
+        forOwner(s, p, () => s.used.push(Realm.REALM_ATTACKS_STARTED));
       beginEnemyAttack(s, enemy, defenderIds);
       break;
     }

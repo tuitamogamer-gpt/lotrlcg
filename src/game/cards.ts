@@ -1,3 +1,4 @@
+import lostRealmPlayers from "../data/lost-realm-player-cards.json";
 import { ANTLERED_ENCOUNTERS, ANTLERED_QUESTS } from "./antlered-support";
 import {
   CELEBRIMBOR_ENCOUNTERS,
@@ -120,6 +121,7 @@ export const playerCards = [
       ...(dunlandPlayers as Card[]),
       ...(trialsTharbadPlayers as Card[]),
       ...(finalRingPlayers as Card[]),
+      ...(lostRealmPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
       ...HUNT_PLAYER_CARDS,
       ...CARROCK_PLAYER_CARDS,

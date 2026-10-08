@@ -50,6 +50,7 @@ jobs:
       - run: npm run test:hotseat
       - run: npm run test:revisions
       - run: npm run test:precons
+      - run: npm run test:lost-realm-players
       - run: npm run test:ring-maker-players
       - run: npm run test:ring-maker-quests
       - run: npm run test:against-shadow-finale

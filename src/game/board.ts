@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
@@ -551,6 +552,7 @@ export function advanceDefense(s: GameState) {
       if (!s.choice) selectSeat(s, next);
     }
   } else {
+    if (Realm.realmEmptyCombatWindow(s)) return;
     startPhase(s, "attack");
     [
       ...globalEngaged(s),
@@ -1151,6 +1153,7 @@ export function destroy(
       !(s.combat?.returnWolf && s.combat.enemyId === u.id)
     )
       s.encounterDiscard.push(u.code);
+    if (destruction) Realm.realmEnemyDestroyed(s, u, lastAttachments);
     Antlered.antleredRoutePiles(s);
     if (u.code === "01102") s.nazgulDefeated = true;
     if (u.code === "01082" && s.campaign && s.scenarioId === "anduin")
@@ -1771,6 +1774,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   if (u.preventedAttacks)
     u.feinted = u.preventedAttacks.includes(activeSeat(s));
   log(s, `${name(u)} engages your fellowship.`, "danger");
+  const realmBefore = s.queue.length;
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
   Fords.fordsEngaged(s, u);
@@ -1789,6 +1793,11 @@ export function engage(s: GameState, u: Unit, optional = false) {
   if (u.code === "rc136") prepend(s, fx("chooseExhaust", { count: 2 }));
   if (u.code === "01075")
     prepend(s, fx("chooseDamage", { value: 5, flag: true }));
+  s.queue.splice(
+    s.queue.length - realmBefore,
+    0,
+    Realm.realmEngagementResponse(s, u),
+  );
 }
 
 export function returnTreachery(s: GameState, code: string) {
@@ -2447,10 +2456,12 @@ export function allyEntryResponses(
   mirkwoodPlayerAllyEntered(s, u, played && fromHand);
   khazadPlayerAllyEntered(s, u);
   rohanAllyEntered(s, u);
+  Realm.realmAllyPlayed(s, u, played);
   Isengard.isengardAllyEntered(s, u);
   dunlandAllyEntered(s, u);
   ringMakerAllyEntered(s, u, played, fromHand);
   finalRingAllyEntered(s, u);
+  Realm.realmAllyEntered(s, u);
   elfAllyEntered(s, u, played);
   gondorAllyEntered(s, u);
   emynPlayerAllyEntered(s, u, played);

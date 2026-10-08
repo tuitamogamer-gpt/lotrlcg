@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import * as Celebrimbor from "./celebrimbor";
 import { imageUrl } from "./cards";
@@ -471,31 +472,38 @@ export function stats(s: GameState, u: Unit) {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
-        foundationsBonus.will +
-        druadanScenarioBonus.will +
-        morgulBonus.will +
-        osgiliathBonus.will +
-        amonBonus.will +
-        stewardBonus.will +
-        bonus.will +
-        dwarfBonus.will +
-        mirkwoodBonus.will +
-        khazadBonus.will +
-        elfBonus.will +
-        rohanBonus.will +
-        Isengard.isengardWill(s, u) +
-        snowBonus.will +
-        longDarkBonus.will +
-        shadowFlameBonus.will +
-        (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
-        u.attachments.filter((a) => !a.blanked && a.code === "01027").length *
-          2 +
-        u.attachments.filter((a) => !a.blanked && a.code === "01055").length -
-        u.attachments.filter((a) => !a.blanked && a.code === "01071").length +
-        (u.tempWill ?? 0) -
-        Nin.ninStatPenalty(s, u) +
-        (u.code === "01007" ? u.boost : 0) -
-        (u.committed ? s.questDebuff : 0),
+        [
+          foundationsBonus.will,
+          druadanScenarioBonus.will,
+          morgulBonus.will,
+          osgiliathBonus.will,
+          amonBonus.will,
+          stewardBonus.will,
+          bonus.will,
+          dwarfBonus.will,
+          mirkwoodBonus.will,
+          khazadBonus.will,
+          elfBonus.will,
+          rohanBonus.will,
+          Isengard.isengardWill(s, u),
+          snowBonus.will,
+          longDarkBonus.will,
+          shadowFlameBonus.will,
+          Realm.realmWillBonus(s, u),
+          u.code === "rc135" && s.mendorBoost ? 2 : 0,
+          u.attachments.filter((a) => !a.blanked && a.code === "01027").length *
+            2,
+          u.attachments.filter((a) => !a.blanked && a.code === "01055").length,
+          -u.attachments.filter((a) => !a.blanked && a.code === "01071").length,
+          u.tempWill ?? 0,
+          -Nin.ninStatPenalty(s, u),
+          u.code === "01007" ? u.boost : 0,
+          -(u.committed ? s.questDebuff : 0),
+        ].reduce(
+          (sum, value) =>
+            sum + (Realm.realmWillProtected(s, u) ? Math.max(0, value) : value),
+          0,
+        ),
     ),
     attack: watcherWaterZeroCombatStats(u)
       ? 0
@@ -567,6 +575,7 @@ export function stats(s: GameState, u: Unit) {
             (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
             (u.tempDefense ?? 0) -
             Nin.ninStatPenalty(s, u) -
+            Realm.realmDefensePenalty(s, u) -
             (s.combat?.ninDefensePenalties?.[u.id] ?? 0) +
             (s.combat?.defenseBonuses?.[u.id] ?? 0),
         ),
@@ -650,13 +659,17 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
       target,
     ),
   );
-  return Isengard.isengardCost(
+  return Realm.realmPlayCost(
     s,
     c,
-    bloodPlayerCost(
+    Isengard.isengardCost(
       s,
       c,
-      osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+      bloodPlayerCost(
+        s,
+        c,
+        osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+      ),
     ),
   );
 }
@@ -698,6 +711,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             ? (s.fog ?? 0)
             : 0) +
           (u.tempThreat ?? 0) -
+          Realm.realmThreatPenalty(u) -
           u.attachments.filter((a) => !a.blanked && a.code === "01056").length,
       );
 

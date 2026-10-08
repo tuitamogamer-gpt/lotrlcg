@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
@@ -341,6 +342,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (dunlandEffect(s, e)) return;
   if (ringMakerEffect(s, e)) return;
   if (finalRingEffect(s, e)) return;
+  if (Realm.realmEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
   if (Druadan.handleDruadanForestEffect(s, e)) return;

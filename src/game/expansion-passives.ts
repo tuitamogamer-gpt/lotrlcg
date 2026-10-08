@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import { playerCardImmune } from "./card-immunity";
 import { khazadBookNoExhaust } from "./khazad-dum";
 import definitions from "../data/passive-player-cards.json";
@@ -307,6 +308,7 @@ export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
+  if (Realm.realmNoQuestExhaust(s, u)) return false;
   if (khazadBookNoExhaust(u)) return false;
   if (elfNoQuestExhaust(s, u)) return false;
   if (pathOfNeed(s, u)) return false;

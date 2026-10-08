@@ -1,3 +1,4 @@
+import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
@@ -339,6 +340,7 @@ export function playerAttackKilled(
       s,
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
+  Realm.realmAttackKilled(s, ids);
   Isengard.isengardAttackKilled(s, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
   collectorAttackKilled(s, enemy, ids, lastKnownTraits);

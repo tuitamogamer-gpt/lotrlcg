@@ -93,8 +93,13 @@ function run(
   playMode: PlayMode = "normal",
   guided = false,
   reviewMode?: ReviewMode,
+  deckOverride?: {
+    id: string;
+    cards: Record<string, number>;
+    heroes: string[];
+  },
 ) {
-  const d = STARTERS.find((x) => x.id === id)!;
+  const d = deckOverride ?? STARTERS.find((x) => x.id === id)!;
   const campaign = newCampaign(d.heroes);
   const chapter = SCENARIOS.findIndex((q) => q.id === scenarioId);
   campaign.completed = SCENARIOS.slice(0, chapter).map((q) => ({
@@ -344,6 +349,70 @@ function run(
   );
   return s;
 }
+const lostRealmDeck = {
+  id: "custom",
+  heroes: ["09001", "09002", "01012"],
+  cards: Object.fromEntries(
+    [
+      "09003",
+      "09004",
+      "09005",
+      "09006",
+      "09008",
+      "09009",
+      "09010",
+      "09011",
+      "09012",
+      "09013",
+      "02002",
+      "01013",
+      "01018",
+      "01034",
+      "01057",
+      "01065",
+      "01073",
+    ].map((code) => [code, code === "01073" ? 2 : 3]),
+  ),
+};
+for (const scenarioId of ["mirkwood", "trouble-in-tharbad"] as const)
+  test(`Lost Realm fellowship / ${scenarioId}: complete seeded games and every review mode preserve outcomes`, () => {
+    const results = { won: 0, lost: 0 };
+    for (let seed = 1; seed <= 10; seed++)
+      results[
+        run(
+          seed,
+          lostRealmDeck.id,
+          scenarioId,
+          "normal",
+          false,
+          undefined,
+          lostRealmDeck,
+        ).status as "won" | "lost"
+      ]++;
+    const immediate = run(
+      27,
+      lostRealmDeck.id,
+      scenarioId,
+      "normal",
+      false,
+      undefined,
+      lostRealmDeck,
+    );
+    for (const review of ["all", "hidden", "decisions"] as const) {
+      const { flow, ...paced } = run(
+        27,
+        lostRealmDeck.id,
+        scenarioId,
+        "normal",
+        true,
+        review,
+        lostRealmDeck,
+      );
+      assert.deepEqual(paced, immediate);
+      assert.equal(flow!.pending, null);
+    }
+    console.log("Lost Realm fellowship", scenarioId, results);
+  });
 for (const d of STARTERS)
   test(`${d.subtitle}: 25 seeded complete games terminate without illegal state or stuck decisions`, () => {
     const results = { won: 0, lost: 0 };
