@@ -53,4 +53,14 @@ The Weather Hills retains all six original recipe zones: quest deck, encounter d
 
 All three gameplay implementations remain pending. `tests/pending-imports.test.ts` checks source equivalence, recipe zones, image hashes and the automation boundary. `scripts/browser-pending-import.mjs` covers the library at 1280/390/320, checks variable stats and reverse quest art, and decodes all 64 faces locally.
 
+### Original-face clarifications for the next implementation
+
+The prepared bundles preserve the upstream catalog verbatim apart from local image paths. Compare their transcribed rules with the included original faces before implementing them:
+
+- **Hunting the Orcs** (`18484359-d4b5-4ed6-b7be-e013fae4df43`): the printed front flips the objective and transfers its resource tokens. Its catalog text additionally says to advance to stage 2; that clause is not on the printed front. The printed **Savage Counter-attack** reverse has the actual forced stage-2A transition when it enters play. Implement one transition after transferring the tokens, rather than separately advancing for both transcriptions.
+- **Scattered Among the Hills / Cornered Animals**: the transcribed text says “Amon Ford”; the original quest face and the physical recipe identify **Amon Forn** (`ea225b12-75e1-4253-9458-c71c1c304a8f`). Resolve the location by that identity.
+- **Broken Battlements** (`82ca7902-f8fa-4352-8f54-f5f6a8875c51`): the original face reads “each player discards the top 5 cards of his deck and places 1 time counter here.” Preserve the per-player scope when implementing its Time reset; verify multiplayer timing against the official rules rather than assuming a single total replacement counter.
+
+These are source-review notes for pending gameplay. They do not register rules or alter the original catalog records.
+
 Validation: 30 catalog, product, shared-import and bundle integrity cases pass. Fifteen browser checkpoints pass at 1280/390/320 pixels, with every local face decoded, no browser errors and no horizontal overflow. The mobile Iârion inspector was visually reviewed. Type checking and the production build pass.
