@@ -1,3 +1,6 @@
+import { NIN } from "./nin-eilph-support";
+import { ninNoCardEconomy } from "./nin-eilph-support";
+import * as Nin from "./nin-eilph";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
@@ -834,45 +837,47 @@ export function win(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "trouble-in-tharbad"
-      ? "Your heroes and Nalir cross the ruined bridge and escape Tharbad with the map."
-      : s.scenarioId === "the-three-trials"
-        ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
-        : s.scenarioId === "the-dunland-trap"
-          ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
-          : s.scenarioId === "the-druadan-forest"
-            ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
-            : s.scenarioId === "encounter-at-amon-din"
-              ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
-              : s.scenarioId === "assault-on-osgiliath"
-                ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
-                : s.scenarioId === "mirkwood"
-                  ? "Your fellowship has passed safely through Mirkwood."
-                  : s.scenarioId === "anduin"
-                    ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-                    : s.scenarioId === "hunt-for-gollum"
-                      ? "You have found a true sign of Gollum’s passing. The trail leads on."
-                      : s.scenarioId === "conflict-at-the-carrock"
-                        ? "The Trolls are defeated and the Carrock is free."
-                        : s.scenarioId === "hills-of-emyn-muil"
-                          ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
-                          : s.scenarioId === "journey-to-rhosgobel"
-                            ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
-                            : s.scenarioId === "dead-marshes"
-                              ? "Your fellowship captures Gollum in the Dead Marshes."
-                              : s.scenarioId === "return-to-mirkwood"
-                                ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
-                                : s.scenarioId === "road-to-rivendell"
-                                  ? "Arwen arrives safely in Rivendell with your fellowship."
-                                  : s.scenarioId === "redhorn-gate"
-                                    ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
-                                    : s.scenarioId === "into-the-pit"
-                                      ? "Your fellowship survives the depths beneath the East-gate of Moria."
-                                      : s.scenarioId === "the-seventh-level"
-                                        ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
-                                        : s.scenarioId === "flight-from-moria"
-                                          ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                                          : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+    s.scenarioId === "the-nin-in-eilph"
+      ? "The Ancient Marsh-dweller falls. Your fellowship and Nalir escape the shifting swamp."
+      : s.scenarioId === "trouble-in-tharbad"
+        ? "Your heroes and Nalir cross the ruined bridge and escape Tharbad with the map."
+        : s.scenarioId === "the-three-trials"
+          ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
+          : s.scenarioId === "the-dunland-trap"
+            ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
+            : s.scenarioId === "the-druadan-forest"
+              ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
+              : s.scenarioId === "encounter-at-amon-din"
+                ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
+                : s.scenarioId === "assault-on-osgiliath"
+                  ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
+                  : s.scenarioId === "mirkwood"
+                    ? "Your fellowship has passed safely through Mirkwood."
+                    : s.scenarioId === "anduin"
+                      ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+                      : s.scenarioId === "hunt-for-gollum"
+                        ? "You have found a true sign of Gollum’s passing. The trail leads on."
+                        : s.scenarioId === "conflict-at-the-carrock"
+                          ? "The Trolls are defeated and the Carrock is free."
+                          : s.scenarioId === "hills-of-emyn-muil"
+                            ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
+                            : s.scenarioId === "journey-to-rhosgobel"
+                              ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
+                              : s.scenarioId === "dead-marshes"
+                                ? "Your fellowship captures Gollum in the Dead Marshes."
+                                : s.scenarioId === "return-to-mirkwood"
+                                  ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
+                                  : s.scenarioId === "road-to-rivendell"
+                                    ? "Arwen arrives safely in Rivendell with your fellowship."
+                                    : s.scenarioId === "redhorn-gate"
+                                      ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
+                                      : s.scenarioId === "into-the-pit"
+                                        ? "Your fellowship survives the depths beneath the East-gate of Moria."
+                                        : s.scenarioId === "the-seventh-level"
+                                          ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                          : s.scenarioId === "flight-from-moria"
+                                            ? "Your fellowship finds an exit and escapes the darkness of Moria."
+                                            : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -959,6 +964,7 @@ export function damage(
     Fords.fordsCharacterDestroyed(s, u, context);
     Catch.catchCharacterDestroyed(s, u, context);
     Trials.trialsCharacterDestroyed(s, u, context);
+    Nin.ninCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1137,6 +1143,7 @@ export function destroy(
     carrockDefeated(s, u);
     if (destruction) Osgiliath.assaultOsgiliathEnemyDefeated(s);
     if (destruction) MorgulQuest.morgulEnemyDestroyed(s, u);
+    Nin.ninEnemyDefeated(s, u, destruction);
     if (
       s.scenarioId === "mirkwood" &&
       s.stage === 3 &&
@@ -1246,6 +1253,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Catch.catchExplored(s, u);
   DunlandQuest.dunlandExplored(s, u);
   Tharbad.tharbadExplored(s, u);
+  Nin.ninExplored(s, u);
   MorgulQuest.morgulExplored(s, u);
   foundationsLocationExplored(s, u);
   heirsExplored(s, u);
@@ -1378,6 +1386,7 @@ export function progress(
   if (Catch.catchProgressBlocked(s)) return;
   if (Trials.trialsQuestProgress(s, n)) return;
   if (Tharbad.tharbadQuestProgress(s, n)) return;
+  if (s.ninEilph && s.stage === 4) return;
   if (khazadQuestProgress(s, n)) return;
   if (stewardFearQuestProgress(s)) return;
   if (Amon.amonDinQuestProgress(s, n)) return;
@@ -1425,6 +1434,7 @@ export function advanceQuest(s: GameState) {
   if (DunlandQuest.advanceDunlandTrap(s)) return;
   if (Trials.advanceThreeTrials(s)) return;
   if (Tharbad.advanceTharbad(s)) return;
+  if (Nin.advanceNin(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1697,7 +1707,7 @@ export function collectResources(s: GameState) {
   globalEachSeat(s, (player) => {
     for (const h of s.heroes)
       if (!isSacked(h) && khazadResourcePhase(s))
-        h.resources += 1 + resourcePhaseBonus(h);
+        h.resources += 1 + (ninNoCardEconomy(s) ? 0 : resourcePhaseBonus(h));
     for (const ally of s.allies)
       if (
         ["02059", "08146"].includes(ally.code) &&
@@ -1714,7 +1724,8 @@ export function collectResources(s: GameState) {
           dwarfResourceDrawBonus(s, player);
     // Resolve each player's draw reactions before moving to the next player.
     if (s.dunlandTrap) draws.push(fx("draw", { value: count, player }));
-    else draw(s, count);
+    else if (ninNoCardEconomy(s)) draw(s, frameworkDraw, false);
+    else draw(s, count, false);
   });
   prepend(s, ...draws);
   log(s, `Round ${s.round} · Each hero gains 1 resource.`, "chapter");
@@ -1936,6 +1947,7 @@ export function resolveReveal(
     (c.text ?? "").includes("When Revealed") &&
     code !== CARROCK.sacked &&
     code !== FANGORN.malice &&
+    code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
@@ -2132,6 +2144,7 @@ export function placeEncounter(
   if (DunlandQuest.dunlandEncounter(s, code)) return;
   if (Trials.trialsEncounter(s, code)) return;
   if (Tharbad.tharbadEncounter(s, code)) return;
+  if (Nin.ninEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2536,6 +2549,8 @@ export function spendEvent(
   id?: string,
   doomedX = 0,
 ) {
+  const problem = Nin.ninPlayProblem(s, code);
+  requireRule(!problem, problem ?? "");
   const u = s.hand.find((u) => u.code === code && (!id || u.id === id));
   requireRule(u, "That event is no longer in hand.");
   pay(s, card(code));
@@ -2544,6 +2559,7 @@ export function spendEvent(
   ringMakerEventPlayed(s, code);
   longDarkPlayerCardPlayed(s, card(code), activeSeat(s));
   s.hand = s.hand.filter((x) => x.id !== u.id);
+  if (s.ninEilph) s.used.push("nin:played");
   holdPlayedEvent(s, u);
   Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);
   stewardFearEventPlayed(s);
@@ -2587,6 +2603,7 @@ export function shadow(s: GameState, code: string) {
   if (DunlandQuest.dunlandShadow(s, code)) return;
   if (Trials.trialsShadow(s, code)) return;
   if (Tharbad.tharbadShadow(s, code)) return;
+  if (Nin.ninShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

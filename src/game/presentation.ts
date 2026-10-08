@@ -1,3 +1,4 @@
+import { ninQuestName } from "./nin-eilph-support";
 import { fangornCarrier } from "./fangorn";
 import { questTime } from "./quest-time";
 import { allActiveLocations } from "./table";
@@ -54,6 +55,7 @@ export function observe(
 ): Observation {
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
+    ...(s.ninEilph ? { "Quest stage": ninQuestName(s) ?? "" } : {}),
     ...(s.tharbad
       ? { "Threat elimination level": String(s.tharbad.elimination) }
       : {}),

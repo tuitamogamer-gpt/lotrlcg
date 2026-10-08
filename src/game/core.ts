@@ -1,3 +1,10 @@
+import { imageUrl } from "./cards";
+import {
+  ninNoCardEconomy,
+  ninCurrentQuest,
+  NIN_QUESTS,
+} from "./nin-eilph-support";
+import * as Nin from "./nin-eilph";
 import * as Tharbad from "./tharbad";
 import { trialsStageInfo } from "./three-trials-support";
 import * as Trials from "./three-trials";
@@ -201,7 +208,13 @@ export const skip: Option = {
 };
 
 /** Positive resource gains include transfers; the resource phase is not a card effect. */
-export const canGainResources = (s: GameState, u: Unit, cardEffect = true) =>
+export const canGainResources = (
+  s: GameState,
+  u: Unit,
+  cardEffect = true,
+  transfer = false,
+) =>
+  !(cardEffect && !transfer && ninNoCardEconomy(s)) &&
   !isSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
@@ -477,7 +490,8 @@ export function stats(s: GameState, u: Unit) {
           2 +
         u.attachments.filter((a) => !a.blanked && a.code === "01055").length -
         u.attachments.filter((a) => !a.blanked && a.code === "01071").length +
-        (u.tempWill ?? 0) +
+        (u.tempWill ?? 0) -
+        Nin.ninStatPenalty(s, u) +
         (u.code === "01007" ? u.boost : 0) -
         (u.committed ? s.questDebuff : 0),
     ),
@@ -511,7 +525,9 @@ export function stats(s: GameState, u: Unit) {
         gondorBonus.attack +
         emynMuilStatBonus(s, u) +
         (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
-        (u.tempAttack ?? 0) +
+        (u.tempAttack ?? 0) -
+        Nin.ninStatPenalty(s, u) +
+        Nin.ninAttackBonus(u) +
         (u.roundAttack ?? 0) +
         (u.code === "01004" && !u.blanked ? u.damage : 0) +
         u.attachments.filter((a) => !a.blanked && a.code === "01041").length *
@@ -547,7 +563,9 @@ export function stats(s: GameState, u: Unit) {
             carrockBonus.defense +
             gondorBonus.defense +
             (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
-            (u.tempDefense ?? 0) +
+            (u.tempDefense ?? 0) -
+            Nin.ninStatPenalty(s, u) -
+            (s.combat?.ninDefensePenalties?.[u.id] ?? 0) +
             (s.combat?.defenseBonuses?.[u.id] ?? 0),
         ),
     health:
@@ -657,6 +675,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           DunlandQuest.dunlandThreatBonus(s, u) +
           Trials.trialsThreatBonus(s, u) +
           Tharbad.tharbadThreatBonus(s, u) +
+          Nin.ninThreatBonus(s, u) +
           Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +
@@ -719,10 +738,20 @@ export const engagementCost = (s: GameState, u: Unit) =>
     0,
     (card(u.code).engagement ?? 0) +
       (u.tempEngagement ?? 0) +
-      Tharbad.tharbadEngagementModifier(s, u),
+      Tharbad.tharbadEngagementModifier(s, u) +
+      Nin.ninEngagementModifier(s, u),
   );
 
 export const stageInfo = (s: GameState) => {
+  const nin = NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s));
+  if (nin)
+    return {
+      name: nin.back_name ?? nin.name,
+      quest: nin.back_quest ?? 0,
+      cardCode: nin.code,
+      story: nin.back_text!,
+      questImage: imageUrl({ ...nin, imagesrc: nin.back_imagesrc }),
+    };
   const trial = trialsStageInfo(s);
   if (trial) return trial;
   const foundations = foundationsStageInfo(s);
@@ -851,6 +880,7 @@ const hasTraitCard = (c: Card, trait: string) =>
 
 /** Response offers must use the same sphere and active-location cost as payment. */
 export const canPay = (s: GameState, c: Card) =>
+  !Nin.ninPlayProblem(s, c.code) &&
   (!["01036", "08143"].includes(c.code) ||
     (playCost(s, c) >= 3 &&
       eligiblePayers(s, c).filter(
@@ -930,7 +960,11 @@ export function pay(
   }
 }
 
-export function draw(s: GameState, count: number) {
+export function draw(s: GameState, count: number, cardEffect = true) {
+  if (cardEffect && ninNoCardEconomy(s)) {
+    log(s, "No End in Sight prevents player-card draws.");
+    return;
+  }
   if (allActiveLocations(s).some((l) => l.code === "01095")) {
     log(s, "Enchanted Stream prevents card draw.", "danger");
     return;

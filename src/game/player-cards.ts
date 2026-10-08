@@ -1,3 +1,4 @@
+import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { movableHand } from "./hand-rules";
 import * as Isengard from "./voice-isengard";
@@ -600,7 +601,8 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         "Beravor can act once per round and must be ready.",
       );
       requireRule(
-        !allActiveLocations(s).some((l) => l.code === "01095") &&
+        !ninNoCardEconomy(s) &&
+          !allActiveLocations(s).some((l) => l.code === "01095") &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
@@ -646,7 +648,8 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
     case "01062":
       requireRule(!u.exhausted, "Gléowine is exhausted.");
       requireRule(
-        !allActiveLocations(s).some((l) => l.code === "01095") &&
+        !ninNoCardEconomy(s) &&
+          !allActiveLocations(s).some((l) => l.code === "01095") &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );

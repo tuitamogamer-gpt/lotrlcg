@@ -45,7 +45,9 @@ const enemies = (s: GameState) =>
     (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
   );
 const giftsRecipients = (s: GameState, source: Unit) =>
-  allHeroes(s).filter((u) => u.id !== source.id && canGainResources(s, u));
+  allHeroes(s).filter(
+    (u) => u.id !== source.id && canGainResources(s, u, true, true),
+  );
 const giftsDonors = (s: GameState) =>
   allHeroes(s).filter(
     (u) =>

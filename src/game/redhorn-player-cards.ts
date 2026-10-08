@@ -1,3 +1,4 @@
+import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
@@ -544,11 +545,15 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
             code: u.code,
             effects: [fx("ready", { target: u.id, player })],
           })),
-        {
-          id: "draw",
-          label: "Draw 1 card",
-          effects: [fx("draw", { value: 1, player })],
-        },
+        ...(ninNoCardEconomy(s)
+          ? []
+          : [
+              {
+                id: "draw",
+                label: "Draw 1 card",
+                effects: [fx("draw", { value: 1, player })],
+              },
+            ]),
         ...(p.threat > 0
           ? [
               {

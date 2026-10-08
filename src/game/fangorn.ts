@@ -1,3 +1,4 @@
+import { ninReadyLimit } from "./nin-eilph-support";
 import { canRemoveQuestTime } from "./quest-time";
 import { trialsTimeOptions } from "./three-trials";
 import { dunlandRefreshEffects } from "./dunland-trap";
@@ -188,7 +189,11 @@ export function fangornAttackStarted(s: GameState) {
   if (s.fangorn?.maliceAttacked !== undefined) s.fangorn.maliceAttacked = true;
 }
 export function fangornCannotReady(s: GameState, u: Unit) {
-  if (s.phase !== "refresh" || !staging(s, F.heart) || !u.exhausted)
+  if (
+    s.phase !== "refresh" ||
+    !(staging(s, F.heart) || ninReadyLimit(s)) ||
+    !u.exhausted
+  )
     return false;
   const readied = s.refreshReadied?.[ownerOf(s, u)] ?? [];
   return !readied.includes(u.id) && readied.length >= 5;
@@ -202,7 +207,7 @@ export function fangornRefreshCharacters(
   s: GameState,
   player: number,
 ): Effect[] | undefined {
-  if (!staging(s, F.heart)) return undefined;
+  if (!staging(s, F.heart) && !ninReadyLimit(s)) return undefined;
   return [fx("fangornRefresh", { player, ids: [] })];
 }
 export function fangornTimeRemoved(s: GameState, count: number): Effect[] {
@@ -679,7 +684,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
       else
         choose(
           s,
-          `Heart of Fangorn: choose a character to ready (${available} remaining)`,
+          `${ninReadyLimit(s) ? "A Treacherous Swamp" : "Heart of Fangorn"}: choose a character to ready (${available} remaining)`,
           candidates.map((u) => ({
             id: u.id,
             code: u.code,

@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 450,
-    "scenarios": 33,
+    "encounterCards": 460,
+    "scenarios": 34,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -40,17 +40,18 @@
       "into-fangorn",
       "the-dunland-trap",
       "the-three-trials",
-      "trouble-in-tharbad"
+      "trouble-in-tharbad",
+      "the-nin-in-eilph"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 985,
-    "pending": 3198
+    "scripted": 1003,
+    "pending": 3180
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 66
+    "scripted": 68
   },
   "registeredCodes": [
     "01001",
@@ -551,6 +552,7 @@
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
+    "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
@@ -562,6 +564,7 @@
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
@@ -588,11 +591,14 @@
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
+    "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -666,6 +672,7 @@
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
+    "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9011",
@@ -900,6 +907,7 @@
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
+    "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
@@ -914,14 +922,17 @@
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+    "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
+    "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
+    "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
@@ -930,6 +941,7 @@
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
+    "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
@@ -942,9 +954,12 @@
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
+    "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
@@ -961,6 +976,7 @@
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
+    "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
@@ -968,6 +984,7 @@
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+    "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
@@ -990,10 +1007,12 @@
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
+    "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
@@ -1756,7 +1775,7 @@
     {
       "product": "the-nin-in-eilph",
       "total": 28,
-      "scripted": 10,
+      "scripted": 28,
       "player": 10,
       "playerScripted": 10
     },
@@ -12061,7 +12080,7 @@
       "name": "Hidden Eyot",
       "type": "location",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -13077,7 +13096,7 @@
       "name": "Sinking Bog",
       "type": "location",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -15237,7 +15256,7 @@
       "name": "Giant Swamp Adder",
       "type": "enemy",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -15749,7 +15768,7 @@
       "name": "Fen of Reeds",
       "type": "location",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -15845,7 +15864,7 @@
       "name": "Through the Marsh",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -17869,7 +17888,7 @@
       "name": "Through the Marsh",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -24781,7 +24800,7 @@
       "name": "Fleeing from Tharbad",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -25509,7 +25528,7 @@
       "name": "Neekerbreekers",
       "type": "enemy",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -25869,7 +25888,7 @@
       "name": "Remnants of Elder Days",
       "type": "treachery",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -26269,7 +26288,7 @@
       "name": "Through the Marsh",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -26917,7 +26936,7 @@
       "name": "Shifting Marshland",
       "type": "treachery",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -28405,7 +28424,7 @@
       "name": "Ancient Marsh-dweller",
       "type": "enemy",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -28501,7 +28520,7 @@
       "name": "Out of the Swamp",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -29509,7 +29528,7 @@
       "name": "Lost in the Swanfleet",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -30509,7 +30528,7 @@
       "name": "Lost in the Swanfleet",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -31589,7 +31608,7 @@
       "name": "Nalir",
       "type": "objective-ally",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -34293,7 +34312,7 @@
       "name": "Finger of Glanduin",
       "type": "location",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -34685,7 +34704,7 @@
       "name": "Lost in the Swanfleet",
       "type": "quest",
       "pack": "The Nîn-in-Eilph",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-nin-in-eilph"
     },
     {
@@ -35715,8 +35734,8 @@
       "id": "E04.7",
       "name": "The Nîn-in-Eilph (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-nin-in-eilph",
+      "state": "scripted"
     },
     {
       "id": "E04.8",
@@ -37206,8 +37225,8 @@
       "id": "Q04.7",
       "name": "The Nîn-in-Eilph",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-nin-in-eilph",
+      "state": "scripted"
     },
     {
       "id": "Q04.8",

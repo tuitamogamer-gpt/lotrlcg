@@ -1083,7 +1083,8 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
             seatView(s, old)
               .heroes.filter(
                 (destination) =>
-                  affected(destination) && canGainResources(s, destination),
+                  affected(destination) &&
+                  canGainResources(s, destination, true, true),
               )
               .map((destination) => ({
                 id: `${h.id}-${destination.id}`,
@@ -1109,7 +1110,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
     case "collectorTraderResource": {
       const h = s.heroes.find((h) => h.id === e.target && h.resources > 0),
         destination = seatView(s, e.value!).heroes.find(
-          (h) => h.id === e.text && canGainResources(s, h),
+          (h) => h.id === e.text && canGainResources(s, h, true, true),
         );
       requireRule(
         h && destination,

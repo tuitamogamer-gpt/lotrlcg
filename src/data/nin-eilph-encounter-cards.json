@@ -1,0 +1,391 @@
+[
+  {
+    "code": "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
+    "octgnid": "1156ac5f-09cf-418b-9486-030b397a5514",
+    "name": "Hidden Eyot",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "Response: After Hidden Eyot leaves play as an explored location, place 2 time counters on the current quest.  Travel: Each player must exhaust a character he controls to travel here.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 108,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1156ac5f-09cf-418b-9486-030b397a5514.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 108,
+        "quantity": 2,
+        "octgnid": "1156ac5f-09cf-418b-9486-030b397a5514",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1156ac5f-09cf-418b-9486-030b397a5514.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
+    "octgnid": "1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
+    "name": "Sinking Bog",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "While Sinking Bog is in the staging area, each character gets -1 [willpower], -1 [attack], and -1 [defense] for each Item attached to it. This ability does not stack with other copies of Sinking Bog.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 109,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "shadow": "Shadow: Defending character gets -1 [defense] for each attachment attached to it.",
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e96a8e3-ad11-48d5-8554-7cb1a90937a7.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 109,
+        "quantity": 3,
+        "octgnid": "1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e96a8e3-ad11-48d5-8554-7cb1a90937a7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
+    "octgnid": "356f37d9-34c9-4fae-864d-c34dff7eaaa4",
+    "name": "Giant Swamp Adder",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Cannot have attachments.\nForced: After any number of time counters are removed from the current quest, Giant Swamp Adder attacks the engaged player.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 104,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 6,
+    "engagement": 35,
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/356f37d9-34c9-4fae-864d-c34dff7eaaa4.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 104,
+        "quantity": 4,
+        "octgnid": "356f37d9-34c9-4fae-864d-c34dff7eaaa4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/356f37d9-34c9-4fae-864d-c34dff7eaaa4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
+    "octgnid": "3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
+    "name": "Fen of Reeds",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marsh.",
+    "text": "While Fen of Reeds is in the staging area, it gains: \"Forced: After the players advance to a quest stage, each player must exhaust a character he controls.\"",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 106,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each time counter on the quest.",
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d19de02-b3a9-4612-a90a-30b37bd1e9b1.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 106,
+        "quantity": 3,
+        "octgnid": "3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d19de02-b3a9-4612-a90a-30b37bd1e9b1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
+    "octgnid": "8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
+    "name": "Neekerbreekers",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Insect.",
+    "text": "Forced: After any number of time counters are removed from the current quest, the engaged player must deal 2 damage to an ally he controls.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 105,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 1,
+    "defense": 1,
+    "health": 6,
+    "engagement": 20,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "1",
+      "defense": "1",
+      "health": "6",
+      "engagement": "20"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ef56cb3-b483-4b38-b208-6c16e16bdb6d.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 105,
+        "quantity": 3,
+        "octgnid": "8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ef56cb3-b483-4b38-b208-6c16e16bdb6d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
+    "octgnid": "944aaafa-17e2-4352-9a04-384673089ee6",
+    "name": "Remnants of Elder Days",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must search the encounter deck and discard pile for a Creature enemy and put it into play engaged with him. Shuffle the encounter deck. Cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 111,
+    "quantity": 1,
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/944aaafa-17e2-4352-9a04-384673089ee6.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 111,
+        "quantity": 1,
+        "octgnid": "944aaafa-17e2-4352-9a04-384673089ee6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/944aaafa-17e2-4352-9a04-384673089ee6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
+    "octgnid": "a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
+    "name": "Shifting Marshland",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Remove 1 time counter from the current quest.",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 110,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0f5082c-acc7-4884-a3d4-a7eed0f053e6.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 110,
+        "quantity": 3,
+        "octgnid": "a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a0f5082c-acc7-4884-a3d4-a7eed0f053e6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
+    "octgnid": "b34e79d4-7806-4fd9-b12d-bb291e44f354",
+    "name": "Ancient Marsh-dweller",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Cannot have attachments.\nAncient Marsh-dweller gets +1 [threat] and +1 [attack] for each resource token on it.  Forced: After any number of time counters are removed from the current quest, place a resource token here.",
+    "is_unique": true,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 103,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 45,
+    "victory": 5,
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "45",
+      "victory": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b34e79d4-7806-4fd9-b12d-bb291e44f354.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 103,
+        "quantity": 1,
+        "octgnid": "b34e79d4-7806-4fd9-b12d-bb291e44f354",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b34e79d4-7806-4fd9-b12d-bb291e44f354.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
+    "octgnid": "d5134ddf-8c78-4e68-a603-7df5d48f5016",
+    "name": "Nalir",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dwarf.",
+    "text": "The first player gains control of Nalir.\nForced: At the beginning of the refresh phase, raise your threat by 1 for each player in the game.  If Nalir leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 102,
+    "quantity": 1,
+    "willpower": 0,
+    "attack": 1,
+    "defense": 2,
+    "health": 3,
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "willpower": "0",
+      "attack": "1",
+      "defense": "2",
+      "health": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d5134ddf-8c78-4e68-a603-7df5d48f5016.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 102,
+        "quantity": 1,
+        "octgnid": "d5134ddf-8c78-4e68-a603-7df5d48f5016",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d5134ddf-8c78-4e68-a603-7df5d48f5016.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
+    "octgnid": "f542bca1-68d1-4975-aea9-3ff3e7801be5",
+    "name": "Finger of Glanduin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River. Marsh.",
+    "text": "While Finger of Glanduin is in the staging area, it gains: \"Forced: At the end of each round, remove 1 progress from each location in play.\"",
+    "is_unique": false,
+    "pack_code": "NiE",
+    "pack_name": "The Nîn-in-Eilph",
+    "position": 107,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: If this attack destroys a character, remove all progress from the current quest.",
+    "encounter_set": "The Nin-in-Eilph",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f542bca1-68d1-4975-aea9-3ff3e7801be5.jpg",
+    "packs": [
+      {
+        "pack_code": "NiE",
+        "pack_name": "The Nîn-in-Eilph",
+        "position": 107,
+        "quantity": 3,
+        "octgnid": "f542bca1-68d1-4975-aea9-3ff3e7801be5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f542bca1-68d1-4975-aea9-3ff3e7801be5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  }
+]

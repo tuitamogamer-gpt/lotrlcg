@@ -2,6 +2,8 @@
 
 ## Included
 
+- **The Nîn-in-Eilph**, original/easy: ten encounter definitions, eight parallel quest cards and exact 31/25 physical recipes. Distinct setup locations, seeded parallel-stage changes, Time-triggered creatures, card/resource/refresh restrictions, Nalir, swamp travel and the Ancient Marsh-dweller are implemented. See [rules notes](NIN-EILPH-RULES.md).
+
 - **Trouble in Tharbad**, original/easy: sixteen new encounters, two quest cards and exact 40/32 physical recipes. Nalir, dynamic threat elimination, physical threat-source removal, Time/shadow chains, City travel, Bellach attacks and Crossing victory have semantic and responsive browser checks. See [rules notes](THARBAD-RULES.md).
 - **The Three Trials**, original/easy: all five quest cards, sixteen new encounter designs and exact 36/28 physical recipes. All six trial orders, physical Keys, Guardian Time, granted immunity, Grim Foothills progress replacement, Cave limits, Barrow attacks, final engagement and Circle victory have semantic and responsive browser checks. See [rules notes](THREE-TRIALS-RULES.md).
 

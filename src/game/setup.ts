@@ -1,3 +1,4 @@
+import { setupNin } from "./nin-eilph";
 import { setupTharbad } from "./tharbad";
 import { setupThreeTrials } from "./three-trials";
 import { setupDunlandTrap } from "./dunland-trap";
@@ -369,6 +370,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "the-nin-in-eilph") {
+    setupNin(s);
   } else if (scenarioId === "trouble-in-tharbad") {
     setupTharbad(s);
   } else if (scenarioId === "the-three-trials") {

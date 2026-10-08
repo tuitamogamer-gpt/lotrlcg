@@ -643,6 +643,18 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.ninEilph)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 4
+            ? "Defeat the Ancient Marsh-dweller"
+            : "Escape before the marsh shifts again"}
+        </span>
+        <span>Keep Nalir in play</span>
+      </div>
+    );
   if (s.tharbad)
     return (
       <div className="quest-goals">

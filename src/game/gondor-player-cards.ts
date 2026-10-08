@@ -45,8 +45,13 @@ const readyImrahils = (s: GameState) =>
       !seatView(s, ownerOf(s, u)).used.includes(`round:imrahil:${u.id}`),
   );
 
-function cardResources(s: GameState, target: Unit, value: number) {
-  if (!canGainResources(s, target)) return;
+function cardResources(
+  s: GameState,
+  target: Unit,
+  value: number,
+  transfer = false,
+) {
+  if (!canGainResources(s, target, true, transfer)) return;
   target.resources += value;
   gondorResourcesGained(s, target, value, true);
 }
@@ -56,7 +61,8 @@ function moveDonorOptions(s: GameState, source?: string): Option[] {
       (h) =>
         h.resources > 0 &&
         allHeroes(s).some(
-          (other) => other.id !== h.id && canGainResources(s, other),
+          (other) =>
+            other.id !== h.id && canGainResources(s, other, true, true),
         ),
     ),
     (h) => [fx("gondorMoveDestination", { target: h.id, source })],
@@ -354,7 +360,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
         "Move a resource · Choose a recipient",
         opts(
           allHeroes(s).filter(
-            (h) => h.id !== donor.id && canGainResources(s, h),
+            (h) => h.id !== donor.id && canGainResources(s, h, true, true),
           ),
           (h) => [
             fx("gondorMoveResource", {
@@ -374,14 +380,14 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
       requireRule(
         donor &&
           recipient &&
-          canGainResources(s, recipient) &&
+          canGainResources(s, recipient, true, true) &&
           recipient.id !== donor.id &&
           (!e.text || (errand?.code === "05003" && !errand.exhausted)),
         "The resource transfer is no longer legal.",
       );
       if (errand) exhaustCharacter(s, errand);
       donor.resources--;
-      cardResources(s, recipient, 1);
+      cardResources(s, recipient, 1, true);
       log(s, `Moved 1 resource from ${name(donor)} to ${name(recipient)}.`);
       return true;
     }

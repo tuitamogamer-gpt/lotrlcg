@@ -1177,3 +1177,7 @@
 .event-landscape-trouble-in-tharbad {
   --event-art: url("/art/premium/dol-guldur.webp");
 }
+
+.event-landscape-the-nin-in-eilph {
+  --event-art: url("/art/premium/anduin.webp");
+}

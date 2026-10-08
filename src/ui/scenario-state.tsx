@@ -1,3 +1,4 @@
+import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
 import { TRIALS } from "../game/three-trials-support";
 import { trialsKeys } from "../game/three-trials";
@@ -30,6 +31,7 @@ export function ScenarioState({
     !s.dunlandTrap &&
     !s.threeTrials &&
     !s.tharbad &&
+    !s.ninEilph &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -88,6 +90,22 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.ninEilph && (
+        <div className="tower-counter">
+          <strong>Time · {s.ninEilph.time}</strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.ninEilph.time}
+            max={Math.max(s.ninEilph.time, s.stage === 4 ? 2 : 3)}
+          />
+          <span>{ninQuestName(s)}</span>
+          <span>
+            {s.stage === 4
+              ? "When time expires, the Marsh-dweller attacks every player."
+              : "When time expires, reveal a different random stage and lose quest progress."}
+          </span>
         </div>
       )}
       {s.tharbad && (

@@ -1,3 +1,6 @@
+import { ninNoCardEconomy } from "./nin-eilph-support";
+import { commitCharacters } from "./actions";
+import * as Nin from "./nin-eilph";
 import { reduceThreat } from "./threat-reduction";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
@@ -348,6 +351,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (DunlandQuest.dunlandTrapEffect(s, e)) return;
   if (Trials.trialsEffect(s, e)) return;
   if (Tharbad.tharbadEffect(s, e)) return;
+  if (Nin.ninEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -962,6 +966,7 @@ function handleEffect(s: GameState, e: Effect) {
             DunlandQuest.dunlandEncounter(s, e.code, true) ||
             Trials.trialsEncounter(s, e.code, true) ||
             Tharbad.tharbadEncounter(s, e.code, true) ||
+            Nin.ninEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1004,11 +1009,15 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "gandalf":
       choose(s, "Gandalf has arrived", [
-        {
-          id: "draw",
-          label: "Draw 3 cards",
-          effects: [fx("draw", { value: 3 })],
-        },
+        ...(ninNoCardEconomy(s)
+          ? []
+          : [
+              {
+                id: "draw",
+                label: "Draw 3 cards",
+                effects: [fx("draw", { value: 3 })],
+              },
+            ]),
         {
           id: "threat",
           label: "Reduce threat by 5",
@@ -1154,6 +1163,9 @@ function handleEffect(s: GameState, e: Effect) {
       if (s.phase === "refresh") Trials.trialsRemoveEnemyTime(s);
       if (s.phase === "refresh" && !Fangorn.fangornRefreshTime(s))
         removeQuestTime(s);
+      break;
+    case "ninCommitAfterCost":
+      commitCharacters(s);
       break;
     case "startQuest":
       startPhase(s, "quest");
@@ -1305,6 +1317,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "endRoundAfterCollector":
+      Nin.ninEndRound(s);
       shadowFlameRoundEnd(s);
       longDarkRoundEnd(s);
       watcherWaterRoundEnd(s);
@@ -1733,6 +1746,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed) {
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
+        Nin.ninAttackFinished(s, completed);
         if (enemy) {
           stewardFearAttackFinished(s, enemy, attackPlayer);
           Druadan.druadanForestAttackFinished(s, enemy, completed);
@@ -1898,6 +1912,14 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "ninSetup",
+      "ninAdvance",
+      "ninStageReady",
+      "ninReturnDweller",
+      "ninTimeExpired",
+      "ninResetTime",
+      "ninDwellerResource",
+      "ninAddTime",
       "tharbadSetup",
       "tharbadAdvance",
       "tharbadStageReady",

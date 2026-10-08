@@ -171,6 +171,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "the-nin-in-eilph"
   | "trouble-in-tharbad"
   | "the-three-trials"
   | "shadow-and-flame";
@@ -285,6 +286,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  ninEilph?: import("./nin-eilph-support").NinState;
   tharbad?: import("./tharbad-support").TharbadState;
   threeTrials?: import("./three-trials-support").ThreeTrialsState;
   dunlandTrap?: import("./dunland-trap-support").DunlandTrapState;
@@ -418,6 +420,9 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    ninLoseProgressOnKill?: boolean;
+    ninKilledCharacter?: boolean;
+    ninDefensePenalties?: Record<string, number>;
     tharbadDamageThreat?: number;
     trialsTimeOnKill?: number;
     trialsGuardianThreat?: number;

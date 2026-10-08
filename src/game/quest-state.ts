@@ -1,3 +1,4 @@
+import { ninCurrentQuest } from "./nin-eilph-support";
 import { trialsCurrentQuest } from "./three-trials-support";
 // Physical player attachments on the current encounter quest.
 import type { Attachment, GameState, Unit } from "./types";
@@ -15,6 +16,8 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function currentQuestCode(s: GameState): string | undefined {
+  const nin = ninCurrentQuest(s);
+  if (nin) return nin;
   const trial = trialsCurrentQuest(s);
   if (trial) return trial;
   const foundations = foundationsCurrentQuest(s);

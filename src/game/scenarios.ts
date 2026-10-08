@@ -1,3 +1,4 @@
+import { NIN, NIN_QUESTS } from "./nin-eilph-support";
 import { THARBAD_QUESTS } from "./tharbad-support";
 import { TRIALS, THREE_TRIALS_QUESTS } from "./three-trials-support";
 import { DUNLAND_TRAP_QUESTS } from "./dunland-trap-support";
@@ -54,6 +55,7 @@ const questImage = (code: string) => {
     ...DUNLAND_TRAP_QUESTS,
     ...THREE_TRIALS_QUESTS,
     ...THARBAD_QUESTS,
+    ...NIN_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -974,6 +976,27 @@ export const SCENARIOS = [
         story: q.back_text!,
         questImage: questImage(q.code),
       })),
+  },
+  {
+    id: "the-nin-in-eilph",
+    name: "The Nîn-in-Eilph",
+    shortName: "The Nîn-in-Eilph",
+    chapter: "XXXIV",
+    difficulty: 4,
+    tagline: "Find a path through the shifting marsh",
+    description:
+      "Protect Nalir while the swamp changes around you. Race the Time counters, survive the creatures beneath the reeds, and defeat the Ancient Marsh-dweller.",
+    sets: ["The Nin-in-Eilph", "Weary Travellers"],
+    stages: [NIN.fleeing, NIN.noEnd, NIN.impassable, NIN.out].map((code) => {
+      const q = NIN_QUESTS.find((c) => c.code === code)!;
+      return {
+        name: q.back_name ?? q.name,
+        cardCode: q.code,
+        quest: q.back_quest ?? 0,
+        story: q.back_text!,
+        questImage: questImage(code),
+      };
+    }),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

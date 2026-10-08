@@ -1,3 +1,4 @@
+import { ninTimeRemoved } from "./nin-eilph";
 import { tharbadTimeBlocked, tharbadTimeRemoved } from "./tharbad";
 import { fangornTimeRemoved } from "./fangorn";
 import type { GameState } from "./types";
@@ -8,7 +9,12 @@ import { firstPlayer } from "./table";
 
 /** Only the active quest's Time keyword loses a counter at refresh phase end. */
 export const questTime = (s: GameState) =>
-  s.fordsIsen ?? s.catchOrc ?? s.fangorn ?? s.dunlandTrap ?? s.tharbad;
+  s.fordsIsen ??
+  s.catchOrc ??
+  s.fangorn ??
+  s.dunlandTrap ??
+  s.tharbad ??
+  s.ninEilph;
 export const canRemoveQuestTime = (s: GameState) =>
   !!questTime(s)?.time && !tharbadTimeBlocked(s);
 export function removeQuestTime(s: GameState, count = 1) {
@@ -24,21 +30,25 @@ export function removeQuestTime(s: GameState, count = 1) {
   const effects = [
     ...fangornTimeRemoved(s, removed),
     ...tharbadTimeRemoved(s, removed),
+    ...ninTimeRemoved(s),
   ];
   if (!timer.time)
     effects.push(
       fx(
-        s.tharbad
-          ? "tharbadTimeExpired"
-          : s.fordsIsen
-            ? "fordsTimeExpired"
-            : s.catchOrc
-              ? "catchTimeExpired"
-              : s.dunlandTrap
-                ? "dunlandTimeExpired"
-                : "fangornTimeExpired",
+        s.ninEilph
+          ? "ninTimeExpired"
+          : s.tharbad
+            ? "tharbadTimeExpired"
+            : s.fordsIsen
+              ? "fordsTimeExpired"
+              : s.catchOrc
+                ? "catchTimeExpired"
+                : s.dunlandTrap
+                  ? "dunlandTimeExpired"
+                  : "fangornTimeExpired",
         {
           value: s.stage,
+          code: currentQuestCode(s),
           player: firstPlayer(s),
         },
       ),

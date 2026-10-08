@@ -1,3 +1,4 @@
+import { NIN } from "./nin-eilph-support";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -50,7 +51,7 @@ const locations = (s: GameState) =>
 const active = (s: GameState, code: string) =>
   allActiveLocations(s).some((u) => u.code === code && !u.blanked);
 export const tharbadNalir = (s: GameState) =>
-  allCharacters(s).find((u) => u.code === T.nalir);
+  allCharacters(s).find((u) => [T.nalir, NIN.nalir].includes(u.code));
 export const tharbadNoEngagementChecks = (s: GameState) =>
   active(s, T.rooftops);
 export const tharbadTimeBlocked = (s: GameState) => active(s, T.hideout);
@@ -97,7 +98,7 @@ export function tharbadOpeningHandsKept(s: GameState) {
   return true;
 }
 export function tharbadCheck(s: GameState) {
-  const q = s.tharbad;
+  const q = s.tharbad ?? s.ninEilph;
   if (!q?.initialized || s.status !== "playing") return;
   const nalir = tharbadNalir(s);
   if (!nalir) {
@@ -164,15 +165,15 @@ export function tharbadCharacterLeft(
   u: Unit,
   controller: number,
 ) {
-  if (!s.tharbad) return;
-  if (u.code === T.nalir) {
+  if (!s.tharbad && !s.ninEilph) return;
+  if ([T.nalir, NIN.nalir].includes(u.code)) {
     s.status = "lost";
     s.reason = "Nalir has left play. The map is lost.";
     s.choice = null;
     s.queue = [];
     return;
   }
-  if (s.stage === 2)
+  if (s.tharbad && s.stage === 2)
     prepend(s, fx("tharbadThreat", { value: 2, player: controller }));
 }
 export function tharbadEnemyDestroyed(

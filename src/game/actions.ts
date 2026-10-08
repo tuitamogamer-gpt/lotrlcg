@@ -1,3 +1,5 @@
+import { NIN, ninNoCardEconomy } from "./nin-eilph-support";
+import * as Nin from "./nin-eilph";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
@@ -383,12 +385,43 @@ import {
   elfEventEffect,
 } from "./elf-player-cards";
 
+export function commitCharacters(s: GameState) {
+  requireRule(s.phase === "quest", "Not at the commit step.");
+  const foundationsProblem = foundationsCommitProblem(s);
+  requireRule(!foundationsProblem, foundationsProblem ?? "");
+  s.used.push("phase:quest-committed");
+  if (emynMuilMustCommit(s))
+    requireRule(
+      characters(s)
+        .filter((u) => canCommit(s, u))
+        .every((u) => s.committedIds.includes(u.id)),
+      "The Falls of Rauros requires every eligible ready character to commit to the quest.",
+    );
+  const exhaustedIds: string[] = [];
+  for (const u of characters(s).filter((u) => s.committedIds.includes(u.id))) {
+    requireRule(!u.exhausted, "A selected character is exhausted.");
+    if (questExhausts(s, u)) {
+      requireRule(
+        exhaustCharacter(s, u),
+        "This character cannot exhaust to commit.",
+      );
+      exhaustedIds.push(u.id);
+    }
+    u.committed = true;
+  }
+  const committed = characters(s).filter((u) => u.committed);
+  charactersCommitted(s, committed, exhaustedIds);
+  s.committedIds = [];
+  log(s, `${committed.length} characters commit to the quest.`);
+  enqueue(s, fx("commitSeat"));
+}
 export function canCommit(s: GameState, u: Unit): boolean {
   syncAttachmentText(s, u);
   return (
     (u.code !== "08112" || !!u.blanked) &&
     returnMirkwoodCanCommit(s, u) &&
     !s.escapeTest &&
+    !(s.ninEilph?.activeQuest === NIN.weary && !s.hand.length) &&
     s.phase === "quest" &&
     characters(s).some((x) => x.id === u.id) &&
     redhornCanCommit(u) &&
@@ -417,6 +450,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const ninProblem = Nin.ninTravelProblem(s, u);
+  if (ninProblem) return ninProblem;
   const tharbadProblem = Tharbad.tharbadTravelProblem(s, u);
   if (tharbadProblem) return tharbadProblem;
   const trialsProblem = Trials.trialsTravelProblem(s, u);
@@ -515,6 +550,8 @@ export function canPlay(
   } = {},
 ): string | null {
   syncAttachmentText(s);
+  const ninProblem = Nin.ninPlayProblem(s, u.code);
+  if (ninProblem) return ninProblem;
   const c = options.playOrigin
     ? { ...card(u.code), playOrigin: options.playOrigin }
     : card(u.code);
@@ -976,6 +1013,7 @@ function resolvePlayerCard(
   amount = 0,
 ) {
   const c = card(u.code);
+  if (played && s.ninEilph) s.used.push("nin:played");
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
   if (
     c.type_code === "attachment" &&
@@ -1520,7 +1558,8 @@ export function availableAbilities(s: GameState, u: Unit) {
     results.push({
       label: heroAbility[u.code],
       disabled:
-        u.code === "01007"
+        (["01012", "01062"].includes(u.code) && ninNoCardEconomy(s)) ||
+        (u.code === "01007"
           ? s.eowynUsed || !movableHand(s).length
           : u.code === "01011"
             ? s.used.includes(u.id) ||
@@ -1532,7 +1571,7 @@ export function availableAbilities(s: GameState, u: Unit) {
               : u.code === "01058"
                 ? u.exhausted ||
                   !allHeroes(s).some((h) => rhosgobelHealingAllowed(s, h))
-                : s.used.includes(u.id) || u.exhausted,
+                : s.used.includes(u.id) || u.exhausted),
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
@@ -1782,7 +1821,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Catch.catchOpeningHandsKept(s) &&
         !DunlandQuest.dunlandOpeningHandsKept(s) &&
         !Trials.trialsOpeningHandsKept(s) &&
-        !Tharbad.tharbadOpeningHandsKept(s)
+        !Tharbad.tharbadOpeningHandsKept(s) &&
+        !Nin.ninOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -1793,7 +1833,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       const u = get(s, action.id);
       requireRule(
-        u && canCommit(s, u),
+        u && (s.committedIds.includes(u.id) || canCommit(s, u)),
         s.scenarioId === "hunt-for-gollum" &&
           s.stage === 3 &&
           !s.heroes.some(hasClue)
@@ -1812,36 +1852,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     }
     case "COMMIT": {
-      requireRule(s.phase === "quest", "Not at the commit step.");
-      const foundationsProblem = foundationsCommitProblem(s);
-      requireRule(!foundationsProblem, foundationsProblem ?? "");
-      s.used.push("phase:quest-committed");
-      if (emynMuilMustCommit(s))
-        requireRule(
-          characters(s)
-            .filter((u) => canCommit(s, u))
-            .every((u) => s.committedIds.includes(u.id)),
-          "The Falls of Rauros requires every eligible ready character to commit to the quest.",
-        );
-      const exhaustedIds: string[] = [];
-      for (const u of characters(s).filter((u) =>
-        s.committedIds.includes(u.id),
-      )) {
-        requireRule(!u.exhausted, "A selected character is exhausted.");
-        if (questExhausts(s, u)) {
-          requireRule(
-            exhaustCharacter(s, u),
-            "This character cannot exhaust to commit.",
-          );
-          exhaustedIds.push(u.id);
-        }
-        u.committed = true;
-      }
-      const committed = characters(s).filter((u) => u.committed);
-      charactersCommitted(s, committed, exhaustedIds);
-      s.committedIds = [];
-      log(s, `${committed.length} characters commit to the quest.`);
-      enqueue(s, fx("commitSeat"));
+      if (Nin.ninPayCommit(s)) break;
+      commitCharacters(s);
       break;
     }
     case "NEXT": {
@@ -2090,6 +2102,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Nin.ninTravel(s, u) ??
         Tharbad.tharbadTravel(s, u) ??
         Trials.trialsTravel(s, u) ??
         DunlandQuest.dunlandTravel(s, u) ??
@@ -2298,6 +2311,9 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.ninEilph
+      ? { currentQuest: s.ninEilph.activeQuest, questTime: s.ninEilph.time }
+      : {}),
     ...(s.tharbad
       ? { threatElimination: s.tharbad.elimination, questTime: s.tharbad.time }
       : {}),

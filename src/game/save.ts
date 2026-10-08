@@ -1,3 +1,4 @@
+import { validateNin } from "./nin-eilph-support";
 import { validateTharbad } from "./tharbad-support";
 import {
   validateThreeTrialsState,
@@ -128,6 +129,8 @@ export function validateSave(
           c.immediatePreviousRevealedShadowCount <=
             (c.immediatePreviousShadows?.length ?? 0))) &&
       [
+        c.ninLoseProgressOnKill,
+        c.ninKilledCharacter,
         c.redirectedToEnemy,
         c.amonDinKilledCharacter,
         c.bloodTurnOnKill,
@@ -159,6 +162,13 @@ export function validateSave(
         (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
         (integer(c.damageDealt) && c.damageDealt >= 0)) &&
+      (c.ninDefensePenalties === undefined ||
+        (!!c.ninDefensePenalties &&
+          typeof c.ninDefensePenalties === "object" &&
+          !Array.isArray(c.ninDefensePenalties) &&
+          Object.values(c.ninDefensePenalties).every(
+            (n) => integer(n) && n >= 0,
+          ))) &&
       (c.defenseBonuses === undefined ||
         (!!c.defenseBonuses &&
           typeof c.defenseBonuses === "object" &&
@@ -346,6 +356,7 @@ export function validateSave(
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
         !validateTharbad(s, validUnit as (u: unknown) => boolean) ||
+        !validateNin(s, validUnit as (u: unknown) => boolean) ||
         !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
@@ -883,6 +894,7 @@ export function validateSave(
       ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
       ...(s.dunlandTrap?.setAside ?? []),
       ...(s.tharbad?.setAside ?? []),
+      ...(s.ninEilph?.setAside ?? []),
       ...(s.threeTrials
         ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
         : []),

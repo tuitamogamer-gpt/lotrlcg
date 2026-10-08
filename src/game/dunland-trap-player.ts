@@ -1,3 +1,4 @@
+import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
@@ -194,6 +195,7 @@ function councilOptions(s: GameState) {
   if (readyTargets(s).length) options.add("ready");
   if (resourceTargets(s).length) options.add("resource");
   if (
+    !ninNoCardEconomy(s) &&
     s.deck.length &&
     !s.shackles &&
     !allActiveLocations(s).some((u) => u.code === "01095")
