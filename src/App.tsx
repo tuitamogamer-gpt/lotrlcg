@@ -1,3 +1,4 @@
+import { CELEBRIMBOR } from "./game/celebrimbor-support";
 import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { faceupShadowCards } from "./game/voice-isengard";
@@ -4300,7 +4301,11 @@ function BoardCard({
         <div className="objective-status">
           <span>
             <Shield />
-            {isGuarded(s, u) ? "Guarded" : "Unguarded"}
+            {u.code === CELEBRIMBOR.search
+              ? `${s.celebrimbor?.search.length ?? 0} cards underneath`
+              : isGuarded(s, u)
+                ? "Guarded"
+                : "Unguarded"}
           </span>
         </div>
       )}

@@ -1,3 +1,4 @@
+import { validateCelebrimbor } from "./celebrimbor-support";
 import { validateNin } from "./nin-eilph-support";
 import { validateTharbad } from "./tharbad-support";
 import {
@@ -129,6 +130,7 @@ export function validateSave(
           c.immediatePreviousRevealedShadowCount <=
             (c.immediatePreviousShadows?.length ?? 0))) &&
       [
+        c.celebCaptureDestroyed,
         c.ninLoseProgressOnKill,
         c.ninKilledCharacter,
         c.redirectedToEnemy,
@@ -150,6 +152,9 @@ export function validateSave(
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
       [
+        c.celebExcessCopies,
+        c.celebThreatCopies,
+        c.celebAllyCostCopies,
         c.tharbadDamageThreat,
         c.trialsGuardianThreat,
         c.trialsTimeOnKill,
@@ -162,6 +167,9 @@ export function validateSave(
         (integer(c.amonDinShadowVillagers) && c.amonDinShadowVillagers >= 0)) &&
       (c.damageDealt === undefined ||
         (integer(c.damageDealt) && c.damageDealt >= 0)) &&
+      (c.celebCapturedIds === undefined ||
+        (Array.isArray(c.celebCapturedIds) &&
+          c.celebCapturedIds.every((id) => typeof id === "string"))) &&
       (c.ninDefensePenalties === undefined ||
         (!!c.ninDefensePenalties &&
           typeof c.ninDefensePenalties === "object" &&
@@ -351,12 +359,18 @@ export function validateSave(
         !validateAmonDinState(s) ||
         !validateIsengard(s, validUnit as (u: unknown) => boolean) ||
         !validateRingMaker(s, seatCount) ||
-        !validateBloodGondorState(s, validUnit as (u: unknown) => boolean) ||
+        !validateBloodGondorState(
+          s,
+          validUnit as (u: unknown) => boolean,
+          (code) =>
+            ["enemy", "location", "treachery"].includes(card(code).type_code),
+        ) ||
         !validateMorgulValeState(s) ||
         !validateFordsIsenState(s) ||
         !validateFangornState(s) ||
         !validateTharbad(s, validUnit as (u: unknown) => boolean) ||
         !validateNin(s, validUnit as (u: unknown) => boolean) ||
+        !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
         !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
@@ -895,6 +909,7 @@ export function validateSave(
       ...(s.dunlandTrap?.setAside ?? []),
       ...(s.tharbad?.setAside ?? []),
       ...(s.ninEilph?.setAside ?? []),
+      ...(s.celebrimbor?.search ?? []),
       ...(s.threeTrials
         ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
         : []),

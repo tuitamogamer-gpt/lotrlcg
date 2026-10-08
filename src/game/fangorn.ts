@@ -1,3 +1,4 @@
+import { celebrimborRefreshEffects } from "./celebrimbor";
 import { ninReadyLimit } from "./nin-eilph-support";
 import { canRemoveQuestTime } from "./quest-time";
 import { trialsTimeOptions } from "./three-trials";
@@ -232,7 +233,7 @@ export function fangornRefreshTime(s: GameState) {
       .filter((a) => a.code === F.offTrack && !a.blanked)
       .map((a) => fx("removeQuestTime", { code: a.code, source: a.id })),
   );
-  extra.push(...dunlandRefreshEffects(s));
+  extra.push(...dunlandRefreshEffects(s), ...celebrimborRefreshEffects(s));
   if (!extra.length) return false;
   prepend(
     s,

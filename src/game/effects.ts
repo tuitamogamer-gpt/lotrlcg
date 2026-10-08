@@ -1,3 +1,5 @@
+import { celebrimborProtected } from "./celebrimbor-support";
+import * as Celebrimbor from "./celebrimbor";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { commitCharacters } from "./actions";
 import * as Nin from "./nin-eilph";
@@ -352,6 +354,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Trials.trialsEffect(s, e)) return;
   if (Tharbad.tharbadEffect(s, e)) return;
   if (Nin.ninEffect(s, e)) return;
+  if (Celebrimbor.celebrimborEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -967,6 +970,7 @@ function handleEffect(s: GameState, e: Effect) {
             Trials.trialsEncounter(s, e.code, true) ||
             Tharbad.tharbadEncounter(s, e.code, true) ||
             Nin.ninEncounter(s, e.code, true) ||
+            Celebrimbor.celebrimborEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1459,6 +1463,7 @@ function handleEffect(s: GameState, e: Effect) {
           (u) =>
             card(u.code).type_code === "enemy" &&
             amonPlayerCanEngage(s, u, activeSeat(s)) &&
+            !celebrimborProtected(s, u) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
             !heirsPlayerNoEngagementCheck(u) &&
@@ -1747,6 +1752,7 @@ function handleEffect(s: GameState, e: Effect) {
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
+        Celebrimbor.celebrimborAttackFinished(s, completed);
         if (enemy) {
           stewardFearAttackFinished(s, enemy, attackPlayer);
           Druadan.druadanForestAttackFinished(s, enemy, completed);
@@ -1912,6 +1918,21 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "celebSetup",
+      "celebStageReady",
+      "celebAdvance",
+      "celebBellachAttack",
+      "celebStealMould",
+      "celebTimeExpired",
+      "celebResetTime",
+      "celebSearchThreat",
+      "celebScourAll",
+      "celebScour",
+      "celebLocationDamage",
+      "celebActiveDamage",
+      "celebAssignLocationDamage",
+      "celebSpiesSurge",
+      "celebTravelProgress",
       "ninSetup",
       "ninAdvance",
       "ninStageReady",

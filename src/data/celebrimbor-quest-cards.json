@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
+    "octgnid": "9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
+    "name": "The Ruins of Ost-in-Edhil",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Bellach, The Orcs' Search, and The Secret Chamber to the staging area. Attach Celebrimbor's Mould to The Secret Chamber. Each player adds a different Ost-in-Edhil location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 122,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Celembrimbor's Secret",
+    "side": "A",
+    "back_name": "The Ruins of Ost-in-Edhil",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this stage, trigger each Scour effect currently in play. Place 3 time counters on this stage.  Bellach is immune to player card effects and cannot be engaged.  The players cannot advance unless Celebrimbor's Mould is attached to a hero.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
+    "octgnid": "f3d71c42-c368-45c1-9228-b58cf9c54ff5",
+    "name": "The Enemy's Servant",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Trigger each Scour effect currently in play. Bellach makes an attack against the player who controls Celebrimbor's Mould. Then, attach Celebrimbor's Mould to Bellach.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 123,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Celembrimbor's Secret",
+    "side": "A",
+    "back_name": "The Enemy's Servant",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this stage, trigger each Scour effect currently in play. Place 3 time counters on this stage.  Unless there is at least 12 progress on this stage, Bellach is immune to player card effects and cannot be engaged. The players cannot win unless Celebrimbor's Mould is attached to a hero. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3d71c42-c368-45c1-9228-b58cf9c54ff5.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3d71c42-c368-45c1-9228-b58cf9c54ff5.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 123,
+        "quantity": 1,
+        "octgnid": "f3d71c42-c368-45c1-9228-b58cf9c54ff5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3d71c42-c368-45c1-9228-b58cf9c54ff5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

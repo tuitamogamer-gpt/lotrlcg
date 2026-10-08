@@ -1,3 +1,7 @@
+import {
+  CELEBRIMBOR_ENCOUNTERS,
+  CELEBRIMBOR_QUESTS,
+} from "./celebrimbor-support";
 import { NIN_ENCOUNTERS, NIN_QUESTS } from "./nin-eilph-support";
 import { THARBAD_ENCOUNTERS, THARBAD_QUESTS } from "./tharbad-support";
 import {
@@ -173,6 +177,7 @@ export const encounterCards = [
   ...THREE_TRIALS_ENCOUNTERS,
   ...THARBAD_ENCOUNTERS,
   ...NIN_ENCOUNTERS,
+  ...CELEBRIMBOR_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -205,6 +210,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...THREE_TRIALS_QUESTS,
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
+    ...CELEBRIMBOR_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -310,6 +316,7 @@ export const SCRIPTED = new Set(
     ...THREE_TRIALS_QUESTS,
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
+    ...CELEBRIMBOR_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

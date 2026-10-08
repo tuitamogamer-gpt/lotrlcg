@@ -55,6 +55,9 @@ export function observe(
 ): Observation {
   const values: Record<string, string> = {
     "Quest progress": String(s.progress),
+    ...(s.celebrimbor
+      ? { "The Orcs’ Search": String(s.celebrimbor.search.length) }
+      : {}),
     ...(s.ninEilph ? { "Quest stage": ninQuestName(s) ?? "" } : {}),
     ...(s.tharbad
       ? { "Threat elimination level": String(s.tharbad.elimination) }

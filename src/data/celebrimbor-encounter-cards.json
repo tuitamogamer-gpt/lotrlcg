@@ -1,0 +1,485 @@
+[
+  {
+    "code": "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
+    "octgnid": "1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
+    "name": "The Orcs' Search",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When a location has damage equal to its printed quest points, place it facedown underneath The Orcs' Search.  Forced: At the end of the refresh phase, raise each player's threat by 1 for each card underneath The Orcs' Search.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 125,
+    "quantity": 1,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1589883f-87ae-4f4d-a92b-e5e23c25c8e0.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1589883f-87ae-4f4d-a92b-e5e23c25c8e0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
+    "octgnid": "246b941e-f8a7-46ba-966d-d0515111ab46",
+    "name": "Collapsed Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ost-in-Edhil. Ruins.",
+    "text": "Surge.\nScour: Return this location to the staging area and place 2 damage on it.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 131,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 4,
+    "shadow": "Shadow: Excess damage dealt by this attack must be placed on the active location, if able.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/246b941e-f8a7-46ba-966d-d0515111ab46.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 131,
+        "quantity": 2,
+        "octgnid": "246b941e-f8a7-46ba-966d-d0515111ab46",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/246b941e-f8a7-46ba-966d-d0515111ab46.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
+    "octgnid": "39773513-ff69-4918-9323-6f04b7109b2f",
+    "name": "Ancient Foundation",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ost-in-Edhil. Ruins.",
+    "text": "Scour: Assign X damage among locations in play. X is the number of locations in play. This ability does not stack with other copies of Ancient Foundation.  Travel: Place 1 damage on this location to travel here.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 132,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39773513-ff69-4918-9323-6f04b7109b2f.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 132,
+        "quantity": 4,
+        "octgnid": "39773513-ff69-4918-9323-6f04b7109b2f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39773513-ff69-4918-9323-6f04b7109b2f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "octgnid": "529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "name": "Ruined Plaza",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ost-in-Edhil. Ruins.",
+    "text": "Forced: After Ruined Plaza enters the staging area, place 1 damage here.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 130,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Defending player assigns X damage among characters he controls. X is the number of cards underneath The Orcs' Search.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/529bb9e4-36c3-45bd-bac0-1ce5de6a581d.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 130,
+        "quantity": 3,
+        "octgnid": "529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/529bb9e4-36c3-45bd-bac0-1ce5de6a581d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:566898f1-9e85-4463-b220-6924d5106447",
+    "octgnid": "566898f1-9e85-4463-b220-6924d5106447",
+    "name": "Discovered!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either trigger each Scour effect currently in play, or each player places a random card from his hand facedown underneath The Orcs' Search.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 134,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, place that character facedown underneath The Orcs' Search.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/566898f1-9e85-4463-b220-6924d5106447.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 134,
+        "quantity": 2,
+        "octgnid": "566898f1-9e85-4463-b220-6924d5106447",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/566898f1-9e85-4463-b220-6924d5106447.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 0
+  },
+  {
+    "code": "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
+    "octgnid": "6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
+    "name": "City Remains",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ost-in-Edhil. Ruins.",
+    "text": "Forced: After placing any amount of progress here, trigger the topmost Scour effect in the discard pile, if able.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 133,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise each player's threat by 1 for each card underneath The Orcs' Search.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 133,
+        "quantity": 4,
+        "octgnid": "6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
+    "octgnid": "738b3bad-7a2b-47ad-a34f-503028f4f4c1",
+    "name": "The Secret Chamber",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ost-in-Edhil. Ruins.",
+    "text": "X is the number of players in the game. Immune to player card effects.\nTravel: Remove 3 progress from the current quest to travel here.  If The Secret Chamber is placed underneath The Orcs' Search, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 126,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 3,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "6",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/738b3bad-7a2b-47ad-a34f-503028f4f4c1.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 126,
+        "quantity": 1,
+        "octgnid": "738b3bad-7a2b-47ad-a34f-503028f4f4c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/738b3bad-7a2b-47ad-a34f-503028f4f4c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
+    "octgnid": "82141d38-fb53-472c-a5e8-6a495447c9ad",
+    "name": "Prowling Orc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Orc.",
+    "text": "Forced: After Prowling Orc attacks, place 1 damage on the active location.  Scour: Prowling Orc engages the player with the highest threat and makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 129,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 3,
+    "health": 5,
+    "engagement": 45,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "3",
+      "health": "5",
+      "engagement": "45"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82141d38-fb53-472c-a5e8-6a495447c9ad.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 129,
+        "quantity": 2,
+        "octgnid": "82141d38-fb53-472c-a5e8-6a495447c9ad",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82141d38-fb53-472c-a5e8-6a495447c9ad.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
+    "octgnid": "abd56f0e-0238-432b-84b2-7c715d96477b",
+    "name": "Desecrated Ruins",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 3 damage on the active location. If there is no active location, Desecrated Ruins gains surge.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 135,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, place X damage on the active location. X is that ally's cost.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abd56f0e-0238-432b-84b2-7c715d96477b.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 135,
+        "quantity": 3,
+        "octgnid": "abd56f0e-0238-432b-84b2-7c715d96477b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abd56f0e-0238-432b-84b2-7c715d96477b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
+    "octgnid": "c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
+    "name": "Celebrimbor's Mould",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "If Celebrimbor's Mould is free of encounters, the first player claims it and attaches it to a hero he controls.  If the attached hero leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 127,
+    "quantity": 1,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 127,
+        "quantity": 1,
+        "octgnid": "c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+    "octgnid": "dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+    "name": "Bellach's Scout",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Orc.",
+    "text": "When Revealed: Either place 3 damage on the active location, or reveal an additional encounter card.  Scour: Place 1 damage on the active location.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 128,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 40,
+    "shadow": "Shadow: Place 1 damage on the active location.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "40"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 128,
+        "quantity": 4,
+        "octgnid": "dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
+    "octgnid": "ddac1c59-4e5d-4a90-9666-0753133d4de9",
+    "name": "Spies from Mordor",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must exhaust X characters he controls. X is the number of cards underneath The Orcs' Search. If no characters are exhausted this way, Spies from Mordor gains surge.",
+    "is_unique": false,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 136,
+    "quantity": 2,
+    "shadow": "Shadow: Defending player discards a non-objective attachment he controls.",
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ddac1c59-4e5d-4a90-9666-0753133d4de9.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 136,
+        "quantity": 2,
+        "octgnid": "ddac1c59-4e5d-4a90-9666-0753133d4de9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ddac1c59-4e5d-4a90-9666-0753133d4de9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
+    "octgnid": "fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
+    "name": "Bellach",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor. Spy.",
+    "text": "X is the number of cards underneath The Orc's Search.\nScour: Each player must search the encounter deck and discard pile for an Orc enemy and add it to the staging area.",
+    "is_unique": true,
+    "pack_code": "CS",
+    "pack_name": "Celebrimbor's Secret",
+    "position": 124,
+    "quantity": 1,
+    "attack": 5,
+    "defense": 4,
+    "health": 7,
+    "engagement": 50,
+    "victory": 5,
+    "encounter_set": "Celembrimbor's Secret",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "5",
+      "defense": "4",
+      "health": "7",
+      "engagement": "50",
+      "victory": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb36c038-bbb8-454f-a4a6-1f8d8fcbd112.jpg",
+    "packs": [
+      {
+        "pack_code": "CS",
+        "pack_name": "Celebrimbor's Secret",
+        "position": 124,
+        "quantity": 1,
+        "octgnid": "fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb36c038-bbb8-454f-a4a6-1f8d8fcbd112.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

@@ -1174,6 +1174,7 @@
   --event-art: url("/art/premium/mirkwood.webp");
 }
 
+.event-landscape-celebrimbors-secret,
 .event-landscape-trouble-in-tharbad {
   --event-art: url("/art/premium/dol-guldur.webp");
 }

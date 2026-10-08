@@ -1,3 +1,5 @@
+import { CELEBRIMBOR } from "../game/celebrimbor-support";
+import { units } from "../game/core";
 import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
 import { TRIALS } from "../game/three-trials-support";
@@ -32,6 +34,7 @@ export function ScenarioState({
     !s.threeTrials &&
     !s.tharbad &&
     !s.ninEilph &&
+    !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
     !s.isengard?.outOfPlay.length
@@ -90,6 +93,30 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.celebrimbor && (
+        <div className="tower-counter">
+          <strong>Time · {s.celebrimbor.time} / 3</strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.celebrimbor.time}
+            max={Math.max(3, s.celebrimbor.time)}
+          />
+          <span>The Orcs’ Search · {s.celebrimbor.search.length} cards</span>
+          <button onClick={() => inspect(card(CELEBRIMBOR.mould))}>
+            Mould ·{" "}
+            {(() => {
+              const host = units(s).find((u) =>
+                u.attachments.some((a) => a.code === CELEBRIMBOR.mould),
+              );
+              return host ? card(host.code).name : "Unclaimed";
+            })()}
+          </button>
+          <span>
+            At refresh end, each player gains {s.celebrimbor.search.length}{" "}
+            threat. When time expires, resolve every Scour effect.
+          </span>
         </div>
       )}
       {s.ninEilph && (

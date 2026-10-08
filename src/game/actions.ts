@@ -1,3 +1,5 @@
+import { celebrimborProtected } from "./celebrimbor-support";
+import * as Celebrimbor from "./celebrimbor";
 import { NIN, ninNoCardEconomy } from "./nin-eilph-support";
 import * as Nin from "./nin-eilph";
 import * as Tharbad from "./tharbad";
@@ -450,6 +452,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const celebProblem = Celebrimbor.celebrimborTravelProblem(s, u);
+  if (celebProblem) return celebProblem;
   const ninProblem = Nin.ninTravelProblem(s, u);
   if (ninProblem) return ninProblem;
   const tharbadProblem = Tharbad.tharbadTravelProblem(s, u);
@@ -530,6 +534,8 @@ export function optionalEngagementProblem(
   if (stewardProblem) return stewardProblem;
   if (!shadowFlameCanMove(s, u))
     return "Durin’s Bane remains in staging and cannot be optionally engaged.";
+  if (celebrimborProtected(s, u))
+    return "Bellach cannot be engaged until stage two has 12 progress.";
   if (!amonPlayerCanEngage(s, u, activeSeat(s)))
     return "Pippin prevents this enemy from engaging this fellowship this round.";
   return (
@@ -1822,7 +1828,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !DunlandQuest.dunlandOpeningHandsKept(s) &&
         !Trials.trialsOpeningHandsKept(s) &&
         !Tharbad.tharbadOpeningHandsKept(s) &&
-        !Nin.ninOpeningHandsKept(s)
+        !Nin.ninOpeningHandsKept(s) &&
+        !Celebrimbor.celebrimborOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2102,6 +2109,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Celebrimbor.celebrimborTravel(s, u) ??
         Nin.ninTravel(s, u) ??
         Tharbad.tharbadTravel(s, u) ??
         Trials.trialsTravel(s, u) ??
@@ -2311,6 +2319,12 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.celebrimbor
+      ? {
+          questTime: s.celebrimbor.time,
+          orcsSearch: s.celebrimbor.search.length,
+        }
+      : {}),
     ...(s.ninEilph
       ? { currentQuest: s.ninEilph.activeQuest, questTime: s.ninEilph.time }
       : {}),

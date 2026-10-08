@@ -171,6 +171,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "celebrimbors-secret"
   | "the-nin-in-eilph"
   | "trouble-in-tharbad"
   | "the-three-trials"
@@ -286,6 +287,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
   tharbad?: import("./tharbad-support").TharbadState;
   threeTrials?: import("./three-trials-support").ThreeTrialsState;
@@ -420,6 +422,11 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    celebExcessCopies?: number;
+    celebCaptureDestroyed?: boolean;
+    celebThreatCopies?: number;
+    celebAllyCostCopies?: number;
+    celebCapturedIds?: string[];
     ninLoseProgressOnKill?: boolean;
     ninKilledCharacter?: boolean;
     ninDefensePenalties?: Record<string, number>;

@@ -1,3 +1,4 @@
+import { CELEBRIMBOR_QUESTS } from "./celebrimbor-support";
 import { NIN, NIN_QUESTS } from "./nin-eilph-support";
 import { THARBAD_QUESTS } from "./tharbad-support";
 import { TRIALS, THREE_TRIALS_QUESTS } from "./three-trials-support";
@@ -56,6 +57,7 @@ const questImage = (code: string) => {
     ...THREE_TRIALS_QUESTS,
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
+    ...CELEBRIMBOR_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -997,6 +999,24 @@ export const SCENARIOS = [
         questImage: questImage(code),
       };
     }),
+  },
+  {
+    id: "celebrimbors-secret",
+    name: "Celebrimbor's Secret",
+    shortName: "Celebrimbor",
+    chapter: "XXXV",
+    difficulty: 6,
+    tagline: "The hidden forge of Ost-in-Edhil",
+    description:
+      "Search the ruined city for Celebrimbor’s Mould before Bellach and his Orcs uncover the secret.",
+    sets: ["Celembrimbor's Secret", "Misty Mountain Orcs", "Broken Lands"],
+    stages: CELEBRIMBOR_QUESTS.map((c) => ({
+      name: c.back_name ?? c.name,
+      quest: c.back_quest ?? 0,
+      cardCode: c.code,
+      story: c.back_text!,
+      questImage: questImage(c.code),
+    })),
   },
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */

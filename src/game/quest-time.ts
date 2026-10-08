@@ -14,7 +14,8 @@ export const questTime = (s: GameState) =>
   s.fangorn ??
   s.dunlandTrap ??
   s.tharbad ??
-  s.ninEilph;
+  s.ninEilph ??
+  s.celebrimbor;
 export const canRemoveQuestTime = (s: GameState) =>
   !!questTime(s)?.time && !tharbadTimeBlocked(s);
 export function removeQuestTime(s: GameState, count = 1) {
@@ -35,17 +36,19 @@ export function removeQuestTime(s: GameState, count = 1) {
   if (!timer.time)
     effects.push(
       fx(
-        s.ninEilph
-          ? "ninTimeExpired"
-          : s.tharbad
-            ? "tharbadTimeExpired"
-            : s.fordsIsen
-              ? "fordsTimeExpired"
-              : s.catchOrc
-                ? "catchTimeExpired"
-                : s.dunlandTrap
-                  ? "dunlandTimeExpired"
-                  : "fangornTimeExpired",
+        s.celebrimbor
+          ? "celebTimeExpired"
+          : s.ninEilph
+            ? "ninTimeExpired"
+            : s.tharbad
+              ? "tharbadTimeExpired"
+              : s.fordsIsen
+                ? "fordsTimeExpired"
+                : s.catchOrc
+                  ? "catchTimeExpired"
+                  : s.dunlandTrap
+                    ? "dunlandTimeExpired"
+                    : "fangornTimeExpired",
         {
           value: s.stage,
           code: currentQuestCode(s),

@@ -2,6 +2,8 @@
 
 ## Included
 
+- **Celebrimbor’s Secret**, original/easy: thirteen encounter definitions, two quests and exact 49/39 physical recipes. Scour ordering, location damage and capture, hidden player cards, discard-pile Scour, Mould claims, Bellach, printed shadows and normal/easy multiplayer setup are implemented. See [rules notes](CELEBRIMBOR-RULES.md).
+
 - **The Nîn-in-Eilph**, original/easy: ten encounter definitions, eight parallel quest cards and exact 31/25 physical recipes. Distinct setup locations, seeded parallel-stage changes, Time-triggered creatures, card/resource/refresh restrictions, Nalir, swamp travel and the Ancient Marsh-dweller are implemented. See [rules notes](NIN-EILPH-RULES.md).
 
 - **Trouble in Tharbad**, original/easy: sixteen new encounters, two quest cards and exact 40/32 physical recipes. Nalir, dynamic threat elimination, physical threat-source removal, Time/shadow chains, City travel, Bellach attacks and Crossing victory have semantic and responsive browser checks. See [rules notes](THARBAD-RULES.md).

@@ -643,6 +643,22 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.celebrimbor)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 1
+            ? "Explore the Secret Chamber and claim the Mould"
+            : "Place 12 progress, defeat Bellach and reclaim the Mould"}
+        </span>
+        <span>
+          {s.stage === 1
+            ? "Protect the Secret Chamber"
+            : "Protect the Mould’s bearer"}
+        </span>
+      </div>
+    );
   if (s.ninEilph)
     return (
       <div className="quest-goals">

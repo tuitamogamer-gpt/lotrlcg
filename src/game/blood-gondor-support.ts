@@ -2,7 +2,6 @@ import encounters from "../data/blood-gondor-encounter-cards.json";
 import quests from "../data/blood-gondor-quest-cards.json";
 import recipes from "../data/blood-gondor-recipes.json";
 import type { Card, GameState, Unit } from "./types";
-import { card } from "./cards";
 export const BLOOD_GONDOR_ENCOUNTERS = encounters as Card[];
 export const BLOOD_GONDOR_QUESTS = quests as Card[];
 export const BLOOD_GONDOR_RECIPES = recipes;
@@ -37,6 +36,7 @@ export interface BloodGondorState {
 export function validateBloodGondorState(
   s: GameState,
   validUnit: (u: unknown) => boolean,
+  validHiddenCard: (code: string) => boolean,
 ) {
   const q = s.bloodGondor;
   if (!q) return s.scenarioId !== "the-blood-of-gondor";
@@ -59,13 +59,7 @@ export function validateBloodGondorState(
         +p >= count ||
         !Array.isArray(cards) ||
         (s.table?.seats[+p]?.eliminated && cards.length > 0) ||
-        cards.some(
-          (u) =>
-            !validUnit(u) ||
-            !["enemy", "location", "treachery"].includes(
-              card(u.code).type_code,
-            ),
-        ),
+        cards.some((u) => !validUnit(u) || !validHiddenCard(u.code)),
     )
   )
     return false;

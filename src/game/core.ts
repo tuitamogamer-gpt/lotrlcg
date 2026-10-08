@@ -1,3 +1,4 @@
+import * as Celebrimbor from "./celebrimbor";
 import { imageUrl } from "./cards";
 import {
   ninNoCardEconomy,
@@ -676,6 +677,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           Trials.trialsThreatBonus(s, u) +
           Tharbad.tharbadThreatBonus(s, u) +
           Nin.ninThreatBonus(s, u) +
+          Celebrimbor.celebrimborThreatBonus(s, u) +
           Fangorn.fangornForestBonus(s, u) +
           druadanForestThreatBonus(s, u) +
           carrockThreatBonus(s, u) +

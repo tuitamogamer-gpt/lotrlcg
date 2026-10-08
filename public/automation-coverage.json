@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 460,
-    "scenarios": 34,
+    "encounterCards": 473,
+    "scenarios": 35,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -41,17 +41,18 @@
       "the-dunland-trap",
       "the-three-trials",
       "trouble-in-tharbad",
-      "the-nin-in-eilph"
+      "the-nin-in-eilph",
+      "celebrimbors-secret"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1003,
-    "pending": 3180
+    "scripted": 1018,
+    "pending": 3165
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 68
+    "scripted": 70
   },
   "registeredCodes": [
     "01001",
@@ -556,6 +557,7 @@
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
+    "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
@@ -575,6 +577,7 @@
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
+    "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
@@ -593,6 +596,7 @@
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
+    "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
@@ -876,7 +880,9 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
+    "octgn:566898f1-9e85-4463-b220-6924d5106447",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
@@ -887,10 +893,12 @@
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
+    "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
@@ -902,6 +910,7 @@
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
@@ -940,6 +949,7 @@
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
+    "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
@@ -951,6 +961,7 @@
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+    "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
@@ -974,6 +985,7 @@
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
+    "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
@@ -988,7 +1000,9 @@
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
+    "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
@@ -1005,6 +1019,7 @@
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
+    "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
@@ -1017,6 +1032,7 @@
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
+    "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
@@ -1131,7 +1147,7 @@
     {
       "product": "celebrimbor-s-secret",
       "total": 25,
-      "scripted": 10,
+      "scripted": 25,
       "player": 10,
       "playerScripted": 10
     },
@@ -12368,7 +12384,7 @@
       "name": "The Orcs' Search",
       "type": "objective",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -13648,7 +13664,7 @@
       "name": "Collapsed Tower",
       "type": "location",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -15608,7 +15624,7 @@
       "name": "Ancient Foundation",
       "type": "location",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -20536,7 +20552,7 @@
       "name": "Ruined Plaza",
       "type": "location",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -20864,7 +20880,7 @@
       "name": "Discovered!",
       "type": "treachery",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -22672,7 +22688,7 @@
       "name": "City Remains",
       "type": "location",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -23056,7 +23072,7 @@
       "name": "The Secret Chamber",
       "type": "location",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -24368,7 +24384,7 @@
       "name": "Prowling Orc",
       "type": "enemy",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -26744,7 +26760,7 @@
       "name": "The Ruins of Ost-in-Edhil",
       "type": "quest",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -27784,7 +27800,7 @@
       "name": "Desecrated Ruins",
       "type": "treachery",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -30352,7 +30368,7 @@
       "name": "Celebrimbor's Mould",
       "type": "objective",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -32072,7 +32088,7 @@
       "name": "Bellach's Scout",
       "type": "enemy",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -32176,7 +32192,7 @@
       "name": "Spies from Mordor",
       "type": "treachery",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -34208,7 +34224,7 @@
       "name": "The Enemy's Servant",
       "type": "quest",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -34872,7 +34888,7 @@
       "name": "Bellach",
       "type": "enemy",
       "pack": "Celebrimbor's Secret",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "celebrimbor-s-secret"
     },
     {
@@ -35741,8 +35757,8 @@
       "id": "E04.8",
       "name": "Celebrimbor's Secret (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "celebrimbors-secret",
+      "state": "scripted"
     },
     {
       "id": "E04.9",
@@ -37232,8 +37248,8 @@
       "id": "Q04.8",
       "name": "Celebrimbor's Secret",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "celebrimbors-secret",
+      "state": "scripted"
     },
     {
       "id": "Q04.9",
