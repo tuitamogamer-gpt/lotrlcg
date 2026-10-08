@@ -1,3 +1,4 @@
+import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
 import { CELEBRIMBOR_QUESTS } from "./celebrimbor-support";
 import { NIN, NIN_QUESTS } from "./nin-eilph-support";
@@ -60,6 +61,7 @@ const questImage = (code: string) => {
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
+    ...CHETWOOD_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -1033,6 +1035,24 @@ export const SCENARIOS = [
     stages: ANTLERED_QUESTS.map((c) => ({
       name: c.back_name ?? c.name,
       quest: c.back_quest ?? 0,
+      cardCode: c.code,
+      story: c.back_text!,
+      questImage: questImage(c.code),
+    })),
+  },
+  {
+    id: "intruders-in-chetwood",
+    name: "Intruders in Chetwood",
+    shortName: "Chetwood",
+    chapter: "I",
+    difficulty: 4,
+    tagline: "The Rangers’ secret vigil",
+    description:
+      "Join Iârion, hunt the Orc War Parties and protect the villages of Bree-land while competing side quests draw you away.",
+    sets: ["Intruders in Chetwood", "Angmar Orcs", "Eriador Wilds", "Iârion"],
+    stages: CHETWOOD_QUESTS.map((c) => ({
+      name: c.name,
+      quest: c.back_quest ?? 30,
       cardCode: c.code,
       story: c.back_text!,
       questImage: questImage(c.code),

@@ -1,6 +1,6 @@
-# Intruders in Chetwood: prepared import
+# Lost Realm source imports
 
-Status: reference data and artwork are prepared. Gameplay remains pending. The next implementation can use `src/data/pending/intruders-in-chetwood-import.json` without downloading or reconstructing the sources again.
+Status: Intruders in Chetwood gameplay is implemented; see [Chetwood rules and verification](CHETWOOD-RULES.md). `src/data/pending/intruders-in-chetwood-import.json` remains the immutable preparation snapshot, including its historical `pending-rules` status. Active definitions and recipes live in `src/data/chetwood-*.json`. The Weather Hills and Deadmen’s Dike remain prepared for implementation.
 
 The bundle contains 19 original definitions across Intruders in Chetwood, Angmar Orcs, Eriador Wilds and Iârion; 20 local JPEG faces include both sides of Stop the War Party. Every face has its original HTTPS source, byte count and SHA-256. The card library uses these local faces independently of automation status. Original variable stats are retained: all three of Iârion's combat/quest stats are X, and Shrouded Hills has X threat. The printed Orc Rearguard face confirms Victory 10.
 
@@ -22,7 +22,7 @@ node scripts/browser-pending-import.mjs
 
 The preparation command writes data and local artwork only. Registering automated cards and scenarios remains a separate implementation step. The source expansion rules are linked in the bundle.
 
-## Rules to implement next
+## Chetwood implementation checklist (completed)
 
 | Card or group                                | Required behavior                                                                                                                                                                                                             |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -41,9 +41,9 @@ The preparation command writes data and local artwork only. Registering automate
 | Sudden Assault / Surprising Speed            | Compare committed willpower to staging threat; real staging attacks with independent shadows; shuffle Assault plus discard if no attack; per-player enemy return and conditional Surge/Doomed.                                |
 | Weight of Responsibility and printed shadows | Count physical quest cards; ordered multi-reveals and attachment discards; defending-player identity; defense reduction; return-after-attack and ally-destruction conditions.                                                 |
 
-The player side-quest framework already separates main/current quest identity, physical side-quest progress, phase duration, quest attachments and separated staging areas. Extend it to encounter side quests, uncancelable revelation and per-card Time; do not substitute encounter side quests into the main quest deck. Keep main quest rules active during side-quest selection. The pending bundle alone does not register any of these rules.
+The shared player/encounter side-quest framework separates main/current quest identity, physical side-quest progress, phase duration, quest attachments and separated staging areas. Encounter side quests use uncancelable revelation and per-card Time without entering the main quest deck. Main quest rules stay active during side-quest selection. The snapshot itself remains separate from runtime registration.
 
-Verification before registration should include 1–4-player normal/easy setup, distinct physical setup choices, both victory/loss gates, every printed shadow, uncancelable side-quest revelation, captured identities, Time on inactive side quests, progress caps, all Pressing Needs branches, reloads during searches and multiplayer responses, complete-game termination and responsive browser interaction.
+Implemented Chetwood verification includes 1–4-player normal/easy setup, distinct physical setup choices, both victory/loss gates, every printed shadow, uncancelable side-quest revelation, captured identities, Time on inactive side quests, progress caps, all Pressing Needs branches, reloads during searches and multiplayer responses, complete-game termination and responsive browser interaction.
 
 ## Remaining Lost Realm source bundles
 
@@ -51,7 +51,7 @@ The same checked preparation is complete for `Q05.2` / `E05.2` (The Weather Hill
 
 The Weather Hills retains all six original recipe zones: quest deck, encounter deck, separate Orc deck, set-aside cards, staged cards and active location. Standard/easy initial encounter decks contain 31/24 cards and Orc decks contain 11/9; both sides of Hunting the Orcs are preserved. Deadmen's Dike retains 41/28 encounter cards, its set-aside and staging cards, Iârion and both quest stages. These counts describe source recipes before scripted setup, not automated play.
 
-All three gameplay implementations remain pending. `tests/pending-imports.test.ts` checks source equivalence, recipe zones, image hashes and the automation boundary. `scripts/browser-pending-import.mjs` covers the library at 1280/390/320, checks variable stats and reverse quest art, and decodes all 64 faces locally.
+The Weather Hills and Deadmen’s Dike gameplay remain pending. Shared Chetwood definitions now resolve to their implemented handlers, while those two scenario recipes stay disabled. `tests/pending-imports.test.ts` checks source equivalence, recipe zones, image hashes and the automation boundary. `scripts/browser-pending-import.mjs` covers the library at 1280/390/320, checks variable stats and reverse quest art, and decodes all 64 faces locally.
 
 ### Original-face clarifications for the next implementation
 

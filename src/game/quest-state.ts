@@ -83,5 +83,9 @@ export const currentQuestProgress = (s: GameState) => {
 };
 export const allQuestUnits = (s: GameState): Unit[] => [
   ...[mainQuestUnit(s)].filter((u): u is Unit => !!u),
-  ...s.staging.filter((u) => card(u.code).type_code === "player-side-quest"),
+  ...s.staging.filter((u) =>
+    ["player-side-quest", "encounter-side-quest"].includes(
+      card(u.code).type_code,
+    ),
+  ),
 ];

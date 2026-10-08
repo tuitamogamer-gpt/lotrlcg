@@ -1,3 +1,4 @@
+import { CHETWOOD } from "./chetwood-support";
 import type { GameState } from "./types";
 import { THARBAD as T } from "./tharbad-support";
 import { card, cards } from "./cards";
@@ -19,6 +20,7 @@ export interface ThreatSource {
   index?: number;
 }
 export const threatReductionBlocked = (s: GameState) =>
+  s.staging.some((u) => u.code === CHETWOOD.homestead && !u.blanked) ||
   [...s.staging, ...allActiveLocations(s)].some(
     (u) => u.code === T.mug && !u.blanked,
   );
@@ -30,7 +32,13 @@ export function reduceThreat(
   reason: "player-card" | "quest-card" | "encounter" = "player-card",
 ) {
   if (amount <= 0 || threatReductionBlocked(s)) {
-    if (amount > 0) log(s, "The Empty Mug prevents threat reduction.");
+    if (amount > 0)
+      log(
+        s,
+        s.staging.some((u) => u.code === CHETWOOD.homestead && !u.blanked)
+          ? "Outlying Homestead prevents threat reduction."
+          : "The Empty Mug prevents threat reduction.",
+      );
     return 0;
   }
   const reduction = Math.min(s.threat, amount);

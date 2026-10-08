@@ -219,7 +219,14 @@ export const scopedEffect = (s: GameState, e: Effect): Effect =>
 export function startPhase(s: GameState, phase: GameState["phase"]) {
   const previous = s.phase;
   s.phase = phase;
-  if (!["quest", "staging"].includes(phase)) delete s.sideQuestSelections;
+  if (
+    previous !== phase &&
+    !(
+      ["quest", "staging"].includes(previous) &&
+      ["quest", "staging"].includes(phase)
+    )
+  )
+    delete s.sideQuestSelections;
   eachArea(s, () => druadanPlayerPhaseStarted(s, previous, phase));
   if (s.table) {
     s.table.passed = [];

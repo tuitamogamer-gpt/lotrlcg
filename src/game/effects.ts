@@ -1,3 +1,4 @@
+import * as Chetwood from "./chetwood";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { sideQuestEffect, sideQuestStart } from "./side-quests";
 import { rangerEffect } from "./ranger-north";
@@ -347,6 +348,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (finalRingEffect(s, e)) return;
   if (rangerEffect(s, e)) return;
   if (sideQuestEffect(s, e)) return;
+  if (Chetwood.chetwoodEffect(s, e)) return;
   if (Realm.realmEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
@@ -944,6 +946,7 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "afterEncounterRevealed":
+      Chetwood.chetwoodAfterReveal(s, e.code!);
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
       Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);
       break;
@@ -981,6 +984,7 @@ function handleEffect(s: GameState, e: Effect) {
             Nin.ninEncounter(s, e.code, true) ||
             Celebrimbor.celebrimborEncounter(s, e.code, true) ||
             Antlered.antleredEncounter(s, e.code, true) ||
+            Chetwood.chetwoodEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1162,6 +1166,7 @@ function handleEffect(s: GameState, e: Effect) {
       resolveQuestResult(s);
       break;
     case "questReady":
+      if (!e.flag && Chetwood.chetwoodEndStaging(s)) break;
       if (Osgiliath.assaultOsgiliathPrepareQuest(s, e)) break;
       s.phase = "staging";
       log(
@@ -1174,7 +1179,10 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "phaseEnd":
       phaseEnd(s);
-      if (s.phase === "refresh") Trials.trialsRemoveEnemyTime(s);
+      if (s.phase === "refresh") {
+        Trials.trialsRemoveEnemyTime(s);
+        Chetwood.chetwoodRefreshEnd(s);
+      }
       if (
         s.phase === "refresh" &&
         !Antlered.antleredRefreshTime(s) &&
@@ -1199,6 +1207,7 @@ function handleEffect(s: GameState, e: Effect) {
         eachSeat(s, () => orcGuard(s));
       if (s.scenarioId === "hunt-for-gollum" && s.stage === 2)
         prepend(s, fx("huntLook", { count: 2, player: firstPlayer(s) }));
+      Chetwood.chetwoodQuestStart(s);
       sideQuestStart(s);
       break;
     case "startTravel":
@@ -1432,7 +1441,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (
         druadanPlayerNoEngagementChecks(s) ||
         heirsNoEngagementChecks(s) ||
-        Tharbad.tharbadNoEngagementChecks(s)
+        Tharbad.tharbadNoEngagementChecks(s) ||
+        Chetwood.chetwoodNoEngagementChecks(s)
       )
         break;
       if (s.scenarioId === "anduin" && s.stage === 2) break;
@@ -1471,7 +1481,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (
         druadanPlayerNoEngagementChecks(s) ||
         heirsNoEngagementChecks(s) ||
-        Tharbad.tharbadNoEngagementChecks(s)
+        Tharbad.tharbadNoEngagementChecks(s) ||
+        Chetwood.chetwoodNoEngagementChecks(s)
       )
         break;
       const enemy = s.staging
@@ -1765,6 +1776,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (enemy && !completed?.redirectedToEnemy)
         shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
       if (completed) {
+        Chetwood.chetwoodAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -1934,6 +1946,13 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "chetSetup",
+      "chetRefreshThreat",
+      "chetRescueExpired",
+      "chetRescueCards",
+      "chetShuffle",
+      "chetAssault",
+      "chetBorders",
       "crownSetup",
       "crownStageReady",
       "crownAdvance",

@@ -1,3 +1,4 @@
+import { setupChetwood } from "./chetwood";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { setupAntlered } from "./antlered";
 import { setupCelebrimbor } from "./celebrimbor";
@@ -384,6 +385,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "intruders-in-chetwood") {
+    setupChetwood(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

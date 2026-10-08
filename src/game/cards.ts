@@ -1,3 +1,4 @@
+import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
 import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
 import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
@@ -187,6 +188,7 @@ export const encounterCards = [
   ...NIN_ENCOUNTERS,
   ...CELEBRIMBOR_ENCOUNTERS,
   ...ANTLERED_ENCOUNTERS,
+  ...CHETWOOD_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -221,6 +223,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
+    ...CHETWOOD_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -328,6 +331,7 @@ export const SCRIPTED = new Set(
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
+    ...CHETWOOD_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

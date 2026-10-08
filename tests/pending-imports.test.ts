@@ -71,12 +71,13 @@ test("all twenty Chetwood faces retain local bytes, hashes and original source m
       );
   }
 });
-test("prepared artwork and source recipes do not advertise unscripted Chetwood rules as playable", () => {
+test("Chetwood source snapshots now resolve to scripted normal/easy rules", () => {
   for (const c of pending.cards) {
-    assert.ok(!SCRIPTED.has(c.code));
-    assert.equal(isAutomatedCard(c as Card), false);
+    assert.ok(SCRIPTED.has(c.code));
+    assert.equal(isAutomatedCard(c as Card), true);
   }
-  for (const r of pending.recipes) assert.equal(automatedScenarioId(r), null);
+  for (const r of pending.recipes)
+    assert.equal(automatedScenarioId(r), "intruders-in-chetwood");
 });
 
 for (const [slug, count, faces, encounterDeck] of [
@@ -97,7 +98,10 @@ for (const [slug, count, faces, encounterDeck] of [
       const restored = { ...c, imagesrc: source.imagesrc };
       if (c.back_imagesrc) restored.back_imagesrc = source.back_imagesrc;
       assert.deepEqual(restored, source);
-      assert.equal(isAutomatedCard(c), false);
+      assert.equal(
+        isAutomatedCard(c),
+        pending.cards.some((source) => source.code === c.code),
+      );
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(

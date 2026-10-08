@@ -4275,13 +4275,32 @@ function BoardCard({
             <StatBadge kind="defense" value={stats(s, u).defense} />
           )}
       </div>
-      {c.type_code === "player-side-quest" && (
+      {["player-side-quest", "encounter-side-quest"].includes(c.type_code) && (
         <div className="objective-status">
           <span>
             {selectedSideQuest(s)?.id === u.id
               ? "Current side quest"
               : "Side quest"}{" "}
             · {u.progress} / {c.quest} progress
+          </span>
+        </div>
+      )}
+      {s.chetwood?.captive?.questId === u.id && (
+        <div
+          className="objective-status"
+          aria-label="Iârion is captured beneath this quest"
+        >
+          <span>Iârion captured · Defeat this quest before Time runs out</span>
+        </div>
+      )}
+      {!!s.chetwood?.hiddenHands[u.id]?.length && (
+        <div
+          className="objective-status"
+          aria-label={`${s.chetwood.hiddenHands[u.id].length} facedown hand cards`}
+        >
+          <span>
+            {s.chetwood.hiddenHands[u.id].length} facedown hand cards · Returned
+            to their owners on defeat
           </span>
         </div>
       )}

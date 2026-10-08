@@ -171,6 +171,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "intruders-in-chetwood"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -290,11 +291,12 @@ export interface GameState {
   /** Selection survives defeat until the end of this quest phase. */
   sideQuestSelections?: Record<
     string,
-    { id: string; code: string; defeated?: boolean }
+    { id: string; code: string; defeated?: boolean; phase?: Phase }
   >;
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  chetwood?: import("./chetwood-support").ChetwoodState;
   antlered?: import("./antlered-support").AntleredState;
   celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
@@ -431,6 +433,9 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    chetwoodAllyKilled?: boolean;
+    chetwoodReturnOnAllyKill?: boolean;
+    chetwoodReturnAfterAttack?: boolean;
     crownTimeOnKill?: number;
     celebExcessCopies?: number;
     celebCaptureDestroyed?: boolean;

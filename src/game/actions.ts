@@ -1,3 +1,4 @@
+import * as Chetwood from "./chetwood";
 import { currentQuestProgress } from "./quest-state";
 import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
@@ -457,6 +458,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const chetwoodProblem = Chetwood.chetwoodTravelProblem(s, u);
+  if (chetwoodProblem) return chetwoodProblem;
   const celebProblem = Celebrimbor.celebrimborTravelProblem(s, u);
   if (celebProblem) return celebProblem;
   const ninProblem = Nin.ninTravelProblem(s, u);
@@ -1862,7 +1865,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Tharbad.tharbadOpeningHandsKept(s) &&
         !Nin.ninOpeningHandsKept(s) &&
         !Celebrimbor.celebrimborOpeningHandsKept(s) &&
-        !Antlered.antleredOpeningHandsKept(s)
+        !Antlered.antleredOpeningHandsKept(s) &&
+        !Chetwood.chetwoodOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2142,6 +2146,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Chetwood.chetwoodTravel(s, u) ??
         Celebrimbor.celebrimborTravel(s, u) ??
         Nin.ninTravel(s, u) ??
         Tharbad.tharbadTravel(s, u) ??
@@ -2355,6 +2360,19 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.chetwood
+      ? {
+          chetwood: {
+            iarionCaptured: !!s.chetwood.captive,
+            capturedHands: Object.entries(s.chetwood.hiddenHands).map(
+              ([questId, cards]) => ({ questId, count: cards.length }),
+            ),
+            sideQuestTime: s.staging
+              .filter((u) => u.timeCounters !== undefined)
+              .map((u) => ({ id: u.id, time: u.timeCounters })),
+          },
+        }
+      : {}),
     ...(s.antlered
       ? {
           questTime: s.antlered.time,

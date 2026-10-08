@@ -130,7 +130,7 @@ export function observe(
         ...(character || enemy
           ? { Attack: String(stats.attack), Defense: String(stats.defense) }
           : {}),
-        ...(c.type_code === "player-side-quest"
+        ...(["player-side-quest", "encounter-side-quest"].includes(c.type_code)
           ? { Progress: `${u.progress} / ${c.quest ?? 0}` }
           : {}),
         ...(c.type_code === "location"

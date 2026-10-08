@@ -4,10 +4,15 @@ import { foundationsArea } from "./foundations-stone-support";
 /** Each separated staging area chooses its own current quest. */
 export const sideQuestArea = (s: GameState) =>
   s.foundationsStone?.split ? (foundationsArea(s)?.id ?? "shared") : "shared";
-export const selectedSideQuest = (s: GameState) =>
-  ["quest", "staging"].includes(s.phase)
-    ? s.sideQuestSelections?.[sideQuestArea(s)]
+export const selectedSideQuest = (s: GameState) => {
+  const selected = s.sideQuestSelections?.[sideQuestArea(s)];
+  return selected &&
+    (selected.phase === s.phase ||
+      (["quest", "staging"].includes(s.phase) &&
+        (!selected.phase || ["quest", "staging"].includes(selected.phase))))
+    ? selected
     : undefined;
+};
 export const selectedSideQuestUnit = (s: GameState) => {
   const selected = selectedSideQuest(s);
   return selected && !selected.defeated

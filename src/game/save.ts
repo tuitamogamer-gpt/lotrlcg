@@ -1,3 +1,4 @@
+import { validateChetwood, chetwoodSideTime } from "./chetwood-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { validateAntlered, printedLocationTime } from "./antlered-support";
 import { validateCelebrimbor } from "./celebrimbor-support";
@@ -107,7 +108,9 @@ export function validateSave(
       return false;
     const knownQuest = (code: unknown) =>
       typeof code === "string" &&
-      ["quest", "player-side-quest"].includes(card(code).type_code);
+      ["quest", "player-side-quest", "encounter-side-quest"].includes(
+        card(code).type_code,
+      );
     if (
       s.sideQuestSelections !== undefined &&
       (!s.sideQuestSelections ||
@@ -122,8 +125,23 @@ export function validateSave(
             !v.id ||
             typeof v.code !== "string" ||
             !SCRIPTED.has(v.code) ||
-            card(v.code).type_code !== "player-side-quest" ||
-            (v.defeated !== undefined && typeof v.defeated !== "boolean"),
+            !["player-side-quest", "encounter-side-quest"].includes(
+              card(v.code).type_code,
+            ) ||
+            (v.defeated !== undefined && typeof v.defeated !== "boolean") ||
+            (v.phase !== undefined &&
+              ![
+                "setup",
+                "resource",
+                "planning",
+                "quest",
+                "staging",
+                "travel",
+                "encounter",
+                "defense",
+                "attack",
+                "refresh",
+              ].includes(v.phase)),
         ))
     )
       return false;
@@ -185,6 +203,9 @@ export function validateSave(
         c.immediatePendingDeclaration,
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
+        c.chetwoodAllyKilled,
+        c.chetwoodReturnOnAllyKill,
+        c.chetwoodReturnAfterAttack,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
         undefined ||
@@ -238,6 +259,7 @@ export function validateSave(
           u.timeCounters >= 0 &&
           u.timeCounters <=
             Math.max(
+              chetwoodSideTime(u.code),
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
             ))) &&
@@ -419,6 +441,11 @@ export function validateSave(
         !validateNin(s, validUnit as (u: unknown) => boolean) ||
         !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
         !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
+        !validateChetwood(s, validUnit as (u: unknown) => boolean, (code) =>
+          ["ally", "attachment", "event", "player-side-quest"].includes(
+            card(code).type_code,
+          ),
+        ) ||
         !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
@@ -959,6 +986,8 @@ export function validateSave(
       ...(s.ninEilph?.setAside ?? []),
       ...(s.celebrimbor?.search ?? []),
       ...(s.antlered?.setAside ?? []),
+      ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
+      ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),
       ...(s.threeTrials
         ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
         : []),

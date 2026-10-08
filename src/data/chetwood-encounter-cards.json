@@ -1,0 +1,661 @@
+[
+  {
+    "code": "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+    "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+    "name": "Rugged Country",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor.",
+    "text": "If the current quest is a side quest, Rugged Country gets +2 [threat].",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 47,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest card in play.",
+    "encounter_set": "Eriador Wilds",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 47,
+        "quantity": 3,
+        "octgnid": "25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25aec3b5-3221-411c-83a0-b3ceed2b5c06.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+    "octgnid": "303b01b8-2d61-4c20-81a0-50800e18d617",
+    "name": "Sudden Assault",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the total [willpower] of characters committed to the quest is greater than the total [threat] in the staging area, each enemy in the staging area makes an immediate attack against the first player. If no attack is made this way, shuffle Sudden Assault and the encounter discard pile into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 21,
+    "quantity": 2,
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {},
+    "imagesrc": "/cards/303b01b8-2d61-4c20-81a0-50800e18d617.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 21,
+        "quantity": 2,
+        "octgnid": "303b01b8-2d61-4c20-81a0-50800e18d617",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/303b01b8-2d61-4c20-81a0-50800e18d617.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
+    "octgnid": "528afc17-e78f-4b02-8080-e936955a77b9",
+    "name": "Borders of Bree-land",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor.",
+    "text": "While Borders of Bree-land is in the staging area, it gains: \"Forced: At the beginning of the quest phase, return 1 enemy engaged with a player to the staging area.\"",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 19,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: Defending character gets -1 [defense] for each quest stage in play.",
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/528afc17-e78f-4b02-8080-e936955a77b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 19,
+        "quantity": 2,
+        "octgnid": "528afc17-e78f-4b02-8080-e936955a77b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/528afc17-e78f-4b02-8080-e936955a77b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
+    "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+    "name": "Weight of Responsibility",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal 1 encounter card for each quest card in play.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 50,
+    "quantity": 2,
+    "shadow": "Shadow: Defending player discards 1 attachment he controls for each quest card in play.",
+    "encounter_set": "Eriador Wilds",
+    "printed_stats": {},
+    "imagesrc": "/cards/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "7d2b321b-d4e6-4dd4-a124-028c772592ee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d2b321b-d4e6-4dd4-a124-028c772592ee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+    "octgnid": "85eb724c-a258-4d94-83ba-5e9f21d82491",
+    "name": "Orc Rearguard",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "No more than 3 progress tokens can be placed on the current quest each round.  While Orc Rearguard is the current quest it gains: \"Forced: At the end of the staging step, reveal 1 card from the encounter deck.\"",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 23,
+    "quantity": 1,
+    "quest": 3,
+    "victory": 10,
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "quest": "3",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 23,
+        "quantity": 1,
+        "octgnid": "85eb724c-a258-4d94-83ba-5e9f21d82491",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85eb724c-a258-4d94-83ba-5e9f21d82491.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
+    "octgnid": "9497ef98-8f38-4647-bf77-28d8007a911a",
+    "name": "Rescue Iârion",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Time 4. When Revealed: The first player loses control of Iarion and places him facedown underneath this stage. When this stage is defeated, the first player takes control of Iarion and exhausts him.   Forced: After the last time counter is removed from this stage, discard Iarion.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 24,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/9497ef98-8f38-4647-bf77-28d8007a911a.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "9497ef98-8f38-4647-bf77-28d8007a911a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9497ef98-8f38-4647-bf77-28d8007a911a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+    "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+    "name": "Angmar Orc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "When Revealed: Either discard 1 ally from play, or reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 43,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 3,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, return attacking enemy to the staging area.",
+    "encounter_set": "Angmar Orcs",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "3",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 43,
+        "quantity": 3,
+        "octgnid": "9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+    "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+    "name": "Angmar Marauder",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Forced: After Angmar Marauder attacks and destroys an ally, return it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 44,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 30,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each ally the defending player controls.",
+    "encounter_set": "Angmar Orcs",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2fcd022-5409-4a2f-9775-390d2c3ce7d2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+    "octgnid": "c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+    "name": "Outlying Homestead",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor.",
+    "text": "Doomed 1.\nWhile Outlying Homestead is in the staging area, players cannot reduce their threat.   Travel: Reveal a card from the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 20,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 8,
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 20,
+        "quantity": 3,
+        "octgnid": "c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+    "octgnid": "cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+    "name": "Surprising Speed",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player returns 1 enemy engaged with him to the staging area. If no enemy was returned to the staging area this way, Surprising Speed gains surge and doomed 1.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 22,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {},
+    "imagesrc": "/cards/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 22,
+        "quantity": 3,
+        "octgnid": "cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cbbcf9d4-f9d8-448a-9454-3e36c493a31e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+    "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+    "name": "Angmar Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Forced: After Angmar Captain attacks and destroys an ally, discard the top card of the defending player's deck. If the discarded card is an ally, Angmar Captain makes an additional attack against the defending player.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 45,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 2,
+    "health": 5,
+    "engagement": 35,
+    "encounter_set": "Angmar Orcs",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "2",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "cc13ea34-ab19-474e-afe5-29c8651126d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc13ea34-ab19-474e-afe5-29c8651126d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+    "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+    "name": "Shrouded Hills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "X is the number of quest cards in play.\nWhile there is only 1 quest card in play, Shrouded Hills gains surge.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 48,
+    "quantity": 2,
+    "quest": 5,
+    "encounter_set": "Eriador Wilds",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 48,
+        "quantity": 2,
+        "octgnid": "e2763cc3-019b-4397-b6f8-f647bf3fdf43",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e2763cc3-019b-4397-b6f8-f647bf3fdf43.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+    "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+    "name": "Orc Ambush",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each Orc enemy gets +1 [threat], +1 [attack], and +1 [defense].\nWhen Revealed: Each player must search the encounter deck and discard pile for an Orc enemy and put it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 46,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 10,
+    "encounter_set": "Angmar Orcs",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 46,
+        "quantity": 1,
+        "octgnid": "e347f103-7444-4681-ae57-49c7b84dd3c0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e347f103-7444-4681-ae57-49c7b84dd3c0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
+    "octgnid": "e542f4f9-420f-40eb-8c95-d648f2589511",
+    "name": "Orc War Party",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Cannot have attachments.\nWhile Orc War Party is in the staging area, enemies in the staging area cannot take damage. The players cannot win the game while Orc War Party is in play.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 17,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 6,
+    "engagement": 40,
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "6",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/e542f4f9-420f-40eb-8c95-d648f2589511.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "e542f4f9-420f-40eb-8c95-d648f2589511",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e542f4f9-420f-40eb-8c95-d648f2589511.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "name": "Lost in the Wilderness",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player places all cards in his hand facedown underneath Lost in the Wilderness.  Forced: When Lost in the Wilderness is defeated, return each card underneath to its owner's hand.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 51,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 10,
+    "encounter_set": "Eriador Wilds",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 51,
+        "quantity": 1,
+        "octgnid": "efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efcd8672-26f1-4c32-b6ef-5a06f80e406a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+    "octgnid": "f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+    "name": "Iârion",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dunedain. Ranger.",
+    "text": "X is the number of quest cards in play.  The first player gains control of Iarion.\nResponse: After a side quest is revealed from the encounter deck, ready Iarion. If Iarion leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 16,
+    "quantity": 1,
+    "health": 4,
+    "encounter_set": "Iarion",
+    "printed_stats": {
+      "willpower": "X",
+      "attack": "X",
+      "defense": "X",
+      "health": "4"
+    },
+    "imagesrc": "/cards/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7f5ca4e-42db-48f9-b4a5-efe419f53fa3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+    "octgnid": "f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+    "name": "Chetwood Forest",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Forest.",
+    "text": "Travel: One player chooses and engages an enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 18,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Defending player either exhausts a hero he controls, or returns attacking enemy to the staging area after this attack.",
+    "encounter_set": "Intruders in Chetwood",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 18,
+        "quantity": 3,
+        "octgnid": "f9d0fb76-13bc-44f9-853f-8d2e417d0098",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9d0fb76-13bc-44f9-853f-8d2e417d0098.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
+    "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+    "name": "Pressing Needs",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 2.\nWhen Revealed: Either search the encounter deck and discard pile for an encounter side quest and reveal it, or choose a different quest card in play to be the current quest until the end of the phase. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 49,
+    "quantity": 2,
+    "encounter_set": "Eriador Wilds",
+    "printed_stats": {},
+    "imagesrc": "/cards/fd2014e3-43df-4378-9c67-61f99353f87f.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 49,
+        "quantity": 2,
+        "octgnid": "fd2014e3-43df-4378-9c67-61f99353f87f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd2014e3-43df-4378-9c67-61f99353f87f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

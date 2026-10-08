@@ -1,3 +1,4 @@
+import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
 import type { Effect, GameState } from "./types";
 import { card, name } from "./cards";
 import {
@@ -33,7 +34,13 @@ export function sideQuestStart(s: GameState) {
   delete s.sideQuestSelections;
   const effects: Effect[] = [];
   eachArea(s, () => {
-    if (s.staging.some((u) => card(u.code).type_code === "player-side-quest"))
+    if (
+      s.staging.some((u) =>
+        ["player-side-quest", "encounter-side-quest"].includes(
+          card(u.code).type_code,
+        ),
+      )
+    )
       effects.push(fx("sideQuestChoose", { player: firstPlayer(s) }));
   });
   prepend(s, ...effects);
@@ -44,13 +51,16 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
   if (amount <= 0) return;
   const selected = selectedSideQuest(s);
   if (!selected) {
-    s.progress += amount;
+    s.progress += chetwoodProgress(s, amount);
     return;
   }
   const quest = selectedSideQuestUnit(s);
   if (!quest) return; // A defeated side quest stays current until quest phase end.
   const goal = card(quest.code).quest ?? 0;
-  quest.progress = Math.min(goal, quest.progress + amount);
+  quest.progress += chetwoodProgress(
+    s,
+    Math.min(goal - quest.progress, amount),
+  );
   if (quest.progress < goal) return;
   selected.defeated = true;
   const attachments = discardQuestAttachments(s, quest.code, quest.id);
@@ -65,6 +75,7 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
       }),
     );
   collectorQuestDefeated(s, quest.code, attachments);
+  chetwoodSideDefeated(s, quest);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);
@@ -100,7 +111,11 @@ export function sideQuestEffect(s: GameState, e: Effect) {
             effects: [],
           },
           ...s.staging
-            .filter((u) => card(u.code).type_code === "player-side-quest")
+            .filter((u) =>
+              ["player-side-quest", "encounter-side-quest"].includes(
+                card(u.code).type_code,
+              ),
+            )
             .map((u) => ({
               id: u.id,
               code: u.code,
@@ -114,7 +129,12 @@ export function sideQuestEffect(s: GameState, e: Effect) {
     }
     case "sideQuestSelect": {
       const u = s.staging.find((x) => x.id === e.target && x.code === e.code);
-      if (u && card(u.code).type_code === "player-side-quest") {
+      if (
+        u &&
+        ["player-side-quest", "encounter-side-quest"].includes(
+          card(u.code).type_code,
+        )
+      ) {
         (s.sideQuestSelections ??= {})[sideQuestArea(s)] = {
           id: u.id,
           code: u.code,

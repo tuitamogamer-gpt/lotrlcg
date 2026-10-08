@@ -5,8 +5,8 @@
     "playerCards": 438,
     "heroes": 50,
     "deckCards": 387,
-    "encounterCards": 485,
-    "scenarios": 36,
+    "encounterCards": 503,
+    "scenarios": 37,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -43,17 +43,18 @@
       "trouble-in-tharbad",
       "the-nin-in-eilph",
       "celebrimbors-secret",
-      "the-antlered-crown"
+      "the-antlered-crown",
+      "intruders-in-chetwood"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1047,
-    "pending": 3136
+    "scripted": 1066,
+    "pending": 3117
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 72
+    "scripted": 74
   },
   "registeredCodes": [
     "01001",
@@ -599,6 +600,7 @@
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
+    "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
@@ -608,6 +610,7 @@
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+    "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
@@ -901,6 +904,7 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
@@ -930,6 +934,7 @@
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
@@ -940,6 +945,7 @@
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
+    "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
@@ -964,6 +970,7 @@
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
+    "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
@@ -974,6 +981,7 @@
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
+    "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
@@ -992,6 +1000,7 @@
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
+    "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
@@ -1000,6 +1009,7 @@
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
@@ -1008,6 +1018,7 @@
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+    "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
@@ -1020,6 +1031,8 @@
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
+    "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
@@ -1036,9 +1049,12 @@
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
+    "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
+    "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+    "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
@@ -1048,15 +1064,18 @@
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
+    "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
+    "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
@@ -1064,6 +1083,7 @@
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
     "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
@@ -1765,7 +1785,7 @@
     {
       "product": "the-lost-realm",
       "total": 73,
-      "scripted": 15,
+      "scripted": 34,
       "player": 15,
       "playerScripted": 15
     },
@@ -13830,7 +13850,7 @@
       "name": "Rugged Country",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -14774,7 +14794,7 @@
       "name": "Sudden Assault",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -20574,7 +20594,7 @@
       "name": "Borders of Bree-land",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -23910,7 +23930,7 @@
       "name": "Weight of Responsibility",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -24718,7 +24738,7 @@
       "name": "Orc Rearguard",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -25966,7 +25986,7 @@
       "name": "Rescue Iârion",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -26702,7 +26722,7 @@
       "name": "Angmar Orc",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -28422,7 +28442,7 @@
       "name": "Angmar Marauder",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -29758,7 +29778,7 @@
       "name": "Stop the War Party",
       "type": "quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -30190,7 +30210,7 @@
       "name": "Outlying Homestead",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -30950,7 +30970,7 @@
       "name": "Surprising Speed",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -30974,7 +30994,7 @@
       "name": "Angmar Captain",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -32534,7 +32554,7 @@
       "name": "Shrouded Hills",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -32622,7 +32642,7 @@
       "name": "Orc Ambush",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -32822,7 +32842,7 @@
       "name": "Orc War Party",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -33870,7 +33890,7 @@
       "name": "Lost in the Wilderness",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -34598,7 +34618,7 @@
       "name": "Iârion",
       "type": "objective-ally",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -34742,7 +34762,7 @@
       "name": "Chetwood Forest",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -35158,7 +35178,7 @@
       "name": "Pressing Needs",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -35801,8 +35821,8 @@
       "id": "E05.1",
       "name": "Intruders in Chetwood (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "intruders-in-chetwood",
+      "state": "scripted"
     },
     {
       "id": "E05.2",
@@ -37292,8 +37312,8 @@
       "id": "Q05.1",
       "name": "Intruders in Chetwood",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "intruders-in-chetwood",
+      "state": "scripted"
     },
     {
       "id": "Q05.2",

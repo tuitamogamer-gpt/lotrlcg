@@ -354,11 +354,13 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
         effects.map((effect, i) => ({
           id: `order-${i}`,
           code: effect.code,
-          label: effect.code
-            ? `${card(effect.code).name}${effect.target && get(s, effect.target) && effect.kind === "fangornRestDamage" ? ` · ${name(get(s, effect.target)!)}` : ""}`
-            : effect.kind === "fangornTimeExpired"
-              ? "The quest's Time effect"
-              : "Remove a quest time counter",
+          label:
+            effect.text ??
+            (effect.code
+              ? `${card(effect.code).name}${effect.target && get(s, effect.target) && effect.kind === "fangornRestDamage" ? ` · ${name(get(s, effect.target)!)}` : ""}`
+              : effect.kind === "fangornTimeExpired"
+                ? "The quest's Time effect"
+                : "Remove a quest time counter"),
           effects: [
             effect,
             fx("fangornOrder", {

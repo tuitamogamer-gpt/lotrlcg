@@ -1,0 +1,42 @@
+[
+  {
+    "code": "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
+    "octgnid": "be3ca12f-2550-48b4-9384-e71a1b401d4e",
+    "name": "Stop the War Party",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Put Iarion into play. Add 1 Orc War Party to the staging area. Each player adds 1 different location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 68,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Intruders in Chetwood",
+    "side": "A",
+    "back_name": "Stop the War Party",
+    "back_text": "Enemies do not make engagement checks.  Forced: At the end of the refresh phase, raise each player's threat by 1 for each enemy in the staging area.  If the players control Iarion and defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 30,
+    "back_imagesrc": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "be3ca12f-2550-48b4-9384-e71a1b401d4e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/be3ca12f-2550-48b4-9384-e71a1b401d4e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

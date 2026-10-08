@@ -1,3 +1,4 @@
+import * as Chetwood from "./chetwood";
 import { selectedSideQuest } from "./side-quest-support";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
@@ -469,11 +470,13 @@ export function stats(s: GameState, u: Unit) {
   const namelessX = foundationsEnemyX(s, u);
   const heirsScenarioBonus = heirsStats(s, u);
   const druadanScenarioBonus = druadanForestStats(s, u);
+  const chetwoodBonus = Chetwood.chetwoodStats(s, u);
   const result = {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
         [
+          chetwoodBonus.will,
           foundationsBonus.will,
           druadanScenarioBonus.will,
           morgulBonus.will,
@@ -509,6 +512,7 @@ export function stats(s: GameState, u: Unit) {
     attack: watcherWaterZeroCombatStats(u)
       ? 0
       : (namelessX ?? c.attack ?? 0) +
+        chetwoodBonus.attack +
         foundationsBonus.attack +
         heirsScenarioBonus.attack +
         Fords.fordsAttackBonus(s, u) +
@@ -554,6 +558,7 @@ export function stats(s: GameState, u: Unit) {
           0,
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
+            chetwoodBonus.defense +
             foundationsBonus.defense +
             heirsScenarioBonus.defense +
             DunlandQuest.dunlandCombatBonus(s, u) +
@@ -686,6 +691,7 @@ export const threatOf = (s: GameState, u: Unit) =>
           druadanForestThreat(s, u) ??
           card(u.code).threat ??
           0) +
+          Chetwood.chetwoodThreatBonus(s, u) +
           Fords.fordsThreatBonus(s, u) +
           Catch.catchThreatBonus(s, u) +
           DunlandQuest.dunlandThreatBonus(s, u) +

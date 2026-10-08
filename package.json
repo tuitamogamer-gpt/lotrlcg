@@ -41,11 +41,12 @@
     "test:engine": "node scripts/test-engine.mjs",
     "test:simulation": "node --import tsx --test tests/simulation.test.ts",
     "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons",
-    "test:browser-players": "npm run test:lost-realm-players && npm run test:ring-maker-players && npm run test:against-shadow-finale && npm run test:pending-import",
+    "test:browser-players": "npm run test:lost-realm-players && npm run test:ring-maker-players && npm run test:against-shadow-finale && npm run test:pending-import && npm run test:lost-realm-quests",
     "test:browser-ring-maker": "npm run test:ring-maker-quests",
     "test:multiplayer-games": "node --import tsx --test --test-name-pattern=\"^hot-seat .*: complete seeded games with save checks$\" tests/hotseat.test.ts",
     "prepare:scenario-import": "node scripts/prepare-scenario-import.mjs",
-    "test:pending-import": "node scripts/browser-pending-import.mjs"
+    "test:pending-import": "node scripts/browser-pending-import.mjs",
+    "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",
