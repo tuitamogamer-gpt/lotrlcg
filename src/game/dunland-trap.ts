@@ -36,6 +36,7 @@ import { attachmentHasTrait, hasTrait } from "./expansion-passives";
 import { currentQuestCode, currentQuestUnit } from "./quest-state";
 import { canLeaveHand } from "./hand-rules";
 import { DUNLAND_TRAP as D, dunlandTimeLimit } from "./dunland-trap-support";
+import { heirsShadowDealt } from "./heirs-numenor";
 
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
@@ -210,8 +211,7 @@ export function dunlandShadow(s: GameState, code: string) {
     c.attackBonus += c.defenderId || c.defenderIds?.length ? 1 : 3;
   else if (code === D.stream) {
     c.attackBonus++;
-    const shadow = encounterDraw(s, true);
-    if (shadow) u.shadows.push(shadow);
+    prepend(s, fx("khazadExtraShadows", { target: u.id, count: 1 }));
   } else if (code === D.frenzied) u.roundCannotTakeDamage = true;
   else return false;
   return true;
@@ -428,7 +428,10 @@ export function dunlandTrapEffect(s: GameState, e: Effect): boolean {
     case "dunlandShadow": {
       if (u) {
         const code = encounterDraw(s, true);
-        if (code) u.shadows.push(code);
+        if (code) {
+          u.shadows.push(code);
+          heirsShadowDealt(s, u);
+        }
       }
       break;
     }

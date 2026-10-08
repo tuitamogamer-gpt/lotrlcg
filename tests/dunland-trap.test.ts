@@ -643,10 +643,13 @@ test("Plains shadow gives +1 defended or +3 undefended; Stream adds +1 and anoth
   assert.equal(s.combat!.attackBonus, 4);
   s.encounterDeck = [D.plains];
   dunlandShadow(s, D.stream);
+  effect(s, s.queue.shift()!);
   assert.equal(s.combat!.attackBonus, 5);
   assert.deepEqual(u.shadows, [D.plains]);
+  s.queue = [];
   s.encounterDiscard = [D.warrior];
   dunlandShadow(s, D.stream);
+  effect(s, s.queue.shift()!);
   assert.deepEqual(u.shadows, [D.plains]);
 });
 test("Frenzied shadow prevents all damage until round end, surviving combat cleanup and save reload", () => {
@@ -734,3 +737,23 @@ test("Stage-three initial engagement does not reorder pre-existing counter losse
   s = settle(s);
   assert.equal(s.dunlandTrap!.time, 4);
 });
+
+for (const count of [1, 2])
+  test(`Stream shadow resolves ${count} chained extra shadow effects before combat damage`, () => {
+    let s = base();
+    const enemy = make(s, D.warrior);
+    s.engaged = [enemy];
+    s.encounterDeck = [...Array(count).fill(D.stream), D.plains];
+    effect(s, fx("immediateAttack", { target: enemy.id }));
+    flush(s);
+    const hero = s.heroes[0];
+    s = choose(reload(s), hero.id);
+    assert.equal(get(s, hero.id)!.damage, 2 + count);
+    assert.equal(s.combat, null);
+    assert.equal(s.encounterDeck.length, 0);
+    assert.equal(
+      s.encounterDiscard.filter((c) => c === D.stream).length,
+      count,
+    );
+    assert.equal(s.encounterDiscard.filter((c) => c === D.plains).length, 1);
+  });
