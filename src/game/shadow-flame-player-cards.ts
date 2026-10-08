@@ -1,3 +1,8 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { antleredRoutePiles } from "./antlered";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
@@ -323,7 +328,9 @@ function miruvorChoose(s: GameState, e: Effect) {
     {
       id: "top",
       label: "Put Miruvor on top of its owner's deck",
-      valid: seatView(s, e.owner ?? 0).discard[e.value ?? -1] === "04133",
+      valid:
+        !dikeCannotLeaveDiscard(s, e.owner) &&
+        seatView(s, e.owner ?? 0).discard[e.value ?? -1] === "04133",
     },
   ].filter((mode) => mode.valid && !selected.includes(mode.id));
   choose(
@@ -504,6 +511,7 @@ export function handleShadowFlamePlayerEffect(
       }
       if (mode === "top")
         forOwner(s, e.owner ?? 0, () => {
+          requireRule(!dikeCannotLeaveDiscard(s, e.owner), DIKE_DISCARD_REASON);
           requireRule(
             s.discard[e.value ?? -1] === "04133",
             "The actual discarded Miruvor must remain available.",
@@ -523,20 +531,26 @@ export function handleShadowFlamePlayerEffect(
         target &&
         rhosgobelHealingAllowed(s, target)
       )
-        choose(s, "Elrond · After another card heals", [
-          {
-            id: "heal",
-            label: "Heal 1 additional damage",
-            code: hero.code,
-            effects: [
-              fx("shadowFlameElrondHeal", {
-                source: hero.id,
-                target: target.id,
-              }),
-            ],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          hero.id,
+          hero.code,
+          "Elrond · After another card heals",
+          [
+            {
+              id: "heal",
+              label: "Heal 1 additional damage",
+              code: hero.code,
+              effects: [
+                fx("shadowFlameElrondHeal", {
+                  source: hero.id,
+                  target: target.id,
+                }),
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "shadowFlameElrondHeal": {
@@ -564,15 +578,21 @@ export function handleShadowFlamePlayerEffect(
         s.hand.some((u) => u.code === "04132") &&
         canPay(s, card("04132"))
       )
-        choose(s, "A Elbereth! Gilthoniel! · Enemy attacked you", [
-          {
-            id: "play",
-            label: "Put enemy on bottom of encounter deck",
-            code: "04132",
-            effects: [fx("shadowFlameElberethBottom", { target: enemy.id })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04132")!.id,
+          "04132",
+          "A Elbereth! Gilthoniel! · Enemy attacked you",
+          [
+            {
+              id: "play",
+              label: "Put enemy on bottom of encounter deck",
+              code: "04132",
+              effects: [fx("shadowFlameElberethBottom", { target: enemy.id })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "shadowFlameElberethBottom": {

@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { selectedSideQuest } from "./side-quest-support";
 import { mainQuestCode } from "./quest-state";
@@ -493,6 +494,7 @@ export function heirsExplored(s: GameState, u: Unit) {
     prepend(
       s,
       fx("heirsRemoveStageResponse", {
+        source: u.id,
         value: stage,
         code: u.code,
         player: first(s),
@@ -976,18 +978,24 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
       if (u) discardCharacter(s, u);
       break;
     case "heirsRemoveStageResponse":
-      choose(s, `${card(e.code!).name} · Remove stage ${e.value}`, [
-        {
-          id: "remove",
-          label: `Remove stage ${e.value} from the quest deck`,
-          effects: [fx("heirsRemoveStage", { value: e.value })],
-        },
-        {
-          id: "skip",
-          label: "Continue without removing the stage",
-          effects: [],
-        },
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? e.code!,
+        e.code!,
+        `${card(e.code!).name} · Remove stage ${e.value}`,
+        [
+          {
+            id: "remove",
+            label: `Remove stage ${e.value} from the quest deck`,
+            effects: [fx("heirsRemoveStage", { value: e.value })],
+          },
+          {
+            id: "skip",
+            label: "Continue without removing the stage",
+            effects: [],
+          },
+        ],
+      );
       break;
     case "heirsRemoveStage":
       if (e.value! > s.stage && !state(s).removedStages.includes(e.value!))

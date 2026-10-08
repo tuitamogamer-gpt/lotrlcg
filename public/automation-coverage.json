@@ -5,8 +5,8 @@
     "playerCards": 438,
     "heroes": 50,
     "deckCards": 387,
-    "encounterCards": 520,
-    "scenarios": 38,
+    "encounterCards": 538,
+    "scenarios": 39,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -45,17 +45,18 @@
       "celebrimbors-secret",
       "the-antlered-crown",
       "intruders-in-chetwood",
-      "the-weather-hills"
+      "the-weather-hills",
+      "deadmens-dike"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1085,
-    "pending": 3098
+    "scripted": 1105,
+    "pending": 3078
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 76
+    "scripted": 78
   },
   "registeredCodes": [
     "01001",
@@ -576,6 +577,7 @@
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
+    "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
@@ -585,6 +587,7 @@
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
+    "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
@@ -597,6 +600,7 @@
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
+    "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
@@ -641,6 +645,7 @@
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
     "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+    "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
@@ -913,6 +918,7 @@
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
@@ -921,6 +927,7 @@
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
+    "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
@@ -928,6 +935,7 @@
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
+    "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
@@ -935,6 +943,7 @@
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
+    "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
@@ -951,6 +960,7 @@
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
@@ -961,6 +971,7 @@
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
@@ -973,6 +984,7 @@
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
+    "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
@@ -986,6 +998,7 @@
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
+    "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
@@ -1007,10 +1020,13 @@
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+    "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
+    "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
@@ -1036,6 +1052,7 @@
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
+    "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
@@ -1055,6 +1072,7 @@
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
+    "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
@@ -1070,6 +1088,7 @@
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
+    "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
@@ -1093,6 +1112,7 @@
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
+    "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
     "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
@@ -1118,6 +1138,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93078",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
+    "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
     "orc-guard",
@@ -1805,7 +1826,7 @@
     {
       "product": "the-lost-realm",
       "total": 73,
-      "scripted": 53,
+      "scripted": 73,
       "player": 15,
       "playerScripted": 15
     },
@@ -12246,7 +12267,7 @@
       "name": "Restless Evil",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -12974,7 +12995,7 @@
       "name": "Unnatural Fog",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -13494,7 +13515,7 @@
       "name": "Cursed Dead",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -16590,7 +16611,7 @@
       "name": "Deadmen's Gate",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -20654,7 +20675,7 @@
       "name": "Thaurdir",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -21286,7 +21307,7 @@
       "name": "Fornost Square",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -22694,7 +22715,7 @@
       "name": "The Shades of Angmar",
       "type": "quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -23030,7 +23051,7 @@
       "name": "Seal the Tomb",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -24526,7 +24547,7 @@
       "name": "Broken Battlements",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -25102,7 +25123,7 @@
       "name": "A Fell Wraith",
       "type": "quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -25558,7 +25579,7 @@
       "name": "Thaurdir's Damned",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -26038,7 +26059,7 @@
       "name": "Haunted Keep",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -27390,7 +27411,7 @@
       "name": "Norbury Tombs",
       "type": "location",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -27470,7 +27491,7 @@
       "name": "Heavy Curse",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -27750,7 +27771,7 @@
       "name": "Dead Lord",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -30246,7 +30267,7 @@
       "name": "The Power of Angmar",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -31742,7 +31763,7 @@
       "name": "Terror of the North",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -32718,7 +32739,7 @@
       "name": "The Shadow World",
       "type": "encounter-side-quest",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -34702,7 +34723,7 @@
       "name": "Dark Sorcery",
       "type": "treachery",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -35390,7 +35411,7 @@
       "name": "Baleful Shade",
       "type": "enemy",
       "pack": "The Lost Realm",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-lost-realm"
     },
     {
@@ -35855,8 +35876,8 @@
       "id": "E05.3",
       "name": "Deadmen's Dike (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "deadmens-dike",
+      "state": "scripted"
     },
     {
       "id": "E05.4",
@@ -37346,8 +37367,8 @@
       "id": "Q05.3",
       "name": "Deadmen's Dike",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "deadmens-dike",
+      "state": "scripted"
     },
     {
       "id": "Q05.4",

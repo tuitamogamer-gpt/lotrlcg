@@ -1,3 +1,7 @@
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { rangerEvent } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
@@ -51,7 +55,6 @@ import {
   get,
   hasGondor,
   log,
-  make,
   opts,
   prepend,
   requireRule,
@@ -282,19 +285,23 @@ export function eventEffect(
       else reduceThreat(s, 6, u?.id ?? code);
       break;
     case "01049":
+      if (dikeCannotLeaveDiscard(s)) break;
       removePlayedEvent(s, code);
       choosePlayer(s, "Will of the West · Choose a fellowship", [
         fx("reshufflePlayer"),
       ]);
       break;
     case "01051": {
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       const t = discardTarget(s, target!);
       requireRule(
         allyCanEnter(s, seatView(s, t.player).discard[t.index]),
         "Choose an ally that can legally enter play.",
       );
-      const ally = seatView(s, t.player).discard.splice(t.index, 1)[0];
-      const fresh = make(s, ally);
+      let fresh!: Unit;
+      forOwner(s, t.player, () => {
+        fresh = takePlayerDiscard(s, t.index);
+      });
       if (s.table) fresh.owner = t.player;
       enterAlly(s, fresh);
       break;
@@ -335,11 +342,12 @@ export function eventEffect(
       break;
     }
     case "01054": {
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       const t = discardTarget(s, target!);
       forOwner(s, t.player, () => {
-        const code = s.discard.splice(t.index, 1)[0];
-        s.heroes.push(make(s, code));
-        s.fallenThreat -= card(code).threat ?? 0;
+        const hero = takePlayerDiscard(s, t.index);
+        s.heroes.push(hero);
+        s.fallenThreat -= card(hero.code).threat ?? 0;
       });
       break;
     }

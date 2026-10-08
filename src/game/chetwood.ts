@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -83,16 +84,20 @@ export function chetwoodOpeningHandsKept(s: GameState) {
 }
 export function chetwoodCheck(s: GameState) {
   const q = s.chetwood;
-  if (!q?.initialized || s.status !== "playing") return;
-  for (const [id, hand] of Object.entries(q.hiddenHands)) {
-    q.hiddenHands[id] = hand.filter((u) => {
+  if (
+    !(q?.initialized || s.deadmensDike?.initialized) ||
+    s.status !== "playing"
+  )
+    return;
+  for (const [id, hand] of Object.entries(q?.hiddenHands ?? {})) {
+    q!.hiddenHands[id] = hand.filter((u) => {
       if (!s.table?.seats[u.owner!]?.eliminated) return true;
       forOwner(s, u.owner!, () => s.removed.push(u.code));
       return false;
     });
   }
   const ally = iarion(s);
-  if (!ally && !q.captive) {
+  if (!ally && !q?.captive) {
     lose(s, "Iârion has left play. The Rangers' mission has failed.");
     return;
   }
@@ -106,7 +111,7 @@ export function chetwoodCheck(s: GameState) {
 }
 /** The encounter objective is not owned by the eliminated player. Its control follows the first-player token. */
 export function chetwoodPlayerEliminated(s: GameState, player: number) {
-  if (!s.chetwood) return;
+  if (!s.chetwood && !s.deadmensDike) return;
   const ally = s.allies.find((u) => u.code === C.iarion && !u.blanked);
   const next = playerOrder(s).find((p) => p !== player);
   if (!ally || next === undefined) return;
@@ -177,7 +182,12 @@ export function chetwoodCardEntered(
   if (chetwoodSideTime(u.code))
     u.timeCounters = fromReveal ? chetwoodSideTime(u.code) : 0;
 }
-export function chetwoodAfterReveal(s: GameState, code: string) {
+export function chetwoodAfterReveal(
+  s: GameState,
+  code: string,
+  origin: Effect["revealOrigin"] = "encounter",
+) {
+  if (origin !== "encounter") return;
   if (card(code).type_code !== "encounter-side-quest") return;
   const ally = iarion(s);
   if (ally && ally.exhausted && !ally.blanked)
@@ -517,6 +527,7 @@ export function chetwoodEffect(s: GameState, e: Effect) {
   // depend on Chetwood's captive, hands, setup choices or progress history.
   if (
     !q &&
+    !(s.deadmensDike && ["chetReadyIarion", "chetReady"].includes(e.kind)) &&
     (!s.weatherHills ||
       ![
         "chetShuffle",
@@ -578,14 +589,20 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       break;
     case "chetReadyIarion":
       if (u && u.exhausted && !u.blanked)
-        choose(s, "Iârion · Ready after the side quest?", [
-          {
-            id: "ready",
-            label: "Ready Iârion",
-            effects: [fx("chetReady", { target: u.id })],
-          },
-          { id: "skip", label: "Skip the response", effects: [] },
-        ]);
+        choosePlayerResponse(
+          s,
+          u.id,
+          u.code,
+          "Iârion · Ready after the side quest?",
+          [
+            {
+              id: "ready",
+              label: "Ready Iârion",
+              effects: [fx("chetReady", { target: u.id })],
+            },
+            { id: "skip", label: "Skip the response", effects: [] },
+          ],
+        );
       break;
     case "chetReady":
       if (u) readyCharacter(s, u);

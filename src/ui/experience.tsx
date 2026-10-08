@@ -1,4 +1,5 @@
 import { selectedSideQuest } from "../game/side-quest-support";
+import { DIKE } from "../game/deadmens-dike-support";
 import { currentQuestProgress } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
@@ -657,6 +658,30 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
+  if (s.deadmensDike) {
+    const thaurdir = [...s.staging, ...allEngaged(s)].find(
+      (u) => u.code === DIKE.thaurdir,
+    );
+    const thaurdirWounded = thaurdir
+      ? thaurdir.damage >= stats(s, thaurdir).health
+      : s.deadmensDike.setAside.length === 0;
+    const goal = s.stage === 1 ? 11 : 13;
+    return (
+      <div className="quest-goals">
+        <span className={s.progress >= goal ? "done" : ""}>
+          {s.progress >= goal ? <Check size={12} /> : <Shield size={12} />}
+          Place {goal} quest progress
+        </span>
+        {s.stage === 2 && (
+          <span className={thaurdirWounded ? "done" : ""}>
+            {thaurdirWounded ? <Check size={12} /> : <Shield size={12} />}
+            Reduce Thaurdir to 0 hit points
+          </span>
+        )}
+        <span>Protect Iârion · Keep at least 1 card in your deck</span>
+      </div>
+    );
+  }
   if (s.weatherHills)
     return (
       <div className="quest-goals">

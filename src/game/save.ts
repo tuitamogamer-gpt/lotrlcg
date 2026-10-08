@@ -1,3 +1,7 @@
+import {
+  validateDeadmensDike,
+  dikeLocationTimeLimit,
+} from "./deadmens-dike-support";
 import { validateChetwood, chetwoodSideTime } from "./chetwood-support";
 import { validateWeather, weatherSideTime } from "./weather-hills-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
@@ -185,6 +189,11 @@ export function validateSave(
               v.player < (s.table?.seats.length ?? 1) &&
               typeof v.shadows === "boolean",
           ))) &&
+      (c.dikeDestroyedPlayers === undefined ||
+        (Array.isArray(c.dikeDestroyedPlayers) &&
+          c.dikeDestroyedPlayers.every(
+            (p) => integer(p) && p >= 0 && p < seatCount,
+          ))) &&
       (c.immediatePreviousRevealedShadowCount === undefined ||
         (integer(c.immediatePreviousRevealedShadowCount) &&
           c.immediatePreviousRevealedShadowCount >= 0 &&
@@ -206,6 +215,7 @@ export function validateSave(
         c.immediatePreviousShadowCancelsCombatDamage,
         c.chetwoodAllyKilled,
         c.weatherCharacterKilled,
+        c.dikeCharacterKilled,
         c.chetwoodReturnOnAllyKill,
         c.chetwoodReturnAfterAttack,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -219,6 +229,7 @@ export function validateSave(
       [
         c.crownTimeOnKill,
         c.weatherRuinsThreat,
+        c.dikeRevealOnCharacterKill,
         c.celebExcessCopies,
         c.celebThreatCopies,
         c.celebAllyCostCopies,
@@ -264,6 +275,7 @@ export function validateSave(
             Math.max(
               chetwoodSideTime(u.code),
               weatherSideTime(u.code),
+              dikeLocationTimeLimit(s, u.code, seatCount),
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
             ))) &&
@@ -448,6 +460,7 @@ export function validateSave(
         !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
         !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
         !validateWeather(s, validUnit as (u: unknown) => boolean) ||
+        !validateDeadmensDike(s, validUnit as (u: unknown) => boolean) ||
         !validateChetwood(s, validUnit as (u: unknown) => boolean, (code) =>
           ["ally", "attachment", "event", "player-side-quest"].includes(
             card(code).type_code,
@@ -850,7 +863,16 @@ export function validateSave(
             typeof o.label === "string" &&
             (!o.code || SCRIPTED.has(o.code) || knownQuest(o.code)) &&
             Array.isArray(o.effects) &&
-            o.effects.every(validEffect),
+            o.effects.every(validEffect) &&
+            (o.ability === undefined ||
+              (!!o.ability &&
+                integer(o.ability.player) &&
+                o.ability.player >= 0 &&
+                o.ability.player < (s.table?.seats.length ?? 1) &&
+                typeof o.ability.source === "string" &&
+                typeof o.ability.code === "string" &&
+                (SCRIPTED.has(o.ability.code) || knownQuest(o.ability.code)) &&
+                ["action", "response"].includes(o.ability.type))),
         ))
     )
       return false;
@@ -994,6 +1016,7 @@ export function validateSave(
       ...(s.celebrimbor?.search ?? []),
       ...(s.antlered?.setAside ?? []),
       ...(s.weatherHills?.setAside ?? []),
+      ...(s.deadmensDike?.setAside ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),
       ...(s.threeTrials

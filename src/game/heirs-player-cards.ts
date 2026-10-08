@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
@@ -415,15 +416,21 @@ export function handleHeirsPlayerEffect(s: GameState, e: Effect): boolean {
     case "heirsHunterResponse": {
       const u = get(s, e.source);
       if (u?.code === "05014" && !u.blanked && s.deck.length)
-        choose(s, "Hunter of Lamedon · Played from hand", [
-          {
-            id: "reveal",
-            label: "Reveal the top card",
-            code: u.code,
-            effects: [fx("heirsHunterReveal")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          u.id,
+          u.code,
+          "Hunter of Lamedon · Played from hand",
+          [
+            {
+              id: "reveal",
+              label: "Reveal the top card",
+              code: u.code,
+              effects: [fx("heirsHunterReveal")],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "heirsHunterReveal": {
@@ -460,15 +467,21 @@ export function handleHeirsPlayerEffect(s: GameState, e: Effect): boolean {
         !a.blanked &&
         !a.facedown
       )
-        choose(s, "Spear of the Citadel · Declared defender", [
-          {
-            id: "damage",
-            label: "Deal 1 damage to the attacking enemy",
-            code: a.code,
-            effects: [{ ...e, kind: "heirsSpearDamage" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Spear of the Citadel · Declared defender",
+          [
+            {
+              id: "damage",
+              label: "Deal 1 damage to the attacking enemy",
+              code: a.code,
+              effects: [{ ...e, kind: "heirsSpearDamage" }],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "heirsSpearDamage": {
@@ -492,15 +505,21 @@ export function handleHeirsPlayerEffect(s: GameState, e: Effect): boolean {
         s.hand.some((u) => u.code === "05012") &&
         canPay(s, card("05012"))
       )
-        choose(s, "A Watchful Peace · Location explored", [
-          {
-            id: "return",
-            label: "Return explored location to encounter-deck top",
-            code: "05012",
-            effects: [{ ...e, kind: "heirsPeaceReturn" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "05012")!.id,
+          "05012",
+          "A Watchful Peace · Location explored",
+          [
+            {
+              id: "return",
+              label: "Return explored location to encounter-deck top",
+              code: "05012",
+              effects: [{ ...e, kind: "heirsPeaceReturn" }],
+            },
+            skip,
+          ],
+        );
       return true;
     case "heirsPeaceReturn": {
       requireRule(

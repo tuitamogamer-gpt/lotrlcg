@@ -1,4 +1,8 @@
 import { movableHand } from "./hand-rules";
+import {
+  choosePlayerResponse,
+  mandatoryPlayerResponse,
+} from "./player-ability-triggers";
 import { heirsShadowDealt } from "./heirs-numenor";
 import { longDarkEffect } from "./long-dark";
 import { shadowFlameEffect, shadowFlameQuestEnd } from "./shadow-flame";
@@ -23,6 +27,7 @@ import {
   allHeroes,
   forOwner,
   ownerOf,
+  attachmentController,
   seatView,
   defendersFor,
 } from "./table";
@@ -97,18 +102,40 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
         [
           ...responses.map((id) => {
             const code = id.split(":")[0],
-              value = code === "01005" ? 2 : 1;
+              value = code === "01005" ? 2 : 1,
+              source = id.slice(code.length + 1),
+              hero = code === "01005" ? get(s, source) : undefined,
+              host =
+                code === "01039"
+                  ? allCharacters(s).find((u) =>
+                      u.attachments.some((a) => a.id === source),
+                    )
+                  : undefined,
+              attachment = host?.attachments.find((a) => a.id === source),
+              player = hero
+                ? ownerOf(s, hero)
+                : host && attachment
+                  ? (attachmentController(s, host, attachment) ??
+                    ownerOf(s, host))
+                  : (e.player ?? 0);
             return {
               id,
               code,
               label: `${card(code).name} · Place ${value} progress`,
               effects: [
-                fx("questProgress", {
-                  value,
-                  ...(code === "01005"
-                    ? { source: id.slice(code.length + 1), code }
-                    : {}),
-                }),
+                mandatoryPlayerResponse(
+                  s,
+                  source,
+                  code,
+                  [
+                    fx("questProgress", {
+                      value,
+                      source,
+                      code,
+                    }),
+                  ],
+                  player,
+                ),
                 fx("attackProgress", {
                   ids: responses.filter((x) => x !== id),
                 }),
@@ -125,9 +152,12 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       log(s, `A victory response places ${e.value} progress.`, "good");
       progress(s, e.value ?? 0, true);
       break;
-    case "valorResponse":
-      if (u && get(s, e.source))
-        choose(s, `Valor: ${name(u)}`, [
+    case "valorResponse": {
+      const a = u?.attachments.find(
+        (a) => a.code === "rc133" && !a.blanked && !a.exhausted,
+      );
+      if (u && a && get(s, e.source))
+        choosePlayerResponse(s, a.id, "rc133", `Valor: ${name(u)}`, [
           {
             id: "use",
             label: "Exhaust Valor: heal 1 and deal 1 damage",
@@ -136,6 +166,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
           skip,
         ]);
       break;
+    }
     case "resolveValor": {
       const a = u?.attachments.find(
         (a) => !a.blanked && a.code === "rc133" && !a.exhausted,

@@ -1,3 +1,8 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
@@ -201,7 +206,7 @@ function councilOptions(s: GameState) {
     !allActiveLocations(s).some((u) => u.code === "01095")
   )
     options.add("draw");
-  if (s.discard.length) options.add("shuffle");
+  if (s.discard.length && !dikeCannotLeaveDiscard(s)) options.add("shuffle");
   return options;
 }
 
@@ -210,14 +215,20 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
     case "dunlandLookoutOffer": {
       const source = get(s, e.source);
       if (!source || source.blanked || !s.encounterDeck.length) return true;
-      choose(s, "Ithilien Lookout · Look at the encounter deck", [
-        {
-          id: "look",
-          label: "Look at the top encounter card",
-          effects: [{ ...e, kind: "dunlandLookoutPeek" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        source.id,
+        source.code,
+        "Ithilien Lookout · Look at the encounter deck",
+        [
+          {
+            id: "look",
+            label: "Look at the top encounter card",
+            effects: [{ ...e, kind: "dunlandLookoutPeek" }],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "dunlandLookoutPeek": {
@@ -267,22 +278,30 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       return true;
     case "dunlandFallOffer":
       if (seatView(s, e.owner!).discard[e.value!] !== "08007") return true;
-      choose(s, "The Fall of Gil-Galad · Hero destroyed", [
-        {
-          id: "victory",
-          code: "08007",
-          label: `Add the Song to victory · reduce your threat by ${e.count}`,
-          effects: [{ ...e, kind: "dunlandFallVictory" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? "08007",
+        "08007",
+        "The Fall of Gil-Galad · Hero destroyed",
+        [
+          {
+            id: "victory",
+            code: "08007",
+            label: `Add the Song to victory · reduce your threat by ${e.count}`,
+            effects: [{ ...e, kind: "dunlandFallVictory" }],
+          },
+          skip,
+        ],
+      );
       return true;
     case "dunlandFallVictory":
       requireRule(
         seatView(s, e.owner!).discard[e.value!] === "08007",
         "The attached Song must remain in its owner's discard pile.",
       );
-      forOwner(s, e.owner!, () => takePlayerDiscard(s, e.value!));
+      forOwner(s, e.owner!, () =>
+        takePlayerDiscard(s, e.value!, { playerCardCost: true }),
+      );
       addVictoryCard(s, "08007");
       reduceThreat(s, e.count ?? 0, {
         id: e.source,
@@ -366,7 +385,9 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       const used = JSON.parse(e.text ?? "[]") as string[];
       const useful = councilOptions(s);
       const available = ["ready", "resource", "draw", "shuffle"].filter(
-        (id) => !used.includes(id),
+        (id) =>
+          !used.includes(id) &&
+          (id !== "shuffle" || !dikeCannotLeaveDiscard(s)),
       );
       const choices = available.some((id) => useful.has(id))
         ? available.filter((id) => useful.has(id))
@@ -397,6 +418,7 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
     case "dunlandCouncilOption":
       if (e.text === "draw") draw(s, 1);
       else if (e.text === "shuffle") {
+        requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
         if (s.discard.length)
           choose(
             s,
@@ -443,6 +465,7 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "dunlandCouncilShuffle":
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       requireRule(
         s.discard[e.value!] === e.code,
         "Choose the physical discarded card.",

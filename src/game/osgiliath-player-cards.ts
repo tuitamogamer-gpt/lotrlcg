@@ -1,3 +1,5 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
@@ -84,6 +86,7 @@ const outlandsDiscard = (s: GameState) =>
     .map((code, index) => ({ code, index }))
     .filter(
       ({ code }) =>
+        !dikeCannotLeaveDiscard(s) &&
         card(code).type_code === "ally" &&
         (card(code).traits ?? "")
           .split(".")
@@ -514,8 +517,10 @@ export function handleOsgiliathPlayerEffect(s: GameState, e: Effect): boolean {
       if (!knight) return true;
       const targets = knightTargets(s, knight);
       if (targets.length)
-        choose(
+        choosePlayerResponse(
           s,
+          knight.id,
+          knight.code,
           "Knight of Minas Tirith · Entered play",
           [
             ...opts(targets, (enemy) => [

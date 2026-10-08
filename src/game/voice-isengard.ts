@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { mainQuestUnit } from "./quest-state";
 // Doomed applies when a player card is played or put into play (Voice of Isengard rulesheet).
@@ -301,8 +302,10 @@ export function isengardEffect(s: GameState, e: Effect): boolean {
           (e.text === "warhorse" && !u.exhausted))
       )
         break;
-      choose(
+      choosePlayerResponse(
         s,
+        a?.id ?? u.id,
+        a?.code ?? u.code,
         `${e.text === "guard" ? "Orthanc Guard" : e.text === "messenger" ? "Isengard Messenger" : e.text === "keys" ? "Keys of Orthanc" : "Rohan Warhorse"} · Response`,
         [
           {
@@ -349,12 +352,18 @@ export function isengardEffect(s: GameState, e: Effect): boolean {
           !morgulCannotLeave(s, u),
       );
       if (targets.length)
-        choose(s, "Saruman · Consider a card out of play", [
-          ...opts(targets, (u) => [
-            fx("isengardSetAside", { source: source.id, target: u.id }),
-          ]),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          source.id,
+          source.code,
+          "Saruman · Consider a card out of play",
+          [
+            ...opts(targets, (u) => [
+              fx("isengardSetAside", { source: source.id, target: u.id }),
+            ]),
+            skip,
+          ],
+        );
       break;
     }
     case "isengardSetAside": {

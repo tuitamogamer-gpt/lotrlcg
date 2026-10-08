@@ -1,3 +1,5 @@
+import { dikeSideDefeated } from "./deadmens-dike";
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
 import { weatherSideDefeated } from "./weather-hills";
 import type { Effect, GameState } from "./types";
@@ -72,12 +74,14 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
     prepend(
       s,
       fx("sideQuestGatherResponse", {
+        source: quest.id,
         player: quest.controller ?? quest.owner ?? firstPlayer(s),
       }),
     );
   collectorQuestDefeated(s, quest.code, attachments);
   chetwoodSideDefeated(s, quest);
   weatherSideDefeated(s, quest);
+  dikeSideDefeated(s, quest);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);
@@ -146,16 +150,22 @@ export function sideQuestEffect(s: GameState, e: Effect) {
       break;
     }
     case "sideQuestGatherResponse":
-      choose(s, "Gather Information · Search your decks?", [
-        {
-          id: "search",
-          label: "Each player may search their deck",
-          effects: playerOrder(s).map((player) =>
-            fx("sideQuestGatherSearch", { player }),
-          ),
-        },
-        { id: "skip", label: "Skip the response", effects: [] },
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? e.target ?? "09014",
+        "09014",
+        "Gather Information · Search your decks?",
+        [
+          {
+            id: "search",
+            label: "Each player may search their deck",
+            effects: playerOrder(s).map((player) =>
+              fx("sideQuestGatherSearch", { player }),
+            ),
+          },
+          { id: "skip", label: "Skip the response", effects: [] },
+        ],
+      );
       break;
     case "sideQuestGatherSearch":
       choose(s, "Gather Information · Choose a card", [

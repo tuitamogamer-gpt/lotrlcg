@@ -46,7 +46,7 @@
     "test:multiplayer-games": "node --import tsx --test --test-name-pattern=\"^hot-seat .*: complete seeded games with save checks$\" tests/hotseat.test.ts",
     "prepare:scenario-import": "node scripts/prepare-scenario-import.mjs",
     "test:pending-import": "node scripts/browser-pending-import.mjs",
-    "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs && node --import tsx scripts/browser-weather-hills.mjs",
+    "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs && node --import tsx scripts/browser-weather-hills.mjs && node --import tsx scripts/browser-deadmens-dike.mjs",
     "test:significant-moments": "node --import tsx scripts/browser-significant-moments.mjs"
   },
   "dependencies": {

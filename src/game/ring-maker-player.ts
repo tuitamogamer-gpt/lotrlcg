@@ -1,3 +1,5 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
@@ -238,6 +240,7 @@ export function ringMakerAllyEntered(
 }
 function eagleDiscards(s: GameState) {
   return s.discard.flatMap((code, index) =>
+    !dikeCannotLeaveDiscard(s) &&
     card(code).type_code === "ally" &&
     card(code)
       .traits?.split(".")
@@ -291,7 +294,7 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
     case "ringIdraenOffer": {
       const h = get(s, e.target);
       if (h && !h.blanked && canReady(s, h))
-        choose(s, "Idraen · Location explored", [
+        choosePlayerResponse(s, h.id, h.code, "Idraen · Location explored", [
           {
             id: "ready",
             label: "Ready Idraen",
@@ -333,14 +336,20 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "ringWandererOffer":
-      choose(s, "Greyflood Wanderer · Place progress", [
-        {
-          id: "progress",
-          label: "Place 1 progress on each location in play",
-          effects: [{ ...e, kind: "ringWandererProgress" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? "08030",
+        "08030",
+        "Greyflood Wanderer · Place progress",
+        [
+          {
+            id: "progress",
+            label: "Place 1 progress on each location in play",
+            effects: [{ ...e, kind: "ringWandererProgress" }],
+          },
+          skip,
+        ],
+      );
       return true;
     case "ringWandererProgress":
       prepend(
@@ -351,14 +360,20 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     case "ringHeraldOffer":
-      choose(s, "Herald of Anórien · Choose a player", [
-        ...playerOrder(s).map((p) => ({
-          id: `player-${p}`,
-          label: `Player ${p + 1}`,
-          effects: [fx("ringHeraldAlly", { player: p })],
-        })),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? "08057",
+        "08057",
+        "Herald of Anórien · Choose a player",
+        [
+          ...playerOrder(s).map((p) => ({
+            id: `player-${p}`,
+            label: `Player ${p + 1}`,
+            effects: [fx("ringHeraldAlly", { player: p })],
+          })),
+          skip,
+        ],
+      );
       return true;
     case "ringHeraldAlly":
       choose(s, "Herald of Anórien · Put an ally into play", [
@@ -382,26 +397,38 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       ).length;
       if (!rumil || rumil.blanked || !value || !affectedEnemies(s).length)
         return true;
-      choose(s, "Rúmil · Damage an engaged enemy", [
-        ...opts(affectedEnemies(s), (u) => [
-          fx("damage", { target: u.id, value, text: "player" }),
-        ]),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        rumil.id,
+        rumil.code,
+        "Rúmil · Damage an engaged enemy",
+        [
+          ...opts(affectedEnemies(s), (u) => [
+            fx("damage", { target: u.id, value, text: "player" }),
+          ]),
+          skip,
+        ],
+      );
       return true;
     }
     case "ringGwaihirOffer": {
       const u = get(s, e.source);
       if (!u || u.blanked || !eagleDiscards(s).length) return true;
-      choose(s, "Gwaihir · Return an Eagle from discard", [
-        ...eagleDiscards(s).map(({ code, index }) => ({
-          id: `discard-${index}`,
-          code,
-          label: card(code).name,
-          effects: [fx("ringGwaihirEnter", { code, value: index })],
-        })),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        u.id,
+        u.code,
+        "Gwaihir · Return an Eagle from discard",
+        [
+          ...eagleDiscards(s).map(({ code, index }) => ({
+            id: `discard-${index}`,
+            code,
+            label: card(code).name,
+            effects: [fx("ringGwaihirEnter", { code, value: index })],
+          })),
+          skip,
+        ],
+      );
       return true;
     }
     case "ringGwaihirEnter": {

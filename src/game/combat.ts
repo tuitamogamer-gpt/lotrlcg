@@ -1,3 +1,4 @@
+import { dikeAttackDeclared } from "./deadmens-dike";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
@@ -383,6 +384,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   Trials.trialsAttackStarted(s, enemy);
   Tharbad.tharbadAttackStarted(s, enemy);
   Antlered.antleredAttackStarted(s, enemy);
+  dikeAttackDeclared(s, enemy, player);
 }
 
 export function applyCombatDamageConsequences(

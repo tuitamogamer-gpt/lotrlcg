@@ -1,3 +1,5 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
@@ -74,6 +76,7 @@ const tacticsEvents = (s: GameState) =>
     .map((code, index) => ({ code, index }))
     .filter(
       ({ code }) =>
+        !dikeCannotLeaveDiscard(s) &&
         card(code).type_code === "event" &&
         card(code).sphere_code === "tactics",
     );
@@ -319,7 +322,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
         !tacticsEvents(s).length
       )
         return true;
-      choose(s, "Háma · Declared attacker", [
+      choosePlayerResponse(s, hama.id, hama.code, "Háma · Declared attacker", [
         ...tacticsEvents(s).map(({ code, index }) => ({
           id: `event-${index}`,
           label: card(code).name,
@@ -391,15 +394,21 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
         s.hand.some((u) => u.code === "04078") &&
         canPay(s, card("04078"))
       )
-        choose(s, "Fresh Tracks · Enemy added to staging", [
-          {
-            id: "play",
-            label: "Deal 1 damage and ignore engagement checks this round",
-            code: "04078",
-            effects: [fx("longDarkFreshApply", { target: e.target })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04078")!.id,
+          "04078",
+          "Fresh Tracks · Enemy added to staging",
+          [
+            {
+              id: "play",
+              label: "Deal 1 damage and ignore engagement checks this round",
+              code: "04078",
+              effects: [fx("longDarkFreshApply", { target: e.target })],
+            },
+            skip,
+          ],
+        );
       return true;
     case "longDarkFreshApply": {
       const enemy = stagedEnemies(s).find((u) => u.id === e.target);
@@ -421,17 +430,23 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
         a &&
         (s.threat > 0 || (target.exhausted && !cannotReady(target, s)))
       )
-        choose(s, "Ever My Heart Rises · Travelled", [
-          {
-            id: "ready",
-            label: "Ready attached character and reduce your threat by 1",
-            code: "04082",
-            effects: [
-              fx("longDarkHeartApply", { target: target.id, text: a.id }),
-            ],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Ever My Heart Rises · Travelled",
+          [
+            {
+              id: "ready",
+              label: "Ready attached character and reduce your threat by 1",
+              code: "04082",
+              effects: [
+                fx("longDarkHeartApply", { target: target.id, text: a.id }),
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "longDarkHeartApply": {
@@ -462,7 +477,7 @@ export function handleLongDarkPlayerEffect(s: GameState, e: Effect): boolean {
             !a.facedown,
         );
       if (target && a && canGainResources(s, target))
-        choose(s, "Love of Tales · Song played", [
+        choosePlayerResponse(s, a.id, a.code, "Love of Tales · Song played", [
           {
             id: "resource",
             label: "Exhaust Love of Tales to gain 1 resource",

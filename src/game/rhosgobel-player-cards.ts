@@ -1,3 +1,11 @@
+import {
+  choosePlayerResponse,
+  responseOptions,
+} from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { spendResources } from "./core";
@@ -175,6 +183,7 @@ export function rhosgobelLocationExplored(s: GameState, location: Unit) {
       .filter((a) => a.code === "02056" && !a.blanked)
       .map((a) =>
         fx("rhosMathomResponse", {
+          source: a.id,
           player: a.owner ?? activeSeat(s),
           value: firstPlayer(s),
           code: a.code,
@@ -197,6 +206,7 @@ export function rhosgobelQuestResolved(s: GameState) {
 function recoverableHero(s: GameState, code: string, owner: number) {
   const p = seatView(s, owner);
   return (
+    !dikeCannotLeaveDiscard(s, owner) &&
     !s.table?.seats[owner].eliminated &&
     p.heroes.length > 0 &&
     p.discard.includes(code) &&
@@ -231,7 +241,7 @@ export function rhosgobelCharacterDestroyed(
           }),
         ),
     );
-  } else if (type === "ally") {
+  } else if (type === "ally" && !dikeCannotLeaveDiscard(s, owner)) {
     prepend(
       s,
       ...playerOrder(s)
@@ -379,15 +389,21 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "rhosMathomResponse":
-      choose(s, "Ancient Mathom · Explored location", [
-        {
-          id: "draw",
-          label: "First player draws 3 cards",
-          code: "02056",
-          effects: [fx("draw", { value: 3, player: e.value ?? 0 })],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? "02056",
+        "02056",
+        "Ancient Mathom · Explored location",
+        [
+          {
+            id: "draw",
+            label: "First player draws 3 cards",
+            code: "02056",
+            effects: [fx("draw", { value: 3, player: e.value ?? 0 })],
+          },
+          skip,
+        ],
+      );
       return true;
     case "rhosLandrovalResponse": {
       if (
@@ -403,7 +419,9 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
         [
           ...opts(landrovals(s), (u) => [
             { ...e, kind: "rhosLandrovalRecover", source: u.id },
-          ]),
+          ]).map(
+            (option) => responseOptions(s, option.id, "02053", [option])[0],
+          ),
           skip,
         ],
         `Return Landroval to his owner's hand to return ${card(e.code).name} with 1 damage. Once per game for this player.`,
@@ -443,6 +461,7 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
     case "rhosEyrieResponse": {
       const owner = e.count ?? 0;
       if (
+        dikeCannotLeaveDiscard(s, owner) ||
         !e.code ||
         !seatView(s, owner).discard.includes(e.code) ||
         !readyEagles(s).length ||
@@ -451,8 +470,10 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
         !leaveCardAvailable(s, e.target)
       )
         return true;
-      choose(
+      choosePlayerResponse(
         s,
+        s.hand.find((u) => u.code === "02054")!.id,
+        "02054",
         "To the Eyrie · Destroyed ally",
         [
           ...opts(readyEagles(s), (u) => [
@@ -467,6 +488,7 @@ export function handleRhosgobelPlayerEffect(s: GameState, e: Effect): boolean {
     case "rhosEyrieRecover": {
       const eagle = readyEagles(s).find((u) => u.id === e.source),
         owner = e.count ?? 0;
+      requireRule(!dikeCannotLeaveDiscard(s, owner), DIKE_DISCARD_REASON);
       requireRule(
         eagle &&
           e.code &&

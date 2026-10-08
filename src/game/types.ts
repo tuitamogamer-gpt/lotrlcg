@@ -3,6 +3,8 @@ export type Sphere =
 export interface Card {
   /** Cost context for plays from another zone; never changes the printed definition. */
   playOrigin?: "hand" | "deck" | "discard";
+  /** Physical owner for costs that inspect an owner’s private zones. */
+  playOwner?: number;
   code: string;
   name: string;
   type_code: string;
@@ -177,6 +179,7 @@ export type ScenarioId =
   | "the-dunland-trap"
   | "intruders-in-chetwood"
   | "the-weather-hills"
+  | "deadmens-dike"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -240,6 +243,7 @@ export interface EscapeTest {
   continuation: Effect[];
 }
 export interface Option {
+  ability?: import("./player-ability-triggers").PlayerAbilityTrigger;
   id: string;
   label: string;
   detail?: string;
@@ -303,6 +307,7 @@ export interface GameState {
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
   chetwood?: import("./chetwood-support").ChetwoodState;
   weatherHills?: import("./weather-hills-support").WeatherState;
+  deadmensDike?: import("./deadmens-dike-support").DeadmensDikeState;
   antlered?: import("./antlered-support").AntleredState;
   celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
@@ -441,6 +446,9 @@ export interface GameState {
     extraAttacks?: number;
     chetwoodAllyKilled?: boolean;
     weatherCharacterKilled?: boolean;
+    dikeDestroyedPlayers?: number[];
+    dikeRevealOnCharacterKill?: number;
+    dikeCharacterKilled?: boolean;
     weatherRuinsThreat?: number;
     chetwoodReturnOnAllyKill?: boolean;
     chetwoodReturnAfterAttack?: boolean;

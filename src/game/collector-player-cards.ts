@@ -1,3 +1,7 @@
+import {
+  choosePlayerResponse,
+  mandatoryPlayerResponse,
+} from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
@@ -116,8 +120,14 @@ const groupPayers = (s: GameState, sphere: string) =>
   playerOrder(s).flatMap((player) => spherePayers(s, sphere, player));
 const used = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
-const optional = (s: GameState, title: string, e: Effect, code?: string) =>
-  choose(s, title, [
+const optional = (
+  s: GameState,
+  title: string,
+  e: Effect,
+  code: string,
+  source: string,
+) =>
+  choosePlayerResponse(s, source, code, title, [
     { id: "use", label: "Use this response", code, effects: [e] },
     skip,
   ]);
@@ -155,7 +165,13 @@ export function collectorAllyEntered(
   const player = ownerOf(s, u),
     effects: Effect[] = [];
   if (played && fromHand && dwarfPlayed(s, u, player))
-    effects.push(fx("collectorNoriResponse", { player }));
+    effects.push(
+      fx("collectorNoriResponse", {
+        source: seatView(s, player).heroes.find((u) => u.code === codes.nori)!
+          .id,
+        player,
+      }),
+    );
   if (u.blanked) return prepend(s, ...effects);
   if (
     [codes.fili, codes.kili].includes(u.code as typeof codes.fili) &&
@@ -222,7 +238,18 @@ export function collectorEnemyCancelOptions(
       label: `Discard Dúnedain Lookout${s.table ? ` · ${seatName(s, ownerOf(s, u))}` : ""}`,
       code: codes.lookout,
       effects: [
-        fx("collectorLookoutDiscard", { source: u.id, player: ownerOf(s, u) }),
+        mandatoryPlayerResponse(
+          s,
+          u.id,
+          u.code,
+          [
+            fx("collectorLookoutDiscard", {
+              source: u.id,
+              player: ownerOf(s, u),
+            }),
+          ],
+          ownerOf(s, u),
+        ),
         { ...continuation, flag: true },
       ],
     }));
@@ -617,6 +644,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Nori · Played a Dwarf from hand",
           fx("collectorNoriThreat"),
           codes.nori,
+          e.source ?? codes.nori,
         );
       return true;
     case "collectorNoriThreat":
@@ -631,7 +659,8 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           `${card(e.code!).name} · Search for ${card(partnerCode(e.code!)).name}`,
           fx("collectorPartnerSearch", { code: partnerCode(e.code!) }),
-          e.code,
+          e.code!,
+          e.source ?? e.code!,
         );
       return true;
     case "collectorPartnerSearch": {
@@ -648,6 +677,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Galadriel · Played from hand",
         fx("collectorGaladrielSearch"),
         codes.galadriel,
+        e.source ?? codes.galadriel,
       );
       return true;
     case "collectorGaladrielSearch":
@@ -732,6 +762,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Andrath Guardsman · Played from hand",
           fx("collectorGuardsmanChoose"),
           codes.guardsman,
+          e.source ?? codes.guardsman,
         );
       return true;
     }
@@ -759,6 +790,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Woodland Courier · Entered play",
         fx("collectorCourierChoose"),
         codes.courier,
+        e.source ?? codes.courier,
       );
       return true;
     case "collectorCourierChoose":
@@ -779,6 +811,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Sarn Ford Sentry · Entered play",
         fx("draw", { value: e.value }),
         codes.sentry,
+        e.source ?? codes.sentry,
       );
       return true;
     case "collectorArcherResponse":
@@ -788,6 +821,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Galadhon Archer · Entered play",
           fx("collectorArcherChoose"),
           codes.archer,
+          e.source ?? codes.archer,
         );
       return true;
     case "collectorArcherChoose":
@@ -806,6 +840,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Elrond · Entered play",
         fx("collectorElrondChoose", { source: e.source }),
         codes.elrond,
+        e.source ?? codes.elrond,
       );
       return true;
     case "collectorElrondChoose":
@@ -882,6 +917,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Mablung · Entered play",
         fx("collectorMablungChoose"),
         codes.mablung,
+        e.source ?? codes.mablung,
       );
       return true;
     case "collectorMablungChoose":
@@ -939,6 +975,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Gimli · Enemy revealed",
           fx("ready", { target: u.id }),
           codes.gimli,
+          e.source ?? codes.gimli,
         );
       return true;
     }
@@ -958,6 +995,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Thorin Stonehelm · Declared attacker",
           fx("collectorThorinChoose"),
           codes.thorin,
+          e.source ?? codes.thorin,
         );
       return true;
     case "collectorThorinChoose":
@@ -985,6 +1023,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "Legolas · Participated in a killing attack",
         fx("draw", { value: 1 }),
         codes.legolas,
+        e.source ?? codes.legolas,
       );
       return true;
     case "collectorAzainResponse":
@@ -1000,6 +1039,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Azain Silverbeard · Attack destroyed an enemy",
           fx("collectorAzainPayChoose", { source: e.source, ids: e.ids }),
           codes.azain,
+          e.source ?? codes.azain,
         );
       return true;
     case "collectorAzainPayChoose":
@@ -1170,27 +1210,33 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         canPay(s, card(codes.desperate)) &&
         e.ids?.some((id) => get(s, id))
       )
-        choose(s, "Desperate Defense · Sentinel defender", [
-          ...e.ids.flatMap((id) => {
-            const u = get(s, id);
-            return u
-              ? [
-                  {
-                    id,
-                    label: `Play Desperate Defense on ${card(u.code).name} · ${playCost(s, card(codes.desperate))} Spirit`,
-                    code: codes.desperate,
-                    effects: [
-                      fx("collectorDesperatePlay", {
-                        source: e.source,
-                        target: id,
-                      }),
-                    ],
-                  },
-                ]
-              : [];
-          }),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.source!,
+          codes.desperate,
+          "Desperate Defense · Sentinel defender",
+          [
+            ...e.ids.flatMap((id) => {
+              const u = get(s, id);
+              return u
+                ? [
+                    {
+                      id,
+                      label: `Play Desperate Defense on ${card(u.code).name} · ${playCost(s, card(codes.desperate))} Spirit`,
+                      code: codes.desperate,
+                      effects: [
+                        fx("collectorDesperatePlay", {
+                          source: e.source,
+                          target: id,
+                        }),
+                      ],
+                    },
+                  ]
+                : [];
+            }),
+            skip,
+          ],
+        );
       return true;
     case "collectorDesperatePlay": {
       const u = get(s, e.target);
@@ -1219,6 +1265,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
           "Elf-stone · Active location explored",
           fx("collectorElfStoneChoose", { player: e.value }),
           codes.stone,
+          e.source ?? codes.stone,
         );
       return true;
     case "collectorElfStoneChoose":
@@ -1247,6 +1294,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
         "The Long Defeat · Quest defeated",
         fx("collectorLongDefeatPlayers", { source: e.source, owner: e.owner }),
         codes.defeat,
+        e.source ?? codes.defeat,
       );
       return true;
     case "collectorLongDefeatPlayers":

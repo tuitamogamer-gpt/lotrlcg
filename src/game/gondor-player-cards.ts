@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { canGainResources } from "./core";
 import { takePlayerDeck } from "./core";
@@ -26,6 +27,7 @@ import {
   allHeroes,
   eachSeat,
   ownerOf,
+  attachmentController,
   playerOrder,
   seatName,
   seatView,
@@ -198,7 +200,9 @@ export function gondorAllyEntered(s: GameState, u: Unit) {
 export function gondorLeavesPlay(s: GameState, u: Unit, controller: number) {
   const effects: Effect[] = [];
   if (u.code === "06108" && !u.blanked)
-    effects.push(fx("gondorSquireResponse", { player: controller }));
+    effects.push(
+      fx("gondorSquireResponse", { source: u.id, player: controller }),
+    );
   for (const hero of readyImrahils(s))
     effects.push(
       fx("gondorImrahilResponse", {
@@ -283,7 +287,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
       const u = get(s, e.target);
       if (!u || u.code !== e.code) return true;
       if (u.code === "22002" && s.deck.length)
-        choose(s, "Soldier of Gondor", [
+        choosePlayerResponse(s, u.id, u.code, "Soldier of Gondor", [
           {
             id: "search",
             label: "Search the top five cards for Gondor allies",
@@ -293,7 +297,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
           skip,
         ]);
       if (u.code === "06135" && moveDonorOptions(s).length)
-        choose(s, "Pelargir Ship Captain", [
+        choosePlayerResponse(s, u.id, u.code, "Pelargir Ship Captain", [
           {
             id: "move",
             label: "Move one resource between hero pools",
@@ -309,7 +313,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
             (hasTrait(h, "Gondor") || hasTrait(h, "Noble")),
         );
         if (targets.length)
-          choose(s, "Envoy of Pelargir", [
+          choosePlayerResponse(s, u.id, u.code, "Envoy of Pelargir", [
             ...opts(targets, (h) => [
               fx("gondorAddResource", { target: h.id }),
             ]),
@@ -401,16 +405,24 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
         (h) => hasTrait(h, "Gondor") && canGainResources(s, h),
       );
       if (targets.length)
-        choose(s, "Squire of the Citadel", [
-          ...opts(targets, (h) => [fx("gondorAddResource", { target: h.id })]),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.source ?? "06108",
+          "06108",
+          "Squire of the Citadel",
+          [
+            ...opts(targets, (h) => [
+              fx("gondorAddResource", { target: h.id }),
+            ]),
+            skip,
+          ],
+        );
       return true;
     }
     case "gondorImrahilResponse": {
       const hero = readyImrahils(s).find((h) => h.id === e.target);
       if (hero)
-        choose(s, "Prince Imrahil", [
+        choosePlayerResponse(s, hero.id, hero.code, "Prince Imrahil", [
           {
             id: "ready-imrahil",
             label: "Ready Prince Imrahil",
@@ -435,10 +447,20 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
             .filter((a) => a.code === "08113" && !a.exhausted && !a.blanked)
             .map((a) => ({
               id: a.id,
+              ability: {
+                player: attachmentController(s, hero, a) ?? ownerOf(s, hero),
+                source: a.id,
+                code: a.code,
+                type: "response" as const,
+              },
               label: "Exhaust Heir of Mardil to ready its hero",
               code: a.code,
               effects: [
-                fx("gondorHeirReady", { target: hero.id, source: a.id }),
+                fx("gondorHeirReady", {
+                  target: hero.id,
+                  source: a.id,
+                  player: attachmentController(s, hero, a) ?? ownerOf(s, hero),
+                }),
               ],
             }))
         : [];
@@ -468,7 +490,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
           h.id === e.target && h.code === "08084" && !h.blanked && !isSacked(h),
       );
       if (hero && !s.used.includes(`phase:mablung:${hero.id}`))
-        choose(s, "Mablung", [
+        choosePlayerResponse(s, hero.id, hero.code, "Mablung", [
           {
             id: "mablung-resource",
             label: "Add 1 resource to Mablung",

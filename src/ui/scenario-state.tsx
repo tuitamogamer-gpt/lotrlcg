@@ -1,11 +1,13 @@
 import { CELEBRIMBOR } from "../game/celebrimbor-support";
 import { WEATHER } from "../game/weather-hills-support";
+import { DIKE } from "../game/deadmens-dike-support";
+import { stats } from "../game/engine";
 import { units } from "../game/core";
 import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
 import { TRIALS } from "../game/three-trials-support";
 import { trialsKeys } from "../game/three-trials";
-import { allEngaged } from "../game/table";
+import { allEngaged, seatIndices, seatView } from "../game/table";
 import { DUNLAND_TRAP, dunlandTimeLimit } from "../game/dunland-trap-support";
 import { FANGORN, fangornTimeLimit } from "../game/fangorn-support";
 import { fangornCarrier } from "../game/fangorn";
@@ -37,6 +39,7 @@ export function ScenarioState({
     !s.ninEilph &&
     !s.antlered &&
     !s.weatherHills &&
+    !s.deadmensDike &&
     !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
@@ -45,6 +48,54 @@ export function ScenarioState({
     return null;
   return (
     <div className="scenario-state-summary" aria-label="Scenario counters">
+      {s.deadmensDike && (
+        <>
+          <div className="tower-counter">
+            <strong>Player decks</strong>
+            {seatIndices(s).map((player) => {
+              const seat = seatView(s, player);
+              return (
+                <span key={player}>
+                  {seatName(s, player)} · {seat.deck.length} cards remaining
+                  {s.table?.seats[player]?.eliminated ? " · Eliminated" : ""}
+                </span>
+              );
+            })}
+            <span>If your deck runs out, you are eliminated.</span>
+          </div>
+          <div className="tower-counter">
+            <strong>
+              {s.stage === 1 ? "The Shades of Angmar" : "A Fell Wraith"}
+            </strong>
+            <span>Protect Iârion. If he leaves play, the players lose.</span>
+            {s.staging.some((u) => u.code === DIKE.power && !u.blanked) && (
+              <span>
+                The Power of Angmar · Player card effects cannot move cards out
+                of discard piles.
+              </span>
+            )}
+            <button onClick={() => inspect(card(DIKE.thaurdir))}>
+              {(() => {
+                const thaurdir = [...s.staging, ...allEngaged(s)].find(
+                  (u) => u.code === DIKE.thaurdir,
+                );
+                return thaurdir
+                  ? `Thaurdir · ${Math.max(0, stats(s, thaurdir).health - thaurdir.damage)} / ${stats(s, thaurdir).health} hit points remaining · Indestructible`
+                  : s.deadmensDike!.setAside.length
+                    ? "Thaurdir · Set aside"
+                    : "Thaurdir · Not in play";
+              })()}
+            </button>
+            {s.deadmensDike.terrorRound === s.round &&
+              s.deadmensDike.terrorThreat > 0 && (
+                <span>
+                  Terror of the North · +{s.deadmensDike.terrorThreat} staging
+                  threat this round
+                </span>
+              )}
+          </div>
+        </>
+      )}
       {s.weatherHills && (
         <div className="tower-counter">
           <strong>Orc deck · {s.weatherHills.orcDeck.length} cards</strong>

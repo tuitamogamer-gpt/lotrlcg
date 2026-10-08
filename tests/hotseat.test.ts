@@ -410,8 +410,14 @@ test("invalid seat indices, duplicate heroes and corrupt saves are rejected", ()
   );
 });
 const coreScenarios = ["mirkwood", "anduin", "dol-guldur"] as const;
-for (const scenarioId of [...coreScenarios, "the-weather-hills"] as const)
-  for (const campaign of scenarioId === "the-weather-hills"
+const importedLostRealmScenario = (id: ScenarioId) =>
+  id === "the-weather-hills" || id === "deadmens-dike";
+for (const scenarioId of [
+  ...coreScenarios,
+  "the-weather-hills",
+  "deadmens-dike",
+] as const)
+  for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
     : [false, true])
     test(`hot-seat ${scenarioId} ${campaign ? "campaign" : "normal"}: complete seeded games with save checks`, (t) => {
@@ -419,7 +425,7 @@ for (const scenarioId of [...coreScenarios, "the-weather-hills"] as const)
         normal: { won: 0, lost: 0 },
         easy: { won: 0, lost: 0 },
       };
-      for (const easy of scenarioId === "the-weather-hills"
+      for (const easy of importedLostRealmScenario(scenarioId)
         ? [false, true]
         : [false])
         for (const n of [1, 2, 3, 4])
@@ -525,7 +531,7 @@ for (const scenarioId of [...coreScenarios, "the-weather-hills"] as const)
               );
               const restored = restoreSave(JSON.parse(JSON.stringify(s)));
               assert.ok(restored);
-              if (scenarioId === "the-weather-hills") s = restored;
+              if (importedLostRealmScenario(scenarioId)) s = restored;
               assert.ok(
                 allCharacters(s).every((u) => u.damage < stats(s, u).health),
               );
@@ -541,12 +547,14 @@ for (const scenarioId of [...coreScenarios, "the-weather-hills"] as const)
             );
             outcomes[easy ? "easy" : "normal"][s.status as "won" | "lost"]++;
           }
-      if (scenarioId === "the-weather-hills") {
+      if (importedLostRealmScenario(scenarioId)) {
         assert.equal(outcomes.normal.won + outcomes.normal.lost, 32);
         assert.equal(outcomes.easy.won + outcomes.easy.lost, 32);
-        t.diagnostic(
-          `Weather Hills complete games: ${JSON.stringify(outcomes)}`,
-        );
+        const title =
+          scenarioId === "the-weather-hills"
+            ? "Weather Hills"
+            : "Deadmen's Dike";
+        t.diagnostic(`${title} complete games: ${JSON.stringify(outcomes)}`);
       }
     });
 

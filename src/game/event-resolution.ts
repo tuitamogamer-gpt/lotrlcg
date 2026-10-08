@@ -1,3 +1,5 @@
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
+import { resolvePlayerAbility } from "./player-ability-triggers";
 import type { GameState, Unit } from "./types";
 import { activeSeat, forOwner } from "./table";
 import { fx, prepend, putPlayerDeck } from "./core";
@@ -59,7 +61,12 @@ export function returnPlayedEventToHand(
     pending.destination = "hand";
     return true;
   }
-  if (id !== undefined || s.discard[legacyIndex ?? -1] !== code) return false;
+  if (
+    id !== undefined ||
+    dikeCannotLeaveDiscard(s) ||
+    s.discard[legacyIndex ?? -1] !== code
+  )
+    return false;
   s.hand.push(takePlayerDiscard(s, legacyIndex!));
   return true;
 }
@@ -71,7 +78,7 @@ export function putPlayedEventInVictory(s: GameState, code: string) {
       (event) => event.player === activeSeat(s) && event.unit.code === code,
     );
   if (pending) pending.destination = "victory";
-  else {
+  else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
     if (index >= 0) {
       s.discard.splice(index, 1);
@@ -88,7 +95,7 @@ export function removePlayedEvent(s: GameState, code: string) {
       (event) => event.player === activeSeat(s) && event.unit.code === code,
     );
   if (pending) pending.destination = "removed";
-  else {
+  else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
     if (index >= 0) s.discard.splice(index, 1);
     s.removed.push(code);
@@ -102,10 +109,14 @@ export function resolveEventAbility(
   ability: () => void,
   bottom = false,
 ) {
-  const continuation = s.queue;
-  s.queue = [];
-  holdPlayedEvent(s, unit, bottom);
-  const finish = s.queue.shift()!;
-  ability();
-  s.queue.push(finish, ...continuation);
+  resolvePlayerAbility(
+    s,
+    { player: activeSeat(s), source: unit.id, code: unit.code, type: "action" },
+    () => {
+      holdPlayedEvent(s, unit, bottom);
+      const finish = s.queue.shift()!;
+      ability();
+      s.queue.push(finish);
+    },
+  );
 }

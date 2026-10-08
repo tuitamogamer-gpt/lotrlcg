@@ -2,7 +2,7 @@
 
 This first batch registers eleven new designs: Tactics Aragorn, Halbarad, Weather Hills Watchman, Dúnedain Hunter, Warden of Annúminas, Tireless Hunters, Expert Trackers, Heir of Valandil, Athelas, Secret Vigil and Star Brooch. Sarn Ford Sentry reuses its existing Collector handler. All twelve original faces are local assets.
 
-Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information completes all fifteen player designs in the side-quest follow-up below. Intruders in Chetwood is now playable in original/easy mode; The Weather Hills is also playable with its independent Orc deck and Mission; see [Weather Hills rules](WEATHER-HILLS-RULES.md). Deadmen’s Dike remains pending. See [Chetwood rules](CHETWOOD-RULES.md).
+Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information completes all fifteen player designs in the side-quest follow-up below. Intruders in Chetwood is now playable in original/easy mode; The Weather Hills is also playable with its independent Orc deck and Mission; see [Weather Hills rules](WEATHER-HILLS-RULES.md). Deadmen’s Dike completes the original/easy box with deck depletion, Thaurdir and three encounter side quests; see [Dike rules](DEADMENS-DIKE-RULES.md). See [Chetwood rules](CHETWOOD-RULES.md).
 
 ## Sources and implementation
 

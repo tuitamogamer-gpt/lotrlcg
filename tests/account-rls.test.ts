@@ -139,32 +139,37 @@ test("account database enforces ownership on reads, writes, upserts and deletes"
           bob,
         ],
       );
-    const weatherChoices = {
-      ...choices,
-      setupMode: "hotseat",
-      selectedDeck: "starter-rohan",
-      seatDecks: [
-        "starter-rohan",
-        "starter-gondor",
-        "starter-elves",
-        "starter-dwarves",
-      ],
-      scenario: "the-weather-hills",
-    };
-    await db.query(
-      "update public.fellowship_choices set choices=$1 where user_id=$2",
-      [weatherChoices, bob],
-    );
-    assert.deepEqual(
-      (
-        await db.query<{ choices: typeof weatherChoices }>(
-          "select choices from public.fellowship_choices where user_id=$1",
-          [bob],
-        )
-      ).rows[0].choices,
-      weatherChoices,
-      "The Weather Hills saves and reloads four distinct starter decks",
-    );
+    for (const [scenario, title] of [
+      ["the-weather-hills", "The Weather Hills"],
+      ["deadmens-dike", "Deadmen's Dike"],
+    ]) {
+      const scenarioChoices = {
+        ...choices,
+        setupMode: "hotseat",
+        selectedDeck: "starter-rohan",
+        seatDecks: [
+          "starter-rohan",
+          "starter-gondor",
+          "starter-elves",
+          "starter-dwarves",
+        ],
+        scenario,
+      };
+      await db.query(
+        "update public.fellowship_choices set choices=$1 where user_id=$2",
+        [scenarioChoices, bob],
+      );
+      assert.deepEqual(
+        (
+          await db.query<{ choices: typeof scenarioChoices }>(
+            "select choices from public.fellowship_choices where user_id=$1",
+            [bob],
+          )
+        ).rows[0].choices,
+        scenarioChoices,
+        `${title} saves and reloads four distinct starter decks`,
+      );
+    }
     await db.query("select set_config('test.uid',$1,false)", [alice]);
     assert.deepEqual(
       (

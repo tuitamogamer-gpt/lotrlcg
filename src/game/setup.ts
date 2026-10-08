@@ -1,3 +1,4 @@
+import { setupDeadmensDike } from "./deadmens-dike";
 import { setupChetwood } from "./chetwood";
 import { setupWeather } from "./weather-hills";
 import { hasEncounterKeyword } from "./encounter-keyword";
@@ -390,6 +391,8 @@ export function createGame(
     setupChetwood(s);
   } else if (scenarioId === "the-weather-hills") {
     setupWeather(s);
+  } else if (scenarioId === "deadmens-dike") {
+    setupDeadmensDike(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

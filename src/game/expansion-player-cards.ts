@@ -1,3 +1,8 @@
+import {
+  choosePlayerResponse,
+  responseOptions,
+} from "./player-ability-triggers";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import {
@@ -132,6 +137,7 @@ export function expansionEventEffect(
       return true;
     case "02027":
       eachSeat(s, () => {
+        if (dikeCannotLeaveDiscard(s)) return;
         let index = s.discard.length - 1;
         while (index >= 0 && card(s.discard[index]).type_code !== "attachment")
           index--;
@@ -420,6 +426,12 @@ export function huntLocationRevealed(s: GameState, location: Unit) {
             id: `strider-${player}`,
             label: `Play Strider's Path · ${playCost(p, card("02009"))} Lore${s.table ? ` · ${seatName(s, player)}` : ""}`,
             code: "02009",
+            ability: {
+              player,
+              source: p.hand.find((u) => u.code === "02009")!.id,
+              code: "02009",
+              type: "response" as const,
+            },
             effects: [fx("huntStriderPath", { target: location.id, player })],
           },
         ]
@@ -500,15 +512,21 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "huntEomundResponse":
       if (allCharacters(s).some((u) => u.exhausted && hasTrait(u, "Rohan")))
-        choose(s, "Éomund's response", [
-          {
-            id: "ready-rohan",
-            label: "Ready all Rohan characters in play",
-            code: "02030",
-            effects: [fx("huntEomundReady")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.target ?? "02030",
+          "02030",
+          "Éomund's response",
+          [
+            {
+              id: "ready-rohan",
+              label: "Ready all Rohan characters in play",
+              code: "02030",
+              effects: [fx("huntEomundReady")],
+            },
+            skip,
+          ],
+        );
       return true;
     case "huntEomundReady":
       for (const u of allCharacters(s).filter((u) => hasTrait(u, "Rohan")))
@@ -529,14 +547,16 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
         s,
         "Frodo Baggins · Damage response",
         [
-          {
-            id: "cancel-damage",
-            label: `Raise threat by ${e.value ?? 0} to cancel all this damage`,
-            code: "02025",
-            effects: [
-              fx("huntFrodoCancel", { target: target.id, value: e.value }),
-            ],
-          },
+          ...responseOptions(s, target.id, target.code, [
+            {
+              id: "cancel-damage",
+              label: `Raise threat by ${e.value ?? 0} to cancel all this damage`,
+              code: "02025",
+              effects: [
+                fx("huntFrodoCancel", { target: target.id, value: e.value }),
+              ],
+            },
+          ]),
           {
             id: "accept-damage",
             label: `Take ${e.value ?? 0} damage`,
@@ -610,7 +630,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
     case "huntMinstrelResponse": {
       const u = get(s, e.target);
       if (u?.code === "02008")
-        choose(s, "Rivendell Minstrel", [
+        choosePlayerResponse(s, u.id, u.code, "Rivendell Minstrel", [
           {
             id: "search",
             label: "Search the deck for one Song",

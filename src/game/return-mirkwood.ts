@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 // Original Return to Mirkwood: controlled Gollum, guard transfers and all printed encounters.
 import encounters from "../data/return-mirkwood-encounter-cards.json";
@@ -318,6 +319,7 @@ export function returnMirkwoodExplored(s: GameState, location: Unit) {
   prepend(
     s,
     fx("returnGladeResponse", {
+      source: location.id,
       ids: livingSeats(s)
         .filter((p) => p !== guard)
         .map(String),
@@ -499,14 +501,20 @@ export function returnMirkwoodEffect(s: GameState, e: Effect) {
       break;
     case "returnGladeResponse":
       if (e.ids?.length)
-        choose(s, "Woodman's Glade · Exploration response", [
-          {
-            id: "reduce",
-            label: "Reduce every other player's threat by 2",
-            effects: [fx("returnGladeThreat", { ids: e.ids })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.source ?? RETURN.glade,
+          RETURN.glade,
+          "Woodman's Glade · Exploration response",
+          [
+            {
+              id: "reduce",
+              label: "Reduce every other player's threat by 2",
+              effects: [fx("returnGladeThreat", { ids: e.ids })],
+            },
+            skip,
+          ],
+        );
       break;
     case "returnGladeThreat":
       for (const player of (e.ids ?? []).map(Number))

@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
@@ -189,12 +190,18 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
     case "watcherArwenResponse": {
       const arwen = get(s, e.source);
       if (arwen?.code === "04058" && !arwen.blanked)
-        choose(s, "Arwen Undómiel · Exhausted", [
-          ...opts(allCharacters(s), (target) => [
-            fx("watcherArwenGrant", { target: target.id }),
-          ]),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          arwen.id,
+          arwen.code,
+          "Arwen Undómiel · Exhausted",
+          [
+            ...opts(allCharacters(s), (target) => [
+              fx("watcherArwenGrant", { target: target.id }),
+            ]),
+            skip,
+          ],
+        );
       return true;
     }
     case "watcherArwenGrant": {
@@ -241,15 +248,21 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
         canPay(s, card("04054")) &&
         allCharacters(s).some((u) => u.id !== e.source)
       )
-        choose(s, "Grave Cairn · Character left play", [
-          {
-            id: "play",
-            label: `Add ${e.value} attack to another character this round`,
-            code: "04054",
-            effects: [{ ...e, kind: "watcherGraveTarget" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04054")!.id,
+          "04054",
+          "Grave Cairn · Character left play",
+          [
+            {
+              id: "play",
+              label: `Add ${e.value} attack to another character this round`,
+              code: "04054",
+              effects: [{ ...e, kind: "watcherGraveTarget" }],
+            },
+            skip,
+          ],
+        );
       return true;
     case "watcherGraveTarget":
       choose(
@@ -286,15 +299,21 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
         s.hand.some((u) => u.code === "04060") &&
         canPay(s, card("04060"))
       )
-        choose(s, "Short Cut · Location entered play", [
-          {
-            id: "play",
-            label: "Exhaust a Hobbit to shuffle this location back",
-            code: "04060",
-            effects: [{ ...e, kind: "watcherShortcutHobbit" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04060")!.id,
+          "04060",
+          "Short Cut · Location entered play",
+          [
+            {
+              id: "play",
+              label: "Exhaust a Hobbit to shuffle this location back",
+              code: "04060",
+              effects: [{ ...e, kind: "watcherShortcutHobbit" }],
+            },
+            skip,
+          ],
+        );
       return true;
     case "watcherShortcutHobbit":
       choose(

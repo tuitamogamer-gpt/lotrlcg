@@ -1,0 +1,663 @@
+[
+  {
+    "code": "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+    "octgnid": "123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+    "name": "Restless Evil",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each Undead enemy gets +1 [threat], +1 [attack], and +1 [defense] until the end of the round. If there are no Undead enemies in play, Restless Evil gains surge.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 62,
+    "quantity": 2,
+    "shadow": "Shadow: Each Undead enemy engaged with you gets +1 [attack] and +1 [defense] until the end of the round.",
+    "encounter_set": "Cursed Dead",
+    "printed_stats": {},
+    "imagesrc": "/cards/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 62,
+        "quantity": 2,
+        "octgnid": "123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/123bc772-2c27-4f26-a7f2-a3c4928a9dc4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
+    "octgnid": "1c240b63-841f-4b76-9808-13c0ee0f986e",
+    "name": "Unnatural Fog",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "Doomed 2.\nWhen Revealed: Each player must either discard 1 card from the top of his deck for each questing character he controls, or remove each character he controls from the quest.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 41,
+    "quantity": 2,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {},
+    "imagesrc": "/cards/1c240b63-841f-4b76-9808-13c0ee0f986e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 41,
+        "quantity": 2,
+        "octgnid": "1c240b63-841f-4b76-9808-13c0ee0f986e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c240b63-841f-4b76-9808-13c0ee0f986e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
+    "octgnid": "21fec323-3155-4b64-8506-fa87d44f01fc",
+    "name": "Cursed Dead",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "When Revealed: Put each copy of Cursed Dead in the discard pile into play in the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 61,
+    "quantity": 5,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 2,
+    "engagement": 27,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if there is a copy of the defending character in its owner's discard pile).",
+    "encounter_set": "Cursed Dead",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "2",
+      "engagement": "27"
+    },
+    "imagesrc": "/cards/21fec323-3155-4b64-8506-fa87d44f01fc.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 61,
+        "quantity": 5,
+        "octgnid": "21fec323-3155-4b64-8506-fa87d44f01fc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21fec323-3155-4b64-8506-fa87d44f01fc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
+    "octgnid": "46affe37-a561-4c15-bc0e-7c36d78ba056",
+    "name": "Deadmen's Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Fornost. Ruins.",
+    "text": "While Deadmen's Gate is the active location, it gains: \"Forced: After a player triggers an 'Action' or 'Response' effect, he must discard the top card of his deck.\"",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 40,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "shadow": "Shadow: Discard an attachment you control.",
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/46affe37-a561-4c15-bc0e-7c36d78ba056.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "46affe37-a561-4c15-bc0e-7c36d78ba056",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/46affe37-a561-4c15-bc0e-7c36d78ba056.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
+    "octgnid": "530e7365-0a5a-46e5-9720-5377dfa1a01b",
+    "name": "Thaurdir",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Indestructible. Cannot have attachments.\nForced: After a treachery card with the Sorcery trait is revealed from the encounter deck, Thaurdir heals 3 damage and makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 33,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 1,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "1"
+    },
+    "imagesrc": "/cards/530e7365-0a5a-46e5-9720-5377dfa1a01b.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 33,
+        "quantity": 1,
+        "octgnid": "530e7365-0a5a-46e5-9720-5377dfa1a01b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/530e7365-0a5a-46e5-9720-5377dfa1a01b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "octgnid": "5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "name": "Fornost Square",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Fornost. Ruins.",
+    "text": "Fornost Square gets +1 [threat] for each resource token on it.\nForced: After the first player discards any number of cards from the top of his deck, place 1 resource token here.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 38,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 4,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/5a90429e-d5cf-442f-b8d8-af144b3ea861.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 38,
+        "quantity": 3,
+        "octgnid": "5a90429e-d5cf-442f-b8d8-af144b3ea861",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a90429e-d5cf-442f-b8d8-af144b3ea861.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
+    "octgnid": "7295a9fb-961f-42ad-b07d-33793e2f2274",
+    "name": "Seal the Tomb",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nForced: At the end of the refresh phase, discard the top 3 cards of the encounter deck. Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 63,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Cursed Dead",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "7295a9fb-961f-42ad-b07d-33793e2f2274",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7295a9fb-961f-42ad-b07d-33793e2f2274.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+    "octgnid": "82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+    "name": "Broken Battlements",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Fornost. Ruins.",
+    "text": "Time 3. Forced: After the last time counter is removed from Broken Battlements, each player discards the top 5 cards of his deck and places 1 time counter here.  Travel: Each player discards the top card of his deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 36,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 6,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/82ca7902-f8fa-4352-8f54-f5f6a8875c51.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 36,
+        "quantity": 3,
+        "octgnid": "82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82ca7902-f8fa-4352-8f54-f5f6a8875c51.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
+    "octgnid": "8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
+    "name": "Thaurdir's Damned",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Forced: After Thaurdir's Damned engages you, discard the top 2 cards of your deck and assign X damage among characters you control. X is the combined printed cost of the discarded cards.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 34,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 5,
+    "defense": 2,
+    "health": 6,
+    "engagement": 35,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "2",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 34,
+        "quantity": 3,
+        "octgnid": "8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
+    "octgnid": "94ef148f-62f7-4659-8a49-9c42b9ed7cef",
+    "name": "Haunted Keep",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Fornost. Ruins.",
+    "text": "While Haunted Keep is the active location, the first Undead enemy revealed each round gains surge.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 39,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Defending player discards the top card of his deck. Attacking enemy gets +X [attack] where X is the discarded card's printed cost.",
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/94ef148f-62f7-4659-8a49-9c42b9ed7cef.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 39,
+        "quantity": 3,
+        "octgnid": "94ef148f-62f7-4659-8a49-9c42b9ed7cef",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/94ef148f-62f7-4659-8a49-9c42b9ed7cef.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a5e60892-b524-43cf-a501-372a624e785e",
+    "octgnid": "a5e60892-b524-43cf-a501-372a624e785e",
+    "name": "Norbury Tombs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Fornost. Ruins.",
+    "text": "While Norbury Tombs is the active location, it gains: \"Response: When Norbury Tombs is explored, each player shuffles the top 5 cards of his discard pile back into his deck.\"  Travel: Return the topmost enemy in the encounter discard pile to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 37,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/a5e60892-b524-43cf-a501-372a624e785e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 37,
+        "quantity": 2,
+        "octgnid": "a5e60892-b524-43cf-a501-372a624e785e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a5e60892-b524-43cf-a501-372a624e785e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
+    "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+    "name": "Heavy Curse",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "Surge.\nWhen Revealed: Attach to the current quest. (Counts as a Condition attachment with the text: \"When a player plays a card, increase its cost by 1 if there is a card that has the same title in its owner's discard pile.\")",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 66,
+    "quantity": 3,
+    "encounter_set": "Dark Sorcery",
+    "printed_stats": {},
+    "imagesrc": "/cards/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 66,
+        "quantity": 3,
+        "octgnid": "a6ea339d-aec3-4ec7-9374-c1442385c260",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6ea339d-aec3-4ec7-9374-c1442385c260.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+    "octgnid": "aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+    "name": "Dead Lord",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "Forced: After Dead Lord engages you, put the topmost Undead enemy in the discard pile into play engaged with you.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 60,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 3,
+    "engagement": 33,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, reveal 1 encounter card.",
+    "encounter_set": "Cursed Dead",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "3",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 60,
+        "quantity": 2,
+        "octgnid": "aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa6914e2-4b79-4a95-ab3e-386d6a924bee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+    "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+    "name": "The Power of Angmar",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nCards in each player's discard pile cannot leave that player's discard pile by player card effect.  Forced: After this stage is defeated, each player shuffles the top 5 cards of his discard pile back into his deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 67,
+    "quantity": 1,
+    "quest": 8,
+    "victory": 10,
+    "encounter_set": "Dark Sorcery",
+    "printed_stats": {
+      "quest": "8",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3e07d8f-3af3-4f21-8951-d3300ca376fa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+    "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+    "name": "Terror of the North",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "When Revealed: Each player discards the top 3 cards of his deck. Until the end of the round, add 2 to the total [threat] in the staging area for each different card type discarded this way.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 64,
+    "quantity": 3,
+    "shadow": "Shadow: Defending player discards the top 3 cards of his deck. Attacking enemy gets +1 [attack] for each different card type discarded this way.",
+    "encounter_set": "Dark Sorcery",
+    "printed_stats": {},
+    "imagesrc": "/cards/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 64,
+        "quantity": 3,
+        "octgnid": "d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d664e3bd-3f0d-47d8-91bb-d61b27a13c22.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
+    "octgnid": "e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
+    "name": "The Shadow World",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nForced: At the end of the refresh phase, each player discards the top X cards of his deck, where X is the number of Undead enemies engaged with him.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 42,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 10,
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/e3d50fbb-2b94-481a-a1e5-7925ca8384ff.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3d50fbb-2b94-481a-a1e5-7925ca8384ff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
+    "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+    "name": "Dark Sorcery",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Sorcery.",
+    "text": "Doomed 2.\nWhen Revealed: Each player discards each ally he controls that has the same title as a card in his discard pile.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 65,
+    "quantity": 2,
+    "shadow": "Shadow: Discard the defending character if there is a copy of that character in its owner's discard pile.",
+    "encounter_set": "Dark Sorcery",
+    "printed_stats": {},
+    "imagesrc": "/cards/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 65,
+        "quantity": 2,
+        "octgnid": "f8d69554-7cc1-4adc-b021-b6d3601e777d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8d69554-7cc1-4adc-b021-b6d3601e777d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
+    "octgnid": "fe419fec-bc64-493c-aa23-fa3e62c57768",
+    "name": "Baleful Shade",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wraith.",
+    "text": "Forced: When Baleful Shade attacks, the defending player discards the top card of his deck. If the discarded card is an ally, Baleful Shade gets +2 [attack] for this attack.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 35,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 5,
+    "engagement": 30,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Deadmen's Dike",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "5",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/fe419fec-bc64-493c-aa23-fa3e62c57768.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 35,
+        "quantity": 4,
+        "octgnid": "fe419fec-bc64-493c-aa23-fa3e62c57768",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe419fec-bc64-493c-aa23-fa3e62c57768.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

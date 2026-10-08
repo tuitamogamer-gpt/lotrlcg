@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
@@ -424,15 +425,21 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
         heirsCanSpendResources(s, hero) &&
         hero.exhausted
       )
-        choose(s, "Elrohir · Declared defender", [
-          {
-            id: "ready",
-            label: "Spend Elrohir's resource to ready him",
-            code: hero.code,
-            effects: [fx("redhornElrohirReady", { target: hero.id })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          hero.id,
+          hero.code,
+          "Elrohir · Declared defender",
+          [
+            {
+              id: "ready",
+              label: "Spend Elrohir's resource to ready him",
+              code: hero.code,
+              effects: [fx("redhornElrohirReady", { target: hero.id })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "redhornElrohirReady": {
@@ -522,15 +529,21 @@ export function handleRedhornPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "redhornFriendshipResponse":
       if (s.hand.some((u) => u.code === "04007") && canPay(s, card("04007")))
-        choose(s, "Renewed Friendship · Attachment played", [
-          {
-            id: "play",
-            label: "Play Renewed Friendship",
-            code: "04007",
-            effects: [fx("redhornFriendshipMode", { value: e.value })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04007")!.id,
+          "04007",
+          "Renewed Friendship · Attachment played",
+          [
+            {
+              id: "play",
+              label: "Play Renewed Friendship",
+              code: "04007",
+              effects: [fx("redhornFriendshipMode", { value: e.value })],
+            },
+            skip,
+          ],
+        );
       return true;
     case "redhornFriendshipMode": {
       if (!spendEvent(s, "04007")) return true;

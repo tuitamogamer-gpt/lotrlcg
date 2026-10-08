@@ -1,3 +1,4 @@
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
 // The Blood of Gondor: actual discard cards, player choices and delayed effects.
 import { card, name, plain } from "./cards";
@@ -89,6 +90,7 @@ const caldaraUsed = (s: GameState, u: Unit) =>
   );
 const caldaraAllies = (s: GameState, selected: number[] = []) =>
   s.discard.flatMap((code, index) =>
+    !dikeCannotLeaveDiscard(s) &&
     card(code).type_code === "ally" &&
     card(code).sphere_code === "spirit" &&
     allyCanEnter(s, code) &&
@@ -100,7 +102,9 @@ const caldaraAllies = (s: GameState, selected: number[] = []) =>
   );
 const trapCards = (s: GameState) =>
   s.discard.flatMap((code, index) =>
-    card(code).type_code === "attachment" && rawTrait(card(code), "Trap")
+    !dikeCannotLeaveDiscard(s) &&
+    card(code).type_code === "attachment" &&
+    rawTrait(card(code), "Trap")
       ? [{ code, index }]
       : [],
   );
@@ -324,6 +328,7 @@ interface DiscardedCard {
 function equippedTargets(s: GameState, entry: DiscardedCard) {
   const u = { ...s.heroes[0], code: entry.code, id: entry.id } as Unit;
   if (
+    dikeCannotLeaveDiscard(s, entry.owner) ||
     card(entry.code).type_code !== "attachment" ||
     effectCardPlayProblem(s, u, { putIntoPlay: true })
   )

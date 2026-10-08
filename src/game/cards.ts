@@ -1,3 +1,4 @@
+import { DIKE_ENCOUNTERS, DIKE_QUESTS } from "./deadmens-dike-support";
 import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
 import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
@@ -191,6 +192,7 @@ export const encounterCards = [
   ...ANTLERED_ENCOUNTERS,
   ...CHETWOOD_ENCOUNTERS,
   ...WEATHER_ENCOUNTERS,
+  ...DIKE_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -227,6 +229,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
     ...WEATHER_QUESTS,
+    ...DIKE_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -336,6 +339,7 @@ export const SCRIPTED = new Set(
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
     ...WEATHER_QUESTS,
+    ...DIKE_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

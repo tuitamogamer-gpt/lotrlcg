@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -256,15 +257,21 @@ export function handleMorgulPlayerEffect(s: GameState, e: Effect): boolean {
     case "morgulSteedResponse": {
       const hero = get(s, e.source);
       if (!hero || !canSteedReady(s, hero, e.text)) return true;
-      choose(s, "Steed of the Mark · Committed hero", [
-        {
-          id: "ready",
-          code: "06139",
-          label: `Spend 1 resource from ${name(hero)} to ready that hero`,
-          effects: [{ ...e, kind: "morgulSteedReady" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.text!,
+        "06139",
+        "Steed of the Mark · Committed hero",
+        [
+          {
+            id: "ready",
+            code: "06139",
+            label: `Spend 1 resource from ${name(hero)} to ready that hero`,
+            effects: [{ ...e, kind: "morgulSteedReady" }],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "morgulSteedReady": {

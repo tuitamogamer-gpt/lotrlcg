@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "deadmens-dike": {
+    name: "Deadmen's Dike",
+    detail: "Undead shadows over the ruins of Fornost",
+  },
   "the-weather-hills": {
     name: "The Weather Hills",
     detail: "The hunt through the storm in ruined Arnor",
@@ -187,6 +191,7 @@ export const PLAYMAT_CHOICES = [
   "the-antlered-crown",
   "intruders-in-chetwood",
   "the-weather-hills",
+  "deadmens-dike",
   "shadow-and-flame",
 ] as const;
 

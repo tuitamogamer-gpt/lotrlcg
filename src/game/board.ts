@@ -1,3 +1,11 @@
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
+import { DIKE } from "./deadmens-dike-support";
+import { choosePlayerResponse } from "./player-ability-triggers";
+import { allQuestUnits } from "./quest-state";
+import * as Dike from "./deadmens-dike";
 import { CHETWOOD } from "./chetwood-support";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
@@ -457,23 +465,76 @@ export function charactersCommitted(
     if (u.code === "01044" && allActiveLocations(s).length)
       enqueue(
         s,
-        fx("activeLocationEffect", {
-          text: "locationProgress",
-          value: 1,
+        coreCommitResponse(
+          s,
+          u,
+          [
+            fx("activeLocationEffect", {
+              text: "locationProgress",
+              value: 1,
+              player,
+            }),
+          ],
           player,
-        }),
+        ),
       );
-    if (u.code === "01045")
-      enqueue(
-        s,
-        ...s.staging
-          .filter((x) => card(x.code).type_code === "location")
-          .map((x) =>
-            fx("locationProgress", { target: x.id, value: 1, player }),
-          ),
-      );
+    if (u.code === "01045") {
+      const effects = s.staging
+        .filter((x) => card(x.code).type_code === "location")
+        .map((x) => fx("locationProgress", { target: x.id, value: 1, player }));
+      if (!effects.length) continue;
+      enqueue(s, coreCommitResponse(s, u, effects, player));
+    }
   }
   morgulPlayerCharactersCommitted(s, actual);
+}
+
+const coreGateActive = (s: GameState) =>
+  allActiveLocations(s).some((u) => u.code === DIKE.gate && !u.blanked);
+function coreCommitResponse(
+  s: GameState,
+  u: Unit,
+  effects: Effect[],
+  player: number,
+): Effect {
+  return coreGateActive(s)
+    ? fx("coreResponseOffer", { source: u.id, code: u.code, effects, player })
+    : fx("coreResponseAutomatic", { effects, player });
+}
+
+/** Preserve automatic Core responses while allowing a player to decline Gate's cost. */
+export function coreBoardResponse(s: GameState, e: Effect): boolean {
+  if (e.kind === "coreResponseAutomatic") {
+    prepend(s, ...(e.effects ?? []));
+    return true;
+  }
+  if (e.kind === "coreResponseOffer") {
+    choosePlayerResponse(
+      s,
+      e.source!,
+      e.code!,
+      `${card(e.code!).name} · Response`,
+      [
+        {
+          id: "use",
+          label: `Use ${card(e.code!).name}'s response`,
+          effects: e.effects ?? [],
+        },
+        skip,
+      ],
+    );
+    return true;
+  }
+  if (e.kind === "coreGloinResources") {
+    const hero = get(s, e.target);
+    if (hero?.code === "01003" && !hero.blanked && canGainResources(s, hero)) {
+      stewardFearHeroAbilityTriggered(s, hero);
+      hero.resources += e.value ?? 0;
+      gondorResourcesGained(s, hero, e.value ?? 0, true);
+    }
+    return true;
+  }
+  return false;
 }
 
 export function readyCharacter(s: GameState, u: Unit) {
@@ -491,6 +552,7 @@ export function discardPlayerDeck(
   count: number,
   player = activeSeat(s),
   offerResponses = true,
+  notifyDike = true,
 ): string[] {
   const discarded: string[] = [];
   forOwner(s, player, () => {
@@ -503,6 +565,7 @@ export function discardPlayerDeck(
       discarded.push(u.code);
     }
   });
+  if (notifyDike) Dike.dikeDeckDiscarded(s, discarded, player);
   if (offerResponses) dwarfDeckDiscarded(s, discarded, player);
   return discarded;
 }
@@ -519,7 +582,17 @@ export function discardHandCard(s: GameState, id: string): Unit {
   });
   return u;
 }
-export function takePlayerDiscard(s: GameState, index: number): Unit {
+export function takePlayerDiscard(
+  s: GameState,
+  index: number,
+  options: { playerCardCost?: boolean; encounterEffect?: boolean } = {},
+): Unit {
+  requireRule(
+    options.playerCardCost ||
+      options.encounterEffect ||
+      !dikeCannotLeaveDiscard(s),
+    DIKE_DISCARD_REASON,
+  );
   requireRule(
     index >= 0 && index < s.discard.length,
     "Choose an actual card in your discard pile.",
@@ -539,6 +612,9 @@ export function advanceDefense(s: GameState) {
           "khazadRepeatAttack",
           "chetAttackEffects",
           "chetAttackFinished",
+          "dikeAttackEffects",
+          "dikeAttackFinished",
+          "dikeStageReady",
           "combatStartEffects",
           "prepareCombat",
           "bloodTurnAll",
@@ -652,6 +728,7 @@ export function check(s: GameState) {
     ].find(
       (u) =>
         !shadowFlameIndestructible(u) &&
+        !Dike.dikeIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
         u.damage >= stats(s, u).health,
@@ -666,6 +743,7 @@ export function check(s: GameState) {
   if (s.table) {
     globalEachSeat(s, (i) => {
       if (
+        !Dike.dikePlayerDeckEmpty(s, i) &&
         s.threat < threatElimination(s) &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
@@ -780,12 +858,14 @@ export function check(s: GameState) {
       if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
     }
   } else if (
+    Dike.dikePlayerDeckEmpty(s, 0) ||
     s.threat >= threatElimination(s) ||
     (!s.heroes.length && !s.prisoner && !foundationsHeroMissingAllowed(s, 0))
   ) {
     s.status = "lost";
-    s.reason =
-      s.threat >= threatElimination(s)
+    s.reason = Dike.dikePlayerDeckEmpty(s, 0)
+      ? "Your deck is empty. The dead overwhelm your fellowship."
+      : s.threat >= threatElimination(s)
         ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
         : "The last hero has fallen.";
   }
@@ -860,57 +940,62 @@ export function win(s: GameState) {
   if (s.status !== "playing") return;
   s.status = "won";
   s.reason =
-    s.scenarioId === "the-weather-hills"
-      ? "The Orc counter-attack is broken. Your fellowship survives the storm and clears Amon Forn."
-      : s.scenarioId === "intruders-in-chetwood"
-        ? "The Orc War Parties are defeated. Iârion and the Rangers keep Bree-land safe."
-        : s.scenarioId === "the-antlered-crown"
-          ? "The Raven Chief is defeated. Chief Turch unites the clans beneath the Antlered Crown."
-          : s.scenarioId === "celebrimbors-secret"
-            ? "Bellach is defeated. Your fellowship recovers Celebrimbor’s Mould and escapes the ruins of Ost-in-Edhil."
-            : s.scenarioId === "the-nin-in-eilph"
-              ? "The Ancient Marsh-dweller falls. Your fellowship and Nalir escape the shifting swamp."
-              : s.scenarioId === "trouble-in-tharbad"
-                ? "Your heroes and Nalir cross the ruined bridge and escape Tharbad with the map."
-                : s.scenarioId === "the-three-trials"
-                  ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
-                  : s.scenarioId === "the-dunland-trap"
-                    ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
-                    : s.scenarioId === "the-druadan-forest"
-                      ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
-                      : s.scenarioId === "encounter-at-amon-din"
-                        ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
-                        : s.scenarioId === "assault-on-osgiliath"
-                          ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
-                          : s.scenarioId === "mirkwood"
-                            ? "Your fellowship has passed safely through Mirkwood."
-                            : s.scenarioId === "anduin"
-                              ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
-                              : s.scenarioId === "hunt-for-gollum"
-                                ? "You have found a true sign of Gollum’s passing. The trail leads on."
-                                : s.scenarioId === "conflict-at-the-carrock"
-                                  ? "The Trolls are defeated and the Carrock is free."
-                                  : s.scenarioId === "hills-of-emyn-muil"
-                                    ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
-                                    : s.scenarioId === "journey-to-rhosgobel"
-                                      ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
-                                      : s.scenarioId === "dead-marshes"
-                                        ? "Your fellowship captures Gollum in the Dead Marshes."
-                                        : s.scenarioId === "return-to-mirkwood"
-                                          ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
-                                          : s.scenarioId === "road-to-rivendell"
-                                            ? "Arwen arrives safely in Rivendell with your fellowship."
-                                            : s.scenarioId === "redhorn-gate"
-                                              ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
-                                              : s.scenarioId === "into-the-pit"
-                                                ? "Your fellowship survives the depths beneath the East-gate of Moria."
+    s.scenarioId === "deadmens-dike"
+      ? "Thaurdir is overcome. Your fellowship and Iârion escape the haunted ruins of Fornost."
+      : s.scenarioId === "the-weather-hills"
+        ? "The Orc counter-attack is broken. Your fellowship survives the storm and clears Amon Forn."
+        : s.scenarioId === "intruders-in-chetwood"
+          ? "The Orc War Parties are defeated. Iârion and the Rangers keep Bree-land safe."
+          : s.scenarioId === "the-antlered-crown"
+            ? "The Raven Chief is defeated. Chief Turch unites the clans beneath the Antlered Crown."
+            : s.scenarioId === "celebrimbors-secret"
+              ? "Bellach is defeated. Your fellowship recovers Celebrimbor’s Mould and escapes the ruins of Ost-in-Edhil."
+              : s.scenarioId === "the-nin-in-eilph"
+                ? "The Ancient Marsh-dweller falls. Your fellowship and Nalir escape the shifting swamp."
+                : s.scenarioId === "trouble-in-tharbad"
+                  ? "Your heroes and Nalir cross the ruined bridge and escape Tharbad with the map."
+                  : s.scenarioId === "the-three-trials"
+                    ? "The three trials are complete. Your fellowship retrieves the Antlered Crown from the Hallowed Circle."
+                    : s.scenarioId === "the-dunland-trap"
+                      ? "Your heroes survive Chief Turch's final assault. The Dunland trap is broken."
+                      : s.scenarioId === "the-druadan-forest"
+                        ? "Drû-buri-Drû accepts your fellowship's peaceful intentions. The Woses let you pass through their forest."
+                        : s.scenarioId === "encounter-at-amon-din"
+                          ? "Ghulat is defeated. Your fellowship has rescued more villagers than the raiders killed."
+                          : s.scenarioId === "assault-on-osgiliath"
+                            ? "Your fellowships hold every Osgiliath location in play. The ruined city is reclaimed."
+                            : s.scenarioId === "mirkwood"
+                              ? "Your fellowship has passed safely through Mirkwood."
+                              : s.scenarioId === "anduin"
+                                ? "The ambush is broken. Your fellowship reaches the shores of Lórien."
+                                : s.scenarioId === "hunt-for-gollum"
+                                  ? "You have found a true sign of Gollum’s passing. The trail leads on."
+                                  : s.scenarioId === "conflict-at-the-carrock"
+                                    ? "The Trolls are defeated and the Carrock is free."
+                                    : s.scenarioId === "hills-of-emyn-muil"
+                                      ? "Your fellowship has explored Emyn Muil and collected at least 20 victory points."
+                                      : s.scenarioId === "journey-to-rhosgobel"
+                                        ? "Wilyador's wounds are healed. The Eagle survives your return to Rhosgobel."
+                                        : s.scenarioId === "dead-marshes"
+                                          ? "Your fellowship captures Gollum in the Dead Marshes."
+                                          : s.scenarioId ===
+                                              "return-to-mirkwood"
+                                            ? "Gollum arrives safely at Thranduil’s halls and the ambush is defeated."
+                                            : s.scenarioId ===
+                                                "road-to-rivendell"
+                                              ? "Arwen arrives safely in Rivendell with your fellowship."
+                                              : s.scenarioId === "redhorn-gate"
+                                                ? "Your fellowship escorts Arwen across Caradhras and through the snowbound pass."
                                                 : s.scenarioId ===
-                                                    "the-seventh-level"
-                                                  ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                                    "into-the-pit"
+                                                  ? "Your fellowship survives the depths beneath the East-gate of Moria."
                                                   : s.scenarioId ===
-                                                      "flight-from-moria"
-                                                    ? "Your fellowship finds an exit and escapes the darkness of Moria."
-                                                    : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+                                                      "the-seventh-level"
+                                                    ? "Your fellowship reaches the Seventh Level and uncovers the fate of Balin."
+                                                    : s.scenarioId ===
+                                                        "flight-from-moria"
+                                                      ? "Your fellowship finds an exit and escapes the darkness of Moria."
+                                                      : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -985,9 +1070,27 @@ export function damage(
     canGainResources(s, u) &&
     u.damage < stats(s, u).health
   ) {
-    stewardFearHeroAbilityTriggered(s, u);
-    u.resources += value;
-    gondorResourcesGained(s, u, value, true);
+    if (coreGateActive(s))
+      prepend(
+        s,
+        fx("coreResponseOffer", {
+          source: u.id,
+          code: u.code,
+          player: ownerOf(s, u),
+          effects: [
+            fx("coreGloinResources", {
+              target: u.id,
+              value,
+              player: ownerOf(s, u),
+            }),
+          ],
+        }),
+      );
+    else {
+      stewardFearHeroAbilityTriggered(s, u);
+      u.resources += value;
+      gondorResourcesGained(s, u, value, true);
+    }
   }
   log(s, `${name(u)} takes ${value} damage.`, value > 1 ? "danger" : "normal");
   // Signs of Gollum: a damaged bearer returns the clue to the top of the encounter deck.
@@ -1009,6 +1112,7 @@ export function damage(
     Antlered.antleredCharacterDestroyed(s, u, context);
     Chetwood.chetwoodCharacterDestroyed(s, u, context);
     Weather.weatherCharacterDestroyed(s, u, context);
+    Dike.dikeCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1126,7 +1230,11 @@ export function destroy(
   syncAttachmentText(s);
   if (DunlandQuest.dunlandCannotLeave(u) || Trials.trialsCannotLeave(s, u))
     return;
-  if (destruction && shadowFlameIndestructible(u)) return;
+  if (
+    destruction &&
+    (shadowFlameIndestructible(u) || Dike.dikeIndestructible(s, u))
+  )
+    return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   const previous = activeSeat(s);
   const lastKnownAttack = stats(s, u).attack;
@@ -1138,9 +1246,32 @@ export function destroy(
   if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
     for (const h of allHeroes(s))
       for (const a of h.attachments)
-        if (!a.blanked && a.code === "01042" && canGainResources(s, h)) {
-          h.resources++;
-          gondorResourcesGained(s, h, 1, true);
+        if (
+          h.id !== u.id &&
+          !a.blanked &&
+          a.code === "01042" &&
+          canGainResources(s, h)
+        ) {
+          if (coreGateActive(s))
+            prepend(
+              s,
+              fx("coreResponseOffer", {
+                source: a.id,
+                code: a.code,
+                player: attachmentController(s, h, a) ?? ownerOf(s, h),
+                effects: [
+                  fx("resource", {
+                    target: h.id,
+                    value: 1,
+                    player: ownerOf(s, h),
+                  }),
+                ],
+              }),
+            );
+          else {
+            h.resources++;
+            gondorResourcesGained(s, h, 1, true);
+          }
         }
   }
   if (["ally", "objective-ally", "hero"].includes(c.type_code)) {
@@ -1305,6 +1436,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   BloodQuest.bloodGondorExplored(s, u);
   Catch.catchExplored(s, u);
   Weather.weatherExplored(s, u, wasActive);
+  Dike.dikeExplored(s, u, wasActive);
   DunlandQuest.dunlandExplored(s, u);
   Tharbad.tharbadExplored(s, u);
   Nin.ninExplored(s, u);
@@ -1508,6 +1640,7 @@ export function advanceQuest(s: GameState) {
   if (Antlered.advanceAntlered(s)) return;
   if (Chetwood.advanceChetwood(s)) return;
   if (Weather.weatherAdvance(s)) return;
+  if (Dike.dikeAdvance(s)) return;
   if (s.scenarioId === "assault-on-osgiliath") return;
   if (advanceHeirs(s)) return;
   if (advanceStewardFear(s)) return;
@@ -1762,12 +1895,12 @@ export function nextRound(s: GameState) {
   for (const u of globalUnits(s)) {
     delete u.roundThreat;
     delete u.roundAttack;
+    delete u.roundDefense;
     delete u.roundCannotTakeDamage;
   }
   heirsRoundEnd(s);
   for (const u of globalCharacters(s)) {
     delete u.roundKeywords;
-    delete u.roundDefense;
   }
   s.round++;
   startPhase(s, "resource");
@@ -1834,6 +1967,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Fords.fordsEngaged(s, u);
   Antlered.antleredEngaged(s, u);
   Weather.weatherEngaged(s, u);
+  Dike.dikeEngaged(s, u);
   Catch.catchEngaged(s, u);
   DunlandQuest.dunlandEngaged(s, u);
   longDarkEngaged(s, u);
@@ -2022,6 +2156,7 @@ export function resolveReveal(
     longDarkRevealSurge(s, code) ||
     Fords.fordsRevealSurge(s, code) ||
     Weather.weatherRevealSurge(s, code, revealOrigin) ||
+    Dike.dikeRevealSurge(s, code, revealOrigin) ||
     (code === CHETWOOD.hills && Chetwood.chetwoodQuestCount(s) === 1)
   )
     prepend(s, fx("amonSurgeWindow", { code }), fx("reveal"));
@@ -2064,20 +2199,30 @@ export function resolveReveal(
         id: s.table ? `cancel-${player}` : "cancel",
         label: `Play A Test of Will · ${playCost(s, card("01050"))} Spirit${s.table ? " · " + seatName(s, player) : ""}`,
         code: "01050",
+        ability: {
+          player,
+          source: s.hand.find((u) => u.code === "01050")!.id,
+          code: "01050",
+          type: "response",
+        },
         effects: [
           fx("eventPlay", {
             code: "01050",
             player,
             effects: [
-              fx("placeEncounter", {
-                text: "revealed",
-                code,
-                flag: true,
-                player: revealingPlayer,
-                value: thalin ? 1 : 0,
-                count: initialProgress,
-                source: guarding,
-                revealOrigin,
+              fx("afterPlayerAbility", {
+                effects: [
+                  fx("placeEncounter", {
+                    text: "revealed",
+                    code,
+                    flag: true,
+                    player: revealingPlayer,
+                    value: thalin ? 1 : 0,
+                    count: initialProgress,
+                    source: guarding,
+                    revealOrigin,
+                  }),
+                ],
               }),
             ],
             cancelledEffects: [
@@ -2102,6 +2247,12 @@ export function resolveReveal(
         id: s.table ? `eleanor-${player}` : "eleanor",
         label: "Exhaust Eleanor to cancel and replace",
         code: "01008",
+        ability: {
+          player,
+          source: eleanor.id,
+          code: eleanor.code,
+          type: "response",
+        },
         effects: [
           fx("exhaust", {
             target: eleanor.id,
@@ -2191,6 +2342,7 @@ export function placeEncounter(
     Trials.trialsCardEntered(s, fresh, fromReveal);
     Antlered.antleredCardEntered(s, fresh, fromReveal);
     Chetwood.chetwoodCardEntered(s, fresh, fromReveal);
+    Dike.dikeCardEntered(s, fresh, fromReveal);
     Weather.weatherCardEntered(s, fresh, fromReveal);
     fresh.progress = initialProgress;
     fresh.damage =
@@ -2258,6 +2410,7 @@ export function placeEncounter(
   if (Antlered.antleredEncounter(s, code)) return;
   if (Chetwood.chetwoodEncounter(s, code)) return;
   if (Weather.weatherEncounter(s, code)) return;
+  if (Dike.dikeEncounter(s, code)) return;
   if (heirsEncounter(s, code)) return;
   if (stewardFearEncounter(s, code)) return;
   if (foundationsEncounter(s, code)) return;
@@ -2546,8 +2699,10 @@ export function allyEntryResponses(
       prepend(s, fx("gandalf", { source: u.id, code: u.code }));
       break;
     case "01016":
-      choose(
+      choosePlayerResponse(
         s,
+        u.id,
+        u.code,
         "Snowbourn Scout",
         [
           ...opts(
@@ -2563,8 +2718,10 @@ export function allyEntryResponses(
       );
       break;
     case "01015":
-      choose(
+      choosePlayerResponse(
         s,
+        u.id,
+        u.code,
         "Son of Arnor",
         [
           ...opts(
@@ -2580,9 +2737,9 @@ export function allyEntryResponses(
       );
       break;
     case "01059": {
-      if (!played) break;
+      if (!played || dikeCannotLeaveDiscard(s)) break;
       if (s.table) {
-        choose(s, "Erebor Hammersmith", [
+        choosePlayerResponse(s, u.id, u.code, "Erebor Hammersmith", [
           ...playerOrder(s).flatMap((player) => {
             const discard = seatView(s, player).discard;
             const code = [...discard]
@@ -2607,6 +2764,17 @@ export function allyEntryResponses(
         .reverse()
         .find((code) => card(code).type_code === "attachment");
       if (attachment) {
+        if (coreGateActive(s)) {
+          choosePlayerResponse(s, u.id, u.code, "Erebor Hammersmith", [
+            {
+              id: "recover",
+              label: `Return ${card(attachment).name} to hand`,
+              effects: [fx("recoverAttachment", { code: attachment })],
+            },
+            skip,
+          ]);
+          break;
+        }
         const i = s.discard.lastIndexOf(attachment);
         s.discard.splice(i, 1);
         s.hand.push(make(s, attachment));
@@ -2618,7 +2786,7 @@ export function allyEntryResponses(
       break;
     }
     case "01061":
-      choose(s, "Miner of the Iron Hills", [
+      choosePlayerResponse(s, u.id, u.code, "Miner of the Iron Hills", [
         ...[
           ...units(s),
           ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
@@ -2650,6 +2818,23 @@ export function allyEntryResponses(
       ]);
       break;
     case "01018":
+      if (coreGateActive(s)) {
+        const targets = [...s.staging, ...allEngaged(s)].filter((x) =>
+          card(x.code).traits?.includes("Orc"),
+        );
+        if (targets.length)
+          choosePlayerResponse(s, u.id, u.code, "Longbeard Orc Slayer", [
+            {
+              id: "damage",
+              label: "Deal 1 damage to each Orc enemy in play",
+              effects: targets.map((x) =>
+                fx("damage", { target: x.id, value: 1 }),
+              ),
+            },
+            skip,
+          ]);
+        break;
+      }
       for (const x of [...s.staging, ...allEngaged(s)].filter((x) =>
         card(x.code).traits?.includes("Orc"),
       ))
@@ -2669,7 +2854,7 @@ export function spendEvent(
   requireRule(!problem, problem ?? "");
   const u = s.hand.find((u) => u.code === code && (!id || u.id === id));
   requireRule(u, "That event is no longer in hand.");
-  pay(s, card(code));
+  pay(s, { ...card(code), playOwner: u.owner ?? activeSeat(s) });
   redhornPlayerEventPlayed(s, code);
   dunlandEventPlayed(s, code);
   ringMakerEventPlayed(s, code);
@@ -2689,7 +2874,10 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
     ? (c?.defenderIds ?? (c?.defenderId ? [c.defenderId] : [])).map((id) =>
         get(s, id)!,
       )
-    : units(s);
+    : [
+        ...units(s),
+        ...allQuestUnits(s).filter((u) => u.id.startsWith("quest:")),
+      ];
   const options: Option[] = [];
   for (const u of list.filter(Boolean))
     for (const a of u.attachments) {
@@ -2724,6 +2912,7 @@ export function shadow(s: GameState, code: string) {
   if (Antlered.antleredShadow(s, code)) return;
   if (Chetwood.chetwoodShadow(s, code)) return;
   if (Weather.weatherShadow(s, code)) return;
+  if (Dike.dikeShadow(s, code)) return;
   if (heirsShadow(s, code)) return;
   if (stewardFearShadow(s, code)) return;
   if (shadowFlameShadow(s, code)) return;

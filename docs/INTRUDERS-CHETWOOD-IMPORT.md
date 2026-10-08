@@ -1,6 +1,6 @@
 # Lost Realm source imports
 
-Status: Intruders in Chetwood gameplay is implemented; see [Chetwood rules and verification](CHETWOOD-RULES.md). `src/data/pending/intruders-in-chetwood-import.json` remains the immutable preparation snapshot, including its historical `pending-rules` status. Active definitions and recipes live in `src/data/chetwood-*.json`. The Weather Hills is also implemented; see [Weather Hills import](WEATHER-HILLS-IMPORT.md). Deadmen’s Dike remains prepared for implementation.
+Status: Intruders in Chetwood gameplay is implemented; see [Chetwood rules and verification](CHETWOOD-RULES.md). `src/data/pending/intruders-in-chetwood-import.json` remains the immutable preparation snapshot, including its historical `pending-rules` status. Active definitions and recipes live in `src/data/chetwood-*.json`. The Weather Hills is also implemented; see [Weather Hills import](WEATHER-HILLS-IMPORT.md). Deadmen’s Dike is also implemented; see [Dike import](DEADMENS-DIKE-IMPORT.md).
 
 The bundle contains 19 original definitions across Intruders in Chetwood, Angmar Orcs, Eriador Wilds and Iârion; 20 local JPEG faces include both sides of Stop the War Party. Every face has its original HTTPS source, byte count and SHA-256. The card library uses these local faces independently of automation status. Original variable stats are retained: all three of Iârion's combat/quest stats are X, and Shrouded Hills has X threat. The printed Orc Rearguard face confirms Victory 10.
 
@@ -51,7 +51,7 @@ The same checked preparation is complete for `Q05.2` / `E05.2` (The Weather Hill
 
 The Weather Hills retains all six original recipe zones: quest deck, encounter deck, separate Orc deck, set-aside cards, staged cards and active location. Standard/easy initial encounter decks contain 31/24 cards and Orc decks contain 11/9; both sides of Hunting the Orcs are preserved. Deadmen's Dike retains 41/28 encounter cards, its set-aside and staging cards, Iârion and both quest stages. These counts describe source recipes before scripted setup, not automated play.
 
-The Weather Hills and Deadmen’s Dike gameplay remain pending. Shared Chetwood definitions now resolve to their implemented handlers, while those two scenario recipes stay disabled. `tests/pending-imports.test.ts` checks source equivalence, recipe zones, image hashes and the automation boundary. `scripts/browser-pending-import.mjs` covers the library at 1280/390/320, checks variable stats and reverse quest art, and decodes all 64 faces locally.
+All three Lost Realm scenarios now resolve to implemented normal/easy handlers and their recipe controls are enabled. The preparation snapshots retain their historical pending status as source provenance. `tests/pending-imports.test.ts` checks source equivalence, recipe zones, image hashes and the automation boundary. `scripts/browser-pending-import.mjs` covers the library at 1280/390/320, checks variable stats and reverse quest art, and decodes all 64 faces locally.
 
 ### Original-face clarifications for the next implementation
 

@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
+    "octgnid": "6e449166-50ab-4ec5-875f-3cc8adcbb64e",
+    "name": "The Shades of Angmar",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Put Iârion into play. Set Thaurdir aside, out of play. Add 1 copy of Fornost Square to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 73,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Deadmen's Dike",
+    "side": "A",
+    "back_name": "The Shades of Angmar",
+    "back_text": "When Revealed: Each player must search the encounter deck for a Baleful Shade and put it into play engaged with him. Shuffle the encounter deck and reveal 1 encounter card per player.  Forced: At the end of the refresh phase, each player discards the top card of his deck.  If a player has no cards in his deck, he is eliminated from the game.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "/cards/6e449166-50ab-4ec5-875f-3cc8adcbb64e.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/6e449166-50ab-4ec5-875f-3cc8adcbb64e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "6e449166-50ab-4ec5-875f-3cc8adcbb64e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e449166-50ab-4ec5-875f-3cc8adcbb64e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
+    "octgnid": "89f263b0-c4a5-43ea-b59d-6207f9f65954",
+    "name": "A Fell Wraith",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Thaurdir to the staging area. Then, reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 74,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Deadmen's Dike",
+    "side": "A",
+    "back_name": "A Fell Wraith",
+    "back_text": "Forced: After Thaurdir attacks and destroys a character, that character's controller must either discard the top 3 cards of his deck, or return Thaurdir to the staging area.  If a player has no cards in his deck, he is eliminated from the game. The players cannot defeat this stage while Thaurdir has any hit points remaining. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 13,
+    "back_imagesrc": "/cards/89f263b0-c4a5-43ea-b59d-6207f9f65954.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/89f263b0-c4a5-43ea-b59d-6207f9f65954.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "89f263b0-c4a5-43ea-b59d-6207f9f65954",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89f263b0-c4a5-43ea-b59d-6207f9f65954.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

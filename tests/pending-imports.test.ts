@@ -100,11 +100,7 @@ for (const [slug, count, faces, encounterDeck] of [
       if (c.back_imagesrc) restored.back_imagesrc = source.back_imagesrc;
       assert.deepEqual(restored, source);
       assert.equal(isAutomatedCard(c), SCRIPTED.has(c.engine_code ?? c.code));
-      if (slug === "the-weather-hills") assert.ok(isAutomatedCard(c));
-    }
-    if (slug === "deadmen-s-dike") {
-      assert.ok(bundle.cards.some((c: Card) => SCRIPTED.has(c.code)));
-      assert.ok(bundle.cards.some((c: Card) => !SCRIPTED.has(c.code)));
+      assert.ok(isAutomatedCard(c));
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(
@@ -113,7 +109,7 @@ for (const [slug, count, faces, encounterDeck] of [
       );
       assert.equal(
         automatedScenarioId(recipe),
-        slug === "the-weather-hills" ? "the-weather-hills" : null,
+        slug === "the-weather-hills" ? "the-weather-hills" : "deadmens-dike",
       );
       if (recipe.mode === "standard")
         assert.equal(

@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { takePlayerDeck, putPlayerDeck, reorderPlayerDeck } from "./core";
@@ -263,9 +264,12 @@ function gildorOrder(s: GameState, count: number, selected: string[] = []) {
 
 export function emynPlayerAllyEntered(s: GameState, u: Unit, _played: boolean) {
   if (u.code === "02073" && anyDeck(s))
-    prepend(s, fx("emynTookResponse", { player: ownerOf(s, u) }));
+    prepend(s, fx("emynTookResponse", { source: u.id, player: ownerOf(s, u) }));
   if (u.code === "02075" && stagingEnemies(s).length)
-    prepend(s, fx("emynThorondorResponse", { player: ownerOf(s, u) }));
+    prepend(
+      s,
+      fx("emynThorondorResponse", { source: u.id, player: ownerOf(s, u) }),
+    );
 }
 export function emynPlayerLeavesPlay(
   s: GameState,
@@ -273,7 +277,10 @@ export function emynPlayerLeavesPlay(
   controller: number,
 ) {
   if (u.code === "02075" && stagingEnemies(s).length)
-    prepend(s, fx("emynThorondorResponse", { player: controller }));
+    prepend(
+      s,
+      fx("emynThorondorResponse", { source: u.id, player: controller }),
+    );
 }
 export function emynPlayerAttackKilled(
   s: GameState,
@@ -319,15 +326,21 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "emynTookResponse":
       if (anyDeck(s))
-        choose(s, "Keen-eyed Took · Entered play", [
-          {
-            id: "reveal",
-            label: "Reveal every player deck's top card",
-            code: "02073",
-            effects: [fx("emynTookReveal")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.source ?? "02073",
+          "02073",
+          "Keen-eyed Took · Entered play",
+          [
+            {
+              id: "reveal",
+              label: "Reveal every player deck's top card",
+              code: "02073",
+              effects: [fx("emynTookReveal")],
+            },
+            skip,
+          ],
+        );
       return true;
     case "emynTookReveal": {
       const tops = playerOrder(s).flatMap((player) => {
@@ -357,8 +370,10 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "emynThorondorResponse":
       if (stagingEnemies(s).length)
-        choose(
+        choosePlayerResponse(
           s,
+          e.source ?? "02075",
+          "02075",
           "Descendant of Thorondor · Response",
           [
             ...opts(stagingEnemies(s), (u) => [
@@ -384,8 +399,10 @@ export function handleEmynPlayerEffect(s: GameState, e: Effect): boolean {
         ...seatView(s, player).allies,
       ].filter((u) => u.exhausted);
       if (targets.length)
-        choose(
+        choosePlayerResponse(
           s,
+          brand.id,
+          brand.code,
           "Brand son of Bain · Defeated enemy",
           [
             ...opts(targets, (u) => [

@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -319,15 +320,21 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
         heirsCanSpendResources(s, hero) &&
         hero.exhausted
       )
-        choose(s, "Elladan · Declared attacker", [
-          {
-            id: "ready",
-            label: "Spend Elladan's resource to ready him",
-            code: hero.code,
-            effects: [fx("roadElladanReady", { target: hero.id })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          hero.id,
+          hero.code,
+          "Elladan · Declared attacker",
+          [
+            {
+              id: "ready",
+              label: "Spend Elladan's resource to ready him",
+              code: hero.code,
+              effects: [fx("roadElladanReady", { target: hero.id })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "roadElladanReady": {
@@ -399,7 +406,13 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
           })),
         );
         if (options.length)
-          choose(s, "Rider of the Mark · Control changed", [...options, skip]);
+          choosePlayerResponse(
+            s,
+            rider.id,
+            rider.code,
+            "Rider of the Mark · Control changed",
+            [...options, skip],
+          );
       }
       return true;
     }
@@ -423,15 +436,21 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
             !a.facedown,
         );
       if (a)
-        choose(s, "Song of Eärendil · Entered play", [
-          {
-            id: "draw",
-            label: "Draw 1 card",
-            code: a.code,
-            effects: [fx("draw", { value: 1 })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Song of Eärendil · Entered play",
+          [
+            {
+              id: "draw",
+              label: "Draw 1 card",
+              code: a.code,
+              effects: [fx("draw", { value: 1 })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "roadEarendilResponse": {
@@ -450,15 +469,21 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
         playerOrder(s).includes(other) &&
         seatView(s, other).threat > 0
       )
-        choose(s, "Song of Eärendil · Another player's threat", [
-          {
-            id: "reduce",
-            label: `Raise your threat by 1 · lower ${seatName(s, other)} by 1`,
-            code: a.code,
-            effects: [{ ...e, kind: "roadEarendilReduce" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Song of Eärendil · Another player's threat",
+          [
+            {
+              id: "reduce",
+              label: `Raise your threat by 1 · lower ${seatName(s, other)} by 1`,
+              code: a.code,
+              effects: [{ ...e, kind: "roadEarendilReduce" }],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "roadEarendilReduce": {
@@ -491,15 +516,21 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
         s.hand.some((u) => u.code === "04037") &&
         canPay(s, card("04037"))
       )
-        choose(s, "The End Comes · Dwarf left play", [
-          {
-            id: "play",
-            label: "Shuffle encounter discard into the encounter deck",
-            code: "04037",
-            effects: [fx("roadEndComesShuffle")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "04037")!.id,
+          "04037",
+          "The End Comes · Dwarf left play",
+          [
+            {
+              id: "play",
+              label: "Shuffle encounter discard into the encounter deck",
+              code: "04037",
+              effects: [fx("roadEndComesShuffle")],
+            },
+            skip,
+          ],
+        );
       return true;
     case "roadEndComesShuffle":
       requireRule(s.encounterDiscard.length, "The encounter discard is empty.");

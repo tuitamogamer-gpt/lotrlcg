@@ -1,10 +1,11 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { globalPlayerOrder } from "./table";
 // The Drúadan Forest: printed-sphere restrictions and exact lasting responses.
 import { card, cards, plain } from "./cards";
 import type { Card, Effect, GameState, Phase, Unit } from "./types";
-import { choose, fx, get, opts, prepend, requireRule, skip } from "./core";
+import { fx, get, opts, prepend, requireRule, skip } from "./core";
 import { damage, discardCharacter, readyCharacter } from "./board";
 import {
   effectiveTraits,
@@ -257,15 +258,21 @@ export function handleDruadanPlayerEffect(s: GameState, e: Effect): boolean {
     case "druadanHarborResponse": {
       const u = get(s, e.source);
       if (u?.code === "06039" && !u.blanked)
-        choose(s, "Harbor Master · Card-effect resource gain", [
-          {
-            id: "defense",
-            label: "Gain +1 defense until end of round",
-            code: u.code,
-            effects: [fx("druadanHarborDefense", { source: u.id })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          u.id,
+          u.code,
+          "Harbor Master · Card-effect resource gain",
+          [
+            {
+              id: "defense",
+              label: "Gain +1 defense until end of round",
+              code: u.code,
+              effects: [fx("druadanHarborDefense", { source: u.id })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "druadanHarborDefense": {
@@ -286,12 +293,18 @@ export function handleDruadanPlayerEffect(s: GameState, e: Effect): boolean {
         !a.facedown &&
         prowessTargets(s, e).length
       )
-        choose(s, "Mighty Prowess · Attack destroyed enemy", [
-          ...opts(prowessTargets(s, e), (u) => [
-            { ...e, kind: "druadanProwessDamage", text: u.id },
-          ]),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Mighty Prowess · Attack destroyed enemy",
+          [
+            ...opts(prowessTargets(s, e), (u) => [
+              { ...e, kind: "druadanProwessDamage", text: u.id },
+            ]),
+            skip,
+          ],
+        );
       return true;
     }
     case "druadanProwessDamage": {

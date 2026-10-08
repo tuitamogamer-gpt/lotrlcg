@@ -1,3 +1,9 @@
+import { resolvePlayerAbility } from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
+import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
 import { WEATHER } from "./weather-hills-support";
@@ -462,6 +468,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
     return "You must travel to The King’s Road.";
   const chetwoodProblem = Chetwood.chetwoodTravelProblem(s, u);
   if (chetwoodProblem) return chetwoodProblem;
+  const dikeProblem = Dike.dikeTravelProblem(s, u);
+  if (dikeProblem) return dikeProblem;
   const weatherProblem = Weather.weatherTravelProblem(s, u);
   if (weatherProblem) return weatherProblem;
   const celebProblem = Celebrimbor.celebrimborTravelProblem(s, u);
@@ -575,9 +583,17 @@ export function canPlay(
   if (crownProblem) return crownProblem;
   const ninProblem = Nin.ninPlayProblem(s, u.code);
   if (ninProblem) return ninProblem;
-  const c = options.playOrigin
-    ? { ...card(u.code), playOrigin: options.playOrigin }
-    : card(u.code);
+  const c = {
+    ...card(u.code),
+    playOwner: u.owner ?? activeSeat(s),
+    ...(options.playOrigin ? { playOrigin: options.playOrigin } : {}),
+  };
+  if (
+    dikeCannotLeaveDiscard(s) &&
+    (options.playOrigin === "discard" ||
+      ["01049", "01051", "01053", "01054", "02027"].includes(c.code))
+  )
+    return DIKE_DISCARD_REASON;
   if (c.code === FORDS.tidings)
     return "Ill Tidings cannot leave your hand or be played.";
   const printedPhase =
@@ -834,6 +850,7 @@ export function replayEventProblem(
   target?: string,
   amount?: number,
 ): string | null {
+  if (dikeCannotLeaveDiscard(s)) return DIKE_DISCARD_REASON;
   if (card(u.code).type_code !== "event")
     return "Choose an event in your discard pile.";
   if (u.code === "01051" && target === undefined)
@@ -1188,7 +1205,8 @@ export function playTargets(
     (target) =>
       !playerCardImmune(target) &&
       (card(u.code).type_code !== "attachment" ||
-        (!heirsCannotHaveAttachments(target) &&
+        (!Dike.dikeCannotAttach(s, target) &&
+          !heirsCannotHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
         target.blanked ||
@@ -1323,23 +1341,27 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
         card(a.code).type_code === "location" && a.code !== CARROCK.carrock,
     );
   if (["01051", "01053", "01054"].includes(u.code))
-    return (
-      s.table && u.code !== "01053" ? livingSeats(s) : [activeSeat(s)]
-    ).flatMap((player) =>
-      seatView(s, player)
-        .discard.map((code, i) => ({
-          ...s.heroes[0],
-          code,
-          id: s.table ? `discard-${player}-${i}` : `discard-${i}`,
-        }))
-        .filter((a) =>
-          u.code === "01051"
-            ? allyCanEnter(s, a.code) && card(a.code).sphere_code !== "neutral"
-            : u.code === "01053"
-              ? card(a.code).sphere_code === "spirit"
-              : card(a.code).type_code === "hero",
-        ),
-    );
+    return dikeCannotLeaveDiscard(s)
+      ? []
+      : (s.table && u.code !== "01053"
+          ? livingSeats(s)
+          : [activeSeat(s)]
+        ).flatMap((player) =>
+          seatView(s, player)
+            .discard.map((code, i) => ({
+              ...s.heroes[0],
+              code,
+              id: s.table ? `discard-${player}-${i}` : `discard-${i}`,
+            }))
+            .filter((a) =>
+              u.code === "01051"
+                ? allyCanEnter(s, a.code) &&
+                  card(a.code).sphere_code !== "neutral"
+                : u.code === "01053"
+                  ? card(a.code).sphere_code === "spirit"
+                  : card(a.code).type_code === "hero",
+            ),
+        );
   return [];
 }
 
@@ -1826,7 +1848,11 @@ export function applyAction(input: GameState, action: Action): GameState {
     requireRule(option, "Invalid choice.");
     log(s, option.label);
     s.choice = null;
-    prepend(s, ...option.effects);
+    if (option.ability)
+      resolvePlayerAbility(s, option.ability, () =>
+        prepend(s, ...option.effects),
+      );
+    else prepend(s, ...option.effects);
     flush(s);
     return s;
   }
@@ -1871,7 +1897,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Celebrimbor.celebrimborOpeningHandsKept(s) &&
         !Antlered.antleredOpeningHandsKept(s) &&
         !Chetwood.chetwoodOpeningHandsKept(s) &&
-        !Weather.weatherOpeningHandsKept(s)
+        !Weather.weatherOpeningHandsKept(s) &&
+        !Dike.dikeOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -1986,7 +2013,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       }
       pay(
         s,
-        { ...c, cost: effectiveCost },
+        { ...c, cost: effectiveCost, playOwner: u.owner ?? activeSeat(s) },
         action.payment,
         get(s, action.target),
       );
@@ -2007,95 +2034,115 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     }
     case "ABILITY": {
-      const shadowTarget = get(s, action.id);
-      if (shadowTarget && shadowFlameAbility(s, shadowTarget)) break;
-      requireRule(
-        s.phase !== "setup" || !!s.escapeTest,
-        "Wait for an action window.",
+      const origin =
+        s.hand.find((u) => u.id === action.id) ?? get(s, action.id);
+      const abilityCard = action.attachmentId
+        ? origin?.attachments.find((a) => a.id === action.attachmentId)
+        : origin;
+      requireRule(abilityCard, "Choose an actual card ability.");
+      resolvePlayerAbility(
+        s,
+        {
+          player: activeSeat(s),
+          source: abilityCard.id,
+          code: abilityCard.code,
+          type: "action",
+        },
+        () => {
+          const shadowTarget = get(s, action.id);
+          if (shadowTarget && shadowFlameAbility(s, shadowTarget)) return;
+          requireRule(
+            s.phase !== "setup" || !!s.escapeTest,
+            "Wait for an action window.",
+          );
+          const handUnit = s.hand.find((u) => u.id === action.id);
+          if (handUnit) {
+            requireRule(
+              !action.attachmentId &&
+                (useBloodPlayerHandAbility(s, handUnit) ||
+                  useRedhornPlayerHandAbility(s, handUnit)),
+              "This card has no action from hand.",
+            );
+            return;
+          }
+          const u = get(s, action.id);
+          if (
+            u &&
+            !action.attachmentId &&
+            (Fords.fordsAbility(s, u) ||
+              BloodQuest.bloodGondorAbility(s, u) ||
+              Osgiliath.useAssaultOsgiliathAbility(s, u) ||
+              useFoundationsAbility(s, u) ||
+              useHeirsAbility(s, u))
+          )
+            return;
+          if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
+            watcherWaterAbility(s, u, action.attachmentId);
+            return;
+          }
+          if (u && !action.attachmentId)
+            requireRule(
+              !isSacked(u) && !u.blanked,
+              "A Sacked hero cannot trigger its own ability.",
+            );
+          if (u && action.attachmentId)
+            requireRule(
+              !u.attachments.find((a) => a.id === action.attachmentId)?.blanked,
+              "Amon Lhaw blanks this attachment's printed ability.",
+            );
+          requireRule(
+            u &&
+              (action.attachmentId
+                ? u.attachments.some(
+                    (a) =>
+                      a.id === action.attachmentId &&
+                      !a.blanked &&
+                      attachmentController(s, u, a) === activeSeat(s),
+                  )
+                : characters(s).some((x) => x.id === u.id) ||
+                  u.code === "01007" ||
+                  u.code === "03002" ||
+                  u.code === CARROCK.grimbeorn ||
+                  u.code === KHAZAD.shaft ||
+                  collectorAbilityAnyPlayer(u.code)),
+            "Choose a character or attachment you control.",
+          );
+          if (!action.attachmentId && u.code === "01011")
+            requireRule(
+              heirsCanSpendResources(s, u),
+              "Orc Vanguard prevents Glorfindel from spending the resource cost.",
+            );
+          if (useStewardFearAbility(s, u, action.attachmentId)) {
+          } else if (u.code === CARROCK.grimbeorn && !action.attachmentId)
+            enqueue(s, fx("carrockContribute", { target: u.id }));
+          else if (useAmonPlayerAbility(s, u, action.attachmentId)) {
+          } else if (useHeirsPlayerAbility(s, u, action.attachmentId)) {
+          } else if (!action.attachmentId && useCollectorAbility(s, u)) {
+          } else if (useRohanAbility(s, u, action.attachmentId)) {
+          } else if (
+            !action.attachmentId &&
+            (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
+          ) {
+          } else if (
+            !khazadAbility(s, u, action.attachmentId) &&
+            !useRedhornPlayerAbility(s, u, action.attachmentId) &&
+            !useElfAbility(s, u, action.attachmentId) &&
+            !useMirkwoodPlayerAbility(s, u, action.attachmentId) &&
+            !useUtilityAttachment(s, u, action.attachmentId) &&
+            !useDwarfAbility(s, u, action.attachmentId)
+          )
+            useAbility(s, u, action.attachmentId);
+          if (
+            !action.attachmentId &&
+            card(u.code).type_code === "hero" &&
+            !["01007", "01011", "03002", "02095", "08056", "06107"].includes(
+              u.code,
+            )
+          )
+            stewardFearHeroAbilityTriggered(s, u);
+          return;
+        },
       );
-      const handUnit = s.hand.find((u) => u.id === action.id);
-      if (handUnit) {
-        requireRule(
-          !action.attachmentId &&
-            (useBloodPlayerHandAbility(s, handUnit) ||
-              useRedhornPlayerHandAbility(s, handUnit)),
-          "This card has no action from hand.",
-        );
-        break;
-      }
-      const u = get(s, action.id);
-      if (
-        u &&
-        !action.attachmentId &&
-        (Fords.fordsAbility(s, u) ||
-          BloodQuest.bloodGondorAbility(s, u) ||
-          Osgiliath.useAssaultOsgiliathAbility(s, u) ||
-          useFoundationsAbility(s, u) ||
-          useHeirsAbility(s, u))
-      )
-        break;
-      if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
-        watcherWaterAbility(s, u, action.attachmentId);
-        break;
-      }
-      if (u && !action.attachmentId)
-        requireRule(
-          !isSacked(u) && !u.blanked,
-          "A Sacked hero cannot trigger its own ability.",
-        );
-      if (u && action.attachmentId)
-        requireRule(
-          !u.attachments.find((a) => a.id === action.attachmentId)?.blanked,
-          "Amon Lhaw blanks this attachment's printed ability.",
-        );
-      requireRule(
-        u &&
-          (action.attachmentId
-            ? u.attachments.some(
-                (a) =>
-                  a.id === action.attachmentId &&
-                  !a.blanked &&
-                  attachmentController(s, u, a) === activeSeat(s),
-              )
-            : characters(s).some((x) => x.id === u.id) ||
-              u.code === "01007" ||
-              u.code === "03002" ||
-              u.code === CARROCK.grimbeorn ||
-              u.code === KHAZAD.shaft ||
-              collectorAbilityAnyPlayer(u.code)),
-        "Choose a character or attachment you control.",
-      );
-      if (!action.attachmentId && u.code === "01011")
-        requireRule(
-          heirsCanSpendResources(s, u),
-          "Orc Vanguard prevents Glorfindel from spending the resource cost.",
-        );
-      if (useStewardFearAbility(s, u, action.attachmentId)) {
-      } else if (u.code === CARROCK.grimbeorn && !action.attachmentId)
-        enqueue(s, fx("carrockContribute", { target: u.id }));
-      else if (useAmonPlayerAbility(s, u, action.attachmentId)) {
-      } else if (useHeirsPlayerAbility(s, u, action.attachmentId)) {
-      } else if (!action.attachmentId && useCollectorAbility(s, u)) {
-      } else if (useRohanAbility(s, u, action.attachmentId)) {
-      } else if (
-        !action.attachmentId &&
-        (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
-      ) {
-      } else if (
-        !khazadAbility(s, u, action.attachmentId) &&
-        !useRedhornPlayerAbility(s, u, action.attachmentId) &&
-        !useElfAbility(s, u, action.attachmentId) &&
-        !useMirkwoodPlayerAbility(s, u, action.attachmentId) &&
-        !useUtilityAttachment(s, u, action.attachmentId) &&
-        !useDwarfAbility(s, u, action.attachmentId)
-      )
-        useAbility(s, u, action.attachmentId);
-      if (
-        !action.attachmentId &&
-        card(u.code).type_code === "hero" &&
-        !["01007", "01011", "03002", "02095", "08056", "06107"].includes(u.code)
-      )
-        stewardFearHeroAbilityTriggered(s, u);
       break;
     }
     case "CLAIM": {
@@ -2151,6 +2198,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Dike.dikeTravel(s, u) ??
         Weather.weatherTravel(s, u) ??
         Chetwood.chetwoodTravel(s, u) ??
         Celebrimbor.celebrimborTravel(s, u) ??
@@ -2521,6 +2569,20 @@ export function publicState(s: GameState) {
       : null,
     playMode: s.playMode,
     scenario: s.scenarioId,
+    deadmensDike: s.deadmensDike
+      ? {
+          initialized: s.deadmensDike.initialized,
+          setAside: s.deadmensDike.setAside.map((u) => ({
+            id: u.id,
+            code: u.code,
+          })),
+          terrorThreat: Dike.dikeStagingThreat(s),
+          decks: seatIndices(s).map((player) => ({
+            player,
+            remaining: seatView(s, player).deck.length,
+          })),
+        }
+      : null,
     campaign: s.campaign,
     prisoner: s.prisoner ? name(s.prisoner) : null,
     captiveMendor: !!s.captiveMendor,

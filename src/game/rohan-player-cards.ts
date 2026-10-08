@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
 import { spendResources } from "./core";
@@ -94,7 +95,11 @@ const optional = (
   code: string,
   effect: Effect,
   label: string,
-) => choose(s, title, [{ id: "use", code, label, effects: [effect] }, skip]);
+) =>
+  choosePlayerResponse(s, effect.source ?? effect.target ?? code, code, title, [
+    { id: "use", code, label, effects: [effect] },
+    skip,
+  ]);
 const erase = (s: GameState, player: number, key: string) => {
   const used = seatView(s, player).used;
   for (let i = used.length - 1; i >= 0; i--)
@@ -549,7 +554,7 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           "Westfold Horse-breeder · Search for a Mount",
           u.code,
-          fx("rohanBreederSearch"),
+          fx("rohanBreederSearch", { source: u.id }),
           "Search your top 10 cards for a Mount",
         );
       break;
@@ -592,7 +597,9 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           "Wait no Longer · Quest phase begins",
           rohanCode.wait,
-          fx("rohanWaitPlay"),
+          fx("rohanWaitPlay", {
+            source: s.hand.find((u) => u.code === rohanCode.wait)!.id,
+          }),
           `Play Wait no Longer · ${playCost(s, card(rohanCode.wait))} Tactics`,
         );
       break;
@@ -651,7 +658,9 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           "Oath of Eorl · Combat phase begins",
           rohanCode.oath,
-          fx("rohanOathPlay"),
+          fx("rohanOathPlay", {
+            source: s.hand.find((u) => u.code === rohanCode.oath)!.id,
+          }),
           `Play Oath of Eorl · ${playCost(s, card(rohanCode.oath))} Tactics`,
         );
       break;
@@ -726,7 +735,7 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
           s,
           "Hirgon · Quest succeeded",
           u.code,
-          fx("rohanHirgonChoose"),
+          fx("rohanHirgonChoose", { source: u.id }),
           "Play a Tactics ally at a cost reduced by 1 (minimum 1)",
         );
       break;

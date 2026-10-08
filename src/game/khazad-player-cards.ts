@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 // Exact Khazad-dûm player mechanics beyond the existing Dwarf/Song/passive rules.
@@ -294,17 +295,27 @@ export function handleKhazadPlayerEffect(s: GameState, e: Effect): boolean {
         !isSacked(dwalin) &&
         s.threat > 0
       )
-        choose(s, "Dwalin · Orc destroyed by attack", [
-          {
-            id: "reduce",
-            label: "Lower your threat by 2",
-            code: "03001",
-            effects: [
-              fx("threat", { value: -2, source: dwalin.id, code: dwalin.code }),
-            ],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          dwalin.id,
+          dwalin.code,
+          "Dwalin · Orc destroyed by attack",
+          [
+            {
+              id: "reduce",
+              label: "Lower your threat by 2",
+              code: "03001",
+              effects: [
+                fx("threat", {
+                  value: -2,
+                  source: dwalin.id,
+                  code: dwalin.code,
+                }),
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "khazadAxeResponse": {
@@ -315,15 +326,21 @@ export function handleKhazadPlayerEffect(s: GameState, e: Effect): boolean {
             a.id === e.text && a.code === "03007" && !a.blanked && !a.facedown,
         );
       if (a && enemy && affected(enemy))
-        choose(s, "Dwarrowdelf Axe · After attack", [
-          {
-            id: "damage",
-            label: "Deal 1 damage to the defending enemy",
-            code: a.code,
-            effects: [fx("damage", { target: enemy.id, value: 1 })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "Dwarrowdelf Axe · After attack",
+          [
+            {
+              id: "damage",
+              label: "Deal 1 damage to the defending enemy",
+              code: a.code,
+              effects: [fx("damage", { target: enemy.id, value: 1 })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "khazadEverWindow":
@@ -332,15 +349,21 @@ export function handleKhazadPlayerEffect(s: GameState, e: Effect): boolean {
         s.hand.some((u) => u.code === "03005") &&
         canPay(s, card("03005"))
       )
-        choose(s, "Ever Onward · Unsuccessful quest", [
-          {
-            id: "play",
-            label: "Pay to prevent one player's quest-failure threat",
-            code: "03005",
-            effects: [fx("khazadEverPlayer")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          s.hand.find((u) => u.code === "03005")!.id,
+          "03005",
+          "Ever Onward · Unsuccessful quest",
+          [
+            {
+              id: "play",
+              label: "Pay to prevent one player's quest-failure threat",
+              code: "03005",
+              effects: [fx("khazadEverPlayer")],
+            },
+            skip,
+          ],
+        );
       return true;
     case "khazadEverPlayer":
       requireRule(

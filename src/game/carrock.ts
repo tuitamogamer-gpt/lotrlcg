@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 // Complete original Conflict at the Carrock rules; Nightmare is a separate quest.
 import definitions from "../data/carrock-encounter-cards.json";
@@ -311,7 +312,7 @@ export function carrockCombatDamage(
 }
 export function carrockTravel(s: GameState, location: Unit) {
   if (location.code === CARROCK.beePastures)
-    prepend(s, fx("carrockBeeResponse"));
+    prepend(s, fx("carrockBeeResponse", { source: location.id }));
 }
 
 export function carrockEffect(s: GameState, effect: Effect) {
@@ -423,15 +424,21 @@ export function carrockEffect(s: GameState, effect: Effect) {
         s.encounterDeck.includes(CARROCK.grimbeorn) ||
         s.encounterDiscard.includes(CARROCK.grimbeorn)
       )
-        choose(s, "Bee Pastures · Find Grimbeorn", [
-          {
-            id: "find",
-            code: CARROCK.grimbeorn,
-            label: "Search for Grimbeorn the Old",
-            effects: [fx("carrockFindGrimbeorn")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          effect.source ?? CARROCK.beePastures,
+          CARROCK.beePastures,
+          "Bee Pastures · Find Grimbeorn",
+          [
+            {
+              id: "find",
+              code: CARROCK.grimbeorn,
+              label: "Search for Grimbeorn the Old",
+              effects: [fx("carrockFindGrimbeorn")],
+            },
+            skip,
+          ],
+        );
       break;
     case "carrockFindGrimbeorn": {
       const deck = s.encounterDeck.indexOf(CARROCK.grimbeorn);

@@ -1,3 +1,7 @@
+import {
+  afterPlayerAbility,
+  choosePlayerResponse,
+} from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 // Encounter at Amon Dîn: exact optional responses and lasting permissions.
 import { card, name, plain } from "./cards";
@@ -583,15 +587,21 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
         !movableEngaged(s, enemy)
       )
         return true;
-      choose(s, "Pippin · Return engaged enemy", [
-        {
-          id: "return",
-          label: `Raise threat by 3 · return ${name(enemy)} to staging`,
-          code: pippin.code,
-          effects: [{ ...e, kind: "amonPippinReturn" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        pippin.id,
+        pippin.code,
+        "Pippin · Return engaged enemy",
+        [
+          {
+            id: "return",
+            label: `Raise threat by 3 · return ${name(enemy)} to staging`,
+            code: pippin.code,
+            effects: [{ ...e, kind: "amonPippinReturn" }],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "amonPippinReturn": {
@@ -620,15 +630,21 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
         enemy = get(s, e.target);
       if (!archer || archer.blanked || !enemy || !movableEngaged(s, enemy))
         return true;
-      choose(s, "Ithilien Archer · Enemy damaged", [
-        {
-          id: "return",
-          label: `Return ${name(enemy)} to staging`,
-          code: archer.code,
-          effects: [{ ...e, kind: "amonArcherReturn" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        archer.id,
+        archer.code,
+        "Ithilien Archer · Enemy damaged",
+        [
+          {
+            id: "return",
+            label: `Return ${name(enemy)} to staging`,
+            code: archer.code,
+            effects: [{ ...e, kind: "amonArcherReturn" }],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "amonArcherReturn": {
@@ -647,7 +663,7 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
             a.id === e.text && a.code === "06058" && !a.blanked && !a.facedown,
         );
       if (!a || !monoLeadership(s) || !s.deck.length) return true;
-      choose(s, "Lord of Morthond · Ally played", [
+      choosePlayerResponse(s, a.id, a.code, "Lord of Morthond · Ally played", [
         {
           id: "draw",
           label: "Draw 1 card",
@@ -664,6 +680,12 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
         ...playerOrder(s).flatMap((player) =>
           disciplineCopies(s, player).map((copy) => ({
             id: copy.id,
+            ability: {
+              player,
+              source: copy.id,
+              code: copy.code,
+              type: "response" as const,
+            },
             label: `${card(copy.code).name} · cancel up to ${Math.min(2, e.value ?? 0)} damage`,
             code: copy.code,
             effects: [
@@ -707,9 +729,17 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
       const resolved = spendEvent(s, "06060", copy.id),
         context = readDamageContext(e);
       // A canceled copy still leaves the damage pending for other players' copies.
-      resumeDamage(s, e, (e.value ?? 0) - (resolved ? amount : 0), context);
+      afterPlayerAbility(s, {
+        ...e,
+        kind: "amonDisciplineResume",
+        value: (e.value ?? 0) - (resolved ? amount : 0),
+        text: encodeDamageContext(context),
+      });
       return true;
     }
+    case "amonDisciplineResume":
+      resumeDamage(s, e, e.value ?? 0, readDamageContext(e));
+      return true;
     case "amonDisciplineSkip":
       resumeDamage(s, e, e.value ?? 0, {
         ...readDamageContext(e),
@@ -727,12 +757,18 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
         !smallTargets(s, enemy).length
       )
         return true;
-      choose(s, "Small Target · Hobbit hero defended", [
-        ...opts(smallTargets(s, enemy), (target) => [
-          { ...e, kind: "amonSmallPlay", source: target.id },
-        ]),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        s.hand.find((u) => u.code === "06062")!.id,
+        "06062",
+        "Small Target · Hobbit hero defended",
+        [
+          ...opts(smallTargets(s, enemy), (target) => [
+            { ...e, kind: "amonSmallPlay", source: target.id },
+          ]),
+          skip,
+        ],
+      );
       return true;
     }
     case "amonSmallPlay": {
@@ -762,14 +798,20 @@ export function handleAmonPlayerEffect(s: GameState, e: Effect): boolean {
     case "amonLampwrightResponse": {
       const lamp = get(s, e.source);
       if (lamp?.code !== "06061" || lamp.blanked || isSacked(lamp)) return true;
-      choose(s, "Minas Tirith Lampwright · Card with surge revealed", [
-        ...["enemy", "location", "treachery"].map((type) => ({
-          id: type,
-          label: `Discard Lampwright · name ${type}`,
-          effects: [{ ...e, kind: "amonLampwrightName", text: type }],
-        })),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        lamp.id,
+        lamp.code,
+        "Minas Tirith Lampwright · Card with surge revealed",
+        [
+          ...["enemy", "location", "treachery"].map((type) => ({
+            id: type,
+            label: `Discard Lampwright · name ${type}`,
+            effects: [{ ...e, kind: "amonLampwrightName", text: type }],
+          })),
+          skip,
+        ],
+      );
       return true;
     }
     case "amonLampwrightName": {

@@ -2,7 +2,7 @@
 
 ## Included
 
-- **The Lost Realm player pool:** all fifteen designs, including Tactics Aragorn, Halbarad, engagement responses, Heir discounts, Athelas, Secret Vigil and Star Brooch. Ranger Summons and Ranger of the North include reserves, uncancelable revelation, Surge and leave-play removal. Gather Information adds first-player side-quest selection, independent progress and per-player deck searches. The three Lost Realm quests remain pending. See [rules notes](LOST-REALM-PLAYER-SCRIPTS.md).
+- **The Lost Realm player pool:** all fifteen designs, including Tactics Aragorn, Halbarad, engagement responses, Heir discounts, Athelas, Secret Vigil and Star Brooch. Ranger Summons and Ranger of the North include reserves, uncancelable revelation, Surge and leave-play removal. Gather Information adds first-player side-quest selection, independent progress and per-player deck searches. All three original/easy Lost Realm quests are implemented for 1–4 players, including encounter side quests and their physical setup recipes. See [Chetwood](CHETWOOD-RULES.md), [Weather Hills](WEATHER-HILLS-RULES.md) and [Deadmen’s Dike](DEADMENS-DIKE-RULES.md). See [rules notes](LOST-REALM-PLAYER-SCRIPTS.md).
 
 - **The Antlered Crown**, original/easy: twelve encounter definitions, three quests and exact 47/36 physical recipes. The separate Raven deck/discard, Time on locations, Turch, hand-size effects, extra Raven shadows and round-end victory are implemented. This completes the six Ring-maker quests. See [rules notes](ANTLERED-CROWN-RULES.md).
 

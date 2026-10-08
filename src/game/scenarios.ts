@@ -1,3 +1,4 @@
+import { DIKE_QUESTS } from "./deadmens-dike-support";
 import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
@@ -64,6 +65,7 @@ const questImage = (code: string) => {
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
     ...WEATHER_QUESTS,
+    ...DIKE_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -1076,6 +1078,24 @@ export const SCENARIOS = [
       "Ruins of Arnor",
     ],
     stages: WEATHER_QUESTS.map((c) => ({
+      name: c.back_name ?? c.name,
+      quest: c.back_quest ?? 0,
+      cardCode: c.code,
+      story: c.back_text!,
+      questImage: questImage(c.code),
+    })),
+  },
+  {
+    id: "deadmens-dike",
+    name: "Deadmen's Dike",
+    shortName: "Deadmen's Dike",
+    chapter: "III",
+    difficulty: 7,
+    tagline: "The shadows of Fornost",
+    description:
+      "Stand with Iârion among the ruins of Fornost. Preserve your dwindling decks and withstand Thaurdir's sorcery.",
+    sets: ["Deadmen's Dike", "Dark Sorcery", "Cursed Dead"],
+    stages: DIKE_QUESTS.map((c) => ({
       name: c.back_name ?? c.name,
       quest: c.back_quest ?? 0,
       cardCode: c.code,

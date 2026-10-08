@@ -1,3 +1,11 @@
+import {
+  afterPlayerAbility,
+  resolvePlayerAbility,
+  choosePlayerResponse,
+} from "./player-ability-triggers";
+import { DIKE } from "./deadmens-dike-support";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
+import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
 import { removeCurrentQuestProgress } from "./side-quests";
@@ -30,7 +38,7 @@ import {
 } from "./ring-maker-final-player";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
-import { allyEntryResponses } from "./board";
+import { allyEntryResponses, coreBoardResponse } from "./board";
 import * as MorgulQuest from "./morgul-vale";
 import * as Druadan from "./druadan-forest";
 import * as Amon from "./amon-din";
@@ -344,6 +352,7 @@ export function handle(s: GameState, e: Effect) {
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (coreBoardResponse(s, e)) return;
   if (dunlandEffect(s, e)) return;
   if (ringMakerEffect(s, e)) return;
   if (finalRingEffect(s, e)) return;
@@ -351,6 +360,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (sideQuestEffect(s, e)) return;
   if (Chetwood.chetwoodEffect(s, e)) return;
   if (Weather.weatherEffect(s, e)) return;
+  if (Dike.dikeEffect(s, e)) return;
   if (Realm.realmEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
@@ -399,6 +409,24 @@ function handleEffect(s: GameState, e: Effect) {
   if (handleRedhornPlayerEffect(s, e)) return;
   const u = get(s, e.target);
   switch (e.kind) {
+    case "afterPlayerAbility":
+      afterPlayerAbility(s, ...(e.effects ?? []));
+      break;
+    case "playerAbilityResolve":
+      resolvePlayerAbility(
+        s,
+        {
+          player: e.player ?? activeSeat(s),
+          source: e.source!,
+          code: e.code!,
+          type: "response",
+        },
+        () => prepend(s, ...(e.effects ?? [])),
+      );
+      break;
+    case "playerAbilityFinish":
+      Dike.dikePlayerTriggered(s, e.player ?? activeSeat(s));
+      break;
     case "allyEntryResponses":
       if (u) allyEntryResponses(s, u, !!e.flag, !!e.value);
       break;
@@ -712,6 +740,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "recoverAttachment": {
+      if (dikeCannotLeaveDiscard(s)) break;
       const i = s.discard.lastIndexOf(e.code!);
       if (i >= 0) s.hand.push(takePlayerDiscard(s, i));
       break;
@@ -827,6 +856,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       break;
     case "reshufflePlayer":
+      if (dikeCannotLeaveDiscard(s)) break;
       while (s.discard.length) putPlayerDeck(s, takePlayerDiscard(s, 0));
       shuffle(s, s.deck);
       break;
@@ -915,6 +945,29 @@ function handleEffect(s: GameState, e: Effect) {
         });
       break;
     case "eventPlay": {
+      const physical = s.hand.find(
+        (u) => u.code === e.code && (!e.source || u.id === e.source),
+      );
+      if (
+        physical &&
+        !s.queue.some(
+          (effect) =>
+            effect.kind === "playerAbilityFinish" &&
+            effect.source === physical.id,
+        )
+      ) {
+        resolvePlayerAbility(
+          s,
+          {
+            player: e.player ?? activeSeat(s),
+            source: physical.id,
+            code: physical.code,
+            type: "response",
+          },
+          () => prepend(s, { ...e, source: physical.id }),
+        );
+        break;
+      }
       if (e.costEffects?.length) {
         prepend(s, ...e.costEffects, { ...e, costEffects: undefined });
         break;
@@ -927,10 +980,17 @@ function handleEffect(s: GameState, e: Effect) {
         e.code === "08005" ? e.value : 0,
       );
       const mandatory = s.queue.splice(0, s.queue.length - continuationCount);
+      const finish = mandatory.filter(
+        (effect) => effect.kind === "eventFinish",
+      );
+      // A canceled event still paid and initiated its ability; the original
+      // framework resumes only after that ability and its Gate Forced finish.
+      if (!resolved) afterPlayerAbility(s, ...(e.cancelledEffects ?? []));
       prepend(
         s,
-        ...mandatory,
-        ...(resolved ? (e.effects ?? []) : (e.cancelledEffects ?? [])),
+        ...mandatory.filter((effect) => effect.kind !== "eventFinish"),
+        ...(resolved ? (e.effects ?? []) : []),
+        ...finish,
       );
       break;
     }
@@ -949,7 +1009,8 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "afterEncounterRevealed":
-      Chetwood.chetwoodAfterReveal(s, e.code!);
+      Chetwood.chetwoodAfterReveal(s, e.code!, e.revealOrigin);
+      Dike.dikeAfterReveal(s, e.code!, e.revealOrigin);
       Weather.weatherAfterReveal(s, e.code!);
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
       Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);
@@ -990,6 +1051,7 @@ function handleEffect(s: GameState, e: Effect) {
             Antlered.antleredEncounter(s, e.code, true) ||
             Chetwood.chetwoodEncounter(s, e.code, true) ||
             Weather.weatherEncounter(s, e.code, true) ||
+            Dike.dikeEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1031,35 +1093,47 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "gandalf":
-      choose(s, "Gandalf has arrived", [
-        ...(ninNoCardEconomy(s)
-          ? []
-          : [
-              {
-                id: "draw",
-                label: "Draw 3 cards",
-                effects: [fx("draw", { value: 3 })],
-              },
-            ]),
-        {
-          id: "threat",
-          label: "Reduce threat by 5",
-          effects: [
-            fx("threat", {
-              value: -5,
-              source: e.source,
-              code: e.code ?? "01073",
-            }),
-          ],
-        },
-        ...opts(
-          [...s.staging, ...allEngaged(s)].filter(
-            (u) => card(u.code).type_code === "enemy",
+      choosePlayerResponse(
+        s,
+        e.source!,
+        e.code ?? "01073",
+        "Gandalf has arrived",
+        [
+          ...(ninNoCardEconomy(s)
+            ? []
+            : [
+                {
+                  id: "draw",
+                  label: "Draw 3 cards",
+                  effects: [fx("draw", { value: 3 })],
+                },
+              ]),
+          {
+            id: "threat",
+            label: "Reduce threat by 5",
+            effects: [
+              fx("threat", {
+                value: -5,
+                source: e.source,
+                code: e.code ?? "01073",
+              }),
+            ],
+          },
+          ...opts(
+            [...s.staging, ...allEngaged(s)].filter(
+              (u) => card(u.code).type_code === "enemy",
+            ),
+            (u) => [fx("damage", { target: u.id, value: 4 })],
+            () => "Deal 4 damage",
           ),
-          (u) => [fx("damage", { target: u.id, value: 4 })],
-          () => "Deal 4 damage",
-        ),
-      ]);
+          ...(s.scenarioId === "deadmens-dike" &&
+          allActiveLocations(s).some(
+            (location) => location.code === DIKE.gate && !location.blanked,
+          )
+            ? [skip]
+            : []),
+        ],
+      );
       break;
     case "mountainReward": {
       const top = s.deck.slice(0, 5);
@@ -1114,9 +1188,15 @@ function handleEffect(s: GameState, e: Effect) {
       log(s, `${card(e.code!).name} emerges from the trees.`, "danger");
       break;
     }
-    case "theodred":
-      choose(
+    case "theodred": {
+      const theodred = s.heroes.find(
+        (hero) => hero.code === "01002" && !hero.blanked && !isSacked(hero),
+      );
+      if (!theodred) break;
+      choosePlayerResponse(
         s,
+        theodred.id,
+        theodred.code,
         "Théodred’s response",
         [
           ...opts(
@@ -1135,6 +1215,7 @@ function handleEffect(s: GameState, e: Effect) {
         "Give 1 resource to a hero committed to the quest.",
       );
       break;
+    }
     case "aragorn": {
       const a = s.heroes.find((h) => h.code === "01001");
       if (
@@ -1144,7 +1225,7 @@ function handleEffect(s: GameState, e: Effect) {
         !isSacked(a) &&
         heirsCanSpendResources(s, a)
       )
-        choose(s, "Aragorn’s response", [
+        choosePlayerResponse(s, a.id, a.code, "Aragorn’s response", [
           {
             id: "ready",
             label: "Spend 1 resource to ready Aragorn",
@@ -1188,6 +1269,7 @@ function handleEffect(s: GameState, e: Effect) {
         Trials.trialsRemoveEnemyTime(s);
         Chetwood.chetwoodRefreshEnd(s);
         Weather.weatherRefreshEnd(s);
+        Dike.dikeRefreshEnd(s);
       }
       if (
         s.phase === "refresh" &&
@@ -1785,6 +1867,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed) {
         Chetwood.chetwoodAttackFinished(s, completed);
         Weather.weatherAttackFinished(s, completed);
+        Dike.dikeAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -1953,186 +2036,204 @@ export function flush(s: GameState) {
   ) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
-    const sharedEffect = [
-      "weatherSetup",
-      "weatherEnemyToken",
-      "weatherAdvanceStage",
-      "weatherStageTwoSetup",
-      "weatherRevealAside",
-      "weatherStageReady",
-      "weatherRevealOrcs",
-      "weatherRemoveMission",
-      "weatherQuestCost",
-      "weatherAllThreat",
-      "weatherRidgeDamage",
-      "weatherShelterExpired",
-      "weatherResetShelter",
-      "weatherIceExhaust",
-      "weatherColdAttach",
-      "weatherCampTokenResponse",
-      "weatherCampToken",
-      "weatherValleyResponse",
-      "weatherValleyHeal",
-      "weatherHealResponse",
-      "weatherSearchResponse",
-      "weatherReduceAllThreat",
-      "chetSetup",
-      "chetRefreshThreat",
-      "chetRescueExpired",
-      "chetRescueCards",
-      "chetShuffle",
-      "chetAssault",
-      "chetBorders",
-      "crownSetup",
-      "crownStageReady",
-      "crownAdvance",
-      "crownTimeExpired",
-      "crownResetTime",
-      "crownRavenReveal",
-      "crownRemoveAllTime",
-      "crownRemoveTimeBatch",
-      "crownLocationExpired",
-      "crownCryRefill",
-      "crownActiveTime",
-      "crownAllocateTime",
-      "celebSetup",
-      "celebStageReady",
-      "celebAdvance",
-      "celebBellachAttack",
-      "celebStealMould",
-      "celebTimeExpired",
-      "celebResetTime",
-      "celebSearchThreat",
-      "celebScourAll",
-      "celebScour",
-      "celebLocationDamage",
-      "celebActiveDamage",
-      "celebAssignLocationDamage",
-      "celebSpiesSurge",
-      "celebTravelProgress",
-      "ninSetup",
-      "ninAdvance",
-      "ninStageReady",
-      "ninReturnDweller",
-      "ninTimeExpired",
-      "ninResetTime",
-      "ninDwellerResource",
-      "ninAddTime",
-      "tharbadSetup",
-      "tharbadAdvance",
-      "tharbadStageReady",
-      "tharbadTimeExpired",
-      "tharbadResetTime",
-      "tharbadLocationProgress",
-      "tharbadLotSurge",
-      "tharbadGetDwarf",
-      "tharbadRemoveThreatSource",
-      "trialsChoose",
-      "trialsStart",
-      "trialsComplete",
-      "trialsFinal",
-      "trialsStageReady",
-      "trialsReturnGuardian",
-      "trialsReveal",
-      "trialsRevealDone",
-      "trialsAddAside",
-      "trialsAttachKey",
-      "trialsBuryKey",
-      "trialsCurseSurge",
-      "trialsTimeExpired",
-      "trialsResetTime",
-      "trialsChooseTime",
-      "trialsRemoveTime",
-      "trialsFoothillsProgress",
-      "trialsContinueProgress",
-      "dunlandSetup",
-      "dunlandShuffle",
-      "dunlandAdvance",
-      "dunlandTrapBack",
-      "dunlandStageThreeReady",
-      "dunlandTimeExpired",
-      "dunlandResetTime",
-      "dunlandFinalAttacks",
-      "dunlandVictory",
-      "dunlandFrenziedDone",
-      "fangornOrder",
-      "fangornAdvance",
-      "fangornTimeExpired",
-      "fangornResetTime",
-      "fangornMaliceDone",
-      "fangornShuffle",
-      "fangornHinder",
-      "resourceCollect",
-      "removeQuestTime",
-      "catchSetup",
-      "catchStageTwo",
-      "catchQuestResponse",
-      "catchQuestTime",
-      "catchAdvance",
-      "catchQuestProgressDone",
-      "catchTimeExpired",
-      "catchResetTime",
-      "catchEscape",
-      "catchCapture",
-      "catchTerritoryAttacks",
-      "catchCaveTravel",
-      "fordsStageReady",
-      "fordsRemoveTime",
-      "fordsTimeExpired",
-      "fordsResetTime",
-      "fordsDrawReactions",
-      "ringDelayedReturn",
-      "dunlandCloseWindow",
-      "dunlandCloseResume",
-      "dunlandCouncilStep",
-      "eventFinish",
-      "shadowFlameStageReady",
-      "shadowFlameLastLord",
-      "shadowFlameLastLordFinish",
-      "shadowFlameRearProgress",
-      "shadowFlameRearAdvance",
-      "shadowFlameLeavesOrder",
-      "shadowFlameLeavesResolve",
-      "shadowFlameAlliesChoose",
-      "shadowFlameDiscardAllies",
-      "shadowFlameAttachmentsChoose",
-      "shadowFlameDiscardAttachments",
-      "shadowFlameInner",
-      "longDarkLost",
-      "longDarkLostOrder",
-      "longDarkLostResolve",
-      "longDarkLocate",
-      "longDarkLocateAttempt",
-      "longDarkLocateFail",
-      "longDarkTwistingPlace",
-      "longDarkEast",
-      "longDarkEastReveal",
-      "longDarkStageReady",
-      "longDarkSetupLocations",
-      "roadRivendellAllAttacks",
-      "roadRivendellOutpost",
-      "roadRivendellStageReady",
-      "roadRivendellOrderEffects",
-      "huntLook",
-      "huntReveal",
-      "huntClaim",
-      "huntProgress",
-      "questSucceeded",
-      "questSuccessResponses",
-      "successfulQuestProgress",
-      "prepareCombat",
-      "deadBeginEscape",
-      "deadDiscardTreachery",
-      "deadChooseCapturer",
-      "khazadStageReady",
-      "khazadFlipQuest",
-      "khazadCouncil",
-      "khazadCouncilSelect",
-      "khazadCouncilVictory",
-      "khazadBypass",
-      "khazadPresenceDone",
-      "khazadDiscardTreachery",
-    ].includes(effect.kind);
+    const sharedEffect =
+      (effect.kind === "dikeDiscardDeck" && !!effect.ids) ||
+      [
+        "dikeSetup",
+        "dikeSetupReveal",
+        "dikeStageTwo",
+        "dikeStageReady",
+        "dikeShuffle",
+        "dikeAttackEffects",
+        "dikeAttackFinished",
+        "dikeSeal",
+        "dikeWorld",
+        "dikeBattlements",
+        "dikeTombsResponse",
+        "dikeTombsRefill",
+        "dikePowerRefill",
+        "dikeTerror",
+        "dikeCurseAttach",
+        "dikeTerrorCollect",
+        "weatherSetup",
+        "weatherEnemyToken",
+        "weatherAdvanceStage",
+        "weatherStageTwoSetup",
+        "weatherRevealAside",
+        "weatherStageReady",
+        "weatherRevealOrcs",
+        "weatherRemoveMission",
+        "weatherQuestCost",
+        "weatherAllThreat",
+        "weatherRidgeDamage",
+        "weatherShelterExpired",
+        "weatherResetShelter",
+        "weatherIceExhaust",
+        "weatherColdAttach",
+        "weatherCampTokenResponse",
+        "weatherCampToken",
+        "weatherValleyResponse",
+        "weatherValleyHeal",
+        "weatherHealResponse",
+        "weatherSearchResponse",
+        "weatherReduceAllThreat",
+        "chetSetup",
+        "chetRefreshThreat",
+        "chetRescueExpired",
+        "chetRescueCards",
+        "chetShuffle",
+        "chetAssault",
+        "chetBorders",
+        "crownSetup",
+        "crownStageReady",
+        "crownAdvance",
+        "crownTimeExpired",
+        "crownResetTime",
+        "crownRavenReveal",
+        "crownRemoveAllTime",
+        "crownRemoveTimeBatch",
+        "crownLocationExpired",
+        "crownCryRefill",
+        "crownActiveTime",
+        "crownAllocateTime",
+        "celebSetup",
+        "celebStageReady",
+        "celebAdvance",
+        "celebBellachAttack",
+        "celebStealMould",
+        "celebTimeExpired",
+        "celebResetTime",
+        "celebSearchThreat",
+        "celebScourAll",
+        "celebScour",
+        "celebLocationDamage",
+        "celebActiveDamage",
+        "celebAssignLocationDamage",
+        "celebSpiesSurge",
+        "celebTravelProgress",
+        "ninSetup",
+        "ninAdvance",
+        "ninStageReady",
+        "ninReturnDweller",
+        "ninTimeExpired",
+        "ninResetTime",
+        "ninDwellerResource",
+        "ninAddTime",
+        "tharbadSetup",
+        "tharbadAdvance",
+        "tharbadStageReady",
+        "tharbadTimeExpired",
+        "tharbadResetTime",
+        "tharbadLocationProgress",
+        "tharbadLotSurge",
+        "tharbadGetDwarf",
+        "tharbadRemoveThreatSource",
+        "trialsChoose",
+        "trialsStart",
+        "trialsComplete",
+        "trialsFinal",
+        "trialsStageReady",
+        "trialsReturnGuardian",
+        "trialsReveal",
+        "trialsRevealDone",
+        "trialsAddAside",
+        "trialsAttachKey",
+        "trialsBuryKey",
+        "trialsCurseSurge",
+        "trialsTimeExpired",
+        "trialsResetTime",
+        "trialsChooseTime",
+        "trialsRemoveTime",
+        "trialsFoothillsProgress",
+        "trialsContinueProgress",
+        "dunlandSetup",
+        "dunlandShuffle",
+        "dunlandAdvance",
+        "dunlandTrapBack",
+        "dunlandStageThreeReady",
+        "dunlandTimeExpired",
+        "dunlandResetTime",
+        "dunlandFinalAttacks",
+        "dunlandVictory",
+        "dunlandFrenziedDone",
+        "fangornOrder",
+        "fangornAdvance",
+        "fangornTimeExpired",
+        "fangornResetTime",
+        "fangornMaliceDone",
+        "fangornShuffle",
+        "fangornHinder",
+        "resourceCollect",
+        "removeQuestTime",
+        "catchSetup",
+        "catchStageTwo",
+        "catchQuestResponse",
+        "catchQuestTime",
+        "catchAdvance",
+        "catchQuestProgressDone",
+        "catchTimeExpired",
+        "catchResetTime",
+        "catchEscape",
+        "catchCapture",
+        "catchTerritoryAttacks",
+        "catchCaveTravel",
+        "fordsStageReady",
+        "fordsRemoveTime",
+        "fordsTimeExpired",
+        "fordsResetTime",
+        "fordsDrawReactions",
+        "ringDelayedReturn",
+        "dunlandCloseWindow",
+        "dunlandCloseResume",
+        "dunlandCouncilStep",
+        "eventFinish",
+        "shadowFlameStageReady",
+        "shadowFlameLastLord",
+        "shadowFlameLastLordFinish",
+        "shadowFlameRearProgress",
+        "shadowFlameRearAdvance",
+        "shadowFlameLeavesOrder",
+        "shadowFlameLeavesResolve",
+        "shadowFlameAlliesChoose",
+        "shadowFlameDiscardAllies",
+        "shadowFlameAttachmentsChoose",
+        "shadowFlameDiscardAttachments",
+        "shadowFlameInner",
+        "longDarkLost",
+        "longDarkLostOrder",
+        "longDarkLostResolve",
+        "longDarkLocate",
+        "longDarkLocateAttempt",
+        "longDarkLocateFail",
+        "longDarkTwistingPlace",
+        "longDarkEast",
+        "longDarkEastReveal",
+        "longDarkStageReady",
+        "longDarkSetupLocations",
+        "roadRivendellAllAttacks",
+        "roadRivendellOutpost",
+        "roadRivendellStageReady",
+        "roadRivendellOrderEffects",
+        "huntLook",
+        "huntReveal",
+        "huntClaim",
+        "huntProgress",
+        "questSucceeded",
+        "questSuccessResponses",
+        "successfulQuestProgress",
+        "prepareCombat",
+        "deadBeginEscape",
+        "deadDiscardTreachery",
+        "deadChooseCapturer",
+        "khazadStageReady",
+        "khazadFlipQuest",
+        "khazadCouncil",
+        "khazadCouncilSelect",
+        "khazadCouncilVictory",
+        "khazadBypass",
+        "khazadPresenceDone",
+        "khazadDiscardTreachery",
+      ].includes(effect.kind);
     if (s.table && (sharedEffect || effect.player !== undefined))
       selectSeat(
         s,
@@ -2145,6 +2246,9 @@ export function flush(s: GameState) {
       sharedEffect ||
       !s.table?.seats[activeSeat(s)].eliminated ||
       [
+        "dikeMill",
+        "dikeMillDone",
+        "playerAbilityFinish",
         "nextRound",
         "phaseEnd",
         "startCombat",
@@ -2312,8 +2416,10 @@ export function extraEffect(s: GameState, e: Effect) {
     case "brok": {
       const brok = s.hand.find((u) => u.code === "01019");
       if (brok && !allCharacters(s).some((u) => u.code === "01019"))
-        choose(
+        choosePlayerResponse(
           s,
+          brok.id,
+          brok.code,
           "Brok Ironfist",
           [
             {

@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import type {
   Attachment,
   Card,
@@ -377,7 +378,7 @@ export function realmEffect(s: GameState, e: Effect) {
       break;
     case "realmWatchmanOffer":
       if (u && s.deck.length)
-        choose(s, "Weather Hills Watchman", [
+        choosePlayerResponse(s, u.id, u.code, "Weather Hills Watchman", [
           {
             id: "search",
             label: "Search the top 5 cards for a Signal",
@@ -468,15 +469,21 @@ export function realmEffect(s: GameState, e: Effect) {
     }
     case "realmAragornOffer":
       if (u && movableEnemies(s).length)
-        choose(s, "Aragorn · Engage another enemy", [
-          ...movableEnemies(s).map((enemy) => ({
-            id: enemy.id,
-            code: enemy.code,
-            label: name(enemy),
-            effects: [fx("engage", { target: enemy.id })],
-          })),
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          u.id,
+          u.code,
+          "Aragorn · Engage another enemy",
+          [
+            ...movableEnemies(s).map((enemy) => ({
+              id: enemy.id,
+              code: enemy.code,
+              label: name(enemy),
+              effects: [fx("engage", { target: enemy.id })],
+            })),
+            skip,
+          ],
+        );
       break;
     case "realmTirelessShadow":
       if (
@@ -610,15 +617,21 @@ export function realmEffect(s: GameState, e: Effect) {
       break;
     case "realmVigilOffer":
       if ((e.count ?? 0) > 0)
-        choose(s, "Secret Vigil · Enemy destroyed", [
-          {
-            id: "reduce",
-            code: e.code,
-            label: `Reduce each player’s threat by ${e.count}`,
-            effects: [{ ...e, kind: "realmVigilReduce" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.source!,
+          e.code!,
+          "Secret Vigil · Enemy destroyed",
+          [
+            {
+              id: "reduce",
+              code: e.code,
+              label: `Reduce each player’s threat by ${e.count}`,
+              effects: [{ ...e, kind: "realmVigilReduce" }],
+            },
+            skip,
+          ],
+        );
       break;
     case "realmVigilReduce":
       for (const player of playerOrder(s))

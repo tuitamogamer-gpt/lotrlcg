@@ -1,4 +1,5 @@
 import { reduceThreat } from "./threat-reduction";
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 // The Nîn-in-Eilph, Celebrimbor's Secret and The Antlered Crown.
@@ -317,6 +318,12 @@ export function finalRingShadowOptions(s: GameState, code: string): Option[] {
       ? [
           {
             id: `erkenbrand-${h.id}`,
+            ability: {
+              player: ownerOf(s, h),
+              source: h.id,
+              code: h.code,
+              type: "response",
+            },
             code: h.code,
             label: "Erkenbrand · Take 1 damage to cancel the shadow",
             effects: [
@@ -391,8 +398,10 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
         (u) => !immune(u),
       );
       if (targets.length)
-        choose(
+        choosePlayerResponse(
           s,
+          e.source!,
+          pioneer ? "08091" : "08115",
           pioneer
             ? "Mirkwood Pioneer · Ignore staging threat"
             : "Henneth Annûn Guard · Grant defense and sentinel",
@@ -422,14 +431,20 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
     }
     case "finalRingTravelerOffer":
       if (get(s, e.target) && s.encounterDeck.length)
-        choose(s, "Celduin Traveler · Look ahead", [
-          {
-            id: "look",
-            label: "Look at the top encounter card",
-            effects: [fx("finalRingTravelerLook")],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.target!,
+          "08089",
+          "Celduin Traveler · Look ahead",
+          [
+            {
+              id: "look",
+              label: "Look at the top encounter card",
+              effects: [fx("finalRingTravelerLook")],
+            },
+            skip,
+          ],
+        );
       return true;
     case "finalRingTravelerLook": {
       const code = s.encounterDeck[0];
@@ -483,14 +498,20 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
       const h = get(s, e.target),
         a = h?.attachments.find((a) => a.id === e.source);
       if (h && a && !a.blanked && !a.exhausted && canGainResources(s, h))
-        choose(s, "The Day's Rising · No damage while defending", [
-          {
-            id: "resource",
-            label: `Exhaust The Day's Rising · Give ${name(h)} 1 resource`,
-            effects: [{ ...e, kind: "finalRingRising" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          a.id,
+          a.code,
+          "The Day's Rising · No damage while defending",
+          [
+            {
+              id: "resource",
+              label: `Exhaust The Day's Rising · Give ${name(h)} 1 resource`,
+              effects: [{ ...e, kind: "finalRingRising" }],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "finalRingRising": {

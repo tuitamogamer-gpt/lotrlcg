@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import {
   encodeDamageContext,
@@ -167,6 +168,12 @@ export function marshPlayerShadowOptions(s: GameState, code: string): Option[] {
     .filter((u) => u.code === "02096")
     .map((u) => ({
       id: `watcher-${u.id}`,
+      ability: {
+        player: ownerOf(s, u),
+        source: u.id,
+        code: u.code,
+        type: "response" as const,
+      },
       label: `Discard Dúnedain Watcher · ${seatName(s, ownerOf(s, u))}`,
       code: u.code,
       effects: [
@@ -322,15 +329,21 @@ export function handleMarshPlayerEffect(s: GameState, e: Effect): boolean {
         (u) => u.id === e.target && u.code === "02100" && !u.exhausted,
       );
       if (elfhelm && s.threat > 0)
-        choose(s, "Elfhelm · Threat response", [
-          {
-            id: "reduce",
-            label: "Reduce your threat by 1",
-            code: elfhelm.code,
-            effects: [fx("marshElfhelmReduce", { target: elfhelm.id })],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          elfhelm.id,
+          elfhelm.code,
+          "Elfhelm · Threat response",
+          [
+            {
+              id: "reduce",
+              label: "Reduce your threat by 1",
+              code: elfhelm.code,
+              effects: [fx("marshElfhelmReduce", { target: elfhelm.id })],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "marshElfhelmReduce":
@@ -351,17 +364,26 @@ export function handleMarshPlayerEffect(s: GameState, e: Effect): boolean {
         hasTrait(target, "Silvan") &&
         rhosgobelHealingAllowed(s, target)
       )
-        choose(s, "Silvan Tracker · Refresh healing", [
-          {
-            id: "heal",
-            label: `Heal 1 damage from ${name(target)}`,
-            code: target.code,
-            effects: [
-              fx("marshSilvanHeal", { source: tracker.id, target: target.id }),
-            ],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          tracker.id,
+          tracker.code,
+          "Silvan Tracker · Refresh healing",
+          [
+            {
+              id: "heal",
+              label: `Heal 1 damage from ${name(target)}`,
+              code: target.code,
+              effects: [
+                fx("marshSilvanHeal", {
+                  source: tracker.id,
+                  target: target.id,
+                }),
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "marshSilvanHeal": {

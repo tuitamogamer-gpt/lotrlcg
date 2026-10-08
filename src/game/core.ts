@@ -1,3 +1,4 @@
+import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
 import { selectedSideQuest } from "./side-quest-support";
@@ -655,6 +656,15 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
               0,
               printed +
                 surcharge +
+                Dike.dikePlayCost(
+                  s,
+                  c,
+                  c.playOwner ??
+                    (c.type_code === "event"
+                      ? s.hand.find((u) => u.code === c.code)?.owner
+                      : undefined) ??
+                    activeSeat(s),
+                ) +
                 emynMuilPlayCost(s, c) +
                 druadanForestCostIncrease(s) -
                 secrecyDiscount(s, c) -
@@ -689,6 +699,7 @@ export const threatOf = (s: GameState, u: Unit) =>
     : Math.max(
         0,
         (BloodQuest.bloodGondorThreat(s, u) ??
+          Dike.dikeLocationThreat(s, u) ??
           Weather.weatherLocationThreat(s, u) ??
           MorgulQuest.morgulBridgeValue(s, u) ??
           druadanForestThreat(s, u) ??
@@ -727,6 +738,7 @@ export const threatOf = (s: GameState, u: Unit) =>
 
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
+  Dike.dikeStagingThreat(s) +
   heirsStagingThreatBonus(s) +
   BloodQuest.bloodGondorStagingBonus(s) +
   s.staging

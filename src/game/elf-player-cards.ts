@@ -1,3 +1,8 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
@@ -109,8 +114,18 @@ function optional(
   code: string,
   effect: Effect,
   label: string,
+  delayed = false,
 ) {
-  choose(s, title, [{ id: "use", code, label, effects: [effect] }, skip]);
+  const options = [{ id: "use", code, label, effects: [effect] }, skip];
+  if (delayed) choose(s, title, options);
+  else
+    choosePlayerResponse(
+      s,
+      effect.source ?? effect.target ?? code,
+      code,
+      title,
+      options,
+    );
 }
 
 export function elfStats(s: GameState, u: Unit) {
@@ -572,7 +587,8 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
               ? livingSeats(s).some((i) => seatView(s, i).threat > 0)
               : u.code === "08002"
                 ? allHeroes(s).length > 0
-                : s.discard.some(
+                : !dikeCannotLeaveDiscard(s) &&
+                  s.discard.some(
                     (c) =>
                       card(c).type_code === "ally" &&
                       printedTrait(card(c), "Silvan"),
@@ -614,7 +630,7 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
           ]),
         );
       else if (u.code === "08063") searchChoice(s, "event");
-      else if (u.code === "08114")
+      else if (u.code === "08114" && !dikeCannotLeaveDiscard(s))
         choose(
           s,
           "Orophin · Return a Silvan ally",
@@ -648,6 +664,7 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
       lowerThreat(s, 1, { id: e.source, code: e.code });
       break;
     case "elfOrophin": {
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       requireRule(
         s.discard[e.count!] === e.code,
         "Choose the Silvan ally in your discard pile.",
@@ -727,6 +744,7 @@ export function handleElfPlayerEffect(s: GameState, e: Effect): boolean {
           "08092",
           { ...e, kind: "elfWingfootReady" },
           `Exhaust Wingfoot to ready ${name(host)}`,
+          true,
         );
       break;
     }

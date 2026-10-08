@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
 import { reorderPlayerDeck } from "./core";
@@ -252,15 +253,23 @@ export function handleFoundationsPlayerEffect(
     case "foundationsHeavyResponse": {
       const copy = heavyCopy(s);
       if (copy && heavyEnemy(s, e.target) && canPay(s, card("04105")))
-        choose(s, "Heavy Stroke · Dwarf combat damage", [
-          {
-            id: "play",
-            label: "Double one Dwarf's dealt combat damage",
-            code: "04105",
-            effects: [{ ...e, source: copy.id, kind: "foundationsHeavyDwarf" }],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          copy.id,
+          copy.code,
+          "Heavy Stroke · Dwarf combat damage",
+          [
+            {
+              id: "play",
+              label: "Double one Dwarf's dealt combat damage",
+              code: "04105",
+              effects: [
+                { ...e, source: copy.id, kind: "foundationsHeavyDwarf" },
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     }
     case "foundationsHeavyDwarf": {

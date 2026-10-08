@@ -1,4 +1,9 @@
+import {
+  choosePlayerResponse,
+  responseOptions,
+} from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
+import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { spendResources } from "./core";
 import { stewardFearTravelEntered } from "./steward-fear";
@@ -136,7 +141,7 @@ export function mirkwoodPlayerEventEffect(s: GameState, code: string): boolean {
         .find(
           (event) => event.player === activeSeat(s) && event.unit.code === code,
         );
-    const payers = lorePayers(s);
+    const payers = resolving || !dikeCannotLeaveDiscard(s) ? lorePayers(s) : [];
     choose(
       s,
       "Rumour from the Earth · Look at top encounter card",
@@ -308,6 +313,7 @@ function dawnOptions(s: GameState) {
 }
 function sourceAvailable(s: GameState, e: Effect): boolean {
   if (!leaveCardAvailable(s, e.source)) return false;
+  if (e.text === "discard" && dikeCannotLeaveDiscard(s, e.owner)) return false;
   const p = seatView(s, e.owner ?? 0);
   if (e.text === "hand")
     return p.hand.some((u) => u.id === e.target && u.code === e.code);
@@ -368,6 +374,12 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
             id: "play",
             label: "Pay to play Dawn Take You All",
             code: "02118",
+            ability: {
+              player: activeSeat(s),
+              source: s.hand.find((u) => u.code === "02118")!.id,
+              code: "02118",
+              type: "action",
+            },
             effects: [fx("mirkwoodDawnPay")],
           },
           skip,
@@ -471,17 +483,23 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "mirkwoodTravellerResponse":
       if (activeLocations(s).length && locations(s).length)
-        choose(s, "West Road Traveller · Played from hand", [
-          {
-            id: "switch",
-            label: "Switch an active location with a staging location",
-            code: "02121",
-            effects: [
-              fx("mirkwoodTravellerActive", { player: firstPlayer(s) }),
-            ],
-          },
-          skip,
-        ]);
+        choosePlayerResponse(
+          s,
+          e.target ?? "02121",
+          "02121",
+          "West Road Traveller · Played from hand",
+          [
+            {
+              id: "switch",
+              label: "Switch an active location with a staging location",
+              code: "02121",
+              effects: [
+                fx("mirkwoodTravellerActive", { player: firstPlayer(s) }),
+              ],
+            },
+            skip,
+          ],
+        );
       return true;
     case "mirkwoodTravellerActive":
       travellerActiveChoice(s);
@@ -534,7 +552,9 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
                 target: u.id,
                 ids: [e.target ?? ""],
               },
-            ]),
+            ]).map(
+              (option) => responseOptions(s, option.id, "02119", [option])[0],
+            ),
             skip,
           ],
           "Attach this exact departed Eagle face down. Its owner retains the card.",

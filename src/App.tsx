@@ -3,6 +3,7 @@ import { SignificantMoment } from "./ui/SignificantMoment";
 import type { ActiveSignificantMoment } from "./ui/SignificantMoment";
 import { detectSignificantMoment } from "./ui/significant-moments";
 import { WEATHER } from "./game/weather-hills-support";
+import { DIKE } from "./game/deadmens-dike-support";
 import { selectedSideQuest } from "./game/side-quest-support";
 import { realmExtraEngagement } from "./game/lost-realm-player";
 import { CELEBRIMBOR } from "./game/celebrimbor-support";
@@ -329,6 +330,14 @@ const phaseTitle = (s: GameState) =>
       : phaseNames[s.phase];
 /** "1 player", "2 players": English plural for the setup summaries. */
 const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
+const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
+  const c = card(u.code);
+  return {
+    ...c,
+    playOwner: u.owner ?? activeSeat(s),
+    ...(c.cost === "X" && amount !== undefined ? { cost: amount } : {}),
+  };
+};
 function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
   const payers = eligiblePayers(s, c, target);
   if (["01036", "08143"].includes(c.code)) {
@@ -1205,7 +1214,7 @@ export default function App() {
     }
     setTarget("");
     setXCost(1);
-    const c = card(u.code);
+    const c = handPlayDefinition(game, u);
     const costing = c.cost === "X" ? { ...c, cost: 1 } : c;
     const legalTargets = needsTarget(u) ? playTargets(game, u) : [];
     const cost = legalTargets.length
@@ -3429,7 +3438,7 @@ export default function App() {
               <div className="inspector-action">
                 <p>
                   {playReason(game, inspectedHand) ??
-                    `Available now · cost ${playCost(game, card(inspectedHand.code))} resources`}
+                    `Available now · cost ${playCost(game, handPlayDefinition(game, inspectedHand))} resources`}
                 </p>
                 {availableAbilities(game, inspectedHand).map((a) => (
                   <button
@@ -3564,9 +3573,7 @@ export default function App() {
                   ? "Select a target card to continue."
                   : !eligiblePayers(
                         game,
-                        card(playCard.code).cost === "X"
-                          ? { ...card(playCard.code), cost: xCost }
-                          : card(playCard.code),
+                        handPlayDefinition(game, playCard, xCost),
                         get(game, target),
                       ).length
                     ? "A matching sphere hero is required for this target."
@@ -3591,9 +3598,7 @@ export default function App() {
                         xCost > eventXMaximum(game, playCard.code))) ||
                     !eligiblePayers(
                       game,
-                      card(playCard.code).cost === "X"
-                        ? { ...card(playCard.code), cost: xCost }
-                        : card(playCard.code),
+                      handPlayDefinition(game, playCard, xCost),
                       get(game, target),
                     ).length ||
                     Object.values(payment).reduce(
@@ -3602,9 +3607,7 @@ export default function App() {
                     ) !==
                       playCost(
                         game,
-                        card(playCard.code).cost === "X"
-                          ? { ...card(playCard.code), cost: xCost }
-                          : card(playCard.code),
+                        handPlayDefinition(game, playCard, xCost),
                         get(game, target),
                       )
                   }
@@ -3662,7 +3665,7 @@ export default function App() {
                         }
                         onSelect={() => {
                           setTarget(u.id);
-                          const c = card(playCard.code);
+                          const c = handPlayDefinition(game, playCard);
                           const amount =
                             playCard.code === "01051"
                               ? Number(card(u.code).cost) || 0
@@ -3700,9 +3703,7 @@ export default function App() {
                 Pay{" "}
                 {playCost(
                   game,
-                  card(playCard.code).cost === "X"
-                    ? { ...card(playCard.code), cost: xCost }
-                    : card(playCard.code),
+                  handPlayDefinition(game, playCard, xCost),
                   get(game, target),
                 )}{" "}
                 resources
@@ -3722,7 +3723,7 @@ export default function App() {
                     onChange={(e) => {
                       const n = Number(e.target.value);
                       setXCost(n);
-                      const c = card(playCard.code);
+                      const c = handPlayDefinition(game, playCard);
                       setPayment(
                         planCardPayment(
                           game,
@@ -3737,9 +3738,7 @@ export default function App() {
               )}
               {eligiblePayers(
                 game,
-                card(playCard.code).cost === "X"
-                  ? { ...card(playCard.code), cost: xCost }
-                  : card(playCard.code),
+                handPlayDefinition(game, playCard, xCost),
                 get(game, target),
               ).map((h) => (
                 <div className="payment-row" key={h.id}>
@@ -4331,6 +4330,15 @@ function BoardCard({
               : "Side quest"}{" "}
             · {u.progress} / {c.quest} progress
           </span>
+        </div>
+      )}
+      {u.code === DIKE.thaurdir && !u.blanked && (
+        <div className="objective-status">
+          <span>
+            Indestructible · {Math.max(0, stats(s, u).health - u.damage)} /{" "}
+            {stats(s, u).health} hit points remaining
+          </span>
+          <span>Cannot have attachments</span>
         </div>
       )}
       {s.chetwood?.captive?.questId === u.id && (

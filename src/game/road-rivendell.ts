@@ -1,3 +1,4 @@
+import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 import { heirsShadowDealt } from "./heirs-numenor";
 import { druadanPlayerNoEngagementChecks } from "./druadan-player-cards";
@@ -145,7 +146,10 @@ export function roadRivendellFollowFirstPlayer(s: GameState) {
 }
 export function roadRivendellCharacterExhausted(s: GameState, u: Unit) {
   if (u.code === ROAD.arwen && !u.blanked)
-    prepend(s, fx("roadRivendellArwenResponse", { player: ownerOf(s, u) }));
+    prepend(
+      s,
+      fx("roadRivendellArwenResponse", { source: u.id, player: ownerOf(s, u) }),
+    );
 }
 export const roadRivendellCannotCancel = (s: GameState) =>
   s.staging.some((u) => u.code === ROAD.crebain && !u.blanked);
@@ -417,13 +421,19 @@ export function roadRivendellEffect(s: GameState, e: Effect) {
   const u = get(s, e.target);
   switch (e.kind) {
     case "roadRivendellArwenResponse":
-      choose(s, "Arwen Undómiel · Add a resource?", [
-        ...opts(
-          allHeroes(s).filter((h) => !isSacked(h)),
-          (h) => [fx("resource", { target: h.id, value: 1 })],
-        ),
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.source ?? ROAD.arwen,
+        ROAD.arwen,
+        "Arwen Undómiel · Add a resource?",
+        [
+          ...opts(
+            allHeroes(s).filter((h) => !isSacked(h)),
+            (h) => [fx("resource", { target: h.id, value: 1 })],
+          ),
+          skip,
+        ],
+      );
       break;
     case "roadRivendellAmbush": {
       if (druadanPlayerNoEngagementChecks(s)) break;
@@ -619,7 +629,7 @@ export function roadRivendellEffect(s: GameState, e: Effect) {
       break;
     case "roadRivendellRuinedRoad":
       if (u && allActiveLocations(s).some((l) => l.id === u.id))
-        choose(s, "Ruined Road · Respond?", [
+        choosePlayerResponse(s, u.id, u.code, "Ruined Road · Respond?", [
           {
             id: "progress",
             label: "Place two progress on Ruined Road",

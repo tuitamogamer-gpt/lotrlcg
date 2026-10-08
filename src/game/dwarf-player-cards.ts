@@ -1,3 +1,11 @@
+import {
+  choosePlayerResponse,
+  responseOptions,
+} from "./player-ability-triggers";
+import {
+  dikeCannotLeaveDiscard,
+  DIKE_DISCARD_REASON,
+} from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
 import { canGainResources } from "./core";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -416,7 +424,9 @@ function taleSelection(
   slots: number,
 ) {
   const options = remaining.flatMap((code, index) =>
-    allyCanEnter(s, code) && numericCost(code) <= budget
+    !dikeCannotLeaveDiscard(s) &&
+    allyCanEnter(s, code) &&
+    numericCost(code) <= budget
       ? [
           {
             id: `tale-${index}`,
@@ -651,6 +661,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "dwarfTaleTake": {
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       const remaining = [...(e.ids ?? [])],
         index = e.value ?? -1,
         budget = Number(e.text),
@@ -720,8 +731,10 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "dwarfGloinResponse":
       if (!resourceRecipients(s).length) return true;
-      choose(
+      choosePlayerResponse(
         s,
+        e.target ?? "132006",
+        "132006",
         "Glóin · Five Dwarves",
         [
           ...opts(resourceRecipients(s), (hero) => [
@@ -745,15 +758,21 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         );
       if (!attachment || attachment.exhausted || attachment.blanked)
         return true;
-      choose(s, "Legacy of Durin · Dwarf played", [
-        {
-          id: "draw",
-          code: "04061",
-          label: "Exhaust Legacy of Durin to draw 1 card",
-          effects: [{ ...e, kind: "dwarfLegacyDraw" }],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        attachment.id,
+        "04061",
+        "Legacy of Durin · Dwarf played",
+        [
+          {
+            id: "draw",
+            code: "04061",
+            label: "Exhaust Legacy of Durin to draw 1 card",
+            effects: [{ ...e, kind: "dwarfLegacyDraw" }],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "dwarfLegacyDraw": {
@@ -771,21 +790,27 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "dwarfProspectorResponse":
       if (!s.deck.length) return true;
-      choose(s, "Ered Nimrais Prospector · Entered play", [
-        {
-          id: "delve",
-          code: "06141",
-          label:
-            "Discard 3 cards and shuffle one discarded card into your deck",
-          effects: [fx("dwarfProspectorMine")],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        e.target ?? "06141",
+        "06141",
+        "Ered Nimrais Prospector · Entered play",
+        [
+          {
+            id: "delve",
+            code: "06141",
+            label:
+              "Discard 3 cards and shuffle one discarded card into your deck",
+            effects: [fx("dwarfProspectorMine")],
+          },
+          skip,
+        ],
+      );
       return true;
     case "dwarfProspectorMine": {
       const start = s.discard.length;
       const discarded = discardPlayerDeck(s, 3, activeSeat(s), false);
-      if (discarded.length < 3) {
+      if (discarded.length < 3 || dikeCannotLeaveDiscard(s)) {
         finishMining(s, discarded);
         return true;
       }
@@ -809,6 +834,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "dwarfProspectorRecover": {
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       const index = e.value ?? -1;
       requireRule(
         s.discard[index] === e.code,
@@ -826,15 +852,21 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
     case "dwarfLongbeardResponse": {
       const elder = get(s, e.target);
       if (elder?.code !== "04102" || !s.encounterDeck.length) return true;
-      choose(s, "Longbeard Elder · Committed to quest", [
-        {
-          id: "look",
-          code: "04102",
-          label: "Look at the top encounter card",
-          effects: [fx("dwarfLongbeardLook", { target: elder.id })],
-        },
-        skip,
-      ]);
+      choosePlayerResponse(
+        s,
+        elder.id,
+        elder.code,
+        "Longbeard Elder · Committed to quest",
+        [
+          {
+            id: "look",
+            code: "04102",
+            label: "Look at the top encounter card",
+            effects: [fx("dwarfLongbeardLook", { target: elder.id })],
+          },
+          skip,
+        ],
+      );
       return true;
     }
     case "dwarfLongbeardLook": {
@@ -871,21 +903,29 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
     case "dwarfMiningResponse": {
       if (!e.code || !s.discard.includes(e.code)) return true;
       if (e.code === "12066") {
-        if (!allyCanEnter(s, e.code)) return true;
-        choose(s, "Ered Luin Miner · Discarded from deck", [
-          {
-            id: "enter",
-            code: e.code,
-            label: "Put Ered Luin Miner into play",
-            effects: [fx("dwarfMinerEnter", { code: e.code })],
-          },
-          skip,
-        ]);
+        if (dikeCannotLeaveDiscard(s) || !allyCanEnter(s, e.code)) return true;
+        choosePlayerResponse(
+          s,
+          e.source ?? e.code,
+          e.code,
+          "Ered Luin Miner · Discarded from deck",
+          [
+            {
+              id: "enter",
+              code: e.code,
+              label: "Put Ered Luin Miner into play",
+              effects: [fx("dwarfMinerEnter", { code: e.code })],
+            },
+            skip,
+          ],
+        );
       } else if (
         resourceRecipients(s).some((h) => ownerOf(s, h) === activeSeat(s))
       ) {
-        choose(
+        choosePlayerResponse(
           s,
+          e.source ?? e.code,
+          e.code,
           "Hidden Cache · Discarded from deck",
           [
             ...opts(
@@ -900,6 +940,7 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "dwarfMinerEnter":
+      requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       requireRule(
         s.discard.includes("12066") && allyCanEnter(s, "12066"),
         "This Miner must remain in your discard pile.",
@@ -934,6 +975,15 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
                 player: ownerOf(s, dori),
               },
             ],
+          ).map(
+            (option) =>
+              responseOptions(
+                s,
+                option.id,
+                "131009",
+                [option],
+                ownerOf(s, get(s, option.id)!),
+              )[0],
           ),
           {
             id: "skip",
