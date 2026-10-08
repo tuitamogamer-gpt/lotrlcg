@@ -1,4 +1,5 @@
 import { CHETWOOD_QUESTS } from "./chetwood-support";
+import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
 import { CELEBRIMBOR_QUESTS } from "./celebrimbor-support";
 import { NIN, NIN_QUESTS } from "./nin-eilph-support";
@@ -62,6 +63,7 @@ const questImage = (code: string) => {
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
+    ...WEATHER_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -1053,6 +1055,29 @@ export const SCENARIOS = [
     stages: CHETWOOD_QUESTS.map((c) => ({
       name: c.name,
       quest: c.back_quest ?? 30,
+      cardCode: c.code,
+      story: c.back_text!,
+      questImage: questImage(c.code),
+    })),
+  },
+  {
+    id: "the-weather-hills",
+    name: "The Weather Hills",
+    shortName: "Weather Hills",
+    chapter: "II",
+    difficulty: 5,
+    tagline: "The hunt through the storm",
+    description:
+      "Track the scattered Orcs through ruined Arnor, find shelter from the storm and withstand their savage counter-attack.",
+    sets: [
+      "The Weather Hills",
+      "Angmar Orcs",
+      "Foul Weather",
+      "Ruins of Arnor",
+    ],
+    stages: WEATHER_QUESTS.map((c) => ({
+      name: c.back_name ?? c.name,
+      quest: c.back_quest ?? 0,
       cardCode: c.code,
       story: c.back_text!,
       questImage: questImage(c.code),

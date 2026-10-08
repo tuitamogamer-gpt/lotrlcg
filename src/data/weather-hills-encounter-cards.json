@@ -1,0 +1,603 @@
+[
+  {
+    "code": "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+    "octgnid": "00d81c85-395e-4990-b0ff-7cbd9908f541",
+    "name": "Cornered Orc",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Forced: After Cornered Orc engages a player, it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 25,
+    "quantity": 5,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 20,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 25,
+        "quantity": 5,
+        "octgnid": "00d81c85-395e-4990-b0ff-7cbd9908f541",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00d81c85-395e-4990-b0ff-7cbd9908f541.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+    "octgnid": "047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+    "name": "Search the Ruins",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nForced: At the end of the refresh phase, raise each player's threat by 2.  Response: After Search the Ruins is defeated, reduce each player's threat by 3.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 59,
+    "quantity": 1,
+    "quest": 8,
+    "victory": 10,
+    "encounter_set": "Ruins of Arnor",
+    "printed_stats": {
+      "quest": "8",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 59,
+        "quantity": 1,
+        "octgnid": "047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/047ca6cd-733d-46aa-b2db-48a9c63bfc24.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+    "octgnid": "0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+    "name": "Find Shelter",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge. Time 4.\nForced: After the last time counter is removed from this quest card, each player deals 4 damage to a hero he controls. Then, place 4 time counters on this quest card.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 32,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 32,
+        "quantity": 1,
+        "octgnid": "0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e192334-fa2b-4c1a-bfab-0aa44bf88db4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+    "octgnid": "18484359-d4b5-4ed6-b7be-e013fae4df43",
+    "name": "Hunting the Orcs",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mission.",
+    "text": "Forced: After an enemy is defeated, place 1 resource token here. Then, if there are at least X resource tokens here, flip Hunting the Orcs and place each resource token here on Savage Counter-attack. X is 3 more than the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 71,
+    "quantity": 1,
+    "encounter_set": "The Weather Hills",
+    "back_name": "Savage Counter-attack",
+    "back_text": "Forced: After Savage Counter-attack enters play, advance to stage 2A.  Forced: After an enemy attacks and destroys a character, discard 1 resource token here.  If there are no resource tokens here, the players lose the game.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "18484359-d4b5-4ed6-b7be-e013fae4df43",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/18484359-d4b5-4ed6-b7be-e013fae4df43.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+    "octgnid": "27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+    "name": "Exposed Ridge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "While Exposed Ridge is the active location, it gains: \"Forced: At the end of the refresh phase, each player deals 1 damage to a character he controls.\"",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 28,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 28,
+        "quantity": 3,
+        "octgnid": "27da4ea2-7892-409e-b6e0-38ad215d5d0c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27da4ea2-7892-409e-b6e0-38ad215d5d0c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
+    "octgnid": "3470ed02-38dc-4387-8fe0-265b13fe96a1",
+    "name": "Ice Storm",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Each player assigns X damage among characters he controls, where X is the number of quest cards in play. Then, exhaust each damaged character.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 31,
+    "quantity": 2,
+    "shadow": "Shadow: Assign X damage among characters you control. X is the number of quest cards in play.",
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {},
+    "imagesrc": "/cards/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 31,
+        "quantity": 2,
+        "octgnid": "3470ed02-38dc-4387-8fe0-265b13fe96a1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3470ed02-38dc-4387-8fe0-265b13fe96a1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5388683d-3240-433a-9602-a7367e428406",
+    "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+    "name": "Make Camp",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nCharacters cannot be healed.  Response: After Make Camp is defeated, each player heals up to 3 damage from a hero he controls.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 55,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Foul Weather",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/5388683d-3240-433a-9602-a7367e428406.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 55,
+        "quantity": 1,
+        "octgnid": "5388683d-3240-433a-9602-a7367e428406",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5388683d-3240-433a-9602-a7367e428406.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+    "octgnid": "70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+    "name": "Ruins of Arnor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Ruins.",
+    "text": "Forced: After the \"when revealed\" effect of a treachery card is canceled, raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 56,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, the defending player raises his threat by 2.",
+    "encounter_set": "Ruins of Arnor",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 56,
+        "quantity": 3,
+        "octgnid": "70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70cc4fe9-8e97-4d83-8f48-06dc6a43c43e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+    "octgnid": "718d940a-2b58-4986-af10-06a81546bc9f",
+    "name": "Sheltered Valley",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "While Sheltered Valley is the active location, it gains: \"Response: When Sheltered Valley is explored, heal all damage from 1 character.\"   Travel: Remove 1 resource token from the Mission objective.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 29,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/718d940a-2b58-4986-af10-06a81546bc9f.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 29,
+        "quantity": 2,
+        "octgnid": "718d940a-2b58-4986-af10-06a81546bc9f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/718d940a-2b58-4986-af10-06a81546bc9f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:836a759d-d768-4119-929f-cfe874ba944a",
+    "octgnid": "836a759d-d768-4119-929f-cfe874ba944a",
+    "name": "Weathered Hilltop",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "Weathered Hilltop gets +1 [threat] for each resource token on it.\nForced: After a Weather treachery is revealed from the encounter deck, place 1 resource token here.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 27,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/836a759d-d768-4119-929f-cfe874ba944a.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 27,
+        "quantity": 3,
+        "octgnid": "836a759d-d768-4119-929f-cfe874ba944a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/836a759d-d768-4119-929f-cfe874ba944a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+    "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+    "name": "Biting Wind",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Assign X damage among characters committed to the quest. X is the number of characters committed to the quest.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 52,
+    "quantity": 3,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Foul Weather",
+    "printed_stats": {},
+    "imagesrc": "/cards/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a2d9c58-cf82-4e3f-90df-240e2bebb5e9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+    "octgnid": "8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+    "name": "Concealed Orc-camp",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Hills.",
+    "text": "While Concealed Orc-camp is the active location, it gains: \"Response: When Concealed Orc-camp is explored, place 1 resource token on the Mission objective.\"   Travel: The first player searches the encounter deck and discard pile for an Orc enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 30,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 30,
+        "quantity": 3,
+        "octgnid": "8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bf452c7-09ab-482b-b44c-0861b7e63ecc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
+    "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+    "name": "Cold from Angmar",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Each player deals 1 damage to a hero he controls. Attach Cold from Angmar to the current quest. (Counts as a Condition attachment with the text: \"Treat each damaged character's printed text box as if it were blank, except for keywords and Traits.\")",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 54,
+    "quantity": 3,
+    "encounter_set": "Foul Weather",
+    "printed_stats": {},
+    "imagesrc": "/cards/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 54,
+        "quantity": 3,
+        "octgnid": "9db89c44-e692-4afa-ac07-d4ac35165cb7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9db89c44-e692-4afa-ac07-d4ac35165cb7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+    "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+    "name": "Freezing Blast",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "Doomed 2.\nWhen Revealed: Remove each damaged character from the quest.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 53,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each damaged character the defending player controls.",
+    "encounter_set": "Foul Weather",
+    "printed_stats": {},
+    "imagesrc": "/cards/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 53,
+        "quantity": 2,
+        "octgnid": "b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b79e8b2a-0ebe-4698-bc6d-43c19d44202d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+    "octgnid": "ea225b12-75e1-4253-9458-c71c1c304a8f",
+    "name": "Amon Forn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Ruins.",
+    "text": "Immune to player card effects.\nWhile Amon Forn is the active location, it gains: \"Forced: After an Orc enemy is added to the staging area, it makes an immediate attack against the first player.\" The players cannot win while Amon Forn is in play.",
+    "is_unique": true,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 26,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 6,
+    "victory": 3,
+    "encounter_set": "The Weather Hills",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "6",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "ea225b12-75e1-4253-9458-c71c1c304a8f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea225b12-75e1-4253-9458-c71c1c304a8f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+    "octgnid": "f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+    "name": "Tragic Discovery",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Raise each player's threat by the [threat] of the active location.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 58,
+    "quantity": 2,
+    "shadow": "Shadow: Defending player either raises his threat by 3, or this attack is considered undefended.",
+    "encounter_set": "Ruins of Arnor",
+    "printed_stats": {},
+    "imagesrc": "/cards/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2a34148-f5af-4a16-a1ae-953ea5d5482f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+    "octgnid": "ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+    "name": "Ancient Causeway",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Arnor. Ruins.",
+    "text": "Forced: When Ancient Causeway is explored, raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 57,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "Ruins of Arnor",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 57,
+        "quantity": 2,
+        "octgnid": "ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,4 +1,6 @@
 import { mainQuestCode } from "./quest-state";
+import { WEATHER } from "./weather-hills-support";
+import { syncAttachmentText } from "./attachment-text";
 import { removePlayedEvent } from "./event-resolution";
 // Complete original A Journey to Rhosgobel quest; Nightmare is a separate ruleset.
 import { shadowFlamePlayerHealed } from "./shadow-flame-player-cards";
@@ -187,6 +189,7 @@ export const rhosgobelTravelProblem = (s: GameState, u: Unit) =>
     ? "Complete stage one before traveling to Rhosgobel."
     : null;
 export const rhosgobelHealingAllowed = (s: GameState, u: Unit) =>
+  !s.staging.some((q) => q.code === WEATHER.camp && !q.blanked) &&
   !(
     s.scenarioId === "road-to-rivendell" &&
     s.stage === 3 &&
@@ -213,6 +216,7 @@ export function rhosgobelHeal(
   );
   if (!amount) return 0;
   target.damage -= amount;
+  syncAttachmentText(s, target);
   log(s, `${name(target)} heals ${amount} damage.`, "good");
   if (
     target.code === RHOS.wilyador &&

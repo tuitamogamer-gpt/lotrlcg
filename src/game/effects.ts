@@ -1,4 +1,5 @@
 import * as Chetwood from "./chetwood";
+import * as Weather from "./weather-hills";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { sideQuestEffect, sideQuestStart } from "./side-quests";
 import { rangerEffect } from "./ranger-north";
@@ -349,6 +350,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (rangerEffect(s, e)) return;
   if (sideQuestEffect(s, e)) return;
   if (Chetwood.chetwoodEffect(s, e)) return;
+  if (Weather.weatherEffect(s, e)) return;
   if (Realm.realmEffect(s, e)) return;
   stewardHeroResponseEffect(s, e);
   if (handlePlayerEventAbilityEffect(s, e)) return;
@@ -666,6 +668,7 @@ function handleEffect(s: GameState, e: Effect) {
             : livingSeats(s).length +
                 (s.scenarioId === "anduin" && s.stage === 2 ? 1 : 0) +
                 heirsStagingCountBonus(s) +
+                Weather.weatherStagingCountBonus(s) +
                 stewardFearExtraRevealCount(s),
         ),
       );
@@ -947,6 +950,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "afterEncounterRevealed":
       Chetwood.chetwoodAfterReveal(s, e.code!);
+      Weather.weatherAfterReveal(s, e.code!);
       stewardFearTreacheryRevealed(s, e.code!, e.revealOrigin);
       Amon.amonDinTreacheryRevealed(s, e.code!, e.revealOrigin);
       break;
@@ -985,6 +989,7 @@ function handleEffect(s: GameState, e: Effect) {
             Celebrimbor.celebrimborEncounter(s, e.code, true) ||
             Antlered.antleredEncounter(s, e.code, true) ||
             Chetwood.chetwoodEncounter(s, e.code, true) ||
+            Weather.weatherEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1182,6 +1187,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (s.phase === "refresh") {
         Trials.trialsRemoveEnemyTime(s);
         Chetwood.chetwoodRefreshEnd(s);
+        Weather.weatherRefreshEnd(s);
       }
       if (
         s.phase === "refresh" &&
@@ -1208,6 +1214,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (s.scenarioId === "hunt-for-gollum" && s.stage === 2)
         prepend(s, fx("huntLook", { count: 2, player: firstPlayer(s) }));
       Chetwood.chetwoodQuestStart(s);
+      Weather.weatherQuestStart(s);
       sideQuestStart(s);
       break;
     case "startTravel":
@@ -1777,6 +1784,7 @@ function handleEffect(s: GameState, e: Effect) {
         shadowFlamePlayerEnemyAttackEnded(s, enemy, attackPlayer);
       if (completed) {
         Chetwood.chetwoodAttackFinished(s, completed);
+        Weather.weatherAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -1946,6 +1954,28 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "weatherSetup",
+      "weatherEnemyToken",
+      "weatherAdvanceStage",
+      "weatherStageTwoSetup",
+      "weatherRevealAside",
+      "weatherStageReady",
+      "weatherRevealOrcs",
+      "weatherRemoveMission",
+      "weatherQuestCost",
+      "weatherAllThreat",
+      "weatherRidgeDamage",
+      "weatherShelterExpired",
+      "weatherResetShelter",
+      "weatherIceExhaust",
+      "weatherColdAttach",
+      "weatherCampTokenResponse",
+      "weatherCampToken",
+      "weatherValleyResponse",
+      "weatherValleyHeal",
+      "weatherHealResponse",
+      "weatherSearchResponse",
+      "weatherReduceAllThreat",
       "chetSetup",
       "chetRefreshThreat",
       "chetRescueExpired",
@@ -2192,6 +2222,7 @@ export function extraEffect(s: GameState, e: Effect) {
   const u = get(s, e.target);
   switch (e.kind) {
     case "cancelReplace": {
+      Weather.weatherCanceled(s, e.code!);
       s.encounterDiscard.push(e.code!);
       const afterIndex = s.queue.findIndex(
         (next) =>

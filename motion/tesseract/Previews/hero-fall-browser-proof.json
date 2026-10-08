@@ -1,0 +1,26 @@
+{
+  "time": 0.590312,
+  "mediaTime": 0.6,
+  "frames": 18,
+  "maxAlpha": 255,
+  "nonzero": 17938,
+  "corner": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "duration": 1.6,
+  "width": 600,
+  "height": 300,
+  "fullPlayback": {
+    "elapsedMs": 1601,
+    "frames": 47,
+    "ended": true,
+    "error": null
+  },
+  "errors": [],
+  "webmBytes": 98261,
+  "posterBytes": 39879,
+  "webmSha256": "1c2fe9a62b1eb0631b0d6051ad19b8053e44192eee3c497f400b8b92ea50b4e8"
+}

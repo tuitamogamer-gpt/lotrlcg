@@ -164,7 +164,10 @@ export const passiveRule = (code: string) => rules[code];
 export function effectiveTraits(u: Unit): string[] {
   return [
     ...new Set([
-      ...(u.blanked ? "" : (card(u.code).traits ?? ""))
+      ...(u.blanked && !u.printedKeywordsPreserved
+        ? ""
+        : (card(u.code).traits ?? "")
+      )
         .split(".")
         .map((t) => t.trim())
         .filter(Boolean),
@@ -198,7 +201,7 @@ export function effectiveKeyword(u: Unit, keyword: string): boolean {
       (k) => k.toLowerCase() === keyword.toLowerCase(),
     ) ||
     !!u.roundKeywords?.some((k) => k.toLowerCase() === keyword.toLowerCase()) ||
-    (!u.blanked && exact.test(printed)) ||
+    ((!u.blanked || u.printedKeywordsPreserved) && exact.test(printed)) ||
     u.attachments.some(
       (a) =>
         !a.blanked &&

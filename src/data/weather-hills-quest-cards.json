@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+    "octgnid": "918c4387-bf40-48f1-bf65-5ad5acb91784",
+    "name": "Scattered Among the Hills",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Orc Ambush and Amon Forn aside, out of play. Create the Orc deck (see insert) and set it next to the quest deck. Make Exposed Ridge the active location. Add Hunting the Orcs and 1 Weathered Hilltop to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 69,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Weather Hills",
+    "side": "A",
+    "back_name": "Scattered Among the Hills",
+    "back_text": "The first Weather treachery revealed each round gains surge.  Forced: After the active location is explored, reveal the top card of the Orc deck and resolve its staging as if it was just revealed from the encounter deck (the top 2 cards instead if there are 3 or more players in the game).",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "918c4387-bf40-48f1-bf65-5ad5acb91784",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/918c4387-bf40-48f1-bf65-5ad5acb91784.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 0
+  },
+  {
+    "code": "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
+    "octgnid": "95d26956-eda3-43b2-b68b-6f8010d076bd",
+    "name": "Cornered Animals",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: End the current phase. Shuffle the encounter discard pile and the Orc deck into the encounter deck. Reveal Orc Ambush and Amon Forn and add them to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLR",
+    "pack_name": "The Lost Realm",
+    "position": 70,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Weather Hills",
+    "side": "A",
+    "back_name": "Cornered Animals",
+    "back_text": "Each damaged character gets -1 [willpower].  Forced: At the beginning of the quest phase, either discard 1 resource token from Savage Counter-attack, or reveal an additional encounter card this phase.  If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg",
+    "packs": [
+      {
+        "pack_code": "TLR",
+        "pack_name": "The Lost Realm",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "95d26956-eda3-43b2-b68b-6f8010d076bd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/95d26956-eda3-43b2-b68b-6f8010d076bd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

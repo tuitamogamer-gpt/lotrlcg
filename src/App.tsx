@@ -1,4 +1,8 @@
 import { currentQuestProgress } from "./game/quest-state";
+import { SignificantMoment } from "./ui/SignificantMoment";
+import type { ActiveSignificantMoment } from "./ui/SignificantMoment";
+import { detectSignificantMoment } from "./ui/significant-moments";
+import { WEATHER } from "./game/weather-hills-support";
 import { selectedSideQuest } from "./game/side-quest-support";
 import { realmExtraEngagement } from "./game/lost-realm-player";
 import { CELEBRIMBOR } from "./game/celebrimbor-support";
@@ -667,6 +671,15 @@ export default function App() {
   const reducedMotion = useReducedMotion();
   const [initialChoices] = useState(readChoices);
   const [page, setPage] = useState<Page>("adventures");
+  const [significantMoment, setSignificantMoment] =
+    useState<ActiveSignificantMoment | null>(null);
+  const momentSerial = useRef(0);
+  const dismissMoment = useCallback((serial: number) => {
+    setSignificantMoment((m) => (m?.serial === serial ? null : m));
+  }, []);
+  useEffect(() => {
+    if (page !== "table") setSignificantMoment(null);
+  }, [page]);
   const [libraryProduct, setLibraryProduct] = useState("all");
   const [game, setGame] = useState<GameState | null>(() =>
     readSave(
@@ -706,6 +719,7 @@ export default function App() {
     if (mode === playMode) return;
     const saved = readSave(mode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY);
     setPlayMode(mode);
+    setSignificantMoment(null);
     setGame(saved);
     if (saved) {
       const recovered = recoverSavedDecks(saved, decks);
@@ -893,6 +907,7 @@ export default function App() {
       );
       setSelectedScenario(restored.scenario);
       setPlayMode(restored.playMode);
+      setSignificantMoment(null);
       setGame(saved);
       if (
         [restored.selectedDeck, ...restored.seatDecks].some(
@@ -1002,6 +1017,9 @@ export default function App() {
     if (!game) return;
     try {
       const next = applyAction(game, action);
+      const milestone = detectSignificantMoment(game, next);
+      if (milestone)
+        setSignificantMoment({ ...milestone, serial: ++momentSerial.current });
       setHistory((h) => [...h.slice(-19), game]);
       setGame(next);
       chime();
@@ -1024,6 +1042,7 @@ export default function App() {
     }
   };
   const start = (style: "classic" | "hotseat" = setupMode) => {
+    setSignificantMoment(null);
     try {
       const selected =
         style === "hotseat" ? seats.map((p) => p.deckId) : [selectedDeck];
@@ -1151,6 +1170,7 @@ export default function App() {
           ? nextSeatDecks
           : undefined,
       );
+      setSignificantMoment(null);
       setGame(next);
       setHistory([]);
       setInterlude(false);
@@ -1163,6 +1183,7 @@ export default function App() {
   const retry = () => {
     if (!game) return;
     try {
+      setSignificantMoment(null);
       setGame(retryAdventure(game));
       setHistory([]);
       setCombatEnemy(null);
@@ -1215,6 +1236,7 @@ export default function App() {
       if (!s) throw new Error("This is not a valid adventure save.");
       const recovered = recoverSavedDecks(s, decks);
       setDecks(recovered);
+      setSignificantMoment(null);
       setGame(s);
       setPlayMode(s.playMode);
       setSetupMode(s.table ? "hotseat" : "classic");
@@ -1232,6 +1254,7 @@ export default function App() {
   const undo = () => {
     const prev = history.at(-1);
     if (prev) {
+      setSignificantMoment(null);
       setGame(prev);
       setHistory((h) => h.slice(0, -1));
       setCombatEnemy(null);
@@ -2296,6 +2319,17 @@ export default function App() {
             tabIndex={-1}
             className="table-page card-table"
           >
+            {significantMoment &&
+              !["victory", "defeat"].includes(significantMoment.kind) && (
+                <SignificantMoment
+                  key={significantMoment.serial}
+                  moment={significantMoment}
+                  paused={
+                    !!(game.choice || game.flow?.pending || detail || showQuest)
+                  }
+                  dismiss={dismissMoment}
+                />
+              )}
             <div className="table-heading">
               <div>
                 <button className="text-link" onClick={() => nav("adventures")}>
@@ -3940,11 +3974,21 @@ export default function App() {
             }
           >
             <div className="endgame">
-              {game.status === "won" ? (
-                <Tree size={64} weight="thin" />
-              ) : (
-                <Moon size={64} weight="thin" />
-              )}
+              <div className="endgame-moment-slot">
+                {significantMoment &&
+                ["victory", "defeat"].includes(significantMoment.kind) ? (
+                  <SignificantMoment
+                    key={significantMoment.serial}
+                    moment={significantMoment}
+                    inline
+                    dismiss={dismissMoment}
+                  />
+                ) : game.status === "won" ? (
+                  <Tree size={64} weight="thin" />
+                ) : (
+                  <Moon size={64} weight="thin" />
+                )}
+              </div>
               <h2>
                 {game.status === "won"
                   ? game.campaign?.completed.length === CAMPAIGN_CHAPTERS.length
@@ -4203,7 +4247,10 @@ function BoardCard({
               : undefined
         }
       >
-        <Art c={c} />
+        <Art
+          c={u.flipped ? { ...c, name: name(u) } : c}
+          imageSrc={u.flipped ? c.back_imagesrc : undefined}
+        />
         <span className="card-table-tokens">
           {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
           {u.progress > 0 && <TableToken kind="progress" value={u.progress} />}
@@ -4211,6 +4258,7 @@ function BoardCard({
             <TableToken kind="time" value={u.timeCounters} />
           )}
           {(u.resources > 0 ||
+            u.code === WEATHER.mission ||
             u.code === CARROCK.grimbeorn ||
             u.code === DEAD.gollum ||
             u.code === S.flames ||

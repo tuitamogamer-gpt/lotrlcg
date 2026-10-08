@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        scenario: [mirkwood, anduin, dol-guldur]
+        scenario: [mirkwood, anduin, dol-guldur, the-weather-hills]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

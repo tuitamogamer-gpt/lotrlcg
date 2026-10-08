@@ -328,7 +328,8 @@ export function chetwoodTravel(s: GameState, u: Unit): Effect[] | undefined {
   return undefined;
 }
 export function chetwoodEncounter(s: GameState, code: string, replay = false) {
-  if (!s.chetwood) return false;
+  if (!s.chetwood && (!s.weatherHills || ![C.orc, C.ambush].includes(code)))
+    return false;
   const newest = [...s.staging].reverse().find((u) => u.code === code);
   if (code === C.orc) {
     choose(s, "Angmar Orc · Discard an ally or reveal a card", [
@@ -348,7 +349,7 @@ export function chetwoodEncounter(s: GameState, code: string, replay = false) {
         effects: [fx("reveal")],
       },
     ]);
-  } else if (code === C.rescue && newest) {
+  } else if (code === C.rescue && newest && s.chetwood) {
     const ally = iarion(s);
     if (ally) {
       s.chetwood.captive = { questId: newest.id, unit: ally };
@@ -359,7 +360,7 @@ export function chetwoodEncounter(s: GameState, code: string, replay = false) {
       ally.committed = false;
       log(s, "Iârion is placed facedown beneath Rescue Iârion.", "danger");
     }
-  } else if (code === C.wilderness && newest) {
+  } else if (code === C.wilderness && newest && s.chetwood) {
     const hidden = (s.chetwood.hiddenHands[newest.id] ??= []);
     for (const p of playerOrder(s))
       forOwner(s, p, () => {
@@ -512,7 +513,23 @@ export function chetwoodEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("chet")) return false;
   const q = s.chetwood,
     u = get(s, e.target);
-  if (!q) return true;
+  // Angmar Orcs is shared by The Lost Realm scenarios. These effects do not
+  // depend on Chetwood's captive, hands, setup choices or progress history.
+  if (
+    !q &&
+    (!s.weatherHills ||
+      ![
+        "chetShuffle",
+        "chetSearchOrc",
+        "chetTakeOrc",
+        "chetDiscardAlly",
+        "chetReturn",
+        "chetCaptain",
+        "chetAttackEffects",
+        "chetAttackFinished",
+      ].includes(e.kind))
+  )
+    return true;
   switch (e.kind) {
     case "chetSetup": {
       const ally = make(s, C.iarion);
@@ -521,7 +538,7 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       const party = make(s, C.party);
       s.staging.push(party);
       enemyAddedToStaging(s, party);
-      q.initialized = true;
+      q!.initialized = true;
       prepend(
         s,
         ...playerOrder(s).map((player) => fx("chetSetupLocation", { player })),
@@ -537,7 +554,7 @@ export function chetwoodEffect(s: GameState, e: Effect) {
           .filter(
             (code) =>
               card(code).type_code === "location" &&
-              !q.setupLocations.includes(code),
+              !q!.setupLocations.includes(code),
           )
           .map((code) => ({
             id: code,
@@ -549,9 +566,9 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       break;
     case "chetAddLocation": {
       const i = s.encounterDeck.indexOf(e.code!);
-      if (i >= 0 && !q.setupLocations.includes(e.code!)) {
+      if (i >= 0 && !q!.setupLocations.includes(e.code!)) {
         s.encounterDeck.splice(i, 1);
-        q.setupLocations.push(e.code!);
+        q!.setupLocations.push(e.code!);
         s.staging.push(make(s, e.code!));
       }
       break;
@@ -608,9 +625,9 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       break;
     }
     case "chetRescueExpired":
-      if (u && !u.blanked && !u.timeCounters && q.captive?.questId === u.id) {
-        s.encounterDiscard.push(q.captive.unit.code);
-        delete q.captive;
+      if (u && !u.blanked && !u.timeCounters && q!.captive?.questId === u.id) {
+        s.encounterDiscard.push(q!.captive!.unit.code);
+        delete q!.captive;
         lose(
           s,
           "Rescue Iârion runs out of time. Iârion is discarded and the players lose.",
@@ -618,17 +635,17 @@ export function chetwoodEffect(s: GameState, e: Effect) {
       }
       break;
     case "chetRescueCards": {
-      if (q.captive && q.captive.questId === e.target) {
-        const ally = q.captive.unit;
-        delete q.captive;
+      if (q!.captive && q!.captive.questId === e.target) {
+        const ally = q!.captive.unit;
+        delete q!.captive;
         ally.controller = firstPlayer(s);
         ally.committed = false;
         ally.exhausted = true;
         forOwner(s, firstPlayer(s), () => s.allies.push(ally));
         log(s, "Iârion is rescued exhausted by the first player.", "good");
       }
-      const hidden = q.hiddenHands[e.target!] ?? [];
-      delete q.hiddenHands[e.target!];
+      const hidden = q!.hiddenHands[e.target!] ?? [];
+      delete q!.hiddenHands[e.target!];
       for (const c of hidden) {
         const owner = c.owner!;
         if (s.table?.seats[owner]?.eliminated)

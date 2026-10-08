@@ -329,6 +329,42 @@
 }
 
 /* Attachments peek from behind their host. Each remains independently inspectable. */
+.journey-attachments {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  margin: 8px 0;
+  text-align: center;
+}
+.journey-attachments > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #c6b58e;
+  font-size: 11px;
+}
+.redbook .gameboard .journey-attachments .table-attachments,
+.redbook
+  .table-page.card-table
+  .gameboard
+  .journey-attachments
+  .table-attachments {
+  position: static;
+  width: auto;
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.journey-attachments .table-attachments > button {
+  margin: 0;
+  transform: none;
+}
+.journey-attachments .table-attachments > button:hover,
+.journey-attachments .table-attachments > button:focus-visible {
+  transform: translateY(-2px);
+}
 .redbook .gameboard .character-card.has-attachments,
 .redbook .gameboard .board-card.has-attachments {
   margin-right: 30px;

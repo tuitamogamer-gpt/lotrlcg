@@ -1,4 +1,5 @@
 import { setupChetwood } from "./chetwood";
+import { setupWeather } from "./weather-hills";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { setupAntlered } from "./antlered";
 import { setupCelebrimbor } from "./celebrimbor";
@@ -387,6 +388,8 @@ export function createGame(
     setupBloodGondor(s);
   } else if (scenarioId === "intruders-in-chetwood") {
     setupChetwood(s);
+  } else if (scenarioId === "the-weather-hills") {
+    setupWeather(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

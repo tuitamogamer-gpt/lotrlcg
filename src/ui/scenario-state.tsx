@@ -1,4 +1,5 @@
 import { CELEBRIMBOR } from "../game/celebrimbor-support";
+import { WEATHER } from "../game/weather-hills-support";
 import { units } from "../game/core";
 import { ninQuestName } from "../game/nin-eilph-support";
 import { tharbadTimeLimit } from "../game/tharbad-support";
@@ -35,6 +36,7 @@ export function ScenarioState({
     !s.tharbad &&
     !s.ninEilph &&
     !s.antlered &&
+    !s.weatherHills &&
     !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
@@ -43,6 +45,21 @@ export function ScenarioState({
     return null;
   return (
     <div className="scenario-state-summary" aria-label="Scenario counters">
+      {s.weatherHills && (
+        <div className="tower-counter">
+          <strong>Orc deck · {s.weatherHills.orcDeck.length} cards</strong>
+          <span>
+            {s.stage === 1
+              ? `Hunting the Orcs · ${s.staging.find((u) => u.code === WEATHER.mission)?.resources ?? 0} / ${3 + (s.table?.seats.length ?? 1)} resources`
+              : `Savage Counter-attack · ${s.staging.find((u) => u.code === WEATHER.mission)?.resources ?? 0} resources remaining`}
+          </span>
+          <span>
+            {s.stage === 1
+              ? "Explore active locations to reveal Orc cards. Defeat enemies to advance the hunt."
+              : "Keep a resource on the Mission. Clear Amon Forn and place 20 quest progress."}
+          </span>
+        </div>
+      )}
       {s.bloodGondor &&
         playerOrder(s).map((p) => (
           <div

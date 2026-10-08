@@ -409,118 +409,145 @@ test("invalid seat indices, duplicate heroes and corrupt saves are rejected", ()
     /different/,
   );
 });
-for (const scenarioId of ["mirkwood", "anduin", "dol-guldur"] as const)
-  for (const campaign of [false, true])
-    test(`hot-seat ${scenarioId} ${campaign ? "campaign" : "normal"}: complete seeded games with save checks`, () => {
-      for (const n of [1, 2, 3, 4])
-        for (let seed = 1; seed <= 8; seed++) {
-          const d = STARTERS[0],
-            heroes = playerConfig.slice(0, n).flatMap((p) => p.heroes),
-            c = newCampaign(heroes),
-            scenarios = ["mirkwood", "anduin", "dol-guldur"] as const;
-          c.completed = scenarios
-            .slice(0, scenarios.indexOf(scenarioId))
-            .map((scenarioId) => ({ scenarioId, score: 60, rounds: 5 }));
-          if (scenarioId !== "mirkwood") c.boons = ["rc132"];
-          let s = createGame(seed, d.cards, d.heroes, d.id, {
-              seats: playerConfig.slice(0, n),
-              scenarioId,
-              guided: seed <= 2,
-              playMode: campaign ? "campaign" : "normal",
-              ...(campaign ? { campaign: c } : {}),
-            }),
-            steps = 0;
-          while (
-            (s.status === "playing" || s.flow?.pending) &&
-            steps++ < 4000
-          ) {
-            let a: Action;
-            if (s.flow?.pending)
-              a = { type: "CONTINUE", stepId: s.flow.pending.id };
-            else if (s.choice)
-              a = {
-                type: "CHOOSE",
-                id: (
-                  s.choice.options.find((o) => o.id === "skip") ??
-                  s.choice.options.find((o) => o.id === "resolve") ??
-                  s.choice.options[0]
-                ).id,
-              };
-            else if (s.phase === "setup") a = { type: "KEEP" };
-            else if (s.phase === "planning") {
-              const u = s.hand.find(
-                (u) => !canPlay(s, u) && card(u.code).type_code === "ally",
-              );
-              a = u ? { type: "PLAY", id: u.id } : { type: "NEXT" };
-            } else if (s.phase === "quest") {
-              const u = characters(s).find(
-                (u) => !u.exhausted && !s.committedIds.includes(u.id),
-              );
-              a = u ? { type: "TOGGLE_QUEST", id: u.id } : { type: "COMMIT" };
-            } else if (s.phase === "defense") {
-              const e = s.engaged.find(
-                (u) =>
-                  !u.attacked &&
-                  !u.feinted &&
-                  !u.attachments.some((a) => a.code === "01069"),
-              );
-              assert.ok(e, `no pending enemy ${scenarioId}/${seed}/${n}`);
-              a = {
-                type: "DEFEND",
-                enemyId: e.id,
-                defenderId: defendersFor(s)[0]?.id ?? null,
-              };
-            } else if (s.phase === "attack") {
-              const e = s.engaged.find(
-                (e) =>
-                  !e.attackedBy?.includes(activeSeat(s)) &&
-                  attackersFor(s, e).some(
-                    (u) => ownerOf(s, u) === activeSeat(s),
+const coreScenarios = ["mirkwood", "anduin", "dol-guldur"] as const;
+for (const scenarioId of [...coreScenarios, "the-weather-hills"] as const)
+  for (const campaign of scenarioId === "the-weather-hills"
+    ? [false]
+    : [false, true])
+    test(`hot-seat ${scenarioId} ${campaign ? "campaign" : "normal"}: complete seeded games with save checks`, (t) => {
+      const outcomes = {
+        normal: { won: 0, lost: 0 },
+        easy: { won: 0, lost: 0 },
+      };
+      for (const easy of scenarioId === "the-weather-hills"
+        ? [false, true]
+        : [false])
+        for (const n of [1, 2, 3, 4])
+          for (let seed = 1; seed <= 8; seed++) {
+            const d = STARTERS[0],
+              heroes = playerConfig.slice(0, n).flatMap((p) => p.heroes),
+              c = campaign ? newCampaign(heroes) : undefined;
+            if (c) {
+              c.completed = coreScenarios
+                .slice(
+                  0,
+                  coreScenarios.indexOf(
+                    scenarioId as (typeof coreScenarios)[number],
                   ),
+                )
+                .map((scenarioId) => ({ scenarioId, score: 60, rounds: 5 }));
+              if (scenarioId !== "mirkwood") c.boons = ["rc132"];
+            }
+            let s = createGame(seed, d.cards, d.heroes, d.id, {
+                seats: playerConfig.slice(0, n),
+                scenarioId,
+                guided: seed <= 2,
+                easy,
+                playMode: campaign ? "campaign" : "normal",
+                ...(campaign ? { campaign: c } : {}),
+              }),
+              steps = 0;
+            while (
+              (s.status === "playing" || s.flow?.pending) &&
+              steps++ < 4000
+            ) {
+              let a: Action;
+              if (s.flow?.pending)
+                a = { type: "CONTINUE", stepId: s.flow.pending.id };
+              else if (s.choice)
+                a = {
+                  type: "CHOOSE",
+                  id: (
+                    s.choice.options.find((o) => o.id === "skip") ??
+                    s.choice.options.find((o) => o.id === "resolve") ??
+                    s.choice.options[0]
+                  ).id,
+                };
+              else if (s.phase === "setup") a = { type: "KEEP" };
+              else if (s.phase === "planning") {
+                const u = s.hand.find(
+                  (u) => !canPlay(s, u) && card(u.code).type_code === "ally",
+                );
+                a = u ? { type: "PLAY", id: u.id } : { type: "NEXT" };
+              } else if (s.phase === "quest") {
+                const u = characters(s).find(
+                  (u) => !u.exhausted && !s.committedIds.includes(u.id),
+                );
+                a = u ? { type: "TOGGLE_QUEST", id: u.id } : { type: "COMMIT" };
+              } else if (s.phase === "defense") {
+                const e = s.engaged.find(
+                  (u) =>
+                    !u.attacked &&
+                    !u.feinted &&
+                    !u.attachments.some((a) => a.code === "01069"),
+                );
+                assert.ok(e, `no pending enemy ${scenarioId}/${seed}/${n}`);
+                a = {
+                  type: "DEFEND",
+                  enemyId: e.id,
+                  defenderId: defendersFor(s)[0]?.id ?? null,
+                };
+              } else if (s.phase === "attack") {
+                const e = s.engaged.find(
+                  (e) =>
+                    !e.attackedBy?.includes(activeSeat(s)) &&
+                    attackersFor(s, e).some(
+                      (u) => ownerOf(s, u) === activeSeat(s),
+                    ),
+                );
+                a = e
+                  ? {
+                      type: "ATTACK",
+                      enemyId: e.id,
+                      attackerIds: attackersFor(s, e).map((u) => u.id),
+                    }
+                  : { type: "END_ATTACKS" };
+              } else if (
+                s.phase === "travel" &&
+                !s.activeLocation &&
+                s.staging.some((u) => u.code === "01088")
+              )
+                a = {
+                  type: "TRAVEL",
+                  id: s.staging.find((u) => u.code === "01088")!.id,
+                };
+              else a = { type: "NEXT" };
+              try {
+                s = act(s, a);
+              } catch (e) {
+                throw new Error(
+                  `${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} seat ${activeSeat(s)} ${JSON.stringify(a)}: ${e}`,
+                );
+              }
+              assert.ok(
+                validateSave(s),
+                `invalid save ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} step ${steps}`,
               );
-              a = e
-                ? {
-                    type: "ATTACK",
-                    enemyId: e.id,
-                    attackerIds: attackersFor(s, e).map((u) => u.id),
-                  }
-                : { type: "END_ATTACKS" };
-            } else if (
-              s.phase === "travel" &&
-              !s.activeLocation &&
-              s.staging.some((u) => u.code === "01088")
-            )
-              a = {
-                type: "TRAVEL",
-                id: s.staging.find((u) => u.code === "01088")!.id,
-              };
-            else a = { type: "NEXT" };
-            try {
-              s = act(s, a);
-            } catch (e) {
-              throw new Error(
-                `${scenarioId}/${campaign}/${n}/${seed} ${s.phase} seat ${activeSeat(s)} ${JSON.stringify(a)}: ${e}`,
+              const restored = restoreSave(JSON.parse(JSON.stringify(s)));
+              assert.ok(restored);
+              if (scenarioId === "the-weather-hills") s = restored;
+              assert.ok(
+                allCharacters(s).every((u) => u.damage < stats(s, u).health),
+              );
+              assert.equal(
+                new Set(allCharacters(s).map((u) => u.id)).size,
+                allCharacters(s).length,
               );
             }
-            assert.ok(
-              validateSave(s),
-              `invalid save ${scenarioId}/${campaign}/${n}/${seed} ${s.phase} step ${steps}`,
+            assert.notEqual(
+              s.status,
+              "playing",
+              `stuck ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} phase ${s.phase}`,
             );
-            assert.ok(restoreSave(JSON.parse(JSON.stringify(s))));
-            assert.ok(
-              allCharacters(s).every((u) => u.damage < stats(s, u).health),
-            );
-            assert.equal(
-              new Set(allCharacters(s).map((u) => u.id)).size,
-              allCharacters(s).length,
-            );
+            outcomes[easy ? "easy" : "normal"][s.status as "won" | "lost"]++;
           }
-          assert.notEqual(
-            s.status,
-            "playing",
-            `stuck ${scenarioId}/${campaign}/${n}/${seed} phase ${s.phase}`,
-          );
-        }
+      if (scenarioId === "the-weather-hills") {
+        assert.equal(outcomes.normal.won + outcomes.normal.lost, 32);
+        assert.equal(outcomes.easy.won + outcomes.easy.lost, 32);
+        t.diagnostic(
+          `Weather Hills complete games: ${JSON.stringify(outcomes)}`,
+        );
+      }
     });
 
 test("support events choose the benefiting seat; Galadhrim's Greeting can help everyone", () => {

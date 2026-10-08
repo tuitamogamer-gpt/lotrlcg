@@ -19,6 +19,7 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-weather-hills": { lead: "Hunt through", em: "the Weather Hills." },
   "intruders-in-chetwood": { lead: "Guard", em: "the borders of Bree-land." },
   "the-antlered-crown": { lead: "Unite", em: "the clans of Dunland." },
   "celebrimbors-secret": { lead: "Uncover", em: "Celebrimbor’s Secret." },

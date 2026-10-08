@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=800, height=300" />
+    <script src="assets/gsap-3.15.0.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 800px;
+        height: 300px;
+        overflow: hidden;
+        background: #1f2522;
+      }
+      @font-face {
+        font-family: "IM Fell English SC";
+        src: url("assets/title.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Crimson Pro";
+        src: url("assets/body.woff2") format("woff2");
+      }
+      #root {
+        width: 100%;
+        height: 100%;
+        color: #eee8d8;
+        border: 2px solid #846b36;
+        box-shadow:
+          inset 0 0 0 7px #1f2522,
+          inset 0 0 0 8px #846b36;
+        background:
+          radial-gradient(ellipse at 12% 50%, #485b4233, transparent 45%),
+          #1f2522;
+        font-family: "Crimson Pro", "Times New Roman", serif;
+      }
+      .scene-content {
+        width: 100%;
+        height: 100%;
+        padding: 42px 54px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      #emblem {
+        flex: 0 0 102px;
+        width: 102px;
+        height: 102px;
+        color: #cfb276;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #emblem svg {
+        width: 100%;
+        height: 100%;
+      }
+      .copy {
+        min-width: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .kicker {
+        font-size: 24px;
+        line-height: 1.1;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #cfb276;
+      }
+      #title {
+        font-family: "IM Fell English SC", Georgia, serif;
+        font-size: 60px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+      }
+      #rule {
+        width: 100%;
+        height: 2px;
+        background: #cfb276;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      data-hf-id="hf-5be8"
+      id="root"
+      data-composition-id="significant-moment"
+      data-start="0"
+      data-duration="2.1"
+      data-width="800"
+      data-height="300"
+    >
+      <div data-hf-id="hf-flwa" id="ribbon" class="scene-content">
+        <div
+          data-hf-id="hf-6337"
+          id="emblem"
+          data-moment-emblem=""
+          aria-hidden="true"
+        >
+          <svg
+            data-hf-id="hf-thaz"
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              data-hf-id="hf-z4bo"
+              d="M60 14 97 35v48L60 106 23 83V35Z"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <path
+              data-hf-id="hf-9ela"
+              d="M60 24 88 40v38L60 95 32 78V40Z"
+              stroke="currentColor"
+              stroke-opacity=".4"
+            />
+            <path
+              data-hf-id="hf-ty3m"
+              d="M60 81V43m0 18L47 49m13 20 13-12M60 53l10-10M48 81h24"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <path
+              data-hf-id="hf-c2kk"
+              d="m48 32 12-9 12 9"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+          </svg>
+        </div>
+        <div data-hf-id="hf-pf8x" class="copy" id="copy" data-moment-title="">
+          <p data-hf-id="hf-b5ew" class="kicker">Quest advanced</p>
+          <h1 data-hf-id="hf-tq0d" id="title">A new chapter</h1>
+          <div
+            data-hf-id="hf-b4yj"
+            id="rule"
+            data-moment-rule=""
+            aria-hidden="true"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.from(
+        "[data-moment-emblem]",
+        { opacity: 0, scale: 0.94, duration: 0.45, ease: "expo.out" },
+        0.12,
+      )
+        .from(
+          "[data-moment-title]",
+          { opacity: 0, y: 7, duration: 0.38, ease: "power3.out" },
+          0.2,
+        )
+        .from(
+          "[data-moment-rule]",
+          {
+            opacity: 0,
+            scaleX: 0,
+            transformOrigin: "left center",
+            duration: 0.36,
+            ease: "sine.out",
+          },
+          0.3,
+        )
+        .to(
+          "[data-moment-emblem]",
+          { opacity: 0, scale: 0.98, duration: 0.22, ease: "power2.in" },
+          1.72,
+        )
+        .to(
+          "[data-moment-title]",
+          { opacity: 0, y: -4, duration: 0.24, ease: "power3.in" },
+          1.78,
+        )
+        .to(
+          "[data-moment-rule]",
+          { opacity: 0, duration: 0.22, ease: "sine.in" },
+          1.78,
+        );
+      window.__timelines = window.__timelines || {};
+      window.__timelines["significant-moment"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

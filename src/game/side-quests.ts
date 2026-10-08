@@ -1,4 +1,5 @@
 import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
+import { weatherSideDefeated } from "./weather-hills";
 import type { Effect, GameState } from "./types";
 import { card, name } from "./cards";
 import {
@@ -76,6 +77,7 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
     );
   collectorQuestDefeated(s, quest.code, attachments);
   chetwoodSideDefeated(s, quest);
+  weatherSideDefeated(s, quest);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);

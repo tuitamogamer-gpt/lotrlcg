@@ -1,4 +1,5 @@
 import * as Chetwood from "./chetwood";
+import * as Weather from "./weather-hills";
 import { selectedSideQuest } from "./side-quest-support";
 import * as Realm from "./lost-realm-player";
 import * as Antlered from "./antlered";
@@ -477,6 +478,7 @@ export function stats(s: GameState, u: Unit) {
       (c.willpower ?? 0) +
         [
           chetwoodBonus.will,
+          Weather.weatherWillPenalty(s, u),
           foundationsBonus.will,
           druadanScenarioBonus.will,
           morgulBonus.will,
@@ -687,6 +689,7 @@ export const threatOf = (s: GameState, u: Unit) =>
     : Math.max(
         0,
         (BloodQuest.bloodGondorThreat(s, u) ??
+          Weather.weatherLocationThreat(s, u) ??
           MorgulQuest.morgulBridgeValue(s, u) ??
           druadanForestThreat(s, u) ??
           card(u.code).threat ??

@@ -78,6 +78,10 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** The Mission objective retains its physical identity when turned over. */
+  flipped?: boolean;
+  /** Cold from Angmar preserves printed keywords and traits while blanking abilities. */
+  printedKeywordsPreserved?: boolean;
   /** Actual resource spending, independent of transfers and forced losses. */
   resourcesSpentRound?: number;
   ignoreThreatRound?: number;
@@ -172,6 +176,7 @@ export type ScenarioId =
   | "into-fangorn"
   | "the-dunland-trap"
   | "intruders-in-chetwood"
+  | "the-weather-hills"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -297,6 +302,7 @@ export interface GameState {
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
   chetwood?: import("./chetwood-support").ChetwoodState;
+  weatherHills?: import("./weather-hills-support").WeatherState;
   antlered?: import("./antlered-support").AntleredState;
   celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
@@ -434,6 +440,8 @@ export interface GameState {
     timeOnKill?: number;
     extraAttacks?: number;
     chetwoodAllyKilled?: boolean;
+    weatherCharacterKilled?: boolean;
+    weatherRuinsThreat?: number;
     chetwoodReturnOnAllyKill?: boolean;
     chetwoodReturnAfterAttack?: boolean;
     crownTimeOnKill?: number;

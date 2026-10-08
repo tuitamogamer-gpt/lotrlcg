@@ -1,6 +1,6 @@
 # Lost Realm source imports
 
-Status: Intruders in Chetwood gameplay is implemented; see [Chetwood rules and verification](CHETWOOD-RULES.md). `src/data/pending/intruders-in-chetwood-import.json` remains the immutable preparation snapshot, including its historical `pending-rules` status. Active definitions and recipes live in `src/data/chetwood-*.json`. The Weather Hills and Deadmen’s Dike remain prepared for implementation.
+Status: Intruders in Chetwood gameplay is implemented; see [Chetwood rules and verification](CHETWOOD-RULES.md). `src/data/pending/intruders-in-chetwood-import.json` remains the immutable preparation snapshot, including its historical `pending-rules` status. Active definitions and recipes live in `src/data/chetwood-*.json`. The Weather Hills is also implemented; see [Weather Hills import](WEATHER-HILLS-IMPORT.md). Deadmen’s Dike remains prepared for implementation.
 
 The bundle contains 19 original definitions across Intruders in Chetwood, Angmar Orcs, Eriador Wilds and Iârion; 20 local JPEG faces include both sides of Stop the War Party. Every face has its original HTTPS source, byte count and SHA-256. The card library uses these local faces independently of automation status. Original variable stats are retained: all three of Iârion's combat/quest stats are X, and Shrouded Hills has X threat. The printed Orc Rearguard face confirms Victory 10.
 

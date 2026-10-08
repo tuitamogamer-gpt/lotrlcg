@@ -2,7 +2,7 @@
 
 This first batch registers eleven new designs: Tactics Aragorn, Halbarad, Weather Hills Watchman, Dúnedain Hunter, Warden of Annúminas, Tireless Hunters, Expert Trackers, Heir of Valandil, Athelas, Secret Vigil and Star Brooch. Sarn Ford Sentry reuses its existing Collector handler. All twelve original faces are local assets.
 
-Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information completes all fifteen player designs in the side-quest follow-up below. Intruders in Chetwood is now playable in original/easy mode; The Weather Hills and Deadmen’s Dike remain pending. See [Chetwood rules](CHETWOOD-RULES.md).
+Ranger Summons and Ranger of the North are now registered in a second batch. Gather Information completes all fifteen player designs in the side-quest follow-up below. Intruders in Chetwood is now playable in original/easy mode; The Weather Hills is also playable with its independent Orc deck and Mission; see [Weather Hills rules](WEATHER-HILLS-RULES.md). Deadmen’s Dike remains pending. See [Chetwood rules](CHETWOOD-RULES.md).
 
 ## Sources and implementation
 
@@ -58,4 +58,4 @@ Registration after the player batch: 438 player definitions, 50 heroes, 387 deck
 
 ## Cross-scenario verification
 
-The automated player now actually plays Ranger Summons and player side quests during planning, and chooses Gather Information when it is available. The deterministic sweep uses seeds 10 and 31, which put Gather Information in the opening hand. Across all 37 supported scenarios, 74 games terminate with valid saves after every action, and another 37 runs match the `decisions` review mode exactly. The sweep explicitly records a played Summons, a played and selected Gather Information, and a defeated Gather Information. All 74 game outcomes are losses under this simple test policy; the test establishes legal execution and consistent state, not deck strength.
+The automated player now actually plays Ranger Summons and player side quests during planning, and chooses Gather Information when it is available. The deterministic sweep uses seeds 10 and 31, which put Gather Information in the opening hand. Across all 38 supported scenarios, 76 games terminate with valid saves after every action, and another 38 runs match the `decisions` review mode exactly. The sweep explicitly records a played Summons, a played and selected Gather Information, and a defeated Gather Information. All 76 game outcomes are losses under this simple test policy; the test establishes legal execution and consistent state, not deck strength.

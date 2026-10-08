@@ -84,7 +84,7 @@ for (const [slug, count, faces, encounterDeck] of [
   ["the-weather-hills", 23, 26, 31],
   ["deadmen-s-dike", 21, 23, 41],
 ] as const) {
-  test(`${slug}: original definitions, every recipe zone and local faces remain intact and unregistered`, () => {
+  test(`${slug}: original definitions, every recipe zone and local faces remain intact as scripted support expands`, () => {
     const bundle = JSON.parse(
       readFileSync(
         new URL(`../src/data/pending/${slug}-import.json`, import.meta.url),
@@ -93,22 +93,28 @@ for (const [slug, count, faces, encounterDeck] of [
     );
     assert.equal(bundle.cards.length, count);
     assert.equal(bundle.artwork.length, faces);
+    assert.equal(bundle.status, "pending-rules");
     for (const c of bundle.cards) {
       const source = catalog.find((x) => x.code === c.code)!;
       const restored = { ...c, imagesrc: source.imagesrc };
       if (c.back_imagesrc) restored.back_imagesrc = source.back_imagesrc;
       assert.deepEqual(restored, source);
-      assert.equal(
-        isAutomatedCard(c),
-        pending.cards.some((source) => source.code === c.code),
-      );
+      assert.equal(isAutomatedCard(c), SCRIPTED.has(c.engine_code ?? c.code));
+      if (slug === "the-weather-hills") assert.ok(isAutomatedCard(c));
+    }
+    if (slug === "deadmen-s-dike") {
+      assert.ok(bundle.cards.some((c: Card) => SCRIPTED.has(c.code)));
+      assert.ok(bundle.cards.some((c: Card) => !SCRIPTED.has(c.code)));
     }
     for (const recipe of bundle.recipes) {
       assert.deepEqual(
         recipe,
         recipes.find((r: { id: string }) => r.id === recipe.id),
       );
-      assert.equal(automatedScenarioId(recipe), null);
+      assert.equal(
+        automatedScenarioId(recipe),
+        slug === "the-weather-hills" ? "the-weather-hills" : null,
+      );
       if (recipe.mode === "standard")
         assert.equal(
           Object.values(recipe.sections.sharedEncounterDeck).reduce(

@@ -283,7 +283,15 @@ export function JourneyArea({
           </div>
         )}
       </div>
-      {quest && <AttachmentStack u={quest} inspect={inspect} />}
+      {!!quest?.attachments.length && (
+        <div
+          className="journey-attachments"
+          aria-label="Attached to the current quest"
+        >
+          <span>Attached to this quest</span>
+          <AttachmentStack u={quest} inspect={inspect} />
+        </div>
+      )}
       <QuestGoals s={s} />
       <div
         className={`tabletop-location ${active.length > 1 ? "multiple-active-locations" : ""}`}

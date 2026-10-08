@@ -1,4 +1,5 @@
 import { validateChetwood, chetwoodSideTime } from "./chetwood-support";
+import { validateWeather, weatherSideTime } from "./weather-hills-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
 import { validateAntlered, printedLocationTime } from "./antlered-support";
 import { validateCelebrimbor } from "./celebrimbor-support";
@@ -204,6 +205,7 @@ export function validateSave(
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
         c.chetwoodAllyKilled,
+        c.weatherCharacterKilled,
         c.chetwoodReturnOnAllyKill,
         c.chetwoodReturnAfterAttack,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -216,6 +218,7 @@ export function validateSave(
             .druadanReturnCount! >= 0)) &&
       [
         c.crownTimeOnKill,
+        c.weatherRuinsThreat,
         c.celebExcessCopies,
         c.celebThreatCopies,
         c.celebAllyCostCopies,
@@ -260,6 +263,7 @@ export function validateSave(
           u.timeCounters <=
             Math.max(
               chetwoodSideTime(u.code),
+              weatherSideTime(u.code),
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
             ))) &&
@@ -279,6 +283,8 @@ export function validateSave(
         u.shadowCancelsCombatDamage,
         u.roundCannotTakeDamage,
         u.immuneToPlayerEffects,
+        u.flipped,
+        u.printedKeywordsPreserved,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
@@ -441,6 +447,7 @@ export function validateSave(
         !validateNin(s, validUnit as (u: unknown) => boolean) ||
         !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
         !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
+        !validateWeather(s, validUnit as (u: unknown) => boolean) ||
         !validateChetwood(s, validUnit as (u: unknown) => boolean, (code) =>
           ["ally", "attachment", "event", "player-side-quest"].includes(
             card(code).type_code,
@@ -986,6 +993,7 @@ export function validateSave(
       ...(s.ninEilph?.setAside ?? []),
       ...(s.celebrimbor?.search ?? []),
       ...(s.antlered?.setAside ?? []),
+      ...(s.weatherHills?.setAside ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),
       ...(s.threeTrials

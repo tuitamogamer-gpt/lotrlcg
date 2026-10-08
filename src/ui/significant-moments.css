@@ -1,0 +1,106 @@
+.significant-moment {
+  position: fixed;
+  z-index: 48;
+  top: 84px;
+  left: 50%;
+  width: min(440px, calc(100vw - 32px));
+  min-height: 160px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  isolation: isolate;
+  color: #cbb486;
+  text-align: center;
+  border-radius: 10px;
+  background: radial-gradient(
+    ellipse,
+    #191914f2 20%,
+    #191914d9 58%,
+    #19191400 76%
+  );
+}
+.significant-moment * {
+  pointer-events: none;
+}
+.moment-decoration {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.moment-decoration > svg,
+.moment-decoration > video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.moment-decoration > video {
+  opacity: 0.74;
+}
+.moment-hero-fall .moment-decoration > video {
+  height: 82px;
+}
+.moment-copy {
+  position: relative;
+  padding: 82px 28px 25px;
+}
+.moment-copy small {
+  display: block;
+  color: #b6aa94;
+  font: 11px/1.5 var(--body);
+  letter-spacing: 0.1em;
+}
+.moment-copy strong {
+  display: block;
+  margin-top: 5px;
+  color: #eadfc8;
+  font: 24px/1.25 var(--serif);
+  overflow-wrap: anywhere;
+}
+.moment-rule {
+  display: block;
+  position: absolute;
+  bottom: 14px;
+  left: 25%;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #b6a06c, transparent);
+}
+.moment-hero-fall,
+.moment-defeat {
+  color: #b98c78;
+}
+.moment-inline {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: min(440px, 100%);
+  transform: none;
+  margin: 0 auto 8px;
+  background: none;
+}
+.endgame-moment-slot {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 170px;
+}
+@media (max-width: 600px) {
+  .significant-moment {
+    top: 64px;
+  }
+  .moment-inline {
+    top: auto;
+  }
+  .moment-copy {
+    padding: 78px 18px 23px;
+  }
+  .moment-copy strong {
+    font-size: 21px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .significant-moment {
+    animation: none;
+    transition: none;
+  }
+}

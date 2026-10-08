@@ -1,4 +1,5 @@
 import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
+import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
 import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
 import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
@@ -189,6 +190,7 @@ export const encounterCards = [
   ...CELEBRIMBOR_ENCOUNTERS,
   ...ANTLERED_ENCOUNTERS,
   ...CHETWOOD_ENCOUNTERS,
+  ...WEATHER_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -224,6 +226,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
+    ...WEATHER_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -332,6 +335,7 @@ export const SCRIPTED = new Set(
     ...CELEBRIMBOR_QUESTS,
     ...ANTLERED_QUESTS,
     ...CHETWOOD_QUESTS,
+    ...WEATHER_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),
@@ -355,7 +359,8 @@ export const imageUrl = (c: Card) =>
       : c.imagesrc?.startsWith("http")
         ? c.imagesrc
         : `https://ringsdb.com${c.imagesrc ?? `/bundles/cards/${c.code}.png`}`);
-export const name = (u: Unit) => card(u.code).name;
+export const name = (u: Unit) =>
+  (u.flipped ? card(u.code).back_name : undefined) ?? card(u.code).name;
 export const plain = (s = "") =>
   s
     .replace(/<[^>]*>/g, "")

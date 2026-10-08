@@ -657,6 +657,22 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
+  if (s.weatherHills)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 1
+            ? `Hunt enemies · Reach ${3 + (s.table?.seats.length ?? 1)} Mission resources`
+            : "Place 20 quest progress and explore Amon Forn"}
+        </span>
+        <span>
+          {s.stage === 1
+            ? "Explore active locations to find Orcs"
+            : "Keep at least 1 Mission resource"}
+        </span>
+      </div>
+    );
   if (s.antlered)
     return (
       <div className="quest-goals">

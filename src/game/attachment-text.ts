@@ -7,6 +7,8 @@ import { khazadBlanked } from "./khazad-dum";
 import type { GameState, Unit } from "./types";
 import { emynMuilAttachmentsBlanked } from "./emyn-muil";
 import { allActiveLocations, allCharacters, allEngaged } from "./table";
+import { allQuestUnits } from "./quest-state";
+import { WEATHER } from "./weather-hills-support";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
  * Blanking removes traits, keywords and abilities within the printed text box.
@@ -14,6 +16,9 @@ import { allActiveLocations, allCharacters, allEngaged } from "./table";
  */
 export function syncAttachmentText(s: GameState, extra?: Unit) {
   const blanked = emynMuilAttachmentsBlanked(s);
+  const cold = allQuestUnits(s).some((q) =>
+    q.attachments.some((a) => a.code === WEATHER.cold && !a.blanked),
+  );
   const quest = mainQuestUnit(s);
   const hosts = [
     ...(quest ? [quest] : []),
@@ -36,12 +41,17 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       if (traits.length) attachment.dynamicTraits = traits;
       else delete attachment.dynamicTraits;
     }
-    if (
+    const normalBlanking =
       khazadBlanked(host) ||
-      (card(host.code).type_code === "attachment" && blanked)
-    )
-      host.blanked = true;
+      (card(host.code).type_code === "attachment" && blanked);
+    const coldBlanking =
+      cold &&
+      host.damage > 0 &&
+      ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
+    if (normalBlanking || coldBlanking) host.blanked = true;
     else delete host.blanked;
+    if (coldBlanking && !normalBlanking) host.printedKeywordsPreserved = true;
+    else delete host.printedKeywordsPreserved;
     const traits = [
       ...new Set([
         ...rohanDynamicTraits(s, host),

@@ -172,8 +172,20 @@ try {
     // Animated progress preserves exact values, and pending events survive reload.
     await load(p, fixtures.quest);
     await p.locator(".turn-panel .turn-actions .primary").click();
+    const questSuccess = await state(p);
+    assert.equal(questSuccess.resolution.kind, "quest");
+    assert.equal(
+      questSuccess.quest.progress,
+      0,
+      "quest success is reviewed before its response window and progress",
+    );
+    await p.locator(".resolution-continue").click();
     const pending = await state(p);
-    assert.ok(pending.quest.progress > 0);
+    assert.equal(
+      pending.quest.progress,
+      2,
+      "confirmed quest places exact progress",
+    );
     await p.reload();
     await p.locator("#start-btn").click();
     assert.deepEqual(await state(p), pending);

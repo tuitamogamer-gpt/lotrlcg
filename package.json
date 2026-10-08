@@ -40,22 +40,26 @@
     "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs && node --import tsx scripts/browser-ranger-north.mjs && node --import tsx scripts/browser-side-quests.mjs",
     "test:engine": "node scripts/test-engine.mjs",
     "test:simulation": "node --import tsx --test tests/simulation.test.ts",
-    "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons",
+    "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons && npm run test:significant-moments",
     "test:browser-players": "npm run test:lost-realm-players && npm run test:ring-maker-players && npm run test:against-shadow-finale && npm run test:pending-import && npm run test:lost-realm-quests",
     "test:browser-ring-maker": "npm run test:ring-maker-quests",
     "test:multiplayer-games": "node --import tsx --test --test-name-pattern=\"^hot-seat .*: complete seeded games with save checks$\" tests/hotseat.test.ts",
     "prepare:scenario-import": "node scripts/prepare-scenario-import.mjs",
     "test:pending-import": "node scripts/browser-pending-import.mjs",
-    "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs"
+    "test:lost-realm-quests": "node --import tsx scripts/browser-chetwood.mjs && node --import tsx scripts/browser-weather-hills.mjs",
+    "test:significant-moments": "node --import tsx scripts/browser-significant-moments.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",
     "@fontsource/im-fell-english-sc": "^5.3.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@remotion/player": "4.0.530",
     "@supabase/supabase-js": "^2.117.2",
+    "gsap": "3.15.0",
     "motion": "^13.4.1",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "remotion": "4.0.530"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",

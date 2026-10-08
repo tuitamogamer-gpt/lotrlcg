@@ -1,4 +1,6 @@
 import * as Chetwood from "./chetwood";
+import * as Weather from "./weather-hills";
+import { WEATHER } from "./weather-hills-support";
 import { currentQuestProgress } from "./quest-state";
 import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
@@ -460,6 +462,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
     return "You must travel to The King’s Road.";
   const chetwoodProblem = Chetwood.chetwoodTravelProblem(s, u);
   if (chetwoodProblem) return chetwoodProblem;
+  const weatherProblem = Weather.weatherTravelProblem(s, u);
+  if (weatherProblem) return weatherProblem;
   const celebProblem = Celebrimbor.celebrimborTravelProblem(s, u);
   if (celebProblem) return celebProblem;
   const ninProblem = Nin.ninTravelProblem(s, u);
@@ -1866,7 +1870,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Nin.ninOpeningHandsKept(s) &&
         !Celebrimbor.celebrimborOpeningHandsKept(s) &&
         !Antlered.antleredOpeningHandsKept(s) &&
-        !Chetwood.chetwoodOpeningHandsKept(s)
+        !Chetwood.chetwoodOpeningHandsKept(s) &&
+        !Weather.weatherOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2146,6 +2151,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
       const scenarioCost =
+        Weather.weatherTravel(s, u) ??
         Chetwood.chetwoodTravel(s, u) ??
         Celebrimbor.celebrimborTravel(s, u) ??
         Nin.ninTravel(s, u) ??
@@ -2360,6 +2366,17 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.weatherHills
+      ? {
+          weatherHills: {
+            orcDeck: s.weatherHills.orcDeck.length,
+            missionTokens:
+              s.staging.find((u) => u.code === WEATHER.mission)?.resources ?? 0,
+            missionFlipped: !!s.staging.find((u) => u.code === WEATHER.mission)
+              ?.flipped,
+          },
+        }
+      : {}),
     ...(s.chetwood
       ? {
           chetwood: {
