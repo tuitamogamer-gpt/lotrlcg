@@ -1,3 +1,4 @@
+import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
 import { NIN, ninNoCardEconomy } from "./nin-eilph-support";
@@ -556,6 +557,8 @@ export function canPlay(
   } = {},
 ): string | null {
   syncAttachmentText(s);
+  const crownProblem = Antlered.antleredPlayProblem(s, u.code);
+  if (crownProblem) return crownProblem;
   const ninProblem = Nin.ninPlayProblem(s, u.code);
   if (ninProblem) return ninProblem;
   const c = options.playOrigin
@@ -1829,7 +1832,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Trials.trialsOpeningHandsKept(s) &&
         !Tharbad.tharbadOpeningHandsKept(s) &&
         !Nin.ninOpeningHandsKept(s) &&
-        !Celebrimbor.celebrimborOpeningHandsKept(s)
+        !Celebrimbor.celebrimborOpeningHandsKept(s) &&
+        !Antlered.antleredOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2319,6 +2323,13 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.antlered
+      ? {
+          questTime: s.antlered.time,
+          ravenDeck: s.antlered.ravenDeck.length,
+          ravenDiscard: s.antlered.ravenDiscard.length,
+        }
+      : {}),
     ...(s.celebrimbor
       ? {
           questTime: s.celebrimbor.time,

@@ -1890,3 +1890,13 @@
   justify-content: center;
   gap: 4px;
 }
+
+/* Distinct corners keep active location Time and progress readable together. */
+.location-card .table-token.token-time {
+  right: auto;
+  left: -10px;
+}
+.redbook .card-table .location-card .table-token.token-time {
+  right: auto;
+  left: 5%;
+}

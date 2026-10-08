@@ -31,7 +31,7 @@ import {
   installReviewHandler,
   reviewedState,
 } from "./browser-review-helpers.mjs";
-const base = process.env.GAME_URL ?? "http://127.0.0.1:5179",
+const base = process.env.GAME_URL ?? "http://127.0.0.1:5178",
   dir = "output/celebrimbor";
 await fs.mkdir(dir, { recursive: true });
 function loc(s, code, active = false) {

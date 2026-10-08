@@ -5,8 +5,8 @@
     "playerCards": 424,
     "heroes": 48,
     "deckCards": 376,
-    "encounterCards": 473,
-    "scenarios": 35,
+    "encounterCards": 485,
+    "scenarios": 36,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -42,17 +42,18 @@
       "the-three-trials",
       "trouble-in-tharbad",
       "the-nin-in-eilph",
-      "celebrimbors-secret"
+      "celebrimbors-secret",
+      "the-antlered-crown"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1018,
-    "pending": 3165
+    "scripted": 1033,
+    "pending": 3150
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 70
+    "scripted": 72
   },
   "registeredCodes": [
     "01001",
@@ -555,6 +556,8 @@
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
+    "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
+    "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
@@ -567,6 +570,7 @@
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
+    "octgn:1edaecb1-72e8-49db-98fd-6fc377815c4b",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
@@ -583,6 +587,7 @@
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
@@ -674,8 +679,10 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
+    "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -881,9 +888,11 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
+    "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
@@ -897,6 +906,7 @@
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
+    "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
@@ -915,6 +925,7 @@
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
@@ -946,6 +957,7 @@
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
+    "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
@@ -956,6 +968,7 @@
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
@@ -990,6 +1003,7 @@
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
+    "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
@@ -1006,12 +1020,14 @@
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
+    "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
+    "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
@@ -1441,7 +1457,7 @@
     {
       "product": "the-antlered-crown",
       "total": 25,
-      "scripted": 10,
+      "scripted": 25,
       "player": 10,
       "playerScripted": 10
     },
@@ -12168,7 +12184,7 @@
       "name": "Raven Chief's Camp",
       "type": "location",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -12272,7 +12288,7 @@
       "name": "Dunland Battlefield",
       "type": "location",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -13128,7 +13144,7 @@
       "name": "Driven Back",
       "type": "treachery",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -14152,7 +14168,7 @@
       "name": "Raven Village",
       "type": "location",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -17472,7 +17488,7 @@
       "name": "Battle for Dunland",
       "type": "quest",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -17712,7 +17728,7 @@
       "name": "Raven Warrior",
       "type": "enemy",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -20712,7 +20728,7 @@
       "name": "Raven Country",
       "type": "location",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -21032,7 +21048,7 @@
       "name": "Raven War-camp",
       "type": "location",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -22928,7 +22944,7 @@
       "name": "Raven Skirmisher",
       "type": "enemy",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -24656,7 +24672,7 @@
       "name": "Fierce Folk",
       "type": "treachery",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -26488,7 +26504,7 @@
       "name": "The Raven Clan",
       "type": "quest",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -27280,7 +27296,7 @@
       "name": "Chief Turch",
       "type": "objective-ally",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -30776,7 +30792,7 @@
       "name": "The Last Stage",
       "type": "quest",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -32432,7 +32448,7 @@
       "name": "Raising the Cry",
       "type": "treachery",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -33384,7 +33400,7 @@
       "name": "Raven Chief",
       "type": "enemy",
       "pack": "The Antlered Crown",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-antlered-crown"
     },
     {
@@ -35764,8 +35780,8 @@
       "id": "E04.9",
       "name": "The Antlered Crown (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-antlered-crown",
+      "state": "scripted"
     },
     {
       "id": "E05.1",
@@ -37255,8 +37271,8 @@
       "id": "Q04.9",
       "name": "The Antlered Crown",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-antlered-crown",
+      "state": "scripted"
     },
     {
       "id": "Q05.1",

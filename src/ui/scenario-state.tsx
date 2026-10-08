@@ -34,6 +34,7 @@ export function ScenarioState({
     !s.threeTrials &&
     !s.tharbad &&
     !s.ninEilph &&
+    !s.antlered &&
     !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
@@ -93,6 +94,29 @@ export function ScenarioState({
             max={10}
           />
           <span>Rescue Faramir before the tenth progress.</span>
+        </div>
+      )}
+      {s.antlered && (
+        <div className="tower-counter">
+          <strong>
+            Time · {s.antlered.time} / {s.stage === 3 ? 2 : 3}
+          </strong>
+          <progress
+            aria-label="Quest time counters"
+            value={s.antlered.time}
+            max={Math.max(s.antlered.time, s.stage === 3 ? 2 : 3)}
+          />
+          <span>
+            Raven deck · {s.antlered.ravenDeck.length} cards ·{" "}
+            {s.antlered.ravenDiscard.length} discarded
+          </span>
+          <span>
+            {s.stage === 1
+              ? "When time runs out, remove 1 time counter from each location."
+              : s.stage === 2
+                ? "Staging locations get +2 quest points. When time runs out, reveal a Raven enemy."
+                : "When time runs out, each engaged enemy attacks. Defeat Raven Chief and survive until round end."}
+          </span>
         </div>
       )}
       {s.celebrimbor && (

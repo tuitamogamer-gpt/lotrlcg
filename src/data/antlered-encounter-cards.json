@@ -1,0 +1,463 @@
+[
+  {
+    "code": "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
+    "octgnid": "1208f735-6984-4c4d-ab8c-429664e4e060",
+    "name": "Raven Chief's Camp",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Immune to player card effects.\nTime 3. Forced: After the last time counter is removed from this location, exhaust each damaged character. Place 3 time counters on this location.",
+    "is_unique": true,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 152,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 9,
+    "victory": 3,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "9",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1208f735-6984-4c4d-ab8c-429664e4e060.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 152,
+        "quantity": 1,
+        "octgnid": "1208f735-6984-4c4d-ab8c-429664e4e060",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1208f735-6984-4c4d-ab8c-429664e4e060.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
+    "octgnid": "13b4d81e-1bd7-4a56-a418-b60e58767c12",
+    "name": "Dunland Battlefield",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Time 3. Forced: After the last time counter is removed from this location, each player assigns X damage among characters he controls, where X is the number of cards in his hand.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 157,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 5,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13b4d81e-1bd7-4a56-a418-b60e58767c12.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 157,
+        "quantity": 3,
+        "octgnid": "13b4d81e-1bd7-4a56-a418-b60e58767c12",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/13b4d81e-1bd7-4a56-a418-b60e58767c12.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:1edaecb1-72e8-49db-98fd-6fc377815c4b",
+    "octgnid": "1edaecb1-72e8-49db-98fd-6fc377815c4b",
+    "name": "Driven Back",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all progress from each location in the staging area. Increase the total [threat] in the staging area by 1 for each progress removed this way. If no progress was removed by this effect, Driven Back gains surge.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 161,
+    "quantity": 2,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1edaecb1-72e8-49db-98fd-6fc377815c4b.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 161,
+        "quantity": 2,
+        "octgnid": "1edaecb1-72e8-49db-98fd-6fc377815c4b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1edaecb1-72e8-49db-98fd-6fc377815c4b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
+    "octgnid": "2935fd55-6945-4c20-8586-c435ceec52f3",
+    "name": "Raven Village",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Time 2. Forced: After the last time counter is removed from this location, reveal the top card of the Raven deck and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 156,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Deal attacking enemy 2 additional shadow cards from the Raven deck.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2935fd55-6945-4c20-8586-c435ceec52f3.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 156,
+        "quantity": 3,
+        "octgnid": "2935fd55-6945-4c20-8586-c435ceec52f3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2935fd55-6945-4c20-8586-c435ceec52f3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
+    "octgnid": "4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
+    "name": "Raven Warrior",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Raven Clan.",
+    "text": "Forced: After Raven Warrior engages a player, remove X time counters from locations in play. X is the number of cards in the engaged player's hand.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 153,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 36,
+    "shadow": "Shadow: Defending player discards an attachment he controls.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "36"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 153,
+        "quantity": 4,
+        "octgnid": "4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "octgnid": "54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "name": "Raven Country",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Time 4. Forced: After the last time counter is removed from this location, each player raises his threat by the number of cards in his hand.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 158,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 6,
+    "shadow": "Shadow: Defending player assigns X damage among characters he controls. X is the Time X value on the active location.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54a26608-eebd-4bd6-855a-ceccb4507bab.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 158,
+        "quantity": 2,
+        "octgnid": "54a26608-eebd-4bd6-855a-ceccb4507bab",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54a26608-eebd-4bd6-855a-ceccb4507bab.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
+    "octgnid": "5842e027-3789-4253-a382-27527ec4fe8a",
+    "name": "Raven War-camp",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dunland.",
+    "text": "Time 3. Forced: After the last time counter is removed from this location, starting with the first player, each player draws the top card of the Raven deck and puts it into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 155,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5842e027-3789-4253-a382-27527ec4fe8a.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 155,
+        "quantity": 4,
+        "octgnid": "5842e027-3789-4253-a382-27527ec4fe8a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5842e027-3789-4253-a382-27527ec4fe8a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
+    "octgnid": "7271da0e-570b-461c-b632-b6f82ab2c146",
+    "name": "Raven Skirmisher",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Raven Clan.",
+    "text": "When Revealed: Either remove 1 time counter from the active location, or reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 154,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 2,
+    "engagement": 26,
+    "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the Time X value on the active location.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "2",
+      "engagement": "26"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7271da0e-570b-461c-b632-b6f82ab2c146.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 154,
+        "quantity": 3,
+        "octgnid": "7271da0e-570b-461c-b632-b6f82ab2c146",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7271da0e-570b-461c-b632-b6f82ab2c146.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
+    "octgnid": "857da3db-7159-4dfa-a925-8547fb6df455",
+    "name": "Fierce Folk",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 3.\nWhen Revealed: Each player draws 3 cards. Until the end of the round, players cannot play events.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 160,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, remove 1 time counter from the active location.",
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/857da3db-7159-4dfa-a925-8547fb6df455.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 160,
+        "quantity": 2,
+        "octgnid": "857da3db-7159-4dfa-a925-8547fb6df455",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/857da3db-7159-4dfa-a925-8547fb6df455.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+    "octgnid": "a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+    "name": "Chief Turch",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Boar Clan.",
+    "text": "The first player gains control of Chief Turch. Immune to player card effects. Chief Turch does not exhaust to defend.\nIf Chief Turch leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 150,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "3",
+      "defense": "2",
+      "health": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a56cab99-d482-4aa3-b5e4-b1e5b857515f.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 150,
+        "quantity": 1,
+        "octgnid": "a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a56cab99-d482-4aa3-b5e4-b1e5b857515f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
+    "octgnid": "e1479aa5-7a6d-426a-930b-64ae24143733",
+    "name": "Raising the Cry",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove 1 time counter from each location in play. Place X time counters on each location in play with no time counters on it. X is the \"Time X\" value on that location. If there are no locations in the staging area, Raising the Cry gains surge.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 159,
+    "quantity": 3,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1479aa5-7a6d-426a-930b-64ae24143733.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 159,
+        "quantity": 3,
+        "octgnid": "e1479aa5-7a6d-426a-930b-64ae24143733",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1479aa5-7a6d-426a-930b-64ae24143733.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
+    "octgnid": "eaaececf-9322-43b5-a190-bdfadd7a695e",
+    "name": "Raven Chief",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dunland. Raven Clan.",
+    "text": "Cannot have attachments. While Raven Chief's Camp is in play, Raven Chief cannot be damaged.\nForced: When Raven Chief attacks, remove 1 time counter from the active location, if able.",
+    "is_unique": true,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 151,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 5,
+    "health": 9,
+    "engagement": 15,
+    "victory": 3,
+    "encounter_set": "The Antlered Crown",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "5",
+      "health": "9",
+      "engagement": "15",
+      "victory": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eaaececf-9322-43b5-a190-bdfadd7a695e.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 151,
+        "quantity": 1,
+        "octgnid": "eaaececf-9322-43b5-a190-bdfadd7a695e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eaaececf-9322-43b5-a190-bdfadd7a695e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

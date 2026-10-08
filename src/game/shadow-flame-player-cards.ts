@@ -1,3 +1,4 @@
+import { antleredRoutePiles } from "./antlered";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
 import { canGainResources } from "./core";
@@ -596,7 +597,10 @@ export function handleShadowFlamePlayerEffect(
         s.engaged = s.engaged.filter((u) => u.id !== enemy.id);
       });
       s.staging = s.staging.filter((u) => u.id !== enemy.id);
-      s.encounterDeck.push(enemy.code);
+      if (s.antlered) {
+        s.encounterDiscard.push(enemy.code);
+        antleredRoutePiles(s);
+      } else s.encounterDeck.push(enemy.code);
       if (s.threat < engagement)
         raiseThreat(s, engagement - s.threat, "player-card");
       return true;

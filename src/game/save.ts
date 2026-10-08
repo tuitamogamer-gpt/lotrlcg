@@ -1,3 +1,4 @@
+import { validateAntlered, printedLocationTime } from "./antlered-support";
 import { validateCelebrimbor } from "./celebrimbor-support";
 import { validateNin } from "./nin-eilph-support";
 import { validateTharbad } from "./tharbad-support";
@@ -152,6 +153,7 @@ export function validateSave(
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
       [
+        c.crownTimeOnKill,
         c.celebExcessCopies,
         c.celebThreatCopies,
         c.celebAllyCostCopies,
@@ -193,7 +195,11 @@ export function validateSave(
       (u.timeCounters === undefined ||
         (integer(u.timeCounters) &&
           u.timeCounters >= 0 &&
-          u.timeCounters <= guardianTimeLimit(u.code))) &&
+          u.timeCounters <=
+            Math.max(
+              guardianTimeLimit(u.code),
+              printedLocationTime(u.code),
+            ))) &&
       [u?.resourcesSpentRound, u?.ignoreThreatRound, u?.roundDefense].every(
         (n) => n === undefined || (integer(n) && n >= 0),
       ) &&
@@ -371,6 +377,7 @@ export function validateSave(
         !validateTharbad(s, validUnit as (u: unknown) => boolean) ||
         !validateNin(s, validUnit as (u: unknown) => boolean) ||
         !validateCelebrimbor(s, validUnit as (u: unknown) => boolean) ||
+        !validateAntlered(s, validUnit as (u: unknown) => boolean) ||
         !validateThreeTrialsState(s, validUnit as (u: unknown) => boolean) ||
         !validateDunlandTrapState(s, validUnit as (u: unknown) => boolean) ||
         !validateCatchOrcState(
@@ -910,6 +917,7 @@ export function validateSave(
       ...(s.tharbad?.setAside ?? []),
       ...(s.ninEilph?.setAside ?? []),
       ...(s.celebrimbor?.search ?? []),
+      ...(s.antlered?.setAside ?? []),
       ...(s.threeTrials
         ? [...s.threeTrials.setAside, ...s.threeTrials.revealing]
         : []),

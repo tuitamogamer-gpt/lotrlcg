@@ -1,3 +1,4 @@
+import { ANTLERED_QUESTS } from "./antlered-support";
 import { CELEBRIMBOR_QUESTS } from "./celebrimbor-support";
 import { NIN, NIN_QUESTS } from "./nin-eilph-support";
 import { THARBAD_QUESTS } from "./tharbad-support";
@@ -58,6 +59,7 @@ const questImage = (code: string) => {
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
+    ...ANTLERED_QUESTS,
     ...FOUNDATIONS_STONE_QUESTS,
   ].find((c) => c.code === code);
   const src = c?.back_imagesrc || c?.imagesrc;
@@ -1011,6 +1013,24 @@ export const SCENARIOS = [
       "Search the ruined city for Celebrimbor’s Mould before Bellach and his Orcs uncover the secret.",
     sets: ["Celembrimbor's Secret", "Misty Mountain Orcs", "Broken Lands"],
     stages: CELEBRIMBOR_QUESTS.map((c) => ({
+      name: c.back_name ?? c.name,
+      quest: c.back_quest ?? 0,
+      cardCode: c.code,
+      story: c.back_text!,
+      questImage: questImage(c.code),
+    })),
+  },
+  {
+    id: "the-antlered-crown",
+    name: "The Antlered Crown",
+    shortName: "Antlered Crown",
+    chapter: "VI",
+    difficulty: 7,
+    tagline: "The war of the Dunland clans",
+    description:
+      "March with Chief Turch, withstand the Raven Clan, and defeat its chief before Dunland falls to war.",
+    sets: ["The Antlered Crown", "Dunland Raiders", "Dunland Warriors"],
+    stages: ANTLERED_QUESTS.map((c) => ({
       name: c.back_name ?? c.name,
       quest: c.back_quest ?? 0,
       cardCode: c.code,

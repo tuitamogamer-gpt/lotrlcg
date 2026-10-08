@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
+    "octgnid": "4bc78852-59b2-4126-86e1-96a1ee918a05",
+    "name": "Battle for Dunland",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: The first player takes control of Chief Turch. Set Raven Chief and Raven Chief's Camp aside, out of play. Reveal 1 copy of Dunland Battlefield and make it the active location. Reveal 1 copy of Raven War-camp and add it to the staging area. Create the Raven deck (see insert) and set it next to the quest deck. Each player chooses 1 different enemy from the Raven deck and adds it to the staging area. Shuffle the encounter deck and Raven deck.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 147,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Antlered Crown",
+    "side": "A",
+    "back_name": "Battle for Dunland",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this stage, remove 1 time counter from each location in play. Place 3 time counters on this stage.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bc78852-59b2-4126-86e1-96a1ee918a05.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bc78852-59b2-4126-86e1-96a1ee918a05.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 147,
+        "quantity": 1,
+        "octgnid": "4bc78852-59b2-4126-86e1-96a1ee918a05",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bc78852-59b2-4126-86e1-96a1ee918a05.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
+    "octgnid": "9b75695b-8431-40ea-8041-afaaa34dc3f4",
+    "name": "The Raven Clan",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the Raven deck discard pile into the Raven deck. Then, starting with the first player, each player takes the top card of the Raven deck and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 148,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Antlered Crown",
+    "side": "A",
+    "back_name": "The Raven Clan",
+    "back_text": "Time 3. Forced: After the last time counter is removed from this stage, reveal the top card of the Raven deck and add it to the staging area. Place 3 time counters on this stage.  Each location in the staging area gets +2 quest points.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75695b-8431-40ea-8041-afaaa34dc3f4.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75695b-8431-40ea-8041-afaaa34dc3f4.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 148,
+        "quantity": 1,
+        "octgnid": "9b75695b-8431-40ea-8041-afaaa34dc3f4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75695b-8431-40ea-8041-afaaa34dc3f4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
+    "octgnid": "c9c2b094-c895-4714-bb2e-c6558c82a153",
+    "name": "The Last Stage",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Raven Chief and Raven Chief's Camp to the staging area. Take the top X cards from the Raven deck and add them to the staging area. X is the number of players minus 1.",
+    "is_unique": false,
+    "pack_code": "TAC",
+    "pack_name": "The Antlered Crown",
+    "position": 149,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Antlered Crown",
+    "side": "A",
+    "back_name": "The Last Stage",
+    "back_text": "Time 2. Forced: After the last time counter is removed from this stage, each engaged enemy makes an attack. Place 2 time counters on this stage.  At the end of the round, if Raven Chief is in the victory display, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9c2b094-c895-4714-bb2e-c6558c82a153.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9c2b094-c895-4714-bb2e-c6558c82a153.jpg",
+    "packs": [
+      {
+        "pack_code": "TAC",
+        "pack_name": "The Antlered Crown",
+        "position": 149,
+        "quantity": 1,
+        "octgnid": "c9c2b094-c895-4714-bb2e-c6558c82a153",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9c2b094-c895-4714-bb2e-c6558c82a153.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

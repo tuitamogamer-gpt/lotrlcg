@@ -1,3 +1,4 @@
+import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
 import * as Trials from "./three-trials";
@@ -379,6 +380,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   fangornAttackStarted(s);
   Trials.trialsAttackStarted(s, enemy);
   Tharbad.tharbadAttackStarted(s, enemy);
+  Antlered.antleredAttackStarted(s, enemy);
 }
 
 export function applyCombatDamageConsequences(
@@ -458,6 +460,8 @@ export function beginEnemyAttack(
       defenders.every((u) => u && ownerOf(s, u) === activeSeat(s)),
     "Stand Together combines characters controlled by the defending player.",
   );
+  if (!shadowsPrepared && Antlered.antleredBeforeNormalDefense(s, enemy))
+    return;
   // Beastmaster's Forced effect precedes declaration responses (including Spearman).
   if (enemy.code === "01091") {
     const code = encounterDraw(s, true);
@@ -479,6 +483,7 @@ export function beginEnemyAttack(
   const actuallyExhausted: string[] = [];
   for (const d of defenders.filter((d) => d && get(s, d.id)))
     if (
+      !Antlered.antleredNoDefenseExhaust(d!) &&
       !heirsPlayerNoDefenseExhaust(s, d!) &&
       !watcherPlayerNoDefenseExhaust(d!) &&
       !carrockNoExhaustDefender(enemy, d!) &&

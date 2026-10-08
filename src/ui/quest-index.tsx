@@ -19,6 +19,7 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-antlered-crown": { lead: "Unite", em: "the clans of Dunland." },
   "celebrimbors-secret": { lead: "Uncover", em: "Celebrimbor’s Secret." },
   "the-nin-in-eilph": { lead: "Cross", em: "the Nîn-in-Eilph." },
   "trouble-in-tharbad": { lead: "Escape from", em: "Tharbad." },

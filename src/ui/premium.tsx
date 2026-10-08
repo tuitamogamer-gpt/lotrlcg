@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-antlered-crown": {
+    name: "The Antlered Crown",
+    detail: "The war of the Dunland clans",
+  },
   "celebrimbors-secret": {
     name: "Celebrimbor’s Secret",
     detail: "The hidden forge of Ost-in-Edhil",
@@ -172,6 +176,7 @@ export const PLAYMAT_CHOICES = [
   "trouble-in-tharbad",
   "the-nin-in-eilph",
   "celebrimbors-secret",
+  "the-antlered-crown",
   "shadow-and-flame",
 ] as const;
 

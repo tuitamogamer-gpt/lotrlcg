@@ -151,6 +151,9 @@ export function JourneyArea({
           data-card-code={u.code}
         />
         <TableToken kind="progress" value={u.progress} />
+        {u.timeCounters !== undefined && (
+          <TableToken kind="time" value={u.timeCounters} />
+        )}
         {(s.amonDin || u.resources > 0) && (
           <TableToken kind="resource" value={u.resources} />
         )}

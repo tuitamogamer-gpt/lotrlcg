@@ -643,6 +643,18 @@ export function CardHoverPreview({ enabled }: { enabled: boolean }) {
   ) : null;
 }
 export function QuestGoals({ s }: { s: GameState }) {
+  if (s.antlered)
+    return (
+      <div className="quest-goals">
+        <span>
+          <Shield size={12} />
+          {s.stage === 3
+            ? "Defeat Raven Chief and survive to round end"
+            : `Place ${s.stage === 1 ? 10 : 15} quest progress`}
+        </span>
+        <span>Keep Chief Turch in play</span>
+      </div>
+    );
   if (s.celebrimbor)
     return (
       <div className="quest-goals">

@@ -1,3 +1,4 @@
+import { ANTLERED_ENCOUNTERS, ANTLERED_QUESTS } from "./antlered-support";
 import {
   CELEBRIMBOR_ENCOUNTERS,
   CELEBRIMBOR_QUESTS,
@@ -178,6 +179,7 @@ export const encounterCards = [
   ...THARBAD_ENCOUNTERS,
   ...NIN_ENCOUNTERS,
   ...CELEBRIMBOR_ENCOUNTERS,
+  ...ANTLERED_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -211,6 +213,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
+    ...ANTLERED_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -317,6 +320,7 @@ export const SCRIPTED = new Set(
     ...THARBAD_QUESTS,
     ...NIN_QUESTS,
     ...CELEBRIMBOR_QUESTS,
+    ...ANTLERED_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => c.code),

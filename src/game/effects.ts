@@ -1,3 +1,4 @@
+import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
 import { ninNoCardEconomy } from "./nin-eilph-support";
@@ -355,6 +356,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Tharbad.tharbadEffect(s, e)) return;
   if (Nin.ninEffect(s, e)) return;
   if (Celebrimbor.celebrimborEffect(s, e)) return;
+  if (Antlered.antleredEffect(s, e)) return;
   if (Isengard.isengardEffect(s, e)) return;
   if (handleHeirsEffect(s, e)) return;
   if (handleStewardFearEffect(s, e)) return;
@@ -971,6 +973,7 @@ function handleEffect(s: GameState, e: Effect) {
             Tharbad.tharbadEncounter(s, e.code, true) ||
             Nin.ninEncounter(s, e.code, true) ||
             Celebrimbor.celebrimborEncounter(s, e.code, true) ||
+            Antlered.antleredEncounter(s, e.code, true) ||
             heirsEncounter(s, e.code, true) ||
             stewardFearEncounter(s, e.code, true),
           "Unsupported repeated When Revealed effect.",
@@ -1165,7 +1168,11 @@ function handleEffect(s: GameState, e: Effect) {
     case "phaseEnd":
       phaseEnd(s);
       if (s.phase === "refresh") Trials.trialsRemoveEnemyTime(s);
-      if (s.phase === "refresh" && !Fangorn.fangornRefreshTime(s))
+      if (
+        s.phase === "refresh" &&
+        !Antlered.antleredRefreshTime(s) &&
+        !Fangorn.fangornRefreshTime(s)
+      )
         removeQuestTime(s);
       break;
     case "ninCommitAfterCost":
@@ -1321,6 +1328,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "endRoundAfterCollector":
+      Antlered.antleredEndRound(s);
       Nin.ninEndRound(s);
       shadowFlameRoundEnd(s);
       longDarkRoundEnd(s);
@@ -1918,6 +1926,18 @@ export function flush(s: GameState) {
     requireRule(++n < 200, "Effect queue overflow.");
     const effect = s.queue.shift()!;
     const sharedEffect = [
+      "crownSetup",
+      "crownStageReady",
+      "crownAdvance",
+      "crownTimeExpired",
+      "crownResetTime",
+      "crownRavenReveal",
+      "crownRemoveAllTime",
+      "crownRemoveTimeBatch",
+      "crownLocationExpired",
+      "crownCryRefill",
+      "crownActiveTime",
+      "crownAllocateTime",
       "celebSetup",
       "celebStageReady",
       "celebAdvance",

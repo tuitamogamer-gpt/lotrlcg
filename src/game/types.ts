@@ -171,6 +171,7 @@ export type ScenarioId =
   | "to-catch-an-orc"
   | "into-fangorn"
   | "the-dunland-trap"
+  | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
   | "trouble-in-tharbad"
@@ -287,6 +288,7 @@ export interface GameState {
   ringMaker?: import("./ring-maker-player").RingMakerState;
   isengard?: import("./voice-isengard").IsengardState;
   bloodGondor?: import("./blood-gondor-support").BloodGondorState;
+  antlered?: import("./antlered-support").AntleredState;
   celebrimbor?: import("./celebrimbor-support").CelebrimborState;
   ninEilph?: import("./nin-eilph-support").NinState;
   tharbad?: import("./tharbad-support").TharbadState;
@@ -422,6 +424,7 @@ export interface GameState {
     bloodKilledPlayers?: { player: number; shadows: boolean }[];
     timeOnKill?: number;
     extraAttacks?: number;
+    crownTimeOnKill?: number;
     celebExcessCopies?: number;
     celebCaptureDestroyed?: boolean;
     celebThreatCopies?: number;

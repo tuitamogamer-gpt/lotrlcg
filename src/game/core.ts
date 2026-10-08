@@ -1,3 +1,4 @@
+import * as Antlered from "./antlered";
 import * as Celebrimbor from "./celebrimbor";
 import { imageUrl } from "./cards";
 import {
@@ -729,6 +730,7 @@ export const locationQuest = (s: GameState, u: Unit) =>
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
     Tharbad.tharbadLocationQuest(s, u) +
+    Antlered.antleredLocationBonus(s, u) +
     Fords.fordsLocationBonus(s, u) +
     Fangorn.fangornLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
@@ -882,6 +884,7 @@ const hasTraitCard = (c: Card, trait: string) =>
 
 /** Response offers must use the same sphere and active-location cost as payment. */
 export const canPay = (s: GameState, c: Card) =>
+  !Antlered.antleredPlayProblem(s, c.code) &&
   !Nin.ninPlayProblem(s, c.code) &&
   (!["01036", "08143"].includes(c.code) ||
     (playCost(s, c) >= 3 &&
@@ -990,6 +993,7 @@ export function draw(s: GameState, count: number, cardEffect = true) {
 }
 
 export function encounterDraw(s: GameState, shadow = false) {
+  Antlered.antleredRoutePiles(s);
   if (
     !s.encounterDeck.length &&
     !shadow &&

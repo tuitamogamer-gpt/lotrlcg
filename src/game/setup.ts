@@ -1,3 +1,4 @@
+import { setupAntlered } from "./antlered";
 import { setupCelebrimbor } from "./celebrimbor";
 import { setupNin } from "./nin-eilph";
 import { setupTharbad } from "./tharbad";
@@ -371,6 +372,8 @@ export function createGame(
     setupAmonDin(s);
   } else if (scenarioId === "the-blood-of-gondor") {
     setupBloodGondor(s);
+  } else if (scenarioId === "the-antlered-crown") {
+    setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {
     setupCelebrimbor(s);
   } else if (scenarioId === "the-nin-in-eilph") {
