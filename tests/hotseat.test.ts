@@ -1,6 +1,6 @@
 import { applyAction as act } from "./pass-resource-window.ts";
 import {
-  GREY_HAVENS_SCENARIOS,
+  DREAM_CHASER_SCENARIOS,
   greyHavensSimulationAction,
   greyHavensSimulationChoice,
 } from "./grey-havens-simulation-driver";
@@ -434,7 +434,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     "the-treachery-of-rhudaur",
     "the-battle-of-carn-dum",
     "the-dread-realm",
-    ...GREY_HAVENS_SCENARIOS,
+    ...DREAM_CHASER_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -446,7 +446,7 @@ for (const scenarioId of [
   "the-treachery-of-rhudaur",
   "the-battle-of-carn-dum",
   "the-dread-realm",
-  ...GREY_HAVENS_SCENARIOS,
+  ...DREAM_CHASER_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -557,8 +557,8 @@ for (const scenarioId of [
               } else if (
                 s.phase === "travel" &&
                 !s.activeLocation &&
-                GREY_HAVENS_SCENARIOS.includes(
-                  scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+                DREAM_CHASER_SCENARIOS.includes(
+                  scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
                 )
               ) {
                 const location = s.staging.find((u) => !canTravel(s, u));
@@ -590,8 +590,8 @@ for (const scenarioId of [
                       pending: s.flow?.pending?.id,
                     }) + "\n",
                   );
-                s = GREY_HAVENS_SCENARIOS.includes(
-                  scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+                s = DREAM_CHASER_SCENARIOS.includes(
+                  scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
                 )
                   ? engineApplyAction(s, a)
                   : act(s, a);

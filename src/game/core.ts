@@ -1,3 +1,6 @@
+import * as Storm from "./stormcaller";
+import { stormcallerState, stormcallerStageInfo } from "./stormcaller-support";
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Raid from "./raid-grey-havens";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
@@ -252,6 +255,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
 export const units = (s: GameState) => [
+  ...(stormcallerState(s)?.area ?? []),
   ...allCharacters(s),
   ...s.staging,
   ...allEngaged(s),
@@ -261,6 +265,7 @@ export const units = (s: GameState) => [
 ];
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
+  ...(stormcallerState(s)?.area ?? []),
   ...globalCharacters(s),
   ...globalEngaged(s),
   ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
@@ -548,6 +553,7 @@ export function stats(s: GameState, u: Unit) {
         chetwoodBonus.attack +
         GreyPlayers.greyHavensStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
+        Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
         Raid.raidStats(s, u).attack +
         angmarBonus.attack +
@@ -678,7 +684,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
     0,
   );
   const gondorDiscount =
-    c.code === "22003" && s.threat < 40
+    c.code === "22003" && effectiveThreat(s) < 40
       ? 4
       : c.code === "05004"
         ? allCharacters(s).filter(
@@ -776,6 +782,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             0) +
             Chetwood.chetwoodThreatBonus(s, u) +
             Voyage.voyageThreatBonus(s, u) +
+            Storm.stormcallerThreatBonus(s, u) +
             Fate.fateThreatBonus(s, u) +
             Rhu.rhudaurThreatBonus(s, u) +
             Carn.carnThreatBonus(s, u) +
@@ -883,6 +890,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const storm = stormcallerStageInfo(s);
+  if (storm) return storm;
   const voyage = voyageStageInfo(s);
   if (voyage) return voyage;
   const nin = NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s));

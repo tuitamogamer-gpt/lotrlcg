@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 // Original Escape from Mount Gram: physical prisoners and independent dungeon areas.
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
@@ -579,7 +580,7 @@ export function gramShadow(s: GameState, code: string) {
   const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
     .map((id) => get(s, id))
     .filter((u): u is Unit => !!u);
-  if (code === G.patrol) c.attackBonus += s.threat >= 20 ? 2 : 1;
+  if (code === G.patrol) c.attackBonus += effectiveThreat(s) >= 20 ? 2 : 1;
   else if (code === G.tormentor)
     c.attackBonus += (q(s).captured[c.enemyId]?.length ?? 0) ? 1 : 2;
   else if (code === G.captives) c.gramCaptureDamage = true;
@@ -912,7 +913,7 @@ export function gramEffect(s: GameState, e: Effect) {
       startPhase(s, "travel");
       break;
     case "gramGateThreat":
-      if (s.threat < 35) raiseThreat(s, 35 - s.threat, "encounter");
+      if (effectiveThreat(s) < 35) raiseThreat(s, 35 - s.threat, "encounter");
       break;
     case "gramCellResponse": {
       const cards = q(s).captured[e.source!] ?? [];
@@ -1007,8 +1008,8 @@ export function gramEffect(s: GameState, e: Effect) {
     case "gramJailor": {
       if (!u || u.blanked) break;
       const players = playerOrder(s),
-        maximum = Math.max(...players.map((p) => seatView(s, p).threat)),
-        tied = players.filter((p) => seatView(s, p).threat === maximum);
+        maximum = Math.max(...players.map((p) => effectiveThreat(s, p))),
+        tied = players.filter((p) => effectiveThreat(s, p) === maximum);
       if (tied.length === 1)
         prepend(s, fx("gramJailorEngage", { target: u.id, player: tied[0] }));
       else

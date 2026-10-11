@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { wastesCancelAllowed } from "./wastes-eriador";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
@@ -131,7 +132,11 @@ export function roadRivendellCheck(s: GameState) {
   }
   const player = ownerOf(s, a),
     p = seatView(s, player);
-  if (s.table?.seats[player].eliminated || p.threat >= 50 || !p.heroes.length)
+  if (
+    s.table?.seats[player].eliminated ||
+    effectiveThreat(s, player) >= 50 ||
+    !p.heroes.length
+  )
     lose(s, "Arwen Undómiel's controlling fellowship has been eliminated.");
 }
 export function roadRivendellFollowFirstPlayer(s: GameState) {
@@ -448,7 +453,7 @@ export function roadRivendellEffect(s: GameState, e: Effect) {
       const player = playerOrder(s).find(
         (p) =>
           amonPlayerCanEngage(s, u, p) &&
-          seatView(s, p).threat >= engagementCost(s, u) &&
+          effectiveThreat(s, p) >= engagementCost(s, u) &&
           !longDarkPlayerIgnoreEngagement(s, u),
       );
       if (player !== undefined) forOwner(s, player, () => engage(s, u));

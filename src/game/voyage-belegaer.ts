@@ -1,3 +1,4 @@
+import { stormcallerState, STORMCALLER_CORSAIRS } from "./stormcaller-support";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -61,6 +62,9 @@ type Combat = NonNullable<GameState["combat"]> & {
 };
 const combat = (s: GameState) => s.combat as Combat | null;
 const isVoyage = (s: GameState) => !!voyageState(s);
+const fleetState = (s: GameState) => voyageState(s) ?? stormcallerState(s);
+const isFleet = (s: GameState) => !!fleetState(s);
+export const SHIP_CONTROLLER_ELIMINATED = "game:ship-controller-eliminated";
 const ship = (u: Unit) => card(u.code).type_code === "ship-objective";
 const shipEnemy = (u: Unit) => card(u.code).type_code === "ship-enemy";
 const live = (s: GameState, code: string) =>
@@ -72,20 +76,20 @@ const questLive = (s: GameState, code: string) =>
 const off = (s: GameState) => !sailingOnCourse(s);
 const ships = (s: GameState) => allCharacters(s).filter(ship);
 export const voyageSailingExtraCards = (s: GameState) =>
-  isVoyage(s)
+  isFleet(s)
     ? 2 *
       allActiveLocations(s).filter((u) => u.code === V.calm && !u.blanked)
         .length
     : 0;
 export const voyageSailingCancelledIcons = (s: GameState) =>
-  isVoyage(s) ? live(s, V.rough).length : 0;
+  isFleet(s) ? live(s, V.rough).length : 0;
 export const voyageCannotDamage = (s: GameState, u: Unit) =>
-  isVoyage(s) &&
+  isFleet(s) &&
   u.code === V.warship &&
   !u.blanked &&
   s.staging.some((x) => x.id === u.id);
 export const voyageNoEngagementCheck = (s: GameState, enemy: Unit) =>
-  isVoyage(s) &&
+  isFleet(s) &&
   shipEnemy(enemy) &&
   allActiveLocations(s).some((u) => u.code === V.fog && !u.blanked);
 export const voyageEnemyCannotAttack = voyageNoEngagementCheck;
@@ -94,7 +98,7 @@ export const voyageCanAttackEnemy = (
   enemy: Unit,
   character: Unit,
 ) =>
-  !isVoyage(s) ||
+  !isFleet(s) ||
   !shipEnemy(enemy) ||
   (!voyageNoEngagementCheck(s, enemy) &&
     !allEngaged(s).some(
@@ -104,24 +108,24 @@ export const voyageCanAttackEnemy = (
         ownerOf(s, u) === ownerOf(s, character),
     ));
 export const voyageEngagementModifier = (s: GameState, u: Unit) =>
-  isVoyage(s) && u.code === V.scout && !u.blanked && off(s) ? -15 : 0;
+  isFleet(s) && u.code === V.scout && !u.blanked && off(s) ? -15 : 0;
 export const voyageBoardingBonus = (s: GameState) =>
   isVoyage(s) && off(s) && questLive(s, V.divination) ? 1 : 0;
 export const voyageArchery = (s: GameState, u: Unit) =>
-  isVoyage(s) &&
+  isFleet(s) &&
   u.code === V.warship &&
   !u.blanked &&
   s.staging.some((x) => x.id === u.id)
     ? 4
     : 0;
 export const voyageCanCancelWhenRevealed = (s: GameState, code: string) =>
-  !isVoyage(s) || code !== V.winds || s.sailing?.heading !== 3;
+  !isFleet(s) || code !== V.winds || s.sailing?.heading !== 3;
 export const voyageDrawBonus = (s: GameState, player = activeSeat(s)) =>
-  isVoyage(s) && own(s, player).some((u) => u.code === V.dawn && !u.blanked)
+  isFleet(s) && own(s, player).some((u) => u.code === V.dawn && !u.blanked)
     ? 1
     : 0;
 export const voyagePlayCost = (s: GameState, c: Card) =>
-  isVoyage(s) &&
+  isFleet(s) &&
   c.type_code === "ally" &&
   !s.used.includes("voyage-narelenya") &&
   own(s, activeSeat(s)).some((u) => u.code === V.narelenya && !u.blanked)
@@ -129,7 +133,7 @@ export const voyagePlayCost = (s: GameState, c: Card) =>
     : 0;
 export function voyagePlayerCardPlayed(s: GameState, c: Card) {
   if (
-    isVoyage(s) &&
+    isFleet(s) &&
     c.type_code === "ally" &&
     !s.used.includes("voyage-narelenya")
   )
@@ -137,11 +141,11 @@ export function voyagePlayerCardPlayed(s: GameState, c: Card) {
 }
 export function voyageStats(s: GameState, u: Unit) {
   const corsair =
-    isVoyage(s) && u.code === V.pirate && !u.blanked ? u.resources : 0;
+    isFleet(s) && u.code === V.pirate && !u.blanked ? u.resources : 0;
   return {
     attack:
       corsair +
-      (isVoyage(s) &&
+      (isFleet(s) &&
       isHero(u) &&
       own(s, ownerOf(s, u)).some((a) => a.code === V.silver && !a.blanked)
         ? 1
@@ -161,7 +165,7 @@ export const voyageThreatBonus = (s: GameState, u: Unit) =>
     ? 1
     : 0;
 export function voyageStagingThreat(s: GameState) {
-  if (!isVoyage(s)) return 0;
+  if (!isFleet(s)) return 0;
   return allEngaged(s)
     .filter(shipEnemy)
     .reduce(
@@ -185,13 +189,13 @@ export function voyageProgress(s: GameState, amount: number, quest: Unit) {
 }
 export function voyageTravelProblem(s: GameState, u: Unit) {
   if (
-    isVoyage(s) &&
+    isFleet(s) &&
     !u.blanked &&
     u.code === V.rolling &&
     s.sailing?.heading === 3
   )
     return "Rolling Seas requires shifting off-course. At the worst heading, that Travel cost cannot be paid.";
-  return isVoyage(s) &&
+  return isFleet(s) &&
     s.sailing?.heading === 3 &&
     u.code !== V.waterspout &&
     live(s, V.waterspout).length
@@ -199,7 +203,7 @@ export function voyageTravelProblem(s: GameState, u: Unit) {
     : null;
 }
 export const voyageMandatoryTravel = (s: GameState) =>
-  isVoyage(s) &&
+  isFleet(s) &&
   s.sailing?.heading === 3 &&
   !allActiveLocations(s).length &&
   live(s, V.waterspout).length > 0;
@@ -207,7 +211,7 @@ export function voyageTravelEffects(
   s: GameState,
   u: Unit,
 ): Effect[] | undefined {
-  if (!isVoyage(s) || u.blanked) return undefined;
+  if (!isFleet(s) || u.blanked) return undefined;
   if (u.code === V.rolling) return [fx("voyageShift", { value: 1 })];
   // The cached physical front names Starlit Sea; the source transcription used
   // an unrelated development title (Uncharted Ocean).
@@ -218,7 +222,7 @@ export function voyageTravelEffects(
   return undefined;
 }
 export function voyageTravelEntered(s: GameState, u: Unit) {
-  if (isVoyage(s) && u.code === V.waterspout && !u.blanked)
+  if (isFleet(s) && u.code === V.waterspout && !u.blanked)
     prepend(
       s,
       ...ships(s).map((a) =>
@@ -304,15 +308,16 @@ export function voyageEndQuest(s: GameState) {
     );
 }
 export function voyageCorsairDiscard(s: GameState, code: string) {
-  const q = voyageState(s);
-  if (!q || !VOYAGE_CORSAIRS.includes(code)) return false;
+  const q = fleetState(s);
+  const corsairs = isVoyage(s) ? VOYAGE_CORSAIRS : STORMCALLER_CORSAIRS;
+  if (!q || !corsairs.includes(code)) return false;
   q.corsairDiscard.push(code);
   if (!q.corsairDeck.length)
     q.corsairDeck = shuffle(s, q.corsairDiscard.splice(0));
   return true;
 }
 export function voyageEngaged(s: GameState, u: Unit, fromStaging: boolean) {
-  if (!isVoyage(s) || u.blanked) return;
+  if (!isFleet(s) || u.blanked) return;
   const player = ownerOf(s, u);
   const effects: Effect[] = [];
   if (shipEnemy(u) && fromStaging) {
@@ -333,7 +338,7 @@ export function voyageEngaged(s: GameState, u: Unit, fromStaging: boolean) {
 }
 export function voyageAttackStarted(s: GameState, enemy: Unit, player: number) {
   if (
-    isVoyage(s) &&
+    isFleet(s) &&
     enemy.code === V.marauder &&
     !enemy.blanked &&
     enemy.resources > 0
@@ -353,7 +358,7 @@ export function voyageCharacterLeaves(
   u: Unit,
   destruction: boolean,
 ) {
-  if (!isVoyage(s)) return;
+  if (!isFleet(s)) return;
   if (!destruction || !ship(u)) return;
   if (u.code === V.dream) {
     s.status = "lost";
@@ -364,7 +369,8 @@ export function voyageCharacterLeaves(
     log(s, s.reason, "danger");
   } else
     forOwner(s, ownerOf(s, u), () => {
-      s.threat = Math.max(50, s.threat);
+      if (!s.used.includes(SHIP_CONTROLLER_ELIMINATED))
+        s.used.push(SHIP_CONTROLLER_ELIMINATED);
     });
 }
 export function voyageDamageDealt(
@@ -375,7 +381,7 @@ export function voyageDamageDealt(
 ) {
   const c = combat(s);
   if (
-    !isVoyage(s) ||
+    !isFleet(s) ||
     !c ||
     !context.combatDamage ||
     context.enemyId !== c.enemyId
@@ -406,7 +412,7 @@ export function voyageDamageDealt(
 }
 export function voyageAfterAttack(s: GameState) {
   const c = combat(s);
-  if (!isVoyage(s) || !c) return;
+  if (!isFleet(s) || !c) return;
   if (c.voyageCharacterKilled)
     for (let n = 0; n < (c.voyageShiftOnCharacterKilled ?? 0); n++)
       shiftHeading(s, 1);
@@ -415,7 +421,7 @@ export function voyageAfterAttack(s: GameState) {
       shiftHeading(s, 1);
 }
 export function voyageEncounter(s: GameState, code: string, replay = false) {
-  if (!isVoyage(s)) return false;
+  if (!isFleet(s)) return false;
   if (code === V.boarding)
     prepend(
       s,
@@ -471,7 +477,7 @@ export function voyageEncounter(s: GameState, code: string, replay = false) {
 }
 export function voyageShadow(s: GameState, code: string) {
   const c = combat(s);
-  if (!isVoyage(s) || !c) return false;
+  if (!isFleet(s) || !c) return false;
   const enemy = get(s, c.enemyId),
     player = c.attackPlayer ?? activeSeat(s);
   if (code === V.calm) c.attackBonus += enemy && shipEnemy(enemy) ? 3 : 1;
@@ -531,7 +537,7 @@ function search(s: GameState, predicate: (code: string) => boolean): Option[] {
 }
 export function voyageEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("voyage")) return false;
-  const q = voyageState(s);
+  const q = fleetState(s);
   if (!q) return true;
   const u = get(s, e.target);
   switch (e.kind) {
@@ -591,6 +597,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       break;
     }
     case "voyageSetupDone":
+      if (!isVoyage(s)) break;
       for (const code of [V.rolling, V.scout]) {
         const unit = make(s, code);
         s.staging.push(unit);
@@ -618,6 +625,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       }
       break;
     case "voyageAdvance": {
+      if (!isVoyage(s)) break;
       const top = q.questDeck.slice(0, sailingOnCourse(s) ? 2 : 1);
       if (top.length > 1)
         choose(
@@ -645,6 +653,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       break;
     }
     case "voyageAdvanceTake": {
+      if (!isVoyage(s)) break;
       const top = q.questDeck.splice(0, e.flag ? 2 : 1);
       if (!e.code || !top.includes(e.code)) break;
       q.questDeck.push(...top.filter((code) => code !== e.code));
@@ -664,6 +673,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       break;
     }
     case "voyageStageReveal":
+      if (!isVoyage(s)) break;
       if (q.currentQuest === V.pursuit)
         prepend(
           s,
@@ -696,6 +706,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       }
       break;
     case "voyagePursuitSearch": {
+      if (!isVoyage(s)) break;
       const candidates = [...s.encounterDeck, ...s.encounterDiscard].filter(
         (code) => card(code).type_code === "ship-enemy",
       );
@@ -722,6 +733,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       break;
     }
     case "voyageSearchTake": {
+      if (!isVoyage(s)) break;
       const pile = e.text === "discard" ? s.encounterDiscard : s.encounterDeck;
       if (e.value === undefined || pile[e.value] !== e.code) break;
       const unit = make(s, pile.splice(e.value, 1)[0]);

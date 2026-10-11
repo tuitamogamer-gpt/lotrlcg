@@ -6,6 +6,11 @@ import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
 import angmarPlayers from "../data/angmar-player-cards.json";
 import greyHavensPlayers from "../data/grey-havens-player-cards.json";
+import stormcallerPlayers from "../data/stormcaller-player-cards.json";
+import {
+  STORMCALLER_ENCOUNTERS,
+  STORMCALLER_QUESTS,
+} from "./stormcaller-scenario-data";
 import {
   GREY_HAVENS_ENCOUNTERS,
   GREY_HAVENS_QUESTS,
@@ -165,6 +170,7 @@ export const playerCards = [
       ...MORGUL_PLAYER_CARDS,
       ...OSGILIATH_PLAYER_CARDS,
       ...BLOOD_PLAYER_CARDS,
+      ...(stormcallerPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -204,6 +210,9 @@ export const encounterCards = [
   ...DIKE_ENCOUNTERS,
   ...ANGMAR_ENCOUNTERS,
   ...GREY_HAVENS_ENCOUNTERS,
+  ...STORMCALLER_ENCOUNTERS.filter(
+    (c) => !GREY_HAVENS_ENCOUNTERS.some((shared) => shared.code === c.code),
+  ),
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -243,6 +252,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...DIKE_QUESTS,
     ...ANGMAR_QUESTS,
     ...GREY_HAVENS_QUESTS,
+    ...STORMCALLER_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -326,6 +336,7 @@ export const SCRIPTED = new Set(
     ...encounterCards,
     ...ANGMAR_QUESTS,
     ...GREY_HAVENS_QUESTS,
+    ...STORMCALLER_QUESTS,
     ...RHOSGOBEL_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,

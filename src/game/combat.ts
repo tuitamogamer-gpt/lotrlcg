@@ -1,3 +1,5 @@
+import * as Storm from "./stormcaller";
+import * as StormPlayers from "./stormcaller-player";
 import * as Raid from "./raid-grey-havens";
 import { shipCanAttack, shipCanDefend } from "./ships";
 import * as GreyPlayers from "./grey-havens-player";
@@ -133,7 +135,10 @@ export function playerAttack(
     ids.every((id) => {
       const u = get(s, id);
       return (
-        u && shipCanAttack(enemy, u) && Voyage.voyageCanAttackEnemy(s, enemy, u)
+        u &&
+        shipCanAttack(enemy, u) &&
+        Voyage.voyageCanAttackEnemy(s, enemy, u) &&
+        Storm.stormcallerCanAttackEnemy(s, enemy, u)
       );
     }),
     "The selected characters cannot attack this enemy.",
@@ -275,6 +280,7 @@ export function resolvePlayerAttack(
       Druadan.druadanForestAttackStat(s) === "will"
         ? stats(s, u).will
         : stats(s, u).attack +
+          StormPlayers.stormcallerAttackBonus(s, u) +
           finalRingAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
@@ -334,6 +340,7 @@ export function playerAttackResolved(
   remainingHealth: number,
 ) {
   Raid.raidPlayerAttackFinished(s, enemy);
+  StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
   amonPlayerAttackResolved(s, enemy, ids, amount);

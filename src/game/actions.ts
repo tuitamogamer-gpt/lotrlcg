@@ -1,4 +1,6 @@
 import * as Raid from "./raid-grey-havens";
+import * as Storm from "./stormcaller";
+import * as StormPlayers from "./stormcaller-player";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
@@ -496,6 +498,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
   const raidProblem = Raid.raidTravelProblem(s, u);
+  const stormProblem = Storm.stormcallerTravelProblem(s, u);
+  if (stormProblem) return stormProblem;
   if (raidProblem) return raidProblem;
   const voyageProblem = Voyage.voyageTravelProblem(s, u);
   if (voyageProblem) return voyageProblem;
@@ -692,6 +696,12 @@ export function canPlay(
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir")
     return "Faramir cannot be used in The Morgul Vale.";
   const greyProblem = GreyPlayers.greyHavensPlayProblem(s, c.code);
+  const stormProblem = StormPlayers.stormcallerPlayProblem(
+    s,
+    u,
+    options.playOrigin ?? "hand",
+  );
+  if (stormProblem) return stormProblem;
   if (greyProblem) return greyProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
   if (isengardProblem) return isengardProblem;
@@ -958,6 +968,18 @@ export function replayEventProblem(
   amount?: number,
 ): string | null {
   if (dikeCannotLeaveDiscard(s)) return DIKE_DISCARD_REASON;
+  if (u.code === "12006") {
+    const problem = canPlay(s, u, {
+      resolvingEffect: true,
+      playOrigin: "discard",
+    });
+    return (
+      problem ??
+      (eventReplayPayments(s, u).length
+        ? null
+        : "The card's resource payment cannot be made.")
+    );
+  }
   if (card(u.code).type_code !== "event")
     return "Choose an event in your discard pile.";
   if (u.code === "01051" && target === undefined)
@@ -1454,6 +1476,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
+  const stormTargets = StormPlayers.stormcallerPlayTargets(s, c.code);
+  if (stormTargets) return stormTargets;
   if (greyTargets) return greyTargets;
   const ringMakerTargets = ringMakerPlayTargets(s, c.code);
   if (ringMakerTargets) return ringMakerTargets;
@@ -1724,6 +1748,12 @@ export function availableAbilities(s: GameState, u: Unit) {
   if (rhudaurLabel)
     return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const stormLabel = StormPlayers.stormcallerAbilityLabel(u.code);
+  if (stormLabel)
+    results.push({
+      label: stormLabel,
+      disabled: !!StormPlayers.stormcallerAbilityProblem(s, u),
+    });
   const greyLabel = GreyPlayers.greyHavensAbilityLabel(u.code);
   if (greyLabel)
     results.push({
@@ -1905,6 +1935,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const stormLabel = StormPlayers.stormcallerAbilityLabel(a.code);
+    if (stormLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: stormLabel,
+        disabled: !!StormPlayers.stormcallerAbilityProblem(s, u, a.id),
+      });
     const greyLabel = GreyPlayers.greyHavensAbilityLabel(a.code);
     if (greyLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -2202,7 +2239,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Dread.dreadOpeningHandsKept(s) &&
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
-        !Raid.raidOpeningHandsKept(s)
+        !Raid.raidOpeningHandsKept(s) &&
+        !Storm.stormcallerOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2271,6 +2309,14 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     }
     case "PLAY_DISCARD": {
+      if (
+        StormPlayers.stormcallerPlayAllyFromDiscard(
+          s,
+          action.index,
+          action.payment,
+        )
+      )
+        break;
       requireRule(
         Number.isSafeInteger(action.index) &&
           action.index >= 0 &&
@@ -2294,6 +2340,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       const reason = canPlay(s, u);
       requireRule(!reason, reason ?? "");
       const c = card(u.code);
+      if (StormPlayers.stormcallerGuardianPlay(s, u, action)) break;
       if (needsTarget(u))
         requireRule(
           playTargets(s, u).some((x) => x.id === action.target),
@@ -2455,6 +2502,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
           ) {
           } else if (
+            !StormPlayers.useStormcallerAbility(s, u, action.attachmentId) &&
             !GreyPlayers.useGreyHavensAbility(s, u, action.attachmentId) &&
             !khazadAbility(s, u, action.attachmentId) &&
             !useRedhornPlayerAbility(s, u, action.attachmentId) &&
@@ -2533,6 +2581,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Wastes.wastesTravel(s, u) ??
         Gram.gramTravel(s, u) ??
         Raid.raidTravel(s, u) ??
+        Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
         Rhudaur.rhudaurTravelEffects(s, u) ??
@@ -2763,6 +2812,25 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.stormcaller
+      ? {
+          stormcaller: {
+            initialized: s.stormcaller.initialized,
+            currentQuest: s.stormcaller.currentQuest,
+            questDeck: s.stormcaller.questDeck.length,
+            enemyQuest: s.stormcaller.enemyQuest,
+            enemyQuestDeck: s.stormcaller.enemyQuestDeck.length,
+            enemyStage: s.stormcaller.enemyStage,
+            enemyProgress: s.stormcaller.enemyProgress,
+            progressThisRound: s.stormcaller.progressThisRound,
+            damageThisRound: s.stormcaller.damageThisRound,
+            area: Storm.stormcallerArea(s),
+            sameStage: Storm.stormcallerSameStage(s),
+            corsairDeck: s.stormcaller.corsairDeck.length,
+            corsairDiscard: s.stormcaller.corsairDiscard.length,
+          },
+        }
+      : {}),
     ...(s.fateNumenor ? { fateNumenor: Fate.fatePublicState(s) } : {}),
     ...(s.voyageBelegaer
       ? {

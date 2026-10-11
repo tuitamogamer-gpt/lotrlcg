@@ -55,7 +55,12 @@
     "test:grey-havens-quests": "node --import tsx scripts/browser-voyage-belegaer.mjs && node --import tsx scripts/browser-fate-numenor.mjs && node --import tsx scripts/browser-raid-grey-havens.mjs",
     "test:grey-havens-players": "node --import tsx scripts/browser-grey-havens-players.mjs",
     "test:browser-grey-havens": "npm run test:grey-havens-quests && npm run test:grey-havens-players",
-    "test:grey-havens-simulation": "node --import tsx --test tests/grey-havens-simulation.test.ts"
+    "test:grey-havens-simulation": "node --import tsx --test tests/grey-havens-simulation.test.ts",
+    "test:stormcaller-quests": "node --import tsx scripts/browser-stormcaller.mjs",
+    "test:stormcaller-players": "node --import tsx scripts/browser-stormcaller-players.mjs",
+    "test:browser-stormcaller": "npm run test:stormcaller-quests && npm run test:stormcaller-players",
+    "test:stormcaller-simulation": "node --import tsx --test tests/stormcaller-simulation.test.ts",
+    "test:stormcaller-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat flight-of-the-stormcaller normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

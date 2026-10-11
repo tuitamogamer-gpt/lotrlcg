@@ -1,4 +1,7 @@
 import * as Raid from "./raid-grey-havens";
+import * as Storm from "./stormcaller";
+import * as StormPlayers from "./stormcaller-player";
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
@@ -463,6 +466,7 @@ export function charactersCommitted(
     (u) => u.committed && allCharacters(s).some((c) => c.id === u.id),
   );
   shadowFlameCharactersCommitted(s, actual);
+  Storm.stormcallerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
   dwarfCharactersCommitted(s, actual);
   elfCharactersCommitted(s, actual);
@@ -734,7 +738,7 @@ export function check(s: GameState) {
   if (s.prisoner) {
     const p = seatView(s, s.prisoner.owner ?? 0);
     if (
-      p.threat >= 50 ||
+      effectiveThreat(s, s.prisoner.owner ?? 0) >= 50 ||
       (!p.heroes.length && p.startingHeroes.some((h) => h !== s.prisoner!.code))
     ) {
       s.status = "lost";
@@ -795,7 +799,8 @@ export function check(s: GameState) {
       Angmar.angmarFavor(s, threatElimination(s));
       if (
         !Dike.dikePlayerDeckEmpty(s, i) &&
-        s.threat < threatElimination(s) &&
+        effectiveThreat(s) < threatElimination(s) &&
+        !s.used.includes("game:ship-controller-eliminated") &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
           foundationsHeroMissingAllowed(s, i) ||
@@ -805,6 +810,7 @@ export function check(s: GameState) {
       if (s.table!.seats[i].eliminated) return;
       for (const host of [
         ...s.staging,
+        ...(s.stormcaller?.area ?? []),
         ...allEngaged(s),
         ...allActiveLocations(s),
         ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
@@ -915,7 +921,8 @@ export function check(s: GameState) {
   } else if (
     (Angmar.angmarFavor(s, threatElimination(s)),
     Dike.dikePlayerDeckEmpty(s, 0)) ||
-    s.threat >= threatElimination(s) ||
+    effectiveThreat(s) >= threatElimination(s) ||
+    s.used.includes("game:ship-controller-eliminated") ||
     (!s.heroes.length &&
       !s.prisoner &&
       !foundationsHeroMissingAllowed(s, 0) &&
@@ -924,9 +931,11 @@ export function check(s: GameState) {
     s.status = "lost";
     s.reason = Dike.dikePlayerDeckEmpty(s, 0)
       ? "Your deck is empty. The dead overwhelm your fellowship."
-      : s.threat >= threatElimination(s)
-        ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
-        : "The last hero has fallen.";
+      : s.used.includes("game:ship-controller-eliminated")
+        ? "Your Ship objective was destroyed. Your fellowship is eliminated."
+        : effectiveThreat(s) >= threatElimination(s)
+          ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
+          : "The last hero has fallen.";
   }
   if (s.status === "lost") {
     const pending = s.pendingPlayerPlays ?? [];
@@ -1111,6 +1120,7 @@ export function damage(
     return false;
   value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
   value = Raid.raidDamageAmount(s, u, value);
+  value = Storm.stormcallerDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1150,6 +1160,7 @@ export function damage(
     return false;
   u.damage += value;
   Voyage.voyageDamageDealt(s, u, value, context);
+  Storm.stormcallerDamageDealt(s, u, value, context);
   if (u.damage >= stats(s, u).health) {
     Fate.fateCharacterDestroyed(s, u, context);
     Raid.raidCharacterDestroyed(s, u, context);
@@ -1349,7 +1360,11 @@ export function destroy(
   byCardEffect = !destruction,
 ) {
   syncAttachmentText(s);
-  if (DunlandQuest.dunlandCannotLeave(u) || Trials.trialsCannotLeave(s, u))
+  if (
+    DunlandQuest.dunlandCannotLeave(u) ||
+    Trials.trialsCannotLeave(s, u) ||
+    Storm.stormcallerAreaCannotLeave(s, u)
+  )
     return;
   if (
     destruction &&
@@ -1390,6 +1405,8 @@ export function destroy(
   const lastAttachments = [...u.attachments];
   const wasEngaged = allEngaged(s).some((enemy) => enemy.id === u.id);
   Voyage.voyageCharacterLeaves(s, u, destruction);
+  Storm.stormcallerAreaLeft(s, u);
+  Storm.stormcallerCharacterLeaves(s, u, destruction);
   selectSeat(s, stagingPlayer ?? ownerOf(s, u));
   if (hasEncounterKeyword(c)) destination = "removed";
   if (
@@ -1554,6 +1571,8 @@ export function destroy(
       byCardEffect,
       lastKnownType,
     );
+    if (destruction)
+      StormPlayers.stormcallerCharacterDestroyed(s, u, lastKnownTraits);
     if (destruction) rhosgobelCharacterDestroyed(s, u, activeSeat(s));
     if (destruction) dunlandFallResponses(s, u, lastAttachments, activeSeat(s));
     if (["ally", "objective-ally"].includes(lastKnownType))
@@ -1581,6 +1600,7 @@ export function discardLocation(s: GameState, u: Unit) {
   if (!wasActive && !s.staging.some((location) => location.id === u.id)) return;
   if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((location) => location.id !== u.id);
+  Storm.stormcallerAreaLeft(s, u);
   Gram.gramCardLeaves(s, u);
   Rhudaur.rhudaurLocationLeft(s, u, wasActive);
   stewardFearLocationLeft(s, u, false, wasActive);
@@ -1611,6 +1631,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   roadRivendellProgressPlaced(s, u, value);
   Celebrimbor.celebrimborProgressPlaced(s, u, value);
   if (u.progress < locationQuest(s, u)) return;
+  if (Storm.stormcallerAreaCannotLeave(s, u)) return;
+  Storm.stormcallerAreaLeft(s, u);
   log(s, `${name(u)} is explored.`, "good");
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   if (wasActive) removeActiveLocation(s, u.id);
@@ -1857,6 +1879,7 @@ export function advanceQuest(s: GameState) {
   )
     return;
   if (Raid.raidAdvance(s)) return;
+  if (Storm.stormcallerAdvance(s)) return;
   if (Voyage.voyageAdvance(s)) return;
   if (Fate.fateAdvance(s)) return;
   if (Druadan.advanceDruadanForest(s)) return;
@@ -2202,6 +2225,7 @@ export function collectResources(s: GameState) {
       "voyage-across-belegaer",
       "the-fate-of-numenor",
       "raid-on-the-grey-havens",
+      "flight-of-the-stormcaller",
     ].includes(s.scenarioId)
   )
     draws.push(fx("raidResourcesCollected"));
@@ -2217,6 +2241,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
     return;
   }
   const fromStaging = s.staging.some((e) => e.id === u.id);
+  if (Storm.stormcallerAreaCannotLeave(s, u)) return;
   if (celebrimborProtected(s, u) || Carn.carnCannotEngage(s, u)) return;
   if (!shadowFlameCanMove(s, u) || !amonPlayerCanEngage(s, u, activeSeat(s)))
     return;
@@ -2226,6 +2251,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
     });
   s.staging = s.staging.filter((x) => x.id !== u.id);
   s.engaged.push(u);
+  Storm.stormcallerAreaLeft(s, u);
   if (!s.used.includes("round:engaged-enemy"))
     s.used.push("round:engaged-enemy");
   if (s.table && !u.facedownCard) u.owner = activeSeat(s);
@@ -2234,6 +2260,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   log(s, `${name(u)} engages your fellowship.`, "danger");
   const realmBefore = s.queue.length;
   Voyage.voyageEngaged(s, u, fromStaging);
+  Storm.stormcallerEngaged(s, u, fromStaging);
   Fate.fateEngaged(s, u);
   Raid.raidEngaged(s, u);
   BloodQuest.bloodGondorEngaged(s, u);
@@ -2290,6 +2317,7 @@ export function revealed(
     !thalinDefeats &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
+    Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
   ) {
     const resume = fx("revealCard", {
@@ -2510,6 +2538,7 @@ export function resolveReveal(
     !Fords.fordsCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
+    Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !Etten.ettenIgnoreWhenRevealed(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
@@ -2684,7 +2713,8 @@ export function placeEncounter(
         : initialDamage;
     if (guarding && ["enemy", "ship-enemy", "location"].includes(c.type_code))
       fresh.guarding = guarding;
-    s.staging.push(fresh);
+    if (!Storm.stormcallerCardEntered(s, fresh, fromReveal, cancel))
+      s.staging.push(fresh);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -2744,6 +2774,7 @@ export function placeEncounter(
     return;
   }
   if (Raid.raidEncounter(s, code)) return;
+  if (Storm.stormcallerEncounter(s, code)) return;
   if (Voyage.voyageEncounter(s, code)) return;
   if (Fate.fateEncounter(s, code)) return;
   if (shadowFlameEncounter(s, code)) return;
@@ -2803,7 +2834,7 @@ export function placeEncounter(
       break;
     case "01116":
       eachSeat(s, () => {
-        if (s.threat >= 35)
+        if (effectiveThreat(s) >= 35)
           for (const x of [...characters(s)]) damage(s, x.id, 1);
       });
       break;
@@ -2821,7 +2852,7 @@ export function placeEncounter(
       prepend(
         s,
         ...playerOrder(s)
-          .filter((i) => seatView(s, i).threat >= 35)
+          .filter((i) => effectiveThreat(s, i) >= 35)
           .map((player) => fx("discardHand", { player })),
       );
       break;
@@ -2852,8 +2883,8 @@ export function placeEncounter(
         opts(
           allHeroes(s).filter(
             (h) =>
-              seatView(s, ownerOf(s, h)).threat ===
-              Math.max(...livingSeats(s).map((i) => seatView(s, i).threat)),
+              effectiveThreat(s, ownerOf(s, h)) ===
+              Math.max(...livingSeats(s).map((i) => effectiveThreat(s, i))),
           ),
           (u) => [fx("web", { target: u.id })],
         ),
@@ -3265,6 +3296,7 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;
   if (Voyage.voyageShadow(s, code) || Fate.fateShadow(s, code)) return;
   if (Druadan.druadanForestShadow(s, code)) return;
@@ -3361,7 +3393,7 @@ export function shadow(s: GameState, code: string) {
       break;
     }
     case "01115":
-      c.attackBonus += s.threat >= 35 ? 2 : 1;
+      c.attackBonus += effectiveThreat(s) >= 35 ? 2 : 1;
       break;
     case "01117": {
       const exhausted = s.allies.filter((a) => a.exhausted);

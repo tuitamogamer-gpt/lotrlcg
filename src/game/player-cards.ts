@@ -7,6 +7,7 @@ import { rangerEvent } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Angmar from "./angmar-player";
 import * as GreyPlayers from "./grey-havens-player";
+import * as StormPlayers from "./stormcaller-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { movableHand } from "./hand-rules";
@@ -142,6 +143,7 @@ export function eventEffect(
   if (Realm.realmEvent(s, code, target)) return;
   if (Angmar.angmarEvent(s, code, target)) return;
   if (GreyPlayers.greyHavensEvent(s, code, target)) return;
+  if (StormPlayers.stormcallerEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;

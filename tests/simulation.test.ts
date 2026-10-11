@@ -1,7 +1,7 @@
 import { FANGORN } from "../src/game/fangorn-support.ts";
 import { applyAction } from "./pass-resource-window.ts";
 import {
-  GREY_HAVENS_SCENARIOS,
+  DREAM_CHASER_SCENARIOS,
   greyHavensSimulationAction,
   greyHavensSimulationChoice,
 } from "./grey-havens-simulation-driver";
@@ -374,8 +374,8 @@ function run(
         `selected:${s.choice.options.find((o) => o.id === action.id)?.code}`,
       );
     try {
-      s = GREY_HAVENS_SCENARIOS.includes(
-        scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+      s = DREAM_CHASER_SCENARIOS.includes(
+        scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
       )
         ? engineApplyAction(s, action)
         : applyAction(s, action);
@@ -392,8 +392,8 @@ function run(
     );
     if (
       angmarScenarios.includes(scenarioId) ||
-      GREY_HAVENS_SCENARIOS.includes(
-        scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+      DREAM_CHASER_SCENARIOS.includes(
+        scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
       )
     ) {
       const restored = restoreSave(JSON.parse(JSON.stringify(s)));

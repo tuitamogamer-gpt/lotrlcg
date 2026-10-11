@@ -2,6 +2,8 @@ import { setupDeadmensDike } from "./deadmens-dike";
 import { setupVoyageBelegaer } from "./voyage-belegaer";
 import { setupFateNumenor } from "./fate-numenor";
 import { setupRaidGreyHavens } from "./raid-grey-havens";
+import { setupStormcaller } from "./stormcaller";
+import { stormcallerSetup as stormcallerPlayerSetup } from "./stormcaller-player";
 import { greyHavensSetup } from "./grey-havens-player";
 import * as Wastes from "./wastes-eriador";
 import * as Gram from "./mount-gram";
@@ -348,6 +350,7 @@ export function createGame(
     draw(s, 6);
   });
   greyHavensSetup(s);
+  stormcallerPlayerSetup(s);
   if (scenarioId === "mirkwood") {
     for (const code of ["01096", "01099"]) {
       s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
@@ -422,6 +425,8 @@ export function createGame(
     setupFateNumenor(s);
   } else if (scenarioId === "raid-on-the-grey-havens") {
     setupRaidGreyHavens(s);
+  } else if (scenarioId === "flight-of-the-stormcaller") {
+    setupStormcaller(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

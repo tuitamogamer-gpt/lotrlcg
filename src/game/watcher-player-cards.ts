@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
@@ -111,7 +112,7 @@ export function watcherPlayerAbilityProblem(
     return "Aragorn's action requires the refresh phase.";
   if (s.used.includes("game:aragorn-refresh"))
     return "This player has used Aragorn's once-per-game limit.";
-  if (s.threat <= startingThreat(s))
+  if (effectiveThreat(s) <= startingThreat(s))
     return "Current threat must be above the starting level to reduce it.";
   return undefined;
 }
@@ -139,7 +140,9 @@ export function watcherPlayerLeavesPlay(
   lastKnownAttack: number,
 ) {
   if (
-    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(
+      card(u.code).type_code,
+    ) ||
     lastKnownAttack <= 0 ||
     !allCharacters(s).length
   )

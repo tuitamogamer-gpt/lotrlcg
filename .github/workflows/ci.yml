@@ -64,6 +64,18 @@ jobs:
           --test-name-pattern="^Grey Havens ${{ matrix.scenario }} "
           tests/grey-havens-simulation.test.ts
 
+  stormcaller-simulation:
+    name: Stormcaller review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:stormcaller-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -86,6 +98,7 @@ jobs:
             voyage-across-belegaer,
             the-fate-of-numenor,
             raid-on-the-grey-havens,
+            flight-of-the-stormcaller,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -117,6 +130,8 @@ jobs:
             suite: test:browser-angmar
           - group: grey-havens
             suite: test:browser-grey-havens
+          - group: stormcaller
+            suite: test:browser-stormcaller
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

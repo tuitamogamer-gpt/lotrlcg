@@ -19,6 +19,7 @@ import { gramProgress } from "./mount-gram";
 import { wastesProgress } from "./wastes-eriador";
 import { angmarSideDefeated } from "./angmar-player";
 import { voyageProgress } from "./voyage-belegaer";
+import { stormcallerProgress } from "./stormcaller";
 import { fateQuestProgressBlocked } from "./fate-numenor";
 import { raidQuestProgress } from "./raid-grey-havens";
 import type { Effect, GameState, Unit } from "./types";
@@ -106,6 +107,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = wastesProgress(s, placed, physical);
   placed = chetwoodProgress(s, placed, physical);
   placed = voyageProgress(s, placed, physical);
+  placed = stormcallerProgress(s, placed, physical);
   if (placed <= 0) return;
   if (isMain && raidQuestProgress(s, placed)) return;
   if (isMain && gramProgress(s, placed)) return;

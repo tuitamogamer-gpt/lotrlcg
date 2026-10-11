@@ -26,6 +26,8 @@
 .redbook[data-playmat="anduin"],
 .redbook[data-playmat="voyage-across-belegaer"],
 .mat-voyage-across-belegaer,
+.redbook[data-playmat="flight-of-the-stormcaller"],
+.mat-flight-of-the-stormcaller,
 .redbook[data-playmat="the-fate-of-numenor"],
 .mat-the-fate-of-numenor,
 .redbook[data-playmat="raid-on-the-grey-havens"],
@@ -652,6 +654,38 @@
   accent-color: #a54038;
   width: 100px;
   height: 9px;
+}
+.stormcaller-quest-summary {
+  display: grid;
+  grid-template-columns: minmax(115px, 160px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin: 12px 0 18px;
+}
+.stormcaller-pursuit-values {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--text-small);
+  line-height: 1.45;
+}
+.stormcaller-pursuit-values progress {
+  width: min(100%, 200px);
+  accent-color: #cfa366;
+}
+@media (min-width: 1100px) {
+  .redbook .gameboard > .encounter-field.has-stormcaller {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .redbook .gameboard > .encounter-field.has-stormcaller.has-engaged {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .stormcaller-quest-summary {
+    grid-template-columns: minmax(110px, 130px) minmax(0, 1fr);
+    gap: 12px;
+  }
 }
 .scenario-captives {
   display: flex;

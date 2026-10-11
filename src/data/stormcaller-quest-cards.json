@@ -1,0 +1,282 @@
+[
+  {
+    "code": "octgn:0700c66d-3fe6-4619-9512-edb0241e6203",
+    "octgnid": "0700c66d-3fe6-4619-9512-edb0241e6203",
+    "name": "The Weather Turns Foul",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 14,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "A",
+    "back_name": "The Weather Turns Foul",
+    "back_text": "Sailing.\nForced: At the end of the staging step, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), reveal an additional encounter card from the top of the encounter deck.   When you defeat this stage, if the Stormcaller is still at stage 3, you have caught up to the Stormcaller and win the game. Otherwise, advance to the next stage. ",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/0700c66d-3fe6-4619-9512-edb0241e6203.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/0700c66d-3fe6-4619-9512-edb0241e6203.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "0700c66d-3fe6-4619-9512-edb0241e6203",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0700c66d-3fe6-4619-9512-edb0241e6203.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:076e69c7-156b-46ef-8d11-d6a659da68b2",
+    "octgnid": "076e69c7-156b-46ef-8d11-d6a659da68b2",
+    "name": "The Cape of Andrast",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 18,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "C",
+    "back_name": "The Cape of Andrast",
+    "back_text": "Forced: At the end of the round, discard the top card of the encounter deck. the Stormcaller places progress on this stage equal to its [threat] plus the [threat] of the discarded card.   If the Stormcaller defeats this stage, Captain Sahir has gotten away with the key, and the players lose the game.",
+    "back_type_code": "quest",
+    "back_quest": 24,
+    "back_imagesrc": "/cards/076e69c7-156b-46ef-8d11-d6a659da68b2.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/076e69c7-156b-46ef-8d11-d6a659da68b2.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 18,
+        "quantity": 1,
+        "octgnid": "076e69c7-156b-46ef-8d11-d6a659da68b2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/076e69c7-156b-46ef-8d11-d6a659da68b2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
+    "octgnid": "315ddd38-e50f-4db0-8e5c-8030998e4f7f",
+    "name": "Full Sail Ahead!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Swift Raider and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 13,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "A",
+    "back_name": "Full Sail Ahead!",
+    "back_text": "Sailing.\nNo more than 8 progress can be placed here each round. If you are off-course ( 1/4 ,  1/2 , or  3/4 ), no more than 4 progress can be placed here each round instead.   When you defeat this stage, if the Stormcaller is at stage 2, you have caught up to the Stormcaller and win the game. Otherwise, advance to the next stage. ",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/315ddd38-e50f-4db0-8e5c-8030998e4f7f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/315ddd38-e50f-4db0-8e5c-8030998e4f7f.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "315ddd38-e50f-4db0-8e5c-8030998e4f7f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315ddd38-e50f-4db0-8e5c-8030998e4f7f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
+    "octgnid": "39df5c92-f79e-4d39-b8a3-f93631e183db",
+    "name": "Full Sail Ahead!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 16,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "C",
+    "back_name": "Full Sail Ahead!",
+    "back_text": "If the players are off-course ( 1/4 ,  1/2 , or  3/4 ), the Stormcaller gets +2 [threat]. No more than 4 damage may be placed on the Stormcaller each round.  Forced: At the end of the round, discard the top card of the encounter deck. the Stormcaller places progress on this stage equal to its [threat] plus the [threat] of the discarded card.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/39df5c92-f79e-4d39-b8a3-f93631e183db.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/39df5c92-f79e-4d39-b8a3-f93631e183db.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "39df5c92-f79e-4d39-b8a3-f93631e183db",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/39df5c92-f79e-4d39-b8a3-f93631e183db.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
+    "octgnid": "4489214b-775c-4e63-b8ec-c504526e478f",
+    "name": "Swift Departure",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Prepare the Corsair deck. Players prepare their fleet. Prepare the Stormcaller's area with a second quest deck consisting of only stages 2C, 3C, and 4C, as well as the Stormcaller (see insert). Search the encounter deck for 1 copy of Rolling Seas, and add it to the staging area (2 copies instead if there are 3 or more players in the game). Shuffle the encounter deck. ",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 12,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "A",
+    "back_name": "Swift Departure",
+    "back_text": "Sailing.\nForced: At the end of the quest phase, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), move 2 progress from Swift Departure to the Stormcaller's quest stage. ",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/4489214b-775c-4e63-b8ec-c504526e478f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/4489214b-775c-4e63-b8ec-c504526e478f.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "4489214b-775c-4e63-b8ec-c504526e478f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4489214b-775c-4e63-b8ec-c504526e478f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
+    "octgnid": "4576db5c-fdc2-45f2-ac8b-d1edb8150678",
+    "name": "The Cape of Andrast",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until a Weather treachery is discarded. Resolve that card's \"when revealed\" effect. That effect cannot be canceled. ",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 15,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "A",
+    "back_name": "The Cape of Andrast",
+    "back_text": "Sailing.\nForced: After a Weather treachery is revealed, deal 1 damage to each Ship objective and Ship enemy at this stage.   If you defeat this stage, you have caught up to the Stormcaller and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 24,
+    "back_imagesrc": "/cards/4576db5c-fdc2-45f2-ac8b-d1edb8150678.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/4576db5c-fdc2-45f2-ac8b-d1edb8150678.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "4576db5c-fdc2-45f2-ac8b-d1edb8150678",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4576db5c-fdc2-45f2-ac8b-d1edb8150678.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
+    "octgnid": "c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
+    "name": "The Weather Turns Foul",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Sahír's Escort and add it to the Stormcaller's area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FotS",
+    "pack_name": "Flight of the Stormcaller",
+    "position": 17,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Flight of the Stormcaller",
+    "side": "C",
+    "back_name": "The Weather Turns Foul",
+    "back_text": "If the players are off-course (Cloudy, Rainy, or Stormy), the Stormcaller gets +2 [threat]. No more than 8 damage may be placed on the Stormcaller each round.  Forced: At the end of the round, discard the top card of the encounter deck. the Stormcaller places progress on this stage equal to its [threat] plus the [threat] of the discarded card. ",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0.jpg",
+    "packs": [
+      {
+        "pack_code": "FotS",
+        "pack_name": "Flight of the Stormcaller",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

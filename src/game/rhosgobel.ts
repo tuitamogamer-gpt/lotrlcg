@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { mainQuestCode } from "./quest-state";
 import { WEATHER } from "./weather-hills-support";
 import { syncAttachmentText } from "./attachment-text";
@@ -105,7 +106,7 @@ export function rhosgobelCheck(s: GameState) {
     seat = seatView(s, player);
   if (
     s.table?.seats[player].eliminated ||
-    seat.threat >= 50 ||
+    effectiveThreat(s, player) >= 50 ||
     !seat.heroes.length
   )
     lose(

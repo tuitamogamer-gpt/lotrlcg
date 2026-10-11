@@ -271,7 +271,7 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
     {
       name: "Leadership rush",
       heroes: { "01001": 1, "02001": 1, "142002": 1 },
-      slots: { "01013": 3, "01014": 2, "02010": 3, "01001": 1, "12002": 1 },
+      slots: { "01013": 3, "01014": 2, "02010": 3, "01001": 1, "12032": 1 },
     },
     "https://ringsdb.com/decklist/view/1",
     1000,
@@ -280,6 +280,6 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
   assert.deepEqual(report.deck.heroes, ["01001", "02001"]);
   assert.deepEqual(report.deck.cards, { "01013": 3, "01014": 2, "02010": 3 });
   assert.equal(report.unsupported.length, 1);
-  assert.equal(report.unsupported[0].code, "12002");
+  assert.equal(report.unsupported[0].code, "12032");
   assert.deepEqual(report.heroesDropped, ["142002"]);
 });

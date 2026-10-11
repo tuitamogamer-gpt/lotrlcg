@@ -264,6 +264,76 @@ test("Sailing looked results and queued quest continuation survive restoration",
   assert.deepEqual(restored.encounterDiscard, [V.calm]);
 });
 
+test("Sailing restores looked Heading and Ship objectives discarded by a player's elimination", () => {
+  let s = fleet(true);
+  const dream = allCharacters(s).find((u) => u.code === V.dream)!;
+  const eliminated = ownerOf(s, dream);
+  selectSeat(s, eliminated);
+  s.phase = "planning";
+  s.threat = 50;
+  s.encounterDeck = [];
+  s.encounterDiscard = [V.calm];
+  syncSeat(s);
+  s = applyAction(s, { type: "NEXT" });
+  assert.equal(seatView(s, eliminated).eliminated, true);
+  assert.equal(
+    s.status,
+    "playing",
+    "elimination discards ships without destroying them",
+  );
+  assert.ok(s.encounterDiscard.includes(V.heading));
+  assert.ok(s.encounterDiscard.includes(V.dream));
+  assert.ok(!allCharacters(s).some((u) => u.id === dream.id));
+  s.phase = "quest";
+  s.queue = [];
+  s.choice = null;
+  beginSailingTest(s);
+  for (const hero of [...s.heroes]) commit(s, hero.id);
+  done(s);
+  s = applyAction(s, { type: "RESOLVE_SAILING" });
+  assert.equal(s.sailing!.test!.phase, "results");
+  assert.deepEqual(
+    new Set(s.sailing!.test!.looked),
+    new Set([V.heading, V.dream, V.calm]),
+  );
+  assert.equal(
+    s.sailing!.test!.successes,
+    2,
+    "discarded objectives contribute no Sailing symbols",
+  );
+  assert.ok(validateSave(s));
+  const restored = restoreSave(JSON.parse(JSON.stringify(s)))!;
+  assert.ok(restored);
+  assert.deepEqual(restored.sailing!.test, s.sailing!.test);
+  s = applyAction(restored, { type: "CHOOSE", id: "sailing-heading-1" });
+  assert.equal(s.sailing!.test, undefined);
+  assert.deepEqual(
+    new Set([...s.encounterDeck, ...s.encounterDiscard]),
+    new Set([V.heading, V.dream, V.calm]),
+  );
+  assert.ok(validateSave(s));
+});
+
+test("Sailing looked validation still rejects player cards and quest cards", () => {
+  const s = fleet();
+  beginSailingTest(s);
+  commit(s, s.heroes[0].id);
+  done(s);
+  s.encounterDeck = [V.calm];
+  s.encounterDiscard = [];
+  sailingContinue(s);
+  for (const code of ["01001", "01016", V.departure, "rc135"]) {
+    const invalid = structuredClone(s);
+    invalid.sailing!.test!.looked = [code];
+    invalid.sailing!.test!.successes = 0;
+    assert.equal(
+      validateSave(invalid),
+      false,
+      `${card(code).name} is not an encounter card looked at by Sailing`,
+    );
+  }
+});
+
 test("Ship combat allows ordinary attackers against ships but keeps defenses and ship attacks separate", () => {
   const s = fleet();
   s.phase = "defense";

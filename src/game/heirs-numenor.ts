@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { selectedSideQuest } from "./side-quest-support";
@@ -321,7 +322,7 @@ export function heirsQuestStat(
   if (
     isIthilien(s) &&
     s.stage === 4 &&
-    playerOrder(s).some((p) => seatView(s, p).threat >= 37)
+    playerOrder(s).some((p) => effectiveThreat(s, p) >= 37)
   )
     return "defense";
   if (isSiege(s) && s.stage === 5 && s.victory >= 4) return "attack";

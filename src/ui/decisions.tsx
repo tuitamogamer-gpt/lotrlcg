@@ -1,4 +1,5 @@
 import { druadanForestAttackStat } from "../game/druadan-forest";
+import { stormcallerAttackBonus } from "../game/stormcaller-player";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
 import { amonPlayerCannotDeclareAttack } from "../game/amon-din-player-cards";
 import { useEffect, useId, useRef, useState } from "react";
@@ -173,17 +174,24 @@ export function DecisionStats({
   s,
   u,
   attackStat = "attack",
+  attackContribution = false,
 }: {
   s: GameState;
   u: Unit;
   attackStat?: "attack" | "will";
+  attackContribution?: boolean;
 }) {
   const st = stats(s, u);
   return (
     <span className="decision-stats">
       <StatBadge
         kind={attackStat === "will" ? "willpower" : "attack"}
-        value={st[attackStat]}
+        value={
+          st[attackStat] +
+          (attackContribution && attackStat === "attack"
+            ? stormcallerAttackBonus(s, u)
+            : 0)
+        }
         caption
       />
       <StatBadge kind="defense" value={st.defense} caption />
@@ -291,7 +299,12 @@ export function CombatDialog({
   const picked = candidates.filter((u) => selected.includes(u.id));
   const attackStat = druadanForestAttackStat(s);
   const total = picked.reduce(
-    (sum, u) => sum + stats(s, u)[defending ? "defense" : attackStat],
+    (sum, u) =>
+      sum +
+      stats(s, u)[defending ? "defense" : attackStat] +
+      (!defending && attackStat === "attack"
+        ? stormcallerAttackBonus(s, u)
+        : 0),
     0,
   );
   const ownAttacker = picked.some((u) => ownerOf(s, u) === activeSeat(s));
@@ -412,6 +425,7 @@ export function CombatDialog({
                   s={s}
                   u={u}
                   attackStat={!defending ? attackStat : "attack"}
+                  attackContribution={!defending}
                 />
               </DecisionCard>
             ))}

@@ -1,4 +1,5 @@
 import { finishResourcePhase } from "./browser-review-helpers.mjs";
+import { opening } from "./browser-angmar-helpers.mjs";
 import { chromium, webkit } from "playwright";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
@@ -124,7 +125,7 @@ try {
   let state = await reviewedState(p);
   assert.equal(state.scenario, "hunt-for-gollum");
   assert.equal(state.heroes.length, 1);
-  await p.getByRole("button", { name: "Keep hand", exact: true }).click();
+  await opening(p);
   await finishResourcePhase(p);
   state = await reviewedState(p);
   assert.equal(state.phase, "planning");

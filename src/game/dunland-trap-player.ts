@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import {
@@ -88,7 +89,7 @@ export function dunlandEvent(s: GameState, code: string, target?: string) {
     if (hero) readyCharacter(s, hero);
     if (
       hero &&
-      s.threat <= 20 &&
+      effectiveThreat(s) <= 20 &&
       s.used.filter((key) => key === SWIFT).length === 1
     )
       returnPlayedEventToHand(s, code);

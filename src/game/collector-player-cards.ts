@@ -117,8 +117,14 @@ const spherePayers = (s: GameState, sphere: string, player = activeSeat(s)) =>
       heirsCanSpendResources(s, h) &&
       hasResourceIcon(h, sphere),
   );
-const groupPayers = (s: GameState, sphere: string) =>
-  playerOrder(s).flatMap((player) => spherePayers(s, sphere, player));
+const azainPayers = (s: GameState, player?: number) =>
+  allHeroes(s).filter(
+    (h) =>
+      (player === undefined || ownerOf(s, h) === player) &&
+      h.resources > 0 &&
+      hasResourceIcon(h, "tactics") &&
+      heirsCanSpendResources(seatView(s, ownerOf(s, h)), h),
+  );
 const used = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
 const optional = (
@@ -293,7 +299,7 @@ export function collectorAttackKilled(
       fx("collectorLegolasResponse", { source: u.id, player: ownerOf(s, u) }),
     );
   const azain =
-    groupPayers(s, "tactics").length &&
+    azainPayers(s).length &&
     enemies(s).some((u) =>
       effectiveTraits(u).some((t) => lastKnownTraits.includes(t)),
     )
@@ -1030,24 +1036,41 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
     case "collectorAzainResponse":
       if (
         get(s, e.source)?.code === codes.azain &&
-        groupPayers(s, "tactics").length &&
+        azainPayers(s).length &&
         enemies(s).some((u) =>
           effectiveTraits(u).some((t) => e.ids?.includes(t)),
         )
       )
-        optional(
-          s,
-          "Azain Silverbeard · Attack destroyed an enemy",
-          fx("collectorAzainPayChoose", { source: e.source, ids: e.ids }),
-          codes.azain,
-          e.source ?? codes.azain,
-        );
+        choose(s, "Azain Silverbeard · Attack destroyed an enemy", [
+          ...playerOrder(s).map((player) => ({
+            id: player === activeSeat(s) ? "use" : `player-${player}`,
+            code: codes.azain,
+            label:
+              player === activeSeat(s)
+                ? "Use this response"
+                : `Trigger this response as ${seatName(s, player)}`,
+            ability: {
+              player,
+              source: e.source ?? codes.azain,
+              code: codes.azain,
+              type: "response" as const,
+            },
+            effects: [
+              fx("collectorAzainPayChoose", {
+                source: e.source,
+                ids: e.ids,
+                player,
+              }),
+            ],
+          })),
+          skip,
+        ]);
       return true;
     case "collectorAzainPayChoose":
       choose(
         s,
         "Azain Silverbeard · Spend a Tactics resource",
-        groupPayers(s, "tactics").map((h) => ({
+        azainPayers(s).map((h) => ({
           id: h.id,
           label: `${card(h.code).name} · ${seatName(s, ownerOf(s, h))}`,
           code: h.code,
@@ -1063,7 +1086,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     case "collectorAzainPay": {
-      const h = spherePayers(s, "tactics").find((h) => h.id === e.target);
+      const h = azainPayers(s, activeSeat(s)).find((h) => h.id === e.target);
       requireRule(h, "Pay one Tactics resource.");
       spendResources(s, h, 1);
       choose(

@@ -3,8 +3,8 @@
 This import implements all fifteen original player designs and all three
 original standard/easy adventures for classic solo and 1–4 players in local
 hot-seat. Revised Dream-chaser campaign additions and Nightmare variants retain
-their separate support gates. Flight of the Stormcaller is the next
-chronological Adventure Pack.
+their separate support gates. [Flight of the Stormcaller](STORMCALLER.md) is implemented separately as the
+first chronological Adventure Pack.
 
 ## Sources and rules
 

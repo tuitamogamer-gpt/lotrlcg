@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { canGainResources } from "./core";
@@ -128,7 +129,7 @@ export function gondorEventEffect(
     }
     case "22029":
       eachSeat(s, () => {
-        if (s.threat >= 40)
+        if (effectiveThreat(s) >= 40)
           for (const u of [...s.heroes, ...s.allies]) readyCharacter(s, u);
       });
       return true;
@@ -147,14 +148,15 @@ export function gondorEventEffect(
   }
 }
 export function gondorPlayProblem(s: GameState, code: string): string | null {
-  if (code === "22003" && s.threat === 40)
+  if (code === "22003" && effectiveThreat(s) === 40)
     return "Pillars of the Kings would not change your threat.";
   if (
     code === "22029" &&
     !playerOrder(s).some((i) => {
       const p = seatView(s, i);
       return (
-        p.threat >= 40 && [...p.heroes, ...p.allies].some((u) => u.exhausted)
+        effectiveThreat(s, i) >= 40 &&
+        [...p.heroes, ...p.allies].some((u) => u.exhausted)
       );
     })
   )
@@ -323,7 +325,7 @@ export function handleGondorPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "gondorSoldierSearch":
-      soldierSearch(s, Math.min(5, s.deck.length), s.threat >= 40);
+      soldierSearch(s, Math.min(5, s.deck.length), effectiveThreat(s) >= 40);
       return true;
     case "gondorSoldierTake": {
       const index = e.value ?? -1,

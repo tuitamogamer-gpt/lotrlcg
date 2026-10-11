@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -459,13 +460,13 @@ export function carnShadow(s: GameState, code: string) {
   } else if (code === C.garrison) c.attackBonus += u?.shadows.length ?? 0;
   else if (code === C.battlefield)
     c.attackBonus +=
-      u && seatView(s, player).threat > engagementCost(s, u) ? 3 : 1;
+      u && effectiveThreat(s, player) > engagementCost(s, u) ? 3 : 1;
   else if (code === C.mountains)
     prepend(s, fx("carnThreat", { value: 2, player }));
   else if (code === C.blight) {
     if (u?.code === C.thaurdir) u.damage = Math.max(0, u.damage - 3);
   } else if (code === C.walls) {
-    if (seatView(s, player).threat >= 40)
+    if (effectiveThreat(s, player) >= 40)
       c.carnExtraAttacks = (c.carnExtraAttacks ?? 0) + 1;
   } else if (code === C.will) c.carnFlipAfter = (c.carnFlipAfter ?? 0) + 1;
   else if (code === C.sky) prepend(s, fx("carnRandomHand", { player }));

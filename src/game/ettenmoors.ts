@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -35,7 +36,6 @@ import {
   playerOrder,
   removeActiveLocation,
   seatName,
-  seatView,
 } from "./table";
 import { allQuestUnits, mainQuestCode } from "./quest-state";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -448,8 +448,8 @@ function takeEncounter(s: GameState, e: Effect) {
 }
 function highestThreat(s: GameState) {
   const players = playerOrder(s),
-    high = Math.max(...players.map((p) => seatView(s, p).threat));
-  return players.filter((p) => seatView(s, p).threat === high);
+    high = Math.max(...players.map((p) => effectiveThreat(s, p)));
+  return players.filter((p) => effectiveThreat(s, p) === high);
 }
 export function ettenEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("etten")) return false;
@@ -725,7 +725,7 @@ export function ettenEffect(s: GameState, e: Effect) {
     }
     case "ettenArador": {
       const options: Option[] = enemies(s)
-        .filter((enemy) => engagementCost(s, enemy) > s.threat)
+        .filter((enemy) => engagementCost(s, enemy) > effectiveThreat(s))
         .map((enemy) => ({
           id: enemy.id,
           code: enemy.code,

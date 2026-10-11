@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { mainQuestCode } from "./quest-state";
 import { realmWillProtected } from "./lost-realm-player";
 // Original The Redhorn Gate and its shared Misty Mountains encounter set.
@@ -134,7 +135,7 @@ export function redhornCheck(s: GameState) {
     p = seatView(s, controller);
   if (
     s.table?.seats[controller].eliminated ||
-    p.threat >= 50 ||
+    effectiveThreat(s, controller) >= 50 ||
     !p.heroes.length
   ) {
     lose(s, "Arwen Undómiel's controlling fellowship has been eliminated.");
