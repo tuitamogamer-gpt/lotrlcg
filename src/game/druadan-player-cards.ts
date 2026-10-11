@@ -1,3 +1,5 @@
+import { isAlly as playerUnitIsAlly } from "./card-types";
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { cannotReady } from "./core";
@@ -30,10 +32,7 @@ const printedHeroes = (s: GameState, sphere: string) =>
   s.heroes.every((h) => card(h.code).sphere_code === sphere);
 const readyableAllies = (s: GameState) =>
   allCharacters(s).filter(
-    (u) =>
-      ["ally", "objective-ally"].includes(card(u.code).type_code) &&
-      u.exhausted &&
-      !cannotReady(u, s),
+    (u) => playerUnitIsAlly(u) && u.exhausted && !cannotReady(u, s),
   );
 const phaseGroup: Record<Phase, string> = {
   setup: "setup",
@@ -50,7 +49,7 @@ const phaseGroup: Record<Phase, string> = {
 const immune = (u: Unit) => playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy" && !immune(u),
+    (u) => playerUnitIsEnemy(u) && !immune(u),
   );
 const keyword = (text: string, name: string) =>
   new RegExp(`(?:^|[.\\n]\\s*)${name}(?:[.\\s]|$)`, "i").test(plain(text));
@@ -176,9 +175,13 @@ export function druadanPlayerEventEffect(s: GameState, code: string): boolean {
 }
 export function druadanPlayerLeavesPlay(s: GameState, u: Unit) {
   if (
-    !["hero", "ally", "objective-ally", "objective-hero"].includes(
-      card(u.code).type_code,
-    )
+    ![
+      "hero",
+      "ally",
+      "objective-ally",
+      "objective-hero",
+      "ship-objective",
+    ].includes(card(u.code).type_code)
   )
     return;
   prepend(

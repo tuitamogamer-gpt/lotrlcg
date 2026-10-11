@@ -139,7 +139,7 @@ export function watcherPlayerLeavesPlay(
   lastKnownAttack: number,
 ) {
   if (
-    !["hero", "ally", "objective-ally"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
     lastKnownAttack <= 0 ||
     !allCharacters(s).length
   )

@@ -1,5 +1,7 @@
 /** Serializable information that follows one damage assignment through replacements. */
 export interface DamageContext {
+  /** Curse of the Downfallen follows its damage through replacements to the actual recipient. */
+  fateBottomOnDestroy?: boolean;
   /** Ability costs cannot be canceled or redirected by optional replacements. */
   cost?: boolean;
   enemyId?: string;
@@ -38,6 +40,7 @@ export function readDamageContext(effect: {
     if ("enemyId" in raw && typeof raw.enemyId === "string")
       context.enemyId = raw.enemyId;
     for (const key of [
+      "fateBottomOnDestroy",
       "combatDamage",
       "bypassFrodo",
       "bypassDori",

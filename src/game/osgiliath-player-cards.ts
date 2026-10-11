@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
@@ -77,10 +78,10 @@ const hasTrap = (u: Unit) =>
   );
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy" && !immune(u),
+    (u) => playerUnitIsEnemy(u) && !immune(u),
   );
 const stagingEnemies = (s: GameState) =>
-  s.staging.filter((u) => card(u.code).type_code === "enemy" && !immune(u));
+  s.staging.filter((u) => playerUnitIsEnemy(u) && !immune(u));
 const outlandsDiscard = (s: GameState) =>
   s.discard
     .map((code, index) => ({ code, index }))
@@ -119,8 +120,7 @@ export function osgiliathPlayerStats(s: GameState, u: Unit) {
         : 0,
     attack:
       u.code === "06081" && !u.blanked
-        ? s.staging.filter((enemy) => card(enemy.code).type_code === "enemy")
-            .length
+        ? s.staging.filter((enemy) => playerUnitIsEnemy(enemy)).length
         : 0,
     defense: 0,
   };
@@ -506,7 +506,12 @@ export function handleOsgiliathPlayerEffect(s: GameState, e: Effect): boolean {
         s.peek = null;
         // Each looked-at card creates its own draw/threat instruction.
         for (const code of looked) {
-          if (card(code).type_code === e.text) draw(s, 1);
+          if (
+            card(code).type_code === e.text ||
+            (e.text === "enemy" && playerUnitIsEnemy({ code })) ||
+            (e.text === "ally" && card(code).type_code === "ship-objective")
+          )
+            draw(s, 1);
           else raiseThreat(s, 2, "player-card");
         }
       }

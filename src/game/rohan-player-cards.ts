@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { globalPlayerOrder } from "./table";
@@ -119,7 +121,7 @@ function withHirgonDiscount<T>(s: GameState, code: string, fn: () => T): T {
 const hirgonAllies = (s: GameState) =>
   s.hand.filter(
     (u) =>
-      card(u.code).type_code === "ally" &&
+      playerUnitIsAlly(u) &&
       card(u.code).sphere_code === "tactics" &&
       !canPlayAtNoCost(s, u) &&
       withHirgonDiscount(s, u.code, () => canPay(s, card(u.code))),
@@ -127,7 +129,7 @@ const hirgonAllies = (s: GameState) =>
 const lothirielAllies = (s: GameState, h: Unit) =>
   s.hand.filter(
     (u) =>
-      card(u.code).type_code === "ally" &&
+      playerUnitIsAlly(u) &&
       uniqueAllowed(s, u.code) &&
       (card(u.code).traits ?? "")
         .split(".")
@@ -136,7 +138,7 @@ const lothirielAllies = (s: GameState, h: Unit) =>
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
     (u) =>
-      card(u.code).type_code === "enemy" &&
+      playerUnitIsEnemy(u) &&
       !card(u.code).is_unique &&
       affected(u),
   );
@@ -146,7 +148,7 @@ const attackSpillTargets = (s: GameState, player: number) =>
   );
 const outsiderEnemies = (s: GameState) =>
   [
-    ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+    ...s.staging.filter((u) => playerUnitIsEnemy(u)),
     ...allEngaged(s).filter((u) => ownerOf(s, u) !== activeSeat(s)),
   ].filter(
     (u) =>
@@ -607,7 +609,7 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
       if (!spendEvent(s, rohanCode.wait)) break;
       const top = s.encounterDeck.slice(0, 5),
         options = top.flatMap((code, index) =>
-          card(code).type_code === "enemy"
+          playerUnitIsEnemy({ code: code })
             ? [
                 {
                   id: `enemy-${index}`,

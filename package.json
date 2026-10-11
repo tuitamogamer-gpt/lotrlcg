@@ -51,7 +51,11 @@
     "test:angmar-quests": "node --import tsx scripts/browser-angmar-quests.mjs",
     "test:angmar-players": "node --import tsx scripts/browser-angmar-players.mjs",
     "test:browser-angmar": "npm run test:angmar-quests && npm run test:angmar-players",
-    "test:angmar-simulation": "node --import tsx --test --test-name-pattern=\"^hot-seat (wastes-of-eriador|escape-from-mount-gram|across-the-ettenmoors|the-treachery-of-rhudaur|the-battle-of-carn-dum|the-dread-realm) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:angmar-simulation": "node --import tsx --test --test-name-pattern=\"^hot-seat (wastes-of-eriador|escape-from-mount-gram|across-the-ettenmoors|the-treachery-of-rhudaur|the-battle-of-carn-dum|the-dread-realm) normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:grey-havens-quests": "node --import tsx scripts/browser-voyage-belegaer.mjs && node --import tsx scripts/browser-fate-numenor.mjs && node --import tsx scripts/browser-raid-grey-havens.mjs",
+    "test:grey-havens-players": "node --import tsx scripts/browser-grey-havens-players.mjs",
+    "test:browser-grey-havens": "npm run test:grey-havens-quests && npm run test:grey-havens-players",
+    "test:grey-havens-simulation": "node --import tsx --test tests/grey-havens-simulation.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

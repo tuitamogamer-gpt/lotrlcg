@@ -140,3 +140,64 @@ for (const [slug, count, faces, encounterDeck, engineId] of [
     }
   });
 }
+
+for (const [slug, count, faces, engineId] of [
+  ["voyage-across-belegaer", 31, 41, "voyage-across-belegaer"],
+  ["the-fate-of-numenor", 20, 29, "the-fate-of-numenor"],
+  ["raid-on-the-grey-havens", 21, 26, "raid-on-the-grey-havens"],
+] as const) {
+  test(`${slug}: original source snapshots, setup zones and cached artwork remain reproducible`, () => {
+    const bundle = JSON.parse(
+      readFileSync(
+        new URL(`../src/data/pending/${slug}-import.json`, import.meta.url),
+        "utf8",
+      ),
+    );
+    assert.equal(bundle.cards.length, count);
+    assert.equal(bundle.artwork.length, faces);
+    assert.equal(bundle.status, "pending-rules");
+    assert.deepEqual(
+      bundle.recipes.map((r: { mode: string }) => r.mode).sort(),
+      ["easy", "standard"],
+    );
+    assert.match(bundle.sources.expansionRules, /mec47_rules\.pdf$/);
+    for (const sourceCard of bundle.cards) {
+      const original = catalog.find((c) => c.code === sourceCard.code)!;
+      assert.ok(original?.official && !original.nightmare);
+      const restored = { ...sourceCard, imagesrc: original.imagesrc };
+      if (sourceCard.back_imagesrc)
+        restored.back_imagesrc = original.back_imagesrc;
+      assert.deepEqual(restored, original);
+      assert.equal(
+        isAutomatedCard(sourceCard),
+        sourceCard.type_code !== "rules",
+      );
+    }
+    for (const recipe of bundle.recipes) {
+      assert.deepEqual(
+        recipe,
+        recipes.find((r: { id: string }) => r.id === recipe.id),
+      );
+      assert.equal(automatedScenarioId(recipe), engineId);
+      for (const [section, quantities] of Object.entries(recipe.sections)) {
+        const physical: Record<string, number> = {};
+        for (const row of recipe.cards.filter(
+          (r: { section: string }) => r.section === section,
+        ))
+          physical[row.code] = (physical[row.code] ?? 0) + row.quantity;
+        assert.deepEqual(physical, quantities);
+      }
+    }
+    for (const art of bundle.artwork) {
+      const bytes = readFileSync(
+        new URL(`../public${art.localPath}`, import.meta.url),
+      );
+      assert.equal(bytes.length, art.bytes);
+      assert.equal(
+        createHash("sha256").update(bytes).digest("hex"),
+        art.sha256,
+      );
+      assert.equal(cachedImageSource(art.source), art.localPath);
+    }
+  });
+}

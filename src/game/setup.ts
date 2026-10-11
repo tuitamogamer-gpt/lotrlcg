@@ -1,4 +1,8 @@
 import { setupDeadmensDike } from "./deadmens-dike";
+import { setupVoyageBelegaer } from "./voyage-belegaer";
+import { setupFateNumenor } from "./fate-numenor";
+import { setupRaidGreyHavens } from "./raid-grey-havens";
+import { greyHavensSetup } from "./grey-havens-player";
 import * as Wastes from "./wastes-eriador";
 import * as Gram from "./mount-gram";
 import * as Etten from "./ettenmoors";
@@ -343,6 +347,7 @@ export function createGame(
     shuffle(s, s.deck);
     draw(s, 6);
   });
+  greyHavensSetup(s);
   if (scenarioId === "mirkwood") {
     for (const code of ["01096", "01099"]) {
       s.encounterDeck.splice(s.encounterDeck.indexOf(code), 1);
@@ -411,6 +416,12 @@ export function createGame(
     Carn.setupCarnDum(s);
   } else if (scenarioId === "the-treachery-of-rhudaur") {
     Rhudaur.setupRhudaur(s);
+  } else if (scenarioId === "voyage-across-belegaer") {
+    setupVoyageBelegaer(s);
+  } else if (scenarioId === "the-fate-of-numenor") {
+    setupFateNumenor(s);
+  } else if (scenarioId === "raid-on-the-grey-havens") {
+    setupRaidGreyHavens(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

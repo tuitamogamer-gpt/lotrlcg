@@ -1,0 +1,1334 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Fate of Númenor",
+  "slug": "the-fate-of-numenor",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+      "octgnid": "05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+      "name": "Explore the Island",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Prepare the Uncharted deck. Set Shrine to Morgoth aside, out of play. Add 2 copies of Lost Island from the top of the Uncharted deck to the staging area (3 copies instead if there are 3 or 4 players in the game). The first player takes control of Calphon.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 25,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Fate of Numenor",
+      "side": "A",
+      "back_name": "Explore the Island",
+      "back_text": "Progress cannot be placed on Explore the Island except by quest effects. Forced: After a location is explored, add progress to Explore the Island equal to that location's printed quest points. Forced: When an Uncharted location becomes the active location, add 1 copy of Lost Island from the top of the Uncharted deck to the staging area.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 25,
+          "quantity": 1,
+          "octgnid": "05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+      "name": "Throngs of Unfaithful",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Surge.\nForced: When Throngs of Unfaithful is destroyed, discard the bottom card of the engaged player's deck. If that card's printed cost is 2 or less, return Throngs of Unfaithful to the top of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 70,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 0,
+      "health": 4,
+      "engagement": 26,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "0",
+        "health": "4",
+        "engagement": "26"
+      },
+      "imagesrc": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 70,
+          "quantity": 2,
+          "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "name": "Cursed Temple",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Cursed Temple is the active location, characters with less than 2 [willpower] do not ready during the refresh phase.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 74,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 74,
+          "quantity": 2,
+          "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+      "octgnid": "24a816f2-172f-4945-8d9b-21eb7fb68263",
+      "name": "Calphon",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Gondor. Noble.",
+      "text": "The first player gains control of Calphon.\nAction: Exhaust Calphon to look at the bottom card of your deck. Then, you may switch that card with a card in your hand.  If Calphon leaves play, the players lose.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 28,
+      "quantity": 1,
+      "willpower": 1,
+      "attack": 0,
+      "defense": 1,
+      "health": 3,
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {
+        "willpower": "1",
+        "attack": "0",
+        "defense": "1",
+        "health": "3"
+      },
+      "imagesrc": "/cards/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 28,
+          "quantity": 1,
+          "octgnid": "24a816f2-172f-4945-8d9b-21eb7fb68263",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+      "octgnid": "26642db7-c3a2-47f3-989d-27396e586d06",
+      "name": "Shrine to Morgoth",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Shrine to Morgoth is the active location, players cannot draw cards or search their decks.\nForced: After Shrine to Morgoth is flipped over while active, exhaust each ally in play with printed cost 2 or less. Then, each player must search the encounter deck and discard pile for an Undead enemy and put it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 27,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 8,
+      "victory": 5,
+      "encounter_set": "The Fate of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "8",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 27,
+          "quantity": 1,
+          "octgnid": "26642db7-c3a2-47f3-989d-27396e586d06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "name": "Soulless Cadaver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "While you are engaged with Soulless Cadaver, your deck cannot be searched.\nForced: When Soulless Cadaver engages you, place each card in your hand with printed cost 2 or less on the bottom of your deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 69,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 38,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "name": "Drowned Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: When Drowned Dead attacks and destroys an ally, place that ally on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 68,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 3,
+      "engagement": 32,
+      "shadow": "Shadow: If this attack destroys an ally, place that ally on the bottom of its owners's deck.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "3",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 68,
+          "quantity": 3,
+          "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+      "octgnid": "7a2f15bc-d05d-4891-9558-02396affc32b",
+      "name": "Servant of the Deceiver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: When Servant of the Deceiver engages you, look at the top card of your deck. If it is printed cost 2 or less, place it on the bottom of your deck and Servant of the Deceiver gets +2 [attack] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 29,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 4,
+      "health": 3,
+      "engagement": 35,
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "4",
+        "health": "3",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/7a2f15bc-d05d-4891-9558-02396affc32b.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 29,
+          "quantity": 3,
+          "octgnid": "7a2f15bc-d05d-4891-9558-02396affc32b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a2f15bc-d05d-4891-9558-02396affc32b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+      "octgnid": "8830070b-b918-4b74-8dfb-dced3866e53b",
+      "name": "Steep Plateau",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Coastland.",
+      "text": "Response: After Steep Plateau is explored, look at the facedown side of an Uncharted location in the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 32,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 3,
+      "shadow": "Shadow: Discard the bottom card of the defending player's deck. If that card's printed cost is 2 or less, attacking enemy gets +2 [attack].",
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/8830070b-b918-4b74-8dfb-dced3866e53b.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 32,
+          "quantity": 3,
+          "octgnid": "8830070b-b918-4b74-8dfb-dced3866e53b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8830070b-b918-4b74-8dfb-dced3866e53b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+      "octgnid": "92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+      "name": "Ruins of Ages Past",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: Add 1 copy of Lost Island from the top of the Uncharted deck to the staging area. Remove all progress from each Uncharted location in the staging area and shuffle them so that the players do not know which one is which.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 35,
+      "quantity": 2,
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {},
+      "imagesrc": "/cards/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 35,
+          "quantity": 2,
+          "octgnid": "92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+      "octgnid": "97584fc2-835e-411c-aae3-eb841c90fc43",
+      "name": "A Fateful Discovery",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add 2 copies of Lost Island from the top of the Uncharted deck to the staging area. Add Shrine to Morgoth to the staging area, Lost Island side faceup. Remove all progress from each Uncharted location in the staging area and shuffle them so that the players do not know which one is which.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 26,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Fate of Numenor",
+      "side": "A",
+      "back_name": "A Fateful Discovery",
+      "back_text": "Forced: After a location is explored, if it would be shuffled into the Uncharted deck, add it to the victory display, instead. The players cannot defeat this stage unless Shrine to Morgoth is in the victory display. When Shrine to Morgoth is added to the victory display, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 26,
+          "quantity": 1,
+          "octgnid": "97584fc2-835e-411c-aae3-eb841c90fc43",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97584fc2-835e-411c-aae3-eb841c90fc43.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "name": "Aimless Wandering",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The players, as a group, must remove characters with a total of at least X [willpower] from the quest. X is the number of Uncharted locations in the staging area. The first player may give Aimless Wandering doomed 2 to look at the facedown side of an Uncharted location in the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 75,
+      "quantity": 3,
+      "encounter_set": "Ruins of Numenor",
+      "printed_stats": {},
+      "imagesrc": "/cards/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 75,
+          "quantity": 3,
+          "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "name": "Curse of the Downfallen",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each non-objective ally with printed cost 2 or less. Place each ally destroyed by this effect on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 71,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {},
+      "imagesrc": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 71,
+          "quantity": 2,
+          "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+      "octgnid": "ac1958aa-f119-423f-ac1e-cb04c58e641b",
+      "name": "The Fate of Númenor",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Fate of Numenor",
+      "back_name": "The Fate of Númenor",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/ac1958aa-f119-423f-ac1e-cb04c58e641b.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/ac1958aa-f119-423f-ac1e-cb04c58e641b.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "ac1958aa-f119-423f-ac1e-cb04c58e641b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac1958aa-f119-423f-ac1e-cb04c58e641b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+      "octgnid": "b03a007c-42bc-433c-bd0e-efbf65a8696d",
+      "name": "Lingering Malevolence",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player discards the bottom card of his deck. Then, he discards each card in his hand with a printed cost higher than that of the discarded card.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 34,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the bottom card of the defending player's deck. If that card's printed cost is 2 or less, attacking enemy gets +2 [attack].",
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {},
+      "imagesrc": "/cards/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 34,
+          "quantity": 2,
+          "octgnid": "b03a007c-42bc-433c-bd0e-efbf65a8696d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+      "octgnid": "b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+      "name": "Mysterious Fog",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Either each player must exhaust a character he controls, or each Lost Island in the staging area gets +1 [threat] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 33,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, exhaust a character you control.",
+      "encounter_set": "The Fate of Numenor",
+      "printed_stats": {},
+      "imagesrc": "/cards/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 33,
+          "quantity": 2,
+          "octgnid": "b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+      "octgnid": "b1f8c611-99a3-4bab-9805-832853d52d4d",
+      "name": "Forbidden Coast",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Coastland.",
+      "text": "Forced: After Forbidden Coast is flipped over while active, each player may draw a card. Then, each player chooses a card from his hand and places it on the bottom of his deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 31,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 6,
+      "encounter_set": "The Fate of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 31,
+          "quantity": 2,
+          "octgnid": "b1f8c611-99a3-4bab-9805-832853d52d4d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+      "octgnid": "c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+      "name": "Lush Jungle",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Lush Jungle is in the staging area, characters get -1 [attack] and lose ranged.\nForced: After Lush Jungle is flipped over while active, return it to the staging area unless each player exhausts each ready hero he controls.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 30,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Fate of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "name": "Drowned Graves",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "Forced: After Drowned Graves is flipped over while active, discard the top X cards of the encounter deck. Each player adds an Undead enemy discarded by this effect to the staging area. X is 2 more than the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 73,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "name": "Flooded Ruins",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Flooded Ruins is the active location, it contributes its [threat] to the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 72,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 72,
+          "quantity": 2,
+          "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E06.2",
+      "name": "The Fate of Númenor (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+        "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+        "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+        "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+        "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+        "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+        "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+        "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+        "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+        "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+        "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+        "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+        "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+        "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+        "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263"
+      ],
+      "cards": [
+        {
+          "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d": 1,
+          "octgn:97584fc2-835e-411c-aae3-eb841c90fc43": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:7a2f15bc-d05d-4891-9558-02396affc32b": 2,
+          "octgn:8830070b-b918-4b74-8dfb-dced3866e53b": 3,
+          "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2": 2,
+          "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d": 1,
+          "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7": 1,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 1,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 1,
+          "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da": 2,
+          "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d": 2,
+          "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533": 2,
+          "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41": 2,
+          "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a": 2
+        },
+        "sharedSetAside": {
+          "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b": 1,
+          "octgn:26642db7-c3a2-47f3-989d-27396e586d06": 1,
+          "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q06.2",
+      "name": "The Fate of Númenor",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+        "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+        "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+        "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+        "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+        "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+        "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+        "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+        "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+        "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+        "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+        "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+        "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+        "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+        "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+        "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263"
+      ],
+      "cards": [
+        {
+          "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d": 1,
+          "octgn:97584fc2-835e-411c-aae3-eb841c90fc43": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:7a2f15bc-d05d-4891-9558-02396affc32b": 3,
+          "octgn:8830070b-b918-4b74-8dfb-dced3866e53b": 3,
+          "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2": 2,
+          "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d": 2,
+          "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7": 2,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 2,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 2,
+          "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088": 2,
+          "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da": 2,
+          "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d": 2,
+          "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533": 2,
+          "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41": 2,
+          "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a": 2
+        },
+        "sharedSetAside": {
+          "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b": 1,
+          "octgn:26642db7-c3a2-47f3-989d-27396e586d06": 1,
+          "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg",
+      "localPath": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg",
+      "bytes": 171903,
+      "sha256": "4471a571f0c56b0f9f428f3913e3aaf384fb6a3f01951fbe971db69649813aaa"
+    },
+    {
+      "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.B.jpg",
+      "localPath": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.B.jpg",
+      "bytes": 168328,
+      "sha256": "c5fba95a8b04abffb0ac8eeb383dee54c3313da35bde7ea27fabf69385d2c490"
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "localPath": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "bytes": 152290,
+      "sha256": "ce66a0c861b02dacf1bea9803aff3e2cf12f2b78928ca8b217790d560a65347c"
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "localPath": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "bytes": 146767,
+      "sha256": "3d92048448cf30a463e620629a22c62fbbb72b9f004efcb25ce5125427877f2f"
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "localPath": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg",
+      "localPath": "/cards/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg",
+      "bytes": 160167,
+      "sha256": "dd4e38bed55262420e7e1986f90140bb25208f50cad85096f1b0c6387d67ad0a"
+    },
+    {
+      "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg",
+      "localPath": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.jpg",
+      "bytes": 165712,
+      "sha256": "e3f83efc10cdc04c5c99b61dcd7e264a0bb78d5f12e352951522848b1ba076a6"
+    },
+    {
+      "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26642db7-c3a2-47f3-989d-27396e586d06.jpg",
+      "localPath": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "localPath": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "bytes": 155350,
+      "sha256": "2d83140d9253979c6aef680486ac0ffae16d2a48814fbb7cbafcd4e5a14147d2"
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "localPath": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "bytes": 164726,
+      "sha256": "97bc37727eee750b4817b18d151748feea3f74f29c6d8d9628bb81927ef6c480"
+    },
+    {
+      "code": "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a2f15bc-d05d-4891-9558-02396affc32b.jpg",
+      "localPath": "/cards/7a2f15bc-d05d-4891-9558-02396affc32b.jpg",
+      "bytes": 168713,
+      "sha256": "030c82f07ef57f16ab48842246bcfccf683469009ee2bd7d292083daced70876"
+    },
+    {
+      "code": "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8830070b-b918-4b74-8dfb-dced3866e53b.jpg",
+      "localPath": "/cards/8830070b-b918-4b74-8dfb-dced3866e53b.jpg",
+      "bytes": 156522,
+      "sha256": "c7e79f89eafeca59223de4a7d4f4c9414b9daa95552b2ff849134f1bb53aefbb"
+    },
+    {
+      "code": "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg",
+      "localPath": "/cards/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg",
+      "bytes": 158968,
+      "sha256": "c2e98e764e5a277e25f00f0b37c76f0ea5318d94088cdec8a58e2963b9ccd8a5"
+    },
+    {
+      "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97584fc2-835e-411c-aae3-eb841c90fc43.jpg",
+      "localPath": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.jpg",
+      "bytes": 167760,
+      "sha256": "02cfbb35f39f89e8a122639bf85e58c73f13ace4b7f749a243484a0853032a95"
+    },
+    {
+      "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97584fc2-835e-411c-aae3-eb841c90fc43.B.jpg",
+      "localPath": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.B.jpg",
+      "bytes": 163546,
+      "sha256": "68557528c7a938e0adcae19664d2553b5edbc671667ceefecdf6362753605e1a"
+    },
+    {
+      "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "localPath": "/cards/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "bytes": 168264,
+      "sha256": "1792c629339904640b01cacf94d96abbfa974662a43baf0834cff4516e3d314b"
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "localPath": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "bytes": 168003,
+      "sha256": "11eb28c44545484b405e5ee171ae4af74ebfc879358993db8b4073a3ec7abb5e"
+    },
+    {
+      "code": "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac1958aa-f119-423f-ac1e-cb04c58e641b.jpg",
+      "localPath": "/cards/ac1958aa-f119-423f-ac1e-cb04c58e641b.jpg",
+      "bytes": 184502,
+      "sha256": "9e240ffe3a1696ba8030bf2b69d01c61414e197191d76492221edd385c4548db"
+    },
+    {
+      "code": "octgn:ac1958aa-f119-423f-ac1e-cb04c58e641b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac1958aa-f119-423f-ac1e-cb04c58e641b.B.jpg",
+      "localPath": "/cards/ac1958aa-f119-423f-ac1e-cb04c58e641b.B.jpg",
+      "bytes": 188343,
+      "sha256": "d13543bcc947cf474d3b55c99f3f0d9b9f0b7007aa1b4e91bd7bb07c810287fd"
+    },
+    {
+      "code": "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg",
+      "localPath": "/cards/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg",
+      "bytes": 154319,
+      "sha256": "390127813336118e6559fce65ebf83b9fda4a7e9a581ef175e9d54c01a40dc8c"
+    },
+    {
+      "code": "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg",
+      "localPath": "/cards/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg",
+      "bytes": 140932,
+      "sha256": "539696470d72aad98a7054fb170914ccd10d269d0c5091ece7a2e2eacb23db23"
+    },
+    {
+      "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg",
+      "localPath": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.jpg",
+      "bytes": 151714,
+      "sha256": "03e252d91e3ab4c6777293bf2fc8e13a139decfb2ec580832bfd140a8858918b"
+    },
+    {
+      "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1f8c611-99a3-4bab-9805-832853d52d4d.jpg",
+      "localPath": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg",
+      "localPath": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.jpg",
+      "bytes": 168864,
+      "sha256": "7fcfb87ed570249f10f6f94f377899871c65e2f6bde3285f49e91ac480620ba3"
+    },
+    {
+      "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.jpg",
+      "localPath": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "localPath": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "bytes": 157926,
+      "sha256": "ab319055ec355c5373be977d7a8b6964ae5e050614693d89fff5e88f02b38a39"
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "localPath": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "localPath": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "bytes": 149967,
+      "sha256": "32b1d095c16e7c2c0d6870eb4503bbbb9f0694db35a1396b5e4f6e73994826e9"
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "localPath": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    }
+  ]
+}

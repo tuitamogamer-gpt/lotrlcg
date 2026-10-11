@@ -1,10 +1,12 @@
 import { selectedSideQuest } from "../game/side-quest-support";
 import { AngmarQuestGoals } from "./angmar-goals";
+import { GreyHavensQuestGoals } from "./grey-havens-state";
 import { DIKE } from "../game/deadmens-dike-support";
 import { currentQuestProgress } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
+import { voyageMandatoryTravel } from "../game/voyage-belegaer";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
@@ -109,76 +111,92 @@ const offTurn = (s: GameState) =>
     "attack",
   ].includes(s.phase);
 export const nextAction = (s: GameState): Action | null =>
-  s.flow?.pending || (s.phase === "travel" && fordsMandatoryTravel(s))
+  s.flow?.pending ||
+  (s.phase === "travel" &&
+    (fordsMandatoryTravel(s) || voyageMandatoryTravel(s)))
     ? null
-    : s.escapeTest
-      ? s.choice ||
-        s.status !== "playing" ||
-        s.escapeTest.phase === "committing"
+    : s.sailing?.test
+      ? s.choice || s.status !== "playing" || s.sailing.test.phase !== "actions"
         ? null
-        : { type: "RESOLVE_ESCAPE" }
-      : offTurn(s)
-        ? { type: "SELECT_SEAT", seat: s.table!.turn }
-        : s.choice || s.status !== "playing"
+        : { type: "RESOLVE_SAILING" }
+      : s.escapeTest
+        ? s.choice ||
+          s.status !== "playing" ||
+          s.escapeTest.phase === "committing"
           ? null
-          : s.phase === "setup"
-            ? { type: "KEEP" }
-            : s.phase === "quest"
-              ? requiredQuestSelections(s)
-                ? null
-                : { type: "COMMIT" }
-              : s.phase === "defense"
-                ? null
-                : s.phase === "attack"
-                  ? { type: "END_ATTACKS" }
-                  : { type: "NEXT" };
+          : { type: "RESOLVE_ESCAPE" }
+        : offTurn(s)
+          ? { type: "SELECT_SEAT", seat: s.table!.turn }
+          : s.choice || s.status !== "playing"
+            ? null
+            : s.phase === "setup"
+              ? { type: "KEEP" }
+              : s.phase === "quest"
+                ? requiredQuestSelections(s)
+                  ? null
+                  : { type: "COMMIT" }
+                : s.phase === "defense"
+                  ? null
+                  : s.phase === "attack"
+                    ? { type: "END_ATTACKS" }
+                    : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
-  s.phase === "travel" && fordsMandatoryTravel(s)
-    ? "Travel to The King’s Road"
-    : s.escapeTest
-      ? s.escapeTest.phase === "preparing"
-        ? "Begin escape test"
-        : s.escapeTest.phase === "actions"
-          ? "Resolve escape test"
-          : "Choose escape characters"
-      : offTurn(s)
-        ? `Continue as Player ${s.table!.turn + 1}`
-        : s.phase === "attack" && s.earlyAttackPlayers?.length
-          ? "Continue to enemy attacks"
-          : requiredQuestSelections(s) > 0
-            ? `Select ${requiredQuestSelections(s)} more characters`
-            : s.table &&
-                [
-                  "resource",
-                  "planning",
-                  "quest",
-                  "encounter",
-                  "attack",
-                ].includes(s.phase)
-              ? {
-                  resource: "Finish resource actions",
-                  planning: "Finish planning",
-                  quest: "Commit this fellowship",
-                  encounter: "Finish engagement choices",
-                  attack: "Finish attacks",
-                }[
-                  s.phase as
-                    "resource" | "planning" | "quest" | "encounter" | "attack"
-                ]
-              : {
-                  setup: "Keep hand",
-                  resource: "Begin planning",
-                  planning: "Begin quest",
-                  quest: "Commit & reveal",
-                  staging: "Resolve quest",
-                  travel: allActiveLocations(s).length
-                    ? "Continue to encounter"
-                    : "Continue without travel",
-                  encounter: "Engagement checks",
-                  defense: "Choose an enemy",
-                  attack: "Finish combat",
-                  refresh: "Begin next round",
-                }[s.phase];
+  s.phase === "travel" && voyageMandatoryTravel(s)
+    ? "Travel to Waterspout"
+    : s.phase === "travel" && fordsMandatoryTravel(s)
+      ? "Travel to The King’s Road"
+      : s.sailing?.test
+        ? s.sailing.test.phase === "actions"
+          ? "Resolve Sailing test"
+          : "Choose Sailing characters and heading"
+        : s.escapeTest
+          ? s.escapeTest.phase === "preparing"
+            ? "Begin escape test"
+            : s.escapeTest.phase === "actions"
+              ? "Resolve escape test"
+              : "Choose escape characters"
+          : offTurn(s)
+            ? `Continue as Player ${s.table!.turn + 1}`
+            : s.phase === "attack" && s.earlyAttackPlayers?.length
+              ? "Continue to enemy attacks"
+              : requiredQuestSelections(s) > 0
+                ? `Select ${requiredQuestSelections(s)} more characters`
+                : s.table &&
+                    [
+                      "resource",
+                      "planning",
+                      "quest",
+                      "encounter",
+                      "attack",
+                    ].includes(s.phase)
+                  ? {
+                      resource: "Finish resource actions",
+                      planning: "Finish planning",
+                      quest: "Commit this fellowship",
+                      encounter: "Finish engagement choices",
+                      attack: "Finish attacks",
+                    }[
+                      s.phase as
+                        | "resource"
+                        | "planning"
+                        | "quest"
+                        | "encounter"
+                        | "attack"
+                    ]
+                  : {
+                      setup: "Keep hand",
+                      resource: "Begin planning",
+                      planning: "Begin quest",
+                      quest: "Commit & reveal",
+                      staging: "Resolve quest",
+                      travel: allActiveLocations(s).length
+                        ? "Continue to encounter"
+                        : "Continue without travel",
+                      encounter: "Engagement checks",
+                      defense: "Choose an enemy",
+                      attack: "Finish combat",
+                      refresh: "Begin next round",
+                    }[s.phase];
 export function TurnActions({
   s,
   dispatch,
@@ -199,6 +217,23 @@ export function TurnActions({
         <p>The table is paused. Read the event before continuing.</p>
         <button className="primary" onClick={review}>
           Review current event <ArrowRight size={17} />
+        </button>
+      </div>
+    );
+  if (s.sailing?.test)
+    return (
+      <div className="turn-actions escape-turn-actions">
+        <p>
+          {s.sailing.test.phase === "actions"
+            ? "Look at the Sailing cards, then choose how far to turn on-course."
+            : "Finish the current Sailing choice to continue."}
+        </p>
+        <button
+          className="primary"
+          disabled={!action}
+          onClick={() => action && dispatch(action)}
+        >
+          {nextLabel(s)} <ArrowRight size={18} />
         </button>
       </div>
     );
@@ -659,6 +694,8 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
+  if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens)
+    return <GreyHavensQuestGoals s={s} />;
   if (
     s.wastesEriador ||
     s.mountGram ||

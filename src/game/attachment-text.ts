@@ -10,6 +10,7 @@ import { allActiveLocations, allCharacters, allEngaged } from "./table";
 import { allQuestUnits } from "./quest-state";
 import { WEATHER } from "./weather-hills-support";
 import * as Angmar from "./angmar-player";
+import { greyHavensDynamicKeywords } from "./grey-havens-player";
 import { ettenSideQuestBlanked } from "./ettenmoors";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
@@ -71,6 +72,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     const keywords = [
       ...rohanDynamicKeywords(s, host),
       ...Angmar.angmarDynamicKeywords(s, host),
+      ...greyHavensDynamicKeywords(s, host),
     ];
     if (keywords.length) host.dynamicKeywords = keywords;
     else delete host.dynamicKeywords;

@@ -1,3 +1,8 @@
+import * as Raid from "./raid-grey-havens";
+import * as Voyage from "./voyage-belegaer";
+import * as Fate from "./fate-numenor";
+import * as GreyPlayers from "./grey-havens-player";
+import { sailingContinue, sailingCommitCount } from "./sailing";
 import { resolvePlayerAbility } from "./player-ability-triggers";
 import {
   dikeCannotLeaveDiscard,
@@ -412,6 +417,10 @@ import {
 } from "./elf-player-cards";
 
 export function commitCharacters(s: GameState) {
+  requireRule(
+    !s.sailing?.test,
+    "Resolve the Sailing test before committing to the quest.",
+  );
   requireRule(s.phase === "quest", "Not at the commit step.");
   const foundationsProblem = foundationsCommitProblem(s);
   requireRule(!foundationsProblem, foundationsProblem ?? "");
@@ -431,8 +440,11 @@ export function commitCharacters(s: GameState) {
   );
   const exhaustedIds: string[] = [];
   for (const u of characters(s).filter((u) => s.committedIds.includes(u.id))) {
-    requireRule(!u.exhausted, "A selected character is exhausted.");
-    if (questExhausts(s, u)) {
+    requireRule(
+      !u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u),
+      "A selected character is exhausted.",
+    );
+    if (questExhausts(s, u) && !GreyPlayers.greyHavensCanQuestExhausted(u)) {
       requireRule(
         exhaustCharacter(s, u),
         "This character cannot exhaust to commit.",
@@ -453,13 +465,14 @@ export function canCommit(s: GameState, u: Unit): boolean {
     (u.code !== "08112" || !!u.blanked) &&
     returnMirkwoodCanCommit(s, u) &&
     !s.escapeTest &&
+    !s.sailing?.test &&
     !(s.ninEilph?.activeQuest === NIN.weary && !s.hand.length) &&
     s.phase === "quest" &&
     characters(s).some((x) => x.id === u.id) &&
     redhornCanCommit(u) &&
     !watcherWaterCannotExhaust(u) &&
     !khazadCannotExhaust(u) &&
-    !u.exhausted &&
+    (!u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u)) &&
     !u.committed &&
     !isSacked(u) &&
     (s.scenarioId !== "hunt-for-gollum" ||
@@ -482,6 +495,10 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const raidProblem = Raid.raidTravelProblem(s, u);
+  if (raidProblem) return raidProblem;
+  const voyageProblem = Voyage.voyageTravelProblem(s, u);
+  if (voyageProblem) return voyageProblem;
   const chetwoodProblem = Chetwood.chetwoodTravelProblem(s, u);
   if (chetwoodProblem) return chetwoodProblem;
   const wastesProblem = Wastes.wastesTravelProblem(s, u);
@@ -568,16 +585,23 @@ export function optionalEngagementProblem(
   )
     return "You may optionally engage one enemy during the encounter phase.";
   if (
-    card(u.code).type_code !== "enemy" ||
+    !["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
     !s.staging.some((enemy) => enemy.id === u.id)
   )
     return "Choose an enemy in staging.";
+  if (
+    Raid.raidEngagementPlayer(s, u) !== undefined &&
+    Raid.raidEngagementPlayer(s, u) !== activeSeat(s)
+  )
+    return "This enemy can only engage its printed player.";
   if (!Wastes.wastesOptionalEngagementAllowed(s, u))
     return "This enemy cannot be optionally engaged during the day.";
   if (
     u.code === "01083" &&
     s.staging.some(
-      (enemy) => enemy.id !== u.id && card(enemy.code).type_code === "enemy",
+      (enemy) =>
+        enemy.id !== u.id &&
+        ["enemy", "ship-enemy"].includes(card(enemy.code).type_code),
     )
   )
     return "Goblin Sniper cannot be optionally engaged while another enemy is in staging.";
@@ -655,6 +679,8 @@ export function canPlay(
     return "Resolve the current choice first.";
   if (s.table?.seats[activeSeat(s)].eliminated)
     return "This fellowship has been eliminated.";
+  if (s.sailing?.test)
+    return "Player Actions are unavailable during a Sailing test.";
   if (s.phase === "setup" && !s.escapeTest)
     return "Continue to the next action window.";
   if (s.escapeTest && c.type_code !== "event")
@@ -665,6 +691,8 @@ export function canPlay(
     return "You need an eligible ally in hand.";
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir")
     return "Faramir cannot be used in The Morgul Vale.";
+  const greyProblem = GreyPlayers.greyHavensPlayProblem(s, c.code);
+  if (greyProblem) return greyProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
   if (isengardProblem) return isengardProblem;
   const druadanProblem = druadanPlayerPlayProblem(s, c.code);
@@ -1242,6 +1270,7 @@ export function resolvePlayerCard(
 ) {
   const c = card(u.code);
   if (played && s.ninEilph) s.used.push("nin:played");
+  if (played) Voyage.voyagePlayerCardPlayed(s, c);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
   if (
     c.type_code === "attachment" &&
@@ -1253,7 +1282,10 @@ export function resolvePlayerCard(
     u.controller = activeSeat(s);
     s.staging.push(u);
   } else if (c.type_code === "ally") {
-    if (played) s.alliesPlayed++;
+    if (played) {
+      s.alliesPlayed++;
+      GreyPlayers.greyHavensAllyPlayed(s, u.code);
+    }
     enterAlly(s, u, false, played, fromHand);
   } else if (
     c.type_code === "attachment" &&
@@ -1292,6 +1324,7 @@ export function resolvePlayerCard(
       s,
       u,
       () => {
+        GreyPlayers.greyHavensEventCost(s, u.code, target);
         const abilityCost = finalRingEventCost(s, u.code, target);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
@@ -1399,6 +1432,7 @@ export function playTargets(
           !Dread.dreadCannotAttach(s, target) &&
           !Carn.carnCannotAttach(s, target) &&
           !Rhudaur.rhudaurCannotAttach(s, target) &&
+          !Fate.fateCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
@@ -1419,6 +1453,8 @@ export function playTargets(
 function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
+  const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
+  if (greyTargets) return greyTargets;
   const ringMakerTargets = ringMakerPlayTargets(s, c.code);
   if (ringMakerTargets) return ringMakerTargets;
   const realmTargets = Realm.realmPlayTargets(s, c.code);
@@ -1511,7 +1547,9 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
         canFight(a) &&
         [
           ...allEngaged(s),
-          ...s.staging.filter((e) => card(e.code).type_code === "enemy"),
+          ...s.staging.filter((e) =>
+            ["enemy", "ship-enemy"].includes(card(e.code).type_code),
+          ),
         ].some((enemy) => attackersFor(s, enemy).some((x) => x.id === a.id)),
     );
   if (["01034", "01052"].includes(u.code))
@@ -1529,7 +1567,9 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
     );
   if (u.code === "01063") return allCharacters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
-    return s.staging.filter((a) => card(a.code).type_code === "enemy");
+    return s.staging.filter((a) =>
+      ["enemy", "ship-enemy"].includes(card(a.code).type_code),
+    );
   if (u.code === "01066")
     return s.staging.filter(
       (a) =>
@@ -1597,6 +1637,9 @@ export const needsTarget = (u: Unit) =>
         "08061",
         "08090",
         "08142",
+        "11004",
+        "11010",
+        "11013",
       ].includes(u.code)));
 
 export const responseCards = [
@@ -1616,6 +1659,7 @@ export const responseCards = [
 ];
 
 export function availableAbilities(s: GameState, u: Unit) {
+  if (s.sailing?.test) return [];
   syncAttachmentText(s, u);
   if (u.code === FORDS.grima)
     return [
@@ -1665,10 +1709,27 @@ export function availableAbilities(s: GameState, u: Unit) {
         ]
       : [];
   }
+  const fateLabel = Fate.fateAbilityLabel(s, u);
+  if (fateLabel)
+    return [
+      {
+        label: fateLabel,
+        disabled:
+          s.phase === "setup" ||
+          !!s.sailing?.test ||
+          !!Fate.fateAbilityProblem(s, u),
+      },
+    ];
   const rhudaurLabel = Rhudaur.rhudaurAbilityLabel(s, u);
   if (rhudaurLabel)
     return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const greyLabel = GreyPlayers.greyHavensAbilityLabel(u.code);
+  if (greyLabel)
+    results.push({
+      label: greyLabel,
+      disabled: !!GreyPlayers.greyHavensAbilityProblem(s, u),
+    });
   const angmarLabel = Angmar.angmarAbilityLabel(u.code);
   if (angmarLabel)
     results.push({
@@ -1844,6 +1905,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const greyLabel = GreyPlayers.greyHavensAbilityLabel(a.code);
+    if (greyLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: greyLabel,
+        disabled: !!GreyPlayers.greyHavensAbilityProblem(s, u, a.id),
+      });
     const angmarLabel = Angmar.angmarAbilityLabel(a.code);
     if (angmarLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -1961,6 +2029,8 @@ export function availableAbilities(s: GameState, u: Unit) {
   }
   return results.map((a) =>
     (s.phase === "setup" && !s.escapeTest) ||
+    !!s.sailing?.test ||
+    Fate.fateForbiddenSearchAbility(s, u) ||
     (!a.id && (isSacked(u) || u.blanked))
       ? { ...a, disabled: true }
       : a,
@@ -2074,6 +2144,11 @@ export function applyAction(input: GameState, action: Action): GameState {
     return s;
   }
   requireRule(!s.choice, "Resolve the current choice first.");
+  if (s.sailing?.test)
+    requireRule(
+      action.type === "RESOLVE_SAILING",
+      "Resolve the Sailing test before using player Actions or continuing the adventure.",
+    );
   if (s.escapeTest) {
     requireRule(
       ["PLAY", "ABILITY", "RESOLVE_ESCAPE"].includes(action.type),
@@ -2087,6 +2162,9 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
   }
   switch (action.type) {
+    case "RESOLVE_SAILING":
+      sailingContinue(s);
+      break;
     case "RESOLVE_ESCAPE":
       deadMarshesContinueEscape(s);
       break;
@@ -2121,7 +2199,10 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Etten.ettenOpeningHandsKept(s) &&
         !Rhudaur.rhudaurOpeningHandsKept(s) &&
         !Carn.carnOpeningHandsKept(s) &&
-        !Dread.dreadOpeningHandsKept(s)
+        !Dread.dreadOpeningHandsKept(s) &&
+        !Voyage.voyageOpeningHandsKept(s) &&
+        !Fate.fateOpeningHandsKept(s) &&
+        !Raid.raidOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2166,6 +2247,10 @@ export function applyAction(input: GameState, action: Action): GameState {
         resolveQuestResult(s);
       } else if (s.phase === "travel") {
         if (Gram.gramTravelNext(s) || foundationsTravelNext(s)) break;
+        requireRule(
+          !Voyage.voyageMandatoryTravel(s),
+          "At the worst heading, you must travel to Waterspout, if able.",
+        );
         requireRule(
           !Fords.fordsMandatoryTravel(s),
           "You must travel to The King’s Road.",
@@ -2305,6 +2390,10 @@ export function applyAction(input: GameState, action: Action): GameState {
             return;
           }
           const u = get(s, action.id);
+          requireRule(
+            !u || !Fate.fateForbiddenSearchAbility(s, u),
+            "An encounter effect prevents searching your deck.",
+          );
           if (
             u &&
             !action.attachmentId &&
@@ -2313,7 +2402,8 @@ export function applyAction(input: GameState, action: Action): GameState {
               Osgiliath.useAssaultOsgiliathAbility(s, u) ||
               useFoundationsAbility(s, u) ||
               useHeirsAbility(s, u) ||
-              Rhudaur.rhudaurAbility(s, u))
+              Rhudaur.rhudaurAbility(s, u) ||
+              Fate.fateAbility(s, u))
           )
             return;
           if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
@@ -2365,6 +2455,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
           ) {
           } else if (
+            !GreyPlayers.useGreyHavensAbility(s, u, action.attachmentId) &&
             !khazadAbility(s, u, action.attachmentId) &&
             !useRedhornPlayerAbility(s, u, action.attachmentId) &&
             !useElfAbility(s, u, action.attachmentId) &&
@@ -2441,6 +2532,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       const scenarioCost =
         Wastes.wastesTravel(s, u) ??
         Gram.gramTravel(s, u) ??
+        Raid.raidTravel(s, u) ??
+        Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
         Rhudaur.rhudaurTravelEffects(s, u) ??
         Carn.carnTravel(s, u) ??
@@ -2536,7 +2629,9 @@ export function applyAction(input: GameState, action: Action): GameState {
     }
     case "ENGAGE": {
       const u = s.staging.find(
-        (x) => x.id === action.id && card(x.code).type_code === "enemy",
+        (x) =>
+          x.id === action.id &&
+          ["enemy", "ship-enemy"].includes(card(x.code).type_code),
       );
       requireRule(u, "Choose an enemy in staging.");
       requireRule(
@@ -2545,6 +2640,11 @@ export function applyAction(input: GameState, action: Action): GameState {
       );
       if (s.optionalEngagement) s.used.push("phase:halbarad-extra-engagement");
       s.optionalEngagement = true;
+      requireRule(
+        Raid.raidEngagementPlayer(s, u) === undefined ||
+          Raid.raidEngagementPlayer(s, u) === activeSeat(s),
+        "This enemy can only engage its printed player.",
+      );
       engage(s, u, true);
       break;
     }
@@ -2582,7 +2682,9 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(s.phase === "attack", "Enemies must finish attacking first.");
       const enemy = [
         ...allEngaged(s),
-        ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+        ...s.staging.filter((u) =>
+          ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+        ),
       ].find(
         (u) =>
           u.id === action.enemyId &&
@@ -2661,6 +2763,18 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.fateNumenor ? { fateNumenor: Fate.fatePublicState(s) } : {}),
+    ...(s.voyageBelegaer
+      ? {
+          voyageBelegaer: {
+            initialized: s.voyageBelegaer.initialized,
+            corsairDeck: s.voyageBelegaer.corsairDeck.length,
+            corsairDiscard: s.voyageBelegaer.corsairDiscard.length,
+            questDeck: s.voyageBelegaer.questDeck.length,
+            currentQuest: s.voyageBelegaer.currentQuest,
+          },
+        }
+      : {}),
     ...(s.wastesEriador
       ? {
           wastesEriador: {
@@ -2844,6 +2958,25 @@ export function publicState(s: GameState) {
           })),
         }
       : {}),
+    sailing: s.sailing
+      ? {
+          heading: s.sailing.heading,
+          test: s.sailing.test
+            ? {
+                phase: s.sailing.test.phase,
+                player: s.sailing.test.player,
+                committedIds: s.sailing.test.committedIds,
+                count: sailingCommitCount(s),
+                ...(s.sailing.test.phase === "results"
+                  ? {
+                      looked: s.sailing.test.looked,
+                      successes: s.sailing.test.successes,
+                    }
+                  : {}),
+              }
+            : undefined,
+        }
+      : undefined,
     escapeTest: s.escapeTest
       ? {
           phase: s.escapeTest.phase,

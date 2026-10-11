@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import {
   dikeCannotLeaveDiscard,
@@ -61,9 +63,7 @@ const printedTrait = (c: Card, trait: string) =>
     .some((t) => t.trim().toLowerCase() === trait.toLowerCase());
 const silvanAllies = (s: GameState, player = activeSeat(s)) =>
   seatView(s, player).allies.filter(
-    (u) =>
-      ["ally", "objective-ally"].includes(card(u.code).type_code) &&
-      hasTrait(u, "Silvan"),
+    (u) => playerUnitIsAlly(u) && hasTrait(u, "Silvan"),
   );
 const influenceTargets = (s: GameState) =>
   allCharacters(s).filter((u) => !playerCardImmune(u));
@@ -76,7 +76,7 @@ const councilTargets = (s: GameState) =>
 const enemyTargets = (s: GameState) =>
   allEngaged(s).filter((u) => !playerCardImmune(u));
 const haldirTargets = (s: GameState, u: Unit) => [
-  ...s.staging.filter((x) => card(x.code).type_code === "enemy"),
+  ...s.staging.filter((x) => playerUnitIsEnemy(x)),
   ...allEngaged(s).filter((x) => ownerOf(s, x) !== ownerOf(s, u)),
 ];
 const liveAttachment = (s: GameState, e: Effect, code?: string) => {
@@ -140,7 +140,7 @@ export function elfNoQuestExhaust(s: GameState, u: Unit) {
   const p = seatView(s, ownerOf(s, u));
   return (
     p.used.includes(`round:naith-guide:${u.id}`) ||
-    (["ally", "objective-ally"].includes(card(u.code).type_code) &&
+    (playerUnitIsAlly(u) &&
       p.heroes.some((h) => h.code === "08112" && !h.blanked) &&
       p.used.includes(`round:elf-entered:${u.id}`))
   );
@@ -378,7 +378,7 @@ export function elfCharactersCommitted(s: GameState, units: Unit[]) {
 }
 export function elfEncounterRevealed(s: GameState, code: string) {
   if (!["quest", "staging"].includes(s.phase)) return;
-  const type = card(code).type_code;
+  const type = playerUnitIsEnemy({ code }) ? "enemy" : card(code).type_code;
   for (const host of allHeroes(s))
     for (const a of host.attachments.filter(
       (a) => a.code === "08092" && !a.blanked && !a.facedown && !a.exhausted,
@@ -409,7 +409,9 @@ export function elfEnemyCannotAttack(
 export function elfCharactersLeft(s: GameState, units: Unit[], player: number) {
   if (
     !units.some((u) =>
-      ["hero", "ally", "objective-ally"].includes(card(u.code).type_code),
+      ["hero", "ally", "objective-ally", "ship-objective"].includes(
+        card(u.code).type_code,
+      ),
     )
   )
     return;
@@ -419,7 +421,7 @@ export function elfCharactersLeft(s: GameState, units: Unit[], player: number) {
       fx("elfRefugeeDiscard", { target: u.id, player: ownerOf(s, u) }),
     );
   const responses = units.some(
-    (u) => card(u.code).type_code === "ally" && hasTrait(u, "Silvan"),
+    (u) => playerUnitIsAlly(u) && hasTrait(u, "Silvan"),
   )
     ? seatView(s, player)
         .allies.filter((u) => u.code === "08065" && u.exhausted)

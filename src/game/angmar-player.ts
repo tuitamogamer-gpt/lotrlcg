@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
   ANGMAR as A,
   angmarDiscardEvents,
@@ -108,7 +110,7 @@ const ready = (s: GameState, u: Unit) =>
   u.exhausted && affected(u) && !cannotReady(u, s);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy",
+    (u) => playerUnitIsEnemy(u),
   );
 const marker = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
@@ -211,7 +213,7 @@ export const angmarDefenseBonus = (s: GameState, u: Unit, enemy: Unit) =>
   !u.blanked &&
   affected(u) &&
   (s.victoryCards ?? []).some(
-    (code) => card(code).type_code === "enemy" && traitShared(enemy, code),
+    (code) => playerUnitIsEnemy({ code: code }) && traitShared(enemy, code),
   )
     ? 2
     : 0;
@@ -330,7 +332,7 @@ export function angmarPlayTargets(s: GameState, code: string): Unit[] | null {
   if (code === A.thain)
     return chars.filter(
       (u) =>
-        card(u.code).type_code === "ally" &&
+        playerUnitIsAlly(u) &&
         card(u.code).is_unique &&
         card(u.code).sphere_code !== "neutral" &&
         card(u.code).sphere_code !== "encounter" &&
@@ -676,7 +678,7 @@ export function angmarRevealed(
   code: string,
   origin: Effect["revealOrigin"] = "encounter",
 ) {
-  if (origin !== "encounter" || card(code).type_code !== "enemy") return;
+  if (origin !== "encounter" || !playerUnitIsEnemy({ code: code })) return;
   const revealedEnemy: Unit = {
     ...angmarThreatTarget(s, activeSeat(s)),
     id: `revealed:${code}`,
@@ -727,7 +729,7 @@ export function angmarRevealOptions(
             }),
           ],
         });
-    if (card(code).type_code === "enemy")
+    if (playerUnitIsEnemy({ code: code }))
       for (const event of copies(s, A.ears, player))
         for (const hero of p.heroes.filter(
           (h) =>
@@ -1947,7 +1949,7 @@ function angmarRemainingEffect(s: GameState, e: Effect): boolean {
           seatView(s, owner)
             .hand.filter(
               (h) =>
-                card(h.code).type_code === "ally" &&
+                playerUnitIsAlly(h) &&
                 playerOrder(s).some((p) =>
                   allyCanEnter(seatView(s, p), h.code),
                 ),

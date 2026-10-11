@@ -3,6 +3,18 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "voyage-across-belegaer": {
+    name: "Belegaer",
+    detail: "The Dream-chaser’s fleet upon the Great Sea",
+  },
+  "the-fate-of-numenor": {
+    name: "The Isles of Númenor",
+    detail: "Uncharted shores and drowned ruins",
+  },
+  "raid-on-the-grey-havens": {
+    name: "The Grey Havens",
+    detail: "Corsair sails and fires at Mithlond",
+  },
   "wastes-of-eriador": {
     name: "The Wastes of Eriador",
     detail: "Wargs beneath the shifting skies of Arnor",
@@ -223,6 +235,9 @@ export const PLAYMAT_CHOICES = [
   "the-treachery-of-rhudaur",
   "the-battle-of-carn-dum",
   "the-dread-realm",
+  "voyage-across-belegaer",
+  "the-fate-of-numenor",
+  "raid-on-the-grey-havens",
   "shadow-and-flame",
 ] as const;
 

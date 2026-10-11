@@ -19,6 +19,13 @@ import * as Etten from "./ettenmoors";
 import * as Rhudaur from "./rhudaur";
 import * as Carn from "./carn-dum";
 import * as Dread from "./dread-realm";
+import * as Voyage from "./voyage-belegaer";
+import { readDamageContext } from "./damage-context";
+import * as Fate from "./fate-numenor";
+import * as Raid from "./raid-grey-havens";
+import * as GreyPlayers from "./grey-havens-player";
+import { sailingEffect, sailingQuestStart } from "./sailing";
+import { isEnemy, isShipEnemy, shipUndefendedTargets } from "./ships";
 /** Shared continuations must finish even if the player resolving a cost was eliminated. */
 const ANGMAR_SHARED_EFFECTS = new Set([
   "ettenSetup",
@@ -479,6 +486,7 @@ function handleEffect(s: GameState, e: Effect) {
     eachArea(s, () => {
       Etten.ettenEndQuest(s);
       prepend(s, ...Dread.dreadQuestEnd(s));
+      Voyage.voyageEndQuest(s);
     });
     return;
   }
@@ -489,6 +497,11 @@ function handleEffect(s: GameState, e: Effect) {
   if (Rhudaur.rhudaurEffect(s, e)) return;
   if (Carn.carnEffect(s, e)) return;
   if (Dread.dreadEffect(s, e)) return;
+  if (sailingEffect(s, e)) return;
+  if (Voyage.voyageEffect(s, e)) return;
+  if (Fate.fateEffect(s, e)) return;
+  if (Raid.raidEffect(s, e)) return;
+  if (GreyPlayers.greyHavensEffect(s, e)) return;
   if (coreBoardResponse(s, e)) return;
   if (dunlandEffect(s, e)) return;
   if (ringMakerEffect(s, e)) return;
@@ -1020,6 +1033,8 @@ function handleEffect(s: GameState, e: Effect) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
         const priorActive = allActiveLocations(s);
         s.activeLocation = u;
+        Fate.fateActiveLocation(s, u);
+        Voyage.voyageTravelEntered(s, u);
         s.extraActiveLocations = [
           "strider-replace",
           "osgiliath-second",
@@ -1122,7 +1137,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       break;
     case "damage":
-      if (u) damage(s, u.id, e.value ?? 0);
+      if (u) damage(s, u.id, e.value ?? 0, readDamageContext(e));
       break;
     case "draw":
       draw(s, e.value ?? 1);
@@ -1258,6 +1273,9 @@ function handleEffect(s: GameState, e: Effect) {
             Rhudaur.rhudaurEncounter(s, e.code, true) ||
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
+            Voyage.voyageEncounter(s, e.code, true) ||
+            Fate.fateEncounter(s, e.code, true) ||
+            Raid.raidEncounter(s, e.code, true) ||
             Druadan.druadanForestEncounter(s, e.code, true) ||
             Amon.amonDinEncounter(s, e.code, true) ||
             Osgiliath.assaultOsgiliathEncounter(s, e.code, true) ||
@@ -1343,9 +1361,7 @@ function handleEffect(s: GameState, e: Effect) {
             ],
           },
           ...opts(
-            [...s.staging, ...allEngaged(s)].filter(
-              (u) => card(u.code).type_code === "enemy",
-            ),
+            [...s.staging, ...allEngaged(s)].filter((u) => isEnemy(u)),
             (u) => [fx("damage", { target: u.id, value: 4 })],
             () => "Deal 4 damage",
           ),
@@ -1493,6 +1509,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "phaseEnd":
       phaseEnd(s);
+      Fate.fatePhaseEnd(s);
       if (s.phase === "refresh") {
         Trials.trialsRemoveEnemyTime(s);
         Chetwood.chetwoodRefreshEnd(s);
@@ -1517,7 +1534,8 @@ function handleEffect(s: GameState, e: Effect) {
         prepend(s, fx("startTravel", { player: firstPlayer(s) }));
         break;
       }
-      startPhase(s, "quest");
+      if (!e.flag) startPhase(s, "quest");
+      if (!e.flag && sailingQuestStart(s, [{ ...e, flag: true }])) break;
       emynMuilQuestStart(s);
       rhosgobelQuestStart(s);
       rohanQuestBegins(s);
@@ -1580,7 +1598,7 @@ function handleEffect(s: GameState, e: Effect) {
       eachArea(s, () => {
         for (const enemy of [
           ...allEngaged(s),
-          ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+          ...s.staging.filter((u) => isEnemy(u)),
         ]) {
           if (Carn.carnCombatEndShadows(s, enemy)) continue;
           delete enemy.shadowCancelsDamage;
@@ -1622,6 +1640,7 @@ function handleEffect(s: GameState, e: Effect) {
             .map((u) => fx("chooseDamage", { value: 1, source: u.id, player })),
         ),
         ...DunlandQuest.dunlandCombatEndEffects(s),
+        ...Raid.raidCombatEnd(s),
         fx("khazadCombatEnd"),
         fx("refreshReady"),
       );
@@ -1665,6 +1684,7 @@ function handleEffect(s: GameState, e: Effect) {
         passives.push(...Isengard.isengardRoundEnd(s));
         passives.push(...Angmar.angmarRoundEnd(s));
         forced.push(...Dread.dreadRoundEnd(s));
+        forced.push(...Raid.raidRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
         forced.push(
@@ -1801,7 +1821,10 @@ function handleEffect(s: GameState, e: Effect) {
       const eligible = playerOrder(s).some((i) =>
         s.staging.some(
           (u) =>
-            card(u.code).type_code === "enemy" &&
+            isEnemy(u) &&
+            !Voyage.voyageNoEngagementCheck(s, u) &&
+            (Raid.raidEngagementPlayer(s, u) === undefined ||
+              Raid.raidEngagementPlayer(s, u) === i) &&
             !Carn.carnCannotEngage(s, u) &&
             amonPlayerCanEngage(s, u, i) &&
             shadowFlameCanMove(s, u) &&
@@ -1843,7 +1866,10 @@ function handleEffect(s: GameState, e: Effect) {
       const enemy = s.staging
         .filter(
           (u) =>
-            card(u.code).type_code === "enemy" &&
+            isEnemy(u) &&
+            !Voyage.voyageNoEngagementCheck(s, u) &&
+            (Raid.raidEngagementPlayer(s, u) === undefined ||
+              Raid.raidEngagementPlayer(s, u) === activeSeat(s)) &&
             !Carn.carnCannotEngage(s, u) &&
             amonPlayerCanEngage(s, u, activeSeat(s)) &&
             !celebrimborProtected(s, u) &&
@@ -1871,6 +1897,17 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "combatStartEffects":
       heirsCombatStart(s);
+      {
+        const archery = [...s.staging, ...allEngaged(s)].reduce(
+          (total, enemy) => total + Voyage.voyageArchery(s, enemy),
+          0,
+        );
+        if (archery)
+          prepend(
+            s,
+            fx("heirsArchery", { value: archery, player: firstPlayer(s) }),
+          );
+      }
       Druadan.druadanForestCombatStart(s);
       Fangorn.fangornCombatStart(s);
       Tharbad.tharbadCombatStart(s);
@@ -2036,11 +2073,13 @@ function handleEffect(s: GameState, e: Effect) {
           s,
           `Assign ${power} damage`,
           opts(
-            [
-              ...s.heroes,
-              ...druadanPlayerUndefendedTargets(s),
-              ...finalRingUndefendedTargets(s),
-            ],
+            isShipEnemy(enemy)
+              ? shipUndefendedTargets(s, enemy)
+              : [
+                  ...s.heroes,
+                  ...druadanPlayerUndefendedTargets(s),
+                  ...finalRingUndefendedTargets(s),
+                ],
             (h) => [
               fx("combatDamage", {
                 target: h.id,
@@ -2049,10 +2088,12 @@ function handleEffect(s: GameState, e: Effect) {
               }),
             ],
           ),
-          druadanPlayerUndefendedTargets(s).length ||
-            finalRingUndefendedTargets(s).length
-            ? "Assign all damage to one hero or an eligible ally."
-            : "All undefended damage goes to one hero.",
+          isShipEnemy(enemy)
+            ? "All undefended ship damage goes to one ship you control."
+            : druadanPlayerUndefendedTargets(s).length ||
+                finalRingUndefendedTargets(s).length
+              ? "Assign all damage to one hero or an eligible ally."
+              : "All undefended damage goes to one hero.",
         );
       log(
         s,
@@ -2154,6 +2195,7 @@ function handleEffect(s: GameState, e: Effect) {
         Rhudaur.rhudaurAttackFinished(s, completed);
         Carn.carnAttackFinished(s, completed);
         Dread.dreadAttackFinished(s, completed);
+        Raid.raidAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -2168,6 +2210,7 @@ function handleEffect(s: GameState, e: Effect) {
         BloodQuest.bloodGondorAttackFinished(s, completed);
         prepend(s, ...heirsAttackFinished(s, completed));
       }
+      Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
       if (
@@ -2335,6 +2378,7 @@ export function flush(s: GameState) {
     const effect = s.queue.shift()!;
     const sharedEffect =
       ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
+      Raid.raidSharedEffect(effect) ||
       ["shadowResolved", "endRoundScenarioDone", "revealCard"].includes(
         effect.kind,
       ) ||

@@ -1,0 +1,671 @@
+[
+  {
+    "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+    "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+    "name": "Throngs of Unfaithful",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "Surge.\nForced: When Throngs of Unfaithful is destroyed, discard the bottom card of the engaged player's deck. If that card's printed cost is 2 or less, return Throngs of Unfaithful to the top of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 70,
+    "quantity": 2,
+    "threat": 1,
+    "attack": 2,
+    "defense": 0,
+    "health": 4,
+    "engagement": 26,
+    "encounter_set": "Drowned Dead",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "0",
+      "health": "4",
+      "engagement": "26"
+    },
+    "imagesrc": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 70,
+        "quantity": 2,
+        "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+    "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+    "name": "Cursed Temple",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "While Cursed Temple is the active location, characters with less than 2 [willpower] do not ready during the refresh phase.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 74,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 3,
+    "encounter_set": "Ruins of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 74,
+        "quantity": 2,
+        "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
+    "octgnid": "24a816f2-172f-4945-8d9b-21eb7fb68263",
+    "name": "Calphon",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Noble.",
+    "text": "The first player gains control of Calphon.\nAction: Exhaust Calphon to look at the bottom card of your deck. Then, you may switch that card with a card in your hand.  If Calphon leaves play, the players lose.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 28,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 0,
+    "defense": 1,
+    "health": 3,
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "0",
+      "defense": "1",
+      "health": "3"
+    },
+    "imagesrc": "/cards/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 28,
+        "quantity": 1,
+        "octgnid": "24a816f2-172f-4945-8d9b-21eb7fb68263",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24a816f2-172f-4945-8d9b-21eb7fb68263.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
+    "octgnid": "26642db7-c3a2-47f3-989d-27396e586d06",
+    "name": "Shrine to Morgoth",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "While Shrine to Morgoth is the active location, players cannot draw cards or search their decks.\nForced: After Shrine to Morgoth is flipped over while active, exhaust each ally in play with printed cost 2 or less. Then, each player must search the encounter deck and discard pile for an Undead enemy and put it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 27,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 8,
+    "victory": 5,
+    "encounter_set": "The Fate of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "8",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/26642db7-c3a2-47f3-989d-27396e586d06.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "26642db7-c3a2-47f3-989d-27396e586d06",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/26642db7-c3a2-47f3-989d-27396e586d06.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+    "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+    "name": "Soulless Cadaver",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "While you are engaged with Soulless Cadaver, your deck cannot be searched.\nForced: When Soulless Cadaver engages you, place each card in your hand with printed cost 2 or less on the bottom of your deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 69,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 38,
+    "encounter_set": "Drowned Dead",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "38"
+    },
+    "imagesrc": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 69,
+        "quantity": 2,
+        "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+    "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+    "name": "Drowned Dead",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "Forced: When Drowned Dead attacks and destroys an ally, place that ally on the bottom of its owner's deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 68,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 3,
+    "engagement": 32,
+    "shadow": "Shadow: If this attack destroys an ally, place that ally on the bottom of its owners's deck.",
+    "encounter_set": "Drowned Dead",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "3",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 68,
+        "quantity": 3,
+        "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+    "octgnid": "7a2f15bc-d05d-4891-9558-02396affc32b",
+    "name": "Servant of the Deceiver",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead.",
+    "text": "Forced: When Servant of the Deceiver engages you, look at the top card of your deck. If it is printed cost 2 or less, place it on the bottom of your deck and Servant of the Deceiver gets +2 [attack] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 29,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 4,
+    "health": 3,
+    "engagement": 35,
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "4",
+      "health": "3",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/7a2f15bc-d05d-4891-9558-02396affc32b.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 29,
+        "quantity": 3,
+        "octgnid": "7a2f15bc-d05d-4891-9558-02396affc32b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a2f15bc-d05d-4891-9558-02396affc32b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+    "octgnid": "8830070b-b918-4b74-8dfb-dced3866e53b",
+    "name": "Steep Plateau",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Coastland.",
+    "text": "Response: After Steep Plateau is explored, look at the facedown side of an Uncharted location in the staging area.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 32,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 3,
+    "shadow": "Shadow: Discard the bottom card of the defending player's deck. If that card's printed cost is 2 or less, attacking enemy gets +2 [attack].",
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/8830070b-b918-4b74-8dfb-dced3866e53b.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 32,
+        "quantity": 3,
+        "octgnid": "8830070b-b918-4b74-8dfb-dced3866e53b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8830070b-b918-4b74-8dfb-dced3866e53b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+    "octgnid": "92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+    "name": "Ruins of Ages Past",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 2.\nWhen Revealed: Add 1 copy of Lost Island from the top of the Uncharted deck to the staging area. Remove all progress from each Uncharted location in the staging area and shuffle them so that the players do not know which one is which.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 35,
+    "quantity": 2,
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {},
+    "imagesrc": "/cards/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 35,
+        "quantity": 2,
+        "octgnid": "92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92fec8c5-53e7-477a-9c47-8d97578bc1e7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+    "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+    "name": "Aimless Wandering",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The players, as a group, must remove characters with a total of at least X [willpower] from the quest. X is the number of Uncharted locations in the staging area. The first player may give Aimless Wandering doomed 2 to look at the facedown side of an Uncharted location in the staging area.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 75,
+    "quantity": 3,
+    "encounter_set": "Ruins of Numenor",
+    "printed_stats": {},
+    "imagesrc": "/cards/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 75,
+        "quantity": 3,
+        "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+    "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+    "name": "Curse of the Downfallen",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each non-objective ally with printed cost 2 or less. Place each ally destroyed by this effect on the bottom of its owner's deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 71,
+    "quantity": 2,
+    "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Drowned Dead",
+    "printed_stats": {},
+    "imagesrc": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 71,
+        "quantity": 2,
+        "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+    "octgnid": "b03a007c-42bc-433c-bd0e-efbf65a8696d",
+    "name": "Lingering Malevolence",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player discards the bottom card of his deck. Then, he discards each card in his hand with a printed cost higher than that of the discarded card.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 34,
+    "quantity": 2,
+    "shadow": "Shadow: Discard the bottom card of the defending player's deck. If that card's printed cost is 2 or less, attacking enemy gets +2 [attack].",
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {},
+    "imagesrc": "/cards/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 34,
+        "quantity": 2,
+        "octgnid": "b03a007c-42bc-433c-bd0e-efbf65a8696d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b03a007c-42bc-433c-bd0e-efbf65a8696d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+    "octgnid": "b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+    "name": "Mysterious Fog",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either each player must exhaust a character he controls, or each Lost Island in the staging area gets +1 [threat] until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 33,
+    "quantity": 2,
+    "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, exhaust a character you control.",
+    "encounter_set": "The Fate of Numenor",
+    "printed_stats": {},
+    "imagesrc": "/cards/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 33,
+        "quantity": 2,
+        "octgnid": "b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0a1f83b-f1b0-4945-afc8-91a1c25063e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+    "octgnid": "b1f8c611-99a3-4bab-9805-832853d52d4d",
+    "name": "Forbidden Coast",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Coastland.",
+    "text": "Forced: After Forbidden Coast is flipped over while active, each player may draw a card. Then, each player chooses a card from his hand and places it on the bottom of his deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 31,
+    "quantity": 2,
+    "threat": 1,
+    "quest": 6,
+    "encounter_set": "The Fate of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/b1f8c611-99a3-4bab-9805-832853d52d4d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 31,
+        "quantity": 2,
+        "octgnid": "b1f8c611-99a3-4bab-9805-832853d52d4d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1f8c611-99a3-4bab-9805-832853d52d4d.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+    "octgnid": "c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+    "name": "Lush Jungle",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Lush Jungle is in the staging area, characters get -1 [attack] and lose ranged.\nForced: After Lush Jungle is flipped over while active, return it to the staging area unless each player exhausts each ready hero he controls.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 30,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Fate of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 30,
+        "quantity": 2,
+        "octgnid": "c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+    "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+    "name": "Drowned Graves",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "Forced: After Drowned Graves is flipped over while active, discard the top X cards of the encounter deck. Each player adds an Undead enemy discarded by this effect to the staging area. X is 2 more than the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 73,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Ruins of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 73,
+        "quantity": 2,
+        "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+    "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+    "name": "Flooded Ruins",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "While Flooded Ruins is the active location, it contributes its [threat] to the staging area.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 72,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "Ruins of Numenor",
+    "back_name": "Lost Island",
+    "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "back_type_code": "location",
+    "back_imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 72,
+        "quantity": 2,
+        "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "fate-lost-island",
+    "name": "Lost Island",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+    "threat": 2,
+    "quest": 0,
+    "printed_stats": {
+      "threat": "2",
+      "quest": "-"
+    },
+    "encounter_set": "Ruins of Numenor",
+    "quantity": 0,
+    "imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "official": true,
+    "nightmare": false,
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1"
+  }
+]

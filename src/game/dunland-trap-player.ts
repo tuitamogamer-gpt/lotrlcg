@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import {
   dikeCannotLeaveDiscard,
@@ -239,7 +240,7 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
         s,
         `Ithilien Lookout · ${card(code).name}`,
         [
-          ...(card(code).type_code === "enemy"
+          ...(playerUnitIsEnemy({ code: code })
             ? [
                 {
                   id: "discard",
@@ -269,7 +270,7 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       );
       if (e.flag) {
         requireRule(
-          card(e.code!).type_code === "enemy",
+          playerUnitIsEnemy({ code: e.code! }),
           "Only an enemy can be discarded.",
         );
         s.encounterDiscard.push(s.encounterDeck.shift()!);

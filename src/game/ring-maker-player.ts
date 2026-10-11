@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
@@ -80,7 +82,7 @@ export function ringMakerPlayTargets(
 ): Unit[] | null {
   if (code === "08033")
     return s.staging.filter(
-      (u) => card(u.code).type_code === "enemy" && !immune(u),
+      (u) => playerUnitIsEnemy(u) && !immune(u),
     );
   if (code === "08061") return allHeroes(s).filter((u) => !immune(u));
   return null;
@@ -253,7 +255,7 @@ function eagleDiscards(s: GameState) {
 function cheapAllies(s: GameState) {
   return s.hand.filter(
     (u) =>
-      card(u.code).type_code === "ally" &&
+      playerUnitIsAlly(u) &&
       Number(card(u.code).cost) <= 2 &&
       allyCanEnter(s, u.code),
   );
@@ -494,7 +496,7 @@ export function ringMakerEffect(s: GameState, e: Effect): boolean {
       const inPlay = globalUnits(s).find((u) => u.id === e.target);
       if (inPlay) {
         if (!immune(inPlay) && !morgulCannotLeave(s, inPlay)) {
-          if (card(inPlay.code).type_code === "ally")
+          if (playerUnitIsAlly(inPlay))
             returnAlly(s, inPlay, e.text === "message");
           else if (
             e.text === "message" &&

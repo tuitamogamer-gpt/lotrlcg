@@ -1,3 +1,7 @@
+import * as Raid from "./raid-grey-havens";
+import { shipCanAttack, shipCanDefend } from "./ships";
+import * as GreyPlayers from "./grey-havens-player";
+import * as Voyage from "./voyage-belegaer";
 import { dikeAttackDeclared } from "./deadmens-dike";
 import * as Realm from "./lost-realm-player";
 import * as Angmar from "./angmar-player";
@@ -126,6 +130,15 @@ export function playerAttack(
 ) {
   ids = [...new Set(ids)];
   requireRule(
+    ids.every((id) => {
+      const u = get(s, id);
+      return (
+        u && shipCanAttack(enemy, u) && Voyage.voyageCanAttackEnemy(s, enemy, u)
+      );
+    }),
+    "The selected characters cannot attack this enemy.",
+  );
+  requireRule(
     !amonPlayerCannotDeclareAttack(s, activeSeat(s)),
     "Hobbit-sense prevents this fellowship from declaring attacks this round.",
   );
@@ -188,6 +201,7 @@ export function playerAttack(
       ),
     "Only Dúnhere can attack a staging enemy, and he must attack alone.",
   );
+  Raid.raidPlayerAttackStarted(s, enemy);
   const priorQueue = s.queue.length;
   attackers.forEach((u) => {
     if (
@@ -319,6 +333,7 @@ export function playerAttackResolved(
   amount: number,
   remainingHealth: number,
 ) {
+  Raid.raidPlayerAttackFinished(s, enemy);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
   amonPlayerAttackResolved(s, enemy, ids, amount);
@@ -408,6 +423,8 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   Tharbad.tharbadAttackStarted(s, enemy);
   Antlered.antleredAttackStarted(s, enemy);
   dikeAttackDeclared(s, enemy, player);
+  Voyage.voyageAttackStarted(s, enemy, player);
+  Raid.raidAttackStarted(s, enemy, player);
 }
 
 export function applyCombatDamageConsequences(
@@ -449,6 +466,8 @@ export function beginEnemyAttack(
   returnWolf = false,
   watcherResolved = false,
   shadowsPrepared = false,
+  greyHavensResolved = false,
+  anchorDefenders = false,
 ) {
   syncAttachmentText(s, enemy);
   if (enemyAttackPrevented(s, enemy)) {
@@ -464,17 +483,34 @@ export function beginEnemyAttack(
   }
   if (!watcherResolved && watcherWaterEnemyAttackStart(s, enemy, returnWolf))
     return;
+  if (
+    !greyHavensResolved &&
+    GreyPlayers.greyHavensOfferAnchorAttack(
+      s,
+      enemy,
+      ids,
+      returnWolf,
+      watcherResolved,
+      shadowsPrepared,
+    )
+  )
+    return;
   requireRule(
-    new Set(ids).size === ids.length && (ids.length <= 1 || s.standTogether),
+    new Set(ids).size === ids.length &&
+      (ids.length <= 1 || s.standTogether || anchorDefenders),
     "Multiple defenders require Stand Together.",
   );
   const defenders = ids.map((id) =>
-    defendersFor(s, enemy).find((u) => u.id === id),
+    (anchorDefenders
+      ? GreyPlayers.greyHavensAnchorDefenders(s, enemy)
+      : defendersFor(s, enemy)
+    ).find((u) => u.id === id),
   );
   requireRule(
     defenders.every(
       (u) =>
         !!u &&
+        shipCanDefend(enemy, u) &&
         rhosgobelCanFight(enemy, u) &&
         redhornCanDefend(enemy, u) &&
         heirsCanDefend(s, enemy, u) &&
@@ -511,6 +547,7 @@ export function beginEnemyAttack(
   const actuallyExhausted: string[] = [];
   for (const d of defenders.filter((d) => d && get(s, d.id)))
     if (
+      !anchorDefenders &&
       !Antlered.antleredNoDefenseExhaust(d!) &&
       !Angmar.angmarNoCombatExhaust(s, d!) &&
       !heirsPlayerNoDefenseExhaust(s, d!) &&

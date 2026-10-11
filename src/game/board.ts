@@ -1,3 +1,7 @@
+import * as Raid from "./raid-grey-havens";
+import * as Voyage from "./voyage-belegaer";
+import * as Fate from "./fate-numenor";
+import * as GreyPlayers from "./grey-havens-player";
 import {
   dikeCannotLeaveDiscard,
   DIKE_DISCARD_REASON,
@@ -695,6 +699,9 @@ export function advanceDefense(s: GameState) {
 
 export function check(s: GameState) {
   if (s.status !== "playing") return;
+  Fate.fateCheck(s);
+  Raid.raidCheck(s);
+  if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
   finalRingFollowFirst(s);
   Angmar.angmarSyncSwordThain(s);
@@ -741,7 +748,11 @@ export function check(s: GameState) {
   }
   globalEachSeat(s, () => {
     s.committedIds = s.committedIds.filter((id) =>
-      characters(s).some((u) => u.id === id && !u.exhausted),
+      characters(s).some(
+        (u) =>
+          u.id === id &&
+          (!u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u)),
+      ),
     );
   });
   if (
@@ -758,7 +769,9 @@ export function check(s: GameState) {
     const unit = [
       ...allCharacters(s),
       ...allEngaged(s),
-      ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
+      ...s.staging.filter((u) =>
+        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+      ),
     ].find(
       (u) =>
         !shadowFlameIndestructible(u) &&
@@ -829,7 +842,9 @@ export function check(s: GameState) {
         for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
         (hasEncounterKeyword(card(u.code))
           ? seatView(s, u.owner ?? i).removed
-          : card(u.code).type_code === "objective-ally"
+          : ["objective-ally", "ship-objective"].includes(
+                card(u.code).type_code,
+              )
             ? s.encounterDiscard
             : seatView(s, u.owner ?? i).discard
         ).push(u.code);
@@ -925,8 +940,10 @@ export function check(s: GameState) {
     s.choice = null;
     s.queue = [];
     delete s.escapeTest;
+    if (s.sailing) delete s.sailing.test;
     log(s, s.reason, "danger");
   } else {
+    Fate.fateCheck(s);
     deadMarshesCheck(s);
     // Elimination can remove the final Clue as well as ordinary damage/discard.
     if (
@@ -1056,6 +1073,7 @@ export function win(s: GameState) {
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
+  if (s.sailing) delete s.sailing.test;
   if (s.campaign) resolveCampaign(s);
   log(s, `Victory! ${s.reason}`, "chapter");
 }
@@ -1082,12 +1100,17 @@ export function damage(
     Antlered.antleredCannotDamage(s, u) ||
     Chetwood.chetwoodCannotDamage(s, u) ||
     Wastes.wastesCannotDamage(s, u) ||
-    Carn.carnCannotDamage(s, u)
+    Carn.carnCannotDamage(s, u) ||
+    Voyage.voyageCannotDamage(s, u) ||
+    GreyPlayers.greyHavensCannotDamage(s, u)
   )
     return false;
+  const raidLocation = Raid.raidDamageLocation(s, u, value);
+  if (raidLocation !== undefined) return raidLocation;
   if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
     return false;
   value = MorgulQuest.morgulDamageAmount(s, u, heirsDamageAmount(s, u, value));
+  value = Raid.raidDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1126,6 +1149,11 @@ export function damage(
   )
     return false;
   u.damage += value;
+  Voyage.voyageDamageDealt(s, u, value, context);
+  if (u.damage >= stats(s, u).health) {
+    Fate.fateCharacterDestroyed(s, u, context);
+    Raid.raidCharacterDestroyed(s, u, context);
+  }
   Etten.ettenDamageDealt(s, u, value, context);
   Rhudaur.rhudaurDamageDealt(s, u, value, context);
   syncAttachmentText(s, u);
@@ -1247,6 +1275,7 @@ export function characterLeftPlay(
   byCardEffect = false,
   lastKnownType = unitType(u),
 ) {
+  Fate.fateCharacterLeft(s, u, destination);
   Gram.gramCardLeaves(s, u);
   Dread.dreadCharacterLeft(s, u, destination);
   if (!hasEncounterKeyword(card(u.code)))
@@ -1336,7 +1365,7 @@ export function destroy(
   const c = card(u.code);
   const splitGram = isMountGram(s) ? gramState(s) : undefined;
   const stagingArea =
-    c.type_code === "enemy" && splitGram?.split
+    ["enemy", "ship-enemy"].includes(c.type_code) && splitGram?.split
       ? splitGram.areas.find((area) =>
           (area.id === splitGram.activeArea && area.players.includes(previous)
             ? s.staging
@@ -1359,9 +1388,14 @@ export function destroy(
   const lastKnownTraits = effectiveTraits(u);
   const lastKnownType = unitType(u);
   const lastAttachments = [...u.attachments];
+  const wasEngaged = allEngaged(s).some((enemy) => enemy.id === u.id);
+  Voyage.voyageCharacterLeaves(s, u, destruction);
   selectSeat(s, stagingPlayer ?? ownerOf(s, u));
   if (hasEncounterKeyword(c)) destination = "removed";
-  if (destruction && ["ally", "objective-ally", "hero"].includes(c.type_code)) {
+  if (
+    destruction &&
+    ["ally", "objective-ally", "ship-objective", "hero"].includes(c.type_code)
+  ) {
     for (const h of allHeroes(s))
       for (const a of h.attachments)
         if (
@@ -1392,7 +1426,9 @@ export function destroy(
           }
         }
   }
-  if (["ally", "objective-ally", "hero"].includes(c.type_code)) {
+  if (
+    ["ally", "objective-ally", "ship-objective", "hero"].includes(c.type_code)
+  ) {
     raiseThreat(
       s,
       characters(s).reduce(
@@ -1405,7 +1441,7 @@ export function destroy(
     );
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-  if (c.type_code === "enemy") {
+  if (["enemy", "ship-enemy"].includes(c.type_code)) {
     Gram.gramCardLeaves(s, u);
     s.staging = s.staging.filter((x) => x.id !== u.id);
     s.engaged = s.engaged.filter((x) => x.id !== u.id);
@@ -1435,7 +1471,9 @@ export function destroy(
       !Catch.catchEnemyDefeated(s, u, destruction) &&
       !(s.combat?.returnWolf && s.combat.enemyId === u.id)
     )
-      s.encounterDiscard.push(u.code);
+      if (!Voyage.voyageCorsairDiscard(s, u.code))
+        s.encounterDiscard.push(u.code);
+    if (destruction) Fate.fateEnemyDestroyed(s, u, wasEngaged);
     if (destruction) Realm.realmEnemyDestroyed(s, u, lastAttachments);
     if (destruction) Weather.weatherEnemyDefeated(s, u);
     if (destruction) Wastes.wastesEnemyDefeated(s, u);
@@ -1479,7 +1517,7 @@ export function destroy(
         s.queue = [];
       }
     } else if (!removedByScenario)
-      (c.type_code === "objective-ally"
+      (["objective-ally", "ship-objective"].includes(c.type_code)
         ? s.encounterDiscard
         : seatView(s, u.owner ?? activeSeat(s)).discard
       ).push(u.code);
@@ -1550,11 +1588,13 @@ export function discardLocation(s: GameState, u: Unit) {
   for (const attachment of [...u.attachments])
     discardAttachment(s, u, attachment, true);
   s.encounterDiscard.push(u.code);
+  Fate.fateLocationLeft(s, u);
   log(s, `${name(u)} is discarded.`);
 }
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
   if (Trials.trialsRedirectProgress(s, value, u)) return;
+  if (Raid.raidLocationProgressBlocked(s, u)) return;
   if (Dread.dreadLocationProgressBlocked(s, u)) return;
   if (Tharbad.tharbadLocationBlocked(s, u)) return;
   if (Catch.catchLocationProgressBlocked(s, u)) return;
@@ -1614,6 +1654,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   );
   Gram.gramCardLeaves(s, u);
   Dread.dreadExplored(s, u);
+  Fate.fateExplored(s, u, wasActive);
+  Raid.raidExplored(s, u);
   ringMakerLocationExplored(s);
   rhosgobelExplored(s, u);
   returnMirkwoodExplored(s, u);
@@ -1652,6 +1694,7 @@ export function progress(
   if (
     locations.some(
       (l) =>
+        Raid.raidLocationProgressBlocked(s, l) ||
         shadowFlameLocationProgressBlocked(s, l) ||
         Dread.dreadLocationProgressBlocked(s, l),
     )
@@ -1747,10 +1790,13 @@ export function progress(
   )
     return;
   if (n <= 0 || s.status !== "playing") return;
+  if (fromSuccessfulQuest && GreyPlayers.greyHavensAlmanac(s, n)) return;
   if (selectedSideQuest(s)) {
     addCurrentQuestProgress(s, n);
     return;
   }
+  if (Fate.fateQuestProgressBlocked(s)) return;
+  if (Raid.raidQuestProgress(s, n)) return;
   if (Gram.gramProgress(s, n)) return;
   if (Dread.dreadQuestProgress(s, n, playerEffect)) return;
   if (Catch.catchProgressBlocked(s)) return;
@@ -1803,7 +1849,16 @@ export function questDefeated(s: GameState, code: string): boolean {
 }
 
 export function advanceQuest(s: GameState) {
-  if (s.status !== "playing" || s.stageRevealing || s.phase === "setup") return;
+  if (
+    s.status !== "playing" ||
+    s.stageRevealing ||
+    s.phase === "setup" ||
+    s.sailing?.test
+  )
+    return;
+  if (Raid.raidAdvance(s)) return;
+  if (Voyage.voyageAdvance(s)) return;
+  if (Fate.fateAdvance(s)) return;
   if (Druadan.advanceDruadanForest(s)) return;
   if (Amon.advanceAmonDin(s)) return;
   if (BloodQuest.advanceBloodGondor(s)) return;
@@ -1846,8 +1901,8 @@ export function advanceQuest(s: GameState) {
       s.scenarioId === "anduin" &&
       !s.queue.length &&
       !s.choice &&
-      ![...s.staging, ...allEngaged(s)].some(
-        (u) => card(u.code).type_code === "enemy",
+      ![...s.staging, ...allEngaged(s)].some((u) =>
+        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
       )
     )
       win(s);
@@ -2132,17 +2187,36 @@ export function collectResources(s: GameState) {
         : frameworkDraw +
           huntResourceDrawBonus(s, player) +
           dwarfResourceDrawBonus(s, player) +
-          Angmar.angmarResourceDrawBonus(s, player);
+          Angmar.angmarResourceDrawBonus(s, player) +
+          GreyPlayers.greyHavensResourceDrawBonus(s, player) +
+          Voyage.voyageDrawBonus(s, player);
     // Resolve each player's draw reactions before moving to the next player.
-    if (s.dunlandTrap) draws.push(fx("draw", { value: count, player }));
+    if (GreyPlayers.greyHavensResourceDrawBonus(s, player))
+      draws.push(fx("greyHavensResourceDraw", { value: count, player }));
+    else if (s.dunlandTrap) draws.push(fx("draw", { value: count, player }));
     else if (ninNoCardEconomy(s)) draw(s, frameworkDraw, false);
     else draw(s, count, false);
   });
+  if (
+    [
+      "voyage-across-belegaer",
+      "the-fate-of-numenor",
+      "raid-on-the-grey-havens",
+    ].includes(s.scenarioId)
+  )
+    draws.push(fx("raidResourcesCollected"));
   prepend(s, ...draws);
   log(s, `Round ${s.round} · Each hero gains 1 resource.`, "chapter");
 }
 
 export function engage(s: GameState, u: Unit, optional = false) {
+  const designated = Raid.raidEngagementPlayer(s, u);
+  if (designated !== undefined && designated !== activeSeat(s)) {
+    if (optional) return;
+    forOwner(s, designated, () => engage(s, u, false));
+    return;
+  }
+  const fromStaging = s.staging.some((e) => e.id === u.id);
   if (celebrimborProtected(s, u) || Carn.carnCannotEngage(s, u)) return;
   if (!shadowFlameCanMove(s, u) || !amonPlayerCanEngage(s, u, activeSeat(s)))
     return;
@@ -2159,6 +2233,9 @@ export function engage(s: GameState, u: Unit, optional = false) {
     u.feinted = u.preventedAttacks.includes(activeSeat(s));
   log(s, `${name(u)} engages your fellowship.`, "danger");
   const realmBefore = s.queue.length;
+  Voyage.voyageEngaged(s, u, fromStaging);
+  Fate.fateEngaged(s, u);
+  Raid.raidEngaged(s, u);
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
   Fords.fordsEngaged(s, u);
@@ -2205,13 +2282,14 @@ export function revealed(
   if (!resumed) Angmar.angmarRevealed(s, code, revealOrigin);
   const thalinDefeats =
     revealOrigin === "encounter" &&
-    card(code).type_code === "enemy" &&
+    ["enemy", "ship-enemy"].includes(card(code).type_code) &&
     (card(code).health ?? 0) <= 1 &&
     allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed);
   if (
     !resumed &&
     !thalinDefeats &&
     Wastes.wastesCancelAllowed(s) &&
+    Voyage.voyageCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
   ) {
     const resume = fx("revealCard", {
@@ -2271,7 +2349,7 @@ export function revealed(
   }
   const thalinDamage =
     revealOrigin === "encounter" &&
-    c.type_code === "enemy" &&
+    ["enemy", "ship-enemy"].includes(c.type_code) &&
     allHeroes(s).some((h) => h.code === "01006" && !h.blanked && h.committed)
       ? 1
       : 0;
@@ -2354,7 +2432,7 @@ export function resolveReveal(
   let thalin = false;
   if (
     revealOrigin === "encounter" &&
-    c.type_code === "enemy" &&
+    ["enemy", "ship-enemy"].includes(c.type_code) &&
     (thalinSnapshot === undefined
       ? allHeroes(s).some(
           (h) => h.code === "01006" && !h.blanked && h.committed,
@@ -2431,6 +2509,7 @@ export function resolveReveal(
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
+    Voyage.voyageCanCancelWhenRevealed(s, code) &&
     !Etten.ettenIgnoreWhenRevealed(s, code) &&
     !khazadCannotCancel(code) &&
     !heirsCannotCancel(code) &&
@@ -2590,6 +2669,7 @@ export function placeEncounter(
       Trials.trialsRevealedUnit(s, code) ??
       Weather.weatherRevealedUnit(s, code) ??
       make(s, code);
+    Raid.raidCardEntered(s, fresh, fromReveal, revealOrigin);
     Trials.trialsCardEntered(s, fresh, fromReveal);
     Antlered.antleredCardEntered(s, fresh, fromReveal);
     Chetwood.chetwoodCardEntered(s, fresh, fromReveal);
@@ -2602,22 +2682,30 @@ export function placeEncounter(
       initialDamage && khazadDamageCancelled(s, fresh, initialDamage)
         ? 0
         : initialDamage;
-    if (guarding && ["enemy", "location"].includes(c.type_code))
+    if (guarding && ["enemy", "ship-enemy", "location"].includes(c.type_code))
       fresh.guarding = guarding;
     s.staging.push(fresh);
-    if (fromReveal && revealOrigin === "encounter" && c.type_code === "enemy") {
+    if (
+      fromReveal &&
+      revealOrigin === "encounter" &&
+      ["enemy", "ship-enemy"].includes(c.type_code)
+    ) {
       khazadRevealedEnemy(s, fresh);
       khazadDiscardRevealedEnemy(s, fresh);
     }
-    if (c.type_code === "enemy" && s.staging.some((u) => u.id === fresh.id))
+    if (
+      ["enemy", "ship-enemy"].includes(c.type_code) &&
+      s.staging.some((u) => u.id === fresh.id)
+    )
       enemyAddedToStaging(s, fresh);
-    if (c.type_code === "enemy")
+    if (["enemy", "ship-enemy"].includes(c.type_code))
       roadRivendellEnemyEntered(
         s,
         fresh,
         fromReveal && revealOrigin === "encounter",
       );
-    if (c.type_code === "enemy") heirsEnemyEntered(s, fresh, fromReveal);
+    if (["enemy", "ship-enemy"].includes(c.type_code))
+      heirsEnemyEntered(s, fresh, fromReveal);
     if (c.type_code === "location") {
       stewardFearLocationEntered(s, fresh);
       Amon.amonDinLocationEntered(s, fresh);
@@ -2655,6 +2743,9 @@ export function placeEncounter(
     log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
     return;
   }
+  if (Raid.raidEncounter(s, code)) return;
+  if (Voyage.voyageEncounter(s, code)) return;
+  if (Fate.fateEncounter(s, code)) return;
   if (shadowFlameEncounter(s, code)) return;
   if (Druadan.druadanForestEncounter(s, code)) return;
   if (Amon.amonDinEncounter(s, code)) return;
@@ -2783,7 +2874,11 @@ export function placeEncounter(
     case "01092":
       if (s.staging.length)
         s.staging
-          .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
+          .filter((u) =>
+            ["enemy", "ship-enemy", "location"].includes(
+              card(u.code).type_code,
+            ),
+          )
           .forEach((u) => {
             u.tempThreat = (u.tempThreat ?? 0) + 1;
           });
@@ -2997,7 +3092,9 @@ export function allyEntryResponses(
         [
           ...opts(
             [
-              ...s.staging.filter((x) => card(x.code).type_code === "enemy"),
+              ...s.staging.filter((x) =>
+                ["enemy", "ship-enemy"].includes(card(x.code).type_code),
+              ),
               ...allEngaged(s).filter((x) => ownerOf(s, x) !== activeSeat(s)),
             ].filter((x) => !Carn.carnCannotEngage(s, x)),
             (x) => [fx("engage", { target: x.id })],
@@ -3168,6 +3265,8 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (Raid.raidShadow(s, code)) return;
+  if (Voyage.voyageShadow(s, code) || Fate.fateShadow(s, code)) return;
   if (Druadan.druadanForestShadow(s, code)) return;
   if (Amon.amonDinShadow(s, code)) return;
   if (Osgiliath.assaultOsgiliathShadow(s, code)) return;

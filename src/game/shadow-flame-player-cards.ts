@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import {
   dikeCannotLeaveDiscard,
@@ -70,7 +71,7 @@ import { playerAttack } from "./combat";
 
 const immune = (u: Unit) => playerCardImmune(u);
 const stagingEnemies = (s: GameState) =>
-  s.staging.filter((u) => card(u.code).type_code === "enemy" && !immune(u));
+  s.staging.filter((u) => playerUnitIsEnemy(u) && !immune(u));
 const readyHeroes = (s: GameState) =>
   s.heroes.filter((u) => !u.exhausted && !khazadCannotExhaust(u));
 const ranged = (s: GameState) =>
@@ -571,7 +572,7 @@ export function handleShadowFlamePlayerEffect(
       const enemy = get(s, e.target);
       if (
         enemy &&
-        card(enemy.code).type_code === "enemy" &&
+        playerUnitIsEnemy(enemy) &&
         !card(enemy.code).is_unique &&
         !immune(enemy) &&
         shadowFlameCanMove(s, enemy) &&

@@ -1,9 +1,15 @@
 import { FANGORN } from "../src/game/fangorn-support.ts";
 import { applyAction } from "./pass-resource-window.ts";
+import {
+  GREY_HAVENS_SCENARIOS,
+  greyHavensSimulationAction,
+  greyHavensSimulationChoice,
+} from "./grey-havens-simulation-driver";
 import nodeTest from "node:test";
 import assert from "node:assert/strict";
 import { STARTERS, card } from "../src/game/cards.ts";
 import {
+  applyAction as engineApplyAction,
   createGame,
   canPlay,
   availableAbilities,
@@ -15,6 +21,7 @@ import {
   needsTarget,
   objectiveFree,
   canFight,
+  enemyAttackPrevented,
   hasClue,
   newCampaign,
   validateSave,
@@ -81,6 +88,8 @@ const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   if (!listOnly) return nodeTest(...args);
 }) as typeof nodeTest;
 function choose(s: GameState): Option {
+  const greyHavens = greyHavensSimulationChoice(s);
+  if (greyHavens) return greyHavens;
   const opts = s.choice!.options;
   const title = s.choice!.title;
   const skip = opts.find((o) => o.id === "skip");
@@ -196,6 +205,8 @@ function run(
     if (s.flow?.pending)
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
+    else if (greyHavensSimulationAction(s))
+      action = greyHavensSimulationAction(s)!;
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (objective && bearer && s.threat < 46)
@@ -322,10 +333,7 @@ function run(
           : { type: "NEXT" };
     } else if (s.phase === "defense") {
       const e = engagedEnemies(s).find(
-        (e) =>
-          normalAttackPending(s, e) &&
-          !e.feinted &&
-          !e.attachments.some((a) => a.code === "01069"),
+        (e) => normalAttackPending(s, e) && !enemyAttackPrevented(s, e),
       );
       assert.ok(
         e,
@@ -366,7 +374,11 @@ function run(
         `selected:${s.choice.options.find((o) => o.id === action.id)?.code}`,
       );
     try {
-      s = applyAction(s, action);
+      s = GREY_HAVENS_SCENARIOS.includes(
+        scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+      )
+        ? engineApplyAction(s, action)
+        : applyAction(s, action);
       if (s.victoryCards?.includes("09014")) observed?.add("defeated:09014");
     } catch (e) {
       throw new Error(
@@ -378,7 +390,12 @@ function run(
       validateSave(s),
       `${scenarioId}/${playMode}/${id}/seed${seed}: valid save after ${action.type}`,
     );
-    if (angmarScenarios.includes(scenarioId)) {
+    if (
+      angmarScenarios.includes(scenarioId) ||
+      GREY_HAVENS_SCENARIOS.includes(
+        scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+      )
+    ) {
       const restored = restoreSave(JSON.parse(JSON.stringify(s)));
       assert.ok(restored, `${scenarioId}: restore every action`);
       s = restored;

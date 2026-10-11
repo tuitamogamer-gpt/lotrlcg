@@ -203,7 +203,9 @@ const bundle = {
     recipes: "public/scenarios.json",
     expansionRules: matching.some((r) => r.pack_codes.includes("TLR"))
       ? "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
-      : undefined,
+      : matching.some((r) => r.pack_codes.includes("TGH"))
+        ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
+        : undefined,
   },
   cards,
   recipes: matching,

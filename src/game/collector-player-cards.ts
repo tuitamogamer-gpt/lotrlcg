@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   choosePlayerResponse,
   mandatoryPlayerResponse,
@@ -98,7 +99,7 @@ const codes = {
 const affected = (u: Unit) => !playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy" && affected(u),
+    (u) => playerUnitIsEnemy(u) && affected(u),
   );
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
@@ -211,7 +212,7 @@ export function collectorAllyEntered(
 }
 
 export function collectorEncounterRevealed(s: GameState, code: string) {
-  if (card(code).type_code !== "enemy") return;
+  if (!playerUnitIsEnemy({ code: code })) return;
   prepend(
     s,
     ...allCharacters(s)
@@ -227,7 +228,7 @@ export function collectorEnemyCancelOptions(
   continuation: Effect,
 ): Option[] {
   if (
-    card(code).type_code !== "enemy" ||
+    !playerUnitIsEnemy({ code: code }) ||
     !/When Revealed/i.test(card(code).text ?? "")
   )
     return [];
