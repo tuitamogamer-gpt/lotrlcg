@@ -11,7 +11,7 @@ import { stormcallerArea } from "../src/game/stormcaller.ts";
 import { card, plain } from "../src/game/cards.ts";
 import { fx, get, make } from "../src/game/core.ts";
 import { allCharacters, allEngaged } from "../src/game/table.ts";
-import { check, revealed } from "../src/game/board.ts";
+import { revealed } from "../src/game/board.ts";
 import { flush, handle } from "../src/game/effects.ts";
 import { beginSailingTest } from "../src/game/sailing.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
@@ -49,6 +49,20 @@ const boardCard = (p, code) =>
     .locator(".board-card")
     .filter({ has: p.locator(`img[data-card-code="${code}"]`) })
     .first();
+async function printedFace(p, q, reverse = false) {
+  assert.equal(
+    await p.locator("[data-card-primary-name]").textContent(),
+    reverse ? (q.back_name ?? q.name) : q.name,
+  );
+  const primary = p.locator("[data-card-primary-rules]");
+  const expected = plain(reverse ? q.back_text : q.text);
+  if (expected) assert.equal(await primary.textContent(), expected);
+  else assert.equal(await primary.count(), 0, "blank printed face has no rules");
+  const other = p.locator("[data-card-other-face] .rules-text");
+  const otherExpected = plain(reverse ? q.text : q.back_text);
+  if (otherExpected) assert.equal(await other.textContent(), otherExpected);
+  else assert.equal(await other.count(), 0, "blank other face has no rules");
+}
 try {
   for (const [width, height] of [
     [1440, 1000],
@@ -228,17 +242,11 @@ try {
       await page
         .getByRole("button", { name: "Read printed quest", exact: true })
         .click();
-      assert.equal(
-        await page.locator("[data-card-primary-rules]").textContent(),
-        plain(q.text),
-      );
+      await printedFace(page, q);
       await page
         .getByRole("button", { name: "Show reverse", exact: true })
         .click();
-      assert.equal(
-        await page.locator("[data-card-primary-rules]").textContent(),
-        plain(q.back_text),
-      );
+      await printedFace(page, q, true);
       await checkpoint(page, `player-quest-${index + 1}`, width);
       await page
         .getByRole("button", { name: "Close dialog", exact: true })
@@ -251,17 +259,11 @@ try {
       await page
         .getByRole("button", { name: "Inspect Stormcaller quest", exact: true })
         .click();
-      assert.equal(
-        await page.locator("[data-card-primary-rules]").textContent(),
-        plain(q.text),
-      );
+      await printedFace(page, q);
       await page
         .getByRole("button", { name: "Show reverse", exact: true })
         .click();
-      assert.equal(
-        await page.locator("[data-card-primary-rules]").textContent(),
-        plain(q.back_text),
-      );
+      await printedFace(page, q, true);
       await checkpoint(page, `pursuer-quest-${index + 2}`, width);
       await page
         .getByRole("button", { name: "Close dialog", exact: true })
@@ -269,24 +271,39 @@ try {
         .click();
     }
     s = F.setPlayerStage(F.base(), 2);
-    s.progress = 12;
-    check(s);
-    flush(s);
-    s = F.settle(s);
-    assert.equal(s.status, "won");
+    s.progress = 11;
+    s.phase = "staging";
+    for (const u of allCharacters(s)) u.committed = true;
     await load(page, s);
+    await page
+      .getByRole("button", { name: "Resolve quest", exact: true })
+      .last()
+      .click();
+    s = await settle(page);
+    assert.equal(s.status, "won");
     assert.ok(
-      await page.getByText("Beyond the shadow", { exact: true }).isVisible(),
+      await page
+        .getByRole("heading", { name: "Beyond the shadow", exact: true })
+        .isVisible(),
     );
     await checkpoint(page, "caught-stormcaller-victory", width);
     s = F.setEnemyStage(F.base(), 4);
-    s.stormcaller.enemyProgress = 24;
-    handle(s, fx("stormcallerEnemyAdvance"));
-    assert.equal(s.status, "lost");
+    s.stormcaller.enemyProgress = 23;
+    s.phase = "refresh";
+    s.encounterDeck = [C.calm];
     await load(page, s);
+    await page
+      .getByRole("button", { name: "Begin next round", exact: true })
+      .last()
+      .click();
+    s = await settle(page);
+    assert.equal(s.status, "lost");
     assert.ok(
       await page
-        .getByText("The fellowship has fallen", { exact: true })
+        .getByRole("heading", {
+          name: "The fellowship has fallen",
+          exact: true,
+        })
         .isVisible(),
     );
     await checkpoint(page, "stormcaller-escaped-defeat", width);
