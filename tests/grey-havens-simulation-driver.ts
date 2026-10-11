@@ -35,6 +35,7 @@ export const GREY_HAVENS_SCENARIOS = [
 export const DREAM_CHASER_SCENARIOS = [
   ...GREY_HAVENS_SCENARIOS,
   "flight-of-the-stormcaller",
+  "the-thing-in-the-depths",
 ] as const;
 
 /** Deterministic decisions use the real mandatory Sailing choices and costs. */
@@ -132,7 +133,9 @@ export function runGreyHavensGame(
           (a, b) => (card(b.code).threat ?? 0) - (card(a.code).threat ?? 0),
         )[0];
       action =
-        !s.activeLocation && location
+        (!s.activeLocation ||
+          (s.scenarioId === "the-thing-in-the-depths" && s.stage === 3)) &&
+        location
           ? { type: "TRAVEL", id: location.id }
           : { type: "NEXT" };
     } else if (s.phase === "defense") {
@@ -177,7 +180,7 @@ export function runGreyHavensGame(
         allCharacters(s).length,
       );
     } catch (error) {
-      const directory = `output/${scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
+      const directory = `output/${scenarioId === "the-thing-in-the-depths" ? "depths" : scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
       mkdirSync(directory, { recursive: true });
       writeFileSync(
         `${directory}/${scenarioId}-${easy ? "easy" : "normal"}-${players}-${seed}-${reviewMode ?? "immediate"}.json`,

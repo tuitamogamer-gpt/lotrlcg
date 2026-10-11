@@ -1,4 +1,5 @@
 // Complete original Hills of Emyn Muil scenario. Nightmare remains separate.
+import { surgeEffects } from "./surge";
 import encounters from "../data/emyn-muil-encounter-cards.json";
 import quests from "../data/emyn-muil-quest-cards.json";
 import { card, name } from "./cards";
@@ -161,7 +162,11 @@ export function emynMuilTravel(s: GameState, location: Unit) {
 }
 
 /** Handled treacheries are discarded after their effects are queued. */
-export function emynMuilEncounter(s: GameState, encounterCode: string) {
+export function emynMuilEncounter(
+  s: GameState,
+  encounterCode: string,
+  replay = false,
+) {
   switch (encounterCode) {
     case EMYN.chasm: {
       const active = allActiveLocations(s);
@@ -175,7 +180,28 @@ export function emynMuilEncounter(s: GameState, encounterCode: string) {
         );
       } else if (active.length) {
         prepend(s, fx("emynReturnActive", { target: active[0].id }));
-      } else prepend(s, fx("reveal", { player: s.table?.first ?? 0 }));
+      } else if (!replay) {
+        const pendingWindow = s.queue.findIndex(
+          (e) => e.kind === "amonSurgeWindow" && e.code === EMYN.chasm,
+        );
+        if (pendingWindow >= 0) {
+          // Each Surge instance reveals a card, but this physical Chasm
+          // creates only one response window. Both reveals follow it.
+          s.queue.splice(
+            pendingWindow + 1,
+            0,
+            fx("reveal", { player: s.table?.first ?? 0 }),
+          );
+        } else {
+          prepend(
+            s,
+            ...surgeEffects(EMYN.chasm).map((e) => ({
+              ...e,
+              player: s.table?.first ?? 0,
+            })),
+          );
+        }
+      }
       break;
     }
     case EMYN.rockslide:

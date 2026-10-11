@@ -1,4 +1,5 @@
 import { mainQuestCode } from "./quest-state";
+import { surgeEffects } from "./surge";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { encodeDamageContext, readDamageContext } from "./damage-context";
@@ -215,7 +216,9 @@ export function morgulEncounter(s: GameState, code: string, replay = false) {
         ? playerOrder(s).map((player) =>
             fx("heirsThreat", { player, value: count }),
           )
-        : [fx("reveal")]),
+        : replay
+          ? []
+          : surgeEffects(M.city)),
     );
   } else if (code === M.fog) prepend(s, fx("morgulFog", { player: first(s) }));
   else if (code === M.malice)

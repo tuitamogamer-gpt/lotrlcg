@@ -1,4 +1,5 @@
 import { mainQuestCode } from "./quest-state";
+import { surgeEffects } from "./surge";
 // Original/easy Encounter at Amon Dîn. Villager tokens are never spendable resources.
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -286,7 +287,10 @@ export function amonDinEncounter(
   if (code === A.ravager || code === A.trapped) {
     const count = code === A.ravager ? 1 : playerOrder(s).length;
     if (!s.activeLocation || !discardVillagers(s, s.activeLocation, count))
-      prepend(s, fx("reveal", { player: first(s) }));
+      prepend(
+        s,
+        ...surgeEffects(code).map((e) => ({ ...e, player: first(s) })),
+      );
   } else if (code === A.homestead) {
     const amount = dead(s)?.damage ?? 0;
     for (const player of playerOrder(s))
@@ -415,7 +419,14 @@ export function handleAmonDinEffect(s: GameState, e: Effect): boolean {
         r = rescued(s),
         locs = s.staging.filter((l) => card(l.code).type_code === "location");
       if (!players.length) {
-        if (!e.count) prepend(s, fx("reveal", { player: first(s) }));
+        if (!e.count)
+          prepend(
+            s,
+            ...surgeEffects(A.panicked).map((e) => ({
+              ...e,
+              player: first(s),
+            })),
+          );
         break;
       }
       const player = Number(players[0]);

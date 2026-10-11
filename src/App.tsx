@@ -10,6 +10,7 @@ import { realmExtraEngagement } from "./game/lost-realm-player";
 import { CELEBRIMBOR } from "./game/celebrimbor-support";
 import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
+import { DepthsScenarioState, DepthsGrappleSummary } from "./ui/depths-state";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
 import {
@@ -2614,6 +2615,7 @@ export default function App() {
             <EscapeTestSummary s={game} />
             <SailingTestSummary s={game} />
             <ScenarioState s={game} inspect={setDetail} />
+            <DepthsScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -4387,6 +4389,7 @@ function BoardCard({
       <ShadowCards count={u.shadows.length - faceupShadowCards(u).length} />
       <FaceupShadows u={u} inspect={inspectCard} />
       <AttachmentStack u={u} inspect={inspectCard} />
+      <DepthsGrappleSummary s={s} location={u} inspect={inspectCard} />
       <button
         ref={damageRef}
         className="board-card-art"

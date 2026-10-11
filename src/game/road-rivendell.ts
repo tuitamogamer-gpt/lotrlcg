@@ -1,4 +1,5 @@
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
+import { surgeEffects } from "./surge";
 import { wastesCancelAllowed } from "./wastes-eriador";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
@@ -134,7 +135,7 @@ export function roadRivendellCheck(s: GameState) {
     p = seatView(s, player);
   if (
     s.table?.seats[player].eliminated ||
-    effectiveThreat(s, player) >= 50 ||
+    p.threat >= 50 ||
     !p.heroes.length
   )
     lose(s, "Arwen Undómiel's controlling fellowship has been eliminated.");
@@ -339,7 +340,7 @@ export function roadRivendellEncounter(s: GameState, code: string) {
       {
         id: "damage",
         label: "Deal one damage to every ally, then reveal another card",
-        effects: [fx("roadRivendellDamageAllies"), fx("reveal")],
+        effects: [fx("roadRivendellDamageAllies"), ...surgeEffects(ROAD.night)],
       },
       {
         id: "attacks",

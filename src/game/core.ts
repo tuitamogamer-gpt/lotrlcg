@@ -1,10 +1,14 @@
 import * as Storm from "./stormcaller";
+import * as Depths from "./depths";
 import { stormcallerState, stormcallerStageInfo } from "./stormcaller-support";
+import { depthsStageInfo } from "./depths-support";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Raid from "./raid-grey-havens";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
+import { depthsPlayerStats } from "./depths-player-support";
+import { depthsPlayerCostReduction } from "./depths-player";
 import { voyageStageInfo } from "./voyage-belegaer-support";
 import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
@@ -508,6 +512,8 @@ export function stats(s: GameState, u: Unit) {
         [
           chetwoodBonus.will,
           GreyPlayers.greyHavensStats(s, u).will,
+          depthsPlayerStats(s, u).will,
+          Depths.depthsStats(s, u).will,
           Voyage.voyageStats(s, u).will,
           angmarBonus.will,
           Wastes.wastesWillBonus(s, u),
@@ -552,6 +558,8 @@ export function stats(s: GameState, u: Unit) {
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
         GreyPlayers.greyHavensStats(s, u).attack +
+        depthsPlayerStats(s, u).attack +
+        Depths.depthsStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
@@ -608,6 +616,8 @@ export function stats(s: GameState, u: Unit) {
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
             GreyPlayers.greyHavensStats(s, u).defense +
+            depthsPlayerStats(s, u).defense +
+            Depths.depthsStats(s, u).defense +
             Voyage.voyageStats(s, u).defense +
             Raid.raidStats(s, u).defense +
             angmarBonus.defense +
@@ -644,6 +654,7 @@ export function stats(s: GameState, u: Unit) {
       (namelessX ?? c.health ?? 0) +
       foundationsBonus.health +
       Dread.dreadStats(s, u).health +
+      Depths.depthsStats(s, u).health +
       stewardBonus.health +
       bonus.health +
       u.attachments.filter((a) => !a.blanked && a.code === "01040").length * 4,
@@ -723,7 +734,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 druadanForestCostIncrease(s) -
                 secrecyDiscount(s, c) -
                 ringMakerSecrecy(s, c) -
-                gondorDiscount,
+                gondorDiscount -
+                depthsPlayerCostReduction(s, c.code),
             ) + dwarfAdditionalCost(c.code),
           ),
         ),
@@ -783,6 +795,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Chetwood.chetwoodThreatBonus(s, u) +
             Voyage.voyageThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
+            Depths.depthsThreatBonus(s, u) +
             Fate.fateThreatBonus(s, u) +
             Rhu.rhudaurThreatBonus(s, u) +
             Carn.carnThreatBonus(s, u) +
@@ -862,6 +875,7 @@ export const questStat = (s: GameState) =>
       druadanPlayerQuestStat(s)));
 
 export const locationQuest = (s: GameState, u: Unit) =>
+  Depths.depthsLocationQuest(s, u) ??
   Fate.fateLocationQuest(s, u) ??
   MorgulQuest.morgulBridgeValue(s, u) ??
   watcherWaterLocationQuest(s, u) ??
@@ -890,6 +904,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const depths = depthsStageInfo(s);
+  if (depths) return depths;
   const storm = stormcallerStageInfo(s);
   if (storm) return storm;
   const voyage = voyageStageInfo(s);
@@ -948,6 +964,7 @@ export const enemyAttackPrevented = (
 ) =>
   (["defense", "attack"].includes(s.phase) && Fangorn.hasHinder(u)) ||
   Voyage.voyageEnemyCannotAttack(s, u) ||
+  Depths.depthsCannotAttack(s, u) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
   has(u, "01069") ||
@@ -988,7 +1005,8 @@ export const inPlay = (s: GameState, code: string) =>
 
 export const resources = (s: GameState, sphere?: string) => {
   syncAttachmentText(s);
-  return s.heroes
+  return characters(s)
+    .filter(isHero)
     .filter(
       (h) =>
         !sphere ||
@@ -1001,7 +1019,8 @@ export const resources = (s: GameState, sphere?: string) => {
 export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
   syncAttachmentText(s);
   const actualCost = playCost(s, c, target);
-  const heroes = s.heroes
+  const heroes = characters(s)
+    .filter(isHero)
     .filter((h) => actualCost === 0 || heirsCanSpendResources(s, h))
     .filter(
       (h) =>
@@ -1018,6 +1037,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
     ...heroes,
     ...s.allies.filter(
       (u) =>
+        !isHero(u) &&
         !u.blanked &&
         ((u.code === "02059" && hasTraitCard(c, "Creature")) ||
           (u.code === "08146" &&
@@ -1053,9 +1073,8 @@ export const canPay = (s: GameState, c: Card) =>
   !Nin.ninPlayProblem(s, c.code) &&
   (!["01036", "08143", "10085"].includes(c.code) ||
     (playCost(s, c) >= 3 &&
-      eligiblePayers(s, c).filter(
-        (h) => h.resources > 0 && s.heroes.some((u) => u.id === h.id),
-      ).length >= 3)) &&
+      eligiblePayers(s, c).filter((h) => h.resources > 0 && isHero(h)).length >=
+        3)) &&
   !khazadCannotPlay(s) &&
   !returnMirkwoodCannotPlay(s) &&
   !(c.type_code === "event" && emynMuilEventsBlocked(s)) &&
@@ -1070,7 +1089,7 @@ export function pay(
   c: Card,
   payment?: Record<string, number>,
   target?: Unit,
-) {
+): Record<string, number> {
   requireRule(
     !khazadCannotPlay(s),
     "Bridge of Khazad-dûm prevents playing cards while active.",
@@ -1084,12 +1103,14 @@ export function pay(
     "Gollum’s guard cannot play cards during To the Elvin King’s Halls.",
   );
   let cost = playCost(s, c, target);
+  const spent: Record<string, number> = {};
   const payers = eligiblePayers(s, c, target);
   if (["01036", "08143", "10085"].includes(c.code))
     requireRule(
       payment &&
         Object.entries(payment).filter(
-          ([id, n]) => n > 0 && s.heroes.some((h) => h.id === id),
+          ([id, n]) =>
+            n > 0 && characters(s).some((h) => h.id === id && isHero(h)),
         ).length === 3,
       "This card must use resources from three different heroes' pools.",
     );
@@ -1115,19 +1136,23 @@ export function pay(
       const h = payers.find((h) => h.id === id);
       requireRule(h && h.resources >= v, "Invalid resource payment.");
     }
-    for (const [id, v] of Object.entries(payment))
+    for (const [id, v] of Object.entries(payment)) {
       spendResources(
         s,
         payers.find((h) => h.id === id)!,
         v,
       );
+      if (v > 0) spent[id] = v;
+    }
   } else {
     for (const h of [...payers].sort((a, b) => b.resources - a.resources)) {
       const n = Math.min(cost, h.resources);
       spendResources(s, h, n);
+      if (n > 0) spent[h.id] = n;
       cost -= n;
     }
   }
+  return spent;
 }
 
 export function draw(s: GameState, count: number, cardEffect = true) {

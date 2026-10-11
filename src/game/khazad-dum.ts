@@ -1,4 +1,5 @@
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
+import { surgeEffects } from "./surge";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { addCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
@@ -833,7 +834,11 @@ export function khazadEncounter(s: GameState, cardCode: string) {
         const e = make(s, c);
         s.staging.push(e);
         forOwner(s, first, () => engage(s, e));
-      } else prepend(s, fx("reveal", { player: first }));
+      } else
+        prepend(
+          s,
+          ...surgeEffects(KHAZAD.chance).map((e) => ({ ...e, player: first })),
+        );
       break;
     }
     case KHAZAD.chieftain:
@@ -929,7 +934,7 @@ export function khazadEncounter(s: GameState, cardCode: string) {
         state(s).questDeck.push(state(s).activeQuest!);
         shuffle(s, state(s).questDeck);
         newFlightQuest(s, true);
-      } else prepend(s, fx("reveal"));
+      } else prepend(s, ...surgeEffects(KHAZAD.devilry));
       break;
     default:
       return (
@@ -1297,7 +1302,7 @@ export function khazadEffect(s: GameState, e: Effect) {
         removeCurrentQuestProgress(s, Infinity) +
         (u && !immune(u) ? u.progress : 0);
       if (u && !immune(u)) u.progress = 0;
-      if (!removed) prepend(s, fx("reveal"));
+      if (!removed) prepend(s, ...surgeEffects(KHAZAD.caveIn));
       break;
     }
     case "khazadRuin": {
@@ -1381,7 +1386,8 @@ export function khazadEffect(s: GameState, e: Effect) {
       break;
     }
     case "khazadWellCheck":
-      if (u && u.resources < livingSeats(s).length) prepend(s, fx("reveal"));
+      if (u && u.resources < livingSeats(s).length)
+        prepend(s, ...surgeEffects(KHAZAD.well));
       if (u) u.resources = 0;
       break;
     case "khazadHiddenThreat":

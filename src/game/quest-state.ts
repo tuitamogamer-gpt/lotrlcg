@@ -1,4 +1,5 @@
 import { stormcallerCurrentQuest } from "./stormcaller-support";
+import { depthsCurrentQuest } from "./depths-support";
 import { card } from "./cards";
 import { selectedSideQuest, selectedSideQuestUnit } from "./side-quest-support";
 import { ninCurrentQuest } from "./nin-eilph-support";
@@ -21,6 +22,8 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function mainQuestCode(s: GameState): string | undefined {
+  const depths = depthsCurrentQuest(s);
+  if (depths) return depths;
   const storm = stormcallerCurrentQuest(s);
   if (storm) return storm;
   const voyage = voyageCurrentQuest(s);

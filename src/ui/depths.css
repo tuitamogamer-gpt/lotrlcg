@@ -1,0 +1,114 @@
+.redbook[data-playmat="the-thing-in-the-depths"],
+.mat-the-thing-in-the-depths {
+  --playmat-art: url("/art/premium/anduin.webp");
+  --mat-shade: #071d287a;
+  --mat-tint: #17333b;
+}
+
+.depths-scenario-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 12px 16px;
+  margin: 0 0 12px;
+  border: 1px solid #b68e4c47;
+  border-radius: 5px;
+  background: #09222bd9;
+  color: #e4d6b9;
+  font-size: 13px;
+}
+.depths-objective-summary,
+.depths-ship-danger {
+  display: grid;
+  gap: 5px;
+  flex: 1 1 240px;
+  min-width: 0;
+}
+.depths-scenario-state strong {
+  font-weight: 600;
+  color: #f1dfb4;
+}
+.depths-scenario-state button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-color: #b68e4c80;
+  text-underline-offset: 3px;
+}
+.depths-captains {
+  display: grid;
+  gap: 8px;
+  flex: 0 1 240px;
+  min-width: 0;
+}
+.depths-captains button {
+  display: grid;
+  gap: 2px;
+}
+.depths-captains span {
+  font-size: 12px;
+}
+.depths-ship-danger.is-sinking strong {
+  color: #ffb0a0;
+}
+.depths-grapple-summary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 3px;
+  max-width: 100%;
+  border-top: 1px solid #b68e4c45;
+  color: #dcd0b6;
+  background: #09222bee;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.depths-grapple-summary > span {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+.depths-grapple-summary small {
+  font-size: 10px;
+}
+.depths-grapple-backs {
+  display: flex;
+  flex: 0 0 auto;
+  padding-right: 5px;
+}
+.depths-grapple-backs .table-card-back {
+  position: relative;
+  width: 18px;
+  height: 26px;
+  margin-right: -5px;
+  border-radius: 2px;
+  transform: none;
+}
+.depths-grapple-backs .table-card-back .card-back-art {
+  border-radius: 2px;
+}
+.depths-active-threat {
+  display: block;
+  margin-top: 4px;
+  color: #dcd0b6;
+  font-size: 12px;
+}
+@media (max-width: 560px) {
+  .depths-scenario-state {
+    gap: 12px;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .depths-objective-summary,
+  .depths-ship-danger,
+  .depths-captains {
+    flex-basis: 100%;
+  }
+  .depths-captains {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

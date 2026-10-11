@@ -27,6 +27,19 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.ok(baseline.registeredCases > 100);
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => name.startsWith("The Thing in the Depths"))
+      .sort(),
+    [
+      "The Thing in the Depths / normal: all four starter decks complete 10 seeded games each",
+      "The Thing in the Depths: hidden review mode preserves complete-game rules outcomes with fewer pauses",
+      "The Thing in the Depths: decisions review mode preserves complete-game rules outcomes with fewer pauses",
+      "The Thing in the Depths / normal: guided confirmations preserve complete-game rules outcomes",
+      "The Thing in the Depths / campaign: guided confirmations preserve complete-game rules outcomes",
+    ].sort(),
+    "the new standard scenario and its unsupported campaign registration remain in the shard manifest",
+  );
   const names: string[] = [];
   for (let index = 0; index < 4; index++) {
     const result = manifest(index, 4);

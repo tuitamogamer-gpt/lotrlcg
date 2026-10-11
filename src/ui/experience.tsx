@@ -1,6 +1,8 @@
 import { selectedSideQuest } from "../game/side-quest-support";
 import { AngmarQuestGoals } from "./angmar-goals";
 import { GreyHavensQuestGoals } from "./grey-havens-state";
+import { DepthsQuestGoals } from "./depths-state";
+import { depthsState } from "../game/depths-support";
 import { DIKE } from "../game/deadmens-dike-support";
 import { currentQuestProgress } from "../game/quest-state";
 import { TRIALS } from "../game/three-trials-support";
@@ -694,6 +696,7 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
+  if (depthsState(s)) return <DepthsQuestGoals s={s} />;
   if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens || s.stormcaller)
     return <GreyHavensQuestGoals s={s} />;
   if (

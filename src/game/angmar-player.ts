@@ -2225,10 +2225,10 @@ export function angmarDiscardTaken(s: GameState, index: number) {
 }
 export function angmarFavor(s: GameState, eliminationLevel = 50): boolean {
   const a = s.threatAttachments?.find((a) => a.code === A.favor && enabled(a));
-  if (!a || effectiveThreat(s) < eliminationLevel) return false;
+  if (!a || s.threat < eliminationLevel) return false;
   s.threatAttachments = s.threatAttachments!.filter((v) => v.id !== a.id);
   seatView(s, a.owner ?? activeSeat(s)).discard.push(a.code);
   reduceThreat(s, Math.max(0, s.threat - eliminationLevel + 5), A.favor);
   log(s, "Favor of the Valar prevents threat elimination.", "good");
-  return effectiveThreat(s) < eliminationLevel;
+  return s.threat < eliminationLevel;
 }

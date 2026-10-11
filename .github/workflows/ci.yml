@@ -76,6 +76,18 @@ jobs:
       - run: npm ci
       - run: npm run test:stormcaller-simulation
 
+  depths-simulation:
+    name: Depths review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:depths-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -99,6 +111,7 @@ jobs:
             the-fate-of-numenor,
             raid-on-the-grey-havens,
             flight-of-the-stormcaller,
+            the-thing-in-the-depths,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -132,6 +145,8 @@ jobs:
             suite: test:browser-grey-havens
           - group: stormcaller
             suite: test:browser-stormcaller
+          - group: depths
+            suite: test:browser-depths
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

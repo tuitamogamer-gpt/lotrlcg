@@ -1,0 +1,1579 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Thing in the Depths",
+  "slug": "the-thing-in-the-depths",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec49_rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+      "octgnid": "07067901-5306-47f0-8863-3c9cb194e1c6",
+      "name": "Eye of the Beast",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Body.",
+      "text": "Surge.  Eye of the Beast cannot attack.\nWhile Eye of the Beast is engaged with a player, The Thing in the Depths attacks that player during the combat phase (deal and resolve a shadow card for this attack).",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 50,
+      "quantity": 2,
+      "threat": 2,
+      "defense": 5,
+      "health": 5,
+      "engagement": 0,
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "-",
+        "defense": "5",
+        "health": "5",
+        "engagement": "0"
+      },
+      "imagesrc": "/cards/07067901-5306-47f0-8863-3c9cb194e1c6.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "07067901-5306-47f0-8863-3c9cb194e1c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07067901-5306-47f0-8863-3c9cb194e1c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+      "octgnid": "0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+      "name": "Giant Arm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Tentacle.",
+      "text": "Grapple (loewst printed quest points).\nGiant Arm gets +2 [attack] when attacking allies.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 54,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 4,
+      "defense": 1,
+      "health": 6,
+      "engagement": 13,
+      "shadow": "Shadow: After this attack, either put Giant Arm into play engaged with you and deal it a shadow card, or resolve its Grapple ability.",
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "4",
+        "defense": "1",
+        "health": "6",
+        "engagement": "13"
+      },
+      "imagesrc": "/cards/0daf1963-a45f-4fe1-bd0b-ad901a1213fa.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0daf1963-a45f-4fe1-bd0b-ad901a1213fa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+      "octgnid": "2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+      "name": "Crew Quarters",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship.",
+      "text": "Travel: Add 1 resource to each Raider card in play to travel here.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 46,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/2dbe66bc-a6bf-42d7-92a5-d186dfe954c6.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 46,
+          "quantity": 2,
+          "octgnid": "2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2dbe66bc-a6bf-42d7-92a5-d186dfe954c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "name": "Raid Leader",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Raid Leader gets +1 [defense] for each resource on it.\nForced: When Raid Leader engages you, move 1 resource from each of your heroes' resource pools to Raid Leader.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 66,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 66,
+          "quantity": 2,
+          "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+      "octgnid": "5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+      "name": "Grasping Arm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Tentacle.",
+      "text": "Grapple (highest printed [threat]).\nForced: When Grasping Arm attacks, the engaged player must exhaust a character he controls.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 53,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 4,
+      "engagement": 20,
+      "shadow": "Shadow: If this attack is undefended, resolve Grasping Arm's Grapple keyword.",
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "4",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/5073c7a3-a3f6-4aca-b2a2-e0b830af3985.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 53,
+          "quantity": 3,
+          "octgnid": "5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5073c7a3-a3f6-4aca-b2a2-e0b830af3985.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+      "octgnid": "5571b159-9889-4fcd-bc0e-13bea7443348",
+      "name": "Forecastle Deck",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship. Deck.",
+      "text": "Forced: After you travel to Forecastle Deck, search the encounter deck and discard pile for an enemy and reveal it. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 43,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/5571b159-9889-4fcd-bc0e-13bea7443348.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 43,
+          "quantity": 2,
+          "octgnid": "5571b159-9889-4fcd-bc0e-13bea7443348",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5571b159-9889-4fcd-bc0e-13bea7443348.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
+      "octgnid": "5585680f-0609-4cc4-96b5-37e53992af56",
+      "name": "Helm of the Stormcaller",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship. Deck.",
+      "text": "Immune to player card effects.\nHelm of the Stormcaller gets +1 quest point for each resource token on a Raider enemy in play. Forced: When Helm of the Stormcaller becomes the active location, add Captain Sahir and Na'asiyah to the staging area from out of play (enemy side faceup).",
+      "is_unique": true,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 42,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 1,
+      "victory": 5,
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "1",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/5585680f-0609-4cc4-96b5-37e53992af56.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 42,
+          "quantity": 1,
+          "octgnid": "5585680f-0609-4cc4-96b5-37e53992af56",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5585680f-0609-4cc4-96b5-37e53992af56.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+      "octgnid": "5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+      "name": "Hold Steady!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Exhaust each character with 1 or less [defense].",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 48,
+      "quantity": 2,
+      "shadow": "Shadow: If the defending character has 0 [defense], discard it. Otherwise, the defending character gets -2 [defense] for this attack.",
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {},
+      "imagesrc": "/cards/5a4545c3-8b25-4fad-9798-b67921c9e7d3.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a4545c3-8b25-4fad-9798-b67921c9e7d3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+      "octgnid": "5d811a82-3729-4b54-8748-e0abffd96e90",
+      "name": "From the Depths",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Discard the top 3 cards of the encounter deck. Resolve the Grapple keyword on each enemy discarded by this effect.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 55,
+      "quantity": 3,
+      "shadow": "Shadow: Assign damage among characters you control equal to the number of enemies grappled with locations in the staging area.",
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {},
+      "imagesrc": "/cards/5d811a82-3729-4b54-8748-e0abffd96e90.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 55,
+          "quantity": 3,
+          "octgnid": "5d811a82-3729-4b54-8748-e0abffd96e90",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d811a82-3729-4b54-8748-e0abffd96e90.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+      "octgnid": "81779961-8776-4c1d-953d-ed7bf1324fbf",
+      "name": "Defend the Ship!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Discard cards from the top of the encounter deck until X Tentacle enemies are discarded, where X is 1 more than the number of players in the game. Resolve the Grapple keyword on each of those enemies.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 41,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Thing in the Depths",
+      "side": "A",
+      "back_name": "Defend the Ship!",
+      "back_text": "During the travel phase, the players may travel to a location in the staging area even if another location is currently active. If they do, return the currently active location to the staging area. At the end of the round, if the total [threat] of any one Ship location is 9 or higher, the Stormcaller is destroyed, and the players lose the game. When Thing in the Depths is destroyed, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 41,
+          "quantity": 1,
+          "octgnid": "81779961-8776-4c1d-953d-ed7bf1324fbf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+      "name": "Captain Sahír",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Captain Sahir engages the first player.\nFor each point of damage Captain Sahir would take, discard 1 resource from him and cancel that damage. Forced: After Captain Sahir attacks, place 2 resource tokens on him (4 instead if his attack destroyed a character).",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 76,
+      "quantity": 1,
+      "threat": 6,
+      "attack": 6,
+      "defense": 2,
+      "health": 5,
+      "engagement": 4,
+      "victory": 6,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Captain Sahír",
+      "back_text": "The first player gains control of Captain Sahir.\nCaptain Sahir gets +1 [willpower] and +1 [attack] for each resource on him (max +6). Action: Spend 1 resource from a hero you control to place 1 resource on Captain Sahir. (Limit once per round). If Captain Sahir leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "printed_stats": {
+        "threat": "6",
+        "attack": "6",
+        "defense": "2",
+        "health": "5",
+        "engagement": "4",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+      "octgnid": "9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+      "name": "Thrashing Arm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Tentacle.",
+      "text": "Grapple (lowest printed [threat]).\nForced: At the end of the combat phase, if Thrashing Arm is engaged with you, deal 3 damage to a character you control.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 51,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 7,
+      "engagement": 23,
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "7",
+        "engagement": "23"
+      },
+      "imagesrc": "/cards/9c3c6e43-7548-4eaf-8225-2f51ecafbc4a.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c3c6e43-7548-4eaf-8225-2f51ecafbc4a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+      "octgnid": "b1898a55-730c-493e-9fcd-24a51d817b64",
+      "name": "Lashing Tentacles",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The Thing in the Depths attacks each player in turn order from the staging area (deal and resolve a shadow card for each attack).",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 56,
+      "quantity": 2,
+      "shadow": "Shadow: After this attack, The Thing in the Depths makes an attack against the defending player (deal a shadow card for this attack).",
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {},
+      "imagesrc": "/cards/b1898a55-730c-493e-9fcd-24a51d817b64.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 56,
+          "quantity": 2,
+          "octgnid": "b1898a55-730c-493e-9fcd-24a51d817b64",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1898a55-730c-493e-9fcd-24a51d817b64.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+      "octgnid": "b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+      "name": "The Thing in the Depths",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Immune to player card effects. Cannot be engaged.\nThe Thing in the Depths gets +3 hit points per player. Forced: When a Creature enemy is destroyed, deal damage to The Thing in the Depths equal to that enemy's [threat].",
+      "is_unique": true,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 49,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 5,
+      "health": 8,
+      "engagement": 50,
+      "victory": 10,
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "-",
+        "health": "8",
+        "engagement": "50",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/b53fd0fc-5734-4bdc-b26f-c2133da31c3d.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 49,
+          "quantity": 1,
+          "octgnid": "b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b53fd0fc-5734-4bdc-b26f-c2133da31c3d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "name": "Battle-Hardened",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 1 resource on each Raider enemy in play. Each engaged non-Ship enemy makes an immediate attack. If there are no engaged non-Ship enemies, Battle-Hardened gains surge.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 67,
+      "quantity": 2,
+      "shadow": "Shadow: If the attacking enemy is a Raider, place 2 resources on it.",
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+      "octgnid": "cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+      "name": "Take the Ship!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Build the encounter deck using only The Stormcaller and Corsair Raiders encounter sets, setting The Thing in the Depths and The Stormcaller Elite encounter sets aside, out of play (enemy side faceup). Search the encounter deck for Helm of the Stormcaller and 1 copy of Umbar Raider, and add them to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 39,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Thing in the Depths",
+      "side": "A",
+      "back_name": "Take the Ship!",
+      "back_text": "Captain Sahir and Na'asiyah gain indestructible. Forced: At the end of the round, if Captain Sahir and Na'asiyah are not in play, add 1 resource to each of them. Progress cannot be placed on this stage unless Helm of the Stormcaller is in the victory display. ",
+      "back_type_code": "quest",
+      "back_quest": 4,
+      "back_imagesrc": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 39,
+          "quantity": 1,
+          "octgnid": "cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "name": "Umbar Raider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Umbar Raider gets +1 [attack] for each resource on it.\nForced: After Umbar Raider attacks you, move 1 resource from one of your heroes' resource pools to Umbar Raider.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 64,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 24,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "24"
+      },
+      "imagesrc": "/cards/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "name": "Corsair Infiltrator",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Forced: When Corsair Infiltrator attacks, deal it 1 additional shadow card for each resource on it.  Forced: After the engaged player collects resources at the beginning of the resource phase, that player moves 1 resource from one of his heroes' pools to Corsair Infiltrator.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 65,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 3,
+      "health": 2,
+      "engagement": 16,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "3",
+        "health": "2",
+        "engagement": "16"
+      },
+      "imagesrc": "/cards/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+      "octgnid": "d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+      "name": "Quarter Deck",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship. Deck.",
+      "text": "While Quarter Deck is the active location, deal each enemy an additional shadow card at the beginning of the combat phase.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 47,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 3,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/d7fd973b-6b4e-4f4b-9fc5-4886dcf80996.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7fd973b-6b4e-4f4b-9fc5-4886dcf80996.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+      "octgnid": "db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+      "name": "Crushing Arm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Tentacle.",
+      "text": "Surge. Grapple (highest printed quest points).\nForced: After Crushing Arm is detached from a location, it makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 52,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 17,
+      "encounter_set": "The Thing in the Depths",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "17"
+      },
+      "imagesrc": "/cards/db512bcc-1bc7-4008-ba2b-18d56abc3b67.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 52,
+          "quantity": 3,
+          "octgnid": "db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db512bcc-1bc7-4008-ba2b-18d56abc3b67.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+      "octgnid": "de744bed-1461-4442-b9a1-193d00fd39a3",
+      "name": "Change of Plans",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 40,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Thing in the Depths",
+      "side": "A",
+      "back_name": "Change of Plans",
+      "back_text": "When Revealed: Flip Captain Sahir and Na'asiyah to their objective sides, removing all tokens from them. Search the encounter deck, discard pile and all play areas for each encounter card from the Corsair Raiders encounter set and remove each of those cards from the game. Add The Thing in the Depths to the staging area. Shuffle the encounter discard pile and the set aside The Thing in the Depths encounter set into the encounter deck. Advance to stage 3.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "de744bed-1461-4442-b9a1-193d00fd39a3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de744bed-1461-4442-b9a1-193d00fd39a3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+      "octgnid": "de903b76-e5e1-478b-a782-1e91f5a7261e",
+      "name": "Cargo Hold",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship.",
+      "text": "While Cargo Hold is the active location, each enemy gets +1 [defense].",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 45,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "shadow": "Shadow: Until the end of the phase, attacking enemy gets +2 [defense].",
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/de903b76-e5e1-478b-a782-1e91f5a7261e.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "de903b76-e5e1-478b-a782-1e91f5a7261e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de903b76-e5e1-478b-a782-1e91f5a7261e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+      "octgnid": "ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+      "name": "Weather Deck",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ship. Deck.",
+      "text": "While Weather Deck is in the staging area, each other Deck location in play gains \"Travel: Each player must exhaust a character he controls to travel here.\"",
+      "is_unique": false,
+      "pack_code": "TitD",
+      "pack_name": "The Thing in the Depths",
+      "position": 44,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "The Stormcaller",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/ec9d7726-89fa-41ee-a6ad-30761a6b79d3.jpg",
+      "packs": [
+        {
+          "pack_code": "TitD",
+          "pack_name": "The Thing in the Depths",
+          "position": 44,
+          "quantity": 2,
+          "octgnid": "ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9d7726-89fa-41ee-a6ad-30761a6b79d3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+      "name": "Na'asiyah",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Na'asiyah engages the last player.\nForced: When Na'asiyah engages you, discard each event in your hand. Add 1 resource to Na'asiyah for each event discarded in this way. Forced: When Na'asiyah attacks or defends, she gets +1 [attack] and +1 [defense] for this attack for each resource on her. After this attack, discard 1 resource from her.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 78,
+      "quantity": 1,
+      "threat": 1,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 8,
+      "victory": 4,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Na'asiyah",
+      "back_text": "The last player gains control of Na'asiyah.\nAction: While Na'asiyah is attacking or defending, spend 1 resource from her to give her +2 [attack] or +2 [defense] for this attack. Action: Spend 1 resource from a hero you control to place 1 resource on Na'asiyah. (Limit once per round). If Na'asiyah leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "8",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E06.5",
+      "name": "The Thing in the Depths (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TGH",
+        "TitD"
+      ],
+      "card_codes": [
+        "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+        "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+        "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+        "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+        "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+        "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+        "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+        "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+        "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+        "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+        "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+        "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+        "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+        "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+        "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+        "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+        "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+        "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+        "octgn:5585680f-0609-4cc4-96b5-37e53992af56"
+      ],
+      "cards": [
+        {
+          "code": "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedEncounterDeck2": {
+          "octgn:07067901-5306-47f0-8863-3c9cb194e1c6": 2,
+          "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a": 2,
+          "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67": 3,
+          "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985": 3,
+          "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa": 3,
+          "octgn:5d811a82-3729-4b54-8748-e0abffd96e90": 3
+        },
+        "sharedQuestDeck": {
+          "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c": 1,
+          "octgn:de744bed-1461-4442-b9a1-193d00fd39a3": 1,
+          "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:5571b159-9889-4fcd-bc0e-13bea7443348": 1,
+          "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3": 2,
+          "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e": 2,
+          "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6": 2,
+          "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996": 1,
+          "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3": 1,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 2,
+          "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34": 2
+        },
+        "sharedSetAside": {
+          "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d": 1,
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1,
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1
+        },
+        "sharedStagingArea": {
+          "octgn:5585680f-0609-4cc4-96b5-37e53992af56": 1,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q06.5",
+      "name": "The Thing in the Depths",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TGH",
+        "TitD"
+      ],
+      "card_codes": [
+        "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+        "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+        "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+        "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+        "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+        "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+        "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+        "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+        "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+        "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+        "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+        "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+        "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+        "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+        "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+        "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+        "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+        "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+        "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+        "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+        "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+        "octgn:5585680f-0609-4cc4-96b5-37e53992af56"
+      ],
+      "cards": [
+        {
+          "code": "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedEncounterDeck2": {
+          "octgn:07067901-5306-47f0-8863-3c9cb194e1c6": 2,
+          "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a": 2,
+          "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67": 3,
+          "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985": 3,
+          "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa": 3,
+          "octgn:5d811a82-3729-4b54-8748-e0abffd96e90": 3,
+          "octgn:b1898a55-730c-493e-9fcd-24a51d817b64": 2
+        },
+        "sharedQuestDeck": {
+          "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c": 1,
+          "octgn:de744bed-1461-4442-b9a1-193d00fd39a3": 1,
+          "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:5571b159-9889-4fcd-bc0e-13bea7443348": 2,
+          "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3": 2,
+          "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e": 2,
+          "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6": 2,
+          "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996": 2,
+          "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3": 2,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 2,
+          "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34": 2,
+          "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34": 2,
+          "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc": 2
+        },
+        "sharedSetAside": {
+          "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d": 1,
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1,
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1
+        },
+        "sharedStagingArea": {
+          "octgn:5585680f-0609-4cc4-96b5-37e53992af56": 1,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07067901-5306-47f0-8863-3c9cb194e1c6.jpg",
+      "localPath": "/cards/07067901-5306-47f0-8863-3c9cb194e1c6.jpg",
+      "bytes": 146918,
+      "sha256": "6d54a0589b61d77f69b7ab3b6cddb95891d506b823f42eb3253acb0a2ee594c0"
+    },
+    {
+      "code": "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0daf1963-a45f-4fe1-bd0b-ad901a1213fa.jpg",
+      "localPath": "/cards/0daf1963-a45f-4fe1-bd0b-ad901a1213fa.jpg",
+      "bytes": 150966,
+      "sha256": "d6ecd9b94a492123a5d4920135f72d478505d43b3c91726fc31619cf45f6cebd"
+    },
+    {
+      "code": "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2dbe66bc-a6bf-42d7-92a5-d186dfe954c6.jpg",
+      "localPath": "/cards/2dbe66bc-a6bf-42d7-92a5-d186dfe954c6.jpg",
+      "bytes": 137071,
+      "sha256": "cb7df699e3ca81ecfd4714ada456920e2d57c1774f8894a3d42aa293b489c03e"
+    },
+    {
+      "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "localPath": "/cards/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "bytes": 160106,
+      "sha256": "c282e41743dec44ac9155b1ca826d67d82de55778cafa2e60fa2a4de87e268ab"
+    },
+    {
+      "code": "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5073c7a3-a3f6-4aca-b2a2-e0b830af3985.jpg",
+      "localPath": "/cards/5073c7a3-a3f6-4aca-b2a2-e0b830af3985.jpg",
+      "bytes": 151708,
+      "sha256": "765cbdf6fb9060bf32b47a7f3e9121fc2d006658765804c89781a00fa5ffc323"
+    },
+    {
+      "code": "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5571b159-9889-4fcd-bc0e-13bea7443348.jpg",
+      "localPath": "/cards/5571b159-9889-4fcd-bc0e-13bea7443348.jpg",
+      "bytes": 150059,
+      "sha256": "5bde37231ee42bcf2988789e22b43ec1bcba98c6aab1c1c389544fc51b38e2e9"
+    },
+    {
+      "code": "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5585680f-0609-4cc4-96b5-37e53992af56.jpg",
+      "localPath": "/cards/5585680f-0609-4cc4-96b5-37e53992af56.jpg",
+      "bytes": 149834,
+      "sha256": "995661b028c4cc94de6aa85fda0255eef7d5ec8a22f8051f97007fec5e97240b"
+    },
+    {
+      "code": "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a4545c3-8b25-4fad-9798-b67921c9e7d3.jpg",
+      "localPath": "/cards/5a4545c3-8b25-4fad-9798-b67921c9e7d3.jpg",
+      "bytes": 147257,
+      "sha256": "8db2554d01e55f5d8dd4e9472aa7a62945ec514b339a7ee2525f661f58d8d217"
+    },
+    {
+      "code": "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d811a82-3729-4b54-8748-e0abffd96e90.jpg",
+      "localPath": "/cards/5d811a82-3729-4b54-8748-e0abffd96e90.jpg",
+      "bytes": 148264,
+      "sha256": "720f6b2a1cbccaf80cb79687320ee484d3674a556e4c80706ee981babd495157"
+    },
+    {
+      "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg",
+      "localPath": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg",
+      "bytes": 164172,
+      "sha256": "4922288628814a66811b3d16552bd0e49e3f7496052f03c8e588fc802572bdaf"
+    },
+    {
+      "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81779961-8776-4c1d-953d-ed7bf1324fbf.B.jpg",
+      "localPath": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.B.jpg",
+      "bytes": 163637,
+      "sha256": "e636a465d03f73bc0c62a74a6b5fbf359c148b4a8118ac13f8e6d72227ec6891"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "bytes": 158161,
+      "sha256": "958c7cc128400c3886fe1cf31ce8b3dddad5ba07456ed9e8ee16f6af00db4810"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "bytes": 156070,
+      "sha256": "6fcd8c0acb5d57bf49a7558d24f88f9b91791a819e8dc96ce0f5f428490b8ae1"
+    },
+    {
+      "code": "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c3c6e43-7548-4eaf-8225-2f51ecafbc4a.jpg",
+      "localPath": "/cards/9c3c6e43-7548-4eaf-8225-2f51ecafbc4a.jpg",
+      "bytes": 87927,
+      "sha256": "2f7a2ee18b099506d748a753cdfd5dd4b5074f846ead7ae2ba31d3d2f2f6bb64"
+    },
+    {
+      "code": "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1898a55-730c-493e-9fcd-24a51d817b64.jpg",
+      "localPath": "/cards/b1898a55-730c-493e-9fcd-24a51d817b64.jpg",
+      "bytes": 138854,
+      "sha256": "7e70d7a2a123d610d66b4a9db46177a3ba9698f3f055979c9631dbc11558faba"
+    },
+    {
+      "code": "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b53fd0fc-5734-4bdc-b26f-c2133da31c3d.jpg",
+      "localPath": "/cards/b53fd0fc-5734-4bdc-b26f-c2133da31c3d.jpg",
+      "bytes": 144152,
+      "sha256": "57a61206430e4af4e8fb90502f9e32492e3f50f08ac1bcd24037c1df8943ab4e"
+    },
+    {
+      "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "localPath": "/cards/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "bytes": 173003,
+      "sha256": "091350c8263876f9213fe5e6750634b66598ba775c29e3e674374195dcb8a15e"
+    },
+    {
+      "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg",
+      "localPath": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg",
+      "bytes": 158422,
+      "sha256": "330e05a57af69de107eabdbc0527aa4c630d7f543293bbcdb40dd65234c9e9c7"
+    },
+    {
+      "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfa94470-c25c-4af3-ba71-941d1fa48a9c.B.jpg",
+      "localPath": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.B.jpg",
+      "bytes": 150055,
+      "sha256": "41eccd233af92a8f1ae3f2b2b24a1c9fd548ea5f37e0fe5715d186660cc7a106"
+    },
+    {
+      "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "localPath": "/cards/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "bytes": 163869,
+      "sha256": "67415777921ec90186aa3378734d3f9d525d0524308b2dbd13170f75748ad5a1"
+    },
+    {
+      "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "localPath": "/cards/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "bytes": 154907,
+      "sha256": "fd59e904b8ece94bf2e2ff0a2c3e89390db65b99c8446c4e13bd40238cf129ea"
+    },
+    {
+      "code": "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7fd973b-6b4e-4f4b-9fc5-4886dcf80996.jpg",
+      "localPath": "/cards/d7fd973b-6b4e-4f4b-9fc5-4886dcf80996.jpg",
+      "bytes": 143140,
+      "sha256": "fa7c33fee67afff03001eaa2eb9313b499e2c1a8362422d9ed0c0ecec3589e4c"
+    },
+    {
+      "code": "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db512bcc-1bc7-4008-ba2b-18d56abc3b67.jpg",
+      "localPath": "/cards/db512bcc-1bc7-4008-ba2b-18d56abc3b67.jpg",
+      "bytes": 146691,
+      "sha256": "fbf01a33bf9d71ec00157c33c056892eedac6b9b7fee868c6d2064eac463dd25"
+    },
+    {
+      "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de744bed-1461-4442-b9a1-193d00fd39a3.jpg",
+      "localPath": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.jpg",
+      "bytes": 161859,
+      "sha256": "feb42e3133f63707f98c09be39e1ff166578aeeb5fb6e5f7d6628a853aac4beb"
+    },
+    {
+      "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de744bed-1461-4442-b9a1-193d00fd39a3.B.jpg",
+      "localPath": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.B.jpg",
+      "bytes": 163151,
+      "sha256": "f7ecd2335f5372136ef8471812137f50d283a3a256ddba59447df6a8776fa1d1"
+    },
+    {
+      "code": "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de903b76-e5e1-478b-a782-1e91f5a7261e.jpg",
+      "localPath": "/cards/de903b76-e5e1-478b-a782-1e91f5a7261e.jpg",
+      "bytes": 142054,
+      "sha256": "dc97416556620e5aa7950f47719d85e4130d02aa92275cf12d264460cabd5598"
+    },
+    {
+      "code": "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9d7726-89fa-41ee-a6ad-30761a6b79d3.jpg",
+      "localPath": "/cards/ec9d7726-89fa-41ee-a6ad-30761a6b79d3.jpg",
+      "bytes": 143315,
+      "sha256": "8e377618cf3a4a97d17777a237b1b85883eb47e6d3f054197bc9f97809708227"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "bytes": 170054,
+      "sha256": "d7127dac07378c9c1376e3c2646747850037c6e49dbada34e517729f3c996e58"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "bytes": 164871,
+      "sha256": "6b07dc05e2dd9cf5eb5f990832ea73bd513877588f0b87a394837567d94927b0"
+    }
+  ]
+}

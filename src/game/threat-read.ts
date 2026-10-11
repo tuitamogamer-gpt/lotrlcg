@@ -2,7 +2,10 @@ import type { GameState } from "./types";
 
 export const STORMCALLER_VANISH = "phase:stormcaller:vanish";
 
-/** Read threat for rules without changing the physical counter or its saved value. */
+/**
+ * Read threat for card effects and engagement without changing the dial.
+ * Threat elimination uses the actual dial instead (official FAQ 1.57).
+ */
 export function stormcallerEffectiveThreat(
   s: GameState,
   player = s.table?.active ?? 0,

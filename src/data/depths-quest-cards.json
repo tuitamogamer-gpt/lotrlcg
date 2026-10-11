@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+    "octgnid": "cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+    "name": "Take the Ship!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Build the encounter deck using only The Stormcaller and Corsair Raiders encounter sets, setting The Thing in the Depths and The Stormcaller Elite encounter sets aside, out of play (enemy side faceup). Search the encounter deck for Helm of the Stormcaller and 1 copy of Umbar Raider, and add them to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TitD",
+    "pack_name": "The Thing in the Depths",
+    "position": 39,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Thing in the Depths",
+    "side": "A",
+    "back_name": "Take the Ship!",
+    "back_text": "Captain Sahir and Na'asiyah gain indestructible. Forced: At the end of the round, if Captain Sahir and Na'asiyah are not in play, add 1 resource to each of them. Progress cannot be placed on this stage unless Helm of the Stormcaller is in the victory display. ",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg",
+    "packs": [
+      {
+        "pack_code": "TitD",
+        "pack_name": "The Thing in the Depths",
+        "position": 39,
+        "quantity": 1,
+        "octgnid": "cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfa94470-c25c-4af3-ba71-941d1fa48a9c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
+    "octgnid": "de744bed-1461-4442-b9a1-193d00fd39a3",
+    "name": "Change of Plans",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TitD",
+    "pack_name": "The Thing in the Depths",
+    "position": 40,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Thing in the Depths",
+    "side": "A",
+    "back_name": "Change of Plans",
+    "back_text": "When Revealed: Flip Captain Sahir and Na'asiyah to their objective sides, removing all tokens from them. Search the encounter deck, discard pile and all play areas for each encounter card from the Corsair Raiders encounter set and remove each of those cards from the game. Add The Thing in the Depths to the staging area. Shuffle the encounter discard pile and the set aside The Thing in the Depths encounter set into the encounter deck. Advance to stage 3.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/de744bed-1461-4442-b9a1-193d00fd39a3.jpg",
+    "packs": [
+      {
+        "pack_code": "TitD",
+        "pack_name": "The Thing in the Depths",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "de744bed-1461-4442-b9a1-193d00fd39a3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de744bed-1461-4442-b9a1-193d00fd39a3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+    "octgnid": "81779961-8776-4c1d-953d-ed7bf1324fbf",
+    "name": "Defend the Ship!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until X Tentacle enemies are discarded, where X is 1 more than the number of players in the game. Resolve the Grapple keyword on each of those enemies.",
+    "is_unique": false,
+    "pack_code": "TitD",
+    "pack_name": "The Thing in the Depths",
+    "position": 41,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Thing in the Depths",
+    "side": "A",
+    "back_name": "Defend the Ship!",
+    "back_text": "During the travel phase, the players may travel to a location in the staging area even if another location is currently active. If they do, return the currently active location to the staging area. At the end of the round, if the total [threat] of any one Ship location is 9 or higher, the Stormcaller is destroyed, and the players lose the game. When Thing in the Depths is destroyed, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg",
+    "packs": [
+      {
+        "pack_code": "TitD",
+        "pack_name": "The Thing in the Depths",
+        "position": 41,
+        "quantity": 1,
+        "octgnid": "81779961-8776-4c1d-953d-ed7bf1324fbf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81779961-8776-4c1d-953d-ed7bf1324fbf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

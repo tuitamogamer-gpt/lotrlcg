@@ -228,7 +228,7 @@ export function assaultOsgiliathEncounter(
   } else if (code === A.pinned) {
     const count = controlled(s).length;
     state(s).archeryBonus += count;
-    if (count < 4)
+    if (count < 4 && !replay)
       prepend(
         s,
         fx("amonSurgeWindow", { code }),

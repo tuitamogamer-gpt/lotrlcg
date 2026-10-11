@@ -201,6 +201,7 @@ export type ScenarioId =
   | "the-fate-of-numenor"
   | "raid-on-the-grey-havens"
   | "flight-of-the-stormcaller"
+  | "the-thing-in-the-depths"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -323,6 +324,7 @@ export interface GameState {
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
   stormcaller?: import("./stormcaller-support").StormcallerState;
+  depths?: import("./depths-support").DepthsState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -493,6 +495,8 @@ export interface GameState {
     voyageCharacterKilled?: boolean;
     voyageShipDamaged?: boolean;
     raidKilledCharacter?: boolean;
+    /** Printed Depths shadows continue only after this physical enemy attack. */
+    depthsAfterAttack?: Effect[];
     raidFiresOnKill?: number;
     /** Every defender that actually took damage during this attack, including costs. */
     damagedDefenders?: string[];
