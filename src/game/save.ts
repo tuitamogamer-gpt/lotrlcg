@@ -1,3 +1,7 @@
+import { validateSailing } from "./sailing";
+import { validateVoyage } from "./voyage-belegaer-support";
+import { validateFateNumenor } from "./fate-numenor-support";
+import { validateRaidGreyHavens } from "./raid-grey-havens-support";
 import {
   validateDeadmensDike,
   dikeLocationTimeLimit,
@@ -226,6 +230,10 @@ export function validateSave(
         c.morgulKilledCharacter,
         c.osgiliathReturnIfKilled,
         c.osgiliathUndefended,
+        c.fateBottomOnAllyKill,
+        c.voyageCharacterKilled,
+        c.voyageShipDamaged,
+        c.raidKilledCharacter,
         c.immediatePendingDeclaration,
         c.immediatePreviousShadowCancelsDamage,
         c.immediatePreviousShadowCancelsCombatDamage,
@@ -269,6 +277,10 @@ export function validateSave(
         c.carnFlipAfter,
         c.carnExtraAttacks,
         c.carnVileSearch,
+        c.voyageShiftOnCharacterKilled,
+        c.voyageShiftOnShipDamaged,
+        c.voyageExcessCopies,
+        c.raidFiresOnKill,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -325,9 +337,12 @@ export function validateSave(
               guardianTimeLimit(u.code),
               printedLocationTime(u.code),
             ))) &&
-      [u?.resourcesSpentRound, u?.ignoreThreatRound, u?.roundDefense].every(
-        (n) => n === undefined || (integer(n) && n >= 0),
-      ) &&
+      [
+        u?.resourcesSpentRound,
+        u?.ignoreThreatRound,
+        u?.roundDefense,
+        u?.raidCombatResourceBonus,
+      ].every((n) => n === undefined || (integer(n) && n >= 0)) &&
       u &&
       typeof u.id === "string" &&
       (u.controller === undefined ||
@@ -568,7 +583,13 @@ export function validateSave(
       return false;
     if (
       inheritedSeatCount === undefined &&
-      (!validateFoundationsState(s, validUnit as (value: unknown) => boolean) ||
+      (!validateVoyage(s, validUnit as (value: unknown) => boolean) ||
+        !validateFateNumenor(s, validUnit as (value: unknown) => boolean) ||
+        !validateRaidGreyHavens(s, validUnit as (value: unknown) => boolean) ||
+        !validateFoundationsState(
+          s,
+          validUnit as (value: unknown) => boolean,
+        ) ||
         !validateStewardFearState(s) ||
         !validateHeirsState(s) ||
         !validateDruadanForestState(s) ||
@@ -782,7 +803,9 @@ export function validateSave(
     if (
       !s.heroes.every(isHero) ||
       !s.allies.every(isAlly) ||
-      !s.engaged.every((u) => card(u.code).type_code === "enemy")
+      !s.engaged.every((u) =>
+        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+      )
     )
       return false;
     if (
@@ -943,6 +966,8 @@ export function validateSave(
         return false;
     }
     if (!Array.isArray(s.queue) || !s.queue.every(validEffect)) return false;
+    if (inheritedSeatCount === undefined && !validateSailing(s, validEffect))
+      return false;
     if (s.escapeTest !== undefined) {
       const e = s.escapeTest;
       if (
@@ -1117,6 +1142,7 @@ export function validateSave(
       const effects = [
         ...s.queue,
         ...(s.escapeTest?.continuation ?? []),
+        ...(s.sailing?.test?.continuation ?? []),
         ...(s.choice?.options.flatMap((o) => o.effects) ?? []),
       ];
       if (
@@ -1166,6 +1192,10 @@ export function validateSave(
       ...Object.values(s.mountGram?.captured ?? {}).flat(),
       ...(s.rhudaur?.setAside ?? []),
       ...(s.dreadRealm?.setAside ?? []),
+      ...(s.voyageBelegaer?.setAside ?? []),
+      ...(s.fateNumenor?.setAside ?? []),
+      ...(s.raidGreyHavens?.setAside ?? []),
+      ...(s.raidGreyHavens?.burned ?? []),
       ...(s.dreadRealm?.pendingWraiths ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),

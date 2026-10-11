@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
@@ -90,7 +91,7 @@ const markerExists = (s: GameState, marker: string) =>
   playerOrder(s).some((i) => seatView(s, i).used.includes(marker));
 const stagedEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
+    (u) => playerUnitIsEnemy(u) && !playerCardImmune(u),
   );
 export function longDarkPlayerStats(s: GameState, u: Unit) {
   const attack =

@@ -44,6 +44,26 @@ jobs:
       - run: npm ci
       - run: npm run test:simulation
 
+  grey-havens-simulation:
+    name: Grey Havens review parity (${{ matrix.scenario }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          [voyage-across-belegaer, the-fate-of-numenor, raid-on-the-grey-havens]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: >-
+          node --import tsx --test
+          --test-name-pattern="^Grey Havens ${{ matrix.scenario }} "
+          tests/grey-havens-simulation.test.ts
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -63,6 +83,9 @@ jobs:
             the-treachery-of-rhudaur,
             the-battle-of-carn-dum,
             the-dread-realm,
+            voyage-across-belegaer,
+            the-fate-of-numenor,
+            raid-on-the-grey-havens,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -92,6 +115,8 @@ jobs:
             suite: test:browser-ring-maker
           - group: angmar-awakened
             suite: test:browser-angmar
+          - group: grey-havens
+            suite: test:browser-grey-havens
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

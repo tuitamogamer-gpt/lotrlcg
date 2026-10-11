@@ -1,3 +1,8 @@
+import * as Raid from "./raid-grey-havens";
+import * as Voyage from "./voyage-belegaer";
+import * as Fate from "./fate-numenor";
+import * as GreyPlayers from "./grey-havens-player";
+import { voyageStageInfo } from "./voyage-belegaer-support";
 import * as Dike from "./deadmens-dike";
 import * as Chetwood from "./chetwood";
 import * as Weather from "./weather-hills";
@@ -239,7 +244,10 @@ export const cannotReady = (u: Unit, s?: GameState) =>
   khazadCannotReady(u) ||
   watcherWaterCannotReady(u) ||
   Catch.catchCannotReady(u) ||
-  (!!s && (Fangorn.fangornCannotReady(s, u) || Etten.ettenCannotReady(s, u)));
+  (!!s &&
+    (Fate.fateCannotRefreshReady(s, u) ||
+      Fangorn.fangornCannotReady(s, u) ||
+      Etten.ettenCannotReady(s, u)));
 
 export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
@@ -494,6 +502,8 @@ export function stats(s: GameState, u: Unit) {
       (c.willpower ?? 0) +
         [
           chetwoodBonus.will,
+          GreyPlayers.greyHavensStats(s, u).will,
+          Voyage.voyageStats(s, u).will,
           angmarBonus.will,
           Wastes.wastesWillBonus(s, u),
           Etten.ettenWillPenalty(s, u),
@@ -536,6 +546,10 @@ export function stats(s: GameState, u: Unit) {
       ? 0
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
+        GreyPlayers.greyHavensStats(s, u).attack +
+        Voyage.voyageStats(s, u).attack +
+        Fate.fateStats(s, u).attack +
+        Raid.raidStats(s, u).attack +
         angmarBonus.attack +
         Wastes.wastesAttackBonus(s, u) +
         Gram.gramStats(s, u).attack +
@@ -575,7 +589,7 @@ export function stats(s: GameState, u: Unit) {
         (u.code === "01004" && !u.blanked ? u.damage : 0) +
         u.attachments.filter((a) => !a.blanked && a.code === "01041").length *
           (c.traits?.includes("Dwarf") ? 2 : 1) +
-        (c.type_code === "enemy"
+        (["enemy", "ship-enemy"].includes(c.type_code)
           ? u.boost +
             (u.code === "01090" ? u.resources * 2 : 0) +
             (u.code === "02021" ? 2 * cluesInPlay(s) : 0)
@@ -587,6 +601,9 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
+            GreyPlayers.greyHavensStats(s, u).defense +
+            Voyage.voyageStats(s, u).defense +
+            Raid.raidStats(s, u).defense +
             angmarBonus.defense +
             Etten.ettenStats(s, u).defense +
             Dread.dreadStats(s, u).defense +
@@ -708,25 +725,33 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
       target,
     ),
   );
-  return Angmar.angmarPlayCost(
+  return GreyPlayers.greyHavensPlayCost(
     s,
     c,
-    Realm.realmPlayCost(
-      s,
-      c,
-      Isengard.isengardCost(
-        s,
-        c,
-        bloodPlayerCost(
+    Math.max(
+      0,
+      Voyage.voyagePlayCost(s, c) +
+        Angmar.angmarPlayCost(
           s,
           c,
-          osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+          Realm.realmPlayCost(
+            s,
+            c,
+            Isengard.isengardCost(
+              s,
+              c,
+              bloodPlayerCost(
+                s,
+                c,
+                osgiliathPlayerCost(s, c, morgulPlayerCost(s, c, baseCost)),
+              ),
+            ),
+          ) +
+            Etten.ettenPlayCost(s, c) +
+            Dread.dreadPlayCost(s, c, c.playOwner ?? activeSeat(s)) +
+            Carn.carnPlayCost(s, c, c.playOwner ?? activeSeat(s)),
         ),
-      ),
-    ) +
-      Etten.ettenPlayCost(s, c) +
-      Dread.dreadPlayCost(s, c, c.playOwner ?? activeSeat(s)) +
-      Carn.carnPlayCost(s, c, c.playOwner ?? activeSeat(s)),
+    ),
   );
 }
 /** Current printed/modifier threat. Suppression only applies in staging. */
@@ -739,6 +764,7 @@ export const threatOf = (s: GameState, u: Unit) =>
       : Math.max(
           0,
           (BloodQuest.bloodGondorThreat(s, u) ??
+            Raid.raidLocationThreat(s, u) ??
             Dike.dikeLocationThreat(s, u) ??
             Wastes.wastesLocationThreat(s, u) ??
             Gram.gramLocationThreat(s, u) ??
@@ -749,6 +775,8 @@ export const threatOf = (s: GameState, u: Unit) =>
             card(u.code).threat ??
             0) +
             Chetwood.chetwoodThreatBonus(s, u) +
+            Voyage.voyageThreatBonus(s, u) +
+            Fate.fateThreatBonus(s, u) +
             Rhu.rhudaurThreatBonus(s, u) +
             Carn.carnThreatBonus(s, u) +
             Fords.fordsThreatBonus(s, u) +
@@ -785,6 +813,8 @@ export const threatOf = (s: GameState, u: Unit) =>
 
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
+  Voyage.voyageStagingThreat(s) +
+  Fate.fateStagingThreat(s) +
   Dike.dikeStagingThreat(s) +
   Rhu.rhudaurStagingThreat(s) +
   Carn.carnStagingThreat(s) +
@@ -792,7 +822,9 @@ export const stagingThreat = (s: GameState) =>
   heirsStagingThreatBonus(s) +
   BloodQuest.bloodGondorStagingBonus(s) +
   s.staging
-    .filter((u) => ["enemy", "location"].includes(card(u.code).type_code))
+    .filter((u) =>
+      ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
+    )
     .reduce((n, u) => n + threatOf(s, u), 0);
 
 export const questWill = (s: GameState) =>
@@ -803,7 +835,11 @@ export const questWill = (s: GameState) =>
         khazadWillCounts(s, u) &&
         (u.committed || seatView(s, ownerOf(s, u)).committedIds.includes(u.id)),
     )
-    .reduce((n, u) => n + stats(s, u)[questStat(s)], 0);
+    .reduce(
+      (n, u) =>
+        n + stats(s, u)[GreyPlayers.greyHavensQuestStat(s, u, questStat(s))],
+      0,
+    );
 
 export const questStat = (s: GameState) =>
   Carn.carnQuestStat(s) ??
@@ -819,6 +855,7 @@ export const questStat = (s: GameState) =>
       druadanPlayerQuestStat(s)));
 
 export const locationQuest = (s: GameState, u: Unit) =>
+  Fate.fateLocationQuest(s, u) ??
   MorgulQuest.morgulBridgeValue(s, u) ??
   watcherWaterLocationQuest(s, u) ??
   (khazadLocationQuest(s, u) ?? card(u.code).quest ?? 0) +
@@ -841,10 +878,13 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Nin.ninEngagementModifier(s, u) +
       Gram.gramEngagementCost(s, u) +
       Etten.ettenEngagementModifier(s) +
-      Carn.carnEngagementModifier(s, u),
+      Carn.carnEngagementModifier(s, u) +
+      Voyage.voyageEngagementModifier(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const voyage = voyageStageInfo(s);
+  if (voyage) return voyage;
   const nin = NIN_QUESTS.find((c) => c.code === ninCurrentQuest(s));
   if (nin)
     return {
@@ -898,6 +938,7 @@ export const enemyAttackPrevented = (
   player = activeSeat(s),
 ) =>
   (["defense", "attack"].includes(s.phase) && Fangorn.hasHinder(u)) ||
+  Voyage.voyageEnemyCannotAttack(s, u) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
   has(u, "01069") ||
@@ -1081,6 +1122,10 @@ export function pay(
 }
 
 export function draw(s: GameState, count: number, cardEffect = true) {
+  if (Fate.fateCannotDraw(s)) {
+    log(s, "Shrine to Morgoth prevents card draw.", "danger");
+    return;
+  }
   if (cardEffect && ninNoCardEconomy(s)) {
     log(s, "No End in Sight prevents player-card draws.");
     return;

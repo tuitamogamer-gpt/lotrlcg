@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
@@ -48,7 +49,7 @@ const readyOwn = (s: GameState) =>
   );
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
+    (u) => playerUnitIsEnemy(u) && !playerCardImmune(u),
   );
 const spiritPayers = (s: GameState) =>
   s.heroes.filter(
@@ -217,7 +218,7 @@ export function roadPlayerLeavesPlay(
 ) {
   if (
     !hasTrait(u, "Dwarf") ||
-    !["hero", "ally", "objective-ally"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
     !s.encounterDiscard.length
   )
     return;

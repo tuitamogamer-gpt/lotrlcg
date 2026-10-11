@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { playerCardImmune } from "./card-immunity";
 // The Blood of Gondor: actual discard cards, player choices and delayed effects.
@@ -71,7 +73,7 @@ const children = (s: GameState) =>
 const outsiders = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
     (u) =>
-      card(u.code).type_code === "enemy" &&
+      playerUnitIsEnemy(u) &&
       !seatView(s, activeSeat(s)).engaged.some((enemy) => enemy.id === u.id) &&
       !immune(u) &&
       shadowFlameCanMove(s, u) &&
@@ -425,7 +427,7 @@ export function bloodPlayerSpecialAttachmentEntry(
 }
 export function bloodPlayerEnemyAddedToStaging(s: GameState, enemy: Unit) {
   if (
-    card(enemy.code).type_code !== "enemy" ||
+    !playerUnitIsEnemy(enemy) ||
     immune(enemy) ||
     /cannot have attachments/i.test(plain(card(enemy.code).text))
   )
@@ -463,7 +465,7 @@ export function bloodPlayerPhaseEndEffects(s: GameState): Effect[] {
 }
 export function bloodPlayerRoundEndEffects(s: GameState): Effect[] {
   return [...s.staging, ...allEngaged(s)].flatMap((enemy) =>
-    card(enemy.code).type_code !== "enemy"
+    !playerUnitIsEnemy(enemy)
       ? []
       : enemy.attachments
           .filter((a) => a.code === "06115" && !a.blanked && !a.facedown)
@@ -569,7 +571,7 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "bloodChildrenShuffle": {
       const ally = allCharacters(s).find((u) => u.id === e.target);
-      if (ally && card(ally.code).type_code === "ally")
+      if (ally && playerUnitIsAlly(ally))
         if (ally.temporary) {
           const controller = ownerOf(s, ally);
           selectSeat(s, firstPlayer(s));
@@ -610,7 +612,7 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "bloodChildrenDeparture": {
       const ally = allCharacters(s).find((u) => u.id === e.target);
-      if (ally && card(ally.code).type_code === "ally")
+      if (ally && playerUnitIsAlly(ally))
         returnAlly(s, ally, !!e.flag);
       return true;
     }

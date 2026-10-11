@@ -230,6 +230,7 @@ export function hasResourceIcon(u: Unit, sphere: string) {
         (SPHERES[a.code] === sphere ||
           (a.code === "04137" && sphere === "spirit") ||
           (a.code === "04055" && sphere === "leadership") ||
+          (a.code === "11015" && !a.facedown && sphere === "leadership") ||
           (a.code === "06007" &&
             card(u.code).name === "Aragorn" &&
             sphere === "lore") ||
@@ -323,6 +324,7 @@ export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
+  if (u.code === "11009" && !u.blanked) return false;
   if (Realm.realmNoQuestExhaust(s, u)) return false;
   if (khazadBookNoExhaust(u)) return false;
   if (elfNoQuestExhaust(s, u)) return false;

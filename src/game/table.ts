@@ -1,3 +1,6 @@
+import { voyageCanAttackEnemy } from "./voyage-belegaer";
+import { fateLoseRanged } from "./fate-numenor";
+import { shipCanAttack, shipCanDefend } from "./ships";
 import { druadanForestCanDefend } from "./druadan-forest";
 import { consideredEngaged } from "./considered-engagement";
 import { amonPlayerCanAttackEnemy } from "./amon-din-player-cards";
@@ -221,7 +224,9 @@ export function attachmentController(s: GameState, host: Unit, a: Attachment) {
   return card(a.code).sphere_code === "encounter" &&
     card(a.code).type_code !== "objective"
     ? null
-    : ["hero", "ally", "objective-ally"].includes(card(host.code).type_code)
+    : ["hero", "ally", "objective-ally", "ship-objective"].includes(
+          card(host.code).type_code,
+        )
       ? ownerOf(s, host)
       : (a.controller ?? a.owner ?? activeSeat(s));
 }
@@ -274,7 +279,8 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
       (!u.exhausted || angmarNoCombatExhaust(s, u)) &&
       canFight(u) &&
       (!enemy ||
-        (rhosgobelCanFight(enemy, u) &&
+        (shipCanDefend(enemy, u) &&
+          rhosgobelCanFight(enemy, u) &&
           redhornCanDefend(enemy, u) &&
           foundationsCanFight(enemy, u) &&
           ettenCanDefend(s, enemy, u) &&
@@ -288,6 +294,8 @@ export const attackersFor = (s: GameState, enemy: Unit) =>
     (u) =>
       (!u.exhausted || angmarNoCombatExhaust(s, u)) &&
       longDarkCanAttack(s, enemy) &&
+      shipCanAttack(enemy, u) &&
+      voyageCanAttackEnemy(s, enemy, u) &&
       canFight(u) &&
       khazadCanAttack(u) &&
       khazadCanRangedAttack(s, enemy, u, ownerOf(s, enemy) !== ownerOf(s, u)) &&
@@ -305,5 +313,6 @@ export const attackersFor = (s: GameState, enemy: Unit) =>
               : ownerOf(s, enemy) === activeSeat(s)))) ||
         ((!s.staging.some((e) => e.id === enemy.id) ||
           playerOrder(s).some((p) => consideredEngaged(s, enemy, p))) &&
-          hasKeyword(u, "Ranged"))),
+          hasKeyword(u, "Ranged") &&
+          !fateLoseRanged(s, u))),
   );

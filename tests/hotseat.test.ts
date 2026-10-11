@@ -1,9 +1,15 @@
 import { applyAction as act } from "./pass-resource-window.ts";
+import {
+  GREY_HAVENS_SCENARIOS,
+  greyHavensSimulationAction,
+  greyHavensSimulationChoice,
+} from "./grey-havens-simulation-driver";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { appendFileSync, writeFileSync } from "node:fs";
 import { STARTERS, card } from "../src/game/cards";
 import {
+  applyAction as engineApplyAction,
   createGame,
   validateSave,
   restoreSave,
@@ -14,6 +20,8 @@ import {
   playTargets,
   canPlay,
   canCommit,
+  canTravel,
+  enemyAttackPrevented,
   characters,
   newCampaign,
 } from "../src/game/engine";
@@ -426,6 +434,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     "the-treachery-of-rhudaur",
     "the-battle-of-carn-dum",
     "the-dread-realm",
+    ...GREY_HAVENS_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -437,6 +446,7 @@ for (const scenarioId of [
   "the-treachery-of-rhudaur",
   "the-battle-of-carn-dum",
   "the-dread-realm",
+  ...GREY_HAVENS_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -499,11 +509,14 @@ for (const scenarioId of [
                 a = {
                   type: "CHOOSE",
                   id: (
+                    greyHavensSimulationChoice(s) ??
                     s.choice.options.find((o) => o.id === "skip") ??
                     s.choice.options.find((o) => o.id === "resolve") ??
                     s.choice.options[0]
                   ).id,
                 };
+              else if (greyHavensSimulationAction(s))
+                a = greyHavensSimulationAction(s)!;
               else if (s.phase === "setup") a = { type: "KEEP" };
               else if (s.phase === "planning") {
                 const u = s.hand.find(
@@ -518,9 +531,7 @@ for (const scenarioId of [
               } else if (s.phase === "defense") {
                 const e = engagedEnemies(s).find(
                   (u) =>
-                    normalAttackPending(s, u) &&
-                    !u.feinted &&
-                    !u.attachments.some((a) => a.code === "01069"),
+                    normalAttackPending(s, u) && !enemyAttackPrevented(s, u),
                 );
                 assert.ok(e, `no pending enemy ${scenarioId}/${seed}/${n}`);
                 a = {
@@ -546,6 +557,17 @@ for (const scenarioId of [
               } else if (
                 s.phase === "travel" &&
                 !s.activeLocation &&
+                GREY_HAVENS_SCENARIOS.includes(
+                  scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+                )
+              ) {
+                const location = s.staging.find((u) => !canTravel(s, u));
+                a = location
+                  ? { type: "TRAVEL", id: location.id }
+                  : { type: "NEXT" };
+              } else if (
+                s.phase === "travel" &&
+                !s.activeLocation &&
                 s.staging.some((u) => u.code === "01088")
               )
                 a = {
@@ -568,7 +590,11 @@ for (const scenarioId of [
                       pending: s.flow?.pending?.id,
                     }) + "\n",
                   );
-                s = act(s, a);
+                s = GREY_HAVENS_SCENARIOS.includes(
+                  scenarioId as (typeof GREY_HAVENS_SCENARIOS)[number],
+                )
+                  ? engineApplyAction(s, a)
+                  : act(s, a);
                 if (process.env.LOTR_HOTSEAT_CASE) {
                   appendFileSync(
                     `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,

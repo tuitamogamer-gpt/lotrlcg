@@ -30,6 +30,8 @@ export interface Card {
   deck_limit?: number;
   /** Copies in the official easy-mode encounter deck when fewer than `quantity`. */
   easy_quantity?: number;
+  /** Printed wheel symbols used only when looking at cards during Sailing tests. */
+  sailing?: number;
   engagement?: number;
   quest?: number;
   victory?: number;
@@ -83,6 +85,8 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Na'asiyah's resource bonus is fixed when this attack begins. */
+  raidCombatResourceBonus?: number;
   /** The Mission objective retains its physical identity when turned over. */
   flipped?: boolean;
   /** Cold from Angmar preserves printed keywords and traits while blanking abilities. */
@@ -191,6 +195,9 @@ export type ScenarioId =
   | "the-treachery-of-rhudaur"
   | "the-battle-of-carn-dum"
   | "the-dread-realm"
+  | "voyage-across-belegaer"
+  | "the-fate-of-numenor"
+  | "raid-on-the-grey-havens"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -306,6 +313,10 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  sailing?: import("./sailing").SailingState;
+  voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
+  fateNumenor?: import("./fate-numenor-support").FateNumenorState;
+  raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -469,6 +480,14 @@ export interface GameState {
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
   combat: {
+    fateBottomOnAllyKill?: boolean;
+    voyageShiftOnCharacterKilled?: number;
+    voyageShiftOnShipDamaged?: number;
+    voyageExcessCopies?: number;
+    voyageCharacterKilled?: boolean;
+    voyageShipDamaged?: boolean;
+    raidKilledCharacter?: boolean;
+    raidFiresOnKill?: number;
     /** Every defender that actually took damage during this attack, including costs. */
     damagedDefenders?: string[];
     stewardRemoveTokensIfKilled?: boolean;
@@ -569,7 +588,8 @@ export type Action =
         | "NEXT"
         | "COMMIT"
         | "END_ATTACKS"
-        | "RESOLVE_ESCAPE";
+        | "RESOLVE_ESCAPE"
+        | "RESOLVE_SAILING";
     }
   | { type: "TOGGLE_QUEST"; id: string }
   | { type: "CHOOSE"; id: string }

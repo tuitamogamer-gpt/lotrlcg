@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   afterPlayerAbility,
   choosePlayerResponse,
@@ -271,7 +272,7 @@ export function amonPlayerSpecialAttachmentEntry(
 }
 export function amonPlayerEnemyAddedToStaging(s: GameState, enemy: Unit) {
   if (
-    card(enemy.code).type_code !== "enemy" ||
+    !playerUnitIsEnemy(enemy) ||
     immune(enemy) ||
     (!enemy.blanked &&
       /cannot have attachments/i.test(plain(card(enemy.code).text)))
@@ -348,7 +349,9 @@ export function offerGondorianDiscipline(
   if (
     context.bypassDiscipline ||
     value <= 0 ||
-    !["hero", "ally", "objective-ally"].includes(card(target.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(
+      card(target.code).type_code,
+    ) ||
     !hasTrait(target, "Gondor")
   )
     return false;
@@ -474,7 +477,12 @@ export function amonPlayerInterceptReveal(s: GameState, code: string): boolean {
       if (view.used[i].startsWith("game:lampwright-next:"))
         view.used.splice(i, 1);
   }
-  if (!names.includes(card(code).type_code)) return false;
+  if (
+    !names.includes(
+      playerUnitIsEnemy({ code }) ? "enemy" : card(code).type_code,
+    )
+  )
+    return false;
   s.encounterDiscard.push(code);
   log(
     s,

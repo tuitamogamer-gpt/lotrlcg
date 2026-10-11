@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
@@ -60,7 +61,7 @@ const allHosts = (s: GameState): Unit[] => [
 const hasMarker = (s: GameState, key: string) =>
   globalPlayerOrder(s).some((player) => seatView(s, player).used.includes(key));
 const ownEnemies = (s: GameState) =>
-  s.staging.filter((u) => card(u.code).type_code === "enemy");
+  s.staging.filter((u) => playerUnitIsEnemy(u));
 const resourceTargets = (s: GameState) =>
   allHeroes(s).filter((u) => hasTrait(u, "Gondor") && canGainResources(s, u));
 const canExhaust = (u: Unit) =>
@@ -325,7 +326,7 @@ export function heirsPlayerSpecialAttachmentEntry(
   return true;
 }
 export function heirsPlayerEnemyAddedToStaging(s: GameState, enemy: Unit) {
-  if (card(enemy.code).type_code !== "enemy") return;
+  if (!playerUnitIsEnemy(enemy)) return;
   const eligible =
     !immune(enemy) &&
     !/cannot have attachments/i.test(plain(card(enemy.code).text));

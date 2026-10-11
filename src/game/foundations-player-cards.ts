@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
@@ -69,7 +70,7 @@ export function foundationsPlayerDiscardTaken(
 }
 const heavyEnemy = (s: GameState, id?: string) => {
   const u = get(s, id);
-  return u && card(u.code).type_code === "enemy" && !playerCardImmune(u)
+  return u && playerUnitIsEnemy(u) && !playerCardImmune(u)
     ? u
     : undefined;
 };

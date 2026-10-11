@@ -1,3 +1,4 @@
+import { isEnemy } from "./game/ships";
 import { currentQuestProgress } from "./game/quest-state";
 import { SignificantMoment } from "./ui/SignificantMoment";
 import type { ActiveSignificantMoment } from "./ui/SignificantMoment";
@@ -11,6 +12,7 @@ import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
+import { SailingTestSummary } from "./ui/grey-havens-state";
 import {
   consideredEngaged,
   normalAttackPending,
@@ -329,11 +331,13 @@ const objectiveClaimDescription = (s: GameState, id: string) => {
 const pendingEnemyAttack = (s: GameState, u: Unit) =>
   normalAttackPending(s, u) && !enemyAttackPrevented(s, u);
 const phaseTitle = (s: GameState) =>
-  s.escapeTest
-    ? "Escape test"
-    : s.phase === "attack" && s.earlyAttackPlayers?.length
-      ? "Oath of Eorl · Player attacks"
-      : phaseNames[s.phase];
+  s.sailing?.test
+    ? "Sailing test"
+    : s.escapeTest
+      ? "Escape test"
+      : s.phase === "attack" && s.earlyAttackPlayers?.length
+        ? "Oath of Eorl · Player attacks"
+        : phaseNames[s.phase];
 /** "1 player", "2 players": English plural for the setup summaries. */
 const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
 const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
@@ -554,7 +558,7 @@ function CardDetail({
             </p>
             {(c.health !== undefined || c.printed_stats?.health) && (
               <div className="detail-stats">
-                {c.type_code === "enemy" ? (
+                {["enemy", "ship-enemy"].includes(c.type_code) ? (
                   <StatBadge
                     kind="threat"
                     value={c.threat ?? c.printed_stats?.threat}
@@ -2529,6 +2533,7 @@ export default function App() {
               </span>
             </div>
             <EscapeTestSummary s={game} />
+            <SailingTestSummary s={game} />
             <ScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
@@ -2588,13 +2593,13 @@ export default function App() {
                                     card(u.code).type_code === "location"
                                   ? () => dispatch({ type: "TRAVEL", id: u.id })
                                   : game.phase === "encounter" &&
-                                      card(u.code).type_code === "enemy" &&
+                                      isEnemy(u) &&
                                       (!game.optionalEngagement ||
                                         realmExtraEngagement(game))
                                     ? () =>
                                         dispatch({ type: "ENGAGE", id: u.id })
                                     : game.phase === "attack" &&
-                                        card(u.code).type_code === "enemy" &&
+                                        isEnemy(u) &&
                                         (game.table || game.earlyAttackPlayers
                                           ? !u.attackedBy?.includes(
                                               activeSeat(game),
@@ -2628,8 +2633,7 @@ export default function App() {
                             game.phase === "attack" &&
                             amonPlayerCannotDeclareAttack(game)
                               ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
-                              : game.phase === "encounter" &&
-                                  card(u.code).type_code === "enemy"
+                              : game.phase === "encounter" && isEnemy(u)
                                 ? optionalEngagementProblem(game, u)
                                 : exhaustedClaimObjectives.includes(u.code) &&
                                     !game.heroes.some(
@@ -4275,6 +4279,10 @@ function CampaignJournal({
 }
 
 function phaseHelp(s: GameState) {
+  if (s.sailing?.test)
+    return s.sailing.test.phase === "actions"
+      ? "Resolve the Sailing test to look at encounter cards and choose the fleet’s heading."
+      : "Choose ready characters and resolve the fleet’s heading in the Sailing dialog. Player actions resume after the test.";
   if (s.escapeTest)
     return s.escapeTest.phase === "preparing"
       ? "Use end-of-quest actions, then choose ready characters for the escape test."
@@ -4359,7 +4367,7 @@ function BoardCard({
         onClick={inspect}
         aria-label={`Inspect ${name(u)}`}
         aria-description={
-          c.type_code === "enemy"
+          ["enemy", "ship-enemy"].includes(c.type_code)
             ? `${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`
             : c.type_code === "location"
               ? `${u.progress} of ${locationQuest(s, u)} progress.`
@@ -4416,7 +4424,7 @@ function BoardCard({
         </div>
       )}
       {s.phase === "defense" &&
-        c.type_code === "enemy" &&
+        ["enemy", "ship-enemy"].includes(c.type_code) &&
         enemyAttackPrevented(
           s,
           u,
@@ -4428,16 +4436,17 @@ function BoardCard({
         {threatOf(s, u) !== (c.threat ?? 0) && (
           <StatBadge kind="threat" value={threatOf(s, u)} />
         )}
-        {c.type_code === "enemy" &&
+        {["enemy", "ship-enemy"].includes(c.type_code) &&
           engagementCost(s, u) !== (c.engagement ?? 0) && (
             <span className="engaged-owner">
               Engagement cost {engagementCost(s, u)}
             </span>
           )}
-        {c.type_code === "enemy" && stats(s, u).attack !== (c.attack ?? 0) && (
-          <StatBadge kind="attack" value={stats(s, u).attack} />
-        )}
-        {c.type_code === "enemy" &&
+        {["enemy", "ship-enemy"].includes(c.type_code) &&
+          stats(s, u).attack !== (c.attack ?? 0) && (
+            <StatBadge kind="attack" value={stats(s, u).attack} />
+          )}
+        {["enemy", "ship-enemy"].includes(c.type_code) &&
           stats(s, u).defense !== (c.defense ?? 0) && (
             <StatBadge kind="defense" value={stats(s, u).defense} />
           )}
@@ -4598,6 +4607,7 @@ function CharacterCard({
     canQuest =
       canCommit(s, u) &&
       !s.escapeTest &&
+      !s.sailing?.test &&
       !s.flow?.pending &&
       !s.choice &&
       (!s.table || s.table.active === s.table.turn);

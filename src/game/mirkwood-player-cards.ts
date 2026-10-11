@@ -1,3 +1,4 @@
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
   choosePlayerResponse,
   responseOptions,
@@ -59,7 +60,7 @@ const activeLocations = (s: GameState) =>
   allActiveLocations(s).filter(affected);
 const eagles = (s: GameState) =>
   allCharacters(s).filter(
-    (u) => card(u.code).type_code === "ally" && hasTrait(u, "Eagle"),
+    (u) => playerUnitIsAlly(u) && hasTrait(u, "Eagle"),
   );
 const collectors = (s: GameState, player?: number) =>
   allCharacters(s).filter(
@@ -256,7 +257,7 @@ export function mirkwoodPlayerLeavesPlay(
 ) {
   if (
     !hasTrait(u, "Eagle") ||
-    !["ally", "hero", "objective-ally"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
     !collectors(s).length
   )
     return;

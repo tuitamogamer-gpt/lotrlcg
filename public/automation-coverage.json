@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 496,
-    "heroes": 56,
-    "deckCards": 439,
-    "encounterCards": 625,
-    "scenarios": 45,
+    "playerCards": 511,
+    "heroes": 58,
+    "deckCards": 452,
+    "encounterCards": 683,
+    "scenarios": 48,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -52,17 +52,20 @@
       "across-the-ettenmoors",
       "the-treachery-of-rhudaur",
       "the-battle-of-carn-dum",
-      "the-dread-realm"
+      "the-dread-realm",
+      "voyage-across-belegaer",
+      "the-fate-of-numenor",
+      "raid-on-the-grey-havens"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1265,
-    "pending": 2918
+    "scripted": 1347,
+    "pending": 2836
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 90
+    "scripted": 96
   },
   "registeredCodes": [
     "01001",
@@ -555,6 +558,21 @@
     "10147",
     "10148",
     "10149",
+    "11001",
+    "11002",
+    "11003",
+    "11004",
+    "11005",
+    "11006",
+    "11007",
+    "11008",
+    "11009",
+    "11010",
+    "11011",
+    "11012",
+    "11013",
+    "11014",
+    "11015",
     "12003",
     "12004",
     "12034",
@@ -618,7 +636,9 @@
     "22142",
     "22143",
     "dread:reanimated-dead",
+    "fate-lost-island",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
+    "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
@@ -627,9 +647,11 @@
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
+    "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
     "octgn:07690f5d-cc91-437e-bcdf-5010bc69d712",
     "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
+    "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
@@ -656,7 +678,9 @@
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
+    "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
     "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
+    "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
@@ -670,10 +694,12 @@
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
+    "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
     "octgn:1edaecb1-72e8-49db-98fd-6fc377815c4b",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
+    "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
     "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
     "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
@@ -685,21 +711,29 @@
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
     "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
+    "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+    "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
+    "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+    "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
+    "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
@@ -712,6 +746,7 @@
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
+    "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
@@ -804,13 +839,18 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9085",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9086",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
+    "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+    "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+    "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
+    "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -1035,9 +1075,11 @@
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
+    "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
@@ -1048,6 +1090,7 @@
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
+    "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
@@ -1055,22 +1098,30 @@
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
+    "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
+    "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
+    "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
+    "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
+    "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
+    "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
@@ -1085,6 +1136,7 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
@@ -1108,8 +1160,10 @@
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
+    "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
+    "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
@@ -1118,7 +1172,9 @@
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
+    "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
+    "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
     "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
@@ -1139,6 +1195,7 @@
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
+    "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
@@ -1149,23 +1206,35 @@
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
+    "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
     "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+    "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
+    "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
+    "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
+    "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+    "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+    "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
+    "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+    "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
+    "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+    "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
     "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
     "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
@@ -1180,7 +1249,9 @@
     "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+    "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
+    "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
@@ -1194,13 +1265,17 @@
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
+    "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
     "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
+    "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa",
+    "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+    "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
@@ -1208,8 +1283,11 @@
     "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
+    "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
+    "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+    "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
@@ -1218,6 +1296,8 @@
     "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+    "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+    "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
@@ -1231,6 +1311,7 @@
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
+    "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
@@ -1255,12 +1336,15 @@
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
@@ -1282,10 +1366,12 @@
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
+    "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
     "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
     "octgn:fb301d7d-7936-49b6-a938-40ff0ca549cb",
     "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
+    "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
@@ -1909,9 +1995,9 @@
     {
       "product": "the-grey-havens",
       "total": 87,
-      "scripted": 0,
+      "scripted": 82,
       "player": 15,
-      "playerScripted": 0
+      "playerScripted": 15
     },
     {
       "product": "the-grey-havens-nightmare",
@@ -6610,7 +6696,7 @@
       "name": "Círdan the Shipwright",
       "type": "hero",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6618,7 +6704,7 @@
       "name": "Galdor of the Havens",
       "type": "hero",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6626,7 +6712,7 @@
       "name": "Mithlond Sea-watcher",
       "type": "ally",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6634,7 +6720,7 @@
       "name": "Skyward Volley",
       "type": "event",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6642,7 +6728,7 @@
       "name": "Grappling Hook",
       "type": "attachment",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6650,7 +6736,7 @@
       "name": "Warden of the Havens",
       "type": "ally",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6658,7 +6744,7 @@
       "name": "Anchor Watch",
       "type": "event",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6666,7 +6752,7 @@
       "name": "Mariner's Compass",
       "type": "attachment",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6674,7 +6760,7 @@
       "name": "Lindon Navigator",
       "type": "ally",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6682,7 +6768,7 @@
       "name": "The Evening Star",
       "type": "event",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6690,7 +6776,7 @@
       "name": "Explorer's Almanac",
       "type": "attachment",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6698,7 +6784,7 @@
       "name": "Sailor of Lune",
       "type": "ally",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6706,7 +6792,7 @@
       "name": "Elwing's Flight",
       "type": "event",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6714,7 +6800,7 @@
       "name": "To the Sea, to the Sea!",
       "type": "attachment",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -6722,7 +6808,7 @@
       "name": "Narya",
       "type": "attachment",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -11074,7 +11160,7 @@
       "name": "Departure from the Havens",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -11522,7 +11608,7 @@
       "name": "Explore the Island",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -11642,7 +11728,7 @@
       "name": "Dream-chaser",
       "type": "ship-objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -12650,7 +12736,7 @@
       "name": "Throngs of Unfaithful",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -12722,7 +12808,7 @@
       "name": "Scouting Ship",
       "type": "ship-enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -13346,7 +13432,7 @@
       "name": "Calm Waters",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -13474,7 +13560,7 @@
       "name": "Cursed Temple",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -13834,7 +13920,7 @@
       "name": "Vicious Marauder",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -13954,7 +14040,7 @@
       "name": "Calphon",
       "type": "objective-ally",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14042,7 +14128,7 @@
       "name": "Into the Storm",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14090,7 +14176,7 @@
       "name": "Elven Caravel",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14146,7 +14232,7 @@
       "name": "Shrine to Morgoth",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14258,7 +14344,7 @@
       "name": "Umbar Captain",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14370,7 +14456,7 @@
       "name": "Boarding Party",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -14554,7 +14640,7 @@
       "name": "Rough Waters",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -15266,7 +15352,7 @@
       "name": "Nárelenya",
       "type": "ship-objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17450,7 +17536,7 @@
       "name": "Sahír's Ravager",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17674,7 +17760,7 @@
       "name": "Raid Leader",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17898,7 +17984,7 @@
       "name": "Cunning Pirate",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -17922,7 +18008,7 @@
       "name": "Waterspout",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -18018,7 +18104,7 @@
       "name": "Thrown Off Course",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -22082,7 +22168,7 @@
       "name": "The Havens Burn",
       "type": "objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -22482,7 +22568,7 @@
       "name": "Soulless Cadaver",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23106,7 +23192,7 @@
       "name": "Winds of Wrath",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23554,7 +23640,7 @@
       "name": "Mithlond Harbor",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23570,7 +23656,7 @@
       "name": "Sudden Storms",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23586,7 +23672,7 @@
       "name": "The Fires Spread",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23866,7 +23952,7 @@
       "name": "Drowned Dead",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -23898,7 +23984,7 @@
       "name": "Servant of the Deceiver",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -24074,7 +24160,7 @@
       "name": "Sahír's Advance",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -24354,7 +24440,7 @@
       "name": "White Ship",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -24546,7 +24632,7 @@
       "name": "Dawn Star",
       "type": "ship-objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -25178,7 +25264,7 @@
       "name": "Steep Plateau",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -25994,7 +26080,7 @@
       "name": "Put to the Torch",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -26106,7 +26192,7 @@
       "name": "Ruins of Ages Past",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -26378,7 +26464,7 @@
       "name": "A Fateful Discovery",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -26402,7 +26488,7 @@
       "name": "Captain Sahír",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -27362,7 +27448,7 @@
       "name": "Corsair Warship",
       "type": "ship-enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -27826,7 +27912,7 @@
       "name": "Aimless Wandering",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -27890,7 +27976,7 @@
       "name": "Pillaged Ship",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -27994,7 +28080,7 @@
       "name": "Curse of the Downfallen",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28082,7 +28168,7 @@
       "name": "Corsair Pursuit",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28386,7 +28472,7 @@
       "name": "Cursed Mists",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28418,7 +28504,7 @@
       "name": "Elven Wave-runner",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28474,7 +28560,7 @@
       "name": "Lingering Malevolence",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28498,7 +28584,7 @@
       "name": "Mysterious Fog",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28578,7 +28664,7 @@
       "name": "Southron Sailor",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28610,7 +28696,7 @@
       "name": "Forbidden Coast",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -28938,7 +29024,7 @@
       "name": "Starlit Sea",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -29058,7 +29144,7 @@
       "name": "Calphon's Divination",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30106,7 +30192,7 @@
       "name": "Battle-Hardened",
       "type": "treachery",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30194,7 +30280,7 @@
       "name": "Light Cruiser",
       "type": "ship-enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30706,7 +30792,7 @@
       "name": "Burning Piers",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30818,7 +30904,7 @@
       "name": "Dream-chaser",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30834,7 +30920,7 @@
       "name": "Lush Jungle",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -30978,7 +31064,7 @@
       "name": "Silver Wing",
       "type": "ship-objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -31314,7 +31400,7 @@
       "name": "Heading",
       "type": "objective",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -31362,7 +31448,7 @@
       "name": "Corsair Arsonist",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -31522,7 +31608,7 @@
       "name": "Umbar Raider",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -32050,7 +32136,7 @@
       "name": "Corsair Infiltrator",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -32074,7 +32160,7 @@
       "name": "Drowned Graves",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -32682,7 +32768,7 @@
       "name": "The Star's Guidance",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -33802,7 +33888,7 @@
       "name": "Rolling Seas",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -33938,7 +34024,7 @@
       "name": "Fog Bank",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -34210,7 +34296,7 @@
       "name": "Na'asiyah",
       "type": "enemy",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -35090,7 +35176,7 @@
       "name": "The Corsairs' Assault",
       "type": "quest",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -35162,7 +35248,7 @@
       "name": "Flooded Ruins",
       "type": "location",
       "pack": "The Grey Havens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-grey-havens"
     },
     {
@@ -36092,22 +36178,22 @@
       "id": "E06.1",
       "name": "Voyage Across Belegaer (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "voyage-across-belegaer",
+      "state": "scripted"
     },
     {
       "id": "E06.2",
       "name": "The Fate of Númenor (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fate-of-numenor",
+      "state": "scripted"
     },
     {
       "id": "E06.3",
       "name": "Raid on the Grey Havens (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "raid-on-the-grey-havens",
+      "state": "scripted"
     },
     {
       "id": "E06.4",
@@ -37583,22 +37669,22 @@
       "id": "Q06.1",
       "name": "Voyage Across Belegaer",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "voyage-across-belegaer",
+      "state": "scripted"
     },
     {
       "id": "Q06.2",
       "name": "The Fate of Númenor",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fate-of-numenor",
+      "state": "scripted"
     },
     {
       "id": "Q06.3",
       "name": "Raid on the Grey Havens",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "raid-on-the-grey-havens",
+      "state": "scripted"
     },
     {
       "id": "Q06.4",

@@ -32,6 +32,8 @@ import {
 } from "../game/table";
 import type { GameState, Unit } from "../game/types";
 import { emynMuilMustCommit, emynMuilEventsBlocked } from "../game/emyn-muil";
+import { isEnemy, isShipEnemy } from "../game/ships";
+import { voyageMandatoryTravel } from "../game/voyage-belegaer";
 
 /** One short piece of advice for the current decision, derived from public state. */
 export interface CoachTip {
@@ -57,6 +59,12 @@ function warnings(s: GameState): string | undefined {
 export function coachTip(s: GameState): CoachTip | null {
   if (s.flow?.pending || s.choice || s.status !== "playing") return null;
   if (s.table?.seats[activeSeat(s)].eliminated) return null;
+  if (s.sailing?.test)
+    return {
+      title: "Resolve the Sailing test",
+      text: "Look at the Sailing cards, then choose how many successful symbols to use to turn the fleet on-course. Player actions resume after the test.",
+      tone: "info",
+    };
   if (s.escapeTest)
     return {
       title:
@@ -94,7 +102,7 @@ export function coachTip(s: GameState): CoachTip | null {
   const committed = (u: Unit) => u.committed || s.committedIds.includes(u.id);
   const ready = chars.filter((u) => !u.exhausted);
   const enemies = s.staging.filter(
-    (u) => card(u.code).type_code === "enemy" && shadowFlameCanMove(s, u),
+    (u) => isEnemy(u) && shadowFlameCanMove(s, u),
   );
   const willEngage = enemies.filter((u) => engagementCost(s, u) <= s.threat);
   const danger = warnings(s);
@@ -214,6 +222,12 @@ export function coachTip(s: GameState): CoachTip | null {
         tone: "info",
       });
     case "travel": {
+      if (voyageMandatoryTravel(s))
+        return tip({
+          title: "Travel to Waterspout",
+          text: "The fleet is at the worst heading. Travel to Waterspout before continuing to engagement.",
+          tone: "warn",
+        });
       const locations = s.staging.filter(
         (u) => card(u.code).type_code === "location" && !canTravel(s, u),
       );
@@ -310,17 +324,19 @@ export function coachTip(s: GameState): CoachTip | null {
         text:
           s.scenarioId === "siege-of-cair-andros" && s.stage === 1
             ? `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to the lowest-threat Battleground; excess damage does not carry over.`
-            : `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to one hero of your choice.`,
+            : isShipEnemy(enemy)
+              ? `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to one of your ships.`
+              : `${nameOf(enemy)} attacks for ${attack}. Undefended damage goes to one hero of your choice.`,
         tone: "warn",
       });
     }
     case "attack": {
       const seat = activeSeat(s);
       const physicalTargets = new Map(
-        [
-          ...engagedEnemies(s),
-          ...s.staging.filter((u) => card(u.code).type_code === "enemy"),
-        ].map((enemy) => [enemy.id, enemy]),
+        [...engagedEnemies(s), ...s.staging.filter(isEnemy)].map((enemy) => [
+          enemy.id,
+          enemy,
+        ]),
       );
       const targets = [...physicalTargets.values()].filter((e) =>
         s.table ? !e.attackedBy?.includes(seat) : !e.attacked,

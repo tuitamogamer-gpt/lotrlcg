@@ -1,0 +1,81 @@
+[
+  {
+    "code": "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
+    "octgnid": "fab58a26-eaa6-4e6b-aa59-575bab8a2599",
+    "name": "The Corsairs' Assault",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Captain Sahir and Na'asiyah aside, out of play. Add The Havens Burn, Dream-chaser, and 1 copy of Sahir's Ravager to the staging area. Shuffle the encounter deck and discard cards from the top of the encounter deck until X locations with the Aflame keyword are discarded, where X is the number of players in the game. Add each discarded Aflame location to the staging area. Then, shuffle the encounter discard pile back into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 36,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Raid on the Grey Havens",
+    "side": "A",
+    "back_name": "The Corsairs' Assault",
+    "back_text": "Forced: At the end of the combat phase, deal X damage to the Aflame location in play with the lowest Aflame value. X is the number of Corsair enemies in play.",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/fab58a26-eaa6-4e6b-aa59-575bab8a2599.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/fab58a26-eaa6-4e6b-aa59-575bab8a2599.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 36,
+        "quantity": 1,
+        "octgnid": "fab58a26-eaa6-4e6b-aa59-575bab8a2599",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fab58a26-eaa6-4e6b-aa59-575bab8a2599.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
+    "octgnid": "7c5f503a-61aa-4f12-acdf-e52fc51e295f",
+    "name": "Sahír's Advance",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Na'asiyah and Captain Sahir to the staging area, enemy side faceup. Each player reveals the top card of the encounter deck. Place resources on Na'asiyah and Captain Sahir equal to the amount of damage on The Dream-chaser. Add 1 resource to each other Raider enemy in play.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 37,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Raid on the Grey Havens",
+    "side": "A",
+    "back_name": "Sahír's Advance",
+    "back_text": "Any time players would place progress on this quest, remove an equal amount of damage from locations in play instead. (Progress is placed on the active location before triggering this effect.)  Each Raider enemy revealed by the encounter deck enters play with 1 resource on it. If Captain Sahir is in the victory display and each location in play has no damage, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/7c5f503a-61aa-4f12-acdf-e52fc51e295f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/7c5f503a-61aa-4f12-acdf-e52fc51e295f.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 37,
+        "quantity": 1,
+        "octgnid": "7c5f503a-61aa-4f12-acdf-e52fc51e295f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c5f503a-61aa-4f12-acdf-e52fc51e295f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   choosePlayerResponse,
   responseOptions,
@@ -50,7 +51,7 @@ import {
 
 const enemies = (s: GameState) =>
   [...allEngaged(s), ...s.staging].filter(
-    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
+    (u) => playerUnitIsEnemy(u) && !playerCardImmune(u),
   );
 const giftsRecipients = (s: GameState, source: Unit) =>
   allHeroes(s).filter(

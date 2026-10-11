@@ -5,6 +5,11 @@ import lostRealmSideQuests from "../data/lost-realm-side-quests.json";
 import rangerPlayers from "../data/lost-realm-encounter-players.json";
 import lostRealmPlayers from "../data/lost-realm-player-cards.json";
 import angmarPlayers from "../data/angmar-player-cards.json";
+import greyHavensPlayers from "../data/grey-havens-player-cards.json";
+import {
+  GREY_HAVENS_ENCOUNTERS,
+  GREY_HAVENS_QUESTS,
+} from "./grey-havens-scenario-data";
 import { ANGMAR_ENCOUNTERS, ANGMAR_QUESTS } from "./angmar-scenario-data";
 import { ANTLERED_ENCOUNTERS, ANTLERED_QUESTS } from "./antlered-support";
 import {
@@ -131,6 +136,7 @@ export const playerCards = [
       ...(finalRingPlayers as Card[]),
       ...(lostRealmPlayers as Card[]),
       ...(angmarPlayers as Card[]),
+      ...(greyHavensPlayers as Card[]),
       ...(lostRealmSideQuests as Card[]),
       ...(rangerPlayers as Card[]),
       ...PASSIVE_PLAYER_CARDS,
@@ -197,6 +203,7 @@ export const encounterCards = [
   ...WEATHER_ENCOUNTERS,
   ...DIKE_ENCOUNTERS,
   ...ANGMAR_ENCOUNTERS,
+  ...GREY_HAVENS_ENCOUNTERS,
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -235,6 +242,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...WEATHER_QUESTS,
     ...DIKE_QUESTS,
     ...ANGMAR_QUESTS,
+    ...GREY_HAVENS_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -317,6 +325,7 @@ export const SCRIPTED = new Set(
     ...playerCards,
     ...encounterCards,
     ...ANGMAR_QUESTS,
+    ...GREY_HAVENS_QUESTS,
     ...RHOSGOBEL_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,

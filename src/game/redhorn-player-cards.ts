@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
@@ -51,7 +52,7 @@ import {
 const affected = (u: Unit) => !playerCardImmune(u);
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy" && affected(u),
+    (u) => playerUnitIsEnemy(u) && affected(u),
   );
 const locations = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
@@ -170,7 +171,7 @@ export function redhornPlayerEventEffect(
     const code = s.encounterDeck[0],
       c = card(code),
       amount =
-        c.type_code === "enemy" || c.type_code === "location"
+        playerUnitIsEnemy(c) || c.type_code === "location"
           ? (c.threat ?? 0)
           : 0;
     reduceThreat(s, amount, "04009");

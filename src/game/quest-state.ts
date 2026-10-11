@@ -7,6 +7,7 @@ import type { Attachment, GameState, Unit } from "./types";
 import { scenario } from "./scenarios";
 import { foundationsCurrentQuest } from "./foundations-stone-support";
 import { gramCurrentQuest, gramQuestUnit } from "./mount-gram-support";
+import { voyageCurrentQuest } from "./voyage-belegaer-support";
 
 type QuestAttachmentState = GameState & {
   questAttachments?: Record<string, Attachment[]>;
@@ -19,6 +20,8 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function mainQuestCode(s: GameState): string | undefined {
+  const voyage = voyageCurrentQuest(s);
+  if (voyage) return voyage;
   const nin = ninCurrentQuest(s);
   if (nin) return nin;
   const trial = trialsCurrentQuest(s);

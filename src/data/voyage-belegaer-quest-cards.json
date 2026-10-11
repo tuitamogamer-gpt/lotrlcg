@@ -1,0 +1,257 @@
+[
+  {
+    "code": "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
+    "octgnid": "007721bf-3e80-4857-aaf4-aabb65d1827d",
+    "name": "Departure from the Havens",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Prepare the Corsair deck. Players prepare their fleet. Shuffle each stage 2 card in the quest deck so that their order is random, leaving stage 3 on the bottom. Search the encounter deck for 1 copy of Rolling Seas and 1 copy of Scouting Ship, and add them to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 16,
+    "quantity": 1,
+    "cost": 1,
+    "victory": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "Departure from the Havens",
+    "back_text": "Sailing. While you are on-course (o), each Ship objective gets +2 [willpower]. When this stage is defeated, if you are on-course (o), look at the top 2 stages of the quest deck and advance to one of your choice, placing the other on the bottom of the quest deck. Otherwise, advance to the top stage of the quest deck.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_victory": 3,
+    "back_imagesrc": "/cards/007721bf-3e80-4857-aaf4-aabb65d1827d.B.jpg",
+    "printed_stats": {
+      "cost": "1",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/007721bf-3e80-4857-aaf4-aabb65d1827d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "007721bf-3e80-4857-aaf4-aabb65d1827d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/007721bf-3e80-4857-aaf4-aabb65d1827d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
+    "octgnid": "25940aea-cc56-43bf-a8d6-f9d349b0c01f",
+    "name": "Into the Storm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Waterspout and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 17,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "Into the Storm",
+    "back_text": "Sailing. Forced: At the end of the quest phase, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), each player must distribute 5 damage among characters he controls. When this stage is defeated, if you are on-course (o), look at the top 2 stages of the quest deck and advance to one of your choice, placing the other on the bottom of the quest deck. Otherwise, advance to the top stage of the quest deck.",
+    "back_type_code": "quest",
+    "back_quest": 2,
+    "back_victory": 3,
+    "back_imagesrc": "/cards/25940aea-cc56-43bf-a8d6-f9d349b0c01f.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/25940aea-cc56-43bf-a8d6-f9d349b0c01f.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "25940aea-cc56-43bf-a8d6-f9d349b0c01f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25940aea-cc56-43bf-a8d6-f9d349b0c01f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+    "octgnid": "abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+    "name": "Corsair Pursuit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for a Ship enemy with the highest [threat] and add it to the staging area (2 Ship enemies with the highest [threat] instead if there are 3 or more players in the game). Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 21,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "Corsair Pursuit",
+    "back_text": "Sailing. You cannot place progress on Corsair Pursuit unless you are on-course (o). If there are no Ship enemies in play, you have defeated your pursuers, and win the game. If this stage has 10 or more progress on it, you have lost your pursuers, and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "octgnid": "aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "name": "Cursed Mists",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Fog Bank and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 18,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "Cursed Mists",
+    "back_text": "Sailing. While you are off-course ( 1/4 ,  1/2 , or  3/4 ), each non-Ship ally gets -2 [willpower]. When this stage is defeated, if you are on-course (o), look at the top 2 stages of the quest deck and advance to one of your choice, placing the other on the bottom of the quest deck. Otherwise, advance to the top stage of the quest deck.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_victory": 3,
+    "back_imagesrc": "/cards/aede410a-9d4c-4abd-9f55-143f5027f9c4.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/aede410a-9d4c-4abd-9f55-143f5027f9c4.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 18,
+        "quantity": 1,
+        "octgnid": "aede410a-9d4c-4abd-9f55-143f5027f9c4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aede410a-9d4c-4abd-9f55-143f5027f9c4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
+    "octgnid": "b77620fa-89a8-4f09-8552-ba4204e472d2",
+    "name": "Calphon's Divination",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Scouting Ship and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 19,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "Calphon's Divination",
+    "back_text": "Sailing. While you are off-course ( 1/4 ,  1/2 , or  3/4 ), each Ship enemy gains Boarding 1. When this stage is defeated, if you are on-course (o), look at the top 2 stages of the quest deck and advance to one of your choice, placing the other on the bottom of the quest deck. Otherwise, advance to the top stage of the quest deck.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_victory": 3,
+    "back_imagesrc": "/cards/b77620fa-89a8-4f09-8552-ba4204e472d2.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/b77620fa-89a8-4f09-8552-ba4204e472d2.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 19,
+        "quantity": 1,
+        "octgnid": "b77620fa-89a8-4f09-8552-ba4204e472d2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b77620fa-89a8-4f09-8552-ba4204e472d2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
+    "octgnid": "e1001736-68fc-4e7b-a7df-23230876eb92",
+    "name": "The Star's Guidance",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for 1 copy of Starlit Sea and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 20,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 3,
+    "encounter_set": "Voyage Across Belegaer",
+    "side": "A",
+    "back_name": "The Star's Guidance",
+    "back_text": "Sailing. While you are off-course ( 1/4 ,  1/2 , or  3/4 ), each Ocean location gets +1 [threat]. When this stage is defeated, if you are on-course (o), look at the top 2 stages of the quest deck and advance to one of your choice, placing the other on the bottom of the quest deck. Otherwise, advance to the top stage of the quest deck.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_victory": 3,
+    "back_imagesrc": "/cards/e1001736-68fc-4e7b-a7df-23230876eb92.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/e1001736-68fc-4e7b-a7df-23230876eb92.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 20,
+        "quantity": 1,
+        "octgnid": "e1001736-68fc-4e7b-a7df-23230876eb92",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1001736-68fc-4e7b-a7df-23230876eb92.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

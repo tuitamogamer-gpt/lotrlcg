@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { movableHand } from "./hand-rules";
@@ -35,21 +37,21 @@ const locations = (s: GameState) =>
   );
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) => card(u.code).type_code === "enemy" && !playerCardImmune(u),
+    (u) => playerUnitIsEnemy(u) && !playerCardImmune(u),
   );
 const leadershipAllies = (s: GameState) =>
   s.allies.filter(
     (u) =>
-      card(u.code).type_code === "ally" &&
+      playerUnitIsAlly(u) &&
       card(u.code).sphere_code === "leadership",
   );
 const rohanAllies = (s: GameState) =>
   s.allies.filter(
-    (u) => card(u.code).type_code === "ally" && hasTrait(u, "Rohan"),
+    (u) => playerUnitIsAlly(u) && hasTrait(u, "Rohan"),
   );
 const eagleAllies = (s: GameState) =>
   allCharacters(s).filter(
-    (u) => card(u.code).type_code === "ally" && hasTrait(u, "Eagle"),
+    (u) => playerUnitIsAlly(u) && hasTrait(u, "Eagle"),
   );
 const anyDeck = (s: GameState) =>
   playerOrder(s).some((i) => seatView(s, i).deck.length > 0);

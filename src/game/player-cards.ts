@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   dikeCannotLeaveDiscard,
   DIKE_DISCARD_REASON,
@@ -5,6 +6,7 @@ import {
 import { rangerEvent } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Angmar from "./angmar-player";
+import * as GreyPlayers from "./grey-havens-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
 import { movableHand } from "./hand-rules";
@@ -139,6 +141,7 @@ export function eventEffect(
   if (rangerEvent(s, code)) return;
   if (Realm.realmEvent(s, code, target)) return;
   if (Angmar.angmarEvent(s, code, target)) return;
+  if (GreyPlayers.greyHavensEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;
@@ -245,7 +248,7 @@ export function eventEffect(
           opts(
             [
               ...allEngaged(s),
-              ...s.staging.filter((e) => card(e.code).type_code === "enemy"),
+              ...s.staging.filter((e) => playerUnitIsEnemy(e)),
             ].filter((enemy) =>
               attackersFor(s, enemy).some((a) => a.id === u.id),
             ),
@@ -410,6 +413,7 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
   if (Realm.useRealmAbility(s, u, attachmentId)) return;
   if (Angmar.useAngmarAbility(s, u, attachmentId)) return;
+  if (GreyPlayers.useGreyHavensAbility(s, u, attachmentId)) return;
   if (useFinalRingAbility(s, u, attachmentId)) return;
   if (Isengard.useIsengardAbility(s, u, attachmentId)) return;
   if (useOsgiliathPlayerAbility(s, u, attachmentId)) return;

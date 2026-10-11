@@ -95,8 +95,13 @@ export function observe(
   const add = (u: Unit, zone: string) => {
     const c = card(u.code),
       stats = getStats(s, u);
-    const character = ["hero", "ally", "objective-ally"].includes(c.type_code);
-    const enemy = c.type_code === "enemy";
+    const character = [
+      "hero",
+      "ally",
+      "objective-ally",
+      "ship-objective",
+    ].includes(c.type_code);
+    const enemy = ["enemy", "ship-enemy"].includes(c.type_code);
     seen[u.id] = {
       code: u.code,
       zone,
@@ -453,6 +458,7 @@ export function recordObservation(
           ABILITY: "Ability used",
           COMMIT: "Characters committed",
           RESOLVE_ESCAPE: "Escape test",
+          RESOLVE_SAILING: "Sailing test",
           DEFEND: "Defense declared",
           ATTACK: "Attack declared",
           TRAVEL: "A new path",

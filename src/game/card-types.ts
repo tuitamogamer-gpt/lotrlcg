@@ -12,4 +12,4 @@ export function unitType(u: Unit): string {
 
 export const isHero = (u: Unit) => unitType(u) === "hero";
 export const isAlly = (u: Unit) =>
-  ["ally", "objective-ally"].includes(unitType(u));
+  ["ally", "objective-ally", "ship-objective"].includes(unitType(u));

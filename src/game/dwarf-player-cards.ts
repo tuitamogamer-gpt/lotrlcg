@@ -107,7 +107,7 @@ function addResources(s: GameState, hero: Unit, amount: number) {
 export function dwarfStats(s: GameState, u: Unit) {
   const dain =
     hasTrait(u, "Dwarf") &&
-    ["hero", "ally", "objective-ally"].includes(card(u.code).type_code) &&
+    ["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) &&
     allHeroes(s).some((h) => h.code === "02116" && !h.blanked && !h.exhausted)
       ? 1
       : 0;

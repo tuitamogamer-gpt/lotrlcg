@@ -57,7 +57,11 @@ export async function choose(p, id) {
     .filter((v) => v.label === o.label).length;
   await p
     .getByRole("dialog")
-    .getByRole("button", { name: o.label, exact: true })
+    .getByRole("button", {
+      name: new RegExp(
+        `^${o.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:\\s|$)`,
+      ),
+    })
     .nth(occurrence)
     .click();
   await reviewedState(p);

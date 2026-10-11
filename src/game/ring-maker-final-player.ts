@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import { reduceThreat } from "./threat-reduction";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
@@ -69,7 +71,7 @@ export function finalRingPlayTargets(
   if (code === "08142")
     return s.staging.filter(
       (u) =>
-        card(u.code).type_code === "enemy" &&
+        playerUnitIsEnemy(u) &&
         !card(u.code).is_unique &&
         !immune(u),
     );
@@ -160,7 +162,7 @@ export function finalRingEvent(
     case "08143":
       // Shadows are separate cards: an enemy's immunity does not protect them.
       for (const u of units(s).filter(
-        (u) => card(u.code).type_code === "enemy",
+        (u) => playerUnitIsEnemy(u),
       ))
         while (u.shadows.length)
           s.encounterDiscard.push(removeShadowCard(u, 0)!);
@@ -211,7 +213,7 @@ export function finalRingAttackBonus(
 export function finalRingFollowFirst(s: GameState) {
   if (!s.table) return;
   for (const ally of globalCharacters(s).filter(
-    (u) => card(u.code).type_code === "ally",
+    (u) => playerUnitIsAlly(u),
   )) {
     const enabled = ally.attachments.some(
       (a) => a.code === "08093" && !a.blanked && !a.facedown,

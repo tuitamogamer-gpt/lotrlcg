@@ -1,0 +1,81 @@
+[
+  {
+    "code": "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+    "octgnid": "05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+    "name": "Explore the Island",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Prepare the Uncharted deck. Set Shrine to Morgoth aside, out of play. Add 2 copies of Lost Island from the top of the Uncharted deck to the staging area (3 copies instead if there are 3 or 4 players in the game). The first player takes control of Calphon.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 25,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Fate of Numenor",
+    "side": "A",
+    "back_name": "Explore the Island",
+    "back_text": "Progress cannot be placed on Explore the Island except by quest effects. Forced: After a location is explored, add progress to Explore the Island equal to that location's printed quest points. Forced: When an Uncharted location becomes the active location, add 1 copy of Lost Island from the top of the Uncharted deck to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 25,
+        "quantity": 1,
+        "octgnid": "05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05bf91b3-8e8e-4a45-a6cf-ac8b936b032d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
+    "octgnid": "97584fc2-835e-411c-aae3-eb841c90fc43",
+    "name": "A Fateful Discovery",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add 2 copies of Lost Island from the top of the Uncharted deck to the staging area. Add Shrine to Morgoth to the staging area, Lost Island side faceup. Remove all progress from each Uncharted location in the staging area and shuffle them so that the players do not know which one is which.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 26,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Fate of Numenor",
+    "side": "A",
+    "back_name": "A Fateful Discovery",
+    "back_text": "Forced: After a location is explored, if it would be shuffled into the Uncharted deck, add it to the victory display, instead. The players cannot defeat this stage unless Shrine to Morgoth is in the victory display. When Shrine to Morgoth is added to the victory display, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/97584fc2-835e-411c-aae3-eb841c90fc43.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "97584fc2-835e-411c-aae3-eb841c90fc43",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97584fc2-835e-411c-aae3-eb841c90fc43.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

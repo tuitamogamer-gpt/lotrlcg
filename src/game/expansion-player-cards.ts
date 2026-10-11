@@ -1,3 +1,5 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
+import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
   choosePlayerResponse,
   responseOptions,
@@ -202,7 +204,7 @@ export function huntAbilityProblem(
   } else if (
     !attachmentId &&
     u.code === "02028" &&
-    !s.staging.some((enemy) => card(enemy.code).type_code === "enemy")
+    !s.staging.some((enemy) => playerUnitIsEnemy(enemy))
   ) {
     return "An enemy must be in the staging area.";
   } else if (
@@ -229,7 +231,7 @@ export function useExpansionAbility(
       requireRule(!a.blanked, "This attachment's rules text is blank.");
     if (a?.code === "02029") {
       requireRule(
-        card(u.code).type_code === "ally",
+        playerUnitIsAlly(u),
         "Born Aloft must be attached to an ally.",
       );
       discardAttachment(s, u, a);
@@ -264,7 +266,7 @@ export function useExpansionAbility(
     requireRule(!huntAbilityProblem(s, u), huntAbilityProblem(s, u) ?? "");
     discardCharacter(s, u);
     for (const enemy of [...s.staging].filter(
-      (enemy) => card(enemy.code).type_code === "enemy",
+      (enemy) => playerUnitIsEnemy(enemy),
     ))
       damage(s, enemy.id, 1);
     log(

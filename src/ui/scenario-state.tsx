@@ -22,6 +22,7 @@ import { morgulTowerProgress } from "../game/morgul-vale";
 import { faceupShadowCards } from "../game/voice-isengard";
 import { CardBack } from "./tabletop";
 import { AngmarScenarioState } from "./angmar-state";
+import { GreyHavensScenarioState } from "./grey-havens-state";
 
 export function ScenarioState({
   s,
@@ -47,6 +48,9 @@ export function ScenarioState({
     !s.rhudaur &&
     !s.carnDum &&
     !s.dreadRealm &&
+    !s.sailing &&
+    !s.fateNumenor &&
+    !s.raidGreyHavens &&
     !s.celebrimbor &&
     !s.bloodGondor &&
     !s.morgulVale &&
@@ -56,6 +60,7 @@ export function ScenarioState({
   return (
     <div className="scenario-state-summary" aria-label="Scenario counters">
       <AngmarScenarioState s={s} inspect={inspect} />
+      <GreyHavensScenarioState s={s} inspect={inspect} />
       {s.deadmensDike && (
         <>
           <div className="tower-counter">

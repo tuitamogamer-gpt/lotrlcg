@@ -1,3 +1,4 @@
+import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import type {
   Attachment,
@@ -56,7 +57,7 @@ const countEnemies = (s: GameState, p = activeSeat(s)) =>
   engagedEnemies(s, p).length;
 const enemies = (s: GameState) =>
   [...s.staging, ...allEngaged(s)].filter(
-    (u) => card(u.code).type_code === "enemy",
+    (u) => playerUnitIsEnemy(u),
   );
 const movableEnemies = (s: GameState) =>
   enemies(s).filter(
@@ -111,7 +112,7 @@ export function realmWillBonus(s: GameState, u: Unit) {
   );
 }
 export function realmDefensePenalty(s: GameState, u: Unit) {
-  if (card(u.code).type_code !== "enemy" || playerCardImmune(u)) return 0;
+  if (!playerUnitIsEnemy(u) || playerCardImmune(u)) return 0;
   return allHeroes(s).filter(
     (h) =>
       h.code === "09001" &&
@@ -425,7 +426,7 @@ export function realmEffect(s: GameState, e: Effect) {
         const options: Option[] = s.encounterDeck
           .slice(0, 5)
           .flatMap((code, i) =>
-            card(code).type_code === "enemy" && !card(code).is_unique
+            playerUnitIsEnemy({ code: code }) && !card(code).is_unique
               ? [
                   {
                     id: `enemy-${i}`,
