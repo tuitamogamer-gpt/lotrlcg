@@ -1,4 +1,5 @@
 import { mainQuestCode } from "./quest-state";
+import { surgeEffects } from "./surge";
 // Original Long Dark: locate choices and explicitly triggered Lost abilities.
 import type { Effect, GameState, Unit } from "./types";
 import { LONG_DARK as L, LONG_DARK_PASS } from "./long-dark-support";
@@ -654,7 +655,10 @@ export function longDarkEffect(s: GameState, e: Effect): boolean {
             ),
         )
       )
-        prepend(s, fx("reveal", { player: first(s) }));
+        prepend(
+          s,
+          ...surgeEffects(L.fatigue).map((e) => ({ ...e, player: first(s) })),
+        );
       break;
     }
     case "longDarkExhaustOne": {

@@ -274,8 +274,19 @@ export function bloodGondorEncounter(
     prepend(s, ...playerOrder(s).map((player) => fx("bloodTake", { player })));
   else if (code === B.conflict) {
     if (s.bloodGondor) s.bloodGondor.conflict = true;
-    if (!allEngaged(s).some((u) => /\bOrc\b/.test(card(u.code).traits ?? "")))
-      prepend(s, fx("reveal"));
+    if (
+      !replay &&
+      !allEngaged(s).some((u) => /\bOrc\b/.test(card(u.code).traits ?? ""))
+    ) {
+      const pendingWindow = s.queue.findIndex(
+        (e) => e.kind === "amonSurgeWindow" && e.code === B.conflict,
+      );
+      // Printed and gained Surge both reveal a card after this physical
+      // Crossroads' single response window.
+      if (pendingWindow >= 0)
+        s.queue.splice(pendingWindow + 1, 0, fx("reveal"));
+      else prepend(s, fx("reveal"));
+    }
   } else return false;
   if (!replay) s.encounterDiscard.push(code);
   return true;

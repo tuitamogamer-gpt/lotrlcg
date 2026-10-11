@@ -3,6 +3,7 @@ import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
 import { validateRaidGreyHavens } from "./raid-grey-havens-support";
 import { validateStormcaller } from "./stormcaller-support";
+import { validateDepths } from "./depths-support";
 import {
   validateDeadmensDike,
   dikeLocationTimeLimit,
@@ -591,6 +592,7 @@ export function validateSave(
         !validateFateNumenor(s, validUnit as (value: unknown) => boolean) ||
         !validateRaidGreyHavens(s, validUnit as (value: unknown) => boolean) ||
         !validateStormcaller(s, validUnit as (value: unknown) => boolean) ||
+        !validateDepths(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -972,6 +974,16 @@ export function validateSave(
         return false;
     }
     if (!Array.isArray(s.queue) || !s.queue.every(validEffect)) return false;
+    if (
+      [s.combat, ...s.suspendedCombats].some(
+        (combat) =>
+          combat?.depthsAfterAttack !== undefined &&
+          (s.scenarioId !== "the-thing-in-the-depths" ||
+            !Array.isArray(combat.depthsAfterAttack) ||
+            !combat.depthsAfterAttack.every(validEffect)),
+      )
+    )
+      return false;
     if (inheritedSeatCount === undefined && !validateSailing(s, validEffect))
       return false;
     if (s.escapeTest !== undefined) {
@@ -1203,6 +1215,10 @@ export function validateSave(
       ...(s.raidGreyHavens?.setAside ?? []),
       ...(s.raidGreyHavens?.burned ?? []),
       ...(s.stormcaller?.setAside ?? []),
+      ...(s.depths?.setAside ?? []),
+      ...(s.depths?.grappled.map((g) => g.enemy) ?? []),
+      ...(s.depths?.pendingEnemies ?? []),
+      ...(s.depths?.removedUnits ?? []),
       ...(s.dreadRealm?.pendingWraiths ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),

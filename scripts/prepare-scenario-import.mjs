@@ -201,13 +201,15 @@ const bundle = {
   sources: {
     catalog: "public/catalog.json",
     recipes: "public/scenarios.json",
-    expansionRules: matching.some((r) => r.pack_codes.includes("FotS"))
-      ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec48_rules.pdf"
-      : matching.some((r) => r.pack_codes.includes("TLR"))
-        ? "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
-        : matching.some((r) => r.pack_codes.includes("TGH"))
-          ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
-          : undefined,
+    expansionRules: matching.some((r) => r.pack_codes.includes("TitD"))
+      ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec49_rules.pdf"
+      : matching.some((r) => r.pack_codes.includes("FotS"))
+        ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec48_rules.pdf"
+        : matching.some((r) => r.pack_codes.includes("TLR"))
+          ? "https://images-cdn.fantasyflightgames.com/filer_public/88/d6/88d6e80d-e75d-468f-8484-76c56b15e895/mec38_insert_web.pdf"
+          : matching.some((r) => r.pack_codes.includes("TGH"))
+            ? "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
+            : undefined,
   },
   cards,
   recipes: matching,

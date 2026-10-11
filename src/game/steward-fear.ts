@@ -1,4 +1,5 @@
 import { selectedSideQuest } from "./side-quest-support";
+import { surgeEffects } from "./surge";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
 import { playerCardImmune } from "./card-immunity";
@@ -536,7 +537,7 @@ export function stewardFearEncounter(
           player,
         }),
       );
-    } else prepend(s, fx("reveal", { player }));
+    } else prepend(s, ...surgeEffects(S.knife).map((e) => ({ ...e, player })));
   } else if (code === S.discovery) {
     if (isSteward(s)) prepend(s, fx("stewardDiscovery", { player: first(s) }));
   } else if (code === S.falseLead && ["quest", "staging"].includes(s.phase)) {
@@ -860,7 +861,7 @@ export function handleStewardFearEffect(s: GameState, e: Effect): boolean {
       break;
     case "stewardKnifeDiscard":
       if (u && s.allies.some((a) => a.id === u.id)) discardCharacter(s, u);
-      else prepend(s, fx("reveal"));
+      else prepend(s, ...surgeEffects(S.knife));
       break;
     case "stewardDiscovery": {
       const code = state(s).underworldDeck.shift();

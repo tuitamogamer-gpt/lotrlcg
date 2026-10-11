@@ -31,6 +31,7 @@ import { dreadMustCommit, dreadIndestructible } from "../src/game/dread-realm";
 import { dikeIndestructible } from "../src/game/deadmens-dike";
 import { rhudaurIndestructible } from "../src/game/rhudaur";
 import { carnIndestructible } from "../src/game/carn-dum";
+import { depthsIndestructible } from "../src/game/depths";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
 import { defendersFor, attackersFor } from "../src/game/table.ts";
@@ -328,7 +329,9 @@ function run(
             (card(b.code).threat ?? 0) - (card(a.code).threat ?? 0),
         )[0];
       action =
-        !s.activeLocation && loc
+        (!s.activeLocation ||
+          (scenarioId === "the-thing-in-the-depths" && s.stage === 3)) &&
+        loc
           ? { type: "TRAVEL", id: loc.id }
           : { type: "NEXT" };
     } else if (s.phase === "defense") {
@@ -409,7 +412,8 @@ function run(
           dikeIndestructible(s, u) ||
           rhudaurIndestructible(s, u) ||
           carnIndestructible(s, u) ||
-          dreadIndestructible(s, u),
+          dreadIndestructible(s, u) ||
+          depthsIndestructible(s, u),
       ),
     );
     assert.equal(

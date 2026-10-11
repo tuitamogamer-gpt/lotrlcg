@@ -556,7 +556,9 @@ for (const scenarioId of [
                   : { type: "END_ATTACKS" };
               } else if (
                 s.phase === "travel" &&
-                !s.activeLocation &&
+                (!s.activeLocation ||
+                  (scenarioId === "the-thing-in-the-depths" &&
+                    s.stage === 3)) &&
                 DREAM_CHASER_SCENARIOS.includes(
                   scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
                 )

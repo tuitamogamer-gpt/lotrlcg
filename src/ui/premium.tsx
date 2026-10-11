@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-thing-in-the-depths": {
+    name: "The Stormcaller's Deck",
+    detail: "Free the ship from the creature's grasp",
+  },
   "flight-of-the-stormcaller": {
     name: "The Stormcaller's Wake",
     detail: "Pursue Sahír along the coast of Andrast",
@@ -243,6 +247,7 @@ export const PLAYMAT_CHOICES = [
   "the-fate-of-numenor",
   "raid-on-the-grey-havens",
   "flight-of-the-stormcaller",
+  "the-thing-in-the-depths",
   "shadow-and-flame",
 ] as const;
 

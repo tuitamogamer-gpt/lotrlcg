@@ -1,4 +1,5 @@
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
+import { surgeEffects } from "./surge";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { mainQuestUnit } from "./quest-state";
 import type { Attachment, Effect, GameState, Unit } from "./types";
@@ -294,9 +295,9 @@ export function celebrimborEncounter(
   } else if (code === C.desecrated)
     prepend(
       s,
-      fx(allActiveLocations(s).length ? "celebActiveDamage" : "reveal", {
-        value: 3,
-      }),
+      ...(allActiveLocations(s).length
+        ? [fx("celebActiveDamage", { value: 3 })]
+        : surgeEffects(C.desecrated)),
     );
   else if (code === C.discovered) {
     const options = [
@@ -744,7 +745,7 @@ export function celebrimborEffect(s: GameState, e: Effect) {
         q.spiesExhausted = (q.spiesExhausted ?? 0) + 1;
       break;
     case "celebSpiesSurge":
-      if (!q.spiesExhausted) prepend(s, fx("reveal"));
+      if (!q.spiesExhausted) prepend(s, ...surgeEffects(C.spies));
       delete q.spiesExhausted;
       break;
     case "celebDiscardAttachment": {

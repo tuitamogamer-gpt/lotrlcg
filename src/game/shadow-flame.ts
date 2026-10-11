@@ -1,4 +1,5 @@
 import { addCurrentQuestProgress } from "./side-quests";
+import { surgeEffects } from "./surge";
 import { mainQuestCode } from "./quest-state";
 // Shadow and Flame: one physical Balrog, considered engagement and explicit Pit decisions.
 import type { Effect, GameState, Unit } from "./types";
@@ -492,7 +493,9 @@ export function shadowFlameEffect(s: GameState, e: Effect): boolean {
       prepend(
         s,
         ...follow,
-        ...(!discarded ? [fx("reveal", { player: first(s) })] : []),
+        ...(!discarded
+          ? surgeEffects(S.fires).map((e) => ({ ...e, player: first(s) }))
+          : []),
         ...remaining,
       );
       break;

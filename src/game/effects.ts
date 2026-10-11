@@ -24,7 +24,9 @@ import { readDamageContext } from "./damage-context";
 import * as Fate from "./fate-numenor";
 import * as Raid from "./raid-grey-havens";
 import * as Storm from "./stormcaller";
+import * as Depths from "./depths";
 import * as StormPlayers from "./stormcaller-player";
+import * as DepthsPlayers from "./depths-player";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as GreyPlayers from "./grey-havens-player";
 import { sailingEffect, sailingQuestStart } from "./sailing";
@@ -554,7 +556,9 @@ function handleEffect(s: GameState, e: Effect) {
   if (sailingEffect(s, e)) return;
   if (Voyage.voyageEffect(s, e)) return;
   if (StormPlayers.stormcallerEffect(s, e)) return;
+  if (DepthsPlayers.depthsPlayerEffect(s, e)) return;
   if (Storm.stormcallerEffect(s, e)) return;
+  if (Depths.depthsEffect(s, e)) return;
   if (Fate.fateEffect(s, e)) return;
   if (Raid.raidEffect(s, e)) return;
   if (GreyPlayers.greyHavensEffect(s, e)) return;
@@ -642,6 +646,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "amonSurgeWindow":
       amonPlayerSurgeRevealed(s, { ...make(s, e.code!), code: e.code! });
+      DepthsPlayers.depthsPlayerSurgeRevealed(s, e.code!);
       break;
     case "immediateAttack": {
       if (
@@ -839,6 +844,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "questSuccessResponses":
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
+      DepthsPlayers.depthsPlayerQuestSucceeded(s);
       break;
     case "successfulQuestProgress":
       progress(s, e.value ?? 0, false, true);
@@ -1089,6 +1095,7 @@ function handleEffect(s: GameState, e: Effect) {
         !Etten.ettenTravelProblem(s, u) &&
         s.staging.some((x) => x.id === u.id)
       ) {
+        if (!e.flag) Depths.depthsBeforeTravelEnter(s, u);
         s.staging = s.staging.filter((x) => x.id !== u.id);
         const priorActive = allActiveLocations(s);
         s.activeLocation = u;
@@ -1102,6 +1109,7 @@ function handleEffect(s: GameState, e: Effect) {
         ].includes(e.text ?? "")
           ? priorActive
           : [];
+        Depths.depthsTravelEntered(s, u, !e.flag);
         returnMirkwoodTravel(s, u);
         roadRivendellTravelEntered(s, u);
         longDarkPlayerTravelled(s, u);
@@ -1337,6 +1345,7 @@ function handleEffect(s: GameState, e: Effect) {
             Dread.dreadEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
+            Depths.depthsEncounter(s, e.code) ||
             Fate.fateEncounter(s, e.code, true) ||
             Raid.raidEncounter(s, e.code, true) ||
             Druadan.druadanForestEncounter(s, e.code, true) ||
@@ -1622,6 +1631,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "startTravel":
       startPhase(s, "travel");
       Storm.stormcallerTravelStart(s);
+      Depths.depthsTravelStart(s);
       break;
     case "startEncounter":
       startPhase(s, "encounter");
@@ -1706,6 +1716,7 @@ function handleEffect(s: GameState, e: Effect) {
         ),
         ...DunlandQuest.dunlandCombatEndEffects(s),
         ...Raid.raidCombatEnd(s),
+        ...Depths.depthsCombatEnd(s),
         fx("khazadCombatEnd"),
         fx("refreshReady"),
       );
@@ -1751,6 +1762,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...Raid.raidRoundEnd(s));
         forced.push(...Storm.stormcallerRoundEnd(s));
+        forced.push(...Depths.depthsRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
         forced.push(
@@ -1888,6 +1900,9 @@ function handleEffect(s: GameState, e: Effect) {
         s.staging.some(
           (u) =>
             isEnemy(u) &&
+            !Depths.depthsCannotEngage(s, u) &&
+            (Depths.depthsEngagementPlayer(s, u) === undefined ||
+              Depths.depthsEngagementPlayer(s, u) === i) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
             (Raid.raidEngagementPlayer(s, u) === undefined ||
               Raid.raidEngagementPlayer(s, u) === i) &&
@@ -1933,6 +1948,9 @@ function handleEffect(s: GameState, e: Effect) {
         .filter(
           (u) =>
             isEnemy(u) &&
+            !Depths.depthsCannotEngage(s, u) &&
+            (Depths.depthsEngagementPlayer(s, u) === undefined ||
+              Depths.depthsEngagementPlayer(s, u) === activeSeat(s)) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
             (Raid.raidEngagementPlayer(s, u) === undefined ||
               Raid.raidEngagementPlayer(s, u) === activeSeat(s)) &&
@@ -1977,6 +1995,7 @@ function handleEffect(s: GameState, e: Effect) {
       Druadan.druadanForestCombatStart(s);
       Fangorn.fangornCombatStart(s);
       Tharbad.tharbadCombatStart(s);
+      Depths.depthsCombatStart(s);
       break;
     case "prepareCombat":
       globalEachSeat(s, () => {
@@ -2076,7 +2095,8 @@ function handleEffect(s: GameState, e: Effect) {
       const power =
         stats(s, enemy).attack +
         c.attackBonus +
-        khazadAttackBonus(s, enemy, !defenders.length);
+        khazadAttackBonus(s, enemy, !defenders.length) +
+        Depths.depthsAttackBonus(s, enemy, defenders);
       const redirected = amonPlayerEnemyAttackTarget(s, enemy);
       if (redirected !== undefined) {
         c.redirectedToEnemy = true;
@@ -2177,6 +2197,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (e.flag) {
         const skipped = get(s, s.combat?.enemyId);
         if (skipped && !immediate) markEnemyAttack(s, skipped, attackPlayer);
+        if (completed) Depths.depthsAttackFinished(s, completed, true);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
           immediate &&
@@ -2273,6 +2294,7 @@ function handleEffect(s: GameState, e: Effect) {
         Carn.carnAttackFinished(s, completed);
         Dread.dreadAttackFinished(s, completed);
         Raid.raidAttackFinished(s, completed);
+        Depths.depthsAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -2356,6 +2378,7 @@ function handleEffect(s: GameState, e: Effect) {
         const order = globalPlayerOrder(s);
         s.table.first = order[1 % order.length] ?? 0;
         followFirstPlayer(s);
+        Depths.depthsFirstPlayerChanged(s);
       }
       watcherWaterRefresh(s);
       check(s);
@@ -2457,6 +2480,8 @@ export function flush(s: GameState) {
       ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
+      (Depths.depthsSharedEffect(effect) &&
+        !effect.kind.startsWith("depthsPlayer")) ||
       ["shadowResolved", "endRoundScenarioDone", "revealCard"].includes(
         effect.kind,
       ) ||

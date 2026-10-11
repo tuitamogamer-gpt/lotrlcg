@@ -7,6 +7,8 @@ import lostRealmPlayers from "../data/lost-realm-player-cards.json";
 import angmarPlayers from "../data/angmar-player-cards.json";
 import greyHavensPlayers from "../data/grey-havens-player-cards.json";
 import stormcallerPlayers from "../data/stormcaller-player-cards.json";
+import depthsPlayers from "../data/depths-player-cards.json";
+import { DEPTHS_ENCOUNTERS, DEPTHS_QUESTS } from "./depths-scenario-data";
 import {
   STORMCALLER_ENCOUNTERS,
   STORMCALLER_QUESTS,
@@ -171,6 +173,7 @@ export const playerCards = [
       ...OSGILIATH_PLAYER_CARDS,
       ...BLOOD_PLAYER_CARDS,
       ...(stormcallerPlayers as Card[]),
+      ...(depthsPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -213,6 +216,9 @@ export const encounterCards = [
   ...STORMCALLER_ENCOUNTERS.filter(
     (c) => !GREY_HAVENS_ENCOUNTERS.some((shared) => shared.code === c.code),
   ),
+  ...DEPTHS_ENCOUNTERS.filter(
+    (c) => !GREY_HAVENS_ENCOUNTERS.some((shared) => shared.code === c.code),
+  ),
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -253,6 +259,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ANGMAR_QUESTS,
     ...GREY_HAVENS_QUESTS,
     ...STORMCALLER_QUESTS,
+    ...DEPTHS_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -338,6 +345,7 @@ export const SCRIPTED = new Set(
     ...GREY_HAVENS_QUESTS,
     ...STORMCALLER_QUESTS,
     ...RHOSGOBEL_QUESTS,
+    ...DEPTHS_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

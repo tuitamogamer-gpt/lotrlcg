@@ -1,4 +1,5 @@
 import { mainQuestCode } from "./quest-state";
+import { surgeEffects } from "./surge";
 import { beginEnemyAttack, enemyAttackStarted } from "./combat";
 import type { Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -301,7 +302,7 @@ export function antleredEncounter(s: GameState, code: string, replay = false) {
       l.progress = 0;
     }
     s.threatModifier += removed;
-    if (!removed) prepend(s, fx("reveal"));
+    if (!removed) prepend(s, ...surgeEffects(A.back));
   } else return false;
   if (!replay && card(code).type_code === "treachery")
     s.encounterDiscard.push(code);
@@ -621,7 +622,7 @@ export function antleredEffect(s: GameState, e: Effect) {
         if (!(l.timeCounters ?? 0))
           l.timeCounters = l.blanked ? 0 : printedLocationTime(l.code);
       if (!s.staging.some((l) => card(l.code).type_code === "location"))
-        prepend(s, fx("reveal"));
+        prepend(s, ...surgeEffects(A.cry));
       break;
     case "crownExtraShadows":
       if (u) {

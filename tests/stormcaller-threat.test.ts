@@ -23,6 +23,9 @@ import { handleShadowFlamePlayerEffect } from "../src/game/shadow-flame-player-c
 import { useWatcherPlayerAbility } from "../src/game/watcher-player-cards";
 import { heirsQuestStat } from "../src/game/heirs-numenor";
 import { rhosgobelCheck, RHOS } from "../src/game/rhosgobel";
+import { REDHORN } from "../src/game/redhorn-gate";
+import { ROAD } from "../src/game/road-rivendell";
+import { RETURN } from "../src/game/return-mirkwood";
 import {
   stormcallerEffectiveThreat as threat,
   STORMCALLER_VANISH,
@@ -30,9 +33,10 @@ import {
 import { base, reload } from "./against-shadow-final-fixtures";
 import { base as tharbadFixture } from "./tharbad-fixtures";
 import { base as voyageFixture } from "./voyage-belegaer-fixtures";
+import { base as gramFixture } from "./mount-gram-fixtures";
 import { VOYAGE as V } from "../src/game/voyage-belegaer-support";
 import { SHIP_CONTROLLER_ELIMINATED } from "../src/game/voyage-belegaer";
-import type { GameState } from "../src/game/types";
+import type { GameState, ScenarioId } from "../src/game/types";
 
 function fixture(players = 1) {
   const s = base("mirkwood", players);
@@ -95,56 +99,133 @@ test("Vanish belongs to one seat and follows that seat across active-player proj
 });
 
 test("actual raises, reductions, saved state, score and public dial retain the physical threat", () => {
-  let s = active(fixture(), 0, 45);
+  let s = active(fixture(), 0, 44);
   const before = score(s);
   raiseThreat(s, 5, "encounter");
-  assert.equal(s.threat, 50);
+  assert.equal(s.threat, 49);
   assert.equal(threat(s), 20);
   assert.equal(score(s), before + 5);
-  assert.equal(publicState(s).threat, 50);
+  assert.equal(publicState(s).threat, 49);
   s = reload(s);
-  assert.equal(s.threat, 50);
+  assert.equal(s.threat, 49);
   assert.equal(threat(s), 20);
   reduceThreat(s, 4);
   assert.equal(threat(s), 20);
-  assert.equal(s.threat, 46);
+  assert.equal(s.threat, 45);
 });
 
-test("phase expiry exposes the real counter and immediately restores solo elimination", () => {
-  const s = active(fixture(), 0, 50);
-  check(s);
-  assert.equal(s.status, "playing");
-  phaseEnd(s);
-  assert.equal(threat(s), 50);
-  assert.equal(s.threat, 50);
+// Official FAQ 1.9, section 1.57 explicitly names Vanish from Sight: the
+// physical dial still eliminates its player immediately, before phase expiry.
+test("actual dial 50 eliminates solo immediately while Vanish still treats threat as 20", () => {
+  const s = reload(active(fixture(), 0, 50));
   check(s);
   assert.equal(s.status, "lost");
   assert.match(s.reason, /threat reached 50/i);
+  assert.equal(s.threat, 50);
+  assert.equal(threat(s), 20);
+  assert.ok(s.used.includes(STORMCALLER_VANISH));
 });
 
-test("multiplayer elimination protects only the marked seat and resumes at phase end", () => {
-  const s = active(fixture(2), 0, 50);
-  forOwner(s, 1, () => {
-    s.threat = 50;
-  });
+test("phase expiry restores card comparisons at actual 49 without eliminating the player", () => {
+  const s = active(fixture(), 0, 49);
   check(s);
-  assert.equal(s.table!.seats[0].eliminated, false);
-  assert.equal(s.table!.seats[1].eliminated, true);
   assert.equal(s.status, "playing");
   phaseEnd(s);
+  assert.equal(threat(s), 49);
+  check(s);
+  assert.equal(s.status, "playing");
+});
+
+test("a remote marked seat is eliminated at its actual dial while the other fellowship survives", () => {
+  let s = active(base("mirkwood", 2), 0, 50);
+  forOwner(s, 1, () => {
+    s.threat = 43;
+  });
+  selectSeat(s, 1);
+  s = reload(s);
   check(s);
   assert.equal(s.table!.seats[0].eliminated, true);
+  assert.equal(s.table!.seats[1].eliminated, false);
+  assert.equal(s.status, "playing");
+  assert.equal(seatView(s, 0).threat, 50);
+  assert.equal(threat(s, 0), 20);
+  assert.equal(seatView(s, 1).threat, 43);
+});
+
+test("all fellowships at their actual elimination level lose immediately despite Vanish", () => {
+  const s = active(active(fixture(2), 0, 50), 1, 50);
+  check(s);
+  assert.equal(s.table!.seats[0].eliminated, true);
+  assert.equal(s.table!.seats[1].eliminated, true);
   assert.equal(s.status, "lost");
 });
 
-test("Vanish respects the scenario's current elimination level, including levels below 20", () => {
-  const s = active(tharbadFixture(), 0, 45);
-  s.tharbad!.elimination = 30;
-  check(s);
-  assert.equal(s.status, "playing");
-  s.tharbad!.elimination = 20;
+test("actual threat controls variable elimination levels above, at and below 20", () => {
+  for (const level of [30, 20, 10]) {
+    let s = active(tharbadFixture(), 0, level - 1);
+    s.tharbad!.elimination = level;
+    s = reload(s);
+    check(s);
+    assert.equal(s.status, "playing");
+    raiseThreat(s, 1, "encounter");
+    check(s);
+    assert.equal(s.status, "lost");
+    assert.match(s.reason, new RegExp(`threat reached ${level}`));
+    assert.equal(s.threat, level);
+    assert.equal(threat(s), Math.min(level, 20));
+  }
+});
+
+test("Vanish cannot protect a remote prisoner's fellowship from actual threat elimination", () => {
+  let s = base("dol-guldur", 2);
+  assert.ok(s.prisoner);
+  const owner = s.prisoner.owner ?? 0;
+  active(s, owner, 50);
+  selectSeat(s, 1 - owner);
+  s = reload(s);
   check(s);
   assert.equal(s.status, "lost");
+  assert.match(s.reason, /prisoner's fellowship has been eliminated/i);
+  assert.equal(threat(s, owner), 20);
+  assert.equal(seatView(s, owner).threat, 50);
+});
+
+test("a captured hero exception does not override actual threat elimination", () => {
+  let s = active(gramFixture(), 0, 49);
+  const captives = s.heroes.splice(0);
+  for (const hero of captives) {
+    hero.resources = 0;
+    hero.owner = 0;
+  }
+  (s.mountGram!.capturedDecks[0] ??= []).push(...captives);
+  s = reload(s);
+  check(s);
+  assert.equal(s.status, "playing");
+  raiseThreat(s, 1, "encounter");
+  check(s);
+  assert.equal(s.status, "lost");
+  assert.match(s.reason, /threat reached 50/i);
+  assert.equal(threat(s), 20);
+});
+
+test("Favor prevents actual elimination of a remote prisoner's fellowship under Vanish", () => {
+  let s = base("dol-guldur", 2);
+  assert.ok(s.prisoner);
+  const owner = s.prisoner.owner ?? 0;
+  active(s, owner, 50);
+  forOwner(s, owner, () => {
+    s.threatAttachments = [
+      { id: `a${s.nextId++}`, code: "10124", owner, exhausted: false },
+    ];
+  });
+  selectSeat(s, 1 - owner);
+  s = reload(s);
+  check(s);
+  assert.equal(s.status, "playing");
+  assert.equal(seatView(s, owner).threat, 45);
+  assert.equal(threat(s, owner), 20);
+  assert.ok(s.prisoner);
+  assert.ok(seatView(s, owner).discard.includes("10124"));
 });
 
 test("ship destruction directly eliminates its controller even under Vanish and preserves the dial", () => {
@@ -178,17 +259,49 @@ test("Dream-chaser's destruction is an immediate fleet loss under Vanish", () =>
   assert.equal(s.threat, 45);
 });
 
-test("Vanish delays Favor of the Valar until threat elimination actually applies", () => {
-  const s = active(fixture(), 0, 50);
+test("Favor replaces actual dial elimination immediately while Vanish remains active", () => {
+  let s = active(fixture(), 0, 49);
   s.threatAttachments = [
     { id: `a${s.nextId++}`, code: "10124", owner: 0, exhausted: false },
   ];
   assert.equal(angmarFavor(s), false);
   assert.equal(s.threatAttachments.length, 1);
-  phaseEnd(s);
-  assert.equal(angmarFavor(s), true);
+  s = reload(s);
+  raiseThreat(s, 1, "encounter");
+  check(s);
+  assert.equal(s.status, "playing");
   assert.equal(s.threat, 45);
-  assert.equal(s.threatAttachments.length, 0);
+  assert.equal(threat(s), 20);
+  assert.equal(s.threatAttachments!.length, 0);
+  assert.ok(s.discard.includes("10124"));
+  raiseThreat(s, 5, "encounter");
+  check(s);
+  assert.equal(s.status, "lost");
+});
+
+test("Favor uses a variable actual elimination level and the physical card's owner", () => {
+  let s = active(tharbadFixture(2), 1, 30);
+  s.tharbad!.elimination = 30;
+  forOwner(s, 1, () => {
+    s.threatAttachments = [
+      {
+        id: `a${s.nextId++}`,
+        code: "10124",
+        owner: 0,
+        controller: 1,
+        exhausted: false,
+      },
+    ];
+  });
+  s = reload(s);
+  check(s);
+  assert.equal(s.status, "playing");
+  assert.equal(seatView(s, 1).threat, 25);
+  assert.equal(threat(s, 1), 20);
+  assert.equal(s.table!.seats[1].eliminated, false);
+  assert.equal(seatView(s, 1).threatAttachments!.length, 0);
+  assert.ok(seatView(s, 0).discard.includes("10124"));
+  assert.ok(!seatView(s, 1).discard.includes("10124"));
 });
 
 test("Secrecy and Leaf Brooch use treated threat for the initiating player's actual cost", () => {
@@ -318,15 +431,52 @@ test("scenario quest-stat thresholds see treated threat", () => {
   assert.equal(heirsQuestStat(s), "defense");
 });
 
-test("objective-ally controller elimination uses treated threat", () => {
+test("Wilyador's direct controller check uses actual threat under Vanish", () => {
   const s = active(base("journey-to-rhosgobel"), 0, 50);
   s.allies.push(make(s, RHOS.wilyador));
   rhosgobelCheck(s);
-  assert.equal(s.status, "playing");
-  phaseEnd(s);
-  rhosgobelCheck(s);
   assert.equal(s.status, "lost");
+  assert.equal(threat(s), 20);
 });
+
+for (const [scenario, objective] of [
+  ["journey-to-rhosgobel", RHOS.wilyador],
+  ["redhorn-gate", REDHORN.arwen],
+  ["road-to-rivendell", ROAD.arwen],
+  ["return-to-mirkwood", RETURN.gollum],
+] as [ScenarioId, string][]) {
+  test(`${scenario}: a remote objective controller's actual 50 loses under Vanish`, () => {
+    let s = active(base(scenario, 2), 1, 50);
+    s.table!.first = 1;
+    forOwner(s, 1, () => s.allies.push(make(s, objective)));
+    s = reload(s);
+    check(s);
+    assert.equal(s.status, "lost");
+    assert.match(s.reason, /eliminated/i);
+    assert.equal(seatView(s, 1).threat, 50);
+    assert.equal(threat(s, 1), 20);
+    assert.equal(seatView(s, 0).threat, 20);
+  });
+
+  test(`${scenario}: Favor replaces remote controller elimination before the objective loss`, () => {
+    let s = active(base(scenario, 2), 1, 50);
+    s.table!.first = 1;
+    forOwner(s, 1, () => {
+      s.allies.push(make(s, objective));
+      s.threatAttachments = [
+        { id: `a${s.nextId++}`, code: "10124", owner: 1, exhausted: false },
+      ];
+    });
+    s = reload(s);
+    check(s);
+    assert.equal(s.status, "playing");
+    assert.equal(seatView(s, 1).threat, 45);
+    assert.equal(threat(s, 1), 20);
+    assert.equal(s.table!.seats[1].eliminated, false);
+    assert.ok(seatView(s, 1).allies.some((u) => u.code === objective));
+    assert.ok(seatView(s, 1).discard.includes("10124"));
+  });
+}
 
 test("Elbereth evaluates treated threat then SETS the actual dial to engagement cost", () => {
   const s = active(fixture(), 0, 40),

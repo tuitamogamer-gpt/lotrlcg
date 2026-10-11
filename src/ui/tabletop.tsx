@@ -14,7 +14,14 @@ import {
 import type { Action, Card, GameState, Unit } from "../game/types";
 import { card, imageUrl, name, cachedImageSource } from "../game/cards";
 import { foundationsArea } from "../game/foundations-stone-support";
-import { availableAbilities, locationQuest, stageInfo } from "../game/engine";
+import {
+  availableAbilities,
+  locationQuest,
+  stageInfo,
+  threatOf,
+} from "../game/engine";
+import { depthsState } from "../game/depths-support";
+import { DepthsGrappleSummary } from "./depths-state";
 import {
   activeSeat,
   allActiveLocations,
@@ -34,6 +41,7 @@ import {
   mainQuestCode,
 } from "../game/quest-state";
 import { collectorAbilityAnyPlayer } from "../game/collector-player-cards";
+import { depthsPlayerAbilityAnyPlayer } from "../game/depths-player";
 import { WATCHER_WATER } from "../game/watcher-water-support";
 
 // Presentation only: the engine remains the source of every count and action.
@@ -175,6 +183,12 @@ export function JourneyArea({
         {u.damage > 0 && <TableToken kind="damage" value={u.damage} />}
       </motion.button>
       <AttachmentStack u={u} inspect={inspect} />
+      <DepthsGrappleSummary s={s} location={u} inspect={inspect} />
+      {depthsState(s) && (
+        <span className="depths-active-threat">
+          {threatOf(s, u)} threat · printed {card(u.code).threat ?? 0}
+        </span>
+      )}
       {s.amonDin && (
         <span
           className="journey-underworld"
@@ -557,6 +571,7 @@ export function OtherFellowships({
                   .filter(
                     (u) =>
                       collectorAbilityAnyPlayer(u.code) ||
+                      depthsPlayerAbilityAnyPlayer(u.code) ||
                       u.attachments.some(
                         (a) => a.code === WATCHER_WATER.wrapped,
                       ),
@@ -566,7 +581,8 @@ export function OtherFellowships({
                       {availableAbilities(s, u)
                         .filter((a) =>
                           !a.id
-                            ? collectorAbilityAnyPlayer(u.code)
+                            ? collectorAbilityAnyPlayer(u.code) ||
+                              depthsPlayerAbilityAnyPlayer(u.code)
                             : u.attachments.some(
                                 (att) =>
                                   att.id === a.id &&

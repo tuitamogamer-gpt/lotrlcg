@@ -23,6 +23,10 @@ const HEADLINES: Partial<
   "the-fate-of-numenor": { lead: "Discover", em: "the fate of Númenor." },
   "raid-on-the-grey-havens": { lead: "Defend", em: "the Grey Havens." },
   "flight-of-the-stormcaller": { lead: "Pursue", em: "the Stormcaller." },
+  "the-thing-in-the-depths": {
+    lead: "Confront",
+    em: "the thing in the depths.",
+  },
   "wastes-of-eriador": { lead: "Survive", em: "the Wastes of Eriador." },
   "escape-from-mount-gram": { lead: "Escape from", em: "Mount Gram." },
   "across-the-ettenmoors": { lead: "Cross", em: "the Ettenmoors." },

@@ -10,7 +10,7 @@ content. The next chronological import is The Thing in the Depths.
 - [Immutable snapshots, printed corrections, physical recipes and artwork](STORMCALLER-SOURCES.md)
 - [Pursuit, physical setup, encounter effects and victory/loss](STORMCALLER-RULES.md)
 - [All eleven player-card implementations](STORMCALLER-PLAYER-SCRIPTS.md)
-- [Effective threat and direct ship-controller elimination](STORMCALLER-THREAT-AUDIT.md)
+- [Effective threat, actual dial and ship-controller elimination](STORMCALLER-THREAT-AUDIT.md)
 - [Shared Sailing, Heading, ships and Boarding](GREY-HAVENS-SAILING.md)
 
 The pack has eleven original player designs, including two already implemented

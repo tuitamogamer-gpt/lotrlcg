@@ -1,6 +1,8 @@
 import * as Raid from "./raid-grey-havens";
 import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
+import * as DepthsPlayers from "./depths-player";
+import * as Depths from "./depths";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
@@ -486,7 +488,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (
     s.phase !== "travel" ||
     (allActiveLocations(s).length > 0 &&
-      !Osgiliath.assaultOsgiliathSecondLocation(s, u))
+      !Osgiliath.assaultOsgiliathSecondLocation(s, u) &&
+      !Depths.depthsCanReplaceActive(s))
   )
     return "Travel requires an empty active-location slot in the travel phase.";
   if (
@@ -498,6 +501,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
   const raidProblem = Raid.raidTravelProblem(s, u);
+  const depthsProblem = Depths.depthsTravelProblem(s, u);
+  if (depthsProblem) return depthsProblem;
   const stormProblem = Storm.stormcallerTravelProblem(s, u);
   if (stormProblem) return stormProblem;
   if (raidProblem) return raidProblem;
@@ -593,6 +598,13 @@ export function optionalEngagementProblem(
     !s.staging.some((enemy) => enemy.id === u.id)
   )
     return "Choose an enemy in staging.";
+  if (Depths.depthsCannotEngage(s, u))
+    return "The Thing in the Depths cannot be engaged.";
+  if (
+    Depths.depthsEngagementPlayer(s, u) !== undefined &&
+    Depths.depthsEngagementPlayer(s, u) !== activeSeat(s)
+  )
+    return "This enemy can only engage its printed player.";
   if (
     Raid.raidEngagementPlayer(s, u) !== undefined &&
     Raid.raidEngagementPlayer(s, u) !== activeSeat(s)
@@ -702,6 +714,12 @@ export function canPlay(
     options.playOrigin ?? "hand",
   );
   if (stormProblem) return stormProblem;
+  const depthsProblem = DepthsPlayers.depthsPlayerPlayProblem(
+    s,
+    u,
+    options.playOrigin ?? "hand",
+  );
+  if (depthsProblem) return depthsProblem;
   if (greyProblem) return greyProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
   if (isengardProblem) return isengardProblem;
@@ -1347,6 +1365,7 @@ export function resolvePlayerCard(
       u,
       () => {
         GreyPlayers.greyHavensEventCost(s, u.code, target);
+        DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
         const abilityCost = finalRingEventCost(s, u.code, target);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
@@ -1476,6 +1495,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
+  const depthsTargets = DepthsPlayers.depthsPlayerPlayTargets(s, c.code);
+  if (depthsTargets) return depthsTargets;
   const stormTargets = StormPlayers.stormcallerPlayTargets(s, c.code);
   if (stormTargets) return stormTargets;
   if (greyTargets) return greyTargets;
@@ -1664,6 +1685,7 @@ export const needsTarget = (u: Unit) =>
         "11004",
         "11010",
         "11013",
+        "12032",
       ].includes(u.code)));
 
 export const responseCards = [
@@ -1748,6 +1770,18 @@ export function availableAbilities(s: GameState, u: Unit) {
   if (rhudaurLabel)
     return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
   const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const depthsScenarioLabel = Depths.depthsAbilityLabel(u.code);
+  if (depthsScenarioLabel)
+    results.push({
+      label: depthsScenarioLabel,
+      disabled: !!Depths.depthsAbilityProblem(s, u),
+    });
+  const depthsLabel = DepthsPlayers.depthsPlayerAbilityLabel(u.code);
+  if (depthsLabel)
+    results.push({
+      label: depthsLabel,
+      disabled: !!DepthsPlayers.depthsPlayerAbilityProblem(s, u),
+    });
   const stormLabel = StormPlayers.stormcallerAbilityLabel(u.code);
   if (stormLabel)
     results.push({
@@ -1935,6 +1969,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const depthsLabel = DepthsPlayers.depthsPlayerAbilityLabel(a.code);
+    if (depthsLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: depthsLabel,
+        disabled: !!DepthsPlayers.depthsPlayerAbilityProblem(s, u, a.id),
+      });
     const stormLabel = StormPlayers.stormcallerAbilityLabel(a.code);
     if (stormLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -2240,7 +2281,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
-        !Storm.stormcallerOpeningHandsKept(s)
+        !Storm.stormcallerOpeningHandsKept(s) &&
+        !Depths.depthsOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2384,12 +2426,13 @@ export function applyAction(input: GameState, action: Action): GameState {
           "Choose a positive X within the available cards.",
         );
       }
-      pay(
+      const actualPayment = pay(
         s,
         { ...c, cost: effectiveCost, playOwner: u.owner ?? activeSeat(s) },
         action.payment,
         get(s, action.target),
       );
+      DepthsPlayers.depthsPlayerCardPaid(s, u, actualPayment, true, true);
       s.hand = s.hand.filter((x) => x.id !== u.id);
       resolvePaidPlayerCard(
         s,
@@ -2481,6 +2524,7 @@ export function applyAction(input: GameState, action: Action): GameState {
                   u.code === "03002" ||
                   u.code === CARROCK.grimbeorn ||
                   u.code === KHAZAD.shaft ||
+                  DepthsPlayers.depthsPlayerAbilityAnyPlayer(u.code) ||
                   collectorAbilityAnyPlayer(u.code)),
             "Choose a character or attachment you control.",
           );
@@ -2501,7 +2545,9 @@ export function applyAction(input: GameState, action: Action): GameState {
             !action.attachmentId &&
             (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
           ) {
+          } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !DepthsPlayers.useDepthsPlayerAbility(s, u, action.attachmentId) &&
             !StormPlayers.useStormcallerAbility(s, u, action.attachmentId) &&
             !GreyPlayers.useGreyHavensAbility(s, u, action.attachmentId) &&
             !khazadAbility(s, u, action.attachmentId) &&
@@ -2581,6 +2627,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Wastes.wastesTravel(s, u) ??
         Gram.gramTravel(s, u) ??
         Raid.raidTravel(s, u) ??
+        Depths.depthsTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -2686,6 +2733,15 @@ export function applyAction(input: GameState, action: Action): GameState {
       requireRule(
         !optionalEngagementProblem(s, u),
         optionalEngagementProblem(s, u) ?? "",
+      );
+      requireRule(
+        !Depths.depthsCannotEngage(s, u),
+        "The Thing in the Depths cannot be engaged.",
+      );
+      requireRule(
+        Depths.depthsEngagementPlayer(s, u) === undefined ||
+          Depths.depthsEngagementPlayer(s, u) === activeSeat(s),
+        "This enemy can only engage its printed player.",
       );
       if (s.optionalEngagement) s.used.push("phase:halbarad-extra-engagement");
       s.optionalEngagement = true;
@@ -2812,6 +2868,24 @@ export function score(s: GameState) {
 
 export function publicState(s: GameState) {
   return {
+    ...(s.depths
+      ? {
+          depths: {
+            initialized: s.depths.initialized,
+            currentQuest: s.depths.currentQuest,
+            questDeck: s.depths.questDeck.length,
+            completedQuests: s.depths.completedQuests,
+            setAside: s.depths.setAside.length,
+            beastDeck: s.depths.beastDeck.length,
+            grappled: s.depths.grappled.map((g) => ({
+              id: g.enemy.id,
+              locationId: g.locationId,
+            })),
+            pendingEnemies: s.depths.pendingEnemies.length,
+            removed: s.depths.removed.length + s.depths.removedUnits.length,
+          },
+        }
+      : {}),
     ...(s.stormcaller
       ? {
           stormcaller: {

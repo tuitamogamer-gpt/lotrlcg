@@ -3,6 +3,7 @@ import { setupVoyageBelegaer } from "./voyage-belegaer";
 import { setupFateNumenor } from "./fate-numenor";
 import { setupRaidGreyHavens } from "./raid-grey-havens";
 import { setupStormcaller } from "./stormcaller";
+import { setupDepths } from "./depths";
 import { stormcallerSetup as stormcallerPlayerSetup } from "./stormcaller-player";
 import { greyHavensSetup } from "./grey-havens-player";
 import * as Wastes from "./wastes-eriador";
@@ -427,6 +428,8 @@ export function createGame(
     setupRaidGreyHavens(s);
   } else if (scenarioId === "flight-of-the-stormcaller") {
     setupStormcaller(s);
+  } else if (scenarioId === "the-thing-in-the-depths") {
+    setupDepths(s);
   } else if (scenarioId === "the-antlered-crown") {
     setupAntlered(s);
   } else if (scenarioId === "celebrimbors-secret") {

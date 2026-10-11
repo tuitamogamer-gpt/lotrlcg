@@ -47,6 +47,7 @@ const corsairRules = (s: GameState) =>
     "the-fate-of-numenor",
     "raid-on-the-grey-havens",
     "flight-of-the-stormcaller",
+    "the-thing-in-the-depths",
   ].includes(s.scenarioId);
 const trait = (u: Unit, t: string) =>
   (card(u.code).traits ?? "").split(".").some((v) => v.trim() === t);

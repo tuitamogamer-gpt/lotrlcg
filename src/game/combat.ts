@@ -1,6 +1,7 @@
 import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
 import * as Raid from "./raid-grey-havens";
+import * as Depths from "./depths";
 import { shipCanAttack, shipCanDefend } from "./ships";
 import * as GreyPlayers from "./grey-havens-player";
 import * as Voyage from "./voyage-belegaer";
@@ -207,6 +208,7 @@ export function playerAttack(
     "Only Dúnhere can attack a staging enemy, and he must attack alone.",
   );
   Raid.raidPlayerAttackStarted(s, enemy);
+  Depths.depthsPlayerAttackStarted(s, enemy);
   const priorQueue = s.queue.length;
   attackers.forEach((u) => {
     if (
@@ -246,6 +248,7 @@ export function playerAttack(
           player: ownerOf(s, u!),
         }),
       ),
+    ...Depths.depthsPlayerAttackEffects(s, enemy, ids),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -340,6 +343,7 @@ export function playerAttackResolved(
   remainingHealth: number,
 ) {
   Raid.raidPlayerAttackFinished(s, enemy);
+  Depths.depthsPlayerAttackFinished(s, enemy);
   StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
@@ -432,6 +436,7 @@ export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   dikeAttackDeclared(s, enemy, player);
   Voyage.voyageAttackStarted(s, enemy, player);
   Raid.raidAttackStarted(s, enemy, player);
+  Depths.depthsAttackStarted(s, enemy, player);
 }
 
 export function applyCombatDamageConsequences(
@@ -530,6 +535,7 @@ export function beginEnemyAttack(
       defenders.every((u) => u && ownerOf(s, u) === activeSeat(s)),
     "Stand Together combines characters controlled by the defending player.",
   );
+  if (!shadowsPrepared && Depths.depthsBeforeNormalDefense(s, enemy)) return;
   if (!shadowsPrepared && Antlered.antleredBeforeNormalDefense(s, enemy))
     return;
   // Beastmaster's Forced effect precedes declaration responses (including Spearman).
@@ -597,6 +603,11 @@ export function beginEnemyAttack(
     fx("swiftStrike"),
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),
+    ...Depths.depthsDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
     ...enemy.shadows.map((code) => fx("shadowReveal", { code })),
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),
