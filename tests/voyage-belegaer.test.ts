@@ -364,6 +364,103 @@ test("Corsair resources use discarded printed costs; Marauder's attack damage is
     0,
   );
 });
+test("Marauder's mandatory damage can eliminate its attacked player before an immediate defender is declared", () => {
+  let s = base(2);
+  let lastHero!: Unit;
+  let marauder!: Unit;
+  forOwner(s, 1, () => {
+    for (const hero of s.heroes.slice(1))
+      damage(s, hero.id, stats(s, hero).health);
+    lastHero = s.heroes[0];
+    damage(s, lastHero.id, stats(s, lastHero).health - 1);
+    marauder = make(s, V.marauder);
+    marauder.owner = 1;
+    marauder.resources = 1;
+    marauder.attacked = true;
+    marauder.shadows = [V.winds];
+    s.engaged.push(marauder);
+  });
+  const nextEnemy = make(s, V.sailor);
+  nextEnemy.owner = 0;
+  s.engaged.push(nextEnemy);
+  s.encounterDeck = [V.rough, ...s.encounterDeck];
+  s.phase = "defense";
+  s.queue.push(fx("immediateAttack", { target: marauder.id, player: 1 }));
+  flush(s);
+  assert.match(s.choice!.title, /Vicious Marauder.*Assign/);
+  assert.ok(s.combat?.immediatePendingDeclaration);
+  s = choose(reload(s), lastHero.id);
+  assert.equal(s.table!.seats[1].eliminated, true);
+  assert.equal(s.combat, null);
+  assert.equal(s.suspendedCombats.length, 0);
+  assert.equal(s.choice, null);
+  assert.equal(s.phase, "defense");
+  assert.equal(s.table!.active, 0);
+  assert.equal(s.table!.turn, 0);
+  assert.ok(s.staging.some((u) => u.id === marauder.id));
+  assert.deepEqual(get(s, marauder.id)!.shadows, []);
+  assert.equal(s.encounterDiscard.filter((c) => c === V.winds).length, 1);
+  assert.equal(s.encounterDiscard.filter((c) => c === V.rough).length, 1);
+  s = applyAction(reload(s), {
+    type: "DEFEND",
+    enemyId: nextEnemy.id,
+    defenderIds: [s.heroes[0].id],
+  });
+  s = settle(s);
+  assert.equal(
+    s.phase,
+    "attack",
+    "The remaining player's normal attack completes",
+  );
+  assert.equal(s.combat, null);
+  assert.ok(validateSave(s));
+});
+
+test("eliminated immediate attack players release each nested physical shadow layer once", () => {
+  let s = base(2);
+  let lastHero!: Unit;
+  let marauder!: Unit;
+  forOwner(s, 1, () => {
+    for (const hero of s.heroes.slice(1))
+      damage(s, hero.id, stats(s, hero).health);
+    lastHero = s.heroes[0];
+    damage(s, lastHero.id, stats(s, lastHero).health - 1);
+    marauder = make(s, V.marauder);
+    marauder.owner = 1;
+    marauder.resources = 1;
+    marauder.shadows = [V.winds];
+    s.engaged.push(marauder);
+  });
+  const remaining = make(s, V.sailor);
+  remaining.owner = 0;
+  s.engaged.push(remaining);
+  s.phase = "defense";
+  s.combat = {
+    enemyId: marauder.id,
+    attackPlayer: 1,
+    defenderId: null,
+    defenderIds: [],
+    attackBonus: 0,
+    immediate: true,
+    immediatePendingDeclaration: true,
+    immediatePreviousShadows: [V.thrown],
+    immediatePreviousAttacked: false,
+  };
+  s.encounterDeck = [V.rough, ...s.encounterDeck];
+  s.queue.push(fx("immediateAttack", { target: marauder.id, player: 1 }));
+  flush(s);
+  assert.equal(s.suspendedCombats.length, 1);
+  s = choose(reload(s), lastHero.id);
+  assert.equal(s.table!.seats[1].eliminated, true);
+  assert.equal(s.combat, null);
+  assert.equal(s.suspendedCombats.length, 0);
+  assert.equal(s.table!.active, 0);
+  assert.equal(s.phase, "defense");
+  assert.deepEqual(get(s, marauder.id)!.shadows, []);
+  for (const code of [V.thrown, V.winds, V.rough])
+    assert.equal(s.encounterDiscard.filter((c) => c === code).length, 1);
+  assert.ok(validateSave(s));
+});
 test("Southron Sailor adds only its owner's engaged ships to staging threat and Umbar Captain blocks only that owner's attackers", () => {
   const s = base(2),
     scout = make(s, V.scout),

@@ -23,6 +23,9 @@ import * as Voyage from "./voyage-belegaer";
 import { readDamageContext } from "./damage-context";
 import * as Fate from "./fate-numenor";
 import * as Raid from "./raid-grey-havens";
+import * as Storm from "./stormcaller";
+import * as StormPlayers from "./stormcaller-player";
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as GreyPlayers from "./grey-havens-player";
 import { sailingEffect, sailingQuestStart } from "./sailing";
 import { isEnemy, isShipEnemy, shipUndefendedTargets } from "./ships";
@@ -437,6 +440,16 @@ function restoreImmediateShadows(
   combat: NonNullable<GameState["combat"]>,
 ) {
   s.encounterDiscard.push(...enemy.shadows);
+  if (s.table?.seats[combat.attackPlayer ?? activeSeat(s)].eliminated) {
+    s.encounterDiscard.push(...(combat.immediatePreviousShadows ?? []));
+    enemy.shadows = [];
+    delete enemy.faceupShadows;
+    enemy.revealedShadowCount = 0;
+    enemy.attacked = false;
+    delete enemy.shadowCancelsDamage;
+    delete enemy.shadowCancelsCombatDamage;
+    return;
+  }
   enemy.shadows = [...(combat.immediatePreviousShadows ?? [])];
   enemy.faceupShadows = combat.immediatePreviousFaceupShadows?.slice();
   enemy.revealedShadowCount = combat.immediatePreviousRevealedShadowCount ?? 0;
@@ -451,7 +464,47 @@ function restoreImmediateShadows(
 
 export function handle(s: GameState, e: Effect) {
   const continuation = new Set(s.queue);
+  const previousChoice = s.choice;
+  const previousCombat = s.combat;
+  const previousAttackBonus = previousCombat?.attackBonus ?? 0;
+  const shadowEnemyId =
+    e.kind === "shadowEffect" ? previousCombat?.enemyId : e.shadowEnemyId;
+  const shadowEnemy = shadowEnemyId ? get(s, shadowEnemyId) : undefined;
+  const previousEnemyAttack =
+    previousCombat?.enemyId === shadowEnemyId && shadowEnemy
+      ? stats(s, shadowEnemy).attack
+      : undefined;
   handleEffect(s, e);
+  if (
+    shadowEnemyId &&
+    previousCombat &&
+    s.combat === previousCombat &&
+    s.combat.enemyId === shadowEnemyId
+  ) {
+    const markShadowCause = (effect: Effect) => {
+      effect.shadowEnemyId ??= shadowEnemyId;
+      for (const nested of [
+        effect.effects,
+        effect.costEffects,
+        effect.cancelledEffects,
+      ])
+        nested?.forEach(markShadowCause);
+    };
+    s.queue
+      .filter((effect) => !continuation.has(effect))
+      .forEach(markShadowCause);
+    if (s.choice && s.choice !== previousChoice)
+      s.choice.options.forEach((option) =>
+        option.effects.forEach(markShadowCause),
+      );
+    if (previousEnemyAttack !== undefined)
+      StormPlayers.stormcallerShadowAttackIncreased(
+        s,
+        previousCombat,
+        previousAttackBonus,
+        previousEnemyAttack,
+      );
+  }
   const finishes = s.queue.filter(
     (effect) => effect.kind === "eventFinish" && !continuation.has(effect),
   );
@@ -487,6 +540,7 @@ function handleEffect(s: GameState, e: Effect) {
       Etten.ettenEndQuest(s);
       prepend(s, ...Dread.dreadQuestEnd(s));
       Voyage.voyageEndQuest(s);
+      Storm.stormcallerEndQuest(s);
     });
     return;
   }
@@ -499,6 +553,8 @@ function handleEffect(s: GameState, e: Effect) {
   if (Dread.dreadEffect(s, e)) return;
   if (sailingEffect(s, e)) return;
   if (Voyage.voyageEffect(s, e)) return;
+  if (StormPlayers.stormcallerEffect(s, e)) return;
+  if (Storm.stormcallerEffect(s, e)) return;
   if (Fate.fateEffect(s, e)) return;
   if (Raid.raidEffect(s, e)) return;
   if (GreyPlayers.greyHavensEffect(s, e)) return;
@@ -590,7 +646,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "immediateAttack": {
       if (
         !u ||
-        card(u.code).type_code !== "enemy" ||
+        !["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
         enemyAttackPrevented(s, u)
       )
         break;
@@ -648,8 +704,10 @@ function handleEffect(s: GameState, e: Effect) {
       enemyAttackStarted(s, u, activeSeat(s));
       break;
     }
-    case "immediateChooseDefender":
-      if (!u) {
+    case "immediateChooseDefender": {
+      const attackedPlayer =
+        s.combat?.attackPlayer ?? e.player ?? activeSeat(s);
+      if (!u || s.table?.seats[attackedPlayer].eliminated) {
         prepend(s, fx("enemyDone", { flag: true }));
         break;
       }
@@ -674,6 +732,7 @@ function handleEffect(s: GameState, e: Effect) {
         },
       ]);
       break;
+    }
     case "immediateDefend": {
       const prior = s.combat;
       requireRule(
@@ -1033,6 +1092,8 @@ function handleEffect(s: GameState, e: Effect) {
         s.staging = s.staging.filter((x) => x.id !== u.id);
         const priorActive = allActiveLocations(s);
         s.activeLocation = u;
+        Storm.stormcallerAreaLeft(s, u);
+        Storm.stormcallerTravelEntered(s, u);
         Fate.fateActiveLocation(s, u);
         Voyage.voyageTravelEntered(s, u);
         s.extraActiveLocations = [
@@ -1229,6 +1290,7 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "afterEncounterRevealed":
+      Storm.stormcallerWeatherRevealed(s, e.code!);
       Chetwood.chetwoodAfterReveal(s, e.code!, e.revealOrigin);
       Dike.dikeAfterReveal(s, e.code!, e.revealOrigin);
       Weather.weatherAfterReveal(s, e.code!);
@@ -1274,6 +1336,7 @@ function handleEffect(s: GameState, e: Effect) {
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
+            Storm.stormcallerEncounter(s, e.code, true) ||
             Fate.fateEncounter(s, e.code, true) ||
             Raid.raidEncounter(s, e.code, true) ||
             Druadan.druadanForestEncounter(s, e.code, true) ||
@@ -1495,6 +1558,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (e.text !== "angmar-staging-end") {
         prepend(s, { ...e, text: "angmar-staging-end" });
         Dread.dreadStagingEnd(s);
+        Storm.stormcallerEndStaging(s);
         break;
       }
       if (Osgiliath.assaultOsgiliathPrepareQuest(s, e)) break;
@@ -1557,6 +1621,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "startTravel":
       startPhase(s, "travel");
+      Storm.stormcallerTravelStart(s);
       break;
     case "startEncounter":
       startPhase(s, "encounter");
@@ -1685,6 +1750,7 @@ function handleEffect(s: GameState, e: Effect) {
         passives.push(...Angmar.angmarRoundEnd(s));
         forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...Raid.raidRoundEnd(s));
+        forced.push(...Storm.stormcallerRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
         forced.push(
@@ -1832,7 +1898,7 @@ function handleEffect(s: GameState, e: Effect) {
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
-            engagementCost(s, u) <= seatView(s, i).threat,
+            engagementCost(s, u) <= effectiveThreat(s, i),
         ),
       );
       if (eligible)
@@ -1878,7 +1944,7 @@ function handleEffect(s: GameState, e: Effect) {
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
-            engagementCost(s, u) <= s.threat,
+            engagementCost(s, u) <= effectiveThreat(s),
         )
         .sort((a, b) => engagementCost(s, b) - engagementCost(s, a))[0];
       if (enemy && !s.table?.seats[activeSeat(s)].eliminated) engage(s, enemy);
@@ -2120,6 +2186,12 @@ function handleEffect(s: GameState, e: Effect) {
           restoreImmediateShadows(s, skipped, completed);
         if (
           immediate &&
+          !skipped &&
+          completed?.immediatePreviousShadows !== undefined
+        )
+          s.encounterDiscard.push(...completed.immediatePreviousShadows);
+        if (
+          immediate &&
           skipped &&
           completed?.immediatePreviousShadows === undefined &&
           !Carn.carnUsesExistingShadows(s, skipped)
@@ -2135,7 +2207,12 @@ function handleEffect(s: GameState, e: Effect) {
           }
         }
         s.combat = s.suspendedCombats.pop() ?? null;
-        if (!s.combat && !immediate) advanceDefense(s);
+        if (
+          s.combat &&
+          s.table?.seats[s.combat.attackPlayer ?? activeSeat(s)].eliminated
+        )
+          prepend(s, fx("enemyDone", { flag: true }));
+        else if (!s.combat && !immediate) advanceDefense(s);
         break;
       }
       if (!s.used.includes("phase:attack-resolved"))
@@ -2379,6 +2456,7 @@ export function flush(s: GameState) {
     const sharedEffect =
       ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
       Raid.raidSharedEffect(effect) ||
+      Storm.stormcallerSharedEffect(effect) ||
       ["shadowResolved", "endRoundScenarioDone", "revealCard"].includes(
         effect.kind,
       ) ||
@@ -2619,6 +2697,7 @@ export function flush(s: GameState) {
         "engagementRound",
         "automaticEngagement",
         "enemyDone",
+        "immediateChooseDefender",
         "startQuest",
         "startPlanning",
         "startTravel",

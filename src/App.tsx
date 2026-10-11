@@ -12,7 +12,11 @@ import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
-import { SailingTestSummary } from "./ui/grey-havens-state";
+import {
+  SailingTestSummary,
+  StormcallerQuestSummary,
+} from "./ui/grey-havens-state";
+import { stormcallerArea, stormcallerAreaImmune } from "./game/stormcaller";
 import {
   consideredEngaged,
   normalAttackPending,
@@ -1410,6 +1414,81 @@ export default function App() {
       previous?.focus();
     };
   }, [menu]);
+  const ordinaryStaging = game?.staging.filter((u) => !u.stormcallerArea) ?? [];
+  const renderStagingCard = (u: Unit) => {
+    if (!game) return null;
+    return (
+      <BoardCard
+        key={u.id}
+        s={game}
+        u={u}
+        dispatch={dispatch}
+        inspect={() => setDetail(card(u.code))}
+        inspectCard={setDetail}
+        action={
+          game.phase === "defense" && pendingEnemyAttack(game, u)
+            ? () => setCombatEnemy(u.id)
+            : claimableObjectives.includes(u.code) &&
+                game.phase !== "setup" &&
+                objectiveFree(game, u)
+              ? () => setClaimId(u.id)
+              : game.phase === "travel" && card(u.code).type_code === "location"
+                ? () => dispatch({ type: "TRAVEL", id: u.id })
+                : game.phase === "encounter" &&
+                    isEnemy(u) &&
+                    (!game.optionalEngagement || realmExtraEngagement(game))
+                  ? () => dispatch({ type: "ENGAGE", id: u.id })
+                  : game.phase === "attack" &&
+                      isEnemy(u) &&
+                      (game.table || game.earlyAttackPlayers
+                        ? !u.attackedBy?.includes(activeSeat(game))
+                        : !u.attacked) &&
+                      attackersFor(game, u).length > 0
+                    ? () => {
+                        setCombatEnemy(u.id);
+                      }
+                    : undefined
+        }
+        actionLabel={
+          game.phase === "defense" && consideredEngaged(game, u)
+            ? "Defend"
+            : claimableObjectives.includes(u.code)
+              ? objectiveFree(game, u)
+                ? objectiveClaimExhausts(game, u.id)
+                  ? "Claim · Exhaust hero"
+                  : "Claim · +2 threat"
+                : "Guarded"
+              : card(u.code).type_code === "location"
+                ? "Travel here"
+                : game.phase === "attack"
+                  ? consideredEngaged(game, u)
+                    ? "Attack"
+                    : "Attack staging enemy"
+                  : "Engage"
+        }
+        actionDisabled={
+          stormcallerAreaImmune(game, u)
+            ? "This area is at a different quest stage; its enemies cannot be engaged and its locations cannot be traveled to."
+            : game.phase === "attack" && amonPlayerCannotDeclareAttack(game)
+              ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
+              : game.phase === "encounter" && isEnemy(u)
+                ? optionalEngagementProblem(game, u)
+                : exhaustedClaimObjectives.includes(u.code) &&
+                    !game.heroes.some(
+                      (h) =>
+                        !h.exhausted &&
+                        !khazadCannotExhaust(h) &&
+                        !watcherWaterCannotExhaust(h),
+                    )
+                  ? "A ready hero must be able to exhaust to claim this objective."
+                  : game.phase === "travel" &&
+                      card(u.code).type_code === "location"
+                    ? canTravel(game, u)
+                    : null
+        }
+      />
+    );
+  };
   const inspectedHand =
     game && page === "table" && detail
       ? game.hand.find((u) => u.code === detail.code)
@@ -2560,7 +2639,7 @@ export default function App() {
                   }}
                 />
                 <div
-                  className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""} ${game.assaultOsgiliath?.controlled.length ? "has-controlled" : ""}`}
+                  className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""} ${game.assaultOsgiliath?.controlled.length ? "has-controlled" : ""} ${game.stormcaller ? "has-stormcaller" : ""}`}
                 >
                   <motion.div layoutScroll className="encounter-zone">
                     <div className="zone-label">
@@ -2573,84 +2652,8 @@ export default function App() {
                       </span>
                     </div>
                     <motion.div layoutScroll className="board-cards">
-                      {game.staging.map((u) => (
-                        <BoardCard
-                          key={u.id}
-                          s={game}
-                          u={u}
-                          dispatch={dispatch}
-                          inspect={() => setDetail(card(u.code))}
-                          inspectCard={setDetail}
-                          action={
-                            game.phase === "defense" &&
-                            pendingEnemyAttack(game, u)
-                              ? () => setCombatEnemy(u.id)
-                              : claimableObjectives.includes(u.code) &&
-                                  game.phase !== "setup" &&
-                                  objectiveFree(game, u)
-                                ? () => setClaimId(u.id)
-                                : game.phase === "travel" &&
-                                    card(u.code).type_code === "location"
-                                  ? () => dispatch({ type: "TRAVEL", id: u.id })
-                                  : game.phase === "encounter" &&
-                                      isEnemy(u) &&
-                                      (!game.optionalEngagement ||
-                                        realmExtraEngagement(game))
-                                    ? () =>
-                                        dispatch({ type: "ENGAGE", id: u.id })
-                                    : game.phase === "attack" &&
-                                        isEnemy(u) &&
-                                        (game.table || game.earlyAttackPlayers
-                                          ? !u.attackedBy?.includes(
-                                              activeSeat(game),
-                                            )
-                                          : !u.attacked) &&
-                                        attackersFor(game, u).length > 0
-                                      ? () => {
-                                          setCombatEnemy(u.id);
-                                        }
-                                      : undefined
-                          }
-                          actionLabel={
-                            game.phase === "defense" &&
-                            consideredEngaged(game, u)
-                              ? "Defend"
-                              : claimableObjectives.includes(u.code)
-                                ? objectiveFree(game, u)
-                                  ? objectiveClaimExhausts(game, u.id)
-                                    ? "Claim · Exhaust hero"
-                                    : "Claim · +2 threat"
-                                  : "Guarded"
-                                : card(u.code).type_code === "location"
-                                  ? "Travel here"
-                                  : game.phase === "attack"
-                                    ? consideredEngaged(game, u)
-                                      ? "Attack"
-                                      : "Attack staging enemy"
-                                    : "Engage"
-                          }
-                          actionDisabled={
-                            game.phase === "attack" &&
-                            amonPlayerCannotDeclareAttack(game)
-                              ? "Hobbit-sense prevents this fellowship from declaring attacks this round."
-                              : game.phase === "encounter" && isEnemy(u)
-                                ? optionalEngagementProblem(game, u)
-                                : exhaustedClaimObjectives.includes(u.code) &&
-                                    !game.heroes.some(
-                                      (h) =>
-                                        !h.exhausted &&
-                                        !khazadCannotExhaust(h) &&
-                                        !watcherWaterCannotExhaust(h),
-                                    )
-                                  ? "A ready hero must be able to exhaust to claim this objective."
-                                  : game.phase === "travel" &&
-                                      card(u.code).type_code === "location"
-                                    ? canTravel(game, u)
-                                    : null
-                          }
-                        />
-                      ))}
-                      {!game.staging.length && (
+                      {ordinaryStaging.map(renderStagingCard)}
+                      {!ordinaryStaging.length && (
                         <div className="empty-zone">
                           <Tree size={34} weight="thin" />
                           <span>For a moment, the path is clear.</span>
@@ -2658,6 +2661,29 @@ export default function App() {
                       )}
                     </motion.div>
                   </motion.div>
+                  {game.stormcaller && (
+                    <motion.div
+                      layoutScroll
+                      className="engaged-zone stormcaller-zone"
+                      aria-label="Stormcaller's area"
+                    >
+                      <div className="zone-label">
+                        <span>
+                          <Compass size={15} /> STORMCALLER'S AREA
+                        </span>
+                        <span>Stage {game.stormcaller.enemyStage}</span>
+                      </div>
+                      <StormcallerQuestSummary s={game} inspect={setDetail} />
+                      <motion.div layoutScroll className="board-cards">
+                        {stormcallerArea(game).map(renderStagingCard)}
+                        {!stormcallerArea(game).length && (
+                          <div className="empty-zone">
+                            <span>The pursuit continues beyond this area.</span>
+                          </div>
+                        )}
+                      </motion.div>
+                    </motion.div>
+                  )}
                   {!!game.assaultOsgiliath?.controlled.length && (
                     <motion.div
                       layoutScroll
@@ -3411,7 +3437,7 @@ export default function App() {
                     <Info size={17} />
                   </button>
                   {pile === "player" &&
-                    ["10121", "10145"].includes(code) &&
+                    ["10121", "10145", "12006"].includes(code) &&
                     (() => {
                       const index = game.discard.length - 1 - i;
                       const reason = replayEventProblem(
@@ -3425,7 +3451,7 @@ export default function App() {
                             !!reason || !!game.choice || !!game.flow?.pending
                           }
                           title={
-                            reason ?? "Play this event from your discard pile"
+                            reason ?? "Play this card from your discard pile"
                           }
                           onClick={() => beginDiscardPlay(index)}
                         >

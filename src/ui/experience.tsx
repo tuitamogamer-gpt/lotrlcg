@@ -694,7 +694,7 @@ export function QuestGoals({ s }: { s: GameState }) {
         <span>Main quest rules remain in effect</span>
       </div>
     );
-  if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens)
+  if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens || s.stormcaller)
     return <GreyHavensQuestGoals s={s} />;
   if (
     s.wastesEriador ||

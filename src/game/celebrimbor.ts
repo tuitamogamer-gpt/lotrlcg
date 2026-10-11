@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { mainQuestUnit } from "./quest-state";
 import type { Attachment, Effect, GameState, Unit } from "./types";
@@ -596,10 +597,10 @@ export function celebrimborEffect(s: GameState, e: Effect) {
         );
       else if (e.code === C.prowler && source) {
         const highest = Math.max(
-          ...playerOrder(s).map((p) => seatView(s, p).threat),
+          ...playerOrder(s).map((p) => effectiveThreat(s, p)),
         );
         const players = playerOrder(s).filter(
-          (p) => seatView(s, p).threat === highest,
+          (p) => effectiveThreat(s, p) === highest,
         );
         const effects = (player: number) => [
           fx("celebProwlerEngage", { target: source!.id, player }),
@@ -611,7 +612,7 @@ export function celebrimborEffect(s: GameState, e: Effect) {
             "Prowling Orc · Choose a player tied for highest threat",
             players.map((p) => ({
               id: `player-${p}`,
-              label: `Player ${p + 1} · ${seatView(s, p).threat} threat`,
+              label: `Player ${p + 1} · ${effectiveThreat(s, p)} threat`,
               effects: effects(p),
             })),
           );

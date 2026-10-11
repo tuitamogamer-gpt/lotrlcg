@@ -4,6 +4,70 @@ import { allCharacters, ownerOf, seatName } from "../game/table";
 import { stats } from "../game/engine";
 import { isShipObjective } from "../game/ships";
 import { sailingCommitCount, sailingHeadingLabel } from "../game/sailing";
+import { sailingOnCourse } from "../game/sailing";
+import { stormcallerSameStage } from "../game/stormcaller";
+import { stormcallerState } from "../game/stormcaller-support";
+import { Art } from "./card-art";
+import { TableToken } from "./tabletop";
+
+export function StormcallerQuestSummary({
+  s,
+  inspect,
+}: {
+  s: GameState;
+  inspect: (c: Card) => void;
+}) {
+  const pursuit = stormcallerState(s);
+  if (!pursuit) return null;
+  const quest = card(pursuit.enemyQuest);
+  const damageLimit =
+    pursuit.enemyStage === 2 ? 4 : pursuit.enemyStage === 3 ? 8 : null;
+  const damageThisRound =
+    pursuit.counterRound === s.round ? pursuit.damageThisRound : 0;
+  return (
+    <section
+      className="stormcaller-quest-summary"
+      data-scenario-panel="stormcaller"
+      aria-label="Stormcaller's quest"
+    >
+      <button
+        className="quest-card-stack"
+        aria-label="Inspect Stormcaller quest"
+        onClick={() => inspect(quest)}
+      >
+        <Art c={quest} imageSrc={quest.back_imagesrc ?? quest.imagesrc} />
+        <span className="quest-stage-seal">{pursuit.enemyStage}D</span>
+        <TableToken kind="progress" value={pursuit.enemyProgress} />
+      </button>
+      <div className="stormcaller-pursuit-values">
+        <strong>{quest.back_name ?? quest.name}</strong>
+        <span>
+          Stage {pursuit.enemyStage} · {pursuit.enemyProgress} /{" "}
+          {quest.back_quest ?? 0} progress
+        </span>
+        <progress
+          value={pursuit.enemyProgress}
+          max={quest.back_quest ?? 1}
+          aria-label="Stormcaller quest progress"
+        />
+        <span>
+          {stormcallerSameStage(s)
+            ? "At your stage · this area's cards contribute staging threat and can be engaged or traveled to."
+            : "At a different stage · this area is immune to player card effects and its enemies cannot be engaged."}
+        </span>
+        <span>
+          Stormcaller damage this round · {damageThisRound}
+          {damageLimit !== null ? ` / ${damageLimit}` : " · no stage limit"}
+        </span>
+        <span>
+          {pursuit.enemyQuestDeck.length} pursuit stages remain · Corsair deck{" "}
+          {pursuit.corsairDeck.length} · discarded{" "}
+          {pursuit.corsairDiscard.length}
+        </span>
+      </div>
+    </section>
+  );
+}
 
 export function SailingTestSummary({ s }: { s: GameState }) {
   const test = s.sailing?.test;
@@ -88,9 +152,33 @@ export function GreyHavensScenarioState({
 }
 
 export function GreyHavensQuestGoals({ s }: { s: GameState }) {
+  const pursuit = stormcallerState(s);
+  const progressLimit = sailingOnCourse(s) ? 8 : 4;
   return (
     <div className="quest-goals" data-grey-havens-quest-goals>
-      {s.voyageBelegaer ? (
+      {pursuit ? (
+        <>
+          <span>
+            {s.stage === 1
+              ? "Place 8 quest progress to begin the pursuit."
+              : s.stage === 4 || stormcallerSameStage(s)
+                ? "Defeat this quest stage to catch the Stormcaller and win."
+                : "Complete this crossing to catch up with the Stormcaller."}
+          </span>
+          {s.stage === 2 && (
+            <span>
+              Quest progress this round ·{" "}
+              {pursuit.counterRound === s.round ? pursuit.progressThisRound : 0}{" "}
+              / {progressLimit}
+            </span>
+          )}
+          <span>
+            Make the Stormcaller leave play to win, or catch it before it
+            escapes stage 4.
+          </span>
+          <span>Keep the fleet on-course and protect the Dream-chaser.</span>
+        </>
+      ) : s.voyageBelegaer ? (
         <>
           <span>Keep the fleet on-course to complete each crossing.</span>
           <span>

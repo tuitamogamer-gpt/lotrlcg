@@ -32,6 +32,11 @@ export const GREY_HAVENS_SCENARIOS = [
   "raid-on-the-grey-havens",
 ] as const;
 
+export const DREAM_CHASER_SCENARIOS = [
+  ...GREY_HAVENS_SCENARIOS,
+  "flight-of-the-stormcaller",
+] as const;
+
 /** Deterministic decisions use the real mandatory Sailing choices and costs. */
 export function greyHavensSimulationChoice(s: GameState): Option | undefined {
   const choice = s.choice;
@@ -66,7 +71,7 @@ export function greyHavensSimulationAction(s: GameState): Action | undefined {
 }
 
 export function runGreyHavensGame(
-  scenarioId: (typeof GREY_HAVENS_SCENARIOS)[number],
+  scenarioId: (typeof DREAM_CHASER_SCENARIOS)[number],
   easy: boolean,
   players: number,
   seed: number,
@@ -172,9 +177,10 @@ export function runGreyHavensGame(
         allCharacters(s).length,
       );
     } catch (error) {
-      mkdirSync("output/grey-havens-simulation", { recursive: true });
+      const directory = `output/${scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
+      mkdirSync(directory, { recursive: true });
       writeFileSync(
-        `output/grey-havens-simulation/${scenarioId}-${easy ? "easy" : "normal"}-${players}-${seed}-${reviewMode ?? "immediate"}.json`,
+        `${directory}/${scenarioId}-${easy ? "easy" : "normal"}-${players}-${seed}-${reviewMode ?? "immediate"}.json`,
         JSON.stringify({ step: steps, state: s, action }, null, 2),
       );
       throw new Error(

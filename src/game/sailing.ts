@@ -15,9 +15,18 @@ import {
 } from "./voyage-belegaer";
 import symbols from "../data/grey-havens-sailing-icons.json";
 import { voyageCurrentQuest } from "./voyage-belegaer-support";
+import { stormcallerCurrentQuest } from "./stormcaller-support";
+import {
+  stormcallerSailingCommitted,
+  stormcallerSailingCommitDone,
+} from "./stormcaller";
+import stormcallerSymbols from "../data/stormcaller-sailing-icons.json";
 
 const printedSailingSymbols = new Map(
-  symbols.cards.map((c) => [c.code, c.sailingSymbols]),
+  [...symbols.cards, ...stormcallerSymbols.cards].map((c) => [
+    c.code,
+    c.sailingSymbols,
+  ]),
 );
 export const sailingSymbols = (code: string) =>
   printedSailingSymbols.get(code) ?? card(code).sailing ?? 0;
@@ -120,7 +129,7 @@ export function beginSailingTest(s: GameState, continuation: Effect[] = []) {
 
 /** The main quest's keyword resolves before ordinary quest commitments and side quest selection. */
 export function sailingQuestStart(s: GameState, continuation: Effect[] = []) {
-  const quest = voyageCurrentQuest(s);
+  const quest = voyageCurrentQuest(s) ?? stormcallerCurrentQuest(s);
   if (!s.sailing || !quest || !/\bSailing\b/.test(card(quest).back_text ?? ""))
     return false;
   beginSailingTest(s, continuation);
@@ -213,6 +222,7 @@ export function sailingEffect(s: GameState, e: Effect): boolean {
         "This character cannot exhaust for Sailing.",
       );
       test.committedIds.push(u.id);
+      stormcallerSailingCommitted(s, u);
       log(s, `${name(u)} commits to the Sailing test.`);
       // Actual exhaustion responses resolve before the next mandatory commitment choice.
       s.queue.push(fx("sailingChoose"));
@@ -227,6 +237,7 @@ export function sailingEffect(s: GameState, e: Effect): boolean {
         "There is no Sailing commitment to finish.",
       );
       s.sailing.test.phase = "actions";
+      stormcallerSailingCommitDone(s);
       log(
         s,
         "Sailing commitment is complete. Look at the encounter cards to resolve the test; player Actions wait until the test ends.",
@@ -245,10 +256,15 @@ export function validateSailing(
   s: GameState,
   validEffect: (v: Effect) => boolean,
 ) {
-  if (s.sailing === undefined) return s.scenarioId !== "voyage-across-belegaer";
+  if (s.sailing === undefined)
+    return !["voyage-across-belegaer", "flight-of-the-stormcaller"].includes(
+      s.scenarioId,
+    );
   const fleet = s.sailing;
   if (
-    s.scenarioId !== "voyage-across-belegaer" ||
+    !["voyage-across-belegaer", "flight-of-the-stormcaller"].includes(
+      s.scenarioId,
+    ) ||
     !fleet ||
     !Number.isInteger(fleet.heading) ||
     fleet.heading < 0 ||
@@ -283,16 +299,24 @@ export function validateSailing(
   if (
     t.looked !== undefined &&
     (!Array.isArray(t.looked) ||
-      t.looked.some(
-        (code) =>
+      t.looked.some((code) => {
+        const definition = card(code);
+        return (
           ![
             "enemy",
             "ship-enemy",
             "location",
             "treachery",
             "encounter-side-quest",
-          ].includes(card(code).type_code),
-      ))
+          ].includes(definition.type_code) &&
+          !(
+            definition.sphere_code === "encounter" &&
+            ["objective", "objective-ally", "ship-objective"].includes(
+              definition.type_code,
+            )
+          )
+        );
+      }))
   )
     return false;
   if (t.phase === "results")

@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Attachment, Card, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import type { LeaveDestination } from "./mirkwood-player-cards";
@@ -884,10 +885,10 @@ export function dreadEffect(s: GameState, e: Effect) {
     }
     case "dreadFellPlayer": {
       const high = Math.max(
-        ...playerOrder(s).map((p) => seatView(s, p).threat),
+        ...playerOrder(s).map((p) => effectiveThreat(s, p)),
       );
       const players = playerOrder(s).filter(
-        (p) => seatView(s, p).threat === high,
+        (p) => effectiveThreat(s, p) === high,
       );
       if (players.length === 1)
         prepend(s, fx("dreadFellHero", { player: players[0] }));

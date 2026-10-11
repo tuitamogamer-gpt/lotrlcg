@@ -34,6 +34,8 @@ import type { GameState, Unit } from "../game/types";
 import { emynMuilMustCommit, emynMuilEventsBlocked } from "../game/emyn-muil";
 import { isEnemy, isShipEnemy } from "../game/ships";
 import { voyageMandatoryTravel } from "../game/voyage-belegaer";
+import { druadanForestAttackStat } from "../game/druadan-forest";
+import { stormcallerAttackBonus } from "../game/stormcaller-player";
 
 /** One short piece of advice for the current decision, derived from public state. */
 export interface CoachTip {
@@ -365,10 +367,23 @@ export function coachTip(s: GameState): CoachTip | null {
           stats(s, a).health - a.damage - (stats(s, b).health - b.damage),
       )[0];
       const attackers = attackersFor(s, target);
-      const power = attackers.reduce((sum, u) => sum + stats(s, u).attack, 0);
+      const attackStat = druadanForestAttackStat(s);
+      const power = attackers.reduce(
+        (sum, u) =>
+          sum +
+          stats(s, u)[attackStat] +
+          (attackStat === "attack" ? stormcallerAttackBonus(s, u) : 0),
+        0,
+      );
       const defense = stats(s, target).defense;
       const hp = stats(s, target).health - target.damage;
       const damage = Math.max(0, power - defense);
+      if (attackStat === "will")
+        return tip({
+          title: `Confront ${nameOf(target)}`,
+          text: `${power} willpower − ${defense} defense = ${damage} progress on this enemy.`,
+          tone: "info",
+        });
       if (effectiveKeyword(target, "Indestructible"))
         return tip({
           title: `Damage ${nameOf(target)}`,

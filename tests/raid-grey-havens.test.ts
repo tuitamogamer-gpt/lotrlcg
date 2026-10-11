@@ -39,6 +39,12 @@ import {
   settle,
 } from "./raid-grey-havens-fixtures";
 import type { GameState, Unit } from "../src/game/types";
+import { STORMCALLER } from "../src/game/stormcaller-support";
+import {
+  base as stormcallerBase,
+  reload as stormcallerReload,
+  settle as stormcallerSettle,
+} from "./stormcaller-fixtures";
 
 function finish(s: GameState) {
   flush(s);
@@ -82,6 +88,35 @@ function start(players = 1, easy = false) {
   }
   return settle(s);
 }
+
+test("Flight: Battle-Hardened's Raider resources change the actual Cunning Pirate attack", () => {
+  let s = stormcallerBase();
+  const pirate = make(s, STORMCALLER.pirate);
+  pirate.resources = 1;
+  pirate.shadows = [R.hardened];
+  s.engaged.push(pirate);
+  s.phase = "defense";
+  const defender = s.heroes[0];
+  const expectedDamage = Math.max(
+    0,
+    (card(pirate.code).attack ?? 0) + 3 - stats(s, defender).defense,
+  );
+  s = applyAction(stormcallerReload(s), {
+    type: "DEFEND",
+    enemyId: pirate.id,
+    defenderIds: [defender.id],
+  });
+  s = stormcallerSettle(s);
+  assert.equal(get(s, pirate.id)!.resources, 3);
+  assert.equal(stats(s, get(s, pirate.id)!).attack, 5);
+  assert.equal(stats(s, get(s, pirate.id)!).defense, 5);
+  assert.equal(get(s, defender.id)!.damage, expectedDamage);
+  assert.ok(
+    get(s, pirate.id)!.shadows.includes(R.hardened),
+    "The revealed physical shadow stays with its enemy until combat ends",
+  );
+  assert.ok(validateSave(s), "Completed physical shadow attack survives save");
+});
 
 test("Raid: exact original standard/easy recipes, printed faces and cached art", () => {
   assert.equal(RAID_ENCOUNTERS.length, 18);

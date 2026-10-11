@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -81,9 +82,7 @@ export function ringMakerPlayTargets(
   code: string,
 ): Unit[] | null {
   if (code === "08033")
-    return s.staging.filter(
-      (u) => playerUnitIsEnemy(u) && !immune(u),
-    );
+    return s.staging.filter((u) => playerUnitIsEnemy(u) && !immune(u));
   if (code === "08061") return allHeroes(s).filter((u) => !immune(u));
   return null;
 }
@@ -111,7 +110,7 @@ export function ringMakerEventPlayed(s: GameState, code: string) {
 export function ringMakerSecrecy(s: GameState, c: Card) {
   if (
     c.type_code !== "event" ||
-    s.threat > 20 ||
+    effectiveThreat(s) > 20 ||
     s.used.includes(sphereKey(c.sphere_code))
   )
     return 0;
@@ -144,7 +143,7 @@ export function ringMakerEvent(s: GameState, code: string, target?: string) {
     u.noEngagementRound = s.round;
   } else u.tempWill = (u.tempWill ?? 0) + 2;
   if (
-    s.threat <= 20 &&
+    effectiveThreat(s) <= 20 &&
     s.used.filter((key) => key === eventKey(code)).length === 1
   )
     returnPlayedEventToHand(s, code);

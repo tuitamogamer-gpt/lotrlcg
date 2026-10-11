@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import {
@@ -34,7 +35,6 @@ import {
 import {
   discardAttachment,
   exhaustCharacter,
-  raiseThreat,
   readyCharacter,
   spendEvent,
 } from "./board";
@@ -622,8 +622,7 @@ export function handleShadowFlamePlayerEffect(
         s.encounterDiscard.push(enemy.code);
         antleredRoutePiles(s);
       } else s.encounterDeck.push(enemy.code);
-      if (s.threat < engagement)
-        raiseThreat(s, engagement - s.threat, "player-card");
+      if (effectiveThreat(s) < engagement) s.threat = engagement;
       return true;
     }
     case "shadowFlameVilyaReveal":

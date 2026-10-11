@@ -85,6 +85,8 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Physical encounter card belonging to the Stormcaller's separate area. */
+  stormcallerArea?: boolean;
   /** Na'asiyah's resource bonus is fixed when this attack begins. */
   raidCombatResourceBonus?: number;
   /** The Mission objective retains its physical identity when turned over. */
@@ -198,6 +200,7 @@ export type ScenarioId =
   | "voyage-across-belegaer"
   | "the-fate-of-numenor"
   | "raid-on-the-grey-havens"
+  | "flight-of-the-stormcaller"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -229,6 +232,8 @@ export type Phase =
   | "attack"
   | "refresh";
 export interface Effect {
+  /** Enemy whose resolving shadow caused this effect and its continuations. */
+  shadowEnemyId?: string;
   /** Objective that must receive undefended damage from this attack. */
   damageTarget?: string;
   revealOrigin?: "encounter" | "underworld";
@@ -317,6 +322,7 @@ export interface GameState {
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
+  stormcaller?: import("./stormcaller-support").StormcallerState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */

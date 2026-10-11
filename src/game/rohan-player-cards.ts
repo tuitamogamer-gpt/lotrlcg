@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -137,10 +138,7 @@ const lothirielAllies = (s: GameState, h: Unit) =>
   );
 const stagingEnemies = (s: GameState) =>
   s.staging.filter(
-    (u) =>
-      playerUnitIsEnemy(u) &&
-      !card(u.code).is_unique &&
-      affected(u),
+    (u) => playerUnitIsEnemy(u) && !card(u.code).is_unique && affected(u),
   );
 const attackSpillTargets = (s: GameState, player: number) =>
   seatView(s, player).engaged.filter(
@@ -395,7 +393,7 @@ export function rohanQuestSucceeded(s: GameState) {
       (a) => a.code === rohanCode.arrow && !a.blanked && !a.facedown,
     ))
       if (
-        seatView(s, attachmentController(s, u, a) ?? ownerOf(s, u)).threat >= 40
+        effectiveThreat(s, attachmentController(s, u, a) ?? ownerOf(s, u)) >= 40
       )
         prepend(
           s,
@@ -862,7 +860,7 @@ export function handleRohanPlayerEffect(s: GameState, e: Effect): boolean {
       const a = u?.attachments.find(
         (a) => a.id === e.source && !a.blanked && !a.facedown,
       );
-      if (a && s.threat >= 40)
+      if (a && effectiveThreat(s) >= 40)
         optional(
           s,
           "The Red Arrow · Valour quest success",

@@ -1,3 +1,5 @@
+import { stormcallerAreaImmune } from "./stormcaller";
+import { stormcallerState } from "./stormcaller-support";
 import { trialsGrantedImmunity } from "./three-trials-support";
 import { card } from "./cards";
 import { heirsPlayerTraitGrants } from "./heirs-player-cards";
@@ -28,13 +30,15 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...allCharacters(s),
     ...allEngaged(s),
     ...s.staging,
+    ...(stormcallerState(s)?.area ?? []),
     ...allActiveLocations(s),
     ...(s.prisoner ? [s.prisoner] : []),
     ...(s.captiveMendor ? [s.captiveMendor] : []),
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
-    if (trialsGrantedImmunity(s, host.code)) host.immuneToPlayerEffects = true;
+    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host))
+      host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
       if (blanked || attachment.facedown || attachment.namelessCard)

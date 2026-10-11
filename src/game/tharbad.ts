@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { NIN } from "./nin-eilph-support";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
@@ -134,7 +135,7 @@ export function advanceTharbad(s: GameState) {
     !q.advancing &&
     !s.stageRevealing &&
     !s.choice &&
-    playerOrder(s).every((p) => seatView(s, p).threat === 0)
+    playerOrder(s).every((p) => effectiveThreat(s, p) === 0)
   ) {
     q.advancing = true;
     prepend(s, fx("tharbadAdvance", { player: firstPlayer(s) }));
@@ -300,7 +301,7 @@ export function tharbadShadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c) return false;
   if ([T.lot, T.cornered].includes(code))
-    c.attackBonus += s.threat <= 20 ? 2 : 1;
+    c.attackBonus += effectiveThreat(s) <= 20 ? 2 : 1;
   else if (code === T.marauder)
     prepend(s, fx("removeQuestTime", { code, player: firstPlayer(s) }));
   else if (code === T.dwarf) {
@@ -496,7 +497,7 @@ export function tharbadEffect(s: GameState, e: Effect) {
       }
       break;
     case "tharbadLotSurge":
-      if (playerOrder(s).some((p) => seatView(s, p).threat <= 20))
+      if (playerOrder(s).some((p) => effectiveThreat(s, p) <= 20))
         prepend(s, fx("amonSurgeWindow", { code: T.lot }), fx("reveal"));
       break;
     case "tharbadGetDwarf": {

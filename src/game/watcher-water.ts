@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { addCurrentQuestProgress } from "./side-quests";
 import { removeCurrentQuestProgress } from "./side-quests";
 // Original Watcher in the Water. Its shared Misty Mountains cards are independent.
@@ -456,8 +457,8 @@ export function watcherWaterEncounter(s: GameState, code: string): boolean {
   }
   if (code === WATCHER_WATER.ill) {
     const order = playerOrder(s),
-      high = Math.max(...order.map((p) => seatView(s, p).threat)),
-      tied = order.filter((p) => seatView(s, p).threat === high);
+      high = Math.max(...order.map((p) => effectiveThreat(s, p))),
+      tied = order.filter((p) => effectiveThreat(s, p) === high);
     const effects = (player: number) => [
       fx("watcherWaterIllEngage", { player }),
     ];

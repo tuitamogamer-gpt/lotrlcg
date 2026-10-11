@@ -2,6 +2,7 @@ import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
 import { validateRaidGreyHavens } from "./raid-grey-havens-support";
+import { validateStormcaller } from "./stormcaller-support";
 import {
   validateDeadmensDike,
   dikeLocationTimeLimit,
@@ -325,6 +326,9 @@ export function validateSave(
           new Set(c.desperateDefenderIds).size ===
             c.desperateDefenderIds.length));
     const validUnit = (u: Unit) =>
+      (u.stormcallerArea === undefined ||
+        (typeof u.stormcallerArea === "boolean" &&
+          s.scenarioId === "flight-of-the-stormcaller")) &&
       (u.timeCounters === undefined ||
         (integer(u.timeCounters) &&
           u.timeCounters >= 0 &&
@@ -586,6 +590,7 @@ export function validateSave(
       (!validateVoyage(s, validUnit as (value: unknown) => boolean) ||
         !validateFateNumenor(s, validUnit as (value: unknown) => boolean) ||
         !validateRaidGreyHavens(s, validUnit as (value: unknown) => boolean) ||
+        !validateStormcaller(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -923,6 +928,7 @@ export function validateSave(
           e.player >= 0 &&
           e.player < (s.table?.seats.length ?? 1))) &&
       (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
+      (e.shadowEnemyId === undefined || typeof e.shadowEnemyId === "string") &&
       typeof e.kind === "string" &&
       (!e.code || SCRIPTED.has(e.code) || knownQuest(e.code)) &&
       (e.owner === undefined ||
@@ -1196,6 +1202,7 @@ export function validateSave(
       ...(s.fateNumenor?.setAside ?? []),
       ...(s.raidGreyHavens?.setAside ?? []),
       ...(s.raidGreyHavens?.burned ?? []),
+      ...(s.stormcaller?.setAside ?? []),
       ...(s.dreadRealm?.pendingWraiths ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),

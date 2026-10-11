@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { ninNoCardEconomy } from "./nin-eilph-support";
@@ -239,7 +240,7 @@ export function redhornPlayerAttackBonus(
   u: Unit,
   enemy: Unit,
 ): number {
-  if (engagementCost(s, enemy) <= seatView(s, ownerOf(s, u)).threat) return 0;
+  if (engagementCost(s, enemy) <= effectiveThreat(s, ownerOf(s, u))) return 0;
   return (
     3 *
     globalPlayerOrder(s).reduce(

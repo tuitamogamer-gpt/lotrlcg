@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { addCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
@@ -373,7 +374,7 @@ export function khazadOptionalEngageProblem(s: GameState, u: Unit) {
     return "The Nameless Fear cannot engage or be engaged.";
   if (u.code === KHAZAD.archer)
     return "Goblin Archer cannot be optionally engaged.";
-  if (u.code === KHAZAD.scout && s.threat >= 25)
+  if (u.code === KHAZAD.scout && effectiveThreat(s) >= 25)
     return "A player with threat 25 or higher cannot optionally engage Goblin Scout.";
   return null;
 }
@@ -685,7 +686,7 @@ export function khazadAbilityProblem(
       ? "Spend three resources from this hero to discard Shadow of Fear."
       : null;
   if (u.code === KHAZAD.shaft)
-    return livingSeats(s).every((p) => seatView(s, p).threat < 50)
+    return livingSeats(s).every((p) => effectiveThreat(s, p) < 50)
       ? null
       : "Every player must be able to raise threat.";
   return undefined;

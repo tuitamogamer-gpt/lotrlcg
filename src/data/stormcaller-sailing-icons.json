@@ -1,0 +1,229 @@
+{
+  "schema": "lotr-printed-sailing-symbols/v1",
+  "sources": {
+    "rules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf",
+    "rulesPage": 6,
+    "scenarioRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec48_rules.pdf",
+    "catalog": "public/catalog.json",
+    "verifiedAt": "2026-10-11",
+    "verification": "Counted printed helm symbols directly on the eleven original Flight of the Stormcaller cached encounter faces. Reused the sixteen verified Grey Havens records only after matching card identity and cached front SHA-256."
+  },
+  "cards": [
+    {
+      "code": "octgn:076b47e8-6bbe-41b3-9af8-edeca28e2c0c",
+      "name": "Raging Squall",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/076b47e8-6bbe-41b3-9af8-edeca28e2c0c.jpg",
+      "sha256": "0b3992bcea42499874b27f2b20384a3e86e322be5c146be9d6f4c916fc9b713c"
+    },
+    {
+      "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+      "name": "Dream-chaser",
+      "type": "ship-objective",
+      "sailingSymbols": 0,
+      "image": "/cards/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg",
+      "sha256": "ebbe01d53260a0305625883bdc56c6b0a7c80b49fe07f93b8560b5b1fbeeeaec"
+    },
+    {
+      "code": "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
+      "name": "Calm Waters",
+      "type": "location",
+      "sailingSymbols": 2,
+      "image": "/cards/1e5d3385-4362-4e76-91fc-30e5aebab5e2.jpg",
+      "sha256": "edcc401ddb03cc9b7dcf3646a992d01f058aff6e9d83f2f6dce9a6ccf1bb2516"
+    },
+    {
+      "code": "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+      "name": "Vicious Marauder",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/2362af02-42b8-43fe-b3b6-f11f011b3197.jpg",
+      "sha256": "5b264e1215b553e818741943c1985720a9b55a73830baa20dc9ae57b8b46098c"
+    },
+    {
+      "code": "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
+      "name": "Umbar Captain",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/27bdece4-dfac-438e-87cd-1dc653eab8d6.jpg",
+      "sha256": "8911238108dd9cdb9a3b3d681a23a6f96711c6009249a0a824e8d7e639d8b85f"
+    },
+    {
+      "code": "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
+      "name": "Rough Waters",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/2b3973f5-e6f6-4611-87b7-b6e3dc33eb66.jpg",
+      "sha256": "7e74017dc8d58edd93072d6bf98beb0a26bebc2ff94555ce7d144da5fc82ff02"
+    },
+    {
+      "code": "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
+      "name": "The Stormcaller",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/3065a397-5346-4148-8e0a-47009fe9b87d.jpg",
+      "sha256": "8acbc7c36fe9f269502cf72b447bfeb65a68124e69b65037fd87381342be3870"
+    },
+    {
+      "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+      "name": "Nárelenya",
+      "type": "ship-objective",
+      "sailingSymbols": 0,
+      "image": "/cards/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg",
+      "sha256": "7ec673f0aa9618fd6ce20ced22316530c4cb4d117924a6c059cf53a7f52e73a4"
+    },
+    {
+      "code": "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
+      "name": "Serpent's Blade",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/3309e01a-db7f-4754-bd41-21a0b4316415.jpg",
+      "sha256": "fcfaa156d8cd7812b152d293165c2070fbf27900c964c8cc62e536525f860054"
+    },
+    {
+      "code": "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
+      "name": "Sahír's Escort",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/3de80480-6316-4c43-824c-44d3ad424a7b.jpg",
+      "sha256": "34b0a0e81e331a40af1e89d5f65f28dbe22d716e8bd1cca9d15b80e42fe362e4"
+    },
+    {
+      "code": "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
+      "name": "Corsair Skiff",
+      "type": "ship-enemy",
+      "sailingSymbols": 1,
+      "image": "/cards/47afd15f-ffe3-4a90-9128-f2a79ba3b070.jpg",
+      "sha256": "dc7b730aac91b45e6f84d8d06893a1c25d4398df5df8770027b0452ee6faac45"
+    },
+    {
+      "code": "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+      "name": "Cunning Pirate",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/4d85bbe6-1bc7-4890-8974-e42e2d0f9431.jpg",
+      "sha256": "7ad4f55f5d1f4bb8f8d46277e43d047e4c21feaa0c713456b3a2d987eb54fd8e"
+    },
+    {
+      "code": "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
+      "name": "Waterspout",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/4d925556-3a39-4e49-aafa-0adac6cacc52.jpg",
+      "sha256": "93d89f4be2943500f4547eb21633f4fd64fc202165210e64be0f7a9386e2f0ea"
+    },
+    {
+      "code": "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
+      "name": "Thrown Off Course",
+      "type": "treachery",
+      "sailingSymbols": 1,
+      "image": "/cards/4f4df8ea-7f18-4a76-85b0-7ece828bb837.jpg",
+      "sha256": "67ad0c78c2380639537326b55f4b4342d8ce8cdc5f0cf3a363d44faf6e66b95f"
+    },
+    {
+      "code": "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
+      "name": "Hidden Cove",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/595c34f1-60e3-401a-bd65-df6dda627896.jpg",
+      "sha256": "456905ae7c2d7d6409ace9bb93a40453e2e5ef06b10f5558dbbbfaaeb6c50a9d"
+    },
+    {
+      "code": "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
+      "name": "Winds of Wrath",
+      "type": "treachery",
+      "sailingSymbols": 1,
+      "image": "/cards/71d7dd78-a967-43dd-ab73-e46a5d4d4519.jpg",
+      "sha256": "cee33da0635f452e15ae4d54ca2a9da9513ad150fd029ec5ec4508eb2090b9a8"
+    },
+    {
+      "code": "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
+      "name": "Jagged Reef",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/72b4cfd3-457b-4574-b638-c0fcce49dd68.jpg",
+      "sha256": "83cd1851f1bba987b96aefee566919db60278fba95d0e994b0102740f127c937"
+    },
+    {
+      "code": "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
+      "name": "Sudden Storms",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/7691fb33-603e-4460-9f09-5f96bc05c2bb.jpg",
+      "sha256": "54ada1f7fc817a02078f01bc7e07759f3dfef387bcc11e4738186b544e303804"
+    },
+    {
+      "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+      "name": "Dawn Star",
+      "type": "ship-objective",
+      "sailingSymbols": 0,
+      "image": "/cards/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg",
+      "sha256": "c899271dabd5d4e3b808069c4e245343827022e29e6361bd006b2bef28c8f8de"
+    },
+    {
+      "code": "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
+      "name": "Man Overboard!",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/962991f0-44af-47ba-9ff0-0f7ed302a543.jpg",
+      "sha256": "293c8eff4231b0a87f072a3f7798b1e3b727c52c959512c68d2a79285c7286ea"
+    },
+    {
+      "code": "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+      "name": "Southron Sailor",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/b171f1fa-a603-43ab-97c9-f950ee3b3599.jpg",
+      "sha256": "36edc5488ce763b5b6d79d3ba4889d1806d9b16a25add6ae4b04a04d91bc5f0a"
+    },
+    {
+      "code": "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
+      "name": "Swift Raider",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/c084e998-a5c8-4efd-a6ed-441f9f912c99.jpg",
+      "sha256": "bbac8e6d01fcf84634cf2bd26d4e5ae9e4e8a4ea4e04230bc1be482ed95f0109"
+    },
+    {
+      "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+      "name": "Silver Wing",
+      "type": "ship-objective",
+      "sailingSymbols": 0,
+      "image": "/cards/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg",
+      "sha256": "4c85643cc81be4734c26b45f922fda52d6851ce4846b0996250bfbc1e974cc5d"
+    },
+    {
+      "code": "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
+      "name": "Corsair Seafarer",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/cac948bb-b3dc-423d-8082-340e2596d623.jpg",
+      "sha256": "181465a76bf0c1428b0325914a939e30050ec23ba636b1c501171faf122836b8"
+    },
+    {
+      "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+      "name": "Heading",
+      "type": "objective",
+      "sailingSymbols": 0,
+      "image": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.jpg",
+      "sha256": "e7c3df5e769546739f67fbc059747a769ed3c6ecfacd7a1ca4b921ae6183220f"
+    },
+    {
+      "code": "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
+      "name": "Vast Coastland",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/cf070c26-dd32-4ee8-bd6c-ffe9c011bd64.jpg",
+      "sha256": "113f5b11001b09b86b00e4a0f128db7d633586106cda00ebf2f736c58575d07a"
+    },
+    {
+      "code": "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
+      "name": "Rolling Seas",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/ec2f100d-22c8-4cc6-82d9-fb4f07446b0f.jpg",
+      "sha256": "7ae922e5d42033f07ecb7cf7a3e540b4e26d04368df888abbfd568d3422a67ac"
+    }
+  ]
+}

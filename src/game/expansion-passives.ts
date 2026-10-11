@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Realm from "./lost-realm-player";
 import { playerCardImmune } from "./card-immunity";
 import { khazadBookNoExhaust } from "./khazad-dum";
@@ -331,7 +332,8 @@ export function questExhausts(s: GameState, u: Unit) {
   if (pathOfNeed(s, u)) return false;
   if (marshPlayerNoQuestExhaust(s, u)) return false;
   const p = seatView(s, ownerOf(s, u));
-  if (u.code === "22028" && p.threat >= 40) return false;
+  if (u.code === "22028" && effectiveThreat(s, ownerOf(s, u)) >= 40)
+    return false;
   return !u.attachments.some(
     (a) =>
       !a.blanked &&
@@ -350,7 +352,7 @@ export const resourcePhaseBonus = (u: Unit) =>
     .length;
 export const singlePoolCard = (c: Card) => c.code === "12139";
 export function secrecyDiscount(s: GameState, c: Card) {
-  if (s.threat > 20) return 0;
+  if (effectiveThreat(s) > 20) return 0;
   return c.code === "04132"
     ? 4
     : ["04003", "04029", "04062", "04081", "04136"].includes(c.code)
@@ -367,7 +369,8 @@ export function expansionStats(s: GameState, u: Unit) {
     result.attack += [...p.heroes, ...p.allies].filter(
       (u) => u.damage > 0 && hasTrait(u, "Ent"),
     ).length;
-  if (u.code === "22028" && p.threat >= 40) result.attack += 2;
+  if (u.code === "22028" && effectiveThreat(s, ownerOf(s, u)) >= 40)
+    result.attack += 2;
   if (u.code === "02055" && u.committed) result.will += 2;
   for (const a of u.attachments) {
     if (a.blanked) continue;
@@ -414,8 +417,10 @@ export function expansionStats(s: GameState, u: Unit) {
       result.attack += u.attachments.filter(
         (x) => !x.blanked && restrictedAttachment(x.code),
       ).length;
-    if (a.code === "22083") result.attack += p.threat >= 40 ? 2 : 1;
-    if (a.code === "22138") result.defense += p.threat >= 40 ? 2 : 1;
+    if (a.code === "22083")
+      result.attack += effectiveThreat(s, ownerOf(s, u)) >= 40 ? 2 : 1;
+    if (a.code === "22138")
+      result.defense += effectiveThreat(s, ownerOf(s, u)) >= 40 ? 2 : 1;
   }
   for (const host of allCharacters(s)) {
     if (

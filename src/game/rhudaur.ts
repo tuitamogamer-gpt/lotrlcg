@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -33,7 +34,6 @@ import {
   ownerOf,
   playerOrder,
   seatName,
-  seatView,
 } from "./table";
 import { allQuestUnits, currentQuestUnit } from "./quest-state";
 import { addQuestProgress } from "./side-quests";
@@ -81,8 +81,8 @@ const samePhase = (a: string, b: string) =>
   a === b || [a, b].every((p) => ["quest", "staging"].includes(p));
 const highestThreat = (s: GameState) => {
   const players = playerOrder(s),
-    highest = Math.max(...players.map((p) => seatView(s, p).threat));
-  return players.filter((p) => seatView(s, p).threat === highest);
+    highest = Math.max(...players.map((p) => effectiveThreat(s, p)));
+  return players.filter((p) => effectiveThreat(s, p) === highest);
 };
 const controlledClue = (s: GameState, player: number) =>
   allCharacters(s).some(
@@ -547,7 +547,7 @@ export function rhudaurEncounter(s: GameState, code: string, replay = false) {
         fx("damage", { target: u.id, value: 1, player: ownerOf(s, u) }),
       ),
       ...playerOrder(s)
-        .filter((p) => seatView(s, p).threat >= 35)
+        .filter((p) => effectiveThreat(s, p) >= 35)
         .map((player) => fx("rhudaurYearsAttachments", { player })),
     );
   } else if (code === R.covenant)

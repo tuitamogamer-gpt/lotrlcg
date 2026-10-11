@@ -1,3 +1,4 @@
+import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
@@ -109,9 +110,7 @@ const affected = (u: Unit) => !playerCardImmune(u);
 const ready = (s: GameState, u: Unit) =>
   u.exhausted && affected(u) && !cannotReady(u, s);
 const enemies = (s: GameState) =>
-  [...s.staging, ...allEngaged(s)].filter(
-    (u) => playerUnitIsEnemy(u),
-  );
+  [...s.staging, ...allEngaged(s)].filter((u) => playerUnitIsEnemy(u));
 const marker = (s: GameState, key: string) =>
   playerOrder(s).some((p) => seatView(s, p).used.includes(key));
 const mark = (s: GameState, key: string) =>
@@ -175,7 +174,7 @@ export function angmarStats(s: GameState, u: Unit) {
       result.will += p.heroes.filter((h) => h.resources > 0).length;
     if (u.code === A.ranger && u.committed && !!selectedSideQuest(s))
       result.will += 2;
-    if (u.code === A.veteran && p.threat >= 40) {
+    if (u.code === A.veteran && effectiveThreat(s, ownerOf(s, u)) >= 40) {
       result.will++;
       result.attack++;
       result.defense++;
@@ -2226,10 +2225,10 @@ export function angmarDiscardTaken(s: GameState, index: number) {
 }
 export function angmarFavor(s: GameState, eliminationLevel = 50): boolean {
   const a = s.threatAttachments?.find((a) => a.code === A.favor && enabled(a));
-  if (!a || s.threat < eliminationLevel) return false;
+  if (!a || effectiveThreat(s) < eliminationLevel) return false;
   s.threatAttachments = s.threatAttachments!.filter((v) => v.id !== a.id);
   seatView(s, a.owner ?? activeSeat(s)).discard.push(a.code);
   reduceThreat(s, Math.max(0, s.threat - eliminationLevel + 5), A.favor);
   log(s, "Favor of the Valar prevents threat elimination.", "good");
-  return s.threat < eliminationLevel;
+  return effectiveThreat(s) < eliminationLevel;
 }
