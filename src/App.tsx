@@ -742,9 +742,10 @@ export default function App() {
   };
   const [initialDeckStorage] = useState(readDeckStorage);
   const observedDeckRaw = useRef(initialDeckStorage.raw);
-  const [decks, setDecksState] = useState<CustomDeck[]>(() =>
+  const [initialDecks] = useState<CustomDeck[]>(() =>
     recoverSavedDecks(game, initialDeckStorage.decks),
   );
+  const [decks, setDecksState] = useState<CustomDeck[]>(initialDecks);
   const [selectedDeck, setSelectedDeck] = useState(() => {
     const id =
       initialChoices?.selectedDeck ??
@@ -896,6 +897,17 @@ export default function App() {
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
+  useEffect(() => {
+    // Persist a genuinely missing saved fellowship without rewriting a shelf
+    // that was filtered, filled, or changed by another tab during startup.
+    if (
+      initialDeckStorage.issue === null &&
+      initialDecks.length > initialDeckStorage.decks.length &&
+      deckStorageProblem(initialDecks) === null &&
+      writeDecks(initialDecks, initialDeckStorage.raw)
+    )
+      observedDeckRaw.current = readDeckStorage().raw;
+  }, [initialDeckStorage, initialDecks]);
   useEffect(() => {
     if (initialDeckStorage.issue)
       notify(

@@ -21,7 +21,8 @@ const errors = [],
   entries = new Set(),
   checks = [],
   screenshots = [],
-  recoveryButtonBounds = [];
+  recoveryButtonBounds = [],
+  protectedCustomSaveMounts = [];
 const blockedExternalURLs = new Set(),
   blockedExternalReadDiagnostics = [];
 const browser = await chromium.launch({ headless: true });
@@ -210,6 +211,54 @@ try {
       );
       await checkpoint(p, "unsupported-shelf-keeps-unsaved-editor");
     }
+    activeCase = `${name}-shelf-with-existing-custom-save`;
+    const savedContext = await device({
+      [DECKS_KEY]: raw,
+      [ADVENTURE_SAVE_KEY]: custom,
+    });
+    const savedPage = await open(savedContext);
+    assert.equal(
+      await stored(savedPage, DECKS_KEY),
+      raw,
+      "recovering a custom save on mount preserves unreadable original bytes",
+    );
+    await savedPage.reload();
+    await savedPage.waitForFunction(
+      () => typeof window.render_game_to_text === "function",
+    );
+    assert.equal(
+      await stored(savedPage, DECKS_KEY),
+      raw,
+      "custom-save recovery on reload still preserves unreadable original bytes",
+    );
+    assert.match(
+      await savedPage.locator("#start-btn").innerText(),
+      /Continue adventure/,
+    );
+    await savedPage.locator("#start-btn").click();
+    const resumed = JSON.parse(await stored(savedPage, ADVENTURE_SAVE_KEY));
+    assert.ok(validateSave(resumed));
+    assert.equal(resumed.originalSeed, custom.originalSeed);
+    assert.deepEqual(resumed.customDeck, custom.customDeck);
+    assert.deepEqual(resumed.startingHeroes, custom.startingHeroes);
+    assert.equal(
+      await stored(savedPage, DECKS_KEY),
+      raw,
+      "resuming the original custom adventure cannot overwrite the protected shelf",
+    );
+    await capture(
+      savedPage,
+      dir,
+      `${name}-shelf-custom-save-resumes-with-original-data`,
+      screenshots,
+    );
+    protectedCustomSaveMounts.push({
+      shelf: name,
+      originalBytesPreservedOnMountReloadAndResume: true,
+      originalSeed: resumed.originalSeed,
+      originalCustomCardsAndHeroesRetained: true,
+    });
+    await savedContext.close();
     await c.close();
   }
 
@@ -506,6 +555,7 @@ try {
     checks,
     screenshots,
     recoveryButtonBounds,
+    protectedCustomSaveMounts,
     blockedExternalReadDiagnostics,
     reviewMode: "user-default",
     smoke: false,
@@ -534,6 +584,7 @@ try {
         checks,
         screenshots,
         recoveryButtonBounds,
+        protectedCustomSaveMounts,
         blockedExternalReadDiagnostics,
         entries: [...entries],
         artifactEvidence,
