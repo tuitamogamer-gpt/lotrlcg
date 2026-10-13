@@ -56,6 +56,21 @@ and the manifest records the correction file's canonical JSON hash. The six
 printed PASS corner labels survive in `corner_text`; they are not numeric
 victory points.
 
+Temple of the Deceived retains the pinned catalog, source recipes and
+preparation snapshot unchanged. Its promoted runtime data corrects Deeper
+into the Ruins from three copies to four: the original scan carries encounter
+index 19/31, the next card begins at 23/31, and the independent Hall of Beorn
+printing record confirms four copies. The runtime standard/easy encounter
+decks therefore contain 32/25 cards. Two rulesheet proxies remain reference
+records and are excluded from the runtime set-aside zone. The promoted grotto
+also removes an erroneous front-side immunity sentence that is absent from
+the original scan; its shared Uncharted Temple front remains immune. Profane
+Dead's printed conditional +3 attack shadow is also restored from its scan.
+Ceorl's printed Action prefix is restored during runtime registration while
+the canonical player snapshot retains the upstream text. The encounter
+corrections are scoped to `src/data/temple-encounter-cards.json` and
+`src/data/temple-recipes.json`. See [Temple sources](TEMPLE-SOURCES.md).
+
 ## Refresh and reproduce
 
 Live refresh:
@@ -82,7 +97,7 @@ All card identities, pack membership, required source fields, record quantities,
 
 ## Automation boundary
 
-Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 50 original standard/easy adventures and 528 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller and The Thing in the Depths. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
+Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 51 original standard/easy adventures and 537 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller, The Thing in the Depths and Temple of the Deceived. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
 
 The importer writes:
 

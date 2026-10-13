@@ -93,6 +93,8 @@ export interface Unit {
   flipped?: boolean;
   /** Cold from Angmar preserves printed keywords and traits while blanking abilities. */
   printedKeywordsPreserved?: boolean;
+  /** Revealed in Wrath preserves printed traits while blanking printed keywords. */
+  printedTraitsPreserved?: boolean;
   /** Actual resource spending, independent of transfers and forced losses. */
   resourcesSpentRound?: number;
   ignoreThreatRound?: number;
@@ -202,6 +204,7 @@ export type ScenarioId =
   | "raid-on-the-grey-havens"
   | "flight-of-the-stormcaller"
   | "the-thing-in-the-depths"
+  | "temple-of-the-deceived"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -325,6 +328,7 @@ export interface GameState {
   raidGreyHavens?: import("./raid-grey-havens-support").RaidGreyHavensState;
   stormcaller?: import("./stormcaller-support").StormcallerState;
   depths?: import("./depths-support").DepthsState;
+  temple?: import("./temple-support").TempleState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -489,6 +493,8 @@ export interface GameState {
   escapeTest?: EscapeTest;
   combat: {
     fateBottomOnAllyKill?: boolean;
+    /** Each independently resolved Furious Rainstorm shadow applies on a kill. */
+    templeRainOnKill?: number;
     voyageShiftOnCharacterKilled?: number;
     voyageShiftOnShipDamaged?: number;
     voyageExcessCopies?: number;

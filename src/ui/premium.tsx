@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "temple-of-the-deceived": {
+    name: "The Deceived Island",
+    detail: "Chart the lost paths to the temple's hidden entrance",
+  },
   "the-thing-in-the-depths": {
     name: "The Stormcaller's Deck",
     detail: "Free the ship from the creature's grasp",
@@ -248,6 +252,7 @@ export const PLAYMAT_CHOICES = [
   "raid-on-the-grey-havens",
   "flight-of-the-stormcaller",
   "the-thing-in-the-depths",
+  "temple-of-the-deceived",
   "shadow-and-flame",
 ] as const;
 

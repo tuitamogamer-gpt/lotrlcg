@@ -1,3 +1,6 @@
+import * as Temple from "./temple";
+import * as TemplePlayers from "./temple-player";
+import * as TempleEncounters from "./temple-encounters";
 import {
   afterPlayerAbility,
   resolvePlayerAbility,
@@ -558,6 +561,9 @@ function handleEffect(s: GameState, e: Effect) {
   if (StormPlayers.stormcallerEffect(s, e)) return;
   if (DepthsPlayers.depthsPlayerEffect(s, e)) return;
   if (Storm.stormcallerEffect(s, e)) return;
+  if (TemplePlayers.templePlayerEffect(s, e)) return;
+  if (TempleEncounters.templeEncounterEffect(s, e)) return;
+  if (Temple.templeEffect(s, e)) return;
   if (Depths.depthsEffect(s, e)) return;
   if (Fate.fateEffect(s, e)) return;
   if (Raid.raidEffect(s, e)) return;
@@ -760,6 +766,7 @@ function handleEffect(s: GameState, e: Effect) {
             prior.immediatePreviousShadowCancelsDamage,
           immediatePreviousShadowCancelsCombatDamage:
             prior.immediatePreviousShadowCancelsCombatDamage,
+          templeRainOnKill: prior.templeRainOnKill,
         });
       break;
     }
@@ -1090,6 +1097,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (
         u &&
         redhornCanMakeActive(u) &&
+        !Temple.templeCannotMakeActive(s, u) &&
         !Trials.trialsCannotMakeActive(s, u) &&
         !Tharbad.tharbadCannotMakeActive(u) &&
         !Etten.ettenTravelProblem(s, u) &&
@@ -1142,6 +1150,18 @@ function handleEffect(s: GameState, e: Effect) {
         carrockTravel(s, u);
         emynMuilTravel(s, u);
         deadMarshesTravel(s, u);
+      }
+      break;
+    case "templeTravelResponses":
+      if (s.temple && u && Temple.templeIsMapLocation(s, u)) {
+        longDarkPlayerTravelled(s, u);
+        Angmar.angmarTraveled(s);
+        enqueue(
+          s,
+          ...playerOrder(s).map((player) =>
+            fx("strengthOfWill", { target: u.id, player }),
+          ),
+        );
       }
       break;
     case "reshufflePlayer":
@@ -1583,6 +1603,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "phaseEnd":
       phaseEnd(s);
       Fate.fatePhaseEnd(s);
+
       if (s.phase === "refresh") {
         Trials.trialsRemoveEnemyTime(s);
         Chetwood.chetwoodRefreshEnd(s);
@@ -1632,9 +1653,23 @@ function handleEffect(s: GameState, e: Effect) {
       startPhase(s, "travel");
       Storm.stormcallerTravelStart(s);
       Depths.depthsTravelStart(s);
+      Temple.templeTravelStart(s);
       break;
     case "startEncounter":
       startPhase(s, "encounter");
+      {
+        const forced = TempleEncounters.templeEncounterStart(s);
+        if (forced.length > 1)
+          prepend(
+            s,
+            fx("fangornOrder", {
+              effects: forced,
+              text: "Choose the next beginning-of-Encounter Forced effect",
+              player: firstPlayer(s),
+            }),
+          );
+        else prepend(s, ...forced);
+      }
       returnMirkwoodEncounterStart(s);
       Catch.catchEncounterStart(s);
       globalEachSeat(s, () => {
@@ -1931,9 +1966,12 @@ function handleEffect(s: GameState, e: Effect) {
       eachArea(s, () =>
         rounds.push(fx("engagementRound", { player: firstPlayer(s) })),
       );
-      prepend(s, ...rounds);
+      prepend(s, ...rounds, fx("templeEngagementChecksComplete"));
       break;
     }
+    case "templeEngagementChecksComplete":
+      TemplePlayers.templePlayerAfterEngagementChecks(s);
+      break;
     case "automaticEngagement": {
       if (
         druadanPlayerNoEngagementChecks(s) ||
@@ -2197,6 +2235,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (e.flag) {
         const skipped = get(s, s.combat?.enemyId);
         if (skipped && !immediate) markEnemyAttack(s, skipped, attackPlayer);
+        if (completed)
+          TempleEncounters.templeAttackFinished(s, completed, true);
         if (completed) Depths.depthsAttackFinished(s, completed, true);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
@@ -2263,6 +2303,17 @@ function handleEffect(s: GameState, e: Effect) {
             enemyAddedToStaging(s, enemy);
           }
         }
+      }
+      if (completed) {
+        TempleEncounters.templeAttackFinished(s, completed);
+        if (!completed.redirectedToEnemy)
+          TemplePlayers.templePlayerAfterDefense(
+            s,
+            completed.enemyId,
+            completed.defenderIds ??
+              (completed.defenderId ? [completed.defenderId] : []),
+            attackPlayer,
+          );
       }
       finalRingDefenseFinished(s);
       for (const id of s.combat?.defenderIds ??
@@ -2423,11 +2474,23 @@ export function shadowResponse(s: GameState, code: string) {
   const watcher = roadRivendellCannotCancel(s)
     ? []
     : marshPlayerShadowOptions(s, code, !!shadowText);
-  if (eligible.length || brand.length || watcher.length || erkenbrand.length)
+  const templeOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : TemplePlayers.templePlayerShadowOptions(s, code, !!shadowText);
+  if (
+    eligible.length ||
+    brand.length ||
+    watcher.length ||
+    erkenbrand.length ||
+    templeOptions.length
+  )
     choose(
       s,
       "A shadow falls",
       [
+        ...templeOptions,
         ...brand,
         ...erkenbrand,
         ...watcher,
@@ -2480,6 +2543,8 @@ export function flush(s: GameState) {
       ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
+      TemplePlayers.templePlayerSharedEffect(effect) ||
+      TempleEncounters.templeEncounterSharedEffect(effect) ||
       (Depths.depthsSharedEffect(effect) &&
         !effect.kind.startsWith("depthsPlayer")) ||
       ["shadowResolved", "endRoundScenarioDone", "revealCard"].includes(

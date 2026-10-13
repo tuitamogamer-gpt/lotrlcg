@@ -1,3 +1,6 @@
+import * as TemplePlayers from "./temple-player";
+import * as TempleEncounters from "./temple-encounters";
+import * as Temple from "./temple";
 import * as Storm from "./stormcaller";
 import * as Depths from "./depths";
 import { stormcallerState, stormcallerStageInfo } from "./stormcaller-support";
@@ -252,7 +255,8 @@ export const cannotReady = (u: Unit, s?: GameState) =>
   watcherWaterCannotReady(u) ||
   Catch.catchCannotReady(u) ||
   (!!s &&
-    (Fate.fateCannotRefreshReady(s, u) ||
+    (TempleEncounters.templeCannotRefreshReady(s, u) ||
+      Fate.fateCannotRefreshReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -260,6 +264,7 @@ export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
 export const units = (s: GameState) => [
   ...(stormcallerState(s)?.area ?? []),
+  ...(s.temple?.outOfStaging ?? []),
   ...allCharacters(s),
   ...s.staging,
   ...allEngaged(s),
@@ -270,6 +275,7 @@ export const units = (s: GameState) => [
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
   ...(stormcallerState(s)?.area ?? []),
+  ...(s.temple?.outOfStaging ?? []),
   ...globalCharacters(s),
   ...globalEngaged(s),
   ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
@@ -505,6 +511,8 @@ export function stats(s: GameState, u: Unit) {
   const druadanScenarioBonus = druadanForestStats(s, u);
   const chetwoodBonus = Chetwood.chetwoodStats(s, u);
   const angmarBonus = Angmar.angmarStats(s, u);
+  const templePlayerBonus = TemplePlayers.templePlayerStats(s, u);
+  const templeEncounterBonus = TempleEncounters.templeEncounterStats(s, u);
   const result = {
     will: Math.max(
       0,
@@ -512,6 +520,8 @@ export function stats(s: GameState, u: Unit) {
         [
           chetwoodBonus.will,
           GreyPlayers.greyHavensStats(s, u).will,
+          templePlayerBonus.will,
+          templeEncounterBonus.will,
           depthsPlayerStats(s, u).will,
           Depths.depthsStats(s, u).will,
           Voyage.voyageStats(s, u).will,
@@ -558,6 +568,8 @@ export function stats(s: GameState, u: Unit) {
       : (namelessX ?? c.attack ?? 0) +
         chetwoodBonus.attack +
         GreyPlayers.greyHavensStats(s, u).attack +
+        templePlayerBonus.attack +
+        templeEncounterBonus.attack +
         depthsPlayerStats(s, u).attack +
         Depths.depthsStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
@@ -616,6 +628,8 @@ export function stats(s: GameState, u: Unit) {
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
             GreyPlayers.greyHavensStats(s, u).defense +
+            templePlayerBonus.defense +
+            templeEncounterBonus.defense +
             depthsPlayerStats(s, u).defense +
             Depths.depthsStats(s, u).defense +
             Voyage.voyageStats(s, u).defense +
@@ -796,6 +810,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Voyage.voyageThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
             Depths.depthsThreatBonus(s, u) +
+            TempleEncounters.templeEncounterStats(s, u).threat +
             Fate.fateThreatBonus(s, u) +
             Rhu.rhudaurThreatBonus(s, u) +
             Carn.carnThreatBonus(s, u) +
@@ -835,6 +850,7 @@ export const stagingThreat = (s: GameState) =>
   s.threatModifier +
   Voyage.voyageStagingThreat(s) +
   Fate.fateStagingThreat(s) +
+  TempleEncounters.templeEncounterThreat(s) +
   Dike.dikeStagingThreat(s) +
   Rhu.rhudaurStagingThreat(s) +
   Carn.carnStagingThreat(s) +
@@ -875,6 +891,7 @@ export const questStat = (s: GameState) =>
       druadanPlayerQuestStat(s)));
 
 export const locationQuest = (s: GameState, u: Unit) =>
+  Temple.templeLocationQuest(s, u) ??
   Depths.depthsLocationQuest(s, u) ??
   Fate.fateLocationQuest(s, u) ??
   MorgulQuest.morgulBridgeValue(s, u) ??
@@ -900,7 +917,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Gram.gramEngagementCost(s, u) +
       Etten.ettenEngagementModifier(s) +
       Carn.carnEngagementModifier(s, u) +
-      Voyage.voyageEngagementModifier(s, u),
+      Voyage.voyageEngagementModifier(s, u) +
+      TempleEncounters.templeEncounterEngagement(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
@@ -985,6 +1003,7 @@ export const canFight = (u: Unit) =>
   !watcherWaterCannotExhaust(u);
 
 export const objectiveFree = (s: GameState, u: Unit) =>
+  Temple.templeObjectiveFree(s, u) ??
   foundationsObjectiveFree(s, u) ??
   ((heirsObjectiveFree(s, u) ||
     stewardFearIsClue(u.code) ||

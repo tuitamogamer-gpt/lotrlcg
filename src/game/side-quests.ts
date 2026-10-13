@@ -21,6 +21,7 @@ import { angmarSideDefeated } from "./angmar-player";
 import { voyageProgress } from "./voyage-belegaer";
 import { stormcallerProgress } from "./stormcaller";
 import { fateQuestProgressBlocked } from "./fate-numenor";
+import { templeQuestProgress } from "./temple";
 import { raidQuestProgress } from "./raid-grey-havens";
 import type { Effect, GameState, Unit } from "./types";
 import { card, name } from "./cards";
@@ -109,6 +110,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = voyageProgress(s, placed, physical);
   placed = stormcallerProgress(s, placed, physical);
   if (placed <= 0) return;
+  if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;
   if (isMain && gramProgress(s, placed)) return;
   if (isMain) s.progress += placed;

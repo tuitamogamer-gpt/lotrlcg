@@ -42,6 +42,7 @@ import {
 } from "../game/quest-state";
 import { collectorAbilityAnyPlayer } from "../game/collector-player-cards";
 import { depthsPlayerAbilityAnyPlayer } from "../game/depths-player";
+import { templePlayerAbilityAnyPlayer } from "../game/temple-player";
 import { WATCHER_WATER } from "../game/watcher-water-support";
 
 // Presentation only: the engine remains the source of every count and action.
@@ -335,7 +336,13 @@ export function JourneyArea({
           <Compass size={12} />{" "}
           {active.length > 1 ? "ACTIVE LOCATIONS" : "ACTIVE LOCATION"}
         </div>
-        {active.length === 1 ? (
+        {s.temple ? (
+          <div className="location-slot">
+            <Compass size={25} weight="thin" />
+            <span>Island Map</span>
+            <small>Follow the active marker on the map.</small>
+          </div>
+        ) : active.length === 1 ? (
           <>
             {locationCard(active[0])}
             <span>
@@ -572,6 +579,7 @@ export function OtherFellowships({
                     (u) =>
                       collectorAbilityAnyPlayer(u.code) ||
                       depthsPlayerAbilityAnyPlayer(u.code) ||
+                      templePlayerAbilityAnyPlayer(u.code) ||
                       u.attachments.some(
                         (a) => a.code === WATCHER_WATER.wrapped,
                       ),
@@ -582,7 +590,8 @@ export function OtherFellowships({
                         .filter((a) =>
                           !a.id
                             ? collectorAbilityAnyPlayer(u.code) ||
-                              depthsPlayerAbilityAnyPlayer(u.code)
+                              depthsPlayerAbilityAnyPlayer(u.code) ||
+                              templePlayerAbilityAnyPlayer(u.code)
                             : u.attachments.some(
                                 (att) =>
                                   att.id === a.id &&

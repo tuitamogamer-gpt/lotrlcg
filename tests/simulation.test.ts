@@ -32,6 +32,11 @@ import { dikeIndestructible } from "../src/game/deadmens-dike";
 import { rhudaurIndestructible } from "../src/game/rhudaur";
 import { carnIndestructible } from "../src/game/carn-dum";
 import { depthsIndestructible } from "../src/game/depths";
+import {
+  assertTempleSaveRestoration,
+  templeSimulationObserver,
+} from "./temple-simulation-invariants";
+import { TEMPLE } from "../src/game/temple-support";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
 import { defendersFor, attackersFor } from "../src/game/table.ts";
@@ -175,6 +180,11 @@ function run(
     reviewMode,
     ...(playMode === "campaign" ? { campaign } : {}),
   });
+  const mapObserver =
+    scenarioId === "temple-of-the-deceived"
+      ? templeSimulationObserver()
+      : undefined;
+  mapObserver?.observe(s);
   let steps = 0;
   while (
     (s.status === "playing" || s.flow?.pending) &&
@@ -195,6 +205,7 @@ function run(
             ...STEWARD_CLUES,
             FOUNDATIONS.axe,
             FOUNDATIONS.helm,
+            TEMPLE.key,
           ].includes(objective?.code ?? "") ||
             (!h.exhausted &&
               !isSacked(h) &&
@@ -399,9 +410,12 @@ function run(
         scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
       )
     ) {
-      const restored = restoreSave(JSON.parse(JSON.stringify(s)));
+      const savedState = JSON.parse(JSON.stringify(s));
+      const restored = restoreSave(savedState);
       assert.ok(restored, `${scenarioId}: restore every action`);
+      if (mapObserver) assertTempleSaveRestoration(savedState, restored);
       s = restored;
+      mapObserver?.observe(s);
     }
     assert.ok(Number.isFinite(s.threat));
     assert.ok(s.heroes.every((h) => h.resources >= 0));

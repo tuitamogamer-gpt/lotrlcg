@@ -88,6 +88,18 @@ jobs:
       - run: npm ci
       - run: npm run test:depths-simulation
 
+  temple-simulation:
+    name: Temple review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:temple-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -112,6 +124,7 @@ jobs:
             raid-on-the-grey-havens,
             flight-of-the-stormcaller,
             the-thing-in-the-depths,
+            temple-of-the-deceived,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -147,6 +160,8 @@ jobs:
             suite: test:browser-stormcaller
           - group: depths
             suite: test:browser-depths
+          - group: temple
+            suite: test:browser-temple
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

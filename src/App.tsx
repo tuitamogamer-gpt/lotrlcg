@@ -11,6 +11,9 @@ import { CELEBRIMBOR } from "./game/celebrimbor-support";
 import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { DepthsScenarioState, DepthsGrappleSummary } from "./ui/depths-state";
+import { TempleMap } from "./ui/TempleMap";
+import { TEMPLE } from "./game/temple-support";
+import { templePrivateLookVisible } from "./game/temple";
 import { faceupShadowCards } from "./game/voice-isengard";
 import { AMON_DIN as A } from "./game/amon-din-support";
 import {
@@ -304,6 +307,7 @@ const objectiveClaimCode = (s: GameState, id: string) =>
     .flatMap((h) => h.attachments)
     .find((a) => a.id === id)?.code;
 const claimableObjectives: string[] = [
+  TEMPLE.key,
   FANGORN.mugash,
   ...OBJECTIVES,
   RHOS.athelas,
@@ -315,6 +319,7 @@ const claimableObjectives: string[] = [
   ...STEWARD_CLUES,
 ];
 const exhaustedClaimObjectives: string[] = [
+  TEMPLE.key,
   RHOS.athelas,
   KHAZAD.book,
   KHAZAD.tools,
@@ -327,9 +332,13 @@ const objectiveClaimExhausts = (s: GameState, id: string) =>
   s.staging.some((u) => u.id === id && u.code === FANGORN.mugash) ||
   exhaustedClaimObjectives.includes(objectiveClaimCode(s, id) ?? "");
 const objectiveClaimRestricted = (s: GameState, id: string) =>
-  ![RHOS.athelas, H.scroll, FANGORN.mugash, ...STEWARD_CLUES].includes(
-    objectiveClaimCode(s, id) ?? "",
-  );
+  ![
+    TEMPLE.key,
+    RHOS.athelas,
+    H.scroll,
+    FANGORN.mugash,
+    ...STEWARD_CLUES,
+  ].includes(objectiveClaimCode(s, id) ?? "");
 const objectiveClaimDescription = (s: GameState, id: string) => {
   const code = objectiveClaimCode(s, id);
   if (code === S.prisoner || code === S.scrap)
@@ -459,6 +468,19 @@ function CardDetail({
   onClose: () => void;
   action?: ReactNode;
 }) {
+  const companionFront = [TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(
+    c.code,
+  )
+    ? card(c.code.slice(0, -2))
+    : undefined;
+  if (companionFront)
+    c = {
+      ...c,
+      back_name: companionFront.name,
+      back_traits: companionFront.traits,
+      back_text: companionFront.text,
+      back_imagesrc: companionFront.imagesrc,
+    };
   const origin = cardProductInfo(c);
   const source = c.source_url ?? c.url;
   const printing = c as Card & {
@@ -469,14 +491,14 @@ function CardDetail({
     printing.position ?? (!c.code.startsWith("octgn:") ? c.code : undefined);
   const [reverse, setReverse] = useState(!!c.initialReverse);
   const shown = reverse
-    ? {
+    ? (companionFront ?? {
         ...c,
         name: c.back_name ?? c.name,
         traits: c.back_traits ?? c.traits,
         text: c.back_text ?? c.text,
         imagesrc: c.back_imagesrc ?? c.imagesrc,
         quest: c.back_quest ?? c.quest,
-      }
+      })
     : c;
   const otherName = reverse ? c.name : (c.back_name ?? "Reverse side");
   const otherTraits = reverse ? c.traits : c.back_traits;
@@ -521,41 +543,41 @@ function CardDetail({
         <div>
           <div className="card-detail-primary" data-card-primary-face>
             <div className="detail-type">
-              <Sphere sphere={c.sphere_code} />
-              {c.type_code} · {c.sphere_code}
+              <Sphere sphere={shown.sphere_code} />
+              {shown.type_code} · {shown.sphere_code}
             </div>
             <h3 data-card-primary-name>{shown.name}</h3>
             <p className="traits" data-card-primary-traits>
               {shown.traits}
             </p>
-            {(c.health !== undefined || c.printed_stats?.health) && (
+            {(shown.health !== undefined || shown.printed_stats?.health) && (
               <div className="detail-stats">
-                {["enemy", "ship-enemy"].includes(c.type_code) ? (
+                {["enemy", "ship-enemy"].includes(shown.type_code) ? (
                   <StatBadge
                     kind="threat"
-                    value={c.threat ?? c.printed_stats?.threat}
+                    value={shown.threat ?? shown.printed_stats?.threat}
                     caption
                   />
                 ) : (
                   <StatBadge
                     kind="willpower"
-                    value={c.willpower ?? c.printed_stats?.willpower}
+                    value={shown.willpower ?? shown.printed_stats?.willpower}
                     caption
                   />
                 )}
                 <StatBadge
                   kind="attack"
-                  value={c.attack ?? c.printed_stats?.attack}
+                  value={shown.attack ?? shown.printed_stats?.attack}
                   caption
                 />
                 <StatBadge
                   kind="defense"
-                  value={c.defense ?? c.printed_stats?.defense}
+                  value={shown.defense ?? shown.printed_stats?.defense}
                   caption
                 />
                 <StatBadge
                   kind="health"
-                  value={c.health ?? c.printed_stats?.health}
+                  value={shown.health ?? shown.printed_stats?.health}
                   caption
                 />
               </div>
@@ -565,7 +587,9 @@ function CardDetail({
                 {plain(shown.text) || "No additional abilities."}
               </p>
             )}
-            {c.shadow && <p className="shadow-text">{plain(c.shadow)}</p>}
+            {shown.shadow && (
+              <p className="shadow-text">{plain(shown.shadow)}</p>
+            )}
           </div>
           {otherText && (
             <div className="card-back-rules" data-card-other-face>
@@ -826,6 +850,10 @@ export default function App() {
         ? seats.flatMap((p) => p.heroes)
         : starter.heroes;
   const [detail, setDetail] = useState<Card | null>(null);
+  const templeViewer = game?.temple ? activeSeat(game) : undefined;
+  useEffect(() => {
+    setDetail(null);
+  }, [templeViewer]);
   const [recoveryImport, setRecoveryImport] = useState<RecoveryImport | null>(
     null,
   );
@@ -1495,7 +1523,12 @@ export default function App() {
     mobile.addEventListener("change", closeDesktopMenu);
     return () => mobile.removeEventListener("change", closeDesktopMenu);
   }, []);
-  const ordinaryStaging = game?.staging.filter((u) => !u.stormcallerArea) ?? [];
+  const ordinaryStaging =
+    game?.staging.filter(
+      (u) =>
+        !u.stormcallerArea &&
+        !game.temple?.map.some((cell) => cell.id === u.id),
+    ) ?? [];
   const renderStagingCard = (u: Unit) => {
     if (!game) return null;
     return (
@@ -2723,6 +2756,9 @@ export default function App() {
                     setShowPiles(true);
                   }}
                 />
+                {game.temple && (
+                  <TempleMap s={game} dispatch={dispatch} inspect={setDetail} />
+                )}
                 <div
                   className={`encounter-field ${allEngaged(game).length ? "has-engaged" : ""} ${game.assaultOsgiliath?.controlled.length ? "has-controlled" : ""} ${game.stormcaller ? "has-stormcaller" : ""}`}
                 >
@@ -2741,7 +2777,11 @@ export default function App() {
                       {!ordinaryStaging.length && (
                         <div className="empty-zone">
                           <Tree size={34} weight="thin" />
-                          <span>For a moment, the path is clear.</span>
+                          <span>
+                            {game.temple
+                              ? "Nearby locations are shown on the Island Map."
+                              : "For a moment, the path is clear."}
+                          </span>
                         </div>
                       )}
                     </motion.div>
@@ -3744,7 +3784,19 @@ export default function App() {
       )}
       {game && game.choice && !game.flow?.pending && page === "table" && (
         <ChoiceDialog
-          s={game}
+          s={
+            templePrivateLookVisible(game)
+              ? game
+              : {
+                  ...game,
+                  choice: {
+                    ...game.choice,
+                    options: game.choice.options.map(
+                      ({ code: _code, ...option }) => option,
+                    ),
+                  },
+                }
+          }
           choose={(id) => dispatch({ type: "CHOOSE", id })}
           inspect={setDetail}
         />
@@ -3756,7 +3808,10 @@ export default function App() {
           description={objectiveClaimDescription(game, claimId)}
         >
           <div className="decision-grid choice-list">
-            {game.heroes
+            {(game.temple
+              ? [...game.heroes, ...game.allies].filter(isHero)
+              : game.heroes
+            )
               .filter(
                 (h) =>
                   !objectiveClaimExhausts(game, claimId) ||

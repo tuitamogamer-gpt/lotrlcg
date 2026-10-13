@@ -1,0 +1,260 @@
+.redbook[data-playmat="temple-of-the-deceived"],
+.mat-temple-of-the-deceived {
+  --playmat-art: url("/art/premium/anduin.webp");
+  --mat-shade: #0827228a;
+  --mat-tint: #183a31;
+}
+
+.temple-map {
+  grid-column: 1 / -1;
+  order: -1;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 0 16px;
+  padding: 14px;
+  border: 1px solid #b68e4c57;
+  border-radius: 6px;
+  background: #0d251feb;
+  color: #e4d6b9;
+  font-size: 13px;
+}
+.temple-map-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 12px 24px;
+}
+.temple-map-header > div:first-child {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.temple-map h2 {
+  margin: 0 0 5px;
+  color: #f1dfb4;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+}
+.temple-map p {
+  margin: 0;
+  color: #e4d6b9;
+  line-height: 1.45;
+}
+.temple-active-summary {
+  display: grid;
+  flex: 0 1 240px;
+  min-width: 0;
+  gap: 3px;
+  padding: 9px 12px;
+  border-left: 3px solid #d9bc78;
+  background: #d9bc7810;
+  line-height: 1.4;
+}
+.temple-active-summary strong {
+  color: #f1dfb4;
+  overflow-wrap: anywhere;
+}
+.temple-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 12px 0 7px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.temple-legend-active,
+.temple-legend-staged {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.temple-legend-active::before,
+.temple-legend-staged::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #d9bc78;
+  border-radius: 2px;
+  background: #d9bc782b;
+}
+.temple-legend-staged::before {
+  border-color: #88bdb8;
+  background: #88bdb820;
+}
+.temple-map .temple-map-scroll-hint {
+  margin: 0 0 10px;
+  color: #b8c5b3;
+  font-size: 12px;
+}
+.temple-map-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border-radius: 4px;
+  padding: 3px 3px 10px;
+  scrollbar-color: #a08b5c #0b1e19;
+}
+.temple-map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(114px, 1fr));
+  min-width: 618px;
+  gap: 8px;
+}
+.temple-map-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #96ad943b;
+  border-radius: 5px;
+  background: #132e269e;
+}
+.temple-map-cell.is-staged {
+  border-color: #88bdb8b3;
+  background: #88bdb80e;
+}
+.temple-map-cell.is-active {
+  border: 2px solid #d9bc78;
+  padding: 6px;
+  box-shadow: 0 0 0 1px #d9bc782e;
+  background: #d9bc781a;
+}
+.temple-cell-position {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+  margin-bottom: 6px;
+  color: #b8c5b3;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.is-active .temple-cell-position {
+  color: #f1dfb4;
+}
+.is-staged .temple-cell-position {
+  color: #b5d7d2;
+}
+.temple-card-inspect {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 112px;
+  padding: 0;
+  border-radius: 4px;
+  background: transparent;
+}
+.temple-card-inspect img,
+.temple-card-inspect .art-fallback {
+  display: block;
+  width: 78px;
+  height: 112px;
+  max-width: 100%;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.temple-card-inspect .art-fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding: 6px;
+  background: #17372e;
+  font-size: 12px;
+  text-align: center;
+}
+.temple-cell-name {
+  display: block;
+  min-height: 2.5em;
+  margin: 7px 0 3px;
+  color: #f1dfb4;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.temple-cell-progress {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.temple-map-action {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin: 4px 0 0;
+  padding: 7px 5px;
+  border: 1px solid #b68e4c65;
+  border-radius: 4px;
+  background: #365344;
+  color: #f1dfb4;
+  font-size: 12px;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.temple-map-action:disabled {
+  background: #17342a;
+  opacity: 0.62;
+}
+.temple-looked-inspect {
+  background: #263a36;
+  border-color: #88bdb869;
+  color: #d4e5df;
+}
+.temple-map button:focus-visible,
+.temple-map-scroll:focus-visible {
+  outline: 2px solid #f3d28a;
+  outline-offset: 2px;
+}
+@media (min-width: 1100px) {
+  .redbook .table-page.card-table .gameboard:has(> .temple-map) {
+    grid-template-areas:
+      "journey encounter encounter-deck"
+      "journey fellowship player-deck"
+      "temple temple temple"
+      "hand hand hand";
+    /* Scrollable card zones need explicit minima in the bounded playmat. */
+    grid-template-rows: minmax(320px, auto) minmax(400px, auto) auto auto;
+    align-content: start;
+    overflow-y: auto;
+  }
+  .redbook .gameboard > .temple-map {
+    grid-area: temple;
+  }
+  .redbook .gameboard:has(> .temple-map) .encounter-zone,
+  .redbook .gameboard:has(> .temple-map) .engaged-zone,
+  .redbook .gameboard:has(> .temple-map) .fellowship-zone {
+    container-type: inline-size;
+  }
+}
+@media (max-width: 560px) {
+  .temple-map {
+    margin-bottom: 12px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .temple-map-header {
+    gap: 10px;
+  }
+  .temple-active-summary {
+    flex-basis: 100%;
+  }
+  .temple-map h2 {
+    font-size: 20px;
+  }
+  .temple-map-grid {
+    gap: 7px;
+  }
+  .temple-card-inspect {
+    min-height: 84px;
+  }
+  .temple-card-inspect img,
+  .temple-card-inspect .art-fallback {
+    width: 59px;
+    height: 84px;
+  }
+}

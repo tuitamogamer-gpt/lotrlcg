@@ -1,3 +1,6 @@
+import * as TemplePlayers from "./temple-player";
+import * as TempleEncounters from "./temple-encounters";
+import * as Temple from "./temple";
 import * as Raid from "./raid-grey-havens";
 import * as Storm from "./stormcaller";
 import * as Depths from "./depths";
@@ -453,6 +456,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
 export function enemyAddedToStaging(s: GameState, u: Unit) {
+  TemplePlayers.templePlayerEnemyEntered(s, u);
   Weather.weatherOrcAdded(s, u);
   Rhudaur.rhudaurEnemyAdded(s, u);
   amonPlayerEnemyAddedToStaging(s, u);
@@ -472,6 +476,7 @@ export function charactersCommitted(
   );
   shadowFlameCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
+  TemplePlayers.templePlayerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
   dwarfCharactersCommitted(s, actual);
   elfCharactersCommitted(s, actual);
@@ -711,6 +716,8 @@ export function check(s: GameState) {
   Fate.fateCheck(s);
   Raid.raidCheck(s);
   Depths.depthsCheck(s);
+  Temple.templeCheck(s);
+  TempleEncounters.templeEncounterCheck(s);
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
   finalRingFollowFirst(s);
@@ -820,6 +827,7 @@ export function check(s: GameState) {
       for (const host of [
         ...s.staging,
         ...(s.stormcaller?.area ?? []),
+        ...(s.temple?.outOfStaging ?? []),
         ...allEngaged(s),
         ...allActiveLocations(s),
         ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
@@ -855,6 +863,10 @@ export function check(s: GameState) {
       const leavingCharacters = [...s.heroes, ...s.allies];
       for (const u of leavingCharacters) {
         for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
+        if (TempleEncounters.templeCompanionRemoved(s, u)) {
+          seatView(s, u.owner ?? i).removed.push(u.code);
+          continue;
+        }
         (hasEncounterKeyword(card(u.code))
           ? seatView(s, u.owner ?? i).removed
           : ["objective-ally", "ship-objective"].includes(
@@ -962,6 +974,8 @@ export function check(s: GameState) {
   } else {
     Fate.fateCheck(s);
     Depths.depthsCheck(s);
+    Temple.templeCheck(s);
+    TempleEncounters.templeEncounterCheck(s);
     deadMarshesCheck(s);
     // Elimination can remove the final Clue as well as ordinary damage/discard.
     if (
@@ -991,6 +1005,7 @@ export function check(s: GameState) {
     }
     followFirstPlayer(s);
     Depths.depthsFirstPlayerChanged(s);
+    TempleEncounters.templeFirstPlayerChanged(s);
     redhornFollowFirstPlayer(s);
     roadRivendellFollowFirstPlayer(s);
     longDarkCheck(s);
@@ -1240,6 +1255,7 @@ export function damage(
     Dread.dreadCharacterDestroyed(s, u, context);
     Rhudaur.rhudaurCharacterDestroyed(s, u, context);
     Carn.carnCharacterDestroyed(s, u, context);
+    TempleEncounters.templeCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1259,6 +1275,7 @@ export function discardAttachment(
   if (u.id.startsWith("quest:"))
     (s.questAttachments ??= {})[u.code] = u.attachments;
   syncAttachmentText(s);
+  if (Temple.templeAttachmentLeaves(s, u, a)) return;
   if (Dread.dreadAttachmentLeaves(s, u, a, leaving)) return;
   if (Rhudaur.rhudaurAttachmentLeaves(s, u, a)) return;
   if (Celebrimbor.celebrimborAttachmentLeaves(s, u, a, leaving)) return;
@@ -1297,6 +1314,7 @@ export function characterLeftPlay(
   byCardEffect = false,
   lastKnownType = unitType(u),
 ) {
+  TempleEncounters.templeCharacterLeft(s, u, destination);
   Fate.fateCharacterLeft(s, u, destination);
   Gram.gramCardLeaves(s, u);
   Dread.dreadCharacterLeft(s, u, destination);
@@ -1423,8 +1441,10 @@ export function destroy(
   Storm.stormcallerAreaLeft(s, u);
   Storm.stormcallerCharacterLeaves(s, u, destruction);
   Depths.depthsCharacterLeaves(s, u, destruction, lastKnownThreat);
+  TempleEncounters.templeCharacterLeaves(s, u);
   selectSeat(s, stagingPlayer ?? ownerOf(s, u));
-  if (hasEncounterKeyword(c)) destination = "removed";
+  if (TempleEncounters.templeCompanionRemoved(s, u) || hasEncounterKeyword(c))
+    destination = "removed";
   if (
     destruction &&
     ["ally", "objective-ally", "ship-objective", "hero"].includes(c.type_code)
@@ -1506,6 +1526,8 @@ export function destroy(
     )
       if (!Voyage.voyageCorsairDiscard(s, u.code))
         s.encounterDiscard.push(u.code);
+    if (destruction)
+      TempleEncounters.templeEnemyDestroyed(s, u, wasEngaged, lastKnownThreat);
     if (destruction) Depths.depthsEnemyDestroyed(s, u, lastKnownThreat);
     if (s.scenarioId === "the-thing-in-the-depths" && s.status !== "playing") {
       syncSeat(s);
@@ -1613,6 +1635,10 @@ export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 /** Discard a physical location without exploring it or claiming its victory points. */
 export function discardLocation(s: GameState, u: Unit) {
   requireRule(
+    !Temple.templeCannotLeave(s, u),
+    "Island Map locations cannot be discarded or moved.",
+  );
+  requireRule(
     !playerCardImmune(u),
     "This location is immune to player card effects.",
   );
@@ -1635,7 +1661,20 @@ export function discardLocation(s: GameState, u: Unit) {
   log(s, `${name(u)} is discarded.`);
 }
 
+/** Exploration on the Island Map keeps the physical location and attachments. */
+export function templeMapLocationExplored(s: GameState, u: Unit) {
+  if (!s.temple || !Temple.templeIsMapLocation(s, u)) return;
+  const attachments = [...u.attachments];
+  heirsPlayerLocationExplored(s, u, undefined);
+  Angmar.angmarLocationExplored(s, u, undefined, attachments, true);
+  ringMakerLocationExplored(s);
+  rhosgobelLocationExplored(s, u);
+  rhosgobelExplored(s, u);
+  returnMirkwoodExplored(s, u);
+}
+
 export function progressLocation(s: GameState, u: Unit, value: number) {
+  if (Temple.templeProgressLocation(s, u, value)) return;
   if (Trials.trialsRedirectProgress(s, value, u)) return;
   if (Raid.raidLocationProgressBlocked(s, u)) return;
   if (Dread.dreadLocationProgressBlocked(s, u)) return;
@@ -1841,6 +1880,7 @@ export function progress(
     addCurrentQuestProgress(s, n);
     return;
   }
+  if (Temple.templeQuestProgress(s, n)) return;
   if (Fate.fateQuestProgressBlocked(s)) return;
   if (Depths.depthsQuestProgressBlocked(s)) return;
   if (Raid.raidQuestProgress(s, n)) return;
@@ -1904,6 +1944,7 @@ export function advanceQuest(s: GameState) {
   )
     return;
   if (Raid.raidAdvance(s)) return;
+  if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
   if (Storm.stormcallerAdvance(s)) return;
   if (Voyage.voyageAdvance(s)) return;
@@ -2015,6 +2056,8 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
+  TemplePlayers.templePlayerPhaseEnd(s);
+  TempleEncounters.templeEncounterPhaseEnd(s);
   eachArea(s, () => Angmar.angmarPhaseEnd(s));
   const bloodEffects: Effect[] = [];
   eachArea(s, () => bloodEffects.push(...bloodPlayerPhaseEndEffects(s)));
@@ -2293,6 +2336,8 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Fate.fateEngaged(s, u);
   Raid.raidEngaged(s, u);
   Depths.depthsEngaged(s, u);
+  TemplePlayers.templePlayerEngaged(s, u);
+  TempleEncounters.templeEngaged(s, u);
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
   Fords.fordsEngaged(s, u);
@@ -2515,7 +2560,8 @@ export function resolveReveal(
       : (c.text ?? "");
   const doomed = /Doomed (\d+)/.exec(revealText);
   const doomedAmount =
-    Number(doomed?.[1] ?? 0) +
+    (TempleEncounters.templePrintedDoomed(s, code) ??
+      Number(doomed?.[1] ?? 0)) +
     Etten.ettenRevealDoomed(s, code) +
     Rhudaur.rhudaurRevealDoomed(s, code);
   if (doomedAmount && !doomedResolved) {
@@ -2807,6 +2853,7 @@ export function placeEncounter(
     return;
   }
   if (Raid.raidEncounter(s, code)) return;
+  if (TempleEncounters.templeEncounter(s, code)) return;
   if (Depths.depthsEncounter(s, code)) return;
   if (Storm.stormcallerEncounter(s, code)) return;
   if (Voyage.voyageEncounter(s, code)) return;
@@ -3338,6 +3385,7 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (TempleEncounters.templeShadow(s, code)) return;
   if (Depths.depthsShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

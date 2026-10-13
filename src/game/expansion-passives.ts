@@ -36,6 +36,7 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "12059": { restricted: 1 },
   "08088": {
     traits: ["Silvan"],
     requiresKeyword: "Ranged",
@@ -167,7 +168,7 @@ export function effectiveTraits(u: Unit): string[] {
   const c = card(u.code) as Card & { back_traits?: string };
   return [
     ...new Set([
-      ...(u.blanked && !u.printedKeywordsPreserved
+      ...(u.blanked && !u.printedKeywordsPreserved && !u.printedTraitsPreserved
         ? ""
         : u.flipped
           ? (c.back_traits ?? c.traits ?? "")

@@ -1,4 +1,5 @@
 import type { Effect, GameState, Option, Unit } from "./types";
+import { templeCannotSearch } from "./temple-encounters";
 import type { DamageContext } from "./damage-context";
 import { encodeDamageContext } from "./damage-context";
 import type { LeaveDestination } from "./mirkwood-player-cards";
@@ -101,6 +102,7 @@ export const fateStagingThreat = (s: GameState) =>
     : 0;
 export const fateCannotDraw = (s: GameState) => active(s, F.shrine);
 export const fateCannotSearch = (s: GameState, player = activeSeat(s)) =>
+  templeCannotSearch(s, player) ||
   active(s, F.shrine) ||
   (isFate(s) &&
     seatView(s, player).engaged.some(
