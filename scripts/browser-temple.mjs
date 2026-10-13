@@ -36,6 +36,10 @@ import {
   settle,
 } from "./browser-angmar-helpers.mjs";
 
+const sourceScriptSha256 = crypto
+  .createHash("sha256")
+  .update(await fs.readFile(new URL(import.meta.url)))
+  .digest("hex");
 const dir = "output/temple-scenario";
 await fs.mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true });
@@ -59,6 +63,42 @@ async function checkpoint(p, label, width) {
       ),
   );
   await reviewedState(p);
+  if (width >= 1100) {
+    const geometry = await p.evaluate(() => {
+      const box = (selector) => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const r = element.getBoundingClientRect();
+        return { top: r.top, bottom: r.bottom, height: r.height };
+      };
+      return {
+        quest: box(".gameboard > .journey-area"),
+        encounter: box(".gameboard > .encounter-field"),
+        fellowship: box(".gameboard > .fellowship-zone"),
+        map: box(".gameboard > .temple-map"),
+        hand: box(".gameboard > .hand-zone"),
+      };
+    });
+    for (const key of ["quest", "encounter", "fellowship"])
+      assert.ok(
+        geometry[key]?.height >= 200,
+        `${label}: ${key} has space for actual card art and controls`,
+      );
+    assert.ok(
+      geometry.map.top >=
+        Math.max(
+          geometry.quest.bottom,
+          geometry.encounter.bottom,
+          geometry.fellowship.bottom,
+        ) -
+          1,
+      `${label}: map never overlays the quest, enemy or fellowship areas`,
+    );
+    assert.ok(
+      geometry.hand.top >= geometry.map.bottom - 1,
+      `${label}: the hand never overlays the island map`,
+    );
+  }
   await capture(p, dir, `${label}-${width}`, screenshots);
   checks.push(`${label}-${width}`);
   console.log(`PASS ${label} @ ${width}`);
@@ -346,6 +386,23 @@ try {
     assert.equal(s.temple.victoryEnemies[0].id, guardian.id);
     assert.ok(s.victoryCards.includes(T.guardian));
     assert.equal(s.victory, 4);
+    // The unguarded encounter objective still needs a player to claim it
+    // before its exhaustion can pay a Temple's travel cost.
+    const temple = F.cell(s, 1, 4);
+    const unclaimedFrom = F.setActive(s, T.cursed, 1, 3);
+    unclaimedFrom.progress = locationQuest(s, unclaimedFrom);
+    F.setFace(s, temple.id, T.halls, true);
+    s.phase = "travel";
+    await load(page, s);
+    const templeTravel = tile(page, temple.id).locator(".temple-map-travel");
+    assert.equal((await saved(page)).phase, "travel");
+    assert.equal(s.temple.travelUsed, false);
+    assert.equal(unclaimedFrom.progress, locationQuest(s, unclaimedFrom));
+    assert.equal(temple.code, T.temple);
+    assert.ok(s.staging.some((u) => u.id === temple.id));
+    assert.equal(get(s, key.id).exhausted, false);
+    assert.equal(await templeTravel.isDisabled(), true);
+    assert.match(await templeTravel.getAttribute("title"), /claimed|control/i);
     await checkpoint(page, "actual-guardian-defeat-releases-key", width);
     await boardCard(page, key.id)
       .getByRole("button", { name: "Claim · Exhaust hero", exact: true })
@@ -358,12 +415,12 @@ try {
     s = await saved(page);
     assert.ok(get(s, claimer.id).attachments.some((a) => a.id === key.id));
     assert.equal(get(s, claimer.id).exhausted, true);
+    assert.equal(await templeTravel.isEnabled(), true);
     await checkpoint(page, "claim-key-exhausts-ready-hero", width);
     // Subsequent legal planning window: both physical Key and hero are ready.
     s.phase = "planning";
     get(s, claimer.id).exhausted = false;
     get(s, claimer.id).resources = 3;
-    const temple = F.cell(s, 1, 4);
     await load(page, s);
     await boardCard(page, claimer.id)
       .getByRole("button", { name: /Exhaust Key and hero/ })
@@ -473,12 +530,12 @@ try {
     s.activeLocation.progress = 3;
     const allocation = F.cell(s, 1, 2);
     s.phase = "staging";
-    s.queue = [fx("resolveQuestResult")];
+    s.queue = [];
     s.heroes[0].committed = true;
     s.heroes[0].tempWill = 30;
     s.committedIds = [s.heroes[0].id];
     await load(page, s);
-    await reviewedState(page);
+    await next(page);
     s = await saved(page);
     assert.match(s.choice.title, /Place .* progress/);
     await choose(page, `${allocation.id}:4`);
@@ -496,11 +553,12 @@ try {
     const grotto = F.setActive(s, T.grotto, 1, 4);
     grotto.progress = 7;
     s.phase = "staging";
-    s.queue = [fx("resolveQuestResult")];
+    s.queue = [];
     s.heroes[0].committed = true;
     s.heroes[0].tempWill = 40;
     s.committedIds = [s.heroes[0].id];
     await load(page, s);
+    await next(page);
     s = await settle(page);
     assert.equal(s.status, "won");
     assert.ok(
@@ -660,6 +718,8 @@ try {
   );
   await artPage.close();
   await report(dir, {
+    smoke: false,
+    sourceScriptSha256,
     errors,
     screenshots,
     entries,
@@ -675,6 +735,8 @@ try {
     `${dir}/failure.json`,
     JSON.stringify(
       {
+        smoke: false,
+        sourceScriptSha256,
         error: String(error),
         stack: error.stack,
         checks,

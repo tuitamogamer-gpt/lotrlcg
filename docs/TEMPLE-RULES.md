@@ -55,8 +55,13 @@ previously explored locations may be revisited.
   gains the Action to exhaust a hero, claim the Key and attach it to that hero.
   Its other Action exhausts both Key and attached hero, and spends three
   resources from that hero's pool, to look at the facedown side of a Temple.
-  Paying a Temple's Travel cost exhausts only the Key. The attachment and hero
-  have separate ready/exhaust states (FAQ 1.12).
+  Paying a Temple's Travel cost requires a player-controlled, ready Key and
+  exhausts only the Key; its attached hero may already be exhausted. Another
+  living player's claimed Key can pay this group travel cost. An unguarded but
+  unclaimed Key remains encounter-controlled and cannot pay the cost (Rules
+  Reference, Costs p. 5 and Objectives p. 12; FAQ 1.17). If its hero leaves play,
+  the same Key returns to staging unclaimed and retains its exhaustion state.
+  The attachment and hero have separate ready/exhaust states (FAQ 1.12).
 - **Temple Guardian:** unique Undead, threat X equal to player count,
   engagement 50, attack 6, defense 4, ten hit points and Victory 4. It is immune
   to player-card effects and cannot be optionally engaged. Cursed Temple being

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
 import {
@@ -27,6 +28,9 @@ import { angmarSyncSwordThain } from "../src/game/angmar-player.ts";
 import { THARBAD } from "../src/game/tharbad-support.ts";
 import { TEMPLE as T } from "../src/game/temple-support.ts";
 import { reviewedState } from "./browser-review-helpers.mjs";
+const sourceScriptSha256 = createHash("sha256")
+  .update(await fs.readFile(new URL(import.meta.url)))
+  .digest("hex");
 const url = process.env.GAME_URL ?? "http://127.0.0.1:5178";
 process.env.GAME_URL = url;
 const { saved, resume, choose, settle, next, context, capture, report } =
@@ -475,6 +479,7 @@ try {
     checks,
     reviewMode: "all",
     smoke: false,
+    sourceScriptSha256,
   });
   console.log(
     `Temple players: ${screenshots.length} checkpoints passed (${url}).`,
@@ -492,6 +497,7 @@ try {
         screenshots,
         failure: String(error),
         failureScreenshot,
+        sourceScriptSha256,
         stack: error.stack,
         lastState:
           activePage && !activePage.isClosed()

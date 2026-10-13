@@ -211,13 +211,14 @@
   outline-offset: 2px;
 }
 @media (min-width: 1100px) {
-  .redbook .gameboard:has(> .temple-map) {
+  .redbook .table-page.card-table .gameboard:has(> .temple-map) {
     grid-template-areas:
       "journey encounter encounter-deck"
       "journey fellowship player-deck"
       "temple temple temple"
       "hand hand hand";
-    grid-template-rows: auto auto auto auto;
+    /* Scrollable card zones need explicit minima in the bounded playmat. */
+    grid-template-rows: minmax(320px, auto) minmax(400px, auto) auto auto;
     align-content: start;
     overflow-y: auto;
   }

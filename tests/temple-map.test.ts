@@ -226,6 +226,63 @@ test("Temple guarded Gate Key cannot pay travel cost; claim preserves ID and cha
   assert.ok(validateSave(s));
 });
 
+test("Temple travel requires a player-controlled Key, including after its claimed hero dies", () => {
+  let s = base(2);
+  const active = setActive(s, T.caverns, 1, 3);
+  const destination = setFace(s, cell(s, 1, 4).id, T.halls, true);
+  s.phase = "travel";
+  active.progress = locationQuest(s, active);
+  const guardian = s.staging.find((u) => u.code === T.guardian)!;
+  damage(s, guardian.id, 10);
+  const key = s.staging.find((u) => u.code === T.key)!;
+  assert.equal(key.exhausted, false);
+  assert.throws(
+    () => applyAction(reload(s), { type: "TRAVEL", id: destination.id }),
+    /claimed by a player/,
+    "destroying the guard does not give a player control of the unclaimed Key",
+  );
+  assert.ok(!templeTravelCandidates(s).some((u) => u.id === destination.id));
+
+  selectSeat(s, 1);
+  s.table!.turn = 1;
+  const heroId = s.heroes[0].id;
+  s = applyAction(reload(s), { type: "CLAIM", id: key.id, heroId });
+  assert.equal(s.heroes[0].exhausted, true);
+  selectSeat(s, 0);
+  s.table!.turn = 0;
+  assert.ok(
+    templeTravelCandidates(s).some((u) => u.id === destination.id),
+    "another seat's claimed Key can pay group travel while its hero is exhausted",
+  );
+  s = settle(applyAction(reload(s), { type: "TRAVEL", id: destination.id }));
+  assert.equal(s.activeLocation!.id, destination.id);
+  assert.equal(
+    seatView(s, 1)
+      .heroes.find((u) => u.id === heroId)!
+      .attachments.find((a) => a.id === key.id)!.exhausted,
+    true,
+  );
+  damage(s, heroId, 100);
+  const releasedKey = s.staging.find((u) => u.code === T.key)!;
+  assert.equal(releasedKey.id, key.id);
+  assert.equal(releasedKey.exhausted, true);
+  assert.ok(!s.encounterDiscard.includes(T.key));
+
+  s.queue = [fx("startTravel")];
+  flush(s);
+  s.activeLocation!.progress = locationQuest(s, s.activeLocation!);
+  releasedKey.exhausted = false; // A later ready window isolates the control requirement.
+  const nextTemple = cell(s, 0, 4);
+  assert.equal(nextTemple.code, T.temple);
+  assert.throws(
+    () => applyAction(reload(s), { type: "TRAVEL", id: nextTemple.id }),
+    /claimed by a player/,
+    "a released unclaimed Key cannot pay again, even when ready",
+  );
+  assert.ok(!templeTravelCandidates(s).some((u) => u.id === nextTemple.id));
+  assert.ok(validateSave(s));
+});
+
 test("Temple eighth Grotto progress wins immediately when not active, including a player card", () => {
   let s = base();
   setActive(s, T.flooded, 1, 3);
@@ -404,6 +461,7 @@ test("Temple remote Gate Key action pays its own hero, reveals privately and pre
   );
   assert.equal(s.staging.filter((u) => u.code === T.key).length, 1);
   assert.equal(s.staging.find((u) => u.code === T.key)!.id, key.id);
+  assert.equal(s.staging.find((u) => u.code === T.key)!.exhausted, true);
   assert.ok(!s.encounterDiscard.includes(T.key));
   assert.ok(validateSave(s));
 });

@@ -26,7 +26,13 @@ and Nightmare sources remain separate.
   and [official FAQ 1.9](https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/lotr_faq_19.pdf),
   SHA-256 `a82b0e7e1fe27d942eaeae9426e6821ccc8157dad9a424e70d2f5bafa604e7d9`,
   supply the ordinary rules around objectives, responses, progress and timing.
-  Relevant FAQ clauses are 1.07, 1.08, 1.12, 1.25, 1.27, 1.29, 1.37 and 1.38.
+  Relevant FAQ clauses are 1.07, 1.08, 1.12, 1.17, 1.25, 1.27, 1.29, 1.37 and
+  1.38. Costs (Rules Reference p. 5) require payment using cards or game
+  elements controlled by the paying player. Objectives (p. 12) remain under
+  encounter-deck control until claimed. FAQ 1.17 confirms that an unguarded
+  objective can remain unclaimed and that returning to staging restores
+  unclaimed status. MEC50 gives no exception for the Gate Key's Temple Travel
+  cost: the Key must first be claimed and attached to a player's hero.
   FAQ 1.9 contains no named Temple, Déorwine, Ceorl or Ered Luin Miner erratum.
 
 The pinned references remain byte-for-byte unchanged. Their SHA-256 values are:

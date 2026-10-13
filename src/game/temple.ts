@@ -238,13 +238,8 @@ export function templeTravelProblem(s: GameState, u: Unit): string | null {
     return "Choose an adjacent staging location, or a location up to three steps from Winding Caverns.";
   if (!u.blanked && u.code === T.temple) {
     const key = keyInPlay(s);
-    if (
-      !key ||
-      key.card.exhausted ||
-      key.card.blanked ||
-      (!key.hero && !templeObjectiveFree(s, key.card as Unit))
-    )
-      return "The Gate Key must be in play and ready to enter an Uncharted Temple.";
+    if (!key || !key.hero || key.card.exhausted || key.card.blanked)
+      return "The Gate Key must be claimed by a player and ready to enter an Uncharted Temple.";
   }
   return null;
 }
