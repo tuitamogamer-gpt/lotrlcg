@@ -1,3 +1,5 @@
+import { removeFromQuest } from "./board";
+import { encounterCharacterEntered } from "./encounter-character-uniqueness";
 import type { Card, Effect, GameState, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { encodeDamageContext } from "./damage-context";
@@ -419,6 +421,8 @@ export function drownedEffect(s: GameState, e: Effect) {
         ally.owner = p;
         ally.controller = p;
         forOwner(s, p, () => s.allies.push(ally));
+        encounterCharacterEntered(s, ally);
+        if (s.status !== "playing") return true;
       }
       for (let i = 0; i < (ps.length >= 3 ? 3 : 2); i++) drownedAddGrotto(s);
       q.initialized = true;
@@ -717,7 +721,7 @@ export function drownedEffect(s: GameState, e: Effect) {
     }
     case "drownedRemoveQuester":
       if (u?.committed) {
-        u.committed = false;
+        removeFromQuest(s, u);
         seatView(s, ownerOf(s, u)).committedIds = seatView(
           s,
           ownerOf(s, u),

@@ -1,3 +1,4 @@
+import { cobasCanAttackEnemy } from "./cobas";
 import * as Drowned from "./drowned";
 import { voyageCanAttackEnemy } from "./voyage-belegaer";
 import { fateLoseRanged } from "./fate-numenor";
@@ -303,6 +304,7 @@ export const attackersFor = (
       longDarkCanAttack(s, enemy) &&
       !Drowned.drownedCannotAttack(s) &&
       shipCanAttack(enemy, u) &&
+      cobasCanAttackEnemy(s, enemy, u) &&
       voyageCanAttackEnemy(s, enemy, u) &&
       canFight(u) &&
       khazadCanAttack(u) &&

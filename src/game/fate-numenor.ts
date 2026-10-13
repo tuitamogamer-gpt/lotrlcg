@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import * as DrownedCompanions from "./drowned-companions";
 import type { Effect, GameState, Option, Unit } from "./types";
 import { templeCannotSearch } from "./temple-encounters";
@@ -848,7 +849,7 @@ export function fateEffect(s: GameState, e: Effect) {
     case "fateWanderingRemove":
       if (u?.committed) {
         const value = stats(s, u).will;
-        u.committed = false;
+        removeFromQuest(s, u);
         prepend(
           s,
           fx("fateWandering", {

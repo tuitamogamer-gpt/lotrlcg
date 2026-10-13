@@ -77,7 +77,12 @@
     "test:drowned-players": "node --import tsx scripts/browser-drowned-players.mjs",
     "test:browser-drowned": "npm run test:drowned-quests && npm run test:drowned-players",
     "test:drowned-simulation": "node --import tsx --test tests/drowned-simulation.test.ts",
-    "test:drowned-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-drowned-ruins normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:drowned-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-drowned-ruins normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:cobas-quests": "node --import tsx scripts/browser-cobas.mjs",
+    "test:cobas-players": "node --import tsx scripts/browser-cobas-players.mjs && node --import tsx scripts/browser-cobas-houses-sacked.mjs",
+    "test:browser-cobas": "npm run test:cobas-quests && npm run test:cobas-players",
+    "test:cobas-simulation": "node --import tsx --test tests/cobas-simulation.test.ts",
+    "test:cobas-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat a-storm-on-cobas-haven normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

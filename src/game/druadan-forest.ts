@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { mainQuestCode } from "./quest-state";
 // Original/easy Drúadan Forest: group Prowl, Wose Archery and peaceful victory.
 import type { Effect, GameState, Unit } from "./types";
@@ -74,7 +75,7 @@ const controlledAttachments = (s: GameState, player: number) =>
       .map((a) => ({ host, a })),
   );
 function removeQuesting(s: GameState, h: Unit) {
-  h.committed = false;
+  removeFromQuest(s, h);
   forOwner(s, ownerOf(s, h), () => {
     s.committedIds = s.committedIds.filter((id) => id !== h.id);
   });

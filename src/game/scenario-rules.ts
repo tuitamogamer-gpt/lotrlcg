@@ -1,3 +1,4 @@
+import { cobasGuardedStarted } from "./cobas";
 import { movableHand } from "./hand-rules";
 import {
   choosePlayerResponse,
@@ -60,6 +61,7 @@ import {
   revealed,
 } from "./board";
 import { beginEnemyAttack, combatDamage, resolvePlayerAttack } from "./combat";
+import { cobasPlayerAttackFinished } from "./cobas-player";
 
 export function rescuePrisoner(s: GameState) {
   if (!s.prisoner) return;
@@ -189,6 +191,7 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
     }
     case "resolvePlayerAttack":
       if (u) resolvePlayerAttack(s, u, e.ids ?? [], e.value ?? 0);
+      else if (e.target) cobasPlayerAttackFinished(s, e.target, true);
       break;
     case "ensureTroll":
       if (!inPlay(s, "01082")) {
@@ -213,6 +216,10 @@ export function scenarioEffect(s: GameState, e: Effect): boolean {
       shadowFlameQuestEnd(s);
       break;
     case "guardObjective": {
+      if (s.cobas && u) {
+        cobasGuardedStarted(s, u);
+        prepend(s, fx("cobasGuardedDone", { target: u.id }));
+      }
       const code = encounterDraw(s);
       if (u && code) revealed(s, code, u.id);
       break;

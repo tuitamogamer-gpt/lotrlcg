@@ -1,0 +1,67 @@
+.redbook[data-playmat="a-storm-on-cobas-haven"],
+.mat-a-storm-on-cobas-haven {
+  --playmat-art: url("/art/premium/anduin.webp");
+  --mat-shade: #091a2b8c;
+  --mat-tint: #193b45;
+}
+.cobas-scenario-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: 1px solid #b68e4c57;
+  border-radius: 5px;
+  background: #12282fed;
+  color: #e4d6b9;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.cobas-battle-summary {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  flex: 1 1 290px;
+  min-width: 0;
+}
+.cobas-objectives {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 10px;
+  flex: 2 1 340px;
+  min-width: 0;
+}
+.cobas-objective {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  flex: 1 1 160px;
+  min-width: 0;
+  padding: 8px 10px;
+  border-left: 2px solid #b69c66;
+  background: #d8c89e09;
+}
+.cobas-objective.controlled {
+  border-left-color: #8fa888;
+}
+.cobas-scenario-state strong {
+  color: #f1dfb4;
+  font-weight: 600;
+}
+.cobas-scenario-state button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.cobas-scenario-state button:focus-visible {
+  outline: 2px solid #e4bf76;
+  outline-offset: 4px;
+}
+.cobas-warning {
+  color: #ffbfaa;
+}

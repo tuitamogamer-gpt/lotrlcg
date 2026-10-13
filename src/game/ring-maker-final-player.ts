@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import { reduceThreat } from "./threat-reduction";
@@ -70,10 +71,7 @@ export function finalRingPlayTargets(
     );
   if (code === "08142")
     return s.staging.filter(
-      (u) =>
-        playerUnitIsEnemy(u) &&
-        !card(u.code).is_unique &&
-        !immune(u),
+      (u) => playerUnitIsEnemy(u) && !card(u.code).is_unique && !immune(u),
     );
   return null;
 }
@@ -161,9 +159,7 @@ export function finalRingEvent(
       return true;
     case "08143":
       // Shadows are separate cards: an enemy's immunity does not protect them.
-      for (const u of units(s).filter(
-        (u) => playerUnitIsEnemy(u),
-      ))
+      for (const u of units(s).filter((u) => playerUnitIsEnemy(u)))
         while (u.shadows.length)
           s.encounterDiscard.push(removeShadowCard(u, 0)!);
       return true;
@@ -212,9 +208,7 @@ export function finalRingAttackBonus(
 /** A continuous control effect follows the token; physical ownership never changes. */
 export function finalRingFollowFirst(s: GameState) {
   if (!s.table) return;
-  for (const ally of globalCharacters(s).filter(
-    (u) => playerUnitIsAlly(u),
-  )) {
+  for (const ally of globalCharacters(s).filter((u) => playerUnitIsAlly(u))) {
     const enabled = ally.attachments.some(
       (a) => a.code === "08093" && !a.blanked && !a.facedown,
     );
@@ -567,7 +561,7 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
       const u = get(s, e.target);
       if (u && u.committed && !immune(u)) {
         readyCharacter(s, u);
-        u.committed = false;
+        removeFromQuest(s, u);
         forOwner(s, ownerOf(s, u), () => {
           s.committedIds = s.committedIds.filter((id) => id !== u.id);
         });

@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
 import { celebrimborRefreshEffects } from "./celebrimbor";
@@ -658,7 +659,7 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
         const a = make(s, e.code!);
         u.attachments.push({ id: a.id, code: a.code, exhausted: false });
         if (e.code === F.rest) {
-          u.committed = false;
+          removeFromQuest(s, u);
           const seat = seatView(s, ownerOf(s, u));
           seat.committedIds = seat.committedIds.filter((id) => id !== u.id);
         }

@@ -1,3 +1,7 @@
+import { raidEngaged } from "./raid-grey-havens";
+import { COBAS_CORSAIRS } from "./cobas-support";
+import { cobasBoardingModifier } from "./cobas";
+import { isShipEnemy, isShipObjective } from "./ships";
 import { stormcallerState, STORMCALLER_CORSAIRS } from "./stormcaller-support";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
@@ -62,11 +66,12 @@ type Combat = NonNullable<GameState["combat"]> & {
 };
 const combat = (s: GameState) => s.combat as Combat | null;
 const isVoyage = (s: GameState) => !!voyageState(s);
-const fleetState = (s: GameState) => voyageState(s) ?? stormcallerState(s);
+const fleetState = (s: GameState) =>
+  voyageState(s) ?? stormcallerState(s) ?? s.cobas;
 const isFleet = (s: GameState) => !!fleetState(s);
 export const SHIP_CONTROLLER_ELIMINATED = "game:ship-controller-eliminated";
-const ship = (u: Unit) => card(u.code).type_code === "ship-objective";
-const shipEnemy = (u: Unit) => card(u.code).type_code === "ship-enemy";
+const ship = (u: Unit) => isShipObjective(u);
+const shipEnemy = (u: Unit) => isShipEnemy(u);
 const live = (s: GameState, code: string) =>
   s.staging.filter((u) => u.code === code && !u.blanked);
 const own = (s: GameState, player: number) =>
@@ -309,7 +314,11 @@ export function voyageEndQuest(s: GameState) {
 }
 export function voyageCorsairDiscard(s: GameState, code: string) {
   const q = fleetState(s);
-  const corsairs = isVoyage(s) ? VOYAGE_CORSAIRS : STORMCALLER_CORSAIRS;
+  const corsairs = s.cobas
+    ? COBAS_CORSAIRS
+    : isVoyage(s)
+      ? VOYAGE_CORSAIRS
+      : STORMCALLER_CORSAIRS;
   if (!q || !corsairs.includes(code)) return false;
   q.corsairDiscard.push(code);
   if (!q.corsairDeck.length)
@@ -323,9 +332,10 @@ export function voyageEngaged(s: GameState, u: Unit, fromStaging: boolean) {
   if (shipEnemy(u) && fromStaging) {
     const boarding =
       Number(/Boarding (\d+)/.exec(card(u.code).text ?? "")?.[1] ?? 0) +
-      voyageBoardingBonus(s);
+      voyageBoardingBonus(s) +
+      cobasBoardingModifier(s);
     effects.push(
-      ...Array.from({ length: boarding }, () =>
+      ...Array.from({ length: Math.max(0, boarding) }, () =>
         fx("voyageBoard", { player, source: u.id, flag: u.code === V.cruiser }),
       ),
     );
@@ -367,7 +377,7 @@ export function voyageCharacterLeaves(
     s.choice = null;
     s.queue = [];
     log(s, s.reason, "danger");
-  } else
+  } else if (VOYAGE_SHIPS.includes(u.code))
     forOwner(s, ownerOf(s, u), () => {
       if (!s.used.includes(SHIP_CONTROLLER_ELIMINATED))
         s.used.push(SHIP_CONTROLLER_ELIMINATED);
@@ -547,12 +557,14 @@ export function voyageEffect(s: GameState, e: Effect) {
       if (slot >= (players.length === 1 ? 2 : players.length)) break;
       const player = players.length === 1 ? players[0] : players[slot];
       const dreamControlled = ships(s).some((u) => u.code === V.dream);
-      const available = q.setAside.filter((u) =>
-        (players.length === 1 && slot === 0) ||
-        (!dreamControlled && slot === players.length - 1)
-          ? u.code === V.dream
-          : true,
-      );
+      const available = q.setAside
+        .filter((u) => VOYAGE_SHIPS.includes(u.code))
+        .filter((u) =>
+          (players.length === 1 && slot === 0) ||
+          (!dreamControlled && slot === players.length - 1)
+            ? u.code === V.dream
+            : true,
+        );
       choose(
         s,
         `Prepare the fleet · ${seatName(s, player)}`,
@@ -761,6 +773,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       enemy.owner = e.player ?? activeSeat(s);
       forOwner(s, enemy.owner, () => s.engaged.push(enemy));
       voyageEngaged(s, enemy, false);
+      raidEngaged(s, enemy);
       if (!q.corsairDeck.length)
         q.corsairDeck = shuffle(s, q.corsairDiscard.splice(0));
       log(

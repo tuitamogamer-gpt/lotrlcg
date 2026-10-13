@@ -1,4 +1,5 @@
 import type { Effect, GameState, Option, Unit } from "./types";
+import { encounterCharacterEntered } from "./encounter-character-uniqueness";
 import { card, name } from "./cards";
 import {
   choose,
@@ -1280,6 +1281,8 @@ function stageTwo(s: GameState) {
     }
     delete u.raidCombatResourceBonus;
     forOwner(s, player, () => s.allies.push(u!));
+    encounterCharacterEntered(s, u);
+    if (s.status !== "playing") return;
   }
   const purge = (pile: string[]) => {
     const removed = pile.filter((c) => DEPTHS_CORSAIR_RAIDERS.includes(c));

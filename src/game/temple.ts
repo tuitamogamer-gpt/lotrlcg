@@ -1,4 +1,5 @@
 import type { Attachment, Effect, GameState, Unit } from "./types";
+import { encounterCharacterEntered } from "./encounter-character-uniqueness";
 import { card, imageUrl, name } from "./cards";
 import {
   choose,
@@ -469,6 +470,8 @@ export function templeEffect(s: GameState, e: Effect) {
         captain.owner = owner;
         captain.controller = owner;
         forOwner(s, owner, () => s.allies.push(captain));
+        encounterCharacterEntered(s, captain);
+        if (s.status !== "playing") return true;
       }
       const guardian = q.setAside.find((u) => u.code === T.guardian)!;
       const key = q.setAside.find((u) => u.code === T.key)!;

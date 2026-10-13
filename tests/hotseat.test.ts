@@ -55,6 +55,10 @@ import {
   assertDrownedSaveRestoration,
   drownedSimulationObserver,
 } from "./drowned-simulation-invariants";
+import {
+  assertCobasSaveRestoration,
+  cobasSimulationObserver,
+} from "./cobas-simulation-invariants";
 const selectedHotseatCase = hotseatCaseSelector(process.env.LOTR_HOTSEAT_CASE);
 const config = [
   { heroes: ["01001"], deckId: "leadership" },
@@ -511,7 +515,9 @@ for (const scenarioId of [
                 ? templeSimulationObserver()
                 : scenarioId === "the-drowned-ruins"
                   ? drownedSimulationObserver()
-                  : undefined;
+                  : scenarioId === "a-storm-on-cobas-haven"
+                    ? cobasSimulationObserver()
+                    : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -662,6 +668,8 @@ for (const scenarioId of [
                 assertTempleSaveRestoration(savedState, restored);
               else if (scenarioId === "the-drowned-ruins")
                 assertDrownedSaveRestoration(savedState, restored);
+              else if (scenarioId === "a-storm-on-cobas-haven")
+                assertCobasSaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
               mapObserver?.observe(s);
               if (process.env.LOTR_HOTSEAT_CASE)

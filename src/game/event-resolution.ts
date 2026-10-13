@@ -22,6 +22,11 @@ export function finishPlayedEvent(s: GameState, id: string) {
   if (!pending) return;
   s.resolvingEvents = s.resolvingEvents!.filter((event) => event !== pending);
   if (!s.resolvingEvents.length) delete s.resolvingEvents;
+  // Some printed costs have already moved this exact event out of resolution.
+  if (pending.destination === "spent") {
+    ringMakerCharacterLeft(s, pending.unit.id);
+    return;
+  }
   // Events do not enter play: self-return and Record effects keep their printed
   // player's hand/deck destination. Discards always use the originating deck.
   const destinationPlayer = ["hand", "bottom"].includes(pending.destination)

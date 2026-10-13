@@ -4,6 +4,7 @@ import { playerCardImmune } from "./card-immunity";
 import { khazadBookNoExhaust } from "./khazad-dum";
 import definitions from "../data/passive-player-cards.json";
 import type { Attachment, Card, GameState, Unit } from "./types";
+import { cobasEconomyNoQuestExhaust } from "./cobas-economy";
 import { card } from "./cards";
 import { isHero, isAlly, unitType } from "./card-types";
 import { allActiveLocations, allCharacters, ownerOf, seatView } from "./table";
@@ -36,6 +37,9 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "12110": { type: "hero", traits: ["Ranger"], sphere: "leadership" },
+  "12113": { traits: ["Warrior"], limit: 1 },
+  "12116": { type: "hero", restricted: 1 },
   "12059": { restricted: 1 },
   "08088": {
     traits: ["Silvan"],
@@ -283,7 +287,10 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     // Ancestral Armor and Warrior Sword say sphere OR trait.
     if (c.code === "04057") {
       if (!traitMatch && card(u.code).name !== "Aragorn") return false;
-    } else if (["07008", "19028", "19089"].includes(c.code)) {
+    } else if (c.code === "12116") {
+      if (!hasResourceIcon(u, "spirit") && card(u.code).name !== "Éowyn")
+        return false;
+    } else if (["07008", "19028", "19089", "12110"].includes(c.code)) {
       if (!traitMatch && !sphereMatch) return false;
     } else {
       if (rule.traits && !traitMatch) return false;
@@ -328,6 +335,7 @@ export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
+  if (cobasEconomyNoQuestExhaust(s, u)) return false;
   if (u.code === "11009" && !u.blanked) return false;
   if (Realm.realmNoQuestExhaust(s, u)) return false;
   if (khazadBookNoExhaust(u)) return false;

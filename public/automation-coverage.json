@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 544,
-    "heroes": 62,
-    "deckCards": 481,
-    "encounterCards": 751,
-    "scenarios": 52,
+    "playerCards": 554,
+    "heroes": 63,
+    "deckCards": 490,
+    "encounterCards": 766,
+    "scenarios": 53,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -59,17 +59,18 @@
       "flight-of-the-stormcaller",
       "the-thing-in-the-depths",
       "temple-of-the-deceived",
-      "the-drowned-ruins"
+      "the-drowned-ruins",
+      "a-storm-on-cobas-haven"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1447,
-    "pending": 2736
+    "scripted": 1475,
+    "pending": 2708
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 104
+    "scripted": 106
   },
   "registeredCodes": [
     "01001",
@@ -617,7 +618,17 @@
     "12089",
     "12090",
     "12091",
+    "12109",
+    "12110",
+    "12111",
+    "12112",
+    "12113",
+    "12114",
+    "12115",
+    "12116",
     "12117",
+    "12118",
+    "12119",
     "12139",
     "131003",
     "131004",
@@ -686,6 +697,7 @@
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
+    "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
@@ -706,6 +718,7 @@
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
+    "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
     "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
     "octgn:0e0b125c-ffed-4473-9a64-7d709b16cca5",
     "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
@@ -760,6 +773,7 @@
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
     "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
@@ -777,6 +791,7 @@
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
+    "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
     "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
@@ -833,6 +848,7 @@
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
+    "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
@@ -913,6 +929,7 @@
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+    "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
@@ -1127,6 +1144,7 @@
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
@@ -1184,6 +1202,7 @@
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
+    "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
@@ -1256,6 +1275,7 @@
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
+    "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
     "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
     "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
@@ -1282,6 +1302,7 @@
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
+    "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
@@ -1301,6 +1322,7 @@
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+    "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
@@ -1319,6 +1341,7 @@
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+    "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
@@ -1357,6 +1380,7 @@
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
+    "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
@@ -1393,6 +1417,8 @@
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+    "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+    "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
@@ -1407,6 +1433,7 @@
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+    "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
@@ -1433,6 +1460,7 @@
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
     "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
     "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+    "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
     "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
@@ -1464,6 +1492,7 @@
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
+    "octgn:f410480c-ac41-431a-8db1-693746a7570e",
     "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
     "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
@@ -1546,9 +1575,9 @@
     {
       "product": "a-storm-on-cobas-haven",
       "total": 30,
-      "scripted": 1,
+      "scripted": 29,
       "player": 11,
-      "playerScripted": 1
+      "playerScripted": 11
     },
     {
       "product": "a-storm-on-cobas-haven-nightmare",
@@ -7550,7 +7579,7 @@
       "name": "Na'asiyah",
       "type": "hero",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7558,7 +7587,7 @@
       "name": "Rune-master",
       "type": "attachment",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7566,7 +7595,7 @@
       "name": "Terrible to Behold",
       "type": "event",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7574,7 +7603,7 @@
       "name": "Veteran Sword-elf",
       "type": "ally",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7582,7 +7611,7 @@
       "name": "Vigilant Guard",
       "type": "attachment",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7590,7 +7619,7 @@
       "name": "Knife-work",
       "type": "event",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7598,7 +7627,7 @@
       "name": "Linhir Sea-captain",
       "type": "ally",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7606,7 +7635,7 @@
       "name": "Windfola",
       "type": "attachment",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7622,7 +7651,7 @@
       "name": "The Houses of Healing",
       "type": "event",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -7630,7 +7659,7 @@
       "name": "Justice Shall Be Done",
       "type": "event",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -11430,7 +11459,7 @@
       "name": "Corsair Skirmisher",
       "type": "ship-enemy",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -12222,7 +12251,7 @@
       "name": "Heavy Cruiser",
       "type": "ship-enemy",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -14006,7 +14035,7 @@
       "name": "Break Through the Fleet!",
       "type": "quest",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -14438,7 +14467,7 @@
       "name": "Raider Flagship",
       "type": "ship-enemy",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -16750,7 +16779,7 @@
       "name": "Sea-ward Tower",
       "type": "objective",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -18046,7 +18075,7 @@
       "name": "The Raiders' Assault",
       "type": "treachery",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -21030,7 +21059,7 @@
       "name": "Tower of the Heron",
       "type": "objective",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -23894,7 +23923,7 @@
       "name": "Taking on Water",
       "type": "treachery",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -26566,7 +26595,7 @@
       "name": "Siege Ship",
       "type": "ship-enemy",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -27550,7 +27579,7 @@
       "name": "Coast of Anfalas",
       "type": "location",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -28222,7 +28251,7 @@
       "name": "Ramming Speed!",
       "type": "treachery",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -29086,7 +29115,7 @@
       "name": "Dol Amroth Warship",
       "type": "ship-objective",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -30702,7 +30731,7 @@
       "name": "Cobas Haven",
       "type": "location",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -31782,7 +31811,7 @@
       "name": "Outmaneuver the Enemy",
       "type": "quest",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -31806,7 +31835,7 @@
       "name": "Tower of the Gull",
       "type": "objective",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -32398,7 +32427,7 @@
       "name": "Belfalas Islet",
       "type": "location",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -33078,7 +33107,7 @@
       "name": "Battle in the Bay",
       "type": "quest",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -34718,7 +34747,7 @@
       "name": "The Beacon",
       "type": "objective",
       "pack": "A Storm on Cobas Haven",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-storm-on-cobas-haven"
     },
     {
@@ -36345,8 +36374,8 @@
       "id": "E06.8",
       "name": "A Storm on Cobas Haven (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-storm-on-cobas-haven",
+      "state": "scripted"
     },
     {
       "id": "E06.9",
@@ -37836,8 +37865,8 @@
       "id": "Q06.8",
       "name": "A Storm on Cobas Haven",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-storm-on-cobas-haven",
+      "state": "scripted"
     },
     {
       "id": "Q06.9",

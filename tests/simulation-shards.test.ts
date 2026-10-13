@@ -29,13 +29,14 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 269);
+  assert.equal(baseline.registeredCases, 274);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
         (name: string) =>
           !name.startsWith("Temple of the Deceived") &&
-          !name.startsWith("The Drowned Ruins"),
+          !name.startsWith("The Drowned Ruins") &&
+          !name.startsWith("A Storm on Cobas Haven"),
       )
       .sort(),
     [...priorSimulationCases.cases].sort(),
@@ -66,6 +67,19 @@ test("four CI simulation shards cover every registered complete-game case exactl
       "The Drowned Ruins / campaign: guided confirmations preserve complete-game rules outcomes",
     ].sort(),
     "Drowned's standard scenario and unsupported campaign registration are included exactly once",
+  );
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => name.startsWith("A Storm on Cobas Haven"))
+      .sort(),
+    [
+      "A Storm on Cobas Haven / normal: all four starter decks complete 10 seeded games each",
+      "A Storm on Cobas Haven: hidden review mode preserves complete-game rules outcomes with fewer pauses",
+      "A Storm on Cobas Haven: decisions review mode preserves complete-game rules outcomes with fewer pauses",
+      "A Storm on Cobas Haven / normal: guided confirmations preserve complete-game rules outcomes",
+      "A Storm on Cobas Haven / campaign: guided confirmations preserve complete-game rules outcomes",
+    ].sort(),
+    "Cobas Haven standard scenario and unsupported campaign registration are included exactly once",
   );
   assert.deepEqual(
     baseline.selectedCases

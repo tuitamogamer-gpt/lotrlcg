@@ -1,0 +1,132 @@
+{
+  "schema": "lotr-printed-sailing-symbols/v1",
+  "sources": {
+    "rules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf",
+    "rulesPage": 6,
+    "catalog": "public/catalog.json",
+    "verifiedAt": "2026-10-13",
+    "verification": "Counted printed helm symbols in the bottom-left text box of every cached original Cobas Haven encounter front; source text has no symbol field."
+  },
+  "cards": [
+    {
+      "code": "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+      "name": "Corsair Skirmisher",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/026a36ed-0979-4422-a581-a4decdc3c102.jpg",
+      "sha256": "ffbf6ddd91c278e5d6bb78dccaea85029d842e37a52978cfc3700b1bd3edfddc"
+    },
+    {
+      "code": "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+      "name": "Heavy Cruiser",
+      "type": "ship-enemy",
+      "sailingSymbols": 1,
+      "image": "/cards/0d74f863-83c9-4342-ac98-5bbaae0a573f.jpg",
+      "sha256": "d92a24e563d81969af1e370ae4794050e66ed6fcb747e10ff81da2ae29589f3b"
+    },
+    {
+      "code": "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+      "name": "Raider Flagship",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/276e1411-be34-44fa-af2b-ebe9b36541f0.jpg",
+      "sha256": "867f6b5442cc23d27872380e036a68e654d92b8b6d7c2d2b47dcc9360ac1a995"
+    },
+    {
+      "code": "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+      "name": "Sea-ward Tower",
+      "type": "objective",
+      "sailingSymbols": 1,
+      "image": "/cards/434cf78e-2e8e-4d79-9662-eb50e33bc3f9.jpg",
+      "sha256": "80de64fa7afac65b3347f56ee191d170d24722b3a116ddb54698ac2d447c53ee"
+    },
+    {
+      "code": "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+      "name": "The Raiders' Assault",
+      "type": "treachery",
+      "sailingSymbols": 1,
+      "image": "/cards/4d31f077-9f08-435b-ad3c-95d5b7967fa4.jpg",
+      "sha256": "5e05b9704d3dff8ad0e6d6d13652d6791bf770880b488cd7a094becfb974464f"
+    },
+    {
+      "code": "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+      "name": "Tower of the Heron",
+      "type": "objective",
+      "sailingSymbols": 1,
+      "image": "/cards/52b5e077-36f2-4c13-89fb-4f7b3d73463b.jpg",
+      "sha256": "187593a636dddb91008030578f1f45e1705af2706d117314a0a817881dc66953"
+    },
+    {
+      "code": "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+      "name": "Taking on Water",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/783ecb94-e005-4ff7-8bc3-76196bba9249.jpg",
+      "sha256": "ae220853cb5d1577476fff1e4494764604df9c6a19308becc9635953ec2a4aee"
+    },
+    {
+      "code": "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+      "name": "Siege Ship",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/96f8534a-2683-4c8f-981d-daa470b792b7.jpg",
+      "sha256": "98d89b908624a393dbaf1c329a05054a0363c6604153ea8aa886f7ed7eb6886a"
+    },
+    {
+      "code": "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+      "name": "Coast of Anfalas",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/a2b6cb8b-dacf-4c82-9097-2206610192ac.jpg",
+      "sha256": "4bd839d32d986e73d73c18f0cd1caa1b955ac423b97e0675458d32dc96397ca2"
+    },
+    {
+      "code": "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+      "name": "Ramming Speed!",
+      "type": "treachery",
+      "sailingSymbols": 1,
+      "image": "/cards/aba39503-0700-40c9-9c06-729e82bf67fe.jpg",
+      "sha256": "6455f69132f8ec74b5fde08be413ed0126627d7ee1d7e544924ee9d671bec1de"
+    },
+    {
+      "code": "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+      "name": "Dol Amroth Warship",
+      "type": "ship-objective",
+      "sailingSymbols": 0,
+      "image": "/cards/b585f28e-7612-4f07-83f7-0fed8d391e3d.jpg",
+      "sha256": "640854794cf6c5a6def2f819412844fa760d99b29ae57b0a44167cca3deb4f32"
+    },
+    {
+      "code": "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+      "name": "Cobas Haven",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/c46688bb-24ac-4ee9-a23e-2bd481e8e56c.jpg",
+      "sha256": "1dd348ebba703d08ff7af54ecbd6264eb3b7b347ae62e6f43aca7d557debe6ad"
+    },
+    {
+      "code": "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+      "name": "Tower of the Gull",
+      "type": "objective",
+      "sailingSymbols": 1,
+      "image": "/cards/d198aa74-21ec-462a-ac1a-f9c2fcf526cb.jpg",
+      "sha256": "c143982159056e3e459fff2f6b1f17aaf76ae834ca062ace01745d2feae41422"
+    },
+    {
+      "code": "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+      "name": "Belfalas Islet",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/d9bde488-6391-492f-b3df-6dd6dbe4f9e9.jpg",
+      "sha256": "b23e9fa4e632d88aba46a0893f9f17483c656dafdea3a650f38aeb19e7bb3ce8"
+    },
+    {
+      "code": "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+      "name": "The Beacon",
+      "type": "objective",
+      "sailingSymbols": 1,
+      "image": "/cards/f410480c-ac41-431a-8db1-693746a7570e.jpg",
+      "sha256": "78237c3585fec6b5e2f88cf290b46dad9f546c184a09131e57b5cc07d00cb42d"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
   "the-drowned-ruins": { lead: "Dive into", em: "the drowned ruins." },
+  "a-storm-on-cobas-haven": { lead: "Break through", em: "the Corsair fleet." },
   "temple-of-the-deceived": {
     lead: "Explore",
     em: "the temple of the deceived.",

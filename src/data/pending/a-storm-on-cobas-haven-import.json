@@ -1,0 +1,2382 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "A Storm on Cobas Haven",
+  "slug": "a-storm-on-cobas-haven",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+      "octgnid": "026a36ed-0979-4422-a581-a4decdc3c102",
+      "name": "Corsair Skirmisher",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 1.\nImmune to player card effects. Response: After Corsair Skirmisher is destroyed as an enemy, the engaged player may discard allies he controls with a total of at least 3 [willpower] to take control of Corsair Skirmisher as a Ship-Objective with [willpower] equal to its [threat]. (It loses the Ship-Enemy card type and gains the Ship-Objective card type).",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 125,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 4,
+      "health": 6,
+      "engagement": 28,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "4",
+        "health": "6",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/026a36ed-0979-4422-a581-a4decdc3c102.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 125,
+          "quantity": 2,
+          "octgnid": "026a36ed-0979-4422-a581-a4decdc3c102",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/026a36ed-0979-4422-a581-a4decdc3c102.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+      "octgnid": "07a8f60f-926c-4342-bf04-e3af9a24df10",
+      "name": "Dream-chaser",
+      "type_code": "ship-objective",
+      "sphere_code": "encounter",
+      "traits": "Grey Havens. Ship.",
+      "text": "Immune to player card effects. Sentinel.\nThe Dream-chaser can always be committed to Sailing tests (even if you are not the first player), and counts as 2 characters when committed to a Sailing test.   If the Dream-chaser is destroyed, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 80,
+      "quantity": 1,
+      "willpower": 5,
+      "attack": 4,
+      "defense": 4,
+      "health": 18,
+      "encounter_set": "The Dream-chaser's Fleet",
+      "printed_stats": {
+        "willpower": "5",
+        "attack": "4",
+        "defense": "4",
+        "health": "18"
+      },
+      "imagesrc": "/cards/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "07a8f60f-926c-4342-bf04-e3af9a24df10",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+      "octgnid": "0d74f863-83c9-4342-ac98-5bbaae0a573f",
+      "name": "Heavy Cruiser",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 2.\nCannot have attachments. When Revealed: Search the encounter deck and discard pile for a Dol Amroth objective and add it to the staging area. Then, attach Heavy Cruiser to that objective, guarding it. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 127,
+      "quantity": 1,
+      "threat": 5,
+      "attack": 7,
+      "defense": 5,
+      "health": 8,
+      "engagement": 42,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "5",
+        "attack": "7",
+        "defense": "5",
+        "health": "8",
+        "engagement": "42"
+      },
+      "imagesrc": "/cards/0d74f863-83c9-4342-ac98-5bbaae0a573f.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 127,
+          "quantity": 1,
+          "octgnid": "0d74f863-83c9-4342-ac98-5bbaae0a573f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0d74f863-83c9-4342-ac98-5bbaae0a573f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+      "octgnid": "16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+      "name": "Scouting Ship",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 1. Cannot have attachments.\nScouting Ship gets -15 engagement cost while you are off-course ( 1/4 ,  1/2 , or  3/4 ).",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 22,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 5,
+      "defense": 2,
+      "health": 7,
+      "engagement": 35,
+      "encounter_set": "Voyage Across Belegaer",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "2",
+        "health": "7",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 22,
+          "quantity": 3,
+          "octgnid": "16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+      "octgnid": "233a2687-04a8-4c18-90cc-e90b9574b282",
+      "name": "Break Through the Fleet!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The players make engagement checks against each enemy in the staging area. Raider Flagship gets -50 engagement cost during these engagement checks.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 122,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "A Storm on Cobas Haven",
+      "side": "A",
+      "back_name": "Break Through the Fleet!",
+      "back_text": "Sailing. Raider Flagship gets -50 engagement cost. Break Through the Fleet! has +5 quest points for each Ship enemy in play. If this stage is defeated, or if Raider Flagship is in the victory display, the players have broken through the Corsair fleet and win the game!",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 122,
+          "quantity": 1,
+          "octgnid": "233a2687-04a8-4c18-90cc-e90b9574b282",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/233a2687-04a8-4c18-90cc-e90b9574b282.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+      "octgnid": "2362af02-42b8-43fe-b3b6-f11f011b3197",
+      "name": "Vicious Marauder",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Forced: When Vicious Marauder engages you, discard a random card from your hand and place resources on it equal to that card's printed cost.  Forced: When Vicious Marauder attacks you, distribute damage among characters you control equal to the number of resources on it.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 62,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 3,
+      "health": 3,
+      "engagement": 12,
+      "encounter_set": "Corsair Pirates",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "3",
+        "health": "3",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/2362af02-42b8-43fe-b3b6-f11f011b3197.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 62,
+          "quantity": 2,
+          "octgnid": "2362af02-42b8-43fe-b3b6-f11f011b3197",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2362af02-42b8-43fe-b3b6-f11f011b3197.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+      "octgnid": "276e1411-be34-44fa-af2b-ebe9b36541f0",
+      "name": "Raider Flagship",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 1.\nImmune to player card effects. Only Ship objectives can be declared as attackers against Raider Flagship. Forced: At the beginning of the encounter phase, the engaged player reveals the top card of the Corsair deck and engages it.",
+      "is_unique": true,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 124,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 3,
+      "health": 18,
+      "engagement": 50,
+      "victory": 20,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "3",
+        "health": "18",
+        "engagement": "50",
+        "victory": "20"
+      },
+      "imagesrc": "/cards/276e1411-be34-44fa-af2b-ebe9b36541f0.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 124,
+          "quantity": 1,
+          "octgnid": "276e1411-be34-44fa-af2b-ebe9b36541f0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/276e1411-be34-44fa-af2b-ebe9b36541f0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
+      "octgnid": "27bdece4-dfac-438e-87cd-1dc653eab8d6",
+      "name": "Umbar Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair.",
+      "text": "While you are engaged with Umbar Captain, characters you control cannot attack Ship enemies.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 63,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 5,
+      "defense": 3,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Corsair Pirates",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "3",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/27bdece4-dfac-438e-87cd-1dc653eab8d6.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 63,
+          "quantity": 2,
+          "octgnid": "27bdece4-dfac-438e-87cd-1dc653eab8d6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27bdece4-dfac-438e-87cd-1dc653eab8d6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+      "octgnid": "28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+      "name": "Boarding Party",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player reveals the top card of the Corsair deck and puts it into play, engaged with him.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 59,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you control an exhausted Ship objective).",
+      "encounter_set": "Umbar Fleet",
+      "printed_stats": {},
+      "imagesrc": "/cards/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+      "octgnid": "32db1af6-e214-4958-9ca4-bdf3a73758b5",
+      "name": "Nárelenya",
+      "type_code": "ship-objective",
+      "sphere_code": "encounter",
+      "traits": "Grey Havens. Ship.",
+      "text": "Immune to player card effects. Sentinel.\nReduce the cost of the first ally you play each round by 1.  If Narelenya is destroyed, its controller is eliminated from the game.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 82,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 3,
+      "defense": 5,
+      "health": 16,
+      "encounter_set": "The Dream-chaser's Fleet",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "3",
+        "defense": "5",
+        "health": "16"
+      },
+      "imagesrc": "/cards/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 82,
+          "quantity": 1,
+          "octgnid": "32db1af6-e214-4958-9ca4-bdf3a73758b5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+      "octgnid": "434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+      "name": "Sea-ward Tower",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Dol Amroth.",
+      "text": "Guarded.\nIf Sea-ward Tower is free of encounters, add it to the staging area, controlled by the players. While the players control Sea-ward Tower, look at 2 additional cards from the top of the encounter deck during each Sailing test.",
+      "is_unique": true,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 134,
+      "quantity": 1,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/434cf78e-2e8e-4d79-9662-eb50e33bc3f9.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 134,
+          "quantity": 1,
+          "octgnid": "434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/434cf78e-2e8e-4d79-9662-eb50e33bc3f9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "name": "Raid Leader",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Raid Leader gets +1 [defense] for each resource on it.\nForced: When Raid Leader engages you, move 1 resource from each of your heroes' resource pools to Raid Leader.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 66,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 66,
+          "quantity": 2,
+          "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+      "octgnid": "4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+      "name": "The Raiders' Assault",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Choose a Ship enemy that is not currently guarding an objective. Attach that enemy to an unguarded objective in the staging area, guarding it (return that enemy to the staging area if it is engaged). If no Ship enemy is returned to the staging area by this effect, The Raiders' Assault gains surge.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 133,
+      "quantity": 2,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/4d31f077-9f08-435b-ad3c-95d5b7967fa4.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 133,
+          "quantity": 2,
+          "octgnid": "4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d31f077-9f08-435b-ad3c-95d5b7967fa4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+      "octgnid": "4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+      "name": "Cunning Pirate",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Cunning Pirate gets +1 [attack] and +1 [defense] for each resource on it.\nForced: When Cunning Pirate engages you, discard an attachment you control and place resources on Cunning Pirate equal to that attachment's printed cost.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 61,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 36,
+      "encounter_set": "Corsair Pirates",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/4d85bbe6-1bc7-4890-8974-e42e2d0f9431.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 61,
+          "quantity": 3,
+          "octgnid": "4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85bbe6-1bc7-4890-8974-e42e2d0f9431.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+      "octgnid": "52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+      "name": "Tower of the Heron",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Dol Amroth.",
+      "text": "Guarded.\nIf Tower of the Heron is free of encounters, add it to the staging area, controlled by the players. While Tower of the Heron is controlled by the players, reduce the archery total by 4.",
+      "is_unique": true,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 137,
+      "quantity": 1,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/52b5e077-36f2-4c13-89fb-4f7b3d73463b.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 137,
+          "quantity": 1,
+          "octgnid": "52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52b5e077-36f2-4c13-89fb-4f7b3d73463b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+      "octgnid": "783ecb94-e005-4ff7-8bc3-76196bba9249",
+      "name": "Taking on Water",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to a Ship objective. (Counts as a Condition attachment with the text: \"Forced: When attached objective exhausts, deal 2 damage to it. Action: Exhaust 3 characters you control to discard Taking on Water.\")",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 132,
+      "quantity": 2,
+      "shadow": "Shadow: If defending character is a Ship, attach Taking on Water to it.",
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/783ecb94-e005-4ff7-8bc3-76196bba9249.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 132,
+          "quantity": 2,
+          "octgnid": "783ecb94-e005-4ff7-8bc3-76196bba9249",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/783ecb94-e005-4ff7-8bc3-76196bba9249.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+      "octgnid": "81632d10-625e-42f0-9e6b-09574a9ffbc3",
+      "name": "Dawn Star",
+      "type_code": "ship-objective",
+      "sphere_code": "encounter",
+      "traits": "Gondor. Ship.",
+      "text": "Immune to player card effects. Sentinel.\nRaise your starting threat by 3. Draw 1 additional card during the resource phase. If the Dawn Star is destroyed, its controller is eliminated from the game.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 81,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 3,
+      "defense": 4,
+      "health": 16,
+      "encounter_set": "The Dream-chaser's Fleet",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "3",
+        "defense": "4",
+        "health": "16"
+      },
+      "imagesrc": "/cards/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 81,
+          "quantity": 1,
+          "octgnid": "81632d10-625e-42f0-9e6b-09574a9ffbc3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+      "octgnid": "8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+      "name": "A Storm on Cobas Haven",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "A Storm on Cobas Haven",
+      "back_name": "A Storm on Cobas Haven",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+      "octgnid": "96f8534a-2683-4c8f-981d-daa470b792b7",
+      "name": "Siege Ship",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Archery 2.\nCannot have attachments. While Siege Ship is in the staging area, it gains: \"Forced: At the end of the quest phase, if Siege Ship is not guarding an objective and there is an unguarded objective in the staging area, attach Siege Ship to that objective, guarding it.\"",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 126,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 5,
+      "defense": 5,
+      "health": 7,
+      "engagement": 46,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "5",
+        "health": "7",
+        "engagement": "46"
+      },
+      "imagesrc": "/cards/96f8534a-2683-4c8f-981d-daa470b792b7.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 126,
+          "quantity": 3,
+          "octgnid": "96f8534a-2683-4c8f-981d-daa470b792b7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96f8534a-2683-4c8f-981d-daa470b792b7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+      "octgnid": "a2b6cb8b-dacf-4c82-9097-2206610192ac",
+      "name": "Coast of Anfalas",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Coastland. Ocean.",
+      "text": "If you are off-course ( 1/4 ,  1/2 , or  3/4 ), Coast of Anfalas gets +2 [threat]. Travel: Exhaust a Ship objective to travel here. ",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 128,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: If you are off-course ( 1/4 ,  1/2 , or  3/4 ), attacking enemy gets +2 [attack].",
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/a2b6cb8b-dacf-4c82-9097-2206610192ac.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 128,
+          "quantity": 3,
+          "octgnid": "a2b6cb8b-dacf-4c82-9097-2206610192ac",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a2b6cb8b-dacf-4c82-9097-2206610192ac.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+      "octgnid": "a312e181-9209-4460-b6ba-c90c99e011fe",
+      "name": "Corsair Warship",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 3. Cannot have attachments.\nWhile Corsair Warship is in the staging area, it cannot be damaged and gains archery 4.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 58,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 8,
+      "defense": 4,
+      "health": 9,
+      "engagement": 44,
+      "victory": 6,
+      "encounter_set": "Umbar Fleet",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "8",
+        "defense": "4",
+        "health": "9",
+        "engagement": "44",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/a312e181-9209-4460-b6ba-c90c99e011fe.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "a312e181-9209-4460-b6ba-c90c99e011fe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a312e181-9209-4460-b6ba-c90c99e011fe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+      "octgnid": "aba39503-0700-40c9-9c06-729e82bf67fe",
+      "name": "Ramming Speed!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If you are off-course ( 1/4 ,  1/2 , or  3/4 ), the engaged Ship enemy with the highest [attack] makes an immediate attack. Until the end of the phase, add 1 to the total [threat] in the staging area for each damage dealt by this attack. If no attack is made as a result of this effect, Ramming Speed! gains doomed 2.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 131,
+      "quantity": 2,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/aba39503-0700-40c9-9c06-729e82bf67fe.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 131,
+          "quantity": 2,
+          "octgnid": "aba39503-0700-40c9-9c06-729e82bf67fe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aba39503-0700-40c9-9c06-729e82bf67fe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+      "octgnid": "b171f1fa-a603-43ab-97c9-f950ee3b3599",
+      "name": "Southron Sailor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair.",
+      "text": "While Southron Sailor is engaged with you, each Ship enemy engaged with you contributes its [threat] to the total [threat] in the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 60,
+      "quantity": 2,
+      "threat": 0,
+      "attack": 2,
+      "defense": 1,
+      "health": 4,
+      "engagement": 28,
+      "encounter_set": "Corsair Pirates",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "2",
+        "defense": "1",
+        "health": "4",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/b171f1fa-a603-43ab-97c9-f950ee3b3599.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "b171f1fa-a603-43ab-97c9-f950ee3b3599",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b171f1fa-a603-43ab-97c9-f950ee3b3599.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+      "octgnid": "b585f28e-7612-4f07-83f7-0fed8d391e3d",
+      "name": "Dol Amroth Warship",
+      "type_code": "ship-objective",
+      "sphere_code": "encounter",
+      "traits": "Gondor. Ship.",
+      "text": "Immune to player card effects.  If you are on-course (o),  Dol Amroth Warship gets +2 [willpower], +2 [attack], and +2 [defense]. Forced: When Dol Amroth Warship is destroyed, set it aside, out of play.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 123,
+      "quantity": 2,
+      "willpower": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 8,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "willpower": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "8"
+      },
+      "imagesrc": "/cards/b585f28e-7612-4f07-83f7-0fed8d391e3d.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 123,
+          "quantity": 2,
+          "octgnid": "b585f28e-7612-4f07-83f7-0fed8d391e3d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b585f28e-7612-4f07-83f7-0fed8d391e3d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+      "octgnid": "b640a0b7-f23e-4859-96fb-b558274b90a8",
+      "name": "Starlit Sea",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ocean.",
+      "text": "While you are off-course ( 1/4 ,  1/2 , or  3/4 ), Uncharted Ocean gains: \"Travel: Raise each player's threat by 3.\"",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 23,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you are off-course).",
+      "encounter_set": "Voyage Across Belegaer",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "b640a0b7-f23e-4859-96fb-b558274b90a8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "name": "Battle-Hardened",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 1 resource on each Raider enemy in play. Each engaged non-Ship enemy makes an immediate attack. If there are no engaged non-Ship enemies, Battle-Hardened gains surge.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 67,
+      "quantity": 2,
+      "shadow": "Shadow: If the attacking enemy is a Raider, place 2 resources on it.",
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+      "octgnid": "c1273c2f-a616-45ee-804d-a16c28b6e63d",
+      "name": "Light Cruiser",
+      "type_code": "ship-enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Ship.",
+      "text": "Boarding 2. Cannot have attachments.\nEach Raider enemy revealed from the Corsair deck by Light Cruiser's boarding keyword enters play with 1 resource on it.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 57,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 6,
+      "defense": 5,
+      "health": 7,
+      "engagement": 37,
+      "encounter_set": "Umbar Fleet",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "5",
+        "health": "7",
+        "engagement": "37"
+      },
+      "imagesrc": "/cards/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 57,
+          "quantity": 2,
+          "octgnid": "c1273c2f-a616-45ee-804d-a16c28b6e63d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+      "octgnid": "c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+      "name": "Cobas Haven",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Coastland. Ocean.",
+      "text": "While Cobas Haven is the active location, reduce the Boarding X value on each Ship enemy by 1.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 130,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: If you are off-course, attacking enemy gets +2 [attack].",
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c46688bb-24ac-4ee9-a23e-2bd481e8e56c.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 130,
+          "quantity": 2,
+          "octgnid": "c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c46688bb-24ac-4ee9-a23e-2bd481e8e56c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+      "octgnid": "c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+      "name": "Silver Wing",
+      "type_code": "ship-objective",
+      "sphere_code": "encounter",
+      "traits": "Gondor. Ship.",
+      "text": "Immune to player card effects. Sentinel. Ranged.\nReduce your starting threat by 3. Each hero you control gets +1 [attack]. If the Silver Wing is destroyed, its controller is eliminated from the game.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 83,
+      "quantity": 1,
+      "willpower": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 14,
+      "encounter_set": "The Dream-chaser's Fleet",
+      "printed_stats": {
+        "willpower": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "14"
+      },
+      "imagesrc": "/cards/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+      "octgnid": "ce1cf93c-68d9-4613-af3a-a08671152358",
+      "name": "Heading",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 84,
+      "quantity": 1,
+      "encounter_set": "The Dream-chaser's Fleet",
+      "back_name": "Heading",
+      "back_type_code": "objective",
+      "back_imagesrc": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 84,
+          "quantity": 1,
+          "octgnid": "ce1cf93c-68d9-4613-af3a-a08671152358",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce1cf93c-68d9-4613-af3a-a08671152358.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "name": "Umbar Raider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Umbar Raider gets +1 [attack] for each resource on it.\nForced: After Umbar Raider attacks you, move 1 resource from one of your heroes' resource pools to Umbar Raider.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 64,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 24,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "24"
+      },
+      "imagesrc": "/cards/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+      "octgnid": "d0bf9c82-d626-4602-a383-4a5660a08c5f",
+      "name": "Outmaneuver the Enemy",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Prepare the Corsair deck. Players prepare their fleet. Set each copy of Dol Amroth Warship aside, out of play. Search the encounter deck for Raider Flagship and 1 copy of Scouting Ship, and add them to the staging area. Search the encounter deck for a Dol Amroth objective of your choice and add it to the staging area. Then, shuffle the encounter deck and resolve the Guarded keyword on that objective.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 120,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "A Storm on Cobas Haven",
+      "side": "A",
+      "back_name": "Outmaneuver the Enemy",
+      "back_text": "Sailing. Forced: When a Ship enemy engages you, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), deal 2 damage to a Ship objective you control. If you are on-course (o), deal 2 damage to that Ship enemy instead. If your current heading is at the worst setting ( 3/4 ), Raider Flagship gets -50 engagement cost.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 120,
+          "quantity": 1,
+          "octgnid": "d0bf9c82-d626-4602-a383-4a5660a08c5f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+      "octgnid": "d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+      "name": "Tower of the Gull",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Dol Amroth.",
+      "text": "Guarded.\nIf Tower of the Gull is free of encounters, add it to the staging area, controlled by the players. Combat Action: If the players control Tower of the Gull, exhaust it to deal 2 damage to a non-unique Ship enemy. Any player may trigger this action.",
+      "is_unique": true,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 135,
+      "quantity": 1,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/d198aa74-21ec-462a-ac1a-f9c2fcf526cb.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 135,
+          "quantity": 1,
+          "octgnid": "d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d198aa74-21ec-462a-ac1a-f9c2fcf526cb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "name": "Corsair Infiltrator",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Forced: When Corsair Infiltrator attacks, deal it 1 additional shadow card for each resource on it.  Forced: After the engaged player collects resources at the beginning of the resource phase, that player moves 1 resource from one of his heroes' pools to Corsair Infiltrator.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 65,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 3,
+      "health": 2,
+      "engagement": 16,
+      "encounter_set": "Corsair Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "3",
+        "health": "2",
+        "engagement": "16"
+      },
+      "imagesrc": "/cards/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+      "octgnid": "d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+      "name": "Belfalas Islet",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Coastland. Ocean.",
+      "text": "You cannot travel to Belfalas Islet if you are off-course ( 1/4 ,  1/2 , or  3/4 ). Response: After you travel to Belfalas Islet, choose a Ship enemy that is not guarding an objective. While Belfalas Islet is the active location, the chosen enemy is considered to be out of play.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 129,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/d9bde488-6391-492f-b3df-6dd6dbe4f9e9.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 129,
+          "quantity": 2,
+          "octgnid": "d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9bde488-6391-492f-b3df-6dd6dbe4f9e9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+      "octgnid": "e3adad02-fa99-4905-bb20-d414ba76f75f",
+      "name": "Battle in the Bay",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Search the encounter deck and discard pile for a Ship enemy and add it to the staging area (2 Ship enemies instead if there are 3 or more players in the game). Shuffle the encounter deck. For each unguarded objective in the staging area, attach a non-unique Ship enemy in the staging area to that objective, guarding it.",
+      "is_unique": false,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 121,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "A Storm on Cobas Haven",
+      "side": "A",
+      "back_name": "Battle in the Bay",
+      "back_text": "Sailing. If your current heading is at the worst setting ( 3/4 ), Raider Flagship gets -50 engagement cost. You cannot advance while at least 1 objective is guarded by an encounter.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_imagesrc": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 121,
+          "quantity": 1,
+          "octgnid": "e3adad02-fa99-4905-bb20-d414ba76f75f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+      "octgnid": "edfe479c-dc2b-43d0-9d4b-708e96320748",
+      "name": "Fog Bank",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ocean.",
+      "text": "While Fog Bank is the active location, Ship enemies do not make engagement checks, cannot attack, and cannot be attacked.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 24,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 5,
+      "shadow": "Shadow: If your heading is at the worst setting ( 3/4 ), attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Voyage Across Belegaer",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "edfe479c-dc2b-43d0-9d4b-708e96320748",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+      "octgnid": "f410480c-ac41-431a-8db1-693746a7570e",
+      "name": "The Beacon",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Dol Amroth.",
+      "text": "Guarded.\nIf The Beacon is free of encounters, add it to the staging area, controlled by the players. Planning Action: If the players control The Beacon, exhaust it and spend 5 resources to take control of 1 set aside copy of Dol Amroth Warship. Any player may trigger this action.",
+      "is_unique": true,
+      "pack_code": "SoCH",
+      "pack_name": "A Storm on Cobas Haven",
+      "position": 136,
+      "quantity": 1,
+      "encounter_set": "A Storm on Cobas Haven",
+      "printed_stats": {},
+      "imagesrc": "/cards/f410480c-ac41-431a-8db1-693746a7570e.jpg",
+      "packs": [
+        {
+          "pack_code": "SoCH",
+          "pack_name": "A Storm on Cobas Haven",
+          "position": 136,
+          "quantity": 1,
+          "octgnid": "f410480c-ac41-431a-8db1-693746a7570e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f410480c-ac41-431a-8db1-693746a7570e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E06.8",
+      "name": "A Storm on Cobas Haven (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "SoCH",
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+        "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+        "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+        "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+        "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+        "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+        "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+        "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+        "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+        "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+        "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+        "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+        "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+        "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+        "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+        "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+        "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+        "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+        "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+        "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+        "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+        "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+        "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+        "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+        "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+        "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+        "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+        "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+        "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+        "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+        "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+        "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+        "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+        "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+          "quantity": 2,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f": 1,
+          "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f": 1,
+          "octgn:233a2687-04a8-4c18-90cc-e90b9574b282": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:026a36ed-0979-4422-a581-a4decdc3c102": 2,
+          "octgn:96f8534a-2683-4c8f-981d-daa470b792b7": 3,
+          "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f": 1,
+          "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac": 3,
+          "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9": 2,
+          "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c": 2,
+          "octgn:aba39503-0700-40c9-9c06-729e82bf67fe": 2,
+          "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249": 2,
+          "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4": 2,
+          "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd": 2,
+          "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8": 2,
+          "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748": 2,
+          "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d": 2,
+          "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599": 2,
+          "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431": 3,
+          "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197": 2,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 3,
+          "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34": 2
+        },
+        "sharedSetAside": {
+          "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d": 2,
+          "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10": 1,
+          "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3": 1,
+          "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5": 1,
+          "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc": 1,
+          "octgn:ce1cf93c-68d9-4613-af3a-a08671152358": 1,
+          "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835": 1
+        },
+        "sharedStagingArea": {
+          "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0": 1,
+          "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd": 1,
+          "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9": 1,
+          "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb": 1,
+          "octgn:f410480c-ac41-431a-8db1-693746a7570e": 1,
+          "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q06.8",
+      "name": "A Storm on Cobas Haven",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "SoCH",
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+        "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+        "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+        "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+        "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+        "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+        "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+        "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+        "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+        "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+        "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+        "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+        "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+        "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+        "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+        "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+        "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+        "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+        "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+        "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+        "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+        "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+        "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
+        "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+        "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+        "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+        "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+        "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+        "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+        "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+        "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+        "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+        "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+        "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+        "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+        "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+        "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+        "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b"
+      ],
+      "cards": [
+        {
+          "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+          "quantity": 3,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+          "quantity": 2,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f": 1,
+          "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f": 1,
+          "octgn:233a2687-04a8-4c18-90cc-e90b9574b282": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:026a36ed-0979-4422-a581-a4decdc3c102": 2,
+          "octgn:96f8534a-2683-4c8f-981d-daa470b792b7": 3,
+          "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f": 1,
+          "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac": 3,
+          "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9": 2,
+          "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c": 2,
+          "octgn:aba39503-0700-40c9-9c06-729e82bf67fe": 2,
+          "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249": 2,
+          "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4": 2,
+          "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd": 2,
+          "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8": 2,
+          "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748": 2,
+          "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d": 2,
+          "octgn:a312e181-9209-4460-b6ba-c90c99e011fe": 2,
+          "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc": 2,
+          "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599": 2,
+          "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431": 3,
+          "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197": 2,
+          "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6": 2,
+          "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958": 3,
+          "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34": 2,
+          "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34": 2
+        },
+        "sharedSetAside": {
+          "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d": 2,
+          "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10": 1,
+          "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3": 1,
+          "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5": 1,
+          "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc": 1,
+          "octgn:ce1cf93c-68d9-4613-af3a-a08671152358": 1,
+          "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835": 1
+        },
+        "sharedStagingArea": {
+          "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0": 1,
+          "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd": 1,
+          "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9": 1,
+          "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb": 1,
+          "octgn:f410480c-ac41-431a-8db1-693746a7570e": 1,
+          "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/026a36ed-0979-4422-a581-a4decdc3c102.jpg",
+      "localPath": "/cards/026a36ed-0979-4422-a581-a4decdc3c102.jpg",
+      "bytes": 160128,
+      "sha256": "ffbf6ddd91c278e5d6bb78dccaea85029d842e37a52978cfc3700b1bd3edfddc"
+    },
+    {
+      "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg",
+      "localPath": "/cards/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg",
+      "bytes": 154811,
+      "sha256": "ebbe01d53260a0305625883bdc56c6b0a7c80b49fe07f93b8560b5b1fbeeeaec"
+    },
+    {
+      "code": "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0d74f863-83c9-4342-ac98-5bbaae0a573f.jpg",
+      "localPath": "/cards/0d74f863-83c9-4342-ac98-5bbaae0a573f.jpg",
+      "bytes": 159124,
+      "sha256": "d92a24e563d81969af1e370ae4794050e66ed6fcb747e10ff81da2ae29589f3b"
+    },
+    {
+      "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg",
+      "localPath": "/cards/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg",
+      "bytes": 153928,
+      "sha256": "3753d48b99932e0b0c58cdec49c77b841a8b90f4dc7e8aab819ab0cd2ab0dede"
+    },
+    {
+      "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/233a2687-04a8-4c18-90cc-e90b9574b282.jpg",
+      "localPath": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.jpg",
+      "bytes": 142066,
+      "sha256": "b3d26ed9907a29082a89ddb58764a69bd4f69ea1d6020b4ce814fcfb29a62e38"
+    },
+    {
+      "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/233a2687-04a8-4c18-90cc-e90b9574b282.B.jpg",
+      "localPath": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.B.jpg",
+      "bytes": 143505,
+      "sha256": "d2d8c8bdb7c21a3b898d0e9e9d71bbad465062206ca4aba023674ba4461a230b"
+    },
+    {
+      "code": "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2362af02-42b8-43fe-b3b6-f11f011b3197.jpg",
+      "localPath": "/cards/2362af02-42b8-43fe-b3b6-f11f011b3197.jpg",
+      "bytes": 160915,
+      "sha256": "5b264e1215b553e818741943c1985720a9b55a73830baa20dc9ae57b8b46098c"
+    },
+    {
+      "code": "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/276e1411-be34-44fa-af2b-ebe9b36541f0.jpg",
+      "localPath": "/cards/276e1411-be34-44fa-af2b-ebe9b36541f0.jpg",
+      "bytes": 150587,
+      "sha256": "867f6b5442cc23d27872380e036a68e654d92b8b6d7c2d2b47dcc9360ac1a995"
+    },
+    {
+      "code": "octgn:27bdece4-dfac-438e-87cd-1dc653eab8d6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27bdece4-dfac-438e-87cd-1dc653eab8d6.jpg",
+      "localPath": "/cards/27bdece4-dfac-438e-87cd-1dc653eab8d6.jpg",
+      "bytes": 160945,
+      "sha256": "8911238108dd9cdb9a3b3d681a23a6f96711c6009249a0a824e8d7e639d8b85f"
+    },
+    {
+      "code": "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg",
+      "localPath": "/cards/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg",
+      "bytes": 157726,
+      "sha256": "a32c4635a1726358be421e9118fa1d54735377214e33cc683941a0199ee7cd61"
+    },
+    {
+      "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg",
+      "localPath": "/cards/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg",
+      "bytes": 153206,
+      "sha256": "7ec673f0aa9618fd6ce20ced22316530c4cb4d117924a6c059cf53a7f52e73a4"
+    },
+    {
+      "code": "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/434cf78e-2e8e-4d79-9662-eb50e33bc3f9.jpg",
+      "localPath": "/cards/434cf78e-2e8e-4d79-9662-eb50e33bc3f9.jpg",
+      "bytes": 133144,
+      "sha256": "80de64fa7afac65b3347f56ee191d170d24722b3a116ddb54698ac2d447c53ee"
+    },
+    {
+      "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "localPath": "/cards/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+      "bytes": 160106,
+      "sha256": "c282e41743dec44ac9155b1ca826d67d82de55778cafa2e60fa2a4de87e268ab"
+    },
+    {
+      "code": "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d31f077-9f08-435b-ad3c-95d5b7967fa4.jpg",
+      "localPath": "/cards/4d31f077-9f08-435b-ad3c-95d5b7967fa4.jpg",
+      "bytes": 153951,
+      "sha256": "5e05b9704d3dff8ad0e6d6d13652d6791bf770880b488cd7a094becfb974464f"
+    },
+    {
+      "code": "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85bbe6-1bc7-4890-8974-e42e2d0f9431.jpg",
+      "localPath": "/cards/4d85bbe6-1bc7-4890-8974-e42e2d0f9431.jpg",
+      "bytes": 165852,
+      "sha256": "7ad4f55f5d1f4bb8f8d46277e43d047e4c21feaa0c713456b3a2d987eb54fd8e"
+    },
+    {
+      "code": "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52b5e077-36f2-4c13-89fb-4f7b3d73463b.jpg",
+      "localPath": "/cards/52b5e077-36f2-4c13-89fb-4f7b3d73463b.jpg",
+      "bytes": 132584,
+      "sha256": "187593a636dddb91008030578f1f45e1705af2706d117314a0a817881dc66953"
+    },
+    {
+      "code": "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/783ecb94-e005-4ff7-8bc3-76196bba9249.jpg",
+      "localPath": "/cards/783ecb94-e005-4ff7-8bc3-76196bba9249.jpg",
+      "bytes": 163051,
+      "sha256": "ae220853cb5d1577476fff1e4494764604df9c6a19308becc9635953ec2a4aee"
+    },
+    {
+      "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg",
+      "localPath": "/cards/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg",
+      "bytes": 149192,
+      "sha256": "c899271dabd5d4e3b808069c4e245343827022e29e6361bd006b2bef28c8f8de"
+    },
+    {
+      "code": "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.jpg",
+      "localPath": "/cards/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.jpg",
+      "bytes": 175127,
+      "sha256": "c12c1463eb62963be56caa37587d4c776b2ac3f7c5a4be18d9eb667324a2893d"
+    },
+    {
+      "code": "octgn:8ed3dcd6-b234-4ab2-b6c4-1eae855d5835",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.B.jpg",
+      "localPath": "/cards/8ed3dcd6-b234-4ab2-b6c4-1eae855d5835.B.jpg",
+      "bytes": 181758,
+      "sha256": "75a4b0a634c9390e443ce95d0a4c36199cd661e600b7242e73fd5ed2da0af453"
+    },
+    {
+      "code": "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/96f8534a-2683-4c8f-981d-daa470b792b7.jpg",
+      "localPath": "/cards/96f8534a-2683-4c8f-981d-daa470b792b7.jpg",
+      "bytes": 154729,
+      "sha256": "98d89b908624a393dbaf1c329a05054a0363c6604153ea8aa886f7ed7eb6886a"
+    },
+    {
+      "code": "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a2b6cb8b-dacf-4c82-9097-2206610192ac.jpg",
+      "localPath": "/cards/a2b6cb8b-dacf-4c82-9097-2206610192ac.jpg",
+      "bytes": 151692,
+      "sha256": "4bd839d32d986e73d73c18f0cd1caa1b955ac423b97e0675458d32dc96397ca2"
+    },
+    {
+      "code": "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a312e181-9209-4460-b6ba-c90c99e011fe.jpg",
+      "localPath": "/cards/a312e181-9209-4460-b6ba-c90c99e011fe.jpg",
+      "bytes": 160720,
+      "sha256": "2dbb2da4a40448a62c907dcc6833e34f25f0c9f0c4c6bfc5227b0474f381d4cd"
+    },
+    {
+      "code": "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aba39503-0700-40c9-9c06-729e82bf67fe.jpg",
+      "localPath": "/cards/aba39503-0700-40c9-9c06-729e82bf67fe.jpg",
+      "bytes": 159669,
+      "sha256": "6455f69132f8ec74b5fde08be413ed0126627d7ee1d7e544924ee9d671bec1de"
+    },
+    {
+      "code": "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b171f1fa-a603-43ab-97c9-f950ee3b3599.jpg",
+      "localPath": "/cards/b171f1fa-a603-43ab-97c9-f950ee3b3599.jpg",
+      "bytes": 157635,
+      "sha256": "36edc5488ce763b5b6d79d3ba4889d1806d9b16a25add6ae4b04a04d91bc5f0a"
+    },
+    {
+      "code": "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b585f28e-7612-4f07-83f7-0fed8d391e3d.jpg",
+      "localPath": "/cards/b585f28e-7612-4f07-83f7-0fed8d391e3d.jpg",
+      "bytes": 151904,
+      "sha256": "640854794cf6c5a6def2f819412844fa760d99b29ae57b0a44167cca3deb4f32"
+    },
+    {
+      "code": "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg",
+      "localPath": "/cards/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg",
+      "bytes": 147464,
+      "sha256": "e1dea14746d271ad6384827d1a9b781883e6d93afedf5c61c24f27b60459656c"
+    },
+    {
+      "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "localPath": "/cards/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+      "bytes": 173003,
+      "sha256": "091350c8263876f9213fe5e6750634b66598ba775c29e3e674374195dcb8a15e"
+    },
+    {
+      "code": "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg",
+      "localPath": "/cards/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg",
+      "bytes": 155865,
+      "sha256": "0242b489dba921f2691d5d307e3db6d6b9ac1696e8eeecf3cd9b5bd837a61e41"
+    },
+    {
+      "code": "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c46688bb-24ac-4ee9-a23e-2bd481e8e56c.jpg",
+      "localPath": "/cards/c46688bb-24ac-4ee9-a23e-2bd481e8e56c.jpg",
+      "bytes": 147975,
+      "sha256": "1dd348ebba703d08ff7af54ecbd6264eb3b7b347ae62e6f43aca7d557debe6ad"
+    },
+    {
+      "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg",
+      "localPath": "/cards/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg",
+      "bytes": 150033,
+      "sha256": "4c85643cc81be4734c26b45f922fda52d6851ce4846b0996250bfbc1e974cc5d"
+    },
+    {
+      "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce1cf93c-68d9-4613-af3a-a08671152358.jpg",
+      "localPath": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.jpg",
+      "bytes": 161620,
+      "sha256": "e7c3df5e769546739f67fbc059747a769ed3c6ecfacd7a1ca4b921ae6183220f"
+    },
+    {
+      "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce1cf93c-68d9-4613-af3a-a08671152358.B.jpg",
+      "localPath": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.B.jpg",
+      "bytes": 113488,
+      "sha256": "e88e1ec9ac28eb07b1e9f56b550ec433d131b7b11b935c99281b04c2be956fd5"
+    },
+    {
+      "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "localPath": "/cards/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+      "bytes": 163869,
+      "sha256": "67415777921ec90186aa3378734d3f9d525d0524308b2dbd13170f75748ad5a1"
+    },
+    {
+      "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg",
+      "localPath": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg",
+      "bytes": 158312,
+      "sha256": "ba844bbb5c3ba593e5725ba492177158056b388b54dc34ff66ba43bda6b443bb"
+    },
+    {
+      "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d0bf9c82-d626-4602-a383-4a5660a08c5f.B.jpg",
+      "localPath": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.B.jpg",
+      "bytes": 143246,
+      "sha256": "f276e6b061b6102d40ace81d3c10e26b9d1b5418feadfb70fd80335600c4c566"
+    },
+    {
+      "code": "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d198aa74-21ec-462a-ac1a-f9c2fcf526cb.jpg",
+      "localPath": "/cards/d198aa74-21ec-462a-ac1a-f9c2fcf526cb.jpg",
+      "bytes": 133152,
+      "sha256": "c143982159056e3e459fff2f6b1f17aaf76ae834ca062ace01745d2feae41422"
+    },
+    {
+      "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "localPath": "/cards/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+      "bytes": 154907,
+      "sha256": "fd59e904b8ece94bf2e2ff0a2c3e89390db65b99c8446c4e13bd40238cf129ea"
+    },
+    {
+      "code": "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d9bde488-6391-492f-b3df-6dd6dbe4f9e9.jpg",
+      "localPath": "/cards/d9bde488-6391-492f-b3df-6dd6dbe4f9e9.jpg",
+      "bytes": 147728,
+      "sha256": "b23e9fa4e632d88aba46a0893f9f17483c656dafdea3a650f38aeb19e7bb3ce8"
+    },
+    {
+      "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg",
+      "localPath": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg",
+      "bytes": 160102,
+      "sha256": "f930ad250901e4503c28171a23a21ecd14d8ad985ae72395892758c03d46cdde"
+    },
+    {
+      "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3adad02-fa99-4905-bb20-d414ba76f75f.B.jpg",
+      "localPath": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.B.jpg",
+      "bytes": 144709,
+      "sha256": "888ff7671596ed9b02f76d2c55f0a4396b307817c69f2e1d4ca48279e706d214"
+    },
+    {
+      "code": "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg",
+      "localPath": "/cards/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg",
+      "bytes": 146783,
+      "sha256": "be9ed779e5f5e8c1873f5c6b317d4e4f4f0b77ca4cf595961f6b1f87acab0daf"
+    },
+    {
+      "code": "octgn:f410480c-ac41-431a-8db1-693746a7570e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f410480c-ac41-431a-8db1-693746a7570e.jpg",
+      "localPath": "/cards/f410480c-ac41-431a-8db1-693746a7570e.jpg",
+      "bytes": 132672,
+      "sha256": "78237c3585fec6b5e2f88cf290b46dad9f546c184a09131e57b5cc07d00cb42d"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 import * as DrownedPlayers from "./drowned-player";
+import * as CobasPlayers from "./cobas-player";
+import { cobasEconomyEvent } from "./cobas-economy";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   dikeCannotLeaveDiscard,
@@ -150,6 +152,8 @@ export function eventEffect(
   if (DepthsPlayers.depthsPlayerEvent(s, code, target)) return;
   if (TemplePlayers.templePlayerEvent(s, code, target)) return;
   if (DrownedPlayers.drownedPlayerEvent(s, code, target)) return;
+  if (CobasPlayers.cobasPlayerEvent(s, code)) return;
+  if (cobasEconomyEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;

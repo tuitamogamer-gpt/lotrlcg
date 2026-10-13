@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { encodeDamageContext } from "./damage-context";
@@ -881,7 +882,7 @@ export function templeEncounterEffect(s: GameState, e: Effect) {
     case "templeECWanderingRemove":
       if (u?.committed) {
         const value = stats(s, u).will;
-        u.committed = false;
+        removeFromQuest(s, u);
         prepend(
           s,
           fx("templeECWandering", {

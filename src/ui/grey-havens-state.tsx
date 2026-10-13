@@ -5,6 +5,8 @@ import { stats } from "../game/engine";
 import { isShipObjective } from "../game/ships";
 import { sailingCommitCount, sailingHeadingLabel } from "../game/sailing";
 import { sailingOnCourse } from "../game/sailing";
+import { voyageSailingExtraCards } from "../game/voyage-belegaer";
+import { cobasSailingExtraCards } from "../game/cobas";
 import { stormcallerSameStage } from "../game/stormcaller";
 import { stormcallerState } from "../game/stormcaller-support";
 import { Art } from "./card-art";
@@ -72,6 +74,7 @@ export function StormcallerQuestSummary({
 export function SailingTestSummary({ s }: { s: GameState }) {
   const test = s.sailing?.test;
   if (!test) return null;
+  const extra = voyageSailingExtraCards(s) + cobasSailingExtraCards(s);
   return (
     <section
       className="escape-test-summary"
@@ -81,8 +84,9 @@ export function SailingTestSummary({ s }: { s: GameState }) {
       <div>
         <strong>Sailing test · {seatName(s, test.player)}</strong>
         <span>
-          {sailingHeadingLabel(s.sailing!.heading)} · {sailingCommitCount(s)}{" "}
-          Sailing cards
+          {sailingHeadingLabel(s.sailing!.heading)} ·{" "}
+          {sailingCommitCount(s) + extra} Sailing cards
+          {extra > 0 && ` · ${extra} additional cards`}
         </span>
       </div>
       <p>

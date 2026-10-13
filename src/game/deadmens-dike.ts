@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -605,7 +606,7 @@ export function dikeEffect(s: GameState, e: Effect) {
     case "dikeRemoveQuesters":
       for (const id of e.ids ?? []) {
         const target = get(s, id);
-        if (target) target.committed = false;
+        if (target) removeFromQuest(s, target);
       }
       s.committedIds = s.committedIds.filter(
         (id) => !(e.ids ?? []).includes(id),

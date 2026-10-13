@@ -1,4 +1,5 @@
 import { drownedPlayerAttachmentEntered } from "./drowned-player";
+import { cobasReactiveAttachmentEntered } from "./cobas-reactive";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
@@ -665,6 +666,7 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
       target.attachments.push(attachment);
       roadPlayerAttachmentEntered(s, target, attachment);
       drownedPlayerAttachmentEntered(s, target, attachment);
+      cobasReactiveAttachmentEntered(s, target, attachment);
       dwarfDeckDiscarded(s, e.ids ?? [], activeSeat(s));
       return true;
     }

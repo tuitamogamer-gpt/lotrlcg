@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { isHero } from "./card-types";
 import type { Effect, GameState, Option, Phase, Unit } from "./types";
 import { isAngmarAdventure } from "./angmar-scenario-ids";
@@ -452,7 +453,7 @@ export function weatherEncounter(s: GameState, code: string, replay = false) {
     );
   } else if (code === W.blast) {
     for (const u of allCharacters(s).filter((u) => u.damage > 0)) {
-      u.committed = false;
+      removeFromQuest(s, u);
       forOwner(s, ownerOf(s, u), () => {
         s.committedIds = s.committedIds.filter((id) => id !== u.id);
       });

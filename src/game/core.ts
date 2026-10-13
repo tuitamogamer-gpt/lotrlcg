@@ -1,3 +1,5 @@
+import * as Cobas from "./cobas";
+import { cobasStageInfo } from "./cobas-support";
 import * as Drowned from "./drowned";
 import * as DrownedCompanions from "./drowned-companions";
 import * as TemplePlayers from "./temple-player";
@@ -15,6 +17,8 @@ import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
 import { depthsPlayerStats } from "./depths-player-support";
 import { drownedPlayerDefense } from "./drowned-player-support";
+import { COBAS_PLAYER, cobasPlayerStats } from "./cobas-player-support";
+import { cobasEconomyCostReduction } from "./cobas-economy";
 import { depthsPlayerCostReduction } from "./depths-player";
 import { voyageStageInfo } from "./voyage-belegaer-support";
 import * as Dike from "./deadmens-dike";
@@ -517,12 +521,14 @@ export function stats(s: GameState, u: Unit) {
   const angmarBonus = Angmar.angmarStats(s, u);
   const templePlayerBonus = TemplePlayers.templePlayerStats(s, u);
   const templeEncounterBonus = TempleEncounters.templeEncounterStats(s, u);
+  const cobasBonus = cobasPlayerStats(s, u);
   const result = {
     will: Math.max(
       0,
       (c.willpower ?? 0) +
         [
           chetwoodBonus.will,
+          cobasBonus.will,
           GreyPlayers.greyHavensStats(s, u).will,
           templePlayerBonus.will,
           templeEncounterBonus.will,
@@ -530,6 +536,7 @@ export function stats(s: GameState, u: Unit) {
           Depths.depthsStats(s, u).will,
           DrownedCompanions.drownedCompanionStats(s, u).will,
           Voyage.voyageStats(s, u).will,
+          Cobas.cobasStats(s, u).will,
           angmarBonus.will,
           Wastes.wastesWillBonus(s, u),
           Etten.ettenWillPenalty(s, u),
@@ -580,6 +587,7 @@ export function stats(s: GameState, u: Unit) {
         Drowned.drownedAttackBonus(s, u) +
         DrownedCompanions.drownedCompanionStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
+        Cobas.cobasStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
         Raid.raidStats(s, u).attack +
@@ -598,6 +606,7 @@ export function stats(s: GameState, u: Unit) {
         assaultOsgiliathAttackBonus(s, u) +
         stewardFearEnemyAttackBonus(s, u) +
         morgulBonus.attack +
+        cobasBonus.attack +
         osgiliathBonus.attack +
         shadowFlameAttackBonus(s, u) +
         stewardBonus.attack +
@@ -634,12 +643,14 @@ export function stats(s: GameState, u: Unit) {
           (c.defense ?? 0) +
             (u.roundDefense ?? 0) +
             chetwoodBonus.defense +
+            cobasBonus.defense +
             GreyPlayers.greyHavensStats(s, u).defense +
             templePlayerBonus.defense +
             templeEncounterBonus.defense +
             depthsPlayerStats(s, u).defense +
             Depths.depthsStats(s, u).defense +
             Voyage.voyageStats(s, u).defense +
+            Cobas.cobasStats(s, u).defense +
             Raid.raidStats(s, u).defense +
             angmarBonus.defense +
             Etten.ettenStats(s, u).defense +
@@ -675,6 +686,7 @@ export function stats(s: GameState, u: Unit) {
     health:
       (namelessX ?? c.health ?? 0) +
       foundationsBonus.health +
+      cobasBonus.health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
@@ -700,7 +712,8 @@ export const riverlandsInPlay = (s: GameState) =>
   );
 /** An objective with an encounter card guarding it cannot be claimed. */
 export const isGuarded = (s: GameState, u: Unit) =>
-  units(s).some((x) => x.guarding === u.id);
+  !!s.cobas?.pendingGuarded.includes(u.id) ||
+  units(s).some((x) => Cobas.cobasGuardsObjective(x, u.id));
 /** Printed cost plus active-location surcharges (The East Bank, The West Bank). */
 export function playCost(s: GameState, c: Card, target?: Unit) {
   syncAttachmentText(s, target);
@@ -758,6 +771,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 ringMakerSecrecy(s, c) -
                 gondorDiscount -
                 depthsPlayerCostReduction(s, c.code) -
+                cobasEconomyCostReduction(s, c.code) -
                 Drowned.drownedCostReduction(s, c),
             ) + dwarfAdditionalCost(c.code),
           ),
@@ -817,6 +831,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             0) +
             Chetwood.chetwoodThreatBonus(s, u) +
             Voyage.voyageThreatBonus(s, u) +
+            Cobas.cobasThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
             Depths.depthsThreatBonus(s, u) +
             Drowned.drownedThreatBonus(s, u) +
@@ -859,6 +874,7 @@ export const threatOf = (s: GameState, u: Unit) =>
 export const stagingThreat = (s: GameState) =>
   s.threatModifier +
   Voyage.voyageStagingThreat(s) +
+  Cobas.cobasStagingThreat(s) +
   Fate.fateStagingThreat(s) +
   TempleEncounters.templeEncounterThreat(s) +
   Dike.dikeStagingThreat(s) +
@@ -928,10 +944,13 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Etten.ettenEngagementModifier(s) +
       Carn.carnEngagementModifier(s, u) +
       Voyage.voyageEngagementModifier(s, u) +
+      Cobas.cobasEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const cobas = cobasStageInfo(s);
+  if (cobas) return cobas;
   const drowned = drownedStageInfo(s);
   if (drowned) return drowned;
   const depths = depthsStageInfo(s);
@@ -1052,6 +1071,13 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
   const actualCost = playCost(s, c, target);
   const heroes = characters(s)
     .filter(isHero)
+    .filter(
+      (h) =>
+        actualCost === 0 ||
+        c.type_code !== "ally" ||
+        h.code !== COBAS_PLAYER.naasiyah ||
+        !!h.blanked,
+    )
     .filter((h) => actualCost === 0 || heirsCanSpendResources(s, h))
     .filter(
       (h) =>

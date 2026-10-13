@@ -1,3 +1,5 @@
+import cobasSymbols from "../data/cobas-sailing-icons.json";
+import { cobasSailingExtraCards } from "./cobas";
 import { card, name } from "./cards";
 import type { Effect, GameState, Unit } from "./types";
 import { choose, fx, get, log, prepend, requireRule, shuffle } from "./core";
@@ -23,10 +25,9 @@ import {
 import stormcallerSymbols from "../data/stormcaller-sailing-icons.json";
 
 const printedSailingSymbols = new Map(
-  [...symbols.cards, ...stormcallerSymbols.cards].map((c) => [
-    c.code,
-    c.sailingSymbols,
-  ]),
+  [...symbols.cards, ...stormcallerSymbols.cards, ...cobasSymbols.cards].map(
+    (c) => [c.code, c.sailingSymbols],
+  ),
 );
 export const sailingSymbols = (code: string) =>
   printedSailingSymbols.get(code) ?? card(code).sailing ?? 0;
@@ -129,7 +130,10 @@ export function beginSailingTest(s: GameState, continuation: Effect[] = []) {
 
 /** The main quest's keyword resolves before ordinary quest commitments and side quest selection. */
 export function sailingQuestStart(s: GameState, continuation: Effect[] = []) {
-  const quest = voyageCurrentQuest(s) ?? stormcallerCurrentQuest(s);
+  const quest =
+    voyageCurrentQuest(s) ??
+    stormcallerCurrentQuest(s) ??
+    s.cobas?.currentQuest;
   if (!s.sailing || !quest || !/\bSailing\b/.test(card(quest).back_text ?? ""))
     return false;
   beginSailingTest(s, continuation);
@@ -144,7 +148,10 @@ export function sailingContinue(s: GameState) {
     "Finish committing characters before resolving the Sailing test.",
   );
   selectSeat(s, test.player);
-  const count = sailingCommitCount(s) + voyageSailingExtraCards(s);
+  const count =
+    sailingCommitCount(s) +
+    voyageSailingExtraCards(s) +
+    cobasSailingExtraCards(s);
   if (s.encounterDeck.length < count && s.encounterDiscard.length) {
     s.encounterDeck.push(...s.encounterDiscard.splice(0));
     shuffle(s, s.encounterDeck);
@@ -257,14 +264,18 @@ export function validateSailing(
   validEffect: (v: Effect) => boolean,
 ) {
   if (s.sailing === undefined)
-    return !["voyage-across-belegaer", "flight-of-the-stormcaller"].includes(
-      s.scenarioId,
-    );
+    return ![
+      "voyage-across-belegaer",
+      "flight-of-the-stormcaller",
+      "a-storm-on-cobas-haven",
+    ].includes(s.scenarioId);
   const fleet = s.sailing;
   if (
-    !["voyage-across-belegaer", "flight-of-the-stormcaller"].includes(
-      s.scenarioId,
-    ) ||
+    ![
+      "voyage-across-belegaer",
+      "flight-of-the-stormcaller",
+      "a-storm-on-cobas-haven",
+    ].includes(s.scenarioId) ||
     !fleet ||
     !Number.isInteger(fleet.heading) ||
     fleet.heading < 0 ||
@@ -324,7 +335,10 @@ export function validateSailing(
       Array.isArray(t.looked) &&
       Number.isInteger(t.successes) &&
       t.successes! >= 0 &&
-      t.looked.length <= sailingCommitCount(s) + voyageSailingExtraCards(s) &&
+      t.looked.length <=
+        sailingCommitCount(s) +
+          voyageSailingExtraCards(s) +
+          cobasSailingExtraCards(s) &&
       t.successes! <= t.looked.reduce((n, code) => n + sailingSymbols(code), 0)
     );
   return t.looked === undefined && t.successes === undefined;

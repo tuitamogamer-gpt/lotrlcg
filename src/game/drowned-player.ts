@@ -1,4 +1,5 @@
 import { DROWNED_PLAYER as P } from "./drowned-player-support";
+import { cobasReactiveAttachmentEntered } from "./cobas-reactive";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
 import {
@@ -446,6 +447,7 @@ export function drownedPlayerEffect(s: GameState, e: Effect): boolean {
       u.attachments = u.attachments.filter((x) => x.id !== a.id);
       target.attachments.push(a);
       drownedPlayerAttachmentEntered(s, target, a);
+      cobasReactiveAttachmentEntered(s, target, a);
       break;
     }
     case "drownedPlayerRemedyOffer": {

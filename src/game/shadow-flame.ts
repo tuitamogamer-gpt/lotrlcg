@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { addCurrentQuestProgress } from "./side-quests";
 import { surgeEffects } from "./surge";
 import { mainQuestCode } from "./quest-state";
@@ -414,7 +415,7 @@ export function shadowFlameEffect(s: GameState, e: Effect): boolean {
     }
     case "shadowFlameRemoveHero":
       if (u) {
-        u.committed = false;
+        removeFromQuest(s, u);
         forOwner(
           s,
           ownerOf(s, u),

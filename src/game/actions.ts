@@ -1,6 +1,14 @@
+import * as Cobas from "./cobas";
+import * as CobasEconomy from "./cobas-economy";
 import * as Drowned from "./drowned";
 import * as DrownedCompanions from "./drowned-companions";
 import * as DrownedPlayers from "./drowned-player";
+import * as CobasPlayers from "./cobas-player";
+import {
+  cobasEconomyPlayProblem,
+  cobasEconomyPlayTargets,
+} from "./cobas-economy";
+import { cobasReactiveAttachmentEntered } from "./cobas-reactive";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import * as Temple from "./temple";
@@ -472,7 +480,7 @@ export function commitCharacters(s: GameState) {
   log(s, `${committed.length} characters commit to the quest.`);
   enqueue(s, fx("commitSeat"));
 }
-export function canCommit(s: GameState, u: Unit): boolean {
+export function canCommit(s: GameState, u: Unit, byEffect = false): boolean {
   syncAttachmentText(s, u);
   return (
     (u.code !== "08112" || !!u.blanked) &&
@@ -480,12 +488,12 @@ export function canCommit(s: GameState, u: Unit): boolean {
     !s.escapeTest &&
     !s.sailing?.test &&
     !(s.ninEilph?.activeQuest === NIN.weary && !s.hand.length) &&
-    s.phase === "quest" &&
+    (s.phase === "quest" || (byEffect && s.phase === "staging")) &&
     characters(s).some((x) => x.id === u.id) &&
     redhornCanCommit(u) &&
-    !watcherWaterCannotExhaust(u) &&
-    !khazadCannotExhaust(u) &&
-    (!u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u)) &&
+    (byEffect || !watcherWaterCannotExhaust(u)) &&
+    (byEffect || !khazadCannotExhaust(u)) &&
+    (byEffect || !u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u)) &&
     !u.committed &&
     !isSacked(u) &&
     (s.scenarioId !== "hunt-for-gollum" ||
@@ -513,6 +521,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   const raidProblem = Raid.raidTravelProblem(s, u);
   const depthsProblem = Depths.depthsTravelProblem(s, u);
   if (depthsProblem) return depthsProblem;
+  const cobasProblem = Cobas.cobasTravelProblem(s, u);
+  if (cobasProblem) return cobasProblem;
   const stormProblem = Storm.stormcallerTravelProblem(s, u);
   if (stormProblem) return stormProblem;
   if (raidProblem) return raidProblem;
@@ -738,6 +748,10 @@ export function canPlay(
   if (depthsProblem) return depthsProblem;
   const drownedPlayerProblem = DrownedPlayers.drownedPlayerPlayProblem(s, u);
   if (drownedPlayerProblem) return drownedPlayerProblem;
+  const cobasPlayerProblem = CobasPlayers.cobasPlayerPlayProblem(s, u);
+  if (cobasPlayerProblem) return cobasPlayerProblem;
+  const cobasEconomyProblem = cobasEconomyPlayProblem(s, u.code);
+  if (cobasEconomyProblem) return cobasEconomyProblem;
   const templeProblem = TemplePlayers.templePlayerPlayProblem(
     s,
     u,
@@ -1186,6 +1200,7 @@ export function playEventFromDiscardEffect(
         Object.values(options.payment).filter((n) => n > 0).length === 3,
       "This card needs three hero resource pools.",
     );
+  if (CobasEconomy.cobasEconomyPrepareDiscardPlay(s, index, options)) return;
   const effectiveCost = replayEventCost(
     s,
     preview,
@@ -1385,11 +1400,13 @@ export function resolvePlayerCard(
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     roadPlayerAttachmentEntered(s, host, attachment);
     DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
+    cobasReactiveAttachmentEntered(s, host, attachment);
   } else {
     resolveEventAbility(
       s,
       u,
       () => {
+        CobasEconomy.cobasEconomyEventCost(s, u);
         GreyPlayers.greyHavensEventCost(s, u.code, target);
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
         DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
@@ -1525,6 +1542,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
+  const cobasEconomyTargets = cobasEconomyPlayTargets(s, c.code);
+  if (cobasEconomyTargets) return cobasEconomyTargets;
   if (drownedTargets) return drownedTargets;
   const depthsTargets = DepthsPlayers.depthsPlayerPlayTargets(s, c.code);
   if (depthsTargets) return depthsTargets;
@@ -1679,6 +1698,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
+  u.code === "12118" ||
   u.code === "09008" ||
   (!["05017", "06064", "06115", "12064"].includes(u.code) &&
     (card(u.code).type_code === "attachment" ||
@@ -1810,7 +1830,12 @@ export function availableAbilities(s: GameState, u: Unit) {
   const rhudaurLabel = Rhudaur.rhudaurAbilityLabel(s, u);
   if (rhudaurLabel)
     return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
-  const results: { id?: string; label: string; disabled: boolean }[] = [];
+  const cobasLabel = Cobas.cobasAbilityLabel(s, u);
+  if (cobasLabel)
+    return [{ label: cobasLabel, disabled: !!Cobas.cobasAbilityProblem(s, u) }];
+  const results: { id?: string; label: string; disabled: boolean }[] = [
+    ...Cobas.cobasWaterAbilities(s, u),
+  ];
   const drownedScenarioLabel = DrownedCompanions.drownedAbilityLabel(s, u);
   if (drownedScenarioLabel)
     results.push({
@@ -2362,6 +2387,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Rhudaur.rhudaurOpeningHandsKept(s) &&
         !Carn.carnOpeningHandsKept(s) &&
         !Dread.dreadOpeningHandsKept(s) &&
+        !Cobas.cobasOpeningHandsKept(s) &&
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
@@ -2474,6 +2500,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           playTargets(s, u).some((x) => x.id === action.target),
           "Choose a legal target.",
         );
+      if (CobasEconomy.cobasEconomyPrepareHandPlay(s, u, action)) break;
       if (u.code === "01034")
         requireRule(
           ["defense", "attack"].includes(s.phase),
@@ -2519,6 +2546,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         get(s, action.target),
       );
       DepthsPlayers.depthsPlayerCardPaid(s, u, actualPayment, true, true);
+      CobasEconomy.cobasEconomyCardPaid(s, u, actualPayment, true, true);
       s.hand = s.hand.filter((x) => x.id !== u.id);
       resolvePaidPlayerCard(
         s,
@@ -2566,6 +2594,7 @@ export function applyAction(input: GameState, action: Action): GameState {
             return;
           }
           const u = get(s, action.id);
+          if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           requireRule(
             !u || !Fate.fateForbiddenSearchAbility(s, u),
             "An encounter effect prevents searching your deck.",
@@ -2741,6 +2770,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Gram.gramTravel(s, u) ??
         Raid.raidTravel(s, u) ??
         Depths.depthsTravelEffects(s, u) ??
+        Cobas.cobasTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3037,6 +3067,7 @@ export function publicState(s: GameState) {
     ...(s.fateNumenor ? { fateNumenor: Fate.fatePublicState(s) } : {}),
     ...(s.temple ? { temple: Temple.templePublicState(s) } : {}),
     ...(s.drowned ? { drowned: Drowned.drownedPublicState(s) } : {}),
+    ...(s.cobas ? { cobas: Cobas.cobasPublicState(s) } : {}),
     ...(s.voyageBelegaer
       ? {
           voyageBelegaer: {

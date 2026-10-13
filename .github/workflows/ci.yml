@@ -112,6 +112,18 @@ jobs:
       - run: npm ci
       - run: npm run test:drowned-simulation
 
+  cobas-simulation:
+    name: Cobas Haven review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:cobas-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -138,6 +150,7 @@ jobs:
             the-thing-in-the-depths,
             temple-of-the-deceived,
             the-drowned-ruins,
+            a-storm-on-cobas-haven,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -177,6 +190,8 @@ jobs:
             suite: test:browser-temple
           - group: drowned
             suite: test:browser-drowned
+          - group: cobas
+            suite: test:browser-cobas
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

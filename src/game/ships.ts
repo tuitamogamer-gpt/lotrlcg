@@ -3,11 +3,16 @@ import type { GameState, Unit } from "./types";
 import { allCharacters, allHeroes, ownerOf, activeSeat } from "./table";
 
 /** The original Grey Havens insert treats these printed kinds as allies/enemies. */
-export const isShipObjective = (u: { code: string }) =>
-  card(u.code).type_code === "ship-objective";
-export const isShipEnemy = (u: { code: string }) =>
-  card(u.code).type_code === "ship-enemy";
-export const isEnemy = (u: { code: string }) =>
+export const isShipObjective = (u: {
+  code: string;
+  cobasShipObjective?: boolean;
+}) => !!u.cobasShipObjective || card(u.code).type_code === "ship-objective";
+export const isShipEnemy = (u: {
+  code: string;
+  cobasShipObjective?: boolean;
+}) => !u.cobasShipObjective && card(u.code).type_code === "ship-enemy";
+export const isEnemy = (u: { code: string; cobasShipObjective?: boolean }) =>
+  !u.cobasShipObjective &&
   ["enemy", "ship-enemy"].includes(card(u.code).type_code);
 
 /** Ordinary characters may attack ships; ships may only attack other ships. */

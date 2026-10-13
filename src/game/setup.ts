@@ -1,3 +1,4 @@
+import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import { setupDeadmensDike } from "./deadmens-dike";
 import { setupVoyageBelegaer } from "./voyage-belegaer";
@@ -432,6 +433,8 @@ export function createGame(
     setupStormcaller(s);
   } else if (scenarioId === "the-thing-in-the-depths") {
     setupDepths(s);
+  } else if (scenarioId === "a-storm-on-cobas-haven") {
+    Cobas.setupCobas(s);
   } else if (scenarioId === "the-drowned-ruins") {
     Drowned.setupDrowned(s);
   } else if (scenarioId === "temple-of-the-deceived") {

@@ -4,6 +4,8 @@ export interface DamageContext {
   fateBottomOnDestroy?: boolean;
   /** One Dark Abyss damage assignment, preserved through replacement effects. */
   drownedThenToken?: string;
+  /** One Vigilant Guard assignment across its redirected and remaining damage. */
+  cobasGuardToken?: string;
   /** Ability costs cannot be canceled or redirected by optional replacements. */
   cost?: boolean;
   enemyId?: string;
@@ -41,10 +43,13 @@ export function readDamageContext(effect: {
     const context: DamageContext = {};
     if ("drownedThenToken" in raw && typeof raw.drownedThenToken === "string")
       context.drownedThenToken = raw.drownedThenToken;
+    if ("cobasGuardToken" in raw && typeof raw.cobasGuardToken === "string")
+      context.cobasGuardToken = raw.cobasGuardToken;
     if ("enemyId" in raw && typeof raw.enemyId === "string")
       context.enemyId = raw.enemyId;
     for (const key of [
       "fateBottomOnDestroy",
+      "cost",
       "combatDamage",
       "bypassFrodo",
       "bypassDori",

@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { DEPTHS_PLAYER as P } from "./depths-player-support";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
@@ -829,7 +830,7 @@ export function depthsPlayerEffect(s: GameState, e: Effect): boolean {
       for (const h of chosen as Unit[]) {
         readyCharacter(s, h);
         if (h.exhausted) complete = false;
-        h.committed = false;
+        removeFromQuest(s, h);
         s.committedIds = s.committedIds.filter((id) => id !== h.id);
       }
       if (complete)

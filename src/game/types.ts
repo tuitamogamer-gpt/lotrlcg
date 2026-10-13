@@ -85,6 +85,9 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Captured Corsair Skirmishers retain their physical card as Ship objectives. */
+  cobasShipObjective?: boolean;
+  cobasGuarding?: string[];
   /** Physical encounter card belonging to the Stormcaller's separate area. */
   stormcallerArea?: boolean;
   /** Na'asiyah's resource bonus is fixed when this attack begins. */
@@ -206,6 +209,7 @@ export type ScenarioId =
   | "the-thing-in-the-depths"
   | "temple-of-the-deceived"
   | "the-drowned-ruins"
+  | "a-storm-on-cobas-haven"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -331,6 +335,7 @@ export interface GameState {
   depths?: import("./depths-support").DepthsState;
   temple?: import("./temple-support").TempleState;
   drowned?: import("./drowned-support").DrownedState;
+  cobas?: import("./cobas-support").CobasState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -375,7 +380,8 @@ export interface GameState {
   resolvingEvents?: {
     unit: Unit;
     player: number;
-    destination: "discard" | "bottom" | "removed" | "victory" | "hand";
+    destination:
+      "discard" | "bottom" | "removed" | "victory" | "hand" | "spent";
   }[];
   /** Paid physical cards wait out mandatory cost triggers before entering play. */
   pendingPlayerPlays?: {
@@ -494,6 +500,8 @@ export interface GameState {
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
   combat: {
+    /** Ramming Speed tracks actual damage from this physical attack. */
+    cobasRamming?: boolean;
     fateBottomOnAllyKill?: boolean;
     /** Each independently resolved Furious Rainstorm shadow applies on a kill. */
     templeRainOnKill?: number;

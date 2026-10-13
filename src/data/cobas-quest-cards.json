@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+    "octgnid": "233a2687-04a8-4c18-90cc-e90b9574b282",
+    "name": "Break Through the Fleet!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The players make engagement checks against each enemy in the staging area. Raider Flagship gets -50 engagement cost during these engagement checks.",
+    "is_unique": false,
+    "pack_code": "SoCH",
+    "pack_name": "A Storm on Cobas Haven",
+    "position": 122,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "A Storm on Cobas Haven",
+    "side": "A",
+    "back_name": "Break Through the Fleet!",
+    "back_text": "Sailing. Raider Flagship gets -50 engagement cost. Break Through the Fleet! has +5 quest points for each Ship enemy in play. If this stage is defeated, or if Raider Flagship is in the victory display, the players have broken through the Corsair fleet and win the game!",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/233a2687-04a8-4c18-90cc-e90b9574b282.jpg",
+    "packs": [
+      {
+        "pack_code": "SoCH",
+        "pack_name": "A Storm on Cobas Haven",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "233a2687-04a8-4c18-90cc-e90b9574b282",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/233a2687-04a8-4c18-90cc-e90b9574b282.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
+    "octgnid": "d0bf9c82-d626-4602-a383-4a5660a08c5f",
+    "name": "Outmaneuver the Enemy",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Prepare the Corsair deck. Players prepare their fleet. Set each copy of Dol Amroth Warship aside, out of play. Search the encounter deck for Raider Flagship and 1 copy of Scouting Ship, and add them to the staging area. Search the encounter deck for a Dol Amroth objective of your choice and add it to the staging area. Then, shuffle the encounter deck and resolve the Guarded keyword on that objective.",
+    "is_unique": false,
+    "pack_code": "SoCH",
+    "pack_name": "A Storm on Cobas Haven",
+    "position": 120,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "A Storm on Cobas Haven",
+    "side": "A",
+    "back_name": "Outmaneuver the Enemy",
+    "back_text": "Sailing. Forced: When a Ship enemy engages you, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), deal 2 damage to a Ship objective you control. If you are on-course (o), deal 2 damage to that Ship enemy instead. If your current heading is at the worst setting ( 3/4 ), Raider Flagship gets -50 engagement cost.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg",
+    "packs": [
+      {
+        "pack_code": "SoCH",
+        "pack_name": "A Storm on Cobas Haven",
+        "position": 120,
+        "quantity": 1,
+        "octgnid": "d0bf9c82-d626-4602-a383-4a5660a08c5f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d0bf9c82-d626-4602-a383-4a5660a08c5f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+    "octgnid": "e3adad02-fa99-4905-bb20-d414ba76f75f",
+    "name": "Battle in the Bay",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for a Ship enemy and add it to the staging area (2 Ship enemies instead if there are 3 or more players in the game). Shuffle the encounter deck. For each unguarded objective in the staging area, attach a non-unique Ship enemy in the staging area to that objective, guarding it.",
+    "is_unique": false,
+    "pack_code": "SoCH",
+    "pack_name": "A Storm on Cobas Haven",
+    "position": 121,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "A Storm on Cobas Haven",
+    "side": "A",
+    "back_name": "Battle in the Bay",
+    "back_text": "Sailing. If your current heading is at the worst setting ( 3/4 ), Raider Flagship gets -50 engagement cost. You cannot advance while at least 1 objective is guarded by an encounter.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg",
+    "packs": [
+      {
+        "pack_code": "SoCH",
+        "pack_name": "A Storm on Cobas Haven",
+        "position": 121,
+        "quantity": 1,
+        "octgnid": "e3adad02-fa99-4905-bb20-d414ba76f75f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3adad02-fa99-4905-bb20-d414ba76f75f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

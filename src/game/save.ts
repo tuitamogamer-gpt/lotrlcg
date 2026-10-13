@@ -1,3 +1,4 @@
+import { COBAS, validateCobas } from "./cobas-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -236,6 +237,7 @@ export function validateSave(
         c.osgiliathReturnIfKilled,
         c.osgiliathUndefended,
         c.fateBottomOnAllyKill,
+        c.cobasRamming,
         c.voyageCharacterKilled,
         c.voyageShipDamaged,
         c.raidKilledCharacter,
@@ -331,6 +333,10 @@ export function validateSave(
           new Set(c.desperateDefenderIds).size ===
             c.desperateDefenderIds.length));
     const validUnit = (u: Unit) =>
+      (u.cobasShipObjective === undefined ||
+        (u.cobasShipObjective === true &&
+          s.scenarioId === "a-storm-on-cobas-haven" &&
+          u.code === COBAS.skirmisher)) &&
       (u.stormcallerArea === undefined ||
         (typeof u.stormcallerArea === "boolean" &&
           s.scenarioId === "flight-of-the-stormcaller")) &&
@@ -457,6 +463,15 @@ export function validateSave(
           u.revealedShadowCount >= 0 &&
           u.revealedShadowCount <= u.shadows.length)) &&
       (u.guarding === undefined || typeof u.guarding === "string") &&
+      (u.cobasGuarding === undefined ||
+        (s.scenarioId === "a-storm-on-cobas-haven" &&
+          u.code === COBAS.heavy &&
+          Array.isArray(u.cobasGuarding) &&
+          u.cobasGuarding.length > 0 &&
+          u.cobasGuarding.every(
+            (id) => typeof id === "string" && id !== u.guarding,
+          ) &&
+          new Set(u.cobasGuarding).size === u.cobasGuarding.length)) &&
       (u.facedownCardId === undefined ||
         (typeof u.facedownCardId === "string" && !!u.facedownCard)) &&
       (u.facedownCard === undefined ||
@@ -557,9 +572,17 @@ export function validateSave(
             integer(event.player) &&
             event.player >= 0 &&
             event.player < seatCount &&
-            ["discard", "bottom", "removed", "victory", "hand"].includes(
-              event.destination,
-            ),
+            [
+              "discard",
+              "bottom",
+              "removed",
+              "victory",
+              "hand",
+              "spent",
+            ].includes(event.destination) &&
+            (event.destination !== "spent" ||
+              (event.unit.code === "12119" &&
+                !!s.victoryCards?.includes("12119"))),
         ))
     )
       return false;
@@ -600,6 +623,7 @@ export function validateSave(
         !validateDepths(s, validUnit as (value: unknown) => boolean) ||
         !validateTemple(s, validUnit as (value: unknown) => boolean) ||
         !validateDrowned(s, validUnit as (value: unknown) => boolean) ||
+        !validateCobas(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1216,6 +1240,9 @@ export function validateSave(
       ...Object.values(s.mountGram?.captured ?? {}).flat(),
       ...(s.rhudaur?.setAside ?? []),
       ...(s.dreadRealm?.setAside ?? []),
+      ...(s.cobas?.setAside ?? []),
+      ...(s.cobas?.capturePending ?? []),
+      ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),
       ...(s.voyageBelegaer?.setAside ?? []),
       ...(s.fateNumenor?.setAside ?? []),
       ...(s.raidGreyHavens?.setAside ?? []),

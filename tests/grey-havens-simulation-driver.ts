@@ -31,6 +31,8 @@ import {
 } from "./temple-simulation-policy";
 import { assertTempleSaveRestoration } from "./temple-simulation-invariants";
 import { assertDrownedSaveRestoration } from "./drowned-simulation-invariants";
+import { assertCobasSaveRestoration } from "./cobas-simulation-invariants";
+import { cobasSimulationChoice } from "./cobas-simulation-policy";
 import {
   drownedSimulationAction,
   drownedSimulationChoice,
@@ -48,10 +50,13 @@ export const DREAM_CHASER_SCENARIOS = [
   "the-thing-in-the-depths",
   "temple-of-the-deceived",
   "the-drowned-ruins",
+  "a-storm-on-cobas-haven",
 ] as const;
 
 /** Deterministic decisions use the real mandatory Sailing choices and costs. */
 export function greyHavensSimulationChoice(s: GameState): Option | undefined {
+  const cobas = cobasSimulationChoice(s);
+  if (cobas) return cobas;
   const drowned = drownedSimulationChoice(s);
   if (drowned) return drowned;
   const temple = templeSimulationChoice(s);
@@ -211,6 +216,8 @@ export function runGreyHavensGame(
           assertTempleSaveRestoration(savedState, restored);
         else if (scenarioId === "the-drowned-ruins")
           assertDrownedSaveRestoration(savedState, restored);
+        else if (scenarioId === "a-storm-on-cobas-haven")
+          assertCobasSaveRestoration(savedState, restored);
         else assert.deepEqual(restored, savedState);
       }
       s = restored;
@@ -221,7 +228,7 @@ export function runGreyHavensGame(
         allCharacters(s).length,
       );
     } catch (error) {
-      const directory = `output/${scenarioId === "the-drowned-ruins" ? "drowned" : scenarioId === "temple-of-the-deceived" ? "temple" : scenarioId === "the-thing-in-the-depths" ? "depths" : scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
+      const directory = `output/${scenarioId === "a-storm-on-cobas-haven" ? "cobas" : scenarioId === "the-drowned-ruins" ? "drowned" : scenarioId === "temple-of-the-deceived" ? "temple" : scenarioId === "the-thing-in-the-depths" ? "depths" : scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
       mkdirSync(directory, { recursive: true });
       writeFileSync(
         `${directory}/${scenarioId}-${easy ? "easy" : "normal"}-${players}-${seed}-${reviewMode ?? "immediate"}.json`,

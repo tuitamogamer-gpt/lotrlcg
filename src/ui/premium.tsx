@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "a-storm-on-cobas-haven": {
+    name: "Cobas Haven",
+    detail: "Rally Dol Amroth and break through the Corsair fleet",
+  },
   "the-drowned-ruins": {
     name: "The Drowned Ruins",
     detail: "Explore the flooded grotto and escape the rising waters",
@@ -258,6 +262,7 @@ export const PLAYMAT_CHOICES = [
   "the-thing-in-the-depths",
   "temple-of-the-deceived",
   "the-drowned-ruins",
+  "a-storm-on-cobas-haven",
   "shadow-and-flame",
 ] as const;
 

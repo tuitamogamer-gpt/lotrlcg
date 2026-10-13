@@ -1,4 +1,7 @@
+import * as Cobas from "./cobas";
 import * as DrownedCompanions from "./drowned-companions";
+import * as CobasReactive from "./cobas-reactive";
+import * as CobasPlayers from "./cobas-player";
 import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
 import * as Raid from "./raid-grey-havens";
@@ -140,6 +143,7 @@ export function playerAttack(
       return (
         u &&
         shipCanAttack(enemy, u) &&
+        Cobas.cobasCanAttackEnemy(s, enemy, u) &&
         Voyage.voyageCanAttackEnemy(s, enemy, u) &&
         Storm.stormcallerCanAttackEnemy(s, enemy, u)
       );
@@ -258,6 +262,7 @@ export function playerAttack(
     ...Depths.depthsPlayerAttackEffects(s, enemy, ids),
     ...TempleEncounters.templePlayerAttackEffects(s, enemy, ids),
     ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
+    ...CobasPlayers.cobasPlayerAttackEffects(s, enemy, ids),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -355,6 +360,7 @@ export function playerAttackResolved(
   Depths.depthsPlayerAttackFinished(s, enemy);
   TempleEncounters.templePlayerAttackFinished(s, enemy);
   DrownedCompanions.drownedPlayerAttackFinished(s, enemy);
+  CobasPlayers.cobasPlayerAttackFinished(s, enemy.id, true);
   StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
@@ -385,6 +391,7 @@ export function playerAttackKilled(
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
   Realm.realmAttackKilled(s, ids);
+  CobasPlayers.cobasPlayerAttackKilled(s);
   Angmar.angmarAttackKilled(s, enemy, ids);
   Isengard.isengardAttackKilled(s, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
@@ -492,6 +499,7 @@ export function beginEnemyAttack(
   greyHavensResolved = false,
   anchorDefenders = false,
 ) {
+  const cobasRamming = s.combat?.enemyId === enemy.id && s.combat?.cobasRamming;
   syncAttachmentText(s, enemy);
   if (enemyAttackPrevented(s, enemy)) {
     s.combat = {
@@ -590,6 +598,7 @@ export function beginEnemyAttack(
       : {}),
     attackPlayer: activeSeat(s),
     damageDealt: 0,
+    ...(cobasRamming ? { cobasRamming: true } : {}),
     defenderId: ids[0] ?? null,
     defenderIds: ids,
     attackBonus: 0,
@@ -611,6 +620,11 @@ export function beginEnemyAttack(
     ...forcedResponses,
     ...exhaustionResponses,
     fx("redhornDefenders", { ids }),
+    ...CobasReactive.cobasReactiveDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
     fx("swiftStrike"),
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),
@@ -620,6 +634,11 @@ export function beginEnemyAttack(
       defenders.filter((d): d is Unit => !!d),
     ),
     ...DrownedCompanions.drownedDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...CobasPlayers.cobasPlayerDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

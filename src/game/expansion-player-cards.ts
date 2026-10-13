@@ -1,4 +1,6 @@
+import { cobasCannotTravel } from "./cobas";
 import { drownedCannotEnterStaging } from "./drowned";
+import { cobasReactiveAttachmentEntered } from "./cobas-reactive";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
@@ -421,6 +423,7 @@ export function huntLocationRevealed(s: GameState, location: Unit) {
     !s.staging.some((u) => u.id === location.id) ||
     card(location.code).type_code !== "location" ||
     !redhornCanMakeActive(location) ||
+    cobasCannotTravel(s, location) ||
     (allActiveLocations(s).length > 0 &&
       allActiveLocations(s).every((u) => drownedCannotEnterStaging(s, u)))
   )
@@ -498,6 +501,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
       spendResources(s, host, 1);
       host.attachments = host.attachments.filter((x) => x.id !== a.id);
       target.attachments.push(a);
+      cobasReactiveAttachmentEntered(s, target, a);
       log(
         s,
         `${card(a.code).name} moves from ${name(host)} to ${name(target)}.`,
@@ -718,7 +722,8 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
         (u) =>
           u.id === e.target &&
           card(u.code).type_code === "location" &&
-          redhornCanMakeActive(u),
+          redhornCanMakeActive(u) &&
+          !cobasCannotTravel(s, u),
       );
       requireRule(location, "The revealed location is no longer in staging.");
       if (!spendEvent(s, "02009")) return true;
@@ -765,7 +770,7 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
     case "huntStriderReplace": {
       const next = s.staging.find((u) => u.id === e.target);
       requireRule(
-        next && redhornCanMakeActive(next),
+        next && redhornCanMakeActive(next) && !cobasCannotTravel(s, next),
         "This location cannot become active from a player card effect.",
       );
       const old = allActiveLocations(s).find((u) => u.id === e.source);

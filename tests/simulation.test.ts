@@ -40,6 +40,10 @@ import {
   assertDrownedSaveRestoration,
   drownedSimulationObserver,
 } from "./drowned-simulation-invariants";
+import {
+  assertCobasSaveRestoration,
+  cobasSimulationObserver,
+} from "./cobas-simulation-invariants";
 import { TEMPLE } from "../src/game/temple-support";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
@@ -189,7 +193,9 @@ function run(
       ? templeSimulationObserver()
       : scenarioId === "the-drowned-ruins"
         ? drownedSimulationObserver()
-        : undefined;
+        : scenarioId === "a-storm-on-cobas-haven"
+          ? cobasSimulationObserver()
+          : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -423,6 +429,8 @@ function run(
         assertTempleSaveRestoration(savedState, restored);
       else if (scenarioId === "the-drowned-ruins")
         assertDrownedSaveRestoration(savedState, restored);
+      else if (scenarioId === "a-storm-on-cobas-haven")
+        assertCobasSaveRestoration(savedState, restored);
       s = restored;
       mapObserver?.observe(s);
     }

@@ -1,3 +1,4 @@
+import { removeFromQuest } from "./board";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { removeCurrentQuestProgress } from "./side-quests";
@@ -939,7 +940,7 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
       if (u) {
         damage(s, u.id, 2);
         const surviving = get(s, u.id);
-        if (surviving) surviving.committed = false;
+        if (surviving) removeFromQuest(s, surviving);
       }
       break;
     case "heirsLostCompanion": {
@@ -961,7 +962,7 @@ export function handleHeirsEffect(s: GameState, e: Effect): boolean {
               .some((u) => u.committed),
         )
       )
-        for (const c of liveCharacters(s)) c.committed = false;
+        for (const c of liveCharacters(s)) removeFromQuest(s, c);
       break;
     case "heirsFailureDiscard": {
       const characters = s.heroes.concat(s.allies);

@@ -1,6 +1,10 @@
+import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
+import * as CobasReactive from "./cobas-reactive";
 import * as DrownedCompanions from "./drowned-companions";
 import * as DrownedPlayers from "./drowned-player";
+import * as CobasEconomy from "./cobas-economy";
+import { cobasPlayerPhaseEnd } from "./cobas-player";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import * as Temple from "./temple";
@@ -451,6 +455,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   if (u.exhausted || khazadCannotExhaust(u) || watcherWaterCannotExhaust(u))
     return false;
   u.exhausted = true;
+  Cobas.cobasExhausted(s, u);
   watcherPlayerCharacterExhausted(s, u);
   redhornCharacterExhausted(s, u);
   roadRivendellCharacterExhausted(s, u);
@@ -466,6 +471,13 @@ export function enemyAddedToStaging(s: GameState, u: Unit) {
   heirsPlayerEnemyAddedToStaging(s, u);
   bloodPlayerEnemyAddedToStaging(s, u);
   longDarkPlayerEnemyAddedToStaging(s, u);
+}
+
+/** An effect removes a quester; ordinary end-of-round cleanup is not a removal. */
+export function removeFromQuest(s: GameState, u: Unit) {
+  if (!u.committed) return;
+  u.committed = false;
+  CobasReactive.cobasReactiveRemovedFromQuest(s, u);
 }
 
 /** Responses to actual commitments, including commitments caused by card effects. */
@@ -717,6 +729,7 @@ export function advanceDefense(s: GameState) {
 
 export function check(s: GameState) {
   if (s.status !== "playing") return;
+  Cobas.cobasCheck(s);
   Fate.fateCheck(s);
   Raid.raidCheck(s);
   Depths.depthsCheck(s);
@@ -823,6 +836,7 @@ export function check(s: GameState) {
         !Dike.dikePlayerDeckEmpty(s, i) &&
         s.threat < threatElimination(s) &&
         !s.used.includes("game:ship-controller-eliminated") &&
+        !s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED) &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
           foundationsHeroMissingAllowed(s, i) ||
@@ -878,9 +892,7 @@ export function check(s: GameState) {
         }
         (hasEncounterKeyword(card(u.code))
           ? seatView(s, u.owner ?? i).removed
-          : ["objective-ally", "ship-objective"].includes(
-                card(u.code).type_code,
-              )
+          : ["objective-ally", "ship-objective"].includes(unitType(u))
             ? s.encounterDiscard
             : seatView(s, u.owner ?? i).discard
         ).push(u.code);
@@ -952,6 +964,7 @@ export function check(s: GameState) {
     Dike.dikePlayerDeckEmpty(s, 0) ||
     s.threat >= threatElimination(s) ||
     s.used.includes("game:ship-controller-eliminated") ||
+    s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED) ||
     (!s.heroes.length &&
       !s.prisoner &&
       !foundationsHeroMissingAllowed(s, 0) &&
@@ -960,11 +973,13 @@ export function check(s: GameState) {
     s.status = "lost";
     s.reason = Dike.dikePlayerDeckEmpty(s, 0)
       ? "Your deck is empty. The dead overwhelm your fellowship."
-      : s.used.includes("game:ship-controller-eliminated")
-        ? "Your Ship objective was destroyed. Your fellowship is eliminated."
-        : s.threat >= threatElimination(s)
-          ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
-          : "The last hero has fallen.";
+      : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
+        ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
+        : s.used.includes("game:ship-controller-eliminated")
+          ? "Your Ship objective was destroyed. Your fellowship is eliminated."
+          : s.threat >= threatElimination(s)
+            ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
+            : "The last hero has fallen.";
   }
   if (s.status === "lost") {
     const pending = s.pendingPlayerPlays ?? [];
@@ -1176,6 +1191,11 @@ export function damage(
   }
   if (
     !context.cost &&
+    CobasReactive.cobasReactiveDamageAssigned(s, u, value, context)
+  )
+    return false;
+  if (
+    !context.cost &&
     !context.bypassAngmar &&
     Angmar.offerAngmarDamage(s, u, value, context)
   )
@@ -1198,6 +1218,7 @@ export function damage(
   )
     return false;
   u.damage += value;
+  Cobas.cobasDamageDealt(s, u, value, context);
   Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
@@ -1339,6 +1360,7 @@ export function characterLeftPlay(
   Tharbad.tharbadCharacterLeft(s, u, controller);
   ringMakerCharacterLeft(s, u.id);
   DepthsPlayers.depthsPlayerCharacterLeft(s, u);
+  CobasEconomy.cobasEconomyCharacterLeft(s, u);
   DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -1429,7 +1451,7 @@ export function destroy(
   const c = card(u.code);
   const splitGram = isMountGram(s) ? gramState(s) : undefined;
   const stagingArea =
-    ["enemy", "ship-enemy"].includes(c.type_code) && splitGram?.split
+    ["enemy", "ship-enemy"].includes(unitType(u)) && splitGram?.split
       ? splitGram.areas.find((area) =>
           (area.id === splitGram.activeArea && area.players.includes(previous)
             ? s.staging
@@ -1452,8 +1474,13 @@ export function destroy(
   const lastKnownThreat = threatOf(s, u);
   const lastKnownTraits = effectiveTraits(u);
   const lastKnownType = unitType(u);
+  const lastKnownBlanked = !!u.blanked;
   const lastAttachments = [...u.attachments];
   const wasEngaged = allEngaged(s).some((enemy) => enemy.id === u.id);
+  if (s.sailing?.test)
+    s.sailing.test.committedIds = s.sailing.test.committedIds.filter(
+      (id) => id !== u.id,
+    );
   Voyage.voyageCharacterLeaves(s, u, destruction);
   Storm.stormcallerAreaLeft(s, u);
   Storm.stormcallerCharacterLeaves(s, u, destruction);
@@ -1469,7 +1496,7 @@ export function destroy(
     destination = "removed";
   if (
     destruction &&
-    ["ally", "objective-ally", "ship-objective", "hero"].includes(c.type_code)
+    ["ally", "objective-ally", "ship-objective", "hero"].includes(lastKnownType)
   ) {
     for (const h of allHeroes(s))
       for (const a of h.attachments)
@@ -1502,7 +1529,7 @@ export function destroy(
         }
   }
   if (
-    ["ally", "objective-ally", "ship-objective", "hero"].includes(c.type_code)
+    ["ally", "objective-ally", "ship-objective", "hero"].includes(lastKnownType)
   ) {
     raiseThreat(
       s,
@@ -1516,7 +1543,7 @@ export function destroy(
     );
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-  if (["enemy", "ship-enemy"].includes(c.type_code)) {
+  if (["enemy", "ship-enemy"].includes(unitType(u))) {
     Gram.gramCardLeaves(s, u);
     DrownedPlayers.drownedPlayerUnitLeft(s, u);
     s.staging = s.staging.filter((x) => x.id !== u.id);
@@ -1537,7 +1564,16 @@ export function destroy(
             code: u.facedownCard!,
           });
       });
-    else if (Dread.dreadEnemyLeaves(s, u)) {
+    else if (
+      Cobas.cobasEnemyDestination(
+        s,
+        u,
+        destruction,
+        wasEngaged,
+        lastKnownBlanked,
+      )
+    ) {
+    } else if (Dread.dreadEnemyLeaves(s, u)) {
     } else if (u.code === "01115") {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
@@ -1594,7 +1630,9 @@ export function destroy(
     )
       win(s);
   } else {
-    const removedByScenario = heirsRemoveCharacter(s, u);
+    const removedByScenario =
+      Cobas.cobasRemoveCharacter(s, u, destruction, lastKnownBlanked) ||
+      heirsRemoveCharacter(s, u);
     s.heroes = s.heroes.filter((x) => x.id !== u.id);
     s.allies = s.allies.filter((x) => x.id !== u.id);
     if (destination === "removed")
@@ -1608,7 +1646,7 @@ export function destroy(
         s.queue = [];
       }
     } else if (!removedByScenario)
-      (["objective-ally", "ship-objective"].includes(c.type_code)
+      (["objective-ally", "ship-objective"].includes(lastKnownType)
         ? s.encounterDiscard
         : seatView(s, u.owner ?? activeSeat(s)).discard
       ).push(u.code);
@@ -1982,6 +2020,7 @@ export function advanceQuest(s: GameState) {
   )
     return;
   if (Raid.raidAdvance(s)) return;
+  if (Cobas.cobasAdvance(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2095,6 +2134,8 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
+  cobasPlayerPhaseEnd(s);
+  Cobas.cobasPhaseEnd(s);
   TemplePlayers.templePlayerPhaseEnd(s);
   TempleEncounters.templeEncounterPhaseEnd(s);
   eachArea(s, () => Angmar.angmarPhaseEnd(s));
@@ -2266,6 +2307,7 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
 }
 
 export function nextRound(s: GameState) {
+  Cobas.cobasRoundEnd(s);
   for (const u of globalUnits(s)) {
     delete u.roundThreat;
     delete u.roundAttack;
@@ -2335,6 +2377,7 @@ export function collectResources(s: GameState) {
       "raid-on-the-grey-havens",
       "flight-of-the-stormcaller",
       "the-thing-in-the-depths",
+      "a-storm-on-cobas-haven",
     ].includes(s.scenarioId)
   )
     draws.push(fx("raidResourcesCollected"));
@@ -2372,6 +2415,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   log(s, `${name(u)} engages your fellowship.`, "danger");
   const realmBefore = s.queue.length;
   Voyage.voyageEngaged(s, u, fromStaging);
+  Cobas.cobasEngaged(s, u);
   Storm.stormcallerEngaged(s, u, fromStaging);
   Fate.fateEngaged(s, u);
   Raid.raidEngaged(s, u);
@@ -2836,6 +2880,7 @@ export function placeEncounter(
       !Depths.depthsCardEntered(s, fresh, fromReveal, cancel)
     )
       s.staging.push(fresh);
+    Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -2894,6 +2939,7 @@ export function placeEncounter(
     log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
     return;
   }
+  if (Cobas.cobasEncounter(s, code)) return;
   if (Raid.raidEncounter(s, code)) return;
   if (
     Drowned.drownedEncounter(s, code) ||
@@ -3228,6 +3274,7 @@ export function allyEntryResponses(
   emynPlayerAllyEntered(s, u, played);
   dwarfAllyEntered(s, u, played && fromHand);
   DepthsPlayers.depthsPlayerAllyEntered(s, u, played, fromHand);
+  CobasEconomy.cobasEconomyAllyEntered(s, u, played, fromHand);
   DrownedPlayers.drownedPlayerAllyEntered(s, u, played, fromHand);
   switch (u.code) {
     case "01073":
@@ -3441,6 +3488,7 @@ export function shadow(s: GameState, code: string) {
     return;
   if (TempleEncounters.templeShadow(s, code)) return;
   if (Depths.depthsShadow(s, code)) return;
+  if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;
   if (Voyage.voyageShadow(s, code) || Fate.fateShadow(s, code)) return;

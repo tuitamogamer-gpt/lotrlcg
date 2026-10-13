@@ -1,6 +1,11 @@
+import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import * as DrownedCompanions from "./drowned-companions";
 import * as DrownedPlayers from "./drowned-player";
+import * as CobasPlayers from "./cobas-player";
+import { handleCobasReactiveEffect } from "./cobas-reactive";
+import * as CobasEconomy from "./cobas-economy";
+import { removeFromQuest } from "./board";
 import * as Temple from "./temple";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
@@ -548,6 +553,7 @@ function handleEffect(s: GameState, e: Effect) {
       Etten.ettenEndQuest(s);
       prepend(s, ...Dread.dreadQuestEnd(s));
       Voyage.voyageEndQuest(s);
+      Cobas.cobasQuestEnd(s);
       Storm.stormcallerEndQuest(s);
       Drowned.drownedQuestEnd(s);
     });
@@ -561,12 +567,16 @@ function handleEffect(s: GameState, e: Effect) {
   if (Carn.carnEffect(s, e)) return;
   if (Dread.dreadEffect(s, e)) return;
   if (sailingEffect(s, e)) return;
+  if (Cobas.cobasEffect(s, e)) return;
   if (Voyage.voyageEffect(s, e)) return;
   if (StormPlayers.stormcallerEffect(s, e)) return;
   if (DepthsPlayers.depthsPlayerEffect(s, e)) return;
   if (Storm.stormcallerEffect(s, e)) return;
   if (TemplePlayers.templePlayerEffect(s, e)) return;
   if (DrownedPlayers.drownedPlayerEffect(s, e)) return;
+  if (CobasPlayers.cobasPlayerEffect(s, e)) return;
+  if (handleCobasReactiveEffect(s, e)) return;
+  if (CobasEconomy.handleCobasEconomyEffect(s, e)) return;
   if (TempleEncounters.templeEncounterEffect(s, e)) return;
   if (
     Drowned.drownedEffect(s, e) ||
@@ -693,6 +703,7 @@ function handleEffect(s: GameState, e: Effect) {
           : {}),
         ...(e.damageTarget ? { undefendedTargetId: e.damageTarget } : {}),
         immediate: true,
+        ...(e.text === "cobas-ramming" ? { cobasRamming: true } : {}),
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
         ...(!existingCarnShadows
@@ -777,6 +788,7 @@ function handleEffect(s: GameState, e: Effect) {
           immediatePreviousShadowCancelsCombatDamage:
             prior.immediatePreviousShadowCancelsCombatDamage,
           templeRainOnKill: prior.templeRainOnKill,
+          cobasRamming: prior.cobasRamming,
         });
       break;
     }
@@ -1108,6 +1120,8 @@ function handleEffect(s: GameState, e: Effect) {
         u &&
         redhornCanMakeActive(u) &&
         !Temple.templeCannotMakeActive(s, u) &&
+        ((e.flag && e.text !== "strider-replace") ||
+          !Cobas.cobasCannotTravel(s, u)) &&
         !Trials.trialsCannotMakeActive(s, u) &&
         !Tharbad.tharbadCannotMakeActive(u) &&
         !Etten.ettenTravelProblem(s, u) &&
@@ -1128,6 +1142,7 @@ function handleEffect(s: GameState, e: Effect) {
           ? priorActive
           : [];
         Depths.depthsTravelEntered(s, u, !e.flag);
+        Cobas.cobasTravelEntered(s, u, !e.flag || e.text === "strider-replace");
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1260,7 +1275,7 @@ function handleEffect(s: GameState, e: Effect) {
         );
       break;
     case "uncommit":
-      if (u) u.committed = false;
+      if (u) removeFromQuest(s, u);
       break;
     case "web":
       if (u)
@@ -1380,6 +1395,7 @@ function handleEffect(s: GameState, e: Effect) {
             Rhudaur.rhudaurEncounter(s, e.code, true) ||
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
+            Cobas.cobasEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -1791,6 +1807,11 @@ function handleEffect(s: GameState, e: Effect) {
         }
       }
       s.refreshReadied = {};
+      if (s.cobas)
+        for (const u of s.staging.filter(
+          (u) => card(u.code).type_code === "objective",
+        ))
+          u.exhausted = false;
       globalEachSeat(s, (player) => {
         const fangornReady = Fangorn.fangornRefreshCharacters(s, player);
         for (const u of characters(s)) {
@@ -1814,6 +1835,7 @@ function handleEffect(s: GameState, e: Effect) {
       eachArea(s, () => {
         passives.push(...bloodPlayerRoundEndEffects(s));
         passives.push(...Isengard.isengardRoundEnd(s));
+        passives.push(...CobasEconomy.cobasEconomyRoundEnd(s));
         passives.push(...Angmar.angmarRoundEnd(s));
         forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...Raid.raidRoundEnd(s));
@@ -2043,9 +2065,12 @@ function handleEffect(s: GameState, e: Effect) {
     case "combatStartEffects":
       heirsCombatStart(s);
       {
-        const archery = [...s.staging, ...allEngaged(s)].reduce(
-          (total, enemy) => total + Voyage.voyageArchery(s, enemy),
-          0,
+        const archery = Cobas.cobasArchery(
+          s,
+          [...s.staging, ...allEngaged(s)].reduce(
+            (total, enemy) => total + Voyage.voyageArchery(s, enemy),
+            0,
+          ),
         );
         if (archery)
           prepend(
@@ -2263,6 +2288,8 @@ function handleEffect(s: GameState, e: Effect) {
         if (completed) Depths.depthsAttackFinished(s, completed, true);
         if (completed)
           DrownedCompanions.drownedAttackFinished(s, completed, true);
+        if (completed)
+          CobasPlayers.cobasPlayerAttackFinished(s, completed.enemyId, false);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
           immediate &&
@@ -2372,6 +2399,7 @@ function handleEffect(s: GameState, e: Effect) {
         Raid.raidAttackFinished(s, completed);
         Depths.depthsAttackFinished(s, completed);
         DrownedCompanions.drownedAttackFinished(s, completed);
+        CobasPlayers.cobasPlayerAttackFinished(s, completed.enemyId, false);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -2586,6 +2614,7 @@ export function flush(s: GameState) {
         "drownedStageReady",
         "drownedECCurse",
       ].includes(effect.kind) ||
+      Cobas.cobasSharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||
@@ -2810,6 +2839,7 @@ export function flush(s: GameState) {
         "gramInterrogation",
         "paidPlayerCardEntry",
         "playerAbilityFinish",
+        "cobasGuardFinish",
         "nextRound",
         "phaseEnd",
         "startCombat",

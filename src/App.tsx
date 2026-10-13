@@ -13,6 +13,8 @@ import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { DepthsScenarioState, DepthsGrappleSummary } from "./ui/depths-state";
 import { TempleMap } from "./ui/TempleMap";
 import { DrownedScenarioState } from "./ui/drowned-state";
+import { CobasScenarioState } from "./ui/cobas-state";
+import { COBAS_OBJECTIVES } from "./game/cobas-support";
 import { TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
 import { faceupShadowCards } from "./game/voice-isengard";
@@ -2734,6 +2736,7 @@ export default function App() {
             <ScenarioState s={game} inspect={setDetail} />
             <DepthsScenarioState s={game} inspect={setDetail} />
             <DrownedScenarioState s={game} inspect={setDetail} />
+            <CobasScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -4758,7 +4761,9 @@ function BoardCard({
               ? `${s.celebrimbor?.search.length ?? 0} cards underneath`
               : isGuarded(s, u)
                 ? "Guarded"
-                : "Unguarded"}
+                : s.cobas && COBAS_OBJECTIVES.includes(u.code)
+                  ? "Controlled by the players"
+                  : "Unguarded"}
           </span>
         </div>
       )}
@@ -4870,6 +4875,9 @@ function CharacterCard({
         <Info size={17} />
       </button>
       <Stats s={s} u={u} computed={computed} />
+      {u.cobasShipObjective && (
+        <div className="engaged-owner">Captured Ship objective</div>
+      )}
       {isSacked(u) && (
         <div className="engaged-owner">
           Sacked! · Cannot quest, fight or use own ability
