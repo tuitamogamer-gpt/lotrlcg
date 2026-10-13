@@ -2,6 +2,7 @@ import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
 import * as Raid from "./raid-grey-havens";
 import * as Depths from "./depths";
+import * as TempleEncounters from "./temple-encounters";
 import { shipCanAttack, shipCanDefend } from "./ships";
 import * as GreyPlayers from "./grey-havens-player";
 import * as Voyage from "./voyage-belegaer";
@@ -249,6 +250,7 @@ export function playerAttack(
         }),
       ),
     ...Depths.depthsPlayerAttackEffects(s, enemy, ids),
+    ...TempleEncounters.templePlayerAttackEffects(s, enemy, ids),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -344,6 +346,7 @@ export function playerAttackResolved(
 ) {
   Raid.raidPlayerAttackFinished(s, enemy);
   Depths.depthsPlayerAttackFinished(s, enemy);
+  TempleEncounters.templePlayerAttackFinished(s, enemy);
   StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
@@ -604,6 +607,11 @@ export function beginEnemyAttack(
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),
     ...Depths.depthsDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...TempleEncounters.templeDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

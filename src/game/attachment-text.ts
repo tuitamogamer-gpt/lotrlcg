@@ -14,6 +14,7 @@ import { WEATHER } from "./weather-hills-support";
 import * as Angmar from "./angmar-player";
 import { greyHavensDynamicKeywords } from "./grey-havens-player";
 import { ettenSideQuestBlanked } from "./ettenmoors";
+import { templePlayerBlanked } from "./temple-player";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
  * Blanking removes traits, keywords and abilities within the printed text box.
@@ -56,10 +57,15 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       cold &&
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
-    if (normalBlanking || coldBlanking || safeBlanking) host.blanked = true;
+    const wrathBlanking = templePlayerBlanked(s, host);
+    if (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
+      host.blanked = true;
     else delete host.blanked;
     if (coldBlanking && !normalBlanking) host.printedKeywordsPreserved = true;
     else delete host.printedKeywordsPreserved;
+    if (wrathBlanking && !normalBlanking && !coldBlanking && !safeBlanking)
+      host.printedTraitsPreserved = true;
+    else delete host.printedTraitsPreserved;
     const traits = [
       ...new Set([
         ...rohanDynamicTraits(s, host),

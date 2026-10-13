@@ -8,6 +8,8 @@ import angmarPlayers from "../data/angmar-player-cards.json";
 import greyHavensPlayers from "../data/grey-havens-player-cards.json";
 import stormcallerPlayers from "../data/stormcaller-player-cards.json";
 import depthsPlayers from "../data/depths-player-cards.json";
+import templePlayers from "../data/temple-player-cards.json";
+import { TEMPLE_ENCOUNTERS, TEMPLE_QUESTS } from "./temple-scenario-data";
 import { DEPTHS_ENCOUNTERS, DEPTHS_QUESTS } from "./depths-scenario-data";
 import {
   STORMCALLER_ENCOUNTERS,
@@ -174,10 +176,13 @@ export const playerCards = [
       ...BLOOD_PLAYER_CARDS,
       ...(stormcallerPlayers as Card[]),
       ...(depthsPlayers as Card[]),
+      ...(templePlayers as Card[]).map((c) =>
+        c.code === "12058" ? { ...c, text: `Action: ${c.text}` } : c,
+      ),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
-export const encounterCards = [
+const priorEncounterCards = [
   ...(encounters as Card[]),
   ...CARROCK_ENCOUNTERS,
   ...EMYN_MUIL_ENCOUNTERS,
@@ -220,6 +225,12 @@ export const encounterCards = [
     (c) => !GREY_HAVENS_ENCOUNTERS.some((shared) => shared.code === c.code),
   ),
 ];
+export const encounterCards = [
+  ...priorEncounterCards,
+  ...TEMPLE_ENCOUNTERS.filter(
+    (c) => !priorEncounterCards.some((old) => old.code === c.code),
+  ),
+];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
     ...(coreHuntQuests as Card[]),
@@ -260,6 +271,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...GREY_HAVENS_QUESTS,
     ...STORMCALLER_QUESTS,
     ...DEPTHS_QUESTS,
+    ...TEMPLE_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -346,6 +358,7 @@ export const SCRIPTED = new Set(
     ...STORMCALLER_QUESTS,
     ...RHOSGOBEL_QUESTS,
     ...DEPTHS_QUESTS,
+    ...TEMPLE_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

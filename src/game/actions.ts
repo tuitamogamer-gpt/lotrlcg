@@ -1,3 +1,6 @@
+import * as TemplePlayers from "./temple-player";
+import * as TempleEncounters from "./temple-encounters";
+import * as Temple from "./temple";
 import * as Raid from "./raid-grey-havens";
 import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
@@ -485,6 +488,7 @@ export function canCommit(s: GameState, u: Unit): boolean {
   );
 }
 export function canTravel(s: GameState, u: Unit): string | null {
+  if (s.temple) return Temple.templeTravelProblem(s, u);
   if (
     s.phase !== "travel" ||
     (allActiveLocations(s).length > 0 &&
@@ -598,6 +602,8 @@ export function optionalEngagementProblem(
     !s.staging.some((enemy) => enemy.id === u.id)
   )
     return "Choose an enemy in staging.";
+  if (TempleEncounters.templeCannotOptionallyEngage(s, u))
+    return "This enemy cannot be optionally engaged.";
   if (Depths.depthsCannotEngage(s, u))
     return "The Thing in the Depths cannot be engaged.";
   if (
@@ -720,6 +726,12 @@ export function canPlay(
     options.playOrigin ?? "hand",
   );
   if (depthsProblem) return depthsProblem;
+  const templeProblem = TemplePlayers.templePlayerPlayProblem(
+    s,
+    u,
+    options.playOrigin ?? "hand",
+  );
+  if (templeProblem) return templeProblem;
   if (greyProblem) return greyProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
   if (isengardProblem) return isengardProblem;
@@ -1332,7 +1344,8 @@ export function resolvePlayerCard(
     played &&
     (heirsPlayerSpecialAttachmentEntry(s, u) ||
       amonPlayerSpecialAttachmentEntry(s, u) ||
-      bloodPlayerSpecialAttachmentEntry(s, u))
+      bloodPlayerSpecialAttachmentEntry(s, u) ||
+      TemplePlayers.templePlayerSpecialAttachmentEntry(s, u))
   ) {
   } else if (c.type_code === "attachment") {
     const host = get(s, target)!;
@@ -1474,6 +1487,7 @@ export function playTargets(
           !Carn.carnCannotAttach(s, target) &&
           !Rhudaur.rhudaurCannotAttach(s, target) &&
           !Fate.fateCannotAttach(s, target) &&
+          !Temple.templeCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
@@ -1497,6 +1511,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const depthsTargets = DepthsPlayers.depthsPlayerPlayTargets(s, c.code);
   if (depthsTargets) return depthsTargets;
+  const templeTargets = TemplePlayers.templePlayerPlayTargets(s, c.code);
+  if (templeTargets) return templeTargets;
   const stormTargets = StormPlayers.stormcallerPlayTargets(s, c.code);
   if (stormTargets) return stormTargets;
   if (greyTargets) return greyTargets;
@@ -1647,7 +1663,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 
 export const needsTarget = (u: Unit) =>
   u.code === "09008" ||
-  (!["05017", "06064", "06115"].includes(u.code) &&
+  (!["05017", "06064", "06115", "12064"].includes(u.code) &&
     (card(u.code).type_code === "attachment" ||
       [
         "01020",
@@ -1686,6 +1702,7 @@ export const needsTarget = (u: Unit) =>
         "11010",
         "11013",
         "12032",
+        "12061",
       ].includes(u.code)));
 
 export const responseCards = [
@@ -1755,6 +1772,11 @@ export function availableAbilities(s: GameState, u: Unit) {
         ]
       : [];
   }
+  const templeMapLabel = Temple.templeAbilityLabel(s, u);
+  if (templeMapLabel)
+    return [
+      { label: templeMapLabel, disabled: !!Temple.templeAbilityProblem(s, u) },
+    ];
   const fateLabel = Fate.fateAbilityLabel(s, u);
   if (fateLabel)
     return [
@@ -1775,6 +1797,21 @@ export function availableAbilities(s: GameState, u: Unit) {
     results.push({
       label: depthsScenarioLabel,
       disabled: !!Depths.depthsAbilityProblem(s, u),
+    });
+  const templeCompanionLabel = TempleEncounters.templeEncounterAbilityLabel(
+    s,
+    u,
+  );
+  if (templeCompanionLabel)
+    results.push({
+      label: templeCompanionLabel,
+      disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
+    });
+  const templePlayerLabel = TemplePlayers.templePlayerAbilityLabel(u.code);
+  if (templePlayerLabel)
+    results.push({
+      label: templePlayerLabel,
+      disabled: !!TemplePlayers.templePlayerAbilityProblem(s, u),
     });
   const depthsLabel = DepthsPlayers.depthsPlayerAbilityLabel(u.code);
   if (depthsLabel)
@@ -1969,6 +2006,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     if (a.blanked) continue;
+    const templeLabel = Temple.templeAbilityLabel(s, u, a.id);
+    if (templeLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: templeLabel,
+        disabled: !!Temple.templeAbilityProblem(s, u, a.id),
+      });
     const depthsLabel = DepthsPlayers.depthsPlayerAbilityLabel(a.code);
     if (depthsLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -2282,7 +2326,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
         !Storm.stormcallerOpeningHandsKept(s) &&
-        !Depths.depthsOpeningHandsKept(s)
+        !Depths.depthsOpeningHandsKept(s) &&
+        !Temple.templeOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2493,7 +2538,9 @@ export function applyAction(input: GameState, action: Action): GameState {
               useFoundationsAbility(s, u) ||
               useHeirsAbility(s, u) ||
               Rhudaur.rhudaurAbility(s, u) ||
-              Fate.fateAbility(s, u))
+              Fate.fateAbility(s, u) ||
+              Temple.templeAbility(s, u, action.attachmentId) ||
+              TempleEncounters.useTempleEncounterAbility(s, u))
           )
             return;
           if (u && watcherWaterAbilityLabel(u, action.attachmentId)) {
@@ -2510,6 +2557,12 @@ export function applyAction(input: GameState, action: Action): GameState {
               !u.attachments.find((a) => a.id === action.attachmentId)?.blanked,
               "Amon Lhaw blanks this attachment's printed ability.",
             );
+          if (
+            u &&
+            action.attachmentId &&
+            Temple.templeAbility(s, u, action.attachmentId)
+          )
+            return;
           requireRule(
             u &&
               (action.attachmentId
@@ -2524,6 +2577,7 @@ export function applyAction(input: GameState, action: Action): GameState {
                   u.code === "03002" ||
                   u.code === CARROCK.grimbeorn ||
                   u.code === KHAZAD.shaft ||
+                  TemplePlayers.templePlayerAbilityAnyPlayer(u.code) ||
                   DepthsPlayers.depthsPlayerAbilityAnyPlayer(u.code) ||
                   collectorAbilityAnyPlayer(u.code)),
             "Choose a character or attachment you control.",
@@ -2547,6 +2601,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !TemplePlayers.useTemplePlayerAbility(s, u, action.attachmentId) &&
             !DepthsPlayers.useDepthsPlayerAbility(s, u, action.attachmentId) &&
             !StormPlayers.useStormcallerAbility(s, u, action.attachmentId) &&
             !GreyPlayers.useGreyHavensAbility(s, u, action.attachmentId) &&
@@ -2581,11 +2636,14 @@ export function applyAction(input: GameState, action: Action): GameState {
         (attachedBook
           ? ({ id: attachedBook.id, code: attachedBook.code } as Unit)
           : undefined);
-      const hero = s.heroes.find((h) => h.id === action.heroId);
+      const hero = (s.temple ? characters(s).filter(isHero) : s.heroes).find(
+        (h) => h.id === action.heroId,
+      );
       requireRule(
         objective && objectiveFree(s, objective) && hero,
         "Choose an unguarded objective and a free hero.",
       );
+      if (Temple.templeClaim(s, objective, hero)) break;
       if (Fangorn.fangornClaim(s, objective, hero)) break;
       if (stewardFearClaim(s, objective, hero)) break;
       if (heirsClaim(s, objective, hero)) break;
@@ -2618,11 +2676,16 @@ export function applyAction(input: GameState, action: Action): GameState {
         s.phase === "travel",
         "You may travel only during the travel phase.",
       );
-      const u = s.staging.find(
+      const u = (s.temple ? Temple.templeTravelTargets(s) : s.staging).find(
         (x) => x.id === action.id && card(x.code).type_code === "location",
       );
       requireRule(u, "Choose a location in staging.");
       requireRule(!canTravel(s, u), canTravel(s, u) ?? "");
+      const templeTravel = Temple.templeTravelEffects(s, u);
+      if (templeTravel) {
+        prepend(s, ...templeTravel);
+        break;
+      }
       const scenarioCost =
         Wastes.wastesTravel(s, u) ??
         Gram.gramTravel(s, u) ??
@@ -2922,6 +2985,7 @@ export function publicState(s: GameState) {
         }
       : {}),
     ...(s.fateNumenor ? { fateNumenor: Fate.fatePublicState(s) } : {}),
+    ...(s.temple ? { temple: Temple.templePublicState(s) } : {}),
     ...(s.voyageBelegaer
       ? {
           voyageBelegaer: {

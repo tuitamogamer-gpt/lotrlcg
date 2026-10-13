@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import priorSimulationCases from "./temple-prior-simulation-cases.json";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 function manifest(index: number, count: number) {
@@ -27,6 +28,28 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.ok(baseline.registeredCases > 100);
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
+  assert.equal(priorSimulationCases.cases.length, 259);
+  assert.equal(baseline.registeredCases, 264);
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => !name.startsWith("Temple of the Deceived"))
+      .sort(),
+    [...priorSimulationCases.cases].sort(),
+    "all 259 complete-game registrations from the published pre-Temple release remain present",
+  );
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => name.startsWith("Temple of the Deceived"))
+      .sort(),
+    [
+      "Temple of the Deceived / normal: all four starter decks complete 10 seeded games each",
+      "Temple of the Deceived: hidden review mode preserves complete-game rules outcomes with fewer pauses",
+      "Temple of the Deceived: decisions review mode preserves complete-game rules outcomes with fewer pauses",
+      "Temple of the Deceived / normal: guided confirmations preserve complete-game rules outcomes",
+      "Temple of the Deceived / campaign: guided confirmations preserve complete-game rules outcomes",
+    ].sort(),
+    "Temple's standard scenario and unsupported campaign registration are included exactly once",
+  );
   assert.deepEqual(
     baseline.selectedCases
       .filter((name: string) => name.startsWith("The Thing in the Depths"))

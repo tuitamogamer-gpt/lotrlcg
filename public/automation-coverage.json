@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 528,
-    "heroes": 60,
-    "deckCards": 467,
-    "encounterCards": 711,
-    "scenarios": 50,
+    "playerCards": 537,
+    "heroes": 61,
+    "deckCards": 475,
+    "encounterCards": 727,
+    "scenarios": 51,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -57,17 +57,18 @@
       "the-fate-of-numenor",
       "raid-on-the-grey-havens",
       "flight-of-the-stormcaller",
-      "the-thing-in-the-depths"
+      "the-thing-in-the-depths",
+      "temple-of-the-deceived"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1400,
-    "pending": 2783
+    "scripted": 1424,
+    "pending": 2759
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 100
+    "scripted": 102
   },
   "registeredCodes": [
     "01001",
@@ -595,6 +596,15 @@
     "12036",
     "12037",
     "12038",
+    "12057",
+    "12058",
+    "12059",
+    "12060",
+    "12061",
+    "12062",
+    "12063",
+    "12064",
+    "12065",
     "12066",
     "12083",
     "12087",
@@ -659,6 +669,7 @@
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
+    "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
@@ -708,6 +719,7 @@
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+    "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
@@ -775,6 +787,7 @@
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
+    "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
@@ -795,6 +808,7 @@
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
+    "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -806,6 +820,8 @@
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
+    "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+    "octgn:447dd08d-693c-407f-8155-87164f212351",
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
     "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
@@ -879,11 +895,13 @@
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
+    "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
+    "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
@@ -1114,6 +1132,7 @@
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
@@ -1200,6 +1219,7 @@
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+    "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
@@ -1323,6 +1343,7 @@
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
+    "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
@@ -1359,6 +1380,7 @@
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+    "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
@@ -1382,6 +1404,7 @@
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+    "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
@@ -1405,6 +1428,7 @@
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+    "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
     "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
@@ -1429,6 +1453,7 @@
     "octgn:fb36c038-bbb8-454f-a4a6-1f8d8fcbd112",
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+    "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
@@ -1458,7 +1483,9 @@
     "rc135",
     "rc136",
     "rc137",
-    "rc138"
+    "rc138",
+    "temple-lost-island",
+    "temple-uncharted-temple"
   ],
   "products": [
     {
@@ -1828,9 +1855,9 @@
     {
       "product": "temple-of-the-deceived",
       "total": 27,
-      "scripted": 1,
+      "scripted": 25,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "temple-of-the-deceived-nightmare",
@@ -7329,7 +7356,7 @@
       "name": "Elfhelm",
       "type": "hero",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7337,7 +7364,7 @@
       "name": "Ceorl",
       "type": "ally",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7345,7 +7372,7 @@
       "name": "Armored Destrier",
       "type": "attachment",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7353,7 +7380,7 @@
       "name": "Déorwine",
       "type": "ally",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7361,7 +7388,7 @@
       "name": "Revealed in Wrath",
       "type": "event",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7369,7 +7396,7 @@
       "name": "Rhovanion Outrider",
       "type": "ally",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7377,7 +7404,7 @@
       "name": "Scouting Party",
       "type": "event",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7385,7 +7412,7 @@
       "name": "Entangling Nets",
       "type": "attachment",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -7393,7 +7420,7 @@
       "name": "Arrows from the Trees",
       "type": "event",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -11249,7 +11276,7 @@
       "name": "Profane Dead",
       "type": "enemy",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -13017,7 +13044,7 @@
       "name": "Jagged Cliffs",
       "type": "location",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -15457,7 +15484,7 @@
       "name": "Temple Halls",
       "type": "location",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -16329,7 +16356,7 @@
       "name": "Dwindling Supplies",
       "type": "treachery",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -16769,7 +16796,7 @@
       "name": "Sunken Ruins",
       "type": "treachery",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -16801,7 +16828,7 @@
       "name": "Gate Key",
       "type": "objective",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -17945,7 +17972,7 @@
       "name": "Winding Caverns",
       "type": "location",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -18177,7 +18204,7 @@
       "name": "Furious Rainstorm",
       "type": "treachery",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -22137,7 +22164,7 @@
       "name": "Faithless Desecrator",
       "type": "enemy",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -26073,7 +26100,7 @@
       "name": "Island Watcher",
       "type": "enemy",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -31105,7 +31132,7 @@
       "name": "Deeper into the Ruins",
       "type": "treachery",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -32529,7 +32556,7 @@
       "name": "Jungle Path",
       "type": "location",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -33177,7 +33204,7 @@
       "name": "Temple Guardian",
       "type": "enemy",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -34617,7 +34644,7 @@
       "name": "The Grotto's Entrance",
       "type": "location",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -35313,7 +35340,7 @@
       "name": "Searching the Island",
       "type": "quest",
       "pack": "Temple of the Deceived",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "temple-of-the-deceived"
     },
     {
@@ -36270,8 +36297,8 @@
       "id": "E06.6",
       "name": "Temple of the Deceived (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "temple-of-the-deceived",
+      "state": "scripted"
     },
     {
       "id": "E06.7",
@@ -37761,8 +37788,8 @@
       "id": "Q06.6",
       "name": "Temple of the Deceived",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "temple-of-the-deceived",
+      "state": "scripted"
     },
     {
       "id": "Q06.7",

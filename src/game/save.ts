@@ -4,6 +4,8 @@ import { validateFateNumenor } from "./fate-numenor-support";
 import { validateRaidGreyHavens } from "./raid-grey-havens-support";
 import { validateStormcaller } from "./stormcaller-support";
 import { validateDepths } from "./depths-support";
+import { validateTemple } from "./temple-support";
+import { templeSyncMap } from "./temple";
 import {
   validateDeadmensDike,
   dikeLocationTimeLimit,
@@ -283,6 +285,7 @@ export function validateSave(
         c.voyageShiftOnShipDamaged,
         c.voyageExcessCopies,
         c.raidFiresOnKill,
+        c.templeRainOnKill,
       ].every((v) => v === undefined || (integer(v) && v >= 0)) &&
       (c.dreadKilled === undefined ||
         (Array.isArray(c.dreadKilled) &&
@@ -363,6 +366,7 @@ export function validateSave(
         u.immuneToPlayerEffects,
         u.flipped,
         u.printedKeywordsPreserved,
+        u.printedTraitsPreserved,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
@@ -593,6 +597,7 @@ export function validateSave(
         !validateRaidGreyHavens(s, validUnit as (value: unknown) => boolean) ||
         !validateStormcaller(s, validUnit as (value: unknown) => boolean) ||
         !validateDepths(s, validUnit as (value: unknown) => boolean) ||
+        !validateTemple(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -682,8 +687,7 @@ export function validateSave(
               c.attackPlayer < (s.table?.seats.length ?? 1))) &&
           (c.undefendedTargetId === undefined ||
             typeof c.undefendedTargetId === "string") &&
-          (c.defensePenalty === undefined ||
-            (integer(c.defensePenalty) && c.defensePenalty >= 0)) &&
+          (c.defensePenalty === undefined || integer(c.defensePenalty)) &&
           (c.cancelEnemyDamage === undefined ||
             typeof c.cancelEnemyDamage === "boolean") &&
           (c.cancelCombatDamage === undefined ||
@@ -1080,7 +1084,7 @@ export function validateSave(
         (s.combat.undefendedTargetId !== undefined &&
           typeof s.combat.undefendedTargetId !== "string") ||
         (s.combat.defensePenalty !== undefined &&
-          (!integer(s.combat.defensePenalty) || s.combat.defensePenalty < 0)) ||
+          !integer(s.combat.defensePenalty)) ||
         (s.combat.cancelEnemyDamage !== undefined &&
           typeof s.combat.cancelEnemyDamage !== "boolean") ||
         (s.combat.cancelCombatDamage !== undefined &&
@@ -1219,6 +1223,9 @@ export function validateSave(
       ...(s.depths?.grappled.map((g) => g.enemy) ?? []),
       ...(s.depths?.pendingEnemies ?? []),
       ...(s.depths?.removedUnits ?? []),
+      ...(s.temple?.setAside ?? []),
+      ...(s.temple?.victoryEnemies ?? []),
+      ...(s.temple?.removedUnits ?? []),
       ...(s.dreadRealm?.pendingWraiths ?? []),
       ...(s.chetwood?.captive ? [s.chetwood.captive.unit] : []),
       ...Object.values(s.chetwood?.hiddenHands ?? {}).flat(),
@@ -1307,6 +1314,10 @@ export function restoreSave(value: unknown): GameState | null {
       if (u.feinted && u.preventedAttacks === undefined)
         u.preventedAttacks = [ownerOf(s, u)];
     syncSeat(s);
+    if (s.temple) {
+      templeSyncMap(s);
+      if (!validateSave(s)) return null;
+    }
     return s;
   } catch {
     return null;

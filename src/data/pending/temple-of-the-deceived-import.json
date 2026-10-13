@@ -1,0 +1,1797 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Temple of the Deceived",
+  "slug": "temple-of-the-deceived",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec50_rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+      "octgnid": "00e25526-9804-4b05-89d6-557d9ef7ad77",
+      "name": "Profane Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: When you travel to the right, Profane Dead makes an immediate attack against the engaged player.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 77,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 3,
+      "health": 3,
+      "engagement": 35,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "3",
+        "health": "3",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/00e25526-9804-4b05-89d6-557d9ef7ad77.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 77,
+          "quantity": 2,
+          "octgnid": "00e25526-9804-4b05-89d6-557d9ef7ad77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00e25526-9804-4b05-89d6-557d9ef7ad77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+      "name": "Throngs of Unfaithful",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Surge.\nForced: When Throngs of Unfaithful is destroyed, discard the bottom card of the engaged player's deck. If that card's printed cost is 2 or less, return Throngs of Unfaithful to the top of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 70,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 0,
+      "health": 4,
+      "engagement": 26,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "0",
+        "health": "4",
+        "engagement": "26"
+      },
+      "imagesrc": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 70,
+          "quantity": 2,
+          "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+      "octgnid": "1877b069-7015-4172-b5df-bbfd235b976f",
+      "name": "Jagged Cliffs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "While Jagged Cliffs is the active location, the location to its right is not considered to be in the staging area. Forced: When Jagged Cliffs is flipped over while active, look at the facedown side of each adjacent copy of Lost Island.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 72,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/1877b069-7015-4172-b5df-bbfd235b976f.B.jpg",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/1877b069-7015-4172-b5df-bbfd235b976f.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 72,
+          "quantity": 2,
+          "octgnid": "1877b069-7015-4172-b5df-bbfd235b976f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1877b069-7015-4172-b5df-bbfd235b976f.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "name": "Cursed Temple",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Cursed Temple is the active location, characters with less than 2 [willpower] do not ready during the refresh phase.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 74,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 74,
+          "quantity": 2,
+          "octgnid": "201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+      "octgnid": "3371c102-4aab-4b15-a738-a4b3483a6004",
+      "name": "Temple Halls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Temple Halls is the active location, each character gets -1 [attack] and -1 [defense]. Forced: When Temple Halls is flipped over while active, put Temple Guardian into play from the victory display, engaged with the player with the highest threat.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 69,
+      "quantity": 2,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Temple of the Deceived",
+      "back_text": "Uncharted. Immune to player card effects.\nTravel: Exhaust the Gate Key to travel here. Forced: After Temple of the Deceived becomes the active location, flip it over.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/3371c102-4aab-4b15-a738-a4b3483a6004.B.jpg",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/3371c102-4aab-4b15-a738-a4b3483a6004.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "3371c102-4aab-4b15-a738-a4b3483a6004",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3371c102-4aab-4b15-a738-a4b3483a6004.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+      "octgnid": "3e8eaee9-6fdb-4207-864f-151f0f98807b",
+      "name": "Dwindling Supplies",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must randomly discard cards from his hand until he has no more than 3 cards in his hand. If no cards were discarded by this effect, Dwindling Supplies gains doomed 2.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 80,
+      "quantity": 3,
+      "shadow": "Shadow: Defending character gets -2 [defense] for this attack.",
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {},
+      "imagesrc": "/cards/3e8eaee9-6fdb-4207-864f-151f0f98807b.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 80,
+          "quantity": 3,
+          "octgnid": "3e8eaee9-6fdb-4207-864f-151f0f98807b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e8eaee9-6fdb-4207-864f-151f0f98807b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+      "octgnid": "441a78e5-078f-433d-b092-5d94d1101aa1",
+      "name": "Sunken Ruins",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each Uncharted location in the staging area gets +1 [threat] until the end of the phase. If the active location has the Ruins trait, discard 1 resource from each hero and objective ally in play.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 81,
+      "quantity": 3,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {},
+      "imagesrc": "/cards/441a78e5-078f-433d-b092-5d94d1101aa1.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 81,
+          "quantity": 3,
+          "octgnid": "441a78e5-078f-433d-b092-5d94d1101aa1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/441a78e5-078f-433d-b092-5d94d1101aa1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:447dd08d-693c-407f-8155-87164f212351",
+      "octgnid": "447dd08d-693c-407f-8155-87164f212351",
+      "name": "Gate Key",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Item. Artifact.",
+      "text": "If unattached, return Gate Key to the staging area and it gains: \"Action: Exhaust a hero to claim Gate Key and attach it to that hero.\" Action: Exhaust Gate Key and attached hero and spend 3 resources from attached hero's resource pool to look at the facedown side of a Temple of the Deceived.",
+      "is_unique": true,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 71,
+      "quantity": 1,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {},
+      "imagesrc": "/cards/447dd08d-693c-407f-8155-87164f212351.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "447dd08d-693c-407f-8155-87164f212351",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447dd08d-693c-407f-8155-87164f212351.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+      "octgnid": "4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+      "name": "Winding Caverns",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Winding Caverns is the active location, each enemy gets +10 engagement cost. When you would travel from Winding Caverns to another location, you may travel to a location up to 3 locations away. (You must still pay that location's Travel cost in order to travel there.)",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 73,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 6,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+      "octgnid": "4fc6111a-93c3-4407-b067-1b82396b802f",
+      "name": "Furious Rainstorm",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: raise his threat by the number of his characters committed to the quest, or deal 1 damage to each of his characters committed to the quest.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 79,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack destroys a character, raise your threat by the attacking enemy's [threat].",
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {},
+      "imagesrc": "/cards/4fc6111a-93c3-4407-b067-1b82396b802f.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 79,
+          "quantity": 3,
+          "octgnid": "4fc6111a-93c3-4407-b067-1b82396b802f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fc6111a-93c3-4407-b067-1b82396b802f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+      "octgnid": "4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+      "name": "Temple of the Deceived",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 998,
+      "quantity": 0,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Temple of the Deceived",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 998,
+          "quantity": 0,
+          "octgnid": "4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+      "octgnid": "617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+      "name": "Faithless Desecrator",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "While engaged with a player, Faithless Desecrator contributes its [threat] to the total [threat] in the staging area.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 75,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead of the active location is a Ruins location).",
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/617ce2f8-f33e-4898-9fa4-38787ee9c2b6.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 75,
+          "quantity": 3,
+          "octgnid": "617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617ce2f8-f33e-4898-9fa4-38787ee9c2b6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "name": "Soulless Cadaver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "While you are engaged with Soulless Cadaver, your deck cannot be searched.\nForced: When Soulless Cadaver engages you, place each card in your hand with printed cost 2 or less on the bottom of your deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 69,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 38,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+      "octgnid": "7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+      "name": "Temple of the Deceived",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 3",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Temple of the Deceived",
+      "back_text": "Rulesheet Card 4",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/7217415c-c4c1-4e03-8a62-90611f5d6ecf.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/7217415c-c4c1-4e03-8a62-90611f5d6ecf.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7217415c-c4c1-4e03-8a62-90611f5d6ecf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "name": "Drowned Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: When Drowned Dead attacks and destroys an ally, place that ally on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 68,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 3,
+      "engagement": 32,
+      "shadow": "Shadow: If this attack destroys an ally, place that ally on the bottom of its owners's deck.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "3",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 68,
+          "quantity": 3,
+          "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
+      "octgnid": "90b5e33a-3708-40ab-8d20-5a997237e536",
+      "name": "Island Watcher",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Island Watcher cannot be optionally engaged.\nWhile Island Watcher is in the staging area, it gains: \"Forced: At the beginning of the encounter phase, if the active location has the Ruins trait, Island Watcher engages the player with the highest threat. Then, deal it 2 shadow cards.\"",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 76,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 46,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "46"
+      },
+      "imagesrc": "/cards/90b5e33a-3708-40ab-8d20-5a997237e536.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 76,
+          "quantity": 2,
+          "octgnid": "90b5e33a-3708-40ab-8d20-5a997237e536",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90b5e33a-3708-40ab-8d20-5a997237e536.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+      "name": "Captain Sahír",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Captain Sahir engages the first player.\nFor each point of damage Captain Sahir would take, discard 1 resource from him and cancel that damage. Forced: After Captain Sahir attacks, place 2 resource tokens on him (4 instead if his attack destroyed a character).",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 76,
+      "quantity": 1,
+      "threat": 6,
+      "attack": 6,
+      "defense": 2,
+      "health": 5,
+      "engagement": 4,
+      "victory": 6,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Captain Sahír",
+      "back_text": "The first player gains control of Captain Sahir.\nCaptain Sahir gets +1 [willpower] and +1 [attack] for each resource on him (max +6). Action: Spend 1 resource from a hero you control to place 1 resource on Captain Sahir. (Limit once per round). If Captain Sahir leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "printed_stats": {
+        "threat": "6",
+        "attack": "6",
+        "defense": "2",
+        "health": "5",
+        "engagement": "4",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "name": "Aimless Wandering",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The players, as a group, must remove characters with a total of at least X [willpower] from the quest. X is the number of Uncharted locations in the staging area. The first player may give Aimless Wandering doomed 2 to look at the facedown side of an Uncharted location in the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 75,
+      "quantity": 3,
+      "encounter_set": "Ruins of Numenor",
+      "printed_stats": {},
+      "imagesrc": "/cards/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 75,
+          "quantity": 3,
+          "octgnid": "a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "name": "Curse of the Downfallen",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each non-objective ally with printed cost 2 or less. Place each ally destroyed by this effect on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 71,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {},
+      "imagesrc": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 71,
+          "quantity": 2,
+          "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+      "octgnid": "c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+      "name": "Deeper into the Ruins",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the phase, add X [threat] to the total [threat] in the staging area. X is the total [threat] of all locations to the left of the active location (in its row). If X is 0, Deeper into the Ruins gains Doomed 1.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 78,
+      "quantity": 3,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {},
+      "imagesrc": "/cards/c8decb35-cb3e-4dc9-ad15-d0cc80c157cb.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 78,
+          "quantity": 3,
+          "octgnid": "c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c8decb35-cb3e-4dc9-ad15-d0cc80c157cb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "name": "Drowned Graves",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "Forced: After Drowned Graves is flipped over while active, discard the top X cards of the encounter deck. Each player adds an Undead enemy discarded by this effect to the staging area. X is 2 more than the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 73,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+      "octgnid": "dc8f31b6-73af-4aec-be26-8d297909d14d",
+      "name": "Jungle Path",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Jungle Path is the active location, the locations immediately above and below it are not considered to be in the staging area. Forced: When Jungle Path is flipped over while active, each player must exhaust a character with at least 2 [attack].",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 74,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/dc8f31b6-73af-4aec-be26-8d297909d14d.B.jpg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/dc8f31b6-73af-4aec-be26-8d297909d14d.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 74,
+          "quantity": 2,
+          "octgnid": "dc8f31b6-73af-4aec-be26-8d297909d14d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc8f31b6-73af-4aec-be26-8d297909d14d.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+      "octgnid": "e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+      "name": "Temple Guardian",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "X is the number of players in the game. Immune to player card effects. Cannot be optionally engaged.\nTemple Guardian gets -50 engagement cost while Cursed Temple is the active location.",
+      "is_unique": true,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 70,
+      "quantity": 1,
+      "attack": 6,
+      "defense": 4,
+      "health": 10,
+      "engagement": 50,
+      "victory": 4,
+      "encounter_set": "Temple of the Deceived",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "6",
+        "defense": "4",
+        "health": "10",
+        "engagement": "50",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/e4f6c61b-afb1-4f12-81d5-4edd14a90d32.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4f6c61b-afb1-4f12-81d5-4edd14a90d32.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+      "name": "Na'asiyah",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Na'asiyah engages the last player.\nForced: When Na'asiyah engages you, discard each event in your hand. Add 1 resource to Na'asiyah for each event discarded in this way. Forced: When Na'asiyah attacks or defends, she gets +1 [attack] and +1 [defense] for this attack for each resource on her. After this attack, discard 1 resource from her.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 78,
+      "quantity": 1,
+      "threat": 1,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 8,
+      "victory": 4,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Na'asiyah",
+      "back_text": "The last player gains control of Na'asiyah.\nAction: While Na'asiyah is attacking or defending, spend 1 resource from her to give her +2 [attack] or +2 [defense] for this attack. Action: Spend 1 resource from a hero you control to place 1 resource on Na'asiyah. (Limit once per round). If Na'asiyah leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "8",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+      "octgnid": "f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+      "name": "The Grotto's Entrance",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "Immune to player card effects.\nForced: When The Grotto's Entrance is flipped over while active, put Temple Guardian into play from the victory display, engaged with the player with the highest threat. When the 8th progress is placed on The Grotto's Entrance, the players have found the sunken ruins and win the game.",
+      "is_unique": true,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 68,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 8,
+      "encounter_set": "Temple of the Deceived",
+      "back_name": "Temple of the Deceived",
+      "back_text": "Uncharted. Immune to player card effects.\nTravel: Exhaust the Gate Key to travel here. Forced: After Temple of the Deceived becomes the active location, flip it over.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "8"
+      },
+      "imagesrc": "/cards/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "name": "Flooded Ruins",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "While Flooded Ruins is the active location, it contributes its [threat] to the staging area.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 72,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "Ruins of Numenor",
+      "back_name": "Lost Island",
+      "back_text": "Uncharted. Cannot have player card attachments.\nForced: After Lost Island becomes the active location, flip it over. Action: Remove 4 progress from Lost Island to look at its facedown side.",
+      "back_type_code": "location",
+      "back_imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 72,
+          "quantity": 2,
+          "octgnid": "fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+      "octgnid": "fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+      "name": "Searching the Island",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Prepare the Island Map (see insert). Flip over the top-left and bottom-left locations of the Island Map (without resolving their Forced effects, if any), and choose one as the players' starting active location, using a resource token to represent which location is active. The first player takes control of Captain Sahir, and the last player takes control of Na'asiyah (objective-ally sides faceup). Add Temple Guardian to the staging area and attach Gate Key to it, guarded. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TotD",
+      "pack_name": "Temple of the Deceived",
+      "position": 67,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Temple of the Deceived",
+      "side": "A",
+      "back_name": "Searching the Island",
+      "back_text": "Exploration. For each progress that would be placed on Searching the Island, you may place it on a location in the staging area, instead.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.jpg",
+      "packs": [
+        {
+          "pack_code": "TotD",
+          "pack_name": "Temple of the Deceived",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E06.6",
+      "name": "Temple of the Deceived (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TGH",
+        "TotD"
+      ],
+      "card_codes": [
+        "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+        "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+        "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+        "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+        "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+        "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+        "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+        "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+        "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+        "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+        "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+        "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+        "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+        "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+        "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+        "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+        "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+        "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+        "octgn:447dd08d-693c-407f-8155-87164f212351",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:447dd08d-693c-407f-8155-87164f212351",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6": 3,
+          "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77": 2,
+          "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb": 3,
+          "octgn:4fc6111a-93c3-4407-b067-1b82396b802f": 2,
+          "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b": 3,
+          "octgn:441a78e5-078f-433d-b092-5d94d1101aa1": 3,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 1,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 1,
+          "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3": 1,
+          "octgn:3371c102-4aab-4b15-a738-a4b3483a6004": 2,
+          "octgn:1877b069-7015-4172-b5df-bbfd235b976f": 2,
+          "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d": 2,
+          "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d": 2,
+          "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533": 2,
+          "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41": 2,
+          "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a": 2
+        },
+        "sharedSetAside": {
+          "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e": 1,
+          "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf": 1,
+          "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32": 1,
+          "octgn:447dd08d-693c-407f-8155-87164f212351": 1,
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1,
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q06.6",
+      "name": "Temple of the Deceived",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TGH",
+        "TotD"
+      ],
+      "card_codes": [
+        "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+        "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
+        "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+        "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+        "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+        "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+        "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+        "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+        "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+        "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+        "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+        "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+        "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+        "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+        "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+        "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+        "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+        "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+        "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+        "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+        "octgn:447dd08d-693c-407f-8155-87164f212351",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:447dd08d-693c-407f-8155-87164f212351",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:90b5e33a-3708-40ab-8d20-5a997237e536": 2,
+          "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6": 3,
+          "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77": 2,
+          "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb": 3,
+          "octgn:4fc6111a-93c3-4407-b067-1b82396b802f": 3,
+          "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b": 3,
+          "octgn:441a78e5-078f-433d-b092-5d94d1101aa1": 3,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 2,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 2,
+          "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088": 2,
+          "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3": 1,
+          "octgn:3371c102-4aab-4b15-a738-a4b3483a6004": 2,
+          "octgn:1877b069-7015-4172-b5df-bbfd235b976f": 2,
+          "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d": 2,
+          "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d": 2,
+          "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533": 2,
+          "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41": 2,
+          "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a": 2
+        },
+        "sharedSetAside": {
+          "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e": 1,
+          "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf": 1,
+          "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32": 1,
+          "octgn:447dd08d-693c-407f-8155-87164f212351": 1,
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1,
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/00e25526-9804-4b05-89d6-557d9ef7ad77.jpg",
+      "localPath": "/cards/00e25526-9804-4b05-89d6-557d9ef7ad77.jpg",
+      "bytes": 147128,
+      "sha256": "1d507472c850ba43a40fe5fe49f257b66a7cfb8ad9b514fc4f48734398786cc1"
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "localPath": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "bytes": 152290,
+      "sha256": "ce66a0c861b02dacf1bea9803aff3e2cf12f2b78928ca8b217790d560a65347c"
+    },
+    {
+      "code": "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1877b069-7015-4172-b5df-bbfd235b976f.B.jpg",
+      "localPath": "/cards/1877b069-7015-4172-b5df-bbfd235b976f.jpg",
+      "bytes": 153707,
+      "sha256": "c49b0a3dabff9a6c80c4e44468d2b5e2f7f8129f6782ee0ecf74143ccf320ee0"
+    },
+    {
+      "code": "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1877b069-7015-4172-b5df-bbfd235b976f.jpg",
+      "localPath": "/cards/1877b069-7015-4172-b5df-bbfd235b976f.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "localPath": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "bytes": 146767,
+      "sha256": "3d92048448cf30a463e620629a22c62fbbb72b9f004efcb25ce5125427877f2f"
+    },
+    {
+      "code": "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/201569b2-d203-4a2a-b3e4-5dd396b8341a.jpg",
+      "localPath": "/cards/201569b2-d203-4a2a-b3e4-5dd396b8341a.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3371c102-4aab-4b15-a738-a4b3483a6004.B.jpg",
+      "localPath": "/cards/3371c102-4aab-4b15-a738-a4b3483a6004.jpg",
+      "bytes": 145106,
+      "sha256": "3ce0e2c053c4cf0c200f80cb694b23330f79965d96377d5d206ac868f703d0ea"
+    },
+    {
+      "code": "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3371c102-4aab-4b15-a738-a4b3483a6004.jpg",
+      "localPath": "/cards/3371c102-4aab-4b15-a738-a4b3483a6004.B.jpg",
+      "bytes": 142433,
+      "sha256": "221549e98f888849cf5f7488f427b7364d13e2a09fff7fb95e0aabd74804cdc2"
+    },
+    {
+      "code": "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e8eaee9-6fdb-4207-864f-151f0f98807b.jpg",
+      "localPath": "/cards/3e8eaee9-6fdb-4207-864f-151f0f98807b.jpg",
+      "bytes": 159419,
+      "sha256": "53d66ab141da8f2a185a27b412375d5deb7b37c2bf799bd8131aa7a26fbce5e3"
+    },
+    {
+      "code": "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/441a78e5-078f-433d-b092-5d94d1101aa1.jpg",
+      "localPath": "/cards/441a78e5-078f-433d-b092-5d94d1101aa1.jpg",
+      "bytes": 152732,
+      "sha256": "d8802e37882a11fe225758e9b1aee9ee7e33cf5535017579823889eada5c486f"
+    },
+    {
+      "code": "octgn:447dd08d-693c-407f-8155-87164f212351",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447dd08d-693c-407f-8155-87164f212351.jpg",
+      "localPath": "/cards/447dd08d-693c-407f-8155-87164f212351.jpg",
+      "bytes": 157187,
+      "sha256": "ba427f4fde0285d5d114ddb0dfb6788ebbfe19fd9cc6d5009c98ed9bae60f674"
+    },
+    {
+      "code": "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.B.jpg",
+      "localPath": "/cards/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.jpg",
+      "bytes": 168359,
+      "sha256": "3be79631378d6b15a4dca530db6c1f24ac425fe1e65714a61f83dfb38d188c17"
+    },
+    {
+      "code": "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.jpg",
+      "localPath": "/cards/4c7d7a31-250d-4e48-a97a-2aebb3b2b47d.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fc6111a-93c3-4407-b067-1b82396b802f.jpg",
+      "localPath": "/cards/4fc6111a-93c3-4407-b067-1b82396b802f.jpg",
+      "bytes": 150821,
+      "sha256": "a847bec0ce301e03a416482711936b126a75e8682fb7c765b618813f6604e649"
+    },
+    {
+      "code": "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.jpg",
+      "localPath": "/cards/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.jpg",
+      "bytes": 169359,
+      "sha256": "f2084d3bd4759615c7dc51f86036eb2825691113a5ec332b18f66cafc0837eea"
+    },
+    {
+      "code": "octgn:4fcbffac-5e31-4c8f-bf94-d8ad96927e2e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.B.jpg",
+      "localPath": "/cards/4fcbffac-5e31-4c8f-bf94-d8ad96927e2e.B.jpg",
+      "bytes": 177224,
+      "sha256": "f798656d383151303b9492240c6af9b0cb4c47a21631c8e1f757e14fd3435e40"
+    },
+    {
+      "code": "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617ce2f8-f33e-4898-9fa4-38787ee9c2b6.jpg",
+      "localPath": "/cards/617ce2f8-f33e-4898-9fa4-38787ee9c2b6.jpg",
+      "bytes": 154697,
+      "sha256": "595c9699ffd1b147393250e1d3e4de630af7512d469f92acf3c5de959f13eb70"
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "localPath": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "bytes": 155350,
+      "sha256": "2d83140d9253979c6aef680486ac0ffae16d2a48814fbb7cbafcd4e5a14147d2"
+    },
+    {
+      "code": "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7217415c-c4c1-4e03-8a62-90611f5d6ecf.jpg",
+      "localPath": "/cards/7217415c-c4c1-4e03-8a62-90611f5d6ecf.jpg",
+      "bytes": 177660,
+      "sha256": "9ee25c52c77e2ef4e0d9f89a6982f35362d4832ba7de0b75636e08fabf83759d"
+    },
+    {
+      "code": "octgn:7217415c-c4c1-4e03-8a62-90611f5d6ecf",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7217415c-c4c1-4e03-8a62-90611f5d6ecf.B.jpg",
+      "localPath": "/cards/7217415c-c4c1-4e03-8a62-90611f5d6ecf.B.jpg",
+      "bytes": 129683,
+      "sha256": "17567c54ff023f575e50ae65201aaf855c95a6bd101ec8baf51c65dbbfefbb77"
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "localPath": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "bytes": 164726,
+      "sha256": "97bc37727eee750b4817b18d151748feea3f74f29c6d8d9628bb81927ef6c480"
+    },
+    {
+      "code": "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90b5e33a-3708-40ab-8d20-5a997237e536.jpg",
+      "localPath": "/cards/90b5e33a-3708-40ab-8d20-5a997237e536.jpg",
+      "bytes": 158111,
+      "sha256": "78dac6f323a4dd6df87ff8a59f2f41ac9cdcbb51e792da21012aba3624e64c79"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "bytes": 158161,
+      "sha256": "958c7cc128400c3886fe1cf31ce8b3dddad5ba07456ed9e8ee16f6af00db4810"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "bytes": 156070,
+      "sha256": "6fcd8c0acb5d57bf49a7558d24f88f9b91791a819e8dc96ce0f5f428490b8ae1"
+    },
+    {
+      "code": "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "localPath": "/cards/a8918c80-f092-4649-bb5c-9f7fde3cef75.jpg",
+      "bytes": 168264,
+      "sha256": "1792c629339904640b01cacf94d96abbfa974662a43baf0834cff4516e3d314b"
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "localPath": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "bytes": 168003,
+      "sha256": "11eb28c44545484b405e5ee171ae4af74ebfc879358993db8b4073a3ec7abb5e"
+    },
+    {
+      "code": "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c8decb35-cb3e-4dc9-ad15-d0cc80c157cb.jpg",
+      "localPath": "/cards/c8decb35-cb3e-4dc9-ad15-d0cc80c157cb.jpg",
+      "bytes": 143209,
+      "sha256": "18bb142f60ad4ca214d08525ae20905149521105cbfdb5ce172a560c43fd95a2"
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "localPath": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "bytes": 157926,
+      "sha256": "ab319055ec355c5373be977d7a8b6964ae5e050614693d89fff5e88f02b38a39"
+    },
+    {
+      "code": "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.jpg",
+      "localPath": "/cards/d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc8f31b6-73af-4aec-be26-8d297909d14d.B.jpg",
+      "localPath": "/cards/dc8f31b6-73af-4aec-be26-8d297909d14d.jpg",
+      "bytes": 163721,
+      "sha256": "b983ab32722c8b48faaac95510187a0e23cc781c0d8882fdb60fd4ded9ba5bf6"
+    },
+    {
+      "code": "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc8f31b6-73af-4aec-be26-8d297909d14d.jpg",
+      "localPath": "/cards/dc8f31b6-73af-4aec-be26-8d297909d14d.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4f6c61b-afb1-4f12-81d5-4edd14a90d32.jpg",
+      "localPath": "/cards/e4f6c61b-afb1-4f12-81d5-4edd14a90d32.jpg",
+      "bytes": 153413,
+      "sha256": "f070bc916e133bb1712e9c824b2018bcd3f5c21aaf76531672cbc0e5a63172fc"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "bytes": 170054,
+      "sha256": "d7127dac07378c9c1376e3c2646747850037c6e49dbada34e517729f3c996e58"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "bytes": 164871,
+      "sha256": "6b07dc05e2dd9cf5eb5f990832ea73bd513877588f0b87a394837567d94927b0"
+    },
+    {
+      "code": "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.B.jpg",
+      "localPath": "/cards/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.jpg",
+      "bytes": 156077,
+      "sha256": "a2bfdfa204be333ef8f0894b175b7127f6be959880813793930a44a7ac6af58e"
+    },
+    {
+      "code": "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.jpg",
+      "localPath": "/cards/f3bc3759-1f94-4983-bebb-66c7d9e3e0b3.B.jpg",
+      "bytes": 142433,
+      "sha256": "221549e98f888849cf5f7488f427b7364d13e2a09fff7fb95e0aabd74804cdc2"
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "localPath": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "bytes": 149967,
+      "sha256": "32b1d095c16e7c2c0d6870eb4503bbbb9f0694db35a1396b5e4f6e73994826e9"
+    },
+    {
+      "code": "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb5e0cb9-914f-49ee-8e21-534e89bc5533.jpg",
+      "localPath": "/cards/fb5e0cb9-914f-49ee-8e21-534e89bc5533.B.jpg",
+      "bytes": 157108,
+      "sha256": "e7698c5f8b946e000f66102207d8d85062ba27970d7cb3a25e2453d274a7edae"
+    },
+    {
+      "code": "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.jpg",
+      "localPath": "/cards/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.jpg",
+      "bytes": 164056,
+      "sha256": "506ed2604969c523992c5e1cdf163c99b00835e4cdbf5a5bc73bdb463202d87a"
+    },
+    {
+      "code": "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.B.jpg",
+      "localPath": "/cards/fb7d55c5-7198-45c5-97d7-be4c6a26fa68.B.jpg",
+      "bytes": 152635,
+      "sha256": "c84d52e12ad8628676063912cc6b25e4b448fad61122aa82502f1ef32b55ce67"
+    }
+  ]
+}

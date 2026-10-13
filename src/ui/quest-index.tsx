@@ -19,6 +19,10 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "temple-of-the-deceived": {
+    lead: "Explore",
+    em: "the temple of the deceived.",
+  },
   "voyage-across-belegaer": { lead: "Voyage across", em: "Belegaer." },
   "the-fate-of-numenor": { lead: "Discover", em: "the fate of Númenor." },
   "raid-on-the-grey-havens": { lead: "Defend", em: "the Grey Havens." },

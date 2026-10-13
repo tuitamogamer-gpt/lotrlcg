@@ -47,6 +47,10 @@ import {
   hotseatCaseSelector,
   assertHotseatGameCounts,
 } from "./hotseat-selection";
+import {
+  assertTempleSaveRestoration,
+  templeSimulationObserver,
+} from "./temple-simulation-invariants";
 const selectedHotseatCase = hotseatCaseSelector(process.env.LOTR_HOTSEAT_CASE);
 const config = [
   { heroes: ["01001"], deckId: "leadership" },
@@ -498,6 +502,11 @@ for (const scenarioId of [
                 ...(campaign ? { campaign: c } : {}),
               }),
               steps = 0;
+            const mapObserver =
+              scenarioId === "temple-of-the-deceived"
+                ? templeSimulationObserver()
+                : undefined;
+            mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
               steps++ < 4000
@@ -632,7 +641,8 @@ for (const scenarioId of [
               }
               if (!importedLostRealmScenario(scenarioId))
                 assert.ok(validateSave(s));
-              const restored = restoreSave(JSON.parse(JSON.stringify(s)));
+              const savedState = JSON.parse(JSON.stringify(s));
+              const restored = restoreSave(savedState);
               if (!restored && process.env.LOTR_HOTSEAT_TRACE === "1")
                 writeFileSync(
                   `/tmp/hotseat-invalid-save-${scenarioId}-${n}-${seed}.json`,
@@ -642,7 +652,10 @@ for (const scenarioId of [
                 restored,
                 `invalid save ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} step ${steps}`,
               );
+              if (mapObserver)
+                assertTempleSaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
+              mapObserver?.observe(s);
               if (process.env.LOTR_HOTSEAT_CASE)
                 appendFileSync(
                   `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,
