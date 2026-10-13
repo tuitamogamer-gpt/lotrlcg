@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Check,
@@ -9,7 +9,7 @@ import {
   Trash,
   WarningCircle,
 } from "@phosphor-icons/react";
-import { card, plain } from "../game/cards";
+import { card, imageUrl, plain } from "../game/cards";
 import {
   DECK_CARDS,
   HERO_CARDS,
@@ -31,6 +31,11 @@ import { Art, Sphere } from "./card-art";
 import { CardProductNote, DeckProductNote } from "./product-note";
 import { SupportSummary, playableProductNames } from "./support-summary";
 import { cardProductInfo } from "../game/products";
+import {
+  clearDeckEditorDraft,
+  readDeckEditorDraft,
+  writeDeckEditorDraft,
+} from "./deck-editor-draft";
 
 function PlayPoolNote() {
   return (
@@ -66,13 +71,30 @@ export default function DeckBuilder({
   notify: (message: string) => void;
   play: (id: string) => void;
 }) {
-  const [editing, setEditing] = useState<CustomDeck | null>(null);
+  const [initialDraft] = useState(readDeckEditorDraft);
+  const [editing, setEditing] = useState<CustomDeck | null>(
+    initialDraft?.deck ?? null,
+  );
   const [query, setQuery] = useState("");
   const [sphere, setSphere] = useState("all");
   const [product, setProduct] = useState("all");
   const [importText, setImportText] = useState("");
   const [importing, setImporting] = useState(false);
-  const [report, setReport] = useState<string[]>([]);
+  const [report, setReport] = useState<string[]>(initialDraft?.report ?? []);
+  const [restored, setRestored] = useState(!!initialDraft);
+  const [draftStored, setDraftStored] = useState(true);
+  const hasStoredDraft = useRef(!!initialDraft);
+  useEffect(() => {
+    if (!editing) return;
+    const stored = writeDeckEditorDraft({
+      version: 1,
+      deck: editing,
+      report,
+      savedAt: Date.now(),
+    });
+    if (stored) hasStoredDraft.current = true;
+    setDraftStored(stored);
+  }, [editing, report]);
   const problems = useMemo(
     () => (editing ? deckProblems(editing) : []),
     [editing],
@@ -83,6 +105,7 @@ export default function DeckBuilder({
     [editing],
   );
   const edit = (deck: CustomDeck) => {
+    setRestored(false);
     setReport([]);
     setQuery("");
     setSphere("all");
@@ -104,12 +127,35 @@ export default function DeckBuilder({
     };
     const others = decks.filter((d) => d.id !== deck.id);
     const persisted = setDecks([deck, ...others]);
+    if (!persisted) {
+      notify(
+        "Could not save this deck on this device. Your unfinished changes remain open.",
+      );
+      return;
+    }
+    if (!clearDeckEditorDraft() && hasStoredDraft.current) {
+      notify(
+        "Your deck is saved, but its unfinished copy could not be cleared. Your changes remain open.",
+      );
+      return;
+    }
+    hasStoredDraft.current = false;
     setEditing(null);
-    notify(
-      persisted
-        ? `${deck.name} ${problems.length ? "saved as a draft" : "saved"}.`
-        : "Browser storage is full. This deck stays available until you reload.",
-    );
+    setReport([]);
+    setRestored(false);
+    notify(`${deck.name} ${problems.length ? "saved as a draft" : "saved"}.`);
+  };
+  const cancel = () => {
+    if (!clearDeckEditorDraft() && hasStoredDraft.current) {
+      notify(
+        "Could not discard the unfinished changes on this device. They remain open.",
+      );
+      return;
+    }
+    hasStoredDraft.current = false;
+    setEditing(null);
+    setReport([]);
+    setRestored(false);
   };
   const remove = (deck: CustomDeck) => {
     if (!confirm(`Delete ${deck.name}? This cannot be undone.`)) return;
@@ -170,6 +216,7 @@ export default function DeckBuilder({
         ...result.adjustments,
       ];
       setReport(lines);
+      setRestored(false);
       setEditing(result.deck);
       setQuery("");
       setSphere("all");
@@ -224,7 +271,7 @@ export default function DeckBuilder({
             </p>
           </div>
           <div className="builder-actions">
-            <button className="secondary" onClick={() => setEditing(null)}>
+            <button className="secondary" onClick={cancel}>
               Cancel
             </button>
             <button className="primary" onClick={save}>
@@ -232,6 +279,26 @@ export default function DeckBuilder({
             </button>
           </div>
         </div>
+        <p className="builder-note">
+          Working copy stays in this tab while you browse; Save keeps it after
+          closing the tab.
+        </p>
+        {restored && (
+          <div className="import-report" role="status">
+            <p>
+              Your unfinished deck has been restored. Save it to add it to your
+              decks, or cancel to discard these changes.
+            </p>
+          </div>
+        )}
+        {!draftStored && (
+          <div className="import-report" role="status">
+            <p>
+              Your unfinished changes could not be kept in this tab. Save the
+              deck before leaving.
+            </p>
+          </div>
+        )}
         <PlayPoolNote />
         {report.length > 0 && (
           <div className="import-report" role="status">
@@ -507,7 +574,7 @@ export default function DeckBuilder({
                   {d.heroes.map((h) => (
                     <img
                       key={h}
-                      src={`/cards/${h}.png`}
+                      src={imageUrl(card(h))}
                       alt=""
                       loading="lazy"
                     />

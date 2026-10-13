@@ -43,6 +43,11 @@ import {
   normalAttackPending,
 } from "../src/game/considered-engagement";
 import type { GameState, Unit, ScenarioId, Action } from "../src/game/types";
+import {
+  hotseatCaseSelector,
+  assertHotseatGameCounts,
+} from "./hotseat-selection";
+const selectedHotseatCase = hotseatCaseSelector(process.env.LOTR_HOTSEAT_CASE);
 const config = [
   { heroes: ["01001"], deckId: "leadership" },
   { heroes: ["01007"], deckId: "spirit" },
@@ -462,9 +467,8 @@ for (const scenarioId of [
         for (const n of [1, 2, 3, 4])
           for (let seed = 1; seed <= 8; seed++) {
             if (
-              process.env.LOTR_HOTSEAT_CASE &&
-              process.env.LOTR_HOTSEAT_CASE !==
-                `${easy ? "easy" : "normal"}/${n}/${seed}`
+              selectedHotseatCase &&
+              selectedHotseatCase !== `${easy ? "easy" : "normal"}/${n}/${seed}`
             )
               continue;
             if (process.env.LOTR_HOTSEAT_TRACE === "1")
@@ -671,11 +675,13 @@ for (const scenarioId of [
                 `finish ${scenarioId}/${easy ? "easy" : "normal"}/${n}/${seed}: ${s.status}, ${steps} steps`,
               );
           }
+      assertHotseatGameCounts(
+        scenarioId,
+        selectedHotseatCase,
+        importedLostRealmScenario(scenarioId),
+        outcomes,
+      );
       if (importedLostRealmScenario(scenarioId)) {
-        if (!process.env.LOTR_HOTSEAT_CASE) {
-          assert.equal(outcomes.normal.won + outcomes.normal.lost, 32);
-          assert.equal(outcomes.easy.won + outcomes.easy.lost, 32);
-        }
         const title = scenarioId;
         t.diagnostic(`${title} complete games: ${JSON.stringify(outcomes)}`);
       }

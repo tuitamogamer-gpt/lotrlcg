@@ -40,7 +40,7 @@
     "test:lost-realm-players": "node --import tsx scripts/browser-lost-realm-players.mjs && node --import tsx scripts/browser-ranger-north.mjs && node --import tsx scripts/browser-side-quests.mjs",
     "test:engine": "node scripts/test-engine.mjs",
     "test:simulation": "node --import tsx --test tests/simulation.test.ts",
-    "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons && npm run test:significant-moments",
+    "test:browser-core": "npm run test:ui && npm run test:pacing && npm run test:hotseat && npm run test:revisions && npm run test:precons && npm run test:significant-moments && npm run test:improvements",
     "test:browser-players": "npm run test:lost-realm-players && npm run test:ring-maker-players && npm run test:against-shadow-finale && npm run test:pending-import && npm run test:lost-realm-quests",
     "test:browser-ring-maker": "npm run test:ring-maker-quests",
     "test:multiplayer-games": "node --import tsx --test --test-name-pattern=\"^hot-seat .*: complete seeded games with save checks$\" tests/hotseat.test.ts",
@@ -65,7 +65,9 @@
     "test:depths-players": "node --import tsx scripts/browser-depths-players.mjs",
     "test:browser-depths": "npm run test:depths-quests && npm run test:depths-players",
     "test:depths-simulation": "node --import tsx --test tests/depths-simulation.test.ts",
-    "test:depths-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-thing-in-the-depths normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:depths-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-thing-in-the-depths normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:improvements": "node --import tsx scripts/browser-improvements-navigation.mjs && node --import tsx scripts/browser-improvements-entry.mjs && node --import tsx scripts/browser-improvements-gameplay.mjs && node --import tsx scripts/browser-improvements-reliability.mjs && node --import tsx scripts/browser-performance.mjs",
+    "test:tooling": "node --import tsx --test tests/browser-artifact-evidence.test.ts tests/hotseat-selection.test.ts tests/test-preview.test.ts tests/simulation-shards.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

@@ -257,25 +257,65 @@ const validDeck = (d: unknown): d is CustomDeck => {
       ["official-preconstructed", "custom"].includes(v.deckKind))
   );
 };
-export function readDecks(): CustomDeck[] {
-  try {
-    const list = JSON.parse(localStorage.getItem(DECKS_KEY) ?? "[]");
-    if (!Array.isArray(list)) return [];
-    const ids = new Set<string>();
-    return list
-      .filter((d) => {
-        if (!validDeck(d) || ids.has(d.id)) return false;
-        ids.add(d.id);
-        return true;
-      })
-      .slice(0, 50);
-  } catch {
-    return [];
-  }
+export const MAX_CUSTOM_DECKS = 50;
+export type DeckStorageIssue =
+  "capacity" | "invalid" | "unreadable" | "unavailable";
+
+/** A failed write must not silently discard decks, including recovered lists. */
+export function deckStorageProblem(decks: unknown): DeckStorageIssue | null {
+  if (!Array.isArray(decks)) return "invalid";
+  if (decks.length > MAX_CUSTOM_DECKS) return "capacity";
+  if (
+    !decks.every(validDeck) ||
+    new Set(decks.map((d) => d.id)).size !== decks.length
+  )
+    return "invalid";
+  return null;
 }
-export function writeDecks(decks: CustomDeck[]) {
+
+/** Known drafts can be displayed while the original unreadable data is retained. */
+export function readDeckStorage(): {
+  decks: CustomDeck[];
+  raw: string | null;
+  issue: DeckStorageIssue | null;
+} {
+  let raw: string | null = null;
   try {
-    localStorage.setItem(DECKS_KEY, JSON.stringify(decks.slice(0, 50)));
+    raw = localStorage.getItem(DECKS_KEY);
+  } catch {
+    return { decks: [], raw, issue: "unavailable" };
+  }
+  if (raw === null) return { decks: [], raw, issue: null };
+  let list: unknown;
+  try {
+    list = JSON.parse(raw);
+  } catch {
+    return { decks: [], raw, issue: "unreadable" };
+  }
+  if (!Array.isArray(list)) return { decks: [], raw, issue: "invalid" };
+  const ids = new Set<string>();
+  const decks = list
+    .filter((d) => {
+      if (!validDeck(d) || ids.has(d.id)) return false;
+      ids.add(d.id);
+      return true;
+    })
+    .slice(0, MAX_CUSTOM_DECKS);
+  return { decks, raw, issue: deckStorageProblem(list) };
+}
+
+export function readDecks(): CustomDeck[] {
+  return readDeckStorage().decks;
+}
+
+/** The optional snapshot detects a stale tab; it is not an atomic cross-tab lock. */
+export function writeDecks(decks: CustomDeck[], expectedRaw?: string | null) {
+  if (deckStorageProblem(decks)) return false;
+  const stored = readDeckStorage();
+  if (stored.issue || (expectedRaw !== undefined && stored.raw !== expectedRaw))
+    return false;
+  try {
+    localStorage.setItem(DECKS_KEY, JSON.stringify(decks));
     return true;
   } catch {
     return false;
