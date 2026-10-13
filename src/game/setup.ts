@@ -1,3 +1,4 @@
+import * as Drowned from "./drowned";
 import { setupDeadmensDike } from "./deadmens-dike";
 import { setupVoyageBelegaer } from "./voyage-belegaer";
 import { setupFateNumenor } from "./fate-numenor";
@@ -431,6 +432,8 @@ export function createGame(
     setupStormcaller(s);
   } else if (scenarioId === "the-thing-in-the-depths") {
     setupDepths(s);
+  } else if (scenarioId === "the-drowned-ruins") {
+    Drowned.setupDrowned(s);
   } else if (scenarioId === "temple-of-the-deceived") {
     setupTemple(s);
   } else if (scenarioId === "the-antlered-crown") {

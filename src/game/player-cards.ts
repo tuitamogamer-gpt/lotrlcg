@@ -1,3 +1,4 @@
+import * as DrownedPlayers from "./drowned-player";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import {
   dikeCannotLeaveDiscard,
@@ -148,6 +149,7 @@ export function eventEffect(
   if (StormPlayers.stormcallerEvent(s, code, target)) return;
   if (DepthsPlayers.depthsPlayerEvent(s, code, target)) return;
   if (TemplePlayers.templePlayerEvent(s, code, target)) return;
+  if (DrownedPlayers.drownedPlayerEvent(s, code, target)) return;
   if (finalRingEvent(s, code, target, amount)) return;
   if (osgiliathPlayerEventEffect(s, code, target, amount)) return;
   if (bloodPlayerEventEffect(s, code, target)) return;

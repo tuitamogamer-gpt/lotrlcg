@@ -1,0 +1,81 @@
+[
+  {
+    "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+    "octgnid": "31bd075d-e116-4a0f-81dd-942b52a6267c",
+    "name": "The Grotto",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "In the sunken ruins of the temple, you find a grotto leading deep below the sea level. Much of the grotto is submerged underwater.  Setup: Set Shrine to Morgoth aside, out of play. Prepare the Grotto deck. Add the top 2 locations from the Grotto deck to the staging area, Grotto side faceup (the top 3 instead if there are 3 or more players in the game). The first player takes control of Captain Sahir, and the last player takes control of Na'asiyah (objective-ally sides faceup).",
+    "is_unique": false,
+    "pack_code": "DR",
+    "pack_name": "The Drowned Ruins",
+    "position": 92,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Drowned Ruins",
+    "side": "A",
+    "back_name": "The Grotto",
+    "back_text": "While an Underwater location is the active location, players cannot play attachments or allies.  Forced: After a double-sided location is explored, add the top location from the Grotto deck to the staging area, Grotto side faceup.  You cannot advance unless there are at least 3 Underwater locations in the victory display.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg",
+    "packs": [
+      {
+        "pack_code": "DR",
+        "pack_name": "The Drowned Ruins",
+        "position": 92,
+        "quantity": 1,
+        "octgnid": "31bd075d-e116-4a0f-81dd-942b52a6267c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+    "octgnid": "e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+    "name": "Sahír's Betrayal",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "In the center of the shrine, reverently placed on a large altar, lies a long black chest. As soon as you get close, Sahir knocks one of the heroes over and grabs it!  When Revealed: Make the set aside Shrine to Morgoth the active location, Grotto side faceup. Captain Sahir flips to his enemy side (removing all tokens) and makes an immediate attack against the first player. Remove Captain Sahir from the game. Each player searches the encounter deck and discard pile for an Undead enemy and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "DR",
+    "pack_name": "The Drowned Ruins",
+    "position": 93,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Drowned Ruins",
+    "side": "A",
+    "back_name": "Sahír's Betrayal",
+    "back_text": "You dive at Sahir, but he swiftly runs to the entrance, laughing as he seals you in. \"Captain?! What about me?\" Na'asiyah screams angrily. As soon as the entrance is sealed shut, the walls shudder, and water begins to leak in rapidly from the ceiling and walls. \"We have to get out of here!\" the heroes shout, as the water level starts to rise.  While an Underwater location is the active location, players cannot play attachments or allies.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg",
+    "packs": [
+      {
+        "pack_code": "DR",
+        "pack_name": "The Drowned Ruins",
+        "position": 93,
+        "quantity": 1,
+        "octgnid": "e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

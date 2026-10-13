@@ -115,3 +115,8 @@ of Khazad-dûm and Grey Havens stages. A full numeric quest-victory comparison
 against the pinned OCTGN snapshot found 19 reverse-only values previously absent
 from the front-side import; all are now represented in `victory` and
 `printed_stats.victory`, with reverse values also retained as `back_victory`.
+
+The Drowned Ruins retains its original Q06.7/E06.7 source snapshot and all 35
+scenario faces. Printed corrections and physical front/back handling are
+scoped to its runtime definitions; the original catalog remains immutable.
+See [Drowned Ruins sources](DROWNED-SOURCES.md).

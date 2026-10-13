@@ -2,6 +2,8 @@
 export interface DamageContext {
   /** Curse of the Downfallen follows its damage through replacements to the actual recipient. */
   fateBottomOnDestroy?: boolean;
+  /** One Dark Abyss damage assignment, preserved through replacement effects. */
+  drownedThenToken?: string;
   /** Ability costs cannot be canceled or redirected by optional replacements. */
   cost?: boolean;
   enemyId?: string;
@@ -37,6 +39,8 @@ export function readDamageContext(effect: {
     if (!raw || typeof raw !== "object") return legacy;
     const values = raw as Record<string, unknown>;
     const context: DamageContext = {};
+    if ("drownedThenToken" in raw && typeof raw.drownedThenToken === "string")
+      context.drownedThenToken = raw.drownedThenToken;
     if ("enemyId" in raw && typeof raw.enemyId === "string")
       context.enemyId = raw.enemyId;
     for (const key of [

@@ -1,3 +1,4 @@
+import { drownedCannotEnterStaging } from "./drowned";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
@@ -265,8 +266,8 @@ export function useExpansionAbility(
   if (u.code === "02028") {
     requireRule(!huntAbilityProblem(s, u), huntAbilityProblem(s, u) ?? "");
     discardCharacter(s, u);
-    for (const enemy of [...s.staging].filter(
-      (enemy) => playerUnitIsEnemy(enemy),
+    for (const enemy of [...s.staging].filter((enemy) =>
+      playerUnitIsEnemy(enemy),
     ))
       damage(s, enemy.id, 1);
     log(
@@ -419,7 +420,9 @@ export function huntLocationRevealed(s: GameState, location: Unit) {
   if (
     !s.staging.some((u) => u.id === location.id) ||
     card(location.code).type_code !== "location" ||
-    !redhornCanMakeActive(location)
+    !redhornCanMakeActive(location) ||
+    (allActiveLocations(s).length > 0 &&
+      allActiveLocations(s).every((u) => drownedCannotEnterStaging(s, u)))
   )
     return;
   const options = playerOrder(s).flatMap((player) => {
@@ -719,7 +722,9 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
       );
       requireRule(location, "The revealed location is no longer in staging.");
       if (!spendEvent(s, "02009")) return true;
-      const active = allActiveLocations(s);
+      const active = allActiveLocations(s).filter(
+        (u) => !drownedCannotEnterStaging(s, u),
+      );
       if (active.length > 1) {
         prepend(
           s,
@@ -748,9 +753,12 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Strider's Path · Active location",
-        opts(allActiveLocations(s), (old) => [
-          fx("huntStriderReplace", { target: e.target, source: old.id }),
-        ]),
+        opts(
+          allActiveLocations(s).filter((u) => !drownedCannotEnterStaging(s, u)),
+          (old) => [
+            fx("huntStriderReplace", { target: e.target, source: old.id }),
+          ],
+        ),
         "The first player chooses one active location to return to staging.",
       );
       return true;
@@ -762,7 +770,10 @@ export function handleExpansionPlayerEffect(s: GameState, e: Effect): boolean {
       );
       const old = allActiveLocations(s).find((u) => u.id === e.source);
       if (e.source)
-        requireRule(old, "The chosen active location has left play.");
+        requireRule(
+          old && !drownedCannotEnterStaging(s, old),
+          "The chosen active location cannot return to staging.",
+        );
       if (old) {
         removeActiveLocation(s, old.id);
         s.staging.push(old);

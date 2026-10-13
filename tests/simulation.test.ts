@@ -36,6 +36,10 @@ import {
   assertTempleSaveRestoration,
   templeSimulationObserver,
 } from "./temple-simulation-invariants";
+import {
+  assertDrownedSaveRestoration,
+  drownedSimulationObserver,
+} from "./drowned-simulation-invariants";
 import { TEMPLE } from "../src/game/temple-support";
 import { CAMPAIGN_CHAPTERS, SCENARIOS } from "../src/game/scenarios.ts";
 import { emynMuilMustCommit } from "../src/game/emyn-muil.ts";
@@ -183,7 +187,9 @@ function run(
   const mapObserver =
     scenarioId === "temple-of-the-deceived"
       ? templeSimulationObserver()
-      : undefined;
+      : scenarioId === "the-drowned-ruins"
+        ? drownedSimulationObserver()
+        : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -413,7 +419,10 @@ function run(
       const savedState = JSON.parse(JSON.stringify(s));
       const restored = restoreSave(savedState);
       assert.ok(restored, `${scenarioId}: restore every action`);
-      if (mapObserver) assertTempleSaveRestoration(savedState, restored);
+      if (scenarioId === "temple-of-the-deceived")
+        assertTempleSaveRestoration(savedState, restored);
+      else if (scenarioId === "the-drowned-ruins")
+        assertDrownedSaveRestoration(savedState, restored);
       s = restored;
       mapObserver?.observe(s);
     }

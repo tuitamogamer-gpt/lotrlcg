@@ -29,10 +29,14 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 264);
+  assert.equal(baseline.registeredCases, 269);
   assert.deepEqual(
     baseline.selectedCases
-      .filter((name: string) => !name.startsWith("Temple of the Deceived"))
+      .filter(
+        (name: string) =>
+          !name.startsWith("Temple of the Deceived") &&
+          !name.startsWith("The Drowned Ruins"),
+      )
       .sort(),
     [...priorSimulationCases.cases].sort(),
     "all 259 complete-game registrations from the published pre-Temple release remain present",
@@ -49,6 +53,19 @@ test("four CI simulation shards cover every registered complete-game case exactl
       "Temple of the Deceived / campaign: guided confirmations preserve complete-game rules outcomes",
     ].sort(),
     "Temple's standard scenario and unsupported campaign registration are included exactly once",
+  );
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => name.startsWith("The Drowned Ruins"))
+      .sort(),
+    [
+      "The Drowned Ruins / normal: all four starter decks complete 10 seeded games each",
+      "The Drowned Ruins: hidden review mode preserves complete-game rules outcomes with fewer pauses",
+      "The Drowned Ruins: decisions review mode preserves complete-game rules outcomes with fewer pauses",
+      "The Drowned Ruins / normal: guided confirmations preserve complete-game rules outcomes",
+      "The Drowned Ruins / campaign: guided confirmations preserve complete-game rules outcomes",
+    ].sort(),
+    "Drowned's standard scenario and unsupported campaign registration are included exactly once",
   );
   assert.deepEqual(
     baseline.selectedCases

@@ -1,3 +1,4 @@
+import { drownedPlayerAttachmentEntered } from "./drowned-player";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
@@ -612,8 +613,7 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "bloodChildrenDeparture": {
       const ally = allCharacters(s).find((u) => u.id === e.target);
-      if (ally && playerUnitIsAlly(ally))
-        returnAlly(s, ally, !!e.flag);
+      if (ally && playerUnitIsAlly(ally)) returnAlly(s, ally, !!e.flag);
       return true;
     }
     case "bloodPoisonDamage": {
@@ -664,6 +664,7 @@ export function handleBloodPlayerEffect(s: GameState, e: Effect): boolean {
       };
       target.attachments.push(attachment);
       roadPlayerAttachmentEntered(s, target, attachment);
+      drownedPlayerAttachmentEntered(s, target, attachment);
       dwarfDeckDiscarded(s, e.ids ?? [], activeSeat(s));
       return true;
     }

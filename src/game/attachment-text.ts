@@ -1,3 +1,4 @@
+import * as Drowned from "./drowned";
 import { stormcallerAreaImmune } from "./stormcaller";
 import { stormcallerState } from "./stormcaller-support";
 import { trialsGrantedImmunity } from "./three-trials-support";
@@ -21,7 +22,8 @@ import { templePlayerBlanked } from "./temple-player";
  * It preserves a card's title, ownership and physical attachment.
  */
 export function syncAttachmentText(s: GameState, extra?: Unit) {
-  const blanked = emynMuilAttachmentsBlanked(s);
+  const blanked =
+    emynMuilAttachmentsBlanked(s) || Drowned.drownedAttachmentsBlanked(s);
   const cold = allQuestUnits(s).some((q) =>
     q.attachments.some((a) => a.code === WEATHER.cold && !a.blanked),
   );

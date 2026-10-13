@@ -9,6 +9,8 @@ import greyHavensPlayers from "../data/grey-havens-player-cards.json";
 import stormcallerPlayers from "../data/stormcaller-player-cards.json";
 import depthsPlayers from "../data/depths-player-cards.json";
 import templePlayers from "../data/temple-player-cards.json";
+import drownedPlayers from "../data/drowned-player-cards.json";
+import { DROWNED_ENCOUNTERS, DROWNED_QUESTS } from "./drowned-scenario-data";
 import { TEMPLE_ENCOUNTERS, TEMPLE_QUESTS } from "./temple-scenario-data";
 import { DEPTHS_ENCOUNTERS, DEPTHS_QUESTS } from "./depths-scenario-data";
 import {
@@ -179,6 +181,7 @@ export const playerCards = [
       ...(templePlayers as Card[]).map((c) =>
         c.code === "12058" ? { ...c, text: `Action: ${c.text}` } : c,
       ),
+      ...(drownedPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -230,6 +233,12 @@ export const encounterCards = [
   ...TEMPLE_ENCOUNTERS.filter(
     (c) => !priorEncounterCards.some((old) => old.code === c.code),
   ),
+  ...DROWNED_ENCOUNTERS.filter(
+    (c) =>
+      ![...priorEncounterCards, ...TEMPLE_ENCOUNTERS].some(
+        (old) => old.code === c.code,
+      ),
+  ),
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -272,6 +281,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...STORMCALLER_QUESTS,
     ...DEPTHS_QUESTS,
     ...TEMPLE_QUESTS,
+    ...DROWNED_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -359,6 +369,7 @@ export const SCRIPTED = new Set(
     ...RHOSGOBEL_QUESTS,
     ...DEPTHS_QUESTS,
     ...TEMPLE_QUESTS,
+    ...DROWNED_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

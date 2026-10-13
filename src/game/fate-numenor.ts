@@ -1,3 +1,4 @@
+import * as DrownedCompanions from "./drowned-companions";
 import type { Effect, GameState, Option, Unit } from "./types";
 import { templeCannotSearch } from "./temple-encounters";
 import type { DamageContext } from "./damage-context";
@@ -103,6 +104,7 @@ export const fateStagingThreat = (s: GameState) =>
 export const fateCannotDraw = (s: GameState) => active(s, F.shrine);
 export const fateCannotSearch = (s: GameState, player = activeSeat(s)) =>
   templeCannotSearch(s, player) ||
+  DrownedCompanions.drownedCannotSearch(s, player) ||
   active(s, F.shrine) ||
   (isFate(s) &&
     seatView(s, player).engaged.some(

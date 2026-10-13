@@ -1,3 +1,4 @@
+import * as Drowned from "./drowned";
 import { voyageCanAttackEnemy } from "./voyage-belegaer";
 import { fateLoseRanged } from "./fate-numenor";
 import { shipCanAttack, shipCanDefend } from "./ships";
@@ -289,11 +290,18 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );
-export const attackersFor = (s: GameState, enemy: Unit) =>
+export const attackersFor = (
+  s: GameState,
+  enemy: Unit,
+  paidAttackerId?: string,
+) =>
   allCharacters(s).filter(
     (u) =>
-      (!u.exhausted || angmarNoCombatExhaust(s, u)) &&
+      (!u.exhausted ||
+        u.id === paidAttackerId ||
+        angmarNoCombatExhaust(s, u)) &&
       longDarkCanAttack(s, enemy) &&
+      !Drowned.drownedCannotAttack(s) &&
       shipCanAttack(enemy, u) &&
       voyageCanAttackEnemy(s, enemy, u) &&
       canFight(u) &&

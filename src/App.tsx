@@ -12,6 +12,7 @@ import { FANGORN } from "./game/fangorn-support";
 import { ScenarioState, FaceupShadows } from "./ui/scenario-state";
 import { DepthsScenarioState, DepthsGrappleSummary } from "./ui/depths-state";
 import { TempleMap } from "./ui/TempleMap";
+import { DrownedScenarioState } from "./ui/drowned-state";
 import { TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
 import { faceupShadowCards } from "./game/voice-isengard";
@@ -2732,6 +2733,7 @@ export default function App() {
             <SailingTestSummary s={game} />
             <ScenarioState s={game} inspect={setDetail} />
             <DepthsScenarioState s={game} inspect={setDetail} />
+            <DrownedScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea

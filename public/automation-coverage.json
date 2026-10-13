@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 537,
-    "heroes": 61,
-    "deckCards": 475,
-    "encounterCards": 727,
-    "scenarios": 51,
+    "playerCards": 544,
+    "heroes": 62,
+    "deckCards": 481,
+    "encounterCards": 751,
+    "scenarios": 52,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -58,17 +58,18 @@
       "raid-on-the-grey-havens",
       "flight-of-the-stormcaller",
       "the-thing-in-the-depths",
-      "temple-of-the-deceived"
+      "temple-of-the-deceived",
+      "the-drowned-ruins"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1424,
-    "pending": 2759
+    "scripted": 1447,
+    "pending": 2736
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 102
+    "scripted": 104
   },
   "registeredCodes": [
     "01001",
@@ -606,8 +607,15 @@
     "12064",
     "12065",
     "12066",
+    "12082",
     "12083",
+    "12084",
+    "12085",
+    "12086",
     "12087",
+    "12088",
+    "12089",
+    "12090",
     "12091",
     "12117",
     "12139",
@@ -665,11 +673,16 @@
     "22142",
     "22143",
     "dread:reanimated-dead",
+    "drowned-cursed-caverns",
+    "drowned-undersea-grotto",
+    "drowned-water-logged-halls",
     "fate-lost-island",
     "octgn:001dbc8b-3b8e-4f02-bdbd-7e78c6ecd348",
     "octgn:007721bf-3e80-4857-aaf4-aabb65d1827d",
     "octgn:00d81c85-395e-4990-b0ff-7cbd9908f541",
     "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
+    "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+    "octgn:011a4573-f21a-4897-9b23-8b64391f5136:B",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
@@ -784,6 +797,7 @@
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
+    "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
@@ -792,6 +806,7 @@
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
+    "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
@@ -894,6 +909,8 @@
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
+    "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+    "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
@@ -1112,6 +1129,7 @@
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
+    "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
@@ -1120,6 +1138,8 @@
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
+    "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+    "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
@@ -1138,6 +1158,8 @@
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+    "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+    "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384:B",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
@@ -1246,6 +1268,8 @@
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
+    "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+    "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
@@ -1272,6 +1296,7 @@
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
     "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+    "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
@@ -1294,6 +1319,7 @@
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
+    "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
@@ -1313,10 +1339,12 @@
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+    "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
+    "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
@@ -1330,6 +1358,7 @@
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
+    "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
@@ -1345,10 +1374,14 @@
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+    "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+    "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc:B",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+    "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
@@ -1403,6 +1436,7 @@
     "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+    "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
@@ -2002,9 +2036,9 @@
     {
       "product": "the-drowned-ruins",
       "total": 27,
-      "scripted": 3,
+      "scripted": 26,
       "player": 10,
-      "playerScripted": 3
+      "playerScripted": 10
     },
     {
       "product": "the-drowned-ruins-nightmare",
@@ -7436,7 +7470,7 @@
       "name": "Argalad",
       "type": "hero",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7452,7 +7486,7 @@
       "name": "Dúnedain Remedy",
       "type": "attachment",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7460,7 +7494,7 @@
       "name": "Marksman of Lórien",
       "type": "ally",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7468,7 +7502,7 @@
       "name": "Battle-fury",
       "type": "event",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7484,7 +7518,7 @@
       "name": "Hithlain",
       "type": "attachment",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7492,7 +7526,7 @@
       "name": "Robin Smallburrow",
       "type": "ally",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -7500,7 +7534,7 @@
       "name": "Interrogation",
       "type": "event",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -11284,7 +11318,7 @@
       "name": "Shrine to Morgoth",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -15300,7 +15334,7 @@
       "name": "The Grotto",
       "type": "quest",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -15612,7 +15646,7 @@
       "name": "Cave Eel",
       "type": "enemy",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -17924,7 +17958,7 @@
       "name": "Cursed Caverns",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -21092,7 +21126,7 @@
       "name": "Into the Abyss",
       "type": "treachery",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -21524,7 +21558,7 @@
       "name": "Undersea Grotto",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -22716,7 +22750,7 @@
       "name": "Cursed Caverns",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -26996,7 +27030,7 @@
       "name": "Water-Logged Halls",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -28036,7 +28070,7 @@
       "name": "Ancient Depths",
       "type": "treachery",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -29068,7 +29102,7 @@
       "name": "Drowned Cave",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -30212,7 +30246,7 @@
       "name": "Powerful Undertow",
       "type": "treachery",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -30324,7 +30358,7 @@
       "name": "Tangling and Grasping",
       "type": "treachery",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -30700,7 +30734,7 @@
       "name": "Sea-Scorpion",
       "type": "enemy",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -31172,7 +31206,7 @@
       "name": "Undersea Grotto",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -31308,7 +31342,7 @@
       "name": "Water-Logged Halls",
       "type": "location",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -33156,7 +33190,7 @@
       "name": "Sahír's Betrayal",
       "type": "quest",
       "pack": "The Drowned Ruins",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-drowned-ruins"
     },
     {
@@ -36304,8 +36338,8 @@
       "id": "E06.7",
       "name": "The Drowned Ruins (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-drowned-ruins",
+      "state": "scripted"
     },
     {
       "id": "E06.8",
@@ -37795,8 +37829,8 @@
       "id": "Q06.7",
       "name": "The Drowned Ruins",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-drowned-ruins",
+      "state": "scripted"
     },
     {
       "id": "Q06.8",

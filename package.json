@@ -72,7 +72,12 @@
     "test:temple-simulation": "node --import tsx --test tests/temple-simulation.test.ts",
     "test:temple-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat temple-of-the-deceived normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
     "test:improvements": "node --import tsx scripts/browser-improvements-navigation.mjs && node --import tsx scripts/browser-improvements-entry.mjs && node --import tsx scripts/browser-improvements-gameplay.mjs && node --import tsx scripts/browser-improvements-reliability.mjs && node --import tsx scripts/browser-performance.mjs",
-    "test:tooling": "node --import tsx --test tests/browser-artifact-evidence.test.ts tests/hotseat-selection.test.ts tests/test-preview.test.ts tests/simulation-shards.test.ts"
+    "test:tooling": "node --import tsx --test tests/browser-artifact-evidence.test.ts tests/hotseat-selection.test.ts tests/test-preview.test.ts tests/simulation-shards.test.ts",
+    "test:drowned-quests": "node --import tsx scripts/browser-drowned.mjs",
+    "test:drowned-players": "node --import tsx scripts/browser-drowned-players.mjs",
+    "test:browser-drowned": "npm run test:drowned-quests && npm run test:drowned-players",
+    "test:drowned-simulation": "node --import tsx --test tests/drowned-simulation.test.ts",
+    "test:drowned-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-drowned-ruins normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

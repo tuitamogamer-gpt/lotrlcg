@@ -4,6 +4,7 @@ import { GREY_HAVENS_ADVENTURES } from "./grey-havens-scenario-data";
 import { STORMCALLER_ADVENTURES } from "./stormcaller-scenario-data";
 import { DEPTHS_ADVENTURES } from "./depths-scenario-data";
 import { TEMPLE_ADVENTURES } from "./temple-scenario-data";
+import { DROWNED_ADVENTURES } from "./drowned-scenario-data";
 import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
@@ -1113,6 +1114,7 @@ export const SCENARIOS = [
   ...STORMCALLER_ADVENTURES,
   ...DEPTHS_ADVENTURES,
   ...TEMPLE_ADVENTURES,
+  ...DROWNED_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

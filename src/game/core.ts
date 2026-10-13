@@ -1,3 +1,5 @@
+import * as Drowned from "./drowned";
+import * as DrownedCompanions from "./drowned-companions";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import * as Temple from "./temple";
@@ -5,12 +7,14 @@ import * as Storm from "./stormcaller";
 import * as Depths from "./depths";
 import { stormcallerState, stormcallerStageInfo } from "./stormcaller-support";
 import { depthsStageInfo } from "./depths-support";
+import { drownedStageInfo } from "./drowned-support";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Raid from "./raid-grey-havens";
 import * as Voyage from "./voyage-belegaer";
 import * as Fate from "./fate-numenor";
 import * as GreyPlayers from "./grey-havens-player";
 import { depthsPlayerStats } from "./depths-player-support";
+import { drownedPlayerDefense } from "./drowned-player-support";
 import { depthsPlayerCostReduction } from "./depths-player";
 import { voyageStageInfo } from "./voyage-belegaer-support";
 import * as Dike from "./deadmens-dike";
@@ -524,6 +528,7 @@ export function stats(s: GameState, u: Unit) {
           templeEncounterBonus.will,
           depthsPlayerStats(s, u).will,
           Depths.depthsStats(s, u).will,
+          DrownedCompanions.drownedCompanionStats(s, u).will,
           Voyage.voyageStats(s, u).will,
           angmarBonus.will,
           Wastes.wastesWillBonus(s, u),
@@ -572,6 +577,8 @@ export function stats(s: GameState, u: Unit) {
         templeEncounterBonus.attack +
         depthsPlayerStats(s, u).attack +
         Depths.depthsStats(s, u).attack +
+        Drowned.drownedAttackBonus(s, u) +
+        DrownedCompanions.drownedCompanionStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
@@ -658,7 +665,8 @@ export function stats(s: GameState, u: Unit) {
             carrockBonus.defense +
             gondorBonus.defense +
             (u.code === "rc135" && s.mendorBoost ? 2 : 0) +
-            (u.tempDefense ?? 0) -
+            (u.tempDefense ?? 0) +
+            drownedPlayerDefense(s, u) -
             Nin.ninStatPenalty(s, u) -
             Realm.realmDefensePenalty(s, u) -
             (s.combat?.ninDefensePenalties?.[u.id] ?? 0) +
@@ -749,7 +757,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 secrecyDiscount(s, c) -
                 ringMakerSecrecy(s, c) -
                 gondorDiscount -
-                depthsPlayerCostReduction(s, c.code),
+                depthsPlayerCostReduction(s, c.code) -
+                Drowned.drownedCostReduction(s, c),
             ) + dwarfAdditionalCost(c.code),
           ),
         ),
@@ -810,6 +819,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Voyage.voyageThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
             Depths.depthsThreatBonus(s, u) +
+            Drowned.drownedThreatBonus(s, u) +
             TempleEncounters.templeEncounterStats(s, u).threat +
             Fate.fateThreatBonus(s, u) +
             Rhu.rhudaurThreatBonus(s, u) +
@@ -922,6 +932,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const drowned = drownedStageInfo(s);
+  if (drowned) return drowned;
   const depths = depthsStageInfo(s);
   if (depths) return depths;
   const storm = stormcallerStageInfo(s);
@@ -1174,7 +1186,12 @@ export function pay(
   return spent;
 }
 
-export function draw(s: GameState, count: number, cardEffect = true) {
+export function draw(
+  s: GameState,
+  count: number,
+  cardEffect = true,
+  fromBottom = false,
+) {
   if (Fate.fateCannotDraw(s)) {
     log(s, "Shrine to Morgoth prevents card draw.", "danger");
     return;
@@ -1195,7 +1212,7 @@ export function draw(s: GameState, count: number, cardEffect = true) {
   }
   let n = 0;
   while (n < count && s.deck.length) {
-    const u = takePlayerDeck(s);
+    const u = takePlayerDeck(s, fromBottom ? s.deck.length - 1 : 0);
     if (!foundationsDrawHero(s, u)) s.hand.push(u);
     n++;
   }

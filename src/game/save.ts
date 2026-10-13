@@ -5,6 +5,7 @@ import { validateRaidGreyHavens } from "./raid-grey-havens-support";
 import { validateStormcaller } from "./stormcaller-support";
 import { validateDepths } from "./depths-support";
 import { validateTemple } from "./temple-support";
+import { validateDrowned } from "./drowned-support";
 import { templeSyncMap } from "./temple";
 import {
   validateDeadmensDike,
@@ -598,6 +599,7 @@ export function validateSave(
         !validateStormcaller(s, validUnit as (value: unknown) => boolean) ||
         !validateDepths(s, validUnit as (value: unknown) => boolean) ||
         !validateTemple(s, validUnit as (value: unknown) => boolean) ||
+        !validateDrowned(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1223,6 +1225,10 @@ export function validateSave(
       ...(s.depths?.grappled.map((g) => g.enemy) ?? []),
       ...(s.depths?.pendingEnemies ?? []),
       ...(s.depths?.removedUnits ?? []),
+      ...(s.drowned?.grottoDeck ?? []),
+      ...(s.drowned?.setAside ?? []),
+      ...(s.drowned?.victoryLocations ?? []),
+      ...(s.drowned?.removedUnits ?? []),
       ...(s.temple?.setAside ?? []),
       ...(s.temple?.victoryEnemies ?? []),
       ...(s.temple?.removedUnits ?? []),

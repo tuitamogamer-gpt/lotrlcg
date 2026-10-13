@@ -1,0 +1,1587 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Drowned Ruins",
+  "slug": "the-drowned-ruins",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+      "octgnid": "011a4573-f21a-4897-9b23-8b64391f5136",
+      "name": "Shrine to Morgoth",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Underground. Grotto.",
+      "text": "Shrine to Morgoth cannot have attachments and cannot enter the staging area.  Forced: At the beginning of the quest phase, flip Shrine to Morgoth to its Underwater side, without removing its progress tokens.  When Shrine to Morgoth is placed in the victory display, the players have escaped from the flooded grotto and win the game.",
+      "is_unique": true,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 94,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 18,
+      "victory": 5,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Shrine to Morgoth",
+      "back_text": "Shrine to Morgoth cannot have attachments and cannot enter the staging area.  Forced: If Shrine to Morgoth is the active location at the end of the quest phase, raise each player's threat by 5.  When Shrine to Morgoth is placed in the victory display, the players have escaped from the flooded grotto and win the game.",
+      "back_type_code": "location",
+      "back_quest": 18,
+      "back_victory": 5,
+      "back_imagesrc": "/cards/011a4573-f21a-4897-9b23-8b64391f5136.B.jpg",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "18",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/011a4573-f21a-4897-9b23-8b64391f5136.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 94,
+          "quantity": 1,
+          "octgnid": "011a4573-f21a-4897-9b23-8b64391f5136",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/011a4573-f21a-4897-9b23-8b64391f5136.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+      "name": "Throngs of Unfaithful",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Surge.\nForced: When Throngs of Unfaithful is destroyed, discard the bottom card of the engaged player's deck. If that card's printed cost is 2 or less, return Throngs of Unfaithful to the top of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 70,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 0,
+      "health": 4,
+      "engagement": 26,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "0",
+        "health": "4",
+        "engagement": "26"
+      },
+      "imagesrc": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 70,
+          "quantity": 2,
+          "octgnid": "159f5a8f-1e1f-4282-9936-94b10e348176",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+      "octgnid": "31bd075d-e116-4a0f-81dd-942b52a6267c",
+      "name": "The Grotto",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "In the sunken ruins of the temple, you find a grotto leading deep below the sea level. Much of the grotto is submerged underwater.  Setup: Set Shrine to Morgoth aside, out of play. Prepare the Grotto deck. Add the top 2 locations from the Grotto deck to the staging area, Grotto side faceup (the top 3 instead if there are 3 or more players in the game). The first player takes control of Captain Sahir, and the last player takes control of Na'asiyah (objective-ally sides faceup).",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 92,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Drowned Ruins",
+      "side": "A",
+      "back_name": "The Grotto",
+      "back_text": "While an Underwater location is the active location, players cannot play attachments or allies.  Forced: After a double-sided location is explored, add the top location from the Grotto deck to the staging area, Grotto side faceup.  You cannot advance unless there are at least 3 Underwater locations in the victory display.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 92,
+          "quantity": 1,
+          "octgnid": "31bd075d-e116-4a0f-81dd-942b52a6267c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+      "octgnid": "34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+      "name": "Cave Eel",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Cave Eel cannot be engaged unless the active location is Underwater.  Forced: At the beginning of the encounter phase, return Cave Eel to the staging area unless the active location is Underwater.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 97,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 4,
+      "health": 2,
+      "engagement": 20,
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "4",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/34bfcbad-5557-48bc-8abd-3ac472ee4d3b.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 97,
+          "quantity": 3,
+          "octgnid": "34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34bfcbad-5557-48bc-8abd-3ac472ee4d3b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+      "octgnid": "4be4e706-1bd2-455a-a712-833c1bbcea55",
+      "name": "Cursed Caverns",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Grotto.",
+      "text": "Response: After you travel to Cursed Caverns, you may flip it to its Underwater side.  Response: After the players explore Cursed Caverns as the active location, each player may raise his threat by 2 to draw the bottom card of his deck.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 99,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Sunken Temple",
+      "back_text": "While Sunken Temple is the active location, treat each attachment as if its printed text box is blank (except for Traits).  Forced: If Sunken Temple is the active location at the end of the quest phase, discard 1 resource from each objective-ally and each hero's resource pool. Then, you may flip Sunken Temple to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 10,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/4be4e706-1bd2-455a-a712-833c1bbcea55.B.jpg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/4be4e706-1bd2-455a-a712-833c1bbcea55.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 99,
+          "quantity": 1,
+          "octgnid": "4be4e706-1bd2-455a-a712-833c1bbcea55",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4be4e706-1bd2-455a-a712-833c1bbcea55.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+      "octgnid": "54014fda-7adc-49b0-96ac-656e849eaf7b",
+      "name": "Into the Abyss",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player chooses a card type and discards each card in his hand that is not of the chosen card type. If no cards are discarded by this effect, Into the Abyss gains surge.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 106,
+      "quantity": 3,
+      "shadow": "Shadow: If the active location is Underwater, search the encounter deck and discard pile for a Creature enemy, and add it to the staging area.",
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {},
+      "imagesrc": "/cards/54014fda-7adc-49b0-96ac-656e849eaf7b.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 106,
+          "quantity": 3,
+          "octgnid": "54014fda-7adc-49b0-96ac-656e849eaf7b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54014fda-7adc-49b0-96ac-656e849eaf7b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+      "octgnid": "58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+      "name": "Undersea Grotto",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Grotto.",
+      "text": "While Undersea Grotto is the active location, reduce the cost of the first ally played by the players each round by 1.  Response: After you travel to Undersea Grotto, you may flip it to its Underwater side.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 98,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Dark Abyss",
+      "back_text": "While Dark Abyss is the active location, characters cannot attack.  Forced: If Dark Abyss is the active location at the end of the quest phase, deal 1 damage to each character in play. Then, you may flip Dark Abyss to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 12,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/58f1cb80-d8de-4f96-98d0-0fdf61988da3.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/58f1cb80-d8de-4f96-98d0-0fdf61988da3.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 98,
+          "quantity": 2,
+          "octgnid": "58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58f1cb80-d8de-4f96-98d0-0fdf61988da3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "name": "Soulless Cadaver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "While you are engaged with Soulless Cadaver, your deck cannot be searched.\nForced: When Soulless Cadaver engages you, place each card in your hand with printed cost 2 or less on the bottom of your deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 69,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 38,
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+      "octgnid": "6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+      "name": "Cursed Caverns",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Grotto.",
+      "text": "Response: After you travel to Cursed Caverns, you may flip it to its Underwater side.  Response: After the players explore Cursed Caverns as the active location, each player may raise his threat by 2 to draw the bottom card of his deck.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 99,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Twisting Hollow",
+      "back_text": "While Twisting Hollow is the active location, characters cannot ready from card effects.  Forced: If Twisting Hollow is the active location at the end of the quest phase, each player must discard 1 character. Then, you may flip Twisting Hollow to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 14,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.B.jpg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 99,
+          "quantity": 2,
+          "octgnid": "6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "name": "Drowned Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead.",
+      "text": "Forced: When Drowned Dead attacks and destroys an ally, place that ally on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 68,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 3,
+      "engagement": 32,
+      "shadow": "Shadow: If this attack destroys an ally, place that ally on the bottom of its owners's deck.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "3",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 68,
+          "quantity": 3,
+          "octgnid": "79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+      "name": "Captain Sahír",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Captain Sahir engages the first player.\nFor each point of damage Captain Sahir would take, discard 1 resource from him and cancel that damage. Forced: After Captain Sahir attacks, place 2 resource tokens on him (4 instead if his attack destroyed a character).",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 76,
+      "quantity": 1,
+      "threat": 6,
+      "attack": 6,
+      "defense": 2,
+      "health": 5,
+      "engagement": 4,
+      "victory": 6,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Captain Sahír",
+      "back_text": "The first player gains control of Captain Sahir.\nCaptain Sahir gets +1 [willpower] and +1 [attack] for each resource on him (max +6). Action: Spend 1 resource from a hero you control to place 1 resource on Captain Sahir. (Limit once per round). If Captain Sahir leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "printed_stats": {
+        "threat": "6",
+        "attack": "6",
+        "defense": "2",
+        "health": "5",
+        "engagement": "4",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "97bf780d-cd76-492f-a970-37f78273c5bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+      "octgnid": "9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+      "name": "Water-Logged Halls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Underground. Grotto.",
+      "text": "While Water-logged Halls is the active location, each Undead enemy in play gets -1 [threat].  Response: After you travel to Water-logged Halls, you may flip it to its Underwater side.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 100,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Dark Abyss",
+      "back_text": "While Dark Abyss is the active location, characters cannot attack.  Forced: If Dark Abyss is the active location at the end of the quest phase, deal 1 damage to each character in play. Then, you may flip Dark Abyss to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 12,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 100,
+          "quantity": 1,
+          "octgnid": "9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+      "octgnid": "a9321cbd-897f-4a77-a548-85ad00112273",
+      "name": "Ancient Depths",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the top location from the Grotto deck to the staging area and flip that location to its Underwater side. This effect cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 108,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking Enemy gets +1 [attack] (+2 [attack] instead if the active location is Underwater).",
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {},
+      "imagesrc": "/cards/a9321cbd-897f-4a77-a548-85ad00112273.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 108,
+          "quantity": 3,
+          "octgnid": "a9321cbd-897f-4a77-a548-85ad00112273",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9321cbd-897f-4a77-a548-85ad00112273.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "name": "Curse of the Downfallen",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each non-objective ally with printed cost 2 or less. Place each ally destroyed by this effect on the bottom of its owner's deck.",
+      "is_unique": false,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 71,
+      "quantity": 2,
+      "shadow": "Shadow: Discard the bottom card of your deck. If that card's printed cost is 2 or less, attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Drowned Dead",
+      "printed_stats": {},
+      "imagesrc": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 71,
+          "quantity": 2,
+          "octgnid": "ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+      "octgnid": "b59afed1-a224-4793-b149-0a6aadc9ba7e",
+      "name": "Drowned Cave",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Underwater.",
+      "text": "While Drowned Cave is the active location, Undead enemies cannot be engaged (return any engaged Undead enemies to the staging area).  Forced: If Drowned Cave is the active location at the end of the quest phase, each player must discard the top 10 cards of his deck. Then, you may return Drowned Cave to the staging area.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 104,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/b59afed1-a224-4793-b149-0a6aadc9ba7e.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 104,
+          "quantity": 2,
+          "octgnid": "b59afed1-a224-4793-b149-0a6aadc9ba7e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b59afed1-a224-4793-b149-0a6aadc9ba7e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+      "octgnid": "befbd3c9-45b3-4e68-b19e-5981a6571835",
+      "name": "Powerful Undertow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "When Revealed: You cannot flip the active location this round. If the active location is Underwater, resolve its Forced effect as if it is the end of the quest phase. If there is no Underwater active location, Powerful Undertow gains doomed 3, instead.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 105,
+      "quantity": 3,
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {},
+      "imagesrc": "/cards/befbd3c9-45b3-4e68-b19e-5981a6571835.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 105,
+          "quantity": 3,
+          "octgnid": "befbd3c9-45b3-4e68-b19e-5981a6571835",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/befbd3c9-45b3-4e68-b19e-5981a6571835.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+      "octgnid": "c0d85826-dc42-4ac8-851c-4ed671917e9d",
+      "name": "Tangling and Grasping",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "When Revealed: Each player must remove a character from the quest. If the active location is Underwater, deal 2 damage to each character removed from the quest by this effect.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 107,
+      "quantity": 4,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {},
+      "imagesrc": "/cards/c0d85826-dc42-4ac8-851c-4ed671917e9d.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 107,
+          "quantity": 4,
+          "octgnid": "c0d85826-dc42-4ac8-851c-4ed671917e9d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0d85826-dc42-4ac8-851c-4ed671917e9d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+      "octgnid": "c49ec585-e306-4fda-a55b-497cb0fd1174",
+      "name": "Sea-Scorpion",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Sea-Scorpion gets +2 [attack] if the active location is Underwater.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 96,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: Attacking Enemy gets +1 [attack] (+2 [attack] instead if the active location is Underwater).",
+      "encounter_set": "The Drowned Ruins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/c49ec585-e306-4fda-a55b-497cb0fd1174.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 96,
+          "quantity": 3,
+          "octgnid": "c49ec585-e306-4fda-a55b-497cb0fd1174",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c49ec585-e306-4fda-a55b-497cb0fd1174.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+      "octgnid": "c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+      "name": "Undersea Grotto",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Grotto.",
+      "text": "While Undersea Grotto is the active location, reduce the cost of the first ally played by the players each round by 1.  Response: After you travel to Undersea Grotto, you may flip it to its Underwater side.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 98,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Twisting Hollow",
+      "back_text": "While Twisting Hollow is the active location, characters cannot ready from card effects.  Forced: If Twisting Hollow is the active location at the end of the quest phase, each player must discard 1 character. Then, you may flip Twisting Hollow to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 14,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 98,
+          "quantity": 1,
+          "octgnid": "c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+      "octgnid": "cb3ca114-400e-4abf-87e6-124b75e92cb4",
+      "name": "Water-Logged Halls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Underground. Grotto.",
+      "text": "While Water-logged Halls is the active location, each Undead enemy in play gets -1 [threat].  Response: After you travel to Water-logged Halls, you may flip it to its Underwater side.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 100,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "Sunken Temple",
+      "back_text": "While Sunken Temple is the active location, treat each attachment as if its printed text box is blank (except for Traits).  Forced: If Sunken Temple is the active location at the end of the quest phase, discard 1 resource from each objective-ally and each hero's resource pool. Then, you may flip Sunken Temple to its Grotto side.",
+      "back_type_code": "location",
+      "back_quest": 10,
+      "back_victory": 2,
+      "back_imagesrc": "/cards/cb3ca114-400e-4abf-87e6-124b75e92cb4.B.jpg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/cb3ca114-400e-4abf-87e6-124b75e92cb4.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 100,
+          "quantity": 1,
+          "octgnid": "cb3ca114-400e-4abf-87e6-124b75e92cb4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3ca114-400e-4abf-87e6-124b75e92cb4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+      "octgnid": "d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+      "name": "The Drowned Ruins",
+      "type_code": "rules",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Rulesheet Card 1",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 999,
+      "quantity": 0,
+      "encounter_set": "The Drowned Ruins",
+      "back_name": "The Drowned Ruins",
+      "back_text": "Rulesheet Card 2",
+      "back_type_code": "rules",
+      "back_imagesrc": "/cards/d41a03fa-e124-4e40-99b2-2ea4f71930f1.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/d41a03fa-e124-4e40-99b2-2ea4f71930f1.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 999,
+          "quantity": 0,
+          "octgnid": "d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d41a03fa-e124-4e40-99b2-2ea4f71930f1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+      "octgnid": "e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+      "name": "Sahír's Betrayal",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "In the center of the shrine, reverently placed on a large altar, lies a long black chest. As soon as you get close, Sahir knocks one of the heroes over and grabs it!  When Revealed: Make the set aside Shrine to Morgoth the active location, Grotto side faceup. Captain Sahir flips to his enemy side (removing all tokens) and makes an immediate attack against the first player. Remove Captain Sahir from the game. Each player searches the encounter deck and discard pile for an Undead enemy and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "DR",
+      "pack_name": "The Drowned Ruins",
+      "position": 93,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Drowned Ruins",
+      "side": "A",
+      "back_name": "Sahír's Betrayal",
+      "back_text": "You dive at Sahir, but he swiftly runs to the entrance, laughing as he seals you in. \"Captain?! What about me?\" Na'asiyah screams angrily. As soon as the entrance is sealed shut, the walls shudder, and water begins to leak in rapidly from the ceiling and walls. \"We have to get out of here!\" the heroes shout, as the water level starts to rise.  While an Underwater location is the active location, players cannot play attachments or allies.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg",
+      "packs": [
+        {
+          "pack_code": "DR",
+          "pack_name": "The Drowned Ruins",
+          "position": 93,
+          "quantity": 1,
+          "octgnid": "e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+      "name": "Na'asiyah",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Corsair. Raider.",
+      "text": "Na'asiyah engages the last player.\nForced: When Na'asiyah engages you, discard each event in your hand. Add 1 resource to Na'asiyah for each event discarded in this way. Forced: When Na'asiyah attacks or defends, she gets +1 [attack] and +1 [defense] for this attack for each resource on her. After this attack, discard 1 resource from her.",
+      "is_unique": true,
+      "pack_code": "TGH",
+      "pack_name": "The Grey Havens",
+      "position": 78,
+      "quantity": 1,
+      "threat": 1,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 8,
+      "victory": 4,
+      "encounter_set": "The Stormcaller Elite",
+      "back_name": "Na'asiyah",
+      "back_text": "The last player gains control of Na'asiyah.\nAction: While Na'asiyah is attacking or defending, spend 1 resource from her to give her +2 [attack] or +2 [defense] for this attack. Action: Spend 1 resource from a hero you control to place 1 resource on Na'asiyah. (Limit once per round). If Na'asiyah leaves play, the players lose.",
+      "back_type_code": "objective-ally",
+      "back_imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "8",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "packs": [
+        {
+          "pack_code": "TGH",
+          "pack_name": "The Grey Havens",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "f0d30258-7122-4004-a689-9ff50a00b3af",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E06.7",
+      "name": "The Drowned Ruins (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "DR",
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+        "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+        "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+        "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+        "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+        "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+        "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+        "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+        "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+        "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+        "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+        "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+        "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+        "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+        "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+        "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af"
+      ],
+      "cards": [
+        {
+          "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c": 1,
+          "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e": 2,
+          "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835": 1,
+          "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b": 3,
+          "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d": 4,
+          "octgn:a9321cbd-897f-4a77-a548-85ad00112273": 1,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 1,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 1,
+          "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174": 3,
+          "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3": 2,
+          "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384": 2,
+          "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55": 1,
+          "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b": 1,
+          "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc": 1,
+          "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4": 1
+        },
+        "sharedSetAside": {
+          "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1": 1,
+          "octgn:011a4573-f21a-4897-9b23-8b64391f5136": 1
+        },
+        "player1Play1": {
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1
+        },
+        "sharedStagingArea": {
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q06.7",
+      "name": "The Drowned Ruins",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "DR",
+        "TGH"
+      ],
+      "card_codes": [
+        "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+        "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+        "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+        "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+        "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+        "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+        "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+        "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+        "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+        "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+        "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+        "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+        "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+        "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+        "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+        "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+        "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+        "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+        "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+        "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+        "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+        "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+        "octgn:f0d30258-7122-4004-a689-9ff50a00b3af"
+      ],
+      "cards": [
+        {
+          "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+          "quantity": 2,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c": 1,
+          "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e": 2,
+          "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835": 3,
+          "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b": 3,
+          "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d": 4,
+          "octgn:a9321cbd-897f-4a77-a548-85ad00112273": 3,
+          "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2": 3,
+          "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a": 2,
+          "octgn:159f5a8f-1e1f-4282-9936-94b10e348176": 2,
+          "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088": 2,
+          "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174": 3,
+          "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3": 2,
+          "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384": 2,
+          "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55": 1,
+          "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b": 1,
+          "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc": 1,
+          "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4": 1
+        },
+        "sharedSetAside": {
+          "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1": 1,
+          "octgn:011a4573-f21a-4897-9b23-8b64391f5136": 1
+        },
+        "player1Play1": {
+          "octgn:97bf780d-cd76-492f-a970-37f78273c5bb": 1
+        },
+        "sharedStagingArea": {
+          "octgn:f0d30258-7122-4004-a689-9ff50a00b3af": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/011a4573-f21a-4897-9b23-8b64391f5136.jpg",
+      "localPath": "/cards/011a4573-f21a-4897-9b23-8b64391f5136.jpg",
+      "bytes": 167120,
+      "sha256": "cff64af4e4891c4b10e600f84db2636b86b7fc30bc4e31845af5647d16517172"
+    },
+    {
+      "code": "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/011a4573-f21a-4897-9b23-8b64391f5136.B.jpg",
+      "localPath": "/cards/011a4573-f21a-4897-9b23-8b64391f5136.B.jpg",
+      "bytes": 165338,
+      "sha256": "07c088ebd32c881139468e945aafa06f1fb8a68230dd046b20f468ea617f7609"
+    },
+    {
+      "code": "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "localPath": "/cards/159f5a8f-1e1f-4282-9936-94b10e348176.jpg",
+      "bytes": 152290,
+      "sha256": "ce66a0c861b02dacf1bea9803aff3e2cf12f2b78928ca8b217790d560a65347c"
+    },
+    {
+      "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg",
+      "localPath": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.jpg",
+      "bytes": 153662,
+      "sha256": "a18453f9b48bf0cffb3c0dbcc90990fdd2f8c7842f947c0ca66c5991c55cc3f2"
+    },
+    {
+      "code": "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31bd075d-e116-4a0f-81dd-942b52a6267c.B.jpg",
+      "localPath": "/cards/31bd075d-e116-4a0f-81dd-942b52a6267c.B.jpg",
+      "bytes": 147292,
+      "sha256": "0f4407569339caa6e1bbc56a791a7cabe6fa92f52e7e85a72933d05ab9ace3b2"
+    },
+    {
+      "code": "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34bfcbad-5557-48bc-8abd-3ac472ee4d3b.jpg",
+      "localPath": "/cards/34bfcbad-5557-48bc-8abd-3ac472ee4d3b.jpg",
+      "bytes": 148757,
+      "sha256": "e92dd3fc460c9b93c14b61cfc90f660c38908bf1219f0d3a39167a2a399a815c"
+    },
+    {
+      "code": "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4be4e706-1bd2-455a-a712-833c1bbcea55.jpg",
+      "localPath": "/cards/4be4e706-1bd2-455a-a712-833c1bbcea55.jpg",
+      "bytes": 151635,
+      "sha256": "512628f393d541639c147018b04597865fa1a93bb7223d7b9564677245662cdd"
+    },
+    {
+      "code": "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4be4e706-1bd2-455a-a712-833c1bbcea55.B.jpg",
+      "localPath": "/cards/4be4e706-1bd2-455a-a712-833c1bbcea55.B.jpg",
+      "bytes": 164501,
+      "sha256": "96adfe42a6e089ed193fd666098cd01d912c502da8b76678d0937da018b80e99"
+    },
+    {
+      "code": "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54014fda-7adc-49b0-96ac-656e849eaf7b.jpg",
+      "localPath": "/cards/54014fda-7adc-49b0-96ac-656e849eaf7b.jpg",
+      "bytes": 165978,
+      "sha256": "ec569bdc3e8321aedad9989a13d63f9b6614f7bc0a02d17cfc396f0840785828"
+    },
+    {
+      "code": "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58f1cb80-d8de-4f96-98d0-0fdf61988da3.jpg",
+      "localPath": "/cards/58f1cb80-d8de-4f96-98d0-0fdf61988da3.jpg",
+      "bytes": 150096,
+      "sha256": "9fc71703ec5f6b407ea96dc90051347c601f2e6ca7131a11b774cb6f5f108e96"
+    },
+    {
+      "code": "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58f1cb80-d8de-4f96-98d0-0fdf61988da3.B.jpg",
+      "localPath": "/cards/58f1cb80-d8de-4f96-98d0-0fdf61988da3.B.jpg",
+      "bytes": 157568,
+      "sha256": "a00e2770698d2a4f03d2ec4bf1c9d377587f70122a2a19fca9feae076546353d"
+    },
+    {
+      "code": "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "localPath": "/cards/69a3ace6-7588-4ec4-91de-780b56502d8a.jpg",
+      "bytes": 155350,
+      "sha256": "2d83140d9253979c6aef680486ac0ffae16d2a48814fbb7cbafcd4e5a14147d2"
+    },
+    {
+      "code": "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.jpg",
+      "localPath": "/cards/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.jpg",
+      "bytes": 151635,
+      "sha256": "512628f393d541639c147018b04597865fa1a93bb7223d7b9564677245662cdd"
+    },
+    {
+      "code": "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.B.jpg",
+      "localPath": "/cards/6a3ae84d-6c74-4fbf-9254-b8c1d17c8384.B.jpg",
+      "bytes": 167269,
+      "sha256": "adedba9e561ed413aab9c0b626456c8f58ca9aa99092e5fb21d68aeee6d902ea"
+    },
+    {
+      "code": "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "localPath": "/cards/79d5dc52-cfee-49f9-8a3d-1d4a7a749af2.jpg",
+      "bytes": 164726,
+      "sha256": "97bc37727eee750b4817b18d151748feea3f74f29c6d8d9628bb81927ef6c480"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.jpg",
+      "bytes": 158161,
+      "sha256": "958c7cc128400c3886fe1cf31ce8b3dddad5ba07456ed9e8ee16f6af00db4810"
+    },
+    {
+      "code": "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "localPath": "/cards/97bf780d-cd76-492f-a970-37f78273c5bb.B.jpg",
+      "bytes": 156070,
+      "sha256": "6fcd8c0acb5d57bf49a7558d24f88f9b91791a819e8dc96ce0f5f428490b8ae1"
+    },
+    {
+      "code": "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.jpg",
+      "localPath": "/cards/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.jpg",
+      "bytes": 148770,
+      "sha256": "b48d58943c54b0e8bfe248c0e0320973e56e5b09c33d028fea3ca606dd8ed61a"
+    },
+    {
+      "code": "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.B.jpg",
+      "localPath": "/cards/9c6798e3-9c5a-4609-b499-e6b1d6ae567b.B.jpg",
+      "bytes": 157568,
+      "sha256": "a00e2770698d2a4f03d2ec4bf1c9d377587f70122a2a19fca9feae076546353d"
+    },
+    {
+      "code": "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9321cbd-897f-4a77-a548-85ad00112273.jpg",
+      "localPath": "/cards/a9321cbd-897f-4a77-a548-85ad00112273.jpg",
+      "bytes": 144668,
+      "sha256": "86a6dd42d2cb6ce37db85c02172971129e0e3fbff66955e87728677709c1f962"
+    },
+    {
+      "code": "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "localPath": "/cards/ab5fec4c-b353-47e5-ae47-db7daf7f9088.jpg",
+      "bytes": 168003,
+      "sha256": "11eb28c44545484b405e5ee171ae4af74ebfc879358993db8b4073a3ec7abb5e"
+    },
+    {
+      "code": "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b59afed1-a224-4793-b149-0a6aadc9ba7e.jpg",
+      "localPath": "/cards/b59afed1-a224-4793-b149-0a6aadc9ba7e.jpg",
+      "bytes": 156140,
+      "sha256": "ffe40d72d1bace913ab55260e07810974597c79509143431ac031e727f2918e4"
+    },
+    {
+      "code": "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/befbd3c9-45b3-4e68-b19e-5981a6571835.jpg",
+      "localPath": "/cards/befbd3c9-45b3-4e68-b19e-5981a6571835.jpg",
+      "bytes": 156285,
+      "sha256": "5e0f873e27d18e0811c3b0accd03894470f2dbf581c6eeef2848494dbc73734f"
+    },
+    {
+      "code": "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0d85826-dc42-4ac8-851c-4ed671917e9d.jpg",
+      "localPath": "/cards/c0d85826-dc42-4ac8-851c-4ed671917e9d.jpg",
+      "bytes": 151996,
+      "sha256": "fc5c4846e074ff47ea64887fe14445fbcc2f3a80b5b688cef5d00124c6431978"
+    },
+    {
+      "code": "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c49ec585-e306-4fda-a55b-497cb0fd1174.jpg",
+      "localPath": "/cards/c49ec585-e306-4fda-a55b-497cb0fd1174.jpg",
+      "bytes": 155580,
+      "sha256": "d6cbeffbac8732efb55efcdc5119e6d999e985eb1fabdcf1b7a61d80a9fb17f6"
+    },
+    {
+      "code": "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.jpg",
+      "localPath": "/cards/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.jpg",
+      "bytes": 150096,
+      "sha256": "9fc71703ec5f6b407ea96dc90051347c601f2e6ca7131a11b774cb6f5f108e96"
+    },
+    {
+      "code": "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.B.jpg",
+      "localPath": "/cards/c95b4c6a-3dd0-4f11-8620-df7af65c11bc.B.jpg",
+      "bytes": 167269,
+      "sha256": "adedba9e561ed413aab9c0b626456c8f58ca9aa99092e5fb21d68aeee6d902ea"
+    },
+    {
+      "code": "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3ca114-400e-4abf-87e6-124b75e92cb4.jpg",
+      "localPath": "/cards/cb3ca114-400e-4abf-87e6-124b75e92cb4.jpg",
+      "bytes": 148770,
+      "sha256": "b48d58943c54b0e8bfe248c0e0320973e56e5b09c33d028fea3ca606dd8ed61a"
+    },
+    {
+      "code": "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3ca114-400e-4abf-87e6-124b75e92cb4.B.jpg",
+      "localPath": "/cards/cb3ca114-400e-4abf-87e6-124b75e92cb4.B.jpg",
+      "bytes": 164501,
+      "sha256": "96adfe42a6e089ed193fd666098cd01d912c502da8b76678d0937da018b80e99"
+    },
+    {
+      "code": "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d41a03fa-e124-4e40-99b2-2ea4f71930f1.jpg",
+      "localPath": "/cards/d41a03fa-e124-4e40-99b2-2ea4f71930f1.jpg",
+      "bytes": 176136,
+      "sha256": "71d85425c518dac686f16a5f57407ae3bb5e377428163eb88bf110d5a95388a7"
+    },
+    {
+      "code": "octgn:d41a03fa-e124-4e40-99b2-2ea4f71930f1",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d41a03fa-e124-4e40-99b2-2ea4f71930f1.B.jpg",
+      "localPath": "/cards/d41a03fa-e124-4e40-99b2-2ea4f71930f1.B.jpg",
+      "bytes": 136472,
+      "sha256": "9d21abeadbd316693ad891c4578f3a862d66f57d21bc1fa5b3dddc8c88e5ff58"
+    },
+    {
+      "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg",
+      "localPath": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.jpg",
+      "bytes": 158187,
+      "sha256": "1ff2f6d057c7ef6f90889ddb91c80d3f1eab27977c3c895733ef2e2acce3f065"
+    },
+    {
+      "code": "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.B.jpg",
+      "localPath": "/cards/e48c7313-d1cb-4291-9dc1-9fff6fb23e83.B.jpg",
+      "bytes": 145969,
+      "sha256": "01dfbcbcafbdd9ebd8d784f7835036fdb9116e4f675036ed0f1d8b846ff5ccdd"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.jpg",
+      "bytes": 170054,
+      "sha256": "d7127dac07378c9c1376e3c2646747850037c6e49dbada34e517729f3c996e58"
+    },
+    {
+      "code": "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "localPath": "/cards/f0d30258-7122-4004-a689-9ff50a00b3af.B.jpg",
+      "bytes": 164871,
+      "sha256": "6b07dc05e2dd9cf5eb5f990832ea73bd513877588f0b87a394837567d94927b0"
+    }
+  ]
+}

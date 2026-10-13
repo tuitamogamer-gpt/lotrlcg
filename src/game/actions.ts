@@ -1,3 +1,6 @@
+import * as Drowned from "./drowned";
+import * as DrownedCompanions from "./drowned-companions";
+import * as DrownedPlayers from "./drowned-player";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import * as Temple from "./temple";
@@ -446,7 +449,10 @@ export function commitCharacters(s: GameState) {
     "A Fell Dread requires its attached character to commit if able.",
   );
   const exhaustedIds: string[] = [];
-  for (const u of characters(s).filter((u) => s.committedIds.includes(u.id))) {
+  const newlyCommitted = characters(s).filter(
+    (u) => s.committedIds.includes(u.id) && !u.committed,
+  );
+  for (const u of newlyCommitted) {
     requireRule(
       !u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u),
       "A selected character is exhausted.",
@@ -461,7 +467,7 @@ export function commitCharacters(s: GameState) {
     u.committed = true;
   }
   const committed = characters(s).filter((u) => u.committed);
-  charactersCommitted(s, committed, exhaustedIds);
+  charactersCommitted(s, newlyCommitted, exhaustedIds);
   s.committedIds = [];
   log(s, `${committed.length} characters commit to the quest.`);
   enqueue(s, fx("commitSeat"));
@@ -604,6 +610,8 @@ export function optionalEngagementProblem(
     return "Choose an enemy in staging.";
   if (TempleEncounters.templeCannotOptionallyEngage(s, u))
     return "This enemy cannot be optionally engaged.";
+  if (Drowned.drownedCannotEngage(s, u))
+    return "This enemy cannot be engaged with the current active location.";
   if (Depths.depthsCannotEngage(s, u))
     return "The Thing in the Depths cannot be engaged.";
   if (
@@ -713,6 +721,8 @@ export function canPlay(
     return "You need an eligible ally in hand.";
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir")
     return "Faramir cannot be used in The Morgul Vale.";
+  const drownedScenarioProblem = Drowned.drownedPlayProblem(s, c);
+  if (drownedScenarioProblem) return drownedScenarioProblem;
   const greyProblem = GreyPlayers.greyHavensPlayProblem(s, c.code);
   const stormProblem = StormPlayers.stormcallerPlayProblem(
     s,
@@ -726,6 +736,8 @@ export function canPlay(
     options.playOrigin ?? "hand",
   );
   if (depthsProblem) return depthsProblem;
+  const drownedPlayerProblem = DrownedPlayers.drownedPlayerPlayProblem(s, u);
+  if (drownedPlayerProblem) return drownedPlayerProblem;
   const templeProblem = TemplePlayers.templePlayerPlayProblem(
     s,
     u,
@@ -1372,6 +1384,7 @@ export function resolvePlayerCard(
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     roadPlayerAttachmentEntered(s, host, attachment);
+    DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
   } else {
     resolveEventAbility(
       s,
@@ -1379,6 +1392,7 @@ export function resolvePlayerCard(
       () => {
         GreyPlayers.greyHavensEventCost(s, u.code, target);
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
+        DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
         const abilityCost = finalRingEventCost(s, u.code, target);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
@@ -1488,6 +1502,7 @@ export function playTargets(
           !Rhudaur.rhudaurCannotAttach(s, target) &&
           !Fate.fateCannotAttach(s, target) &&
           !Temple.templeCannotAttach(s, target) &&
+          !Drowned.drownedCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
@@ -1509,6 +1524,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
+  const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
+  if (drownedTargets) return drownedTargets;
   const depthsTargets = DepthsPlayers.depthsPlayerPlayTargets(s, c.code);
   if (depthsTargets) return depthsTargets;
   const templeTargets = TemplePlayers.templePlayerPlayTargets(s, c.code);
@@ -1703,6 +1720,8 @@ export const needsTarget = (u: Unit) =>
         "11013",
         "12032",
         "12061",
+        "12086",
+        "12090",
       ].includes(u.code)));
 
 export const responseCards = [
@@ -1792,7 +1811,15 @@ export function availableAbilities(s: GameState, u: Unit) {
   if (rhudaurLabel)
     return [{ label: rhudaurLabel, disabled: s.phase === "setup" }];
   const results: { id?: string; label: string; disabled: boolean }[] = [];
-  const depthsScenarioLabel = Depths.depthsAbilityLabel(u.code);
+  const drownedScenarioLabel = DrownedCompanions.drownedAbilityLabel(s, u);
+  if (drownedScenarioLabel)
+    results.push({
+      label: drownedScenarioLabel,
+      disabled: !!DrownedCompanions.drownedAbilityProblem(s, u),
+    });
+  const depthsScenarioLabel = s.depths
+    ? Depths.depthsAbilityLabel(u.code)
+    : undefined;
   if (depthsScenarioLabel)
     results.push({
       label: depthsScenarioLabel,
@@ -1806,6 +1833,12 @@ export function availableAbilities(s: GameState, u: Unit) {
     results.push({
       label: templeCompanionLabel,
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
+    });
+  const drownedPlayerLabel = DrownedPlayers.drownedPlayerAbilityLabel(u.code);
+  if (drownedPlayerLabel)
+    results.push({
+      label: drownedPlayerLabel,
+      disabled: !!DrownedPlayers.drownedPlayerAbilityProblem(s, u),
     });
   const templePlayerLabel = TemplePlayers.templePlayerAbilityLabel(u.code);
   if (templePlayerLabel)
@@ -2012,6 +2045,13 @@ export function availableAbilities(s: GameState, u: Unit) {
         id: a.id,
         label: templeLabel,
         disabled: !!Temple.templeAbilityProblem(s, u, a.id),
+      });
+    const drownedLabel = DrownedPlayers.drownedPlayerAbilityLabel(a.code);
+    if (drownedLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: drownedLabel,
+        disabled: !!DrownedPlayers.drownedPlayerAbilityProblem(s, u, a.id),
       });
     const depthsLabel = DepthsPlayers.depthsPlayerAbilityLabel(a.code);
     if (depthsLabel && attachmentController(s, u, a) === activeSeat(s))
@@ -2327,7 +2367,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Raid.raidOpeningHandsKept(s) &&
         !Storm.stormcallerOpeningHandsKept(s) &&
         !Depths.depthsOpeningHandsKept(s) &&
-        !Temple.templeOpeningHandsKept(s)
+        !Temple.templeOpeningHandsKept(s) &&
+        !Drowned.drownedOpeningHandsKept(s)
       )
         nextRound(s);
       break;
@@ -2599,8 +2640,17 @@ export function applyAction(input: GameState, action: Action): GameState {
             !action.attachmentId &&
             (useWatcherPlayerAbility(s, u) || useRoadPlayerAbility(s, u))
           ) {
+          } else if (
+            !action.attachmentId &&
+            DrownedCompanions.useDrownedAbility(s, u)
+          ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !DrownedPlayers.useDrownedPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !TemplePlayers.useTemplePlayerAbility(s, u, action.attachmentId) &&
             !DepthsPlayers.useDepthsPlayerAbility(s, u, action.attachmentId) &&
             !StormPlayers.useStormcallerAbility(s, u, action.attachmentId) &&
@@ -2798,7 +2848,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         optionalEngagementProblem(s, u) ?? "",
       );
       requireRule(
-        !Depths.depthsCannotEngage(s, u),
+        !Depths.depthsCannotEngage(s, u) && !Drowned.drownedCannotEngage(s, u),
         "The Thing in the Depths cannot be engaged.",
       );
       requireRule(
@@ -2986,6 +3036,7 @@ export function publicState(s: GameState) {
       : {}),
     ...(s.fateNumenor ? { fateNumenor: Fate.fatePublicState(s) } : {}),
     ...(s.temple ? { temple: Temple.templePublicState(s) } : {}),
+    ...(s.drowned ? { drowned: Drowned.drownedPublicState(s) } : {}),
     ...(s.voyageBelegaer
       ? {
           voyageBelegaer: {

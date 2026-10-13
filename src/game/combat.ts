@@ -1,3 +1,4 @@
+import * as DrownedCompanions from "./drowned-companions";
 import * as Storm from "./stormcaller";
 import * as StormPlayers from "./stormcaller-player";
 import * as Raid from "./raid-grey-havens";
@@ -130,7 +131,7 @@ export function playerAttack(
   enemy: Unit,
   ids: string[],
   regular = false,
-  abilityMode?: "haldir" | "hands-upon-bow" | "knight",
+  abilityMode?: "haldir" | "hands-upon-bow" | "knight" | "battle-fury",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -173,7 +174,11 @@ export function playerAttack(
               khazadCanRangedAttack(s, enemy, u, false) &&
               rhosgobelCanFight(enemy, u),
           )
-        : attackersFor(s, enemy)
+        : attackersFor(
+            s,
+            enemy,
+            abilityMode === "battle-fury" ? ids[0] : undefined,
+          )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
@@ -195,7 +200,7 @@ export function playerAttack(
   );
   const staging = s.staging.some((u) => u.id === enemy.id);
   requireRule(
-    !!abilityMode ||
+    (abilityMode !== undefined && abilityMode !== "battle-fury") ||
       !staging ||
       amonPlayerCanAttackEnemy(s, enemy) ||
       playerOrder(s).some((p) => consideredEngaged(s, enemy, p)) ||
@@ -214,6 +219,7 @@ export function playerAttack(
   attackers.forEach((u) => {
     if (
       abilityMode !== "hands-upon-bow" &&
+      abilityMode !== "battle-fury" &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
         abilityMode === "haldir" ||
@@ -251,6 +257,7 @@ export function playerAttack(
       ),
     ...Depths.depthsPlayerAttackEffects(s, enemy, ids),
     ...TempleEncounters.templePlayerAttackEffects(s, enemy, ids),
+    ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -347,6 +354,7 @@ export function playerAttackResolved(
   Raid.raidPlayerAttackFinished(s, enemy);
   Depths.depthsPlayerAttackFinished(s, enemy);
   TempleEncounters.templePlayerAttackFinished(s, enemy);
+  DrownedCompanions.drownedPlayerAttackFinished(s, enemy);
   StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
@@ -607,6 +615,11 @@ export function beginEnemyAttack(
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),
     ...Depths.depthsDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...DrownedCompanions.drownedDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

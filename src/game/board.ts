@@ -1,3 +1,6 @@
+import * as Drowned from "./drowned";
+import * as DrownedCompanions from "./drowned-companions";
+import * as DrownedPlayers from "./drowned-player";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import * as Temple from "./temple";
@@ -572,7 +575,8 @@ export function coreBoardResponse(s: GameState, e: Effect): boolean {
   return false;
 }
 
-export function readyCharacter(s: GameState, u: Unit) {
+export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
+  if (cardEffect && Drowned.drownedCannotReady(s)) return;
   syncAttachmentText(s, u);
   if (cannotReady(u, s)) return;
   const wasExhausted = u.exhausted;
@@ -717,6 +721,8 @@ export function check(s: GameState) {
   Raid.raidCheck(s);
   Depths.depthsCheck(s);
   Temple.templeCheck(s);
+  Drowned.drownedCheck(s);
+  DrownedCompanions.drownedCompanionCheck(s);
   TempleEncounters.templeEncounterCheck(s);
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
@@ -863,7 +869,10 @@ export function check(s: GameState) {
       const leavingCharacters = [...s.heroes, ...s.allies];
       for (const u of leavingCharacters) {
         for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-        if (TempleEncounters.templeCompanionRemoved(s, u)) {
+        if (
+          TempleEncounters.templeCompanionRemoved(s, u) ||
+          DrownedCompanions.drownedCompanionRemoved(s, u)
+        ) {
           seatView(s, u.owner ?? i).removed.push(u.code);
           continue;
         }
@@ -975,6 +984,8 @@ export function check(s: GameState) {
     Fate.fateCheck(s);
     Depths.depthsCheck(s);
     Temple.templeCheck(s);
+    Drowned.drownedCheck(s);
+    DrownedCompanions.drownedCompanionCheck(s);
     TempleEncounters.templeEncounterCheck(s);
     deadMarshesCheck(s);
     // Elimination can remove the final Clue as well as ordinary damage/discard.
@@ -1006,6 +1017,7 @@ export function check(s: GameState) {
     followFirstPlayer(s);
     Depths.depthsFirstPlayerChanged(s);
     TempleEncounters.templeFirstPlayerChanged(s);
+    DrownedCompanions.drownedFirstPlayerChanged(s);
     redhornFollowFirstPlayer(s);
     roadRivendellFollowFirstPlayer(s);
     longDarkCheck(s);
@@ -1147,6 +1159,7 @@ export function damage(
   value = Raid.raidDamageAmount(s, u, value);
   value = Storm.stormcallerDamageAmount(s, u, value);
   value = Depths.depthsDamageAmount(s, u, value);
+  value = DrownedCompanions.drownedSahirDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1185,6 +1198,7 @@ export function damage(
   )
     return false;
   u.damage += value;
+  Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
   if (u.damage >= stats(s, u).health) {
@@ -1256,6 +1270,7 @@ export function damage(
     Rhudaur.rhudaurCharacterDestroyed(s, u, context);
     Carn.carnCharacterDestroyed(s, u, context);
     TempleEncounters.templeCharacterDestroyed(s, u, context);
+    DrownedCompanions.drownedCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
     destroy(s, u);
   }
@@ -1315,6 +1330,7 @@ export function characterLeftPlay(
   lastKnownType = unitType(u),
 ) {
   TempleEncounters.templeCharacterLeft(s, u, destination);
+  DrownedCompanions.drownedCharacterLeft(s, u, destination);
   Fate.fateCharacterLeft(s, u, destination);
   Gram.gramCardLeaves(s, u);
   Dread.dreadCharacterLeft(s, u, destination);
@@ -1323,6 +1339,7 @@ export function characterLeftPlay(
   Tharbad.tharbadCharacterLeft(s, u, controller);
   ringMakerCharacterLeft(s, u.id);
   DepthsPlayers.depthsPlayerCharacterLeft(s, u);
+  DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
     const targetEffects = [
@@ -1442,8 +1459,13 @@ export function destroy(
   Storm.stormcallerCharacterLeaves(s, u, destruction);
   Depths.depthsCharacterLeaves(s, u, destruction, lastKnownThreat);
   TempleEncounters.templeCharacterLeaves(s, u);
+  DrownedCompanions.drownedCharacterLeaves(s, u);
   selectSeat(s, stagingPlayer ?? ownerOf(s, u));
-  if (TempleEncounters.templeCompanionRemoved(s, u) || hasEncounterKeyword(c))
+  if (
+    TempleEncounters.templeCompanionRemoved(s, u) ||
+    DrownedCompanions.drownedCompanionRemoved(s, u) ||
+    hasEncounterKeyword(c)
+  )
     destination = "removed";
   if (
     destruction &&
@@ -1496,6 +1518,7 @@ export function destroy(
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   if (["enemy", "ship-enemy"].includes(c.type_code)) {
     Gram.gramCardLeaves(s, u);
+    DrownedPlayers.drownedPlayerUnitLeft(s, u);
     s.staging = s.staging.filter((x) => x.id !== u.id);
     s.engaged = s.engaged.filter((x) => x.id !== u.id);
     s.encounterDiscard.push(...u.shadows);
@@ -1529,6 +1552,13 @@ export function destroy(
     if (destruction)
       TempleEncounters.templeEnemyDestroyed(s, u, wasEngaged, lastKnownThreat);
     if (destruction) Depths.depthsEnemyDestroyed(s, u, lastKnownThreat);
+    if (destruction)
+      DrownedCompanions.drownedEnemyDestroyed(
+        s,
+        u,
+        wasEngaged,
+        lastKnownThreat,
+      );
     if (s.scenarioId === "the-thing-in-the-depths" && s.status !== "playing") {
       syncSeat(s);
       selectSeat(s, previous);
@@ -1635,7 +1665,7 @@ export const discardCharacter = (s: GameState, u: Unit) => destroy(s, u, false);
 /** Discard a physical location without exploring it or claiming its victory points. */
 export function discardLocation(s: GameState, u: Unit) {
   requireRule(
-    !Temple.templeCannotLeave(s, u),
+    !Temple.templeCannotLeave(s, u) && !Drowned.drownedIsDoubleSided(s, u),
     "Island Map locations cannot be discarded or moved.",
   );
   requireRule(
@@ -1699,7 +1729,9 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((x) => x.id !== u.id);
-  const captured = Osgiliath.assaultOsgiliathCapture(s, u);
+  const captured =
+    Drowned.drownedLocationDestination(s, u) ||
+    Osgiliath.assaultOsgiliathCapture(s, u);
   let exploredDiscardIndex: number | undefined;
   if (!captured) {
     if (u.code === "01113") s.encounterDeck.unshift(u.code);
@@ -1726,7 +1758,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   heirsExplored(s, u);
   khazadExplored(s, u);
   rhosgobelLocationExplored(s, u);
-  if (!captured) for (const a of [...u.attachments]) discardAttachment(s, u, a);
+  if (!captured || Drowned.drownedIsDoubleSided(s, u))
+    for (const a of [...u.attachments]) discardAttachment(s, u, a);
   heirsPlayerLocationExplored(s, u, exploredDiscardIndex);
   collectorLocationExplored(s, u, exploredAttachments);
   Angmar.angmarLocationExplored(
@@ -1740,6 +1773,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Dread.dreadExplored(s, u);
   Fate.fateExplored(s, u, wasActive);
   Depths.depthsLocationLeft(s, u, true, wasActive);
+  Drowned.drownedLocationExplored(s, u, wasActive);
   Raid.raidExplored(s, u);
   ringMakerLocationExplored(s);
   rhosgobelExplored(s, u);
@@ -1882,7 +1916,11 @@ export function progress(
   }
   if (Temple.templeQuestProgress(s, n)) return;
   if (Fate.fateQuestProgressBlocked(s)) return;
-  if (Depths.depthsQuestProgressBlocked(s)) return;
+  if (
+    Depths.depthsQuestProgressBlocked(s) ||
+    Drowned.drownedQuestProgressBlocked(s)
+  )
+    return;
   if (Raid.raidQuestProgress(s, n)) return;
   if (Gram.gramProgress(s, n)) return;
   if (Dread.dreadQuestProgress(s, n, playerEffect)) return;
@@ -1944,6 +1982,7 @@ export function advanceQuest(s: GameState) {
   )
     return;
   if (Raid.raidAdvance(s)) return;
+  if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
   if (Storm.stormcallerAdvance(s)) return;
@@ -2304,7 +2343,8 @@ export function collectResources(s: GameState) {
 }
 
 export function engage(s: GameState, u: Unit, optional = false) {
-  if (Depths.depthsCannotEngage(s, u)) return;
+  if (Depths.depthsCannotEngage(s, u) || Drowned.drownedCannotEngage(s, u))
+    return;
   const designated =
     Depths.depthsEngagementPlayer(s, u) ?? Raid.raidEngagementPlayer(s, u);
   if (designated !== undefined && designated !== activeSeat(s)) {
@@ -2338,6 +2378,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Depths.depthsEngaged(s, u);
   TemplePlayers.templePlayerEngaged(s, u);
   TempleEncounters.templeEngaged(s, u);
+  DrownedCompanions.drownedEngaged(s, u);
   BloodQuest.bloodGondorEngaged(s, u);
   MorgulQuest.morgulEngaged(s, u, optional);
   Fords.fordsEngaged(s, u);
@@ -2612,6 +2653,7 @@ export function resolveReveal(
     code !== FANGORN.malice &&
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
+    !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
@@ -2853,6 +2895,11 @@ export function placeEncounter(
     return;
   }
   if (Raid.raidEncounter(s, code)) return;
+  if (
+    Drowned.drownedEncounter(s, code) ||
+    DrownedCompanions.drownedCompanionEncounter(s, code)
+  )
+    return;
   if (TempleEncounters.templeEncounter(s, code)) return;
   if (Depths.depthsEncounter(s, code)) return;
   if (Storm.stormcallerEncounter(s, code)) return;
@@ -3157,6 +3204,7 @@ export function allyEntryResponses(
   played: boolean,
   fromHand: boolean,
 ) {
+  Drowned.drownedAllyPlayed(s, played);
   if (played) longDarkPlayerCardPlayed(s, card(u.code), activeSeat(s));
   if (played) heirsPlayerCardPlayed(s, card(u.code));
   heirsPlayerAllyEntered(s, u, played, fromHand);
@@ -3180,6 +3228,7 @@ export function allyEntryResponses(
   emynPlayerAllyEntered(s, u, played);
   dwarfAllyEntered(s, u, played && fromHand);
   DepthsPlayers.depthsPlayerAllyEntered(s, u, played, fromHand);
+  DrownedPlayers.drownedPlayerAllyEntered(s, u, played, fromHand);
   switch (u.code) {
     case "01073":
       prepend(s, fx("gandalf", { source: u.id, code: u.code }));
@@ -3385,6 +3434,11 @@ export function attachmentChoice(s: GameState, defenderOnly = false) {
 }
 
 export function shadow(s: GameState, code: string) {
+  if (
+    Drowned.drownedShadow(s, code) ||
+    DrownedCompanions.drownedCompanionShadow(s, code)
+  )
+    return;
   if (TempleEncounters.templeShadow(s, code)) return;
   if (Depths.depthsShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;

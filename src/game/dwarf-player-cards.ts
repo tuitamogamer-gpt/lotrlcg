@@ -1,3 +1,4 @@
+import { drownedCannotEnterStaging } from "./drowned";
 import {
   choosePlayerResponse,
   responseOptions,
@@ -107,7 +108,9 @@ function addResources(s: GameState, hero: Unit, amount: number) {
 export function dwarfStats(s: GameState, u: Unit) {
   const dain =
     hasTrait(u, "Dwarf") &&
-    ["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) &&
+    ["hero", "ally", "objective-ally", "ship-objective"].includes(
+      card(u.code).type_code,
+    ) &&
     allHeroes(s).some((h) => h.code === "02116" && !h.blanked && !h.exhausted)
       ? 1
       : 0;
@@ -241,6 +244,11 @@ export function dwarfAbilityProblem(
   if (code === "131011" && !u.exhausted)
     return "The attached hero is already ready.";
   if (code === "131013") {
+    if (
+      allActiveLocations(s).length &&
+      allActiveLocations(s).every((u) => drownedCannotEnterStaging(s, u))
+    )
+      return "The active location cannot return to staging.";
     if (s.phase !== "travel") return "Thrór's Map is a Travel Action.";
     if (!mapLocations(s).length)
       return "An eligible location must be in staging.";
@@ -537,7 +545,9 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
           location,
         "Thrór's Map requires a ready attachment and a staging location.",
       );
-      const active = allActiveLocations(s);
+      const active = allActiveLocations(s).filter(
+        (u) => !drownedCannotEnterStaging(s, u),
+      );
       if (active.length > 1) {
         const first = firstPlayer(s);
         selectSeat(s, first);
@@ -564,14 +574,16 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         (a) => a.id === e.text && a.code === "131013",
       );
       const location = mapLocations(s).find((u) => u.id === e.target);
-      const active = allActiveLocations(s);
+      const active = allActiveLocations(s).filter(
+        (u) => !drownedCannotEnterStaging(s, u),
+      );
       const old = active.find((u) => u.id === e.ids?.[0]);
       requireRule(
         map &&
           !map.exhausted &&
           !map.blanked &&
           location &&
-          (!active.length || old),
+          (!allActiveLocations(s).length || old),
         "Choose an active location to replace.",
       );
       map.exhausted = true;

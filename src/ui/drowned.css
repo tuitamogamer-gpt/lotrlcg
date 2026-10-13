@@ -1,0 +1,69 @@
+.redbook[data-playmat="the-drowned-ruins"],
+.mat-the-drowned-ruins {
+  --playmat-art: url("/art/premium/anduin.webp");
+  --mat-shade: #061d338c;
+  --mat-tint: #163944;
+}
+.drowned-scenario-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border: 1px solid #b68e4c57;
+  border-radius: 5px;
+  background: #09222bed;
+  color: #e4d6b9;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.drowned-objective-summary,
+.drowned-deck-summary,
+.drowned-captains {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-width: 0;
+  flex: 1 1 200px;
+}
+.drowned-objective-summary {
+  flex-basis: 320px;
+}
+.drowned-scenario-state strong {
+  color: #f1dfb4;
+  font-weight: 600;
+}
+.drowned-scenario-state button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.drowned-scenario-state button:focus-visible {
+  outline: 2px solid #e4bf76;
+  outline-offset: 4px;
+}
+.drowned-top-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drowned-top-card img {
+  width: 48px;
+  height: 67px;
+  object-fit: contain;
+}
+.drowned-top-card span,
+.drowned-captains button {
+  display: grid;
+  gap: 3px;
+}
+.drowned-top-card small {
+  font-size: 14px;
+}
+.drowned-warning {
+  color: #ffbfaa;
+}

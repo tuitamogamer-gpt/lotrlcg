@@ -1,3 +1,6 @@
+import * as Drowned from "./drowned";
+import * as DrownedCompanions from "./drowned-companions";
+import * as DrownedPlayers from "./drowned-player";
 import * as Temple from "./temple";
 import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
@@ -546,6 +549,7 @@ function handleEffect(s: GameState, e: Effect) {
       prepend(s, ...Dread.dreadQuestEnd(s));
       Voyage.voyageEndQuest(s);
       Storm.stormcallerEndQuest(s);
+      Drowned.drownedQuestEnd(s);
     });
     return;
   }
@@ -562,7 +566,13 @@ function handleEffect(s: GameState, e: Effect) {
   if (DepthsPlayers.depthsPlayerEffect(s, e)) return;
   if (Storm.stormcallerEffect(s, e)) return;
   if (TemplePlayers.templePlayerEffect(s, e)) return;
+  if (DrownedPlayers.drownedPlayerEffect(s, e)) return;
   if (TempleEncounters.templeEncounterEffect(s, e)) return;
+  if (
+    Drowned.drownedEffect(s, e) ||
+    DrownedCompanions.drownedCompanionEffect(s, e)
+  )
+    return;
   if (Temple.templeEffect(s, e)) return;
   if (Depths.depthsEffect(s, e)) return;
   if (Fate.fateEffect(s, e)) return;
@@ -1118,9 +1128,15 @@ function handleEffect(s: GameState, e: Effect) {
           ? priorActive
           : [];
         Depths.depthsTravelEntered(s, u, !e.flag);
+        Drowned.drownedTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
         returnMirkwoodTravel(s, u);
         roadRivendellTravelEntered(s, u);
         longDarkPlayerTravelled(s, u);
+        DrownedPlayers.drownedPlayerTraveled(s, u);
         watcherWaterTravelEntered(s, u);
         stewardFearTravelEntered(s, u);
         Fords.fordsTravelEntered(s, u);
@@ -1154,6 +1170,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "templeTravelResponses":
       if (s.temple && u && Temple.templeIsMapLocation(s, u)) {
+        DrownedPlayers.drownedPlayerTraveled(s, u);
         longDarkPlayerTravelled(s, u);
         Angmar.angmarTraveled(s);
         enqueue(
@@ -1366,6 +1383,8 @@ function handleEffect(s: GameState, e: Effect) {
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
+            Drowned.drownedEncounter(s, e.code, true) ||
+            DrownedCompanions.drownedCompanionEncounter(s, e.code, true) ||
             Fate.fateEncounter(s, e.code, true) ||
             Raid.raidEncounter(s, e.code, true) ||
             Druadan.druadanForestEncounter(s, e.code, true) ||
@@ -1636,6 +1655,7 @@ function handleEffect(s: GameState, e: Effect) {
       heirsQuestStart(s);
       BloodQuest.bloodGondorQuestStart(s);
       Tharbad.tharbadQuestStart(s);
+      Drowned.drownedQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
       if (s.scenarioId === "dol-guldur" && s.stage === 3)
@@ -1657,6 +1677,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "startEncounter":
       startPhase(s, "encounter");
+      Drowned.drownedEncounterStart(s);
       {
         const forced = TempleEncounters.templeEncounterStart(s);
         if (forced.length > 1)
@@ -1778,7 +1799,7 @@ function handleEffect(s: GameState, e: Effect) {
           u.boost = 0;
           for (const a of u.attachments) a.exhausted = false;
           if (!fangornReady) {
-            if (!has(u, "01080")) readyCharacter(s, u);
+            if (!has(u, "01080")) readyCharacter(s, u, false);
             else enqueue(s, fx("webRefresh", { target: u.id, player }));
           }
         }
@@ -1936,6 +1957,7 @@ function handleEffect(s: GameState, e: Effect) {
           (u) =>
             isEnemy(u) &&
             !Depths.depthsCannotEngage(s, u) &&
+            !Drowned.drownedCannotEngage(s, u) &&
             (Depths.depthsEngagementPlayer(s, u) === undefined ||
               Depths.depthsEngagementPlayer(s, u) === i) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
@@ -1987,6 +2009,7 @@ function handleEffect(s: GameState, e: Effect) {
           (u) =>
             isEnemy(u) &&
             !Depths.depthsCannotEngage(s, u) &&
+            !Drowned.drownedCannotEngage(s, u) &&
             (Depths.depthsEngagementPlayer(s, u) === undefined ||
               Depths.depthsEngagementPlayer(s, u) === activeSeat(s)) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
@@ -2238,6 +2261,8 @@ function handleEffect(s: GameState, e: Effect) {
         if (completed)
           TempleEncounters.templeAttackFinished(s, completed, true);
         if (completed) Depths.depthsAttackFinished(s, completed, true);
+        if (completed)
+          DrownedCompanions.drownedAttackFinished(s, completed, true);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
           immediate &&
@@ -2346,6 +2371,7 @@ function handleEffect(s: GameState, e: Effect) {
         Dread.dreadAttackFinished(s, completed);
         Raid.raidAttackFinished(s, completed);
         Depths.depthsAttackFinished(s, completed);
+        DrownedCompanions.drownedAttackFinished(s, completed);
         Trials.trialsAttackFinished(s, completed);
         Tharbad.tharbadAttackFinished(s, completed);
         Nin.ninAttackFinished(s, completed);
@@ -2430,6 +2456,7 @@ function handleEffect(s: GameState, e: Effect) {
         s.table.first = order[1 % order.length] ?? 0;
         followFirstPlayer(s);
         Depths.depthsFirstPlayerChanged(s);
+        DrownedCompanions.drownedFirstPlayerChanged(s);
       }
       watcherWaterRefresh(s);
       check(s);
@@ -2541,6 +2568,24 @@ export function flush(s: GameState) {
     const effect = s.queue.shift()!;
     const sharedEffect =
       ANGMAR_SHARED_EFFECTS.has(effect.kind) ||
+      [
+        "drownedSetup",
+        "drownedResealGrotto",
+        "drownedReplenish",
+        "drownedAncient",
+        "drownedFlipResponse",
+        "drownedFlip",
+        "drownedUnderwaterForced",
+        "drownedThenFinish",
+        "drownedCaveReturn",
+        "drownedReturnLocation",
+        "drownedUndertow",
+        "drownedAbyss",
+        "drownedBetrayal",
+        "drownedRemoveSahir",
+        "drownedStageReady",
+        "drownedECCurse",
+      ].includes(effect.kind) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

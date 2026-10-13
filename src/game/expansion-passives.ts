@@ -123,6 +123,8 @@ const rules: Record<string, AttachmentRule> = {
     defense: 1,
     health: 2,
   },
+  "12084": { type: "hero" },
+  "12088": { type: "location", limit: 1 },
   "12091": { type: "hero" },
   "143009": { limit: 1, health: 2 },
   "146012": { type: "hero", traits: ["Hobbit"] },

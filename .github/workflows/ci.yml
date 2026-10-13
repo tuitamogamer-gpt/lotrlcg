@@ -100,6 +100,18 @@ jobs:
       - run: npm ci
       - run: npm run test:temple-simulation
 
+  drowned-simulation:
+    name: Drowned Ruins review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:drowned-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -125,6 +137,7 @@ jobs:
             flight-of-the-stormcaller,
             the-thing-in-the-depths,
             temple-of-the-deceived,
+            the-drowned-ruins,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -162,6 +175,8 @@ jobs:
             suite: test:browser-depths
           - group: temple
             suite: test:browser-temple
+          - group: drowned
+            suite: test:browser-drowned
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -205,6 +205,7 @@ export type ScenarioId =
   | "flight-of-the-stormcaller"
   | "the-thing-in-the-depths"
   | "temple-of-the-deceived"
+  | "the-drowned-ruins"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -329,6 +330,7 @@ export interface GameState {
   stormcaller?: import("./stormcaller-support").StormcallerState;
   depths?: import("./depths-support").DepthsState;
   temple?: import("./temple-support").TempleState;
+  drowned?: import("./drowned-support").DrownedState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */

@@ -1,3 +1,4 @@
+import { drownedCannotEnterStaging } from "./drowned";
 import { isAlly as playerUnitIsAlly } from "./card-types";
 import {
   choosePlayerResponse,
@@ -57,11 +58,11 @@ const locations = (s: GameState) =>
       redhornCanMakeActive(u),
   );
 const activeLocations = (s: GameState) =>
-  allActiveLocations(s).filter(affected);
-const eagles = (s: GameState) =>
-  allCharacters(s).filter(
-    (u) => playerUnitIsAlly(u) && hasTrait(u, "Eagle"),
+  allActiveLocations(s).filter(
+    (u) => affected(u) && !drownedCannotEnterStaging(s, u),
   );
+const eagles = (s: GameState) =>
+  allCharacters(s).filter((u) => playerUnitIsAlly(u) && hasTrait(u, "Eagle"));
 const collectors = (s: GameState, player?: number) =>
   allCharacters(s).filter(
     (u) =>
@@ -257,7 +258,9 @@ export function mirkwoodPlayerLeavesPlay(
 ) {
   if (
     !hasTrait(u, "Eagle") ||
-    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(
+      card(u.code).type_code,
+    ) ||
     !collectors(s).length
   )
     return;

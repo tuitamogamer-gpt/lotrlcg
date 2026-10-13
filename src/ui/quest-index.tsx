@@ -19,6 +19,7 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-drowned-ruins": { lead: "Dive into", em: "the drowned ruins." },
   "temple-of-the-deceived": {
     lead: "Explore",
     em: "the temple of the deceived.",

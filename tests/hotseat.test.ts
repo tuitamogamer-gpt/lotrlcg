@@ -51,6 +51,10 @@ import {
   assertTempleSaveRestoration,
   templeSimulationObserver,
 } from "./temple-simulation-invariants";
+import {
+  assertDrownedSaveRestoration,
+  drownedSimulationObserver,
+} from "./drowned-simulation-invariants";
 const selectedHotseatCase = hotseatCaseSelector(process.env.LOTR_HOTSEAT_CASE);
 const config = [
   { heroes: ["01001"], deckId: "leadership" },
@@ -505,7 +509,9 @@ for (const scenarioId of [
             const mapObserver =
               scenarioId === "temple-of-the-deceived"
                 ? templeSimulationObserver()
-                : undefined;
+                : scenarioId === "the-drowned-ruins"
+                  ? drownedSimulationObserver()
+                  : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -652,8 +658,10 @@ for (const scenarioId of [
                 restored,
                 `invalid save ${scenarioId}/${campaign}/${easy ? "easy" : "normal"}/${n}/${seed} ${s.phase} step ${steps}`,
               );
-              if (mapObserver)
+              if (scenarioId === "temple-of-the-deceived")
                 assertTempleSaveRestoration(savedState, restored);
+              else if (scenarioId === "the-drowned-ruins")
+                assertDrownedSaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
               mapObserver?.observe(s);
               if (process.env.LOTR_HOTSEAT_CASE)
