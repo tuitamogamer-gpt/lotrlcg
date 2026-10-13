@@ -1,23 +1,10 @@
 import { Component } from "react";
 import type { ErrorInfo, ReactNode } from "react";
+import { collectRecoveryBundle } from "./save-recovery";
 
-const SAVE_KEYS = [
-  "there-and-back-again.save.v1",
-  "there-and-back-again.campaign.v1",
-];
-
-/** Downloads the saved games so a display error never costs an adventure. */
+/** Retain original storage bytes, including saves this version cannot parse. */
 function exportSaves() {
-  const saves: Record<string, unknown> = {};
-  for (const key of SAVE_KEYS) {
-    try {
-      const raw = localStorage.getItem(key);
-      if (raw) saves[key] = JSON.parse(raw);
-    } catch {
-      /* Skip unreadable entries. */
-    }
-  }
-  const blob = new Blob([JSON.stringify(saves, null, 2)], {
+  const blob = new Blob([JSON.stringify(collectRecoveryBundle(), null, 2)], {
     type: "application/json",
   });
   const url = URL.createObjectURL(blob);
@@ -47,8 +34,9 @@ export class AppErrorBoundary extends Component<
           <p className="event-eyebrow">The table stumbled</p>
           <h1>Something went wrong on screen</h1>
           <p>
-            Your adventure is still saved on this device. Reload to return to
-            the table. If the problem repeats, export the save and keep it.
+            Export the stored saves and deck lists before reloading. The backup
+            preserves original data even when it cannot be read here. Changes
+            that did not reach browser storage are not included.
           </p>
           <pre>{this.state.error.message}</pre>
           <div className="modal-actions">

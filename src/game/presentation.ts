@@ -243,9 +243,14 @@ const OWN_ATTACKS = new Set(["resolvePlayerAttack", "quickAttack"]);
 const isLoss = (c: ResolutionStep["changes"][number]) => {
   const playerCard =
     c.code &&
-    ["hero", "ally", "attachment", "objective"].includes(
-      card(c.code).type_code,
-    );
+    [
+      "hero",
+      "ally",
+      "objective-ally",
+      "ship-objective",
+      "attachment",
+      "objective",
+    ].includes(card(c.code).type_code);
   if (c.label.endsWith("· Damage") && playerCard)
     return Number(c.after.split(" / ")[0]) > Number(c.before.split(" / ")[0]);
   if (c.label.endsWith("· Threat")) return Number(c.after) > Number(c.before);

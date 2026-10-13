@@ -2867,6 +2867,22 @@ export function score(s: GameState) {
 }
 
 export function publicState(s: GameState) {
+  const attachments = (list: Unit["attachments"]) =>
+    list.map((a) => {
+      if (!a.facedown) return a;
+      const {
+        code: _code,
+        name: _name,
+        ...visible
+      } = a as typeof a & {
+        name?: string;
+      };
+      return visible;
+    });
+  const visibleUnit = (u: Unit) => ({
+    ...u,
+    attachments: attachments(u.attachments),
+  });
   return {
     ...(s.depths
       ? {
@@ -2898,7 +2914,7 @@ export function publicState(s: GameState) {
             enemyProgress: s.stormcaller.enemyProgress,
             progressThisRound: s.stormcaller.progressThisRound,
             damageThisRound: s.stormcaller.damageThisRound,
-            area: Storm.stormcallerArea(s),
+            area: Storm.stormcallerArea(s).map(visibleUnit),
             sameStage: Storm.stormcallerSameStage(s),
             corsairDeck: s.stormcaller.corsairDeck.length,
             corsairDiscard: s.stormcaller.corsairDiscard.length,
@@ -3096,7 +3112,7 @@ export function publicState(s: GameState) {
             name: name(u),
             owner: u.owner ?? 0,
             progress: u.progress,
-            attachments: u.attachments,
+            attachments: attachments(u.attachments),
           })),
         }
       : {}),
@@ -3152,14 +3168,15 @@ export function publicState(s: GameState) {
               deckId: p.deckId,
               eliminated: s.table!.seats[i].eliminated,
               threat: p.threat,
-              threatAttachments: p.threatAttachments ?? [],
+              threatAttachments: attachments(p.threatAttachments ?? []),
               hand: p.hand.map((u) => ({ id: u.id, code: u.code })),
               deckCount: p.deck.length,
-              heroes: p.heroes,
-              allies: p.allies,
+              heroes: p.heroes.map(visibleUnit),
+              allies: p.allies.map(visibleUnit),
               engaged: p.engaged.map(
                 ({ shadows, facedownCard: _facedown, ...u }) => ({
                   ...u,
+                  attachments: attachments(u.attachments),
                   shadowCount: shadows.length,
                   faceupShadowCards: Isengard.faceupShadowCards({
                     ...u,
@@ -3199,7 +3216,7 @@ export function publicState(s: GameState) {
     round: s.round,
     phase: s.phase,
     threat: s.threat,
-    threatAttachments: s.threatAttachments ?? [],
+    threatAttachments: attachments(s.threatAttachments ?? []),
     quest: {
       ...stageInfo(s),
       stage: s.stage,
@@ -3208,13 +3225,23 @@ export function publicState(s: GameState) {
       ...(s.amonDin ? { villagers: s.amonDin.questVillagers } : {}),
       stat: questStat(s),
     },
-    heroes: s.heroes.map((u) => ({ ...u, name: name(u), stats: stats(s, u) })),
-    allies: s.allies.map((u) => ({ ...u, name: name(u), stats: stats(s, u) })),
+    heroes: s.heroes.map((u) => ({
+      ...visibleUnit(u),
+      name: name(u),
+      stats: stats(s, u),
+    })),
+    allies: s.allies.map((u) => ({
+      ...visibleUnit(u),
+      name: name(u),
+      stats: stats(s, u),
+    })),
     hand: s.hand.map((u) => ({
       id: u.id,
       code: u.code,
       name: name(u),
-      playable: canPlay(s, u) === null,
+      playable:
+        canPlay(s, u) === null &&
+        (!needsTarget(u) || playTargets(s, u).length > 0),
     })),
     deckCount: s.deck.length,
     encounterCount: s.encounterDeck.length,

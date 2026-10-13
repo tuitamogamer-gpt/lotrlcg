@@ -3,6 +3,7 @@ import fs from "node:fs/promises";
 import {
   installReviewHandler,
   reviewedState,
+  collectBrowserArtifactEvidence,
 } from "./browser-review-helpers.mjs";
 import { validateSave } from "../src/game/engine.ts";
 import { syncSeat } from "../src/game/table.ts";
@@ -214,6 +215,7 @@ export async function report(dir, data) {
       ),
       "expected release artifact",
     );
+  const artifactEvidence = await collectBrowserArtifactEvidence(data.entries);
   await fs.rm(`${dir}/failure.json`, { force: true });
   await fs.writeFile(
     `${dir}/report.json`,
@@ -224,6 +226,7 @@ export async function report(dir, data) {
         url,
         checkedAt: new Date().toISOString(),
         releaseSha: process.env.RELEASE_SHA ?? null,
+        artifactEvidence,
       },
       null,
       2,

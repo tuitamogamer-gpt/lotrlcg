@@ -1434,10 +1434,12 @@ body {
     align-items: stretch;
     justify-content: flex-start;
     transform: translateX(-100%);
+    visibility: hidden;
     z-index: 80;
   }
   .redbook .sidebar.is-open {
     transform: translateX(0);
+    visibility: visible;
   }
   .redbook .sidebar nav {
     flex-direction: column;

@@ -85,6 +85,7 @@ import {
 } from "@phosphor-icons/react";
 import { coachTip } from "./ui/coach";
 import { Art, Sphere } from "./ui/card-art";
+import { Modal } from "./ui/modal";
 import {
   customId,
   createDeckId,
@@ -94,10 +95,14 @@ import {
   deckSize,
   describeDeck,
   isCustomId,
-  readDecks,
+  DECKS_KEY,
+  readDeckStorage,
+  deckStorageProblem,
   writeDecks,
 } from "./game/decks";
 import type { CustomDeck } from "./game/decks";
+import { collectRecoveryBundle, parseRecoveryImport } from "./ui/save-recovery";
+import type { RecoveryImport, RecoveryCandidate } from "./ui/save-recovery";
 import { readRecords, recordGame, summarize, writeRecords } from "./ui/records";
 const Library = lazy(() => import("./ui/library"));
 const DeckBuilder = lazy(() => import("./ui/deck-builder"));
@@ -117,7 +122,9 @@ import { RHOS } from "./game/rhosgobel";
 import { KHAZAD, khazadCannotExhaust } from "./game/khazad-dum";
 import { DEAD } from "./game/dead-marshes";
 import { singlePoolCard } from "./game/expansion-passives";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useReducedMotion } from "./ui/use-reduced-motion";
+import "./ui/recovery.css";
 import {
   AnimatedNumber,
   MovingCard,
@@ -270,8 +277,6 @@ const readSave = (key = SAVE_KEY) => {
 };
 const readDeckId = () => {
   try {
-    const savedDeck = readSave(activeSaveKey())?.deckId;
-    if (BUILT_IN_DECKS.some((s) => s.id === savedDeck)) return savedDeck!;
     const d = localStorage.getItem(DECK_KEY);
     return BUILT_IN_DECKS.some((s) => s.id === d) ||
       /^custom:[\w-]+$/.test(d ?? "")
@@ -402,62 +407,23 @@ const sameDeckRecipe = (
         .filter(([, n]) => n > 0)
         .sort(([a], [b]) => a.localeCompare(b)),
     );
-function Modal({
-  title,
-  children,
-  onClose,
-  wide = false,
-  compact = false,
-  className = "",
-}: {
-  title: string;
-  children: ReactNode;
-  onClose?: () => void;
-  wide?: boolean;
-  compact?: boolean;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDialogElement>(null);
-  useEffect(() => {
-    const d = ref.current!;
-    d.showModal();
-    return () => d.close();
-  }, []);
-  return (
-    <dialog
-      ref={ref}
-      className={`modal ${wide ? "modal-wide" : ""} ${compact ? "modal-compact" : ""} ${className}`}
-      onCancel={(e) => {
-        if (!onClose) e.preventDefault();
-        else onClose();
-      }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget && onClose) onClose();
-      }}
-      aria-label={title}
-    >
-      <div className="modal-top">
-        <h2>{title}</h2>
-        {onClose && (
-          <button
-            className="icon-button"
-            onClick={onClose}
-            aria-label="Close dialog"
-          >
-            <X size={20} />
-          </button>
-        )}
-      </div>
-      {children}
-    </dialog>
-  );
-}
 function Ambient() {
   const ref = useRef<HTMLCanvasElement>(null);
+  const reducedMotion = useReducedMotion();
   useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const c = ref.current!,
-      ctx = c.getContext("2d")!;
+    if (reducedMotion) return;
+    const c = ref.current!;
+    const ctx = c.getContext("2d");
+    if (!ctx) return;
+    const resize = () => {
+      const width = Math.round(c.clientWidth);
+      const height = Math.round(c.clientHeight);
+      if (c.width !== width) c.width = width;
+      if (c.height !== height) c.height = height;
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(c);
     let frame = 0;
     const particles = Array.from({ length: 22 }, (_, i) => ({
       x: ((i * 157) % 1000) / 1000,
@@ -465,8 +431,6 @@ function Ambient() {
       r: (i % 3) + 0.5,
     }));
     const draw = (t: number) => {
-      c.width = c.clientWidth;
-      c.height = c.clientHeight;
       ctx.clearRect(0, 0, c.width, c.height);
       particles.forEach((p, i) => {
         const x = (p.x + Math.sin(t / 12000 + i) * 0.03) * c.width,
@@ -479,8 +443,11 @@ function Ambient() {
       frame = requestAnimationFrame(draw);
     };
     frame = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(frame);
-  }, []);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [reducedMotion]);
   return <canvas ref={ref} className="ambient" aria-hidden="true" />;
 }
 function CardDetail({
@@ -683,8 +650,16 @@ function CardDetail({
     </Modal>
   );
 }
-function Stats({ s, u }: { s: GameState; u: Unit }) {
-  const st = stats(s, u);
+function Stats({
+  s,
+  u,
+  computed,
+}: {
+  s: GameState;
+  u: Unit;
+  computed?: ReturnType<typeof stats>;
+}) {
+  const st = computed ?? stats(s, u);
   const c = card(u.code);
   return (
     <div className="card-modifiers" aria-label="Modified card values">
@@ -729,17 +704,13 @@ export default function App() {
   );
   const [setupMode, setSetupMode] = useState<"classic" | "hotseat">(() => {
     if (initialChoices) return initialChoices.setupMode;
-    const saved = readSave(activeSaveKey());
-    return saved ? (saved.table ? "hotseat" : "classic") : "hotseat";
+    return game ? (game.table ? "hotseat" : "classic") : "hotseat";
   });
   const [playMode, setPlayMode] = useState<PlayMode>(
     () => initialChoices?.playMode ?? readMode(),
   );
   const [selectedScenario, setSelectedScenario] = useState<ScenarioId>(
-    () =>
-      initialChoices?.scenario ??
-      readSave(activeSaveKey())?.scenarioId ??
-      "mirkwood",
+    () => initialChoices?.scenario ?? game?.scenarioId ?? "mirkwood",
   );
   const [interlude, setInterlude] = useState(false);
   const [nextHeroes, setNextHeroes] = useState<string[]>([]);
@@ -769,8 +740,10 @@ export default function App() {
     setSelectedScenario(saved?.scenarioId ?? "mirkwood");
     setHistory([]);
   };
+  const [initialDeckStorage] = useState(readDeckStorage);
+  const observedDeckRaw = useRef(initialDeckStorage.raw);
   const [decks, setDecksState] = useState<CustomDeck[]>(() =>
-    recoverSavedDecks(game, readDecks()),
+    recoverSavedDecks(game, initialDeckStorage.decks),
   );
   const [selectedDeck, setSelectedDeck] = useState(() => {
     const id =
@@ -800,14 +773,19 @@ export default function App() {
         : setupSeats(undefined, decks),
   );
   const setDecks = (list: CustomDeck[]) => {
+    const current = readDeckStorage();
+    if (current.raw !== observedDeckRaw.current) {
+      observedDeckRaw.current = current.raw;
+      setDecksState(recoverSavedDecks(game, current.decks));
+      return false;
+    }
+    const persisted = writeDecks(list, observedDeckRaw.current);
+    if (persisted) observedDeckRaw.current = readDeckStorage().raw;
     setDecksState(list);
     if (!describeDeck(selectedDeck, list)) setSelectedDeck("leadership");
     setSeats((current) => setupSeats(current, list));
-    return writeDecks(list);
+    return persisted;
   };
-  useEffect(() => {
-    writeDecks(decks);
-  }, []);
   const starter =
     describeDeck(selectedDeck, decks) ?? describeDeck("leadership", decks)!;
   const deck = starter.cards;
@@ -847,6 +825,9 @@ export default function App() {
         ? seats.flatMap((p) => p.heroes)
         : starter.heroes;
   const [detail, setDetail] = useState<Card | null>(null);
+  const [recoveryImport, setRecoveryImport] = useState<RecoveryImport | null>(
+    null,
+  );
   const [toast, setToast] = useState("");
   const [restart, setRestart] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -888,6 +869,10 @@ export default function App() {
     "on",
     "off",
   ] as const);
+  const coachingTip = useMemo(
+    () => (game && page === "table" && coach === "on" ? coachTip(game) : null),
+    [game, page, coach],
+  );
   const [tutorial, setTutorial] = usePreference("tutorial", "pending", [
     "pending",
     "seen",
@@ -911,6 +896,32 @@ export default function App() {
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
+  useEffect(() => {
+    if (initialDeckStorage.issue)
+      notify(
+        "Some saved deck data could not be read. Its original data has been kept. Export a recovery backup from How to play.",
+      );
+  }, [initialDeckStorage.issue, notify]);
+  useEffect(() => {
+    const refreshDeckShelf = (event: StorageEvent) => {
+      if (event.key !== DECKS_KEY && event.key !== null) return;
+      const current = readDeckStorage();
+      observedDeckRaw.current = current.raw;
+      const refreshed = recoverSavedDecks(game, current.decks);
+      setDecksState(refreshed);
+      setSeats((seats) => setupSeats(seats, refreshed));
+      setSelectedDeck((selected) =>
+        describeDeck(selected, refreshed) ? selected : "leadership",
+      );
+      notify(
+        current.issue
+          ? "Deck data changed in another tab but could not be read. Its original data has been kept; your unfinished changes remain open."
+          : "The deck shelf was updated from another tab. Your unfinished changes remain open.",
+      );
+    };
+    window.addEventListener("storage", refreshDeckShelf);
+    return () => window.removeEventListener("storage", refreshDeckShelf);
+  }, [game, notify]);
   const [showAccount, setShowAccount] = useState(false);
   const [previewDeck, setPreviewDeck] = useState<string | null>(null);
   const choices = useMemo<FellowshipChoices>(
@@ -1297,24 +1308,73 @@ export default function App() {
     URL.revokeObjectURL(url);
     notify("Adventure exported.");
   };
+  const exportRecovery = () => {
+    const backup = collectRecoveryBundle();
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" }),
+    );
+    const download = document.createElement("a");
+    download.href = url;
+    download.download = `there-and-back-again-recovery-${backup.exportedAt}.json`;
+    download.click();
+    URL.revokeObjectURL(url);
+    notify(
+      backup.unreadableKeys.length
+        ? "Recovery backup exported. Some browser entries could not be read."
+        : "Recovery backup exported, including both game modes and the deck shelf.",
+    );
+  };
+  const restoreImportedAdventure = (
+    candidate: RecoveryCandidate,
+    imported: RecoveryImport,
+  ) => {
+    const s = startGuided(candidate.game);
+    const recovered = recoverSavedDecks(s, decks);
+    let otherSaveFailed = false;
+    for (const other of imported.candidates) {
+      if (other.key === candidate.key) continue;
+      try {
+        localStorage.setItem(other.key, JSON.stringify(other.game));
+      } catch {
+        otherSaveFailed = true;
+      }
+    }
+    const shelfSaved = setDecks(recovered);
+    setRecoveryImport(null);
+    setSignificantMoment(null);
+    setGame(s);
+    setPlayMode(s.playMode);
+    setSetupMode(s.table ? "hotseat" : "classic");
+    if (s.table) setSeats(savedSeats(s, recovered));
+    setSelectedScenario(s.scenarioId);
+    setSelectedDeck(savedDeckId(s, recovered));
+    setEasyMode(s.easyMode ? "on" : "off");
+    setHistory([]);
+    setPage("table");
+    const shelfIssue = deckStorageProblem(recovered);
+    notify(
+      otherSaveFailed
+        ? "Adventure opened. The other game mode could not be saved on this device; keep the recovery backup."
+        : !shelfSaved && shelfIssue === "capacity"
+          ? "Adventure restored. Your full deck shelf is unchanged; the recovered list stays available through this adventure save."
+          : !shelfSaved
+            ? "Adventure restored. The deck shelf could not be saved; its original data has been kept. Export a recovery backup."
+            : imported.issues.length
+              ? "Adventure restored. Some entries could not be restored; their original data remains in your backup."
+              : imported.candidates.length > 1
+                ? "Both adventures restored."
+                : "Adventure restored.",
+    );
+  };
   const importSave = async (file: File) => {
     try {
-      const restored = restoreSave(JSON.parse(await file.text()));
-      const s = restored ? startGuided(restored) : null;
-      if (!s) throw new Error("This is not a valid adventure save.");
-      const recovered = recoverSavedDecks(s, decks);
-      setDecks(recovered);
-      setSignificantMoment(null);
-      setGame(s);
-      setPlayMode(s.playMode);
-      setSetupMode(s.table ? "hotseat" : "classic");
-      if (s.table) setSeats(savedSeats(s, recovered));
-      setSelectedScenario(s.scenarioId);
-      setSelectedDeck(savedDeckId(s, recovered));
-      setEasyMode(s.easyMode ? "on" : "off");
-      setHistory([]);
-      setPage("table");
-      notify("Adventure restored.");
+      const imported = parseRecoveryImport(JSON.parse(await file.text()));
+      if (!imported.candidates.length)
+        throw new Error(
+          "This backup has no valid adventure saves. Its original data remains in the backup.",
+        );
+      if (imported.candidates.length > 1) setRecoveryImport(imported);
+      else restoreImportedAdventure(imported.candidates[0], imported);
     } catch (e) {
       notify((e as Error).message);
     }
@@ -1415,6 +1475,14 @@ export default function App() {
       previous?.focus();
     };
   }, [menu]);
+  useEffect(() => {
+    const mobile = matchMedia("(max-width: 899px)");
+    const closeDesktopMenu = () => {
+      if (!mobile.matches) setMenu(false);
+    };
+    mobile.addEventListener("change", closeDesktopMenu);
+    return () => mobile.removeEventListener("change", closeDesktopMenu);
+  }, []);
   const ordinaryStaging = game?.staging.filter((u) => !u.stormcallerArea) ?? [];
   const renderStagingCard = (u: Unit) => {
     if (!game) return null;
@@ -2441,6 +2509,9 @@ export default function App() {
               >
                 <DownloadSimple /> Export save
               </button>
+              <button className="secondary" onClick={exportRecovery}>
+                <DownloadSimple /> Export recovery backup
+              </button>
               <label className="secondary file-label">
                 Import save
                 <input
@@ -2883,7 +2954,7 @@ export default function App() {
                 />
                 {coach === "on" &&
                   (() => {
-                    const tip = coachTip(game);
+                    const tip = coachingTip;
                     return tip ? (
                       <aside
                         className={`coach-tip coach-${tip.tone}`}
@@ -3205,6 +3276,41 @@ export default function App() {
             </Modal>
           );
         })()}
+      {recoveryImport && (
+        <Modal
+          title="Choose an adventure to restore"
+          className="recovery-chooser"
+          onClose={() => setRecoveryImport(null)}
+        >
+          <p>
+            This backup contains both game modes. Restoring it replaces both
+            matching adventure saves. Choose which adventure to open.
+          </p>
+          {recoveryImport.issues.length > 0 && (
+            <p>
+              Some entries could not be restored. Their original data remains in
+              your backup.
+            </p>
+          )}
+          <div className="modal-actions">
+            {recoveryImport.candidates.map((candidate) => (
+              <button
+                key={candidate.key}
+                className="secondary"
+                onClick={() =>
+                  restoreImportedAdventure(candidate, recoveryImport)
+                }
+              >
+                Restore both and open {candidate.mode} adventure
+                <small>
+                  {scenario(candidate.game.scenarioId).shortName} · Round{" "}
+                  {candidate.game.round || 1}
+                </small>
+              </button>
+            ))}
+          </div>
+        </Modal>
+      )}
       {showSettings && (
         <Modal
           title="Make the table yours"
@@ -4372,6 +4478,9 @@ function BoardCard({
   dispatch?: (a: Action) => unknown;
 }) {
   const c = card(u.code);
+  const combatStats = ["enemy", "ship-enemy"].includes(c.type_code)
+    ? stats(s, u)
+    : null;
   const consideredPlayers = livingSeats(s).filter((player) =>
     consideredEngaged(s, u, player),
   );
@@ -4397,7 +4506,7 @@ function BoardCard({
         aria-label={`Inspect ${name(u)}`}
         aria-description={
           ["enemy", "ship-enemy"].includes(c.type_code)
-            ? `${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`
+            ? `${u.damage} damage. ${combatStats!.health - u.damage} hit points remaining.`
             : c.type_code === "location"
               ? `${u.progress} of ${locationQuest(s, u)} progress.`
               : undefined
@@ -4472,12 +4581,12 @@ function BoardCard({
             </span>
           )}
         {["enemy", "ship-enemy"].includes(c.type_code) &&
-          stats(s, u).attack !== (c.attack ?? 0) && (
-            <StatBadge kind="attack" value={stats(s, u).attack} />
+          combatStats!.attack !== (c.attack ?? 0) && (
+            <StatBadge kind="attack" value={combatStats!.attack} />
           )}
         {["enemy", "ship-enemy"].includes(c.type_code) &&
-          stats(s, u).defense !== (c.defense ?? 0) && (
-            <StatBadge kind="defense" value={stats(s, u).defense} />
+          combatStats!.defense !== (c.defense ?? 0) && (
+            <StatBadge kind="defense" value={combatStats!.defense} />
           )}
       </div>
       {["player-side-quest", "encounter-side-quest"].includes(c.type_code) && (
@@ -4493,8 +4602,8 @@ function BoardCard({
       {u.code === DIKE.thaurdir && !u.blanked && (
         <div className="objective-status">
           <span>
-            Indestructible · {Math.max(0, stats(s, u).health - u.damage)} /{" "}
-            {stats(s, u).health} hit points remaining
+            Indestructible · {Math.max(0, combatStats!.health - u.damage)} /{" "}
+            {combatStats!.health} hit points remaining
           </span>
           <span>Cannot have attachments</span>
         </div>
@@ -4641,6 +4750,7 @@ function CharacterCard({
       !s.choice &&
       (!s.table || s.table.active === s.table.turn);
   const damageRef = useDamageFeedback(u.damage);
+  const computed = stats(s, u);
   return (
     <MovingCard
       id={u.id}
@@ -4650,7 +4760,7 @@ function CharacterCard({
       <button
         ref={damageRef}
         className="character-art"
-        aria-description={`${u.exhausted ? "Exhausted. " : "Ready. "}${u.damage} damage. ${stats(s, u).health - u.damage} hit points remaining.`}
+        aria-description={`${u.exhausted ? "Exhausted. " : "Ready. "}${u.damage} damage. ${computed.health - u.damage} hit points remaining.`}
         onClick={
           canQuest
             ? () => dispatch({ type: "TOGGLE_QUEST", id: u.id })
@@ -4690,7 +4800,7 @@ function CharacterCard({
       >
         <Info size={17} />
       </button>
-      <Stats s={s} u={u} />
+      <Stats s={s} u={u} computed={computed} />
       {isSacked(u) && (
         <div className="engaged-owner">
           Sacked! · Cannot quest, fight or use own ability

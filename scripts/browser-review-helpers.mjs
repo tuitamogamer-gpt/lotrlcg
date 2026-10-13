@@ -1,5 +1,7 @@
 // Older interaction suites explicitly acknowledge presentation steps so they
 // keep testing card rules. The pacing suite does not install this helper.
+import { observeBrowserArtifact } from "./browser-artifact-evidence.mjs";
+export { collectBrowserArtifactEvidence } from "./browser-artifact-evidence.mjs";
 export async function acknowledgeReviews(page) {
   for (let i = 0; i < 160; i++) {
     // Use the actual button's DOM click here so an explicitly requested drain
@@ -22,6 +24,7 @@ export async function acknowledgeReviews(page) {
 // behavior explicit so the default "hidden information" preference, the
 // first-game tutorial and coaching tips do not change their expectations.
 export async function legacyReviews(page) {
+  observeBrowserArtifact(page);
   await page.addInitScript(() => {
     localStorage.setItem("there-and-back-again.review-mode", "all");
     localStorage.setItem("there-and-back-again.tutorial", "seen");

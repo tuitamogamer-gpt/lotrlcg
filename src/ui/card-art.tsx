@@ -39,20 +39,22 @@ export function Art({
   className?: string;
   imageSrc?: string;
 }) {
-  const [failed, setFailed] = useState(false);
-  return failed ? (
+  const source = cachedImageSource(imageSrc) ?? imageUrl(c);
+  const [failedSource, setFailedSource] = useState<string | null>(null);
+  return failedSource === source ? (
     <div className={`art-fallback ${className}`}>
       <Tree size={38} />
       <span>{c.name}</span>
     </div>
   ) : (
     <img
-      src={cachedImageSource(imageSrc) ?? imageUrl(c)}
+      key={source}
+      src={source}
       alt={c.name}
       data-card-code={c.code}
       loading="lazy"
       className={className}
-      onError={() => setFailed(true)}
+      onError={() => setFailedSource(source)}
     />
   );
 }

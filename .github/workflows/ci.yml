@@ -160,12 +160,7 @@ jobs:
           name: dist
           path: dist
       - name: Serve the production build
-        run: |
-          npm run preview -- --port 5178 &
-          for i in $(seq 1 30); do
-            curl -sf http://localhost:5178 > /dev/null && break
-            sleep 1
-          done
+        run: node scripts/test-preview.mjs --port 5178
       - run: npm run ${{ matrix.suite }}
       - uses: actions/upload-artifact@v4
         if: always()

@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
-import { useReducedMotion } from "motion/react";
-import { animateSignificantMoment } from "./significant-moment-timeline";
+import { useReducedMotion } from "./use-reduced-motion";
 import type { SignificantMoment as Moment } from "./significant-moments";
 import "./significant-moments.css";
 
@@ -25,12 +24,25 @@ export function SignificantMoment({
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (paused || !ref.current) return;
-    const cleanup = animateSignificantMoment(ref.current, !!reduced);
+    const element = ref.current;
+    let cancelled = false;
+    let cleanup = () => {};
+    if (!reduced) {
+      void import("./significant-moment-timeline")
+        .then(({ animateSignificantMoment }) => {
+          if (cancelled || !element.isConnected) return;
+          cleanup = animateSignificantMoment(element, false);
+        })
+        .catch(() => {
+          // The acknowledgement and its dismissal work without decoration.
+        });
+    }
     const timer = setTimeout(
       () => dismiss(moment.serial),
       reduced ? 2600 : 2300,
     );
     return () => {
+      cancelled = true;
       clearTimeout(timer);
       cleanup();
     };
