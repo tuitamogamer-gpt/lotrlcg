@@ -21,7 +21,7 @@ import {
   MORDOR_MAIN_QUESTS,
   MORDOR_RECIPES,
 } from "../src/game/long-arm-mordor-support";
-import type { GameState } from "../src/game/types";
+import type { Effect, GameState } from "../src/game/types";
 import { isHaradScenario } from "./harad-simulation-policy";
 
 export function assertHaradSaveRestoration(
@@ -40,6 +40,12 @@ export function assertHaradSaveRestoration(
 
 /** Cards in effect continuations are physical; review/history references are not. */
 export function haradPhysicalCards(s: GameState) {
+  const pendingReveals = (effects: Effect[]): string[] =>
+    effects.flatMap((e) =>
+      ["resolveReveal", "placeEncounter"].includes(e.kind) && e.code
+        ? [e.code]
+        : pendingReveals(e.effects ?? []),
+    );
   const units = [
     ...allCharacters(s),
     ...allEngaged(s),
@@ -67,10 +73,11 @@ export function haradPhysicalCards(s: GameState) {
     ...[s.combat, ...(s.suspendedCombats ?? [])].flatMap(
       (c) => c?.immediatePreviousShadows ?? [],
     ),
-    ...s.queue.flatMap((e) =>
-      ["resolveReveal", "placeEncounter"].includes(e.kind) && e.code
-        ? [e.code]
-        : [],
+    ...pendingReveals(s.queue),
+    // Cancellation choices hold one revealed physical card. Other options
+    // describe alternative outcomes for that same card, so use only resolve.
+    ...pendingReveals(
+      s.choice?.options.find((o) => o.id === "resolve")?.effects ?? [],
     ),
     ...s.encounterDeck,
     ...s.encounterDiscard,

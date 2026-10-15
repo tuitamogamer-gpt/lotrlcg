@@ -62,7 +62,12 @@ Validation rejects corrupt ownership, duplicate guard assignments and invalid
 combat counters. Public state shows captured faces and their guards without
 revealing the encounter deck order.
 
-The focused engine suite passes 36 checks covering all eight original setup
+Fear of Mordor records its affected physical allies in saved round markers.
+The markers apply all three stat penalties, stack across repeated reveals,
+survive text blanking and expire at round end. This also preserves saves when
+Firyal discards a card and the next staging reveal is Fear of Mordor.
+
+The focused engine suite passes 37 checks covering all eight original setup
 combinations, the four quests, rescue ownership and exhaustion, mandatory
 undefended damage, objective-hero elimination and all four responses, neutral
 payments, guarded Orc immunity, physical Wargs, encounter effects and saved
@@ -90,3 +95,12 @@ printed-dialog, HTTP-byte, SHA-256 and image-decoding checks. The report at
 `3d44ef8acc1d771512210d05d5f9252586123540fea13fc450110819e7392a74`.
 The interrupted earlier run is retained separately and is not counted as a
 completed browser result.
+
+After the Fear of Mordor save correction, 18 targeted browser checkpoints
+passed at the same three widths. Both exact seed-11 states that exposed the
+problem use an actual Firyal discard, the resulting Fear reveal and a complete
+save/reload comparison. The targeted report at
+`output/harad-release/mordor-fear-browser/report.json` identifies
+`index-BmrW7b9_.js` (320,685 bytes), SHA-256
+`0c9f9fd05dac3bb2b9d44cf21b24dc6a9f9d58643bb6ba8dc3fe3cb01084faad`.
+The broader 162-checkpoint report remains scoped to its earlier artifact.

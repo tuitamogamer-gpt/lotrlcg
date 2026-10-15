@@ -81,7 +81,8 @@ export function mordorStats(s: GameState, u: Unit) {
   const guarded = liveStage(s, 3) && Object.values(s.mordor!.guarding).includes(u.id) ? 1 : 0;
   const mount = u.attachments.filter((a) => a.code === M.warg && !a.blanked).length * 2;
   const enforcer = s.mordor && u.code === M.enforcers && !u.blanked ? s.stage : 0;
-  return { attack: guarded + mount + enforcer, defense: guarded + mount + enforcer, health: mount,
+  const fear = s.mordor ? mordorWillBonus(s, u) : 0;
+  return { attack: guarded + mount + enforcer + fear, defense: guarded + mount + enforcer + fear, health: mount,
     will: 0 };
 }
 export function mordorThreatBonus(s: GameState, u: Unit) {
@@ -456,8 +457,7 @@ export function mordorEffect(s: GameState, e: Effect) {
       break;
     case "mordorFear":
       for (const u of allCharacters(s).filter(isAlly)) {
-        // Lasting round effects stay separate from transient printed-text modifiers.
-        u.roundAttack = (u.roundAttack ?? 0) - 1; u.roundDefense = (u.roundDefense ?? 0) - 1;
+        // Snapshot physical targets once; all three penalties share the saved round marker.
         forOwner(s, ownerOf(s, u), () => s.used.push(`round:mordor-fear:${u.id}`));
       }
       break;

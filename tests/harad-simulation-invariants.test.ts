@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { applyAction, createGame, restoreSave } from "../src/game/engine";
-import { STARTERS } from "../src/game/cards";
+import { STARTERS, card } from "../src/game/cards";
 import { fx, make } from "../src/game/core";
 import { revealed } from "../src/game/board";
 import { handle } from "../src/game/effects";
@@ -88,6 +88,59 @@ test("Harad conservation never counts a reference to an already placed encounter
     }),
   );
   haradSimulationObserver().observe(restore(s));
+});
+
+test("Harad conservation follows treacheries through saved cancellation choices and both physical outcomes", () => {
+  const d = STARTERS.find((d) => d.id === "spirit")!;
+  const revelations: [HaradScenario, string][] = [
+    ["desert-crossing", DESERT_CROSSING.sandstorm],
+    ["escape-from-umbar", UMBAR.enfeebled],
+    ["the-long-arm-of-mordor", MORDOR.overgrown],
+  ];
+  for (const [scenarioId, code] of revelations)
+  for (const outcome of ["resolve", "cancel"]) {
+    let s = createGame(1, d.cards, d.heroes, d.id, {
+      scenarioId,
+    });
+    s.phase = "staging";
+    s.heroes.forEach((h) => (h.resources = 1));
+    if (!s.hand.some((u) => u.code === "01050")) {
+      const index = s.deck.indexOf("01050");
+      assert.ok(index >= 0);
+      s.hand.push(make(s, s.deck.splice(index, 1)[0]));
+    }
+    revealed(s, take(s, code));
+    // Native revelation exposes both A Test of Will and the same card's
+    // ordinary placement continuation, as in the Spirit seed-1 CI failure.
+    assert.equal(s.choice?.title, `Revealed: ${card(code).name}`);
+    assert.ok(s.choice.options.some((o) => o.id === "cancel"));
+    assert.ok(s.choice.options.some((o) => o.id === "resolve"));
+    const observer = haradSimulationObserver();
+    observer.observe(restore(s));
+    const missing = structuredClone(s);
+    missing.choice = null;
+    assert.throws(
+      () => observer.observe(missing),
+      /conserves every original encounter/,
+    );
+    s.flow = { mode: "all", nextId: 1, pending: null, history: [] };
+    s = restore(applyAction(restore(s), { type: "CHOOSE", id: outcome }));
+    observer.observe(s);
+    for (let step = 0; s.choice || s.flow?.pending; step++) {
+      assert.ok(step < 40, "treachery cancellation and resolution finish");
+      s = restore(
+        applyAction(
+          s,
+          s.flow?.pending
+            ? { type: "CONTINUE", stepId: s.flow.pending.id }
+            : { type: "CHOOSE", id: s.choice!.options[0].id },
+        ),
+      );
+      observer.observe(s);
+    }
+    assert.ok(s.encounterDiscard.includes(code));
+    if (outcome === "cancel") assert.ok(s.discard.includes("01050"));
+  }
 });
 
 test("Harad conservation includes Mirage held during its discard-pile shuffle", () => {

@@ -35,8 +35,8 @@ browser checks at 1280/390/320. `npm run test:harad-simulation` runs 96 complete
 games: three quests, both difficulties, 1–4 players and four review modes.
 `npm run test:harad-multiplayer` selects the three broader multiplayer groups.
 
-Focused rule checks pass: 36 Umbar, 34 Desert, 36 Mordor, 44 player and five source
-tests. Eight observer tests cover physical setup recipes, transient reveals,
+Focused rule checks pass: 36 Umbar, 34 Desert, 37 Mordor, 44 player and five source
+tests. Nine observer tests cover physical setup recipes, transient reveals,
 Mirage, Narrow Alleyway, captured heroes, held shadows and attachment choices,
 including deliberate missing-card failures. Final engine, browser and complete
 game results retain their actual source/artifact scope in the ignored release

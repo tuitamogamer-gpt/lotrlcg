@@ -3,7 +3,7 @@ import test from "node:test";
 import { applyAction, validateSave, availableAbilities } from "../src/game/engine";
 import { card } from "../src/game/cards";
 import { isHero } from "../src/game/card-types";
-import { check, damage, destroy, engage, progress, advanceQuest, charactersCommitted, discardAttachment } from "../src/game/board";
+import { check, damage, destroy, engage, progress, advanceQuest, charactersCommitted, discardAttachment, nextRound } from "../src/game/board";
 import { canPlay, eligiblePayers, fx, get, make, pay, prepend, stats, threatOf, engagementCost } from "../src/game/core";
 import { flush } from "../src/game/effects";
 import { allCharacters, allEngaged, forOwner, ownerOf, playerOrder, seatView, selectSeat, attachmentController } from "../src/game/table";
@@ -180,7 +180,41 @@ test("Long Arm Savage Attack permits revealing when no allies and Overrun stacks
 test("Mordor Fear applies an enduring snapshot debuff to all existing allies, including remote players", () => {
   let s = base(2); for (const p of playerOrder(s)) forOwner(s, p, () => s.allies.push(make(s, "01013")));
   mordorEncounter(s, M.fear); s = finish(s);
-  for (const u of allCharacters(s).filter((u) => card(u.code).type_code === "ally")) assert.equal(stats(s, u).attack, Math.max(0, (card(u.code).attack ?? 0) - 1));
+  s = reload(s);
+  for (const u of allCharacters(s).filter((u) => card(u.code).type_code === "ally")) {
+    assert.equal(stats(s, u).attack, Math.max(0, (card(u.code).attack ?? 0) - 1));
+    assert.equal(stats(s, u).defense, Math.max(0, (card(u.code).defense ?? 0) - 1));
+  }
+  mordorEncounter(s, M.fear); s = reload(finish(s));
+  const affected = allCharacters(s).filter((u) => card(u.code).type_code === "ally");
+  for (const u of affected) {
+    u.blanked = true;
+    assert.equal(stats(s, u).attack, Math.max(0, (card(u.code).attack ?? 0) - 2));
+    assert.equal(stats(s, u).defense, Math.max(0, (card(u.code).defense ?? 0) - 2));
+  }
+  const later = make(s, "01013"); s.allies.push(later);
+  assert.equal(stats(s, later).defense, card(later.code).defense);
+  nextRound(s); s = reload(finish(s));
+  for (const u of affected) assert.equal(stats(s, get(s, u.id)!).defense, card(u.code).defense);
+});
+test("Long Arm native Firyal discard continues into Fear of Mordor with restorable ally penalties", () => {
+  for (const players of [1, 2]) {
+    let s = base(players); setStage(s, 2); s.phase = "quest";
+    if (players === 1) s.heroes[0].code = M.firyal;
+    for (const p of playerOrder(s)) forOwner(s, p, () => s.allies.push(make(s, "01014")));
+    s.encounterDeck = [M.uruk, M.fear, M.hut, M.hut];
+    if (players === 2) s = applyAction(reload(s), { type: "COMMIT" });
+    const firyal = s.heroes.find((h) => h.code === M.firyal)!; assert.ok(firyal);
+    s = applyAction(reload(s), { type: "TOGGLE_QUEST", id: firyal.id });
+    s = applyAction(reload(s), { type: "COMMIT" });
+    assert.match(s.choice!.title, /Firyal/);
+    s = applyAction(reload(s), { type: "CHOOSE", id: "discard" });
+    assert.ok(validateSave(s), "the actual post-discard staging state can be saved");
+    s = reload(s); assert.equal(s.phase, "staging"); assert.ok(s.encounterDiscard.includes(M.fear));
+    for (const u of allCharacters(s).filter((u) => card(u.code).type_code === "ally")) {
+      assert.equal(stats(s, u).will, 1); assert.equal(stats(s, u).attack, 0); assert.equal(stats(s, u).defense, 1);
+    }
+  }
 });
 test("Mordor shadows preserve objective-hero protection, current-stat boosts and deferred extra attacks across saves", () => {
   let s = base(), enemy = add(s, M.uruk), hero = s.heroes[0]; engage(s, enemy); combat(s, enemy, hero); hero.exhausted = true;
