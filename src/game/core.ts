@@ -1,5 +1,12 @@
 import * as City from "./city";
 import * as CityPlayers from "./city-player-support";
+import * as HaradPlayers from "./harad-player-support";
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import * as Mordor from "./long-arm-mordor";
+import { umbarStageInfo } from "./escape-umbar-support";
+import { desertCrossingStageInfo } from "./desert-crossing-support";
+import { mordorStageInfo } from "./long-arm-mordor-support";
 import * as Cobas from "./cobas";
 import { cobasStageInfo } from "./cobas-support";
 import { cityStageInfo } from "./city-support";
@@ -268,6 +275,8 @@ export const cannotReady = (u: Unit, s?: GameState) =>
   (!!s &&
     (TempleEncounters.templeCannotRefreshReady(s, u) ||
       Fate.fateCannotRefreshReady(s, u) ||
+      Umbar.umbarCannotReady(s, u) ||
+      Desert.desertCrossingCannotReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -282,6 +291,7 @@ export const units = (s: GameState) => [
   ...allActiveLocations(s),
   ...(s.assaultOsgiliath?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
+  ...(s.mordor?.captured ?? []),
 ];
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
@@ -292,6 +302,7 @@ export const globalUnits = (s: GameState) => [
   ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
   ...(s.assaultOsgiliath?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
+  ...(s.mordor?.captured ?? []),
 ];
 
 export const get = (s: GameState, id?: string) =>
@@ -532,6 +543,7 @@ export function stats(s: GameState, u: Unit) {
         [
           chetwoodBonus.will,
           cobasBonus.will,
+          Mordor.mordorWillBonus(s, u),
           GreyPlayers.greyHavensStats(s, u).will,
           templePlayerBonus.will,
           templeEncounterBonus.will,
@@ -592,6 +604,9 @@ export function stats(s: GameState, u: Unit) {
         Voyage.voyageStats(s, u).attack +
         Cobas.cobasStats(s, u).attack +
         City.cityStats(s, u).attack +
+        Mordor.mordorStats(s, u).attack +
+        Umbar.umbarStats(s, u).attack +
+        Desert.desertCrossingStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
         Raid.raidStats(s, u).attack +
@@ -656,6 +671,9 @@ export function stats(s: GameState, u: Unit) {
             Voyage.voyageStats(s, u).defense +
             Cobas.cobasStats(s, u).defense +
             City.cityStats(s, u).defense +
+            Mordor.mordorStats(s, u).defense +
+            Umbar.umbarStats(s, u).defense +
+            Desert.desertCrossingStats(s, u).defense +
             Raid.raidStats(s, u).defense +
             angmarBonus.defense +
             Etten.ettenStats(s, u).defense +
@@ -692,6 +710,7 @@ export function stats(s: GameState, u: Unit) {
       (namelessX ?? c.health ?? 0) +
       foundationsBonus.health +
       cobasBonus.health +
+      Mordor.mordorStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
@@ -778,6 +797,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 depthsPlayerCostReduction(s, c.code) -
                 cobasEconomyCostReduction(s, c.code) -
                 CityPlayers.cityPlayerCostReduction(s, c) -
+                HaradPlayers.haradPlayerCostReduction(s, c) -
                 Drowned.drownedCostReduction(s, c),
             ) + dwarfAdditionalCost(c.code),
           ),
@@ -839,6 +859,9 @@ export const threatOf = (s: GameState, u: Unit) =>
             Voyage.voyageThreatBonus(s, u) +
             Cobas.cobasThreatBonus(s, u) +
             City.cityThreatBonus(s, u) +
+            Mordor.mordorThreatBonus(s, u) +
+            Umbar.umbarThreatBonus(s, u) +
+            Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
             Depths.depthsThreatBonus(s, u) +
             Drowned.drownedThreatBonus(s, u) +
@@ -879,6 +902,7 @@ export const threatOf = (s: GameState, u: Unit) =>
         );
 
 export const stagingThreat = (s: GameState) =>
+  Desert.desertCrossingStagingThreat(s) +
   s.threatModifier +
   Voyage.voyageStagingThreat(s) +
   Cobas.cobasStagingThreat(s) +
@@ -951,11 +975,16 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Etten.ettenEngagementModifier(s) +
       Carn.carnEngagementModifier(s, u) +
       Voyage.voyageEngagementModifier(s, u) +
+      Umbar.umbarEngagementModifier(s, u) +
+      Desert.desertCrossingEngagementBonus(s, u) +
       Cobas.cobasEngagementModifier(s, u) +
+      Mordor.mordorEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s);
+  if (harad) return harad;
   const city = cityStageInfo(s);
   if (city) return city;
   const cobas = cobasStageInfo(s);
@@ -1091,6 +1120,8 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
     .filter(
       (h) =>
         stewardPlayerCanPay(s, h, c, actualCost) ||
+        HaradPlayers.haradStormNoResourceMatch(s, c) ||
+        Mordor.mordorIgnoresResourceMatch(s) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||
         hasResourceIcon(h, c.sphere_code) ||
         (actualCost > 0 &&
@@ -1251,6 +1282,7 @@ export function pay(
   }
   spendResourcePayment(s, spent);
   CityPlayers.cityPlayerCardPaid(s, c);
+  Mordor.mordorCardPaid(s, c);
   return spent;
 }
 

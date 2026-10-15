@@ -3,6 +3,18 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "escape-from-umbar": {
+    name: "Escape from Umbar",
+    detail: "Escape the Southron pursuit through the city streets",
+  },
+  "desert-crossing": {
+    name: "The Desert of Harad",
+    detail: "Survive the rising heat beneath a merciless sun",
+  },
+  "the-long-arm-of-mordor": {
+    name: "The Long Arm of Mordor",
+    detail: "Join the Haradrim and rescue the captured heroes",
+  },
   "the-city-of-corsairs": {
     name: "The City of Corsairs",
     detail: "Pursue the Stormcaller and confront Sahír in Umbar",
@@ -268,6 +280,9 @@ export const PLAYMAT_CHOICES = [
   "the-drowned-ruins",
   "a-storm-on-cobas-haven",
   "the-city-of-corsairs",
+  "escape-from-umbar",
+  "desert-crossing",
+  "the-long-arm-of-mordor",
   "shadow-and-flame",
 ] as const;
 

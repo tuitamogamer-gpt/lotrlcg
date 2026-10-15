@@ -4,6 +4,7 @@ import type { Unit } from "./types";
 /** Printed definitions stay immutable when Sword-thain changes a card in play. */
 export function unitType(u: Unit): string {
   const printed = card(u.code).type_code;
+  if (printed === "objective-hero") return "hero";
   if (u.cobasShipObjective) return "ship-objective";
   return printed === "ally" &&
     u.attachments.some((a) => a.code === "10149" && !a.blanked && !a.facedown)

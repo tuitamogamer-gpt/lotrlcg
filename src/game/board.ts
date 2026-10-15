@@ -1,6 +1,14 @@
-import { playerEffectImmune } from "./player-effect-immunity";
+import {
+  isPlayerCardSource,
+  playerEffectImmune,
+} from "./player-effect-immunity";
 import { activePlayerAbilityCode } from "./player-ability-triggers";
 import * as City from "./city";
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import * as Mordor from "./long-arm-mordor";
+import * as HaradPlayers from "./harad-player";
+import * as HaradResponses from "./harad-player-responses";
 import * as CityHoldLine from "./city-hold-line";
 import * as CityPlayers from "./city-player";
 import { cityPlayerResourceBonus } from "./city-player-support";
@@ -496,6 +504,14 @@ export function charactersCommitted(
     (u) => u.committed && allCharacters(s).some((c) => c.id === u.id),
   );
   shadowFlameCharactersCommitted(s, actual);
+  HaradResponses.haradCharactersCommitted(
+    s,
+    actual.map((u) => u.id),
+  );
+  Mordor.mordorCharactersCommitted(
+    s,
+    actual.map((u) => u.id),
+  );
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
@@ -594,6 +610,13 @@ export function coreBoardResponse(s: GameState, e: Effect): boolean {
 }
 
 export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
+  const abilitySource = activePlayerAbilityCode(s);
+  if (
+    cardEffect &&
+    Desert.desertCrossingCannotPlayerReady(s) &&
+    (!abilitySource || isPlayerCardSource(abilitySource))
+  )
+    return;
   if (cardEffect && Drowned.drownedCannotReady(s)) return;
   syncAttachmentText(s, u);
   if (cannotReady(u, s)) return;
@@ -737,6 +760,14 @@ export function check(s: GameState) {
   if (s.status !== "playing") return;
   Cobas.cobasCheck(s);
   City.cityCheck(s);
+  Umbar.umbarCheck(s);
+  Desert.desertCrossingCheck(s);
+  Mordor.mordorCheck(s);
+  const capturedDoomed = Mordor.mordorCapturedDoomed(s);
+  if (capturedDoomed) {
+    destroy(s, capturedDoomed);
+    return;
+  }
   Fate.fateCheck(s);
   Raid.raidCheck(s);
   Depths.depthsCheck(s);
@@ -845,6 +876,7 @@ export function check(s: GameState) {
         s.threat < threatElimination(s) &&
         !s.used.includes("game:ship-controller-eliminated") &&
         !s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED) &&
+        !s.used.includes("game:mordor-objective-lost") &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
           foundationsHeroMissingAllowed(s, i) ||
@@ -973,6 +1005,7 @@ export function check(s: GameState) {
     s.threat >= threatElimination(s) ||
     s.used.includes("game:ship-controller-eliminated") ||
     s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED) ||
+    s.used.includes("game:mordor-objective-lost") ||
     (!s.heroes.length &&
       !s.prisoner &&
       !foundationsHeroMissingAllowed(s, 0) &&
@@ -981,13 +1014,15 @@ export function check(s: GameState) {
     s.status = "lost";
     s.reason = Dike.dikePlayerDeckEmpty(s, 0)
       ? "Your deck is empty. The dead overwhelm your fellowship."
-      : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
-        ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
-        : s.used.includes("game:ship-controller-eliminated")
-          ? "Your Ship objective was destroyed. Your fellowship is eliminated."
-          : s.threat >= threatElimination(s)
-            ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
-            : "The last hero has fallen.";
+      : s.used.includes("game:mordor-objective-lost")
+        ? "A Harad objective-hero left play. Your fellowship is eliminated."
+        : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
+          ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
+          : s.used.includes("game:ship-controller-eliminated")
+            ? "Your Ship objective was destroyed. Your fellowship is eliminated."
+            : s.threat >= threatElimination(s)
+              ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
+              : "The last hero has fallen.";
   }
   if (s.status === "lost") {
     const pending = s.pendingPlayerPlays ?? [];
@@ -1171,7 +1206,8 @@ export function damage(
     Wastes.wastesCannotDamage(s, u) ||
     Carn.carnCannotDamage(s, u) ||
     Voyage.voyageCannotDamage(s, u) ||
-    GreyPlayers.greyHavensCannotDamage(s, u)
+    GreyPlayers.greyHavensCannotDamage(s, u) ||
+    Umbar.umbarDamageBlocked(s, u)
   )
     return false;
   if (
@@ -1191,6 +1227,7 @@ export function damage(
   value = Depths.depthsDamageAmount(s, u, value);
   value = DrownedCompanions.drownedSahirDamageAmount(s, u, value);
   value = City.cityDamageAmount(s, u, value);
+  value = Mordor.mordorDamageAmount(s, u, value, context);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1237,8 +1274,14 @@ export function damage(
   CityHoldLine.cityHoldLineDamageDealt(s, u, value, context);
   Cobas.cobasDamageDealt(s, u, value, context);
   City.cityDamageDealt(s, u, value, context);
+  Desert.desertCrossingDamageDealt(s, u, value, context);
+  HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
+  if (u.damage >= stats(s, u).health)
+    Umbar.umbarCharacterDestroyed(s, u, context);
+  if (u.damage >= stats(s, u).health)
+    Mordor.mordorCharacterDestroyed(s, u, context);
   Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
@@ -1332,6 +1375,7 @@ export function discardAttachment(
     (s.questAttachments ??= {})[u.code] = u.attachments;
   syncAttachmentText(s);
   if (Temple.templeAttachmentLeaves(s, u, a)) return;
+  if (Mordor.mordorAttachmentLeaves(s, u, a, leaving)) return;
   if (Dread.dreadAttachmentLeaves(s, u, a, leaving)) return;
   if (Rhudaur.rhudaurAttachmentLeaves(s, u, a)) return;
   if (Celebrimbor.celebrimborAttachmentLeaves(s, u, a, leaving)) return;
@@ -1382,6 +1426,7 @@ export function characterLeftPlay(
   DepthsPlayers.depthsPlayerCharacterLeft(s, u);
   CobasEconomy.cobasEconomyCharacterLeft(s, u);
   CityPlayers.cityPlayerCharacterLeft(s, u);
+  Mordor.mordorCharacterLeft(s, u, controller);
   DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -1472,6 +1517,9 @@ export function destroy(
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   City.cityDestroyed(s, u, destruction);
+  Umbar.umbarEnemyDestroyed(s, u, destruction);
+  Mordor.mordorEnemyLeaves(s, u, destruction);
+  Mordor.mordorRemoveCaptured(s, u);
   const previous = activeSeat(s);
   const c = card(u.code);
   const splitGram = isMountGram(s) ? gramState(s) : undefined;
@@ -1768,6 +1816,11 @@ export function templeMapLocationExplored(s: GameState, u: Unit) {
 }
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
+  if (
+    Desert.desertCrossingLocationProgressBlocked(s, u) ||
+    Umbar.umbarLocationProgressBlocked(s, u)
+  )
+    return;
   if (Temple.templeProgressLocation(s, u, value)) return;
   if (Trials.trialsRedirectProgress(s, value, u)) return;
   if (Raid.raidLocationProgressBlocked(s, u)) return;
@@ -1811,6 +1864,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   BloodQuest.bloodGondorExplored(s, u);
   Catch.catchExplored(s, u);
   Weather.weatherExplored(s, u, wasActive);
+  Desert.desertCrossingExplored(s, u, wasActive);
+  Mordor.mordorExplored(s, u);
   Rhudaur.rhudaurExplored(s, u, wasActive);
   Rhudaur.rhudaurLocationLeft(s, u, wasActive);
   Dike.dikeExplored(s, u, wasActive);
@@ -1979,6 +2034,10 @@ export function progress(
     return;
   }
   if (Temple.templeQuestProgress(s, n)) return;
+  if (Umbar.umbarProgress(s, n)) {
+    advanceQuest(s);
+    return;
+  }
   if (Fate.fateQuestProgressBlocked(s)) return;
   if (
     Depths.depthsQuestProgressBlocked(s) ||
@@ -2000,6 +2059,7 @@ export function progress(
     return;
   addCurrentQuestProgress(s, n);
   Fangorn.fangornProgressPlaced(s);
+  if (fromSuccessfulQuest) Mordor.mordorSuccessfulQuest(s, n);
   if (s.scenarioId === "dol-guldur" && s.stage === 2 && s.prisoner)
     rescuePrisoner(s);
   advanceQuest(s);
@@ -2031,6 +2091,7 @@ export function questDefeated(s: GameState, code: string): boolean {
   if (!attachments.length) return false;
   const before = s.queue.length;
   collectorQuestDefeated(s, code, attachments);
+  HaradPlayers.haradPlayerQuestDefeated(s, code, attachments);
   const responses = s.queue.splice(0, s.queue.length - before);
   if (!responses.length) return false;
   s.pendingQuestDefeat = code;
@@ -2049,6 +2110,9 @@ export function advanceQuest(s: GameState) {
   if (Raid.raidAdvance(s)) return;
   if (Cobas.cobasAdvance(s)) return;
   if (City.cityAdvance(s)) return;
+  if (Umbar.umbarAdvance(s)) return;
+  if (Desert.desertCrossingAdvance(s)) return;
+  if (Mordor.mordorAdvance(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2452,6 +2516,10 @@ export function engage(s: GameState, u: Unit, optional = false) {
   const realmBefore = s.queue.length;
   Voyage.voyageEngaged(s, u, fromStaging);
   Cobas.cobasEngaged(s, u);
+  Umbar.umbarEngaged(s, u);
+  Desert.desertCrossingEngaged(s, u);
+  Mordor.mordorEngaged(s, u);
+  HaradResponses.haradEnemyEngaged(s, u);
   Storm.stormcallerEngaged(s, u, fromStaging);
   Fate.fateEngaged(s, u);
   Raid.raidEngaged(s, u);
@@ -2725,10 +2793,9 @@ export function resolveReveal(
       }),
     );
   // The Eaves of Mirkwood: encounter card effects cannot be canceled.
-  const when =
+  const canCancelWhenRevealed =
     (c.text ?? "").includes("When Revealed") &&
     !hasEncounterKeyword(c) &&
-    c.type_code !== "encounter-side-quest" &&
     code !== CARROCK.sacked &&
     code !== FANGORN.malice &&
     code !== NIN.remnants &&
@@ -2744,6 +2811,7 @@ export function resolveReveal(
     !Osgiliath.assaultOsgiliathCannotCancel(code) &&
     !roadRivendellCannotCancel(s) &&
     !allActiveLocations(s).some((l) => l.code === "02016");
+  const when = canCancelWhenRevealed && c.type_code !== "encounter-side-quest";
   const options: Option[] = [];
   const revealingPlayer = activeSeat(s);
   eachSeat(s, (player) => {
@@ -2841,6 +2909,22 @@ export function resolveReveal(
         }),
       ),
     );
+  if (canCancelWhenRevealed && revealOrigin === "encounter")
+    options.push(
+      ...HaradResponses.haradWhenRevealedOptions(
+        s,
+        code,
+        fx("placeEncounter", {
+          text: "revealed",
+          code,
+          player: revealingPlayer,
+          value: thalin ? 1 : 0,
+          count: initialProgress,
+          source: guarding,
+          revealOrigin,
+        }),
+      ),
+    );
   if (options.length) {
     choose(
       s,
@@ -2918,6 +3002,7 @@ export function placeEncounter(
       s.staging.push(fresh);
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
     City.cityCardEntered(s, fresh, fromReveal, cancel);
+    Mordor.mordorCardEntered(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -2977,6 +3062,9 @@ export function placeEncounter(
     return;
   }
   if (City.cityEncounter(s, code)) return;
+  if (Umbar.umbarEncounter(s, code)) return;
+  if (Desert.desertCrossingEncounter(s, code)) return;
+  if (Mordor.mordorEncounter(s, code)) return;
   if (Cobas.cobasEncounter(s, code)) return;
   if (Raid.raidEncounter(s, code)) return;
   if (
@@ -3288,7 +3376,13 @@ export function allyEntryResponses(
   u: Unit,
   played: boolean,
   fromHand: boolean,
+  forcedResolved = false,
 ) {
+  if (
+    !forcedResolved &&
+    Desert.desertCrossingAllyEntered(s, u, played, fromHand)
+  )
+    return;
   Drowned.drownedAllyPlayed(s, played);
   if (played) longDarkPlayerCardPlayed(s, card(u.code), activeSeat(s));
   if (played) heirsPlayerCardPlayed(s, card(u.code));
@@ -3529,6 +3623,9 @@ export function shadow(s: GameState, code: string) {
   if (TempleEncounters.templeShadow(s, code)) return;
   if (Depths.depthsShadow(s, code)) return;
   if (City.cityShadow(s, code)) return;
+  if (Umbar.umbarShadow(s, code)) return;
+  if (Desert.desertCrossingShadow(s, code)) return;
+  if (Mordor.mordorShadow(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

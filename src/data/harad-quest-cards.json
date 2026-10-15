@@ -1,0 +1,362 @@
+[
+  {
+    "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "octgnid": "63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "name": "Stranded in Umbar",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add \"Seize them!\" to the staging area. Each player adds 1 different location to the staging area and puts 1 copy of Umbar Sentry into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Escape from Umbar",
+    "side": "A",
+    "back_name": "Stranded in Umbar",
+    "back_text": "Alarm bells ring from high watchtowers and the city guard shouts for you to lay down your arms and surrender. You must run or be captured!This stage cannot have more than 15 progress tokens on it.While at least 1 player is engaged with an enemy, the players cannot defeat this stage.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "63b0498f-9180-4e62-83c1-b9aa29f24712",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+    "octgnid": "44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+    "name": "Flee the City",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: End the current phase. Shuffle the encounter discard pile into the encounter deck. Starting with the first player, each player discards cards from the top of the encounter deck until he discards an enemy, and puts that enemy into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 67,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Escape from Umbar",
+    "side": "A",
+    "back_name": "Flee the City",
+    "back_text": "This stage cannot have more than 15 progress tokens on it.Forced: At the beginning of the quest phase, if any player is not engaged with an enemy, discard cards from the top of the encounter deck until an enemy is discarded and add it to the staging area.While at least 1 player is engaged with an enemy, the players cannot defeat this stage. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+    "octgnid": "b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+    "name": "The Desert of Harad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player searches the encounter deck for a copy of Burnt Sands and adds it to the staging area. Shuffle the encounter deck. Place the heat tracker next to the quest deck and set the temperature to 10.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 68,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Desert Crossing",
+    "side": "A",
+    "back_name": "The Desert of Harad",
+    "back_text": "As the sun climbs into the sky, you can feel the rising heat begin to take its toll on you...Forced: After an ally enters play, either exhaust it, or deal 1 damage to it.Forced: At the end of the round, increase the temperature by 4. If the temperature is 60 or higher, the players lose the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+    "octgnid": "36905f8f-3807-432b-bd0f-892c97504afd",
+    "name": "Under the Merciless Sun",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Increase the temperature by 2. Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 69,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Desert Crossing",
+    "side": "A",
+    "back_name": "Under the Merciless Sun",
+    "back_text": "If you cannot make it across the desert soon, you are certain to die of thirst...Forced: At the end of the round, increase the temperature by 4. Then, each player assigns X damage among characters he controls, where X is the tens digit of the temperature.If the temperature is 60 or higher, the players lose the game.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "36905f8f-3807-432b-bd0f-892c97504afd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36905f8f-3807-432b-bd0f-892c97504afd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+    "octgnid": "6cb224c2-d164-484e-b20d-fede3dd640d5",
+    "name": "Beasts of Legend",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Increase the temperature by 2. Each player searches the encounter deck, discard pile, and victory display for a Were-worm and adds it to the staging area, if able. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 70,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Desert Crossing",
+    "side": "A",
+    "back_name": "Beasts of Legend",
+    "back_text": "During the quest phase, add X [threat] to the total [threat] in the staging area, where X is the tens digit of the temperature.Forced: At the end of the round, increase the temperature by 4. While at least 1 Were-worm is in play, the players cannot defeat this stage. If the players defeat this stage, they win the game. If the temperature is 60 or higher, the players lose the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "6cb224c2-d164-484e-b20d-fede3dd640d5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
+    "octgnid": "5d991933-f49d-4ece-a288-7484ebc75d14",
+    "name": "Surprise Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Uruk Chieftain aside, out of play. Each player adds 1 copy of Sauron's Enforcers to the staging area. Move each hero to the staging area. Each player takes control of an objective-hero and adds 2 resources to its resource pool. Remove each remaining objective-hero from the game. For the remainder of the game, heroes in the staging area are in play but under no player's control, immune to player card effects, and their text boxes are considered to be blank.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 71,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Long Arm of Mordor",
+    "side": "A",
+    "back_name": "Surprise Attack",
+    "back_text": "Damage from undefended attacks must be dealt to a hero in the staging area, if able.The first card each player plays each phase does not require a resource match.Forced: After placing progress on this stage from questing successfully, each player chooses a hero he owns in the staging area, takes control of that hero, and exhausts it. Advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/5d991933-f49d-4ece-a288-7484ebc75d14.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/5d991933-f49d-4ece-a288-7484ebc75d14.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "5d991933-f49d-4ece-a288-7484ebc75d14",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d991933-f49d-4ece-a288-7484ebc75d14.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:947f8b80-5d96-43eb-89ac-95b7738f2d55",
+    "octgnid": "947f8b80-5d96-43eb-89ac-95b7738f2d55",
+    "name": "Find the Others",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 72,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Long Arm of Mordor",
+    "side": "A",
+    "back_name": "Find the Others",
+    "back_text": "Damage from undefended attacks must be dealt to a hero in the staging area, if able.The first card each player plays each phase does not require a resource match. Forced: When this stage is defeated, each player chooses a hero he owns in the staging area, takes control of that hero, and exhausts it.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/947f8b80-5d96-43eb-89ac-95b7738f2d55.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/947f8b80-5d96-43eb-89ac-95b7738f2d55.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "947f8b80-5d96-43eb-89ac-95b7738f2d55",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/947f8b80-5d96-43eb-89ac-95b7738f2d55.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
+    "octgnid": "98cc592d-6e3e-494a-bddf-ef5e0908c279",
+    "name": "Free the Captives",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for an Orc enemy and adds it to the staging area. Shuffle the encounter deck. Attach each hero in the staging area to a different Orc enemy in the staging area. Each hero attached to an enemy is guarded by that enemy. Guarded heroes are under no player's control, immune to player card effects, and their text boxes are considered to be blank.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 73,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Long Arm of Mordor",
+    "side": "A",
+    "back_name": "Free the Captives",
+    "back_text": "While an enemy is guarding a hero it gets +1 [threat], +1 [attack], +1 [defense] and is immune to player card effects.Forced: When the enemy guarding a hero is defeated, that hero's owner takes control of that hero and exhausts it.This stage cannot be defeated while an enemy is guarding a hero.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/98cc592d-6e3e-494a-bddf-ef5e0908c279.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/98cc592d-6e3e-494a-bddf-ef5e0908c279.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "98cc592d-6e3e-494a-bddf-ef5e0908c279",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98cc592d-6e3e-494a-bddf-ef5e0908c279.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+    "octgnid": "0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+    "name": "Escape into the Jungle",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Uruk Chieftain to the staging area. Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 74,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Long Arm of Mordor",
+    "side": "A",
+    "back_name": "Escape into the Jungle",
+    "back_text": "Uruk Chieftain cannot take non-combat damage.Each non-unique Orc enemy gets -10 engagement cost.Forced: After Uruk Chieftain engages a player, it makes an immediate attack.The players cannot defeat this stage while Uruk Chieftain is in play. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/0bb77cd5-0340-4411-9e1f-997b1d6cb35a.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/0bb77cd5-0340-4411-9e1f-997b1d6cb35a.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0bb77cd5-0340-4411-9e1f-997b1d6cb35a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

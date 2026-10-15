@@ -1,4 +1,7 @@
 import * as City from "./city";
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import * as Mordor from "./long-arm-mordor";
 import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import { setupDeadmensDike } from "./deadmens-dike";
@@ -436,6 +439,12 @@ export function createGame(
     setupDepths(s);
   } else if (scenarioId === "the-city-of-corsairs") {
     City.setupCity(s);
+  } else if (scenarioId === "escape-from-umbar") {
+    Umbar.setupUmbar(s);
+  } else if (scenarioId === "desert-crossing") {
+    Desert.setupDesertCrossing(s);
+  } else if (scenarioId === "the-long-arm-of-mordor") {
+    Mordor.setupLongArmMordor(s);
   } else if (scenarioId === "a-storm-on-cobas-haven") {
     Cobas.setupCobas(s);
   } else if (scenarioId === "the-drowned-ruins") {

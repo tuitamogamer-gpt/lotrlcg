@@ -136,6 +136,24 @@ jobs:
       - run: npm ci
       - run: npm run test:city-simulation
 
+  harad-simulation:
+    name: Harad review parity (${{ matrix.scenario }}, 32 complete games)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [escape-from-umbar, desert-crossing, the-long-arm-of-mordor]
+    env:
+      HARAD_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:harad-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -164,6 +182,9 @@ jobs:
             the-drowned-ruins,
             a-storm-on-cobas-haven,
             the-city-of-corsairs,
+            escape-from-umbar,
+            desert-crossing,
+            the-long-arm-of-mordor,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -207,6 +228,8 @@ jobs:
             suite: test:browser-cobas
           - group: city
             suite: test:browser-city
+          - group: harad
+            suite: test:browser-harad
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

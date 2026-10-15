@@ -12,6 +12,8 @@ import templePlayers from "../data/temple-player-cards.json";
 import drownedPlayers from "../data/drowned-player-cards.json";
 import cobasPlayers from "../data/cobas-player-cards.json";
 import cityPlayers from "../data/city-player-cards.json";
+import haradPlayers from "../data/harad-player-cards.json";
+import { HARAD_ENCOUNTERS, HARAD_QUESTS } from "./harad-scenario-data";
 import { CITY_ENCOUNTERS, CITY_QUESTS } from "./city-scenario-data";
 import { COBAS_ENCOUNTERS, COBAS_QUESTS } from "./cobas-scenario-data";
 import { DROWNED_ENCOUNTERS, DROWNED_QUESTS } from "./drowned-scenario-data";
@@ -188,6 +190,9 @@ export const playerCards = [
       ...(drownedPlayers as Card[]),
       ...(cobasPlayers as Card[]),
       ...(cityPlayers as Card[]),
+      ...(haradPlayers as Card[]).map((c) =>
+        c.code === "16013" ? { ...c, quest: 5, victory: 1 } : c,
+      ),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -235,6 +240,7 @@ const priorEncounterCards = [
   ),
 ];
 export const encounterCards = [
+  ...HARAD_ENCOUNTERS,
   ...priorEncounterCards,
   ...TEMPLE_ENCOUNTERS.filter(
     (c) => !priorEncounterCards.some((old) => old.code === c.code),
@@ -307,6 +313,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...DROWNED_QUESTS,
     ...COBAS_QUESTS,
     ...CITY_QUESTS,
+    ...HARAD_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -397,6 +404,7 @@ export const SCRIPTED = new Set(
     ...DROWNED_QUESTS,
     ...COBAS_QUESTS,
     ...CITY_QUESTS,
+    ...HARAD_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

@@ -1,4 +1,14 @@
 import {
+  haradSimulationAction,
+  haradSimulationChoice,
+  HARAD_SCENARIOS,
+  isHaradScenario,
+} from "./harad-simulation-policy";
+import {
+  assertHaradSaveRestoration,
+  haradSimulationObserver,
+} from "./harad-simulation-invariants";
+import {
   citySimulationObserver,
   assertCitySaveRestoration,
 } from "./city-simulation-invariants";
@@ -456,6 +466,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     "the-battle-of-carn-dum",
     "the-dread-realm",
     ...DREAM_CHASER_SCENARIOS,
+    ...HARAD_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -468,6 +479,7 @@ for (const scenarioId of [
   "the-battle-of-carn-dum",
   "the-dread-realm",
   ...DREAM_CHASER_SCENARIOS,
+  ...HARAD_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -523,7 +535,9 @@ for (const scenarioId of [
                     ? cobasSimulationObserver()
                     : scenarioId === "the-city-of-corsairs"
                       ? citySimulationObserver()
-                      : undefined;
+                      : isHaradScenario(scenarioId)
+                        ? haradSimulationObserver()
+                        : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -540,14 +554,19 @@ for (const scenarioId of [
                 a = {
                   type: "CHOOSE",
                   id: (
+                    haradSimulationChoice(s) ??
                     greyHavensSimulationChoice(s) ??
                     s.choice.options.find((o) => o.id === "skip") ??
                     s.choice.options.find((o) => o.id === "resolve") ??
                     s.choice.options[0]
                   ).id,
                 };
-              else if (greyHavensSimulationAction(s))
-                a = greyHavensSimulationAction(s)!;
+              else if (
+                haradSimulationAction(s) ??
+                greyHavensSimulationAction(s)
+              )
+                a = (haradSimulationAction(s) ??
+                  greyHavensSimulationAction(s))!;
               else if (s.phase === "setup") a = { type: "KEEP" };
               else if (s.phase === "planning") {
                 const u = s.hand.find(
@@ -590,9 +609,10 @@ for (const scenarioId of [
                 (!s.activeLocation ||
                   (scenarioId === "the-thing-in-the-depths" &&
                     s.stage === 3)) &&
-                DREAM_CHASER_SCENARIOS.includes(
-                  scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
-                )
+                (isHaradScenario(scenarioId) ||
+                  DREAM_CHASER_SCENARIOS.includes(
+                    scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
+                  ))
               ) {
                 const location = s.staging.find((u) => !canTravel(s, u));
                 a = location
@@ -623,11 +643,13 @@ for (const scenarioId of [
                       pending: s.flow?.pending?.id,
                     }) + "\n",
                   );
-                s = DREAM_CHASER_SCENARIOS.includes(
-                  scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
-                )
-                  ? engineApplyAction(s, a)
-                  : act(s, a);
+                s =
+                  isHaradScenario(scenarioId) ||
+                  DREAM_CHASER_SCENARIOS.includes(
+                    scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
+                  )
+                    ? engineApplyAction(s, a)
+                    : act(s, a);
                 if (process.env.LOTR_HOTSEAT_CASE) {
                   appendFileSync(
                     `/tmp/hotseat-actions-${scenarioId}-${n}-${seed}.jsonl`,
@@ -678,6 +700,8 @@ for (const scenarioId of [
                 assertCobasSaveRestoration(savedState, restored);
               else if (scenarioId === "the-city-of-corsairs")
                 assertCitySaveRestoration(savedState, restored);
+              else if (isHaradScenario(scenarioId))
+                assertHaradSaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
               mapObserver?.observe(s);
               if (process.env.LOTR_HOTSEAT_CASE)

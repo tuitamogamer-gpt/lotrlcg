@@ -1,4 +1,13 @@
 import {
+  haradSimulationAction,
+  haradSimulationChoice,
+  isHaradScenario,
+} from "./harad-simulation-policy";
+import {
+  assertHaradSaveRestoration,
+  haradSimulationObserver,
+} from "./harad-simulation-invariants";
+import {
   citySimulationObserver,
   assertCitySaveRestoration,
 } from "./city-simulation-invariants";
@@ -106,6 +115,8 @@ const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   if (!listOnly) return nodeTest(...args);
 }) as typeof nodeTest;
 function choose(s: GameState): Option {
+  const harad = haradSimulationChoice(s);
+  if (harad) return harad;
   const greyHavens = greyHavensSimulationChoice(s);
   if (greyHavens) return greyHavens;
   const opts = s.choice!.options;
@@ -201,7 +212,9 @@ function run(
           ? cobasSimulationObserver()
           : scenarioId === "the-city-of-corsairs"
             ? citySimulationObserver()
-            : undefined;
+            : isHaradScenario(scenarioId)
+              ? haradSimulationObserver()
+              : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -235,8 +248,8 @@ function run(
     if (s.flow?.pending)
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
-    else if (greyHavensSimulationAction(s))
-      action = greyHavensSimulationAction(s)!;
+    else if (haradSimulationAction(s) ?? greyHavensSimulationAction(s))
+      action = (haradSimulationAction(s) ?? greyHavensSimulationAction(s))!;
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (objective && bearer && s.threat < 46)
@@ -406,11 +419,13 @@ function run(
         `selected:${s.choice.options.find((o) => o.id === action.id)?.code}`,
       );
     try {
-      s = DREAM_CHASER_SCENARIOS.includes(
-        scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
-      )
-        ? engineApplyAction(s, action)
-        : applyAction(s, action);
+      s =
+        isHaradScenario(scenarioId) ||
+        DREAM_CHASER_SCENARIOS.includes(
+          scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
+        )
+          ? engineApplyAction(s, action)
+          : applyAction(s, action);
       if (s.victoryCards?.includes("09014")) observed?.add("defeated:09014");
     } catch (e) {
       throw new Error(
@@ -424,6 +439,7 @@ function run(
     );
     if (
       angmarScenarios.includes(scenarioId) ||
+      isHaradScenario(scenarioId) ||
       DREAM_CHASER_SCENARIOS.includes(
         scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
       )
@@ -439,6 +455,8 @@ function run(
         assertCobasSaveRestoration(savedState, restored);
       else if (scenarioId === "the-city-of-corsairs")
         assertCitySaveRestoration(savedState, restored);
+      else if (isHaradScenario(scenarioId))
+        assertHaradSaveRestoration(savedState, restored);
       s = restored;
       mapObserver?.observe(s);
     }

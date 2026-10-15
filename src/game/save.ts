@@ -1,5 +1,8 @@
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
+import { validateUmbar } from "./escape-umbar-support";
+import { validateDesertCrossing } from "./desert-crossing-support";
+import { validateMordor } from "./long-arm-mordor-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -273,6 +276,9 @@ export function validateSave(
         c.chetwoodReturnAfterAttack,
         c.wastesCharacterKilled,
         c.gramCaptureDamage,
+        c.mordorDestroyedCharacter,
+        c.desertPoisonShadow,
+        c.cancelCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
         undefined ||
@@ -283,6 +289,10 @@ export function validateSave(
             .druadanReturnCount! >= 0)) &&
       [
         c.cityWatchShadows,
+        c.mordorSavageShadows,
+        c.mordorAdditionalAttacks,
+        c.umbarKilled,
+        c.umbarInjuredShadows,
         c.cityBelfalasShadows,
         c.crownTimeOnKill,
         c.weatherRuinsThreat,
@@ -660,6 +670,9 @@ export function validateSave(
         !validateDrowned(s, validUnit as (value: unknown) => boolean) ||
         !validateCobas(s, validUnit as (value: unknown) => boolean) ||
         !validateCity(s, validUnit as (value: unknown) => boolean) ||
+        !validateUmbar(s, validUnit as (value: unknown) => boolean) ||
+        !validateDesertCrossing(s, validUnit as (value: unknown) => boolean) ||
+        !validateMordor(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1278,6 +1291,8 @@ export function validateSave(
       ...(s.dreadRealm?.setAside ?? []),
       ...(s.cobas?.setAside ?? []),
       ...(s.city?.setAside ?? []),
+      ...(s.mordor?.setAside ?? []),
+      ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),
       ...(s.voyageBelegaer?.setAside ?? []),

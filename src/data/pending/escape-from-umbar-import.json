@@ -1,0 +1,1198 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Escape from Umbar",
+  "slug": "escape-from-umbar",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec55_rules_webready.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+      "octgnid": "04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+      "name": "Southron Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Archery 2.\nForced: After Southron Archer engages you, either remove 2 progress tokens from the main quest, or discard an ally you control.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 43,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 4,
+      "engagement": 36,
+      "encounter_set": "Harad Soldiers",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "4",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 43,
+          "quantity": 4,
+          "octgnid": "04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+      "octgnid": "0e58ae5a-0670-4c00-836a-3bef017bf279",
+      "name": "Port of Harad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "X is the number of engaged enemies.Travel: Assign X damage among characters in play to travel here.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 19,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 4,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/0e58ae5a-0670-4c00-836a-3bef017bf279.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "0e58ae5a-0670-4c00-836a-3bef017bf279",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e58ae5a-0670-4c00-836a-3bef017bf279.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+      "octgnid": "1dab3395-7a34-4b66-aa7f-7834045a7eba",
+      "name": "Umbar Square",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Umbar Square is the active location, it gains: \"Response: After an enemy is defeated, place 1 progress on the main quest, bypassing the active location.\" Travel: Reveal the top card of the encounter deck to travel here.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 18,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/1dab3395-7a34-4b66-aa7f-7834045a7eba.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "1dab3395-7a34-4b66-aa7f-7834045a7eba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1dab3395-7a34-4b66-aa7f-7834045a7eba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+      "name": "In Hostile Territory",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nEach player cannot have more than 5 cards in his hand. (If you have more than 5, immediately choose and discard cards from hand until you have only 5.) Response: When this stage is defeated, each player draws a card. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 45,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Harad Territory",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "name": "Injured Companion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard a character you control.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 46,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise each player's threat by 1.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+      "octgnid": "321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+      "name": "Narrow Alleyway",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "Response: After the player travel here, choose a non-unique enemy engaged with a player and place it faceup under this location. While an enemy is under this location, that enemy is considered to be out of play.Forced: After Narrow Alleyway leaves play, put each enemy under it into play, engaged with the first player.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 15,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/321abaed-0b0c-465b-9f2a-bb9796e6b8c5.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 15,
+          "quantity": 2,
+          "octgnid": "321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/321abaed-0b0c-465b-9f2a-bb9796e6b8c5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+      "octgnid": "35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+      "name": "Enemy Pursuit",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Either remove all progress from the main quest, or assign X damage among characters in play. X is the number of progress tokens on the main quest.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 21,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {},
+      "imagesrc": "/cards/35787b76-d4d5-4bff-bc05-a270b6e4d98e.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35787b76-d4d5-4bff-bc05-a270b6e4d98e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:37f205e5-5144-4987-8764-46909460797b",
+      "octgnid": "37f205e5-5144-4987-8764-46909460797b",
+      "name": "Nowhere to Hide",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player discards cards from the top of the encounter deck until an enemy is discarded, and puts that enemy into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 44,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it was engaged this round).",
+      "encounter_set": "Harad Soldiers",
+      "printed_stats": {},
+      "imagesrc": "/cards/37f205e5-5144-4987-8764-46909460797b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "37f205e5-5144-4987-8764-46909460797b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37f205e5-5144-4987-8764-46909460797b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+      "octgnid": "42621898-ffe0-435a-a0c2-34ed4383eadb",
+      "name": "“Seize them!”",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After an enemy attacks and destroys a character, remove X progress from the main quest. X is the attacking enemy's [threat].At the end of the the round, if the main quest has been in play the entire round and there are no progress tokens on it, the players lose the game.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 14,
+      "quantity": 1,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {},
+      "imagesrc": "/cards/42621898-ffe0-435a-a0c2-34ed4383eadb.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "42621898-ffe0-435a-a0c2-34ed4383eadb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42621898-ffe0-435a-a0c2-34ed4383eadb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+      "octgnid": "44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+      "name": "Flee the City",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: End the current phase. Shuffle the encounter discard pile into the encounter deck. Starting with the first player, each player discards cards from the top of the encounter deck until he discards an enemy, and puts that enemy into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 67,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Escape from Umbar",
+      "side": "A",
+      "back_name": "Flee the City",
+      "back_text": "This stage cannot have more than 15 progress tokens on it.Forced: At the beginning of the quest phase, if any player is not engaged with an enemy, discard cards from the top of the encounter deck until an enemy is discarded and add it to the staging area.While at least 1 player is engaged with an enemy, the players cannot defeat this stage. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+      "octgnid": "47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+      "name": "Southron Champion",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Discard cards from the encounter deck until a Harad enemy is discarded. Add that enemy to the staging area and place a resource token on it. That enemy is \"the Champion.\" While this stage is in play, the Champion gets +2 [threat], +2 [attack], +2 [defense] and gains: \"Immune to player card effects. The main quest stage cannot be defeated while the Champion is in play.\" The champion cannot take damage unless there are at least 4 progress tokens here. This stage cannot be defeated while the champion is in play. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 40,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Harad Soldiers",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+      "octgnid": "486f9475-98e1-42d9-ac90-e6190545a5b9",
+      "name": "Southron Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "While Southron Captain is in the staging area, each other Harad enemy gets +1 [threat].While Southron Captain is engaged with you, each other Harad enemy engaged with you gets +1 [attack].",
+      "is_unique": true,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 41,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 40,
+      "encounter_set": "Harad Soldiers",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 41,
+          "quantity": 1,
+          "octgnid": "486f9475-98e1-42d9-ac90-e6190545a5b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+      "octgnid": "63b0498f-9180-4e62-83c1-b9aa29f24712",
+      "name": "Stranded in Umbar",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add \"Seize them!\" to the staging area. Each player adds 1 different location to the staging area and puts 1 copy of Umbar Sentry into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 66,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Escape from Umbar",
+      "side": "A",
+      "back_name": "Stranded in Umbar",
+      "back_text": "Alarm bells ring from high watchtowers and the city guard shouts for you to lay down your arms and surrender. You must run or be captured!This stage cannot have more than 15 progress tokens on it.While at least 1 player is engaged with an enemy, the players cannot defeat this stage.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "63b0498f-9180-4e62-83c1-b9aa29f24712",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+      "octgnid": "6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+      "name": "Southron Soldier",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Forced: After Southron Soldier engages you, either remove 2 progress tokens from the main quest, or Southron Soldier makes an immediate attack.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 42,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 32,
+      "shadow": "Shadow: Choose an enemy in the staging area. Engage it and deal it a shadow card.",
+      "encounter_set": "Harad Soldiers",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 42,
+          "quantity": 3,
+          "octgnid": "6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+      "octgnid": "7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+      "name": "Haradrim Estate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Haradrim Estate is in the staging area, progress cannot be placed here.Travel: Search the encounter deck and discard pile for a Harad enemy and put it into play engaged with the first player. Then, place 1 progress on the main quest, bypassing the active location. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 20,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 1,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/7a5671ee-27e0-4d04-95e3-77fe26a8a88b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a5671ee-27e0-4d04-95e3-77fe26a8a88b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+      "octgnid": "a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+      "name": "Umbar Sentry",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "Surge. Archery 1.\nForced: When Umbar Sentry attacks, either remove 1 progress token from the main quest, or it gets +2 [attack] for this attack.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 16,
+      "quantity": 5,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 28,
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/a34ffb4e-c821-42aa-8dab-2914d274b3b1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 16,
+          "quantity": 5,
+          "octgnid": "a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a34ffb4e-c821-42aa-8dab-2914d274b3b1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+      "octgnid": "b4543d6e-168b-4ac6-ae65-022e13ce4098",
+      "name": "Umbar Street",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Street of Umbar is the active location, each enemy gets -1 engagement cost for each progress token on the main quest.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 17,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Escape from Umbar",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/b4543d6e-168b-4ac6-ae65-022e13ce4098.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 17,
+          "quantity": 2,
+          "octgnid": "b4543d6e-168b-4ac6-ae65-022e13ce4098",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4543d6e-168b-4ac6-ae65-022e13ce4098.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "name": "Enfeebled",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls. Until the end of the combat phase, exhausted characters cannot ready.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 47,
+      "quantity": 2,
+      "shadow": "Shadow: Until the end of the round, defending character cannot ready.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.1",
+      "name": "Escape from Umbar (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+        "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+        "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+        "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+        "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+        "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+        "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+        "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+        "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+        "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+        "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+        "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+        "octgn:37f205e5-5144-4987-8764-46909460797b",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+        "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1"
+      ],
+      "cards": [
+        {
+          "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37f205e5-5144-4987-8764-46909460797b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712": 1,
+          "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5": 1,
+          "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098": 1,
+          "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba": 2,
+          "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279": 1,
+          "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b": 1,
+          "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e": 1,
+          "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a": 1,
+          "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9": 1,
+          "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750": 2,
+          "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b": 3,
+          "octgn:37f205e5-5144-4987-8764-46909460797b": 2,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 2,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 1,
+          "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1": 4
+        },
+        "sharedStagingArea": {
+          "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb": 1,
+          "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5": 1,
+          "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098": 1,
+          "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba": 1,
+          "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279": 1,
+          "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.1",
+      "name": "Escape from Umbar",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+        "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+        "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+        "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+        "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+        "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+        "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+        "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+        "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+        "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+        "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+        "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+        "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+        "octgn:37f205e5-5144-4987-8764-46909460797b",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb"
+      ],
+      "cards": [
+        {
+          "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37f205e5-5144-4987-8764-46909460797b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712": 1,
+          "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5": 1,
+          "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1": 4,
+          "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098": 1,
+          "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba": 2,
+          "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279": 1,
+          "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b": 1,
+          "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e": 1,
+          "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a": 1,
+          "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9": 1,
+          "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750": 3,
+          "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b": 4,
+          "octgn:37f205e5-5144-4987-8764-46909460797b": 3,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 3,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 2
+        },
+        "sharedStagingArea": {
+          "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb": 1,
+          "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5": 1,
+          "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098": 1,
+          "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba": 1,
+          "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279": 1,
+          "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg",
+      "localPath": "/cards/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg",
+      "bytes": 148139,
+      "sha256": "667f58b26b585d7a38efead4b464bb12a34f0cd18716d93119db55085b6baa9c"
+    },
+    {
+      "code": "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e58ae5a-0670-4c00-836a-3bef017bf279.jpg",
+      "localPath": "/cards/0e58ae5a-0670-4c00-836a-3bef017bf279.jpg",
+      "bytes": 142926,
+      "sha256": "d3ba8102f1e44e4d25505e183604eb6d1d207e3782e09463f388f6421e764889"
+    },
+    {
+      "code": "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1dab3395-7a34-4b66-aa7f-7834045a7eba.jpg",
+      "localPath": "/cards/1dab3395-7a34-4b66-aa7f-7834045a7eba.jpg",
+      "bytes": 150562,
+      "sha256": "7ed189277f53e62e585663d6cc9822b3adc8809419099fce4137e31efe4858ae"
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "localPath": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "bytes": 139224,
+      "sha256": "ea69525ad394619f838f20418fde0071b2615f178bbe1afb1f760d28db7beac4"
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "localPath": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "bytes": 151450,
+      "sha256": "9198d9d8e5d71b389d4f9a171738982aee84743a7e29e59d2f9f23c5fc142e3c"
+    },
+    {
+      "code": "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/321abaed-0b0c-465b-9f2a-bb9796e6b8c5.jpg",
+      "localPath": "/cards/321abaed-0b0c-465b-9f2a-bb9796e6b8c5.jpg",
+      "bytes": 147423,
+      "sha256": "c61b8b007b845dc00f2ae96622f2142085f6eea94deadec04b0f9e4221b5b4c9"
+    },
+    {
+      "code": "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/35787b76-d4d5-4bff-bc05-a270b6e4d98e.jpg",
+      "localPath": "/cards/35787b76-d4d5-4bff-bc05-a270b6e4d98e.jpg",
+      "bytes": 153024,
+      "sha256": "69b2051837a1cbc52952c76979ff2681d9efd840ccd3fe10007ba865b7a25fc9"
+    },
+    {
+      "code": "octgn:37f205e5-5144-4987-8764-46909460797b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37f205e5-5144-4987-8764-46909460797b.jpg",
+      "localPath": "/cards/37f205e5-5144-4987-8764-46909460797b.jpg",
+      "bytes": 145930,
+      "sha256": "7feabce5b8c1173f1fe73873864e7ffb2c25d11a001381859a9da987c6a2dd7e"
+    },
+    {
+      "code": "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42621898-ffe0-435a-a0c2-34ed4383eadb.jpg",
+      "localPath": "/cards/42621898-ffe0-435a-a0c2-34ed4383eadb.jpg",
+      "bytes": 152692,
+      "sha256": "b056bd8bd82b906d6c683c0e7b8ad47aaf137f32da92dd52e876f226a152242a"
+    },
+    {
+      "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg",
+      "localPath": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.jpg",
+      "bytes": 136829,
+      "sha256": "04ca1f556e0af6d8e5084deaa0db80e6e20c6d3e55bd562df2f80c1c49d7a839"
+    },
+    {
+      "code": "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.B.jpg",
+      "localPath": "/cards/44d3c25c-e3ef-4ff0-a16a-8a75937bfffe.B.jpg",
+      "bytes": 144790,
+      "sha256": "481ddc4048600e82e23c342669a708fa3245816e55736e313b5c455f717ddd81"
+    },
+    {
+      "code": "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg",
+      "localPath": "/cards/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg",
+      "bytes": 148973,
+      "sha256": "880086f21a3ef19b2d284311609f41346af197c8e9ef082451acd04ca950feb6"
+    },
+    {
+      "code": "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg",
+      "localPath": "/cards/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg",
+      "bytes": 140621,
+      "sha256": "2b49fcecea803a03aab5fa0816254aa01814c6d9d3abe0380029343bdcf38e79"
+    },
+    {
+      "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg",
+      "localPath": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.jpg",
+      "bytes": 148903,
+      "sha256": "5c1d6b90c585dd15ede06764a1375adb8d5446dbdac12d659bab8792a4f7f133"
+    },
+    {
+      "code": "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63b0498f-9180-4e62-83c1-b9aa29f24712.B.jpg",
+      "localPath": "/cards/63b0498f-9180-4e62-83c1-b9aa29f24712.B.jpg",
+      "bytes": 152350,
+      "sha256": "700293c2e45f3e5c713c15b6be13330846ccf9779eeda7f0496af02048c706ce"
+    },
+    {
+      "code": "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg",
+      "localPath": "/cards/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg",
+      "bytes": 141100,
+      "sha256": "a6af8dd1a9e5f698b696b633cbf17ae37d11d9986c233658455705afb507e0fb"
+    },
+    {
+      "code": "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a5671ee-27e0-4d04-95e3-77fe26a8a88b.jpg",
+      "localPath": "/cards/7a5671ee-27e0-4d04-95e3-77fe26a8a88b.jpg",
+      "bytes": 149075,
+      "sha256": "1d63d414854376388ac1c48c82c3974f34e9cac72f24761d04b938b98cbd3bbc"
+    },
+    {
+      "code": "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a34ffb4e-c821-42aa-8dab-2914d274b3b1.jpg",
+      "localPath": "/cards/a34ffb4e-c821-42aa-8dab-2914d274b3b1.jpg",
+      "bytes": 153386,
+      "sha256": "fc7458f4a54603e798514b81742b4f1bb335adb106283f6ff04e81630f4c7c73"
+    },
+    {
+      "code": "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4543d6e-168b-4ac6-ae65-022e13ce4098.jpg",
+      "localPath": "/cards/b4543d6e-168b-4ac6-ae65-022e13ce4098.jpg",
+      "bytes": 141783,
+      "sha256": "9fba4884d428c992b0909a6b75600133524b973d1b5e2ffc6fff8d4629bb65c5"
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "localPath": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "bytes": 149285,
+      "sha256": "38569d185c6fd83b214a0dff1c068143a9cf02b11a85e3427c6bf89cb65c2fc4"
+    }
+  ]
+}

@@ -211,6 +211,9 @@ export type ScenarioId =
   | "the-drowned-ruins"
   | "a-storm-on-cobas-haven"
   | "the-city-of-corsairs"
+  | "escape-from-umbar"
+  | "desert-crossing"
+  | "the-long-arm-of-mordor"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -340,6 +343,9 @@ export interface GameState {
   drowned?: import("./drowned-support").DrownedState;
   cobas?: import("./cobas-support").CobasState;
   city?: import("./city-support").CityState;
+  umbar?: import("./escape-umbar-support").EscapeUmbarState;
+  desertCrossing?: import("./desert-crossing-support").DesertCrossingState;
+  mordor?: import("./long-arm-mordor-support").MordorState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -519,6 +525,12 @@ export interface GameState {
     voyageCharacterKilled?: boolean;
     voyageShipDamaged?: boolean;
     raidKilledCharacter?: boolean;
+    mordorSavageShadows?: number;
+    mordorAdditionalAttacks?: number;
+    mordorDestroyedCharacter?: boolean;
+    desertPoisonShadow?: boolean;
+    umbarKilled?: number;
+    umbarInjuredShadows?: number;
     /** Printed Depths shadows continue only after this physical enemy attack. */
     depthsAfterAttack?: Effect[];
     raidFiresOnKill?: number;

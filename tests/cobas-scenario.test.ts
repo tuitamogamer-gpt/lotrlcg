@@ -82,6 +82,19 @@ const finish = (s: GameState) => {
   flush(s);
   return settle(s);
 };
+test("Tower of the Gull's encounter-card action damages an immune Skirmisher after a pending-choice reload", () => {
+  let s = base();
+  s.phase = "attack";
+  const tower = add(s, C.gull),
+    enemy = add(s, C.skirmisher);
+  s = applyAction(reload(s), { type: "ABILITY", id: tower.id });
+  assert.ok(s.choice?.options.some((o) => o.id === enemy.id));
+  s = choose(reload(s), enemy.id);
+  s = finish(s);
+  assert.equal(s.staging.find((u) => u.id === tower.id)!.exhausted, true);
+  assert.equal(s.staging.find((u) => u.id === enemy.id)!.damage, 2);
+  assert.equal(s.playerAbilitySources, undefined);
+});
 const pick = (s: GameState, id: string) => {
   const o = s.choice!.options.find(
     (o) => o.id === id || o.effects.some((e) => e.target === id),

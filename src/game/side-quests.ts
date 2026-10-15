@@ -1,3 +1,9 @@
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import {
+  haradPlayerQuestDefeated,
+  haradPlayerSideQuestToDiscard,
+} from "./harad-player";
 import { dikeSideDefeated } from "./deadmens-dike";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
@@ -113,8 +119,9 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;
   if (isMain && gramProgress(s, placed)) return;
-  if (isMain) s.progress += placed;
-  else physical.progress += placed;
+  if (isMain) {
+    if (!Umbar.umbarProgress(s, placed)) s.progress += placed;
+  } else physical.progress += placed;
   ettenProgressPlaced(s, physical, placed);
   carnAfterQuestProgress(s, physical, placed);
   if (!isMain) defeatSideQuest(s, physical);
@@ -130,6 +137,7 @@ export function checkSideQuestDefeats(s: GameState) {
     defeatSideQuest(s, quest);
 }
 function defeatSideQuest(s: GameState, quest: Unit) {
+  if (Umbar.umbarSideDefeatBlocked(s, quest)) return;
   const goal = sideQuestGoal(s, quest);
   if (quest.progress < goal) return;
   const selected = selectedSideQuest(s);
@@ -145,8 +153,10 @@ function defeatSideQuest(s: GameState, quest: Unit) {
     );
   } else {
     s.staging = s.staging.filter((u) => u.id !== quest.id);
-    addVictoryCard(s, quest.code);
-    log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
+    if (!haradPlayerSideQuestToDiscard(s, quest)) {
+      addVictoryCard(s, quest.code);
+      log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
+    }
   }
   if (quest.code === "09014" && !quest.blanked)
     prepend(
@@ -157,6 +167,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
       }),
     );
   collectorQuestDefeated(s, originalCode, attachments);
+  haradPlayerQuestDefeated(s, originalCode, attachments);
   chetwoodSideDefeated(s, original);
   weatherSideDefeated(s, original);
   dikeSideDefeated(s, original);
@@ -164,6 +175,8 @@ function defeatSideQuest(s: GameState, quest: Unit) {
   carnSideDefeated(s, original);
   dreadSideDefeated(s, original);
   angmarSideDefeated(s, original);
+  Umbar.umbarSideDefeated(s, original);
+  Desert.desertCrossingSideDefeated(s, original);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);

@@ -2,6 +2,8 @@
 
 ## Included
 
+- **The Sands of Harad, original deluxe:** all thirteen player designs and three standard/easy quests for 1–4 players: Escape from Umbar, Desert Crossing and The Long Arm of Mordor. Pursuit, temperature, physical captured heroes, objective-hero control and rescue, encounter/shadow effects and saved choices are integrated. Greenwood Archer and Mirkwood Long-knife reuse existing registrations. See [sources](HARAD-SOURCES.md), [rules](HARAD-RULES.md), [player rules](HARAD-PLAYER-SCRIPTS.md) and [verification](HARAD.md).
+
 - **The City of Corsairs, original Adventure Pack:** all nine player designs and the standard/easy quest for 1–4 players, completing the Dream-chaser cycle. Fleet preparation, Sailing, both routes to Umbar, the physical sea-to-land deck transition, Raider resource effects, event-specific immunity, Sahír's additional attacks and final destruction victory are integrated. Knight of the White Tower reuses its existing registration. See [printed sources](CITY-SOURCES.md), [rules](CITY-RULES.md), [player rules](CITY-PLAYER-SCRIPTS.md) and [verification](CITY.md).
 
 - **The Thing in the Depths, original Adventure Pack:** all nine player designs and the standard/easy quest for 1–4 players. Physical facedown Grapple attachments, two-sided Captains, the reserved beast deck, encounter-set removal, stage-three active-location replacement, Ship threat loss and encounter-source damage to the boss are integrated. See [printed sources](DEPTHS-SOURCES.md), [rules](DEPTHS-RULES.md) and [verification](DEPTHS.md).

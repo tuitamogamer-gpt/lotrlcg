@@ -1,3 +1,8 @@
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import * as Mordor from "./long-arm-mordor";
+import * as HaradPlayers from "./harad-player";
+import * as HaradResponses from "./harad-player-responses";
 import * as City from "./city";
 import * as CityHoldLine from "./city-hold-line";
 import * as CityPlayers from "./city-player";
@@ -552,6 +557,11 @@ export function handle(s: GameState, e: Effect) {
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
+  if (HaradResponses.handleHaradResponseEffect(s, e)) return;
+  if (Umbar.umbarEffect(s, e)) return;
+  if (Desert.desertCrossingEffect(s, e)) return;
+  if (Mordor.mordorEffect(s, e)) return;
   if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
   if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
@@ -696,7 +706,14 @@ function handleEffect(s: GameState, e: Effect) {
       Dike.dikePlayerTriggered(s, e.player ?? activeSeat(s));
       break;
     case "allyEntryResponses":
-      if (u) allyEntryResponses(s, u, !!e.flag, !!e.value);
+      if (u)
+        allyEntryResponses(
+          s,
+          u,
+          !!e.flag,
+          !!e.value,
+          e.text === "desert-resolved",
+        );
       break;
     case "eventFinish":
       finishPlayedEvent(s, e.target!);
@@ -753,7 +770,8 @@ function handleEffect(s: GameState, e: Effect) {
         u.revealedShadowCount = 0;
         delete u.shadowCancelsDamage;
         delete u.shadowCancelsCombatDamage;
-        const code = encounterDraw(s, true);
+        const code =
+          e.text === "desert-no-shadow" ? undefined : encounterDraw(s, true);
         if (code) {
           u.shadows.push(code);
           heirsShadowDealt(s, u);
@@ -825,6 +843,7 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "startPlanning":
       startPhase(s, "planning");
+      prepend(s, ...Mordor.mordorPlanningBegin(s));
       break;
     case "freeHandPlay":
       choose(s, "Play a card from your hand at no cost", [
@@ -1177,6 +1196,17 @@ function handleEffect(s: GameState, e: Effect) {
         Depths.depthsTravelEntered(s, u, !e.flag);
         Cobas.cobasTravelEntered(s, u, !e.flag || e.text === "strider-replace");
         City.cityTravelEntered(s, u, !e.flag || e.text === "strider-replace");
+        Umbar.umbarTravelEntered(s, u, !e.flag || e.text === "strider-replace");
+        Desert.desertCrossingTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
+        Mordor.mordorTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1431,6 +1461,9 @@ function handleEffect(s: GameState, e: Effect) {
             Dread.dreadEncounter(s, e.code, true) ||
             Cobas.cobasEncounter(s, e.code, true) ||
             City.cityEncounter(s, e.code, true) ||
+            Umbar.umbarEncounter(s, e.code, true) ||
+            Desert.desertCrossingEncounter(s, e.code, true) ||
+            Mordor.mordorEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -1713,6 +1746,7 @@ function handleEffect(s: GameState, e: Effect) {
         eachSeat(s, () => orcGuard(s));
       if (s.scenarioId === "hunt-for-gollum" && s.stage === 2)
         prepend(s, fx("huntLook", { count: 2, player: firstPlayer(s) }));
+      Umbar.umbarQuestStart(s);
       Chetwood.chetwoodQuestStart(s);
       Weather.weatherQuestStart(s);
       Rhudaur.rhudaurQuestStart(s);
@@ -1777,6 +1811,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (u) returnAlly(s, u, true);
       break;
     case "endCombat":
+      Umbar.umbarCombatEnd(s);
       MorgulQuest.morgulCombatEnd(s);
       eachArea(s, () => {
         for (const enemy of [
@@ -1877,6 +1912,9 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Raid.raidRoundEnd(s));
         forced.push(...Storm.stormcallerRoundEnd(s));
         forced.push(...City.cityRoundEnd(s));
+        forced.push(...Umbar.umbarRoundEnd(s));
+        forced.push(...Desert.desertCrossingRoundEnd(s));
+        forced.push(...Mordor.mordorRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
@@ -2089,6 +2127,13 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "startCombat":
+      if (e.text !== "mordor-encounter-end") {
+        const forced = Mordor.mordorEncounterEnd(s);
+        if (forced.length) {
+          prepend(s, ...forced, { ...e, text: "mordor-encounter-end" });
+          break;
+        }
+      }
       startPhase(s, "defense");
       if (!e.flag && returnMirkwoodCombatStart(s)) break;
       prepend(
@@ -2220,7 +2265,8 @@ function handleEffect(s: GameState, e: Effect) {
         stats(s, enemy).attack +
         c.attackBonus +
         khazadAttackBonus(s, enemy, !defenders.length) +
-        Depths.depthsAttackBonus(s, enemy, defenders);
+        Depths.depthsAttackBonus(s, enemy, defenders) +
+        Mordor.mordorAttackBonus(s, enemy, defenders);
       const redirected = amonPlayerEnemyAttackTarget(s, enemy);
       if (redirected !== undefined) {
         c.redirectedToEnemy = true;
@@ -2286,9 +2332,11 @@ function handleEffect(s: GameState, e: Effect) {
             isShipEnemy(enemy)
               ? shipUndefendedTargets(s, enemy)
               : [
-                  ...s.heroes,
-                  ...druadanPlayerUndefendedTargets(s),
-                  ...finalRingUndefendedTargets(s),
+                  ...(Mordor.mordorUndefendedTargets(s) ?? [
+                    ...s.heroes,
+                    ...druadanPlayerUndefendedTargets(s),
+                    ...finalRingUndefendedTargets(s),
+                  ]),
                 ],
             (h) => [
               fx("combatDamage", {
@@ -2334,6 +2382,7 @@ function handleEffect(s: GameState, e: Effect) {
             ...CityHoldLine.cityHoldLineAttackFinished(s, completed, true),
           );
         if (completed) City.cityAttackFinished(s, completed, true);
+        if (completed) Umbar.umbarAttackFinished(s, completed, true);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
           immediate &&
@@ -2461,6 +2510,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed)
         prepend(s, ...CityHoldLine.cityHoldLineAttackFinished(s, completed));
       if (completed) City.cityAttackFinished(s, completed);
+      if (completed) Umbar.umbarAttackFinished(s, completed);
+      if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -2663,6 +2714,9 @@ export function flush(s: GameState) {
       ].includes(effect.kind) ||
       Cobas.cobasSharedEffect(effect) ||
       City.citySharedEffect(effect) ||
+      Umbar.umbarSharedEffect(effect) ||
+      Desert.desertCrossingSharedEffect(effect) ||
+      Mordor.mordorSharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

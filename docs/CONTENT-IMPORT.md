@@ -97,7 +97,7 @@ All card identities, pack membership, required source fields, record quantities,
 
 ## Automation boundary
 
-Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 54 original standard/easy adventures and 562 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller, The Thing in the Depths, Temple of the Deceived, The Drowned Ruins, A Storm on Cobas Haven and The City of Corsairs. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
+Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 57 original standard/easy adventures and 573 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller, The Thing in the Depths, Temple of the Deceived, The Drowned Ruins, A Storm on Cobas Haven, The City of Corsairs and The Sands of Harad. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
 
 The importer writes:
 
@@ -136,3 +136,5 @@ condition and the easy-mode Slave Ship quantity. The original gameplay inventory
 is 71 standard or 52 easy cards/references before setup decisions, excluding
 the rulesheet proxy. All nine original player scans are cached; Knight of the
 White Tower reuses its previous registration. See [City sources](CITY-SOURCES.md).
+
+The Sands of Harad retains three immutable Q07.1–Q07.3/E07.1–E07.3 preparation snapshots. Runtime recipes correct original printed quantities and easy-mode removals without changing the reference catalog. All 61 scenario identities, 70 scenario faces and thirteen player scans are local and pinned. Original components total 112 encounter cards, nine quest cards and 35 player cards. See [source pins and corrections](HARAD-SOURCES.md) and [implementation evidence](HARAD.md).

@@ -1,5 +1,7 @@
 import { cobasCanAttackEnemy } from "./cobas";
 import * as Drowned from "./drowned";
+import * as Mordor from "./long-arm-mordor";
+import * as Desert from "./desert-crossing";
 import { voyageCanAttackEnemy } from "./voyage-belegaer";
 import { fateLoseRanged } from "./fate-numenor";
 import { shipCanAttack, shipCanDefend } from "./ships";
@@ -226,7 +228,7 @@ export function attachmentController(s: GameState, host: Unit, a: Attachment) {
   return card(a.code).sphere_code === "encounter" &&
     card(a.code).type_code !== "objective"
     ? null
-    : ["hero", "ally", "objective-ally", "ship-objective"].includes(
+    : ["hero", "objective-hero", "ally", "objective-ally", "ship-objective"].includes(
           card(host.code).type_code,
         )
       ? ownerOf(s, host)
@@ -288,6 +290,7 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
           ettenCanDefend(s, enemy, u) &&
           heirsCanDefend(s, enemy, u) &&
           druadanForestCanDefend(s, enemy, u))) &&
+      (!enemy || (Mordor.mordorCanDefend(s, enemy, u) && !Desert.desertCrossingCannotDefend(s, enemy))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );

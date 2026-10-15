@@ -19,6 +19,12 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "escape-from-umbar": { lead: "Escape from", em: "Umbar." },
+  "desert-crossing": { lead: "Cross", em: "the desert of Harad." },
+  "the-long-arm-of-mordor": {
+    lead: "Rescue the heroes",
+    em: "from Mordor's grasp.",
+  },
   "the-drowned-ruins": { lead: "Dive into", em: "the drowned ruins." },
   "a-storm-on-cobas-haven": { lead: "Break through", em: "the Corsair fleet." },
   "the-city-of-corsairs": {

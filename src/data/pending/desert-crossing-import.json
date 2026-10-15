@@ -1,0 +1,1265 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Desert Crossing",
+  "slug": "desert-crossing",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec55_rules_webready.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+      "octgnid": "11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+      "name": "Were-worm",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "X is the tens digit of the temperature.Forced: After Were-worm engages you, it makes an immediate attack. (Do not deal it a shadow card.)",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 23,
+      "quantity": 4,
+      "threat": 0,
+      "health": 5,
+      "engagement": 22,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the temperature is 40 or higher).",
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "X",
+        "defense": "X",
+        "health": "5",
+        "engagement": "22"
+      },
+      "imagesrc": "/cards/11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 23,
+          "quantity": 4,
+          "octgnid": "11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "name": "Desert Oasis",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While Desert Oasis is the active location, it gains: \"Response: When Desert Oasis is explored, heal 4 damage from among characters in play.\"Forced: After Desert Oasis becomes the active location, each player exhausts a character he controls.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 50,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+      "octgnid": "2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+      "name": "Mirage",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Discard the active location. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until a location is discarded. Make that location the active location.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 28,
+      "quantity": 2,
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {},
+      "imagesrc": "/cards/2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+      "octgnid": "365efac0-2631-483c-91ce-19da7585bd1a",
+      "name": "Unbearable Heat",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player assigns X damage among characters he controls, where X is the tens digit of the temperature.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 29,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the tens digit of the temperature.",
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {},
+      "imagesrc": "/cards/365efac0-2631-483c-91ce-19da7585bd1a.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 29,
+          "quantity": 2,
+          "octgnid": "365efac0-2631-483c-91ce-19da7585bd1a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/365efac0-2631-483c-91ce-19da7585bd1a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+      "octgnid": "36905f8f-3807-432b-bd0f-892c97504afd",
+      "name": "Under the Merciless Sun",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Increase the temperature by 2. Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 69,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Desert Crossing",
+      "side": "A",
+      "back_name": "Under the Merciless Sun",
+      "back_text": "If you cannot make it across the desert soon, you are certain to die of thrist...Forced: At the end of the round, increase the temperature by 4. Then, each player assigns X damage among characters he controls, where X is the tens digit of the temperature.If the temperature is 60 or higher, the players lose the game.",
+      "back_type_code": "quest",
+      "back_quest": 14,
+      "back_imagesrc": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "36905f8f-3807-432b-bd0f-892c97504afd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36905f8f-3807-432b-bd0f-892c97504afd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "name": "Towering Dunes",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While Towering Dunes is in the staging area, progress cannot be placed on locations in the staging area not named Towering Dunes.Forced: After Towering Dunes becomes the active location, reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 49,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 49,
+          "quantity": 3,
+          "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "name": "Craft Remedy",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Treat the printed text box of each damaged character as if it were blank (except for Traits). Response: When this is defeated, heal 1 damage from each character in play. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 53,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "name": "Giant Scorpion",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Giant Scorpion damages a character, that character cannot ready until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 55,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 33,
+      "shadow": "Shadow: If this attack deals damage, the defending character cannot ready until the end of the round.",
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 55,
+          "quantity": 3,
+          "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+      "octgnid": "6cb224c2-d164-484e-b20d-fede3dd640d5",
+      "name": "Beasts of Legend",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Increase the temperature by 2. Each player searches the encounter deck, discard pile, and victory display for a Were-worm and adds it to the staging area, if able. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 70,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Desert Crossing",
+      "side": "A",
+      "back_name": "Beasts of Legend",
+      "back_text": "During the quest phase, add X [threat] to the total [threat] in the staging area, where X is the tens digit of the temperature.Forced: At the end of the round, increase the temperature by 4. While at least 1 Were-worm is in play, the players cannot defeat this stage. If the players defeat this stage, they win the game. If the temperature is 60 or higher, the players lose the game.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_imagesrc": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "6cb224c2-d164-484e-b20d-fede3dd640d5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "name": "Heat Exhaustion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to that character.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 52,
+      "quantity": 2,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Desert Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+      "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+      "name": "Sandstorm",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player either discards his hand, or assigns X damage among characters he controls. X is the number of cards in his hand.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 51,
+      "quantity": 2,
+      "shadow": "Shadow: Either discard the highest cost attachment you control, or assign X damage among characters you control where X is the number of attachments you control.",
+      "encounter_set": "Desert Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6def55a1-ee80-4570-831b-d591e6effc11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:81de0a94-a871-42af-8497-d66b900c9620",
+      "octgnid": "81de0a94-a871-42af-8497-d66b900c9620",
+      "name": "Burnt Sands",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While the temperature is 40 or higher, Burnt Sands gets +2 [threat].Forced: After Burnt Sands becomes the active location, increase the temperature by 2.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 25,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/81de0a94-a871-42af-8497-d66b900c9620.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 25,
+          "quantity": 4,
+          "octgnid": "81de0a94-a871-42af-8497-d66b900c9620",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81de0a94-a871-42af-8497-d66b900c9620.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+      "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+      "name": "Find Water",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Characters cannot be readied by player card effects. Response: When this stage is defeated, each player readies 1 hero he controls. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 48,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84877af6-0720-4ef8-802b-69b792c32e15.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+      "octgnid": "8b083bb8-0ada-484a-9f83-6c8f431170b5",
+      "name": "Carrion Bird",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Carrion Bird gets -1 engagement cost for each damaged character in play.Forced: After Carrion Bird engages you, discard a damaged character you control.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 24,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 40,
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/8b083bb8-0ada-484a-9f83-6c8f431170b5.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "8b083bb8-0ada-484a-9f83-6c8f431170b5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b083bb8-0ada-484a-9f83-6c8f431170b5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "name": "Sand Viper",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Players cannot declare defenders against Sand Viper.Forced: After the players travel to a location, Sand Viper engages the first player.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 54,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "engagement": 44,
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "1",
+        "defense": "1",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 54,
+          "quantity": 2,
+          "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+      "octgnid": "b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+      "name": "The Desert of Harad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Each player searches the encounter deck for a copy of Burnt Sands and adds it to the staging area. Shuffle the encounter deck. Place the heat tracker next to the quest deck and set the temperature to 10.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 68,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Desert Crossing",
+      "side": "A",
+      "back_name": "The Desert of Harad",
+      "back_text": "As the sun climbs into the sky, you can feel the rising heat begin to take its toll on you...Forced: After an ally enters play, either exhaust it, or deal 1 damage to it.Forced: At the end of the round, increase the temperature by 4. If the temperature is 60 or higher, the players lose the game.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+      "octgnid": "cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+      "name": "Seek Shade",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nForced: At the end of the round, remove X progress from the main quest. X is the tens digit of the temperature. Response: When Seek Shade is defeated, reduce the temperature by 10. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 22,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/cd974fa4-7f3a-4b46-b2d0-b99d086fe98a.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cd974fa4-7f3a-4b46-b2d0-b99d086fe98a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+      "octgnid": "df908f24-8927-42cf-a6dd-9dfc41de74c1",
+      "name": "Scorched Hamada",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "X is the tens digit of the temperature.Forced: After Scorched Hamada becomes the active location, assign X damage among characters in play.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 26,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 4,
+      "shadow": "Shadow: Raise your threat by X, where X is the tens digit of the temperature.",
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/df908f24-8927-42cf-a6dd-9dfc41de74c1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "df908f24-8927-42cf-a6dd-9dfc41de74c1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df908f24-8927-42cf-a6dd-9dfc41de74c1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+      "octgnid": "e8d205e0-5951-403b-b36e-f992e1b9de7e",
+      "name": "Scorching Sun",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "Surge.\nWhen Revealed: Increase the temperature by 4.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 30,
+      "quantity": 2,
+      "shadow": "Shadow: Either raise the temperature by 2, or return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {},
+      "imagesrc": "/cards/e8d205e0-5951-403b-b36e-f992e1b9de7e.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 30,
+          "quantity": 2,
+          "octgnid": "e8d205e0-5951-403b-b36e-f992e1b9de7e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8d205e0-5951-403b-b36e-f992e1b9de7e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+      "octgnid": "f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+      "name": "Parched Wadi",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While Parched Wadi is in the staging area, each Creature enemy gets +1 [threat] and +1 [attack].Forced: After Parched Wadi becomes the active location, shuffle the encounter discard pile into the encounter deck and discard cards from the top until a Creature enemy is discarded. Add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 27,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Desert Crossing",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f5ba58db-76fc-497e-b0d7-0382c0b9c0c0.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5ba58db-76fc-497e-b0d7-0382c0b9c0c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.2",
+      "name": "Desert Crossing (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+        "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+        "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+        "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+        "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+        "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+        "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+        "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+        "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+        "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+        "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+        "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+        "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+        "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+        "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+        "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+        "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+        "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+        "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+        "octgn:81de0a94-a871-42af-8497-d66b900c9620"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:81de0a94-a871-42af-8497-d66b900c9620",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8": 1,
+          "octgn:36905f8f-3807-432b-bd0f-892c97504afd": 1,
+          "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a": 1,
+          "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2": 4,
+          "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5": 1,
+          "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1": 1,
+          "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0": 2,
+          "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2": 2,
+          "octgn:365efac0-2631-483c-91ce-19da7585bd1a": 1,
+          "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e": 1,
+          "octgn:84877af6-0720-4ef8-802b-69b792c32e15": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 2,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 2,
+          "octgn:6def55a1-ee80-4570-831b-d591e6effc11": 1,
+          "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f": 2,
+          "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00": 1,
+          "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0": 1,
+          "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9": 3
+        },
+        "sharedStagingArea": {
+          "octgn:81de0a94-a871-42af-8497-d66b900c9620": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.2",
+      "name": "Desert Crossing",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+        "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+        "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+        "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+        "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+        "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+        "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+        "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+        "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+        "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+        "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+        "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+        "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+        "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+        "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+        "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+        "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+        "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+        "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+        "octgn:81de0a94-a871-42af-8497-d66b900c9620"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:81de0a94-a871-42af-8497-d66b900c9620",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8": 1,
+          "octgn:36905f8f-3807-432b-bd0f-892c97504afd": 1,
+          "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a": 1,
+          "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2": 4,
+          "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5": 2,
+          "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1": 2,
+          "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0": 2,
+          "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2": 2,
+          "octgn:365efac0-2631-483c-91ce-19da7585bd1a": 2,
+          "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e": 2,
+          "octgn:84877af6-0720-4ef8-802b-69b792c32e15": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 3,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 2,
+          "octgn:6def55a1-ee80-4570-831b-d591e6effc11": 2,
+          "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f": 2,
+          "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00": 1,
+          "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0": 2,
+          "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9": 3
+        },
+        "sharedStagingArea": {
+          "octgn:81de0a94-a871-42af-8497-d66b900c9620": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2.jpg",
+      "localPath": "/cards/11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2.jpg",
+      "bytes": 149530,
+      "sha256": "258c55669073f76f04636667d7029c217f16918d85acc212769843d4ac186b42"
+    },
+    {
+      "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "localPath": "/cards/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "bytes": 146342,
+      "sha256": "5a053ce78ce42b53080bd0f3c9a20d475d0af1f126b255edd804ba1f7a300509"
+    },
+    {
+      "code": "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2.jpg",
+      "localPath": "/cards/2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2.jpg",
+      "bytes": 137399,
+      "sha256": "c585a80518c9fab42701f762efef5a75b6933fe36ec2b218d2d6e87989d39216"
+    },
+    {
+      "code": "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/365efac0-2631-483c-91ce-19da7585bd1a.jpg",
+      "localPath": "/cards/365efac0-2631-483c-91ce-19da7585bd1a.jpg",
+      "bytes": 128477,
+      "sha256": "1a419ec8224adb1a321a123ee245243aa394f2fd3fdaa598069a6179f70aecfa"
+    },
+    {
+      "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36905f8f-3807-432b-bd0f-892c97504afd.jpg",
+      "localPath": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.jpg",
+      "bytes": 124931,
+      "sha256": "91e3395cf6119f8c94df73beb50913146320386eec5e0dc5c3e9e814435b5239"
+    },
+    {
+      "code": "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36905f8f-3807-432b-bd0f-892c97504afd.B.jpg",
+      "localPath": "/cards/36905f8f-3807-432b-bd0f-892c97504afd.B.jpg",
+      "bytes": 132388,
+      "sha256": "e74feeac31a5759447e45139247052cb7ebb5c778fa5b35dab317130d39a952d"
+    },
+    {
+      "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "localPath": "/cards/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "bytes": 130842,
+      "sha256": "fb7bbf255b027645259e5037256b4ba3227cf296bc4188ef41bc351cdeca197d"
+    },
+    {
+      "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "localPath": "/cards/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "bytes": 135536,
+      "sha256": "04b6f195a339ba9f424c162652a04ce818714362e6e2a3f1a68c821971dfe6bc"
+    },
+    {
+      "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "localPath": "/cards/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "bytes": 153858,
+      "sha256": "30dfe1aa0036a92d5ece9f7d8a091a2769f274a8ac7c30267ea0d091921c4483"
+    },
+    {
+      "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg",
+      "localPath": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.jpg",
+      "bytes": 144680,
+      "sha256": "55170c018a9efd685448ac2ffa0e722256e76889e17ff032662417124d8e69c9"
+    },
+    {
+      "code": "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cb224c2-d164-484e-b20d-fede3dd640d5.B.jpg",
+      "localPath": "/cards/6cb224c2-d164-484e-b20d-fede3dd640d5.B.jpg",
+      "bytes": 152470,
+      "sha256": "72bf2995bf3a30daca05e5e997404173e9bd814cf9589bede202f4e6faabc0cd"
+    },
+    {
+      "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "localPath": "/cards/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "bytes": 125472,
+      "sha256": "61d1edfe3cd986ebcafa9f1cba5c13d0a7e4fb1cfda7c757db5b76c235ad482c"
+    },
+    {
+      "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "localPath": "/cards/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "bytes": 147078,
+      "sha256": "e5b8241b0abf9597f99b33ee5d3014733247d9478ff0411c50a71e3b28b87996"
+    },
+    {
+      "code": "octgn:81de0a94-a871-42af-8497-d66b900c9620",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81de0a94-a871-42af-8497-d66b900c9620.jpg",
+      "localPath": "/cards/81de0a94-a871-42af-8497-d66b900c9620.jpg",
+      "bytes": 130084,
+      "sha256": "3d44dab20c4083ae0fe0d502aeb5981007d7f8bf1811064ed1671c919f5bfd75"
+    },
+    {
+      "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "localPath": "/cards/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "bytes": 133007,
+      "sha256": "8387843a0dcf1eb8848cd645b4124cc6351c7bb360e5549af358e76bad15dfb6"
+    },
+    {
+      "code": "octgn:8b083bb8-0ada-484a-9f83-6c8f431170b5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8b083bb8-0ada-484a-9f83-6c8f431170b5.jpg",
+      "localPath": "/cards/8b083bb8-0ada-484a-9f83-6c8f431170b5.jpg",
+      "bytes": 147194,
+      "sha256": "2c5d0150217c0c0c477d7bb3bd95ee8fcc4f34b2332928f6e29d97838e8adf0a"
+    },
+    {
+      "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "localPath": "/cards/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "bytes": 148343,
+      "sha256": "63e1305bedda6d4f1a906688a676feb2a811e6d5c747c8f9d45f103bf7f7536f"
+    },
+    {
+      "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg",
+      "localPath": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.jpg",
+      "bytes": 123786,
+      "sha256": "68caa075abb147cb22742e9ec77cd97ce79b2065df9b9909ffe7c4dcec517c70"
+    },
+    {
+      "code": "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.B.jpg",
+      "localPath": "/cards/b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8.B.jpg",
+      "bytes": 123998,
+      "sha256": "26efbc7947c27fe6fe1a1317109c6aeb5f2434a5e2e8fc86e9ebd0268f34265a"
+    },
+    {
+      "code": "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cd974fa4-7f3a-4b46-b2d0-b99d086fe98a.jpg",
+      "localPath": "/cards/cd974fa4-7f3a-4b46-b2d0-b99d086fe98a.jpg",
+      "bytes": 125687,
+      "sha256": "4902155c19e673390b87709810922e36a12acf3e36f033430748f83bcac422cf"
+    },
+    {
+      "code": "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df908f24-8927-42cf-a6dd-9dfc41de74c1.jpg",
+      "localPath": "/cards/df908f24-8927-42cf-a6dd-9dfc41de74c1.jpg",
+      "bytes": 148601,
+      "sha256": "2399e34ea13e6bbeba759c96c166b70bd7d69274ada8bdebb2e54a26753f9bae"
+    },
+    {
+      "code": "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8d205e0-5951-403b-b36e-f992e1b9de7e.jpg",
+      "localPath": "/cards/e8d205e0-5951-403b-b36e-f992e1b9de7e.jpg",
+      "bytes": 136476,
+      "sha256": "0ad8480497dd479cdfa5b9e8b512c815b8492829db37f7fc393fec864ae2b462"
+    },
+    {
+      "code": "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5ba58db-76fc-497e-b0d7-0382c0b9c0c0.jpg",
+      "localPath": "/cards/f5ba58db-76fc-497e-b0d7-0382c0b9c0c0.jpg",
+      "bytes": 157445,
+      "sha256": "1a7194bce10eb24c02cc3033d731f5b1f8d87f0e989e57f710d431cf5da00659"
+    }
+  ]
+}

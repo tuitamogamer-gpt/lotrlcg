@@ -16,6 +16,8 @@ import { DrownedScenarioState } from "./ui/drowned-state";
 import { CobasScenarioState } from "./ui/cobas-state";
 import { CityScenarioState } from "./ui/city-state";
 import { CITY_QUESTS } from "./game/city-scenario-data";
+import { HARAD_QUESTS } from "./game/harad-scenario-data";
+import { HaradScenarioState } from "./ui/harad-state";
 import { COBAS_OBJECTIVES } from "./game/cobas-support";
 import { TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
@@ -2740,6 +2742,7 @@ export default function App() {
             <DrownedScenarioState s={game} inspect={setDetail} />
             <CobasScenarioState s={game} inspect={setDetail} />
             <CityScenarioState s={game} inspect={setDetail} />
+            <HaradScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -3545,6 +3548,7 @@ export default function App() {
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
+                      ...HARAD_QUESTS,
                     ].find((c) => c.code === stage.cardCode);
                     const printed =
                       local ??

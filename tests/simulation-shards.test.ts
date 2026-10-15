@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 279);
+  assert.equal(baseline.registeredCases, 294);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -37,7 +37,10 @@ test("four CI simulation shards cover every registered complete-game case exactl
           !name.startsWith("Temple of the Deceived") &&
           !name.startsWith("The Drowned Ruins") &&
           !name.startsWith("A Storm on Cobas Haven") &&
-          !name.startsWith("The City of Corsairs"),
+          !name.startsWith("The City of Corsairs") &&
+          !name.startsWith("Escape from Umbar") &&
+          !name.startsWith("Desert Crossing") &&
+          !name.startsWith("The Long Arm of Mordor"),
       )
       .sort(),
     [...priorSimulationCases.cases].sort(),
@@ -108,6 +111,24 @@ test("four CI simulation shards cover every registered complete-game case exactl
     ].sort(),
     "City's original scenario and unsupported campaign registration are present exactly once",
   );
+  for (const name of [
+    "Escape from Umbar",
+    "Desert Crossing",
+    "The Long Arm of Mordor",
+  ])
+    assert.deepEqual(
+      baseline.selectedCases
+        .filter((entry: string) => entry.startsWith(name))
+        .sort(),
+      [
+        `${name} / normal: all four starter decks complete 10 seeded games each`,
+        `${name}: hidden review mode preserves complete-game rules outcomes with fewer pauses`,
+        `${name}: decisions review mode preserves complete-game rules outcomes with fewer pauses`,
+        `${name} / normal: guided confirmations preserve complete-game rules outcomes`,
+        `${name} / campaign: guided confirmations preserve complete-game rules outcomes`,
+      ].sort(),
+      `${name}: original standard and unsupported campaign registrations appear exactly once`,
+    );
   const names: string[] = [];
   for (let index = 0; index < 4; index++) {
     const result = manifest(index, 4);

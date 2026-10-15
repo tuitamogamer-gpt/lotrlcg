@@ -1,4 +1,8 @@
+import { haradPlayerNoExhaustDefense } from "./harad-player-support";
+import { haradDefendersDeclared } from "./harad-player-responses";
 import { cityPrepareAttack } from "./city";
+import * as Umbar from "./escape-umbar";
+import * as Mordor from "./long-arm-mordor";
 import * as CityHoldLine from "./city-hold-line";
 import { cityPlayerAttackBonus } from "./city-player-support";
 import * as Cobas from "./cobas";
@@ -266,6 +270,7 @@ export function playerAttack(
     ...TempleEncounters.templePlayerAttackEffects(s, enemy, ids),
     ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
     ...CobasPlayers.cobasPlayerAttackEffects(s, enemy, ids),
+    ...Mordor.mordorPlayerAttackEffects(s, enemy, ids),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -446,6 +451,7 @@ export function combatDefenderDefense(
 /** The attack actually begins once, before its declaration and response windows. */
 export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   if (enemyAttackPrevented(s, enemy, player)) return;
+  Umbar.umbarAttackStarted(s, enemy, player);
   shadowFlameEnemyAttackStart(s, enemy, player);
   stewardFearAttackStarted(s, enemy, player);
   Amon.amonDinAttackStarted(s, enemy);
@@ -607,6 +613,7 @@ export function beginEnemyAttack(
       !Antlered.antleredNoDefenseExhaust(d!) &&
       !Angmar.angmarNoCombatExhaust(s, d!) &&
       !heirsPlayerNoDefenseExhaust(s, d!) &&
+      !haradPlayerNoExhaustDefense(s, d!) &&
       !watcherPlayerNoDefenseExhaust(d!) &&
       !carrockNoExhaustDefender(enemy, d!) &&
       !pathOfNeed(s, d!)
@@ -659,6 +666,16 @@ export function beginEnemyAttack(
       defenders.filter((d): d is Unit => !!d),
     ),
     ...DrownedCompanions.drownedDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...haradDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...Mordor.mordorDefendersDeclared(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),

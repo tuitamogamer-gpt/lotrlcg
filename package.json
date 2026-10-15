@@ -87,7 +87,12 @@
     "test:city-players": "node --import tsx scripts/browser-city-players.mjs",
     "test:browser-city": "npm run test:city-quests && npm run test:city-players",
     "test:city-simulation": "node --import tsx --test tests/city-simulation.test.ts",
-    "test:city-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-city-of-corsairs normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:city-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-city-of-corsairs normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:harad-quests": "node --import tsx scripts/browser-escape-umbar.mjs && node --import tsx scripts/browser-desert-crossing.mjs && node --import tsx scripts/browser-long-arm-mordor.mjs",
+    "test:harad-players": "node --import tsx scripts/browser-harad-players.mjs",
+    "test:browser-harad": "npm run test:harad-quests && npm run test:harad-players",
+    "test:harad-simulation": "node --import tsx --test tests/harad-simulation.test.ts",
+    "test:harad-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (escape-from-umbar|desert-crossing|the-long-arm-of-mordor) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

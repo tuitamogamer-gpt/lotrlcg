@@ -1,4 +1,7 @@
 import * as Drowned from "./drowned";
+import * as Desert from "./desert-crossing";
+import * as Umbar from "./escape-umbar";
+import * as Mordor from "./long-arm-mordor";
 import { stormcallerAreaImmune } from "./stormcaller";
 import { stormcallerState } from "./stormcaller-support";
 import { trialsGrantedImmunity } from "./three-trials-support";
@@ -37,10 +40,11 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...allActiveLocations(s),
     ...(s.prisoner ? [s.prisoner] : []),
     ...(s.captiveMendor ? [s.captiveMendor] : []),
+    ...(s.mordor?.captured ?? []),
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
-    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host))
+    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host))
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
@@ -53,17 +57,18 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     }
     const normalBlanking =
       khazadBlanked(host) ||
+      Mordor.mordorBlanked(s, host) ||
       (card(host.code).type_code === "attachment" && blanked);
     const safeBlanking = ettenSideQuestBlanked(s, host);
     const coldBlanking =
       cold &&
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
-    const wrathBlanking = templePlayerBlanked(s, host);
+    const wrathBlanking = templePlayerBlanked(s, host) || Desert.desertCrossingCharacterBlanked(s, host);
     if (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
       host.blanked = true;
     else delete host.blanked;
-    if (coldBlanking && !normalBlanking) host.printedKeywordsPreserved = true;
+    if (coldBlanking && !normalBlanking && !wrathBlanking) host.printedKeywordsPreserved = true;
     else delete host.printedKeywordsPreserved;
     if (wrathBlanking && !normalBlanking && !coldBlanking && !safeBlanking)
       host.printedTraitsPreserved = true;

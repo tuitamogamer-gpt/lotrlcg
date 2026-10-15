@@ -1,5 +1,10 @@
+import * as HaradPlayers from "./harad-player";
+import { haradPlayerCardPlayed } from "./harad-player-support";
 import { playerEffectImmune } from "./player-effect-immunity";
 import * as City from "./city";
+import * as Umbar from "./escape-umbar";
+import * as Desert from "./desert-crossing";
+import * as Mordor from "./long-arm-mordor";
 import * as CityPlayers from "./city-player";
 import { cityPlayerCardPlayed } from "./city-player-support";
 import * as Cobas from "./cobas";
@@ -526,6 +531,9 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (depthsProblem) return depthsProblem;
   const cityProblem = City.cityTravelProblem(s, u);
   if (cityProblem) return cityProblem;
+  const haradProblem =
+    Umbar.umbarTravelProblem(s, u) ?? Mordor.mordorTravelProblem(s, u);
+  if (haradProblem) return haradProblem;
   const cobasProblem = Cobas.cobasTravelProblem(s, u);
   if (cobasProblem) return cobasProblem;
   const stormProblem = Storm.stormcallerTravelProblem(s, u);
@@ -611,6 +619,8 @@ export function optionalEngagementProblem(
   syncAttachmentText(s, u);
   if (City.cityCannotOptionallyEngage(s, u))
     return "Umbar Patrol prevents optional engagements this round.";
+  if (Mordor.mordorCannotOptionallyEngage(s, u))
+    return "Uruk Chieftain cannot be optionally engaged.";
   if (s.status !== "playing" || s.choice || s.flow?.pending)
     return "Resolve the current decision first.";
   if (s.table && activeSeat(s) !== s.table.turn)
@@ -755,6 +765,8 @@ export function canPlay(
   if (depthsProblem) return depthsProblem;
   const drownedPlayerProblem = DrownedPlayers.drownedPlayerPlayProblem(s, u);
   if (drownedPlayerProblem) return drownedPlayerProblem;
+  const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
+  if (haradProblem) return haradProblem;
   const cityProblem = CityPlayers.cityPlayerPlayProblem(s, u);
   if (cityProblem) return cityProblem;
   const cobasPlayerProblem = CobasPlayers.cobasPlayerPlayProblem(s, u);
@@ -1360,6 +1372,7 @@ export function resolvePlayerCard(
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
   if (played) cityPlayerCardPlayed(s, c);
+  if (played) haradPlayerCardPlayed(s, c);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
   if (
     c.type_code === "attachment" &&
@@ -1454,6 +1467,7 @@ export function handlePlayerEventAbilityEffect(
   if (!physical) return true;
   if (
     !shadowFlameEventCancelled(s) &&
+    !HaradPlayers.haradPlayerEvent(s, physical.code, e.source) &&
     !heirsPlayerEventEffect(s, physical.code, e.source) &&
     !collectorEventEffect(s, physical.code, e.source) &&
     !rohanEventEffect(s, physical.code) &&
@@ -1552,6 +1566,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
+  const haradTargets = HaradPlayers.haradPlayerPlayTargets(s, c.code);
+  if (haradTargets) return haradTargets;
   const cityTargets = CityPlayers.cityPlayerPlayTargets(s, c.code);
   if (cityTargets) return cityTargets;
   const cobasEconomyTargets = cobasEconomyPlayTargets(s, c.code);
@@ -1710,6 +1726,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
+  ["16007", "16009"].includes(u.code) ||
   u.code === "12143" ||
   u.code === "12118" ||
   u.code === "09008" ||
@@ -2408,6 +2425,9 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Dread.dreadOpeningHandsKept(s) &&
         !Cobas.cobasOpeningHandsKept(s) &&
         !City.cityOpeningHandsKept(s) &&
+        !Umbar.umbarOpeningHandsKept(s) &&
+        !Desert.desertCrossingOpeningHandsKept(s) &&
+        !Mordor.mordorOpeningHandsKept(s) &&
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
@@ -2514,6 +2534,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       const reason = canPlay(s, u);
       requireRule(!reason, reason ?? "");
       const c = card(u.code);
+      if (HaradPlayers.haradPlayerPrepareHandPlay(s, u, action)) break;
       if (StormPlayers.stormcallerGuardianPlay(s, u, action)) break;
       if (needsTarget(u))
         requireRule(
@@ -2793,6 +2814,8 @@ export function applyAction(input: GameState, action: Action): GameState {
         Depths.depthsTravelEffects(s, u) ??
         Cobas.cobasTravelEffects(s, u) ??
         City.cityTravelEffects(s, u) ??
+        Umbar.umbarTravelEffects(s, u) ??
+        Mordor.mordorTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3091,6 +3114,46 @@ export function publicState(s: GameState) {
     ...(s.drowned ? { drowned: Drowned.drownedPublicState(s) } : {}),
     ...(s.cobas ? { cobas: Cobas.cobasPublicState(s) } : {}),
     ...(s.city ? { city: City.cityPublicState(s) } : {}),
+    ...(s.umbar
+      ? {
+          umbar: {
+            initialized: s.umbar.initialized,
+            currentQuest: s.umbar.currentQuest,
+            questDeck: s.umbar.questDeck.length,
+            completedQuests: s.umbar.completedQuests,
+            underAlley: s.umbar.underAlley.map((a) => ({
+              locationId: a.locationId,
+              enemies: a.enemies.length,
+            })),
+          },
+        }
+      : {}),
+    ...(s.desertCrossing
+      ? {
+          desertCrossing: {
+            initialized: s.desertCrossing.initialized,
+            currentQuest: s.desertCrossing.currentQuest,
+            questDeck: s.desertCrossing.questDeck.length,
+            temperature: s.desertCrossing.temperature,
+            completedQuests: s.desertCrossing.completedQuests,
+            resolving: s.desertCrossing.resolving.length,
+          },
+        }
+      : {}),
+    ...(s.mordor
+      ? {
+          mordor: {
+            initialized: s.mordor.initialized,
+            currentQuest: s.mordor.currentQuest,
+            questDeck: s.mordor.questDeck.length,
+            completedQuests: s.mordor.completedQuests,
+            captured: s.mordor.captured.map(visibleUnit),
+            guarding: s.mordor.guarding,
+            setAside: s.mordor.setAside.length,
+            removed: s.mordor.removed.length,
+          },
+        }
+      : {}),
     ...(s.voyageBelegaer
       ? {
           voyageBelegaer: {
