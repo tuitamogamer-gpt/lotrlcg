@@ -33,6 +33,11 @@ import { assertTempleSaveRestoration } from "./temple-simulation-invariants";
 import { assertDrownedSaveRestoration } from "./drowned-simulation-invariants";
 import { assertCobasSaveRestoration } from "./cobas-simulation-invariants";
 import { cobasSimulationChoice } from "./cobas-simulation-policy";
+import { assertCitySaveRestoration } from "./city-simulation-invariants";
+import {
+  citySimulationChoice,
+  citySimulationAction,
+} from "./city-simulation-policy";
 import {
   drownedSimulationAction,
   drownedSimulationChoice,
@@ -51,10 +56,13 @@ export const DREAM_CHASER_SCENARIOS = [
   "temple-of-the-deceived",
   "the-drowned-ruins",
   "a-storm-on-cobas-haven",
+  "the-city-of-corsairs",
 ] as const;
 
 /** Deterministic decisions use the real mandatory Sailing choices and costs. */
 export function greyHavensSimulationChoice(s: GameState): Option | undefined {
+  const city = citySimulationChoice(s);
+  if (city) return city;
   const cobas = cobasSimulationChoice(s);
   if (cobas) return cobas;
   const drowned = drownedSimulationChoice(s);
@@ -88,6 +96,8 @@ export function greyHavensSimulationChoice(s: GameState): Option | undefined {
 }
 
 export function greyHavensSimulationAction(s: GameState): Action | undefined {
+  const city = citySimulationAction(s);
+  if (city) return city;
   const drowned = drownedSimulationAction(s);
   if (drowned) return drowned;
   const temple = templeSimulationAction(s);
@@ -218,6 +228,8 @@ export function runGreyHavensGame(
           assertDrownedSaveRestoration(savedState, restored);
         else if (scenarioId === "a-storm-on-cobas-haven")
           assertCobasSaveRestoration(savedState, restored);
+        else if (scenarioId === "the-city-of-corsairs")
+          assertCitySaveRestoration(savedState, restored);
         else assert.deepEqual(restored, savedState);
       }
       s = restored;
@@ -228,7 +240,7 @@ export function runGreyHavensGame(
         allCharacters(s).length,
       );
     } catch (error) {
-      const directory = `output/${scenarioId === "a-storm-on-cobas-haven" ? "cobas" : scenarioId === "the-drowned-ruins" ? "drowned" : scenarioId === "temple-of-the-deceived" ? "temple" : scenarioId === "the-thing-in-the-depths" ? "depths" : scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
+      const directory = `output/${scenarioId === "the-city-of-corsairs" ? "city" : scenarioId === "a-storm-on-cobas-haven" ? "cobas" : scenarioId === "the-drowned-ruins" ? "drowned" : scenarioId === "temple-of-the-deceived" ? "temple" : scenarioId === "the-thing-in-the-depths" ? "depths" : scenarioId === "flight-of-the-stormcaller" ? "stormcaller" : "grey-havens"}-simulation`;
       mkdirSync(directory, { recursive: true });
       writeFileSync(
         `${directory}/${scenarioId}-${easy ? "easy" : "normal"}-${players}-${seed}-${reviewMode ?? "immediate"}.json`,

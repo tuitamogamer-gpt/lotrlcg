@@ -4,6 +4,7 @@ import { GreyHavensQuestGoals } from "./grey-havens-state";
 import { DepthsQuestGoals } from "./depths-state";
 import { DrownedQuestGoals } from "./drowned-state";
 import { CobasQuestGoals } from "./cobas-state";
+import { CityQuestGoals } from "./city-state";
 import { depthsState } from "../game/depths-support";
 import { DIKE } from "../game/deadmens-dike-support";
 import { currentQuestProgress } from "../game/quest-state";
@@ -701,6 +702,7 @@ export function QuestGoals({ s }: { s: GameState }) {
   if (depthsState(s)) return <DepthsQuestGoals s={s} />;
   if (s.drowned) return <DrownedQuestGoals s={s} />;
   if (s.cobas) return <CobasQuestGoals s={s} />;
+  if (s.city) return <CityQuestGoals s={s} />;
   if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens || s.stormcaller)
     return <GreyHavensQuestGoals s={s} />;
   if (

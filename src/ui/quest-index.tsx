@@ -21,6 +21,10 @@ const HEADLINES: Partial<
 > = {
   "the-drowned-ruins": { lead: "Dive into", em: "the drowned ruins." },
   "a-storm-on-cobas-haven": { lead: "Break through", em: "the Corsair fleet." },
+  "the-city-of-corsairs": {
+    lead: "End the plot",
+    em: "in the streets of Umbar.",
+  },
   "temple-of-the-deceived": {
     lead: "Explore",
     em: "the temple of the deceived.",

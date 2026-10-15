@@ -210,6 +210,7 @@ export type ScenarioId =
   | "temple-of-the-deceived"
   | "the-drowned-ruins"
   | "a-storm-on-cobas-haven"
+  | "the-city-of-corsairs"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -327,6 +328,8 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  /** Innermost printed player ability; retained across choices and nested responses. */
+  playerAbilitySources?: { source: string; code: string }[];
   sailing?: import("./sailing").SailingState;
   voyageBelegaer?: import("./voyage-belegaer-support").VoyageState;
   fateNumenor?: import("./fate-numenor-support").FateNumenorState;
@@ -336,6 +339,7 @@ export interface GameState {
   temple?: import("./temple-support").TempleState;
   drowned?: import("./drowned-support").DrownedState;
   cobas?: import("./cobas-support").CobasState;
+  city?: import("./city-support").CityState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -502,6 +506,10 @@ export interface GameState {
   combat: {
     /** Ramming Speed tracks actual damage from this physical attack. */
     cobasRamming?: boolean;
+    cityHoldLine?: import("./city-hold-line").CityHoldLineAttack;
+    cityWatchShadows?: number;
+    cityBelfalasShadows?: number;
+    cityKilledAllyCosts?: number[];
     fateBottomOnAllyKill?: boolean;
     /** Each independently resolved Furious Rainstorm shadow applies on a kill. */
     templeRainOnKill?: number;

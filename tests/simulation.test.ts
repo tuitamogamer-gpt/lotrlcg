@@ -1,3 +1,7 @@
+import {
+  citySimulationObserver,
+  assertCitySaveRestoration,
+} from "./city-simulation-invariants";
 import { FANGORN } from "../src/game/fangorn-support.ts";
 import { applyAction } from "./pass-resource-window.ts";
 import {
@@ -195,7 +199,9 @@ function run(
         ? drownedSimulationObserver()
         : scenarioId === "a-storm-on-cobas-haven"
           ? cobasSimulationObserver()
-          : undefined;
+          : scenarioId === "the-city-of-corsairs"
+            ? citySimulationObserver()
+            : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -431,6 +437,8 @@ function run(
         assertDrownedSaveRestoration(savedState, restored);
       else if (scenarioId === "a-storm-on-cobas-haven")
         assertCobasSaveRestoration(savedState, restored);
+      else if (scenarioId === "the-city-of-corsairs")
+        assertCitySaveRestoration(savedState, restored);
       s = restored;
       mapObserver?.observe(s);
     }

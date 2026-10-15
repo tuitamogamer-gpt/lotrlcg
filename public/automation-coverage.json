@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 554,
-    "heroes": 63,
-    "deckCards": 490,
-    "encounterCards": 766,
-    "scenarios": 53,
+    "playerCards": 562,
+    "heroes": 64,
+    "deckCards": 497,
+    "encounterCards": 781,
+    "scenarios": 54,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -60,17 +60,18 @@
       "the-thing-in-the-depths",
       "temple-of-the-deceived",
       "the-drowned-ruins",
-      "a-storm-on-cobas-haven"
+      "a-storm-on-cobas-haven",
+      "the-city-of-corsairs"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1475,
-    "pending": 2708
+    "scripted": 1502,
+    "pending": 2681
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 106
+    "scripted": 108
   },
   "registeredCodes": [
     "01001",
@@ -629,7 +630,15 @@
     "12117",
     "12118",
     "12119",
+    "12138",
     "12139",
+    "12140",
+    "12141",
+    "12142",
+    "12143",
+    "12144",
+    "12145",
+    "12146",
     "131003",
     "131004",
     "131006",
@@ -701,8 +710,10 @@
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
+    "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+    "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
     "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
     "octgn:0700c66d-3fe6-4619-9512-edb0241e6203",
     "octgn:07067901-5306-47f0-8863-3c9cb194e1c6",
@@ -727,6 +738,7 @@
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
+    "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
@@ -747,6 +759,7 @@
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
+    "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
@@ -807,6 +820,7 @@
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
+    "octgn:2fd16de8-3286-4003-9978-574738b2a337",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
@@ -1156,6 +1170,7 @@
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
+    "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
@@ -1163,6 +1178,7 @@
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
@@ -1190,6 +1206,7 @@
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
+    "octgn:720b2482-f69c-4a88-8352-721d854704d2",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
@@ -1203,6 +1220,7 @@
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+    "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
@@ -1210,12 +1228,14 @@
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
+    "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
+    "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
@@ -1232,6 +1252,7 @@
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+    "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
@@ -1305,6 +1326,7 @@
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
     "octgn:a305f78f-0d26-4a56-9d5b-7fb0210e6bd4",
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+    "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
@@ -1339,6 +1361,7 @@
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
+    "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
@@ -1374,11 +1397,13 @@
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
+    "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
     "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
+    "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
     "octgn:c460b9c0-0239-4a74-99cb-3c302429db44",
     "octgn:c46688bb-24ac-4ee9-a23e-2bd481e8e56c",
     "octgn:c46c37c3-b2e7-4e28-9466-e3a371417c8b",
@@ -1392,6 +1417,7 @@
     "octgn:c75d2227-2fa6-4dba-a48a-64938b632efd",
     "octgn:c760eeaf-d923-4d98-af5c-eb7cb2d2f4d9",
     "octgn:c792fec6-5840-4aba-8dcd-36b1632d58fa",
+    "octgn:c79ff551-f816-4106-9c55-e22d175e544c",
     "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
@@ -1442,6 +1468,7 @@
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
+    "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
     "octgn:ddac1c59-4e5d-4a90-9666-0753133d4de9",
     "octgn:de212258-f124-4cda-baab-4f696c2b5766",
     "octgn:de744bed-1461-4442-b9a1-193d00fd39a3",
@@ -1500,6 +1527,7 @@
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
+    "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
@@ -2002,9 +2030,9 @@
     {
       "product": "the-city-of-corsairs",
       "total": 29,
-      "scripted": 1,
+      "scripted": 28,
       "player": 9,
-      "playerScripted": 1
+      "playerScripted": 9
     },
     {
       "product": "the-city-of-corsairs-nightmare",
@@ -7667,7 +7695,7 @@
       "name": "Prince Imrahil",
       "type": "hero",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7683,7 +7711,7 @@
       "name": "Hold the Line",
       "type": "event",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7691,7 +7719,7 @@
       "name": "Soldier of Dol Amroth",
       "type": "ally",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7699,7 +7727,7 @@
       "name": "Súlien",
       "type": "ally",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7707,7 +7735,7 @@
       "name": "Inspiring Presence",
       "type": "event",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7715,7 +7743,7 @@
       "name": "Guardian of Ithilien",
       "type": "ally",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7723,7 +7751,7 @@
       "name": "Ranger Spear",
       "type": "attachment",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -7731,7 +7759,7 @@
       "name": "Prince of Dol Amroth",
       "type": "attachment",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -11659,7 +11687,7 @@
       "name": "Watch Tower",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -11795,7 +11823,7 @@
       "name": "City of Corsairs",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -12467,7 +12495,7 @@
       "name": "Slave Ship",
       "type": "ship-enemy",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -13163,7 +13191,7 @@
       "name": "Fate of The Dream-chaser",
       "type": "quest",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -15195,7 +15223,7 @@
       "name": "Umbar Slaver",
       "type": "enemy",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -21571,7 +21599,7 @@
       "name": "The Haven of Umbar",
       "type": "quest",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -21795,7 +21823,7 @@
       "name": "Umbar Harbor",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -23363,7 +23391,7 @@
       "name": "Foes of Ecthelion",
       "type": "treachery",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -24035,7 +24063,7 @@
       "name": "Southern Belfalas",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -24243,7 +24271,7 @@
       "name": "Final Confrontation",
       "type": "quest",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -24539,7 +24567,7 @@
       "name": "Umbar Patrol",
       "type": "treachery",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -25251,7 +25279,7 @@
       "name": "Serpent's Tail",
       "type": "treachery",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -27603,7 +27631,7 @@
       "name": "Corsair Waters",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -29003,7 +29031,7 @@
       "name": "Fury and Malice",
       "type": "treachery",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -30587,7 +30615,7 @@
       "name": "Captain Sahír",
       "type": "enemy",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -30715,7 +30743,7 @@
       "name": "Stormcaller",
       "type": "ship-enemy",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -31059,7 +31087,7 @@
       "name": "The Coast of Umbar",
       "type": "quest",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -32651,7 +32679,7 @@
       "name": "Streets of Umbar",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -35075,7 +35103,7 @@
       "name": "The Shattered Monument",
       "type": "location",
       "pack": "The City of Corsairs",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-corsairs"
     },
     {
@@ -36381,8 +36409,8 @@
       "id": "E06.9",
       "name": "The City of Corsairs (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-city-of-corsairs",
+      "state": "scripted"
     },
     {
       "id": "E07.1",
@@ -37872,8 +37900,8 @@
       "id": "Q06.9",
       "name": "The City of Corsairs",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-city-of-corsairs",
+      "state": "scripted"
     },
     {
       "id": "Q07.1",

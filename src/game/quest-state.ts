@@ -24,6 +24,7 @@ const coreQuests: Record<string, readonly string[]> = {
 export function mainQuestCode(s: GameState): string | undefined {
   if (s.drowned) return s.drowned.currentQuest;
   if (s.cobas) return s.cobas.currentQuest;
+  if (s.city) return s.city.currentQuest;
   const depths = depthsCurrentQuest(s);
   if (depths) return depths;
   const storm = stormcallerCurrentQuest(s);

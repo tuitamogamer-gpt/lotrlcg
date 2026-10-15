@@ -1,3 +1,4 @@
+import { spendResourcePayment } from "./core";
 import type { Effect, GameState, Option, Unit } from "./types";
 import { COBAS_PLAYER as P } from "./cobas-player-support";
 import { name } from "./cards";
@@ -246,8 +247,15 @@ export function cobasPlayerEffect(s: GameState, e: Effect) {
         break;
       const tail = s.queue;
       s.queue = [];
-      for (const id of [...new Set(ids)])
-        spendResources(s, get(s, id)!, ids.filter((i) => i === id).length);
+      spendResourcePayment(
+        s,
+        Object.fromEntries(
+          [...new Set(ids)].map((id) => [
+            id,
+            ids.filter((i) => i === id).length,
+          ]),
+        ),
+      );
       s.queue.push(
         fx("cobasPlayerKnifeEnable", { value: e.value, player: e.player }),
         ...tail,

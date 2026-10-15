@@ -1,5 +1,8 @@
+import * as City from "./city";
+import * as CityPlayers from "./city-player-support";
 import * as Cobas from "./cobas";
 import { cobasStageInfo } from "./cobas-support";
+import { cityStageInfo } from "./city-support";
 import * as Drowned from "./drowned";
 import * as DrownedCompanions from "./drowned-companions";
 import * as TemplePlayers from "./temple-player";
@@ -588,6 +591,7 @@ export function stats(s: GameState, u: Unit) {
         DrownedCompanions.drownedCompanionStats(s, u).attack +
         Voyage.voyageStats(s, u).attack +
         Cobas.cobasStats(s, u).attack +
+        City.cityStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
         Fate.fateStats(s, u).attack +
         Raid.raidStats(s, u).attack +
@@ -651,6 +655,7 @@ export function stats(s: GameState, u: Unit) {
             Depths.depthsStats(s, u).defense +
             Voyage.voyageStats(s, u).defense +
             Cobas.cobasStats(s, u).defense +
+            City.cityStats(s, u).defense +
             Raid.raidStats(s, u).defense +
             angmarBonus.defense +
             Etten.ettenStats(s, u).defense +
@@ -772,6 +777,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 gondorDiscount -
                 depthsPlayerCostReduction(s, c.code) -
                 cobasEconomyCostReduction(s, c.code) -
+                CityPlayers.cityPlayerCostReduction(s, c) -
                 Drowned.drownedCostReduction(s, c),
             ) + dwarfAdditionalCost(c.code),
           ),
@@ -832,6 +838,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Chetwood.chetwoodThreatBonus(s, u) +
             Voyage.voyageThreatBonus(s, u) +
             Cobas.cobasThreatBonus(s, u) +
+            City.cityThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
             Depths.depthsThreatBonus(s, u) +
             Drowned.drownedThreatBonus(s, u) +
@@ -949,6 +956,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
+  const city = cityStageInfo(s);
+  if (city) return city;
   const cobas = cobasStageInfo(s);
   if (cobas) return cobas;
   const drowned = drownedStageInfo(s);
@@ -1106,7 +1115,12 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
 }
 
 /** Card and ability costs share spending restrictions; transfers and losses do not. */
-export function spendResources(s: GameState, hero: Unit, amount: number) {
+export function spendResources(
+  s: GameState,
+  hero: Unit,
+  amount: number,
+  notifyCity = true,
+) {
   requireRule(
     Number.isInteger(amount) && amount >= 0 && hero.resources >= amount,
     "Not enough resources.",
@@ -1119,6 +1133,38 @@ export function spendResources(s: GameState, hero: Unit, amount: number) {
   if (amount > 0) hero.resourcesSpentRound = s.round;
   Etten.ettenResourcesSpent(s, hero, amount);
   Carn.carnResourceSpent(s, hero, amount);
+  if (notifyCity) City.cityResourcesSpent(s, ownerOf(s, hero), amount);
+}
+
+/** A single cost can use several pools, but each paying player spends once. */
+export function spendResourcePayment(
+  s: GameState,
+  payment: Record<string, number>,
+) {
+  const totals = new Map<number, number>();
+  for (const [id, amount] of Object.entries(payment)) {
+    const payer = get(s, id);
+    requireRule(
+      payer &&
+        Number.isInteger(amount) &&
+        amount >= 0 &&
+        payer.resources >= amount,
+      "Invalid resource payment.",
+    );
+    requireRule(
+      amount === 0 || !isHero(payer) || heirsCanSpendResources(s, payer),
+      "This hero cannot spend resources.",
+    );
+  }
+  for (const [id, amount] of Object.entries(payment)) {
+    if (!amount) continue;
+    const payer = get(s, id)!;
+    const player = ownerOf(s, payer);
+    spendResources(s, payer, amount, false);
+    totals.set(player, (totals.get(player) ?? 0) + amount);
+  }
+  for (const [player, amount] of totals)
+    City.cityResourcesSpent(s, player, amount);
 }
 
 const hasTraitCard = (c: Card, trait: string) =>
@@ -1194,21 +1240,17 @@ export function pay(
       requireRule(h && h.resources >= v, "Invalid resource payment.");
     }
     for (const [id, v] of Object.entries(payment)) {
-      spendResources(
-        s,
-        payers.find((h) => h.id === id)!,
-        v,
-      );
       if (v > 0) spent[id] = v;
     }
   } else {
     for (const h of [...payers].sort((a, b) => b.resources - a.resources)) {
       const n = Math.min(cost, h.resources);
-      spendResources(s, h, n);
       if (n > 0) spent[h.id] = n;
       cost -= n;
     }
   }
+  spendResourcePayment(s, spent);
+  CityPlayers.cityPlayerCardPaid(s, c);
   return spent;
 }
 

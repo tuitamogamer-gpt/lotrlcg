@@ -1,3 +1,4 @@
+import { cityPlayerAttackBonus } from "../game/city-player-support";
 import { druadanForestAttackStat } from "../game/druadan-forest";
 import { stormcallerAttackBonus } from "../game/stormcaller-player";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
@@ -175,11 +176,13 @@ export function DecisionStats({
   u,
   attackStat = "attack",
   attackContribution = false,
+  enemy,
 }: {
   s: GameState;
   u: Unit;
   attackStat?: "attack" | "will";
   attackContribution?: boolean;
+  enemy?: Unit;
 }) {
   const st = stats(s, u);
   return (
@@ -189,7 +192,8 @@ export function DecisionStats({
         value={
           st[attackStat] +
           (attackContribution && attackStat === "attack"
-            ? stormcallerAttackBonus(s, u)
+            ? stormcallerAttackBonus(s, u) +
+              (enemy ? cityPlayerAttackBonus(s, u, enemy) : 0)
             : 0)
         }
         caption
@@ -303,7 +307,7 @@ export function CombatDialog({
       sum +
       stats(s, u)[defending ? "defense" : attackStat] +
       (!defending && attackStat === "attack"
-        ? stormcallerAttackBonus(s, u)
+        ? stormcallerAttackBonus(s, u) + cityPlayerAttackBonus(s, u, enemy)
         : 0),
     0,
   );
@@ -426,6 +430,7 @@ export function CombatDialog({
                   u={u}
                   attackStat={!defending ? attackStat : "attack"}
                   attackContribution={!defending}
+                  enemy={enemy}
                 />
               </DecisionCard>
             ))}

@@ -1,3 +1,5 @@
+import { playerEffectImmune } from "./player-effect-immunity";
+import * as CityPlayers from "./city-player";
 import * as DrownedPlayers from "./drowned-player";
 import * as CobasPlayers from "./cobas-player";
 import { cobasEconomyEvent } from "./cobas-economy";
@@ -142,6 +144,9 @@ export function eventEffect(
   cost = 0,
   amount = cost,
 ) {
+  const eventTarget = get(s, target);
+  if (eventTarget && playerEffectImmune(s, eventTarget, code)) return;
+  if (CityPlayers.cityPlayerEvent(s, code, target)) return;
   if (dunlandEvent(s, code, target)) return;
   if (ringMakerEvent(s, code, target)) return;
   if (rangerEvent(s, code)) return;
@@ -423,6 +428,7 @@ export function choosePlayer(s: GameState, title: string, effects: Effect[]) {
 }
 
 export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
+  if (!attachmentId && CityPlayers.useCityPlayerAbility(s, u)) return;
   if (TemplePlayers.useTemplePlayerAbility(s, u, attachmentId)) return;
   if (Realm.useRealmAbility(s, u, attachmentId)) return;
   if (Angmar.useAngmarAbility(s, u, attachmentId)) return;

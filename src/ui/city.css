@@ -1,0 +1,54 @@
+.city-scenario-state {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #98754070;
+  border-radius: 0.8rem;
+  background: linear-gradient(125deg, #172a32e8, #352719e8);
+  color: #eadfc8;
+  margin-block: 0.7rem;
+}
+.city-journey-summary,
+.city-sahir-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.city-journey-summary:only-child {
+  grid-column: 1 / -1;
+}
+.city-scenario-state strong {
+  color: #f3d697;
+}
+.city-scenario-state span {
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.city-scenario-state button {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+  color: #f2dfb9;
+  border: 1px solid #a2834b70;
+  border-radius: 0.4rem;
+  background: #16191588;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+}
+.city-scenario-state .city-warning {
+  color: #efb498;
+}
+.city-scenario-state .city-success {
+  color: #bdd4a9;
+}
+@media (max-width: 600px) {
+  .city-scenario-state {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0.65rem;
+  }
+}

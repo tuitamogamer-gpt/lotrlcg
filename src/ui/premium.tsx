@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-city-of-corsairs": {
+    name: "The City of Corsairs",
+    detail: "Pursue the Stormcaller and confront Sahír in Umbar",
+  },
   "a-storm-on-cobas-haven": {
     name: "Cobas Haven",
     detail: "Rally Dol Amroth and break through the Corsair fleet",
@@ -263,6 +267,7 @@ export const PLAYMAT_CHOICES = [
   "temple-of-the-deceived",
   "the-drowned-ruins",
   "a-storm-on-cobas-haven",
+  "the-city-of-corsairs",
   "shadow-and-flame",
 ] as const;
 

@@ -6,6 +6,7 @@ import { DEPTHS_ADVENTURES } from "./depths-scenario-data";
 import { TEMPLE_ADVENTURES } from "./temple-scenario-data";
 import { DROWNED_ADVENTURES } from "./drowned-scenario-data";
 import { COBAS_ADVENTURES } from "./cobas-scenario-data";
+import { CITY_ADVENTURES } from "./city-scenario-data";
 import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
@@ -1117,6 +1118,7 @@ export const SCENARIOS = [
   ...TEMPLE_ADVENTURES,
   ...DROWNED_ADVENTURES,
   ...COBAS_ADVENTURES,
+  ...CITY_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

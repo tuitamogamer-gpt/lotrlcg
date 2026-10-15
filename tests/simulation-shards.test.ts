@@ -29,14 +29,15 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 274);
+  assert.equal(baseline.registeredCases, 279);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
         (name: string) =>
           !name.startsWith("Temple of the Deceived") &&
           !name.startsWith("The Drowned Ruins") &&
-          !name.startsWith("A Storm on Cobas Haven"),
+          !name.startsWith("A Storm on Cobas Haven") &&
+          !name.startsWith("The City of Corsairs"),
       )
       .sort(),
     [...priorSimulationCases.cases].sort(),
@@ -93,6 +94,19 @@ test("four CI simulation shards cover every registered complete-game case exactl
       "The Thing in the Depths / campaign: guided confirmations preserve complete-game rules outcomes",
     ].sort(),
     "the new standard scenario and its unsupported campaign registration remain in the shard manifest",
+  );
+  assert.deepEqual(
+    baseline.selectedCases
+      .filter((name: string) => name.startsWith("The City of Corsairs"))
+      .sort(),
+    [
+      "The City of Corsairs / normal: all four starter decks complete 10 seeded games each",
+      "The City of Corsairs: hidden review mode preserves complete-game rules outcomes with fewer pauses",
+      "The City of Corsairs: decisions review mode preserves complete-game rules outcomes with fewer pauses",
+      "The City of Corsairs / normal: guided confirmations preserve complete-game rules outcomes",
+      "The City of Corsairs / campaign: guided confirmations preserve complete-game rules outcomes",
+    ].sort(),
+    "City's original scenario and unsupported campaign registration are present exactly once",
   );
   const names: string[] = [];
   for (let index = 0; index < 4; index++) {

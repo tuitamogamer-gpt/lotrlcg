@@ -97,7 +97,7 @@ All card identities, pack membership, required source fields, record quantities,
 
 ## Automation boundary
 
-Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 53 original standard/easy adventures and 554 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller, The Thing in the Depths, Temple of the Deceived, The Drowned Ruins and A Storm on Cobas Haven. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
+Importing a card’s published text or a scenario recipe does not implement its rules in the local game engine. The engine currently registers 54 original standard/easy adventures and 562 player definitions, including all six Angmar Awakened packs, The Grey Havens deluxe, Flight of the Stormcaller, The Thing in the Depths, Temple of the Deceived, The Drowned Ruins, A Storm on Cobas Haven and The City of Corsairs. The four Core learning decks and six published preconstructed decks retain their recipes. `SCRIPTED` is derived from implemented engine definitions; coverage is reproduced by `npm run audit:rules` and recorded in `public/automation-coverage.json`. Imported content is presented as reference content until corresponding game mechanics are implemented and verified.
 
 The importer writes:
 
@@ -127,3 +127,12 @@ Belfalas Islet Victory 1, a spurious Cobas Haven shadow and five omitted
 easy-mode removals. The corrected recipe contains 65 standard or 51 easy
 gameplay cards and the Heading reference before setup decisions, excluding
 the rulesheet proxy. See [Cobas Haven sources](COBAS-SOURCES.md).
+
+
+The City of Corsairs retains its original Q06.9/E06.9 preparation snapshot and
+all 43 scenario faces. Runtime promotion corrects Stormcaller's 18 hit points,
+Captain Sahír's Victory 20, the final quest's “any enemy” indestructibility
+condition and the easy-mode Slave Ship quantity. The original gameplay inventory
+is 71 standard or 52 easy cards/references before setup decisions, excluding
+the rulesheet proxy. All nine original player scans are cached; Knight of the
+White Tower reuses its previous registration. See [City sources](CITY-SOURCES.md).

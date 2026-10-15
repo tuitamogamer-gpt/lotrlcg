@@ -38,6 +38,8 @@ type AttachmentRule = {
 };
 const rules: Record<string, AttachmentRule> = {
   "12110": { type: "hero", traits: ["Ranger"], sphere: "leadership" },
+  "12145": { traits: ["Ranger"], restricted: 1, attack: 1 },
+  "12146": { names: ["Prince Imrahil"], grantsTraits: ["Outlands"] },
   "12113": { traits: ["Warrior"], limit: 1 },
   "12116": { type: "hero", restricted: 1 },
   "12059": { restricted: 1 },

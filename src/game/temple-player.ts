@@ -1,3 +1,4 @@
+import { spendResourcePayment } from "./core";
 import { TEMPLE_PLAYER as P } from "./temple-player-support";
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import { card, name, plain } from "./cards";
@@ -751,10 +752,7 @@ export function templePlayerEffect(s: GameState, e: Effect): boolean {
         );
       }
       payThen(s, () => {
-        for (const [id, amount] of amounts) {
-          const h = get(s, id)!;
-          forOwner(s, ownerOf(s, h), () => spendResources(s, h, amount));
-        }
+        spendResourcePayment(s, Object.fromEntries(amounts));
       }, [fx("templePlayerArrowsDamage", { value: 2, player: activeSeat(s) })]);
       break;
     }

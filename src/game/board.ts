@@ -1,3 +1,9 @@
+import { playerEffectImmune } from "./player-effect-immunity";
+import { activePlayerAbilityCode } from "./player-ability-triggers";
+import * as City from "./city";
+import * as CityHoldLine from "./city-hold-line";
+import * as CityPlayers from "./city-player";
+import { cityPlayerResourceBonus } from "./city-player-support";
 import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import * as CobasReactive from "./cobas-reactive";
@@ -730,6 +736,7 @@ export function advanceDefense(s: GameState) {
 export function check(s: GameState) {
   if (s.status !== "playing") return;
   Cobas.cobasCheck(s);
+  City.cityCheck(s);
   Fate.fateCheck(s);
   Raid.raidCheck(s);
   Depths.depthsCheck(s);
@@ -819,6 +826,7 @@ export function check(s: GameState) {
         !Rhudaur.rhudaurIndestructible(s, u) &&
         !Carn.carnIndestructible(s, u) &&
         !Depths.depthsIndestructible(s, u) &&
+        !City.cityIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
         u.damage >= stats(s, u).health,
@@ -1166,6 +1174,13 @@ export function damage(
     GreyPlayers.greyHavensCannotDamage(s, u)
   )
     return false;
+  if (
+    !context.cost &&
+    !context.combatDamage &&
+    activePlayerAbilityCode(s) &&
+    playerEffectImmune(s, u)
+  )
+    return false;
   const raidLocation = Raid.raidDamageLocation(s, u, value);
   if (raidLocation !== undefined) return raidLocation;
   if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
@@ -1175,6 +1190,7 @@ export function damage(
   value = Storm.stormcallerDamageAmount(s, u, value);
   value = Depths.depthsDamageAmount(s, u, value);
   value = DrownedCompanions.drownedSahirDamageAmount(s, u, value);
+  value = City.cityDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1218,7 +1234,11 @@ export function damage(
   )
     return false;
   u.damage += value;
+  CityHoldLine.cityHoldLineDamageDealt(s, u, value, context);
   Cobas.cobasDamageDealt(s, u, value, context);
+  City.cityDamageDealt(s, u, value, context);
+  if (u.damage >= stats(s, u).health)
+    City.cityCharacterDestroyed(s, u, context);
   Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
@@ -1361,6 +1381,7 @@ export function characterLeftPlay(
   ringMakerCharacterLeft(s, u.id);
   DepthsPlayers.depthsPlayerCharacterLeft(s, u);
   CobasEconomy.cobasEconomyCharacterLeft(s, u);
+  CityPlayers.cityPlayerCharacterLeft(s, u);
   DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -1429,6 +1450,8 @@ export function destroy(
   byCardEffect = !destruction,
 ) {
   syncAttachmentText(s);
+  if (byCardEffect && activePlayerAbilityCode(s) && playerEffectImmune(s, u))
+    return;
   if (
     DunlandQuest.dunlandCannotLeave(u) ||
     Trials.trialsCannotLeave(s, u) ||
@@ -1443,10 +1466,12 @@ export function destroy(
       Dread.dreadIndestructible(s, u) ||
       Rhudaur.rhudaurIndestructible(s, u) ||
       Carn.carnIndestructible(s, u) ||
-      Depths.depthsIndestructible(s, u))
+      Depths.depthsIndestructible(s, u) ||
+      City.cityIndestructible(s, u))
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
+  City.cityDestroyed(s, u, destruction);
   const previous = activeSeat(s);
   const c = card(u.code);
   const splitGram = isMountGram(s) ? gramState(s) : undefined;
@@ -1577,6 +1602,7 @@ export function destroy(
     } else if (u.code === "01115") {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
+    } else if (City.cityEnemyDestination(s, u, destruction)) {
     } else if (c.victory) addVictoryCard(s, u.code);
     else if (
       !Tharbad.tharbadEnemyDestroyed(s, u, destruction) &&
@@ -1956,7 +1982,8 @@ export function progress(
   if (Fate.fateQuestProgressBlocked(s)) return;
   if (
     Depths.depthsQuestProgressBlocked(s) ||
-    Drowned.drownedQuestProgressBlocked(s)
+    Drowned.drownedQuestProgressBlocked(s) ||
+    City.cityQuestProgressBlocked(s)
   )
     return;
   if (Raid.raidQuestProgress(s, n)) return;
@@ -2021,6 +2048,7 @@ export function advanceQuest(s: GameState) {
     return;
   if (Raid.raidAdvance(s)) return;
   if (Cobas.cobasAdvance(s)) return;
+  if (City.cityAdvance(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2134,6 +2162,7 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
+  const cityDepartures = CityPlayers.cityPlayerPhaseEnd(s);
   cobasPlayerPhaseEnd(s);
   Cobas.cobasPhaseEnd(s);
   TemplePlayers.templePlayerPhaseEnd(s);
@@ -2146,7 +2175,7 @@ export function phaseEnd(s: GameState) {
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
   globalEachSeat(s, () => phaseEndPlayer(s));
   eachArea(s, () => redhornPhaseEnd(s));
-  prepend(s, ...bloodEffects, ...departures);
+  prepend(s, ...bloodEffects, ...departures, ...cityDepartures);
   eachArea(s, () => rohanPhaseEnd(s));
   if (s.bloodGondor) s.bloodGondor.conflict = false;
   eachArea(s, () => heirsPhaseEnd(s));
@@ -2328,6 +2357,11 @@ export function nextRound(s: GameState) {
     s.peek = null;
     s.optionalEngagement = false;
   });
+  const cityResourceEffects = City.cityResourcesBegin(s);
+  if (cityResourceEffects.length) {
+    prepend(s, ...cityResourceEffects, fx("resourceCollect"));
+    return;
+  }
   if (Fangorn.fangornResourceStart(s)) return;
   collectResources(s);
 }
@@ -2345,7 +2379,9 @@ export function collectResources(s: GameState) {
           1 +
           (ninNoCardEconomy(s)
             ? 0
-            : resourcePhaseBonus(h) + Angmar.angmarResourceBonus(s, h));
+            : resourcePhaseBonus(h) +
+              Angmar.angmarResourceBonus(s, h) +
+              cityPlayerResourceBonus(s, h));
     for (const ally of s.allies)
       if (
         ["02059", "08146"].includes(ally.code) &&
@@ -2881,6 +2917,7 @@ export function placeEncounter(
     )
       s.staging.push(fresh);
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
+    City.cityCardEntered(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -2939,6 +2976,7 @@ export function placeEncounter(
     log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
     return;
   }
+  if (City.cityEncounter(s, code)) return;
   if (Cobas.cobasEncounter(s, code)) return;
   if (Raid.raidEncounter(s, code)) return;
   if (
@@ -3172,7 +3210,7 @@ export function placeEncounter(
 /** Put-into-play legality is shared with normal play, without play costs or caps. */
 export function allyCanEnter(s: GameState, code: string): boolean {
   const c = card(code);
-  if (c.type_code !== "ally") return false;
+  if (c.type_code !== "ally" || City.cityAllyProblem(s)) return false;
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir") return false;
   const key = (title: string) =>
     title
@@ -3212,6 +3250,7 @@ export function enterAlly(
   );
   u.temporary = temporary;
   s.allies.push(u);
+  City.cityAllyEntered(s, u);
   finalRingAllyEntering(u);
   Angmar.angmarAllyEntering(u);
   if (offerRingMakerDoomed(s, u, played, fromHand)) return;
@@ -3275,6 +3314,7 @@ export function allyEntryResponses(
   dwarfAllyEntered(s, u, played && fromHand);
   DepthsPlayers.depthsPlayerAllyEntered(s, u, played, fromHand);
   CobasEconomy.cobasEconomyAllyEntered(s, u, played, fromHand);
+  CityPlayers.cityPlayerAllyEntered(s, u);
   DrownedPlayers.drownedPlayerAllyEntered(s, u, played, fromHand);
   switch (u.code) {
     case "01073":
@@ -3488,6 +3528,7 @@ export function shadow(s: GameState, code: string) {
     return;
   if (TempleEncounters.templeShadow(s, code)) return;
   if (Depths.depthsShadow(s, code)) return;
+  if (City.cityShadow(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

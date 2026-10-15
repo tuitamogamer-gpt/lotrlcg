@@ -10,6 +10,22 @@ export interface PlayerAbilityTrigger {
   type: "action" | "response";
 }
 
+/** The innermost printed ability supplies the source, including nested responses. */
+export const activePlayerAbilityCode = (s: GameState) =>
+  s.playerAbilitySources?.at(-1)?.code;
+
+/** Old saves can contain finish boundaries without a source stack. */
+export function finishPlayerAbilitySource(
+  s: GameState,
+  source: string | undefined,
+  code: string | undefined,
+) {
+  const current = s.playerAbilitySources?.at(-1);
+  if (!current || current.source !== source || current.code !== code) return;
+  s.playerAbilitySources!.pop();
+  if (!s.playerAbilitySources!.length) delete s.playerAbilitySources;
+}
+
 /**
  * Keep the ability's complete, possibly suspended resolution ahead of the
  * framework it interrupted. The serializable boundary credits its initiating
@@ -21,8 +37,19 @@ export function resolvePlayerAbility(
   resolve: () => void,
 ) {
   const continuation = s.queue;
+  const sourceDepth = s.playerAbilitySources?.length ?? 0;
+  (s.playerAbilitySources ??= []).push({
+    source: ability.source,
+    code: ability.code,
+  });
   s.queue = [];
-  resolve();
+  try {
+    resolve();
+  } catch (error) {
+    s.playerAbilitySources!.length = sourceDepth;
+    if (!sourceDepth) delete s.playerAbilitySources;
+    throw error;
+  }
   s.queue.push(
     fx("playerAbilityFinish", {
       player: ability.player,

@@ -1,4 +1,5 @@
 import { COBAS, validateCobas } from "./cobas-support";
+import { validateCity } from "./city-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -225,6 +226,27 @@ export function validateSave(
           c.immediatePreviousRevealedShadowCount >= 0 &&
           c.immediatePreviousRevealedShadowCount <=
             (c.immediatePreviousShadows?.length ?? 0))) &&
+      (c.cityKilledAllyCosts === undefined ||
+        (Array.isArray(c.cityKilledAllyCosts) &&
+          c.cityKilledAllyCosts.every(
+            (value) => integer(value) && value >= 0,
+          ))) &&
+      (c.cityHoldLine === undefined ||
+        (c.cityHoldLine &&
+          Array.isArray(c.cityHoldLine.defenderIds) &&
+          c.cityHoldLine.defenderIds.length <= 3 &&
+          c.cityHoldLine.defenderIds.every(
+            (id) => typeof id === "string" && id.length > 0,
+          ) &&
+          new Set(c.cityHoldLine.defenderIds).size ===
+            c.cityHoldLine.defenderIds.length &&
+          Array.isArray(c.cityHoldLine.damagedIds) &&
+          c.cityHoldLine.damagedIds.every((id) =>
+            c.cityHoldLine!.defenderIds.includes(id),
+          ) &&
+          new Set(c.cityHoldLine.damagedIds).size ===
+            c.cityHoldLine.damagedIds.length &&
+          typeof c.cityHoldLine.readyPaid === "boolean")) &&
       [
         c.celebCaptureDestroyed,
         c.ninLoseProgressOnKill,
@@ -260,6 +282,8 @@ export function validateSave(
           (c as typeof c & { druadanReturnCount?: number })
             .druadanReturnCount! >= 0)) &&
       [
+        c.cityWatchShadows,
+        c.cityBelfalasShadows,
         c.crownTimeOnKill,
         c.weatherRuinsThreat,
         c.dikeRevealOnCharacterKill,
@@ -609,6 +633,17 @@ export function validateSave(
       (s.startingThreat !== undefined &&
         (!integer(s.startingThreat) || s.startingThreat < 0)) ||
       (s.victoryCards !== undefined && !codes(s.victoryCards)) ||
+      (s.playerAbilitySources !== undefined &&
+        (!Array.isArray(s.playerAbilitySources) ||
+          s.playerAbilitySources.length > 100 ||
+          !s.playerAbilitySources.every(
+            (frame) =>
+              frame &&
+              typeof frame.source === "string" &&
+              frame.source.length > 0 &&
+              typeof frame.code === "string" &&
+              SCRIPTED.has(frame.code),
+          ))) ||
       !Array.isArray(s.used) ||
       !s.used.every((x) => typeof x === "string") ||
       typeof s.standTogether !== "boolean"
@@ -624,6 +659,7 @@ export function validateSave(
         !validateTemple(s, validUnit as (value: unknown) => boolean) ||
         !validateDrowned(s, validUnit as (value: unknown) => boolean) ||
         !validateCobas(s, validUnit as (value: unknown) => boolean) ||
+        !validateCity(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1241,6 +1277,7 @@ export function validateSave(
       ...(s.rhudaur?.setAside ?? []),
       ...(s.dreadRealm?.setAside ?? []),
       ...(s.cobas?.setAside ?? []),
+      ...(s.city?.setAside ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),
       ...(s.voyageBelegaer?.setAside ?? []),

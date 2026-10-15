@@ -1,0 +1,132 @@
+{
+  "schema": "lotr-printed-sailing-symbols/v1",
+  "sources": {
+    "rules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec47_rules.pdf",
+    "rulesPage": 6,
+    "catalog": "public/catalog.json",
+    "verifiedAt": "2026-10-15",
+    "verification": "Counted printed helm symbols in the bottom-left text box of every cached original Coast of Umbar and The City of Corsairs encounter front; source text has no symbol field."
+  },
+  "cards": [
+    {
+      "code": "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
+      "name": "Watch Tower",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/04f24d17-9764-4385-b22c-0e45f6fa5654.jpg",
+      "sha256": "3c4e00ef9d14ccd371228c2902248be4d8594f574e8f5e6070487da5d43be761"
+    },
+    {
+      "code": "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
+      "name": "City of Corsairs",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/06badf71-8e85-479e-8ddf-1dec7a40e325.jpg",
+      "sha256": "12d6467f79ee5f416ed1d0f5d88cdb04dc81226893aedac04eb0fcf7f69d5c2c"
+    },
+    {
+      "code": "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+      "name": "Slave Ship",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/0f7ce386-9510-4fd5-93aa-145190f8d1de.jpg",
+      "sha256": "33242bd17ba924dd061e0c63b52e0766e81df2d613b7a3348a334e28829a3080"
+    },
+    {
+      "code": "octgn:2fd16de8-3286-4003-9978-574738b2a337",
+      "name": "Umbar Slaver",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/2fd16de8-3286-4003-9978-574738b2a337.jpg",
+      "sha256": "657be7ac3af5dbd8f56e1387a3b5524f3045fc7e6962ee80b20fad2f63fd8ea8"
+    },
+    {
+      "code": "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
+      "name": "Umbar Harbor",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/5c0a0aea-af43-441b-9d7f-86a1dfd09f00.jpg",
+      "sha256": "811a0eb982a7c60bcb0b1bff88ed6965d7d851bb44e4731e6d8ed143dcd00b09"
+    },
+    {
+      "code": "octgn:720b2482-f69c-4a88-8352-721d854704d2",
+      "name": "Foes of Ecthelion",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/720b2482-f69c-4a88-8352-721d854704d2.jpg",
+      "sha256": "044522ae4a5e1f5eaa35210c58d6448ccfbfb35bb088367620ef15ff4e3bf5e8"
+    },
+    {
+      "code": "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
+      "name": "Southern Belfalas",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/797a1805-f347-4eb3-9f77-5c9e6b6a850f.jpg",
+      "sha256": "6ae2e16b812aa579a4900ec279e57f384ef575826e10182a0fe43f051c9ae728"
+    },
+    {
+      "code": "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
+      "name": "Umbar Patrol",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/7f0e7969-bca4-48a3-99b5-ba055bd376af.jpg",
+      "sha256": "d4202c26bbb8f10750e3e153fc405237c8595b71a309b916fc45139e3db2cbae"
+    },
+    {
+      "code": "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
+      "name": "Serpent's Tail",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/86e8724b-32cb-4d63-b918-5754d39d2249.jpg",
+      "sha256": "2e367a6a4703cb0c8dda841f032d6560430b8655f205659447cd89f1be4e6f73"
+    },
+    {
+      "code": "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
+      "name": "Corsair Waters",
+      "type": "location",
+      "sailingSymbols": 1,
+      "image": "/cards/a3173fc4-1ddb-470d-ae12-a35e24ea63a3.jpg",
+      "sha256": "63f9487a278d9a80510d96fb773fcc2c775d6b1f365a523060dea33f37deaf20"
+    },
+    {
+      "code": "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
+      "name": "Fury and Malice",
+      "type": "treachery",
+      "sailingSymbols": 0,
+      "image": "/cards/b4769083-91fb-4e9c-9736-17e8c28ff971.jpg",
+      "sha256": "ea63e2c3db10916dee61b079667ee19a92b1b7bd95569d13470a46949bccdd03"
+    },
+    {
+      "code": "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
+      "name": "Captain Sahír",
+      "type": "enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/c354e410-e15a-4999-bb14-696b5e89cee9.jpg",
+      "sha256": "d8316c16b2b08fffa2d72d948c09117fd514b8a23b9a73f78390e4a3df595e2e"
+    },
+    {
+      "code": "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
+      "name": "Stormcaller",
+      "type": "ship-enemy",
+      "sailingSymbols": 0,
+      "image": "/cards/c45dc401-bb07-42ec-ba4c-ee9105a3f349.jpg",
+      "sha256": "10f302a4dbebda85bf26296f0f9aa6f6e6443d5fd7cecfb4c678e41d86f4ff83"
+    },
+    {
+      "code": "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
+      "name": "Streets of Umbar",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/dd394c76-c2b9-4b1c-8948-a056de97b779.jpg",
+      "sha256": "5d03d52824c4dad71f72360252633391ce2288c6e6c97c1f678057a2d6604851"
+    },
+    {
+      "code": "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
+      "name": "The Shattered Monument",
+      "type": "location",
+      "sailingSymbols": 0,
+      "image": "/cards/f811f153-81f4-4688-8b4d-400215e6748a.jpg",
+      "sha256": "8dc14c75c3202dfc38829b4ad43504a635c5c411651e01e045e760f137f71c46"
+    }
+  ]
+}

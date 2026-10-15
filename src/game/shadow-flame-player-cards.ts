@@ -6,7 +6,7 @@ import {
   DIKE_DISCARD_REASON,
 } from "./deadmens-discard";
 import { antleredRoutePiles } from "./antlered";
-import { playerCardImmune } from "./card-immunity";
+import { playerEffectImmune } from "./player-effect-immunity";
 import { cannotReady } from "./core";
 import { canGainResources } from "./core";
 import { globalPlayerOrder } from "./table";
@@ -69,9 +69,10 @@ import {
 } from "./actions";
 import { playerAttack } from "./combat";
 
-const immune = (u: Unit) => playerCardImmune(u);
 const stagingEnemies = (s: GameState) =>
-  s.staging.filter((u) => playerUnitIsEnemy(u) && !immune(u));
+  s.staging.filter(
+    (u) => playerUnitIsEnemy(u) && !playerEffectImmune(s, u, "04131"),
+  );
 const readyHeroes = (s: GameState) =>
   s.heroes.filter((u) => !u.exhausted && !khazadCannotExhaust(u));
 const ranged = (s: GameState) =>
@@ -296,7 +297,7 @@ export function shadowFlamePlayerEnemyAttackEnded(
 ) {
   if (
     card(enemy.code).is_unique ||
-    immune(enemy) ||
+    playerEffectImmune(s, enemy, "04132") ||
     !shadowFlameCanMove(s, enemy)
   )
     return;
@@ -574,7 +575,7 @@ export function handleShadowFlamePlayerEffect(
         enemy &&
         playerUnitIsEnemy(enemy) &&
         !card(enemy.code).is_unique &&
-        !immune(enemy) &&
+        !playerEffectImmune(s, enemy, "04132") &&
         shadowFlameCanMove(s, enemy) &&
         s.hand.some((u) => u.code === "04132") &&
         canPay(s, card("04132"))
@@ -601,11 +602,12 @@ export function handleShadowFlamePlayerEffect(
       requireRule(
         enemy &&
           !card(enemy.code).is_unique &&
-          !immune(enemy) &&
+          !playerEffectImmune(s, enemy, "04132") &&
           shadowFlameCanMove(s, enemy),
         "The movable non-unique attacking enemy must remain in play.",
       );
       if (!spendEvent(s, "04132")) return true;
+      if (playerEffectImmune(s, enemy, "04132")) return true;
       const engagement = engagementCost(s, enemy);
       for (const a of [...enemy.attachments])
         discardAttachment(s, enemy, a, true);

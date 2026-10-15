@@ -1,3 +1,6 @@
+import { cityPrepareAttack } from "./city";
+import * as CityHoldLine from "./city-hold-line";
+import { cityPlayerAttackBonus } from "./city-player-support";
 import * as Cobas from "./cobas";
 import * as DrownedCompanions from "./drowned-companions";
 import * as CobasReactive from "./cobas-reactive";
@@ -19,7 +22,7 @@ import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
 import * as Trials from "./three-trials";
-import { playerCardImmune } from "./card-immunity";
+import { playerEffectImmune } from "./player-effect-immunity";
 import { fangornAttackStarted } from "./fangorn";
 import { catchAttackStarted } from "./catch-orc";
 import * as Isengard from "./voice-isengard";
@@ -191,7 +194,7 @@ export function playerAttack(
     requireRule(
       ids.length === 1 &&
         s.staging.some((u) => u.id === enemy.id) &&
-        !playerCardImmune(enemy),
+        !playerEffectImmune(s, enemy, "04131"),
       "Hands Upon the Bow declares its single paid Ranged attacker against an eligible staging enemy.",
     );
   requireRule(
@@ -299,6 +302,7 @@ export function resolvePlayerAttack(
         : stats(s, u).attack +
           StormPlayers.stormcallerAttackBonus(s, u) +
           finalRingAttackBonus(s, u, enemy) +
+          cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
           watcherPlayerAttackBonus(s, u, enemy) +
@@ -498,6 +502,7 @@ export function beginEnemyAttack(
   shadowsPrepared = false,
   greyHavensResolved = false,
   anchorDefenders = false,
+  holdLine?: "skip" | "declared",
 ) {
   const cobasRamming = s.combat?.enemyId === enemy.id && s.combat?.cobasRamming;
   syncAttachmentText(s, enemy);
@@ -515,6 +520,20 @@ export function beginEnemyAttack(
   if (!watcherResolved && watcherWaterEnemyAttackStart(s, enemy, returnWolf))
     return;
   if (
+    !holdLine &&
+    !greyHavensResolved &&
+    CityHoldLine.cityHoldLineOfferAttack(
+      s,
+      enemy,
+      ids,
+      returnWolf,
+      watcherResolved,
+      shadowsPrepared,
+    )
+  )
+    return;
+  if (
+    holdLine !== "declared" &&
     !greyHavensResolved &&
     GreyPlayers.greyHavensOfferAnchorAttack(
       s,
@@ -528,7 +547,10 @@ export function beginEnemyAttack(
     return;
   requireRule(
     new Set(ids).size === ids.length &&
-      (ids.length <= 1 || s.standTogether || anchorDefenders),
+      (ids.length <= 1 ||
+        s.standTogether ||
+        anchorDefenders ||
+        (holdLine === "declared" && ids.length <= 3)),
     "Multiple defenders require Stand Together.",
   );
   const defenders = ids.map((id) =>
@@ -551,6 +573,7 @@ export function beginEnemyAttack(
   );
   requireRule(
     ids.length <= 1 ||
+      holdLine === "declared" ||
       defenders.every((u) => u && ownerOf(s, u) === activeSeat(s)),
     "Stand Together combines characters controlled by the defending player.",
   );
@@ -570,6 +593,7 @@ export function beginEnemyAttack(
       );
     }
   }
+  if (!shadowsPrepared) cityPrepareAttack(s, enemy);
   if (!shadowsPrepared) beginConsideredEnemyShadows(s, enemy);
   const beforeForced = s.queue.length;
   if (!shadowsPrepared) enemyAttackStarted(s, enemy, activeSeat(s));
@@ -607,6 +631,7 @@ export function beginEnemyAttack(
       ["01085", KHAZAD.warg].includes(enemy.code) &&
       enemy.shadows.some((code) => !card(code).shadow),
   };
+  if (holdLine === "declared") CityHoldLine.cityHoldLineDeclared(s, ids);
   if (!ids.length) Osgiliath.assaultOsgiliathAttackUndefended(s, s.combat);
   if (enemy.code === "01084") raiseThreat(s, 1, "encounter");
   for (const d of defenders.filter((d) => d && get(s, d.id)))
@@ -648,6 +673,14 @@ export function beginEnemyAttack(
       enemy,
       defenders.filter((d): d is Unit => !!d),
     ),
+    ...(holdLine === "declared"
+      ? [
+          fx("cityHoldLineGroupOffer", {
+            target: enemy.id,
+            player: activeSeat(s),
+          }),
+        ]
+      : []),
     ...enemy.shadows.map((code) => fx("shadowReveal", { code })),
     fx("mirkwoodCombatWindow"),
     fx("gondorDefenseWindow", { ids }),

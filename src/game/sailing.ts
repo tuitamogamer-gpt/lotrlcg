@@ -1,3 +1,4 @@
+import citySymbols from "../data/city-sailing-icons.json";
 import cobasSymbols from "../data/cobas-sailing-icons.json";
 import { cobasSailingExtraCards } from "./cobas";
 import { card, name } from "./cards";
@@ -25,9 +26,12 @@ import {
 import stormcallerSymbols from "../data/stormcaller-sailing-icons.json";
 
 const printedSailingSymbols = new Map(
-  [...symbols.cards, ...stormcallerSymbols.cards, ...cobasSymbols.cards].map(
-    (c) => [c.code, c.sailingSymbols],
-  ),
+  [
+    ...symbols.cards,
+    ...stormcallerSymbols.cards,
+    ...cobasSymbols.cards,
+    ...citySymbols.cards,
+  ].map((c) => [c.code, c.sailingSymbols]),
 );
 export const sailingSymbols = (code: string) =>
   printedSailingSymbols.get(code) ?? card(code).sailing ?? 0;
@@ -133,7 +137,8 @@ export function sailingQuestStart(s: GameState, continuation: Effect[] = []) {
   const quest =
     voyageCurrentQuest(s) ??
     stormcallerCurrentQuest(s) ??
-    s.cobas?.currentQuest;
+    s.cobas?.currentQuest ??
+    (s.city && s.stage === 1 ? s.city.currentQuest : undefined);
   if (!s.sailing || !quest || !/\bSailing\b/.test(card(quest).back_text ?? ""))
     return false;
   beginSailingTest(s, continuation);
@@ -264,18 +269,22 @@ export function validateSailing(
   validEffect: (v: Effect) => boolean,
 ) {
   if (s.sailing === undefined)
-    return ![
-      "voyage-across-belegaer",
-      "flight-of-the-stormcaller",
-      "a-storm-on-cobas-haven",
-    ].includes(s.scenarioId);
+    return (
+      !(s.city && s.stage <= 2) &&
+      ![
+        "voyage-across-belegaer",
+        "flight-of-the-stormcaller",
+        "a-storm-on-cobas-haven",
+      ].includes(s.scenarioId)
+    );
   const fleet = s.sailing;
   if (
-    ![
-      "voyage-across-belegaer",
-      "flight-of-the-stormcaller",
-      "a-storm-on-cobas-haven",
-    ].includes(s.scenarioId) ||
+    (!(s.city && s.stage <= 2) &&
+      ![
+        "voyage-across-belegaer",
+        "flight-of-the-stormcaller",
+        "a-storm-on-cobas-haven",
+      ].includes(s.scenarioId)) ||
     !fleet ||
     !Number.isInteger(fleet.heading) ||
     fleet.heading < 0 ||

@@ -1,3 +1,7 @@
+import {
+  citySimulationObserver,
+  assertCitySaveRestoration,
+} from "./city-simulation-invariants";
 import { applyAction as act } from "./pass-resource-window.ts";
 import {
   DREAM_CHASER_SCENARIOS,
@@ -517,7 +521,9 @@ for (const scenarioId of [
                   ? drownedSimulationObserver()
                   : scenarioId === "a-storm-on-cobas-haven"
                     ? cobasSimulationObserver()
-                    : undefined;
+                    : scenarioId === "the-city-of-corsairs"
+                      ? citySimulationObserver()
+                      : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -670,6 +676,8 @@ for (const scenarioId of [
                 assertDrownedSaveRestoration(savedState, restored);
               else if (scenarioId === "a-storm-on-cobas-haven")
                 assertCobasSaveRestoration(savedState, restored);
+              else if (scenarioId === "the-city-of-corsairs")
+                assertCitySaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;
               mapObserver?.observe(s);
               if (process.env.LOTR_HOTSEAT_CASE)

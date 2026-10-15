@@ -82,7 +82,12 @@
     "test:cobas-players": "node --import tsx scripts/browser-cobas-players.mjs && node --import tsx scripts/browser-cobas-houses-sacked.mjs",
     "test:browser-cobas": "npm run test:cobas-quests && npm run test:cobas-players",
     "test:cobas-simulation": "node --import tsx --test tests/cobas-simulation.test.ts",
-    "test:cobas-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat a-storm-on-cobas-haven normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:cobas-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat a-storm-on-cobas-haven normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:city-quests": "node --import tsx scripts/browser-city.mjs",
+    "test:city-players": "node --import tsx scripts/browser-city-players.mjs",
+    "test:browser-city": "npm run test:city-quests && npm run test:city-players",
+    "test:city-simulation": "node --import tsx --test tests/city-simulation.test.ts",
+    "test:city-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-city-of-corsairs normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

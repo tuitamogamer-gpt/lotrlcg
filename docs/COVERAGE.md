@@ -2,6 +2,8 @@
 
 ## Included
 
+- **The City of Corsairs, original Adventure Pack:** all nine player designs and the standard/easy quest for 1–4 players, completing the Dream-chaser cycle. Fleet preparation, Sailing, both routes to Umbar, the physical sea-to-land deck transition, Raider resource effects, event-specific immunity, Sahír's additional attacks and final destruction victory are integrated. Knight of the White Tower reuses its existing registration. See [printed sources](CITY-SOURCES.md), [rules](CITY-RULES.md), [player rules](CITY-PLAYER-SCRIPTS.md) and [verification](CITY.md).
+
 - **The Thing in the Depths, original Adventure Pack:** all nine player designs and the standard/easy quest for 1–4 players. Physical facedown Grapple attachments, two-sided Captains, the reserved beast deck, encounter-set removal, stage-three active-location replacement, Ship threat loss and encounter-source damage to the boss are integrated. See [printed sources](DEPTHS-SOURCES.md), [rules](DEPTHS-RULES.md) and [verification](DEPTHS.md).
 
 - **Flight of the Stormcaller, original Adventure Pack:** all eleven player designs and the standard/easy quest for 1–4 players. Separate player/pursuer quest decks, the Stormcaller area, Sailing, cumulative progress/damage limits, all original encounter/shadow clauses and validated saves are integrated. See [printed sources](STORMCALLER-SOURCES.md), [rules](STORMCALLER-RULES.md) and [release verification](STORMCALLER.md).

@@ -1,3 +1,7 @@
+import { playerEffectImmune } from "./player-effect-immunity";
+import * as City from "./city";
+import * as CityPlayers from "./city-player";
+import { cityPlayerCardPlayed } from "./city-player-support";
 import * as Cobas from "./cobas";
 import * as CobasEconomy from "./cobas-economy";
 import * as Drowned from "./drowned";
@@ -49,7 +53,6 @@ import { NIN, ninNoCardEconomy } from "./nin-eilph-support";
 import * as Nin from "./nin-eilph";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
-import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
@@ -521,6 +524,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   const raidProblem = Raid.raidTravelProblem(s, u);
   const depthsProblem = Depths.depthsTravelProblem(s, u);
   if (depthsProblem) return depthsProblem;
+  const cityProblem = City.cityTravelProblem(s, u);
+  if (cityProblem) return cityProblem;
   const cobasProblem = Cobas.cobasTravelProblem(s, u);
   if (cobasProblem) return cobasProblem;
   const stormProblem = Storm.stormcallerTravelProblem(s, u);
@@ -604,6 +609,8 @@ export function optionalEngagementProblem(
   u: Unit,
 ): string | null {
   syncAttachmentText(s, u);
+  if (City.cityCannotOptionallyEngage(s, u))
+    return "Umbar Patrol prevents optional engagements this round.";
   if (s.status !== "playing" || s.choice || s.flow?.pending)
     return "Resolve the current decision first.";
   if (s.table && activeSeat(s) !== s.table.turn)
@@ -748,6 +755,8 @@ export function canPlay(
   if (depthsProblem) return depthsProblem;
   const drownedPlayerProblem = DrownedPlayers.drownedPlayerPlayProblem(s, u);
   if (drownedPlayerProblem) return drownedPlayerProblem;
+  const cityProblem = CityPlayers.cityPlayerPlayProblem(s, u);
+  if (cityProblem) return cityProblem;
   const cobasPlayerProblem = CobasPlayers.cobasPlayerPlayProblem(s, u);
   if (cobasPlayerProblem) return cobasPlayerProblem;
   const cobasEconomyProblem = cobasEconomyPlayProblem(s, u.code);
@@ -1350,6 +1359,7 @@ export function resolvePlayerCard(
   const c = card(u.code);
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
+  if (played) cityPlayerCardPlayed(s, c);
   log(s, `${played ? "Played" : "Put into play"} ${c.name}.`, "good");
   if (
     c.type_code === "attachment" &&
@@ -1510,7 +1520,7 @@ export function playTargets(
 ): Unit[] {
   return rawPlayTargets(s, u).filter(
     (target) =>
-      !playerCardImmune(target) &&
+      !playerEffectImmune(s, target, u.code) &&
       (card(u.code).type_code !== "attachment" ||
         (!Dike.dikeCannotAttach(s, target) &&
           !Wastes.wastesCannotAttach(s, target) &&
@@ -1542,6 +1552,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
+  const cityTargets = CityPlayers.cityPlayerPlayTargets(s, c.code);
+  if (cityTargets) return cityTargets;
   const cobasEconomyTargets = cobasEconomyPlayTargets(s, c.code);
   if (cobasEconomyTargets) return cobasEconomyTargets;
   if (drownedTargets) return drownedTargets;
@@ -1698,6 +1710,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
+  u.code === "12143" ||
   u.code === "12118" ||
   u.code === "09008" ||
   (!["05017", "06064", "06115", "12064"].includes(u.code) &&
@@ -1858,6 +1871,12 @@ export function availableAbilities(s: GameState, u: Unit) {
     results.push({
       label: templeCompanionLabel,
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
+    });
+  const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
+  if (cityLabel)
+    results.push({
+      label: cityLabel,
+      disabled: !!CityPlayers.cityPlayerAbilityProblem(s, u),
     });
   const drownedPlayerLabel = DrownedPlayers.drownedPlayerAbilityLabel(u.code);
   if (drownedPlayerLabel)
@@ -2388,6 +2407,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Carn.carnOpeningHandsKept(s) &&
         !Dread.dreadOpeningHandsKept(s) &&
         !Cobas.cobasOpeningHandsKept(s) &&
+        !City.cityOpeningHandsKept(s) &&
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
@@ -2649,7 +2669,8 @@ export function applyAction(input: GameState, action: Action): GameState {
                   u.code === KHAZAD.shaft ||
                   TemplePlayers.templePlayerAbilityAnyPlayer(u.code) ||
                   DepthsPlayers.depthsPlayerAbilityAnyPlayer(u.code) ||
-                  collectorAbilityAnyPlayer(u.code)),
+                  collectorAbilityAnyPlayer(u.code) ||
+                  CityPlayers.cityPlayerAbilityAnyPlayer(u.code)),
             "Choose a character or attachment you control.",
           );
           if (!action.attachmentId && u.code === "01011")
@@ -2771,6 +2792,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Raid.raidTravel(s, u) ??
         Depths.depthsTravelEffects(s, u) ??
         Cobas.cobasTravelEffects(s, u) ??
+        City.cityTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3068,6 +3090,7 @@ export function publicState(s: GameState) {
     ...(s.temple ? { temple: Temple.templePublicState(s) } : {}),
     ...(s.drowned ? { drowned: Drowned.drownedPublicState(s) } : {}),
     ...(s.cobas ? { cobas: Cobas.cobasPublicState(s) } : {}),
+    ...(s.city ? { city: City.cityPublicState(s) } : {}),
     ...(s.voyageBelegaer
       ? {
           voyageBelegaer: {

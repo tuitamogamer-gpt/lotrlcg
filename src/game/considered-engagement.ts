@@ -1,4 +1,5 @@
 import { hasHinder } from "./fangorn";
+import { cityNormalAttackPending, cityNormalAttackMarked } from "./city";
 // Virtual engagement never duplicates or moves the physical staging-area enemy.
 import type { GameState, Unit } from "./types";
 import { SHADOW_FLAME } from "./shadow-flame-support";
@@ -41,9 +42,11 @@ export function normalAttackPending(
   if (hasHinder(u)) return false;
   return consideredEngaged(s, u, player)
     ? !(u as ConsideredEnemy).consideredEnemyAttackedBy?.includes(player)
-    : seatView(s, player).engaged.some((e) => e.id === u.id) && !u.attacked;
+    : seatView(s, player).engaged.some((e) => e.id === u.id) &&
+        (cityNormalAttackPending(s, u) ?? !u.attacked);
 }
 export function markEnemyAttack(s: GameState, u: Unit, player = activeSeat(s)) {
+  cityNormalAttackMarked(s, u);
   if (
     (u.code === SHADOW_FLAME.bane || carnConsideredEngaged(s, u, player)) &&
     s.staging.some((c) => c.id === u.id)

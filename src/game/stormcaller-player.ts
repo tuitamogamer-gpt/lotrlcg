@@ -1,3 +1,4 @@
+import { spendResourcePayment } from "./core";
 import { STORMCALLER_PLAYER as P } from "./stormcaller-player-support";
 import type {
   Action,
@@ -783,10 +784,7 @@ export function stormcallerEffect(s: GameState, e: Effect): boolean {
       resolveCostBefore(
         s,
         () => {
-          for (const [id, n] of allocated) {
-            const h = get(s, id)!;
-            forOwner(s, ownerOf(s, h), () => spendResources(s, h, n));
-          }
+          spendResourcePayment(s, Object.fromEntries(allocated));
         },
         ...(e.effects ?? []),
       );

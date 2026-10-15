@@ -1,0 +1,161 @@
+[
+  {
+    "code": "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
+    "octgnid": "19675b16-16ee-4477-a753-bd1cf7b51b7a",
+    "name": "Fate of The Dream-chaser",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns damage among non-Ship characters he controls equal to the total damage on each Ship objective he controls. Discard all Ship enemies, Ship objectives, and Ocean locations in play.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 148,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The City of Corsairs",
+    "side": "A",
+    "back_name": "Fate of The Dream-chaser",
+    "back_text": "When Revealed: Shuffle the Corsair deck and Corsair discard pile into the second encounter deck. Search the encounter deck and discard pile for each copy of Battle-hardened and each copy of Watch Tower, and shuffle them into the second encounter deck. Set the current encounter deck and discard pile aside, inactive. The second encounter deck becomes the active encounter deck. Advance to stage 3.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/19675b16-16ee-4477-a753-bd1cf7b51b7a.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/19675b16-16ee-4477-a753-bd1cf7b51b7a.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 148,
+        "quantity": 1,
+        "octgnid": "19675b16-16ee-4477-a753-bd1cf7b51b7a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19675b16-16ee-4477-a753-bd1cf7b51b7a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
+    "octgnid": "58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
+    "name": "The Haven of Umbar",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck for The Shattered Monument and Captain Sahir, and set them aside, out of play. Each player searches the encounter deck for 1 enemy and 1 location, and adds them to the staging area. If the Stormcaller was not destroyed during stage 1, add 1 resource to each Raider enemy in play.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 149,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The City of Corsairs",
+    "side": "A",
+    "back_name": "The Haven of Umbar",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 149,
+        "quantity": 1,
+        "octgnid": "58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
+    "octgnid": "7b8369b4-cca1-4076-8985-1c7be238ccb0",
+    "name": "Final Confrontation",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add The Shattered Monument to the staging area. Put Captain Sahir into play, engaged with the first player. Each player searches the encounter deck and discard pile for an enemy and adds it to the staging area. Shuffle the encounter deck. Add 1 resource to each Raider enemy in play.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 150,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The City of Corsairs",
+    "side": "A",
+    "back_name": "Final Confrontation",
+    "back_text": "While any enemy has resources on it, Captain Sahir gains indestructible. Forced: When a hero or enemy is destroyed, add its resources to Captain Sahir. If Captain Sahir is destroyed, the players have finally put an end to the Corsairs' treacherous plot and win the game.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/7b8369b4-cca1-4076-8985-1c7be238ccb0.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/7b8369b4-cca1-4076-8985-1c7be238ccb0.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 150,
+        "quantity": 1,
+        "octgnid": "7b8369b4-cca1-4076-8985-1c7be238ccb0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b8369b4-cca1-4076-8985-1c7be238ccb0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c79ff551-f816-4106-9c55-e22d175e544c",
+    "octgnid": "c79ff551-f816-4106-9c55-e22d175e544c",
+    "name": "The Coast of Umbar",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Shuffle the Coast of Umbar, Corsair Raiders, Stormy Weather, Umbar Fleet, and Voyage Across Belegaer encounter sets into one encounter deck and make it the active encounter deck. Set The City of Corsairs encounter set aside, as an inactive second encounter deck. Prepare the Corsair deck. Players prepare their fleet. Add the Stormcaller to the staging area. Add 1 copy of Southern Belfalas to the staging area (2 instead if there are 3 or 4 players in the game). Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 147,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Coast of Umbar",
+    "side": "A",
+    "back_name": "The Coast of Umbar",
+    "back_text": "Sailing.Progress cannot be placed on The Coast of Umbar if the players are off-course (1/4, 1/2, or 3/4).If the Stormcaller is destroyed (or if this stage has 15 or more progress on it), advance to stage 2.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/c79ff551-f816-4106-9c55-e22d175e544c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/c79ff551-f816-4106-9c55-e22d175e544c.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 147,
+        "quantity": 1,
+        "octgnid": "c79ff551-f816-4106-9c55-e22d175e544c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c79ff551-f816-4106-9c55-e22d175e544c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

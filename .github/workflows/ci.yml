@@ -124,6 +124,18 @@ jobs:
       - run: npm ci
       - run: npm run test:cobas-simulation
 
+  city-simulation:
+    name: City of Corsairs review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:city-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -151,6 +163,7 @@ jobs:
             temple-of-the-deceived,
             the-drowned-ruins,
             a-storm-on-cobas-haven,
+            the-city-of-corsairs,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -192,6 +205,8 @@ jobs:
             suite: test:browser-drowned
           - group: cobas
             suite: test:browser-cobas
+          - group: city
+            suite: test:browser-city
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

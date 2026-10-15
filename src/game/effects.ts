@@ -1,3 +1,6 @@
+import * as City from "./city";
+import * as CityHoldLine from "./city-hold-line";
+import * as CityPlayers from "./city-player";
 import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import * as DrownedCompanions from "./drowned-companions";
@@ -11,6 +14,8 @@ import * as TemplePlayers from "./temple-player";
 import * as TempleEncounters from "./temple-encounters";
 import {
   afterPlayerAbility,
+  activePlayerAbilityCode,
+  finishPlayerAbilitySource,
   resolvePlayerAbility,
   choosePlayerResponse,
 } from "./player-ability-triggers";
@@ -154,6 +159,7 @@ import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
 import * as Trials from "./three-trials";
 import { playerCardImmune } from "./card-immunity";
+import { playerEffectImmune } from "./player-effect-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import { enemyAttackPrevented } from "./core";
 import * as Fangorn from "./fangorn";
@@ -546,6 +552,8 @@ export function handle(s: GameState, e: Effect) {
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
+  if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
   if (e.kind === "finishQuestPhase" && e.text !== "angmar-quest-end") {
     prepend(s, { ...e, text: "angmar-quest-end" });
@@ -567,6 +575,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Carn.carnEffect(s, e)) return;
   if (Dread.dreadEffect(s, e)) return;
   if (sailingEffect(s, e)) return;
+  if (City.cityEffect(s, e)) return;
   if (Cobas.cobasEffect(s, e)) return;
   if (Voyage.voyageEffect(s, e)) return;
   if (StormPlayers.stormcallerEffect(s, e)) return;
@@ -645,6 +654,27 @@ function handleEffect(s: GameState, e: Effect) {
   if (handleElfPlayerEffect(s, e)) return;
   if (handleRedhornPlayerEffect(s, e)) return;
   const u = get(s, e.target);
+  if (
+    u &&
+    activePlayerAbilityCode(s) &&
+    playerEffectImmune(s, u) &&
+    ![
+      "quickAttack",
+      "resolvePlayerAttack",
+      "playerAttackResolved",
+      "immediateAttack",
+      "immediateChooseDefender",
+      "immediateDefend",
+      "enemyDamage",
+      "enemyDone",
+      "shadowReveal",
+      "shadowEffect",
+      "shadowResolved",
+      "combatDamage",
+    ].includes(e.kind) &&
+    !(e.kind === "damage" && readDamageContext(e).combatDamage)
+  )
+    return;
   switch (e.kind) {
     case "afterPlayerAbility":
       afterPlayerAbility(s, ...(e.effects ?? []));
@@ -662,6 +692,7 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "playerAbilityFinish":
+      finishPlayerAbilitySource(s, e.source, e.code);
       Dike.dikePlayerTriggered(s, e.player ?? activeSeat(s));
       break;
     case "allyEntryResponses":
@@ -1066,7 +1097,8 @@ function handleEffect(s: GameState, e: Effect) {
       );
       break;
     case "rainOfArrows":
-      for (const enemy of [...engagedEnemies(s)]) damage(s, enemy.id, 1);
+      for (const enemy of [...engagedEnemies(s)])
+        if (!playerEffectImmune(s, enemy, "01033")) damage(s, enemy.id, 1);
       break;
     case "standTogether":
       s.standTogether = true;
@@ -1088,6 +1120,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "thicket":
       engagedEnemies(s).forEach((enemy) => {
+        if (playerEffectImmune(s, enemy, "01036")) return;
         enemy.preventedAttacks = [
           ...new Set([...(enemy.preventedAttacks ?? []), activeSeat(s)]),
         ];
@@ -1143,6 +1176,7 @@ function handleEffect(s: GameState, e: Effect) {
           : [];
         Depths.depthsTravelEntered(s, u, !e.flag);
         Cobas.cobasTravelEntered(s, u, !e.flag || e.text === "strider-replace");
+        City.cityTravelEntered(s, u, !e.flag || e.text === "strider-replace");
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1396,6 +1430,7 @@ function handleEffect(s: GameState, e: Effect) {
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
             Cobas.cobasEncounter(s, e.code, true) ||
+            City.cityEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -1687,6 +1722,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "startTravel":
       startPhase(s, "travel");
+      City.cityTravelStart(s);
       Storm.stormcallerTravelStart(s);
       Depths.depthsTravelStart(s);
       Temple.templeTravelStart(s);
@@ -1840,6 +1876,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Dread.dreadRoundEnd(s));
         forced.push(...Raid.raidRoundEnd(s));
         forced.push(...Storm.stormcallerRoundEnd(s));
+        forced.push(...City.cityRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
@@ -2063,6 +2100,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanCombatBegins(s);
       break;
     case "combatStartEffects":
+      prepend(s, ...City.cityCombatStart(s));
       heirsCombatStart(s);
       {
         const archery = Cobas.cobasArchery(
@@ -2290,6 +2328,12 @@ function handleEffect(s: GameState, e: Effect) {
           DrownedCompanions.drownedAttackFinished(s, completed, true);
         if (completed)
           CobasPlayers.cobasPlayerAttackFinished(s, completed.enemyId, false);
+        if (completed)
+          prepend(
+            s,
+            ...CityHoldLine.cityHoldLineAttackFinished(s, completed, true),
+          );
+        if (completed) City.cityAttackFinished(s, completed, true);
         if (skipped) finishEnemyShadows(s, skipped);
         if (
           immediate &&
@@ -2414,6 +2458,9 @@ function handleEffect(s: GameState, e: Effect) {
         BloodQuest.bloodGondorAttackFinished(s, completed);
         prepend(s, ...heirsAttackFinished(s, completed));
       }
+      if (completed)
+        prepend(s, ...CityHoldLine.cityHoldLineAttackFinished(s, completed));
+      if (completed) City.cityAttackFinished(s, completed);
       Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -2615,6 +2662,7 @@ export function flush(s: GameState) {
         "drownedECCurse",
       ].includes(effect.kind) ||
       Cobas.cobasSharedEffect(effect) ||
+      City.citySharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

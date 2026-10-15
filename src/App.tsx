@@ -14,6 +14,8 @@ import { DepthsScenarioState, DepthsGrappleSummary } from "./ui/depths-state";
 import { TempleMap } from "./ui/TempleMap";
 import { DrownedScenarioState } from "./ui/drowned-state";
 import { CobasScenarioState } from "./ui/cobas-state";
+import { CityScenarioState } from "./ui/city-state";
+import { CITY_QUESTS } from "./game/city-scenario-data";
 import { COBAS_OBJECTIVES } from "./game/cobas-support";
 import { TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
@@ -498,7 +500,7 @@ function CardDetail({
         ...c,
         name: c.back_name ?? c.name,
         traits: c.back_traits ?? c.traits,
-        text: c.back_text ?? c.text,
+        text: c.back_text ?? (c.type_code === "quest" ? "" : c.text),
         imagesrc: c.back_imagesrc ?? c.imagesrc,
         quest: c.back_quest ?? c.quest,
       })
@@ -2737,6 +2739,7 @@ export default function App() {
             <DepthsScenarioState s={game} inspect={setDetail} />
             <DrownedScenarioState s={game} inspect={setDetail} />
             <CobasScenarioState s={game} inspect={setDetail} />
+            <CityScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -3541,6 +3544,7 @@ export default function App() {
                     const local = [
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
+                      ...CITY_QUESTS,
                     ].find((c) => c.code === stage.cardCode);
                     const printed =
                       local ??

@@ -1,4 +1,5 @@
 import { raidEngaged } from "./raid-grey-havens";
+import { cityCardEntered } from "./city";
 import { COBAS_CORSAIRS } from "./cobas-support";
 import { cobasBoardingModifier } from "./cobas";
 import { isShipEnemy, isShipObjective } from "./ships";
@@ -67,7 +68,10 @@ type Combat = NonNullable<GameState["combat"]> & {
 const combat = (s: GameState) => s.combat as Combat | null;
 const isVoyage = (s: GameState) => !!voyageState(s);
 const fleetState = (s: GameState) =>
-  voyageState(s) ?? stormcallerState(s) ?? s.cobas;
+  voyageState(s) ??
+  stormcallerState(s) ??
+  s.cobas ??
+  (s.city && s.stage <= 2 ? s.city : undefined);
 const isFleet = (s: GameState) => !!fleetState(s);
 export const SHIP_CONTROLLER_ELIMINATED = "game:ship-controller-eliminated";
 const ship = (u: Unit) => isShipObjective(u);
@@ -774,6 +778,7 @@ export function voyageEffect(s: GameState, e: Effect) {
       forOwner(s, enemy.owner, () => s.engaged.push(enemy));
       voyageEngaged(s, enemy, false);
       raidEngaged(s, enemy);
+      cityCardEntered(s, enemy, false, false);
       if (!q.corsairDeck.length)
         q.corsairDeck = shuffle(s, q.corsairDiscard.splice(0));
       log(

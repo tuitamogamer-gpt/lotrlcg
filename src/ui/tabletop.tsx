@@ -1,3 +1,4 @@
+import { cityPlayerAbilityAnyPlayer } from "../game/city-player";
 import { isHero } from "../game/card-types";
 import { gramQuestUnit } from "../game/mount-gram-support";
 import { selectedSideQuest } from "../game/side-quest-support";
@@ -577,6 +578,7 @@ export function OtherFellowships({
                 [...p.heroes, ...p.allies]
                   .filter(
                     (u) =>
+                      cityPlayerAbilityAnyPlayer(u.code) ||
                       collectorAbilityAnyPlayer(u.code) ||
                       depthsPlayerAbilityAnyPlayer(u.code) ||
                       templePlayerAbilityAnyPlayer(u.code) ||
@@ -589,7 +591,8 @@ export function OtherFellowships({
                       {availableAbilities(s, u)
                         .filter((a) =>
                           !a.id
-                            ? collectorAbilityAnyPlayer(u.code) ||
+                            ? cityPlayerAbilityAnyPlayer(u.code) ||
+                              collectorAbilityAnyPlayer(u.code) ||
                               depthsPlayerAbilityAnyPlayer(u.code) ||
                               templePlayerAbilityAnyPlayer(u.code)
                             : u.attachments.some(

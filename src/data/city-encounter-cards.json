@@ -1,0 +1,1280 @@
+[
+  {
+    "code": "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
+    "octgnid": "04f24d17-9764-4385-b22c-0e45f6fa5654",
+    "name": "Watch Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Umbar. Coastland.",
+    "text": "While Watch Tower is in the staging area, it gains: \"Forced: When a Raider enemy enters play, add 1 resource to it.\"",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 156,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: If this attack destroys a ally, add resources to a Raider enemy in play equal to that character's printed resource cost.",
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/04f24d17-9764-4385-b22c-0e45f6fa5654.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 156,
+        "quantity": 2,
+        "octgnid": "04f24d17-9764-4385-b22c-0e45f6fa5654",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/04f24d17-9764-4385-b22c-0e45f6fa5654.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
+    "octgnid": "06badf71-8e85-479e-8ddf-1dec7a40e325",
+    "name": "City of Corsairs",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Umbar. City.",
+    "text": "X is the highest number of resources on a Raider enemy in play.Travel: Search the encounter deck and discard pile for a Corsair enemy and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 161,
+    "quantity": 2,
+    "threat": 0,
+    "quest": 4,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/06badf71-8e85-479e-8ddf-1dec7a40e325.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 160,
+        "quantity": 2,
+        "octgnid": "06badf71-8e85-479e-8ddf-1dec7a40e325",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/06badf71-8e85-479e-8ddf-1dec7a40e325.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+    "octgnid": "07a8f60f-926c-4342-bf04-e3af9a24df10",
+    "name": "Dream-chaser",
+    "type_code": "ship-objective",
+    "sphere_code": "encounter",
+    "traits": "Grey Havens. Ship.",
+    "text": "Immune to player card effects. Sentinel.\nThe Dream-chaser can always be committed to Sailing tests (even if you are not the first player), and counts as 2 characters when committed to a Sailing test.   If the Dream-chaser is destroyed, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 80,
+    "quantity": 1,
+    "willpower": 5,
+    "attack": 4,
+    "defense": 4,
+    "health": 18,
+    "encounter_set": "The Dream-chaser's Fleet",
+    "printed_stats": {
+      "willpower": "5",
+      "attack": "4",
+      "defense": "4",
+      "health": "18"
+    },
+    "imagesrc": "/cards/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "07a8f60f-926c-4342-bf04-e3af9a24df10",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/07a8f60f-926c-4342-bf04-e3af9a24df10.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "octgnid": "0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "name": "Slave Ship",
+    "type_code": "ship-enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Ship.",
+    "text": "Boarding 1. Cannot have attachments.For each point of damage that is dealt to a Ship objective by Slave Ship's attack, deal 1 point of damage to a non-Ship character controlled by the defending player, as well.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 152,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 7,
+    "defense": 5,
+    "health": 5,
+    "engagement": 32,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "7",
+      "defense": "5",
+      "health": "5",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/0f7ce386-9510-4fd5-93aa-145190f8d1de.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 152,
+        "quantity": 2,
+        "octgnid": "0f7ce386-9510-4fd5-93aa-145190f8d1de",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f7ce386-9510-4fd5-93aa-145190f8d1de.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+    "octgnid": "16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+    "name": "Scouting Ship",
+    "type_code": "ship-enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Ship.",
+    "text": "Boarding 1. Cannot have attachments.\nScouting Ship gets -15 engagement cost while you are off-course ( 1/4 ,  1/2 , or  3/4 ).",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 22,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 5,
+    "defense": 2,
+    "health": 7,
+    "engagement": 35,
+    "encounter_set": "Voyage Across Belegaer",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "5",
+      "defense": "2",
+      "health": "7",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 22,
+        "quantity": 3,
+        "octgnid": "16361c0e-f422-44d4-8f25-bc32b7a9aadd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/16361c0e-f422-44d4-8f25-bc32b7a9aadd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+    "octgnid": "28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+    "name": "Boarding Party",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player reveals the top card of the Corsair deck and puts it into play, engaged with him.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 59,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you control an exhausted Ship objective).",
+    "encounter_set": "Umbar Fleet",
+    "printed_stats": {},
+    "imagesrc": "/cards/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 59,
+        "quantity": 2,
+        "octgnid": "28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/28ba7c20-b660-40cb-9e2c-bf6ebaec723e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
+    "octgnid": "2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
+    "name": "Rough Waters",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean.",
+    "text": "While Rough Waters is in the staging area, cancel the first 1 symbol found during each Sailing test.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 53,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: If you are off-course ( 1/4 ,  1/2 , or  3/4 ), attacking enemy gets +2 [attack].",
+    "encounter_set": "Stormy Weather",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/2b3973f5-e6f6-4611-87b7-b6e3dc33eb66.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 53,
+        "quantity": 2,
+        "octgnid": "2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b3973f5-e6f6-4611-87b7-b6e3dc33eb66.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2fd16de8-3286-4003-9978-574738b2a337",
+    "octgnid": "2fd16de8-3286-4003-9978-574738b2a337",
+    "name": "Umbar Slaver",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Raider.",
+    "text": "Umbar Slaver gets +1 [attack] and +1 [threat] for each resource on it.Forced: After the engaged player spends any number of resources, place 1 of those resources on Umbar Slaver.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 153,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 3,
+    "health": 5,
+    "engagement": 28,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "3",
+      "health": "5",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/2fd16de8-3286-4003-9978-574738b2a337.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 153,
+        "quantity": 3,
+        "octgnid": "2fd16de8-3286-4003-9978-574738b2a337",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fd16de8-3286-4003-9978-574738b2a337.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
+    "octgnid": "32db1af6-e214-4958-9ca4-bdf3a73758b5",
+    "name": "Nárelenya",
+    "type_code": "ship-objective",
+    "sphere_code": "encounter",
+    "traits": "Grey Havens. Ship.",
+    "text": "Immune to player card effects. Sentinel.\nReduce the cost of the first ally you play each round by 1.  If Narelenya is destroyed, its controller is eliminated from the game.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 82,
+    "quantity": 1,
+    "willpower": 3,
+    "attack": 3,
+    "defense": 5,
+    "health": 16,
+    "encounter_set": "The Dream-chaser's Fleet",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "3",
+      "defense": "5",
+      "health": "16"
+    },
+    "imagesrc": "/cards/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 82,
+        "quantity": 1,
+        "octgnid": "32db1af6-e214-4958-9ca4-bdf3a73758b5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32db1af6-e214-4958-9ca4-bdf3a73758b5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+    "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+    "name": "Raid Leader",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Raider.",
+    "text": "Raid Leader gets +1 [defense] for each resource on it.\nForced: When Raid Leader engages you, move 1 resource from each of your heroes' resource pools to Raid Leader.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 66,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 1,
+    "health": 5,
+    "engagement": 40,
+    "encounter_set": "Corsair Raiders",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "1",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 66,
+        "quantity": 2,
+        "octgnid": "4b3a4229-eb85-49b0-9f34-78cb17301b34",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b3a4229-eb85-49b0-9f34-78cb17301b34.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
+    "octgnid": "4d925556-3a39-4e49-aafa-0adac6cacc52",
+    "name": "Waterspout",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean.",
+    "text": "While your heading is at the worst setting ( 3/4 ), when faced with the option to travel, the players must travel to Waterspout, if able. Forced: After traveling to Waterspout, deal 4 damage to each Ship objective.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 54,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Stormy Weather",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/4d925556-3a39-4e49-aafa-0adac6cacc52.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 54,
+        "quantity": 2,
+        "octgnid": "4d925556-3a39-4e49-aafa-0adac6cacc52",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d925556-3a39-4e49-aafa-0adac6cacc52.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
+    "octgnid": "5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
+    "name": "Umbar Harbor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Umbar. City.",
+    "text": "While Umbar Harbor is the active location, Corsair enemies get +2 [defense].",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 162,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 4,
+    "shadow": "Shadow: If attacking enemy is a Raider, move 1 resource from a hero you control to attacking enemy.",
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/5c0a0aea-af43-441b-9d7f-86a1dfd09f00.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 161,
+        "quantity": 3,
+        "octgnid": "5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5c0a0aea-af43-441b-9d7f-86a1dfd09f00.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
+    "octgnid": "71d7dd78-a967-43dd-ab73-e46a5d4d4519",
+    "name": "Winds of Wrath",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: If you are off-course, deal 1 damage to each character in play. If your heading is at the worst setting ( 3/4 ), this effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 56,
+    "quantity": 2,
+    "shadow": "Shadow: Either shift your heading off-course or treat this attack as undefended.",
+    "encounter_set": "Stormy Weather",
+    "printed_stats": {},
+    "imagesrc": "/cards/71d7dd78-a967-43dd-ab73-e46a5d4d4519.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 56,
+        "quantity": 2,
+        "octgnid": "71d7dd78-a967-43dd-ab73-e46a5d4d4519",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71d7dd78-a967-43dd-ab73-e46a5d4d4519.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:720b2482-f69c-4a88-8352-721d854704d2",
+    "octgnid": "720b2482-f69c-4a88-8352-721d854704d2",
+    "name": "Foes of Ecthelion",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add 2 resources to a Raider enemy in the staging area. Each Raider enemy in the staging area gets +1 [threat] for each resource on it until the end of the phase. If there are no Raider enemies in the staging area, Foes of Ecthelion gains surge.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 163,
+    "quantity": 2,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {},
+    "imagesrc": "/cards/720b2482-f69c-4a88-8352-721d854704d2.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 163,
+        "quantity": 2,
+        "octgnid": "720b2482-f69c-4a88-8352-721d854704d2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/720b2482-f69c-4a88-8352-721d854704d2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
+    "octgnid": "7691fb33-603e-4460-9f09-5f96bc05c2bb",
+    "name": "Sudden Storms",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Either shift your heading off-course or deal 1 damage to each exhausted character.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 55,
+    "quantity": 3,
+    "shadow": "Shadow: Excess damage from this attack is dealt to a Ship objective you control.",
+    "encounter_set": "Stormy Weather",
+    "printed_stats": {},
+    "imagesrc": "/cards/7691fb33-603e-4460-9f09-5f96bc05c2bb.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 55,
+        "quantity": 3,
+        "octgnid": "7691fb33-603e-4460-9f09-5f96bc05c2bb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7691fb33-603e-4460-9f09-5f96bc05c2bb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
+    "octgnid": "797a1805-f347-4eb3-9f77-5c9e6b6a850f",
+    "name": "Southern Belfalas",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean. Coastland.",
+    "text": "Travel: One player must reveal the top card of the Corsair deck and engage it to travel here.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 154,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 5,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/797a1805-f347-4eb3-9f77-5c9e6b6a850f.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 154,
+        "quantity": 2,
+        "octgnid": "797a1805-f347-4eb3-9f77-5c9e6b6a850f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/797a1805-f347-4eb3-9f77-5c9e6b6a850f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: If this attack destroys a character, discard an ally controlled by the defending player."
+  },
+  {
+    "code": "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
+    "octgnid": "7f0e7969-bca4-48a3-99b5-ba055bd376af",
+    "name": "Umbar Patrol",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player returns an enemy engaged with him to the staging area. Until the end of the round, enemies cannot be optionally engaged. If there are no enemies in the staging area, search the encounter deck and discard pile for an enemy and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 164,
+    "quantity": 2,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {},
+    "imagesrc": "/cards/7f0e7969-bca4-48a3-99b5-ba055bd376af.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 164,
+        "quantity": 2,
+        "octgnid": "7f0e7969-bca4-48a3-99b5-ba055bd376af",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f0e7969-bca4-48a3-99b5-ba055bd376af.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+    "octgnid": "81632d10-625e-42f0-9e6b-09574a9ffbc3",
+    "name": "Dawn Star",
+    "type_code": "ship-objective",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Ship.",
+    "text": "Immune to player card effects. Sentinel.\nRaise your starting threat by 3. Draw 1 additional card during the resource phase. If the Dawn Star is destroyed, its controller is eliminated from the game.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 81,
+    "quantity": 1,
+    "willpower": 3,
+    "attack": 3,
+    "defense": 4,
+    "health": 16,
+    "encounter_set": "The Dream-chaser's Fleet",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "3",
+      "defense": "4",
+      "health": "16"
+    },
+    "imagesrc": "/cards/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 81,
+        "quantity": 1,
+        "octgnid": "81632d10-625e-42f0-9e6b-09574a9ffbc3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81632d10-625e-42f0-9e6b-09574a9ffbc3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
+    "octgnid": "86e8724b-32cb-4d63-b918-5754d39d2249",
+    "name": "Serpent's Tail",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 shadow card to each Ship enemy in play. Then, if you are off-course ( 1/4 ,  1/2 , or  3/4 ), each Ship enemy in play gets -10 engagement cost until the end of the round.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 157,
+    "quantity": 2,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {},
+    "imagesrc": "/cards/86e8724b-32cb-4d63-b918-5754d39d2249.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 157,
+        "quantity": 2,
+        "octgnid": "86e8724b-32cb-4d63-b918-5754d39d2249",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/86e8724b-32cb-4d63-b918-5754d39d2249.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
+    "octgnid": "a312e181-9209-4460-b6ba-c90c99e011fe",
+    "name": "Corsair Warship",
+    "type_code": "ship-enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Ship.",
+    "text": "Boarding 3. Cannot have attachments.\nWhile Corsair Warship is in the staging area, it cannot be damaged and gains archery 4.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 58,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 8,
+    "defense": 4,
+    "health": 9,
+    "engagement": 44,
+    "victory": 6,
+    "encounter_set": "Umbar Fleet",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "8",
+      "defense": "4",
+      "health": "9",
+      "engagement": "44",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/a312e181-9209-4460-b6ba-c90c99e011fe.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "a312e181-9209-4460-b6ba-c90c99e011fe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a312e181-9209-4460-b6ba-c90c99e011fe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
+    "octgnid": "a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
+    "name": "Corsair Waters",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean. Coastland.",
+    "text": "While Corsair Waters is the active location, no more than 1 ally can enter play each round.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 155,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 3,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/a3173fc4-1ddb-470d-ae12-a35e24ea63a3.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 155,
+        "quantity": 2,
+        "octgnid": "a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a3173fc4-1ddb-470d-ae12-a35e24ea63a3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Either shift your heading off-course, or treat this attack as undefended."
+  },
+  {
+    "code": "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
+    "octgnid": "b4769083-91fb-4e9c-9736-17e8c28ff971",
+    "name": "Fury and Malice",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add 1 resource to each engaged Raider enemy. Then, each player assigns damage among characters he controls equal to the number of resource tokens on Raider enemies engaged with him. If no damage is assigned by this effect, Fury and Malice gains surge.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 165,
+    "quantity": 3,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {},
+    "imagesrc": "/cards/b4769083-91fb-4e9c-9736-17e8c28ff971.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 165,
+        "quantity": 3,
+        "octgnid": "b4769083-91fb-4e9c-9736-17e8c28ff971",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4769083-91fb-4e9c-9736-17e8c28ff971.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+    "octgnid": "b640a0b7-f23e-4859-96fb-b558274b90a8",
+    "name": "Starlit Sea",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean.",
+    "text": "While you are off-course ( 1/4 ,  1/2 , or  3/4 ), Starlit Sea gains: \"Travel: Raise each player's threat by 3.\"",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 23,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you are off-course).",
+    "encounter_set": "Voyage Across Belegaer",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "b640a0b7-f23e-4859-96fb-b558274b90a8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b640a0b7-f23e-4859-96fb-b558274b90a8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+    "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+    "name": "Battle-Hardened",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 1 resource on each Raider enemy in play. Each engaged non-Ship enemy makes an immediate attack. If there are no engaged non-Ship enemies, Battle-Hardened gains surge.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 67,
+    "quantity": 2,
+    "shadow": "Shadow: If the attacking enemy is a Raider, place 2 resources on it.",
+    "encounter_set": "Corsair Raiders",
+    "printed_stats": {},
+    "imagesrc": "/cards/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 67,
+        "quantity": 2,
+        "octgnid": "c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c057b0ef-eb85-4afc-9ca8-60a0cca92bcc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
+    "octgnid": "c1273c2f-a616-45ee-804d-a16c28b6e63d",
+    "name": "Light Cruiser",
+    "type_code": "ship-enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Ship.",
+    "text": "Boarding 2. Cannot have attachments.\nEach Raider enemy revealed from the Corsair deck by Light Cruiser's boarding keyword enters play with 1 resource on it.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 57,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 6,
+    "defense": 5,
+    "health": 7,
+    "engagement": 37,
+    "encounter_set": "Umbar Fleet",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "5",
+      "health": "7",
+      "engagement": "37"
+    },
+    "imagesrc": "/cards/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 57,
+        "quantity": 2,
+        "octgnid": "c1273c2f-a616-45ee-804d-a16c28b6e63d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1273c2f-a616-45ee-804d-a16c28b6e63d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
+    "octgnid": "c354e410-e15a-4999-bb14-696b5e89cee9",
+    "name": "Captain Sahír",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Raider. Corrupt.",
+    "text": "Captain Sahir engages the first player.For each point of damage Captain Sahir would take, discard 1 resource from him and cancel that damage.For every 5 resources on Captain Sahir, he makes an additional attack against the engaged player each combat phase.",
+    "is_unique": true,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 158,
+    "quantity": 1,
+    "threat": 6,
+    "attack": 6,
+    "defense": 2,
+    "health": 8,
+    "engagement": 4,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {
+      "threat": "6",
+      "attack": "6",
+      "defense": "2",
+      "health": "8",
+      "engagement": "4",
+      "victory": "20"
+    },
+    "imagesrc": "/cards/c354e410-e15a-4999-bb14-696b5e89cee9.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 158,
+        "quantity": 1,
+        "octgnid": "c354e410-e15a-4999-bb14-696b5e89cee9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c354e410-e15a-4999-bb14-696b5e89cee9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 20
+  },
+  {
+    "code": "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
+    "octgnid": "c45dc401-bb07-42ec-ba4c-ee9105a3f349",
+    "name": "Stormcaller",
+    "type_code": "ship-enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Ship.",
+    "text": "Boarding 1. Cannot have attachments.Forced: At the end of the round, if the Stormcaller is engaged with a player, either return it to the staging area or shift your heading off-course.",
+    "is_unique": true,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 151,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 6,
+    "defense": 6,
+    "health": 18,
+    "engagement": 20,
+    "victory": 10,
+    "encounter_set": "Coast of Umbar",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "6",
+      "defense": "6",
+      "health": "18",
+      "engagement": "20",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/c45dc401-bb07-42ec-ba4c-ee9105a3f349.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 151,
+        "quantity": 1,
+        "octgnid": "c45dc401-bb07-42ec-ba4c-ee9105a3f349",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c45dc401-bb07-42ec-ba4c-ee9105a3f349.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+    "octgnid": "c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+    "name": "Silver Wing",
+    "type_code": "ship-objective",
+    "sphere_code": "encounter",
+    "traits": "Gondor. Ship.",
+    "text": "Immune to player card effects. Sentinel. Ranged.\nReduce your starting threat by 3. Each hero you control gets +1 [attack]. If the Silver Wing is destroyed, its controller is eliminated from the game.",
+    "is_unique": true,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 83,
+    "quantity": 1,
+    "willpower": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 14,
+    "encounter_set": "The Dream-chaser's Fleet",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "14"
+    },
+    "imagesrc": "/cards/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+    "octgnid": "ce1cf93c-68d9-4613-af3a-a08671152358",
+    "name": "Heading",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 84,
+    "quantity": 1,
+    "encounter_set": "The Dream-chaser's Fleet",
+    "back_name": "Heading",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/ce1cf93c-68d9-4613-af3a-a08671152358.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 84,
+        "quantity": 1,
+        "octgnid": "ce1cf93c-68d9-4613-af3a-a08671152358",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce1cf93c-68d9-4613-af3a-a08671152358.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
+    "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+    "name": "Umbar Raider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Raider.",
+    "text": "Umbar Raider gets +1 [attack] for each resource on it.\nForced: After Umbar Raider attacks you, move 1 resource from one of your heroes' resource pools to Umbar Raider.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 64,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 24,
+    "encounter_set": "Corsair Raiders",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "24"
+    },
+    "imagesrc": "/cards/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 64,
+        "quantity": 3,
+        "octgnid": "d03bdefa-cc39-43b6-9af9-feeb33858958",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d03bdefa-cc39-43b6-9af9-feeb33858958.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
+    "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+    "name": "Corsair Infiltrator",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Corsair. Raider.",
+    "text": "Forced: When Corsair Infiltrator attacks, deal it 1 additional shadow card for each resource on it.  Forced: After the engaged player collects resources at the beginning of the resource phase, that player moves 1 resource from one of his heroes' pools to Corsair Infiltrator.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 65,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 3,
+    "health": 2,
+    "engagement": 16,
+    "encounter_set": "Corsair Raiders",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "3",
+      "health": "2",
+      "engagement": "16"
+    },
+    "imagesrc": "/cards/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 65,
+        "quantity": 2,
+        "octgnid": "d7885efa-3af6-48e6-8eb1-5750892fdb34",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7885efa-3af6-48e6-8eb1-5750892fdb34.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
+    "octgnid": "dd394c76-c2b9-4b1c-8948-a056de97b779",
+    "name": "Streets of Umbar",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Umbar. City.",
+    "text": "When faced with the option to travel, if Streets of Umbar is in the staging area, the players must either travel to a location named Streets of Umbar or add 2 resources to a Raider enemy in play.",
+    "is_unique": false,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 160,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "shadow": "Shadow: If attacking enemy is a Raider, deal it an additional shadow card for each resource token on it, to a maximum of 3 additional shadow cards.",
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/dd394c76-c2b9-4b1c-8948-a056de97b779.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 160,
+        "quantity": 3,
+        "octgnid": "dd394c76-c2b9-4b1c-8948-a056de97b779",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dd394c76-c2b9-4b1c-8948-a056de97b779.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
+    "octgnid": "edfe479c-dc2b-43d0-9d4b-708e96320748",
+    "name": "Fog Bank",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ocean.",
+    "text": "While Fog Bank is the active location, Ship enemies do not make engagement checks, cannot attack, and cannot be attacked.",
+    "is_unique": false,
+    "pack_code": "TGH",
+    "pack_name": "The Grey Havens",
+    "position": 24,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 5,
+    "shadow": "Shadow: If your heading is at the worst setting ( 3/4 ), attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Voyage Across Belegaer",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg",
+    "packs": [
+      {
+        "pack_code": "TGH",
+        "pack_name": "The Grey Havens",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "edfe479c-dc2b-43d0-9d4b-708e96320748",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edfe479c-dc2b-43d0-9d4b-708e96320748.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
+    "octgnid": "f811f153-81f4-4688-8b4d-400215e6748a",
+    "name": "The Shattered Monument",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Umbar.",
+    "text": "Each Raider enemy with at least 1 resource on it is immune to player events.Forced: At the beginning of the resource phase, add 1 resource to each Raider enemy in play.",
+    "is_unique": true,
+    "pack_code": "CoC",
+    "pack_name": "The City of Corsairs",
+    "position": 159,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 8,
+    "victory": 5,
+    "encounter_set": "The City of Corsairs",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "8",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/f811f153-81f4-4688-8b4d-400215e6748a.jpg",
+    "packs": [
+      {
+        "pack_code": "CoC",
+        "pack_name": "The City of Corsairs",
+        "position": 159,
+        "quantity": 1,
+        "octgnid": "f811f153-81f4-4688-8b4d-400215e6748a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f811f153-81f4-4688-8b4d-400215e6748a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
