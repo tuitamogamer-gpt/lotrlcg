@@ -1,7 +1,9 @@
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import * as HaradPlayers from "./harad-player";
+import * as MumakPlayers from "./mumakil-player";
 import * as HaradResponses from "./harad-player-responses";
 import * as City from "./city";
 import * as CityHoldLine from "./city-hold-line";
@@ -558,10 +560,12 @@ export function handle(s: GameState, e: Effect) {
 
 function handleEffect(s: GameState, e: Effect) {
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
+  if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (HaradResponses.handleHaradResponseEffect(s, e)) return;
   if (Umbar.umbarEffect(s, e)) return;
   if (Desert.desertCrossingEffect(s, e)) return;
   if (Mordor.mordorEffect(s, e)) return;
+  if (Mumakil.mumakilEffect(s, e)) return;
   if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
   if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
@@ -924,6 +928,7 @@ function handleEffect(s: GameState, e: Effect) {
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
       DepthsPlayers.depthsPlayerQuestSucceeded(s);
+      Mumakil.mumakilQuestSucceeded(s);
       break;
     case "successfulQuestProgress":
       progress(s, e.value ?? 0, false, true);
@@ -1054,6 +1059,7 @@ function handleEffect(s: GameState, e: Effect) {
                 heirsStagingCountBonus(s) +
                 Weather.weatherStagingCountBonus(s) +
                 Etten.ettenExtraReveals(s) +
+                Mumakil.mumakilExtraReveals(s) +
                 stewardFearExtraRevealCount(s),
         ),
       );
@@ -1207,6 +1213,7 @@ function handleEffect(s: GameState, e: Effect) {
           u,
           !e.flag || e.text === "strider-replace",
         );
+        Mumakil.mumakilTravelEntered(s, u, !e.flag || e.text === "strider-replace");
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1464,6 +1471,7 @@ function handleEffect(s: GameState, e: Effect) {
             Umbar.umbarEncounter(s, e.code, true) ||
             Desert.desertCrossingEncounter(s, e.code, true) ||
             Mordor.mordorEncounter(s, e.code, true) ||
+            Mumakil.mumakilEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -1739,6 +1747,7 @@ function handleEffect(s: GameState, e: Effect) {
       heirsQuestStart(s);
       BloodQuest.bloodGondorQuestStart(s);
       Tharbad.tharbadQuestStart(s);
+      prepend(s, ...Mumakil.mumakilQuestBegin(s));
       Drowned.drownedQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
@@ -1915,6 +1924,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Umbar.umbarRoundEnd(s));
         forced.push(...Desert.desertCrossingRoundEnd(s));
         forced.push(...Mordor.mordorRoundEnd(s));
+        forced.push(...Mumakil.mumakilRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
@@ -2512,6 +2522,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed) City.cityAttackFinished(s, completed);
       if (completed) Umbar.umbarAttackFinished(s, completed);
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
+      if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));
       Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -2717,6 +2728,7 @@ export function flush(s: GameState) {
       Umbar.umbarSharedEffect(effect) ||
       Desert.desertCrossingSharedEffect(effect) ||
       Mordor.mordorSharedEffect(effect) ||
+      Mumakil.mumakilSharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

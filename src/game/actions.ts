@@ -1,10 +1,12 @@
 import * as HaradPlayers from "./harad-player";
+import * as MumakPlayers from "./mumakil-player";
 import { haradPlayerCardPlayed } from "./harad-player-support";
 import { playerEffectImmune } from "./player-effect-immunity";
 import * as City from "./city";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import * as CityPlayers from "./city-player";
 import { cityPlayerCardPlayed } from "./city-player-support";
 import * as Cobas from "./cobas";
@@ -621,6 +623,8 @@ export function optionalEngagementProblem(
     return "Umbar Patrol prevents optional engagements this round.";
   if (Mordor.mordorCannotOptionallyEngage(s, u))
     return "Uruk Chieftain cannot be optionally engaged.";
+  if (Mumakil.mumakilCannotOptionallyEngage(s, u))
+    return "Harad Tiger cannot be optionally engaged.";
   if (s.status !== "playing" || s.choice || s.flow?.pending)
     return "Resolve the current decision first.";
   if (s.table && activeSeat(s) !== s.table.turn)
@@ -767,6 +771,8 @@ export function canPlay(
   if (drownedPlayerProblem) return drownedPlayerProblem;
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
+  const mumakilProblem = MumakPlayers.mumakilPlayerPlayProblem(s, u);
+  if (mumakilProblem) return mumakilProblem;
   const cityProblem = CityPlayers.cityPlayerPlayProblem(s, u);
   if (cityProblem) return cityProblem;
   const cobasPlayerProblem = CobasPlayers.cobasPlayerPlayProblem(s, u);
@@ -1890,6 +1896,12 @@ export function availableAbilities(s: GameState, u: Unit) {
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
     });
   const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
+  const mumakilLabel = MumakPlayers.mumakilPlayerAbilityLabel(u.code);
+  if (mumakilLabel)
+    results.push({
+      label: mumakilLabel,
+      disabled: !!MumakPlayers.mumakilPlayerAbilityProblem(s, u),
+    });
   if (cityLabel)
     results.push({
       label: cityLabel,
@@ -2129,6 +2141,13 @@ export function availableAbilities(s: GameState, u: Unit) {
         disabled: !!StormPlayers.stormcallerAbilityProblem(s, u, a.id),
       });
     const greyLabel = GreyPlayers.greyHavensAbilityLabel(a.code);
+    const mumakilLabel = MumakPlayers.mumakilPlayerAbilityLabel(a.code);
+    if (mumakilLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: mumakilLabel,
+        disabled: !!MumakPlayers.mumakilPlayerAbilityProblem(s, u, a.id),
+      });
     if (greyLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
         id: a.id,
@@ -2428,6 +2447,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         !Umbar.umbarOpeningHandsKept(s) &&
         !Desert.desertCrossingOpeningHandsKept(s) &&
         !Mordor.mordorOpeningHandsKept(s) &&
+        !Mumakil.mumakilOpeningHandsKept(s) &&
         !Voyage.voyageOpeningHandsKept(s) &&
         !Fate.fateOpeningHandsKept(s) &&
         !Raid.raidOpeningHandsKept(s) &&
@@ -2717,6 +2737,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !DrownedPlayers.useDrownedPlayerAbility(
               s,
               u,
@@ -2816,6 +2837,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         City.cityTravelEffects(s, u) ??
         Umbar.umbarTravelEffects(s, u) ??
         Mordor.mordorTravelEffects(s, u) ??
+        Mumakil.mumakilTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3151,6 +3173,21 @@ export function publicState(s: GameState) {
             guarding: s.mordor.guarding,
             setAside: s.mordor.setAside.length,
             removed: s.mordor.removed.length,
+          },
+        }
+      : {}),
+    ...(s.mumakil
+      ? {
+          mumakil: {
+            initialized: s.mumakil.initialized,
+            currentQuest: s.mumakil.currentQuest,
+            questDeck: s.mumakil.questDeck.length,
+            completedQuests: s.mumakil.completedQuests,
+            setAside: s.mumakil.setAside.length,
+            damageThisRound: s.mumakil.damageThisRound,
+            blanked: s.mumakil.blanked,
+            cannotReady: s.mumakil.cannotReady,
+            exploredRound: s.mumakil.exploredRound,
           },
         }
       : {}),

@@ -1,4 +1,5 @@
 import { drownedCannotEnterStaging } from "./drowned";
+import { mumakilPlayerDeckDiscarded } from "./mumakil-player";
 import {
   choosePlayerResponse,
   responseOptions,
@@ -390,6 +391,7 @@ export function dwarfDeckDiscarded(
       .filter((code) => code === "12066" || code === "06143")
       .map((code) => fx("dwarfMiningResponse", { code, player })),
   );
+  mumakilPlayerDeckDiscarded(s, codes, player);
 }
 
 /** Defer assigned damage just as Frodo does, before destruction or damage responses. */

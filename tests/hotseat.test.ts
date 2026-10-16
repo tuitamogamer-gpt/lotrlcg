@@ -1,4 +1,14 @@
 import {
+  mumakilSimulationAction,
+  mumakilSimulationChoice,
+  isMumakilScenario,
+  MUMAKIL_SCENARIOS,
+} from "./mumakil-simulation-policy";
+import {
+  assertMumakilSaveRestoration,
+  mumakilSimulationObserver,
+} from "./mumakil-simulation-invariants";
+import {
   haradSimulationAction,
   haradSimulationChoice,
   HARAD_SCENARIOS,
@@ -486,6 +496,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     "the-dread-realm",
     ...DREAM_CHASER_SCENARIOS,
     ...HARAD_SCENARIOS,
+    ...MUMAKIL_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -499,6 +510,7 @@ for (const scenarioId of [
   "the-dread-realm",
   ...DREAM_CHASER_SCENARIOS,
   ...HARAD_SCENARIOS,
+  ...MUMAKIL_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -554,9 +566,11 @@ for (const scenarioId of [
                     ? cobasSimulationObserver()
                     : scenarioId === "the-city-of-corsairs"
                       ? citySimulationObserver()
-                      : isHaradScenario(scenarioId)
-                        ? haradSimulationObserver()
-                        : undefined;
+                      : isMumakilScenario(scenarioId)
+                        ? mumakilSimulationObserver()
+                        : isHaradScenario(scenarioId)
+                          ? haradSimulationObserver()
+                          : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -573,6 +587,7 @@ for (const scenarioId of [
                 a = {
                   type: "CHOOSE",
                   id: (
+                    mumakilSimulationChoice(s) ??
                     haradSimulationChoice(s) ??
                     greyHavensSimulationChoice(s) ??
                     s.choice.options.find((o) => o.id === "skip") ??
@@ -581,10 +596,12 @@ for (const scenarioId of [
                   ).id,
                 };
               else if (
+                mumakilSimulationAction(s) ??
                 haradSimulationAction(s) ??
                 greyHavensSimulationAction(s)
               )
-                a = (haradSimulationAction(s) ??
+                a = (mumakilSimulationAction(s) ??
+                  haradSimulationAction(s) ??
                   greyHavensSimulationAction(s))!;
               else if (s.phase === "setup") a = { type: "KEEP" };
               else if (s.phase === "planning") {
@@ -628,7 +645,8 @@ for (const scenarioId of [
                 (!s.activeLocation ||
                   (scenarioId === "the-thing-in-the-depths" &&
                     s.stage === 3)) &&
-                (isHaradScenario(scenarioId) ||
+                (isMumakilScenario(scenarioId) ||
+                  isHaradScenario(scenarioId) ||
                   DREAM_CHASER_SCENARIOS.includes(
                     scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
                   ))
@@ -663,6 +681,7 @@ for (const scenarioId of [
                     }) + "\n",
                   );
                 s =
+                  isMumakilScenario(scenarioId) ||
                   isHaradScenario(scenarioId) ||
                   DREAM_CHASER_SCENARIOS.includes(
                     scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
@@ -719,6 +738,8 @@ for (const scenarioId of [
                 assertCobasSaveRestoration(savedState, restored);
               else if (scenarioId === "the-city-of-corsairs")
                 assertCitySaveRestoration(savedState, restored);
+              else if (isMumakilScenario(scenarioId))
+                assertMumakilSaveRestoration(savedState, restored);
               else if (isHaradScenario(scenarioId))
                 assertHaradSaveRestoration(savedState, restored);
               if (importedLostRealmScenario(scenarioId)) s = restored;

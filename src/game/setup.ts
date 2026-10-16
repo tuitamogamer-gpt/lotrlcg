@@ -2,6 +2,7 @@ import * as City from "./city";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import * as Cobas from "./cobas";
 import * as Drowned from "./drowned";
 import { setupDeadmensDike } from "./deadmens-dike";
@@ -445,6 +446,8 @@ export function createGame(
     Desert.setupDesertCrossing(s);
   } else if (scenarioId === "the-long-arm-of-mordor") {
     Mordor.setupLongArmMordor(s);
+  } else if (scenarioId === "the-mumakil") {
+    Mumakil.setupMumakil(s);
   } else if (scenarioId === "a-storm-on-cobas-haven") {
     Cobas.setupCobas(s);
   } else if (scenarioId === "the-drowned-ruins") {

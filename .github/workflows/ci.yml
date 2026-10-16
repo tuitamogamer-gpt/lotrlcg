@@ -154,6 +154,18 @@ jobs:
       - run: npm ci
       - run: npm run test:harad-simulation
 
+  mumakil-simulation:
+    name: Mûmakil review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:mumakil-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -185,6 +197,7 @@ jobs:
             escape-from-umbar,
             desert-crossing,
             the-long-arm-of-mordor,
+            the-mumakil,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -230,6 +243,8 @@ jobs:
             suite: test:browser-city
           - group: harad
             suite: test:browser-harad
+          - group: mumakil
+            suite: test:browser-mumakil
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

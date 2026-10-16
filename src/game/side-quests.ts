@@ -1,9 +1,11 @@
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
+import * as Mumakil from "./mumakil";
 import {
   haradPlayerQuestDefeated,
   haradPlayerSideQuestToDiscard,
 } from "./harad-player";
+import { mumakilSideQuestToDiscard } from "./mumakil-player-support";
 import { dikeSideDefeated } from "./deadmens-dike";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { chetwoodProgress, chetwoodSideDefeated } from "./chetwood";
@@ -153,7 +155,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
     );
   } else {
     s.staging = s.staging.filter((u) => u.id !== quest.id);
-    if (!haradPlayerSideQuestToDiscard(s, quest)) {
+    if (!haradPlayerSideQuestToDiscard(s, quest) && !mumakilSideQuestToDiscard(s, quest)) {
       addVictoryCard(s, quest.code);
       log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
     }
@@ -248,6 +250,7 @@ export function sideQuestEffect(s: GameState, e: Effect) {
           code: u.code,
         };
         log(s, `${name(u)} is the current quest until the quest phase ends.`);
+        Mumakil.mumakilSideQuestSelected(s, u);
       }
       break;
     }

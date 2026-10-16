@@ -1,0 +1,553 @@
+[
+  {
+    "code": "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+    "octgnid": "f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+    "name": "Horse-hair Lasso",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Capture.",
+    "text": "Response: After the attached enemy is dealt any amount of damage, the engaged player shuffles his deck and discards the top card. If the discarded card's cost is equal to or greater than the attached enemy's remaining hit points, add Horse-hair Lasso and attached enemy to the victory display. ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 11,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "/cards/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 11,
+        "quantity": 1,
+        "octgnid": "f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+    "octgnid": "c08310b6-5201-4c70-975e-61a2e7ff329b",
+    "name": "Poisoned Spear",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Capture.",
+    "text": "Response: After the players quest successfully, the engaged player with the attached enemy discards the top card of the encounter deck. If the discarded card’s [threat] is equal to or greater than the attached enemy’s remaining hit points, add Poisoned Spear and attached enemy to the victory display.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 12,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "/cards/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "c08310b6-5201-4c70-975e-61a2e7ff329b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+    "octgnid": "4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+    "name": "Pit Trap",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Capture.",
+    "text": "Response: After the players travel to a location, if the active location's printed [threat] is equal to or greater than the attached enemy's remaining hit points, the engaged player adds Pit Trap and attached enemy to the victory display. ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 13,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "/cards/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 13,
+        "quantity": 1,
+        "octgnid": "4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+    "octgnid": "fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+    "name": "Noose of Vines",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Capture.",
+    "text": "Response: After a character defends an attack against the attached enemy, if the defending character has more remaining hit points than the attached enemy, add Noose of Vines and attached enemy to the victory display. ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 14,
+    "quantity": 1,
+    "victory": 1,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "victory": "1"
+    },
+    "imagesrc": "/cards/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 14,
+        "quantity": 1,
+        "octgnid": "fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+    "octgnid": "f35e7236-2e03-4e03-aa92-7c4803e79acf",
+    "name": "Wild Mûmak",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Indestructible. Immune to player card effects.\nCannot take more than 3 damage each round.\nForced: At the end of the round, the engaged player must choose: either return Wild Mûmak to the staging area, or it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 15,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 9,
+    "engagement": 40,
+    "victory": 3,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "9",
+      "engagement": "40",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 15,
+        "quantity": 4,
+        "octgnid": "f35e7236-2e03-4e03-aa92-7c4803e79acf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+    "octgnid": "e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+    "name": "Harad Tiger",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Cannot be optionally engaged.\nForced: After Harad Tiger attacks and destroys a character, return it to the staging area.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 16,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 0,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "0"
+    },
+    "imagesrc": "/cards/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one."
+  },
+  {
+    "code": "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+    "octgnid": "257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+    "name": "Territorial Ape",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Territorial Ape gets +X [threat] and +X [attack], where X is the [threat] of the active location.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 17,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 4,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if a location was explored this round).",
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "4",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 17,
+        "quantity": 4,
+        "octgnid": "257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+    "octgnid": "60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+    "name": "Strangling Python",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nForced: After Strangling Python damages a character, attach it to that character. (Counts as a Condition attachment with the text: \"Attached character cannot ready.\") ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 18,
+    "quantity": 2,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 25,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+    "octgnid": "737724a5-2603-40b0-8a0b-4e72dbb3775e",
+    "name": "Giant Centipede",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: After Giant Centipede damages a character, treat that character's text box as if it were blank until the end of the round (except for Traits). ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 19,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 3,
+    "defense": 1,
+    "health": 2,
+    "engagement": 30,
+    "shadow": "Shadow: Treat the defending character's text box as blank until the end of the round.",
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "1",
+      "health": "2",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 19,
+        "quantity": 2,
+        "octgnid": "737724a5-2603-40b0-8a0b-4e72dbb3775e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+    "octgnid": "6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+    "name": "Mûmak Trail",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Mûmak Trail is the active location, it gains: “Response: When Mûmak Trail leaves play as an explored location, search the encounter deck and discard pile for a Wild Mûmak and add it to the staging area. Shuffle the encounter deck.”\nTravel: Raise each player’s threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 20,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 20,
+        "quantity": 4,
+        "octgnid": "6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+    "octgnid": "4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+    "name": "Stampeding Oliphaunt",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Choose a Wild Mûmak in the staging area to attack the first player. If no attacks are made this way, search the encounter deck and discard pile for a Mûmak Trail and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 21,
+    "quantity": 2,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {},
+    "imagesrc": "/cards/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 21,
+        "quantity": 2,
+        "octgnid": "4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+    "octgnid": "ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+    "name": "The Savage South",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards the top 5 cards of his deck. Each player discards each card he controls that shares a title with any of the 5 cards he just discarded.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 22,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area. ",
+    "encounter_set": "The Mumakil",
+    "printed_stats": {},
+    "imagesrc": "/cards/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+    "octgnid": "df69b078-0073-44b6-9f18-1fed38f9711c",
+    "name": "Terrible Fever",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove a hero from the quest and attach Terrible Fever to that hero. (Counts as a Condition attachment with the text: \"Forced: At the end of the round, deal 1 damage to attached character.\") ",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 23,
+    "quantity": 2,
+    "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+    "encounter_set": "The Mumakil",
+    "printed_stats": {},
+    "imagesrc": "/cards/df69b078-0073-44b6-9f18-1fed38f9711c.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "df69b078-0073-44b6-9f18-1fed38f9711c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df69b078-0073-44b6-9f18-1fed38f9711c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+    "octgnid": "855580e2-87b1-444c-b37a-1062c050d9ee",
+    "name": "Biting Insects",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards a random card from his hand and assigns X damage among characters he controls. X is the discarded card's cost.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 24,
+    "quantity": 2,
+    "shadow": "Shadow: Discard a random card from your hand and assign X damage among characters you control. X is the discarded card's cost.",
+    "encounter_set": "The Mumakil",
+    "printed_stats": {},
+    "imagesrc": "/cards/855580e2-87b1-444c-b37a-1062c050d9ee.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 24,
+        "quantity": 2,
+        "octgnid": "855580e2-87b1-444c-b37a-1062c050d9ee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/855580e2-87b1-444c-b37a-1062c050d9ee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+    "octgnid": "f041d625-2075-4501-ad40-f17042c3d3df",
+    "name": "Guardians of the Jungle",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each location gets +1 [threat].\nForced: When Guardians of the Jungle becomes the current quest, search the encounter deck and discard pile for a Territorial Ape and put it into play engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 25,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "The Mumakil",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/f041d625-2075-4501-ad40-f17042c3d3df.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 25,
+        "quantity": 1,
+        "octgnid": "f041d625-2075-4501-ad40-f17042c3d3df",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f041d625-2075-4501-ad40-f17042c3d3df.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "flavor": "The great apes of the jungle gather in the trees around you. They shadow your steps and slow your progress."
+  }
+]

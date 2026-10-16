@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+    "octgnid": "adf2480a-644a-47ee-8deb-bd08ff32bf31",
+    "name": "Welcome to the Jungle",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set each copy of Wild Mûmak and each Capture objective aside, out of play. Each player adds 1 different location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 26,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Mumakil",
+    "side": "A",
+    "back_name": "Welcome to the Jungle",
+    "back_text": "Forced: After the active location leaves play as an explored location, shuffle 1 set aside Wild Mûmak into the encounter deck.\nThe players cannot advance unless the number of Wild Mûmak in play is equal to the number of players.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "adf2480a-644a-47ee-8deb-bd08ff32bf31",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+    "octgnid": "fc6d1863-5007-4705-9d47-99d6d118e5ca",
+    "name": "Capture the Oliphaunts",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Starting with the first player, each player attaches 1 random set aside Capture objective to a Wild Mûmak in play.",
+    "is_unique": false,
+    "pack_code": "M",
+    "pack_name": "The Mûmakil",
+    "position": 27,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Mumakil",
+    "side": "A",
+    "back_name": "Capture the Oliphaunts",
+    "back_text": "Forced: At the beginning of the quest phase, if there is no active location, reveal an additional encounter card this phase. This stage cannot be defeated while there are any Capture objectives in play. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg",
+    "packs": [
+      {
+        "pack_code": "M",
+        "pack_name": "The Mûmakil",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "fc6d1863-5007-4705-9d47-99d6d118e5ca",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

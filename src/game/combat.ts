@@ -1,4 +1,5 @@
 import { haradPlayerNoExhaustDefense } from "./harad-player-support";
+import * as MumakPlayers from "./mumakil-player";
 import { haradDefendersDeclared } from "./harad-player-responses";
 import { cityPrepareAttack } from "./city";
 import * as Umbar from "./escape-umbar";
@@ -271,6 +272,7 @@ export function playerAttack(
     ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
     ...CobasPlayers.cobasPlayerAttackEffects(s, enemy, ids),
     ...Mordor.mordorPlayerAttackEffects(s, enemy, ids),
+    ...MumakPlayers.mumakilAttackersDeclared(s, enemy, attackers as Unit[]),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -679,6 +681,12 @@ export function beginEnemyAttack(
       s,
       enemy,
       defenders.filter((d): d is Unit => !!d),
+    ),
+    ...MumakPlayers.mumakilDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+      actuallyExhausted,
     ),
     ...CobasPlayers.cobasPlayerDefendersDeclared(
       s,

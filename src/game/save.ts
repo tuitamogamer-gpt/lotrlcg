@@ -3,6 +3,7 @@ import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
 import { validateDesertCrossing } from "./desert-crossing-support";
 import { validateMordor } from "./long-arm-mordor-support";
+import { validateMumakil } from "./mumakil-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -278,6 +279,8 @@ export function validateSave(
         c.wastesCharacterKilled,
         c.gramCaptureDamage,
         c.mordorDestroyedCharacter,
+        c.mumakilKilledCharacter,
+        c.mumakilSavageReturn,
         c.desertPoisonShadow,
         c.cancelCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -674,6 +677,7 @@ export function validateSave(
         !validateUmbar(s, validUnit as (value: unknown) => boolean) ||
         !validateDesertCrossing(s, validUnit as (value: unknown) => boolean) ||
         !validateMordor(s, validUnit as (value: unknown) => boolean) ||
+        !validateMumakil(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1293,6 +1297,7 @@ export function validateSave(
       ...(s.cobas?.setAside ?? []),
       ...(s.city?.setAside ?? []),
       ...(s.mordor?.setAside ?? []),
+      ...(s.mumakil?.setAside ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

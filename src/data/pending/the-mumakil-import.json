@@ -1,0 +1,1350 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Mûmakil",
+  "slug": "the-mumakil",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec56_rule_set.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+      "octgnid": "01a43351-0e36-4175-9a94-693ff91404ad",
+      "name": "Overgrown",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Attach to the highest [threat] location in the staging area without a copy of Overgrown attached. (Counts as a Condition attachment with the text: \"Attached location gets +1 [threat] and gains 'Immune to player card effects.'\")",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 59,
+      "quantity": 2,
+      "encounter_set": "Jungle Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/01a43351-0e36-4175-9a94-693ff91404ad.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "01a43351-0e36-4175-9a94-693ff91404ad",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01a43351-0e36-4175-9a94-693ff91404ad.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+      "octgnid": "257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+      "name": "Territorial Ape",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Territorial Ape gets +X [threat] and + X [attack], where X is the [threat] of the active location. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 17,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if a location was explored this round).",
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 17,
+          "quantity": 4,
+          "octgnid": "257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+      "octgnid": "36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+      "name": "Forest Clearing",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: When Forest Clearing is explored, discard the top card of the encounter deck. If that card is an enemy, add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 57,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 2,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Jungle Forest",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/36e1a766-7b31-4bb4-be01-4995a9f9c2f3.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36e1a766-7b31-4bb4-be01-4995a9f9c2f3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+      "octgnid": "4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+      "name": "Stampeding Oliphaunt",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 21,
+      "quantity": 2,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {},
+      "imagesrc": "/cards/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+      "octgnid": "4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+      "name": "Pit Trap",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Capture.",
+      "text": "Response: After the players travel to a location, if the active location's printed [threat] is equal to or greater than the attached enemy's remaining hit points, the engaged player adds Pit Trap and attached enemy to the victory display. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 13,
+      "quantity": 1,
+      "victory": 1,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "victory": "1"
+      },
+      "imagesrc": "/cards/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 13,
+          "quantity": 1,
+          "octgnid": "4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+      "octgnid": "60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+      "name": "Strangling Python",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nForced: After Strangling Python damages a character, attach it to that character. (Counts as a Condition attachment with the text: \"Attached character cannot ready.\") ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 18,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 25,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+      "octgnid": "6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+      "name": "Mumak Trail",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Mumak Trail is the active location, it gains: \"Response: When Mumak Trail leaves play as an explored location, search the encounter deck and discard pile for a Wild Mumak and add it to the staging area. Shuffle the encounter deck.\"",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 20,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 20,
+          "quantity": 4,
+          "octgnid": "6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+      "octgnid": "737724a5-2603-40b0-8a0b-4e72dbb3775e",
+      "name": "Giant Centipede",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Giant Centipede damages a character, treat that character's text box as if it were blank until the end of the round (except for Traits). ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 19,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 30,
+      "shadow": "Shadow: Treat the defending character's text box as blank until the end of the round.",
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "737724a5-2603-40b0-8a0b-4e72dbb3775e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+      "octgnid": "855580e2-87b1-444c-b37a-1062c050d9ee",
+      "name": "Biting Insects",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards a random card from his hand and assigns X damage among characters he controls. X is the discarded card's cost.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 24,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a random card from your hand and assign X damage among characters you control. X is the discarded card's cost.",
+      "encounter_set": "The Mumakil",
+      "printed_stats": {},
+      "imagesrc": "/cards/855580e2-87b1-444c-b37a-1062c050d9ee.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "855580e2-87b1-444c-b37a-1062c050d9ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/855580e2-87b1-444c-b37a-1062c050d9ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+      "octgnid": "ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+      "name": "The Savage South",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards the top 5 cards of his deck. Each player discards each card he controls that shares a title with any of the 5 cards he just discarded.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 22,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, return attacking enemy to the staging area. ",
+      "encounter_set": "The Mumakil",
+      "printed_stats": {},
+      "imagesrc": "/cards/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+      "octgnid": "adf2480a-644a-47ee-8deb-bd08ff32bf31",
+      "name": "Welcome to the Jungle",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set each copy of Wild Mumak and each Capture objective aside, out of play. Each player adds 1 different location to the staging area. Shuffle the encounter deck. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 26,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Mumakil",
+      "side": "A",
+      "back_name": "Welcome to the Jungle",
+      "back_text": "Forced: After the active location leaves play as an explored location, shuffle 1 set aside Wild Mumak into the encounter deck. The players cannot advance unless the number of Wild Mumak in play is equal to the number of players.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 26,
+          "quantity": 1,
+          "octgnid": "adf2480a-644a-47ee-8deb-bd08ff32bf31",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+      "octgnid": "bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+      "name": "Dense Jungle",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: When Dense Jungle is explored, discard the top card of the encounter deck. If that card is a location, add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 58,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Discard a random card from your hand.",
+      "encounter_set": "Jungle Forest",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/bb5d1d76-663f-4261-94ec-7a9bfc025acf.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 58,
+          "quantity": 3,
+          "octgnid": "bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb5d1d76-663f-4261-94ec-7a9bfc025acf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+      "octgnid": "c08310b6-5201-4c70-975e-61a2e7ff329b",
+      "name": "Poisoned Spear",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Capture.",
+      "text": "Response: After the players quest successfully, the engaged player discards the top card of the encounter deck. If the discarded card's [threat] is equal to or greater than the attached enemy's remaining hit points, add Poisoned Spear and attached enemy to the victory display. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 12,
+      "quantity": 1,
+      "victory": 1,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "victory": "1"
+      },
+      "imagesrc": "/cards/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "c08310b6-5201-4c70-975e-61a2e7ff329b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+      "octgnid": "df69b078-0073-44b6-9f18-1fed38f9711c",
+      "name": "Terrible Fever",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove a hero from the quest and attach Terrible Fever to that hero. (Counts as a Condition attachment with the text: \"Forced: At the end of the round, deal 1 damage to attached character.\") ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 23,
+      "quantity": 2,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "The Mumakil",
+      "printed_stats": {},
+      "imagesrc": "/cards/df69b078-0073-44b6-9f18-1fed38f9711c.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "df69b078-0073-44b6-9f18-1fed38f9711c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df69b078-0073-44b6-9f18-1fed38f9711c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+      "octgnid": "e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+      "name": "Harad Tiger",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Cannot be optionally engaged.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 16,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 0,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "0"
+      },
+      "imagesrc": "/cards/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 16,
+          "quantity": 1,
+          "octgnid": "e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+      "octgnid": "e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+      "name": "Jungle Trail",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Jungle Trail is the active location, each location in the staging area gets -1 [threat].Travel: Reveal the top card of the encounter deck to travel here.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 56,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Jungle Forest",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/e7413cb0-3443-40d4-88f4-06d7cfa1ab1d.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 56,
+          "quantity": 2,
+          "octgnid": "e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7413cb0-3443-40d4-88f4-06d7cfa1ab1d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+      "octgnid": "f041d625-2075-4501-ad40-f17042c3d3df",
+      "name": "Guardians of the Jungle",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "The great apes of the jungle gather in the trees around you. They shadow your steps and slow your progress.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 25,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/f041d625-2075-4501-ad40-f17042c3d3df.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 25,
+          "quantity": 1,
+          "octgnid": "f041d625-2075-4501-ad40-f17042c3d3df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f041d625-2075-4501-ad40-f17042c3d3df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+      "octgnid": "f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+      "name": "Horse-hair Lasso",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Capture.",
+      "text": "Response: After the attached enemy is dealt any amount of damage, the engaged player shuffles his deck and discards the top card. If the discarded card's cost is equal to or greater than the attached enemy's remaining hit points, add Horse-hair Lasso and attached enemy to the victory display. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 11,
+      "quantity": 1,
+      "victory": 1,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "victory": "1"
+      },
+      "imagesrc": "/cards/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+      "octgnid": "f35e7236-2e03-4e03-aa92-7c4803e79acf",
+      "name": "Wild Mumak",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Mumak.",
+      "text": "Indestructible.\n Immune to player card effects. Cannot take more than 3 damage each round.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 15,
+      "quantity": 4,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "engagement": 40,
+      "victory": 3,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "9",
+        "engagement": "40",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 15,
+          "quantity": 4,
+          "octgnid": "f35e7236-2e03-4e03-aa92-7c4803e79acf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+      "octgnid": "fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+      "name": "Noose of Vines",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Capture.",
+      "text": "Response: After a character defends an attack against the attached enemy, if the defending character has more remaining hit points than the attached enemy, add Noose of Vines and attached enemy to the victory display. ",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 14,
+      "quantity": 1,
+      "victory": 1,
+      "encounter_set": "The Mumakil",
+      "printed_stats": {
+        "victory": "1"
+      },
+      "imagesrc": "/cards/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 14,
+          "quantity": 1,
+          "octgnid": "fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+      "octgnid": "fc6d1863-5007-4705-9d47-99d6d118e5ca",
+      "name": "Capture the Mumakil",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player attaches 1 random set-aside Capture objective to a Wild Mumak in play.",
+      "is_unique": false,
+      "pack_code": "M",
+      "pack_name": "The Mûmakil",
+      "position": 27,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Mumakil",
+      "side": "A",
+      "back_name": "Capture the Mumakil",
+      "back_text": "Forced: At the beginning of the quest phase, if there is no active location, reveal an additional encounter card this phase. This stage cannot be defeated while there are any Capture objectives in play. If the players defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg",
+      "packs": [
+        {
+          "pack_code": "M",
+          "pack_name": "The Mûmakil",
+          "position": 27,
+          "quantity": 1,
+          "octgnid": "fc6d1863-5007-4705-9d47-99d6d118e5ca",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.4",
+      "name": "The Mûmakil (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "M",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+        "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+        "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+        "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+        "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+        "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+        "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+        "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+        "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+        "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+        "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+        "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+        "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+        "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+        "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+        "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+        "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+        "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+        "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+        "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d"
+      ],
+      "cards": [
+        {
+          "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31": 1,
+          "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837": 4,
+          "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b": 1,
+          "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e": 2,
+          "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c": 3,
+          "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23": 2,
+          "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0": 2,
+          "octgn:df69b078-0073-44b6-9f18-1fed38f9711c": 1,
+          "octgn:855580e2-87b1-444c-b37a-1062c050d9ee": 1,
+          "octgn:f041d625-2075-4501-ad40-f17042c3d3df": 1,
+          "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3": 1,
+          "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf": 2,
+          "octgn:01a43351-0e36-4175-9a94-693ff91404ad": 1
+        },
+        "sharedSetAside": {
+          "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf": 4,
+          "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85": 1,
+          "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b": 1,
+          "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0": 1,
+          "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c": 1,
+          "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c": 1,
+          "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d": 1,
+          "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3": 1,
+          "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.4",
+      "name": "The Mûmakil",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "M",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+        "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+        "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+        "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+        "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+        "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+        "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+        "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+        "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+        "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+        "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+        "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+        "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+        "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+        "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+        "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+        "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+        "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+        "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+        "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+        "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c"
+      ],
+      "cards": [
+        {
+          "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31": 1,
+          "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b": 1,
+          "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837": 4,
+          "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b": 2,
+          "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e": 2,
+          "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c": 3,
+          "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23": 2,
+          "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0": 2,
+          "octgn:df69b078-0073-44b6-9f18-1fed38f9711c": 2,
+          "octgn:855580e2-87b1-444c-b37a-1062c050d9ee": 2,
+          "octgn:f041d625-2075-4501-ad40-f17042c3d3df": 1,
+          "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d": 1,
+          "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3": 2,
+          "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf": 2,
+          "octgn:01a43351-0e36-4175-9a94-693ff91404ad": 2
+        },
+        "sharedSetAside": {
+          "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf": 4,
+          "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85": 1,
+          "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b": 1,
+          "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0": 1,
+          "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c": 1,
+          "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c": 1,
+          "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d": 1,
+          "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3": 1,
+          "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/01a43351-0e36-4175-9a94-693ff91404ad.jpg",
+      "localPath": "/cards/01a43351-0e36-4175-9a94-693ff91404ad.jpg",
+      "bytes": 149078,
+      "sha256": "4203b039acb7221a2ecaeecd8ffb3f37b73f527f7fee65a1ee81fd83530b2520"
+    },
+    {
+      "code": "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg",
+      "localPath": "/cards/257ffa68-7458-4f3c-bc7e-8d46b27cd837.jpg",
+      "bytes": 150707,
+      "sha256": "57abbb4380b833f4fffbe18b5bd7eb4626de6a1e7e92bfe54438ba31edecc9d7"
+    },
+    {
+      "code": "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36e1a766-7b31-4bb4-be01-4995a9f9c2f3.jpg",
+      "localPath": "/cards/36e1a766-7b31-4bb4-be01-4995a9f9c2f3.jpg",
+      "bytes": 154024,
+      "sha256": "2542ec27118952c4ad93f3d38bd333a5ca3aad9178846fd775f592050108296f"
+    },
+    {
+      "code": "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg",
+      "localPath": "/cards/4a28b128-1f89-4ad0-b27b-4cb1755c2d23.jpg",
+      "bytes": 174350,
+      "sha256": "b2d28369e90a1b7b67fd59e668db4bbfb96762ed4cf55d881f1719b2232ff806"
+    },
+    {
+      "code": "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg",
+      "localPath": "/cards/4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0.jpg",
+      "bytes": 157050,
+      "sha256": "bdf1196120b5ea281f6c6f1164970ccfd73af3e9173144193beba5f2586c277b"
+    },
+    {
+      "code": "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg",
+      "localPath": "/cards/60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b.jpg",
+      "bytes": 162115,
+      "sha256": "47b87b6b347e5aa6eaefbbf12a50973b405ae4966112db3a3098badc10713c7e"
+    },
+    {
+      "code": "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg",
+      "localPath": "/cards/6651f8a6-e442-4eba-a8b5-13fab4c1e93c.jpg",
+      "bytes": 160512,
+      "sha256": "c8c30586d41f255ce54a8920e12d1a19a55e4eaac2c084d6d9d3fd6a6990b728"
+    },
+    {
+      "code": "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg",
+      "localPath": "/cards/737724a5-2603-40b0-8a0b-4e72dbb3775e.jpg",
+      "bytes": 165287,
+      "sha256": "abbb4bb19ca968d12afe4c401f0d768882865c63bccedfc5b4fe4089dbf4047a"
+    },
+    {
+      "code": "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/855580e2-87b1-444c-b37a-1062c050d9ee.jpg",
+      "localPath": "/cards/855580e2-87b1-444c-b37a-1062c050d9ee.jpg",
+      "bytes": 179865,
+      "sha256": "d39df447e08e45cb7ffc4e34b78a2e93940c49d75f18fa3a1e7f2beff943f0c7"
+    },
+    {
+      "code": "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg",
+      "localPath": "/cards/ad7fc95f-4a8d-4a15-b170-b0db3c3002f0.jpg",
+      "bytes": 180493,
+      "sha256": "fe382071d9110aa1697fd52296cd5e2fa7c2828928be698b286d602e3bfa211d"
+    },
+    {
+      "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg",
+      "localPath": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.jpg",
+      "bytes": 178132,
+      "sha256": "eef7cf7a810f05494dbfd5d15328589d3d3a2ac29ee15055caab31c2e3fc1d62"
+    },
+    {
+      "code": "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/adf2480a-644a-47ee-8deb-bd08ff32bf31.B.jpg",
+      "localPath": "/cards/adf2480a-644a-47ee-8deb-bd08ff32bf31.B.jpg",
+      "bytes": 165953,
+      "sha256": "6e634f54b6dd19b218daf53c815b756ea0bd4da527976bd80cb19a13f7551932"
+    },
+    {
+      "code": "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb5d1d76-663f-4261-94ec-7a9bfc025acf.jpg",
+      "localPath": "/cards/bb5d1d76-663f-4261-94ec-7a9bfc025acf.jpg",
+      "bytes": 151968,
+      "sha256": "577bfd53ea72ac1a460fe82e04e732688abf9a16135513b99b192cde914054e2"
+    },
+    {
+      "code": "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg",
+      "localPath": "/cards/c08310b6-5201-4c70-975e-61a2e7ff329b.jpg",
+      "bytes": 157423,
+      "sha256": "66a85055733a581c849b4dee9b03124eb044435ff7bcb4eebcb4c38991a6d267"
+    },
+    {
+      "code": "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df69b078-0073-44b6-9f18-1fed38f9711c.jpg",
+      "localPath": "/cards/df69b078-0073-44b6-9f18-1fed38f9711c.jpg",
+      "bytes": 160898,
+      "sha256": "7d3b9b66d9a4aa1b67d261189205074219422b55519070ab87e4be9c6923cf50"
+    },
+    {
+      "code": "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg",
+      "localPath": "/cards/e6d7da0a-eb6d-429b-b9f9-e32027866d1b.jpg",
+      "bytes": 159310,
+      "sha256": "17586605f3bb0543be11e4a70db69c8a63f7207a8cbf75b0bd9df36b1e9c6ddd"
+    },
+    {
+      "code": "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e7413cb0-3443-40d4-88f4-06d7cfa1ab1d.jpg",
+      "localPath": "/cards/e7413cb0-3443-40d4-88f4-06d7cfa1ab1d.jpg",
+      "bytes": 154027,
+      "sha256": "12bd502615a7073cea408613d99ef676217561cc37734aa2739b86ce63f99c34"
+    },
+    {
+      "code": "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f041d625-2075-4501-ad40-f17042c3d3df.jpg",
+      "localPath": "/cards/f041d625-2075-4501-ad40-f17042c3d3df.jpg",
+      "bytes": 157964,
+      "sha256": "075e04a9bfb9a1dff03e89461479526c796eecc19f6f6e68c6cd86de5bbfcb06"
+    },
+    {
+      "code": "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg",
+      "localPath": "/cards/f16aabcd-6a98-4e4a-89ca-0f0d69407d85.jpg",
+      "bytes": 155116,
+      "sha256": "ea98d93a84ab1e340979bb40c8015fc92b10ece74db6893a4f9ab7d143f1322b"
+    },
+    {
+      "code": "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg",
+      "localPath": "/cards/f35e7236-2e03-4e03-aa92-7c4803e79acf.jpg",
+      "bytes": 162580,
+      "sha256": "f29e8e5e4b27010b46842ba9972e1b71d14bfc1553bed25b0e1e017639017ed8"
+    },
+    {
+      "code": "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg",
+      "localPath": "/cards/fc351b81-fc50-40a5-9f94-7ab885cb7a8c.jpg",
+      "bytes": 157582,
+      "sha256": "26fcf13b3a6f2ccd10b3fef8ef205e3a8b03bab69d9f548d5e8a4e695302594c"
+    },
+    {
+      "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg",
+      "localPath": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.jpg",
+      "bytes": 163165,
+      "sha256": "7d14022cf56dbff6b3a9ec26512b4e5fa06d8bf9cb4352d5d03756f29a8b1e2c"
+    },
+    {
+      "code": "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc6d1863-5007-4705-9d47-99d6d118e5ca.B.jpg",
+      "localPath": "/cards/fc6d1863-5007-4705-9d47-99d6d118e5ca.B.jpg",
+      "bytes": 153650,
+      "sha256": "8afd469a0a9f0065f2988021ff453125bf059b349874765415807251ee6f62f1"
+    }
+  ]
+}

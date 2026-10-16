@@ -2,6 +2,7 @@ import * as Drowned from "./drowned";
 import * as Desert from "./desert-crossing";
 import * as Umbar from "./escape-umbar";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import { stormcallerAreaImmune } from "./stormcaller";
 import { stormcallerState } from "./stormcaller-support";
 import { trialsGrantedImmunity } from "./three-trials-support";
@@ -44,7 +45,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
-    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host))
+    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host) || Mumakil.mumakilImmune(s, host))
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
@@ -58,13 +59,14 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     const normalBlanking =
       khazadBlanked(host) ||
       Mordor.mordorBlanked(s, host) ||
+      (Mumakil.mumakilCharacterBlanked(s, host) && !Mumakil.mumakilPreservesTraits(s, host)) ||
       (card(host.code).type_code === "attachment" && blanked);
     const safeBlanking = ettenSideQuestBlanked(s, host);
     const coldBlanking =
       cold &&
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
-    const wrathBlanking = templePlayerBlanked(s, host) || Desert.desertCrossingCharacterBlanked(s, host);
+    const wrathBlanking = templePlayerBlanked(s, host) || Desert.desertCrossingCharacterBlanked(s, host) || (Mumakil.mumakilCharacterBlanked(s, host) && Mumakil.mumakilPreservesTraits(s, host));
     if (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
       host.blanked = true;
     else delete host.blanked;

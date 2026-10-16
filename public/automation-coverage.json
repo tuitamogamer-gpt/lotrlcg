@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 573,
-    "heroes": 66,
-    "deckCards": 506,
-    "encounterCards": 833,
-    "scenarios": 57,
+    "playerCards": 581,
+    "heroes": 67,
+    "deckCards": 513,
+    "encounterCards": 848,
+    "scenarios": 58,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -64,17 +64,18 @@
       "the-city-of-corsairs",
       "escape-from-umbar",
       "desert-crossing",
-      "the-long-arm-of-mordor"
+      "the-long-arm-of-mordor",
+      "the-mumakil"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1574,
-    "pending": 2609
+    "scripted": 1599,
+    "pending": 2584
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 114
+    "scripted": 116
   },
   "registeredCodes": [
     "01001",
@@ -675,8 +676,16 @@
     "16011",
     "16012",
     "16013",
+    "17001",
     "17002",
+    "17003",
+    "17004",
     "17005",
+    "17006",
+    "17007",
+    "17008",
+    "17009",
+    "17010",
     "17055",
     "17058",
     "17061",
@@ -818,6 +827,7 @@
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
+    "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
     "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
@@ -974,6 +984,8 @@
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
+    "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
@@ -1228,10 +1240,12 @@
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
+    "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
@@ -1257,6 +1271,7 @@
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
+    "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
@@ -1300,6 +1315,7 @@
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
+    "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
@@ -1406,6 +1422,8 @@
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+    "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
+    "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
@@ -1452,6 +1470,7 @@
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
+    "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
     "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
@@ -1544,6 +1563,7 @@
     "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
+    "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
@@ -1566,6 +1586,7 @@
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
+    "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
@@ -1585,11 +1606,14 @@
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
+    "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
+    "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
     "octgn:f410480c-ac41-431a-8db1-693746a7570e",
@@ -1620,7 +1644,9 @@
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+    "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
@@ -2378,9 +2404,9 @@
     {
       "product": "the-mumakil",
       "total": 28,
-      "scripted": 2,
+      "scripted": 27,
       "player": 10,
-      "playerScripted": 2
+      "playerScripted": 10
     },
     {
       "product": "the-nin-in-eilph",
@@ -9570,7 +9596,7 @@
       "name": "Kahliel",
       "type": "hero",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9586,7 +9612,7 @@
       "name": "Prepare for Battle",
       "type": "player-side-quest",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9594,7 +9620,7 @@
       "name": "Yazan",
       "type": "ally",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9610,7 +9636,7 @@
       "name": "Jubayr",
       "type": "ally",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9618,7 +9644,7 @@
       "name": "Dwarf Pipe",
       "type": "attachment",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9626,7 +9652,7 @@
       "name": "Firyal",
       "type": "ally",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9634,7 +9660,7 @@
       "name": "Coney in a Trap",
       "type": "event",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -9642,7 +9668,7 @@
       "name": "Kahliel's Headdress",
       "type": "attachment",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -14362,7 +14388,7 @@
       "name": "Territorial Ape",
       "type": "enemy",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -17914,7 +17940,7 @@
       "name": "Stampeding Oliphaunt",
       "type": "treachery",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -17922,7 +17948,7 @@
       "name": "Pit Trap",
       "type": "objective",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -22282,7 +22308,7 @@
       "name": "Strangling Python",
       "type": "enemy",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -22578,7 +22604,7 @@
       "name": "Mumak Trail",
       "type": "location",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -23634,7 +23660,7 @@
       "name": "Giant Centipede",
       "type": "enemy",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -25242,7 +25268,7 @@
       "name": "Biting Insects",
       "type": "treachery",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -28602,7 +28628,7 @@
       "name": "The Savage South",
       "type": "treachery",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -28626,7 +28652,7 @@
       "name": "Welcome to the Jungle",
       "type": "quest",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -30458,7 +30484,7 @@
       "name": "Poisoned Spear",
       "type": "objective",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -32898,7 +32924,7 @@
       "name": "Terrible Fever",
       "type": "treachery",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -33474,7 +33500,7 @@
       "name": "Harad Tiger",
       "type": "enemy",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -34498,7 +34524,7 @@
       "name": "Guardians of the Jungle",
       "type": "encounter-side-quest",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -34578,7 +34604,7 @@
       "name": "Horse-hair Lasso",
       "type": "objective",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -34770,7 +34796,7 @@
       "name": "Wild Mumak",
       "type": "enemy",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -35586,7 +35612,7 @@
       "name": "Noose of Vines",
       "type": "objective",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -35626,7 +35652,7 @@
       "name": "Capture the Mumakil",
       "type": "quest",
       "pack": "The Mûmakil",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-mumakil"
     },
     {
@@ -36512,8 +36538,8 @@
       "id": "E07.4",
       "name": "The Mûmakil (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-mumakil",
+      "state": "scripted"
     },
     {
       "id": "E07.5",
@@ -38003,8 +38029,8 @@
       "id": "Q07.4",
       "name": "The Mûmakil",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-mumakil",
+      "state": "scripted"
     },
     {
       "id": "Q07.5",

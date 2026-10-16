@@ -37,6 +37,8 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "17007": { traits: ["Dwarf"], limit: 1 },
+  "17010": { names: ["Kahliel"], restricted: 1 },
   "16010": { type: "hero", traits: ["Dwarf"], restricted: 1, defense: 1 },
   "12110": { type: "hero", traits: ["Ranger"], sphere: "leadership" },
   "12145": { traits: ["Ranger"], restricted: 1, attack: 1 },

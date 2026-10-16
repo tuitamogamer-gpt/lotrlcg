@@ -7,7 +7,10 @@ import * as City from "./city";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import * as HaradPlayers from "./harad-player";
+import * as MumakPlayers from "./mumakil-player";
+import * as MumakSupport from "./mumakil-player-support";
 import * as HaradResponses from "./harad-player-responses";
 import * as CityHoldLine from "./city-hold-line";
 import * as CityPlayers from "./city-player";
@@ -512,6 +515,7 @@ export function charactersCommitted(
     s,
     actual.map((u) => u.id),
   );
+  MumakPlayers.mumakilCharactersCommitted(s, actual.map((u) => u.id));
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
@@ -858,6 +862,7 @@ export function check(s: GameState) {
         !Carn.carnIndestructible(s, u) &&
         !Depths.depthsIndestructible(s, u) &&
         !City.cityIndestructible(s, u) &&
+        !Mumakil.mumakilIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
         u.damage >= stats(s, u).health,
@@ -1228,6 +1233,7 @@ export function damage(
   value = DrownedCompanions.drownedSahirDamageAmount(s, u, value);
   value = City.cityDamageAmount(s, u, value);
   value = Mordor.mordorDamageAmount(s, u, value, context);
+  value = Mumakil.mumakilDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1275,6 +1281,7 @@ export function damage(
   Cobas.cobasDamageDealt(s, u, value, context);
   City.cityDamageDealt(s, u, value, context);
   Desert.desertCrossingDamageDealt(s, u, value, context);
+  Mumakil.mumakilDamageDealt(s, u, value, context);
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   if (u.damage >= stats(s, u).health)
     City.cityCharacterDestroyed(s, u, context);
@@ -1282,6 +1289,8 @@ export function damage(
     Umbar.umbarCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
     Mordor.mordorCharacterDestroyed(s, u, context);
+  if (u.damage >= stats(s, u).health)
+    Mumakil.mumakilCharacterDestroyed(s, u, context);
   Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
@@ -1512,7 +1521,8 @@ export function destroy(
       Rhudaur.rhudaurIndestructible(s, u) ||
       Carn.carnIndestructible(s, u) ||
       Depths.depthsIndestructible(s, u) ||
-      City.cityIndestructible(s, u))
+      City.cityIndestructible(s, u) ||
+      Mumakil.mumakilIndestructible(s, u))
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
@@ -1865,6 +1875,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Catch.catchExplored(s, u);
   Weather.weatherExplored(s, u, wasActive);
   Desert.desertCrossingExplored(s, u, wasActive);
+  Mumakil.mumakilExplored(s, u, wasActive);
   Mordor.mordorExplored(s, u);
   Rhudaur.rhudaurExplored(s, u, wasActive);
   Rhudaur.rhudaurLocationLeft(s, u, wasActive);
@@ -2113,6 +2124,7 @@ export function advanceQuest(s: GameState) {
   if (Umbar.umbarAdvance(s)) return;
   if (Desert.desertCrossingAdvance(s)) return;
   if (Mordor.mordorAdvance(s)) return;
+  if (Mumakil.mumakilAdvance(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2459,6 +2471,7 @@ export function collectResources(s: GameState) {
         ? 0
         : frameworkDraw +
           huntResourceDrawBonus(s, player) +
+          MumakSupport.mumakilResourceDrawBonus(s, player) +
           dwarfResourceDrawBonus(s, player) +
           Angmar.angmarResourceDrawBonus(s, player) +
           GreyPlayers.greyHavensResourceDrawBonus(s, player) +
@@ -2520,6 +2533,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Desert.desertCrossingEngaged(s, u);
   Mordor.mordorEngaged(s, u);
   HaradResponses.haradEnemyEngaged(s, u);
+  MumakPlayers.mumakilPlayerEnemyEngaged(s, u, activeSeat(s));
   Storm.stormcallerEngaged(s, u, fromStaging);
   Fate.fateEngaged(s, u);
   Raid.raidEngaged(s, u);
@@ -3065,6 +3079,7 @@ export function placeEncounter(
   if (Umbar.umbarEncounter(s, code)) return;
   if (Desert.desertCrossingEncounter(s, code)) return;
   if (Mordor.mordorEncounter(s, code)) return;
+  if (Mumakil.mumakilEncounter(s, code)) return;
   if (Cobas.cobasEncounter(s, code)) return;
   if (Raid.raidEncounter(s, code)) return;
   if (
@@ -3626,6 +3641,7 @@ export function shadow(s: GameState, code: string) {
   if (Umbar.umbarShadow(s, code)) return;
   if (Desert.desertCrossingShadow(s, code)) return;
   if (Mordor.mordorShadow(s, code)) return;
+  if (Mumakil.mumakilShadow(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

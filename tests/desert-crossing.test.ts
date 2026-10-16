@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { applyAction, validateSave } from "../src/game/engine";
+import { applyAction, restoreSave, validateSave } from "../src/game/engine";
 import { card } from "../src/game/cards";
 import {
   fx,
@@ -443,6 +443,42 @@ test("Desert Crossing: HeatExhaustion damageschosenalreadyexhaustedcharacters at
     seatView(s, 1).heroes.reduce((n, h) => n + h.damage, 0),
     1,
   );
+});
+test("Desert Crossing: a guided reveal for an eliminated player restores and continues without changing the actor", () => {
+  let s = base(3);
+  s.phase = "quest";
+  s.flow = { mode: "all", nextId: 1, pending: null, history: [] };
+  s.encounterDeck.unshift(D.exhaustion);
+  // Defeat each hero through the ordinary damage queue. The next encounter
+  // still names that player and may pause before its shared effects resolve.
+  s.queue = [
+    ...seatView(s, 1).heroes.map((h) =>
+      fx("damage", { target: h.id, value: 99, player: 1 }),
+    ),
+    fx("reveal", { player: 1 }),
+  ];
+  flush(s);
+  for (let n = 0; s.flow?.pending?.kind !== "reveal"; n++) {
+    assert.ok(n < 15 && s.flow?.pending, "lethal damage reaches the queued reveal");
+    s = applyAction(s, { type: "CONTINUE", stepId: s.flow.pending.id });
+  }
+  assert.equal(s.table!.seats[1].eliminated, true);
+  assert.equal(s.table!.active, 1);
+  assert.equal(s.flow.pending.player, 1);
+  assert.equal(s.flow.pending.cards[0].code, D.exhaustion);
+  const saved = JSON.parse(JSON.stringify(s));
+  const restored = restoreSave(saved);
+  assert.ok(restored);
+  assert.deepEqual(restored, saved);
+  assert.deepEqual(restoreSave(JSON.parse(JSON.stringify(restored))), restored);
+  s = settle(restored, "resolve");
+  assert.equal(s.status, "playing");
+  assert.equal(s.table!.active, s.table!.turn);
+  assert.equal(seatView(s, 1).heroes.length, 0);
+  for (const p of [0, 2])
+    assert.equal(seatView(s, p).heroes.reduce((n, h) => n + h.damage, 0), 1);
+  assert.ok(s.encounterDiscard.includes(D.exhaustion));
+  assert.ok(validateSave(s));
 });
 test("Desert Crossing: UnbearableHeat distributestoallplayers andScorchingSun gainsprintedSurge", () => {
   let s = base(2);

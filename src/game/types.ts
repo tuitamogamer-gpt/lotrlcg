@@ -214,6 +214,7 @@ export type ScenarioId =
   | "escape-from-umbar"
   | "desert-crossing"
   | "the-long-arm-of-mordor"
+  | "the-mumakil"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -346,6 +347,7 @@ export interface GameState {
   umbar?: import("./escape-umbar-support").EscapeUmbarState;
   desertCrossing?: import("./desert-crossing-support").DesertCrossingState;
   mordor?: import("./long-arm-mordor-support").MordorState;
+  mumakil?: import("./mumakil-support").MumakilState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -528,6 +530,8 @@ export interface GameState {
     mordorSavageShadows?: number;
     mordorAdditionalAttacks?: number;
     mordorDestroyedCharacter?: boolean;
+    mumakilKilledCharacter?: boolean;
+    mumakilSavageReturn?: boolean;
     desertPoisonShadow?: boolean;
     umbarKilled?: number;
     umbarInjuredShadows?: number;

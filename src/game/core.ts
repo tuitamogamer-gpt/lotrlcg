@@ -1,12 +1,16 @@
 import * as City from "./city";
 import * as CityPlayers from "./city-player-support";
 import * as HaradPlayers from "./harad-player-support";
+import * as MumakSupport from "./mumakil-player-support";
+import * as MumakPlayers from "./mumakil-player";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
+import * as Mumakil from "./mumakil";
 import { umbarStageInfo } from "./escape-umbar-support";
 import { desertCrossingStageInfo } from "./desert-crossing-support";
 import { mordorStageInfo } from "./long-arm-mordor-support";
+import { mumakilStageInfo } from "./mumakil-support";
 import * as Cobas from "./cobas";
 import { cobasStageInfo } from "./cobas-support";
 import { cityStageInfo } from "./city-support";
@@ -277,6 +281,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
       Fate.fateCannotRefreshReady(s, u) ||
       Umbar.umbarCannotReady(s, u) ||
       Desert.desertCrossingCannotReady(s, u) ||
+      Mumakil.mumakilCannotReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -544,6 +549,7 @@ export function stats(s: GameState, u: Unit) {
           chetwoodBonus.will,
           cobasBonus.will,
           Mordor.mordorWillBonus(s, u),
+          MumakSupport.mumakilPlayerWillBonus(s, u),
           GreyPlayers.greyHavensStats(s, u).will,
           templePlayerBonus.will,
           templeEncounterBonus.will,
@@ -605,6 +611,7 @@ export function stats(s: GameState, u: Unit) {
         Cobas.cobasStats(s, u).attack +
         City.cityStats(s, u).attack +
         Mordor.mordorStats(s, u).attack +
+        Mumakil.mumakilStats(s, u).attack +
         Umbar.umbarStats(s, u).attack +
         Desert.desertCrossingStats(s, u).attack +
         Storm.stormcallerStats(s, u).attack +
@@ -860,6 +867,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Cobas.cobasThreatBonus(s, u) +
             City.cityThreatBonus(s, u) +
             Mordor.mordorThreatBonus(s, u) +
+            Mumakil.mumakilThreatBonus(s, u) +
             Umbar.umbarThreatBonus(s, u) +
             Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
@@ -983,7 +991,7 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
-  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s);
+  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s) ?? mumakilStageInfo(s);
   if (harad) return harad;
   const city = cityStageInfo(s);
   if (city) return city;
@@ -1058,7 +1066,8 @@ export const enemyAttackPrevented = (
   amonPlayerEnemyCannotAttack(s, u, player) ||
   elfEnemyCannotAttack(s, u, player) ||
   collectorEnemyCannotAttack(s, u, player) ||
-  longDarkPlayerEnemyCannotAttack(s, u, player);
+  longDarkPlayerEnemyCannotAttack(s, u, player) ||
+  MumakPlayers.mumakilEnemyCannotAttack(s, u, player);
 
 export const canFight = (u: Unit) =>
   (u.code !== "08112" || !!u.blanked) &&
@@ -1121,6 +1130,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
       (h) =>
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
+        MumakSupport.mumakilKahlielPays(h, c) ||
         Mordor.mordorIgnoresResourceMatch(s) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||
         hasResourceIcon(h, c.sphere_code) ||
