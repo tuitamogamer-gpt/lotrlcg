@@ -178,6 +178,18 @@ jobs:
       - run: npm ci
       - run: npm run test:race-harad-simulation
 
+  beneath-sands-simulation:
+    name: Beneath the Sands review parity (32 complete games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:beneath-sands-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -211,6 +223,7 @@ jobs:
             the-long-arm-of-mordor,
             the-mumakil,
             race-across-harad,
+            beneath-the-sands,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -260,6 +273,8 @@ jobs:
             suite: test:browser-mumakil
           - group: race-harad
             suite: test:browser-race-harad
+          - group: beneath-sands
+            suite: test:browser-beneath-sands
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

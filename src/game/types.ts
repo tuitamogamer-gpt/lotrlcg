@@ -32,6 +32,10 @@ export interface Card {
   easy_quantity?: number;
   /** Printed wheel symbols used only when looking at cards during Sailing tests. */
   sailing?: number;
+  /** Printed mark in the lower right corner of Beneath the Sands encounter cards. */
+  on_track?: boolean;
+  /** Printed Track keyword value used after travel while Search is Off Track. */
+  track?: number;
   engagement?: number;
   quest?: number;
   victory?: number;
@@ -218,6 +222,7 @@ export type ScenarioId =
   | "the-long-arm-of-mordor"
   | "the-mumakil"
   | "race-across-harad"
+  | "beneath-the-sands"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -352,6 +357,7 @@ export interface GameState {
   mordor?: import("./long-arm-mordor-support").MordorState;
   mumakil?: import("./mumakil-support").MumakilState;
   raceHarad?: import("./race-harad-support").RaceHaradState;
+  beneathSands?: import("./beneath-sands-support").BeneathSandsState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -539,6 +545,7 @@ export interface GameState {
     raceHaradDestroyedCharacter?: boolean;
     raceHaradPursuerShadows?: number;
     raceHaradReturnToOrcs?: boolean;
+    beneathSandsPoisonShadow?: boolean;
     desertPoisonShadow?: boolean;
     umbarKilled?: number;
     umbarInjuredShadows?: number;

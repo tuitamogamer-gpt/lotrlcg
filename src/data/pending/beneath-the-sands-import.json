@@ -1,0 +1,1352 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Beneath the Sands",
+  "slug": "beneath-the-sands",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec58_web_beneath_the_sands-rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+      "octgnid": "05738935-2cd4-4ce3-a977-9e4f59689a32",
+      "name": "On Track",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Search.",
+      "text": "Forced: At the end of the quest phase, search the top 3 cards of the encounter deck for a card with On Track, add it to the staging area and discard the rest. If no card enters play from this effect, flip this objective.  Forced: After the players quest unsuccessfully, flip this objective.  ",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 80,
+      "quantity": 1,
+      "encounter_set": "Beneath the Sands",
+      "back_name": "Off Track",
+      "back_text": "Forced: At the end of the quest phase, place 1 progress here. Then, either return the topmost location in the encounter discard pile to the staging area, or raise each player's threat by 1 for each resource here.   Progress cannot be placed on the main quest. ",
+      "back_type_code": "objective",
+      "back_imagesrc": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.B.jpg",
+      "printed_stats": {},
+      "imagesrc": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "05738935-2cd4-4ce3-a977-9e4f59689a32",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+      "name": "In Hostile Territory",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nEach player cannot have more than 5 cards in his hand. (If you have more than 5, immediately choose and discard cards from hand until you have only 5.) Response: When this stage is defeated, each player draws a card. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 45,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Harad Territory",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "name": "Injured Companion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard a character you control.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 46,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise each player's threat by 1.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+      "octgnid": "4233fe0f-ba63-4947-8c3c-f732ab09c472",
+      "name": "Blocked Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Track 2.\nWhile On Track is in play, progress cannot be placed on locations in the staging area.  ",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 72,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 6,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 72,
+          "quantity": 3,
+          "octgnid": "4233fe0f-ba63-4947-8c3c-f732ab09c472",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+      "octgnid": "4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+      "name": "Searching the Caves",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Brood Mother aside, out of play. Add the Search objective to the staging area (Off Track face up).",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 76,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Beneath the Sands",
+      "side": "A",
+      "back_name": "Searching the Caves",
+      "back_text": "5\nWhen Revealed: Discard cards from the encounter deck until X locations are discarded, where X is the number of players. Add each location discarded by this effect to the staging area.  ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "name": "Craft Remedy",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Treat the printed text box of each damaged character as if it were blank (except for Traits). Response: When this is defeated, heal 1 damage from each character in play. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 53,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "name": "Giant Scorpion",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Giant Scorpion damages a character, that character cannot ready until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 55,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 33,
+      "shadow": "Shadow: If this attack deals damage, the defending character cannot ready until the end of the round.",
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 55,
+          "quantity": 3,
+          "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+      "octgnid": "6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+      "name": "Spider Broodling",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "While On Track is in play, Spider Broodling gains surge.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 67,
+      "quantity": 5,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 20,
+      "shadow": "Shadow: If On Track is in play, put Spider Broodling into play engaged with you and deal it a shadow card. ",
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 67,
+          "quantity": 5,
+          "octgnid": "6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+      "octgnid": "6b828300-4558-4a8b-a591-a9865202a630",
+      "name": "Spider Burrow",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Immune to player card effects. Forced: After Spider Burrow becomes the active location, flip the Search objective to On Track and add Brood Mother to the staging area. Forced: When Spider Burrow leaves play as an explored location, set Brood Mother aside, out of play (unless the players are at stage 3B).",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 68,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 2,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/6b828300-4558-4a8b-a591-a9865202a630.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 68,
+          "quantity": 2,
+          "octgnid": "6b828300-4558-4a8b-a591-a9865202a630",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b828300-4558-4a8b-a591-a9865202a630.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+      "octgnid": "74c7a9e0-940f-4b66-bc23-c938eef5587f",
+      "name": "Lost Underground",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Flip the Search objective to Off Track. While Lost Underground is in play, the Search objective cannot flip. (Do not resolve the Track keyword.) Response: When this stage is defeated, flip the Search objective to On Track and ignore its Forced effect until the end of the phase. ",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 75,
+      "quantity": 1,
+      "quest": 5,
+      "victory": 10,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "quest": "5",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "74c7a9e0-940f-4b66-bc23-c938eef5587f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+      "octgnid": "8351cce0-b16e-4eba-93f2-24015bbc54c1",
+      "name": "The Spider's Hive",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player adds Brood Mother to the staging area. Each other player reveals an encounter card. Flip the Search objective to Off Track.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 78,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Beneath the Sands",
+      "side": "A",
+      "back_name": "The Spider's Hive",
+      "back_text": "5\nWhile there are at least 5 progress tokens on this stage, Brood Mother loses the text: \"Cannot take damage.\" Forced: After the Search objective is flipped to Off Track, remove all progress tokens from this stage. This stage cannot be defeated while Brood Mother is in play. If the players defeat this stage, they win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "8351cce0-b16e-4eba-93f2-24015bbc54c1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+      "octgnid": "8c15fd9d-0956-474a-9051-51f36890c7a5",
+      "name": "Forced Off Track",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Either flip the Search objective to Off Track, or deal 1 damage to each questing character.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 73,
+      "quantity": 3,
+      "shadow": "Shadow: If On Track is in play, attacking enemy makes an additional attack against you after this one. ",
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 73,
+          "quantity": 3,
+          "octgnid": "8c15fd9d-0956-474a-9051-51f36890c7a5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+      "octgnid": "8d55b746-417d-4996-b69b-01c80a7e4602",
+      "name": "Cobwebbed Cavern",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Track 2.\nWhile On Track is in play, Cobwebbed Cavern gets +2 [threat].",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 71,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/8d55b746-417d-4996-b69b-01c80a7e4602.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 71,
+          "quantity": 3,
+          "octgnid": "8d55b746-417d-4996-b69b-01c80a7e4602",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d55b746-417d-4996-b69b-01c80a7e4602.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+      "octgnid": "9afed95c-399f-4823-a277-342ece74a9e4",
+      "name": "Hive Guardian",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "While On Track is in play, Hive Guardian gets +2 [attack] and -5 engagement cost.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 66,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if On Track is in play).",
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/9afed95c-399f-4823-a277-342ece74a9e4.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "9afed95c-399f-4823-a277-342ece74a9e4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9afed95c-399f-4823-a277-342ece74a9e4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+      "octgnid": "a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+      "name": "Grabbed by Spiders",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Surge. Doomed 1.",
+      "text": "Surge. Doomed 1.\nWhen Revealed: Attach to the main quest. Limit 1 per quest. (Counts as a Condition attachment with the text: \"Forced: After the Search objective is flipped to Off Track, each player discards an ally he controls. Then, discard Grabbed by Spiders.\")",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 74,
+      "quantity": 3,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 74,
+          "quantity": 3,
+          "octgnid": "a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "name": "Sand Viper",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Players cannot declare defenders against Sand Viper.Forced: After the players travel to a location, Sand Viper engages the first player.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 54,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "engagement": 44,
+      "encounter_set": "Desert Creatures",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "1",
+        "defense": "1",
+        "health": "3",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 54,
+          "quantity": 2,
+          "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "name": "Enfeebled",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls. Until the end of the combat phase, exhausted characters cannot ready.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 47,
+      "quantity": 2,
+      "shadow": "Shadow: Until the end of the round, defending character cannot ready.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+      "octgnid": "e1b0b7ba-c097-481b-baba-53755545cbbe",
+      "name": "Nest of Vermin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Track 3.\nTravel: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until a Creature enemy is discarded. Add the discarded enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 70,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 70,
+          "quantity": 2,
+          "octgnid": "e1b0b7ba-c097-481b-baba-53755545cbbe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+      "octgnid": "f02f15ee-3262-435a-b894-8f4003068c32",
+      "name": "Pitch Black Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Track 4.\nX is the number of characters controlled by the first player. Travel: Reveal the top card of the encounter deck to travel here.  ",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 69,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 5,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/f02f15ee-3262-435a-b894-8f4003068c32.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 69,
+          "quantity": 2,
+          "octgnid": "f02f15ee-3262-435a-b894-8f4003068c32",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f02f15ee-3262-435a-b894-8f4003068c32.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+      "octgnid": "f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+      "name": "Getting Closer",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Flip the Search objective to Off Track. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded by this effect to the staging area.",
+      "is_unique": false,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 77,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Beneath the Sands",
+      "side": "A",
+      "back_name": "Getting Closer",
+      "back_text": "5\nWhile On Track is in play, encounter card effects cannot be canceled.",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 77,
+          "quantity": 1,
+          "octgnid": "f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+      "octgnid": "f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+      "name": "Brood Mother",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "Cannot have attachments. Cannot take damage. Brood Mother engages the first player. Forced: At the end of the round, search the encounter deck and discard pile for a Spider Broodling and add it to the staging area, if able. Shuffle the encounter deck.  ",
+      "is_unique": true,
+      "pack_code": "BtS",
+      "pack_name": "Beneath the Sands",
+      "position": 65,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 12,
+      "engagement": 50,
+      "victory": 4,
+      "encounter_set": "Beneath the Sands",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "12",
+        "engagement": "50",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg",
+      "packs": [
+        {
+          "pack_code": "BtS",
+          "pack_name": "Beneath the Sands",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.6",
+      "name": "Beneath the Sands (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "BtS",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+        "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+        "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+        "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+        "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+        "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+        "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+        "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+        "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+        "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+        "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+        "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+        "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+        "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+        "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+        "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+        "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+          "quantity": 5,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b": 1,
+          "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9": 1,
+          "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:9afed95c-399f-4823-a277-342ece74a9e4": 2,
+          "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e": 5,
+          "octgn:6b828300-4558-4a8b-a591-a9865202a630": 2,
+          "octgn:f02f15ee-3262-435a-b894-8f4003068c32": 1,
+          "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe": 2,
+          "octgn:8d55b746-417d-4996-b69b-01c80a7e4602": 3,
+          "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472": 3,
+          "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5": 2,
+          "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3": 2,
+          "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f": 1,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 2,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 1,
+          "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00": 1,
+          "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0": 1,
+          "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9": 3
+        },
+        "sharedSetAside": {
+          "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254": 1
+        },
+        "sharedStagingArea": {
+          "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.6",
+      "name": "Beneath the Sands",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "BtS",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+        "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+        "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+        "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+        "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+        "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+        "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+        "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+        "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+        "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+        "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+        "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+        "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+        "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+        "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+        "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+        "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+          "quantity": 5,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b": 1,
+          "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9": 1,
+          "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:9afed95c-399f-4823-a277-342ece74a9e4": 3,
+          "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e": 5,
+          "octgn:6b828300-4558-4a8b-a591-a9865202a630": 2,
+          "octgn:f02f15ee-3262-435a-b894-8f4003068c32": 2,
+          "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe": 2,
+          "octgn:8d55b746-417d-4996-b69b-01c80a7e4602": 3,
+          "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472": 3,
+          "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5": 3,
+          "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3": 3,
+          "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f": 1,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 3,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 2,
+          "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00": 1,
+          "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0": 2,
+          "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9": 3
+        },
+        "sharedSetAside": {
+          "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254": 1
+        },
+        "sharedStagingArea": {
+          "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg",
+      "localPath": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg",
+      "bytes": 57421,
+      "sha256": "4106d6f86d877e417e024f759d034771fe05369a4890af172e4acb457873c807"
+    },
+    {
+      "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05738935-2cd4-4ce3-a977-9e4f59689a32.B.jpg",
+      "localPath": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.B.jpg",
+      "bytes": 53340,
+      "sha256": "2728f421a8efd3194c6da98005a4b65166c120d83af8498c2b0da02a2ac7d41f"
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "localPath": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "bytes": 139224,
+      "sha256": "ea69525ad394619f838f20418fde0071b2615f178bbe1afb1f760d28db7beac4"
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "localPath": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "bytes": 151450,
+      "sha256": "9198d9d8e5d71b389d4f9a171738982aee84743a7e29e59d2f9f23c5fc142e3c"
+    },
+    {
+      "code": "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg",
+      "localPath": "/cards/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg",
+      "bytes": 124144,
+      "sha256": "3010a7921cf662a9ef0bd9b10bcedf243f6660f94554c9c49ede8bd5b594c98c"
+    },
+    {
+      "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg",
+      "localPath": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg",
+      "bytes": 119308,
+      "sha256": "7a570e058c26bdc9e1786886cd545d0b6e59b8d25bff6e25af24286791b3a86f"
+    },
+    {
+      "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.B.jpg",
+      "localPath": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.B.jpg",
+      "bytes": 122006,
+      "sha256": "02350755a7fc255e5083cac6b9f74814673d4fc8d9c650fefaf47454698c7989"
+    },
+    {
+      "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "localPath": "/cards/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+      "bytes": 135536,
+      "sha256": "04b6f195a339ba9f424c162652a04ce818714362e6e2a3f1a68c821971dfe6bc"
+    },
+    {
+      "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "localPath": "/cards/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+      "bytes": 153858,
+      "sha256": "30dfe1aa0036a92d5ece9f7d8a091a2769f274a8ac7c30267ea0d091921c4483"
+    },
+    {
+      "code": "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg",
+      "localPath": "/cards/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg",
+      "bytes": 130718,
+      "sha256": "6250e2b5d32fb0b5f0e8b41790bd946db547df3a2746c2ace7f143d88ef4b5fa"
+    },
+    {
+      "code": "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b828300-4558-4a8b-a591-a9865202a630.jpg",
+      "localPath": "/cards/6b828300-4558-4a8b-a591-a9865202a630.jpg",
+      "bytes": 134474,
+      "sha256": "dce94b1f103896f3f803ec274b27f1cb194d977d99a3fd5965629a63fc2e5d5e"
+    },
+    {
+      "code": "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg",
+      "localPath": "/cards/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg",
+      "bytes": 117505,
+      "sha256": "b78dd90460b2e53d62e292107f72628aeabf4f279dc5a47959157fce636784a3"
+    },
+    {
+      "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg",
+      "localPath": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg",
+      "bytes": 133749,
+      "sha256": "ace9c6a9f32851366c1254c7ec62cfe5339abe1b8a86f656a4ca8dfd6988c650"
+    },
+    {
+      "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8351cce0-b16e-4eba-93f2-24015bbc54c1.B.jpg",
+      "localPath": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.B.jpg",
+      "bytes": 123213,
+      "sha256": "4ac71845adbd9f399dcb4a4be4fc4925ff1043c4649d50077181ab9402a0f017"
+    },
+    {
+      "code": "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg",
+      "localPath": "/cards/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg",
+      "bytes": 124328,
+      "sha256": "925ddc351c4a4b202d44d598b62236267dca1da2902e5e08c403bead2203d73b"
+    },
+    {
+      "code": "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d55b746-417d-4996-b69b-01c80a7e4602.jpg",
+      "localPath": "/cards/8d55b746-417d-4996-b69b-01c80a7e4602.jpg",
+      "bytes": 122054,
+      "sha256": "031e19413594b2d4a8e05dd38071baccaf3968e50516109b5deb226ad972c8a5"
+    },
+    {
+      "code": "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9afed95c-399f-4823-a277-342ece74a9e4.jpg",
+      "localPath": "/cards/9afed95c-399f-4823-a277-342ece74a9e4.jpg",
+      "bytes": 124504,
+      "sha256": "085c310caf524920bef9989ee8c8ce8545d746474ac59041ae5a262e49c59c38"
+    },
+    {
+      "code": "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg",
+      "localPath": "/cards/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg",
+      "bytes": 124313,
+      "sha256": "cd79c060be9a5ab6d3111986d80ef16eff59e911e2ffb0ed39761212674da3e1"
+    },
+    {
+      "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "localPath": "/cards/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+      "bytes": 148343,
+      "sha256": "63e1305bedda6d4f1a906688a676feb2a811e6d5c747c8f9d45f103bf7f7536f"
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "localPath": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "bytes": 149285,
+      "sha256": "38569d185c6fd83b214a0dff1c068143a9cf02b11a85e3427c6bf89cb65c2fc4"
+    },
+    {
+      "code": "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg",
+      "localPath": "/cards/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg",
+      "bytes": 129272,
+      "sha256": "c7a0a0c79abb4a8ba1382da2caa4bf6633313af4154947f3db295c6c04c49843"
+    },
+    {
+      "code": "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f02f15ee-3262-435a-b894-8f4003068c32.jpg",
+      "localPath": "/cards/f02f15ee-3262-435a-b894-8f4003068c32.jpg",
+      "bytes": 124889,
+      "sha256": "0e101147ddedb1123d5a9b978e47295f0250d0e1c159277ca229ec78b45c136a"
+    },
+    {
+      "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg",
+      "localPath": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg",
+      "bytes": 120532,
+      "sha256": "ffe16cb139b48af03dd85599e88c939470e30088be6baa7811a6dfac090782f0"
+    },
+    {
+      "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.B.jpg",
+      "localPath": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.B.jpg",
+      "bytes": 107396,
+      "sha256": "45dcc1cc3fae07e00a01ff33e314825757edadf7dbae2241e23aa91983826b1c"
+    },
+    {
+      "code": "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg",
+      "localPath": "/cards/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg",
+      "bytes": 134665,
+      "sha256": "bb81bfc73c97dc22a3868de609194a308e811fd5925567f79d05b57d18bbbc72"
+    }
+  ]
+}

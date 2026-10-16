@@ -19,6 +19,7 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "beneath-the-sands": { lead: "Find a path", em: "beneath the sands." },
   "race-across-harad": { lead: "Race north", em: "across Harad." },
   "the-mumakil": { lead: "Capture", em: "the wild Mûmakil." },
   "escape-from-umbar": { lead: "Escape from", em: "Umbar." },

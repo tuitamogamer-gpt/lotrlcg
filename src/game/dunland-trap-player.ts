@@ -48,6 +48,7 @@ import {
 } from "./table";
 
 import { roadRivendellCannotCancel } from "./road-rivendell";
+import { beneathSandsCannotCancel } from "./beneath-sands";
 import { gondorResourcesGained } from "./gondor-player-cards";
 import { returnPlayedEventToHand } from "./event-resolution";
 import { applyCombatDamageConsequences } from "./combat";
@@ -159,6 +160,7 @@ export function offerCloseCall(
     card(target.code).type_code !== "hero"
   )
     return false;
+  if (beneathSandsCannotCancel(s) && !context.combatDamage) return false;
   if (
     !context.enemyId &&
     (roadRivendellCannotCancel(s) ||

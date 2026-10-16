@@ -1,3 +1,5 @@
+import * as Sands from "./beneath-sands";
+import { beneathSandsPlayerStats } from "./beneath-sands-player-support";
 import * as Race from "./race-harad";
 import { raceHaradStageInfo } from "./race-harad-support";
 import * as RacePlayerSupport from "./race-harad-player-support";
@@ -285,6 +287,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
       Umbar.umbarCannotReady(s, u) ||
       Desert.desertCrossingCannotReady(s, u) ||
       Mumakil.mumakilCannotReady(s, u) ||
+      Sands.beneathSandsCannotReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -617,7 +620,8 @@ export function stats(s: GameState, u: Unit) {
         Cobas.cobasStats(s, u).attack +
         City.cityStats(s, u).attack +
         Mordor.mordorStats(s, u).attack +
-      Race.raceHaradStats(s, u).attack +
+        Race.raceHaradStats(s, u).attack +
+        Sands.beneathSandsStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
         Umbar.umbarStats(s, u).attack +
         Desert.desertCrossingStats(s, u).attack +
@@ -643,6 +647,7 @@ export function stats(s: GameState, u: Unit) {
         osgiliathBonus.attack +
         shadowFlameAttackBonus(s, u) +
         stewardBonus.attack +
+        beneathSandsPlayerStats(s, u).attack +
         bonus.attack +
         dwarfBonus.attack +
         mirkwoodBonus.attack +
@@ -686,7 +691,8 @@ export function stats(s: GameState, u: Unit) {
             Cobas.cobasStats(s, u).defense +
             City.cityStats(s, u).defense +
             Mordor.mordorStats(s, u).defense +
-      Race.raceHaradStats(s, u).defense +
+            Race.raceHaradStats(s, u).defense +
+            Sands.beneathSandsStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
             Desert.desertCrossingStats(s, u).defense +
             Raid.raidStats(s, u).defense +
@@ -878,6 +884,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Mordor.mordorThreatBonus(s, u) +
             Mumakil.mumakilThreatBonus(s, u) +
             Race.raceHaradThreatBonus(s, u) +
+            Sands.beneathSandsThreatBonus(s, u) +
             Umbar.umbarThreatBonus(s, u) +
             Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
@@ -937,7 +944,9 @@ export const stagingThreat = (s: GameState) =>
     .filter((u) =>
       ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
     )
-    .filter((u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u))
+    .filter(
+      (u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u),
+    )
     .reduce((n, u) => n + threatOf(s, u), 0);
 
 export const questWill = (s: GameState) =>
@@ -997,13 +1006,20 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Voyage.voyageEngagementModifier(s, u) +
       Umbar.umbarEngagementModifier(s, u) +
       Desert.desertCrossingEngagementBonus(s, u) +
+      Sands.beneathSandsEngagementBonus(s, u) +
       Cobas.cobasEngagementModifier(s, u) +
       Mordor.mordorEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {
-  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s) ?? mumakilStageInfo(s) ?? raceHaradStageInfo(s);
+  const harad =
+    umbarStageInfo(s) ??
+    desertCrossingStageInfo(s) ??
+    mordorStageInfo(s) ??
+    mumakilStageInfo(s) ??
+    raceHaradStageInfo(s) ??
+    Sands.beneathSandsStageInfo(s);
   if (harad) return harad;
   const city = cityStageInfo(s);
   if (city) return city;

@@ -1,3 +1,4 @@
+import * as SandsPlayers from "./beneath-sands-player";
 import * as RacePlayers from "./race-harad-player";
 import { haradPlayerNoExhaustDefense } from "./harad-player-support";
 import * as MumakPlayers from "./mumakil-player";
@@ -274,6 +275,11 @@ export function playerAttack(
     ...CobasPlayers.cobasPlayerAttackEffects(s, enemy, ids),
     ...Mordor.mordorPlayerAttackEffects(s, enemy, ids),
     ...MumakPlayers.mumakilAttackersDeclared(s, enemy, attackers as Unit[]),
+    ...SandsPlayers.beneathSandsPlayerAttackersDeclared(
+      s,
+      enemy,
+      attackers as Unit[],
+    ),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -368,6 +374,7 @@ export function playerAttackResolved(
   amount: number,
   remainingHealth: number,
 ) {
+  SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
   Depths.depthsPlayerAttackFinished(s, enemy);
   TempleEncounters.templePlayerAttackFinished(s, enemy);

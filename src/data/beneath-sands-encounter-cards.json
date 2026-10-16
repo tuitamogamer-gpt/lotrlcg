@@ -1,0 +1,457 @@
+[
+  {
+    "code": "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+    "octgnid": "05738935-2cd4-4ce3-a977-9e4f59689a32",
+    "name": "On Track",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Search.",
+    "text": "Forced: At the end of the quest phase, search the top 3 cards of the encounter deck for a card with ‘On Track’ in the lower right corner, add it to the staging area and discard the rest. If no card enters play from this effect, flip this objective.\nForced: After the players quest unsuccessfully, flip this objective.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 80,
+    "quantity": 1,
+    "encounter_set": "Beneath the Sands",
+    "back_name": "Off Track",
+    "back_text": "Forced: At the end of the quest phase, place 1 resource here. Then, either return the topmost location in the encounter discard pile to the staging area, or raise each player’s threat by 1 for each resource here.\nProgress cannot be placed on the main quest.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.B.jpg",
+    "printed_stats": {},
+    "imagesrc": "/cards/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "05738935-2cd4-4ce3-a977-9e4f59689a32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/05738935-2cd4-4ce3-a977-9e4f59689a32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
+    "octgnid": "4233fe0f-ba63-4947-8c3c-f732ab09c472",
+    "name": "Blocked Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Track 2.\nWhile On Track is in play, progress cannot be placed on locations in the staging area.  ",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 72,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 6,
+    "shadow": "Shadow: Discard an attachment you control.",
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 72,
+        "quantity": 3,
+        "octgnid": "4233fe0f-ba63-4947-8c3c-f732ab09c472",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4233fe0f-ba63-4947-8c3c-f732ab09c472.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "on_track": true,
+    "track": 2
+  },
+  {
+    "code": "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+    "octgnid": "6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+    "name": "Spider Broodling",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "While On Track is in play, Spider Broodling gains surge.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 67,
+    "quantity": 5,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 20,
+    "shadow": "Shadow: If On Track is in play, put Spider Broodling into play engaged with you and deal it a shadow card. ",
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 67,
+        "quantity": 5,
+        "octgnid": "6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "on_track": true
+  },
+  {
+    "code": "octgn:6b828300-4558-4a8b-a591-a9865202a630",
+    "octgnid": "6b828300-4558-4a8b-a591-a9865202a630",
+    "name": "Spider Burrow",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Immune to player card effects. Forced: After Spider Burrow becomes the active location, flip the Search objective to On Track and add Brood Mother to the staging area. Forced: When Spider Burrow leaves play as an explored location, set Brood Mother aside, out of play (unless the players are at stage 3B).",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 68,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/6b828300-4558-4a8b-a591-a9865202a630.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 68,
+        "quantity": 2,
+        "octgnid": "6b828300-4558-4a8b-a591-a9865202a630",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b828300-4558-4a8b-a591-a9865202a630.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+    "octgnid": "74c7a9e0-940f-4b66-bc23-c938eef5587f",
+    "name": "Lost Underground",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Flip the Search objective to Off Track. While Lost Underground is in play, the Search objective cannot flip. (Do not resolve the Track keyword.) Response: When this stage is defeated, flip the Search objective to On Track and ignore its Forced effects until the end of the phase. ",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 75,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 10,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "74c7a9e0-940f-4b66-bc23-c938eef5587f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74c7a9e0-940f-4b66-bc23-c938eef5587f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+    "octgnid": "8c15fd9d-0956-474a-9051-51f36890c7a5",
+    "name": "Forced Off Track",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either flip the Search objective to Off Track, or deal 1 damage to each questing character.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 73,
+    "quantity": 3,
+    "shadow": "Shadow: If On Track is in play, attacking enemy makes an additional attack against you after this one. ",
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {},
+    "imagesrc": "/cards/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 73,
+        "quantity": 3,
+        "octgnid": "8c15fd9d-0956-474a-9051-51f36890c7a5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c15fd9d-0956-474a-9051-51f36890c7a5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+    "octgnid": "8d55b746-417d-4996-b69b-01c80a7e4602",
+    "name": "Cobwebbed Cavern",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Track 2.\nWhile On Track is in play, Cobwebbed Cavern gets +2 [threat].",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 71,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/8d55b746-417d-4996-b69b-01c80a7e4602.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 71,
+        "quantity": 3,
+        "octgnid": "8d55b746-417d-4996-b69b-01c80a7e4602",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d55b746-417d-4996-b69b-01c80a7e4602.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "track": 2
+  },
+  {
+    "code": "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
+    "octgnid": "9afed95c-399f-4823-a277-342ece74a9e4",
+    "name": "Hive Guardian",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "While On Track is in play, Hive Guardian gets +2 [attack] and -5 engagement cost.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 66,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "engagement": 40,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if On Track is in play).",
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/9afed95c-399f-4823-a277-342ece74a9e4.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 66,
+        "quantity": 3,
+        "octgnid": "9afed95c-399f-4823-a277-342ece74a9e4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9afed95c-399f-4823-a277-342ece74a9e4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "on_track": true
+  },
+  {
+    "code": "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+    "octgnid": "a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+    "name": "Grabbed by Spiders",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Surge. Doomed 1.",
+    "text": "Surge. Doomed 1.\nWhen Revealed: Attach to the main quest. Limit 1 per quest. (Counts as a Condition attachment with the text: \"Forced: After the Search objective is flipped to Off Track, each player discards an ally he controls. Then, discard Grabbed by Spiders.\")",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 74,
+    "quantity": 3,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {},
+    "imagesrc": "/cards/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 74,
+        "quantity": 3,
+        "octgnid": "a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a5aef3fe-7bb9-4165-ba0f-91127d8f21e3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+    "octgnid": "e1b0b7ba-c097-481b-baba-53755545cbbe",
+    "name": "Nest of Vermin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Track 3.\nTravel: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until a Creature enemy is discarded. Add the discarded enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 70,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 70,
+        "quantity": 2,
+        "octgnid": "e1b0b7ba-c097-481b-baba-53755545cbbe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1b0b7ba-c097-481b-baba-53755545cbbe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "on_track": true,
+    "track": 3
+  },
+  {
+    "code": "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
+    "octgnid": "f02f15ee-3262-435a-b894-8f4003068c32",
+    "name": "Pitch Black Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Track 4.\nX is the number of characters controlled by the first player. Travel: Reveal the top card of the encounter deck to travel here.  ",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 69,
+    "quantity": 2,
+    "threat": 0,
+    "quest": 5,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/f02f15ee-3262-435a-b894-8f4003068c32.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 69,
+        "quantity": 2,
+        "octgnid": "f02f15ee-3262-435a-b894-8f4003068c32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f02f15ee-3262-435a-b894-8f4003068c32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "on_track": true,
+    "track": 4
+  },
+  {
+    "code": "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+    "octgnid": "f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+    "name": "Brood Mother",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Cannot have attachments. Cannot take damage. Brood Mother engages the first player. Forced: At the end of the round, search the encounter deck and discard pile for a Spider Broodling and add it to the staging area, if able. Shuffle the encounter deck.  ",
+    "is_unique": true,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 65,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 12,
+    "engagement": 50,
+    "victory": 4,
+    "encounter_set": "Beneath the Sands",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "12",
+      "engagement": "50",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "f47bffb2-d4cc-404c-bd53-5e91be0dc254",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f47bffb2-d4cc-404c-bd53-5e91be0dc254.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

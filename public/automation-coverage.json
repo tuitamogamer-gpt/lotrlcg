@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 591,
+    "playerCards": 597,
     "heroes": 68,
-    "deckCards": 522,
-    "encounterCards": 857,
-    "scenarios": 59,
+    "deckCards": 528,
+    "encounterCards": 869,
+    "scenarios": 60,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -66,17 +66,18 @@
       "desert-crossing",
       "the-long-arm-of-mordor",
       "the-mumakil",
-      "race-across-harad"
+      "race-across-harad",
+      "beneath-the-sands"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1626,
-    "pending": 2557
+    "scripted": 1647,
+    "pending": 2536
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 118
+    "scripted": 120
   },
   "registeredCodes": [
     "01001",
@@ -698,9 +699,15 @@
     "17036",
     "17037",
     "17055",
+    "17056",
+    "17057",
     "17058",
+    "17059",
+    "17060",
     "17061",
     "17062",
+    "17063",
+    "17064",
     "17085",
     "17112",
     "18007",
@@ -747,6 +754,7 @@
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
+    "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
@@ -918,7 +926,9 @@
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
     "octgn:41c3779a-a28a-44db-8b9b-bc5e81d1111a",
+    "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
     "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
+    "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
     "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
@@ -1272,7 +1282,9 @@
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384:B",
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
+    "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
+    "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
@@ -1297,6 +1309,7 @@
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
@@ -1333,6 +1346,7 @@
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
+    "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
@@ -1363,7 +1377,9 @@
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
+    "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
+    "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
@@ -1398,6 +1414,7 @@
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
+    "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
@@ -1427,6 +1444,7 @@
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
+    "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
     "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
@@ -1596,6 +1614,7 @@
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
+    "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
     "octgn:e1edac2f-1d9c-44e6-af0a-10c3101f2709",
     "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
@@ -1633,6 +1652,7 @@
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
@@ -1641,11 +1661,13 @@
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+    "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
     "octgn:f410480c-ac41-431a-8db1-693746a7570e",
     "octgn:f41fb428-d21c-47b2-9bd7-cc97202c2a7e",
     "octgn:f433a8a8-00ee-45d3-b0ac-1643216a2422",
+    "octgn:f47bffb2-d4cc-404c-bd53-5e91be0dc254",
     "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
@@ -1788,9 +1810,9 @@
     {
       "product": "beneath-the-sands",
       "total": 26,
-      "scripted": 4,
+      "scripted": 25,
       "player": 10,
-      "playerScripted": 4
+      "playerScripted": 10
     },
     {
       "product": "celebrimbor-s-secret",
@@ -9792,7 +9814,7 @@
       "name": "Haradrim Spear",
       "type": "attachment",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -9800,7 +9822,7 @@
       "name": "Hunting Party",
       "type": "event",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -9816,7 +9838,7 @@
       "name": "Keep Watch",
       "type": "player-side-quest",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -9824,7 +9846,7 @@
       "name": "Rider of Rohan",
       "type": "ally",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -9848,7 +9870,7 @@
       "name": "Doughty Ranger",
       "type": "attachment",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -9856,7 +9878,7 @@
       "name": "The Free Peoples",
       "type": "event",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -11872,7 +11894,7 @@
       "name": "On Track",
       "type": "objective",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -16856,7 +16878,7 @@
       "name": "Blocked Passage",
       "type": "location",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -16880,7 +16902,7 @@
       "name": "Searching the Caves",
       "type": "quest",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -22976,7 +22998,7 @@
       "name": "Spider Broodling",
       "type": "enemy",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -23016,7 +23038,7 @@
       "name": "Spider Burrow",
       "type": "location",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -23784,7 +23806,7 @@
       "name": "Lost Underground",
       "type": "encounter-side-quest",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -25136,7 +25158,7 @@
       "name": "The Spider's Hive",
       "type": "quest",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -25992,7 +26014,7 @@
       "name": "Forced Off Track",
       "type": "treachery",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -26064,7 +26086,7 @@
       "name": "Cobwebbed Cavern",
       "type": "location",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -27072,7 +27094,7 @@
       "name": "Hive Guardian",
       "type": "enemy",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -27960,7 +27982,7 @@
       "name": "Grabbed by Spiders",
       "type": "treachery",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -33104,7 +33126,7 @@
       "name": "Nest of Vermin",
       "type": "location",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -34536,7 +34558,7 @@
       "name": "Pitch Black Tunnel",
       "type": "location",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -34856,7 +34878,7 @@
       "name": "Getting Closer",
       "type": "quest",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -34928,7 +34950,7 @@
       "name": "Brood Mother",
       "type": "enemy",
       "pack": "Beneath the Sands",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "beneath-the-sands"
     },
     {
@@ -36580,8 +36602,8 @@
       "id": "E07.6",
       "name": "Beneath the Sands (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "beneath-the-sands",
+      "state": "scripted"
     },
     {
       "id": "E07.7",
@@ -38071,8 +38093,8 @@
       "id": "Q07.6",
       "name": "Beneath the Sands",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "beneath-the-sands",
+      "state": "scripted"
     },
     {
       "id": "Q07.7",

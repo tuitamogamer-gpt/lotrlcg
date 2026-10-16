@@ -1,3 +1,4 @@
+import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as RacePlayers from "./race-harad-player";
 import {
@@ -517,7 +518,10 @@ export function charactersCommitted(
     s,
     actual.map((u) => u.id),
   );
-  MumakPlayers.mumakilCharactersCommitted(s, actual.map((u) => u.id));
+  MumakPlayers.mumakilCharactersCommitted(
+    s,
+    actual.map((u) => u.id),
+  );
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
@@ -766,6 +770,7 @@ export function check(s: GameState) {
   if (s.status !== "playing") return;
   Cobas.cobasCheck(s);
   City.cityCheck(s);
+  Sands.beneathSandsCheck(s);
   Umbar.umbarCheck(s);
   Desert.desertCrossingCheck(s);
   Mordor.mordorCheck(s);
@@ -1026,15 +1031,15 @@ export function check(s: GameState) {
       ? "Your deck is empty. The dead overwhelm your fellowship."
       : s.used.includes("game:race-harad-mumak-lost")
         ? "Your Tamed Mûmak left play. Your fellowship is eliminated."
-      : s.used.includes("game:mordor-objective-lost")
-        ? "A Harad objective-hero left play. Your fellowship is eliminated."
-        : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
-          ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
-          : s.used.includes("game:ship-controller-eliminated")
-            ? "Your Ship objective was destroyed. Your fellowship is eliminated."
-            : s.threat >= threatElimination(s)
-              ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
-              : "The last hero has fallen.";
+        : s.used.includes("game:mordor-objective-lost")
+          ? "A Harad objective-hero left play. Your fellowship is eliminated."
+          : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
+            ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
+            : s.used.includes("game:ship-controller-eliminated")
+              ? "Your Ship objective was destroyed. Your fellowship is eliminated."
+              : s.threat >= threatElimination(s)
+                ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
+                : "The last hero has fallen.";
   }
   if (s.status === "lost") {
     const pending = s.pendingPlayerPlays ?? [];
@@ -1242,6 +1247,7 @@ export function damage(
   value = Mordor.mordorDamageAmount(s, u, value, context);
   value = Mumakil.mumakilDamageAmount(s, u, value);
   value = Race.raceHaradDamageAmount(s, u, value);
+  value = Sands.beneathSandsDamageAmount(s, u, value);
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1289,6 +1295,7 @@ export function damage(
   Cobas.cobasDamageDealt(s, u, value, context);
   City.cityDamageDealt(s, u, value, context);
   Desert.desertCrossingDamageDealt(s, u, value, context);
+  Sands.beneathSandsDamageDealt(s, u, value, context);
   Mumakil.mumakilDamageDealt(s, u, value, context);
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   if (u.damage >= stats(s, u).health)
@@ -1299,7 +1306,8 @@ export function damage(
     Mordor.mordorCharacterDestroyed(s, u, context);
   if (u.damage >= stats(s, u).health)
     Mumakil.mumakilCharacterDestroyed(s, u, context);
-  if (u.damage >= stats(s, u).health) Race.raceHaradCharacterDestroyed(s, u, context);
+  if (u.damage >= stats(s, u).health)
+    Race.raceHaradCharacterDestroyed(s, u, context);
   Drowned.drownedDamageDealt(s, value, context);
   Voyage.voyageDamageDealt(s, u, value, context);
   Storm.stormcallerDamageDealt(s, u, value, context);
@@ -1521,7 +1529,8 @@ export function destroy(
     DunlandQuest.dunlandCannotLeave(u) ||
     Trials.trialsCannotLeave(s, u) ||
     Depths.depthsCannotLeave(s, u) ||
-    (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
+    Storm.stormcallerAreaCannotLeave(s, u) ||
+    Race.raceHaradCannotLeave(s, u)
   )
     return;
   if (
@@ -1842,7 +1851,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (
     Desert.desertCrossingLocationProgressBlocked(s, u) ||
     Umbar.umbarLocationProgressBlocked(s, u) ||
-    Race.raceHaradLocationProgressBlocked(s, u)
+    Race.raceHaradLocationProgressBlocked(s, u) ||
+    Sands.beneathSandsLocationProgressBlocked(s, u)
   )
     return;
   if (Temple.templeProgressLocation(s, u, value)) return;
@@ -1864,7 +1874,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   roadRivendellProgressPlaced(s, u, value);
   Celebrimbor.celebrimborProgressPlaced(s, u, value);
   if (u.progress < locationQuest(s, u)) return;
-  if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u)) return;
+  if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
+    return;
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
   log(s, `${name(u)} is explored.`, "good");
@@ -1892,6 +1903,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Desert.desertCrossingExplored(s, u, wasActive);
   Mumakil.mumakilExplored(s, u, wasActive);
   Race.raceHaradExplored(s, u, wasActive);
+  Sands.beneathSandsExplored(s, u, wasActive);
   RacePlayers.raceHaradPlayerLocationExplored(s, u, wasActive);
   Mordor.mordorExplored(s, u);
   Rhudaur.rhudaurExplored(s, u, wasActive);
@@ -2143,6 +2155,7 @@ export function advanceQuest(s: GameState) {
   if (Mordor.mordorAdvance(s)) return;
   if (Mumakil.mumakilAdvance(s)) return;
   if (Race.raceHaradAdvance(s)) return;
+  if (Sands.beneathSandsAdvance(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2520,14 +2533,17 @@ export function engage(s: GameState, u: Unit, optional = false) {
   if (Depths.depthsCannotEngage(s, u) || Drowned.drownedCannotEngage(s, u))
     return;
   const designated =
-    Depths.depthsEngagementPlayer(s, u) ?? Raid.raidEngagementPlayer(s, u);
+    Depths.depthsEngagementPlayer(s, u) ??
+    Raid.raidEngagementPlayer(s, u) ??
+    Sands.beneathSandsEngagementPlayer(s, u);
   if (designated !== undefined && designated !== activeSeat(s)) {
     if (optional) return;
     forOwner(s, designated, () => engage(s, u, false));
     return;
   }
   const fromStaging = s.staging.some((e) => e.id === u.id);
-  if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u)) return;
+  if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
+    return;
   if (celebrimborProtected(s, u) || Carn.carnCannotEngage(s, u)) return;
   if (!shadowFlameCanMove(s, u) || !amonPlayerCanEngage(s, u, activeSeat(s)))
     return;
@@ -2614,6 +2630,7 @@ export function revealed(
     !resumed &&
     !thalinDefeats &&
     Wastes.wastesCancelAllowed(s) &&
+    !Sands.beneathSandsCannotCancel(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
@@ -2811,6 +2828,7 @@ export function resolveReveal(
     Weather.weatherRevealSurge(s, code, revealOrigin) ||
     Dike.dikeRevealSurge(s, code, revealOrigin) ||
     Rhudaur.rhudaurRevealSurge(s, code) ||
+    Sands.beneathSandsRevealSurge(s, code) ||
     (code === CHETWOOD.hills && Chetwood.chetwoodQuestCount(s) === 1)
   )
     prepend(s, ...surgeEffects(code));
@@ -2834,6 +2852,7 @@ export function resolveReveal(
     code !== FANGORN.malice &&
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
+    !Sands.beneathSandsCannotCancel(s) &&
     !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
@@ -2927,7 +2946,7 @@ export function resolveReveal(
         ],
       });
   });
-  if (when)
+  if (when && revealOrigin === "encounter")
     options.push(
       ...collectorEnemyCancelOptions(
         s,
@@ -3038,6 +3057,7 @@ export function placeEncounter(
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
     City.cityCardEntered(s, fresh, fromReveal, cancel);
     Mordor.mordorCardEntered(s, fresh, fromReveal, cancel);
+    Sands.beneathSandsCardEntered(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -3102,6 +3122,7 @@ export function placeEncounter(
   if (Mordor.mordorEncounter(s, code)) return;
   if (Mumakil.mumakilEncounter(s, code)) return;
   if (Race.raceHaradEncounter(s, code)) return;
+  if (Sands.beneathSandsEncounter(s, code, false, fromReveal)) return;
   if (Cobas.cobasEncounter(s, code)) return;
   if (Raid.raidEncounter(s, code)) return;
   if (
@@ -3421,7 +3442,11 @@ export function allyEntryResponses(
     Desert.desertCrossingAllyEntered(s, u, played, fromHand)
   )
     return;
-  if (!raceForcedResolved && RacePlayers.raceHaradPlayerAllyEntered(s, u, played, fromHand)) return;
+  if (
+    !raceForcedResolved &&
+    RacePlayers.raceHaradPlayerAllyEntered(s, u, played, fromHand)
+  )
+    return;
   Drowned.drownedAllyPlayed(s, played);
   if (played) longDarkPlayerCardPlayed(s, card(u.code), activeSeat(s));
   if (played) heirsPlayerCardPlayed(s, card(u.code));
@@ -3668,6 +3693,7 @@ export function shadow(s: GameState, code: string) {
   if (Mordor.mordorShadow(s, code)) return;
   if (Mumakil.mumakilShadow(s, code)) return;
   if (Race.raceHaradShadow(s, code)) return;
+  if (Sands.beneathSandsShadow(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

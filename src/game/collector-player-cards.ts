@@ -239,7 +239,7 @@ export function collectorEnemyCancelOptions(
   )
     return [];
   return allCharacters(s)
-    .filter((u) => u.code === codes.lookout && !u.blanked)
+    .filter((u) => u.code === codes.lookout && !u.blanked && !isSacked(u))
     .map((u) => ({
       id: `lookout-${u.id}`,
       label: `Discard Dúnedain Lookout${s.table ? ` · ${seatName(s, ownerOf(s, u))}` : ""}`,
@@ -989,7 +989,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
     case "collectorLookoutDiscard": {
       const u = get(s, e.source);
       requireRule(
-        u?.code === codes.lookout && !u.blanked,
+        u?.code === codes.lookout && !u.blanked && !isSacked(u),
         "The Lookout must remain in play to pay its discard cost.",
       );
       discardCharacter(s, u);

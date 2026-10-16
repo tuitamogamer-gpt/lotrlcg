@@ -19,6 +19,7 @@ import {
 import { takePlayerDeck } from "./core";
 import { takePlayerDiscard } from "./board";
 import { roadRivendellCannotCancel } from "./road-rivendell";
+import { beneathSandsCannotCancel } from "./beneath-sands";
 // Exact active and triggered abilities from Hunt for Gollum and Conflict at Carrock.
 // Static modifiers, attachment limits and Song icons live in expansion-passives.
 import { card, name } from "./cards";
@@ -405,6 +406,7 @@ export function offerFrodoDamage(
     !context.enemyId
   )
     return false;
+  if (beneathSandsCannotCancel(s) && !context.combatDamage) return false;
   prepend(
     s,
     fx("huntFrodoResponse", {

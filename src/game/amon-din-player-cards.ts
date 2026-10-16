@@ -45,6 +45,7 @@ import { hasTrait } from "./expansion-passives";
 import { isSacked } from "./carrock";
 import { shadowFlameCanMove } from "./shadow-flame";
 import { roadRivendellCannotCancel } from "./road-rivendell";
+import { beneathSandsCannotCancel } from "./beneath-sands";
 import { applyCombatDamageConsequences } from "./combat";
 import {
   encodeDamageContext,
@@ -355,6 +356,7 @@ export function offerGondorianDiscipline(
     !hasTrait(target, "Gondor")
   )
     return false;
+  if (beneathSandsCannotCancel(s) && !context.combatDamage) return false;
   if (
     !context.enemyId &&
     (roadRivendellCannotCancel(s) ||

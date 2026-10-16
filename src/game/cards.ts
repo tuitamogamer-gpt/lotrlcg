@@ -14,7 +14,15 @@ import cobasPlayers from "../data/cobas-player-cards.json";
 import cityPlayers from "../data/city-player-cards.json";
 import haradPlayers from "../data/harad-player-cards.json";
 import raceHaradPlayers from "../data/race-harad-player-cards.json";
-import { RACE_HARAD_ENCOUNTERS, RACE_HARAD_QUESTS } from "./race-harad-scenario-data";
+import {
+  RACE_HARAD_ENCOUNTERS,
+  RACE_HARAD_QUESTS,
+} from "./race-harad-scenario-data";
+import beneathSandsPlayers from "../data/beneath-sands-player-cards.json";
+import {
+  BENEATH_SANDS_ENCOUNTERS,
+  BENEATH_SANDS_QUESTS,
+} from "./beneath-sands-scenario-data";
 import mumakilPlayers from "../data/mumakil-player-cards.json";
 import { MUMAKIL_ENCOUNTERS, MUMAKIL_QUESTS } from "./mumakil-scenario-data";
 import { HARAD_ENCOUNTERS, HARAD_QUESTS } from "./harad-scenario-data";
@@ -197,6 +205,16 @@ export const playerCards = [
       ...(raceHaradPlayers as Card[]).map((c) =>
         c.code === "17036" ? { ...c, quest: 6, victory: 1 } : c,
       ),
+      ...(beneathSandsPlayers as Card[]).map((c) => {
+        if (c.code === "17056")
+          return { ...c, text: c.text?.replace("Haradrim</b>", "Harad</b>") };
+        if (c.code === "17058") return { ...c, victory: 1 };
+        if (c.code === "17059") return { ...c, quest: 6, victory: 1 };
+        if (c.code === "17060")
+          return { ...c, text: c.text?.replace("exaust", "exhaust") };
+        if (c.code === "17062") return { ...c, name: "Dúnedain Lookout" };
+        return c;
+      }),
       ...(mumakilPlayers as Card[]).map((c) =>
         c.code === "17003" ? { ...c, quest: 6, victory: 1 } : c,
       ),
@@ -252,6 +270,7 @@ const priorEncounterCards = [
 export const encounterCards = [
   ...MUMAKIL_ENCOUNTERS,
   ...RACE_HARAD_ENCOUNTERS,
+  ...BENEATH_SANDS_ENCOUNTERS,
   ...HARAD_ENCOUNTERS,
   ...priorEncounterCards,
   ...TEMPLE_ENCOUNTERS.filter(
@@ -328,6 +347,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...HARAD_QUESTS,
     ...MUMAKIL_QUESTS,
     ...RACE_HARAD_QUESTS,
+    ...BENEATH_SANDS_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -421,6 +441,7 @@ export const SCRIPTED = new Set(
     ...HARAD_QUESTS,
     ...MUMAKIL_QUESTS,
     ...RACE_HARAD_QUESTS,
+    ...BENEATH_SANDS_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

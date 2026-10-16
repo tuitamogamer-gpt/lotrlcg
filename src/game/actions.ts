@@ -1,3 +1,5 @@
+import * as Sands from "./beneath-sands";
+import * as SandsPlayers from "./beneath-sands-player";
 import * as Race from "./race-harad";
 import * as RacePlayers from "./race-harad-player";
 import * as HaradPlayers from "./harad-player";
@@ -627,7 +629,8 @@ export function optionalEngagementProblem(
     return "Umbar Patrol prevents optional engagements this round.";
   if (Mordor.mordorCannotOptionallyEngage(s, u))
     return "Uruk Chieftain cannot be optionally engaged.";
-  if (Race.raceHaradCannotLeave(s, u)) return "This enemy cannot leave the Orc staging area.";
+  if (Race.raceHaradCannotLeave(s, u))
+    return "This enemy cannot leave the Orc staging area.";
   if (Mumakil.mumakilCannotOptionallyEngage(s, u))
     return "Harad Tiger cannot be optionally engaged.";
   if (s.status !== "playing" || s.choice || s.flow?.pending)
@@ -660,6 +663,11 @@ export function optionalEngagementProblem(
     Raid.raidEngagementPlayer(s, u) !== activeSeat(s)
   )
     return "This enemy can only engage its printed player.";
+  if (
+    Sands.beneathSandsEngagementPlayer(s, u) !== undefined &&
+    Sands.beneathSandsEngagementPlayer(s, u) !== activeSeat(s)
+  )
+    return "This enemy can only engage the first player.";
   if (!Wastes.wastesOptionalEngagementAllowed(s, u))
     return "This enemy cannot be optionally engaged during the day.";
   if (
@@ -776,6 +784,8 @@ export function canPlay(
   if (drownedPlayerProblem) return drownedPlayerProblem;
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
+  const sandsProblem = SandsPlayers.beneathSandsPlayerPlayProblem(s, u);
+  if (sandsProblem) return sandsProblem;
   const raceProblem = RacePlayers.raceHaradPlayerPlayProblem(s, u);
   if (raceProblem) return raceProblem;
   const mumakilProblem = MumakPlayers.mumakilPlayerPlayProblem(s, u);
@@ -1437,7 +1447,20 @@ export function resolvePlayerCard(
     roadPlayerAttachmentEntered(s, host, attachment);
     DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
     cobasReactiveAttachmentEntered(s, host, attachment);
-    RacePlayers.raceHaradPlayerAttachmentPlayed(s, host, attachment, played, fromHand);
+    RacePlayers.raceHaradPlayerAttachmentPlayed(
+      s,
+      host,
+      attachment,
+      played,
+      fromHand,
+    );
+    SandsPlayers.beneathSandsPlayerAttachmentPlayed(
+      s,
+      host,
+      attachment,
+      played,
+      fromHand,
+    );
   } else {
     resolveEventAbility(
       s,
@@ -1465,7 +1488,8 @@ export function resolvePlayerCard(
   }
   if (c.type_code !== "ally")
     Isengard.isengardPlayerPlayed(s, u, played && fromHand);
-  if (played && c.type_code === "event") RacePlayers.raceHaradPlayerEventPlayed(s, u);
+  if (played && c.type_code === "event")
+    RacePlayers.raceHaradPlayerEventPlayed(s, u);
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
     longDarkPlayerCardPlayed(s, c, activeSeat(s));
@@ -1484,6 +1508,7 @@ export function handlePlayerEventAbilityEffect(
     !shadowFlameEventCancelled(s) &&
     !HaradPlayers.haradPlayerEvent(s, physical.code, e.source) &&
     !RacePlayers.raceHaradPlayerEvent(s, physical.code, e.source) &&
+    !SandsPlayers.beneathSandsPlayerEvent(s, physical.code, e.source) &&
     !heirsPlayerEventEffect(s, physical.code, e.source) &&
     !collectorEventEffect(s, physical.code, e.source) &&
     !rohanEventEffect(s, physical.code) &&
@@ -1907,7 +1932,11 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
   const raceLabel = RacePlayers.raceHaradPlayerAbilityLabel(u.code);
-  if (raceLabel) results.push({ label: raceLabel, disabled: !!RacePlayers.raceHaradPlayerAbilityProblem(s, u) });
+  if (raceLabel)
+    results.push({
+      label: raceLabel,
+      disabled: !!RacePlayers.raceHaradPlayerAbilityProblem(s, u),
+    });
   const mumakilLabel = MumakPlayers.mumakilPlayerAbilityLabel(u.code);
   if (mumakilLabel)
     results.push({
@@ -2348,6 +2377,7 @@ export function finishOpeningHands(s: GameState) {
     !Mordor.mordorOpeningHandsKept(s) &&
     !Mumakil.mumakilOpeningHandsKept(s) &&
     !Race.raceHaradOpeningHandsKept(s) &&
+    !Sands.beneathSandsOpeningHandsKept(s) &&
     !Voyage.voyageOpeningHandsKept(s) &&
     !Fate.fateOpeningHandsKept(s) &&
     !Raid.raidOpeningHandsKept(s) &&
@@ -2860,6 +2890,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Mordor.mordorTravelEffects(s, u) ??
         Mumakil.mumakilTravelEffects(s, u) ??
         Race.raceHaradTravelEffects(s, u) ??
+        Sands.beneathSandsTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3195,6 +3226,22 @@ export function publicState(s: GameState) {
             guarding: s.mordor.guarding,
             setAside: s.mordor.setAside.length,
             removed: s.mordor.removed.length,
+          },
+        }
+      : {}),
+    ...(s.beneathSands
+      ? {
+          beneathSands: {
+            initialized: s.beneathSands.initialized,
+            currentQuest: s.beneathSands.currentQuest,
+            questDeck: s.beneathSands.questDeck.length,
+            completedQuests: s.beneathSands.completedQuests,
+            setAside: s.beneathSands.setAside.length,
+            searchId: s.beneathSands.searchId,
+            onTrack: s.beneathSands.onTrack,
+            resolving: s.beneathSands.resolving.length,
+            poisoned: s.beneathSands.poisoned,
+            ignoreSearch: s.beneathSands.ignoreSearch,
           },
         }
       : {}),

@@ -102,6 +102,11 @@
     "test:race-harad-players": "node --import tsx scripts/browser-race-harad-players.mjs",
     "test:browser-race-harad": "npm run test:race-harad-quests && npm run test:race-harad-players",
     "test:race-harad-simulation": "node --import tsx --test tests/race-harad-simulation.test.ts",
+    "test:beneath-sands-quests": "node --import tsx scripts/browser-beneath-sands.mjs",
+    "test:beneath-sands-players": "node --import tsx scripts/browser-beneath-sands-players.mjs",
+    "test:browser-beneath-sands": "npm run test:beneath-sands-quests && npm run test:beneath-sands-players",
+    "test:beneath-sands-simulation": "node --import tsx --test tests/beneath-sands-simulation.test.ts",
+    "test:beneath-sands-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat beneath-the-sands normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
     "test:race-harad-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat race-across-harad normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {

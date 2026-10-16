@@ -1,3 +1,4 @@
+import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as Drowned from "./drowned";
 import * as Desert from "./desert-crossing";
@@ -47,7 +48,14 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
-    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host) || Mumakil.mumakilImmune(s, host) || Race.raceHaradAreaImmune(s, host))
+    if (
+      trialsGrantedImmunity(s, host.code) ||
+      stormcallerAreaImmune(s, host) ||
+      Umbar.umbarImmune(s, host) ||
+      Mordor.mordorImmune(s, host) ||
+      Mumakil.mumakilImmune(s, host) ||
+      Race.raceHaradAreaImmune(s, host)
+    )
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
@@ -61,18 +69,25 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     const normalBlanking =
       khazadBlanked(host) ||
       Mordor.mordorBlanked(s, host) ||
-      (Mumakil.mumakilCharacterBlanked(s, host) && !Mumakil.mumakilPreservesTraits(s, host)) ||
+      (Mumakil.mumakilCharacterBlanked(s, host) &&
+        !Mumakil.mumakilPreservesTraits(s, host)) ||
       (card(host.code).type_code === "attachment" && blanked);
     const safeBlanking = ettenSideQuestBlanked(s, host);
     const coldBlanking =
       cold &&
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
-    const wrathBlanking = templePlayerBlanked(s, host) || Desert.desertCrossingCharacterBlanked(s, host) || (Mumakil.mumakilCharacterBlanked(s, host) && Mumakil.mumakilPreservesTraits(s, host));
+    const wrathBlanking =
+      Sands.beneathSandsCharacterBlanked(s, host) ||
+      templePlayerBlanked(s, host) ||
+      Desert.desertCrossingCharacterBlanked(s, host) ||
+      (Mumakil.mumakilCharacterBlanked(s, host) &&
+        Mumakil.mumakilPreservesTraits(s, host));
     if (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
       host.blanked = true;
     else delete host.blanked;
-    if (coldBlanking && !normalBlanking && !wrathBlanking) host.printedKeywordsPreserved = true;
+    if (coldBlanking && !normalBlanking && !wrathBlanking)
+      host.printedKeywordsPreserved = true;
     else delete host.printedKeywordsPreserved;
     if (wrathBlanking && !normalBlanking && !coldBlanking && !safeBlanking)
       host.printedTraitsPreserved = true;

@@ -5,6 +5,7 @@ import { validateDesertCrossing } from "./desert-crossing-support";
 import { validateMordor } from "./long-arm-mordor-support";
 import { validateMumakil } from "./mumakil-support";
 import { validateRaceHarad } from "./race-harad-support";
+import { validateBeneathSands } from "./beneath-sands-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -284,6 +285,7 @@ export function validateSave(
         c.mumakilSavageReturn,
         c.raceHaradDestroyedCharacter,
         c.raceHaradReturnToOrcs,
+        c.beneathSandsPoisonShadow,
         c.desertPoisonShadow,
         c.cancelCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -379,7 +381,9 @@ export function validateSave(
         (u.cobasShipObjective === true &&
           s.scenarioId === "a-storm-on-cobas-haven" &&
           u.code === COBAS.skirmisher)) &&
-      (u.raceHaradArea === undefined || (typeof u.raceHaradArea === "boolean" && s.scenarioId === "race-across-harad")) &&
+      (u.raceHaradArea === undefined ||
+        (typeof u.raceHaradArea === "boolean" &&
+          s.scenarioId === "race-across-harad")) &&
       (u.stormcallerArea === undefined ||
         (typeof u.stormcallerArea === "boolean" &&
           s.scenarioId === "flight-of-the-stormcaller")) &&
@@ -684,6 +688,7 @@ export function validateSave(
         !validateMordor(s, validUnit as (value: unknown) => boolean) ||
         !validateMumakil(s, validUnit as (value: unknown) => boolean) ||
         !validateRaceHarad(s, validUnit as (value: unknown) => boolean) ||
+        !validateBeneathSands(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1306,6 +1311,7 @@ export function validateSave(
       ...(s.mumakil?.setAside ?? []),
       ...(s.raceHarad?.setAside ?? []),
       ...(s.raceHarad?.removed ?? []),
+      ...(s.beneathSands?.setAside ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

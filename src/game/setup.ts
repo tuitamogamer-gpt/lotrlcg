@@ -1,3 +1,4 @@
+import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as City from "./city";
 import * as Umbar from "./escape-umbar";
@@ -447,6 +448,8 @@ export function createGame(
     Desert.setupDesertCrossing(s);
   } else if (scenarioId === "the-long-arm-of-mordor") {
     Mordor.setupLongArmMordor(s);
+  } else if (scenarioId === "beneath-the-sands") {
+    Sands.setupBeneathSands(s);
   } else if (scenarioId === "race-across-harad") {
     Race.setupRaceHarad(s);
   } else if (scenarioId === "the-mumakil") {

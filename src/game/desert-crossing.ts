@@ -172,7 +172,8 @@ export const desertCrossingCannotReady = (s: GameState, u: Unit) =>
     (p) => p.id === u.id && p.round === s.round,
   );
 export const desertCrossingCannotPlayerReady = (s: GameState) =>
-  sideLive(s, D.water) || (!!s.raceHarad && s.staging.some((q) => q.code === D.water && !q.blanked));
+  sideLive(s, D.water) ||
+  (!!s.raceHarad && s.staging.some((q) => q.code === D.water && !q.blanked));
 export const desertCrossingCharacterBlanked = (s: GameState, u: Unit) =>
   u.damage > 0 &&
   ["hero", "ally", "objective-ally"].includes(card(u.code).type_code) &&
@@ -472,6 +473,8 @@ export function desertCrossingEffect(s: GameState, e: Effect) {
       "desertWaterResponse",
       "desertReadyHero",
       "desertReadyChosen",
+      "desertRemedyResponse",
+      "desertRemedyHeal",
     ].includes(e.kind)
   )
     return true;

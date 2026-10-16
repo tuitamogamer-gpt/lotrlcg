@@ -1,3 +1,5 @@
+import * as Sands from "./beneath-sands";
+import * as SandsPlayers from "./beneath-sands-player-support";
 import * as Race from "./race-harad";
 import * as RacePlayerSupport from "./race-harad-player-support";
 import * as Umbar from "./escape-umbar";
@@ -120,6 +122,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = voyageProgress(s, placed, physical);
   placed = stormcallerProgress(s, placed, physical);
   placed = Race.raceHaradProgress(s, placed, physical);
+  placed = Sands.beneathSandsProgress(s, placed, physical);
   if (placed <= 0) return;
   if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;
@@ -159,7 +162,12 @@ function defeatSideQuest(s: GameState, quest: Unit) {
     );
   } else {
     s.staging = s.staging.filter((u) => u.id !== quest.id);
-    if (!haradPlayerSideQuestToDiscard(s, quest) && !mumakilSideQuestToDiscard(s, quest) && !RacePlayerSupport.raceHaradSideQuestToDiscard(s, quest)) {
+    if (
+      !haradPlayerSideQuestToDiscard(s, quest) &&
+      !mumakilSideQuestToDiscard(s, quest) &&
+      !RacePlayerSupport.raceHaradSideQuestToDiscard(s, quest) &&
+      !SandsPlayers.beneathSandsSideQuestToDiscard(s, quest)
+    ) {
       addVictoryCard(s, quest.code);
       log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
     }
@@ -183,6 +191,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
   angmarSideDefeated(s, original);
   Umbar.umbarSideDefeated(s, original);
   Desert.desertCrossingSideDefeated(s, original);
+  Sands.beneathSandsSideDefeated(s, original);
   const mendor = allCharacters(s).find((u) => u.code === "rc135" && !u.blanked);
   if (mendor) {
     readyCharacter(s, mendor);

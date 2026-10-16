@@ -1,4 +1,6 @@
 import { finishOpeningHands } from "./actions";
+import * as Sands from "./beneath-sands";
+import * as SandsPlayers from "./beneath-sands-player";
 import * as Race from "./race-harad";
 import * as RacePlayers from "./race-harad-player";
 import * as Umbar from "./escape-umbar";
@@ -565,12 +567,14 @@ function handleEffect(s: GameState, e: Effect) {
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
+  if (SandsPlayers.handleBeneathSandsPlayerEffect(s, e)) return;
   if (HaradResponses.handleHaradResponseEffect(s, e)) return;
   if (Umbar.umbarEffect(s, e)) return;
   if (Desert.desertCrossingEffect(s, e)) return;
   if (Mordor.mordorEffect(s, e)) return;
   if (Mumakil.mumakilEffect(s, e)) return;
   if (Race.raceHaradEffect(s, e)) return;
+  if (Sands.beneathSandsEffect(s, e)) return;
   if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
   if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
@@ -583,6 +587,7 @@ function handleEffect(s: GameState, e: Effect) {
       Cobas.cobasQuestEnd(s);
       Storm.stormcallerEndQuest(s);
       Race.raceHaradEndQuest(s);
+      Sands.beneathSandsEndQuest(s);
       Drowned.drownedQuestEnd(s);
     });
     return;
@@ -1004,6 +1009,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "failedQuest":
+      Sands.beneathSandsQuestFailed(s);
       if (Angmar.angmarPreventQuestThreat(s)) {
         log(
           s,
@@ -1057,6 +1063,7 @@ function handleEffect(s: GameState, e: Effect) {
         break;
       }
       Race.raceHaradCharactersCommitted(s);
+      SandsPlayers.beneathSandsPlayersCommitted(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
       const reveals = rohanRevealReduction(
@@ -1226,8 +1233,17 @@ function handleEffect(s: GameState, e: Effect) {
           u,
           !e.flag || e.text === "strider-replace",
         );
-        Mumakil.mumakilTravelEntered(s, u, !e.flag || e.text === "strider-replace");
+        Mumakil.mumakilTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
         Race.raceHaradTravelEntered(s, u);
+        Sands.beneathSandsTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1487,6 +1503,7 @@ function handleEffect(s: GameState, e: Effect) {
             Mordor.mordorEncounter(s, e.code, true) ||
             Mumakil.mumakilEncounter(s, e.code, true) ||
             Race.raceHaradEncounter(s, e.code, true) ||
+            Sands.beneathSandsEncounter(s, e.code, true, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -1938,6 +1955,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...City.cityRoundEnd(s));
         forced.push(...Umbar.umbarRoundEnd(s));
         forced.push(...Desert.desertCrossingRoundEnd(s));
+        forced.push(...Sands.beneathSandsRoundEnd(s));
         forced.push(...Mordor.mordorRoundEnd(s));
         forced.push(...Mumakil.mumakilRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
@@ -2153,7 +2171,10 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "startCombat":
       if (e.text !== "mordor-encounter-end") {
-        const forced = Mordor.mordorEncounterEnd(s).filter((effect) => { const enemy = get(s, effect.target); return !enemy || !Race.raceHaradCannotLeave(s, enemy); });
+        const forced = Mordor.mordorEncounterEnd(s).filter((effect) => {
+          const enemy = get(s, effect.target);
+          return !enemy || !Race.raceHaradCannotLeave(s, enemy);
+        });
         if (forced.length) {
           prepend(s, ...forced, { ...e, text: "mordor-encounter-end" });
           break;
@@ -2357,11 +2378,12 @@ function handleEffect(s: GameState, e: Effect) {
             isShipEnemy(enemy)
               ? shipUndefendedTargets(s, enemy)
               : [
-                  ...(Race.raceHaradUndefendedTargets(s) ?? Mordor.mordorUndefendedTargets(s) ?? [
-                    ...s.heroes,
-                    ...druadanPlayerUndefendedTargets(s),
-                    ...finalRingUndefendedTargets(s),
-                  ]),
+                  ...(Race.raceHaradUndefendedTargets(s) ??
+                    Mordor.mordorUndefendedTargets(s) ?? [
+                      ...s.heroes,
+                      ...druadanPlayerUndefendedTargets(s),
+                      ...finalRingUndefendedTargets(s),
+                    ]),
                 ],
             (h) => [
               fx("combatDamage", {
@@ -2628,7 +2650,7 @@ function handleEffect(s: GameState, e: Effect) {
 }
 
 export function shadowResponse(s: GameState, code: string) {
-  if (!Wastes.wastesCancelAllowed(s)) {
+  if (!Wastes.wastesCancelAllowed(s) || Sands.beneathSandsCannotCancel(s)) {
     prepend(s, fx("shadowEffect", { code }));
     return;
   }
@@ -2746,6 +2768,7 @@ export function flush(s: GameState) {
       Mordor.mordorSharedEffect(effect) ||
       Mumakil.mumakilSharedEffect(effect) ||
       Race.raceHaradSharedEffect(effect) ||
+      Sands.beneathSandsSharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

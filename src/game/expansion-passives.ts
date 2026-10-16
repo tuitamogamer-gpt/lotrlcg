@@ -1,3 +1,4 @@
+import { beneathSandsPlayerDoesNotExhaustToQuest } from "./beneath-sands-player-support";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Realm from "./lost-realm-player";
 import { playerCardImmune } from "./card-immunity";
@@ -37,7 +38,11 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
-  "17030": { type: "hero", traits: ["Dúnedain", "Dunedain", "Ranger"], restricted: 1 },
+  "17030": {
+    type: "hero",
+    traits: ["Dúnedain", "Dunedain", "Ranger"],
+    restricted: 1,
+  },
   "17031": { type: "hero", limit: 1, grantsTraits: ["Warrior"] },
   "17007": { traits: ["Dwarf"], limit: 1 },
   "17010": { names: ["Kahliel"], restricted: 1 },
@@ -146,6 +151,8 @@ const rules: Record<string, AttachmentRule> = {
     will: 1,
     attack: 1,
   },
+  "17056": { traits: ["Harad"], restricted: 1 },
+  "17063": { type: "hero", limit: 1, grantsTraits: ["Ranger"] },
   "17061": { type: "hero", traits: ["Hobbit"], limit: 1 },
   "18007": { traits: ["Dale", "Warrior"], limit: 1, defense: 1 },
   "19003": { type: "ally", limit: 1, restricted: 1, health: 2 },
@@ -342,6 +349,7 @@ export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
+  if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;
   if (cobasEconomyNoQuestExhaust(s, u)) return false;
   if (u.code === "11009" && !u.blanked) return false;
   if (Realm.realmNoQuestExhaust(s, u)) return false;

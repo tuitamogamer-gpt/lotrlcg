@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+    "octgnid": "4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+    "name": "Searching the Caves",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Brood Mother aside, out of play. Add the Search objective to the staging area (Off Track face up).",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 76,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Beneath the Sands",
+    "side": "A",
+    "back_name": "Searching the Caves",
+    "back_text": "When Revealed: Discard cards from the encounter deck until X locations are discarded, where X is the number of players. Add each location discarded by this effect to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4297aa1e-8d53-4bd4-a750-ae5490fbb82b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
+    "octgnid": "8351cce0-b16e-4eba-93f2-24015bbc54c1",
+    "name": "The Spiders’ Hive",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds Brood Mother to the staging area. Each other player reveals an encounter card. Flip the Search objective to Off Track.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 78,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Beneath the Sands",
+    "side": "A",
+    "back_name": "The Spiders’ Hive",
+    "back_text": "While there are at least 5 progress tokens on this stage, Brood Mother loses the text: \"Cannot take damage.\" Forced: After the Search objective is flipped to Off Track, remove all progress tokens from this stage. This stage cannot be defeated while Brood Mother is in play. If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "8351cce0-b16e-4eba-93f2-24015bbc54c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8351cce0-b16e-4eba-93f2-24015bbc54c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+    "octgnid": "f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+    "name": "Getting Closer",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Flip the Search objective to Off Track. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded by this effect to the staging area.",
+    "is_unique": false,
+    "pack_code": "BtS",
+    "pack_name": "Beneath the Sands",
+    "position": 77,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Beneath the Sands",
+    "side": "A",
+    "back_name": "Getting Closer",
+    "back_text": "While On Track is in play, encounter card effects cannot be canceled.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg",
+    "packs": [
+      {
+        "pack_code": "BtS",
+        "pack_name": "Beneath the Sands",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f38caab3-61dc-45e2-9b31-533ba3b9fbd9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
