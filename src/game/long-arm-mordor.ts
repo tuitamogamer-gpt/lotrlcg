@@ -1,3 +1,4 @@
+import * as Race from "./race-harad";
 import type { Card, Effect, GameState, Option, Unit } from "./types";
 import type { DamageContext } from "./damage-context";
 import { card, name } from "./cards";
@@ -18,7 +19,7 @@ export const mordorSharedEffect = (e: Effect) => e.kind.startsWith("mordor") &&
     "mordorJubayr", "mordorJubayrUse", "mordorSavageDiscard", "mordorBomaPay", "mordorBomaSpend"].includes(e.kind);
 
 const trait = (u: Unit, text: string) => (card(u.code).traits ?? "").split(".").some((t) => t.trim() === text);
-const enemies = (s: GameState) => [...s.staging, ...allEngaged(s)].filter((u) => card(u.code).type_code === "enemy");
+const enemies = (s: GameState) => [...s.staging, ...allEngaged(s), ...(s.raceHarad?.area ?? [])].filter((u) => card(u.code).type_code === "enemy");
 const phaseKey = (s: GameState) => `${s.round}:${["quest", "staging"].includes(s.phase) ? "quest" : ["defense", "attack"].includes(s.phase) ? "combat" : s.phase}`;
 const liveStage = (s: GameState, n: number) => !!s.mordor && s.stage === n && !mainQuestUnit(s)?.blanked;
 const own = (s: GameState, p: number) => allCharacters(s).filter((u) => ownerOf(s, u) === p);
@@ -81,7 +82,7 @@ export function mordorStats(s: GameState, u: Unit) {
   const guarded = liveStage(s, 3) && Object.values(s.mordor!.guarding).includes(u.id) ? 1 : 0;
   const mount = u.attachments.filter((a) => a.code === M.warg && !a.blanked).length * 2;
   const enforcer = s.mordor && u.code === M.enforcers && !u.blanked ? s.stage : 0;
-  const fear = s.mordor ? mordorWillBonus(s, u) : 0;
+  const fear = mordorWillBonus(s, u);
   return { attack: guarded + mount + enforcer + fear, defense: guarded + mount + enforcer + fear, health: mount,
     will: 0 };
 }
@@ -287,6 +288,7 @@ function takeAside(s: GameState, code: string) {
   return index < 0 ? undefined : s.mordor!.setAside.splice(index, 1)[0];
 }
 function returnEnemy(s: GameState, u: Unit) {
+  if (Race.raceHaradCannotLeave(s, u)) return;
   for (const p of playerOrder(s)) forOwner(s, p, () => { s.engaged = s.engaged.filter((e) => e.id !== u.id); });
   if (!s.staging.some((e) => e.id === u.id)) { s.staging.push(u); enemyAddedToStaging(s, u); }
 }

@@ -26,6 +26,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.desertCrossing) return s.desertCrossing.currentQuest;
   if (s.mordor) return s.mordor.currentQuest;
   if (s.mumakil) return s.mumakil.currentQuest;
+  if (s.raceHarad) return s.raceHarad.currentQuest;
   if (s.drowned) return s.drowned.currentQuest;
   if (s.cobas) return s.cobas.currentQuest;
   if (s.city) return s.city.currentQuest;

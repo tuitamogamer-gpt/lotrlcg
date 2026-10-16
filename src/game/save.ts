@@ -4,6 +4,7 @@ import { validateUmbar } from "./escape-umbar-support";
 import { validateDesertCrossing } from "./desert-crossing-support";
 import { validateMordor } from "./long-arm-mordor-support";
 import { validateMumakil } from "./mumakil-support";
+import { validateRaceHarad } from "./race-harad-support";
 import { validateSailing } from "./sailing";
 import { validateVoyage } from "./voyage-belegaer-support";
 import { validateFateNumenor } from "./fate-numenor-support";
@@ -281,6 +282,8 @@ export function validateSave(
         c.mordorDestroyedCharacter,
         c.mumakilKilledCharacter,
         c.mumakilSavageReturn,
+        c.raceHaradDestroyedCharacter,
+        c.raceHaradReturnToOrcs,
         c.desertPoisonShadow,
         c.cancelCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -295,6 +298,7 @@ export function validateSave(
         c.cityWatchShadows,
         c.mordorSavageShadows,
         c.mordorAdditionalAttacks,
+        c.raceHaradPursuerShadows,
         c.umbarKilled,
         c.umbarInjuredShadows,
         c.cityBelfalasShadows,
@@ -375,6 +379,7 @@ export function validateSave(
         (u.cobasShipObjective === true &&
           s.scenarioId === "a-storm-on-cobas-haven" &&
           u.code === COBAS.skirmisher)) &&
+      (u.raceHaradArea === undefined || (typeof u.raceHaradArea === "boolean" && s.scenarioId === "race-across-harad")) &&
       (u.stormcallerArea === undefined ||
         (typeof u.stormcallerArea === "boolean" &&
           s.scenarioId === "flight-of-the-stormcaller")) &&
@@ -678,6 +683,7 @@ export function validateSave(
         !validateDesertCrossing(s, validUnit as (value: unknown) => boolean) ||
         !validateMordor(s, validUnit as (value: unknown) => boolean) ||
         !validateMumakil(s, validUnit as (value: unknown) => boolean) ||
+        !validateRaceHarad(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1298,6 +1304,8 @@ export function validateSave(
       ...(s.city?.setAside ?? []),
       ...(s.mordor?.setAside ?? []),
       ...(s.mumakil?.setAside ?? []),
+      ...(s.raceHarad?.setAside ?? []),
+      ...(s.raceHarad?.removed ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

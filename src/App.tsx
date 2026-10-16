@@ -20,6 +20,8 @@ import { HARAD_QUESTS } from "./game/harad-scenario-data";
 import { HaradScenarioState } from "./ui/harad-state";
 import { MUMAKIL_QUESTS } from "./game/mumakil-support";
 import { MumakilScenarioState } from "./ui/mumakil-state";
+import { RACE_HARAD_QUESTS } from "./game/race-harad-support";
+import { RaceHaradScenarioState } from "./ui/race-harad-state";
 import { COBAS_OBJECTIVES } from "./game/cobas-support";
 import { TEMPLE } from "./game/temple-support";
 import { templePrivateLookVisible } from "./game/temple";
@@ -2746,6 +2748,7 @@ export default function App() {
             <CityScenarioState s={game} inspect={setDetail} />
             <HaradScenarioState s={game} inspect={setDetail} />
             <MumakilScenarioState s={game} inspect={setDetail} />
+            <RaceHaradScenarioState s={game} inspect={setDetail} />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -3553,6 +3556,7 @@ export default function App() {
                       ...CITY_QUESTS,
                       ...HARAD_QUESTS,
                       ...MUMAKIL_QUESTS,
+                      ...RACE_HARAD_QUESTS,
                     ].find((c) => c.code === stage.cardCode);
                     const printed =
                       local ??

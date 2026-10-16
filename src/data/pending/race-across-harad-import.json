@@ -1,0 +1,1884 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Race Across Harad",
+  "slug": "race-across-harad",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec57_web_race_across_harad-rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "name": "Desert Oasis",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While Desert Oasis is the active location, it gains: \"Response: When Desert Oasis is explored, heal 4 damage from among characters in play.\"Forced: After Desert Oasis becomes the active location, each player exhausts a character he controls.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 50,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+      "octgnid": "25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+      "name": "Racing Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nWhen Revealed: Attach to an Orc enemy. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +1 [threat], +1 [attack], +1 [defense], and +1 hit point. Forced: When attached enemy leaves play, return Racing Warg to the staging area.\") ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 44,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 1,
+      "engagement": 10,
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "1",
+        "engagement": "10"
+      },
+      "imagesrc": "/cards/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+      "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+      "name": "Uruk Chieftain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Cannot have player card attachments or be optionally engaged.While the engaged player is engaged with another Orc enemy, Uruk Chieftain cannot take damage.Forced: At the end of the encounter phase, Uruk Chieftain engages the player engaged with the most non-unique Orc enemies.",
+      "is_unique": true,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 61,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 50,
+      "victory": 3,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "50",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 61,
+          "quantity": 1,
+          "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27748abf-80e8-4928-b506-53d7c23d76c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "name": "Mordor Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: Attach to an Orc enemy and return that enemy to the staging area. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and +2 hit points. Forced: When attached enemy leaves play, add Mordor Warg to the staging area.\")",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 64,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 2,
+      "engagement": 20,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 64,
+          "quantity": 2,
+          "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+      "octgnid": "2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+      "name": "Howling at their Heels",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the players are not at the same stage as the Orcs, add the total [threat] of each card in the Orc's area to the total [threat] in the staging area until the end of the phase. If the players are at the same stage as the Orcs, each enemy gets +1 [threat] until the end of the phase. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 46,
+      "quantity": 3,
+      "shadow": "Shadow: Raise your threat by 1.",
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {},
+      "imagesrc": "/cards/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "name": "Towering Dunes",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While Towering Dunes is in the staging area, progress cannot be placed on locations in the staging area not named Towering Dunes.Forced: After Towering Dunes becomes the active location, reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 49,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 49,
+          "quantity": 3,
+          "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+      "octgnid": "447061f6-3399-4309-9885-1045f115820f",
+      "name": "Setting Out",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 51,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Race Across Harad",
+      "side": "C",
+      "back_name": "Setting Out",
+      "back_text": "Uruk Chieftain cannot leave the Orc's area. Forced: At the end of the quest phase, discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] in the Orc's area. ",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/447061f6-3399-4309-9885-1045f115820f.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/447061f6-3399-4309-9885-1045f115820f.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "447061f6-3399-4309-9885-1045f115820f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447061f6-3399-4309-9885-1045f115820f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+      "octgnid": "4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+      "name": "Blistering Erg",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "X is the stage number of the main quest. Forced: After Blistering Erg becomes the active location, each player assigns X damage among characters he controls. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 41,
+      "quantity": 3,
+      "threat": 0,
+      "quest": 4,
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 41,
+          "quantity": 3,
+          "octgnid": "4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+      "octgnid": "50950a5b-0002-432a-b6d6-4ac2ca12e501",
+      "name": "Expanse of Harad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert.",
+      "text": "While the players are not at the same stage as the Orc's stage, Expanse of Harad gets +2 [threat]. Forced: After Expanse of Harad becomes the active location, raise each player's threat by 2. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 40,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "50950a5b-0002-432a-b6d6-4ac2ca12e501",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+      "octgnid": "590dd523-5743-4c36-b905-c34c021c2676",
+      "name": "Uruk Pursuer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "When Revealed: Add Uruk Pursuer to the Orc's area. If the players are not at the same stage as the Orcs, Uruk Pursuer gains surge. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 43,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 20,
+      "shadow": "Shadow: If the players are not at the same stage as the Orcs, put Uruk Pursuer into play engaged with you. ",
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/590dd523-5743-4c36-b905-c34c021c2676.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 43,
+          "quantity": 4,
+          "octgnid": "590dd523-5743-4c36-b905-c34c021c2676",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/590dd523-5743-4c36-b905-c34c021c2676.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+      "octgnid": "5a3a6917-900b-4878-9545-56c297a50248",
+      "name": "Tamed Mumak",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Immune to player card effects. Damage from undefended attacks against you must be assigned to Tamed Mumak. If Tamed Mumak leaves play, the controlling player is eliminated.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 38,
+      "quantity": 4,
+      "willpower": 2,
+      "attack": 5,
+      "defense": 2,
+      "health": 8,
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "willpower": "2",
+        "attack": "5",
+        "defense": "2",
+        "health": "8"
+      },
+      "imagesrc": "/cards/5a3a6917-900b-4878-9545-56c297a50248.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 38,
+          "quantity": 4,
+          "octgnid": "5a3a6917-900b-4878-9545-56c297a50248",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a3a6917-900b-4878-9545-56c297a50248.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+      "octgnid": "5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+      "name": "Harad Road",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert. Road.",
+      "text": "When Revealed: Add Harad Road to the Orc's area.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 42,
+      "quantity": 2,
+      "threat": 5,
+      "quest": 5,
+      "shadow": "Shadow: If the players are not at the same stage as the Orcs, move attacking enemy to the Orc's area after this attack. ",
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 42,
+          "quantity": 2,
+          "octgnid": "5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+      "octgnid": "610f3112-1123-4956-a955-df9d42b937bf",
+      "name": "Pursuers from Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: Discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 45,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 2 progress on the Orc's stage. ",
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {},
+      "imagesrc": "/cards/610f3112-1123-4956-a955-df9d42b937bf.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "610f3112-1123-4956-a955-df9d42b937bf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/610f3112-1123-4956-a955-df9d42b937bf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "name": "Heat Exhaustion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to that character.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 52,
+      "quantity": 2,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "Desert Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+      "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+      "name": "Sandstorm",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player either discards his hand, or assigns X damage among characters he controls. X is the number of cards in his hand.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 51,
+      "quantity": 2,
+      "shadow": "Shadow: Either discard the highest cost attachment you control, or assign X damage among characters you control where X is the number of attachments you control.",
+      "encounter_set": "Desert Sands",
+      "printed_stats": {},
+      "imagesrc": "/cards/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6def55a1-ee80-4570-831b-d591e6effc11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+      "octgnid": "70decac2-b07f-4c96-9684-4c008f19610b",
+      "name": "The Ford of Harnen",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add River Harnen to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 50,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "Race Across Harad",
+      "side": "A",
+      "back_name": "The Ford of Harnen",
+      "back_text": "Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mumak in play is committed to the quest). Forced: After an enemy attacks and destroys a character, place 1 progress on the Orc's stage. If you defeat this stage, you have escaped the Orcs and win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 50,
+          "quantity": 1,
+          "octgnid": "70decac2-b07f-4c96-9684-4c008f19610b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70decac2-b07f-4c96-9684-4c008f19610b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+      "octgnid": "715625a1-320e-478c-afd3-bec7111105f2",
+      "name": "River Harnen",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Desert. River.",
+      "text": "Immune to player card effects. The players cannot travel here unless there are at least 20 progress tokens on stage 4B. Travel: Reveal 1 encounter card per player. Stage 4B cannot be defeated while River Harnen is in play. ",
+      "is_unique": true,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 39,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 10,
+      "victory": 4,
+      "encounter_set": "Race Across Harad",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "10",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/715625a1-320e-478c-afd3-bec7111105f2.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 39,
+          "quantity": 1,
+          "octgnid": "715625a1-320e-478c-afd3-bec7111105f2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/715625a1-320e-478c-afd3-bec7111105f2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+      "octgnid": "7d0387db-eba6-44e0-8602-b031a2927ca4",
+      "name": "Racing North",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Choose the staging area or the Orc's area. Add the set aside Uruk Warg-rider to the chosen area.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 48,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Race Across Harad",
+      "side": "A",
+      "back_name": "Racing North",
+      "back_text": "Uruk Chieftain cannot take damage. Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mumak in play is committed to the quest). ",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "7d0387db-eba6-44e0-8602-b031a2927ca4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+      "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+      "name": "Find Water",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Characters cannot be readied by player card effects. Response: When this stage is defeated, each player readies 1 hero he controls. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 48,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Desert Sands",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84877af6-0720-4ef8-802b-69b792c32e15.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "name": "Uruks of the Eye",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nEach Orc enemy in the staging area gets -5 engagement cost. Each Orc enemy engaged with a player gets +1 [threat]. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 60,
+      "quantity": 1,
+      "quest": 5,
+      "victory": 10,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "quest": "5",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 60,
+          "quantity": 1,
+          "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+      "octgnid": "a11f08ac-541b-46ba-9528-467dcbdc90c6",
+      "name": "Racing North",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the players have already defeated stage 2B, discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 52,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Race Across Harad",
+      "side": "C",
+      "back_name": "Racing North",
+      "back_text": "While the players are at stage 3B, Uruk Chieftain cannot leave the Orc's area. Forced: At the end of the quest phase, return Uruk Chieftain to the Orc's area and discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] in the Orc's area. If you are at stage 2B when this stage is defeated, you lose the game. ",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "a11f08ac-541b-46ba-9528-467dcbdc90c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+      "octgnid": "a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+      "name": "The Ford of Harnen",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 54,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "Race Across Harad",
+      "side": "C",
+      "back_name": "The Ford of Harnen",
+      "back_text": "Uruk Chieftain cannot take damage while River Harnen is in the staging area. Forced: At the end of the quest phase, discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] of each engaged enemy. If the Orcs defeat this stage, the Orcs have caught you and you lose the game. ",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 54,
+          "quantity": 1,
+          "octgnid": "a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "name": "Uruk of Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Each ally with less [willpower] than Uruk of Mordor's [threat] cannot defend against Uruk of Mordor.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 62,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if its [threat] is greater than the defending character's [willpower]).",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 62,
+          "quantity": 3,
+          "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+      "octgnid": "b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+      "name": "Hunted in Harad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the players have already defeated stage 3B, discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area. ",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 53,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Race Across Harad",
+      "side": "C",
+      "back_name": "Hunted in Harad",
+      "back_text": "While the players are at stage 4B, Uruk Chieftain cannot leave the Orc's area and each enemy at this stage gets +1 [threat]. Forced: At the end of the quest phase, return Uruk Chieftain to the Orc's area and discard the top card of the encounter deck. Place X progress on this stage, where X is the total [threat] of the discarded card plus the total [threat] in the Orc's area. If you are at stage 3B when this stage is defeated, you lose the game. ",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+      "octgnid": "c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+      "name": "Hunted in Harad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 49,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Race Across Harad",
+      "side": "A",
+      "back_name": "Hunted in Harad",
+      "back_text": "Uruk Chieftain cannot take damage. Reveal an additional encounter card during the quest phase if Uruk Chieftain is at stage 2D. Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mumak in play is committed to the quest).",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 49,
+          "quantity": 1,
+          "octgnid": "c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "name": "Fear of Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each ally in play gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: If attacking enemy's [threat] is greater than the defending character's [willpower], it makes an additional attack after this one.",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {},
+      "imagesrc": "/cards/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "name": "Uruk Warg-Rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Uruk Warg-Rider gets +X [attack] while attacking a character with less [willpower] than Uruk Warg-rider's [threat]. X is the difference.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 63,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 63,
+          "quantity": 2,
+          "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+      "octgnid": "fa8e0538-d920-4f0e-9810-103c5186531f",
+      "name": "Setting Out",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Ford of Harnen and 1 copy of Uruk Warg-rider aside, out of play. Each player takes control of a Tamed Mumak. Remove each remaining Tamed Mumak from the game. Create the Orc's area with a second quest deck consisting of stage 1C, 2C, 3C, and 4C as well as Uruk Chieftain.",
+      "is_unique": false,
+      "pack_code": "RAH",
+      "pack_name": "Race Across Harad",
+      "position": 47,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Race Across Harad",
+      "side": "A",
+      "back_name": "Setting Out",
+      "back_text": "When Revealed: Each player searches the encounter deck for 1 different location and adds it to the staging area. Shuffle the encounter deck. Advance to stage 2A.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.jpg",
+      "packs": [
+        {
+          "pack_code": "RAH",
+          "pack_name": "Race Across Harad",
+          "position": 47,
+          "quantity": 1,
+          "octgnid": "fa8e0538-d920-4f0e-9810-103c5186531f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa8e0538-d920-4f0e-9810-103c5186531f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.5",
+      "name": "Race Across Harad (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "RAH",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+        "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+        "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+        "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+        "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+        "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+        "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+        "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+        "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+        "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+        "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+        "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+        "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+        "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+        "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+        "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+        "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+        "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+        "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+        "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+        "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+        "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+        "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+        "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+        "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+        "octgn:447061f6-3399-4309-9885-1045f115820f",
+        "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+        "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fa8e0538-d920-4f0e-9810-103c5186531f": 1,
+          "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4": 1,
+          "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d": 1,
+          "octgn:70decac2-b07f-4c96-9684-4c008f19610b": 1
+        },
+        "sharedQuestDeck2": {
+          "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6": 1,
+          "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867": 1,
+          "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501": 1,
+          "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a": 2,
+          "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1": 1,
+          "octgn:590dd523-5743-4c36-b905-c34c021c2676": 4,
+          "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62": 2,
+          "octgn:610f3112-1123-4956-a955-df9d42b937bf": 2,
+          "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4": 2,
+          "octgn:84877af6-0720-4ef8-802b-69b792c32e15": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 1,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 1,
+          "octgn:6def55a1-ee80-4570-831b-d591e6effc11": 1,
+          "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f": 2,
+          "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 3,
+          "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb": 1,
+          "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322": 1
+        },
+        "sharedSetAside": {
+          "octgn:5a3a6917-900b-4878-9545-56c297a50248": 4,
+          "octgn:27748abf-80e8-4928-b506-53d7c23d76c6": 1,
+          "octgn:447061f6-3399-4309-9885-1045f115820f": 1,
+          "octgn:715625a1-320e-478c-afd3-bec7111105f2": 1,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1,
+          "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501": 1,
+          "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a": 1,
+          "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 1,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.5",
+      "name": "Race Across Harad",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "RAH",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+        "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+        "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+        "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+        "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+        "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+        "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+        "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+        "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+        "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+        "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+        "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+        "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+        "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+        "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+        "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+        "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+        "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+        "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+        "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+        "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+        "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+        "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+        "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+        "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+        "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+        "octgn:447061f6-3399-4309-9885-1045f115820f",
+        "octgn:715625a1-320e-478c-afd3-bec7111105f2"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+          "quantity": 1,
+          "section": "sharedQuestDeck2"
+        },
+        {
+          "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fa8e0538-d920-4f0e-9810-103c5186531f": 1,
+          "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4": 1,
+          "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d": 1,
+          "octgn:70decac2-b07f-4c96-9684-4c008f19610b": 1
+        },
+        "sharedQuestDeck2": {
+          "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6": 1,
+          "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867": 1,
+          "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501": 1,
+          "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a": 2,
+          "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1": 1,
+          "octgn:590dd523-5743-4c36-b905-c34c021c2676": 4,
+          "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62": 3,
+          "octgn:610f3112-1123-4956-a955-df9d42b937bf": 2,
+          "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4": 3,
+          "octgn:84877af6-0720-4ef8-802b-69b792c32e15": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 2,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 1,
+          "octgn:6def55a1-ee80-4570-831b-d591e6effc11": 2,
+          "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f": 2,
+          "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 3,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1,
+          "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb": 2,
+          "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322": 2
+        },
+        "sharedSetAside": {
+          "octgn:5a3a6917-900b-4878-9545-56c297a50248": 4,
+          "octgn:27748abf-80e8-4928-b506-53d7c23d76c6": 1,
+          "octgn:447061f6-3399-4309-9885-1045f115820f": 1,
+          "octgn:715625a1-320e-478c-afd3-bec7111105f2": 1,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1,
+          "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501": 1,
+          "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a": 1,
+          "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1": 1,
+          "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b": 1,
+          "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "localPath": "/cards/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+      "bytes": 146342,
+      "sha256": "5a053ce78ce42b53080bd0f3c9a20d475d0af1f126b255edd804ba1f7a300509"
+    },
+    {
+      "code": "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg",
+      "localPath": "/cards/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg",
+      "bytes": 107501,
+      "sha256": "85b4208a91a5f43d352220afbb4c7250a441d8bc887960b4dfdcbc914118c78f"
+    },
+    {
+      "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "localPath": "/cards/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "bytes": 144827,
+      "sha256": "eedf663d9b312e13c5bf5fd7eeedd9403fadff9552ab4d2b510d37667dd03ea0"
+    },
+    {
+      "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "localPath": "/cards/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "bytes": 155706,
+      "sha256": "387c5882d74771f23f5ee0c1f305121a22de71d68329b6068884376d2c88deb2"
+    },
+    {
+      "code": "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg",
+      "localPath": "/cards/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg",
+      "bytes": 108356,
+      "sha256": "6ecec82b83c972a1f4ecf7878943c480cc7393d7d4f0b127959e0db48701ba20"
+    },
+    {
+      "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "localPath": "/cards/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+      "bytes": 130842,
+      "sha256": "fb7bbf255b027645259e5037256b4ba3227cf296bc4188ef41bc351cdeca197d"
+    },
+    {
+      "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447061f6-3399-4309-9885-1045f115820f.jpg",
+      "localPath": "/cards/447061f6-3399-4309-9885-1045f115820f.jpg",
+      "bytes": 97156,
+      "sha256": "4f6499b6747e5b438b823d4456ac13d740506cb1d1dd1a2b0bce1d541c216d8b"
+    },
+    {
+      "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447061f6-3399-4309-9885-1045f115820f.B.jpg",
+      "localPath": "/cards/447061f6-3399-4309-9885-1045f115820f.B.jpg",
+      "bytes": 107203,
+      "sha256": "ac2e1e042852ee359976a507f1dc1972a8fa24aa20b888fe5da57fd6e5f117c7"
+    },
+    {
+      "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg",
+      "localPath": "/cards/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg",
+      "bytes": 111107,
+      "sha256": "9ebc5b00e7f8ae7136acd621cbd3bd4b5ff5f976cb6f5b97315ed08a9d252197"
+    },
+    {
+      "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg",
+      "localPath": "/cards/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg",
+      "bytes": 107522,
+      "sha256": "144110a6269b5a73eebe4166d5398faa891e85cda94b4564ca8e8b30a0f2723e"
+    },
+    {
+      "code": "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/590dd523-5743-4c36-b905-c34c021c2676.jpg",
+      "localPath": "/cards/590dd523-5743-4c36-b905-c34c021c2676.jpg",
+      "bytes": 112807,
+      "sha256": "a31bf23094f3fd41ccbd144c8061aeccb8e24a7c6a9827c7c5de2beb82d402db"
+    },
+    {
+      "code": "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a3a6917-900b-4878-9545-56c297a50248.jpg",
+      "localPath": "/cards/5a3a6917-900b-4878-9545-56c297a50248.jpg",
+      "bytes": 105981,
+      "sha256": "e4c2cb0d7feca6df2314a3202962c20dd08ddd5f049b161a0f2bcf37736fd5f7"
+    },
+    {
+      "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg",
+      "localPath": "/cards/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg",
+      "bytes": 109821,
+      "sha256": "0371e8157763245c5a670f39701223a347ea790c41f5ec37947cbae4772925c0"
+    },
+    {
+      "code": "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/610f3112-1123-4956-a955-df9d42b937bf.jpg",
+      "localPath": "/cards/610f3112-1123-4956-a955-df9d42b937bf.jpg",
+      "bytes": 118188,
+      "sha256": "46030b42ad2877dcda7354f48101fbec1d4e287f467707e452ff68153e1d491f"
+    },
+    {
+      "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "localPath": "/cards/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+      "bytes": 125472,
+      "sha256": "61d1edfe3cd986ebcafa9f1cba5c13d0a7e4fb1cfda7c757db5b76c235ad482c"
+    },
+    {
+      "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "localPath": "/cards/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+      "bytes": 147078,
+      "sha256": "e5b8241b0abf9597f99b33ee5d3014733247d9478ff0411c50a71e3b28b87996"
+    },
+    {
+      "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70decac2-b07f-4c96-9684-4c008f19610b.jpg",
+      "localPath": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.jpg",
+      "bytes": 109499,
+      "sha256": "000f205c6155c7dc3325e6a659f9b5a428d9b40a2035d9c824362749d691219b"
+    },
+    {
+      "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70decac2-b07f-4c96-9684-4c008f19610b.B.jpg",
+      "localPath": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.B.jpg",
+      "bytes": 107955,
+      "sha256": "68ebf5bbea9cd7a3ecc562de1532e636e13678e1857f35d20152d36b3b3dfe48"
+    },
+    {
+      "code": "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/715625a1-320e-478c-afd3-bec7111105f2.jpg",
+      "localPath": "/cards/715625a1-320e-478c-afd3-bec7111105f2.jpg",
+      "bytes": 109134,
+      "sha256": "f777ddf58641f3f0ed765226da108dbd405f0a40bf71808b6ff67239d3aebe39"
+    },
+    {
+      "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg",
+      "localPath": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg",
+      "bytes": 104969,
+      "sha256": "26ecaff801f604254e08564337463294a2d1e99f28c9530ae83e99af67896bb5"
+    },
+    {
+      "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d0387db-eba6-44e0-8602-b031a2927ca4.B.jpg",
+      "localPath": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.B.jpg",
+      "bytes": 101334,
+      "sha256": "df90998226608da81e0eb24796aa4419137ef3e22fe18022ce904ddae4271bce"
+    },
+    {
+      "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "localPath": "/cards/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+      "bytes": 133007,
+      "sha256": "8387843a0dcf1eb8848cd645b4124cc6351c7bb360e5549af358e76bad15dfb6"
+    },
+    {
+      "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "localPath": "/cards/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "bytes": 134232,
+      "sha256": "7773fa7a6b362094e74cdab87fbcdc1a8c3faa8ed0f9e0b31d814bc4cb3aa8f8"
+    },
+    {
+      "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg",
+      "localPath": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg",
+      "bytes": 102292,
+      "sha256": "a70fb17cbf8ed030a560d85d0aa6130ae8676e57b3682d6331ebb78a67468b4a"
+    },
+    {
+      "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11f08ac-541b-46ba-9528-467dcbdc90c6.B.jpg",
+      "localPath": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.B.jpg",
+      "bytes": 107480,
+      "sha256": "5f387d5c21fac1886fe6f5e2cc4687242d431f6c68b9a752dc4c827a0c6fd95c"
+    },
+    {
+      "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg",
+      "localPath": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg",
+      "bytes": 103531,
+      "sha256": "7925b4cbbbdfa81de4e8cfb0054f0dc2a773b329daa2b5297eeee2b14f61b93d"
+    },
+    {
+      "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.B.jpg",
+      "localPath": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.B.jpg",
+      "bytes": 115263,
+      "sha256": "1e95d8d411354050e81105e4ba02a6ece76ccbd3e0ee1f1830550828d112de9f"
+    },
+    {
+      "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "localPath": "/cards/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "bytes": 148637,
+      "sha256": "f55d47bf1b4db456aeeafaae1656de2f7cd6c8a1edd66b112e631310db0412fa"
+    },
+    {
+      "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg",
+      "localPath": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg",
+      "bytes": 105868,
+      "sha256": "17beb674dec7db2c1136aa49681dd2a9ab8e8885202320b445df711eee9f846c"
+    },
+    {
+      "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.B.jpg",
+      "localPath": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.B.jpg",
+      "bytes": 111100,
+      "sha256": "7f5abd0789fb33a0db742411c1e5c1861a1a75b0531c55d9e58d17bc33eae894"
+    },
+    {
+      "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg",
+      "localPath": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg",
+      "bytes": 114765,
+      "sha256": "c43c07626baf51ab66034eb8de37056ed022ec7018e3b65cc6ecb6ca46e702f2"
+    },
+    {
+      "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.B.jpg",
+      "localPath": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.B.jpg",
+      "bytes": 107915,
+      "sha256": "9009deae8d17d456910587dc74aefcf56bdb9f819092af63e8ff4aee7e8c4ab6"
+    },
+    {
+      "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "localPath": "/cards/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "bytes": 152488,
+      "sha256": "20ea08f5e027c062ac689ce637161f113c5673b0804013f5ace8ce3c67c55c3b"
+    },
+    {
+      "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "localPath": "/cards/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "bytes": 151309,
+      "sha256": "d08b5a8f6fcc194cf88e53314a8e4e114ec7ae8ccc5111cc8a79e47c300cfad5"
+    },
+    {
+      "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa8e0538-d920-4f0e-9810-103c5186531f.jpg",
+      "localPath": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.jpg",
+      "bytes": 113732,
+      "sha256": "8e392d69820f59a95890334a3895994a1130e583476121742aa09ceded7fe7c6"
+    },
+    {
+      "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa8e0538-d920-4f0e-9810-103c5186531f.B.jpg",
+      "localPath": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.B.jpg",
+      "bytes": 107216,
+      "sha256": "48752e68efaee1f54f687a71ed2d45a95be5700a981250ba11db19ecb90d7a7e"
+    }
+  ]
+}

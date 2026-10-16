@@ -90,6 +90,8 @@ export interface Unit {
   cobasGuarding?: string[];
   /** Physical encounter card belonging to the Stormcaller's separate area. */
   stormcallerArea?: boolean;
+  /** Physical encounter card belonging to the Orc staging area. */
+  raceHaradArea?: boolean;
   /** Na'asiyah's resource bonus is fixed when this attack begins. */
   raidCombatResourceBonus?: number;
   /** The Mission objective retains its physical identity when turned over. */
@@ -215,6 +217,7 @@ export type ScenarioId =
   | "desert-crossing"
   | "the-long-arm-of-mordor"
   | "the-mumakil"
+  | "race-across-harad"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -348,6 +351,7 @@ export interface GameState {
   desertCrossing?: import("./desert-crossing-support").DesertCrossingState;
   mordor?: import("./long-arm-mordor-support").MordorState;
   mumakil?: import("./mumakil-support").MumakilState;
+  raceHarad?: import("./race-harad-support").RaceHaradState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
@@ -532,6 +536,9 @@ export interface GameState {
     mordorDestroyedCharacter?: boolean;
     mumakilKilledCharacter?: boolean;
     mumakilSavageReturn?: boolean;
+    raceHaradDestroyedCharacter?: boolean;
+    raceHaradPursuerShadows?: number;
+    raceHaradReturnToOrcs?: boolean;
     desertPoisonShadow?: boolean;
     umbarKilled?: number;
     umbarInjuredShadows?: number;

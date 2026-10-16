@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 299);
+  assert.equal(baseline.registeredCases, 304);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -41,7 +41,8 @@ test("four CI simulation shards cover every registered complete-game case exactl
           !name.startsWith("Escape from Umbar") &&
           !name.startsWith("Desert Crossing") &&
           !name.startsWith("The Long Arm of Mordor") &&
-          !name.startsWith("The Mûmakil"),
+          !name.startsWith("The Mûmakil") &&
+          !name.startsWith("Race Across Harad"),
       )
       .sort(),
     [...priorSimulationCases.cases].sort(),
@@ -117,6 +118,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
     "Desert Crossing",
     "The Long Arm of Mordor",
     "The Mûmakil",
+    "Race Across Harad",
   ])
     assert.deepEqual(
       baseline.selectedCases

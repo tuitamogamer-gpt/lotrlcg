@@ -1,3 +1,6 @@
+import { finishOpeningHands } from "./actions";
+import * as Race from "./race-harad";
+import * as RacePlayers from "./race-harad-player";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mordor from "./long-arm-mordor";
@@ -561,11 +564,13 @@ export function handle(s: GameState, e: Effect) {
 function handleEffect(s: GameState, e: Effect) {
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
+  if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
   if (HaradResponses.handleHaradResponseEffect(s, e)) return;
   if (Umbar.umbarEffect(s, e)) return;
   if (Desert.desertCrossingEffect(s, e)) return;
   if (Mordor.mordorEffect(s, e)) return;
   if (Mumakil.mumakilEffect(s, e)) return;
+  if (Race.raceHaradEffect(s, e)) return;
   if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
   if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
@@ -577,6 +582,7 @@ function handleEffect(s: GameState, e: Effect) {
       Voyage.voyageEndQuest(s);
       Cobas.cobasQuestEnd(s);
       Storm.stormcallerEndQuest(s);
+      Race.raceHaradEndQuest(s);
       Drowned.drownedQuestEnd(s);
     });
     return;
@@ -709,6 +715,9 @@ function handleEffect(s: GameState, e: Effect) {
       finishPlayerAbilitySource(s, e.source, e.code);
       Dike.dikePlayerTriggered(s, e.player ?? activeSeat(s));
       break;
+    case "openingHandsKept":
+      finishOpeningHands(s);
+      break;
     case "allyEntryResponses":
       if (u)
         allyEntryResponses(
@@ -716,7 +725,8 @@ function handleEffect(s: GameState, e: Effect) {
           u,
           !!e.flag,
           !!e.value,
-          e.text === "desert-resolved",
+          e.text === "desert-resolved" || e.text === "desert-race-resolved",
+          e.text === "desert-race-resolved",
         );
       break;
     case "eventFinish":
@@ -1046,6 +1056,7 @@ function handleEffect(s: GameState, e: Effect) {
         prepend(s, fx("finishQuestPhase", { player: firstPlayer(s) }));
         break;
       }
+      Race.raceHaradCharactersCommitted(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
       const reveals = rohanRevealReduction(
@@ -1060,6 +1071,7 @@ function handleEffect(s: GameState, e: Effect) {
                 Weather.weatherStagingCountBonus(s) +
                 Etten.ettenExtraReveals(s) +
                 Mumakil.mumakilExtraReveals(s) +
+                Race.raceHaradExtraReveals(s) +
                 stewardFearExtraRevealCount(s),
         ),
       );
@@ -1190,6 +1202,7 @@ function handleEffect(s: GameState, e: Effect) {
         const priorActive = allActiveLocations(s);
         s.activeLocation = u;
         Storm.stormcallerAreaLeft(s, u);
+        Race.raceHaradAreaLeft(s, u);
         Storm.stormcallerTravelEntered(s, u);
         Fate.fateActiveLocation(s, u);
         Voyage.voyageTravelEntered(s, u);
@@ -1214,6 +1227,7 @@ function handleEffect(s: GameState, e: Effect) {
           !e.flag || e.text === "strider-replace",
         );
         Mumakil.mumakilTravelEntered(s, u, !e.flag || e.text === "strider-replace");
+        Race.raceHaradTravelEntered(s, u);
         Drowned.drownedTravelEntered(
           s,
           u,
@@ -1472,6 +1486,7 @@ function handleEffect(s: GameState, e: Effect) {
             Desert.desertCrossingEncounter(s, e.code, true) ||
             Mordor.mordorEncounter(s, e.code, true) ||
             Mumakil.mumakilEncounter(s, e.code, true) ||
+            Race.raceHaradEncounter(s, e.code, true) ||
             Voyage.voyageEncounter(s, e.code, true) ||
             Storm.stormcallerEncounter(s, e.code, true) ||
             Depths.depthsEncounter(s, e.code) ||
@@ -2138,7 +2153,7 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "startCombat":
       if (e.text !== "mordor-encounter-end") {
-        const forced = Mordor.mordorEncounterEnd(s);
+        const forced = Mordor.mordorEncounterEnd(s).filter((effect) => { const enemy = get(s, effect.target); return !enemy || !Race.raceHaradCannotLeave(s, enemy); });
         if (forced.length) {
           prepend(s, ...forced, { ...e, text: "mordor-encounter-end" });
           break;
@@ -2342,7 +2357,7 @@ function handleEffect(s: GameState, e: Effect) {
             isShipEnemy(enemy)
               ? shipUndefendedTargets(s, enemy)
               : [
-                  ...(Mordor.mordorUndefendedTargets(s) ?? [
+                  ...(Race.raceHaradUndefendedTargets(s) ?? Mordor.mordorUndefendedTargets(s) ?? [
                     ...s.heroes,
                     ...druadanPlayerUndefendedTargets(s),
                     ...finalRingUndefendedTargets(s),
@@ -2523,6 +2538,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed) Umbar.umbarAttackFinished(s, completed);
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));
+      if (completed) prepend(s, ...Race.raceHaradAttackFinished(s, completed));
       Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -2729,6 +2745,7 @@ export function flush(s: GameState) {
       Desert.desertCrossingSharedEffect(effect) ||
       Mordor.mordorSharedEffect(effect) ||
       Mumakil.mumakilSharedEffect(effect) ||
+      Race.raceHaradSharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

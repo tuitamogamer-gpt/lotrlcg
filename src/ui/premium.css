@@ -21,6 +21,8 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="race-across-harad"],
+.mat-race-across-harad,
 .redbook[data-playmat="wastes-of-eriador"],
 .mat-wastes-of-eriador,
 .redbook[data-playmat="across-the-ettenmoors"],

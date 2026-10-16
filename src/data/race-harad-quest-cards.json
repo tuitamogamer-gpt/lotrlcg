@@ -1,0 +1,322 @@
+[
+  {
+    "code": "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
+    "octgnid": "fa8e0538-d920-4f0e-9810-103c5186531f",
+    "name": "Setting Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set River Harnen and 1 copy of Uruk Warg-rider aside, out of play. Each player takes control of a Tamed Mûmak. Remove each remaining Tamed Mûmak from the game. Create the Orcs’ area with a second quest deck consisting of stage 1C, 2C, 3C, and 4C. Place Uruk Chieftain in the Orcs’ area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 47,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Race Across Harad",
+    "side": "A",
+    "back_name": "Setting Out",
+    "back_text": "When Revealed: Each player searches the encounter deck for 1 different location and adds it to the staging area. Shuffle the encounter deck. Advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/fa8e0538-d920-4f0e-9810-103c5186531f.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 47,
+        "quantity": 1,
+        "octgnid": "fa8e0538-d920-4f0e-9810-103c5186531f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fa8e0538-d920-4f0e-9810-103c5186531f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 0
+  },
+  {
+    "code": "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
+    "octgnid": "7d0387db-eba6-44e0-8602-b031a2927ca4",
+    "name": "Racing North",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Choose the staging area or the Orc's area. Add the set aside Uruk Warg-rider to the chosen area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 48,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Race Across Harad",
+    "side": "A",
+    "back_name": "Racing North",
+    "back_text": "Uruk Chieftain cannot take damage. Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mûmak in play is committed to the quest). ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "7d0387db-eba6-44e0-8602-b031a2927ca4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d0387db-eba6-44e0-8602-b031a2927ca4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+    "octgnid": "c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+    "name": "Hunted in Harad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 49,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Race Across Harad",
+    "side": "A",
+    "back_name": "Hunted in Harad",
+    "back_text": "Uruk Chieftain cannot take damage. Reveal an additional encounter card during the quest phase if Uruk Chieftain is at stage 2D. Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mûmak in play is committed to the quest).",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 49,
+        "quantity": 1,
+        "octgnid": "c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9bd8efc-b0df-4ab9-aeb2-07796818ff7d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+    "octgnid": "70decac2-b07f-4c96-9684-4c008f19610b",
+    "name": "The Ford of Harnen",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add River Harnen to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 50,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Race Across Harad",
+    "side": "A",
+    "back_name": "The Ford of Harnen",
+    "back_text": "Forced: After characters are committed to quest, no more than 5 progress can be placed here this round (10 progress instead if each Tamed Mûmak in play is committed to the quest). Forced: After an enemy attacks and destroys a character, place 1 progress on the Orc's stage. If you defeat this stage, you have escaped the Orcs and win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/70decac2-b07f-4c96-9684-4c008f19610b.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 50,
+        "quantity": 1,
+        "octgnid": "70decac2-b07f-4c96-9684-4c008f19610b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/70decac2-b07f-4c96-9684-4c008f19610b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:447061f6-3399-4309-9885-1045f115820f",
+    "octgnid": "447061f6-3399-4309-9885-1045f115820f",
+    "name": "Setting Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 51,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Race Across Harad",
+    "side": "C",
+    "back_name": "Setting Out",
+    "back_text": "Uruk Chieftain cannot leave the Orc's area. Forced: At the end of the quest phase, discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] in the Orc's area. ",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/447061f6-3399-4309-9885-1045f115820f.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/447061f6-3399-4309-9885-1045f115820f.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 51,
+        "quantity": 1,
+        "octgnid": "447061f6-3399-4309-9885-1045f115820f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/447061f6-3399-4309-9885-1045f115820f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+    "octgnid": "a11f08ac-541b-46ba-9528-467dcbdc90c6",
+    "name": "Racing North",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the players have already defeated stage 2B, discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 52,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Race Across Harad",
+    "side": "C",
+    "back_name": "Racing North",
+    "back_text": "While the players are at stage 3B, Uruk Chieftain cannot leave the Orc's area. Forced: At the end of the quest phase, return Uruk Chieftain to the Orc's area and discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] in the Orc's area. If you are at stage 2B when this stage is defeated, you lose the game. ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 52,
+        "quantity": 1,
+        "octgnid": "a11f08ac-541b-46ba-9528-467dcbdc90c6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a11f08ac-541b-46ba-9528-467dcbdc90c6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+    "octgnid": "b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+    "name": "Hunted in Harad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the players have already defeated stage 3B, discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 53,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Race Across Harad",
+    "side": "C",
+    "back_name": "Hunted in Harad",
+    "back_text": "While the players are at stage 4B, Uruk Chieftain cannot leave the Orc's area and each enemy at this stage gets +1 [threat]. Forced: At the end of the quest phase, return Uruk Chieftain to the Orc's area and discard the top card of the encounter deck. Place X progress on this stage, where X is the total [threat] of the discarded card plus the total [threat] in the Orc's area. If you are at stage 3B when this stage is defeated, you lose the game. ",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b21850eb-ca62-47d8-b7aa-6d6c5ff29867.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+    "octgnid": "a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+    "name": "The Ford of Harnen",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 54,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Race Across Harad",
+    "side": "C",
+    "back_name": "The Ford of Harnen",
+    "back_text": "Uruk Chieftain cannot take damage while River Harnen is in the staging area. Forced: At the end of the quest phase, discard the top card of the encounter deck. Place X progress on this stage, where X is the discarded card's [threat] plus the total [threat] of each engaged enemy. If the Orcs defeat this stage, the Orcs have caught you and you lose the game. ",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 54,
+        "quantity": 1,
+        "octgnid": "a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7f5f1b7-6510-4c0f-9198-fd109e19a5c3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "race-across-harad": {
+    name: "The Road North",
+    detail: "Ride the Mûmakil toward the Harnen before the Orcs catch you",
+  },
   "the-mumakil": {
     name: "The Jungle of Harad",
     detail: "Track the wild Mûmakil and capture mounts for the journey north",
@@ -288,6 +292,7 @@ export const PLAYMAT_CHOICES = [
   "desert-crossing",
   "the-long-arm-of-mordor",
   "the-mumakil",
+  "race-across-harad",
   "shadow-and-flame",
 ] as const;
 

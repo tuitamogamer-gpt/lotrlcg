@@ -1,4 +1,14 @@
 import {
+  raceHaradSimulationAction,
+  raceHaradSimulationChoice,
+  isRaceHaradScenario,
+  RACE_HARAD_SCENARIOS,
+} from "./race-harad-simulation-policy";
+import {
+  assertRaceHaradSaveRestoration,
+  raceHaradSimulationObserver,
+} from "./race-harad-simulation-invariants";
+import {
   mumakilSimulationAction,
   mumakilSimulationChoice,
   isMumakilScenario,
@@ -497,6 +507,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     ...DREAM_CHASER_SCENARIOS,
     ...HARAD_SCENARIOS,
     ...MUMAKIL_SCENARIOS,
+    ...RACE_HARAD_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -511,6 +522,7 @@ for (const scenarioId of [
   ...DREAM_CHASER_SCENARIOS,
   ...HARAD_SCENARIOS,
   ...MUMAKIL_SCENARIOS,
+  ...RACE_HARAD_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -566,11 +578,13 @@ for (const scenarioId of [
                     ? cobasSimulationObserver()
                     : scenarioId === "the-city-of-corsairs"
                       ? citySimulationObserver()
-                      : isMumakilScenario(scenarioId)
-                        ? mumakilSimulationObserver()
-                        : isHaradScenario(scenarioId)
-                          ? haradSimulationObserver()
-                          : undefined;
+                      : isRaceHaradScenario(scenarioId)
+                        ? raceHaradSimulationObserver()
+                        : isMumakilScenario(scenarioId)
+                          ? mumakilSimulationObserver()
+                          : isHaradScenario(scenarioId)
+                            ? haradSimulationObserver()
+                            : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -587,6 +601,7 @@ for (const scenarioId of [
                 a = {
                   type: "CHOOSE",
                   id: (
+                    raceHaradSimulationChoice(s) ??
                     mumakilSimulationChoice(s) ??
                     haradSimulationChoice(s) ??
                     greyHavensSimulationChoice(s) ??
@@ -596,11 +611,13 @@ for (const scenarioId of [
                   ).id,
                 };
               else if (
+                raceHaradSimulationAction(s) ??
                 mumakilSimulationAction(s) ??
                 haradSimulationAction(s) ??
                 greyHavensSimulationAction(s)
               )
-                a = (mumakilSimulationAction(s) ??
+                a = (raceHaradSimulationAction(s) ??
+                  mumakilSimulationAction(s) ??
                   haradSimulationAction(s) ??
                   greyHavensSimulationAction(s))!;
               else if (s.phase === "setup") a = { type: "KEEP" };
@@ -645,7 +662,8 @@ for (const scenarioId of [
                 (!s.activeLocation ||
                   (scenarioId === "the-thing-in-the-depths" &&
                     s.stage === 3)) &&
-                (isMumakilScenario(scenarioId) ||
+                (isRaceHaradScenario(scenarioId) ||
+                  isMumakilScenario(scenarioId) ||
                   isHaradScenario(scenarioId) ||
                   DREAM_CHASER_SCENARIOS.includes(
                     scenarioId as (typeof DREAM_CHASER_SCENARIOS)[number],
@@ -681,6 +699,7 @@ for (const scenarioId of [
                     }) + "\n",
                   );
                 s =
+                  isRaceHaradScenario(scenarioId) ||
                   isMumakilScenario(scenarioId) ||
                   isHaradScenario(scenarioId) ||
                   DREAM_CHASER_SCENARIOS.includes(
@@ -738,6 +757,8 @@ for (const scenarioId of [
                 assertCobasSaveRestoration(savedState, restored);
               else if (scenarioId === "the-city-of-corsairs")
                 assertCitySaveRestoration(savedState, restored);
+              else if (isRaceHaradScenario(scenarioId))
+                assertRaceHaradSaveRestoration(savedState, restored);
               else if (isMumakilScenario(scenarioId))
                 assertMumakilSaveRestoration(savedState, restored);
               else if (isHaradScenario(scenarioId))

@@ -97,7 +97,12 @@
     "test:mumakil-players": "node --import tsx scripts/browser-mumakil-players.mjs",
     "test:browser-mumakil": "npm run test:mumakil-quests && npm run test:mumakil-players",
     "test:mumakil-simulation": "node --import tsx --test tests/mumakil-simulation.test.ts",
-    "test:mumakil-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-mumakil normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:mumakil-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat the-mumakil normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:race-harad-quests": "node --import tsx scripts/browser-race-harad.mjs",
+    "test:race-harad-players": "node --import tsx scripts/browser-race-harad-players.mjs",
+    "test:browser-race-harad": "npm run test:race-harad-quests && npm run test:race-harad-players",
+    "test:race-harad-simulation": "node --import tsx --test tests/race-harad-simulation.test.ts",
+    "test:race-harad-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat race-across-harad normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

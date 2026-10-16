@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 581,
-    "heroes": 67,
-    "deckCards": 513,
-    "encounterCards": 848,
-    "scenarios": 58,
+    "playerCards": 591,
+    "heroes": 68,
+    "deckCards": 522,
+    "encounterCards": 857,
+    "scenarios": 59,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -65,17 +65,18 @@
       "escape-from-umbar",
       "desert-crossing",
       "the-long-arm-of-mordor",
-      "the-mumakil"
+      "the-mumakil",
+      "race-across-harad"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1599,
-    "pending": 2584
+    "scripted": 1626,
+    "pending": 2557
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 116
+    "scripted": 118
   },
   "registeredCodes": [
     "01001",
@@ -686,6 +687,16 @@
     "17008",
     "17009",
     "17010",
+    "17028",
+    "17029",
+    "17030",
+    "17031",
+    "17032",
+    "17033",
+    "17034",
+    "17035",
+    "17036",
+    "17037",
     "17055",
     "17058",
     "17061",
@@ -831,6 +842,7 @@
     "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
+    "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
@@ -851,6 +863,7 @@
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
+    "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
     "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
@@ -911,6 +924,7 @@
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
+    "octgn:447061f6-3399-4309-9885-1045f115820f",
     "octgn:447dd08d-693c-407f-8155-87164f212351",
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
     "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
@@ -984,6 +998,7 @@
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
@@ -1002,6 +1017,7 @@
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
+    "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -1225,11 +1241,14 @@
     "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
+    "octgn:590dd523-5743-4c36-b905-c34c021c2676",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
+    "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
@@ -1241,6 +1260,7 @@
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
+    "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
@@ -1263,7 +1283,9 @@
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
+    "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
+    "octgn:715625a1-320e-478c-afd3-bec7111105f2",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
     "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
@@ -1296,6 +1318,7 @@
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
@@ -1393,6 +1416,7 @@
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
+    "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
@@ -1408,6 +1432,7 @@
     "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
+    "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
@@ -1434,6 +1459,7 @@
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
     "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
     "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
+    "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
@@ -1510,6 +1536,7 @@
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc:B",
+    "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
@@ -1636,6 +1663,7 @@
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
     "octgn:fa4aaa97-c06d-42d5-b796-2f6200d9a404",
+    "octgn:fa8e0538-d920-4f0e-9810-103c5186531f",
     "octgn:fa9df618-126b-4ea9-95d7-22cd5dad6d2f",
     "octgn:fab58a26-eaa6-4e6b-aa59-575bab8a2599",
     "octgn:fac30859-0ad6-4d07-8b73-b5e2af044a52",
@@ -1984,9 +2012,9 @@
     {
       "product": "race-across-harad",
       "total": 27,
-      "scripted": 0,
+      "scripted": 27,
       "player": 10,
-      "playerScripted": 0
+      "playerScripted": 10
     },
     {
       "product": "return-to-mirkwood",
@@ -9676,7 +9704,7 @@
       "name": "Thurindir",
       "type": "hero",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9684,7 +9712,7 @@
       "name": "Kahliel's Tribesman",
       "type": "ally",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9692,7 +9720,7 @@
       "name": "Steed of the North",
       "type": "attachment",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9700,7 +9728,7 @@
       "name": "Mighty Warrior",
       "type": "attachment",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9708,7 +9736,7 @@
       "name": "Proud Hunters",
       "type": "event",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9716,7 +9744,7 @@
       "name": "Dunedain Pathfinder",
       "type": "ally",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9724,7 +9752,7 @@
       "name": "Backtrack",
       "type": "event",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9732,7 +9760,7 @@
       "name": "Eryn Galen Settler",
       "type": "ally",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9740,7 +9768,7 @@
       "name": "Explore Secret Ways",
       "type": "player-side-quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -9748,7 +9776,7 @@
       "name": "Steward of Orthanc",
       "type": "ally",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -14428,7 +14456,7 @@
       "name": "Racing Warg",
       "type": "enemy",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -15076,7 +15104,7 @@
       "name": "Howling at their Heels",
       "type": "treachery",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -17012,7 +17040,7 @@
       "name": "Setting Out",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -17924,7 +17952,7 @@
       "name": "Blistering Erg",
       "type": "location",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -18460,7 +18488,7 @@
       "name": "Expanse of Harad",
       "type": "location",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -21724,7 +21752,7 @@
       "name": "Uruk Pursuer",
       "type": "enemy",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -21788,7 +21816,7 @@
       "name": "Tamed Mumak",
       "type": "objective-ally",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -21860,7 +21888,7 @@
       "name": "Harad Road",
       "type": "location",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -22324,7 +22352,7 @@
       "name": "Pursuers from Mordor",
       "type": "treachery",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -23372,7 +23400,7 @@
       "name": "The Ford of Harnen",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -23420,7 +23448,7 @@
       "name": "River Harnen",
       "type": "location",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -24492,7 +24520,7 @@
       "name": "Racing North",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -27588,7 +27616,7 @@
       "name": "Racing North",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -28124,7 +28152,7 @@
       "name": "The Ford of Harnen",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -28988,7 +29016,7 @@
       "name": "Hunted in Harad",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -31388,7 +31416,7 @@
       "name": "Hunted in Harad",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -35404,7 +35432,7 @@
       "name": "Setting Out",
       "type": "quest",
       "pack": "Race Across Harad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "race-across-harad"
     },
     {
@@ -36545,8 +36573,8 @@
       "id": "E07.5",
       "name": "Race Across Harad (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "race-across-harad",
+      "state": "scripted"
     },
     {
       "id": "E07.6",
@@ -38036,8 +38064,8 @@
       "id": "Q07.5",
       "name": "Race Across Harad",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "race-across-harad",
+      "state": "scripted"
     },
     {
       "id": "Q07.6",

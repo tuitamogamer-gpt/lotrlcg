@@ -9,6 +9,7 @@ import { COBAS_ADVENTURES } from "./cobas-scenario-data";
 import { CITY_ADVENTURES } from "./city-scenario-data";
 import { HARAD_ADVENTURES } from "./harad-scenario-data";
 import { MUMAKIL_ADVENTURES } from "./mumakil-scenario-data";
+import { RACE_HARAD_ADVENTURES } from "./race-harad-scenario-data";
 import { CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_QUESTS } from "./weather-hills-support";
 import { ANTLERED_QUESTS } from "./antlered-support";
@@ -1123,6 +1124,7 @@ export const SCENARIOS = [
   ...CITY_ADVENTURES,
   ...HARAD_ADVENTURES,
   ...MUMAKIL_ADVENTURES,
+  ...RACE_HARAD_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

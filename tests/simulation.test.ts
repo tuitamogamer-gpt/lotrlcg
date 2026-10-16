@@ -1,4 +1,13 @@
 import {
+  raceHaradSimulationAction,
+  raceHaradSimulationChoice,
+  isRaceHaradScenario,
+} from "./race-harad-simulation-policy";
+import {
+  assertRaceHaradSaveRestoration,
+  raceHaradSimulationObserver,
+} from "./race-harad-simulation-invariants";
+import {
   mumakilSimulationAction,
   mumakilSimulationChoice,
   isMumakilScenario,
@@ -124,6 +133,8 @@ const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   if (!listOnly) return nodeTest(...args);
 }) as typeof nodeTest;
 function choose(s: GameState): Option {
+  const raceHarad = raceHaradSimulationChoice(s);
+  if (raceHarad) return raceHarad;
   const mumakil = mumakilSimulationChoice(s);
   if (mumakil) return mumakil;
   const harad = haradSimulationChoice(s);
@@ -223,11 +234,13 @@ function run(
           ? cobasSimulationObserver()
           : scenarioId === "the-city-of-corsairs"
             ? citySimulationObserver()
-            : isMumakilScenario(scenarioId)
-              ? mumakilSimulationObserver()
-              : isHaradScenario(scenarioId)
-                ? haradSimulationObserver()
-                : undefined;
+            : isRaceHaradScenario(scenarioId)
+              ? raceHaradSimulationObserver()
+              : isMumakilScenario(scenarioId)
+                ? mumakilSimulationObserver()
+                : isHaradScenario(scenarioId)
+                  ? haradSimulationObserver()
+                  : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -262,11 +275,13 @@ function run(
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
     else if (
+      raceHaradSimulationAction(s) ??
       mumakilSimulationAction(s) ??
       haradSimulationAction(s) ??
       greyHavensSimulationAction(s)
     )
-      action = (mumakilSimulationAction(s) ??
+      action = (raceHaradSimulationAction(s) ??
+        mumakilSimulationAction(s) ??
         haradSimulationAction(s) ??
         greyHavensSimulationAction(s))!;
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
@@ -439,6 +454,7 @@ function run(
       );
     try {
       s =
+        isRaceHaradScenario(scenarioId) ||
         isMumakilScenario(scenarioId) ||
         isHaradScenario(scenarioId) ||
         DREAM_CHASER_SCENARIOS.includes(
@@ -459,6 +475,7 @@ function run(
     );
     if (
       angmarScenarios.includes(scenarioId) ||
+      isRaceHaradScenario(scenarioId) ||
       isMumakilScenario(scenarioId) ||
       isHaradScenario(scenarioId) ||
       DREAM_CHASER_SCENARIOS.includes(
@@ -476,6 +493,8 @@ function run(
         assertCobasSaveRestoration(savedState, restored);
       else if (scenarioId === "the-city-of-corsairs")
         assertCitySaveRestoration(savedState, restored);
+      else if (isRaceHaradScenario(scenarioId))
+        assertRaceHaradSaveRestoration(savedState, restored);
       else if (isMumakilScenario(scenarioId))
         assertMumakilSaveRestoration(savedState, restored);
       else if (isHaradScenario(scenarioId))

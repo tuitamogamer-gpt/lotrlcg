@@ -172,7 +172,7 @@ export const desertCrossingCannotReady = (s: GameState, u: Unit) =>
     (p) => p.id === u.id && p.round === s.round,
   );
 export const desertCrossingCannotPlayerReady = (s: GameState) =>
-  sideLive(s, D.water);
+  sideLive(s, D.water) || (!!s.raceHarad && s.staging.some((q) => q.code === D.water && !q.blanked));
 export const desertCrossingCharacterBlanked = (s: GameState, u: Unit) =>
   u.damage > 0 &&
   ["hero", "ally", "objective-ally"].includes(card(u.code).type_code) &&
@@ -453,8 +453,28 @@ function wormOptions(s: GameState, player: number) {
 }
 export function desertCrossingEffect(s: GameState, e: Effect) {
   if (!e.kind.startsWith("desert")) return false;
-  const q = s.desertCrossing;
-  if (!q) return true;
+  const q = s.desertCrossing!;
+  if (
+    !q &&
+    ![
+      "desertExhaustAll",
+      "desertExhaust",
+      "desertExhaustChosen",
+      "desertSandstormAll",
+      "desertSandstorm",
+      "desertDiscardHand",
+      "desertSandstormShadow",
+      "desertDiscardAttachment",
+      "desertAssignDamage",
+      "desertOasisResponse",
+      "desertHealAmong",
+      "desertHealOne",
+      "desertWaterResponse",
+      "desertReadyHero",
+      "desertReadyChosen",
+    ].includes(e.kind)
+  )
+    return true;
   const player = e.player ?? activeSeat(s),
     u = get(s, e.target);
   switch (e.kind) {

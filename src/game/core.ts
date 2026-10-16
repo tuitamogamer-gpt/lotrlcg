@@ -1,3 +1,6 @@
+import * as Race from "./race-harad";
+import { raceHaradStageInfo } from "./race-harad-support";
+import * as RacePlayerSupport from "./race-harad-player-support";
 import * as City from "./city";
 import * as CityPlayers from "./city-player-support";
 import * as HaradPlayers from "./harad-player-support";
@@ -289,6 +292,7 @@ export const characters = (s: GameState) => [...s.heroes, ...s.allies];
 
 export const units = (s: GameState) => [
   ...(stormcallerState(s)?.area ?? []),
+  ...(s.raceHarad?.area ?? []),
   ...(s.temple?.outOfStaging ?? []),
   ...allCharacters(s),
   ...s.staging,
@@ -301,6 +305,7 @@ export const units = (s: GameState) => [
 /** Physical identity and uniqueness remain global across separated staging areas. */
 export const globalUnits = (s: GameState) => [
   ...(stormcallerState(s)?.area ?? []),
+  ...(s.raceHarad?.area ?? []),
   ...(s.temple?.outOfStaging ?? []),
   ...globalCharacters(s),
   ...globalEngaged(s),
@@ -550,6 +555,7 @@ export function stats(s: GameState, u: Unit) {
           cobasBonus.will,
           Mordor.mordorWillBonus(s, u),
           MumakSupport.mumakilPlayerWillBonus(s, u),
+          RacePlayerSupport.raceHaradPlayerWillBonus(s, u),
           GreyPlayers.greyHavensStats(s, u).will,
           templePlayerBonus.will,
           templeEncounterBonus.will,
@@ -611,6 +617,7 @@ export function stats(s: GameState, u: Unit) {
         Cobas.cobasStats(s, u).attack +
         City.cityStats(s, u).attack +
         Mordor.mordorStats(s, u).attack +
+      Race.raceHaradStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
         Umbar.umbarStats(s, u).attack +
         Desert.desertCrossingStats(s, u).attack +
@@ -679,6 +686,7 @@ export function stats(s: GameState, u: Unit) {
             Cobas.cobasStats(s, u).defense +
             City.cityStats(s, u).defense +
             Mordor.mordorStats(s, u).defense +
+      Race.raceHaradStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
             Desert.desertCrossingStats(s, u).defense +
             Raid.raidStats(s, u).defense +
@@ -718,6 +726,7 @@ export function stats(s: GameState, u: Unit) {
       foundationsBonus.health +
       cobasBonus.health +
       Mordor.mordorStats(s, u).health +
+      Race.raceHaradStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
@@ -868,6 +877,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             City.cityThreatBonus(s, u) +
             Mordor.mordorThreatBonus(s, u) +
             Mumakil.mumakilThreatBonus(s, u) +
+            Race.raceHaradThreatBonus(s, u) +
             Umbar.umbarThreatBonus(s, u) +
             Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
@@ -910,6 +920,7 @@ export const threatOf = (s: GameState, u: Unit) =>
         );
 
 export const stagingThreat = (s: GameState) =>
+  Race.raceHaradStagingThreat(s) +
   Desert.desertCrossingStagingThreat(s) +
   s.threatModifier +
   Voyage.voyageStagingThreat(s) +
@@ -926,6 +937,7 @@ export const stagingThreat = (s: GameState) =>
     .filter((u) =>
       ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
     )
+    .filter((u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u))
     .reduce((n, u) => n + threatOf(s, u), 0);
 
 export const questWill = (s: GameState) =>
@@ -991,7 +1003,7 @@ export const engagementCost = (s: GameState, u: Unit) =>
   );
 
 export const mainStageInfo = (s: GameState) => {
-  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s) ?? mumakilStageInfo(s);
+  const harad = umbarStageInfo(s) ?? desertCrossingStageInfo(s) ?? mordorStageInfo(s) ?? mumakilStageInfo(s) ?? raceHaradStageInfo(s);
   if (harad) return harad;
   const city = cityStageInfo(s);
   if (city) return city;

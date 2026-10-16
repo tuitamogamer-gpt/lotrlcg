@@ -1,3 +1,4 @@
+import * as RacePlayers from "./race-harad-player";
 import { haradPlayerNoExhaustDefense } from "./harad-player-support";
 import * as MumakPlayers from "./mumakil-player";
 import { haradDefendersDeclared } from "./harad-player-responses";
@@ -405,6 +406,7 @@ export function playerAttackKilled(
   CobasPlayers.cobasPlayerAttackKilled(s);
   Angmar.angmarAttackKilled(s, enemy, ids);
   Isengard.isengardAttackKilled(s, ids);
+  RacePlayers.raceHaradPlayerAttackKilled(s, enemy, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
   collectorAttackKilled(s, enemy, ids, lastKnownTraits);
   redhornPlayerAttackKilled(s, ids);

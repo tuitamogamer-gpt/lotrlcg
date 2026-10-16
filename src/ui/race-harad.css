@@ -1,0 +1,82 @@
+.race-harad-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--border, #726448);
+  border-radius: 0.35rem;
+  background: rgba(57, 45, 25, 0.4);
+  color: var(--text, #e6d7b4);
+}
+.race-harad-journeys {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex-basis: 100%;
+  gap: 1rem;
+}
+.race-harad-journey {
+  display: flex;
+  flex: 1 1 15rem;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.race-harad-journey strong {
+  font-size: 1rem;
+}
+.race-harad-journey span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.race-harad-state button {
+  border: 1px solid #81704a;
+  border-radius: 0.25rem;
+  background: rgba(110, 87, 44, 0.22);
+  padding: 0.55rem 0.7rem;
+  color: inherit;
+  font: inherit;
+  line-height: 1.3;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.race-harad-state button:hover {
+  background: rgba(132, 106, 57, 0.35);
+}
+.race-harad-state button:focus-visible,
+.race-harad-reference summary:focus-visible {
+  outline: 2px solid #e5c77b;
+  outline-offset: 3px;
+}
+.race-harad-reference {
+  flex-basis: 100%;
+  min-width: 0;
+}
+.race-harad-reference summary {
+  padding: 0.4rem 0;
+  cursor: pointer;
+}
+.race-harad-quest-reference {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+.race-harad-quest-reference strong {
+  grid-column: 1 / -1;
+}
+@media (max-width: 480px) {
+  .race-harad-state {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+  .race-harad-journeys,
+  .race-harad-quest-reference {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .race-harad-journey {
+    flex-basis: 100%;
+  }
+}

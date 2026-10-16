@@ -2,6 +2,7 @@
 
 ## Included
 
+- **Race Across Harad, original Adventure Pack:** all ten new player designs and the standard/easy scenario for 1–4 players. Independent player/Orc quest decks, separated areas, physical mounts, round progress limits and the river crossing are integrated with native responses and saved continuations. See [sources](RACE-HARAD-SOURCES.md), [scenario](RACE-HARAD.md) and [player rules](RACE-HARAD-PLAYER-SCRIPTS.md).
 - **The Mûmakil, original Adventure Pack:** all ten player designs and the standard/easy scenario for 1–4 players. Physical Capture objectives, per-round Wild Mûmak damage, jungle exploration, lasting Conditions, deck-discard responses and saved continuations are integrated. Andrath Guardsman and Wait no Longer reuse existing registrations; eight player definitions are new. See [sources](MUMAKIL-SOURCES.md), [scenario](MUMAKIL.md) and [player rules](MUMAKIL-PLAYER-SCRIPTS.md).
 - **The Sands of Harad, original deluxe:** all thirteen player designs and three standard/easy quests for 1–4 players: Escape from Umbar, Desert Crossing and The Long Arm of Mordor. Pursuit, temperature, physical captured heroes, objective-hero control and rescue, encounter/shadow effects and saved choices are integrated. Greenwood Archer and Mirkwood Long-knife reuse existing registrations. See [sources](HARAD-SOURCES.md), [rules](HARAD-RULES.md), [player rules](HARAD-PLAYER-SCRIPTS.md) and [verification](HARAD.md).
 

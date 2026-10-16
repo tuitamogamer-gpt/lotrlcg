@@ -1,0 +1,338 @@
+[
+  {
+    "code": "octgn:5a3a6917-900b-4878-9545-56c297a50248",
+    "octgnid": "5a3a6917-900b-4878-9545-56c297a50248",
+    "name": "Tamed Mûmak",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Immune to player card effects. Damage from undefended attacks against you must be assigned to Tamed Mûmak. If Tamed Mûmak leaves play, the controlling player is eliminated.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 38,
+    "quantity": 4,
+    "willpower": 2,
+    "attack": 5,
+    "defense": 2,
+    "health": 8,
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "willpower": "2",
+      "attack": "5",
+      "defense": "2",
+      "health": "8"
+    },
+    "imagesrc": "/cards/5a3a6917-900b-4878-9545-56c297a50248.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 38,
+        "quantity": 4,
+        "octgnid": "5a3a6917-900b-4878-9545-56c297a50248",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a3a6917-900b-4878-9545-56c297a50248.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:715625a1-320e-478c-afd3-bec7111105f2",
+    "octgnid": "715625a1-320e-478c-afd3-bec7111105f2",
+    "name": "River Harnen",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. River.",
+    "text": "Immune to player card effects. The players cannot travel here unless there are at least 20 progress tokens on stage 4B. Travel: Reveal 1 encounter card per player. Stage 4B cannot be defeated while River Harnen is in play. ",
+    "is_unique": true,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 39,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 10,
+    "victory": 4,
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "10",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/715625a1-320e-478c-afd3-bec7111105f2.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 39,
+        "quantity": 1,
+        "octgnid": "715625a1-320e-478c-afd3-bec7111105f2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/715625a1-320e-478c-afd3-bec7111105f2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+    "octgnid": "50950a5b-0002-432a-b6d6-4ac2ca12e501",
+    "name": "Expanse of Harad",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert.",
+    "text": "While the players are not at the same stage as the Orc's stage, Expanse of Harad gets +2 [threat]. Forced: After Expanse of Harad becomes the active location, raise each player's threat by 2. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 40,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "50950a5b-0002-432a-b6d6-4ac2ca12e501",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50950a5b-0002-432a-b6d6-4ac2ca12e501.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+    "octgnid": "4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+    "name": "Blistering Erg",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert.",
+    "text": "X is the stage number of the main quest. Forced: After Blistering Erg becomes the active location, each player assigns X damage among characters he controls. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 41,
+    "quantity": 3,
+    "threat": 0,
+    "quest": 4,
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 41,
+        "quantity": 3,
+        "octgnid": "4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+    "octgnid": "5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+    "name": "Harad Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert.",
+    "text": "When Revealed: Add Harad Road to the Orc's area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 42,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 5,
+    "shadow": "Shadow: If the players are not at the same stage as the Orcs, move attacking enemy to the Orc's area after this attack. ",
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 42,
+        "quantity": 2,
+        "octgnid": "5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+    "octgnid": "590dd523-5743-4c36-b905-c34c021c2676",
+    "name": "Uruk Pursuer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "When Revealed: Add Uruk Pursuer to the Orc's area. If the players are not at the same stage as the Orcs, Uruk Pursuer gains surge. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 43,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 20,
+    "shadow": "Shadow: If the players are not at the same stage as the Orcs, put Uruk Pursuer into play engaged with you. ",
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/590dd523-5743-4c36-b905-c34c021c2676.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 43,
+        "quantity": 4,
+        "octgnid": "590dd523-5743-4c36-b905-c34c021c2676",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/590dd523-5743-4c36-b905-c34c021c2676.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+    "octgnid": "25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+    "name": "Racing Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nWhen Revealed: Attach to an Orc enemy. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +1 [threat], +1 [attack], +1 [defense], and +1 hit point. Forced: When attached enemy leaves play, return Racing Warg to the staging area.\") ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 44,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 1,
+    "engagement": 10,
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "1",
+      "engagement": "10"
+    },
+    "imagesrc": "/cards/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25b9113d-1096-4b8d-a2d3-1eb134fbca62.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+    "octgnid": "610f3112-1123-4956-a955-df9d42b937bf",
+    "name": "Pursuers from Mordor",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 2.\nWhen Revealed: Discard cards from the top of the encounter deck until an Orc enemy is discarded. Add that enemy to the Orc's area.",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 45,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 2 progress on the Orc's stage. ",
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {},
+    "imagesrc": "/cards/610f3112-1123-4956-a955-df9d42b937bf.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 45,
+        "quantity": 2,
+        "octgnid": "610f3112-1123-4956-a955-df9d42b937bf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/610f3112-1123-4956-a955-df9d42b937bf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+    "octgnid": "2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+    "name": "Howling at their Heels",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the players are not at the same stage as the Orcs, add the total [threat] of each card in the Orc's area to the total [threat] in the staging area until the end of the phase. If the players are at the same stage as the Orcs, each enemy gets +1 [threat] until the end of the phase. ",
+    "is_unique": false,
+    "pack_code": "RAH",
+    "pack_name": "Race Across Harad",
+    "position": 46,
+    "quantity": 3,
+    "shadow": "Shadow: Raise your threat by 1.",
+    "encounter_set": "Race Across Harad",
+    "printed_stats": {},
+    "imagesrc": "/cards/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg",
+    "packs": [
+      {
+        "pack_code": "RAH",
+        "pack_name": "Race Across Harad",
+        "position": 46,
+        "quantity": 3,
+        "octgnid": "2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2ce0c7c6-e7ae-4847-a02d-2be874afa3d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

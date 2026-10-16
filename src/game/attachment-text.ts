@@ -1,3 +1,4 @@
+import * as Race from "./race-harad";
 import * as Drowned from "./drowned";
 import * as Desert from "./desert-crossing";
 import * as Umbar from "./escape-umbar";
@@ -38,6 +39,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...allEngaged(s),
     ...s.staging,
     ...(stormcallerState(s)?.area ?? []),
+    ...(s.raceHarad?.area ?? []),
     ...allActiveLocations(s),
     ...(s.prisoner ? [s.prisoner] : []),
     ...(s.captiveMendor ? [s.captiveMendor] : []),
@@ -45,7 +47,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
-    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host) || Mumakil.mumakilImmune(s, host))
+    if (trialsGrantedImmunity(s, host.code) || stormcallerAreaImmune(s, host) || Umbar.umbarImmune(s, host) || Mordor.mordorImmune(s, host) || Mumakil.mumakilImmune(s, host) || Race.raceHaradAreaImmune(s, host))
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {

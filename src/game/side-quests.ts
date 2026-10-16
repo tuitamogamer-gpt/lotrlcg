@@ -1,3 +1,5 @@
+import * as Race from "./race-harad";
+import * as RacePlayerSupport from "./race-harad-player-support";
 import * as Umbar from "./escape-umbar";
 import * as Desert from "./desert-crossing";
 import * as Mumakil from "./mumakil";
@@ -117,6 +119,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = chetwoodProgress(s, placed, physical);
   placed = voyageProgress(s, placed, physical);
   placed = stormcallerProgress(s, placed, physical);
+  placed = Race.raceHaradProgress(s, placed, physical);
   if (placed <= 0) return;
   if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;
@@ -144,6 +147,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
   if (quest.progress < goal) return;
   const selected = selectedSideQuest(s);
   if (selected?.id === quest.id) selected.defeated = true;
+  Race.raceHaradSideDefeated(s, quest);
   const originalCode = quest.code;
   const attachments = discardQuestAttachments(s, quest.code, quest.id);
   const original = { ...quest, attachments: [...quest.attachments] };
@@ -155,7 +159,7 @@ function defeatSideQuest(s: GameState, quest: Unit) {
     );
   } else {
     s.staging = s.staging.filter((u) => u.id !== quest.id);
-    if (!haradPlayerSideQuestToDiscard(s, quest) && !mumakilSideQuestToDiscard(s, quest)) {
+    if (!haradPlayerSideQuestToDiscard(s, quest) && !mumakilSideQuestToDiscard(s, quest) && !RacePlayerSupport.raceHaradSideQuestToDiscard(s, quest)) {
       addVictoryCard(s, quest.code);
       log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
     }

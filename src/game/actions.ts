@@ -1,3 +1,5 @@
+import * as Race from "./race-harad";
+import * as RacePlayers from "./race-harad-player";
 import * as HaradPlayers from "./harad-player";
 import * as MumakPlayers from "./mumakil-player";
 import { haradPlayerCardPlayed } from "./harad-player-support";
@@ -528,6 +530,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const raceProblem = Race.raceHaradTravelProblem(s, u);
+  if (raceProblem) return raceProblem;
   const raidProblem = Raid.raidTravelProblem(s, u);
   const depthsProblem = Depths.depthsTravelProblem(s, u);
   if (depthsProblem) return depthsProblem;
@@ -623,6 +627,7 @@ export function optionalEngagementProblem(
     return "Umbar Patrol prevents optional engagements this round.";
   if (Mordor.mordorCannotOptionallyEngage(s, u))
     return "Uruk Chieftain cannot be optionally engaged.";
+  if (Race.raceHaradCannotLeave(s, u)) return "This enemy cannot leave the Orc staging area.";
   if (Mumakil.mumakilCannotOptionallyEngage(s, u))
     return "Harad Tiger cannot be optionally engaged.";
   if (s.status !== "playing" || s.choice || s.flow?.pending)
@@ -771,6 +776,8 @@ export function canPlay(
   if (drownedPlayerProblem) return drownedPlayerProblem;
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
+  const raceProblem = RacePlayers.raceHaradPlayerPlayProblem(s, u);
+  if (raceProblem) return raceProblem;
   const mumakilProblem = MumakPlayers.mumakilPlayerPlayProblem(s, u);
   if (mumakilProblem) return mumakilProblem;
   const cityProblem = CityPlayers.cityPlayerPlayProblem(s, u);
@@ -1430,6 +1437,7 @@ export function resolvePlayerCard(
     roadPlayerAttachmentEntered(s, host, attachment);
     DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
     cobasReactiveAttachmentEntered(s, host, attachment);
+    RacePlayers.raceHaradPlayerAttachmentPlayed(s, host, attachment, played, fromHand);
   } else {
     resolveEventAbility(
       s,
@@ -1457,6 +1465,7 @@ export function resolvePlayerCard(
   }
   if (c.type_code !== "ally")
     Isengard.isengardPlayerPlayed(s, u, played && fromHand);
+  if (played && c.type_code === "event") RacePlayers.raceHaradPlayerEventPlayed(s, u);
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
     longDarkPlayerCardPlayed(s, c, activeSeat(s));
@@ -1474,6 +1483,7 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !HaradPlayers.haradPlayerEvent(s, physical.code, e.source) &&
+    !RacePlayers.raceHaradPlayerEvent(s, physical.code, e.source) &&
     !heirsPlayerEventEffect(s, physical.code, e.source) &&
     !collectorEventEffect(s, physical.code, e.source) &&
     !rohanEventEffect(s, physical.code) &&
@@ -1896,6 +1906,8 @@ export function availableAbilities(s: GameState, u: Unit) {
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
     });
   const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
+  const raceLabel = RacePlayers.raceHaradPlayerAbilityLabel(u.code);
+  if (raceLabel) results.push({ label: raceLabel, disabled: !!RacePlayers.raceHaradPlayerAbilityProblem(s, u) });
   const mumakilLabel = MumakPlayers.mumakilPlayerAbilityLabel(u.code);
   if (mumakilLabel)
     results.push({
@@ -2311,6 +2323,42 @@ export function resolveQuestResult(s: GameState) {
   enqueue(s, fx("finishQuestPhase"));
 }
 
+export function finishOpeningHands(s: GameState) {
+  if (
+    !Catch.catchOpeningHandsKept(s) &&
+    !DunlandQuest.dunlandOpeningHandsKept(s) &&
+    !Trials.trialsOpeningHandsKept(s) &&
+    !Tharbad.tharbadOpeningHandsKept(s) &&
+    !Nin.ninOpeningHandsKept(s) &&
+    !Celebrimbor.celebrimborOpeningHandsKept(s) &&
+    !Antlered.antleredOpeningHandsKept(s) &&
+    !Chetwood.chetwoodOpeningHandsKept(s) &&
+    !Weather.weatherOpeningHandsKept(s) &&
+    !Dike.dikeOpeningHandsKept(s) &&
+    !Wastes.wastesOpeningHandsKept(s) &&
+    !Gram.gramOpeningHandsKept(s) &&
+    !Etten.ettenOpeningHandsKept(s) &&
+    !Rhudaur.rhudaurOpeningHandsKept(s) &&
+    !Carn.carnOpeningHandsKept(s) &&
+    !Dread.dreadOpeningHandsKept(s) &&
+    !Cobas.cobasOpeningHandsKept(s) &&
+    !City.cityOpeningHandsKept(s) &&
+    !Umbar.umbarOpeningHandsKept(s) &&
+    !Desert.desertCrossingOpeningHandsKept(s) &&
+    !Mordor.mordorOpeningHandsKept(s) &&
+    !Mumakil.mumakilOpeningHandsKept(s) &&
+    !Race.raceHaradOpeningHandsKept(s) &&
+    !Voyage.voyageOpeningHandsKept(s) &&
+    !Fate.fateOpeningHandsKept(s) &&
+    !Raid.raidOpeningHandsKept(s) &&
+    !Storm.stormcallerOpeningHandsKept(s) &&
+    !Depths.depthsOpeningHandsKept(s) &&
+    !Temple.templeOpeningHandsKept(s) &&
+    !Drowned.drownedOpeningHandsKept(s)
+  )
+    nextRound(s);
+}
+
 export function applyAction(input: GameState, action: Action): GameState {
   const s = structuredClone(input);
   syncAttachmentText(s);
@@ -2424,39 +2472,11 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "KEEP":
       requireRule(s.phase === "setup", "Your opening hand is already kept.");
-      if (
-        passSeat(s) &&
-        !Catch.catchOpeningHandsKept(s) &&
-        !DunlandQuest.dunlandOpeningHandsKept(s) &&
-        !Trials.trialsOpeningHandsKept(s) &&
-        !Tharbad.tharbadOpeningHandsKept(s) &&
-        !Nin.ninOpeningHandsKept(s) &&
-        !Celebrimbor.celebrimborOpeningHandsKept(s) &&
-        !Antlered.antleredOpeningHandsKept(s) &&
-        !Chetwood.chetwoodOpeningHandsKept(s) &&
-        !Weather.weatherOpeningHandsKept(s) &&
-        !Dike.dikeOpeningHandsKept(s) &&
-        !Wastes.wastesOpeningHandsKept(s) &&
-        !Gram.gramOpeningHandsKept(s) &&
-        !Etten.ettenOpeningHandsKept(s) &&
-        !Rhudaur.rhudaurOpeningHandsKept(s) &&
-        !Carn.carnOpeningHandsKept(s) &&
-        !Dread.dreadOpeningHandsKept(s) &&
-        !Cobas.cobasOpeningHandsKept(s) &&
-        !City.cityOpeningHandsKept(s) &&
-        !Umbar.umbarOpeningHandsKept(s) &&
-        !Desert.desertCrossingOpeningHandsKept(s) &&
-        !Mordor.mordorOpeningHandsKept(s) &&
-        !Mumakil.mumakilOpeningHandsKept(s) &&
-        !Voyage.voyageOpeningHandsKept(s) &&
-        !Fate.fateOpeningHandsKept(s) &&
-        !Raid.raidOpeningHandsKept(s) &&
-        !Storm.stormcallerOpeningHandsKept(s) &&
-        !Depths.depthsOpeningHandsKept(s) &&
-        !Temple.templeOpeningHandsKept(s) &&
-        !Drowned.drownedOpeningHandsKept(s)
-      )
-        nextRound(s);
+      if (passSeat(s)) {
+        if (RacePlayers.raceHaradPlayerSetup(s))
+          s.queue.push(fx("openingHandsKept", { player: firstPlayer(s) }));
+        else finishOpeningHands(s);
+      }
       break;
     case "TOGGLE_QUEST": {
       requireRule(
@@ -2738,6 +2758,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
+            !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&
             !DrownedPlayers.useDrownedPlayerAbility(
               s,
               u,
@@ -2838,6 +2859,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Umbar.umbarTravelEffects(s, u) ??
         Mordor.mordorTravelEffects(s, u) ??
         Mumakil.mumakilTravelEffects(s, u) ??
+        Race.raceHaradTravelEffects(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3173,6 +3195,29 @@ export function publicState(s: GameState) {
             guarding: s.mordor.guarding,
             setAside: s.mordor.setAside.length,
             removed: s.mordor.removed.length,
+          },
+        }
+      : {}),
+    ...(s.raceHarad
+      ? {
+          raceHarad: {
+            initialized: s.raceHarad.initialized,
+            currentQuest: s.raceHarad.currentQuest,
+            questDeck: s.raceHarad.questDeck.length,
+            completedQuests: s.raceHarad.completedQuests,
+            enemyQuest: s.raceHarad.enemyQuest,
+            enemyQuestDeck: s.raceHarad.enemyQuestDeck.length,
+            enemyCompletedQuests: s.raceHarad.enemyCompletedQuests,
+            enemyStage: s.raceHarad.enemyStage,
+            enemyProgress: s.raceHarad.enemyProgress,
+            setAside: s.raceHarad.setAside.length,
+            removed: s.raceHarad.removed.length,
+            area: Race.raceHaradAreaUnits(s).map(visibleUnit),
+            sameStage: Race.raceHaradSameStage(s),
+            progressThisRound: s.raceHarad.progressThisRound,
+            progressLimit: s.raceHarad.progressLimit,
+            counterRound: s.raceHarad.counterRound,
+            howling: s.raceHarad.howling,
           },
         }
       : {}),
