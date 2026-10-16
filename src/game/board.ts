@@ -1085,6 +1085,7 @@ export function check(s: GameState) {
     delete s.escapeTest;
     if (s.sailing) delete s.sailing.test;
     log(s, s.reason, "danger");
+    syncAttachmentText(s);
   } else {
     Fate.fateCheck(s);
     Depths.depthsCheck(s);

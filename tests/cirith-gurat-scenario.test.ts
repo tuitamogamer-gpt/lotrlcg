@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { applyAction, validateSave } from "../src/game/engine";
+import { applyAction, publicState, validateSave } from "../src/game/engine";
 import {
+  check,
   damage,
   destroy,
   engage,
@@ -142,6 +143,45 @@ test("Stage 1 guards are immune only in staging; stage 2 progress boosts staging
   damage(s, e.id, 1, { combatDamage: true });
   assert.equal(get(s, e.id)!.damage, 1);
 });
+for (const players of [3, 4])
+  test(`Cirith Gurat ${players}-player terminal elimination settles returned guard immunity before public rendering`, () => {
+    let s = base(players);
+    const last = players - 1,
+      captive = ally(s, "01013", last),
+      guard = add(s, C.guard);
+    prepend(
+      s,
+      fx("cirithGuratCapture", { target: captive.id, source: guard.id }),
+    );
+    s = finish(s);
+    forOwner(s, last, () => engage(s, get(s, guard.id)!));
+    s = finish(s);
+    for (let player = 0; player < last; player++)
+      forOwner(s, player, () => {
+        s.threat = 50;
+      });
+    check(s);
+    assert.equal(s.status, "playing");
+    assert.ok(seatView(s, last).engaged.some((u) => u.id === guard.id));
+    assert.equal(get(s, guard.id)!.immuneToPlayerEffects, undefined);
+    forOwner(s, last, () => {
+      s.threat = 50;
+    });
+    check(s);
+    assert.equal(s.status, "lost");
+    assert.ok(s.table!.seats.every((seat) => seat.eliminated));
+    assert.ok(s.staging.some((u) => u.id === guard.id));
+    const before = JSON.stringify(s);
+    for (let viewer = 0; viewer < players; viewer++)
+      publicState(seatView(s, viewer));
+    assert.equal(
+      JSON.stringify(s),
+      before,
+      "terminal public rendering preserves the exact saved state",
+    );
+    assert.equal(get(s, guard.id)!.immuneToPlayerEffects, true);
+    assert.ok(validateSave(s));
+  });
 test("Stage 2 quiet resources follow reveal; a new engagement in that reveal blocks the resource", () => {
   let s = base();
   setStage(s, 2);
