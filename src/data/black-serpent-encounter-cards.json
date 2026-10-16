@@ -1,0 +1,494 @@
+[
+  {
+    "code": "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+    "octgnid": "1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+    "name": "Bold and Grim",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Surge. Doomed 1.",
+    "text": "Surge. Doomed 1.\nWhen Revealed: Deal 1 damage to each hero with an objective attached.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 101,
+    "quantity": 3,
+    "shadow": "Shadow: If attacking enemy is non-unique, either attach a Harad objective you control to attacking enemy, or it makes an additional attack after this one.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 101,
+        "quantity": 3,
+        "octgnid": "1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "octgnid": "3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "name": "Chaos in the Night",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player must choose: either raise each player's threat by 3, or progress cannot be placed on quest cards until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 103,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, remove all progress from the main quest.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/3ef57050-0209-46de-8815-0c4d52b1aaf7.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 103,
+        "quantity": 2,
+        "octgnid": "3ef57050-0209-46de-8815-0c4d52b1aaf7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3ef57050-0209-46de-8815-0c4d52b1aaf7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
+    "octgnid": "49e857d2-b78f-4b5f-8c07-604af73fd616",
+    "name": "No Quarter",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Either reveal 2 encounter cards, or detach a Harad objective from a hero, reveal it, and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 102,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, attach a Harad objective you control to a non-unique encounter card in the staging area.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/49e857d2-b78f-4b5f-8c07-604af73fd616.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 102,
+        "quantity": 2,
+        "octgnid": "49e857d2-b78f-4b5f-8c07-604af73fd616",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49e857d2-b78f-4b5f-8c07-604af73fd616.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
+    "octgnid": "50e62ade-1958-439d-9314-383d8621ecf5",
+    "name": "The Serpent's Garb",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Item. Harad.",
+    "text": "Guarded (enemy). Attached encounter card gets +2 [threat] and is immune to player card effects. Action: Exhaust The Serpent's Garb and raise your threat by 1 to give a Harad enemy in the staging area -2 [threat] until the end of the phase.",
+    "is_unique": true,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 92,
+    "quantity": 1,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/50e62ade-1958-439d-9314-383d8621ecf5.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 92,
+        "quantity": 1,
+        "octgnid": "50e62ade-1958-439d-9314-383d8621ecf5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/50e62ade-1958-439d-9314-383d8621ecf5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
+    "octgnid": "5855e76e-e807-4a8c-9035-de7b9cb4366e",
+    "name": "Southron Camp",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Ruins.",
+    "text": "While Southron Camp is in the staging area, it gains: \"Forced: At the end of the round, remove all progress from each location in play.\" Travel: Raise each player's threat by 1 to travel here.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 99,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/5855e76e-e807-4a8c-9035-de7b9cb4366e.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 99,
+        "quantity": 3,
+        "octgnid": "5855e76e-e807-4a8c-9035-de7b9cb4366e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5855e76e-e807-4a8c-9035-de7b9cb4366e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
+    "octgnid": "7ac077eb-0879-4230-8e27-97549f46eb4b",
+    "name": "The Serpent's Redoubt",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Ruins.",
+    "text": "While The Serpent's Redoubt is in the staging area, it gains: \"Forced: After a player plays an ally from his hand, either remove 1 progress from the main quest, or exhaust that ally.\" Travel: The first player searches the encounter deck and discard pile for an enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 96,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/7ac077eb-0879-4230-8e27-97549f46eb4b.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 96,
+        "quantity": 2,
+        "octgnid": "7ac077eb-0879-4230-8e27-97549f46eb4b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ac077eb-0879-4230-8e27-97549f46eb4b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
+    "octgnid": "8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
+    "name": "Summons from Mordor",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Item. Harad.",
+    "text": "Guarded (location). While Summons from Mordor is attached to an encounter card, each player's threat cannot be reduced. Action: Exhaust Summons from Mordor and raise your threat by 1 to add 1 resource to attached hero's pool.",
+    "is_unique": true,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 93,
+    "quantity": 1,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 93,
+        "quantity": 1,
+        "octgnid": "8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
+    "octgnid": "8275a439-ebcd-4cc3-907b-1e217d222806",
+    "name": "Don't Let Them Escape!",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: At the end of the round, discard all progress from the main quest. Forced: After this quest is chosen as the current quest, reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 104,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/8275a439-ebcd-4cc3-907b-1e217d222806.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 104,
+        "quantity": 1,
+        "octgnid": "8275a439-ebcd-4cc3-907b-1e217d222806",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8275a439-ebcd-4cc3-907b-1e217d222806.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
+    "octgnid": "9511bcf2-9c06-413e-bf09-3bc076eb76d4",
+    "name": "The Black Serpent",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Cannot leave the staging area or take damage. X is the stage number of the main quest. The Black Serpent gets +X [threat], +X [attack] and +X [defense]. Forced: At the end of the encounter phase, either remove X progress from the main quest, or The Black Serpent makes an immediate attack against the first player.",
+    "is_unique": true,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 94,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 2,
+    "defense": 1,
+    "health": 8,
+    "engagement": 50,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "2",
+      "defense": "1",
+      "health": "8",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/9511bcf2-9c06-413e-bf09-3bc076eb76d4.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 94,
+        "quantity": 1,
+        "octgnid": "9511bcf2-9c06-413e-bf09-3bc076eb76d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9511bcf2-9c06-413e-bf09-3bc076eb76d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
+    "octgnid": "97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
+    "name": "Serpent Guard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Forced: After Serpent Guard engages you, either remove 2 progress from the main quest, or enemies engaged with you cannot take damage until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 95,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 28,
+    "shadow": "Shadow: Either remove 2 progress from main quest, or attacking enemy cannot take damage this round.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 95,
+        "quantity": 4,
+        "octgnid": "97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
+    "octgnid": "a53e4587-03e4-4120-8aa5-9601a7069edd",
+    "name": "Broken Courtyard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Ruins.",
+    "text": "Surge.\nWhile Broken Courtyard is in the staging area, the main quest cannot have progress tokens beyond its printed quest points value.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 100,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 3,
+    "shadow": "Shadow: Either remove 2 progress from main quest, or return attacking enemy to staging area after this attack.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/a53e4587-03e4-4120-8aa5-9601a7069edd.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 100,
+        "quantity": 3,
+        "octgnid": "a53e4587-03e4-4120-8aa5-9601a7069edd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a53e4587-03e4-4120-8aa5-9601a7069edd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
+    "octgnid": "c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
+    "name": "Roofless Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Ruins.",
+    "text": "While Roofless Tower is in the staging area, it gains: \"Forced: When a player plays an event, either remove 1 progress from the main quest, or cancel the effects of that event.\" Travel: Exhaust a hero to travel here.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 97,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 97,
+        "quantity": 2,
+        "octgnid": "c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+    "octgnid": "d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+    "name": "Banner of the Serpent",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Item. Harad.",
+    "text": "Guarded (enemy or location). While Banner of the Serpent is attached to an encounter card, each Harad enemy gets +1 [attack]. Action: Exhaust Banner of the Serpent and raise your threat by 1 to give each Harad enemy engaged with you -1 [attack] until the end of the phase.",
+    "is_unique": true,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 91,
+    "quantity": 1,
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {},
+    "imagesrc": "/cards/d6d4ea3a-402c-413b-9732-a07a21dd15b0.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 91,
+        "quantity": 1,
+        "octgnid": "d6d4ea3a-402c-413b-9732-a07a21dd15b0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d6d4ea3a-402c-413b-9732-a07a21dd15b0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
+    "octgnid": "e8c78f25-00d0-4b3b-8cac-03e533edfe41",
+    "name": "Desert Bastion",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Ruins.",
+    "text": "Desert Bastion gets +1 [threat] for each Harad objective the players control.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 98,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each Harad objective the players control.",
+    "encounter_set": "The Black Serpent",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/e8c78f25-00d0-4b3b-8cac-03e533edfe41.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 98,
+        "quantity": 3,
+        "octgnid": "e8c78f25-00d0-4b3b-8cac-03e533edfe41",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e8c78f25-00d0-4b3b-8cac-03e533edfe41.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

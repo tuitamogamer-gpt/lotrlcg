@@ -1,3 +1,4 @@
+import { discardableHand } from "./hand-rules";
 import { removeFromQuest } from "./board";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { isAlly as playerUnitIsAlly } from "./card-types";
@@ -479,8 +480,9 @@ export function finalRingEffect(s: GameState, e: Effect): boolean {
         e.count !== undefined && e.count < 10 && s.deck[e.count] === e.code;
       if (taken) s.hand.push(takePlayerDeck(s, e.count));
       s.deck = shuffle(s, s.deck);
-      if (taken && s.hand.length)
-        discardHandCard(s, s.hand[Math.floor(random(s) * s.hand.length)].id);
+      const hand = discardableHand(s);
+      if (taken && hand.length)
+        discardHandCard(s, hand[Math.floor(random(s) * hand.length)].id);
       return true;
     }
     case "finalRingErkenbrand": {

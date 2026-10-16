@@ -223,6 +223,12 @@ export type ScenarioId =
   | "the-mumakil"
   | "race-across-harad"
   | "beneath-the-sands"
+  | "the-black-serpent"
+  | "the-dungeons-of-cirith-gurat"
+  | "the-crossings-of-poros"
+  | "journey-up-the-anduin"
+  | "lost-in-mirkwood"
+  | "the-kings-quest"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -358,8 +364,13 @@ export interface GameState {
   mumakil?: import("./mumakil-support").MumakilState;
   raceHarad?: import("./race-harad-support").RaceHaradState;
   beneathSands?: import("./beneath-sands-support").BeneathSandsState;
+  blackSerpent?: import("./black-serpent-support").BlackSerpentState;
+  cirithGurat?: import("./cirith-gurat-support").CirithGuratState;
+  crossingsPoros?: import("./crossings-poros-support").CrossingsPorosState;
+  wildsRhovanion?: import("./wilds-rhovanion-support").WildsRhovanionState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
+  batch4WindReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
   sideQuestSelections?: Record<
     string,
@@ -546,6 +557,17 @@ export interface GameState {
     raceHaradPursuerShadows?: number;
     raceHaradReturnToOrcs?: boolean;
     beneathSandsPoisonShadow?: boolean;
+    blackSerpentKilled?: number;
+    blackSerpentQuarter?: number;
+    blackSerpentChaos?: boolean;
+    porosKilled?: number;
+    porosDangerShadows?: number;
+    porosThreatShadows?: number;
+    porosPoisonShadow?: boolean;
+    wildsBlankShadow?: boolean;
+    wildsDiscardAlly?: boolean;
+    wildsCannotReady?: boolean;
+    wildsGuardDefense?: number;
     desertPoisonShadow?: boolean;
     umbarKilled?: number;
     umbarInjuredShadows?: number;

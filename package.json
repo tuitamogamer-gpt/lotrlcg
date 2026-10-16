@@ -107,7 +107,20 @@
     "test:browser-beneath-sands": "npm run test:beneath-sands-quests && npm run test:beneath-sands-players",
     "test:beneath-sands-simulation": "node --import tsx --test tests/beneath-sands-simulation.test.ts",
     "test:beneath-sands-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat beneath-the-sands normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
-    "test:race-harad-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat race-across-harad normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:race-harad-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat race-across-harad normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:batch4-simulation": "node --import tsx --test tests/batch4-simulation.test.ts",
+    "test:black-serpent-quests": "node --import tsx scripts/browser-black-serpent.mjs",
+    "test:cirith-gurat-quests": "node --import tsx scripts/browser-cirith-gurat.mjs",
+    "test:crossings-poros-quests": "node --import tsx scripts/browser-crossings-poros.mjs",
+    "test:wilds-rhovanion-quests": "node --import tsx scripts/browser-wilds-rhovanion.mjs",
+    "test:batch4-players": "node --import tsx scripts/browser-batch4-players.mjs && node --import tsx scripts/browser-batch4-reserves.mjs",
+    "test:browser-black-serpent": "npm run test:black-serpent-quests",
+    "test:browser-cirith-gurat": "npm run test:cirith-gurat-quests",
+    "test:browser-crossings-poros": "npm run test:crossings-poros-quests",
+    "test:browser-wilds-rhovanion": "npm run test:wilds-rhovanion-quests",
+    "test:browser-batch4-players": "npm run test:batch4-players",
+    "test:browser-batch4": "npm run test:black-serpent-quests && npm run test:cirith-gurat-quests && npm run test:crossings-poros-quests && npm run test:wilds-rhovanion-quests && npm run test:batch4-players",
+    "test:batch4-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-black-serpent|the-dungeons-of-cirith-gurat|the-crossings-of-poros|journey-up-the-anduin|lost-in-mirkwood|the-kings-quest) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

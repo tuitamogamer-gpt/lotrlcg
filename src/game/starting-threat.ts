@@ -8,4 +8,13 @@ export const startingThreat = (heroes: (string | Card)[]) =>
     (total, hero) =>
       total + ((typeof hero === "string" ? card(hero) : hero).threat ?? 0),
     0,
-  ) + druadanPlayerStartingThreat(heroes);
+  ) +
+  druadanPlayerStartingThreat(heroes) -
+  heroes.filter(
+    (hero) => (typeof hero === "string" ? card(hero) : hero).code === "17109",
+  ).length *
+    heroes.filter((hero) =>
+      ((typeof hero === "string" ? card(hero) : hero).traits ?? "")
+        .split(".")
+        .some((trait) => trait.trim() === "Hobbit"),
+    ).length;

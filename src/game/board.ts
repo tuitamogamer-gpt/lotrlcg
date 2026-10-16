@@ -1,3 +1,7 @@
+import type { DamageContext } from "./damage-context";
+import * as BatchPlayers from "./batch4-player";
+import * as WildsPlayers from "./wilds-player";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as RacePlayers from "./race-harad-player";
@@ -522,6 +526,11 @@ export function charactersCommitted(
     s,
     actual.map((u) => u.id),
   );
+  BatchPlayers.batch4PlayerCharactersCommitted(
+    s,
+    actual.map((u) => u.id),
+  );
+  WildsPlayers.wildsPlayerCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
   foundationsCharactersCommitted(s, actual);
@@ -623,7 +632,8 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   const abilitySource = activePlayerAbilityCode(s);
   if (
     cardEffect &&
-    Desert.desertCrossingCannotPlayerReady(s) &&
+    (Desert.desertCrossingCannotPlayerReady(s) ||
+      batch4Scenario(s).cannotPlayerReady?.(s)) &&
     (!abilitySource || isPlayerCardSource(abilitySource))
   )
     return;
@@ -636,6 +646,7 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   if (wasExhausted) marshPlayerCharacterReadied(s, u);
   if (wasExhausted) stewardFearCharacterReadied(s, u);
   if (wasExhausted) Angmar.angmarCharacterReadied(s, u);
+  if (wasExhausted) batch4Scenario(s).characterReadied?.(s, u);
 }
 /** Move actual top cards atomically; deck-discard responses run after the causing effect. */
 export function discardPlayerDeck(
@@ -662,13 +673,29 @@ export function discardPlayerDeck(
   return discarded;
 }
 /** Preserve an event's physical phase identity across discard and recovery. */
-export function discardHandCard(s: GameState, id: string): Unit {
+export function discardHandCard(
+  s: GameState,
+  id: string,
+  options: { encounterEffect?: boolean } = {},
+): Unit {
   const controller = activeSeat(s);
   const index = s.hand.findIndex((u) => u.id === id);
   requireRule(index >= 0, "That physical card must remain in your hand.");
   if (!canLeaveHand(s.hand[index])) return s.hand[index];
+  const discardSource = activePlayerAbilityCode(s);
+  requireRule(
+    !batch4Scenario(s).cannotDiscardHand?.(
+      s,
+      s.hand[index],
+      !options.encounterEffect &&
+        !!discardSource &&
+        isPlayerCardSource(discardSource),
+    ),
+    "This card cannot be discarded by a player card effect.",
+  );
   const u = s.hand.splice(index, 1)[0];
   ringMakerCharacterLeft(s, u.id);
+  if (batch4Scenario(s).handDiscardDestination?.(s, u)) return u;
   forOwner(s, u.owner ?? activeSeat(s), () => {
     s.discard.push(u.code);
     foundationsPlayerCardDiscarded(s, u);
@@ -771,6 +798,7 @@ export function check(s: GameState) {
   Cobas.cobasCheck(s);
   City.cityCheck(s);
   Sands.beneathSandsCheck(s);
+  batch4Scenario(s).check?.(s);
   Umbar.umbarCheck(s);
   Desert.desertCrossingCheck(s);
   Mordor.mordorCheck(s);
@@ -892,6 +920,7 @@ export function check(s: GameState) {
         !s.used.includes("game:race-harad-mumak-lost") &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
+          batch4Scenario(s).missingHeroAllowed?.(s, i) ||
           foundationsHeroMissingAllowed(s, i) ||
           Gram.gramHeroMissingAllowed(s, i))
       )
@@ -1023,6 +1052,7 @@ export function check(s: GameState) {
     s.used.includes("game:race-harad-mumak-lost") ||
     (!s.heroes.length &&
       !s.prisoner &&
+      !batch4Scenario(s).missingHeroAllowed?.(s, 0) &&
       !foundationsHeroMissingAllowed(s, 0) &&
       !Gram.gramHeroMissingAllowed(s, 0))
   ) {
@@ -1248,6 +1278,7 @@ export function damage(
   value = Mumakil.mumakilDamageAmount(s, u, value);
   value = Race.raceHaradDamageAmount(s, u, value);
   value = Sands.beneathSandsDamageAmount(s, u, value);
+  value = batch4Scenario(s).damageAmount?.(s, u, value, context) ?? value;
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
   if (
@@ -1296,6 +1327,7 @@ export function damage(
   City.cityDamageDealt(s, u, value, context);
   Desert.desertCrossingDamageDealt(s, u, value, context);
   Sands.beneathSandsDamageDealt(s, u, value, context);
+  batch4Scenario(s).damageDealt?.(s, u, value, context);
   Mumakil.mumakilDamageDealt(s, u, value, context);
   HaradResponses.haradPlayerDamageTaken(s, u, value, context);
   if (u.damage >= stats(s, u).health)
@@ -1382,7 +1414,7 @@ export function damage(
     TempleEncounters.templeCharacterDestroyed(s, u, context);
     DrownedCompanions.drownedCharacterDestroyed(s, u, context);
     Osgiliath.assaultOsgiliathCharacterDestroyed(s, u, context);
-    destroy(s, u);
+    destroy(s, u, true, "discard", false, context);
   }
   check(s);
   return true;
@@ -1403,6 +1435,7 @@ export function discardAttachment(
   if (Temple.templeAttachmentLeaves(s, u, a)) return;
   if (Mordor.mordorAttachmentLeaves(s, u, a, leaving)) return;
   if (Race.raceHaradAttachmentLeaves(s, u, a, leaving)) return;
+  if (batch4Scenario(s).attachmentLeaves?.(s, u, a, leaving)) return;
   if (Dread.dreadAttachmentLeaves(s, u, a, leaving)) return;
   if (Rhudaur.rhudaurAttachmentLeaves(s, u, a)) return;
   if (Celebrimbor.celebrimborAttachmentLeaves(s, u, a, leaving)) return;
@@ -1455,6 +1488,7 @@ export function characterLeftPlay(
   CityPlayers.cityPlayerCharacterLeft(s, u);
   Mordor.mordorCharacterLeft(s, u, controller);
   Race.raceHaradCharacterLeft(s, u, controller);
+  batch4Scenario(s).characterLeft?.(s, u, controller, destination.zone);
   DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -1521,6 +1555,7 @@ export function destroy(
   destruction = true,
   destination: "discard" | "removed" = "discard",
   byCardEffect = !destruction,
+  damageContext: DamageContext = {},
 ) {
   syncAttachmentText(s);
   if (byCardEffect && activePlayerAbilityCode(s) && playerEffectImmune(s, u))
@@ -1546,6 +1581,10 @@ export function destroy(
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
+  if (batch4Scenario(s).cannotLeave?.(s, u)) return;
+  if (destruction) batch4Scenario(s).characterDestroyed?.(s, u, damageContext);
+  batch4Scenario(s).hostLeaves?.(s, u, destruction);
+  WildsPlayers.wildsPlayerGuardLeaving(s, u);
   City.cityDestroyed(s, u, destruction);
   Umbar.umbarEnemyDestroyed(s, u, destruction);
   Mordor.mordorEnemyLeaves(s, u, destruction);
@@ -1579,6 +1618,7 @@ export function destroy(
   const lastKnownType = unitType(u);
   const lastKnownBlanked = !!u.blanked;
   const lastAttachments = [...u.attachments];
+  if (isHero(u) || isAlly(u)) WildsPlayers.wildsPlayerCharacterLeaving(s, u);
   const wasEngaged = allEngaged(s).some((enemy) => enemy.id === u.id);
   if (s.sailing?.test)
     s.sailing.test.committedIds = s.sailing.test.committedIds.filter(
@@ -1677,6 +1717,7 @@ export function destroy(
         lastKnownBlanked,
       )
     ) {
+    } else if (batch4Scenario(s).enemyDestination?.(s, u)) {
     } else if (Dread.dreadEnemyLeaves(s, u)) {
     } else if (u.code === "01115") {
       s.encounterDeck.push(u.code);
@@ -1815,6 +1856,9 @@ export function discardLocation(s: GameState, u: Unit) {
     !playerCardImmune(u),
     "This location is immune to player card effects.",
   );
+  if (batch4Scenario(s).cannotLeave?.(s, u)) return;
+  batch4Scenario(s).hostLeaves?.(s, u, false);
+  WildsPlayers.wildsPlayerGuardLeaving(s, u);
   const wasActive = allActiveLocations(s).some(
     (location) => location.id === u.id,
   );
@@ -1852,7 +1896,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     Desert.desertCrossingLocationProgressBlocked(s, u) ||
     Umbar.umbarLocationProgressBlocked(s, u) ||
     Race.raceHaradLocationProgressBlocked(s, u) ||
-    Sands.beneathSandsLocationProgressBlocked(s, u)
+    Sands.beneathSandsLocationProgressBlocked(s, u) ||
+    batch4Scenario(s).locationProgressBlocked?.(s, u)
   )
     return;
   if (Temple.templeProgressLocation(s, u, value)) return;
@@ -1864,6 +1909,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (heirsLocationProgressBlocked(s, u)) return;
   if (shadowFlameLocationProgressBlocked(s, u)) return;
   if (longDarkProgressLocation(s, u, value)) return;
+  value = batch4Scenario(s).locationProgressAmount?.(s, u, value) ?? value;
   if (watcherWaterProgressLocation(s, u, value)) return;
   value = Math.min(
     Math.max(0, value),
@@ -1878,6 +1924,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     return;
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
+  batch4Scenario(s).hostLeaves?.(s, u, false);
+  WildsPlayers.wildsPlayerGuardLeaving(s, u);
   log(s, `${name(u)} is explored.`, "good");
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   if (wasActive) removeActiveLocation(s, u.id);
@@ -1904,6 +1952,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Mumakil.mumakilExplored(s, u, wasActive);
   Race.raceHaradExplored(s, u, wasActive);
   Sands.beneathSandsExplored(s, u, wasActive);
+  batch4Scenario(s).explored?.(s, u, wasActive);
   RacePlayers.raceHaradPlayerLocationExplored(s, u, wasActive);
   Mordor.mordorExplored(s, u);
   Rhudaur.rhudaurExplored(s, u, wasActive);
@@ -2156,6 +2205,7 @@ export function advanceQuest(s: GameState) {
   if (Mumakil.mumakilAdvance(s)) return;
   if (Race.raceHaradAdvance(s)) return;
   if (Sands.beneathSandsAdvance(s)) return;
+  if (batch4Scenario(s).advance?.(s)) return;
   if (Drowned.drownedAdvance(s)) return;
   if (Temple.templeAdvance(s)) return;
   if (Depths.depthsAdvance(s)) return;
@@ -2332,6 +2382,7 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
   const lastKnownAttack = stats(s, u).attack;
   const lastKnownTraits = effectiveTraits(u);
   const lastKnownType = unitType(u);
+  WildsPlayers.wildsPlayerCharacterLeaving(s, u);
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   forOwner(s, controller, () => {
     s.allies = s.allies.filter((a) => a.id !== u.id);
@@ -2383,6 +2434,7 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
       id: "",
     }));
   for (const move of moves) {
+    WildsPlayers.wildsPlayerCharacterLeaving(s, move.u);
     for (const a of [...move.u.attachments])
       discardAttachment(s, move.u, a, true);
     forOwner(s, move.controller, () => {
@@ -2530,7 +2582,11 @@ export function collectResources(s: GameState) {
 }
 
 export function engage(s: GameState, u: Unit, optional = false) {
-  if (Depths.depthsCannotEngage(s, u) || Drowned.drownedCannotEngage(s, u))
+  if (
+    batch4Scenario(s).cannotEngage?.(s, u) ||
+    Depths.depthsCannotEngage(s, u) ||
+    Drowned.drownedCannotEngage(s, u)
+  )
     return;
   const designated =
     Depths.depthsEngagementPlayer(s, u) ??
@@ -2545,6 +2601,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
     return;
   if (celebrimborProtected(s, u) || Carn.carnCannotEngage(s, u)) return;
+  if (batch4Scenario(s).cannotLeave?.(s, u)) return;
   if (!shadowFlameCanMove(s, u) || !amonPlayerCanEngage(s, u, activeSeat(s)))
     return;
   if (allEngaged(s).some((e) => e.id === u.id))
@@ -2564,7 +2621,9 @@ export function engage(s: GameState, u: Unit, optional = false) {
   const realmBefore = s.queue.length;
   Voyage.voyageEngaged(s, u, fromStaging);
   Cobas.cobasEngaged(s, u);
+  BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   Umbar.umbarEngaged(s, u);
+  batch4Scenario(s).engaged?.(s, u);
   Desert.desertCrossingEngaged(s, u);
   Mordor.mordorEngaged(s, u);
   HaradResponses.haradEnemyEngaged(s, u);
@@ -2631,6 +2690,7 @@ export function revealed(
     !thalinDefeats &&
     Wastes.wastesCancelAllowed(s) &&
     !Sands.beneathSandsCannotCancel(s) &&
+    !batch4Scenario(s).cannotCancel?.(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
@@ -2829,6 +2889,7 @@ export function resolveReveal(
     Dike.dikeRevealSurge(s, code, revealOrigin) ||
     Rhudaur.rhudaurRevealSurge(s, code) ||
     Sands.beneathSandsRevealSurge(s, code) ||
+    batch4Scenario(s).revealedSurge?.(s, code) ||
     (code === CHETWOOD.hills && Chetwood.chetwoodQuestCount(s) === 1)
   )
     prepend(s, ...surgeEffects(code));
@@ -2853,6 +2914,7 @@ export function resolveReveal(
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
     !Sands.beneathSandsCannotCancel(s) &&
+    !batch4Scenario(s).cannotCancel?.(s) &&
     !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
@@ -3057,7 +3119,9 @@ export function placeEncounter(
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
     City.cityCardEntered(s, fresh, fromReveal, cancel);
     Mordor.mordorCardEntered(s, fresh, fromReveal, cancel);
+    if (fromReveal && BatchPlayers.batch4PlayerWindRevealed(s, fresh)) return;
     Sands.beneathSandsCardEntered(s, fresh, fromReveal, cancel);
+    batch4Scenario(s).cardEntered?.(s, fresh, fromReveal, cancel);
     if (
       fromReveal &&
       revealOrigin === "encounter" &&
@@ -3116,6 +3180,7 @@ export function placeEncounter(
     log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
     return;
   }
+  if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
   if (Desert.desertCrossingEncounter(s, code)) return;
@@ -3436,7 +3501,14 @@ export function allyEntryResponses(
   fromHand: boolean,
   forcedResolved = false,
   raceForcedResolved = false,
+  batchForcedResolved = false,
 ) {
+  if (
+    !batchForcedResolved &&
+    batch4Scenario(s).allyEntered?.(s, u, played, fromHand)
+  )
+    return;
+  BatchPlayers.batch4PlayerAllyEntered(s, u, played);
   if (
     !forcedResolved &&
     Desert.desertCrossingAllyEntered(s, u, played, fromHand)
@@ -3693,7 +3765,14 @@ export function shadow(s: GameState, code: string) {
   if (Mordor.mordorShadow(s, code)) return;
   if (Mumakil.mumakilShadow(s, code)) return;
   if (Race.raceHaradShadow(s, code)) return;
+  if (code === "17144") {
+    const c = s.combat;
+    for (const id of c?.defenderIds ?? (c?.defenderId ? [c.defenderId] : []))
+      BatchPlayers.batch4PlayerWindShadow(s, get(s, id));
+    return;
+  }
   if (Sands.beneathSandsShadow(s, code)) return;
+  if (batch4Scenario(s).shadow?.(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;
   if (Raid.raidShadow(s, code)) return;

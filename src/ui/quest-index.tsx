@@ -19,6 +19,18 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-black-serpent": { lead: "Raid the camp", em: "of the Black Serpent." },
+  "the-dungeons-of-cirith-gurat": {
+    lead: "Rescue the prisoners",
+    em: "of Cirith Gurat.",
+  },
+  "the-crossings-of-poros": { lead: "Make a stand", em: "at the Poros." },
+  "journey-up-the-anduin": { lead: "Journey north", em: "up the Anduin." },
+  "lost-in-mirkwood": { lead: "Find the path", em: "out of Mirkwood." },
+  "the-kings-quest": {
+    lead: "Face the Fire Worm",
+    em: "beneath the Iron Hills.",
+  },
   "beneath-the-sands": { lead: "Find a path", em: "beneath the sands." },
   "race-across-harad": { lead: "Race north", em: "across Harad." },
   "the-mumakil": { lead: "Capture", em: "the wild Mûmakil." },

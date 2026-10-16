@@ -1,7 +1,7 @@
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { reorderPlayerDeck } from "./core";
 // Foundations of Stone: exact active rules beyond shared Dwarf/Elf attachments.
 import { card } from "./cards";
@@ -70,9 +70,7 @@ export function foundationsPlayerDiscardTaken(
 }
 const heavyEnemy = (s: GameState, id?: string) => {
   const u = get(s, id);
-  return u && playerUnitIsEnemy(u) && !playerCardImmune(u)
-    ? u
-    : undefined;
+  return u && playerUnitIsEnemy(u) && !playerCardImmune(u) ? u : undefined;
 };
 export const foundationsPlayerNoAttackExhaust = (u: Unit) =>
   u.code === "04104" && !u.blanked;
@@ -225,7 +223,7 @@ export function handleFoundationsPlayerEffect(
     case "foundationsScoutForced": {
       const scout = get(s, e.source);
       if (scout?.code !== "04104" || scout.blanked) return true;
-      if (!movableHand(s).length) {
+      if (!discardableHand(s).length) {
         discardCharacter(s, scout);
         return true;
       }
@@ -236,7 +234,7 @@ export function handleFoundationsPlayerEffect(
           code: scout.code,
           effects: [fx("foundationsScoutDiscard", { source: scout.id })],
         },
-        ...opts(movableHand(s), (u) => [
+        ...opts(discardableHand(s), (u) => [
           fx("foundationsScoutHand", { target: u.id }),
         ]),
       ]);

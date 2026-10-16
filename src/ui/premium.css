@@ -1,4 +1,6 @@
 /* Tabletop artwork; every counter and control remains live HTML. */
+.redbook[data-playmat="lost-in-mirkwood"],
+.mat-lost-in-mirkwood,
 .redbook[data-playmat="the-mumakil"],
 .mat-the-mumakil,
 .redbook[data-playmat="mirkwood"],
@@ -21,6 +23,10 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="journey-up-the-anduin"],
+.mat-journey-up-the-anduin,
+.redbook[data-playmat="the-crossings-of-poros"],
+.mat-the-crossings-of-poros,
 .redbook[data-playmat="race-across-harad"],
 .mat-race-across-harad,
 .redbook[data-playmat="wastes-of-eriador"],
@@ -71,6 +77,12 @@
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
+.redbook[data-playmat="the-black-serpent"],
+.mat-the-black-serpent,
+.redbook[data-playmat="the-dungeons-of-cirith-gurat"],
+.mat-the-dungeons-of-cirith-gurat,
+.redbook[data-playmat="the-kings-quest"],
+.mat-the-kings-quest,
 .redbook[data-playmat="escape-from-mount-gram"],
 .mat-escape-from-mount-gram,
 .redbook[data-playmat="beneath-the-sands"],
@@ -725,4 +737,38 @@
 .faceup-shadows button {
   max-width: 100%;
   overflow-wrap: anywhere;
+}
+
+.encounter-reserve-setup {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #81704a;
+  border-radius: 8px;
+  background: #20271f;
+  color: #f2e3c7;
+}
+.encounter-reserve-setup h3 {
+  margin: 0 0 0.35rem;
+}
+.encounter-reserve-setup p {
+  margin: 0 0 0.75rem;
+}
+.redbook .encounter-reserve-setup p {
+  color: #e8dabc;
+}
+.encounter-reserve-setup label {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.65rem;
+  min-width: 0;
+}
+.encounter-reserve-setup select {
+  width: 100%;
+  min-width: 0;
+  padding: 0.6rem;
+  background: #141b15;
+  color: inherit;
+  border: 1px solid #a68b57;
+  border-radius: 4px;
+  font: inherit;
 }

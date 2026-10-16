@@ -22,6 +22,14 @@ import { MUMAKIL_QUESTS } from "./game/mumakil-support";
 import { MumakilScenarioState } from "./ui/mumakil-state";
 import { RACE_HARAD_QUESTS } from "./game/race-harad-support";
 import { RaceHaradScenarioState } from "./ui/race-harad-state";
+import { BLACK_SERPENT_QUESTS } from "./game/black-serpent-support";
+import { CIRITH_GURAT_QUESTS } from "./game/cirith-gurat-support";
+import { CROSSINGS_POROS_QUESTS } from "./game/crossings-poros-support";
+import { WILDS_RHOVANION_QUESTS } from "./game/wilds-rhovanion-support";
+import { BlackSerpentScenarioState } from "./ui/black-serpent-state";
+import { CirithGuratScenarioState } from "./ui/cirith-gurat-state";
+import { CrossingsPorosScenarioState } from "./ui/crossings-poros-state";
+import { WildsRhovanionScenarioState } from "./ui/wilds-rhovanion-state";
 import { BENEATH_SANDS_QUESTS } from "./game/beneath-sands-support";
 import { BeneathSandsScenarioState } from "./ui/beneath-sands-state";
 import { COBAS_OBJECTIVES } from "./game/cobas-support";
@@ -810,6 +818,58 @@ export default function App() {
         ? savedSeats(game, decks)
         : setupSeats(undefined, decks),
   );
+  const [reserveWindCounts, setReserveWindCounts] = useState<
+    Record<string, number>
+  >({});
+  const encounterReserveDecks = (style: "classic" | "hotseat") =>
+    (style === "hotseat" ? seats.map((p) => p.deckId) : [selectedDeck]).flatMap(
+      (id, player) => {
+        const d = describeDeck(id, decks);
+        return d && (d.cards["17140"] ?? 0) > 0 && (d.cards["09007"] ?? 0) > 0
+          ? [{ player, id, name: d.name }]
+          : [];
+      },
+    );
+  const encounterReserveControls = (style: "classic" | "hotseat") => {
+    const eligible = encounterReserveDecks(style);
+    return eligible.length ? (
+      <section
+        className="encounter-reserve-setup"
+        data-encounter-reserve-setup
+        aria-label="Encounter card reserves"
+      >
+        <h3>Encounter card reserves</h3>
+        <p>
+          Choose three set aside cards: Wind from the Sea and Ranger of the
+          North.
+        </p>
+        {eligible.map(({ player, id, name }) => (
+          <label key={`${style}:${player}:${id}`}>
+            <span>
+              Player {player + 1} · {name}
+            </span>
+            <select
+              aria-label={`Player ${player + 1} Encounter reserves`}
+              value={reserveWindCounts[`${player}:${id}`] ?? 1}
+              onChange={(event) =>
+                setReserveWindCounts((current) => ({
+                  ...current,
+                  [`${player}:${id}`]: Number(event.target.value),
+                }))
+              }
+            >
+              {[0, 1, 2, 3].map((wind) => (
+                <option key={wind} value={wind}>
+                  {wind} Wind · {3 - wind}{" "}
+                  {3 - wind === 1 ? "Ranger" : "Rangers"}
+                </option>
+              ))}
+            </select>
+          </label>
+        ))}
+      </section>
+    ) : null;
+  };
   const setDecks = (list: CustomDeck[]) => {
     const current = readDeckStorage();
     if (current.raw !== observedDeckRaw.current) {
@@ -1162,6 +1222,13 @@ export default function App() {
       }
       const startingDeck =
         style === "hotseat" ? describeDeck(seats[0].deckId, decks)! : starter;
+      const batch4WindReserves: Record<number, number> = {},
+        rangerReserves: Record<number, number> = {};
+      for (const { player, id } of encounterReserveDecks(style)) {
+        const wind = reserveWindCounts[`${player}:${id}`] ?? 1;
+        batch4WindReserves[player] = wind;
+        rangerReserves[player] = 3 - wind;
+      }
       const s = createGame(
         Date.now(),
         startingDeck.cards,
@@ -1170,6 +1237,8 @@ export default function App() {
         {
           guided: true,
           reviewMode,
+          batch4WindReserves,
+          rangerReserves,
           easy: easyMode === "on",
           scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
           playMode,
@@ -1829,6 +1898,7 @@ export default function App() {
               decks={decks}
               onBuild={() => nav("decks")}
             />
+            {encounterReserveControls(setupMode)}
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <section className="mode-selection" aria-label="Choose game mode">
               <div className="mode-heading">
@@ -2281,6 +2351,7 @@ export default function App() {
               custom={decks}
               onBuild={() => nav("decks")}
             />
+            {encounterReserveControls("classic")}
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <div className="hero-roster">
               {starter.heroes.map((code) => (
@@ -2752,6 +2823,13 @@ export default function App() {
             <MumakilScenarioState s={game} inspect={setDetail} />
             <RaceHaradScenarioState s={game} inspect={setDetail} />
             <BeneathSandsScenarioState s={game} inspect={setDetail} />
+            <BlackSerpentScenarioState s={game} inspect={setDetail} />
+            <CirithGuratScenarioState s={game} inspect={setDetail} />
+            <CrossingsPorosScenarioState s={game} inspect={setDetail} />
+            <WildsRhovanionScenarioState
+              s={game}
+              onInspect={(code) => setDetail(card(code))}
+            />
             <div className="table-layout">
               <section className={`gameboard board-${game.scenarioId}`}>
                 <JourneyArea
@@ -3561,6 +3639,10 @@ export default function App() {
                       ...MUMAKIL_QUESTS,
                       ...RACE_HARAD_QUESTS,
                       ...BENEATH_SANDS_QUESTS,
+                      ...BLACK_SERPENT_QUESTS,
+                      ...CIRITH_GURAT_QUESTS,
+                      ...CROSSINGS_POROS_QUESTS,
+                      ...WILDS_RHOVANION_QUESTS,
                     ].find((c) => c.code === stage.cardCode);
                     const printed =
                       local ??

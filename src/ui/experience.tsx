@@ -1,3 +1,7 @@
+import { BlackSerpentQuestGoals } from "./black-serpent-state";
+import { CirithGuratQuestGoals } from "./cirith-gurat-state";
+import { CrossingsPorosQuestGoals } from "./crossings-poros-state";
+import { WildsRhovanionQuestGoals } from "./wilds-rhovanion-state";
 import { selectedSideQuest } from "../game/side-quest-support";
 import { AngmarQuestGoals } from "./angmar-goals";
 import { GreyHavensQuestGoals } from "./grey-havens-state";
@@ -707,6 +711,10 @@ export function QuestGoals({ s }: { s: GameState }) {
   if (s.city) return <CityQuestGoals s={s} />;
   if (s.raceHarad) return <RaceHaradQuestGoals s={s} />;
   if (s.beneathSands) return <BeneathSandsQuestGoals s={s} />;
+  if (s.blackSerpent) return <BlackSerpentQuestGoals s={s} />;
+  if (s.cirithGurat) return <CirithGuratQuestGoals s={s} />;
+  if (s.crossingsPoros) return <CrossingsPorosQuestGoals s={s} />;
+  if (s.wildsRhovanion) return <WildsRhovanionQuestGoals s={s} />;
   if (s.voyageBelegaer || s.fateNumenor || s.raidGreyHavens || s.stormcaller)
     return <GreyHavensQuestGoals s={s} />;
   if (

@@ -1,3 +1,6 @@
+import * as BatchSupport from "./batch4-player-support";
+import * as WildsSupport from "./wilds-player-support";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import { beneathSandsPlayerStats } from "./beneath-sands-player-support";
 import * as Race from "./race-harad";
@@ -288,6 +291,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
       Desert.desertCrossingCannotReady(s, u) ||
       Mumakil.mumakilCannotReady(s, u) ||
       Sands.beneathSandsCannotReady(s, u) ||
+      batch4Scenario(s).cannotReady?.(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -554,6 +558,9 @@ export function stats(s: GameState, u: Unit) {
       0,
       (c.willpower ?? 0) +
         [
+          batch4Scenario(s).stats?.(s, u).will ?? 0,
+          BatchSupport.batch4PlayerStats(s, u).will,
+          WildsSupport.wildsPlayerStats(s, u).will,
           chetwoodBonus.will,
           cobasBonus.will,
           Mordor.mordorWillBonus(s, u),
@@ -622,6 +629,9 @@ export function stats(s: GameState, u: Unit) {
         Mordor.mordorStats(s, u).attack +
         Race.raceHaradStats(s, u).attack +
         Sands.beneathSandsStats(s, u).attack +
+        (batch4Scenario(s).stats?.(s, u).attack ?? 0) +
+        BatchSupport.batch4PlayerStats(s, u).attack +
+        WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
         Umbar.umbarStats(s, u).attack +
         Desert.desertCrossingStats(s, u).attack +
@@ -693,6 +703,9 @@ export function stats(s: GameState, u: Unit) {
             Mordor.mordorStats(s, u).defense +
             Race.raceHaradStats(s, u).defense +
             Sands.beneathSandsStats(s, u).defense +
+            (batch4Scenario(s).stats?.(s, u).defense ?? 0) +
+            BatchSupport.batch4PlayerStats(s, u).defense +
+            WildsSupport.wildsPlayerStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
             Desert.desertCrossingStats(s, u).defense +
             Raid.raidStats(s, u).defense +
@@ -733,6 +746,8 @@ export function stats(s: GameState, u: Unit) {
       cobasBonus.health +
       Mordor.mordorStats(s, u).health +
       Race.raceHaradStats(s, u).health +
+      (batch4Scenario(s).stats?.(s, u).health ?? 0) +
+      WildsSupport.wildsPlayerStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
@@ -741,6 +756,8 @@ export function stats(s: GameState, u: Unit) {
   };
   if (Dread.dreadWillZero(s, u)) result.will = 0;
   if (druadanPlayerDefenseStat(s, u)) result.defense = result.will;
+  const overrideWill = batch4Scenario(s).willpowerOverride?.(s, u);
+  if (overrideWill !== undefined) result.will = overrideWill;
   result.attack = Math.max(0, result.attack);
   return result;
 }
@@ -802,6 +819,11 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
               0,
               printed +
                 surcharge +
+                (c.type_code === "ally"
+                  ? (batch4Scenario(s).allyCost?.(s) ?? 0)
+                  : 0) -
+                BatchSupport.batch4PlayerCostReduction(s, c) -
+                WildsSupport.wildsPlayerCostReduction(s, c, target) +
                 Dike.dikePlayCost(
                   s,
                   c,
@@ -885,6 +907,7 @@ export const threatOf = (s: GameState, u: Unit) =>
             Mumakil.mumakilThreatBonus(s, u) +
             Race.raceHaradThreatBonus(s, u) +
             Sands.beneathSandsThreatBonus(s, u) +
+            (batch4Scenario(s).threatBonus?.(s, u) ?? 0) +
             Umbar.umbarThreatBonus(s, u) +
             Desert.desertCrossingThreatBonus(s, u) +
             Storm.stormcallerThreatBonus(s, u) +
@@ -927,27 +950,32 @@ export const threatOf = (s: GameState, u: Unit) =>
         );
 
 export const stagingThreat = (s: GameState) =>
-  Race.raceHaradStagingThreat(s) +
-  Desert.desertCrossingStagingThreat(s) +
-  s.threatModifier +
-  Voyage.voyageStagingThreat(s) +
-  Cobas.cobasStagingThreat(s) +
-  Fate.fateStagingThreat(s) +
-  TempleEncounters.templeEncounterThreat(s) +
-  Dike.dikeStagingThreat(s) +
-  Rhu.rhudaurStagingThreat(s) +
-  Carn.carnStagingThreat(s) +
-  Dread.dreadStagingThreat(s) +
-  heirsStagingThreatBonus(s) +
-  BloodQuest.bloodGondorStagingBonus(s) +
-  s.staging
-    .filter((u) =>
-      ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
-    )
-    .filter(
-      (u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u),
-    )
-    .reduce((n, u) => n + threatOf(s, u), 0);
+  Math.max(
+    0,
+    (batch4Scenario(s).stagingThreat?.(s) ?? 0) -
+      BatchSupport.batch4PlayerStagingReduction(s) +
+      Race.raceHaradStagingThreat(s) +
+      Desert.desertCrossingStagingThreat(s) +
+      s.threatModifier +
+      Voyage.voyageStagingThreat(s) +
+      Cobas.cobasStagingThreat(s) +
+      Fate.fateStagingThreat(s) +
+      TempleEncounters.templeEncounterThreat(s) +
+      Dike.dikeStagingThreat(s) +
+      Rhu.rhudaurStagingThreat(s) +
+      Carn.carnStagingThreat(s) +
+      Dread.dreadStagingThreat(s) +
+      heirsStagingThreatBonus(s) +
+      BloodQuest.bloodGondorStagingBonus(s) +
+      s.staging
+        .filter((u) =>
+          ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
+        )
+        .filter(
+          (u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u),
+        )
+        .reduce((n, u) => n + threatOf(s, u), 0),
+  );
 
 export const questWill = (s: GameState) =>
   [...allCharacters(s), ...heirsStagingQuestCharacters(s)]
@@ -990,7 +1018,8 @@ export const locationQuest = (s: GameState, u: Unit) =>
     collectorLocationQuestBonus(u) +
     BloodQuest.bloodGondorLocationBonus(s, u) +
     stewardFearLocationQuestBonus(s, u) +
-    Rhu.rhudaurLocationQuestBonus(s, u);
+    Rhu.rhudaurLocationQuestBonus(s, u) +
+    (batch4Scenario(s).locationQuestBonus?.(s, u) ?? 0);
 export const engagementCost = (s: GameState, u: Unit) =>
   Wastes.wastesEngagementCost(s, u) ??
   heirsEngagementCost(s, u) ??
@@ -1007,6 +1036,7 @@ export const engagementCost = (s: GameState, u: Unit) =>
       Umbar.umbarEngagementModifier(s, u) +
       Desert.desertCrossingEngagementBonus(s, u) +
       Sands.beneathSandsEngagementBonus(s, u) +
+      (batch4Scenario(s).engagementBonus?.(s, u) ?? 0) +
       Cobas.cobasEngagementModifier(s, u) +
       Mordor.mordorEngagementModifier(s, u) +
       TempleEncounters.templeEncounterEngagement(s, u),
@@ -1019,7 +1049,8 @@ export const mainStageInfo = (s: GameState) => {
     mordorStageInfo(s) ??
     mumakilStageInfo(s) ??
     raceHaradStageInfo(s) ??
-    Sands.beneathSandsStageInfo(s);
+    Sands.beneathSandsStageInfo(s) ??
+    batch4Scenario(s).stageInfo?.(s);
   if (harad) return harad;
   const city = cityStageInfo(s);
   if (city) return city;
@@ -1158,6 +1189,8 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
       (h) =>
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
+        WildsSupport.wildsPlayerNoResourceMatch(s, c) ||
+        WildsSupport.wildsPlayerPayer(h, c) ||
         MumakSupport.mumakilKahlielPays(h, c) ||
         Mordor.mordorIgnoresResourceMatch(s) ||
         (c.code === "22062" && hasTrait(h, "Rohan")) ||

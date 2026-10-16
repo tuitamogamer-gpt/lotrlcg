@@ -2,7 +2,7 @@ import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { globalPlayerOrder } from "./table";
 import { stewardFearLocationLeft } from "./steward-fear";
 import { engagedEnemies } from "./considered-engagement";
@@ -219,7 +219,7 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
     case "watcherBruinenForced": {
       const watcher = s.allies.find((u) => u.id === e.target);
       if (!watcher || watcher.blanked) return true;
-      if (!s.hand.length) {
+      if (!discardableHand(s).length) {
         discardCharacter(s, watcher);
         return true;
       }
@@ -230,7 +230,7 @@ export function handleWatcherPlayerEffect(s: GameState, e: Effect): boolean {
           code: "04056",
           effects: [fx("watcherBruinenDiscard", { target: watcher.id })],
         },
-        ...opts(movableHand(s), (u) => [
+        ...opts(discardableHand(s), (u) => [
           fx("watcherBruinenHand", { source: u.id }),
         ]),
       ]);

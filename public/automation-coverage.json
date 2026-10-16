@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 597,
-    "heroes": 68,
-    "deckCards": 528,
-    "encounterCards": 869,
-    "scenarios": 60,
+    "playerCards": 639,
+    "heroes": 73,
+    "deckCards": 564,
+    "encounterCards": 960,
+    "scenarios": 66,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -67,17 +67,23 @@
       "the-long-arm-of-mordor",
       "the-mumakil",
       "race-across-harad",
-      "beneath-the-sands"
+      "beneath-the-sands",
+      "the-black-serpent",
+      "the-dungeons-of-cirith-gurat",
+      "the-crossings-of-poros",
+      "journey-up-the-anduin",
+      "lost-in-mirkwood",
+      "the-kings-quest"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1647,
-    "pending": 2536
+    "scripted": 1805,
+    "pending": 2378
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 120
+    "scripted": 132
   },
   "registeredCodes": [
     "01001",
@@ -708,9 +714,51 @@
     "17062",
     "17063",
     "17064",
+    "17081",
+    "17082",
+    "17083",
+    "17084",
     "17085",
+    "17086",
+    "17087",
+    "17088",
+    "17089",
+    "17090",
+    "17109",
+    "17110",
+    "17111",
     "17112",
+    "17113",
+    "17114",
+    "17115",
+    "17116",
+    "17117",
+    "17118",
+    "17135",
+    "17136",
+    "17137",
+    "17138",
+    "17139",
+    "17140",
+    "17141",
+    "17142",
+    "17143",
+    "17144",
+    "18001",
+    "18002",
+    "18003",
+    "18004",
+    "18005",
+    "18006",
     "18007",
+    "18008",
+    "18009",
+    "18010",
+    "18011",
+    "18012",
+    "18013",
+    "18014",
+    "18015",
     "19003",
     "19028",
     "19089",
@@ -751,12 +799,14 @@
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
+    "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
+    "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
     "octgn:06badf71-8e85-479e-8ddf-1dec7a40e325",
     "octgn:06c4f297-b2a4-43a6-8d56-aa3385da3b69",
     "octgn:0700c66d-3fe6-4619-9512-edb0241e6203",
@@ -766,6 +816,7 @@
     "octgn:076e69c7-156b-46ef-8d11-d6a659da68b2",
     "octgn:0771f1dc-4baa-4181-9344-4ddd1e59136b",
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
+    "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
@@ -783,11 +834,16 @@
     "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
+    "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+    "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
+    "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
+    "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
     "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
@@ -795,6 +851,7 @@
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
+    "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
@@ -809,6 +866,8 @@
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+    "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
+    "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -816,6 +875,7 @@
     "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
+    "octgn:1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
     "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
@@ -824,7 +884,9 @@
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
     "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
+    "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
     "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
+    "octgn:206a9350-41f1-48ba-adf2-241d07a90885",
     "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
@@ -841,6 +903,7 @@
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
+    "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
     "octgn:246b941e-f8a7-46ba-966d-d0515111ab46",
     "octgn:24772594-75f3-4789-aeec-41526d845e11",
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
@@ -851,6 +914,7 @@
     "octgn:25ae9bce-b4c0-4ff8-aeb3-d0b57d3914d2",
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
     "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
+    "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
@@ -863,8 +927,11 @@
     "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
+    "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
@@ -872,9 +939,12 @@
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+    "octgn:2d1d915f-f889-4100-81b7-910ce93edff7",
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
+    "octgn:2d4b1381-467e-4bb4-9265-d26dec6125ea",
     "octgn:2dbe66bc-a6bf-42d7-92a5-d186dfe954c6",
     "octgn:2e1bb6cc-2f05-47f1-8ea5-78955cd0cbf2",
+    "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
@@ -896,6 +966,7 @@
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
     "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
     "octgn:35b3cfde-9964-4173-88c5-e5e5cb8f84ac",
@@ -904,6 +975,8 @@
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
+    "octgn:388d173e-e32a-4e02-b029-99180e34b014",
+    "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
     "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
@@ -920,8 +993,11 @@
     "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
+    "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
+    "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
+    "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
     "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
@@ -929,6 +1005,7 @@
     "octgn:4233fe0f-ba63-4947-8c3c-f732ab09c472",
     "octgn:42621898-ffe0-435a-a0c2-34ed4383eadb",
     "octgn:4297aa1e-8d53-4bd4-a750-ae5490fbb82b",
+    "octgn:42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
     "octgn:432c306a-7a68-45f9-8621-d7ea2126ae0b",
     "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
@@ -943,6 +1020,7 @@
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
+    "octgn:4732976c-a400-498f-9f97-108995fcd99f",
     "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
     "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
@@ -1006,8 +1084,10 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
+    "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
+    "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
@@ -1022,12 +1102,16 @@
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
+    "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
     "octgn:4ebd8ec5-79fe-4305-9c33-e06d37b1c8d5",
+    "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
     "octgn:4f4df8ea-7f18-4a76-85b0-7ece828bb837",
     "octgn:4fc6111a-93c3-4407-b067-1b82396b802f",
+    "octgn:504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
+    "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -1232,6 +1316,7 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
@@ -1240,14 +1325,19 @@
     "octgn:5388683d-3240-433a-9602-a7367e428406",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
     "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
+    "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
+    "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
+    "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
     "octgn:58d90f80-eb1a-46d9-a5c1-2e7b8c5b8451",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
@@ -1259,6 +1349,8 @@
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+    "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
+    "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
@@ -1267,16 +1359,22 @@
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
+    "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
+    "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+    "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "octgn:65ef76b1-e624-4763-8906-899e4630225f",
+    "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
+    "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
@@ -1289,6 +1387,7 @@
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+    "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
@@ -1309,8 +1408,11 @@
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+    "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
@@ -1325,10 +1427,12 @@
     "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
+    "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
+    "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
@@ -1341,32 +1445,41 @@
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
+    "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
+    "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
     "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
     "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
     "octgn:838eebac-81db-4f00-aaba-024d70a1582d",
+    "octgn:83a8586f-bb6d-4e90-84c7-3909034dad16",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
+    "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
+    "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
+    "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
     "octgn:874a98ba-9b90-49b3-9cd4-c06464696b5b",
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+    "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
     "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
+    "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
     "octgn:8affd994-f7f5-4341-8437-899f9a31b094",
@@ -1376,6 +1489,7 @@
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
+    "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
@@ -1388,12 +1502,14 @@
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+    "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
     "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
+    "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
     "octgn:93bf98f7-fe0f-4c03-bd93-2f8d5753acce",
     "octgn:93ece501-fae4-46e8-9720-316383b86688",
     "octgn:944aaafa-17e2-4352-9a04-384673089ee6",
@@ -1401,6 +1517,7 @@
     "octgn:9497ef98-8f38-4647-bf77-28d8007a911a",
     "octgn:94befa92-9e5f-4838-b1e1-0b54d698bcb3",
     "octgn:94ef148f-62f7-4659-8a49-9c42b9ed7cef",
+    "octgn:9511bcf2-9c06-413e-bf09-3bc076eb76d4",
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
@@ -1409,24 +1526,31 @@
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
     "octgn:97bf780d-cd76-492f-a970-37f78273c5bb",
     "octgn:97bf780d-cd76-492f-a970-37f78273c5bb:B",
+    "octgn:97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
     "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+    "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
+    "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
     "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
+    "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+    "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
+    "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
     "octgn:9d5d2136-f1e7-40fd-9a0f-fbac3c87f8f6",
     "octgn:9db89c44-e692-4afa-ac07-d4ac35165cb7",
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
+    "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -1442,7 +1566,9 @@
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
+    "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
+    "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
@@ -1463,7 +1589,9 @@
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+    "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
+    "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
@@ -1473,6 +1601,7 @@
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
+    "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
     "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
@@ -1486,6 +1615,7 @@
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
     "octgn:b4769083-91fb-4e9c-9736-17e8c28ff971",
     "octgn:b49b5be7-5bfc-4e65-bced-862a409e097d",
+    "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
@@ -1496,12 +1626,16 @@
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
     "octgn:b70846d1-3216-421a-9098-af2a4540b530",
+    "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
     "octgn:b77620fa-89a8-4f09-8552-ba4204e472d2",
+    "octgn:b77a9e58-9a88-4aec-9029-8d84269b0a3c",
     "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
     "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
+    "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
@@ -1513,9 +1647,11 @@
     "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
+    "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
     "octgn:c057b0ef-eb85-4afc-9ca8-60a0cca92bcc",
     "octgn:c08310b6-5201-4c70-975e-61a2e7ff329b",
     "octgn:c084e998-a5c8-4efd-a6ed-441f9f912c99",
+    "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
     "octgn:c0d85826-dc42-4ac8-851c-4ed671917e9d",
     "octgn:c12057ee-64d0-419a-adb8-17632e3182b0",
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
@@ -1529,6 +1665,8 @@
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
+    "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
+    "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
     "octgn:c4218a3e-6a6b-47a0-88c5-cdbcda3fb5eb",
     "octgn:c459cbdb-9831-4803-91b0-e791e349ace8",
     "octgn:c45dc401-bb07-42ec-ba4c-ee9105a3f349",
@@ -1554,6 +1692,7 @@
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc:B",
+    "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
     "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
@@ -1563,10 +1702,13 @@
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
+    "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+    "octgn:ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
     "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
+    "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
@@ -1574,16 +1716,19 @@
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+    "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+    "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
     "octgn:d664e3bd-3f0d-47d8-91bb-d61b27a13c22",
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
+    "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
@@ -1595,8 +1740,10 @@
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
+    "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+    "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
@@ -1615,6 +1762,7 @@
     "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
     "octgn:e176b4d7-2fae-4025-8a71-5c3bc843e2e1",
     "octgn:e1b0b7ba-c097-481b-baba-53755545cbbe",
+    "octgn:e1c521c0-2889-4f5e-a470-bf70bcf004bf",
     "octgn:e1edac2f-1d9c-44e6-af0a-10c3101f2709",
     "octgn:e2763cc3-019b-4397-b6f8-f647bf3fdf43",
     "octgn:e2a70b1d-2d38-48bd-a591-cd2844fe50fd",
@@ -1623,9 +1771,15 @@
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
     "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
     "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
+    "octgn:e38f5043-50b5-4b2a-a23f-f786106c4055",
     "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+    "octgn:e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
     "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
+    "octgn:e3e98df7-720f-49b8-995a-370961706cec",
+    "octgn:e3fed535-98f8-461d-a092-7ada49be2550",
+    "octgn:e428dad0-f116-40c3-82fd-6c78bfcdcb32",
+    "octgn:e4432b9b-4969-44be-937f-ca2728d57ad4",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
@@ -1635,9 +1789,11 @@
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
+    "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
     "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
+    "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
@@ -1645,6 +1801,7 @@
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
+    "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
@@ -1652,6 +1809,7 @@
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
@@ -1672,6 +1830,7 @@
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
+    "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
@@ -1681,6 +1840,7 @@
     "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
     "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+    "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
     "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
@@ -1697,8 +1857,11 @@
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
+    "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
+    "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93001",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93002",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93068",
@@ -1718,6 +1881,7 @@
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+    "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "orc-guard",
     "rc132",
     "rc133",
@@ -1727,7 +1891,8 @@
     "rc137",
     "rc138",
     "temple-lost-island",
-    "temple-uncharted-temple"
+    "temple-uncharted-temple",
+    "wilds-haldan"
   ],
   "products": [
     {
@@ -2160,9 +2325,9 @@
     {
       "product": "the-black-serpent",
       "total": 28,
-      "scripted": 1,
+      "scripted": 27,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "the-blood-of-gondor",
@@ -2202,9 +2367,9 @@
     {
       "product": "the-crossings-of-poros",
       "total": 29,
-      "scripted": 0,
+      "scripted": 29,
       "player": 10,
-      "playerScripted": 0
+      "playerScripted": 10
     },
     {
       "product": "the-dark-of-mirkwood",
@@ -2272,9 +2437,9 @@
     {
       "product": "the-dungeons-of-cirith-gurat",
       "total": 27,
-      "scripted": 1,
+      "scripted": 26,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "the-dunland-trap",
@@ -2650,9 +2815,9 @@
     {
       "product": "the-wilds-of-rhovanion",
       "total": 79,
-      "scripted": 1,
+      "scripted": 79,
       "player": 15,
-      "playerScripted": 1
+      "playerScripted": 15
     },
     {
       "product": "the-withered-heath",
@@ -9886,7 +10051,7 @@
       "name": "Fastred",
       "type": "hero",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9894,7 +10059,7 @@
       "name": "Song of Hope",
       "type": "attachment",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9902,7 +10067,7 @@
       "name": "Burst into Song",
       "type": "event",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9910,7 +10075,7 @@
       "name": "Defender of Cair Andros",
       "type": "ally",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9926,7 +10091,7 @@
       "name": "Fearless Scout",
       "type": "attachment",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9934,7 +10099,7 @@
       "name": "Rally the West",
       "type": "player-side-quest",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9942,7 +10107,7 @@
       "name": "Dúnedain Pipe",
       "type": "attachment",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9950,7 +10115,7 @@
       "name": "Old Toby",
       "type": "event",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9958,7 +10123,7 @@
       "name": "Southron Refugee",
       "type": "ally",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -9966,7 +10131,7 @@
       "name": "Folco Boffin",
       "type": "hero",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -9974,7 +10139,7 @@
       "name": "Knight of Dale",
       "type": "ally",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -9982,7 +10147,7 @@
       "name": "Diligent Noble",
       "type": "attachment",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -9998,7 +10163,7 @@
       "name": "Fierce Defense",
       "type": "event",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10006,7 +10171,7 @@
       "name": "Eregion Survivor",
       "type": "ally",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10014,7 +10179,7 @@
       "name": "Heirs of Earendil",
       "type": "event",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10022,7 +10187,7 @@
       "name": "Leaflock",
       "type": "ally",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10030,7 +10195,7 @@
       "name": "Legacy Blade",
       "type": "attachment",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10038,7 +10203,7 @@
       "name": "Open the Armory",
       "type": "event",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -10046,7 +10211,7 @@
       "name": "Quickbeam",
       "type": "hero",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10054,7 +10219,7 @@
       "name": "Halfast Gamgee",
       "type": "ally",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10062,7 +10227,7 @@
       "name": "Bulwark of the West",
       "type": "event",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10070,7 +10235,7 @@
       "name": "Beorning Guardian",
       "type": "ally",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10078,7 +10243,7 @@
       "name": "Followed",
       "type": "attachment",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10086,7 +10251,7 @@
       "name": "Flight to the Sea",
       "type": "event",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10094,7 +10259,7 @@
       "name": "Emyn Arnen Ranger",
       "type": "ally",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10102,7 +10267,7 @@
       "name": "The Dam Bursts",
       "type": "event",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10110,7 +10275,7 @@
       "name": "Magic Ring",
       "type": "attachment",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10118,7 +10283,7 @@
       "name": "Wind from the Sea",
       "type": "event",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -10126,7 +10291,7 @@
       "name": "Brand son of Bain",
       "type": "hero",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10134,7 +10299,7 @@
       "name": "Bard son of Brand",
       "type": "hero",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10142,7 +10307,7 @@
       "name": "Redwater Sentry",
       "type": "ally",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10150,7 +10315,7 @@
       "name": "North Realm Lookout",
       "type": "ally",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10158,7 +10323,7 @@
       "name": "Warrior of Dale",
       "type": "ally",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10166,7 +10331,7 @@
       "name": "Long Lake Trader",
       "type": "ally",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10182,7 +10347,7 @@
       "name": "King of Dale",
       "type": "attachment",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10190,7 +10355,7 @@
       "name": "Bow of Yew",
       "type": "attachment",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10198,7 +10363,7 @@
       "name": "Map of Rhovanion",
       "type": "attachment",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10206,7 +10371,7 @@
       "name": "Necklace of Girion",
       "type": "attachment",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10214,7 +10379,7 @@
       "name": "Traffic from Dale",
       "type": "event",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10222,7 +10387,7 @@
       "name": "To Arms!",
       "type": "event",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10230,7 +10395,7 @@
       "name": "Valour of the North",
       "type": "event",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -10238,7 +10403,7 @@
       "name": "Bartering",
       "type": "event",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -11766,7 +11931,7 @@
       "name": "Taken Prisoner",
       "type": "treachery",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -11958,7 +12123,7 @@
       "name": "Rescue the Prisoners",
       "type": "quest",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -12086,7 +12251,7 @@
       "name": "Shadowy Vale",
       "type": "location",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -12606,7 +12771,7 @@
       "name": "Weighed Down",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -12622,7 +12787,7 @@
       "name": "Bare Hilltop",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -12702,7 +12867,7 @@
       "name": "Forked Passage",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -12750,7 +12915,7 @@
       "name": "Poros Garrison",
       "type": "objective-ally",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -12790,7 +12955,7 @@
       "name": "Sneak Past the Guards",
       "type": "quest",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -12998,7 +13163,7 @@
       "name": "Dark Tunnel",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -13422,7 +13587,7 @@
       "name": "Frenzied Creature",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -13438,7 +13603,7 @@
       "name": "Bold and Grim",
       "type": "treachery",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -13678,7 +13843,7 @@
       "name": "Woodmen Village",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -13894,7 +14059,7 @@
       "name": "Fight Your Way Out",
       "type": "quest",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -13918,7 +14083,7 @@
       "name": "Desert Warg",
       "type": "enemy",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -14302,7 +14467,7 @@
       "name": "Stone Troll",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -14486,7 +14651,7 @@
       "name": "Overgrown Path",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -14734,7 +14899,7 @@
       "name": "Lost Armory",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -14878,7 +15043,7 @@
       "name": "Southron Pursuit",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -14958,7 +15123,7 @@
       "name": "Harondor Waste",
       "type": "location",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -15142,7 +15307,7 @@
       "name": "The Passage of the Ford",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -15166,7 +15331,7 @@
       "name": "Iron Hills Mine",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -15230,7 +15395,7 @@
       "name": "Orc Patrols",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -15934,7 +16099,7 @@
       "name": "Afraid of the Dark",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -16246,7 +16411,7 @@
       "name": "Vastness of Mirkwood",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -16254,7 +16419,7 @@
       "name": "Deadly Creatures",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -16630,7 +16795,7 @@
       "name": "Chaos in the Night",
       "type": "treachery",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -16710,7 +16875,7 @@
       "name": "Battle at the Crossings",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -16750,7 +16915,7 @@
       "name": "Dark Black Woods",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -16910,7 +17075,7 @@
       "name": "Fire Drake",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -17230,7 +17395,7 @@
       "name": "Southron Outrider",
       "type": "enemy",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -17878,7 +18043,7 @@
       "name": "Spiders of Mirkwood",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -17966,7 +18131,7 @@
       "name": "No Quarter",
       "type": "treachery",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -18350,7 +18515,7 @@
       "name": "Denizen of the Deep",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -18390,7 +18555,7 @@
       "name": "Carried Away",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -18494,7 +18659,7 @@
       "name": "Ambushed at Night",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -18534,7 +18699,7 @@
       "name": "The Serpent's Garb",
       "type": "objective",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -21110,7 +21275,7 @@
       "name": "Dragon Scales",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -21430,7 +21595,7 @@
       "name": "Stray Goblin",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -21534,7 +21699,7 @@
       "name": "The Old Ford",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -21574,7 +21739,7 @@
       "name": "The Black Serpent",
       "type": "enemy",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -21654,7 +21819,7 @@
       "name": "The Ephel Duath",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -21710,7 +21875,7 @@
       "name": "Southron Camp",
       "type": "location",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -21942,7 +22107,7 @@
       "name": "Find a Way Down",
       "type": "encounter-side-quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -21966,7 +22131,7 @@
       "name": "Werewolf",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -22214,7 +22379,7 @@
       "name": "Unseen Danger",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -22430,7 +22595,7 @@
       "name": "Dragon Breath",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -22454,7 +22619,7 @@
       "name": "Forest Clearing",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -22606,7 +22771,7 @@
       "name": "Dol Guldur Orcs",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -22622,7 +22787,7 @@
       "name": "Prison Guard",
       "type": "enemy",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -22774,7 +22939,7 @@
       "name": "Foothills of Mordor",
       "type": "location",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -23238,7 +23403,7 @@
       "name": "Mountains of Shadow",
       "type": "treachery",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -23782,7 +23947,7 @@
       "name": "Dragon Hoard",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -23862,7 +24027,7 @@
       "name": "Lonely Lands",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -23886,7 +24051,7 @@
       "name": "Tormented by Orcs",
       "type": "treachery",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -24366,7 +24531,7 @@
       "name": "The Serpent's Redoubt",
       "type": "location",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -24494,7 +24659,7 @@
       "name": "Desolate Land",
       "type": "location",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -24966,7 +25131,7 @@
       "name": "Mirkwood Patrol",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -24974,7 +25139,7 @@
       "name": "Summons from Mordor",
       "type": "objective",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -25110,7 +25275,7 @@
       "name": "Don't let them escape!",
       "type": "encounter-side-quest",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -25198,7 +25363,7 @@
       "name": "Danger Close Behind",
       "type": "treachery",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -25350,7 +25515,7 @@
       "name": "Gate of Iron",
       "type": "location",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -25382,7 +25547,7 @@
       "name": "Pack of Wargs",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -25470,7 +25635,7 @@
       "name": "Flight to Gondor",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -25686,7 +25851,7 @@
       "name": "Uruk Prowler",
       "type": "enemy",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -25798,7 +25963,7 @@
       "name": "Contested Depths",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -25974,7 +26139,7 @@
       "name": "Underground Lake",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -26326,7 +26491,7 @@
       "name": "Captured!",
       "type": "encounter-side-quest",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -26526,7 +26691,7 @@
       "name": "Wooded Riverbank",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -26654,7 +26819,7 @@
       "name": "The Black Serpent",
       "type": "enemy",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -26830,7 +26995,7 @@
       "name": "Serpent Guard",
       "type": "enemy",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -26862,7 +27027,7 @@
       "name": "Torture Room",
       "type": "location",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -27046,7 +27211,7 @@
       "name": "Crumbling Cavern",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -27142,7 +27307,7 @@
       "name": "Giant Spider",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -27150,7 +27315,7 @@
       "name": "Swarms of Bats",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -27318,7 +27483,7 @@
       "name": "Defeat the Serpent",
       "type": "quest",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -27398,7 +27563,7 @@
       "name": "Frightful Den",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -27894,7 +28059,7 @@
       "name": "Twilight Hall",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -27926,7 +28091,7 @@
       "name": "Broken Courtyard",
       "type": "location",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -28574,7 +28739,7 @@
       "name": "Truly Lost",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -28590,7 +28755,7 @@
       "name": "Lightless Grotto",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -28926,7 +29091,7 @@
       "name": "The Captives of Cirith Gurat",
       "type": "objective",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -29214,7 +29379,7 @@
       "name": "Traveling North",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -29454,7 +29619,7 @@
       "name": "Hobgoblin",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -29478,7 +29643,7 @@
       "name": "Woodmen Under Attack",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -29782,7 +29947,7 @@
       "name": "Lost in the Wild",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -30110,7 +30275,7 @@
       "name": "Jailer of Cirith Gurat",
       "type": "enemy",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -30486,7 +30651,7 @@
       "name": "The Fire Worm",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -30558,7 +30723,7 @@
       "name": "Ancient Treasury",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -30854,7 +31019,7 @@
       "name": "The Crossroad's Fort",
       "type": "quest",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -30862,7 +31027,7 @@
       "name": "Uruk Guardroom",
       "type": "location",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -31430,7 +31595,7 @@
       "name": "Roofless Tower",
       "type": "location",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -31622,7 +31787,7 @@
       "name": "Mines of Cirith Gurat",
       "type": "location",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -31718,7 +31883,7 @@
       "name": "Dangerous Crossing",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -31750,7 +31915,7 @@
       "name": "Dungeon Warg",
       "type": "enemy",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -31910,7 +32075,7 @@
       "name": "Eyes in the Dark",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -32214,7 +32379,7 @@
       "name": "Escape from Taur-nu-Fuin",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -32374,7 +32539,7 @@
       "name": "Banner of the Serpent",
       "type": "objective",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -32686,7 +32851,7 @@
       "name": "Ruined Supplies",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -32750,7 +32915,7 @@
       "name": "Hills of Wilderland",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33134,7 +33299,7 @@
       "name": "The Desert Path",
       "type": "quest",
       "pack": "The Crossings of Poros",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-crossings-of-poros"
     },
     {
@@ -33278,7 +33443,7 @@
       "name": "The Lower Depths",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33302,7 +33467,7 @@
       "name": "Battle in the Camp",
       "type": "quest",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -33334,7 +33499,7 @@
       "name": "The Iron Hills",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33342,7 +33507,7 @@
       "name": "The Forest of Great Fear",
       "type": "quest",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33358,7 +33523,7 @@
       "name": "Searching for a Way Out",
       "type": "objective",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33366,7 +33531,7 @@
       "name": "Deep Chasm",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -33934,7 +34099,7 @@
       "name": "Desert Bastion",
       "type": "location",
       "pack": "The Black Serpent",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-serpent"
     },
     {
@@ -34006,7 +34171,7 @@
       "name": "Abaan",
       "type": "objective-ally",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -34238,7 +34403,7 @@
       "name": "Goblin Troop",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -34526,7 +34691,7 @@
       "name": "Ravenous Spider",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -35046,7 +35211,7 @@
       "name": "Black Bats",
       "type": "enemy",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -35342,7 +35507,7 @@
       "name": "Dark Places",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -35718,7 +35883,7 @@
       "name": "Gathering Gloom",
       "type": "treachery",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -35742,7 +35907,7 @@
       "name": "Accursed Forest",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -35814,7 +35979,7 @@
       "name": "Dungeon Cell",
       "type": "location",
       "pack": "The Dungeons of Cirith Gurat",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-dungeons-of-cirith-gurat"
     },
     {
@@ -36102,7 +36267,7 @@
       "name": "Abandoned Village",
       "type": "location",
       "pack": "The Wilds of Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-wilds-of-rhovanion"
     },
     {
@@ -36609,43 +36774,43 @@
       "id": "E07.7",
       "name": "The Black Serpent (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-black-serpent",
+      "state": "scripted"
     },
     {
       "id": "E07.8",
       "name": "The Dungeons of Cirith Gurat (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dungeons-of-cirith-gurat",
+      "state": "scripted"
     },
     {
       "id": "E07.9",
       "name": "The Crossings of Poros (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-crossings-of-poros",
+      "state": "scripted"
     },
     {
       "id": "E08.1",
       "name": "Journey Up the Anduin (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-up-the-anduin",
+      "state": "scripted"
     },
     {
       "id": "E08.2",
       "name": "Lost in Mirkwood (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "lost-in-mirkwood",
+      "state": "scripted"
     },
     {
       "id": "E08.3",
       "name": "The King's Quest (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-kings-quest",
+      "state": "scripted"
     },
     {
       "id": "E08.4",
@@ -38100,43 +38265,43 @@
       "id": "Q07.7",
       "name": "The Black Serpent",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-black-serpent",
+      "state": "scripted"
     },
     {
       "id": "Q07.8",
       "name": "The Dungeons of Cirith Gurat",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-dungeons-of-cirith-gurat",
+      "state": "scripted"
     },
     {
       "id": "Q07.9",
       "name": "The Crossings of Poros",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-crossings-of-poros",
+      "state": "scripted"
     },
     {
       "id": "Q08.1",
       "name": "Journey Up the Anduin",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "journey-up-the-anduin",
+      "state": "scripted"
     },
     {
       "id": "Q08.2",
       "name": "Lost in Mirkwood",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "lost-in-mirkwood",
+      "state": "scripted"
     },
     {
       "id": "Q08.3",
       "name": "The King's Quest",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-kings-quest",
+      "state": "scripted"
     },
     {
       "id": "Q08.4",

@@ -1,0 +1,494 @@
+[
+  {
+    "code": "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+    "octgnid": "041e412b-4d21-421a-a029-e1fdcb62e76d",
+    "name": "Taken Prisoner",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player attaches an ally he controls to an unattached enemy or location in the staging area. If he cannot, Taken Prisoner gains doomed 2. ",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 129,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, reveal the top card of the encounter deck.",
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {},
+    "imagesrc": "/cards/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 129,
+        "quantity": 2,
+        "octgnid": "041e412b-4d21-421a-a029-e1fdcb62e76d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+    "octgnid": "6603b3a5-b955-4109-a63d-b8405c86d0b7",
+    "name": "Prison Guard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "While Prison Guard is guarding an objective, it gets +2 [defense]. While Prison Guard is not guarding an objective, it gains: \"Forced: After Prison Guard attacks and damages an ally, attach that ally to Prison Guard.\"",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 122,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 4,
+    "defense": 1,
+    "health": 4,
+    "engagement": 30,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "1",
+      "health": "4",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 122,
+        "quantity": 3,
+        "octgnid": "6603b3a5-b955-4109-a63d-b8405c86d0b7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+    "octgnid": "7562e662-3b3e-4378-9a3f-c45908bc05cf",
+    "name": "Tormented by Orcs",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player raises his threat by 1 for each guarded objective he owns. If any player does not own a guarded objective, Tormented by Orcs gains surge. ",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 130,
+    "quantity": 3,
+    "shadow": "Shadow: Until the end of the phase, attacking enemy gets +1 [defense] (+2 [defense] instead if it is guarding an objective).",
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {},
+    "imagesrc": "/cards/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 130,
+        "quantity": 3,
+        "octgnid": "7562e662-3b3e-4378-9a3f-c45908bc05cf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+    "octgnid": "85d48eb0-3339-4db6-976f-a800213e7eea",
+    "name": "Gate of Iron",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dungeon.",
+    "text": "While Gate of Iron is in the staging area, progress cannot be placed on locations in the staging area. Travel: Discard the top card of the encounter deck. Then, the first player must discard a card from his hand with cost greater than the discarded card's [threat], or raise each player's threat by 3.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 124,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/85d48eb0-3339-4db6-976f-a800213e7eea.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 124,
+        "quantity": 3,
+        "octgnid": "85d48eb0-3339-4db6-976f-a800213e7eea",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85d48eb0-3339-4db6-976f-a800213e7eea.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+    "octgnid": "9031b458-f7e0-4c55-9266-f30aaaf718c1",
+    "name": "Captured!",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Orcs spring from a secret passage and pull your friends inside! When Revealed: Each player loses control of an ally he controls and attaches it to this stage. If no allies are attached to this stage, discard it and reveal an additional encounter card. Forced: When this stage is defeated, each player reduces his threat by X, where X is the cost of the ally he controls that was attached to this stage.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 131,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 10,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 131,
+        "quantity": 1,
+        "octgnid": "9031b458-f7e0-4c55-9266-f30aaaf718c1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+    "octgnid": "98358a49-2fba-45e3-8a26-5500bc7f04dd",
+    "name": "Torture Room",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dungeon.",
+    "text": "When Revealed: The first player discards cards from the top of his deck until he discards an ally. Attach that ally to Torture Room and discard each other copy of that ally from play. While Torture Room is guarding an objective, it gains: \"Forced: At the end of the round, raise each player's threat by 1.\"",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 128,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 128,
+        "quantity": 2,
+        "octgnid": "98358a49-2fba-45e3-8a26-5500bc7f04dd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+    "octgnid": "b0b77537-0c91-42c0-b111-647bc445a419",
+    "name": "The Captives of Cirith Gurat",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While a character is attached to an encounter card, it is considered to be a guarded objective with a blank text box. Forced: When a character is attached to an encounter card, discard each token and attachment on that character. Forced: When an objective is free of encounters, it is 'rescued' and that character's owner takes control of it, exhausted.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 119,
+    "quantity": 1,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {},
+    "imagesrc": "/cards/b0b77537-0c91-42c0-b111-647bc445a419.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 119,
+        "quantity": 1,
+        "octgnid": "b0b77537-0c91-42c0-b111-647bc445a419",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0b77537-0c91-42c0-b111-647bc445a419.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+    "octgnid": "b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+    "name": "Jailer of Cirith Gurat",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Forced: After Jailer of Cirith Gurat engages you, attach an ally you control to it. ",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 121,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "engagement": 45,
+    "shadow": "Shadow: If attacking enemy's [threat] is greater than defending ally's [willpower], attach defending ally to attacking enemy. Then, cancel this attack.",
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "3",
+      "defense": "2",
+      "health": "5",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 121,
+        "quantity": 2,
+        "octgnid": "b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+    "octgnid": "c402e437-4d0c-41ed-8e82-c2923cd6984e",
+    "name": "Uruk Guardroom",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dungeon.",
+    "text": "While Uruk Guardroom is in the staging area, increase the cost to play each ally by 1. Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until an Orc enemy is discarded. Add that enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 126,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 126,
+        "quantity": 2,
+        "octgnid": "c402e437-4d0c-41ed-8e82-c2923cd6984e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+    "octgnid": "cc2cf907-a433-47e7-bc7f-21fa837aa025",
+    "name": "Mines of Cirith Gurat",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dungeon.",
+    "text": "While Mines of Cirith Gurat is in the staging area, it gains: \"Forced: When a player card would reduce a player's threat by any amount, reduce that amount to 1.\" Travel: Each player discards the top 3 cards of his deck and raises his threat by 1 for each ally he discards this way.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 127,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 127,
+        "quantity": 3,
+        "octgnid": "cc2cf907-a433-47e7-bc7f-21fa837aa025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+    "octgnid": "ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+    "name": "Dungeon Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nWhen Revealed: Dungeon Warg makes an immediate attack against the player who controls the most allies.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 123,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 123,
+        "quantity": 3,
+        "octgnid": "ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+    "octgnid": "ea4bc222-6fb5-494e-8f1f-de30974694db",
+    "name": "Abaan",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "While Abaan is free of encounters, the first player gains control of Abaan. Response: After Abaan exhausts, choose a Harad character to get +1 [willpower], +1 [attack], and +1 [defense] until the end of the round. If Abaan leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 120,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 3,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "3"
+    },
+    "imagesrc": "/cards/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 120,
+        "quantity": 1,
+        "octgnid": "ea4bc222-6fb5-494e-8f1f-de30974694db",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+    "octgnid": "fd726884-459b-4c66-a046-6fa86402ce6a",
+    "name": "Dungeon Cell",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Dungeon.",
+    "text": "Surge.\nDungeon Cell gets +X [threat] where X is the printed [willpower] of the attached objective. While Dungeon Cell is in the staging area, it gains: \"Forced: After an ally is destroyed, attach it to Dungeon Cell if there is no objective attached to Dungeon Cell.\"",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 125,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/fd726884-459b-4c66-a046-6fa86402ce6a.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 125,
+        "quantity": 3,
+        "octgnid": "fd726884-459b-4c66-a046-6fa86402ce6a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd726884-459b-4c66-a046-6fa86402ce6a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  }
+]

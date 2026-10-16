@@ -214,6 +214,11 @@ test("a Ranger dealt as a shadow enters encounter discard without When Revealed 
   assert.equal(s.choice, null);
   assert.equal(s.allies.length, 0);
   assert.equal(s.encounterDeck.length, 1);
+  assert.ok(
+    s.encounterDiscard.includes(R),
+    "The Encounter shadow is discarded immediately after its enemy's attack.",
+  );
+  assert.ok(!enemy.shadows.includes(R));
   effect(s, fx("endCombat"));
   flush(s);
   assert.ok(s.encounterDiscard.includes(R));

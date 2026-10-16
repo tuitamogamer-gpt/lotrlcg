@@ -1,0 +1,522 @@
+[
+  {
+    "code": "octgn:2d1d915f-f889-4100-81b7-910ce93edff7",
+    "octgnid": "2d1d915f-f889-4100-81b7-910ce93edff7",
+    "name": "The Passage of the Ford",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds The Old Ford to the staging area. Each other player takes the top card of the Evil Creatures deck and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 68,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Journey Up the Anduin",
+    "side": "A",
+    "back_name": "The Passage of the Ford",
+    "back_text": "The players cannot travel to The Old Ford unless there is at least 5 progress here. Forced: At the beginning of the quest phase, add the top card of the Evil Creatures deck to the staging area. This stage cannot be defeated while The Old Ford is in play. When The Old Ford is explored, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/2d1d915f-f889-4100-81b7-910ce93edff7.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/2d1d915f-f889-4100-81b7-910ce93edff7.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "2d1d915f-f889-4100-81b7-910ce93edff7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d1d915f-f889-4100-81b7-910ce93edff7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
+    "octgnid": "b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
+    "name": "Traveling North",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Woodmen Village and The Old Ford aside, out of play. Create the Evil Creatures deck (see insert) and place it next to the quest deck. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is the number of players. Add each discarded location to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 66,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Journey Up the Anduin",
+    "side": "A",
+    "back_name": "Traveling North",
+    "back_text": "Forced: After placing progress here from questing successfully, place 1 resource here. Forced: At the beginning of the encounter phase, remove 1 resource from this stage. Then, add the top card of the Evil Creatures deck to the staging area. This stage cannot be defeated while an enemy from the Evil Creatures deck is in play.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b77a9e58-9a88-4aec-9029-8d84269b0a3c",
+    "octgnid": "b77a9e58-9a88-4aec-9029-8d84269b0a3c",
+    "name": "Woodmen Under Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds Woodmen Village to the staging area. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 67,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Journey Up the Anduin",
+    "side": "A",
+    "back_name": "Woodmen Under Attack",
+    "back_text": "No more than 1 progress can be placed on each location in the staging area each round. Forced: After the players travel to a location, add the top card of the Evil Creatures deck to the staging area. The players cannot defeat this stage unless the first player controls Haldan.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/b77a9e58-9a88-4aec-9029-8d84269b0a3c.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/b77a9e58-9a88-4aec-9029-8d84269b0a3c.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "b77a9e58-9a88-4aec-9029-8d84269b0a3c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b77a9e58-9a88-4aec-9029-8d84269b0a3c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
+    "octgnid": "48c82a72-ad2f-4452-9906-b5505caf27e1",
+    "name": "Spiders of Mirkwood",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the Spiders of Mirkwood encounter set into the encounter deck. Then, reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 72,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "A",
+    "back_name": "Spiders of Mirkwood",
+    "back_text": "The first Spider enemy revealed each quest phase gains surge. Forced: When a Spider enemy attacks and damages a character, that character cannot ready until the end of the round.  ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/48c82a72-ad2f-4452-9906-b5505caf27e1.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/48c82a72-ad2f-4452-9906-b5505caf27e1.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "48c82a72-ad2f-4452-9906-b5505caf27e1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48c82a72-ad2f-4452-9906-b5505caf27e1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+    "octgnid": "4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+    "name": "Carried Away",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player chooses a hero he controls, discards each token and attachment from that hero, and places it in the staging area. Each player discards cards from the top of the encounter deck until an enemy is discarded and attaches that enemy to the hero he owns in the staging area, guarding it.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 74,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "A",
+    "back_name": "Carried Away",
+    "back_text": "Each enemy guarding a hero cannot take non-combat damage. Each guarded hero is in play but under no player's control. Forced: When an enemy guarding a hero is defeated, return that hero to its owner's control exhausted. When the players advance from this stage, discard each guarded hero.  ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/4ee0293f-5c0c-4f7a-bc10-680d84eb9214.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/4ee0293f-5c0c-4f7a-bc10-680d84eb9214.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "4ee0293f-5c0c-4f7a-bc10-680d84eb9214",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4ee0293f-5c0c-4f7a-bc10-680d84eb9214.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
+    "octgnid": "504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
+    "name": "Ambushed at Night",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set the Spiders of Mirkwood and Dol Guldur Orcs encounter sets aside, out of play. The first player takes control of Haldan and adds Searching for a Way Out to the staging area. Each player adds 1 Forest Spider to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 71,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "A",
+    "back_name": "Ambushed at Night",
+    "back_text": "Each player's threat cannot be reduced by player card effects. Forced: After an enemy engages a player, raise that player's threat by 1.  ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/504d7fe3-a3a1-4e2c-b59d-dd391d370a20.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/504d7fe3-a3a1-4e2c-b59d-dd391d370a20.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "504d7fe3-a3a1-4e2c-b59d-dd391d370a20",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/504d7fe3-a3a1-4e2c-b59d-dd391d370a20.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:65ef76b1-e624-4763-8906-899e4630225f",
+    "octgnid": "65ef76b1-e624-4763-8906-899e4630225f",
+    "name": "Dol Guldur Orcs",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the Dol Guldur Orcs encounter set into the encounter deck. Then, reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 73,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "C",
+    "back_name": "Dol Guldur Orcs",
+    "back_text": "The first Orc enemy revealed each quest phase gains surge. Forced: When an Orc enemy attacks and damages a character, that character's controller chooses and discards 1 card from his hand.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/65ef76b1-e624-4763-8906-899e4630225f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/65ef76b1-e624-4763-8906-899e4630225f.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "65ef76b1-e624-4763-8906-899e4630225f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65ef76b1-e624-4763-8906-899e4630225f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
+    "octgnid": "ac9fe707-143f-492e-89e3-bdd02973a0f2",
+    "name": "Truly Lost",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards cards from the top of the encounter deck until he discards a non-objective location and adds it to the staging area. Each player places his hand of cards facedown under a different location in the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 75,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "C",
+    "back_name": "Truly Lost",
+    "back_text": "Each location gets +1 quest point for each facedown player card under it.  Forced: When a location with a facedown player card under it is explored, return each facedown player card under it to its owner's hand. When the players advance from this stage, discard each facedown player card under a location.  ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/ac9fe707-143f-492e-89e3-bdd02973a0f2.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/ac9fe707-143f-492e-89e3-bdd02973a0f2.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "ac9fe707-143f-492e-89e3-bdd02973a0f2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac9fe707-143f-492e-89e3-bdd02973a0f2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
+    "octgnid": "d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
+    "name": "Escape from Taur-nu-Fuin",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove Searching for a Way Out from the game. Starting with the first player, each player discards cards from the top of the encounter deck until he discards an enemy and puts that enemy into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 77,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "C",
+    "back_name": "Escape from Taur-nu-Fuin",
+    "back_text": "Forced: At the end of the round, raise each player's threat by 1 for each enemy engaged with him. This stage cannot be defeated while a player is engaged with an enemy. When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3fed535-98f8-461d-a092-7ada49be2550",
+    "octgnid": "e3fed535-98f8-461d-a092-7ada49be2550",
+    "name": "The Forest of Great Fear",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove Searching for a Way Out from the game. Search the remaining set-aside encounter set for the enemy with the most hit points and add it to the staging area. That enemy is the \"nemesis\" until it leaves play.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 76,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "side": "A",
+    "back_name": "The Forest of Great Fear",
+    "back_text": "The nemesis gets +2 [threat], +2 [attack], +2 [defense] and is immune to player card effects.  Forced: At the end of the round, return the nemesis to the staging area and it makes an attack against the first player. This stage cannot be defeated while the nemesis is in play. The nemesis cannot take damage unless there is at least 8 progress on this stage. If the players defeat the nemesis, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/e3fed535-98f8-461d-a092-7ada49be2550.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/e3fed535-98f8-461d-a092-7ada49be2550.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "e3fed535-98f8-461d-a092-7ada49be2550",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3fed535-98f8-461d-a092-7ada49be2550.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+    "octgnid": "bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+    "name": "The Fire Worm",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for a Dragon treachery and attach it to Fire-drake, if able. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 80,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The King's Quest",
+    "side": "A",
+    "back_name": "The Fire Worm",
+    "back_text": "Ignore the Deep keyword. Forced: After a player declares X attackers against Fire-drake, he must remove X progress tokens from the main quest or cancel the attack.  This stage cannot be defeated while Fire-drake is in play. If Fire-drake is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/bfae3bf9-24e1-46af-b202-fb6c676a5dd9.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/bfae3bf9-24e1-46af-b202-fb6c676a5dd9.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "bfae3bf9-24e1-46af-b202-fb6c676a5dd9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bfae3bf9-24e1-46af-b202-fb6c676a5dd9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e38f5043-50b5-4b2a-a23f-f786106c4055",
+    "octgnid": "e38f5043-50b5-4b2a-a23f-f786106c4055",
+    "name": "The Lower Depths",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place Dragon Hoard on the bottom of the Caves deck. Add Fire-drake to the staging area and shuffle the Dragon Might encounter set into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 79,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The King's Quest",
+    "side": "A",
+    "back_name": "The Lower Depths",
+    "back_text": "Fire-drake cannot leave the staging area or take damage. Response: After placing progress here from questing successfully, remove 5 progress from this stage to look at the top 2 cards of the Caves deck. Put one on top of the Caves deck and put the other on the bottom. After Dragon Hoard becomes the active location, advance to stage 3A.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/e38f5043-50b5-4b2a-a23f-f786106c4055.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e38f5043-50b5-4b2a-a23f-f786106c4055.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "e38f5043-50b5-4b2a-a23f-f786106c4055",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e38f5043-50b5-4b2a-a23f-f786106c4055.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3e98df7-720f-49b8-995a-370961706cec",
+    "octgnid": "e3e98df7-720f-49b8-995a-370961706cec",
+    "name": "The Iron Hills",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Build the Caves deck (see insert) and set it next to the quest deck. Set Fire-drake, Dragon Hoard, and the Dragon Might encounter sets aside, out of play. Shuffle the encounter deck. Each player discards cards from the top of the encounter deck until he discards an enemy or location and adds that card to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 78,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The King's Quest",
+    "side": "A",
+    "back_name": "The Iron Hills",
+    "back_text": "Forced: At the beginning of the quest phase, discard cards from the top of the encounter deck until a location is discarded. Either add that location to the staging area, or raise each player's threat by X, where X is that location's printed [threat]. This stage cannot be defeated unless there are 3 locations with victory points in the victory display.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/e3e98df7-720f-49b8-995a-370961706cec.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/e3e98df7-720f-49b8-995a-370961706cec.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "e3e98df7-720f-49b8-995a-370961706cec",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3e98df7-720f-49b8-995a-370961706cec.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

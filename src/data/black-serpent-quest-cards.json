@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
+    "octgnid": "c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
+    "name": "The Crossroads Fort",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set each Harad objective aside, out of play. Add The Black Serpent to the staging area. Shuffle the encounter deck. The first player randomly selects 1 set aside Harad objective, reveals it, and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 106,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Black Serpent",
+    "side": "A",
+    "back_name": "The Crossroads Fort",
+    "back_text": "If a Harad objective is not attached, the first player claims it and attaches it to a hero he controls.  This stage cannot be defeated unless each Harad objective in play is attached to a hero. ",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/c3f9965f-711d-4c51-b9aa-a0b5d5953b49.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/c3f9965f-711d-4c51-b9aa-a0b5d5953b49.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 106,
+        "quantity": 1,
+        "octgnid": "c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3f9965f-711d-4c51-b9aa-a0b5d5953b49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
+    "octgnid": "e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
+    "name": "Battle in the Camp",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. The first player randomly selects 1 set aside Harad objective, reveals it, and adds it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 107,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Black Serpent",
+    "side": "A",
+    "back_name": "Battle in the Camp",
+    "back_text": "If a Harad objective is not attached, the first player claims it and attaches it to a hero he controls.  The Black Serpent is considered to be engaged with each player who controls a Harad objective.  This stage cannot be defeated unless each Harad objective in play is attached to a hero. ",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 107,
+        "quantity": 1,
+        "octgnid": "e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
+    "octgnid": "9d451960-2db3-43df-9cd8-d525ef58cf55",
+    "name": "Defeat the Serpent",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Randomly select 1 set aside Harad objective and attach it to The Black Serpent. Shuffle the encounter discard pile into the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "TBS",
+    "pack_name": "The Black Serpent",
+    "position": 108,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Black Serpent",
+    "side": "A",
+    "back_name": "Defeat the Serpent",
+    "back_text": "If a Harad objective is not attached, the first player claims it and attaches it to a hero he controls.  While there are at least 6 progress tokens on this stage, the Black Serpent loses the text: \"Cannot leave the staging area or take damage.\"  This stage cannot be defeated unless each Harad objective in play is attached to a hero. If the players defeat this stage, they win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/9d451960-2db3-43df-9cd8-d525ef58cf55.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/9d451960-2db3-43df-9cd8-d525ef58cf55.jpg",
+    "packs": [
+      {
+        "pack_code": "TBS",
+        "pack_name": "The Black Serpent",
+        "position": 108,
+        "quantity": 1,
+        "octgnid": "9d451960-2db3-43df-9cd8-d525ef58cf55",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d451960-2db3-43df-9cd8-d525ef58cf55.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,3 +1,5 @@
+import { batch4PlayerSideQuestToDiscard } from "./batch4-player-support";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as SandsPlayers from "./beneath-sands-player-support";
 import * as Race from "./race-harad";
@@ -123,6 +125,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   placed = stormcallerProgress(s, placed, physical);
   placed = Race.raceHaradProgress(s, placed, physical);
   placed = Sands.beneathSandsProgress(s, placed, physical);
+  placed = batch4Scenario(s).progress?.(s, placed, physical) ?? placed;
   if (placed <= 0) return;
   if (isMain && templeQuestProgress(s, placed)) return;
   if (isMain && raidQuestProgress(s, placed)) return;
@@ -130,6 +133,7 @@ export function addQuestProgress(s: GameState, quest: Unit, amount: number) {
   if (isMain) {
     if (!Umbar.umbarProgress(s, placed)) s.progress += placed;
   } else physical.progress += placed;
+  batch4Scenario(s).questProgressPlaced?.(s, physical, placed);
   ettenProgressPlaced(s, physical, placed);
   carnAfterQuestProgress(s, physical, placed);
   if (!isMain) defeatSideQuest(s, physical);
@@ -145,12 +149,17 @@ export function checkSideQuestDefeats(s: GameState) {
     defeatSideQuest(s, quest);
 }
 function defeatSideQuest(s: GameState, quest: Unit) {
-  if (Umbar.umbarSideDefeatBlocked(s, quest)) return;
+  if (
+    Umbar.umbarSideDefeatBlocked(s, quest) ||
+    batch4Scenario(s).sideDefeatBlocked?.(s, quest)
+  )
+    return;
   const goal = sideQuestGoal(s, quest);
   if (quest.progress < goal) return;
   const selected = selectedSideQuest(s);
   if (selected?.id === quest.id) selected.defeated = true;
   Race.raceHaradSideDefeated(s, quest);
+  batch4Scenario(s).sideDefeated?.(s, quest);
   const originalCode = quest.code;
   const attachments = discardQuestAttachments(s, quest.code, quest.id);
   const original = { ...quest, attachments: [...quest.attachments] };
@@ -166,7 +175,8 @@ function defeatSideQuest(s: GameState, quest: Unit) {
       !haradPlayerSideQuestToDiscard(s, quest) &&
       !mumakilSideQuestToDiscard(s, quest) &&
       !RacePlayerSupport.raceHaradSideQuestToDiscard(s, quest) &&
-      !SandsPlayers.beneathSandsSideQuestToDiscard(s, quest)
+      !SandsPlayers.beneathSandsSideQuestToDiscard(s, quest) &&
+      !batch4PlayerSideQuestToDiscard(s, quest)
     ) {
       addVictoryCard(s, quest.code);
       log(s, `${name(quest)} defeated · Added to the victory display.`, "good");
@@ -264,6 +274,7 @@ export function sideQuestEffect(s: GameState, e: Effect) {
         };
         log(s, `${name(u)} is the current quest until the quest phase ends.`);
         Mumakil.mumakilSideQuestSelected(s, u);
+        batch4Scenario(s).sideQuestChosen?.(s, u);
       }
       break;
     }

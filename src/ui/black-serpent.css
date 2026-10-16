@@ -1,0 +1,60 @@
+.black-serpent-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 0.75rem;
+  margin: 0.8rem 0;
+  padding: 0.8rem;
+  border: 1px solid #9d8250;
+  background: linear-gradient(120deg, #28231b, #15191b);
+  border-radius: 8px;
+}
+.black-serpent-state > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.black-serpent-state span {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.black-serpent-state button {
+  display: block;
+  min-width: 0;
+  border: 1px solid #81704a;
+  border-radius: 4px;
+  background: #3c3427;
+  color: #f2e3c7;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  line-height: 1.3;
+  cursor: pointer;
+  text-align: left;
+  white-space: normal;
+  font-size: 0.8rem;
+}
+.black-serpent-state button:hover {
+  background: #51442f;
+}
+.black-serpent-state button:focus-visible,
+.black-serpent-state summary:focus-visible {
+  outline: 2px solid #e5c77b;
+  outline-offset: 3px;
+}
+.black-serpent-state summary {
+  cursor: pointer;
+}
+.black-serpent-state details {
+  grid-column: 1/-1;
+}
+.black-serpent-state details button {
+  margin: 0.4rem 0;
+  width: 100%;
+}
+@media (max-width: 480px) {
+  .black-serpent-state {
+    padding: 0.6rem;
+    gap: 0.8rem;
+  }
+}

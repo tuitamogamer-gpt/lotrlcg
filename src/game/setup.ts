@@ -1,3 +1,5 @@
+import { batch4PlayerSetup } from "./batch4-player";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as City from "./city";
@@ -72,6 +74,7 @@ import {
   eachSeat,
   playerOrder,
   selectSeat,
+  seatView,
   snapshotSeat,
   syncSeat,
 } from "./table";
@@ -130,6 +133,8 @@ export function createGame(
     /** Official easy mode: each hero starts with one additional resource. */
     easy?: boolean;
     rangerReserves?: Record<number, number>;
+    /** Wind from the Sea shares the official three-card Encounter reserve. */
+    batch4WindReserves?: Record<number, number>;
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -323,15 +328,30 @@ export function createGame(
     s.heroes = heroCodes.map((code) => make(s, code));
     s.threat = startingThreat(heroCodes) + (campaign?.threatPenalty ?? 0);
   }
-  s.rangerReserves = Object.fromEntries(
-    playerOrder(s).map((p) => [p, options.rangerReserves?.[p] ?? 3]),
-  );
-  requireRule(
-    Object.values(s.rangerReserves).every(
-      (n) => Number.isInteger(n) && n >= 0 && n <= 3,
-    ),
-    "Set aside between zero and three Rangers per player.",
-  );
+  s.rangerReserves = {};
+  s.batch4WindReserves = {};
+  for (const player of playerOrder(s)) {
+    const deck = seatView(s, player).deck;
+    const hasFlight = deck.includes("17140"),
+      hasSummons = deck.includes("09007");
+    const defaultWind = hasFlight ? (hasSummons ? 1 : 3) : 0;
+    const explicitRangers = options.rangerReserves?.[player],
+      explicitWind = options.batch4WindReserves?.[player];
+    const rangers =
+      explicitRangers ??
+      (explicitWind !== undefined ? 3 - explicitWind : 3 - defaultWind);
+    const wind = explicitWind ?? Math.min(defaultWind, 3 - rangers);
+    requireRule(
+      [rangers, wind].every((n) => Number.isInteger(n) && n >= 0 && n <= 3),
+      "Set aside between zero and three Encounter cards per player.",
+    );
+    requireRule(
+      rangers + wind <= 3,
+      "A player can set aside at most three Encounter cards in total.",
+    );
+    s.rangerReserves[player] = rangers;
+    s.batch4WindReserves[player] = wind;
+  }
   if (!s.table) s.startingThreat = s.threat;
   if (options.easy) {
     eachSeat(s, () => {
@@ -448,6 +468,8 @@ export function createGame(
     Desert.setupDesertCrossing(s);
   } else if (scenarioId === "the-long-arm-of-mordor") {
     Mordor.setupLongArmMordor(s);
+  } else if (batch4Scenario(s).setup) {
+    batch4Scenario(s).setup!(s);
   } else if (scenarioId === "beneath-the-sands") {
     Sands.setupBeneathSands(s);
   } else if (scenarioId === "race-across-harad") {
@@ -504,6 +526,7 @@ export function createGame(
     }
     enqueue(s, fx("capturePrisoner"));
   }
+  batch4PlayerSetup(s);
   log(
     s,
     `${scenario(scenarioId).name} · ${playMode === "campaign" ? "Mirkwood Paths campaign" : "Normal game"}.`,

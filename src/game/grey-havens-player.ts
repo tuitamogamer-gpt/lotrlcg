@@ -50,7 +50,7 @@ import {
   hasTrait,
 } from "./expansion-passives";
 import { playerCardImmune } from "./card-immunity";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { khazadCannotExhaust } from "./khazad-dum";
 import {
   watcherWaterCannotExhaust,
@@ -318,7 +318,7 @@ export function greyHavensAbilityProblem(s: GameState, u: Unit, id?: string) {
       ? "Grappling Hook needs a ready uncommitted character during the quest phase."
       : null;
   if (code === G.sea)
-    return !movableHand(s).length
+    return !discardableHand(s).length
       ? "To the Sea, to the Sea! requires a hand card to discard."
       : null;
   if (code === G.narya)
@@ -546,7 +546,7 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "greyHavensCirdan": {
-      const drawn = movableHand(s).filter((c) => e.ids?.includes(c.id));
+      const drawn = discardableHand(s).filter((c) => e.ids?.includes(c.id));
       if (drawn.length)
         choose(
           s,
@@ -582,7 +582,7 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
     case "greyHavensGaldorChoose":
       s.mulled = true;
       choose(s, "Galdor of the Havens · Choose setup cards to discard", [
-        ...movableHand(s)
+        ...discardableHand(s)
           .filter((c) => !e.ids?.includes(c.id))
           .map((c) =>
             option(c, [
@@ -663,7 +663,7 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
     }
     case "greyHavensSeaChoose":
       choose(s, "To the Sea, to the Sea! · Discard cards", [
-        ...movableHand(s)
+        ...discardableHand(s)
           .filter((c) => !e.ids?.includes(c.id))
           .map((c) =>
             option(c, [
@@ -693,7 +693,7 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
       return true;
     case "greyHavensSeaDiscard": {
       requireRule(
-        movableHand(s).some((c) => c.id === e.target),
+        discardableHand(s).some((c) => c.id === e.target),
         "Discard the chosen physical hand card.",
       );
       const pending = s.queue.length;
@@ -754,7 +754,7 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
             label: "Discard Lindon Navigator from play",
             effects: [fx("greyHavensNavigatorDiscard", { target: u.id })],
           },
-          ...movableHand(s).map((c) =>
+          ...discardableHand(s).map((c) =>
             option(c, [fx("greyHavensDiscard", { target: c.id })]),
           ),
         ]);
@@ -816,7 +816,11 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
     case "greyHavensCompassSearch": {
       const a = u && currentAttachment(s, u, e.source);
       requireRule(
-        u && a && !a.exhausted && canExhaust(u) && compassLocations(s).length > 0,
+        u &&
+          a &&
+          !a.exhausted &&
+          canExhaust(u) &&
+          compassLocations(s).length > 0,
         "The Compass and attached character must exhaust.",
       );
       a.exhausted = true;
@@ -849,16 +853,15 @@ export function greyHavensEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Mariner's Compass · Switch with a staging location",
-        compassLocations(s)
-          .map((c) =>
-            option(c, [
-              fx("greyHavensCompassSwitch", {
-                target: c.id,
-                value: e.value,
-                code: e.code,
-              }),
-            ]),
-          ),
+        compassLocations(s).map((c) =>
+          option(c, [
+            fx("greyHavensCompassSwitch", {
+              target: c.id,
+              value: e.value,
+              code: e.code,
+            }),
+          ]),
+        ),
       );
       return true;
     case "greyHavensCompassSwitch": {

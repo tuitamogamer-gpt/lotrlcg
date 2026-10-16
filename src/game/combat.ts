@@ -1,3 +1,6 @@
+import * as WildsPlayers from "./wilds-player";
+import * as BatchPlayers from "./batch4-player";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as SandsPlayers from "./beneath-sands-player";
 import * as RacePlayers from "./race-harad-player";
 import { haradPlayerNoExhaustDefense } from "./harad-player-support";
@@ -227,6 +230,10 @@ export function playerAttack(
       ),
     "Only Dúnhere can attack a staging enemy, and he must attack alone.",
   );
+  requireRule(
+    batch4Scenario(s).playerAttackDeclared?.(s, enemy, ids) !== false,
+    "This attack cannot pay the scenario's progress cost.",
+  );
   Raid.raidPlayerAttackStarted(s, enemy);
   Depths.depthsPlayerAttackStarted(s, enemy);
   const priorQueue = s.queue.length;
@@ -280,6 +287,7 @@ export function playerAttack(
       enemy,
       attackers as Unit[],
     ),
+    ...WildsPlayers.wildsPlayerAttackersDeclared(s, enemy, attackers as Unit[]),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -292,6 +300,11 @@ export function playerAttack(
           : 0) + (abilityMode === "hands-upon-bow" ? 1 : 0),
     }),
   );
+  const attackResultIndex = s.queue.findIndex(
+    (e) => e.kind === "resolvePlayerAttack" && e.target === enemy.id,
+  );
+  if (attackResultIndex >= 0)
+    s.queue.splice(attackResultIndex + 1, 0, fx("wildsAttackCleanup", { ids }));
   rohanAttackDeclared(s, enemy, attackers as Unit[]);
   longDarkPlayerAttackersDeclared(s, ids);
   collectorAttackersDeclared(s, ids);
@@ -375,6 +388,7 @@ export function playerAttackResolved(
   remainingHealth: number,
 ) {
   SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
+  WildsPlayers.wildsPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
   Depths.depthsPlayerAttackFinished(s, enemy);
   TempleEncounters.templePlayerAttackFinished(s, enemy);
@@ -409,6 +423,7 @@ export function playerAttackKilled(
       s,
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
+  BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);
   CobasPlayers.cobasPlayerAttackKilled(s);
   Angmar.angmarAttackKilled(s, enemy, ids);
@@ -462,6 +477,7 @@ export function combatDefenderDefense(
 /** The attack actually begins once, before its declaration and response windows. */
 export function enemyAttackStarted(s: GameState, enemy: Unit, player: number) {
   if (enemyAttackPrevented(s, enemy, player)) return;
+  batch4Scenario(s).enemyAttackStarted?.(s, enemy, player);
   Umbar.umbarAttackStarted(s, enemy, player);
   shadowFlameEnemyAttackStart(s, enemy, player);
   stewardFearAttackStarted(s, enemy, player);
@@ -584,7 +600,8 @@ export function beginEnemyAttack(
         rhosgobelCanFight(enemy, u) &&
         redhornCanDefend(enemy, u) &&
         heirsCanDefend(s, enemy, u) &&
-        Druadan.druadanForestCanDefend(s, enemy, u),
+        Druadan.druadanForestCanDefend(s, enemy, u) &&
+        !batch4Scenario(s).cannotDefend?.(s, enemy, u),
     ),
     "Choose ready characters able to defend.",
   );
@@ -663,6 +680,14 @@ export function beginEnemyAttack(
     ...forcedResponses,
     ...exhaustionResponses,
     fx("redhornDefenders", { ids }),
+    ...BatchPlayers.batch4PlayerDefendersDeclared(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ),
+    ...defenders
+      .filter((d): d is Unit => !!d)
+      .flatMap((d) => WildsPlayers.wildsPlayerDefenderDeclared(s, enemy, d)),
     ...CobasReactive.cobasReactiveDefendersDeclared(
       s,
       enemy,

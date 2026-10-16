@@ -28,6 +28,10 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.mumakil) return s.mumakil.currentQuest;
   if (s.raceHarad) return s.raceHarad.currentQuest;
   if (s.beneathSands) return s.beneathSands.currentQuest;
+  if (s.blackSerpent) return s.blackSerpent.currentQuest;
+  if (s.cirithGurat) return s.cirithGurat.currentQuest;
+  if (s.crossingsPoros) return s.crossingsPoros.currentQuest;
+  if (s.wildsRhovanion) return s.wildsRhovanion.currentQuest;
   if (s.drowned) return s.drowned.currentQuest;
   if (s.cobas) return s.cobas.currentQuest;
   if (s.city) return s.city.currentQuest;

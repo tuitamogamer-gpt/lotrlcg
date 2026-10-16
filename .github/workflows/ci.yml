@@ -190,6 +190,32 @@ jobs:
       - run: npm ci
       - run: npm run test:beneath-sands-simulation
 
+  batch4-simulation:
+    name: Batch 4 review parity (${{ matrix.scenario }}, 32 complete games)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          [
+            the-black-serpent,
+            the-dungeons-of-cirith-gurat,
+            the-crossings-of-poros,
+            journey-up-the-anduin,
+            lost-in-mirkwood,
+            the-kings-quest,
+          ]
+    env:
+      BATCH4_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:batch4-simulation
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -224,6 +250,12 @@ jobs:
             the-mumakil,
             race-across-harad,
             beneath-the-sands,
+            the-black-serpent,
+            the-dungeons-of-cirith-gurat,
+            the-crossings-of-poros,
+            journey-up-the-anduin,
+            lost-in-mirkwood,
+            the-kings-quest,
           ]
     steps:
       - uses: actions/checkout@v4
@@ -275,6 +307,16 @@ jobs:
             suite: test:browser-race-harad
           - group: beneath-sands
             suite: test:browser-beneath-sands
+          - group: black-serpent
+            suite: test:browser-black-serpent
+          - group: cirith-gurat
+            suite: test:browser-cirith-gurat
+          - group: crossings-poros
+            suite: test:browser-crossings-poros
+          - group: wilds-rhovanion
+            suite: test:browser-wilds-rhovanion
+          - group: batch4-players
+            suite: test:browser-batch4-players
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

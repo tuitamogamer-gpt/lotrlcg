@@ -24,7 +24,7 @@ import {
   seatView,
 } from "./table";
 import { hasTrait } from "./expansion-passives";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { isEnemy } from "./ships";
 import { isSacked } from "./carrock";
 import { playerEffectImmune } from "./player-effect-immunity";
@@ -40,7 +40,7 @@ const used = (s: GameState, key: string) =>
   !!s.table?.seats.some((seat) => seat.used.includes(key));
 const usable = (u: Unit) => !u.blanked && !isSacked(u);
 const handAllies = (s: GameState) =>
-  movableHand(s).filter(
+  discardableHand(s).filter(
     (u) => card(u.code).type_code === "ally" && hasTrait(u, "Harad"),
   );
 const readyTargets = (s: GameState) =>

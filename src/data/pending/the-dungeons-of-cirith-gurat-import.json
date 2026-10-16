@@ -1,0 +1,1632 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Dungeons of Cirith Gurat",
+  "slug": "the-dungeons-of-cirith-gurat",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json",
+    "expansionRules": "https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/mec60_web_the_dungeons_of_cirith-rules.pdf"
+  },
+  "cards": [
+    {
+      "code": "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+      "octgnid": "041e412b-4d21-421a-a029-e1fdcb62e76d",
+      "name": "Taken Prisoner",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player attaches an ally he controls to an unattached enemy or location in the staging area. If he cannot, Taken Prisoner gains doomed 2. ",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 129,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys an ally, reveal the top card of the encounter deck.",
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {},
+      "imagesrc": "/cards/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 129,
+          "quantity": 2,
+          "octgnid": "041e412b-4d21-421a-a029-e1fdcb62e76d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+      "octgnid": "0676e5a8-1637-42f8-95fa-37aa6e189070",
+      "name": "Rescue the Prisoners",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Uruk Chieftain aside, out of play. Add The Captives of Cirith Gurat and 1 copy of Dungeon Cell to the staging area. Attach Abaan to Dungeon Cell. Each player searches the encounter deck for a different Orc enemy and adds it to the staging area. Shuffle the encounter deck. Starting with the first player, each player discards cards from the top of his deck until an ally that is not in play is discarded and attaches that ally to an unattached enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 132,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "side": "A",
+      "back_name": "Rescue the Prisoners",
+      "back_text": "Forced: After any number of characters are rescued, reveal an encounter card. This stage cannot be defeated while a guarded objective is in play.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 132,
+          "quantity": 1,
+          "octgnid": "0676e5a8-1637-42f8-95fa-37aa6e189070",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+      "octgnid": "11a29b18-0e86-4383-a463-e020f8b1d0f6",
+      "name": "Sneak Past the Guards",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Each player discards cards from the encounter deck until an enemy is discarded and adds that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 133,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "side": "A",
+      "back_name": "Sneak Past the Guards",
+      "back_text": "Each enemy in the staging area cannot take damage and gets +X engagement cost, where X is the number of progress tokens here. Forced: At the end of the round, reveal an encounter card. Then, place 1 resource here if no enemies were engaged this round.  The players cannot defeat this stage unless there are at least 2 resources here. ",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 133,
+          "quantity": 1,
+          "octgnid": "11a29b18-0e86-4383-a463-e020f8b1d0f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+      "octgnid": "20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+      "name": "Fight Your Way Out",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player adds Uruk Chieftain to the staging area. Each player chooses a hero he controls, discards all tokens and attachments from it, and attaches it to an unattached enemy in the staging area as a captive. Then, the players make a standard series of engagement checks against each enemy in the staging area. Reduce the engagement cost of each enemy not guarding an objective to 0 during these engagement checks.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 134,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "side": "A",
+      "back_name": "Fight Your Way Out",
+      "back_text": "Forced: At the beginning of the quest phase, discard cards from the encounter deck until an enemy is discarded and add that enemy to the staging area. The players cannot defeat this stage while a guarded objective is in play. If the players defeat this stage, they win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 134,
+          "quantity": 1,
+          "octgnid": "20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+      "name": "In Hostile Territory",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nEach player cannot have more than 5 cards in his hand. (If you have more than 5, immediately choose and discard cards from hand until you have only 5.) Response: When this stage is defeated, each player draws a card. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 45,
+      "quantity": 1,
+      "quest": 8,
+      "victory": 10,
+      "encounter_set": "Harad Territory",
+      "printed_stats": {
+        "quest": "8",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "24772594-75f3-4789-aeec-41526d845e11",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+      "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+      "name": "Uruk Chieftain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Cannot have player card attachments or be optionally engaged.While the engaged player is engaged with another Orc enemy, Uruk Chieftain cannot take damage.Forced: At the end of the encounter phase, Uruk Chieftain engages the player engaged with the most non-unique Orc enemies.",
+      "is_unique": true,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 61,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 50,
+      "victory": 3,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "50",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 61,
+          "quantity": 1,
+          "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27748abf-80e8-4928-b506-53d7c23d76c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "name": "Mordor Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: Attach to an Orc enemy and return that enemy to the staging area. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and +2 hit points. Forced: When attached enemy leaves play, add Mordor Warg to the staging area.\")",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 64,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 2,
+      "engagement": 20,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 64,
+          "quantity": 2,
+          "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "name": "Injured Companion",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 1 for each character you control, or discard a character you control.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 46,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise each player's threat by 1.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+      "octgnid": "6603b3a5-b955-4109-a63d-b8405c86d0b7",
+      "name": "Prison Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "While Prison Guard is guarding an objective, it gets +2 [defense]. While Prison Guard is not guarding an objective, it gains: \"Forced: After Prison Guard attacks and damages an ally, attach that ally to Prison Guard.\"",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 122,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 4,
+      "engagement": 30,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 122,
+          "quantity": 3,
+          "octgnid": "6603b3a5-b955-4109-a63d-b8405c86d0b7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+      "octgnid": "7562e662-3b3e-4378-9a3f-c45908bc05cf",
+      "name": "Tormented by Orcs",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player raises his threat by 1 for each guarded objective he owns. If any player does not own a guarded objective, Tormented by Orcs gains surge. ",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 130,
+      "quantity": 3,
+      "shadow": "Shadow: Until the end of the phase, attacking enemy gets +1 [defense] (+2 [defense] instead if it is guarding an objective).",
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {},
+      "imagesrc": "/cards/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 130,
+          "quantity": 3,
+          "octgnid": "7562e662-3b3e-4378-9a3f-c45908bc05cf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+      "octgnid": "85d48eb0-3339-4db6-976f-a800213e7eea",
+      "name": "Gate of Iron",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dungeon.",
+      "text": "While Gate of Iron is in the staging area, progress cannot be placed on locations in the staging area. Travel: Discard the top card of the encounter deck. Then, the first player must discard a card from his hand with cost greater than the discarded card's [threat], or raise each player's threat by 3.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 124,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 2,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/85d48eb0-3339-4db6-976f-a800213e7eea.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 124,
+          "quantity": 3,
+          "octgnid": "85d48eb0-3339-4db6-976f-a800213e7eea",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85d48eb0-3339-4db6-976f-a800213e7eea.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "name": "Uruks of the Eye",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nEach Orc enemy in the staging area gets -5 engagement cost. Each Orc enemy engaged with a player gets +1 [threat]. ",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 60,
+      "quantity": 1,
+      "quest": 5,
+      "victory": 10,
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "quest": "5",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 60,
+          "quantity": 1,
+          "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+      "octgnid": "9031b458-f7e0-4c55-9266-f30aaaf718c1",
+      "name": "Captured!",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Orcs spring from a secret passage and pull your friends inside! When Revealed: Each player loses control of an ally he controls and attaches it to this stage. If no allies are attached to this stage, discard it and reveal an additional encounter card. Forced: When this stage is defeated, each player reduces his threat by X, where X is the cost of the ally he controls that was attached to this stage.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 131,
+      "quantity": 1,
+      "quest": 5,
+      "victory": 10,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "quest": "5",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 131,
+          "quantity": 1,
+          "octgnid": "9031b458-f7e0-4c55-9266-f30aaaf718c1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+      "octgnid": "98358a49-2fba-45e3-8a26-5500bc7f04dd",
+      "name": "Torture Room",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dungeon.",
+      "text": "When Revealed: The first player discards cards from the top of his deck until he discards an ally. Attach that ally to Torture Room and discard each other copy of that ally from play. While Torture Room is guarding an objective, it gains: \"Forced: At the end of the round, raise each player's threat by 1.\"",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 128,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 128,
+          "quantity": 2,
+          "octgnid": "98358a49-2fba-45e3-8a26-5500bc7f04dd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "name": "Uruk of Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Each ally with less [willpower] than Uruk of Mordor's [threat] cannot defend against Uruk of Mordor.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 62,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if its [threat] is greater than the defending character's [willpower]).",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 62,
+          "quantity": 3,
+          "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+      "octgnid": "b0b77537-0c91-42c0-b111-647bc445a419",
+      "name": "The Captives of Cirith Gurat",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "While a character is attached to an encounter card, it is considered to be a guarded objective with a blank text box. Forced: When a character is attached to an encounter card, discard each token and attachment on that character. Forced: When an objective is free of encounters, it is 'rescued' and that character's owner takes control of it, exhausted.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 119,
+      "quantity": 1,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {},
+      "imagesrc": "/cards/b0b77537-0c91-42c0-b111-647bc445a419.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 119,
+          "quantity": 1,
+          "octgnid": "b0b77537-0c91-42c0-b111-647bc445a419",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0b77537-0c91-42c0-b111-647bc445a419.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+      "octgnid": "b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+      "name": "Jailer of Cirith Gurat",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Forced: After Jailer of Cirith Gurat engages you, attach an ally you control to it. ",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 121,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 45,
+      "shadow": "Shadow: If attacking enemy's [threat] is greater than defending ally's [willpower], attach defending ally to attacking enemy. Then, cancel this attack.",
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 121,
+          "quantity": 2,
+          "octgnid": "b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+      "octgnid": "c402e437-4d0c-41ed-8e82-c2923cd6984e",
+      "name": "Uruk Guardroom",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dungeon.",
+      "text": "While Uruk Guardroom is in the staging area, increase the cost to play each ally by 1. Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until an Orc enemy is discarded. Add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 126,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 126,
+          "quantity": 2,
+          "octgnid": "c402e437-4d0c-41ed-8e82-c2923cd6984e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+      "octgnid": "cc2cf907-a433-47e7-bc7f-21fa837aa025",
+      "name": "Mines of Cirith Gurat",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dungeon.",
+      "text": "While Mines of Cirith Gurat is in the staging area, it gains: \"Forced: When a player card would reduce a player's threat by any amount, reduce that amount to 1.\" Travel: Each player discards the top 3 cards of his deck and raises his threat by 1 for each ally he discards this way.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 127,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 127,
+          "quantity": 3,
+          "octgnid": "cc2cf907-a433-47e7-bc7f-21fa837aa025",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+      "octgnid": "ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+      "name": "Dungeon Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nWhen Revealed: Dungeon Warg makes an immediate attack against the player who controls the most allies.",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 123,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 123,
+          "quantity": 3,
+          "octgnid": "ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "name": "Enfeebled",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls. Until the end of the combat phase, exhausted characters cannot ready.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 47,
+      "quantity": 2,
+      "shadow": "Shadow: Until the end of the round, defending character cannot ready.",
+      "encounter_set": "Harad Territory",
+      "printed_stats": {},
+      "imagesrc": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "name": "Fear of Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each ally in play gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: If attacking enemy's [threat] is greater than the defending character's [willpower], it makes an additional attack after this one.",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {},
+      "imagesrc": "/cards/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+      "octgnid": "ea4bc222-6fb5-494e-8f1f-de30974694db",
+      "name": "Abaan",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Harad.",
+      "text": "While Abaan is free of encounters, the first player gains control of Abaan. Response: After Abaan exhausts, choose a Harad character to get +1 [willpower], +1 [attack], and +1 [defense] until the end of the round. If Abaan leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 120,
+      "quantity": 1,
+      "willpower": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "willpower": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "3"
+      },
+      "imagesrc": "/cards/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 120,
+          "quantity": 1,
+          "octgnid": "ea4bc222-6fb5-494e-8f1f-de30974694db",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "name": "Uruk Warg-Rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "Uruk Warg-Rider gets +X [attack] while attacking a character with less [willpower] than Uruk Warg-rider's [threat]. X is the difference.",
+      "is_unique": false,
+      "pack_code": "TSoH",
+      "pack_name": "The Sands of Harad",
+      "position": 63,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Mordor Orcs",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoH",
+          "pack_name": "The Sands of Harad",
+          "position": 63,
+          "quantity": 2,
+          "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+      "octgnid": "fd726884-459b-4c66-a046-6fa86402ce6a",
+      "name": "Dungeon Cell",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Dungeon.",
+      "text": "Surge.\nDungeon Cell gets +X [threat] where X is the printed [willpower] of the attached objective. While Dungeon Cell is in the staging area, it gains: \"Forced: After an ally is destroyed, attach it to Dungeon Cell if there is no objective attached to Dungeon Cell.\"",
+      "is_unique": false,
+      "pack_code": "DoCG",
+      "pack_name": "The Dungeons of Cirith Gurat",
+      "position": 125,
+      "quantity": 3,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "The Dungeons of Cirith Gurat",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/fd726884-459b-4c66-a046-6fa86402ce6a.jpg",
+      "packs": [
+        {
+          "pack_code": "DoCG",
+          "pack_name": "The Dungeons of Cirith Gurat",
+          "position": 125,
+          "quantity": 3,
+          "octgnid": "fd726884-459b-4c66-a046-6fa86402ce6a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd726884-459b-4c66-a046-6fa86402ce6a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E07.8",
+      "name": "The Dungeons of Cirith Gurat (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "DoCG",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+        "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+        "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+        "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+        "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+        "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+        "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+        "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+        "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+        "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+        "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+        "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+        "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+        "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+        "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+        "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+        "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+        "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+        "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+        "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+        "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070": 1,
+          "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6": 1,
+          "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7": 2,
+          "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e": 2,
+          "octgn:85d48eb0-3339-4db6-976f-a800213e7eea": 3,
+          "octgn:fd726884-459b-4c66-a046-6fa86402ce6a": 1,
+          "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e": 1,
+          "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025": 3,
+          "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd": 2,
+          "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d": 1,
+          "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf": 3,
+          "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1": 1,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 2,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 1,
+          "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 2,
+          "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb": 1,
+          "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322": 1
+        },
+        "sharedSetAside": {
+          "octgn:27748abf-80e8-4928-b506-53d7c23d76c6": 1
+        },
+        "sharedStagingArea": {
+          "octgn:b0b77537-0c91-42c0-b111-647bc445a419": 1,
+          "octgn:fd726884-459b-4c66-a046-6fa86402ce6a": 1,
+          "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db": 1,
+          "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d": 1,
+          "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 1,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q07.8",
+      "name": "The Dungeons of Cirith Gurat",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "DoCG",
+        "TSoH"
+      ],
+      "card_codes": [
+        "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+        "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+        "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+        "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+        "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+        "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+        "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+        "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+        "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+        "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+        "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+        "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+        "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+        "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+        "octgn:24772594-75f3-4789-aeec-41526d845e11",
+        "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+        "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+        "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+        "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+        "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+        "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+        "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+        "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+        "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+        "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070": 1,
+          "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6": 1,
+          "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d": 1,
+          "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7": 2,
+          "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e": 3,
+          "octgn:85d48eb0-3339-4db6-976f-a800213e7eea": 3,
+          "octgn:fd726884-459b-4c66-a046-6fa86402ce6a": 2,
+          "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e": 2,
+          "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025": 3,
+          "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd": 2,
+          "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d": 2,
+          "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf": 3,
+          "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1": 1,
+          "octgn:24772594-75f3-4789-aeec-41526d845e11": 1,
+          "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1": 3,
+          "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa": 2,
+          "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 2,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1,
+          "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb": 2,
+          "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322": 2
+        },
+        "sharedSetAside": {
+          "octgn:27748abf-80e8-4928-b506-53d7c23d76c6": 1
+        },
+        "sharedStagingArea": {
+          "octgn:b0b77537-0c91-42c0-b111-647bc445a419": 1,
+          "octgn:fd726884-459b-4c66-a046-6fa86402ce6a": 1,
+          "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db": 1,
+          "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d": 1,
+          "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7": 1,
+          "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc": 1,
+          "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg",
+      "localPath": "/cards/041e412b-4d21-421a-a029-e1fdcb62e76d.jpg",
+      "bytes": 132631,
+      "sha256": "8a85216a58362d77af2aaab919dd2151251764442c45fcb4592c730d9b6194c0"
+    },
+    {
+      "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg",
+      "localPath": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg",
+      "bytes": 136654,
+      "sha256": "92a4e9eee4a5341d392abc5a2bcf5a086a690cae7e4776d6452dbcde258a19ab"
+    },
+    {
+      "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0676e5a8-1637-42f8-95fa-37aa6e189070.B.jpg",
+      "localPath": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.B.jpg",
+      "bytes": 134456,
+      "sha256": "5b99c746aff05f9f7b070b21b366415918bd7f7b4603adfdf873b6b15b89ab8a"
+    },
+    {
+      "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg",
+      "localPath": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg",
+      "bytes": 141261,
+      "sha256": "76511de1b2afbf799496060524923c8cc231d9e0aac56f6e7bfa380dd2acc889"
+    },
+    {
+      "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11a29b18-0e86-4383-a463-e020f8b1d0f6.B.jpg",
+      "localPath": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.B.jpg",
+      "bytes": 129043,
+      "sha256": "f70fe5db427f2bbbbb7feceabfa91c1f6ccbf1bc2e77e8db6884c0e3427a59ee"
+    },
+    {
+      "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg",
+      "localPath": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg",
+      "bytes": 147340,
+      "sha256": "c3608ca3d10846085cf5cde897cb9f59b60a6bf31fd6b65b93497d045b082ffb"
+    },
+    {
+      "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.B.jpg",
+      "localPath": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.B.jpg",
+      "bytes": 147554,
+      "sha256": "49b6d6639f0631563e27186e0cbbbfa9088dad9b3988345f7b731028f864341d"
+    },
+    {
+      "code": "octgn:24772594-75f3-4789-aeec-41526d845e11",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "localPath": "/cards/24772594-75f3-4789-aeec-41526d845e11.jpg",
+      "bytes": 139224,
+      "sha256": "ea69525ad394619f838f20418fde0071b2615f178bbe1afb1f760d28db7beac4"
+    },
+    {
+      "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "localPath": "/cards/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+      "bytes": 144827,
+      "sha256": "eedf663d9b312e13c5bf5fd7eeedd9403fadff9552ab4d2b510d37667dd03ea0"
+    },
+    {
+      "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "localPath": "/cards/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+      "bytes": 155706,
+      "sha256": "387c5882d74771f23f5ee0c1f305121a22de71d68329b6068884376d2c88deb2"
+    },
+    {
+      "code": "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "localPath": "/cards/2b81f105-3712-4326-ac9f-ed7aa18aace1.jpg",
+      "bytes": 151450,
+      "sha256": "9198d9d8e5d71b389d4f9a171738982aee84743a7e29e59d2f9f23c5fc142e3c"
+    },
+    {
+      "code": "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg",
+      "localPath": "/cards/6603b3a5-b955-4109-a63d-b8405c86d0b7.jpg",
+      "bytes": 130073,
+      "sha256": "a3a1052257bc095a775b889d25d53fe163b91054c06cc19bc01a6467545666f0"
+    },
+    {
+      "code": "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg",
+      "localPath": "/cards/7562e662-3b3e-4378-9a3f-c45908bc05cf.jpg",
+      "bytes": 127186,
+      "sha256": "05fda8b5167377bd9a94f614db6f146f7e1d96b5ea7d58c9e32d8d418599fea8"
+    },
+    {
+      "code": "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/85d48eb0-3339-4db6-976f-a800213e7eea.jpg",
+      "localPath": "/cards/85d48eb0-3339-4db6-976f-a800213e7eea.jpg",
+      "bytes": 139833,
+      "sha256": "fff006379b6e4344adb2b5b65bfdc77e9e7ade09bdaba3dc4aa27599df54a420"
+    },
+    {
+      "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "localPath": "/cards/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+      "bytes": 134232,
+      "sha256": "7773fa7a6b362094e74cdab87fbcdc1a8c3faa8ed0f9e0b31d814bc4cb3aa8f8"
+    },
+    {
+      "code": "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg",
+      "localPath": "/cards/9031b458-f7e0-4c55-9266-f30aaaf718c1.jpg",
+      "bytes": 124824,
+      "sha256": "f725819a312f043d19491502f0fc3f34f80df40a38cf2a593ddaa865dac2d0c0"
+    },
+    {
+      "code": "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg",
+      "localPath": "/cards/98358a49-2fba-45e3-8a26-5500bc7f04dd.jpg",
+      "bytes": 140404,
+      "sha256": "542b58c53a272de560619fb47626937e1748910df123886d226da0e7e14f911c"
+    },
+    {
+      "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "localPath": "/cards/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+      "bytes": 148637,
+      "sha256": "f55d47bf1b4db456aeeafaae1656de2f7cd6c8a1edd66b112e631310db0412fa"
+    },
+    {
+      "code": "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b0b77537-0c91-42c0-b111-647bc445a419.jpg",
+      "localPath": "/cards/b0b77537-0c91-42c0-b111-647bc445a419.jpg",
+      "bytes": 142501,
+      "sha256": "20dbc679ddec4dcb99691c9b74a59f31ee2e792869ce56c580f1dc80532bbe35"
+    },
+    {
+      "code": "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg",
+      "localPath": "/cards/b9b2c1fc-2954-46f3-8b6c-71300a35eb5d.jpg",
+      "bytes": 142132,
+      "sha256": "54b68ff0efa92fab01e11cde5de0b1b494a755c17f55f24e96e73d42243c1616"
+    },
+    {
+      "code": "octgn:c402e437-4d0c-41ed-8e82-c2923cd6984e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg",
+      "localPath": "/cards/c402e437-4d0c-41ed-8e82-c2923cd6984e.jpg",
+      "bytes": 149054,
+      "sha256": "869b0fd0c9b8dfd45430712451f8ed23a2144b9279db45a4eefc5480fc0b42fb"
+    },
+    {
+      "code": "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg",
+      "localPath": "/cards/cc2cf907-a433-47e7-bc7f-21fa837aa025.jpg",
+      "bytes": 134429,
+      "sha256": "a554cda8bfce81ff0cf005eb3a390d9f7e0212c3f74503e773f5273d3e813d3a"
+    },
+    {
+      "code": "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg",
+      "localPath": "/cards/ce5c7298-f5ff-478f-b70a-9efa27bd071e.jpg",
+      "bytes": 129830,
+      "sha256": "592579c1a47fb74bdb327c0103d11025ddfa19327d63895f257d188974055890"
+    },
+    {
+      "code": "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "localPath": "/cards/cf6094fe-6a58-4784-8e41-1ad546f8b6aa.jpg",
+      "bytes": 149285,
+      "sha256": "38569d185c6fd83b214a0dff1c068143a9cf02b11a85e3427c6bf89cb65c2fc4"
+    },
+    {
+      "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "localPath": "/cards/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+      "bytes": 152488,
+      "sha256": "20ea08f5e027c062ac689ce637161f113c5673b0804013f5ace8ce3c67c55c3b"
+    },
+    {
+      "code": "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg",
+      "localPath": "/cards/ea4bc222-6fb5-494e-8f1f-de30974694db.jpg",
+      "bytes": 141375,
+      "sha256": "3cde6f7d8f94d07bb1a4b51d7cebfdd447ac6dacb628c39448a8fe50435f2f58"
+    },
+    {
+      "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "localPath": "/cards/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+      "bytes": 151309,
+      "sha256": "d08b5a8f6fcc194cf88e53314a8e4e114ec7ae8ccc5111cc8a79e47c300cfad5"
+    },
+    {
+      "code": "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd726884-459b-4c66-a046-6fa86402ce6a.jpg",
+      "localPath": "/cards/fd726884-459b-4c66-a046-6fa86402ce6a.jpg",
+      "bytes": 131986,
+      "sha256": "7ee117d8627d8be10b5090cebad8c2aca76174e8c1f05d2b78e38f578d38638c"
+    }
+  ]
+}

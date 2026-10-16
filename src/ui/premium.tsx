@@ -3,6 +3,30 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-black-serpent": {
+    name: "The Crossroads Fort",
+    detail: "Seize the Serpent’s caravan and the summons from Mordor",
+  },
+  "the-dungeons-of-cirith-gurat": {
+    name: "The Dungeons of Cirith Gurat",
+    detail: "Free the prisoners and escape the Orc fortress",
+  },
+  "the-crossings-of-poros": {
+    name: "The Crossings of Poros",
+    detail: "Reach the river and defend the Haradrim at Gondor’s border",
+  },
+  "journey-up-the-anduin": {
+    name: "The Vales of Anduin",
+    detail: "Follow the river north and rally the Woodmen",
+  },
+  "lost-in-mirkwood": {
+    name: "The Paths of Mirkwood",
+    detail: "Find a way through the forest and escape Taur-nu-Fuin",
+  },
+  "the-kings-quest": {
+    name: "The Iron Hills",
+    detail: "Search the deep caverns and face the Fire Worm",
+  },
   "beneath-the-sands": {
     name: "The Caves Beneath Harad",
     detail: "Find a path through the tunnels and confront the Brood Mother",
@@ -298,6 +322,12 @@ export const PLAYMAT_CHOICES = [
   "the-mumakil",
   "race-across-harad",
   "beneath-the-sands",
+  "the-black-serpent",
+  "the-dungeons-of-cirith-gurat",
+  "the-crossings-of-poros",
+  "journey-up-the-anduin",
+  "lost-in-mirkwood",
+  "the-kings-quest",
   "shadow-and-flame",
 ] as const;
 

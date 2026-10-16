@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
+    "octgnid": "0676e5a8-1637-42f8-95fa-37aa6e189070",
+    "name": "Rescue the Prisoners",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Uruk Chieftain aside, out of play. Add The Captives of Cirith Gurat and 1 copy of Dungeon Cell to the staging area. Attach Abaan to Dungeon Cell. Each player searches the encounter deck for a different Orc enemy and adds it to the staging area. Shuffle the encounter deck. Starting with the first player, each player discards cards from the top of his deck until an ally that is not in play is discarded and attaches that ally to an unattached enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 132,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "side": "A",
+    "back_name": "Rescue the Prisoners",
+    "back_text": "Each enemy and location in the staging area that is guarding an objective is immune to player card effects.\nForced: After any number of characters are rescued, reveal an encounter card.\nThis stage cannot be defeated while a guarded objective is in play.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 132,
+        "quantity": 1,
+        "octgnid": "0676e5a8-1637-42f8-95fa-37aa6e189070",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0676e5a8-1637-42f8-95fa-37aa6e189070.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+    "octgnid": "11a29b18-0e86-4383-a463-e020f8b1d0f6",
+    "name": "Sneak Past the Guards",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Each player discards cards from the encounter deck until an enemy is discarded and adds that enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 133,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "side": "A",
+    "back_name": "Sneak Past the Guards",
+    "back_text": "Each enemy in the staging area cannot take damage and gets +X engagement cost, where X is the number of progress tokens here. Forced: At the end of the round, reveal an encounter card. Then, place 1 resource here if no enemies were engaged this round.  The players cannot defeat this stage unless there are at least 2 resources here. ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 133,
+        "quantity": 1,
+        "octgnid": "11a29b18-0e86-4383-a463-e020f8b1d0f6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11a29b18-0e86-4383-a463-e020f8b1d0f6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+    "octgnid": "20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+    "name": "Fight Your Way Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds Uruk Chieftain to the staging area. Each player chooses a hero he controls, discards all tokens and attachments from it, and attaches it to an unattached enemy in the staging area as a captive. Then, the players make a standard series of engagement checks against each enemy in the staging area. Reduce the engagement cost of each enemy not guarding an objective to 0 during these engagement checks.",
+    "is_unique": false,
+    "pack_code": "DoCG",
+    "pack_name": "The Dungeons of Cirith Gurat",
+    "position": 134,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Dungeons of Cirith Gurat",
+    "side": "A",
+    "back_name": "Fight Your Way Out",
+    "back_text": "Forced: At the beginning of the quest phase, discard cards from the encounter deck until an enemy is discarded and add that enemy to the staging area. The players cannot defeat this stage while a guarded objective is in play. If the players defeat this stage, they win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg",
+    "packs": [
+      {
+        "pack_code": "DoCG",
+        "pack_name": "The Dungeons of Cirith Gurat",
+        "position": 134,
+        "quantity": 1,
+        "octgnid": "20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20291f58-7e45-4d2c-bbd8-c292e44dfcdc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -1,3 +1,4 @@
+import { batch4Scenario } from "./batch4-scenarios";
 import { CHETWOOD } from "./chetwood-support";
 import type { GameState } from "./types";
 import { THARBAD as T } from "./tharbad-support";
@@ -20,6 +21,7 @@ export interface ThreatSource {
   index?: number;
 }
 export const threatReductionBlocked = (s: GameState) =>
+  batch4Scenario(s).cannotReduceThreat?.(s) ||
   s.staging.some((u) => u.code === CHETWOOD.homestead && !u.blanked) ||
   [...s.staging, ...allActiveLocations(s)].some(
     (u) => u.code === T.mug && !u.blanked,
@@ -41,6 +43,7 @@ export function reduceThreat(
       );
     return 0;
   }
+  amount = batch4Scenario(s).threatReduction?.(s, amount, reason) ?? amount;
   const reduction = Math.min(s.threat, amount);
   s.threat -= reduction;
   if (

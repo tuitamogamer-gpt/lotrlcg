@@ -1,3 +1,7 @@
+import { cirithGuratPublicState } from "./cirith-gurat-support";
+import * as BatchPlayers from "./batch4-player";
+import * as WildsPlayers from "./wilds-player";
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as SandsPlayers from "./beneath-sands-player";
 import * as Race from "./race-harad";
@@ -69,7 +73,7 @@ import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import { questTime } from "./quest-time";
 import { cannotReady } from "./core";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import * as Fords from "./fords-isen";
 import { FORDS } from "./fords-isen-support";
 import {
@@ -532,6 +536,8 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (u.code === CARROCK.carrock) return "The Carrock cannot be travelled to.";
   if (u.code !== FORDS.road && Fords.fordsMandatoryTravel(s))
     return "You must travel to The King’s Road.";
+  const batchTravelProblem = batch4Scenario(s).travelProblem?.(s, u);
+  if (batchTravelProblem) return batchTravelProblem;
   const raceProblem = Race.raceHaradTravelProblem(s, u);
   if (raceProblem) return raceProblem;
   const raidProblem = Raid.raidTravelProblem(s, u);
@@ -629,6 +635,12 @@ export function optionalEngagementProblem(
     return "Umbar Patrol prevents optional engagements this round.";
   if (Mordor.mordorCannotOptionallyEngage(s, u))
     return "Uruk Chieftain cannot be optionally engaged.";
+  if (
+    batch4Scenario(s).cannotEngage?.(s, u) ||
+    batch4Scenario(s).cannotLeave?.(s, u) ||
+    batch4Scenario(s).cannotOptionallyEngage?.(s, u)
+  )
+    return "This enemy cannot be optionally engaged.";
   if (Race.raceHaradCannotLeave(s, u))
     return "This enemy cannot leave the Orc staging area.";
   if (Mumakil.mumakilCannotOptionallyEngage(s, u))
@@ -639,7 +651,11 @@ export function optionalEngagementProblem(
     return "Wait for this fellowship’s engagement turn.";
   if (
     s.phase !== "encounter" ||
-    (s.optionalEngagement && !Realm.realmExtraEngagement(s))
+    (s.optionalEngagement &&
+      !Realm.realmExtraEngagement(s) &&
+      s.used.filter((key) => key.startsWith("phase:batch4-extra-engagement:"))
+        .length >=
+        (batch4Scenario(s).extraOptionalEngagements?.(s, activeSeat(s)) ?? 0))
   )
     return "You may optionally engage one enemy during the encounter phase.";
   if (
@@ -784,6 +800,10 @@ export function canPlay(
   if (drownedPlayerProblem) return drownedPlayerProblem;
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
+  const batchProblem =
+    BatchPlayers.batch4PlayerPlayProblem(s, u) ??
+    WildsPlayers.wildsPlayerPlayProblem(s, u);
+  if (batchProblem) return batchProblem;
   const sandsProblem = SandsPlayers.beneathSandsPlayerPlayProblem(s, u);
   if (sandsProblem) return sandsProblem;
   const raceProblem = RacePlayers.raceHaradPlayerPlayProblem(s, u);
@@ -1354,6 +1374,7 @@ export function handlePaidPlayerCardEntry(s: GameState, e: Effect): boolean {
   forOwner(s, pending.player, () => {
     if (
       card(pending.unit.code).type_code === "attachment" &&
+      !["18011", "17139"].includes(pending.unit.code) &&
       !playTargets(s, pending.unit).some(
         (target) => target.id === pending.target,
       )
@@ -1414,8 +1435,10 @@ export function resolvePlayerCard(
     enterAlly(s, u, false, played, fromHand);
   } else if (
     c.type_code === "attachment" &&
-    played &&
-    (heirsPlayerSpecialAttachmentEntry(s, u) ||
+    (played || ["17139", "18011"].includes(u.code)) &&
+    (BatchPlayers.batch4PlayerSpecialAttachmentEntry(s, u) ||
+      WildsPlayers.wildsPlayerSpecialAttachmentEntry(s, u) ||
+      heirsPlayerSpecialAttachmentEntry(s, u) ||
       amonPlayerSpecialAttachmentEntry(s, u) ||
       bloodPlayerSpecialAttachmentEntry(s, u) ||
       TemplePlayers.templePlayerSpecialAttachmentEntry(s, u))
@@ -1444,6 +1467,20 @@ export function resolvePlayerCard(
     } else host.attachments.push(attachment);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
+    BatchPlayers.batch4PlayerAttachmentPlayed(
+      s,
+      host,
+      attachment,
+      played,
+      fromHand,
+    );
+    WildsPlayers.wildsPlayerAttachmentPlayed(
+      s,
+      host,
+      attachment,
+      played,
+      fromHand,
+    );
     roadPlayerAttachmentEntered(s, host, attachment);
     DrownedPlayers.drownedPlayerAttachmentEntered(s, host, attachment);
     cobasReactiveAttachmentEntered(s, host, attachment);
@@ -1466,6 +1503,7 @@ export function resolvePlayerCard(
       s,
       u,
       () => {
+        WildsPlayers.wildsPlayerEventCost(s, u, target);
         CobasEconomy.cobasEconomyEventCost(s, u);
         GreyPlayers.greyHavensEventCost(s, u.code, target);
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
@@ -1488,8 +1526,14 @@ export function resolvePlayerCard(
   }
   if (c.type_code !== "ally")
     Isengard.isengardPlayerPlayed(s, u, played && fromHand);
-  if (played && c.type_code === "event")
+  if (played && c.type_code === "event") {
+    batch4Scenario(s).eventPlayed?.(s, u);
     RacePlayers.raceHaradPlayerEventPlayed(s, u);
+  }
+  if (played) {
+    WildsPlayers.wildsPlayerCardPlayed(s, c);
+    batch4Scenario(s).playerCardPlayed?.(s, u);
+  }
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
     longDarkPlayerCardPlayed(s, c, activeSeat(s));
@@ -1506,6 +1550,9 @@ export function handlePlayerEventAbilityEffect(
   if (!physical) return true;
   if (
     !shadowFlameEventCancelled(s) &&
+    !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !BatchPlayers.batch4PlayerEvent(s, physical.code, e.source) &&
+    !WildsPlayers.wildsPlayerEvent(s, physical.code, e.source, physical.id) &&
     !HaradPlayers.haradPlayerEvent(s, physical.code, e.source) &&
     !RacePlayers.raceHaradPlayerEvent(s, physical.code, e.source) &&
     !SandsPlayers.beneathSandsPlayerEvent(s, physical.code, e.source) &&
@@ -1577,7 +1624,8 @@ export function playTargets(
     (target) =>
       !playerEffectImmune(s, target, u.code) &&
       (card(u.code).type_code !== "attachment" ||
-        (!Dike.dikeCannotAttach(s, target) &&
+        (!batch4Scenario(s).cannotAttach?.(s, target, u.code) &&
+          !Dike.dikeCannotAttach(s, target) &&
           !Wastes.wastesCannotAttach(s, target) &&
           !Dread.dreadCannotAttach(s, target) &&
           !Carn.carnCannotAttach(s, target) &&
@@ -1605,6 +1653,10 @@ export function playTargets(
 function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
+  const batchTargets =
+    BatchPlayers.batch4PlayerPlayTargets(s, c.code) ??
+    WildsPlayers.wildsPlayerPlayTargets(s, c.code);
+  if (batchTargets) return batchTargets;
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
   const haradTargets = HaradPlayers.haradPlayerPlayTargets(s, c.code);
@@ -1767,11 +1819,11 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
-  ["16007", "16009"].includes(u.code) ||
+  ["17113", "17115", "18012", "18013", "16007", "16009"].includes(u.code) ||
   u.code === "12143" ||
   u.code === "12118" ||
   u.code === "09008" ||
-  (!["05017", "06064", "06115", "12064"].includes(u.code) &&
+  (!["18011", "17139", "05017", "06064", "06115", "12064"].includes(u.code) &&
     (card(u.code).type_code === "attachment" ||
       [
         "01020",
@@ -1930,6 +1982,21 @@ export function availableAbilities(s: GameState, u: Unit) {
       label: templeCompanionLabel,
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
     });
+  for (const [label, problem] of [
+    [
+      BatchPlayers.batch4PlayerAbilityLabel(u.code),
+      BatchPlayers.batch4PlayerAbilityProblem(s, u),
+    ],
+    [
+      WildsPlayers.wildsPlayerAbilityLabel(u.code),
+      WildsPlayers.wildsPlayerAbilityProblem(s, u),
+    ],
+    [
+      batch4Scenario(s).abilityLabel?.(u.code),
+      batch4Scenario(s).abilityProblem?.(s, u),
+    ],
+  ])
+    if (label) results.push({ label, disabled: !!problem });
   const cityLabel = CityPlayers.cityPlayerAbilityLabel(u.code);
   const raceLabel = RacePlayers.raceHaradPlayerAbilityLabel(u.code);
   if (raceLabel)
@@ -2138,7 +2205,7 @@ export function availableAbilities(s: GameState, u: Unit) {
       disabled:
         (["01012", "01062"].includes(u.code) && ninNoCardEconomy(s)) ||
         (u.code === "01007"
-          ? s.eowynUsed || !movableHand(s).length
+          ? s.eowynUsed || !discardableHand(s).length
           : u.code === "01011"
             ? s.used.includes(u.id) ||
               u.resources < 1 ||
@@ -2152,6 +2219,21 @@ export function availableAbilities(s: GameState, u: Unit) {
                 : s.used.includes(u.id) || u.exhausted),
     });
   for (const a of u.attachments) {
+    for (const [label, problem] of [
+      [
+        BatchPlayers.batch4PlayerAbilityLabel(a.code),
+        BatchPlayers.batch4PlayerAbilityProblem(s, u, a.id),
+      ],
+      [
+        WildsPlayers.wildsPlayerAbilityLabel(a.code),
+        WildsPlayers.wildsPlayerAbilityProblem(s, u, a.id),
+      ],
+      [
+        batch4Scenario(s).abilityLabel?.(a.code),
+        batch4Scenario(s).abilityProblem?.(s, u, a.id),
+      ],
+    ])
+      if (label) results.push({ id: a.id, label, disabled: !!problem });
     if (a.blanked) continue;
     const templeLabel = Temple.templeAbilityLabel(s, u, a.id);
     if (templeLabel && attachmentController(s, u, a) === activeSeat(s))
@@ -2378,6 +2460,7 @@ export function finishOpeningHands(s: GameState) {
     !Mumakil.mumakilOpeningHandsKept(s) &&
     !Race.raceHaradOpeningHandsKept(s) &&
     !Sands.beneathSandsOpeningHandsKept(s) &&
+    !batch4Scenario(s).openingHandsKept?.(s) &&
     !Voyage.voyageOpeningHandsKept(s) &&
     !Fate.fateOpeningHandsKept(s) &&
     !Raid.raidOpeningHandsKept(s) &&
@@ -2550,6 +2633,10 @@ export function applyAction(input: GameState, action: Action): GameState {
       } else if (s.phase === "travel") {
         if (Gram.gramTravelNext(s) || foundationsTravelNext(s)) break;
         requireRule(
+          !batch4Scenario(s).mustTravel?.(s),
+          "You must travel to the mandatory location, if able.",
+        );
+        requireRule(
           !Voyage.voyageMandatoryTravel(s),
           "At the worst heading, you must travel to Waterspout, if able.",
         );
@@ -2706,6 +2793,23 @@ export function applyAction(input: GameState, action: Action): GameState {
           }
           const u = get(s, action.id);
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
+          if (
+            u &&
+            batch4Scenario(s).abilityLabel?.(
+              action.attachmentId
+                ? (u.attachments.find((a) => a.id === action.attachmentId)
+                    ?.code ?? "")
+                : u.code,
+            )
+          ) {
+            const problem = batch4Scenario(s).abilityProblem?.(
+              s,
+              u,
+              action.attachmentId,
+            );
+            requireRule(!problem, problem ?? "");
+            if (batch4Scenario(s).ability?.(s, u, action.attachmentId)) return;
+          }
           requireRule(
             !u || !Fate.fateForbiddenSearchAbility(s, u),
             "An encounter effect prevents searching your deck.",
@@ -2787,6 +2891,8 @@ export function applyAction(input: GameState, action: Action): GameState {
           ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !BatchPlayers.useBatch4PlayerAbility(s, u, action.attachmentId) &&
+            !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&
             !DrownedPlayers.useDrownedPlayerAbility(
@@ -2891,6 +2997,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         Mumakil.mumakilTravelEffects(s, u) ??
         Race.raceHaradTravelEffects(s, u) ??
         Sands.beneathSandsTravelEffects(s, u) ??
+        batch4Scenario(s).travelEffects?.(s, u) ??
         Storm.stormcallerTravelEffects(s, u) ??
         Voyage.voyageTravelEffects(s, u) ??
         Etten.ettenTravelEffects(s, u) ??
@@ -3006,7 +3113,14 @@ export function applyAction(input: GameState, action: Action): GameState {
           Depths.depthsEngagementPlayer(s, u) === activeSeat(s),
         "This enemy can only engage its printed player.",
       );
-      if (s.optionalEngagement) s.used.push("phase:halbarad-extra-engagement");
+      if (s.optionalEngagement) {
+        if (Realm.realmExtraEngagement(s))
+          s.used.push("phase:halbarad-extra-engagement");
+        else
+          s.used.push(
+            `phase:batch4-extra-engagement:${s.used.filter((key) => key.startsWith("phase:batch4-extra-engagement:")).length + 1}`,
+          );
+      }
       s.optionalEngagement = true;
       requireRule(
         Raid.raidEngagementPlayer(s, u) === undefined ||
@@ -3226,6 +3340,80 @@ export function publicState(s: GameState) {
             guarding: s.mordor.guarding,
             setAside: s.mordor.setAside.length,
             removed: s.mordor.removed.length,
+          },
+        }
+      : {}),
+    ...(s.blackSerpent
+      ? {
+          blackSerpent: {
+            initialized: s.blackSerpent.initialized,
+            currentQuest: s.blackSerpent.currentQuest,
+            questDeck: s.blackSerpent.questDeck.length,
+            completedQuests: s.blackSerpent.completedQuests,
+            setAside: s.blackSerpent.setAside.length,
+            champions: s.blackSerpent.champions,
+            shields: s.blackSerpent.shields,
+            shieldPlayers: s.blackSerpent.shieldPlayers,
+            noProgressRound: s.blackSerpent.noProgressRound,
+            modifiers: s.blackSerpent.modifiers,
+            canceledEvents: s.blackSerpent.canceledEvents,
+          },
+        }
+      : {}),
+    ...(s.cirithGurat ? { cirithGurat: cirithGuratPublicState(s) } : {}),
+    ...(s.crossingsPoros
+      ? {
+          crossingsPoros: {
+            initialized: s.crossingsPoros.initialized,
+            currentQuest: s.crossingsPoros.currentQuest,
+            questDeck: s.crossingsPoros.questDeck.length,
+            completedQuests: s.crossingsPoros.completedQuests,
+            setAside: s.crossingsPoros.setAside.length,
+            removed: s.crossingsPoros.removed.length,
+            setAsideQuests: s.crossingsPoros.setAsideQuests.length,
+            removedQuests: s.crossingsPoros.removedQuests.length,
+            champions: s.crossingsPoros.champions,
+            poisoned: s.crossingsPoros.poisoned,
+            garrisonEntered: s.crossingsPoros.garrisonEntered,
+          },
+        }
+      : {}),
+    ...(s.wildsRhovanion
+      ? {
+          wildsRhovanion: {
+            initialized: s.wildsRhovanion.initialized,
+            currentQuest: s.wildsRhovanion.currentQuest,
+            questDeck: s.wildsRhovanion.questDeck.length,
+            completedQuests: s.wildsRhovanion.completedQuests,
+            setAside: s.wildsRhovanion.setAside.length,
+            evilDeck: s.wildsRhovanion.evilDeck.length,
+            evilDiscard: s.wildsRhovanion.evilDiscard,
+            cavesDeck: s.wildsRhovanion.cavesDeck.length,
+            storedCards: s.wildsRhovanion.storedCards.map((p) => ({
+              locationId: p.locationId,
+              player: p.player,
+              count: p.cards.length,
+            })),
+            guardedHeroes: s.wildsRhovanion.guardedHeroes.map((p) => ({
+              player: p.player,
+              guardId: p.guardId,
+              hero: visibleUnit(p.hero),
+            })),
+            guardedPlayerCards: s.wildsRhovanion.guardedPlayerCards.map(
+              (p) => ({
+                player: p.player,
+                guardId: p.guardId,
+                card: visibleUnit(p.card),
+              }),
+            ),
+            pendingGuarded: s.wildsRhovanion.pendingGuarded,
+            resolving: s.wildsRhovanion.resolving.length,
+            removed: s.wildsRhovanion.removed.length,
+            questResources: s.wildsRhovanion.questResources,
+            noReady: s.wildsRhovanion.noReady,
+            locationProgress: s.wildsRhovanion.locationProgress,
+            nemesisId: s.wildsRhovanion.nemesisId,
+            haldanId: s.wildsRhovanion.haldanId,
           },
         }
       : {}),

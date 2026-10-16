@@ -31,7 +31,7 @@ import { playerCardImmune } from "./card-immunity";
 import { discardCharacter, discardHandCard, readyCharacter } from "./board";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { heirsCanSpendResources } from "./heirs-numenor";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { drownedCannotReady } from "./drowned";
 import { reduceThreat } from "./threat-reduction";
 
@@ -68,7 +68,7 @@ const legolasAvailable = (s: GameState, source: Unit) =>
   isHero(source) &&
   !source.blanked &&
   !used(s, limit(source)) &&
-  movableHand(seatView(s, ownerOf(s, source))).length > 0 &&
+  discardableHand(seatView(s, ownerOf(s, source))).length > 0 &&
   targets(s, source).length > 0;
 
 /** Called after all actual defenders have been declared, before shadow resolution. */
@@ -280,7 +280,7 @@ export function handleHaradResponseEffect(s: GameState, e: Effect): boolean {
         choose(
           s,
           "Legolas · Choose a card from your hand to discard",
-          movableHand(s).map((u) => ({
+          discardableHand(s).map((u) => ({
             id: u.id,
             code: u.code,
             label: name(u),
@@ -293,7 +293,7 @@ export function handleHaradResponseEffect(s: GameState, e: Effect): boolean {
         source &&
           target &&
           !used(s, limit(source)) &&
-          movableHand(s).some((u) => u.id === e.text) &&
+          discardableHand(s).some((u) => u.id === e.text) &&
           targets(s, source).some((u) => u.id === target.id),
         "Legolas requires a physical card from his controller's hand and another eligible hero.",
       );

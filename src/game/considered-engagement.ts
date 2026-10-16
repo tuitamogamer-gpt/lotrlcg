@@ -1,3 +1,6 @@
+import { batch4Scenario } from "./batch4-scenarios";
+import { hasEncounterKeyword } from "./encounter-keyword";
+import { card } from "./cards";
 import { hasHinder } from "./fangorn";
 import { cityNormalAttackPending, cityNormalAttackMarked } from "./city";
 // Virtual engagement never duplicates or moves the physical staging-area enemy.
@@ -19,6 +22,7 @@ export function consideredEngaged(
   player = activeSeat(s),
 ): boolean {
   return (
+    batch4Scenario(s).consideredEngaged?.(s, u, player) ||
     carnConsideredEngaged(s, u, player) ||
     (u.code === SHADOW_FLAME.bane &&
       !u.blanked &&
@@ -48,7 +52,7 @@ export function normalAttackPending(
 export function markEnemyAttack(s: GameState, u: Unit, player = activeSeat(s)) {
   cityNormalAttackMarked(s, u);
   if (
-    (u.code === SHADOW_FLAME.bane || carnConsideredEngaged(s, u, player)) &&
+    (u.code === SHADOW_FLAME.bane || consideredEngaged(s, u, player)) &&
     s.staging.some((c) => c.id === u.id)
   ) {
     const ledger = ((u as ConsideredEnemy).consideredEnemyAttackedBy ??= []);
@@ -73,6 +77,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
     delete u.faceupShadows;
     return;
   }
+  if (batch4Scenario(s).skipShadowDeal?.(s, u)) return;
   if (hasHinder(u)) return;
   const code = encounterDraw(s, true);
   if (code) u.shadows.push(code);
@@ -81,6 +86,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
 }
 /** Call when this considered-engaged enemy actually initiates any attack. */
 export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {
+  if (batch4Scenario(s).beginShadows?.(s, u)) return true;
   if (carnConsideredEngaged(s, u)) return carnImmediateShadows(s, u);
   if (u.code !== SHADOW_FLAME.bane || u.blanked) return false;
   // Immediate attacks suspend their original shadows separately before this call.
@@ -101,6 +107,23 @@ export function finishEnemyShadows(
   u: Unit,
   startedWithFreshShadow = false,
 ): boolean {
+  // Encounter-backed player cards are discarded after this attack, including
+  // attacks outside the combat phase. They have never entered play.
+  const encounterShadow = (code: string) => hasEncounterKeyword(card(code));
+  if (u.shadows.some(encounterShadow)) {
+    const original = u.shadows;
+    s.encounterDiscard.push(...original.filter(encounterShadow));
+    u.shadows = original.filter((code) => !encounterShadow(code));
+    if (u.faceupShadows)
+      u.faceupShadows = u.faceupShadows.filter(
+        (_, index) => !encounterShadow(original[index]),
+      );
+    u.revealedShadowCount = original
+      .slice(0, u.revealedShadowCount ?? 0)
+      .filter((code) => !encounterShadow(code)).length;
+  }
+  if (batch4Scenario(s).finishShadows?.(s, u, startedWithFreshShadow))
+    return true;
   if (carnFinishEnemyShadows(s, u)) return true;
   if (u.code !== SHADOW_FLAME.bane || (u.blanked && !startedWithFreshShadow))
     return false;

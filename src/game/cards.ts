@@ -1,3 +1,23 @@
+import {
+  BLACK_SERPENT_ENCOUNTERS,
+  BLACK_SERPENT_QUESTS,
+} from "./black-serpent-scenario-data";
+import blackSerpentPlayers from "../data/black-serpent-player-cards.json";
+import {
+  CIRITH_GURAT_ENCOUNTERS,
+  CIRITH_GURAT_QUESTS,
+} from "./cirith-gurat-scenario-data";
+import cirithGuratPlayers from "../data/cirith-gurat-player-cards.json";
+import {
+  CROSSINGS_POROS_ENCOUNTERS,
+  CROSSINGS_POROS_QUESTS,
+} from "./crossings-poros-scenario-data";
+import crossingsPorosPlayers from "../data/crossings-poros-player-cards.json";
+import {
+  WILDS_RHOVANION_ENCOUNTERS,
+  WILDS_RHOVANION_QUESTS,
+} from "./wilds-rhovanion-scenario-data";
+import wildsRhovanionPlayers from "../data/wilds-rhovanion-player-cards.json";
 import { DIKE_ENCOUNTERS, DIKE_QUESTS } from "./deadmens-dike-support";
 import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
@@ -205,6 +225,36 @@ export const playerCards = [
       ...(raceHaradPlayers as Card[]).map((c) =>
         c.code === "17036" ? { ...c, quest: 6, victory: 1 } : c,
       ),
+      ...(
+        [
+          ...blackSerpentPlayers,
+          ...cirithGuratPlayers,
+          ...crossingsPorosPlayers,
+          ...wildsRhovanionPlayers,
+        ] as Card[]
+      ).map((c) => {
+        if (c.code === "17087") return { ...c, quest: 6, victory: 1 };
+        if (c.code === "17113")
+          return {
+            ...c,
+            text: c.text?.replace("Valour Action", "Valour Combat Action"),
+          };
+        if (c.code === "17115") return { ...c, name: "Heirs of Eärendil" };
+        if (c.code === "17139")
+          return {
+            ...c,
+            text: c.text?.replace("While unattached", "If unattached"),
+          };
+        if (c.code === "17144")
+          return {
+            ...c,
+            text: c.text?.replace(/\s*<i><b>Shadow[\s\S]*$/, ""),
+            shadow: "Ready the defending character.",
+          };
+        if (c.code === "18015")
+          return { ...c, text: c.text?.replace("where is", "where X is") };
+        return c;
+      }),
       ...(beneathSandsPlayers as Card[]).map((c) => {
         if (c.code === "17056")
           return { ...c, text: c.text?.replace("Haradrim</b>", "Harad</b>") };
@@ -267,7 +317,7 @@ const priorEncounterCards = [
     (c) => !GREY_HAVENS_ENCOUNTERS.some((shared) => shared.code === c.code),
   ),
 ];
-export const encounterCards = [
+const existingEncounterCards = [
   ...MUMAKIL_ENCOUNTERS,
   ...RACE_HARAD_ENCOUNTERS,
   ...BENEATH_SANDS_ENCOUNTERS,
@@ -299,6 +349,17 @@ export const encounterCards = [
         ...COBAS_ENCOUNTERS,
       ].some((old) => old.code === c.code),
   ),
+];
+export const encounterCards = [
+  ...new Map(
+    [
+      ...existingEncounterCards,
+      ...BLACK_SERPENT_ENCOUNTERS,
+      ...CIRITH_GURAT_ENCOUNTERS,
+      ...CROSSINGS_POROS_ENCOUNTERS,
+      ...WILDS_RHOVANION_ENCOUNTERS,
+    ].map((c) => [c.code, c]),
+  ).values(),
 ];
 export const cards: Record<string, Card> = Object.fromEntries(
   [
@@ -348,6 +409,10 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...MUMAKIL_QUESTS,
     ...RACE_HARAD_QUESTS,
     ...BENEATH_SANDS_QUESTS,
+    ...BLACK_SERPENT_QUESTS,
+    ...CIRITH_GURAT_QUESTS,
+    ...CROSSINGS_POROS_QUESTS,
+    ...WILDS_RHOVANION_QUESTS,
     ...CAMPAIGN_CARDS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
@@ -442,6 +507,10 @@ export const SCRIPTED = new Set(
     ...MUMAKIL_QUESTS,
     ...RACE_HARAD_QUESTS,
     ...BENEATH_SANDS_QUESTS,
+    ...BLACK_SERPENT_QUESTS,
+    ...CIRITH_GURAT_QUESTS,
+    ...CROSSINGS_POROS_QUESTS,
+    ...WILDS_RHOVANION_QUESTS,
     ...DEAD_MARSHES_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,

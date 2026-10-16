@@ -45,7 +45,7 @@ import {
 } from "./table";
 import { hasResourceIcon, hasTrait } from "./expansion-passives";
 import { playerCardImmune } from "./card-immunity";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { rhosgobelHeal, rhosgobelHealingAllowed } from "./rhosgobel";
 import { ninNoCardEconomy } from "./nin-eilph-support";
@@ -132,7 +132,7 @@ export function stormcallerPlayProblem(
     u.code === P.guardian &&
     origin === "hand" &&
     !s.used.includes(`${PHASE}guardian-paid:${u.id}`) &&
-    movableHand(s).filter((c) => c.id !== u.id).length < 2
+    discardableHand(s).filter((c) => c.id !== u.id).length < 2
   )
     return "Guardian of Rivendell requires two other cards discarded from your hand.";
   if (
@@ -180,7 +180,7 @@ export function stormcallerAbilityProblem(
   } else if (u.code === P.glorfindel) {
     if (marked(s, `${PHASE}glorfindel:${u.id}`))
       return "Glorfindel has already used this Action this phase.";
-    if (!u.exhausted || cannotReady(u, s) || !movableHand(s).length)
+    if (!u.exhausted || cannotReady(u, s) || !discardableHand(s).length)
       return "Glorfindel must be able to ready, with a card available to discard.";
   } else if (u.code === P.caregiver) {
     if (
@@ -193,7 +193,7 @@ export function stormcallerAbilityProblem(
       ) >= 2
     )
       return "This Imladris Caregiver has already acted twice this round.";
-    if (!movableHand(s).length || !healingTargets(s).length)
+    if (!discardableHand(s).length || !healingTargets(s).length)
       return "You need a card to discard and a damaged character that can be healed.";
   }
   return null;
@@ -230,7 +230,7 @@ export function useStormcallerAbility(
     choose(
       s,
       "Glorfindel · Discard a card to ready",
-      movableHand(s).map((c) =>
+      discardableHand(s).map((c) =>
         option(c, [
           fx("stormcallerAbilityDiscard", {
             source: u.id,
@@ -262,7 +262,7 @@ export function stormcallerGuardianPlay(
 ) {
   if (u.code !== P.guardian) return false;
   requireRule(
-    movableHand(s).filter((c) => c.id !== u.id).length >= 2,
+    discardableHand(s).filter((c) => c.id !== u.id).length >= 2,
     "Guardian of Rivendell needs two other physical hand cards.",
   );
   guardianChoose(
@@ -285,7 +285,7 @@ function guardianChoose(s: GameState, e: Effect) {
   choose(
     s,
     `Guardian of Rivendell · Choose hand card ${selected.length + 1}/2 to discard`,
-    movableHand(s)
+    discardableHand(s)
       .filter((c) => c.id !== e.source && !selected.includes(c.id))
       .map((c) =>
         option(c, [{ ...e, kind: "stormcallerGuardianSelect", target: c.id }]),
@@ -535,7 +535,7 @@ export function stormcallerEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Imladris Caregiver · Discard a card from your hand",
-        movableHand(s).map((c) =>
+        discardableHand(s).map((c) =>
           option(c, [
             fx("stormcallerAbilityDiscard", {
               source: source.id,
@@ -548,7 +548,7 @@ export function stormcallerEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     case "stormcallerAbilityDiscard": {
-      const physical = movableHand(s).find((c) => c.id === e.target);
+      const physical = discardableHand(s).find((c) => c.id === e.target);
       requireRule(
         source && physical && !stormcallerAbilityProblem(s, source),
         "Pay the Action's physical hand discard cost.",
@@ -583,8 +583,9 @@ export function stormcallerEffect(s: GameState, e: Effect): boolean {
       return true;
     case "stormcallerGuardianSelect": {
       requireRule(
-        movableHand(s).some((c) => c.id === e.target && c.id !== e.source) &&
-          !e.ids?.includes(e.target!),
+        discardableHand(s).some(
+          (c) => c.id === e.target && c.id !== e.source,
+        ) && !e.ids?.includes(e.target!),
         "Choose another physical hand card for Guardian's cost.",
       );
       guardianChoose(s, {
@@ -603,7 +604,7 @@ export function stormcallerEffect(s: GameState, e: Effect): boolean {
           e.ids?.length === 2 &&
           new Set(e.ids).size === 2 &&
           e.ids.every((id) =>
-            movableHand(s).some((c) => c.id === id && c.id !== e.source),
+            discardableHand(s).some((c) => c.id === id && c.id !== e.source),
           ),
         "Discard exactly two other physical hand cards.",
       );

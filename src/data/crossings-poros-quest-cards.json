@@ -1,0 +1,282 @@
+[
+  {
+    "code": "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgnid": "29f8a182-2e69-47d7-a742-296836371f41",
+    "name": "Southron Pursuit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set each other stage 3A aside, out of play. Shuffle the encounter discard pile and the Harad Soldiers encounter set into the encounter deck. Then, each player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 161,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "Southron Pursuit",
+    "back_text": "Each enemy in the staging area gets -10 engagement cost. Forced: After an enemy engages a player, remove 1 progress from this stage. ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/29f8a182-2e69-47d7-a742-296836371f41.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/29f8a182-2e69-47d7-a742-296836371f41.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 161,
+        "quantity": 1,
+        "octgnid": "29f8a182-2e69-47d7-a742-296836371f41",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29f8a182-2e69-47d7-a742-296836371f41.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
+    "octgnid": "2e441298-dafc-41bc-a46f-a0f483ac18bd",
+    "name": "Orc Patrols",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set each other stage 3A aside, out of play. Shuffle the encounter discard pile and the Mordor Orcs encounter set into the encounter deck. Then, each player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 162,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "Orc Patrols",
+    "back_text": "Orc Patrols gets +2 quest point for each enemy in the staging area. Forced: After an enemy engages a player, raise that player's threat by 1. ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/2e441298-dafc-41bc-a46f-a0f483ac18bd.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/2e441298-dafc-41bc-a46f-a0f483ac18bd.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 162,
+        "quantity": 1,
+        "octgnid": "2e441298-dafc-41bc-a46f-a0f483ac18bd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2e441298-dafc-41bc-a46f-a0f483ac18bd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
+    "octgnid": "389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
+    "name": "Deadly Creatures",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set each other stage 3A aside, out of play. Shuffle the encounter discard pile and the Desert Creatures encounter set into the encounter deck. Then, each player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 160,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "Deadly Creatures",
+    "back_text": "Enemies in the staging area cannot take damage. Forced: After an enemy engages a player, deal 1 damage to a hero that player controls. ",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/389031d2-7a44-4c4d-82f2-cf79c08ce0ae.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/389031d2-7a44-4c4d-82f2-cf79c08ce0ae.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 160,
+        "quantity": 1,
+        "octgnid": "389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/389031d2-7a44-4c4d-82f2-cf79c08ce0ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
+    "octgnid": "3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
+    "name": "Battle at the Crossings",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player takes control of Poros Garrison. Search the encounter deck and discard pile for each enemy that belongs to an encounter set denoted by the first icon on each set aside stage 3 and add them to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 163,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "Battle at the Crossings",
+    "back_text": "Forced: After an enemy attacks and destroys a character, remove X progress from this stage. X is the attacking enemy's printed [threat]. This stage cannot be defeated except at the end of the combat phase. If the players defeat this stage, they win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/3ff62e7f-fc09-4569-a45c-1be7e2ba6747.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/3ff62e7f-fc09-4569-a45c-1be7e2ba6747.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 163,
+        "quantity": 1,
+        "octgnid": "3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3ff62e7f-fc09-4569-a45c-1be7e2ba6747.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
+    "octgnid": "577c3577-78e4-4cf3-a638-fe15162eca31",
+    "name": "The Ephel Dúath",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the Mountains of Shadow encounter set into the encounter deck. Remove the Desert Sands encounter set and the other stage 2A from the game.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 159,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "The Ephel Dúath",
+    "back_text": "Forced: After a player plays an ally, he must either exhaust that ally or raise his threat by 1. Forced: When this stage is defeated, advance to a random stage 3. ",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/577c3577-78e4-4cf3-a638-fe15162eca31.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/577c3577-78e4-4cf3-a638-fe15162eca31.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 159,
+        "quantity": 1,
+        "octgnid": "577c3577-78e4-4cf3-a638-fe15162eca31",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/577c3577-78e4-4cf3-a638-fe15162eca31.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
+    "octgnid": "87379a08-2fe2-4e32-9341-d78fb4e0298b",
+    "name": "Flight to Gondor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Poros Garrison and each of the following encounter sets aside, out of play: Mountains of Shadow, Desert Sands, Desert Creatures, Harad Soldiers, and Mordor Orcs. The first player adds The Black Serpent to the staging area and shuffles the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 157,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "Flight to Gondor",
+    "back_text": "Allies enter play exhausted. Forced: At the end of the planning phase, advance to a random stage 2. ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/87379a08-2fe2-4e32-9341-d78fb4e0298b.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/87379a08-2fe2-4e32-9341-d78fb4e0298b.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 157,
+        "quantity": 1,
+        "octgnid": "87379a08-2fe2-4e32-9341-d78fb4e0298b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87379a08-2fe2-4e32-9341-d78fb4e0298b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e1c521c0-2889-4f5e-a470-bf70bcf004bf",
+    "octgnid": "e1c521c0-2889-4f5e-a470-bf70bcf004bf",
+    "name": "The Desert Path",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the Desert Sands encounter set into the encounter deck. Remove the Mountains of Shadow encounter set and the other stage 2A from the game.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 158,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Crossings of Poros",
+    "side": "A",
+    "back_name": "The Desert Path",
+    "back_text": "Forced: After a player plays an ally, he must either exhaust that ally or deal 1 damage to it. Forced: When this stage is defeated, advance to a random stage 3. ",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/e1c521c0-2889-4f5e-a470-bf70bcf004bf.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/e1c521c0-2889-4f5e-a470-bf70bcf004bf.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 158,
+        "quantity": 1,
+        "octgnid": "e1c521c0-2889-4f5e-a470-bf70bcf004bf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e1c521c0-2889-4f5e-a470-bf70bcf004bf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

@@ -17,7 +17,7 @@ import * as DepthsPlayers from "./depths-player";
 import * as TemplePlayers from "./temple-player";
 import { ninNoCardEconomy } from "./nin-eilph-support";
 import { reduceThreat } from "./threat-reduction";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import * as Isengard from "./voice-isengard";
 import { morgulCannotLeave } from "./morgul-vale";
 import { canGainResources, cannotReady } from "./core";
@@ -494,13 +494,13 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
         const key = `protector:${a.id}`;
         requireRule(
           s.used.filter((k) => k === key).length < 3 &&
-            movableHand(s).length > 0,
+            discardableHand(s).length > 0,
           "Protector of Lórien can be used 3 times per phase and requires a card to discard.",
         );
         choose(
           s,
           "Protector of Lórien",
-          movableHand(s).flatMap((h) => [
+          discardableHand(s).flatMap((h) => [
             {
               id: `${h.id}-will`,
               label: `Discard ${name(h)} · +1 willpower`,
@@ -559,13 +559,13 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
   switch (u.code) {
     case "01007":
       requireRule(
-        !s.eowynUsed && movableHand(s).length > 0,
+        !s.eowynUsed && discardableHand(s).length > 0,
         "Éowyn requires a card to discard and can act once per round.",
       );
       choose(
         s,
         "Éowyn · Strength of spirit",
-        movableHand(s).map((h) => ({
+        discardableHand(s).map((h) => ({
           id: h.id,
           label: name(h),
           code: h.code,

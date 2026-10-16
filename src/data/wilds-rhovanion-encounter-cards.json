@@ -1,0 +1,1888 @@
+[
+  {
+    "code": "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+    "octgnid": "0f2929de-bef9-40b8-b0ed-de69e136188f",
+    "name": "Weighed Down",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach to the hero with the most attachments without Weighed Down attached. Then, exhaust attached hero. (Counts as a Condition attachment with the text: \"Forced: After attached hero readies, choose and discard an attachment from it. You cannot choose Weighed Down unless attached hero has no other non-objective attachments.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 27,
+    "quantity": 2,
+    "encounter_set": "Lost in Wilderland",
+    "printed_stats": {},
+    "imagesrc": "/cards/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 27,
+        "quantity": 2,
+        "octgnid": "0f2929de-bef9-40b8-b0ed-de69e136188f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
+    "octgnid": "1a06164a-8f54-49b7-a067-52680893f69d",
+    "name": "Frenzied Creature",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add the top card of the Evil Creatures deck to the staging area and attach Frenzied Creature to it. (Counts as a Condition attachment with the text: \"Attached enemy gets +1 [threat], +1 [attack], +1 [defense] and is immune to player card effects.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 18,
+    "quantity": 2,
+    "shadow": "Shadow: Attach this card to attacking enemy.",
+    "encounter_set": "Journey Up the Anduin",
+    "printed_stats": {},
+    "imagesrc": "/cards/1a06164a-8f54-49b7-a067-52680893f69d.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "1a06164a-8f54-49b7-a067-52680893f69d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a06164a-8f54-49b7-a067-52680893f69d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
+    "octgnid": "1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
+    "name": "Woodmen Village",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Riverland.",
+    "text": "Immune to player card effects. Forced: When Woodmen Village is explored, add the top card of the Evil Creatures deck to the staging area. Then, flip over Woodmen Village and attach Haldan to the just-added enemy as a guarded objective.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 69,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Journey Up the Anduin",
+    "back_name": "Haldan",
+    "back_text": "The first player gains control of Haldan while he is free of encounters. While there is an active location, Haldan does not exhaust to quest. If Haldan leaves play, the players lose the game.",
+    "back_type_code": "objective-ally",
+    "back_imagesrc": "/cards/1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73.B.jpg",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+    "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+    "name": "Stray Goblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "Surge. Cannot be optionally engaged.\nWhile Stray Goblin is in the staging area, it gains: \"Forced: After a player engages an enemy, Stray Goblin engages that player.\"",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 21,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 0,
+    "health": 3,
+    "engagement": 50,
+    "shadow": "Shadow: Add Stray Goblin to staging area.",
+    "encounter_set": "Grey Mountain Goblins",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "0",
+      "health": "3",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
+    "octgnid": "56634de4-2ef2-4739-b549-fa591e7032eb",
+    "name": "The Old Ford",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Riverland.",
+    "text": "Immune to player card effects. The Old Ford gets +5 quest points for each enemy in play. Forced: After The Old Ford becomes the active location, each enemy in the staging area makes an immediate attack against the first player.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 16,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "victory": 5,
+    "encounter_set": "Journey Up the Anduin",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/56634de4-2ef2-4739-b549-fa591e7032eb.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "56634de4-2ef2-4739-b549-fa591e7032eb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56634de4-2ef2-4739-b549-fa591e7032eb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+    "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+    "name": "Lonely Lands",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "Lonely Lands gets +2 [threat] for each facedown card under it. While Lonely Lands is in the staging area, it gains: \"Forced: After an event is played during the quest phase, place it facedown under Lonely Lands.\"",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 24,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Hills of Wilderland",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 24,
+        "quantity": 3,
+        "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+    "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+    "name": "Pack of Wargs",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Forced: If Pack of Wargs is dealt a shadow card with no effect, Pack of Wargs makes an additional attack after this one. (Do not deal it a shadow card.)",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 22,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 40,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Hills of Wilderland",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
+    "octgnid": "93008a44-68db-40ea-8b41-81cf5bb2bae8",
+    "name": "Wooded Riverbank",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Riverland.",
+    "text": "Forced: When Wooded Riverbank is explored, put the top card of the Evil Creatures deck into play engaged with the first player.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 17,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 1,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Journey Up the Anduin",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/93008a44-68db-40ea-8b41-81cf5bb2bae8.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 17,
+        "quantity": 3,
+        "octgnid": "93008a44-68db-40ea-8b41-81cf5bb2bae8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/93008a44-68db-40ea-8b41-81cf5bb2bae8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+    "octgnid": "b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+    "name": "Lost in the Wild",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The player with the most cards in his hand without a copy of Lost in the Wild adds Lost in the Wild to his hand. (While in a player's hand, Lost in the Wild gains: \"Cannot be discarded by player card effect. Forced: After you play a card, discard each card in your hand.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 26,
+    "quantity": 2,
+    "encounter_set": "Lost in Wilderland",
+    "printed_stats": {},
+    "imagesrc": "/cards/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
+    "octgnid": "ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
+    "name": "Dangerous Crossing",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns X damage among characters he controls, where X is the [threat] of the active location. If X is less than 3, Dangerous Crossing gains surge.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 19,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character is damaged).",
+    "encounter_set": "Journey Up the Anduin",
+    "printed_stats": {},
+    "imagesrc": "/cards/ce14480c-dfc0-4b30-8f8d-e878e003f4cd.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ce14480c-dfc0-4b30-8f8d-e878e003f4cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+    "octgnid": "daa67624-18ba-43a3-92c6-6e5586166bb0",
+    "name": "Ruined Supplies",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or deal 1 damage to each ally you control.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 25,
+    "quantity": 2,
+    "shadow": "Shadow: Raise your threat by 1 for each enemy engaged with you.",
+    "encounter_set": "Lost in Wilderland",
+    "printed_stats": {},
+    "imagesrc": "/cards/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 25,
+        "quantity": 2,
+        "octgnid": "daa67624-18ba-43a3-92c6-6e5586166bb0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+    "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+    "name": "Hills of Wilderland",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "X is the number of characters controlled by the player with the most characters. Quest Action: Exhaust a character to reduce Hills of Wilderland [threat] by 1 until the end of the phase. Only the first player can trigger this effect.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 23,
+    "quantity": 2,
+    "threat": 0,
+    "quest": 0,
+    "encounter_set": "Hills of Wilderland",
+    "printed_stats": {
+      "threat": "0",
+      "quest": "0"
+    },
+    "imagesrc": "/cards/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "name": "Goblin Troop",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "Cannot have player card attachments. While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 20,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 6,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+    "encounter_set": "Grey Mountain Goblins",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
+    "octgnid": "0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
+    "name": "Bare Hilltop",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Guarded (enemy). Travel: Shuffle the encounter discard pile into the encounter deck. Each player discards the top card of the encounter deck. Add each location discarded this way to the staging area. Forced: After the players travel here, advance to the next stage A, if able.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 31,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/0f3c746e-2d23-4cb9-a481-f919ffc8cdee.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f3c746e-2d23-4cb9-a481-f919ffc8cdee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "objectiveLocation": true
+  },
+  {
+    "code": "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
+    "octgnid": "25cf58f2-9d92-4971-8817-a7e335d9ac5d",
+    "name": "Overgrown Path",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Guarded (location). Travel: Shuffle the encounter discard pile into the encounter deck. Each player discards the top card of the encounter deck and assigns X damage among characters he controls, where X is that card's [threat]. Forced: After the players travel here, advance to the next stage A, if able.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 29,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/25cf58f2-9d92-4971-8817-a7e335d9ac5d.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 29,
+        "quantity": 1,
+        "octgnid": "25cf58f2-9d92-4971-8817-a7e335d9ac5d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25cf58f2-9d92-4971-8817-a7e335d9ac5d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "objectiveLocation": true
+  },
+  {
+    "code": "octgn:388d173e-e32a-4e02-b029-99180e34b014",
+    "octgnid": "388d173e-e32a-4e02-b029-99180e34b014",
+    "name": "Vastness of Mirkwood",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Until the end of the phase, each non-objective location in the staging area gets +1 [threat] (+2 [threat] instead if it has at least 1 progress token on it). If the number of non-objective locations in the staging area is less than the number of players, Vastness of Mirkwood gains surge.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 37,
+    "quantity": 3,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "/cards/388d173e-e32a-4e02-b029-99180e34b014.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 37,
+        "quantity": 3,
+        "octgnid": "388d173e-e32a-4e02-b029-99180e34b014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/388d173e-e32a-4e02-b029-99180e34b014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+    "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+    "name": "Dark Black Woods",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Dark.",
+    "text": "While Dark Black Woods is in the staging area, no more than 1 progress can be placed on each Forest location in the staging area each round. Travel: Each player discards the top card of the encounter deck. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 39,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Dark Woods",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/408752c0-cee3-41ba-86c2-d01085546cef.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 39,
+        "quantity": 3,
+        "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408752c0-cee3-41ba-86c2-d01085546cef.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
+    "octgnid": "5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
+    "name": "Unseen Danger",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player removes a character he controls from the quest and discards the top card of the encounter deck. If the discarded card's printed [threat] is greater than the removed character's [willpower], discard that character.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 36,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack] and +2 [defense] until the end of the phase if it is guarding a card.",
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "/cards/5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 36,
+        "quantity": 2,
+        "octgnid": "5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
+    "octgnid": "626abd2c-11bc-416b-9db6-a72d5525d3de",
+    "name": "Forest Clearing",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Guarded (enemy). Travel: Shuffle the encounter discard pile into the encounter deck. Each player discards the top card of the encounter deck and raises his threat by X, where X is that card's [threat]. Forced: After the players travel here, advance to the next stage C, if able.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 32,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/626abd2c-11bc-416b-9db6-a72d5525d3de.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 32,
+        "quantity": 1,
+        "octgnid": "626abd2c-11bc-416b-9db6-a72d5525d3de",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/626abd2c-11bc-416b-9db6-a72d5525d3de.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "objectiveLocation": true
+  },
+  {
+    "code": "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
+    "octgnid": "8165f1ef-d9df-464e-bd56-5baf4e43325f",
+    "name": "Mirkwood Patrol",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "Forced: At the end of the encounter phase, if Mirkwood Patrol is in the staging area with an unguarded objective-location, attach that objective-location to Mirkwood Patrol, guarding it.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 34,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 40,
+    "shadow": "Shadow: The defender cannot ready this round.",
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/8165f1ef-d9df-464e-bd56-5baf4e43325f.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 34,
+        "quantity": 2,
+        "octgnid": "8165f1ef-d9df-464e-bd56-5baf4e43325f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8165f1ef-d9df-464e-bd56-5baf4e43325f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+    "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+    "name": "Swarm of Bats",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards each resource from each of his hero's resource pools and raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Swarm of Bats gains surge.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 41,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has an attachment).",
+    "encounter_set": "Gathering Gloom",
+    "printed_stats": {},
+    "imagesrc": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 41,
+        "quantity": 3,
+        "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
+    "octgnid": "a4e9aa38-54a7-4e99-bab6-330804b24a6e",
+    "name": "Twilight Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Dark.",
+    "text": "Twilight Hall gets +2 [threat] for each resource on it. Forced: After a Forest location is explored, place 1 resource here. Travel: Raise each player's threat by 1 for each resource here. If there are no resources on Twilight Hall, the players cannot travel here.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 33,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 6,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/a4e9aa38-54a7-4e99-bab6-330804b24a6e.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 33,
+        "quantity": 3,
+        "octgnid": "a4e9aa38-54a7-4e99-bab6-330804b24a6e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4e9aa38-54a7-4e99-bab6-330804b24a6e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e428dad0-f116-40c3-82fd-6c78bfcdcb32",
+    "octgnid": "e428dad0-f116-40c3-82fd-6c78bfcdcb32",
+    "name": "Searching for a Way Out",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each objective-location, and each card guarding one, is immune to player card effects. Forced: When progress would be placed on the main quest, if there are no objective-locations in play, discard an equal number of cards from the encounter deck instead. Then, put the topmost objective-location in the encounter discard pile into play.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 28,
+    "quantity": 1,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {},
+    "imagesrc": "/cards/e428dad0-f116-40c3-82fd-6c78bfcdcb32.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 28,
+        "quantity": 1,
+        "octgnid": "e428dad0-f116-40c3-82fd-6c78bfcdcb32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e428dad0-f116-40c3-82fd-6c78bfcdcb32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
+    "octgnid": "efdbe76c-5b41-4f28-a390-a72ec784e5a3",
+    "name": "Ravenous Spider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Forced: After Ravenous Spider engages you, it makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 35,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 36,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/efdbe76c-5b41-4f28-a390-a72ec784e5a3.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 35,
+        "quantity": 2,
+        "octgnid": "efdbe76c-5b41-4f28-a390-a72ec784e5a3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efdbe76c-5b41-4f28-a390-a72ec784e5a3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "name": "Gathering Gloom",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 40,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard an ally you control.",
+    "encounter_set": "Gathering Gloom",
+    "printed_stats": {},
+    "imagesrc": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+    "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+    "name": "Accursed Forest",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Dark.",
+    "text": "While Accursed Forest is in the staging area, 'when revealed' effects cannot be canceled. Travel: Reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 38,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Dark Woods",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 38,
+        "quantity": 2,
+        "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
+    "octgnid": "ff79510f-a6c3-4357-a582-853e5bb3e2bc",
+    "name": "Abandoned Village",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Guarded (location). Travel: Shuffle the encounter discard pile into the encounter deck. Each player discards the top card of the encounter deck. Add each enemy discarded this way to the staging area. Forced: After the players travel here, advance to the next stage C, if able.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 30,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "Lost in Mirkwood",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/ff79510f-a6c3-4357-a582-853e5bb3e2bc.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 30,
+        "quantity": 1,
+        "octgnid": "ff79510f-a6c3-4357-a582-853e5bb3e2bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff79510f-a6c3-4357-a582-853e5bb3e2bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "objectiveLocation": true
+  },
+  {
+    "code": "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+    "octgnid": "1062dfa2-d821-474d-9a8f-9eda79753222",
+    "name": "Forked Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Deep.\nResponse: When you travel to Forked Passage (before resolving the deep keyword), raise each player's threat by 2 to look at the top 2 cards of the Caves deck. Put 1 on top of the Caves deck and put the other on the bottom. Then, add Forked Passage to the victory display.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 55,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Deep Underground",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/1062dfa2-d821-474d-9a8f-9eda79753222.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 55,
+        "quantity": 2,
+        "octgnid": "1062dfa2-d821-474d-9a8f-9eda79753222",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1062dfa2-d821-474d-9a8f-9eda79753222.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+    "octgnid": "14f41245-2616-4358-a8bb-6b9bcf83cf56",
+    "name": "Dark Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Deep.\nWhile Dark Tunnel is in the staging area, progress cannot be placed on Dark locations in the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 54,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Deep Underground",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 54,
+        "quantity": 4,
+        "octgnid": "14f41245-2616-4358-a8bb-6b9bcf83cf56",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+    "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+    "name": "Stone-troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Cannot have player card attachments. Forced: After Stone Troll attacks and destroys a character you control, discard 1 card from your hand for each excess point of damage dealt.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 49,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 9,
+    "engagement": 36,
+    "shadow": "Shadow: Discard an attachment you control.",
+    "encounter_set": "Fell Beasts",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "9",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 49,
+        "quantity": 2,
+        "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+    "octgnid": "286a5206-9ebb-4ec4-a349-2960ccb2f669",
+    "name": "Lost Armory",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Response: After Lost Armory becomes the active location, each player may search his deck for a Weapon or Armor attachment, add it to his hand, and shuffle his deck. Limit once per game for the group.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 60,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 60,
+        "quantity": 1,
+        "octgnid": "286a5206-9ebb-4ec4-a349-2960ccb2f669",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2d4b1381-467e-4bb4-9265-d26dec6125ea",
+    "octgnid": "2d4b1381-467e-4bb4-9265-d26dec6125ea",
+    "name": "Iron Hills Mine",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Iron Hills Mine is the active location, it gains: \"Response: When Iron Hills Mine is explored, each player may return 1 card from his discard pile to his hand.\" Travel: Each player discards the top 4 cards of his deck to travel here.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 44,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The King's Quest",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/2d4b1381-467e-4bb4-9265-d26dec6125ea.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 44,
+        "quantity": 2,
+        "octgnid": "2d4b1381-467e-4bb4-9265-d26dec6125ea",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d4b1381-467e-4bb4-9265-d26dec6125ea.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+    "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+    "name": "Afraid of the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Attach to a questing hero and remove it from the quest. (Counts as a Condition attachment with the text: \"Limit 1 per hero. While the active location has the Dark trait, reduce attached hero's [willpower] to 0 and treat its text box as if it were blank, except for Traits.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 48,
+    "quantity": 2,
+    "encounter_set": "Afraid of the Dark",
+    "printed_stats": {},
+    "imagesrc": "/cards/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 48,
+        "quantity": 2,
+        "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
+    "octgnid": "42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
+    "name": "Fire-drake",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Cannot have non-Dragon attachments. X is 1 more than the number of players. Forced: After the active location is explored, Fire-drake returns to the staging area and makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 42,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 7,
+    "health": 17,
+    "engagement": 35,
+    "encounter_set": "The King's Quest",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "7",
+      "defense": "X",
+      "health": "17",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/42a5a608-0699-4cd5-b69d-f7c3413cd5cd.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 42,
+        "quantity": 1,
+        "octgnid": "42a5a608-0699-4cd5-b69d-f7c3413cd5cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/42a5a608-0699-4cd5-b69d-f7c3413cd5cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "defense": 0
+  },
+  {
+    "code": "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
+    "octgnid": "4daa4ff5-625a-4949-aef5-fb1349e249fd",
+    "name": "Denizen of the Deep",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The highest [attack] enemy in the staging area makes an immediate attack against the first player. If no attack is made this way, Denizen of the Deep gains surge.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 47,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "The King's Quest",
+    "printed_stats": {},
+    "imagesrc": "/cards/4daa4ff5-625a-4949-aef5-fb1349e249fd.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 47,
+        "quantity": 2,
+        "octgnid": "4daa4ff5-625a-4949-aef5-fb1349e249fd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4daa4ff5-625a-4949-aef5-fb1349e249fd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+    "octgnid": "51b186ac-ddf5-4909-a484-20d273be27c9",
+    "name": "Dragon Scales",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Surge.\nWhen Revealed: Attach to a Dragon enemy. (Counts as a Condition attachment with the text: \"Limit 1 per enemy. Forced: When attached enemy would take any amount of damage, cancel all of that damage. Then, discard Dragon Scales.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 59,
+    "quantity": 2,
+    "encounter_set": "Dragon Might",
+    "printed_stats": {},
+    "imagesrc": "/cards/51b186ac-ddf5-4909-a484-20d273be27c9.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 59,
+        "quantity": 2,
+        "octgnid": "51b186ac-ddf5-4909-a484-20d273be27c9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b186ac-ddf5-4909-a484-20d273be27c9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+    "octgnid": "5bcec205-7f6b-44b9-bb4d-9addde372316",
+    "name": "Werewolf",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Werewolf gets +1 [attack] for each damage on it. Forced: After Werewolf is dealt a shadow card with no shadow effect, deal 1 damage to it and the defending character.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 51,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 2,
+    "defense": 1,
+    "health": 8,
+    "engagement": 33,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Wild Creatures",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "2",
+      "defense": "1",
+      "health": "8",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "5bcec205-7f6b-44b9-bb4d-9addde372316",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+    "octgnid": "6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+    "name": "Dragon Breath",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Surge.\nWhen Revealed: Attach to a Dragon enemy. (Counts as a Condition attachment with the text: \"Limit 1 per enemy. Forced: When attached enemy attacks you, deal 1 damage to each character you control. Then, discard Dragon Breath.\")",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 58,
+    "quantity": 2,
+    "encounter_set": "Dragon Might",
+    "printed_stats": {},
+    "imagesrc": "/cards/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
+    "octgnid": "744e45f8-a808-4d9f-96f4-59e26cff5874",
+    "name": "Dragon Hoard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark. Lair.",
+    "text": "Immune to player card effects. Fire-drake cannot take damage. Response: After Dragon Hoard becomes the active location, the first player chooses a player to attach an Artifact attachment from his hand to Dragon Hoard. That attachment gains the guarded (location) keyword. If that attachment has the printed guarded keyword, do not resolve it when the attachment enters play.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 43,
+    "quantity": 1,
+    "threat": 7,
+    "quest": 7,
+    "encounter_set": "The King's Quest",
+    "printed_stats": {
+      "threat": "7",
+      "quest": "7"
+    },
+    "imagesrc": "/cards/744e45f8-a808-4d9f-96f4-59e26cff5874.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 43,
+        "quantity": 1,
+        "octgnid": "744e45f8-a808-4d9f-96f4-59e26cff5874",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/744e45f8-a808-4d9f-96f4-59e26cff5874.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
+    "octgnid": "8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
+    "name": "Contested Depths",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Contested Depths gets +1 [threat] for each location in the victory display. Forced: After the players travel to Contested Depths, either raise each player's threat by 1 for each location in the victory display, or discard Contested Depths and replace it with the top card of the Caves deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 45,
+    "quantity": 3,
+    "threat": 1,
+    "quest": 5,
+    "encounter_set": "The King's Quest",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/8a7a0942-0bd2-44b1-9a9b-057f38b225e9.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 45,
+        "quantity": 3,
+        "octgnid": "8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a7a0942-0bd2-44b1-9a9b-057f38b225e9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+    "octgnid": "8be23a53-ba85-4db3-8d1f-821da0323cbf",
+    "name": "Underground Lake",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "X is the number of characters controlled by the player who controls the most characters. Forced: After an ally enters play, exhaust it.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 65,
+    "quantity": 1,
+    "threat": 0,
+    "quest": 0,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "0",
+      "quest": "0",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "8be23a53-ba85-4db3-8d1f-821da0323cbf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+    "octgnid": "9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+    "name": "Crumbling Cavern",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Forced: After Crumbling Cavern becomes the active location, each player assigns X damage among characters he controls, where X is the number of characters he controls.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 64,
+    "quantity": 1,
+    "threat": 6,
+    "quest": 6,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "6",
+      "quest": "6",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 64,
+        "quantity": 1,
+        "octgnid": "9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+    "octgnid": "9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+    "name": "Giant Spider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Forced: After Giant Spider attacks and damages a character, that character cannot ready until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 52,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 28,
+    "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+    "encounter_set": "Wild Creatures",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 52,
+        "quantity": 3,
+        "octgnid": "9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+    "octgnid": "9e490f6c-3873-4cd7-8c80-98a6640b9043",
+    "name": "Frightful Den",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Forced: After Frightful Den becomes the active location, shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 62,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 62,
+        "quantity": 1,
+        "octgnid": "9e490f6c-3873-4cd7-8c80-98a6640b9043",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+    "octgnid": "acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+    "name": "Lightless Grotto",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Forced: After the players commit characters to the quest, discard cards from the encounter deck until a treachery is discarded. Resolve the 'when revealed' effect on that treachery.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 63,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+    "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+    "name": "Hobgoblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc.",
+    "text": "While Hobgoblin is guarding a card, it gets +X [threat], +X [attack], and +X [defense], where X is that card's cost. Forced: After Hobgoblin enters play, the first player attaches the top card of his deck to Hobgoblin faceup as a guarded attachment. When Hobgoblin leaves play, return the card it was guarding to its owner's hand.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 50,
+    "quantity": 2,
+    "threat": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 5,
+    "engagement": 38,
+    "encounter_set": "Fell Beasts",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "5",
+      "engagement": "38"
+    },
+    "imagesrc": "/cards/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+    "octgnid": "c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+    "name": "Ancient Treasury",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Response: After Ancient Treasury becomes the active location, each player may (choose one): reduce his threat by 3, draw 2 cards, or add 1 resource to a hero's resource pool. Limit once per game for the group.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 61,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 3,
+    "victory": 1,
+    "encounter_set": "Lost Caves",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 61,
+        "quantity": 1,
+        "octgnid": "c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+    "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+    "name": "Eyes in the Dark",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 57,
+    "quantity": 3,
+    "shadow": "Shadow: If this attack is undefended, discard an ally you control.",
+    "encounter_set": "Afraid of the Dark",
+    "printed_stats": {},
+    "imagesrc": "/cards/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 57,
+        "quantity": 3,
+        "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e4432b9b-4969-44be-937f-ca2728d57ad4",
+    "octgnid": "e4432b9b-4969-44be-937f-ca2728d57ad4",
+    "name": "Deep Chasm",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Deep.\nWhen faced with the option to travel, the players must travel to Deep Chasm if there is no active location.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 46,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 6,
+    "encounter_set": "The King's Quest",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/e4432b9b-4969-44be-937f-ca2728d57ad4.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 46,
+        "quantity": 2,
+        "octgnid": "e4432b9b-4969-44be-937f-ca2728d57ad4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4432b9b-4969-44be-937f-ca2728d57ad4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+    "octgnid": "f5d539b2-0b65-493d-8493-5122a0761eed",
+    "name": "Black Bats",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nWhile the active location has the Dark trait, Black Bats cannot take damage.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 53,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 18,
+    "shadow": "Shadow: If the active location has the Dark trait, attacking enemy cannot take damage this phase.",
+    "encounter_set": "Wild Creatures",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "18"
+    },
+    "imagesrc": "/cards/f5d539b2-0b65-493d-8493-5122a0761eed.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 53,
+        "quantity": 3,
+        "octgnid": "f5d539b2-0b65-493d-8493-5122a0761eed",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5d539b2-0b65-493d-8493-5122a0761eed.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+    "octgnid": "f945cfde-271f-4e93-8eed-93eaaf0fb408",
+    "name": "Dark Places",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add the total [threat] of the active location to the total [threat] in the staging area until the end of the phase. If there is no active location, discard cards from the top of the encounter deck until a location is discarded and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 56,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+    "encounter_set": "Deep Underground",
+    "printed_stats": {},
+    "imagesrc": "/cards/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 56,
+        "quantity": 3,
+        "octgnid": "f945cfde-271f-4e93-8eed-93eaaf0fb408",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "wilds-haldan",
+    "octgnid": "1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
+    "name": "Haldan",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Woodman. Scout.",
+    "text": "The first player gains control of Haldan while he is free of encounters. While there is an active location, Haldan does not exhaust to quest. If Haldan leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 69,
+    "quantity": 1,
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "imagesrc": "/cards/1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73.B.jpg",
+    "willpower": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4
+  }
+]

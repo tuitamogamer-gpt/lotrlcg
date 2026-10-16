@@ -7,7 +7,7 @@ import {
 } from "./deadmens-discard";
 import { reduceThreat } from "./threat-reduction";
 import { playerCardImmune } from "./card-immunity";
-import { movableHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { takePlayerDeck } from "./core";
 import { takePlayerDiscard } from "./board";
 // Exact Elves of Lórien main-list rules. The original printings remain in the catalog.
@@ -308,7 +308,9 @@ export function elfEventEffect(s: GameState, code: string, target?: string) {
       choose(
         s,
         "Daeron's Runes · Discard one card",
-        opts(movableHand(s), (u) => [fx("elfRunesDiscard", { target: u.id })]),
+        opts(discardableHand(s), (u) => [
+          fx("elfRunesDiscard", { target: u.id }),
+        ]),
       );
   } else if (code === "04059") {
     const u = councilTargets(s).find((u) => u.id === target);

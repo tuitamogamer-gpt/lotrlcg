@@ -1,3 +1,4 @@
+import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as Drowned from "./drowned";
@@ -54,7 +55,8 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       Umbar.umbarImmune(s, host) ||
       Mordor.mordorImmune(s, host) ||
       Mumakil.mumakilImmune(s, host) ||
-      Race.raceHaradAreaImmune(s, host)
+      Race.raceHaradAreaImmune(s, host) ||
+      batch4Scenario(s).immune?.(s, host)
     )
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
@@ -79,6 +81,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
     const wrathBlanking =
       Sands.beneathSandsCharacterBlanked(s, host) ||
+      batch4Scenario(s).characterBlanked?.(s, host) ||
       templePlayerBlanked(s, host) ||
       Desert.desertCrossingCharacterBlanked(s, host) ||
       (Mumakil.mumakilCharacterBlanked(s, host) &&

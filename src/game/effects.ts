@@ -1,3 +1,7 @@
+import { mainQuestUnit } from "./quest-state";
+import * as BatchPlayers from "./batch4-player";
+import * as WildsPlayers from "./wilds-player";
+import { batch4Scenario, batch4SharedEffect } from "./batch4-scenarios";
 import { finishOpeningHands } from "./actions";
 import * as Sands from "./beneath-sands";
 import * as SandsPlayers from "./beneath-sands-player";
@@ -568,6 +572,8 @@ function handleEffect(s: GameState, e: Effect) {
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
   if (SandsPlayers.handleBeneathSandsPlayerEffect(s, e)) return;
+  if (BatchPlayers.handleBatch4PlayerEffect(s, e)) return;
+  if (WildsPlayers.handleWildsPlayerEffect(s, e)) return;
   if (HaradResponses.handleHaradResponseEffect(s, e)) return;
   if (Umbar.umbarEffect(s, e)) return;
   if (Desert.desertCrossingEffect(s, e)) return;
@@ -575,6 +581,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Mumakil.mumakilEffect(s, e)) return;
   if (Race.raceHaradEffect(s, e)) return;
   if (Sands.beneathSandsEffect(s, e)) return;
+  if (batch4Scenario(s).effect?.(s, e)) return;
   if (CityHoldLine.handleCityHoldLineEffect(s, e)) return;
   if (CityPlayers.cityPlayerEffect(s, e)) return;
   if (handlePaidPlayerCardEntry(s, e)) return;
@@ -588,6 +595,7 @@ function handleEffect(s: GameState, e: Effect) {
       Storm.stormcallerEndQuest(s);
       Race.raceHaradEndQuest(s);
       Sands.beneathSandsEndQuest(s);
+      batch4Scenario(s).endQuest?.(s);
       Drowned.drownedQuestEnd(s);
     });
     return;
@@ -940,14 +948,22 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "questSuccessResponses":
+      batch4Scenario(s).questSucceeded?.(s, s.lastQuest?.net ?? 0);
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
       DepthsPlayers.depthsPlayerQuestSucceeded(s);
       Mumakil.mumakilQuestSucceeded(s);
       break;
-    case "successfulQuestProgress":
+    case "successfulQuestProgress": {
+      const before = s.progress,
+        quest = mainQuestUnit(s)?.code;
       progress(s, e.value ?? 0, false, true);
+      batch4Scenario(s).successfulQuestProgress?.(
+        s,
+        quest === mainQuestUnit(s)?.code ? Math.max(0, s.progress - before) : 0,
+      );
       break;
+    }
     case "allocateActiveProgress": {
       const pending = s.queue.length;
       if (u && allActiveLocations(s).some((l) => l.id === u.id)) {
@@ -1064,6 +1080,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       Race.raceHaradCharactersCommitted(s);
       SandsPlayers.beneathSandsPlayersCommitted(s);
+      batch4Scenario(s).committed?.(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
       const reveals = rohanRevealReduction(
@@ -1239,6 +1256,11 @@ function handleEffect(s: GameState, e: Effect) {
           !e.flag || e.text === "strider-replace",
         );
         Race.raceHaradTravelEntered(s, u);
+        batch4Scenario(s).travelEntered?.(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
         Sands.beneathSandsTravelEntered(
           s,
           u,
@@ -1497,6 +1519,7 @@ function handleEffect(s: GameState, e: Effect) {
             Carn.carnEncounter(s, e.code, true) ||
             Dread.dreadEncounter(s, e.code, true) ||
             Cobas.cobasEncounter(s, e.code, true) ||
+            batch4Scenario(s).encounter?.(s, e.code, true, true) ||
             City.cityEncounter(s, e.code, true) ||
             Umbar.umbarEncounter(s, e.code, true) ||
             Desert.desertCrossingEncounter(s, e.code, true) ||
@@ -1744,6 +1767,7 @@ function handleEffect(s: GameState, e: Effect) {
       removeQuestTime(s, e.value ?? 1);
       break;
     case "phaseEnd":
+      if (s.phase === "planning") batch4Scenario(s).planningEnd?.(s);
       phaseEnd(s);
       Fate.fatePhaseEnd(s);
 
@@ -1780,6 +1804,7 @@ function handleEffect(s: GameState, e: Effect) {
       BloodQuest.bloodGondorQuestStart(s);
       Tharbad.tharbadQuestStart(s);
       prepend(s, ...Mumakil.mumakilQuestBegin(s));
+      prepend(s, ...(batch4Scenario(s).questBegin?.(s) ?? []));
       Drowned.drownedQuestStart(s);
       s.lastQuest = null;
       log(s, "Quest phase · Choose characters to commit.");
@@ -1804,6 +1829,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "startEncounter":
       startPhase(s, "encounter");
+      batch4Scenario(s).encounterBegin?.(s);
       Drowned.drownedEncounterStart(s);
       {
         const forced = TempleEncounters.templeEncounterStart(s);
@@ -1852,6 +1878,7 @@ function handleEffect(s: GameState, e: Effect) {
       if (u) returnAlly(s, u, true);
       break;
     case "endCombat":
+      batch4Scenario(s).combatEnd?.(s);
       Umbar.umbarCombatEnd(s);
       MorgulQuest.morgulCombatEnd(s);
       eachArea(s, () => {
@@ -1956,6 +1983,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Umbar.umbarRoundEnd(s));
         forced.push(...Desert.desertCrossingRoundEnd(s));
         forced.push(...Sands.beneathSandsRoundEnd(s));
+        forced.push(...(batch4Scenario(s).roundEnd?.(s) ?? []));
         forced.push(...Mordor.mordorRoundEnd(s));
         forced.push(...Mumakil.mumakilRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
@@ -2097,7 +2125,9 @@ function handleEffect(s: GameState, e: Effect) {
           (u) =>
             isEnemy(u) &&
             !Depths.depthsCannotEngage(s, u) &&
+            !batch4Scenario(s).cannotEngage?.(s, u) &&
             !Drowned.drownedCannotEngage(s, u) &&
+            !batch4Scenario(s).cannotEngage?.(s, u) &&
             (Depths.depthsEngagementPlayer(s, u) === undefined ||
               Depths.depthsEngagementPlayer(s, u) === i) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
@@ -2150,6 +2180,7 @@ function handleEffect(s: GameState, e: Effect) {
             isEnemy(u) &&
             !Depths.depthsCannotEngage(s, u) &&
             !Drowned.drownedCannotEngage(s, u) &&
+            !batch4Scenario(s).cannotEngage?.(s, u) &&
             (Depths.depthsEngagementPlayer(s, u) === undefined ||
               Depths.depthsEngagementPlayer(s, u) === activeSeat(s)) &&
             !Voyage.voyageNoEngagementCheck(s, u) &&
@@ -2171,7 +2202,10 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "startCombat":
       if (e.text !== "mordor-encounter-end") {
-        const forced = Mordor.mordorEncounterEnd(s).filter((effect) => {
+        const forced = [
+          ...(batch4Scenario(s).encounterEnd?.(s) ?? []),
+          ...Mordor.mordorEncounterEnd(s),
+        ].filter((effect) => {
           const enemy = get(s, effect.target);
           return !enemy || !Race.raceHaradCannotLeave(s, enemy);
         });
@@ -2285,6 +2319,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "shadowResolved": {
       const enemy = get(s, e.source);
       if (enemy && e.code) Dread.dreadShadowResolved(s, enemy, e.code);
+      if (enemy && e.code) batch4Scenario(s).shadowResolved?.(s, enemy, e.code);
       break;
     }
     case "shadowEffect": {
@@ -2558,9 +2593,19 @@ function handleEffect(s: GameState, e: Effect) {
         prepend(s, ...CityHoldLine.cityHoldLineAttackFinished(s, completed));
       if (completed) City.cityAttackFinished(s, completed);
       if (completed) Umbar.umbarAttackFinished(s, completed);
+      if (completed) {
+        const defenders =
+          completed.defenderIds ??
+          (completed.defenderId ? [completed.defenderId] : []);
+        WildsPlayers.wildsPlayerAttackResolved(s, defenders);
+        if (enemy)
+          BatchPlayers.batch4PlayerEnemyAttackResolved(s, enemy, defenders);
+      }
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));
       if (completed) prepend(s, ...Race.raceHaradAttackFinished(s, completed));
+      if (completed)
+        prepend(s, ...(batch4Scenario(s).attackFinished?.(s, completed) ?? []));
       Voyage.voyageAfterAttack(s);
       if (enemy) finishEnemyShadows(s, enemy);
       s.combat = s.suspendedCombats.pop() ?? null;
@@ -2650,7 +2695,11 @@ function handleEffect(s: GameState, e: Effect) {
 }
 
 export function shadowResponse(s: GameState, code: string) {
-  if (!Wastes.wastesCancelAllowed(s) || Sands.beneathSandsCannotCancel(s)) {
+  if (
+    !Wastes.wastesCancelAllowed(s) ||
+    Sands.beneathSandsCannotCancel(s) ||
+    batch4Scenario(s).cannotCancel?.(s, true)
+  ) {
     prepend(s, fx("shadowEffect", { code }));
     return;
   }
@@ -2769,6 +2818,7 @@ export function flush(s: GameState) {
       Mumakil.mumakilSharedEffect(effect) ||
       Race.raceHaradSharedEffect(effect) ||
       Sands.beneathSandsSharedEffect(effect) ||
+      batch4SharedEffect(effect) ||
       Raid.raidSharedEffect(effect) ||
       Storm.stormcallerSharedEffect(effect) ||
       TemplePlayers.templePlayerSharedEffect(effect) ||

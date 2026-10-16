@@ -1,3 +1,10 @@
+import { validateBlackSerpent } from "./black-serpent-support";
+import { validateCirithGurat } from "./cirith-gurat-support";
+import { validateCrossingsPoros } from "./crossings-poros-support";
+import {
+  validateWildsRhovanion,
+  WILDS_RHOVANION,
+} from "./wilds-rhovanion-support";
 import { COBAS, validateCobas } from "./cobas-support";
 import { validateCity } from "./city-support";
 import { validateUmbar } from "./escape-umbar-support";
@@ -141,8 +148,32 @@ export function validateSave(
     )
       return false;
     if (
+      s.batch4WindReserves !== undefined &&
+      (!s.batch4WindReserves ||
+        typeof s.batch4WindReserves !== "object" ||
+        Array.isArray(s.batch4WindReserves) ||
+        Object.entries(s.batch4WindReserves).some(
+          ([p, n]) =>
+            !/^\d+$/.test(p) ||
+            +p >= seatCount ||
+            !integer(n) ||
+            n < 0 ||
+            n > 3,
+        ))
+    )
+      return false;
+    if (
       s.deck?.some((code) => hasEncounterKeyword(card(code))) ||
       s.hand?.some((u) => hasEncounterKeyword(card(u.code)))
+    )
+      return false;
+    if (
+      Array.from(
+        { length: seatCount },
+        (_, player) =>
+          (s.rangerReserves?.[player] ?? 3) +
+          (s.batch4WindReserves?.[player] ?? 0),
+      ).some((count) => count > 3)
     )
       return false;
     const knownQuest = (code: unknown) =>
@@ -287,6 +318,11 @@ export function validateSave(
         c.raceHaradReturnToOrcs,
         c.beneathSandsPoisonShadow,
         c.desertPoisonShadow,
+        c.blackSerpentChaos,
+        c.porosPoisonShadow,
+        c.wildsBlankShadow,
+        c.wildsDiscardAlly,
+        c.wildsCannotReady,
         c.cancelCombatDamage,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
@@ -301,6 +337,12 @@ export function validateSave(
         c.mordorSavageShadows,
         c.mordorAdditionalAttacks,
         c.raceHaradPursuerShadows,
+        c.blackSerpentKilled,
+        c.blackSerpentQuarter,
+        c.porosKilled,
+        c.porosDangerShadows,
+        c.porosThreatShadows,
+        c.wildsGuardDefense,
         c.umbarKilled,
         c.umbarInjuredShadows,
         c.cityBelfalasShadows,
@@ -511,8 +553,10 @@ export function validateSave(
           u.revealedShadowCount <= u.shadows.length)) &&
       (u.guarding === undefined || typeof u.guarding === "string") &&
       (u.cobasGuarding === undefined ||
-        (s.scenarioId === "a-storm-on-cobas-haven" &&
-          u.code === COBAS.heavy &&
+        (((s.scenarioId === "a-storm-on-cobas-haven" &&
+          u.code === COBAS.heavy) ||
+          (s.scenarioId === "lost-in-mirkwood" &&
+            u.code === WILDS_RHOVANION.patrol)) &&
           Array.isArray(u.cobasGuarding) &&
           u.cobasGuarding.length > 0 &&
           u.cobasGuarding.every(
@@ -629,7 +673,14 @@ export function validateSave(
             ].includes(event.destination) &&
             (event.destination !== "spent" ||
               (event.unit.code === "12119" &&
-                !!s.victoryCards?.includes("12119"))),
+                !!s.victoryCards?.includes("12119")) ||
+              !!s.wildsRhovanion?.storedCards?.some(
+                (entry) =>
+                  entry.player === event.player &&
+                  entry.cards.some(
+                    (u) => u.id === event.unit.id && u.code === event.unit.code,
+                  ),
+              )),
         ))
     )
       return false;
@@ -689,6 +740,14 @@ export function validateSave(
         !validateMumakil(s, validUnit as (value: unknown) => boolean) ||
         !validateRaceHarad(s, validUnit as (value: unknown) => boolean) ||
         !validateBeneathSands(s, validUnit as (value: unknown) => boolean) ||
+        !validateBlackSerpent(s, validUnit as (value: unknown) => boolean) ||
+        !validateCirithGurat(
+          s,
+          validUnit as (value: unknown) => boolean,
+          (code) => card(code).type_code,
+        ) ||
+        !validateCrossingsPoros(s, validUnit as (value: unknown) => boolean) ||
+        !validateWildsRhovanion(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1288,7 +1347,9 @@ export function validateSave(
       ...seatIndices(s).flatMap((i) => seatView(s, i).hand),
       ...(s.prisoner ? [s.prisoner] : []),
       ...(s.captiveMendor ? [s.captiveMendor] : []),
-      ...(s.resolvingEvents?.map((event) => event.unit) ?? []),
+      ...(s.resolvingEvents
+        ?.filter((event) => event.destination !== "spent")
+        .map((event) => event.unit) ?? []),
       ...(s.pendingPlayerPlays?.map((entry) => entry.unit) ?? []),
       ...(s.dunlandTrap?.setAside ?? []),
       ...(s.tharbad?.setAside ?? []),
@@ -1312,6 +1373,17 @@ export function validateSave(
       ...(s.raceHarad?.setAside ?? []),
       ...(s.raceHarad?.removed ?? []),
       ...(s.beneathSands?.setAside ?? []),
+      ...(s.blackSerpent?.setAside ?? []),
+      ...(s.cirithGurat?.setAside ?? []),
+      ...(s.cirithGurat?.captives ?? []),
+      ...(s.crossingsPoros?.setAside ?? []),
+      ...(s.crossingsPoros?.removed ?? []),
+      ...(s.wildsRhovanion?.setAside ?? []),
+      ...(s.wildsRhovanion?.cavesDeck ?? []),
+      ...(s.wildsRhovanion?.removed ?? []),
+      ...(s.wildsRhovanion?.storedCards.flatMap((p) => p.cards) ?? []),
+      ...(s.wildsRhovanion?.guardedHeroes.map((p) => p.hero) ?? []),
+      ...(s.wildsRhovanion?.guardedPlayerCards.map((p) => p.card) ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

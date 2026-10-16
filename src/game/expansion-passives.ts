@@ -1,3 +1,5 @@
+import * as WildsSupport from "./wilds-player-support";
+import { batch4Scenario } from "./batch4-scenarios";
 import { beneathSandsPlayerDoesNotExhaustToQuest } from "./beneath-sands-player-support";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import * as Realm from "./lost-realm-player";
@@ -154,7 +156,17 @@ const rules: Record<string, AttachmentRule> = {
   "17056": { traits: ["Harad"], restricted: 1 },
   "17063": { type: "hero", limit: 1, grantsTraits: ["Ranger"] },
   "17061": { type: "hero", traits: ["Hobbit"], limit: 1 },
+  "17082": { type: "hero", limit: 1 },
+  "17086": { type: "hero", limit: 1, grantsTraits: ["Scout"] },
+  "17088": { traits: ["Dúnedain", "Dunedain"], limit: 1 },
+  "17111": { type: "hero", limit: 1, grantsTraits: ["Noble"] },
+  "17117": { type: "hero", restricted: 1 },
+  "17143": { type: "hero", limit: 1 },
   "18007": { traits: ["Dale", "Warrior"], limit: 1, defense: 1 },
+  "18008": { type: "hero", traits: ["Dale", "Esgaroth"] },
+  "18009": { traits: ["Dale", "Warrior"], restricted: 1 },
+  "18010": { traits: ["Dale", "Scout"], limit: 1 },
+  "18011": { type: "hero" },
   "19003": { type: "ally", limit: 1, restricted: 1, health: 2 },
   "19028": {
     traits: ["Noble"],
@@ -226,6 +238,7 @@ export function effectiveKeyword(u: Unit, keyword: string): boolean {
   ).replace(/<[^>]*>/g, "");
   const exact = new RegExp(`(?:^|[.\\n]\\s*)${keyword}(?:[.\\s]|$)`, "i");
   return (
+    WildsSupport.wildsPlayerKeyword(u, keyword) ||
     !!u.dynamicKeywords?.some(
       (k) => k.toLowerCase() === keyword.toLowerCase(),
     ) ||
@@ -349,6 +362,11 @@ export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;
 export function questExhausts(s: GameState, u: Unit) {
+  if (
+    batch4Scenario(s).doesNotExhaustToQuest?.(s, u) ||
+    !WildsSupport.wildsPlayerQuestExhausts(s, u)
+  )
+    return false;
   if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;
   if (cobasEconomyNoQuestExhaust(s, u)) return false;
   if (u.code === "11009" && !u.blanked) return false;
@@ -374,6 +392,7 @@ export const pathOfNeed = (s: GameState, u: Unit) =>
     l.attachments.some((a) => !a.blanked && a.code === "04103"),
   );
 export const resourcePhaseBonus = (u: Unit) =>
+  WildsSupport.wildsPlayerResourceBonus(u) +
   u.attachments.filter((a) => !a.blanked && ["04062", "rc134"].includes(a.code))
     .length;
 export const singlePoolCard = (c: Card) => c.code === "12139";

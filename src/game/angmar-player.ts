@@ -97,7 +97,7 @@ import {
 } from "./damage-context";
 import { applyCombatDamageConsequences } from "./combat";
 import { isHero, isAlly } from "./card-types";
-import { movableHand, canLeaveHand } from "./hand-rules";
+import { discardableHand } from "./hand-rules";
 import { khazadCannotExhaust } from "./khazad-dum";
 import { watcherWaterCannotExhaust } from "./watcher-water";
 import { heirsCanSpendResources } from "./heirs-numenor";
@@ -574,7 +574,7 @@ export function angmarAbilityProblem(s: GameState, u: Unit, id?: string) {
       : null;
   if (code === A.jeweler)
     return !s.hand.some((h) => h.id === u.id) ||
-      movableHand(s).filter((h) => h.id !== u.id).length < 2 ||
+      discardableHand(s).filter((h) => h.id !== u.id).length < 2 ||
       !allyCanEnter(s, u.code)
       ? "Elven Jeweler needs two other hand cards and a legal entry."
       : null;
@@ -584,12 +584,12 @@ export function angmarAbilityProblem(s: GameState, u: Unit, id?: string) {
       : null;
   if (code === A.spear)
     return !a ||
-      !movableHand(s).length ||
+      !discardableHand(s).length ||
       s.used.filter((k) => k === `${PREFIX}spear:${a.id}`).length >= 3
       ? "Elven Spear needs a hand card and fewer than three uses this phase."
       : null;
   if (code === A.arwen)
-    return !movableHand(s).length ||
+    return !discardableHand(s).length ||
       s.used.includes(`${ROUND}arwen:${u.id}`) ||
       !allHeroes(s).some(
         (h) =>
@@ -641,7 +641,7 @@ export function useAngmarAbility(s: GameState, u: Unit, id?: string) {
     choose(
       s,
       `${card(code).name} · Discard a hand card`,
-      movableHand(s)
+      discardableHand(s)
         .filter((h) => code !== A.jeweler || h.id !== u.id)
         .map((h) =>
           option(h, [
@@ -767,7 +767,7 @@ export function angmarCharactersCommitted(s: GameState, ids: string[]) {
     )) {
       const player = attachmentController(s, u, a) ?? ownerOf(s, u);
       if (
-        movableHand(seatView(s, player)).length &&
+        discardableHand(seatView(s, player)).length &&
         allActiveLocations(s).some(affected)
       )
         prepend(
@@ -1448,14 +1448,14 @@ export function angmarEffect(s: GameState, e: Effect): boolean {
       }
       break;
     case "angmarDiscardCost": {
-      const copy = s.hand.find((h) => h.id === e.target && canLeaveHand(h));
+      const copy = discardableHand(s).find((h) => h.id === e.target);
       requireRule(copy, "The physical cost card must remain in hand.");
       discardHandCard(s, copy.id);
       if (e.code === A.jeweler && (e.value ?? 0) > 1)
         choose(
           s,
           "Elven Jeweler · Discard another hand card",
-          movableHand(s)
+          discardableHand(s)
             .filter((h) => h.id !== e.source)
             .map((h) => option(h, [{ ...e, target: h.id, value: 1 }])),
         );
@@ -1534,7 +1534,11 @@ export function angmarEffect(s: GameState, e: Effect): boolean {
     }
     case "angmarSteedOffer": {
       const a = attachment(s, e.target, e.source);
-      if (a && movableHand(s).length && allActiveLocations(s).some(affected))
+      if (
+        a &&
+        discardableHand(s).length &&
+        allActiveLocations(s).some(affected)
+      )
         response(s, a.id, a.code, "Steed of Imladris · Hero committed", [
           fx("angmarSteedDiscard", { target: e.target, source: a.id }),
         ]);
@@ -1544,7 +1548,7 @@ export function angmarEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Steed of Imladris · Discard a hand card",
-        movableHand(s).map((h) =>
+        discardableHand(s).map((h) =>
           option(h, [fx("angmarSteedPay", { target: h.id })]),
         ),
       );
@@ -2074,7 +2078,7 @@ function angmarRemainingEffect(s: GameState, e: Effect): boolean {
       }
       break;
     case "angmarErestorDiscard":
-      for (const copy of [...s.hand]) discardHandCard(s, copy.id);
+      for (const copy of [...discardableHand(s)]) discardHandCard(s, copy.id);
       break;
     case "angmarSideOffer":
       response(

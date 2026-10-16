@@ -1,0 +1,56 @@
+.wilds-rhovanion-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 12px;
+  margin-block: 12px;
+}
+.wilds-rhovanion-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface, #171e18) 94%, #587141);
+}
+.wilds-rhovanion-summary button,
+.wilds-rhovanion-reference button {
+  font: inherit;
+  text-align: left;
+  padding: 7px 9px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.wilds-rhovanion-summary span {
+  line-height: 1.45;
+}
+.redbook .wilds-rhovanion-state .quest-goals > span {
+  color: #e8dabc;
+  background: #162d2280;
+}
+.redbook .wilds-rhovanion-state .quest-goals > span.done {
+  color: #c6dfad;
+}
+.wilds-rhovanion-reference {
+  grid-column: 1/-1;
+  padding: 10px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 8px;
+}
+.wilds-rhovanion-reference > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+@media (max-width: 480px) {
+  .wilds-rhovanion-summary {
+    padding: 11px;
+  }
+  .wilds-rhovanion-reference button {
+    width: 100%;
+  }
+}

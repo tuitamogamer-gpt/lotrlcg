@@ -1,0 +1,67 @@
+.cirith-gurat-state {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  color: var(--text, #eee);
+}
+.cirith-gurat-summary,
+.cirith-gurat-state > details {
+  border: 1px solid #746046;
+  border-radius: 0.6rem;
+  padding: 0.8rem;
+  background: rgba(32, 23, 17, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.cirith-gurat-state button {
+  min-width: 0;
+  border: 1px solid #81704a;
+  border-radius: 0.25rem;
+  background: rgba(110, 87, 44, 0.22);
+  padding: 0.55rem 0.7rem;
+  color: inherit;
+  font: inherit;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  white-space: normal;
+  text-align: left;
+  max-width: 100%;
+}
+.cirith-gurat-state ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cirith-gurat-state li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.cirith-gurat-state > details {
+  grid-column: 1/-1;
+  display: block;
+}
+.cirith-gurat-state details button {
+  display: block;
+  margin-top: 0.5rem;
+}
+.cirith-gurat-summary span {
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 600px) {
+  .cirith-gurat-state {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cirith-gurat-state button:hover {
+  background: rgba(132, 106, 57, 0.35);
+}

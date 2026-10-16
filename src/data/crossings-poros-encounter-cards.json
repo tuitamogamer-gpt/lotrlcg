@@ -1,0 +1,1181 @@
+[
+  {
+    "code": "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+    "octgnid": "04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+    "name": "Southron Archer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Archery 2.\nForced: After Southron Archer engages you, either remove 2 progress tokens from the main quest, or discard an ally you control.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 43,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 3,
+    "health": 4,
+    "engagement": 36,
+    "encounter_set": "Harad Soldiers",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "3",
+      "health": "4",
+      "engagement": "36"
+    },
+    "imagesrc": "/cards/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 43,
+        "quantity": 4,
+        "octgnid": "04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/04a23a2e-a14f-4c54-b54f-eeef36d3a92b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
+    "octgnid": "0856a4b4-ec02-4586-8147-93fbadf544cd",
+    "name": "Shadowy Vale",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While any player has threat of 35 or higher, Shadowy Vale gets +3 [threat]. Forced: After Shadowy Vale becomes the active location, reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 154,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "Mountains of Shadow",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/0856a4b4-ec02-4586-8147-93fbadf544cd.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 154,
+        "quantity": 2,
+        "octgnid": "0856a4b4-ec02-4586-8147-93fbadf544cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0856a4b4-ec02-4586-8147-93fbadf544cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
+    "octgnid": "112fc5f3-9d26-4711-8a97-e4a83bb23663",
+    "name": "Poros Garrison",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Gondor.",
+    "text": "The first player gains control of Poros Garrison. Immune to player card effects. You can optionally engage an additional enemy during the encounter phase. If Poros Garrison leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 145,
+    "quantity": 1,
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {},
+    "imagesrc": "/cards/112fc5f3-9d26-4711-8a97-e4a83bb23663.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 145,
+        "quantity": 1,
+        "octgnid": "112fc5f3-9d26-4711-8a97-e4a83bb23663",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/112fc5f3-9d26-4711-8a97-e4a83bb23663.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "willpower": 3,
+    "attack": 4,
+    "defense": 3,
+    "health": 6
+  },
+  {
+    "code": "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+    "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+    "name": "Desert Oasis",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert.",
+    "text": "While Desert Oasis is the active location, it gains: \"Response: When Desert Oasis is explored, heal 4 damage from among characters in play.\"Forced: After Desert Oasis becomes the active location, each player exhausts a character he controls.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 50,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "Desert Sands",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "19bcc176-d952-485b-9d28-12188c5a0bc1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19bcc176-d952-485b-9d28-12188c5a0bc1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:206a9350-41f1-48ba-adf2-241d07a90885",
+    "octgnid": "206a9350-41f1-48ba-adf2-241d07a90885",
+    "name": "Desert Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "When Revealed: Either place a random enemy from the set aside Desert Creatures set in the encounter discard pile, or Desert Warg gains surge. ",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 149,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 5,
+    "defense": 2,
+    "health": 3,
+    "engagement": 34,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "5",
+      "defense": "2",
+      "health": "3",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/206a9350-41f1-48ba-adf2-241d07a90885.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 149,
+        "quantity": 2,
+        "octgnid": "206a9350-41f1-48ba-adf2-241d07a90885",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/206a9350-41f1-48ba-adf2-241d07a90885.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
+    "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+    "name": "Uruk Chieftain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Cannot have player card attachments or be optionally engaged.While the engaged player is engaged with another Orc enemy, Uruk Chieftain cannot take damage.Forced: At the end of the encounter phase, Uruk Chieftain engages the player engaged with the most non-unique Orc enemies.",
+    "is_unique": true,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 61,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 50,
+    "victory": 3,
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "50",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/27748abf-80e8-4928-b506-53d7c23d76c6.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 61,
+        "quantity": 1,
+        "octgnid": "27748abf-80e8-4928-b506-53d7c23d76c6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27748abf-80e8-4928-b506-53d7c23d76c6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+    "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+    "name": "Mordor Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "When Revealed: Attach to an Orc enemy and return that enemy to the staging area. Limit 1 per enemy. (Counts as a Mount attachment with the text: \"Attached enemy gets +2 [threat], +2 [attack], +2 [defense] and +2 hit points. Forced: When attached enemy leaves play, add Mordor Warg to the staging area.\")",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 64,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 2,
+    "engagement": 20,
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "2",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 64,
+        "quantity": 2,
+        "octgnid": "27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
+    "octgnid": "2b3939a5-7ee7-4b6a-a889-84487815a1a5",
+    "name": "Harondor Waste",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Hills.",
+    "text": "Forced: After Harondor Waste becomes the active location, choose 1 random card from the set aside encounter set with the most cards remaining and place it in the encounter discard pile. Then, shuffle the encounter discard pile into the encounter deck. ",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 151,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/2b3939a5-7ee7-4b6a-a889-84487815a1a5.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 151,
+        "quantity": 4,
+        "octgnid": "2b3939a5-7ee7-4b6a-a889-84487815a1a5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b3939a5-7ee7-4b6a-a889-84487815a1a5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:37f205e5-5144-4987-8764-46909460797b",
+    "octgnid": "37f205e5-5144-4987-8764-46909460797b",
+    "name": "Nowhere to Hide",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player discards cards from the top of the encounter deck until an enemy is discarded, and puts that enemy into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 44,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it was engaged this round).",
+    "encounter_set": "Harad Soldiers",
+    "printed_stats": {},
+    "imagesrc": "/cards/37f205e5-5144-4987-8764-46909460797b.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 44,
+        "quantity": 3,
+        "octgnid": "37f205e5-5144-4987-8764-46909460797b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37f205e5-5144-4987-8764-46909460797b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+    "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+    "name": "Towering Dunes",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert.",
+    "text": "While Towering Dunes is in the staging area, progress cannot be placed on locations in the staging area not named Towering Dunes.Forced: After Towering Dunes becomes the active location, reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 49,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Desert Sands",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 49,
+        "quantity": 3,
+        "octgnid": "3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3d9db37c-4b51-4da8-be2b-25cd2d48e28b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4732976c-a400-498f-9f97-108995fcd99f",
+    "octgnid": "4732976c-a400-498f-9f97-108995fcd99f",
+    "name": "Southron Outrider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Forced: After Southron Outrider engages you, either place a random enemy from the Harad Soldiers set in the encounter discard pile, or Southron Outrider gets +3 [attack] this round. ",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 147,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 28,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/4732976c-a400-498f-9f97-108995fcd99f.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 147,
+        "quantity": 2,
+        "octgnid": "4732976c-a400-498f-9f97-108995fcd99f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4732976c-a400-498f-9f97-108995fcd99f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+    "octgnid": "47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+    "name": "Southron Champion",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Discard cards from the encounter deck until a Harad enemy is discarded. Add that enemy to the staging area and place a resource token on it. That enemy is \"the Champion.\" While this stage is in play, the Champion gets +2 [threat], +2 [attack], +2 [defense] and gains: \"Immune to player card effects. The main quest stage cannot be defeated while the Champion is in play.\" The champion cannot take damage unless there are at least 4 progress tokens here. This stage cannot be defeated while the champion is in play. ",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 40,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 10,
+    "encounter_set": "Harad Soldiers",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 40,
+        "quantity": 1,
+        "octgnid": "47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47b1cd0f-5d56-483c-956c-7851eb4b0a9a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
+    "octgnid": "486f9475-98e1-42d9-ac90-e6190545a5b9",
+    "name": "Southron Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "While Southron Captain is in the staging area, each other Harad enemy gets +1 [threat].While Southron Captain is engaged with you, each other Harad enemy engaged with you gets +1 [attack].",
+    "is_unique": true,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 41,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 40,
+    "encounter_set": "Harad Soldiers",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 41,
+        "quantity": 1,
+        "octgnid": "486f9475-98e1-42d9-ac90-e6190545a5b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/486f9475-98e1-42d9-ac90-e6190545a5b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+    "name": "Craft Remedy",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Treat the printed text box of each damaged character as if it were blank (except for Traits). Response: When this is defeated, heal 1 damage from each character in play. ",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 53,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Desert Creatures",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "55d8f78d-2dd7-4b44-80db-fb539ff05f00",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d8f78d-2dd7-4b44-80db-fb539ff05f00.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
+    "octgnid": "56da2e72-9580-4537-95e9-c138b4d9480e",
+    "name": "The Black Serpent",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Cannot leave the staging area or take damage. X is the stage number of the main quest. The Black Serpent gets +X [threat], +X [attack] and +X [defense]. Forced: At the end of the encounter phase, either remove X progress from the main quest, or The Black Serpent makes an immediate attack against the first player.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 146,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 2,
+    "defense": 1,
+    "health": 8,
+    "engagement": 50,
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "2",
+      "defense": "1",
+      "health": "8",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/56da2e72-9580-4537-95e9-c138b4d9480e.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 146,
+        "quantity": 1,
+        "octgnid": "56da2e72-9580-4537-95e9-c138b4d9480e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56da2e72-9580-4537-95e9-c138b4d9480e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
+    "octgnid": "5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
+    "name": "Find a Way Down",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nEach player’s threat cannot be reduced.\nResponse: When Find a Way Down is defeated, each player reduces his threat by 3.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 156,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Mountains of Shadow",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 156,
+        "quantity": 1,
+        "octgnid": "5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+    "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+    "name": "Giant Scorpion",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: After Giant Scorpion damages a character, that character cannot ready until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 55,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 33,
+    "shadow": "Shadow: If this attack deals damage, the defending character cannot ready until the end of the round.",
+    "encounter_set": "Desert Creatures",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 55,
+        "quantity": 3,
+        "octgnid": "5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5ddb243e-ee43-45fd-b4c2-2b197fdf70a9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
+    "octgnid": "680e0591-23db-402e-829d-bc2c15ec026f",
+    "name": "Foothills of Mordor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Foothills of Mordor is in the staging area, 'when revealed' effects cannot be canceled. Forced: After Foothills of Mordor becomes the active location, raise each player's threat by 2.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 153,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Mountains of Shadow",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/680e0591-23db-402e-829d-bc2c15ec026f.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 153,
+        "quantity": 3,
+        "octgnid": "680e0591-23db-402e-829d-bc2c15ec026f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/680e0591-23db-402e-829d-bc2c15ec026f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+    "octgnid": "6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+    "name": "Southron Soldier",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Harad.",
+    "text": "Forced: After Southron Soldier engages you, either remove 2 progress tokens from the main quest, or Southron Soldier makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 42,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 5,
+    "engagement": 32,
+    "shadow": "Shadow: Choose a non-unique enemy in the staging area. Engage it and deal it a shadow card.",
+    "encounter_set": "Harad Soldiers",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "5",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 42,
+        "quantity": 3,
+        "octgnid": "6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6cfc4fa5-bbcc-4c99-82b7-bb6359d24750.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+    "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+    "name": "Heat Exhaustion",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to that character.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 52,
+    "quantity": 2,
+    "shadow": "Shadow: Exhaust a character you control.",
+    "encounter_set": "Desert Sands",
+    "printed_stats": {},
+    "imagesrc": "/cards/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 52,
+        "quantity": 2,
+        "octgnid": "6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d2cbe18-4504-46df-821c-d3ce588bcb3f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
+    "octgnid": "6da909d1-c3e0-4c13-8986-4b3a066e67b5",
+    "name": "Mountains of Shadow",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Raise each player's threat by X, where X is the printed quest points of the active location. If there is no active location, Mountains of Shadow gains surge. ",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 155,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise your threat by 2.",
+    "encounter_set": "Mountains of Shadow",
+    "printed_stats": {},
+    "imagesrc": "/cards/6da909d1-c3e0-4c13-8986-4b3a066e67b5.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 155,
+        "quantity": 2,
+        "octgnid": "6da909d1-c3e0-4c13-8986-4b3a066e67b5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6da909d1-c3e0-4c13-8986-4b3a066e67b5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
+    "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+    "name": "Sandstorm",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Each player either discards his hand, or assigns X damage among characters he controls. X is the number of cards in his hand.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 51,
+    "quantity": 2,
+    "shadow": "Shadow: Either discard the highest cost attachment you control, or assign X damage among characters you control where X is the number of attachments you control.",
+    "encounter_set": "Desert Sands",
+    "printed_stats": {},
+    "imagesrc": "/cards/6def55a1-ee80-4570-831b-d591e6effc11.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 51,
+        "quantity": 2,
+        "octgnid": "6def55a1-ee80-4570-831b-d591e6effc11",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6def55a1-ee80-4570-831b-d591e6effc11.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
+    "octgnid": "7c690a1f-83c5-4465-9c64-eaddc1b592e7",
+    "name": "Desolate Land",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Desert. Hills.",
+    "text": "X is the highest number of characters controlled by a single player. Forced: After Desolate Land becomes the active location, choose 1 random card from the set aside encounter set with the most cards remaining. Reveal that card as if it was part of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 150,
+    "quantity": 3,
+    "threat": 0,
+    "quest": 4,
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/7c690a1f-83c5-4465-9c64-eaddc1b592e7.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 150,
+        "quantity": 3,
+        "octgnid": "7c690a1f-83c5-4465-9c64-eaddc1b592e7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7c690a1f-83c5-4465-9c64-eaddc1b592e7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:83a8586f-bb6d-4e90-84c7-3909034dad16",
+    "octgnid": "83a8586f-bb6d-4e90-84c7-3909034dad16",
+    "name": "Danger Close Behind",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Choose 1 random card from the set aside encounter set with the most cards remaining. Reveal that card as if it was the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 152,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, resolve the 'when revealed' effect on this card.",
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {},
+    "imagesrc": "/cards/83a8586f-bb6d-4e90-84c7-3909034dad16.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 152,
+        "quantity": 2,
+        "octgnid": "83a8586f-bb6d-4e90-84c7-3909034dad16",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/83a8586f-bb6d-4e90-84c7-3909034dad16.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+    "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+    "name": "Find Water",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Characters cannot be readied by player card effects. Response: When this stage is defeated, each player readies 1 hero he controls. ",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 48,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Desert Sands",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/84877af6-0720-4ef8-802b-69b792c32e15.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "84877af6-0720-4ef8-802b-69b792c32e15",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84877af6-0720-4ef8-802b-69b792c32e15.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
+    "octgnid": "89baec7c-4e60-4b12-9d7d-80b11e786d89",
+    "name": "Uruk Prowler",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "When Revealed: Either place a random enemy from the set aside Mordor Orcs set in the encounter discard pile, or Uruk Prowler makes an immediate attack against the first player. ",
+    "is_unique": false,
+    "pack_code": "CoP",
+    "pack_name": "The Crossings of Poros",
+    "position": 148,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 45,
+    "shadow": "Shadow: Discard a random card from your hand.",
+    "encounter_set": "Crossings of Poros",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/89baec7c-4e60-4b12-9d7d-80b11e786d89.jpg",
+    "packs": [
+      {
+        "pack_code": "CoP",
+        "pack_name": "The Crossings of Poros",
+        "position": 148,
+        "quantity": 2,
+        "octgnid": "89baec7c-4e60-4b12-9d7d-80b11e786d89",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89baec7c-4e60-4b12-9d7d-80b11e786d89.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
+    "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+    "name": "Uruks of the Eye",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nEach Orc enemy in the staging area gets -5 engagement cost. Each Orc enemy engaged with a player gets +1 [threat]. ",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 60,
+    "quantity": 1,
+    "quest": 5,
+    "victory": 10,
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 60,
+        "quantity": 1,
+        "octgnid": "8a0a834b-d10c-43b1-a43c-75b459c18374",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a0a834b-d10c-43b1-a43c-75b459c18374.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+    "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+    "name": "Uruk of Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Each ally with less [willpower] than Uruk of Mordor's [threat] cannot defend against Uruk of Mordor.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 62,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 4,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if its [threat] is greater than the defending character's [willpower]).",
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "4",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 62,
+        "quantity": 3,
+        "octgnid": "ad251ffd-8653-4a45-b88e-def2ffecc2dc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad251ffd-8653-4a45-b88e-def2ffecc2dc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+    "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+    "name": "Sand Viper",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Players cannot declare defenders against Sand Viper.Forced: After the players travel to a location, Sand Viper engages the first player.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 54,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 1,
+    "defense": 1,
+    "health": 3,
+    "engagement": 44,
+    "encounter_set": "Desert Creatures",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "1",
+      "defense": "1",
+      "health": "3",
+      "engagement": "44"
+    },
+    "imagesrc": "/cards/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 54,
+        "quantity": 2,
+        "octgnid": "b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+    "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+    "name": "Fear of Mordor",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each ally in play gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 65,
+    "quantity": 2,
+    "shadow": "Shadow: If attacking enemy's [threat] is greater than the defending character's [willpower], it makes an additional attack after this one.",
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {},
+    "imagesrc": "/cards/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 65,
+        "quantity": 2,
+        "octgnid": "cfcee6c8-9eee-4623-afd1-a49ea77e2322",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfcee6c8-9eee-4623-afd1-a49ea77e2322.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+    "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+    "name": "Uruk Warg-Rider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "Uruk Warg-Rider gets +X [attack] while attacking a character with less [willpower] than Uruk Warg-rider's [threat]. X is the difference.",
+    "is_unique": false,
+    "pack_code": "TSoH",
+    "pack_name": "The Sands of Harad",
+    "position": 63,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 3,
+    "defense": 1,
+    "health": 5,
+    "engagement": 40,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Mordor Orcs",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "1",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoH",
+        "pack_name": "The Sands of Harad",
+        "position": 63,
+        "quantity": 2,
+        "octgnid": "f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63cbcf5-e846-476f-abc6-a9e86e89a2fd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
