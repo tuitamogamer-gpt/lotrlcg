@@ -313,6 +313,25 @@ test("one eliminated seat returns enemies to staging while surviving heroes keep
   assert.equal(livingSeats(s).length, 2);
   assert.ok(validateSave(s));
 });
+test("a pending effect can leave the active seat on an eliminated fellowship, and restore keeps that snapshot", () => {
+  let s = planning();
+  s.phase = "staging";
+  s.threat = 49;
+  s.staging = [unit("01099")];
+  s = act(prepare(s), { type: "NEXT" });
+  assert.equal(s.table!.seats[0].eliminated, true);
+  assert.notEqual(activeSeat(s), 0);
+  // Encounter effects still name the eliminated player. Resolution selects
+  // that seat, and a guided review can pause before the table returns to turn.
+  selectSeat(s, 0);
+  const saved = JSON.parse(JSON.stringify(s));
+  const restored = restoreSave(saved);
+  assert.ok(restored);
+  assert.equal(activeSeat(restored!), 0);
+  assert.equal(restored!.deckId, "leadership");
+  assert.deepEqual(restored, saved);
+  assert.deepEqual(restoreSave(JSON.parse(JSON.stringify(restored))), restored);
+});
 test("when-revealed effects apply to each player, with separate serialized choices", () => {
   let s = planning();
   s.phase = "quest";

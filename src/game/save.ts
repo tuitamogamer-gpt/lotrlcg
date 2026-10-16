@@ -64,6 +64,7 @@ import {
   ownerOf,
   seatIndices,
   seatView,
+  selectSeat,
   syncSeat,
   PLAYER_FIELDS,
 } from "./table";
@@ -1380,6 +1381,10 @@ export function restoreSave(value: unknown): GameState | null {
       });
     }
     if (!validateSave(s)) return null;
+    // Text sync and legacy modifiers visit every living seat. That visitor
+    // refuses to finish on an eliminated fellowship, but a pending encounter
+    // effect can legally pause there. Remember the saved actor and return.
+    const activeDuringRestore = s.table?.active;
     eachArea(s, () => syncAttachmentText(s));
     // Legacy version-two saves used player/global modifiers. Bind those bonuses
     // to the characters present at restore, then use the same snapshot rules.
@@ -1398,6 +1403,12 @@ export function restoreSave(value: unknown): GameState | null {
     for (const u of globalEngaged(s))
       if (u.feinted && u.preventedAttacks === undefined)
         u.preventedAttacks = [ownerOf(s, u)];
+    if (
+      s.table &&
+      activeDuringRestore !== undefined &&
+      s.table.active !== activeDuringRestore
+    )
+      selectSeat(s, activeDuringRestore);
     syncSeat(s);
     if (s.temple) {
       templeSyncMap(s);
