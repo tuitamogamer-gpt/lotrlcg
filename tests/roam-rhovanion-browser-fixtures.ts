@@ -45,3 +45,17 @@ export function roamLoss() {
   syncSeat(f.s);
   return f;
 }
+export function roamCancellation(code = R.bear) {
+  const s = base();
+  setStage(s, R.rescue);
+  s.phase = "quest";
+  const hero = s.heroes[0];
+  hero.code = "01007";
+  hero.resources = 1;
+  const event = make(s, "01050");
+  event.owner = 0;
+  s.hand = [event];
+  s.encounterDeck = [code, ...Array(15).fill(R.slopes)];
+  syncSeat(s);
+  return { s, hero, event };
+}

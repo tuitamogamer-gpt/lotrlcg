@@ -25,6 +25,7 @@ import {
 const widths = process.env.ROAM_RHOVANION_WIDTHS
   ? process.env.ROAM_RHOVANION_WIDTHS.split(",").map(Number)
   : [1280, 390, 320];
+const focusedCancellation = process.env.ROAM_RHOVANION_FOCUSED_CANCEL === "1";
 assert.ok(widths.length && widths.every((w) => [1280, 390, 320].includes(w)));
 const dir = process.env.ROAM_RHOVANION_OUTPUT_DIR ?? "output/roam-rhovanion";
 await fs.mkdir(dir, { recursive: true });
@@ -114,6 +115,63 @@ try {
       entries,
     );
     page = view.p;
+    if (focusedCancellation) {
+      for (const code of [R.bear, R.weather]) {
+        const f = F.roamCancellation(code);
+        await load(page, f.s);
+        await page
+          .getByRole("button", {
+            name: `Commit ${card(f.hero.code).name}`,
+            exact: true,
+          })
+          .click();
+        await page
+          .getByRole("button", { name: "Commit & reveal", exact: true })
+          .last()
+          .click();
+        await reviewedState(page);
+        let pending = await saved(page);
+        if (code === R.bear) {
+          assert.ok(
+            pending.choice?.options.some((o) => o.code === "01050"),
+            "enemy when-revealed retains its cancellation window during Rescue Tiny",
+          );
+          await resume(page);
+          pending = await saved(page);
+          await choose(
+            page,
+            pending.choice.options.find((o) => o.code === "01050").id,
+          );
+          const done = await settle(page);
+          assert.ok(done.staging.some((u) => u.code === R.bear));
+          assert.ok(done.discard.includes("01050"));
+          assert.ok(!done.hand.some((u) => u.id === f.event.id));
+          assert.ok(!done.choice);
+          transitions.push({
+            width,
+            branch: "rescue-tiny-enemy-cancel-allowed",
+            eventSpent: true,
+          });
+          await checkpoint(page, "native-bear-cancel-allowed", width);
+        } else {
+          assert.match(pending.choice?.title ?? "", /Harsh Weather/);
+          assert.ok(!pending.choice.options.some((o) => o.code === "01050"));
+          await resume(page);
+          while ((await saved(page)).choice) await choose(page, "threat");
+          const done = await settle(page);
+          assert.ok(done.hand.some((u) => u.id === f.event.id));
+          assert.ok(done.threat > 20);
+          transitions.push({
+            width,
+            branch: "rescue-tiny-treachery-cancel-blocked",
+            eventRetained: true,
+          });
+          await checkpoint(page, "native-weather-cancel-blocked", width);
+        }
+      }
+      await view.c.close();
+      continue;
+    }
     await fresh(page, "roam-across-rhovanion", 1, false);
     await page.locator("#start-btn").click();
     let s = await opening(page);
@@ -301,7 +359,7 @@ try {
     await view.c.close();
   }
   const artPage = await browser.newPage();
-  for (const a of bundle.artwork) {
+  for (const a of focusedCancellation ? [] : bundle.artwork) {
     const response = await artPage.request.get(
       new URL(a.localPath, process.env.GAME_URL ?? "http://127.0.0.1:5178")
         .href,
@@ -325,13 +383,14 @@ try {
     artwork.push({ path: a.localPath, sha256: a.sha256, ...decoded });
   }
   await artPage.close();
-  if (widths.includes(1280))
+  if (!focusedCancellation && widths.includes(1280))
     assert.deepEqual(
       [...printedFaces].sort(),
       bundle.artwork.map((a) => a.localPath).sort(),
     );
   await report(dir, {
-    smoke: widths.join(",") !== "1280,390,320",
+    smoke: focusedCancellation || widths.join(",") !== "1280,390,320",
+    focusedCancellation,
     sourceScriptSha256,
     errors,
     screenshots,
