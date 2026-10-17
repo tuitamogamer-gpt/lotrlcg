@@ -1,0 +1,869 @@
+[
+  {
+    "code": "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+    "octgnid": "1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+    "name": "Face the Dragon",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After Dagnir attacks and destroys a character, heal 5 damage from her. Forced: After Face the Dragon is defeated, deal 5 damage to Dagnir. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 73,
+    "quantity": 1,
+    "quest": 10,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+    "octgnid": "3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+    "name": "Wooden Palisade",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Town.",
+    "text": "While Wooden Palisade is the active location, Dagnir gets -2 [attack]. Travel: The first player readies a hero he controls. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 78,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 78,
+        "quantity": 3,
+        "octgnid": "3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+    "octgnid": "3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+    "name": "Orc of the Flame",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "When Revealed: The first player must either deal 2 damage to a hero he controls, or deal 3 damage to Hrogar's Hill. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 76,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if Hrogar's Hill has at least 25 damage on it).",
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 76,
+        "quantity": 4,
+        "octgnid": "3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 4
+  },
+  {
+    "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+    "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+    "name": "Dark Black Woods",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Dark.",
+    "text": "While Dark Black Woods is in the staging area, no more than 1 progress can be placed on each Forest location in the staging area each round. Travel: Each player discards the top card of the encounter deck. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 39,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Dark Woods",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/408752c0-cee3-41ba-86c2-d01085546cef.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 39,
+        "quantity": 3,
+        "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408752c0-cee3-41ba-86c2-d01085546cef.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:463d0c53-2275-410f-b311-139f19561b46",
+    "octgnid": "463d0c53-2275-410f-b311-139f19561b46",
+    "name": "Bright Flames",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns X damage among characters he controls, where X is 1 more than the number of side quests in the victory display. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 82,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each side quest in the victory display.",
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {},
+    "imagesrc": "/cards/463d0c53-2275-410f-b311-139f19561b46.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 82,
+        "quantity": 2,
+        "octgnid": "463d0c53-2275-410f-b311-139f19561b46",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/463d0c53-2275-410f-b311-139f19561b46.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+    "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+    "name": "Stray Goblin",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "Surge. Cannot be optionally engaged.\nWhile Stray Goblin is in the staging area, it gains: \"Forced: After a player engages an enemy, Stray Goblin engages that player.\"",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 21,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 0,
+    "health": 3,
+    "engagement": 50,
+    "shadow": "Shadow: Add Stray Goblin to staging area.",
+    "encounter_set": "Grey Mountain Goblins",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "0",
+      "health": "3",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+    "octgnid": "5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+    "name": "Douse the Flames",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: At the end of the quest phase, deal 5 damage to Hrogar's Hill. Response: When Douse the Flames is defeated, remove 10 damage from Hrogar's Hill. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 69,
+    "quantity": 1,
+    "quest": 10,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+    "octgnid": "721bbc14-f14c-4464-9963-55a77ab2d9bc",
+    "name": "Powerful in Wrath",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. When Revealed: Discard the active location and deal X damage to Hrogar's Hill, where X is that location's [threat]. If no damage is dealt this way, Powerful in Wrath gains surge. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 80,
+    "quantity": 2,
+    "shadow": "Shadow: Excess damage from this attack must be dealt to Hrogar's Hill.",
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {},
+    "imagesrc": "/cards/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 80,
+        "quantity": 2,
+        "octgnid": "721bbc14-f14c-4464-9963-55a77ab2d9bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:73515869-890b-4169-9104-b2e882d921ae",
+    "octgnid": "73515869-890b-4169-9104-b2e882d921ae",
+    "name": "Rally the Woodmen",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Allies cannot be declared as attackers against Dagnir. Response: When Rally the Woodmen is defeated, each player searches the top 5 cards of his deck for an ally, puts it into play and shuffles his deck. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 68,
+    "quantity": 1,
+    "quest": 10,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/73515869-890b-4169-9104-b2e882d921ae.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "73515869-890b-4169-9104-b2e882d921ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73515869-890b-4169-9104-b2e882d921ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+    "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+    "name": "Swarm of Bats",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discards each resource from each of his hero's resource pools and raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Swarm of Bats gains surge.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 41,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has an attachment).",
+    "encounter_set": "Gathering Gloom",
+    "printed_stats": {},
+    "imagesrc": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 41,
+        "quantity": 3,
+        "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 2
+  },
+  {
+    "code": "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+    "octgnid": "a6b39458-b0f1-4b5d-a915-d3921eb35658",
+    "name": "Fortify the Defense",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Characters do not count their [defense] when defending against Dagnir. Response: When Fortify the Defense is defeated, each player chooses: either draw 3 cards, or each hero he controls gains 1 resource. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 67,
+    "quantity": 1,
+    "quest": 10,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "a6b39458-b0f1-4b5d-a915-d3921eb35658",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+    "octgnid": "a6e68650-e413-4e85-b687-b927d5a87821",
+    "name": "Hold the Door",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each player's threat cannot be reduced. Response: When Hold the Door is defeated, reduce each player's threat by 5. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 70,
+    "quantity": 1,
+    "quest": 10,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/a6e68650-e413-4e85-b687-b927d5a87821.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "a6e68650-e413-4e85-b687-b927d5a87821",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6e68650-e413-4e85-b687-b927d5a87821.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+    "octgnid": "a837fe8b-6f21-4d20-9897-89a3c4706b40",
+    "name": "Defend the Town",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "While Defend the Town is the current quest, reveal an additional encounter card during the quest phase. Forced: At the end of the encounter phase, deal 1 damage to Hrogar's Hill for each enemy in the staging area. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 71,
+    "quantity": 1,
+    "quest": 5,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "a837fe8b-6f21-4d20-9897-89a3c4706b40",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+    "octgnid": "a917100d-1b9b-4335-a55f-75291e0cab6e",
+    "name": "The Dragon's Thrall",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Forced: After The Dragon's Thrall engages you, either deal 3 damage to Hrogar's Hill, or it makes an immediate attack against you. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 75,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 4,
+    "engagement": 30,
+    "shadow": "Shadow: If this attack destroys a character, deal 3 damage to Hrogar's Hill. ",
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "4",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 75,
+        "quantity": 3,
+        "octgnid": "a917100d-1b9b-4335-a55f-75291e0cab6e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 3
+  },
+  {
+    "code": "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+    "octgnid": "aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+    "name": "Town Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Town.",
+    "text": "While Town Gate is in the staging area, it gains: \"Forced: At the end of the quest phase, place 1 resource here. Then, if there are 3 resources here, discard Town Gate and deal 4 damage to Hrogar's Hill.\" Travel: Dagnir makes an immediate attack against the first player. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 77,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 77,
+        "quantity": 2,
+        "octgnid": "aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+    "octgnid": "bcd41784-d260-4165-ae0f-74cb844d10b3",
+    "name": "The Dragon's Fury",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Dagnir makes an immediate attack against the first player. Undefended damage from this attack must be dealt to Hrogar's Hill.",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 81,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {},
+    "imagesrc": "/cards/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 81,
+        "quantity": 3,
+        "octgnid": "bcd41784-d260-4165-ae0f-74cb844d10b3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+    "octgnid": "dae6e913-3b2e-4e53-aad4-69946d3386ca",
+    "name": "Draw Her Fire",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Shadow cards dealt to Dagnir are immune to player card effects and their effects cannot be canceled. Forced: After Draw Her Fire becomes the current quest, Dagnir makes an immediate attack against the first player. ",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 66,
+    "quantity": 1,
+    "quest": 5,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "dae6e913-3b2e-4e53-aad4-69946d3386ca",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "octgnid": "df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "name": "Rout the Goblins",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Rout the Goblins gets +5 quest points for each Goblin enemy in play. When Revealed: Each player searches the encounter deck and discard pile for a different Goblin enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 72,
+    "quantity": 1,
+    "quest": 5,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "quest": "5",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 10,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "name": "Goblin Troop",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "Cannot have player card attachments. While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 20,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 6,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+    "encounter_set": "Grey Mountain Goblins",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 20,
+        "quantity": 2,
+        "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+    "octgnid": "f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+    "name": "Burning Watchtower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Town.",
+    "text": "X is 1 more than the number of side quests in the victory display. Travel: Each player assigns X damage among characters he controls.",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 79,
+    "quantity": 3,
+    "threat": 0,
+    "quest": 5,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 79,
+        "quantity": 3,
+        "octgnid": "f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+    "octgnid": "f7badc7a-4e37-4606-8557-0fa4719227c0",
+    "name": "Dagnir",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Immune to player card effects. X is 1 more than the number of side quests in the victory display. Cannot leave the staging area or take more than X damage from non-quest effects each round.  While at least 3 side quests are in the victory display, Dagnir is considered to be engaged with each player.",
+    "is_unique": true,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 74,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 7,
+    "defense": 5,
+    "health": 20,
+    "engagement": 50,
+    "encounter_set": "Fire in the Night",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "7",
+      "defense": "5",
+      "health": "20",
+      "engagement": "50",
+      "victory": "5"
+    },
+    "imagesrc": "/cards/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "f7badc7a-4e37-4606-8557-0fa4719227c0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "name": "Gathering Gloom",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 40,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard an ally you control.",
+    "encounter_set": "Gathering Gloom",
+    "printed_stats": {},
+    "imagesrc": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 40,
+        "quantity": 2,
+        "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  },
+  {
+    "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+    "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+    "name": "Accursed Forest",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Dark.",
+    "text": "While Accursed Forest is in the staging area, 'when revealed' effects cannot be canceled. Travel: Reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TWoR",
+    "pack_name": "The Wilds of Rhovanion",
+    "position": 38,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Dark Woods",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg",
+    "packs": [
+      {
+        "pack_code": "TWoR",
+        "pack_name": "The Wilds of Rhovanion",
+        "position": 38,
+        "quantity": 2,
+        "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1
+  }
+]

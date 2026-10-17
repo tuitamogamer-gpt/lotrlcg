@@ -32,6 +32,10 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.cirithGurat) return s.cirithGurat.currentQuest;
   if (s.crossingsPoros) return s.crossingsPoros.currentQuest;
   if (s.wildsRhovanion) return s.wildsRhovanion.currentQuest;
+  if (s.witheredHeath) return s.witheredHeath.currentQuest;
+  if (s.roamRhovanion) return s.roamRhovanion.currentQuest;
+  if (s.fireNight) return s.fireNight.currentQuest;
+  if (s.ghostFramsburg) return s.ghostFramsburg.currentQuest;
   if (s.drowned) return s.drowned.currentQuest;
   if (s.cobas) return s.cobas.currentQuest;
   if (s.city) return s.city.currentQuest;

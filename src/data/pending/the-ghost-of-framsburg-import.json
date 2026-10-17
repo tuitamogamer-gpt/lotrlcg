@@ -1,0 +1,1490 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Ghost of Framsburg",
+  "slug": "the-ghost-of-framsburg",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+      "octgnid": "11c67697-29da-4c76-bf89-985c2c036940",
+      "name": "Forgotten Crypt",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Dark.",
+      "text": "Immune to player card effects. Forced: After Forgotten Crypt becomes the active location, discard cards from the encounter deck until an Undead enemy is discarded and add it to the staging area. Then, attach a Loot objective in the encounter discard pile to that enemy as a guarded objective. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 101,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/11c67697-29da-4c76-bf89-985c2c036940.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 101,
+          "quantity": 2,
+          "octgnid": "11c67697-29da-4c76-bf89-985c2c036940",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11c67697-29da-4c76-bf89-985c2c036940.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+      "octgnid": "29662c71-2f27-405c-ae5a-db519ed91f33",
+      "name": "Old Lantern",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the first player claims Old Lantern and attaches it to a hero he controls. Action: Exhaust Old Lantern to choose a player to look at the top X cards of his deck, where X is the Discover value of the active location. He adds one of those cards to his hand and places the rest on the bottom of his deck. ",
+      "is_unique": true,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 95,
+      "quantity": 1,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/29662c71-2f27-405c-ae5a-db519ed91f33.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 95,
+          "quantity": 1,
+          "octgnid": "29662c71-2f27-405c-ae5a-db519ed91f33",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29662c71-2f27-405c-ae5a-db519ed91f33.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+      "octgnid": "315c85eb-9c20-46a1-b445-e5197cd15032",
+      "name": "The Cursed Tomb",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Dark.",
+      "text": "Immune to player card effects. The players cannot travel to The Cursed Tomb unless they control 3 Loot objectives. Forced: After the player travel to The Cursed Tomb, search the encounter deck and discard pile for Fram's Shade and add it to the staging area. Shuffle the encounter deck. Fram's Shade makes an immediate attack against each player in turn order. ",
+      "is_unique": true,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 97,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/315c85eb-9c20-46a1-b445-e5197cd15032.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 97,
+          "quantity": 1,
+          "octgnid": "315c85eb-9c20-46a1-b445-e5197cd15032",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315c85eb-9c20-46a1-b445-e5197cd15032.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "name": "Afraid of the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to a questing hero and remove it from the quest. (Counts as a Condition attachment with the text: \"Limit 1 per hero. While the active location has the Dark trait, reduce attached hero's [willpower] to 0 and treat its text box as if it were blank, except for Traits.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 48,
+      "quantity": 2,
+      "encounter_set": "Afraid of the Dark",
+      "printed_stats": {},
+      "imagesrc": "/cards/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+      "octgnid": "36ac198d-0248-464a-8919-36f96b8e7caf",
+      "name": "Crypt Stalker",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Hazard.",
+      "text": "X is the tens digit of the first player's threat. Forced: When Crypt Stalker attacks, raise the defending player's threat by 1. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 99,
+      "quantity": 2,
+      "threat": 0,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Either raise your threat by 2, or return attacking enemy to the staging area. ",
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "X",
+        "defense": "X",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/36ac198d-0248-464a-8919-36f96b8e7caf.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 99,
+          "quantity": 2,
+          "octgnid": "36ac198d-0248-464a-8919-36f96b8e7caf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36ac198d-0248-464a-8919-36f96b8e7caf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+      "octgnid": "48d2ea1f-449b-4af9-9f43-c70fffd66991",
+      "name": "Searching the Ruins",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Then, each player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 110,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Ghost of Framsburg",
+      "side": "A",
+      "back_name": "Searching the Ruins",
+      "back_text": "Forced: At the beginning of the quest phase, the first player must choose: either raise each player's threat by 2, or discard cards from the top of the encounter deck until a location is discarded and adds that location to the staging area. This stage cannot be defeated unless the players control at least 2 Loot objectives. ",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/48d2ea1f-449b-4af9-9f43-c70fffd66991.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 110,
+          "quantity": 1,
+          "octgnid": "48d2ea1f-449b-4af9-9f43-c70fffd66991",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+      "octgnid": "4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+      "name": "Hidden Staircase",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Dark. Hazard.",
+      "text": "Discover X.  X is the tens digit of the first player's threat. Forced: After resolving the Discover keyword on Hidden Staircase, reduce each player's threat by X if no Hazard cards were revealed by it. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 103,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 4,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 103,
+          "quantity": 2,
+          "octgnid": "4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+      "octgnid": "5bcec205-7f6b-44b9-bb4d-9addde372316",
+      "name": "Werewolf",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Werewolf gets +1 [attack] for each damage on it. Forced: After Werewolf is dealt a shadow card with no shadow effect, deal 1 damage to it and the defending character.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 51,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 2,
+      "defense": 1,
+      "health": 8,
+      "engagement": 33,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Wild Creatures",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "1",
+        "health": "8",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "5bcec205-7f6b-44b9-bb4d-9addde372316",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+      "octgnid": "5dbc4cec-84c9-420b-809f-088296eb4a62",
+      "name": "Scatha's Teeth",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the first player claims Scatha's Teeth and attaches it to a hero he controls. Action: Exhaust Scatha's Teeth and attached hero to choose a player. That player reduces his threat by 2. ",
+      "is_unique": true,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 96,
+      "quantity": 1,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 96,
+          "quantity": 1,
+          "octgnid": "5dbc4cec-84c9-420b-809f-088296eb4a62",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+      "octgnid": "62d814e4-e0cf-437b-8ee7-b26478beb721",
+      "name": "Evil Spectre",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Hazard.",
+      "text": "Forced: When Evil Spectre is destroyed, shuffle it back into the encounter deck if the active location has the Dark trait. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 100,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 40,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the active location has the Dark trait.)",
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 100,
+          "quantity": 3,
+          "octgnid": "62d814e4-e0cf-437b-8ee7-b26478beb721",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+      "octgnid": "6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+      "name": "The Cursed Shade",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player adds The Cursed Tomb to the staging area. Each other player searches the encounter deck and discard pile for a non-unique Undead enemy and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 111,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Ghost of Framsburg",
+      "side": "A",
+      "back_name": "The Cursed Shade",
+      "back_text": "Fram's Shade is immune to player card effects. While The Cursed Tomb is in the victory display, Fram's Shade gains victory 6. This stage cannot be defeated unless Fram's Shade is in the victory display. When the players defeat this stage, they win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/6948a0fa-e13f-4023-865f-3c8b6599c6a0.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 111,
+          "quantity": 1,
+          "octgnid": "6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+      "octgnid": "8c4cc797-13e6-4ee4-a991-7ec76866418a",
+      "name": "Haunted Hall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Dark.",
+      "text": "Discover 4. While Dark Hall is in the staging area, it gains, \"Forced: After a player places any amount of progress on a Dark location in the staging area, he raises his threat by 1.\" ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 102,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 102,
+          "quantity": 2,
+          "octgnid": "8c4cc797-13e6-4ee4-a991-7ec76866418a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+      "octgnid": "9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+      "name": "Giant Spider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "Forced: After Giant Spider attacks and damages a character, that character cannot ready until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 52,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "Wild Creatures",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 52,
+          "quantity": 3,
+          "octgnid": "9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+      "octgnid": "9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+      "name": "The Haunted Keep",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set The Cursed Tomb aside, out of play. Each player searches the encounter deck for a different location and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 109,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Ghost of Framsburg",
+      "side": "A",
+      "back_name": "The Haunted Keep",
+      "back_text": "This stage cannot be defeated unless the players control at least 1 Loot objective.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 109,
+          "quantity": 1,
+          "octgnid": "9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+      "octgnid": "b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+      "name": "Terrible Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "When Revealed: Each character gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 107,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise the defending player's threat by 3. ",
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 107,
+          "quantity": 2,
+          "octgnid": "b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+      "octgnid": "bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+      "name": "Abandoned Ruins",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player resolves the Discover keyword of the active location in turn order. If they cannot, Abandoned Ruins gains surge and doomed 2. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 106,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 106,
+          "quantity": 2,
+          "octgnid": "bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+      "octgnid": "c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+      "name": "Crypt Key",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "Loot.\nIf unattached, the first player claims Crypt Key and attaches it to a hero he controls. Response: When the players travel to a Discover location, exhaust Crypt Key to either increase or decrease its Discover value by 1 before resolving it. ",
+      "is_unique": true,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 94,
+      "quantity": 1,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 94,
+          "quantity": 1,
+          "octgnid": "c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "name": "Eyes in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 57,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack is undefended, discard an ally you control.",
+      "encounter_set": "Afraid of the Dark",
+      "printed_stats": {},
+      "imagesrc": "/cards/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+      "octgnid": "ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+      "name": "Moonlit Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins.",
+      "text": "Discover 2. While Moonlit Passage is in the staging area, each player's threat cannot be reduced by more than 1 via player card effects each round.",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 104,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 104,
+          "quantity": 3,
+          "octgnid": "ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+      "octgnid": "f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+      "name": "Cursed Tower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Dark.",
+      "text": "Discover 3. While Cursed Tower is in the staging area, it gains: \"Forced: After a player plays an event, raise his threat by 1.\" ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 105,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 105,
+          "quantity": 3,
+          "octgnid": "f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+      "octgnid": "f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+      "name": "Slammed Shut",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Hazard.",
+      "text": "Doomed 1. When Revealed: Each player chooses an exhausts a character he controls. Until the end of the round, characters cannot be readied by player card effects. ",
+      "is_unique": false,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 108,
+      "quantity": 3,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {},
+      "imagesrc": "/cards/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 108,
+          "quantity": 3,
+          "octgnid": "f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+      "octgnid": "f5d539b2-0b65-493d-8493-5122a0761eed",
+      "name": "Black Bats",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nWhile the active location has the Dark trait, Black Bats cannot take damage.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 53,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 18,
+      "shadow": "Shadow: If the active location has the Dark trait, attacking enemy cannot take damage this phase.",
+      "encounter_set": "Wild Creatures",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "18"
+      },
+      "imagesrc": "/cards/f5d539b2-0b65-493d-8493-5122a0761eed.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 53,
+          "quantity": 3,
+          "octgnid": "f5d539b2-0b65-493d-8493-5122a0761eed",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5d539b2-0b65-493d-8493-5122a0761eed.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+      "octgnid": "f829839e-b79d-465a-8ca9-bf6af975ce7b",
+      "name": "Fram's Shade",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Wight. Hazard.",
+      "text": "Cannot have non-objective attachments. Fram's Shade gets +1 [threat], +1 [attack], and +1 [defense] for each Loot objective the players control. When Fram's Shade is dealt shadow cards, deal it a number of shadow cards equal to the number of Loot objectives the players control (to a minimum of 1). ",
+      "is_unique": true,
+      "pack_code": "TGoF",
+      "pack_name": "The Ghost of Framsburg",
+      "position": 98,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 6,
+      "engagement": 30,
+      "encounter_set": "The Ghost of Framsburg",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "6",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg",
+      "packs": [
+        {
+          "pack_code": "TGoF",
+          "pack_name": "The Ghost of Framsburg",
+          "position": 98,
+          "quantity": 1,
+          "octgnid": "f829839e-b79d-465a-8ca9-bf6af975ce7b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E08.7",
+      "name": "The Ghost of Framsburg (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TGoF",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+        "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+        "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+        "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+        "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+        "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+        "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+        "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+        "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+        "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+        "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+        "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+        "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+        "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+        "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+        "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+        "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+        "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+        "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+        "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+        "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+        "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a"
+      ],
+      "cards": [
+        {
+          "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d": 1,
+          "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991": 1,
+          "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe": 1,
+          "octgn:29662c71-2f27-405c-ae5a-db519ed91f33": 1,
+          "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62": 1,
+          "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b": 1,
+          "octgn:36ac198d-0248-464a-8919-36f96b8e7caf": 2,
+          "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721": 2,
+          "octgn:11c67697-29da-4c76-bf89-985c2c036940": 1,
+          "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3": 1,
+          "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d": 1,
+          "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c": 1,
+          "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4": 1,
+          "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005": 3,
+          "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966": 1,
+          "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6": 2,
+          "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316": 1,
+          "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34": 3,
+          "octgn:f5d539b2-0b65-493d-8493-5122a0761eed": 2
+        },
+        "sharedSetAside": {
+          "octgn:315c85eb-9c20-46a1-b445-e5197cd15032": 1
+        },
+        "sharedStagingArea": {
+          "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3": 1,
+          "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c": 1,
+          "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d": 1,
+          "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a": 1,
+          "octgn:11c67697-29da-4c76-bf89-985c2c036940": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q08.7",
+      "name": "The Ghost of Framsburg",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TGoF",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+        "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+        "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+        "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+        "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+        "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+        "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+        "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+        "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+        "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+        "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+        "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+        "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+        "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+        "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+        "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+        "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+        "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+        "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+        "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+        "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+        "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+        "octgn:315c85eb-9c20-46a1-b445-e5197cd15032"
+      ],
+      "cards": [
+        {
+          "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d": 1,
+          "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991": 1,
+          "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe": 1,
+          "octgn:29662c71-2f27-405c-ae5a-db519ed91f33": 1,
+          "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62": 1,
+          "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b": 1,
+          "octgn:36ac198d-0248-464a-8919-36f96b8e7caf": 2,
+          "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721": 3,
+          "octgn:11c67697-29da-4c76-bf89-985c2c036940": 1,
+          "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a": 1,
+          "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3": 1,
+          "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d": 2,
+          "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c": 2,
+          "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4": 2,
+          "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016": 2,
+          "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005": 3,
+          "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966": 2,
+          "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6": 3,
+          "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316": 2,
+          "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34": 3,
+          "octgn:f5d539b2-0b65-493d-8493-5122a0761eed": 3
+        },
+        "sharedSetAside": {
+          "octgn:315c85eb-9c20-46a1-b445-e5197cd15032": 1
+        },
+        "sharedStagingArea": {
+          "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3": 1,
+          "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c": 1,
+          "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d": 1,
+          "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a": 1,
+          "octgn:11c67697-29da-4c76-bf89-985c2c036940": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11c67697-29da-4c76-bf89-985c2c036940.jpg",
+      "localPath": "/cards/11c67697-29da-4c76-bf89-985c2c036940.jpg",
+      "bytes": 156305,
+      "sha256": "3529f3e1f04c4e304e273a2fa51f7f3815dd46e9f7fd308721b114ba1f076cd3"
+    },
+    {
+      "code": "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29662c71-2f27-405c-ae5a-db519ed91f33.jpg",
+      "localPath": "/cards/29662c71-2f27-405c-ae5a-db519ed91f33.jpg",
+      "bytes": 148799,
+      "sha256": "672298ddd67badf3d944e5489c44358b1b965a5eeffbf0abe01fe2245b4c2145"
+    },
+    {
+      "code": "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315c85eb-9c20-46a1-b445-e5197cd15032.jpg",
+      "localPath": "/cards/315c85eb-9c20-46a1-b445-e5197cd15032.jpg",
+      "bytes": 154802,
+      "sha256": "0656f9a00078c7ed7fe34170fc9d4b60d4d09357d0beaa7a43cc4fc98adcf7c9"
+    },
+    {
+      "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "localPath": "/cards/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "bytes": 148879,
+      "sha256": "520a435da45c10683f1a2b8c9feca69ddd1990bc207439a0b67134b6810d777f"
+    },
+    {
+      "code": "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36ac198d-0248-464a-8919-36f96b8e7caf.jpg",
+      "localPath": "/cards/36ac198d-0248-464a-8919-36f96b8e7caf.jpg",
+      "bytes": 153906,
+      "sha256": "4c0268855c37278b6ff2224d72e3c44559ab7bb4e81527470c6104ad9d160f1c"
+    },
+    {
+      "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg",
+      "localPath": "/cards/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg",
+      "bytes": 154643,
+      "sha256": "01514c5b9587e37daaa3ba1b1b13bed174deb1140d7cac9fe07a7d610889af42"
+    },
+    {
+      "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.B.jpg",
+      "localPath": "/cards/48d2ea1f-449b-4af9-9f43-c70fffd66991.B.jpg",
+      "bytes": 155503,
+      "sha256": "5aed30809a379d848181538d964619f877466b8c6655420d2c11e78d8298ceff"
+    },
+    {
+      "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg",
+      "localPath": "/cards/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg",
+      "bytes": 152010,
+      "sha256": "48b0ebc532a653c00b840780cc5570d4b26d8b37da356fd2e555789e0645db10"
+    },
+    {
+      "code": "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg",
+      "localPath": "/cards/5bcec205-7f6b-44b9-bb4d-9addde372316.jpg",
+      "bytes": 158680,
+      "sha256": "848c810e618442de835b8ef6dff1e94dff2c921b2daa53a9984278e1da90cda3"
+    },
+    {
+      "code": "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg",
+      "localPath": "/cards/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg",
+      "bytes": 150042,
+      "sha256": "db9e1a939ee95bc94a4eca3dd97b2d67c17251194670429f13fee5ec15b78dca"
+    },
+    {
+      "code": "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg",
+      "localPath": "/cards/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg",
+      "bytes": 159351,
+      "sha256": "cdb639e4d6c9979cb7f46a4edf015ee11760a82e350a3f6a55a1737d35cd972c"
+    },
+    {
+      "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg",
+      "localPath": "/cards/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg",
+      "bytes": 164224,
+      "sha256": "612d57455d5944271650e7bdd07b7a80e1472b378dcfd223facc15286e45ae87"
+    },
+    {
+      "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.B.jpg",
+      "localPath": "/cards/6948a0fa-e13f-4023-865f-3c8b6599c6a0.B.jpg",
+      "bytes": 152514,
+      "sha256": "1965c1ccce04db89d241c2e909657da266e49f0594701a4bb0a40d7857268936"
+    },
+    {
+      "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg",
+      "localPath": "/cards/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg",
+      "bytes": 150084,
+      "sha256": "7d15b855e2b65320426332012f7ee0ada1a0fb33a993db57fa3e5c46bb665242"
+    },
+    {
+      "code": "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg",
+      "localPath": "/cards/9b3c0e2a-c874-41b7-9ccd-2798a4884b34.jpg",
+      "bytes": 148804,
+      "sha256": "7a043249d5120e9bafba0aec137df600b7b796f1f2c1d7bfb8931ff76c41a74e"
+    },
+    {
+      "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg",
+      "localPath": "/cards/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg",
+      "bytes": 150571,
+      "sha256": "2ba4fa30fb87ada23d25ba7a0ae7328a98b4d016f0eee889abd759be9ff1834c"
+    },
+    {
+      "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.B.jpg",
+      "localPath": "/cards/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.B.jpg",
+      "bytes": 140846,
+      "sha256": "6bd296c56f1d793687c0f19058c0f758d4191158326a5a9bc8aa30fbf65c4d16"
+    },
+    {
+      "code": "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg",
+      "localPath": "/cards/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg",
+      "bytes": 148080,
+      "sha256": "fccb3c9571c26ecec916c9195de5f2a4916f3f436fc622c36441c36750fcb0f1"
+    },
+    {
+      "code": "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg",
+      "localPath": "/cards/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg",
+      "bytes": 143310,
+      "sha256": "baa71e8ecc1bb34a14e7be67b3b1cd07aa8121e43a6709f82ea4ae4be4848f61"
+    },
+    {
+      "code": "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg",
+      "localPath": "/cards/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg",
+      "bytes": 147775,
+      "sha256": "066b955420ad0f7280cdcc85a89ceec78cc2efd048d88655ee3119e13939f143"
+    },
+    {
+      "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "localPath": "/cards/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "bytes": 144433,
+      "sha256": "913d0c46c184892627a1309aaf169168ec2b51d0a9c85909876153f0bb3379eb"
+    },
+    {
+      "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg",
+      "localPath": "/cards/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg",
+      "bytes": 145888,
+      "sha256": "149a64e477a1224ca444d25e1b666bf2f0078a07d352c52b7b9ebb819419c501"
+    },
+    {
+      "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg",
+      "localPath": "/cards/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg",
+      "bytes": 144890,
+      "sha256": "1de87adb6695ad8bb2583e4bcc6bc5ee733b783247113db78e9f33f406f2af55"
+    },
+    {
+      "code": "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg",
+      "localPath": "/cards/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg",
+      "bytes": 145424,
+      "sha256": "8252f2cef996a949037ec6635f8f09af7fe12f2e5a249fad7b79f2adcbc3ad6e"
+    },
+    {
+      "code": "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5d539b2-0b65-493d-8493-5122a0761eed.jpg",
+      "localPath": "/cards/f5d539b2-0b65-493d-8493-5122a0761eed.jpg",
+      "bytes": 153210,
+      "sha256": "d436786810204a782b39b87487e8e304368a6bcae28c887c6dd2af3bf3a87faa"
+    },
+    {
+      "code": "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg",
+      "localPath": "/cards/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg",
+      "bytes": 154145,
+      "sha256": "b39474da153b7c5c3a4133157387bc773f5c223d545ecb76f9261dc18fe68430"
+    }
+  ]
+}

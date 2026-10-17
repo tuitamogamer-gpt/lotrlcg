@@ -2,6 +2,10 @@ import { BLACK_SERPENT_ADVENTURES } from "./black-serpent-scenario-data";
 import { CIRITH_GURAT_ADVENTURES } from "./cirith-gurat-scenario-data";
 import { CROSSINGS_POROS_ADVENTURES } from "./crossings-poros-scenario-data";
 import { WILDS_RHOVANION_ADVENTURES } from "./wilds-rhovanion-scenario-data";
+import { WITHERED_HEATH_ADVENTURES } from "./withered-heath-scenario-data";
+import { ROAM_RHOVANION_ADVENTURES } from "./roam-rhovanion-scenario-data";
+import { FIRE_NIGHT_ADVENTURES } from "./fire-night-scenario-data";
+import { GHOST_FRAMSBURG_ADVENTURES } from "./ghost-framsburg-scenario-data";
 import { DIKE_QUESTS } from "./deadmens-dike-support";
 import { ANGMAR_ADVENTURES } from "./angmar-scenario-data";
 import { GREY_HAVENS_ADVENTURES } from "./grey-havens-scenario-data";
@@ -1135,6 +1139,10 @@ export const SCENARIOS = [
   ...CIRITH_GURAT_ADVENTURES,
   ...CROSSINGS_POROS_ADVENTURES,
   ...WILDS_RHOVANION_ADVENTURES,
+  ...WITHERED_HEATH_ADVENTURES,
+  ...ROAM_RHOVANION_ADVENTURES,
+  ...FIRE_NIGHT_ADVENTURES,
+  ...GHOST_FRAMSBURG_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

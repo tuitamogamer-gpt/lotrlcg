@@ -16,6 +16,21 @@ import {
   carnImmediateShadows,
 } from "./carn-dum";
 type ConsideredEnemy = Unit & { consideredEnemyAttackedBy?: number[] };
+/** All generic shadow deals share scenario replacements and physical-card bookkeeping. */
+export function dealEnemyShadows(s: GameState, u: Unit, amount = 1): string[] {
+  const count = batch4Scenario(s).shadowCards?.(s, u, amount) ?? amount;
+  const dealt: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const code = encounterDraw(s, true);
+    if (!code) break;
+    u.shadows.push(code);
+    if (u.faceupShadows) u.faceupShadows.push(false);
+    heirsShadowDealt(s, u);
+    carnShadowDealt(s, u);
+    dealt.push(code);
+  }
+  return dealt;
+}
 export function consideredEngaged(
   s: GameState,
   u: Unit,
@@ -79,10 +94,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
   }
   if (batch4Scenario(s).skipShadowDeal?.(s, u)) return;
   if (hasHinder(u)) return;
-  const code = encounterDraw(s, true);
-  if (code) u.shadows.push(code);
-  if (code) heirsShadowDealt(s, u);
-  if (code) carnShadowDealt(s, u);
+  dealEnemyShadows(s, u);
 }
 /** Call when this considered-engaged enemy actually initiates any attack. */
 export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {

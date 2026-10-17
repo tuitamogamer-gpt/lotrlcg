@@ -1,0 +1,202 @@
+[
+  {
+    "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+    "octgnid": "4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+    "name": "The Goblin's Task",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: The first player takes control of Urdug, objective side face-up. Set each other objective and objective-ally aside, out of play. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is the number of players. Add each discarded location to the staging area.",
+    "is_unique": false,
+    "pack_code": "RAR",
+    "pack_name": "Roam Across Rhovanion",
+    "position": 47,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Roam Across Rhovanion",
+    "side": "A",
+    "back_name": "The Goblin's Task",
+    "back_text": "Progress cannot be placed on locations in the staging area. Forced: When the active location is explored, if the first player controls Urdug, advance to a random stage 2A. ",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg",
+    "packs": [
+      {
+        "pack_code": "RAR",
+        "pack_name": "Roam Across Rhovanion",
+        "position": 47,
+        "quantity": 1,
+        "octgnid": "4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+    "octgnid": "7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+    "name": "Retrieve Urdug's Horn",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Grey Mountain Giant, adds it to the staging area, and attaches the set-aside Urdug's Horn to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "RAR",
+    "pack_name": "Roam Across Rhovanion",
+    "position": 49,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Roam Across Rhovanion",
+    "side": "A",
+    "back_name": "Retrieve Urdug's Horn",
+    "back_text": "Each enemy with 1 or more guarded attachments gets +2 [Threat] and +2 [Defense]. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The Grey Mountain Giant guarding Urdug's Horn cannot take damage unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug with Urdug's Horn attached. ",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg",
+    "packs": [
+      {
+        "pack_code": "RAR",
+        "pack_name": "Roam Across Rhovanion",
+        "position": 49,
+        "quantity": 1,
+        "octgnid": "7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+    "octgnid": "8cb63364-11e8-4044-9712-613ccbfcfa5f",
+    "name": "Rescue Tiny",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Grey Moorland, adds it to the staging area, and attaches the set-aside Tiny objective-ally to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "RAR",
+    "pack_name": "Roam Across Rhovanion",
+    "position": 48,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Roam Across Rhovanion",
+    "side": "A",
+    "back_name": "Rescue Tiny",
+    "back_text": "The 'when revealed' effects of treachery cards cannot be canceled. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The players cannot travel to the Grey Moorland guarding Tiny unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug and Tiny. ",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg",
+    "packs": [
+      {
+        "pack_code": "RAR",
+        "pack_name": "Roam Across Rhovanion",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "8cb63364-11e8-4044-9712-613ccbfcfa5f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+    "octgnid": "a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+    "name": "Find Durin's Key",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Deep Ravine, adds it to the staging area, and attaches the set-aside Durin's Key to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "RAR",
+    "pack_name": "Roam Across Rhovanion",
+    "position": 50,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Roam Across Rhovanion",
+    "side": "A",
+    "back_name": "Find Durin's Key",
+    "back_text": "Each encounter card guarding a card is immune to player card effects. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The players cannot travel to the Deep Ravine guarding Durin's Key unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug and Durin's Key. ",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg",
+    "packs": [
+      {
+        "pack_code": "RAR",
+        "pack_name": "Roam Across Rhovanion",
+        "position": 50,
+        "quantity": 1,
+        "octgnid": "a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+    "octgnid": "f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+    "name": "Urdug's Gambit",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player loses control of both Urdug and Tiny, flips them to their enemy sides, and adds them to the staging area. (Remove any damage that was on them.) Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "RAR",
+    "pack_name": "Roam Across Rhovanion",
+    "position": 51,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Roam Across Rhovanion",
+    "side": "A",
+    "back_name": "Urdug's Gambit",
+    "back_text": "Progress cannot be placed on this quest from questing successfully. Forced: When the players quest unsuccessfully, they do not raise their threat. Instead, place X progress here, where X is the amount by which they would have raised their threat. Then, if this stage has progress equal to its quest points, the players lose the game. When Urdug has no hit points remaining, the players win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg",
+    "packs": [
+      {
+        "pack_code": "RAR",
+        "pack_name": "Roam Across Rhovanion",
+        "position": 51,
+        "quantity": 1,
+        "octgnid": "f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

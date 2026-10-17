@@ -1,0 +1,42 @@
+[
+  {
+    "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+    "octgnid": "1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+    "name": "Hrogar's Hill",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for all 8 encounter side quests, shuffle them together, and place them facedown next to the quest deck. This is the side quest deck. The first player adds Dagnir to the staging area and shuffles the encounter deck. Each other player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "FitN",
+    "pack_name": "Fire in the Night",
+    "position": 83,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Fire in the Night",
+    "side": "A",
+    "back_name": "Hrogar's Hill",
+    "back_text": "Forced: At the end of the planning phase, reveal the top card of the side quest deck and add it to the staging area. Dagnir makes an attack against Hrogar's Hill. Do not deal a shadow card for this attack. The first player may declare a defender for this attack. Excess damage must be dealt to Hrogar's Hill. This stage cannot be defeated while Dagnir has hit points remaining. If Dagnir has no hit points remaining, the players win the game. If this stage has damage equal to its quest points, the players lose the game. ",
+    "back_type_code": "quest",
+    "back_quest": 50,
+    "back_imagesrc": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg",
+    "packs": [
+      {
+        "pack_code": "FitN",
+        "pack_name": "Fire in the Night",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

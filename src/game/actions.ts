@@ -1,5 +1,8 @@
+import * as EredPlayers from "./ered-mithrin-player";
+import * as EredSupport from "./ered-mithrin-player-support";
 import { cirithGuratPublicState } from "./cirith-gurat-support";
 import * as BatchPlayers from "./batch4-player";
+import { eredScenarioPublicState } from "./ered-scenario-state";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
@@ -501,6 +504,7 @@ export function commitCharacters(s: GameState) {
 export function canCommit(s: GameState, u: Unit, byEffect = false): boolean {
   syncAttachmentText(s, u);
   return (
+    !EredSupport.eredMithrinPlayerCannotQuest(s, u) &&
     (u.code !== "08112" || !!u.blanked) &&
     returnMirkwoodCanCommit(s, u) &&
     !s.escapeTest &&
@@ -802,7 +806,8 @@ export function canPlay(
   if (haradProblem) return haradProblem;
   const batchProblem =
     BatchPlayers.batch4PlayerPlayProblem(s, u) ??
-    WildsPlayers.wildsPlayerPlayProblem(s, u);
+    WildsPlayers.wildsPlayerPlayProblem(s, u) ??
+    EredPlayers.eredMithrinPlayerPlayProblem(s, u);
   if (batchProblem) return batchProblem;
   const sandsProblem = SandsPlayers.beneathSandsPlayerPlayProblem(s, u);
   if (sandsProblem) return sandsProblem;
@@ -1436,7 +1441,8 @@ export function resolvePlayerCard(
   } else if (
     c.type_code === "attachment" &&
     (played || ["17139", "18011"].includes(u.code)) &&
-    (BatchPlayers.batch4PlayerSpecialAttachmentEntry(s, u) ||
+    ((played && EredPlayers.eredMithrinPlayerSpecialAttachmentEntry(s, u)) ||
+      BatchPlayers.batch4PlayerSpecialAttachmentEntry(s, u) ||
       WildsPlayers.wildsPlayerSpecialAttachmentEntry(s, u) ||
       heirsPlayerSpecialAttachmentEntry(s, u) ||
       amonPlayerSpecialAttachmentEntry(s, u) ||
@@ -1503,6 +1509,7 @@ export function resolvePlayerCard(
       s,
       u,
       () => {
+        EredPlayers.eredMithrinPlayerEventCost(s, u, target);
         WildsPlayers.wildsPlayerEventCost(s, u, target);
         CobasEconomy.cobasEconomyEventCost(s, u);
         GreyPlayers.greyHavensEventCost(s, u.code, target);
@@ -1551,6 +1558,12 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !EredPlayers.eredMithrinPlayerEvent(
+      s,
+      physical.code,
+      e.source,
+      physical.id,
+    ) &&
     !BatchPlayers.batch4PlayerEvent(s, physical.code, e.source) &&
     !WildsPlayers.wildsPlayerEvent(s, physical.code, e.source, physical.id) &&
     !HaradPlayers.haradPlayerEvent(s, physical.code, e.source) &&
@@ -1655,7 +1668,8 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const batchTargets =
     BatchPlayers.batch4PlayerPlayTargets(s, c.code) ??
-    WildsPlayers.wildsPlayerPlayTargets(s, c.code);
+    WildsPlayers.wildsPlayerPlayTargets(s, c.code) ??
+    EredPlayers.eredMithrinPlayerPlayTargets(s, c.code);
   if (batchTargets) return batchTargets;
   const greyTargets = GreyPlayers.greyHavensPlayTargets(s, c.code);
   const drownedTargets = DrownedPlayers.drownedPlayerPlayTargets(s, c.code);
@@ -1819,11 +1833,32 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 }
 
 export const needsTarget = (u: Unit) =>
-  ["17113", "17115", "18012", "18013", "16007", "16009"].includes(u.code) ||
+  [
+    "19032",
+    "19034",
+    "17113",
+    "17115",
+    "18012",
+    "18013",
+    "16007",
+    "16009",
+  ].includes(u.code) ||
   u.code === "12143" ||
   u.code === "12118" ||
   u.code === "09008" ||
-  (!["18011", "17139", "05017", "06064", "06115", "12064"].includes(u.code) &&
+  (![
+    "19010",
+    "19029",
+    "19058",
+    "19093",
+    "19062",
+    "18011",
+    "17139",
+    "05017",
+    "06064",
+    "06115",
+    "12064",
+  ].includes(u.code) &&
     (card(u.code).type_code === "attachment" ||
       [
         "01020",
@@ -1983,6 +2018,10 @@ export function availableAbilities(s: GameState, u: Unit) {
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
     });
   for (const [label, problem] of [
+    [
+      EredPlayers.eredMithrinPlayerAbilityLabel(u.code),
+      EredPlayers.eredMithrinPlayerAbilityProblem(s, u),
+    ],
     [
       BatchPlayers.batch4PlayerAbilityLabel(u.code),
       BatchPlayers.batch4PlayerAbilityProblem(s, u),
@@ -2220,6 +2259,10 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     for (const [label, problem] of [
+      [
+        EredPlayers.eredMithrinPlayerAbilityLabel(a.code),
+        EredPlayers.eredMithrinPlayerAbilityProblem(s, u, a.id),
+      ],
       [
         BatchPlayers.batch4PlayerAbilityLabel(a.code),
         BatchPlayers.batch4PlayerAbilityProblem(s, u, a.id),
@@ -2891,6 +2934,11 @@ export function applyAction(input: GameState, action: Action): GameState {
           ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !EredPlayers.useEredMithrinPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !BatchPlayers.useBatch4PlayerAbility(s, u, action.attachmentId) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
@@ -3261,6 +3309,7 @@ export function publicState(s: GameState) {
     attachments: attachments(u.attachments),
   });
   return {
+    ...eredScenarioPublicState(s),
     ...(s.depths
       ? {
           depths: {
@@ -3873,7 +3922,12 @@ export function publicState(s: GameState) {
     choice: s.choice
       ? {
           title: s.choice.title,
-          options: s.choice.options.map((o) => ({ id: o.id, label: o.label })),
+          options: s.choice.options.map((o, index) => ({
+            id: o.id,
+            label: s.roamRhovanion?.keyPeek.length
+              ? `Encounter card ${index + 1}`
+              : o.label,
+          })),
         }
       : null,
     lastQuest: s.lastQuest,

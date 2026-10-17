@@ -1,0 +1,538 @@
+[
+  {
+    "code": "octgn:11c67697-29da-4c76-bf89-985c2c036940",
+    "octgnid": "11c67697-29da-4c76-bf89-985c2c036940",
+    "name": "Forgotten Crypt",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Dark.",
+    "text": "Immune to player card effects. Forced: After Forgotten Crypt becomes the active location, discard cards from the encounter deck until an Undead enemy is discarded and add it to the staging area. Then, attach a Loot objective in the encounter discard pile to that enemy as a guarded objective. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 101,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11c67697-29da-4c76-bf89-985c2c036940.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 101,
+        "quantity": 2,
+        "octgnid": "11c67697-29da-4c76-bf89-985c2c036940",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/11c67697-29da-4c76-bf89-985c2c036940.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 2
+  },
+  {
+    "code": "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
+    "octgnid": "29662c71-2f27-405c-ae5a-db519ed91f33",
+    "name": "Old Lantern",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Old Lantern and attaches it to a hero he controls. Action: Exhaust Old Lantern to choose a player to look at the top X cards of his deck, where X is the Discover value of the active location. He adds one of those cards to his hand and places the rest on the bottom of his deck. ",
+    "is_unique": true,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 95,
+    "quantity": 1,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29662c71-2f27-405c-ae5a-db519ed91f33.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 95,
+        "quantity": 1,
+        "octgnid": "29662c71-2f27-405c-ae5a-db519ed91f33",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29662c71-2f27-405c-ae5a-db519ed91f33.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
+    "octgnid": "315c85eb-9c20-46a1-b445-e5197cd15032",
+    "name": "The Cursed Tomb",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Dark.",
+    "text": "Immune to player card effects. The players cannot travel to The Cursed Tomb unless they control 3 Loot objectives. Forced: After the players travel to The Cursed Tomb, search the encounter deck and discard pile for Fram's Shade and add it to the staging area. Shuffle the encounter deck. Fram's Shade makes an immediate attack against each player in turn order. ",
+    "is_unique": true,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 97,
+    "quantity": 1,
+    "threat": 5,
+    "quest": 5,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "5",
+      "victory": "5"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315c85eb-9c20-46a1-b445-e5197cd15032.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 97,
+        "quantity": 1,
+        "octgnid": "315c85eb-9c20-46a1-b445-e5197cd15032",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315c85eb-9c20-46a1-b445-e5197cd15032.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 5
+  },
+  {
+    "code": "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
+    "octgnid": "36ac198d-0248-464a-8919-36f96b8e7caf",
+    "name": "Crypt Stalker",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Hazard.",
+    "text": "X is the tens digit of the first player's threat. Forced: When Crypt Stalker attacks, raise the defending player's threat by 1. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 99,
+    "quantity": 2,
+    "threat": 0,
+    "health": 5,
+    "engagement": 40,
+    "shadow": "Shadow: Either raise your threat by 2, or return attacking enemy to the staging area. ",
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "X",
+      "defense": "X",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36ac198d-0248-464a-8919-36f96b8e7caf.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 99,
+        "quantity": 2,
+        "octgnid": "36ac198d-0248-464a-8919-36f96b8e7caf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36ac198d-0248-464a-8919-36f96b8e7caf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+    "octgnid": "4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+    "name": "Hidden Staircase",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Dark. Hazard.",
+    "text": "Discover X.  X is the tens digit of the first player's threat. Forced: After resolving the Discover keyword on Hidden Staircase, reduce each player's threat by X if no Hazard cards were revealed by it. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 103,
+    "quantity": 2,
+    "threat": 0,
+    "quest": 4,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 103,
+        "quantity": 2,
+        "octgnid": "4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bae8841-e3e4-4a93-b10f-8544eaab9cb3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
+    "octgnid": "5dbc4cec-84c9-420b-809f-088296eb4a62",
+    "name": "Scatha's Teeth",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Scatha's Teeth and attaches it to a hero he controls. Action: Exhaust Scatha's Teeth and attached hero to choose a player. That player reduces his threat by 2. ",
+    "is_unique": true,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 96,
+    "quantity": 1,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 96,
+        "quantity": 1,
+        "octgnid": "5dbc4cec-84c9-420b-809f-088296eb4a62",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5dbc4cec-84c9-420b-809f-088296eb4a62.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
+    "octgnid": "62d814e4-e0cf-437b-8ee7-b26478beb721",
+    "name": "Evil Spectre",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Hazard.",
+    "text": "Forced: When Evil Spectre is destroyed, shuffle it back into the encounter deck if the active location has the Dark trait. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 100,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 4,
+    "engagement": 35,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the active location has the Dark trait.)",
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "4",
+      "engagement": "35"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 100,
+        "quantity": 3,
+        "octgnid": "62d814e4-e0cf-437b-8ee7-b26478beb721",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d814e4-e0cf-437b-8ee7-b26478beb721.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+    "octgnid": "8c4cc797-13e6-4ee4-a991-7ec76866418a",
+    "name": "Haunted Hall",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Dark.",
+    "text": "Discover 4. While Haunted Hall is in the staging area, it gains, \"Forced: After a player places any amount of progress on a Dark location in the staging area, he raises his threat by 1.\" ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 102,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 102,
+        "quantity": 2,
+        "octgnid": "8c4cc797-13e6-4ee4-a991-7ec76866418a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8c4cc797-13e6-4ee4-a991-7ec76866418a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+    "octgnid": "b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+    "name": "Terrible Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "When Revealed: Each character gets -1 [willpower], -1 [attack], and -1 [defense] until the end of the round. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 107,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise the defending player's threat by 3. ",
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 107,
+        "quantity": 2,
+        "octgnid": "b5c08c5b-dd05-4139-b262-e9d5c0f29016",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b5c08c5b-dd05-4139-b262-e9d5c0f29016.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+    "octgnid": "bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+    "name": "Abandoned Ruins",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player resolves the Discover keyword of the active location in turn order. If they cannot, Abandoned Ruins gains surge and doomed 2. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 106,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 106,
+        "quantity": 2,
+        "octgnid": "bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bececd5f-87dd-4141-8ecf-69e43ecc0ff4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+    "octgnid": "c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+    "name": "Crypt Key",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item.",
+    "text": "Loot.\nIf unattached, the first player claims Crypt Key and attaches it to a hero he controls. Response: When the players travel to a Discover location, exhaust Crypt Key to either increase or decrease its Discover value by 1 before resolving it. ",
+    "is_unique": true,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 94,
+    "quantity": 1,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 94,
+        "quantity": 1,
+        "octgnid": "c3aff9c9-640f-4e90-85f3-6e245c2156fe",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c3aff9c9-640f-4e90-85f3-6e245c2156fe.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+    "octgnid": "ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+    "name": "Moonlit Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins.",
+    "text": "Discover 2. While Moonlit Passage is in the staging area, each player's threat cannot be reduced by more than 1 via player card effects each round.",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 104,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 104,
+        "quantity": 3,
+        "octgnid": "ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Raise your threat by 1."
+  },
+  {
+    "code": "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+    "octgnid": "f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+    "name": "Cursed Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Dark.",
+    "text": "Discover 3. While Cursed Tower is in the staging area, it gains: \"Forced: After a player plays an event, raise his threat by 1.\" ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 105,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 105,
+        "quantity": 3,
+        "octgnid": "f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2c22e9a-c3f6-450c-b891-98e0e5c18b6c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+    "octgnid": "f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+    "name": "Slammed Shut",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Hazard.",
+    "text": "Doomed 1. When Revealed: Each player chooses and exhausts a character he controls. Until the end of the round, characters cannot be readied by player card effects. ",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 108,
+    "quantity": 3,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {},
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 108,
+        "quantity": 3,
+        "octgnid": "f5a65abc-e3df-4d26-aeed-2a3b1effb005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f5a65abc-e3df-4d26-aeed-2a3b1effb005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
+    "octgnid": "f829839e-b79d-465a-8ca9-bf6af975ce7b",
+    "name": "Fram's Shade",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Undead. Wight. Hazard.",
+    "text": "Cannot have non-objective attachments. Fram's Shade gets +1 [threat], +1 [attack], and +1 [defense] for each Loot objective the players control. When Fram's Shade is dealt shadow cards, deal it a number of shadow cards equal to the number of Loot objectives the players control (to a minimum of 1). ",
+    "is_unique": true,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 98,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 6,
+    "engagement": 30,
+    "encounter_set": "The Ghost of Framsburg",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "6",
+      "engagement": "30"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 98,
+        "quantity": 1,
+        "octgnid": "f829839e-b79d-465a-8ca9-bf6af975ce7b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f829839e-b79d-465a-8ca9-bf6af975ce7b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

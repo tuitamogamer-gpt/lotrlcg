@@ -1,0 +1,13 @@
+# Roam Across Rhovanion
+
+Native original scenario for one to four players, in normal and easy modes. The original encounter recipe has 40 encounter cards; easy mode has 26. Five quest identities and the four set-aside objectives retain their original faces.
+
+The Goblin's Task starts with Urdug controlled by the first player and one discarded location per player in staging. Exploring the active location unlocks a randomly ordered stage 2 task. Each task searches the actual encounter deck, discard pile and victory display for its printed guard, preserves its guarded objective and requires the printed 5 progress and control condition. Completed tasks leave the quest deck. All three tasks lead to Urdug's Gambit, with the same physical Urdug and Tiny flipped to their enemy faces, damage removed, and objective attachments retained.
+
+The finale makes Urdug indestructible. Tiny's enemy text prevents damage to Urdug until Tiny leaves play. Urdug's quest phase attack returns the pair to staging if it deals damage. Failed quests put their failure margin on the main quest instead of raising threat, including while a side quest is selected. Reaching 5 progress loses; reducing Urdug to zero remaining hit points wins. Successful questing still explores active locations and progresses selected side quests, but cannot progress the main finale quest.
+
+The implementation includes all printed native and shared enemies, locations, treacheries, shadows, travel costs, optional responses, attachment actions and owner-specific choices. Hidden encounter peeks and facedown event identities stay out of the public scenario projection. Actual player cards guarded by Hobgoblins or placed under Lonely Lands retain their physical ids and owners. Saved choices keep all unresolved physical zones.
+
+Sources: immutable DragnCards import at `src/data/pending/roam-across-rhovanion-import.json`; official rules insert and extracted text at `output/ered-release/sources/mec67_roam_across_rhovanion_rules-insert-compressed.{pdf,txt}`; original image assets under `public/cards/`. The original Urdug and Tiny reverse scans correct the imported reverse texts, which were transposed. Reverse enemy statistics are transcribed from those scans. Hills of Wilderland uses printed X threat and X quest points. Runtime enemy aliases reference the original reverse image bytes.
+
+Focused verification is recorded by `tests/roam-rhovanion-scenario.test.ts` and `scripts/browser-roam-rhovanion.mjs`. Browser artifacts contain native transition witnesses and original face verification at desktop and narrow viewport widths.

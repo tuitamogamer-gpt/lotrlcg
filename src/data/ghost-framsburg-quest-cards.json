@@ -1,0 +1,122 @@
+[
+  {
+    "code": "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+    "octgnid": "48d2ea1f-449b-4af9-9f43-c70fffd66991",
+    "name": "Searching the Ruins",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck. Then, each player reveals an encounter card.",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 110,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Ghost of Framsburg",
+    "side": "A",
+    "back_name": "Searching the Ruins",
+    "back_text": "Forced: At the beginning of the quest phase, the first player must choose: either raise each player's threat by 2, or discard cards from the top of the encounter deck until a location is discarded and adds that location to the staging area. This stage cannot be defeated unless the players control at least 2 Loot objectives. ",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 110,
+        "quantity": 1,
+        "octgnid": "48d2ea1f-449b-4af9-9f43-c70fffd66991",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48d2ea1f-449b-4af9-9f43-c70fffd66991.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+    "octgnid": "6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+    "name": "The Cursed Shade",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player adds The Cursed Tomb to the staging area. Each other player searches the encounter deck and discard pile for a non-unique Undead enemy and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 111,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Ghost of Framsburg",
+    "side": "A",
+    "back_name": "The Cursed Shade",
+    "back_text": "Fram's Shade is immune to player card effects. While The Cursed Tomb is in the victory display, Fram's Shade gains victory 6. This stage cannot be defeated unless Fram's Shade is in the victory display. When the players defeat this stage, they win the game. ",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 111,
+        "quantity": 1,
+        "octgnid": "6948a0fa-e13f-4023-865f-3c8b6599c6a0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6948a0fa-e13f-4023-865f-3c8b6599c6a0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+    "octgnid": "9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+    "name": "The Haunted Keep",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set The Cursed Tomb aside, out of play. Each player searches the encounter deck for a different location and adds it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TGoF",
+    "pack_name": "The Ghost of Framsburg",
+    "position": 109,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Ghost of Framsburg",
+    "side": "A",
+    "back_name": "The Haunted Keep",
+    "back_text": "This stage cannot be defeated unless the players control at least 1 Loot objective.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg",
+    "packs": [
+      {
+        "pack_code": "TGoF",
+        "pack_name": "The Ghost of Framsburg",
+        "position": 109,
+        "quantity": 1,
+        "octgnid": "9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b75cef3-e5a3-4284-aff6-9a0b473fa37d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

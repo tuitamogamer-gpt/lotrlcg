@@ -11,12 +11,13 @@ import { card } from "./cards";
 import type { Attachment, Effect, GameState, Unit } from "./types";
 import {
   canPay,
+  canPlayerAffectShadow,
   choose,
   fx,
   get,
   opts,
   prepend,
-  removeShadowCard,
+  removePlayerShadowCard,
   requireRule,
   shuffle,
   skip,
@@ -48,9 +49,7 @@ const readyOwn = (s: GameState) =>
     (u) => !u.exhausted && !khazadCannotExhaust(u),
   );
 const stagingEnemies = (s: GameState) =>
-  s.staging.filter(
-    (u) => playerUnitIsEnemy(u) && !playerCardImmune(u),
-  );
+  s.staging.filter((u) => playerUnitIsEnemy(u) && !playerCardImmune(u));
 const spiritPayers = (s: GameState) =>
   s.heroes.filter(
     (u) =>
@@ -218,7 +217,9 @@ export function roadPlayerLeavesPlay(
 ) {
   if (
     !hasTrait(u, "Dwarf") ||
-    !["hero", "ally", "objective-ally", "ship-objective"].includes(card(u.code).type_code) ||
+    !["hero", "ally", "objective-ally", "ship-objective"].includes(
+      card(u.code).type_code,
+    ) ||
     !s.encounterDiscard.length
   )
     return;
@@ -397,15 +398,17 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
     case "roadRiderResponse": {
       const rider = get(s, e.source);
       if (rider?.code === "04033" && ownerOf(s, rider) === activeSeat(s)) {
-        const options = engagedEnemies(s).flatMap((enemy) =>
-          enemy.shadows.map((_code, index) => ({
-            id: `${enemy.id}-shadow-${index}`,
-            label: `${card(enemy.code).name} · shadow ${index + 1}`,
-            effects: [
-              fx("roadRiderShadow", { target: enemy.id, value: index }),
-            ],
-          })),
-        );
+        const options = engagedEnemies(s)
+          .filter((enemy) => canPlayerAffectShadow(s, enemy))
+          .flatMap((enemy) =>
+            enemy.shadows.map((_code, index) => ({
+              id: `${enemy.id}-shadow-${index}`,
+              label: `${card(enemy.code).name} · shadow ${index + 1}`,
+              effects: [
+                fx("roadRiderShadow", { target: enemy.id, value: index }),
+              ],
+            })),
+          );
         if (options.length)
           choosePlayerResponse(
             s,
@@ -420,10 +423,12 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
     case "roadRiderShadow": {
       const enemy = engagedEnemies(s).find((u) => u.id === e.target);
       requireRule(
-        enemy && enemy.shadows[e.value ?? -1],
+        enemy &&
+          canPlayerAffectShadow(s, enemy) &&
+          enemy.shadows[e.value ?? -1],
         "Choose a dealt shadow on an enemy engaged with you.",
       );
-      const code = removeShadowCard(enemy, e.value!);
+      const code = removePlayerShadowCard(s, enemy, e.value!);
       if (code) s.encounterDiscard.push(code);
       return true;
     }

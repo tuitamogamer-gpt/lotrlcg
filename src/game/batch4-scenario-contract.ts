@@ -37,12 +37,14 @@ export interface Batch4ScenarioHooks {
   characterBlanked?(s: GameState, u: Unit): boolean;
   immune?(s: GameState, u: Unit): boolean;
   cannotLeave?(s: GameState, u: Unit): boolean;
+  indestructible?(s: GameState, u: Unit): boolean;
   cannotEngage?(s: GameState, u: Unit): boolean;
   cannotOptionallyEngage?(s: GameState, u: Unit): boolean;
   cannotDefend?(s: GameState, enemy: Unit, defender?: Unit): boolean;
+  cannotAttack?(s: GameState, character: Unit, enemy: Unit): boolean;
   consideredEngaged?(s: GameState, u: Unit, player: number): boolean;
   extraOptionalEngagements?(s: GameState, player: number): number;
-  cannotCancel?(s: GameState, shadow?: boolean): boolean;
+  cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;
   cannotReduceThreat?(s: GameState): boolean;
   threatReduction?(s: GameState, amount: number, reason?: string): number;
   allyCost?(s: GameState): number;
@@ -131,6 +133,18 @@ export interface Batch4ScenarioHooks {
   mustTravel?(s: GameState): boolean;
   revealedSurge?(s: GameState, code: string): boolean;
   characterReadied?(s: GameState, u: Unit): void;
+  characterExhausted?(s: GameState, u: Unit): void;
+  locationProgressPlaced?(s: GameState, u: Unit, amount: number): void;
+  shadowCards?(s: GameState, u: Unit, amount: number): number;
+  shadowImmune?(s: GameState, enemy: Unit): boolean;
+  defenseOverride?(
+    s: GameState,
+    defender: Unit,
+    enemy: Unit,
+  ): number | undefined;
+  sideQuestGoalBonus?(s: GameState, quest: Unit): number;
+  failedQuest?(s: GameState, amount: number): boolean;
+  successfulQuestProgressBlocked?(s: GameState): boolean;
   questSucceeded?(s: GameState, amount: number): void;
   successfulQuestProgress?(s: GameState, amount: number): void;
   eventFinished?(s: GameState, u: Unit): void;

@@ -1,0 +1,56 @@
+.fire-night-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.fire-night-summary {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px;
+  border: 1px solid #b57648;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #30231d, #3d2b23);
+  color: #f4e2c7;
+}
+.fire-night-summary strong {
+  font-family: "Crimson Pro", serif;
+  font-size: 1.15rem;
+}
+.fire-night-summary span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.fire-night-summary button,
+.fire-night-reference button {
+  min-width: 0;
+  white-space: normal;
+  text-align: left;
+  color: inherit;
+  background: #493027;
+  border: 1px solid #b57648;
+  border-radius: 5px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.fire-night-summary meter {
+  width: 100%;
+  accent-color: #d28046;
+}
+.fire-night-reference {
+  grid-column: 1/-1;
+  padding: 11px;
+  border: 1px solid #b57648;
+  border-radius: 8px;
+}
+.fire-night-reference summary {
+  cursor: pointer;
+}
+.fire-night-reference > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}

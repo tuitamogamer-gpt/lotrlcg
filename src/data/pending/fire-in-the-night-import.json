@@ -1,0 +1,1474 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Fire in the Night",
+  "slug": "fire-in-the-night",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+      "octgnid": "1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+      "name": "Face the Dragon",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After Dagnir attacks and destroys a character, heal 5 damage from her. Forced: After Face the Dragon is defeated, deal 5 damage to Dagnir. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 73,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 73,
+          "quantity": 1,
+          "octgnid": "1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+      "octgnid": "1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+      "name": "Hrogar's Hill",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for all 8 encounter side quests, shuffle them together, and place them facedown next to the quest deck. This is the side quest deck. The first player adds Dagnir to the staging area and shuffles the encounter deck. Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 83,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Fire in the Night",
+      "side": "A",
+      "back_name": "Hrogar's Hill",
+      "back_text": "Forced: At the end of the planning phase, reveal the top card of the side quest deck and add it to the staging area. Dagnir makes an attack against Hrogar's Hill. Do not deal a shadow card for this attack. The first player may declare a defender for this attack. Excess damage must be dealt to Hrogar's Hill. This stage cannot be defeated while Dagnir has hit points remaining. If Dagnir has no hit points remaining, the players win the game. If this stage has damage equal to its quest points, the players lose the game. ",
+      "back_type_code": "quest",
+      "back_quest": 50,
+      "back_imagesrc": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+      "octgnid": "3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+      "name": "Wooden Palisade",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Town.",
+      "text": "While Wooden Palisade is the active location, Dagnir gets -2 [attack]. Travel: The first player readies a hero he controls. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 78,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 78,
+          "quantity": 3,
+          "octgnid": "3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+      "octgnid": "3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+      "name": "Orc of the Flame",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "When Revealed: The first player must either deal 2 damage to a hero he controls, or deal 3 damage to Hrogar's Hill. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 76,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if Hrogar's Hill has at least 25 damage on it).",
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 76,
+          "quantity": 4,
+          "octgnid": "3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+      "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+      "name": "Dark Black Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Dark.",
+      "text": "While Dark Black Woods is in the staging area, no more than 1 progress can be placed on each Forest location in the staging area each round. Travel: Each player discards the top card of the encounter deck. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 39,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Dark Woods",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/408752c0-cee3-41ba-86c2-d01085546cef.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 39,
+          "quantity": 3,
+          "octgnid": "408752c0-cee3-41ba-86c2-d01085546cef",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408752c0-cee3-41ba-86c2-d01085546cef.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:463d0c53-2275-410f-b311-139f19561b46",
+      "octgnid": "463d0c53-2275-410f-b311-139f19561b46",
+      "name": "Bright Flames",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player assigns X damage among characters he controls, where X is 1 more than the number of side quests in the victory display. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 82,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each side quest in the victory display.",
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {},
+      "imagesrc": "/cards/463d0c53-2275-410f-b311-139f19561b46.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 82,
+          "quantity": 2,
+          "octgnid": "463d0c53-2275-410f-b311-139f19561b46",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/463d0c53-2275-410f-b311-139f19561b46.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "name": "Stray Goblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Surge. Cannot be optionally engaged.\nWhile Stray Goblin is in the staging area, it gains: \"Forced: After a player engages an enemy, Stray Goblin engages that player.\"",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 21,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 0,
+      "health": 3,
+      "engagement": 50,
+      "shadow": "Shadow: Add Stray Goblin to staging area.",
+      "encounter_set": "Grey Mountain Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "0",
+        "health": "3",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+      "octgnid": "5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+      "name": "Douse the Flames",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: At the end of the quest phase, deal 5 damage to Hrogar's Hill. Response: When Douse the Flames is defeated, remove 10 damage from Hrogar's Hill. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 69,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+      "octgnid": "721bbc14-f14c-4464-9963-55a77ab2d9bc",
+      "name": "Powerful in Wrath",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Discard the active location and deal X damage to Hrogar's Hill, where X is that location's [threat]. If no damage is dealt this way, Powerful in Wraith gains surge. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 80,
+      "quantity": 2,
+      "shadow": "Shadow: Excess damage from this attack must be dealt to Hrogar's Hill.",
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {},
+      "imagesrc": "/cards/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 80,
+          "quantity": 2,
+          "octgnid": "721bbc14-f14c-4464-9963-55a77ab2d9bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:73515869-890b-4169-9104-b2e882d921ae",
+      "octgnid": "73515869-890b-4169-9104-b2e882d921ae",
+      "name": "Rally the Woodmen",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Allies cannot be declared as attackers against Dagnir. Response: When Rally the Woodmen is defeated, each player searches the top 5 cards of his deck for an ally, puts it into play and shuffles his deck. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 68,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/73515869-890b-4169-9104-b2e882d921ae.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "73515869-890b-4169-9104-b2e882d921ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73515869-890b-4169-9104-b2e882d921ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+      "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+      "name": "Swarms of Bats",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards each resource from each of his hero's resource pools and raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Swarm of Bats gains surge.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 41,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has an attachment).",
+      "encounter_set": "Gathering Gloom",
+      "printed_stats": {},
+      "imagesrc": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 41,
+          "quantity": 3,
+          "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+      "octgnid": "a6b39458-b0f1-4b5d-a915-d3921eb35658",
+      "name": "Fortify the Defense",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Characters do not count their [defense] when defending against Dagnir. Response: When Fortify the Defense is defeated, each player chooses: either draw 3 cards, or each hero he controls gains 1 resource. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 67,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "a6b39458-b0f1-4b5d-a915-d3921eb35658",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+      "octgnid": "a6e68650-e413-4e85-b687-b927d5a87821",
+      "name": "Hold the Door",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each player's threat cannot be reduced. Response: When Hold the Door is defeated, reduce each player's threat by 5. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 70,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/a6e68650-e413-4e85-b687-b927d5a87821.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "a6e68650-e413-4e85-b687-b927d5a87821",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6e68650-e413-4e85-b687-b927d5a87821.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+      "octgnid": "a837fe8b-6f21-4d20-9897-89a3c4706b40",
+      "name": "Defend the Town",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "While Defend the Town is the current quest, reveal an additional encounter card during the quest phase. Forced: At the end of the encounter phase, deal 1 damage to Hrogar's Hill for each enemy in the staging area. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 71,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "a837fe8b-6f21-4d20-9897-89a3c4706b40",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+      "octgnid": "a917100d-1b9b-4335-a55f-75291e0cab6e",
+      "name": "The Dragon's Thrall",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Forced: After The Dragon's Thrall engages you, either deal 3 damage to Hrogar's Hill, or it makes an immediate attack against you. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 75,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 4,
+      "engagement": 30,
+      "shadow": "Shadow: If this attack destroys a character, deal 3 damage to Hrogar's Hill. ",
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 75,
+          "quantity": 3,
+          "octgnid": "a917100d-1b9b-4335-a55f-75291e0cab6e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+      "octgnid": "aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+      "name": "Town Gate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Town.",
+      "text": "While Town Gate is in the staging area, it gains: \"Forced: At the end of the quest phase, place 1 resource here. Then, if there are 3 resources here, discard Town Gate and deal 4 damage to Hrogar's Hill.\" Travel: Dagnir makes an immediate attack against the first player. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 77,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 77,
+          "quantity": 2,
+          "octgnid": "aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+      "octgnid": "bcd41784-d260-4165-ae0f-74cb844d10b3",
+      "name": "The Dragon's Fury",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Dagnir makes an immediate attack against the first player. Undefended damage from this attack must be dealt to Hrogar's Hill.",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 81,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {},
+      "imagesrc": "/cards/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 81,
+          "quantity": 3,
+          "octgnid": "bcd41784-d260-4165-ae0f-74cb844d10b3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+      "octgnid": "dae6e913-3b2e-4e53-aad4-69946d3386ca",
+      "name": "Draw Her Fire",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Shadow cards dealt to Dagnir are immune to player card effects and their effects cannot be canceled. Forced: After Draw Her Fire becomes the current quest, Dagnir makes an immediate attack against the first player. ",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 66,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "dae6e913-3b2e-4e53-aad4-69946d3386ca",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+      "octgnid": "df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+      "name": "Rout the Goblins",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player searches the encounter deck and discard pile for a different Goblin enemy and puts it into play engaged with him. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 72,
+      "quantity": 1,
+      "quest": 10,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "quest": "10"
+      },
+      "imagesrc": "/cards/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 72,
+          "quantity": 1,
+          "octgnid": "df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "name": "Goblin Troop",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Cannot have player card attachments. While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 20,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 4,
+      "health": 6,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+      "encounter_set": "Grey Mountain Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "4",
+        "health": "6",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+      "octgnid": "f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+      "name": "Burning Watchtower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Town.",
+      "text": "X is 1 more than the number of side quests in the victory display. Travel: Each player assigns X damage among characters he controls.",
+      "is_unique": false,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 79,
+      "quantity": 3,
+      "threat": 0,
+      "quest": 5,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 79,
+          "quantity": 3,
+          "octgnid": "f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+      "octgnid": "f7badc7a-4e37-4606-8557-0fa4719227c0",
+      "name": "Dagnir",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Immune to player card effects. X is 1 more than the number of side quests in the victory display. Cannot leave the staging area or take more than X damage from non-quest effects each round.  While at least 3 side quests are in the victory display, Dagnir is considered to be engaged with each player.",
+      "is_unique": true,
+      "pack_code": "FitN",
+      "pack_name": "Fire in the Night",
+      "position": 74,
+      "quantity": 1,
+      "threat": 0,
+      "attack": 7,
+      "defense": 5,
+      "health": 20,
+      "quest": 5,
+      "engagement": 50,
+      "encounter_set": "Fire in the Night",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "7",
+        "defense": "5",
+        "health": "20",
+        "quest": "5",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg",
+      "packs": [
+        {
+          "pack_code": "FitN",
+          "pack_name": "Fire in the Night",
+          "position": 74,
+          "quantity": 1,
+          "octgnid": "f7badc7a-4e37-4606-8557-0fa4719227c0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "name": "Gathering Gloom",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 40,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard an ally you control.",
+      "encounter_set": "Gathering Gloom",
+      "printed_stats": {},
+      "imagesrc": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+      "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+      "name": "Accursed Forest",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Dark.",
+      "text": "While Accursed Forest is in the staging area, 'when revealed' effects cannot be canceled. Travel: Reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 38,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Dark Woods",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E08.6",
+      "name": "Fire in the Night (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "FitN",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+        "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+        "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+        "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+        "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+        "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+        "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+        "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+        "octgn:463d0c53-2275-410f-b311-139f19561b46",
+        "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+        "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+        "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+        "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+        "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+        "octgn:73515869-890b-4169-9104-b2e882d921ae",
+        "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+        "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+        "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+        "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+        "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+        "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0"
+      ],
+      "cards": [
+        {
+          "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:463d0c53-2275-410f-b311-139f19561b46",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:73515869-890b-4169-9104-b2e882d921ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e": 1,
+          "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f": 4,
+          "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13": 1,
+          "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc": 3,
+          "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2": 1,
+          "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc": 2,
+          "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3": 1,
+          "octgn:463d0c53-2275-410f-b311-139f19561b46": 1,
+          "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2": 1,
+          "octgn:408752c0-cee3-41ba-86c2-d01085546cef": 2,
+          "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780": 1,
+          "octgn:9b5e1acd-c396-464d-ab54-df86833aad07": 2,
+          "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07": 1,
+          "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca": 1,
+          "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658": 1,
+          "octgn:73515869-890b-4169-9104-b2e882d921ae": 1,
+          "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3": 1,
+          "octgn:a6e68650-e413-4e85-b687-b927d5a87821": 1,
+          "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40": 1,
+          "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29": 1,
+          "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269": 1
+        },
+        "sharedStagingArea": {
+          "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q08.6",
+      "name": "Fire in the Night",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "FitN",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+        "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+        "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+        "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+        "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+        "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+        "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+        "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+        "octgn:463d0c53-2275-410f-b311-139f19561b46",
+        "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+        "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+        "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+        "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+        "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+        "octgn:73515869-890b-4169-9104-b2e882d921ae",
+        "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+        "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+        "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+        "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+        "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+        "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0"
+      ],
+      "cards": [
+        {
+          "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:463d0c53-2275-410f-b311-139f19561b46",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:73515869-890b-4169-9104-b2e882d921ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e": 3,
+          "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f": 4,
+          "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13": 2,
+          "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc": 3,
+          "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2": 3,
+          "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc": 2,
+          "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3": 3,
+          "octgn:463d0c53-2275-410f-b311-139f19561b46": 2,
+          "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2": 2,
+          "octgn:408752c0-cee3-41ba-86c2-d01085546cef": 3,
+          "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780": 2,
+          "octgn:9b5e1acd-c396-464d-ab54-df86833aad07": 3,
+          "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07": 2,
+          "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca": 1,
+          "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658": 1,
+          "octgn:73515869-890b-4169-9104-b2e882d921ae": 1,
+          "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3": 1,
+          "octgn:a6e68650-e413-4e85-b687-b927d5a87821": 1,
+          "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40": 1,
+          "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29": 1,
+          "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269": 1
+        },
+        "sharedStagingArea": {
+          "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg",
+      "localPath": "/cards/1574141b-b11e-4be9-82c9-ddc1fb2f5269.jpg",
+      "bytes": 144310,
+      "sha256": "af451286d0eda2dfae4635ba9a361f97fce865d8972b2792411eb1da270afaca"
+    },
+    {
+      "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg",
+      "localPath": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.jpg",
+      "bytes": 154361,
+      "sha256": "bba7b3e841c56ce9810e3be0d0c22b9fd33727ff375ed4df4fce602dd7c6a540"
+    },
+    {
+      "code": "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ab32b8c-b942-4c77-af19-9703fba1dfa9.B.jpg",
+      "localPath": "/cards/1ab32b8c-b942-4c77-af19-9703fba1dfa9.B.jpg",
+      "bytes": 153545,
+      "sha256": "146afaad383794059ee2a8723e6f0b6dc482446c55076109aba68491a9848477"
+    },
+    {
+      "code": "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg",
+      "localPath": "/cards/3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc.jpg",
+      "bytes": 148301,
+      "sha256": "aaa14b115e477e32a0be39462d2b6ca2c8ddb9f2ee1aec775c7ea9f30bf10a58"
+    },
+    {
+      "code": "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg",
+      "localPath": "/cards/3e0619e9-ffd1-4c1b-8b65-f603202cde4f.jpg",
+      "bytes": 151423,
+      "sha256": "d7c7d87d33b435e2b922b2161d9c980572c70c95d90dcab499dacf6eae992d77"
+    },
+    {
+      "code": "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/408752c0-cee3-41ba-86c2-d01085546cef.jpg",
+      "localPath": "/cards/408752c0-cee3-41ba-86c2-d01085546cef.jpg",
+      "bytes": 155733,
+      "sha256": "dda30ae28da22d976a5fbb9f3a9dc45e7de374edb1b17f43bcbc40f42d6710f2"
+    },
+    {
+      "code": "octgn:463d0c53-2275-410f-b311-139f19561b46",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/463d0c53-2275-410f-b311-139f19561b46.jpg",
+      "localPath": "/cards/463d0c53-2275-410f-b311-139f19561b46.jpg",
+      "bytes": 154795,
+      "sha256": "51a310e87d8f9c22f76388c1b44893eef9629c367c71464737bfdf5d73bef79c"
+    },
+    {
+      "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "localPath": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "bytes": 164038,
+      "sha256": "493c5a092e11493d28d67674b3c7098334ad2e17e56a6a299d4f2dcf1f24d57d"
+    },
+    {
+      "code": "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg",
+      "localPath": "/cards/5fefdbc7-05e2-4c1b-96fd-46121f87d6b3.jpg",
+      "bytes": 157997,
+      "sha256": "6b3deb0623cb1dcf19aa8dd969bb945be6600b647ff89ef42d93db5573a3df71"
+    },
+    {
+      "code": "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg",
+      "localPath": "/cards/721bbc14-f14c-4464-9963-55a77ab2d9bc.jpg",
+      "bytes": 161285,
+      "sha256": "06a3b224df14bc1e8e2926a1bbce1b3d977d4e8fc12e4ff0721057a15a54fcc5"
+    },
+    {
+      "code": "octgn:73515869-890b-4169-9104-b2e882d921ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/73515869-890b-4169-9104-b2e882d921ae.jpg",
+      "localPath": "/cards/73515869-890b-4169-9104-b2e882d921ae.jpg",
+      "bytes": 152782,
+      "sha256": "2993272da046ce6b687b66afea8496ea7083a81f824c70557343b28a8cff20de"
+    },
+    {
+      "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "localPath": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "bytes": 167832,
+      "sha256": "34163f8e9f633d9a4e712f2eae3fa15b8979cc0ab603640cade455769f3192a0"
+    },
+    {
+      "code": "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg",
+      "localPath": "/cards/a6b39458-b0f1-4b5d-a915-d3921eb35658.jpg",
+      "bytes": 147182,
+      "sha256": "12b4745fd3f974edbeeb67e499f5b4fe3d53f0b973bd434f348f84c7b04a50b5"
+    },
+    {
+      "code": "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a6e68650-e413-4e85-b687-b927d5a87821.jpg",
+      "localPath": "/cards/a6e68650-e413-4e85-b687-b927d5a87821.jpg",
+      "bytes": 152632,
+      "sha256": "d7f2b29f3c8c86fc32ef23f203d03677bcd222653dd88f7ec17a2db34e61616f"
+    },
+    {
+      "code": "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg",
+      "localPath": "/cards/a837fe8b-6f21-4d20-9897-89a3c4706b40.jpg",
+      "bytes": 150073,
+      "sha256": "a94f476583d37b74bc2713075bba4c776cb19470aefd81dec869f468d533ec4e"
+    },
+    {
+      "code": "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg",
+      "localPath": "/cards/a917100d-1b9b-4335-a55f-75291e0cab6e.jpg",
+      "bytes": 149711,
+      "sha256": "ff24b901e42a7138790783dac960775ed748f43e1dfe220aa5c2c49e9e8b068b"
+    },
+    {
+      "code": "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg",
+      "localPath": "/cards/aba5ebdb-81d8-4e41-bddd-568f9ab2bd13.jpg",
+      "bytes": 149754,
+      "sha256": "a85330686d3796da4b40e36b3491cae0cb2b7361ec2206b282d4aa0fded5c7f5"
+    },
+    {
+      "code": "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg",
+      "localPath": "/cards/bcd41784-d260-4165-ae0f-74cb844d10b3.jpg",
+      "bytes": 147671,
+      "sha256": "9ff69764044a4ac5c6ed0c30fd6d9d2b8996deb5810490e17ad8951e3f231dda"
+    },
+    {
+      "code": "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg",
+      "localPath": "/cards/dae6e913-3b2e-4e53-aad4-69946d3386ca.jpg",
+      "bytes": 162231,
+      "sha256": "a1bbc8c1886b1693fc194c7849576fa7d85f069987492c263117d92fcb99bd73"
+    },
+    {
+      "code": "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg",
+      "localPath": "/cards/df9ba79f-91a3-4fc7-a2af-6bddcc795f29.jpg",
+      "bytes": 152857,
+      "sha256": "7efc3f1d559781ebcdd8c18f701dcebcd1a49fe527fc91b9b868fc4d4a32f66f"
+    },
+    {
+      "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "localPath": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "bytes": 158168,
+      "sha256": "00c13b221ed12ef877359cc29ae47306fe7d8089541d02af980c08cf7084888e"
+    },
+    {
+      "code": "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg",
+      "localPath": "/cards/f57aeb37-4f19-4e5f-ae34-326c3b8b62f2.jpg",
+      "bytes": 147955,
+      "sha256": "81bd0eab18f6b4ed63fbf46564dbc338c1784d8b757391143fa5b96d53451b4a"
+    },
+    {
+      "code": "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg",
+      "localPath": "/cards/f7badc7a-4e37-4606-8557-0fa4719227c0.jpg",
+      "bytes": 153332,
+      "sha256": "33fdc20a51c1a9c0254c4441b868537e29a7ce6fd26df7f8ffbf8d7e4b62a3d6"
+    },
+    {
+      "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "localPath": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "bytes": 155400,
+      "sha256": "4888b440ba6ab53a308b7d8a20fdad4c16174fdd7e6e77c6430ca6cbb7c1d234"
+    },
+    {
+      "code": "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg",
+      "localPath": "/cards/fcb54294-8a36-4a51-bf1b-7d75ac1598e2.jpg",
+      "bytes": 153014,
+      "sha256": "a7874bfca4621448c0347b849639d544c8040e9eb3597dae33227bd20618ca45"
+    }
+  ]
+}

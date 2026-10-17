@@ -3,6 +3,23 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-withered-heath": {
+    name: "The Withered Heath",
+    detail: "Hunt the Cold-Drake through the northern caverns",
+  },
+  "roam-across-rhovanion": {
+    name: "The Wilds of Rhovanion",
+    detail: "Follow Urdug and recover the treasures of the north",
+  },
+  "fire-in-the-night": {
+    name: "Hrogar’s Hill",
+    detail: "Defend the Woodmen’s town from Dagnir and the Goblins",
+  },
+  "the-ghost-of-framsburg": {
+    name: "The Ruins of Framsburg",
+    detail: "Discover the lost treasures and confront Fram’s Shade",
+  },
+
   "the-black-serpent": {
     name: "The Crossroads Fort",
     detail: "Seize the Serpent’s caravan and the summons from Mordor",
@@ -322,6 +339,10 @@ export const PLAYMAT_CHOICES = [
   "the-mumakil",
   "race-across-harad",
   "beneath-the-sands",
+  "the-withered-heath",
+  "roam-across-rhovanion",
+  "fire-in-the-night",
+  "the-ghost-of-framsburg",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
   "the-crossings-of-poros",

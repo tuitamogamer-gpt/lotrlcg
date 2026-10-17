@@ -1,0 +1,1670 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Roam Across Rhovanion",
+  "slug": "roam-across-rhovanion",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+      "octgnid": "0909409e-d2d3-4304-b239-76bb6da0dceb",
+      "name": "Durin's Key",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "While Durin's Key is free of encounters, the first player attaches it to a hero he controls. Action: Exhaust Durin's Key to give each location -1 [threat] until the end of the phase. Forced: At the beginning of the quest phase, the player who controls Durin's Key looks at the top 3 cards of the encounter deck, chooses 1 to reveal, and discards the rest. ",
+      "is_unique": true,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 36,
+      "quantity": 1,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {},
+      "imagesrc": "/cards/0909409e-d2d3-4304-b239-76bb6da0dceb.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 36,
+          "quantity": 1,
+          "octgnid": "0909409e-d2d3-4304-b239-76bb6da0dceb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0909409e-d2d3-4304-b239-76bb6da0dceb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+      "octgnid": "0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+      "name": "Urdug",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Immune to player card effects. While Urdug is free of encounters, the first player gains control of Urdug. If Urdug is destroyed, the players lose the game. ",
+      "is_unique": true,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 52,
+      "quantity": 1,
+      "willpower": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "encounter_set": "Roam Across Rhovanion",
+      "back_name": "Urdug",
+      "back_text": "Immune to player card effects. Urdug cannot take damage. Forced: After Urdug engages a player, Tiny engages that player.",
+      "back_type_code": "enemy",
+      "back_victory": 6,
+      "back_imagesrc": "/cards/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.B.jpg",
+      "printed_stats": {
+        "willpower": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "5"
+      },
+      "imagesrc": "/cards/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+      "octgnid": "0f2929de-bef9-40b8-b0ed-de69e136188f",
+      "name": "Weighed Down",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to the hero with the most attachments without Weighed Down attached. Then, exhaust attached hero. (Counts as a Condition attachment with the text: \"Forced: After attached hero readies, choose and discard an attachment from it. You cannot choose Weighed Down unless attached hero has no other non-objective attachments.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 27,
+      "quantity": 2,
+      "encounter_set": "Lost in the Wilderness",
+      "printed_stats": {},
+      "imagesrc": "/cards/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "0f2929de-bef9-40b8-b0ed-de69e136188f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "name": "Stone Troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have non-objective attachments. Forced: After Stone Troll attacks and destroys a character you control, discard 1 card from your hand for each excess point of damage dealt.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 49,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "engagement": 36,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Fell Beasts",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "9",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+      "octgnid": "3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+      "name": "Slopes of Ered Mithrin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Doomed 1. Response: After the players travel to Slopes of Ered Mithrin, the first player may ready a character he controls. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 43,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: If the first player controls Urdug, exhaust him. ",
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/3733b627-08bd-4d12-a2ec-dadfcbfc6695.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 43,
+          "quantity": 3,
+          "octgnid": "3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3733b627-08bd-4d12-a2ec-dadfcbfc6695.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+      "octgnid": "4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+      "name": "Hunting Eagle",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Eagle.",
+      "text": "Surge. Cannot be optionally engaged.\nForced: When the encounter phase begins, Hunting Eagle engages the first player. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 39,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 50,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if attacking enemy has the Creature trait).",
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/4c653b80-0b0e-4383-b0bb-aa31f12b3e74.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 39,
+          "quantity": 3,
+          "octgnid": "4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c653b80-0b0e-4383-b0bb-aa31f12b3e74.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+      "octgnid": "4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+      "name": "The Goblin's Task",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: The first player takes control of Urdug, objective side face-up. Set each other objective and objective-ally aside, out of play. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is the number of players. Add each discarded location to the staging area.",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 47,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Roam Across Rhovanion",
+      "side": "A",
+      "back_name": "The Goblin's Task",
+      "back_text": "Progress cannot be placed on locations in the staging area. Forced: When the active location is explored, if the first player controls Urdug, advance to a random stage 2A. ",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 47,
+          "quantity": 1,
+          "octgnid": "4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+      "octgnid": "5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+      "name": "Harsh Weather",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: For each ready character a player controls, he must choose: either exhaust that character or raise his threat by 1. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 45,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, exhaust a character you control. ",
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {},
+      "imagesrc": "/cards/5edbdc1f-e177-4a8b-b4f1-8475fe297a4b.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 45,
+          "quantity": 3,
+          "octgnid": "5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5edbdc1f-e177-4a8b-b4f1-8475fe297a4b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+      "octgnid": "68e3c34a-1af7-410f-ad57-85386181c6d7",
+      "name": "Deep Ravine",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "While Deep Ravine is in the staging area, no more than 1 progress can be placed on locations in the staging area each round. Travel: The first player must either exhaust Urdug, or raise each player's threat by 2 to travel here. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 42,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/68e3c34a-1af7-410f-ad57-85386181c6d7.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 42,
+          "quantity": 3,
+          "octgnid": "68e3c34a-1af7-410f-ad57-85386181c6d7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/68e3c34a-1af7-410f-ad57-85386181c6d7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+      "octgnid": "702e659f-949c-491d-84ab-e1d5b4166f46",
+      "name": "Grey Moorland",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Forced: After Grey Moorland becomes the active location, shuffle the encounter discard pile into the encounter deck and discard cards from it until a treachery is discarded. Resolve the 'When Revealed' effect on that treachery. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 41,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 4,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/702e659f-949c-491d-84ab-e1d5b4166f46.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "702e659f-949c-491d-84ab-e1d5b4166f46",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/702e659f-949c-491d-84ab-e1d5b4166f46.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "name": "Lonely Lands",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Lonely Lands gets +2 [threat] for each facedown card under it. While Lonely Lands is in the staging area, it gains: \"Forced: After an event is played during the quest phase, place it facedown under Lonely Lands.\"",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 24,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 24,
+          "quantity": 3,
+          "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+      "octgnid": "7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+      "name": "Retrieve Urdug's Horn",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Grey Mountain Giant, adds it to the staging area, and attaches the set-aside Urdug's Horn to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 49,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Roam Across Rhovanion",
+      "side": "A",
+      "back_name": "Retrieve Urdug's Horn",
+      "back_text": "Each enemy with 1 or more guarded attachments gets +2 [Threat] and +2 [Defense]. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The Grey Mountain Giant guarding Urdug's Horn cannot take damage unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug with Urdug's Horn attached. ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 49,
+          "quantity": 1,
+          "octgnid": "7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "name": "Pack of Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Forced: If Pack of Wargs is dealt a shadow card with no effect, Pack of Wargs makes an additional attack after this one. (Do not deal it a shadow card.)",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 22,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+      "octgnid": "8cb63364-11e8-4044-9712-613ccbfcfa5f",
+      "name": "Rescue Tiny",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Grey Moorland, adds it to the staging area, and attaches the set-aside Tiny objective-ally to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 48,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Roam Across Rhovanion",
+      "side": "A",
+      "back_name": "Rescue Tiny",
+      "back_text": "The 'when revealed' effects of treachery cards cannot be canceled. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The players cannot travel to the Grey Moorland guarding Tiny unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug and Tiny. ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "8cb63364-11e8-4044-9712-613ccbfcfa5f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+      "octgnid": "9e864a49-89b3-4ea0-be1f-f4336adfa088",
+      "name": "Urdug's Horn",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item.",
+      "text": "While Urdug's Horn is free of encounters, attach it to Urdug. Forced: When Urdug attacks, discard the top card of the encounter deck and add its [threat] to his [attack] until the end of the phase. ",
+      "is_unique": true,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 37,
+      "quantity": 1,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {},
+      "imagesrc": "/cards/9e864a49-89b3-4ea0-be1f-f4336adfa088.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 37,
+          "quantity": 1,
+          "octgnid": "9e864a49-89b3-4ea0-be1f-f4336adfa088",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e864a49-89b3-4ea0-be1f-f4336adfa088.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+      "octgnid": "a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+      "name": "Find Durin's Key",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player searches the encounter deck, discard pile, and victory display for a Deep Ravine, adds it to the staging area, and attaches the set-aside Durin's Key to it as a guarded objective. Shuffle the encounter deck. Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 50,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Roam Across Rhovanion",
+      "side": "A",
+      "back_name": "Find Durin's Key",
+      "back_text": "Each encounter card guarding a card is immune to player card effects. Forced: When the players defeat this stage, remove it from the game. Advance to a random stage 2A, if able. Otherwise, advance to stage 3A. The players cannot travel to the Deep Ravine guarding Durin's Key unless there is at least 5 progress on this stage. This stage cannot be defeated unless the first player controls Urdug and Durin's Key. ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 50,
+          "quantity": 1,
+          "octgnid": "a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+      "octgnid": "b1612370-142d-4557-8884-b3da12b4baca",
+      "name": "Sneaking Off",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player loses control of Urdug, then attach Urdug to a location in the staging area as a guarded objective. If he cannot, add 5 to the total [threat] in the staging area until the end of the phase. In either case, remove Sneaking Off from the game. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 44,
+      "quantity": 3,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {},
+      "imagesrc": "/cards/b1612370-142d-4557-8884-b3da12b4baca.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "b1612370-142d-4557-8884-b3da12b4baca",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1612370-142d-4557-8884-b3da12b4baca.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "name": "Hobgoblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "While Hobgoblin is guarding a card, it gets +X [threat], +X [attack], and +X [defense], where X is that card's cost. Forced: After Hobgoblin enters play, the first player attaches the top card of his deck to Hobgoblin faceup as a guarded attachment. When Hobgoblin leaves play, return the card it was guarding to its owner's hand.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 50,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 5,
+      "engagement": 38,
+      "encounter_set": "Fell Beasts",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+      "octgnid": "b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+      "name": "Lost in the Wild",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The player with the most cards in his hand without a copy of Lost in the Wilderness adds Lost in the Wild to his hand. (While in a player's hand, Lost in the Wild gains: \"Cannot be discarded by player card effect. Forced: After you play a card, discard each card in your hand.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 26,
+      "quantity": 2,
+      "encounter_set": "Lost in the Wilderness",
+      "printed_stats": {},
+      "imagesrc": "/cards/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+      "octgnid": "caaafdd2-3559-496a-a08c-ce81ec212b6c",
+      "name": "Grey Mountain Giant",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Giant.",
+      "text": "Cannot have non-objective attachments. Forced: When Grey Mountain Giant engages you, discard the top 5 cards of your deck. Assign damage among characters you control equal to the number of allies discarded by this effect. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 38,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 5,
+      "defense": 2,
+      "health": 11,
+      "engagement": 44,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "2",
+        "health": "11",
+        "engagement": "44"
+      },
+      "imagesrc": "/cards/caaafdd2-3559-496a-a08c-ce81ec212b6c.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "caaafdd2-3559-496a-a08c-ce81ec212b6c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/caaafdd2-3559-496a-a08c-ce81ec212b6c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+      "octgnid": "daa67624-18ba-43a3-92c6-6e5586166bb0",
+      "name": "Ruined Supplies",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or deal 1 damage to each ally you control.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 25,
+      "quantity": 2,
+      "shadow": "Shadow: Raise your threat by 1 for each enemy engaged with you.",
+      "encounter_set": "Lost in the Wilderness",
+      "printed_stats": {},
+      "imagesrc": "/cards/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 25,
+          "quantity": 2,
+          "octgnid": "daa67624-18ba-43a3-92c6-6e5586166bb0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "name": "Hills of Wilderland",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "X is the number of characters controlled by the player with the most characters. Quest Action: Exhaust a character to reduce Hills of Wilderland [threat] by 1 until the end of the phase. Only the first player can trigger this effect.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 23,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 0,
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "0"
+      },
+      "imagesrc": "/cards/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+      "octgnid": "edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+      "name": "Wild Creatures",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player chooses an enemy in the staging area and engages it. Then, if any player did not engage an enemy this way, discard cards from the encounter deck until a Creature enemy is discarded and add it to the staging area. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 46,
+      "quantity": 2,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {},
+      "imagesrc": "/cards/edfb7ef3-dee9-4cf4-986e-5698bb3fb320.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 46,
+          "quantity": 2,
+          "octgnid": "edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edfb7ef3-dee9-4cf4-986e-5698bb3fb320.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+      "octgnid": "eed0925e-5376-4ad0-b571-69cfbb2118ae",
+      "name": "Wilderland Bear",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: The first player must choose: either Wilderland Bear makes an immediate attack against him, or each player discards 1 random card from his hand. ",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 40,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Roam Across Rhovanion",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/eed0925e-5376-4ad0-b571-69cfbb2118ae.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "eed0925e-5376-4ad0-b571-69cfbb2118ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eed0925e-5376-4ad0-b571-69cfbb2118ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+      "octgnid": "f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+      "name": "Urdug's Gambit",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player loses control of both Urdug and Tiny, flips them to their enemy sides, and adds them to the staging area. (Remove any damage that was on them.) Each other player reveals an encounter card.",
+      "is_unique": false,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 51,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Roam Across Rhovanion",
+      "side": "A",
+      "back_name": "Urdug's Gambit",
+      "back_text": "Progress cannot be placed on this quest from questing successfully. Forced: When the players quest unsuccessfully, they do not raise their threat. Instead, place X progress here, where X is the amount by which they would have raised their threat. Then, if this stage has progress equal to its quest points, the players lose the game. When Urdug has no hit points remaining, the players win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
+      "octgnid": "f8716c9e-b35a-474d-8800-cc0256f38b36",
+      "name": "Tiny",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Immune to player card effects. While Tiny is free of encounters, the first player gains control of Tiny. Forced: After Tiny exhausts, raise your threat by 2. If Tiny is destroyed, the players lose the game. ",
+      "is_unique": true,
+      "pack_code": "RAR",
+      "pack_name": "Roam Across Rhovanion",
+      "position": 54,
+      "quantity": 1,
+      "willpower": 1,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "encounter_set": "Roam Across Rhovanion",
+      "back_name": "Tiny",
+      "back_text": "Indestructible. Immune to player card effects. While Urdug is engaged with a player, he gains, \"Forced: At the beginning of the quest phase, Urdug makes an immediate attack. If this attack deals damage, return Urdug and Tiny (if he is in play) to the staging area.\"",
+      "back_type_code": "enemy",
+      "back_imagesrc": "/cards/f8716c9e-b35a-474d-8800-cc0256f38b36.B.jpg",
+      "printed_stats": {
+        "willpower": "1",
+        "attack": "6",
+        "defense": "3",
+        "health": "9"
+      },
+      "imagesrc": "/cards/f8716c9e-b35a-474d-8800-cc0256f38b36.jpg",
+      "packs": [
+        {
+          "pack_code": "RAR",
+          "pack_name": "Roam Across Rhovanion",
+          "position": 54,
+          "quantity": 1,
+          "octgnid": "f8716c9e-b35a-474d-8800-cc0256f38b36",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8716c9e-b35a-474d-8800-cc0256f38b36.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E08.5",
+      "name": "Roam Across Rhovanion (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "RAR",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+        "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+        "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+        "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+        "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+        "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+        "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+        "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+        "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+        "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+        "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+        "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+        "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+        "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+        "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+        "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+        "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+        "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+        "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+        "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+        "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+        "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+        "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+        "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+        "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+        "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc": 1,
+          "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f": 1,
+          "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c": 1,
+          "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49": 1,
+          "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c": 1,
+          "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74": 2,
+          "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae": 2,
+          "octgn:702e659f-949c-491d-84ab-e1d5b4166f46": 1,
+          "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7": 2,
+          "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695": 3,
+          "octgn:b1612370-142d-4557-8884-b3da12b4baca": 1,
+          "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b": 3,
+          "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320": 2,
+          "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532": 1,
+          "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf": 1,
+          "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c": 2,
+          "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0": 1,
+          "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416": 1,
+          "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f": 1,
+          "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709": 1,
+          "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669": 1
+        },
+        "sharedSetAside": {
+          "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4": 1,
+          "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb": 1,
+          "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088": 1,
+          "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q08.5",
+      "name": "Roam Across Rhovanion",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "RAR",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+        "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+        "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+        "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+        "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+        "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+        "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+        "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+        "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+        "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+        "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+        "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+        "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+        "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+        "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+        "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+        "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+        "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+        "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+        "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+        "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+        "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+        "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+        "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+        "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+        "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36"
+      ],
+      "cards": [
+        {
+          "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc": 1,
+          "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f": 1,
+          "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c": 1,
+          "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49": 1,
+          "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c": 2,
+          "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74": 3,
+          "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae": 2,
+          "octgn:702e659f-949c-491d-84ab-e1d5b4166f46": 2,
+          "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7": 3,
+          "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695": 3,
+          "octgn:b1612370-142d-4557-8884-b3da12b4baca": 3,
+          "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b": 3,
+          "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320": 2,
+          "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532": 2,
+          "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf": 2,
+          "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c": 3,
+          "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0": 2,
+          "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416": 2,
+          "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f": 2,
+          "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709": 2,
+          "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669": 2
+        },
+        "sharedSetAside": {
+          "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4": 1,
+          "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb": 1,
+          "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088": 1,
+          "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0909409e-d2d3-4304-b239-76bb6da0dceb.jpg",
+      "localPath": "/cards/0909409e-d2d3-4304-b239-76bb6da0dceb.jpg",
+      "bytes": 162246,
+      "sha256": "28392ea8bc18d15bd0596b317bf9646ba700b49e549b96210937a666154fcb96"
+    },
+    {
+      "code": "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.jpg",
+      "localPath": "/cards/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.jpg",
+      "bytes": 146971,
+      "sha256": "0b52c43888410d193f4496f88c57ccc08a59146156e3aeb3f3044ecbba4fdd3e"
+    },
+    {
+      "code": "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.B.jpg",
+      "localPath": "/cards/0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4.B.jpg",
+      "bytes": 159439,
+      "sha256": "c8eeb6549e8f6cf5af8531e1542f19ad58adbfc716441358dc3a0d73d71c95e7"
+    },
+    {
+      "code": "octgn:0f2929de-bef9-40b8-b0ed-de69e136188f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg",
+      "localPath": "/cards/0f2929de-bef9-40b8-b0ed-de69e136188f.jpg",
+      "bytes": 172300,
+      "sha256": "f725572468e130df0475c09c0c868b245231477b185163df02f209fe0165d9e4"
+    },
+    {
+      "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "localPath": "/cards/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "bytes": 159847,
+      "sha256": "c01b37d76020dc3096bc357c8196f6ebaf100d32e2f307306f5026bac17dd861"
+    },
+    {
+      "code": "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3733b627-08bd-4d12-a2ec-dadfcbfc6695.jpg",
+      "localPath": "/cards/3733b627-08bd-4d12-a2ec-dadfcbfc6695.jpg",
+      "bytes": 149389,
+      "sha256": "02c692638f419e1a9496eda66cc4165f8b12a6c6d87059c1fcc6625bebec792f"
+    },
+    {
+      "code": "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c653b80-0b0e-4383-b0bb-aa31f12b3e74.jpg",
+      "localPath": "/cards/4c653b80-0b0e-4383-b0bb-aa31f12b3e74.jpg",
+      "bytes": 144116,
+      "sha256": "eb1c05b3a513f58994c4491fbf10ef4f61ffc64186f912f447cc844c78f86114"
+    },
+    {
+      "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg",
+      "localPath": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.jpg",
+      "bytes": 170547,
+      "sha256": "1eedb897802f1448fc84313f7930a570bc2cc4062044a9dcd49e9c1b5966e7ea"
+    },
+    {
+      "code": "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4d85eda6-14e2-4dee-b912-31056fc6a2cc.B.jpg",
+      "localPath": "/cards/4d85eda6-14e2-4dee-b912-31056fc6a2cc.B.jpg",
+      "bytes": 115837,
+      "sha256": "dd921d291e86bbe2aa91a32b47b7a6a9a8838ff1cb8a6ca85f8ef949d7b3a922"
+    },
+    {
+      "code": "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5edbdc1f-e177-4a8b-b4f1-8475fe297a4b.jpg",
+      "localPath": "/cards/5edbdc1f-e177-4a8b-b4f1-8475fe297a4b.jpg",
+      "bytes": 151103,
+      "sha256": "5d5a78dc0bea72974dcf313da2d411465733c05ce970df8a43000367e416344f"
+    },
+    {
+      "code": "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/68e3c34a-1af7-410f-ad57-85386181c6d7.jpg",
+      "localPath": "/cards/68e3c34a-1af7-410f-ad57-85386181c6d7.jpg",
+      "bytes": 144721,
+      "sha256": "005701e528446261a6742ecc01b7bea699b2c36a13a5c28438ef467121ae5261"
+    },
+    {
+      "code": "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/702e659f-949c-491d-84ab-e1d5b4166f46.jpg",
+      "localPath": "/cards/702e659f-949c-491d-84ab-e1d5b4166f46.jpg",
+      "bytes": 161417,
+      "sha256": "64c73d85daf383a63078deebbc0b585f5027727a782b994e84c7de4a09a4e24c"
+    },
+    {
+      "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "localPath": "/cards/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "bytes": 152794,
+      "sha256": "767eaa4124368f06c0e67893641fe5e9f90ce24c162cdd6c58b5966cf800b41d"
+    },
+    {
+      "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg",
+      "localPath": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.jpg",
+      "bytes": 133814,
+      "sha256": "f4c269a93f174395f31c6527cfbecb446b12937a667be8e8f620e68b09f60352"
+    },
+    {
+      "code": "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.B.jpg",
+      "localPath": "/cards/7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c.B.jpg",
+      "bytes": 131096,
+      "sha256": "76e8a240d93fdce2e0241d622781c8cceef65365900d450f072fc3a2fcdce1bf"
+    },
+    {
+      "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "localPath": "/cards/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "bytes": 157244,
+      "sha256": "e5b9a569a644700ab413ee3db5e316153eee92a869e16099c68fe4679e897191"
+    },
+    {
+      "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg",
+      "localPath": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.jpg",
+      "bytes": 133364,
+      "sha256": "0ab3ffa3b3c15f011331adc052f85bceef121b985c73a88d2d0294d67da84b62"
+    },
+    {
+      "code": "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8cb63364-11e8-4044-9712-613ccbfcfa5f.B.jpg",
+      "localPath": "/cards/8cb63364-11e8-4044-9712-613ccbfcfa5f.B.jpg",
+      "bytes": 128240,
+      "sha256": "641860e4de4b7911d8c5344cb122dad12e4f411191d5015aec5290681137006c"
+    },
+    {
+      "code": "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e864a49-89b3-4ea0-be1f-f4336adfa088.jpg",
+      "localPath": "/cards/9e864a49-89b3-4ea0-be1f-f4336adfa088.jpg",
+      "bytes": 144590,
+      "sha256": "a5d74b8d670c878d710c0f9531c8ee2dd71c561c4dac242fa8b364a9ffc1db1e"
+    },
+    {
+      "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg",
+      "localPath": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.jpg",
+      "bytes": 129303,
+      "sha256": "2812a0f414d97ddce6b731b110efdb952f327cf6b8e56a734251fb2eecf9763f"
+    },
+    {
+      "code": "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.B.jpg",
+      "localPath": "/cards/a4cd5ce9-fc29-44b6-9bee-eafbbd431c49.B.jpg",
+      "bytes": 126125,
+      "sha256": "90f5ad9b136180ed8a383123ba91a5beac340a65c1306648c17f58fe0d1bf62a"
+    },
+    {
+      "code": "octgn:b1612370-142d-4557-8884-b3da12b4baca",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b1612370-142d-4557-8884-b3da12b4baca.jpg",
+      "localPath": "/cards/b1612370-142d-4557-8884-b3da12b4baca.jpg",
+      "bytes": 150875,
+      "sha256": "6b1b20e107cee0d1dc5882178b259b80857b13f7df72d5c74c55ad2399695059"
+    },
+    {
+      "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "localPath": "/cards/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "bytes": 163312,
+      "sha256": "e686e7b92abc285f1cd5b21e9c8c5ccc7db55f98717e0d2169d0c0bb9ef96915"
+    },
+    {
+      "code": "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg",
+      "localPath": "/cards/b81e837e-f4e8-43e9-892a-8bfaecbd1416.jpg",
+      "bytes": 157061,
+      "sha256": "30e90adcacf953b00e0873c102480b31bac50553001c13ab955cc49568c143af"
+    },
+    {
+      "code": "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/caaafdd2-3559-496a-a08c-ce81ec212b6c.jpg",
+      "localPath": "/cards/caaafdd2-3559-496a-a08c-ce81ec212b6c.jpg",
+      "bytes": 157194,
+      "sha256": "659668d4d44429346d69b9db24e4bdfa8fac5a72f8899fa5c4cf2d5c5e11c295"
+    },
+    {
+      "code": "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg",
+      "localPath": "/cards/daa67624-18ba-43a3-92c6-6e5586166bb0.jpg",
+      "bytes": 174414,
+      "sha256": "d58f982f0a543983de24a8d1f8a9e911925e16cfb1b7194f7f2a0d2c92cd7607"
+    },
+    {
+      "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "localPath": "/cards/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "bytes": 153335,
+      "sha256": "1f56cd2f2bf673875e651bce1b90235c4c16ef9782c36fa440d3762961166e03"
+    },
+    {
+      "code": "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edfb7ef3-dee9-4cf4-986e-5698bb3fb320.jpg",
+      "localPath": "/cards/edfb7ef3-dee9-4cf4-986e-5698bb3fb320.jpg",
+      "bytes": 143636,
+      "sha256": "80085dca12e0e22cd0eeebd8af01fef5240ecd3200efff04b6d4d3f47b5c0759"
+    },
+    {
+      "code": "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eed0925e-5376-4ad0-b571-69cfbb2118ae.jpg",
+      "localPath": "/cards/eed0925e-5376-4ad0-b571-69cfbb2118ae.jpg",
+      "bytes": 148122,
+      "sha256": "3df87ae4d80579c5c8fd8e2d2e60b96e775039ac99125a58c1ab6e5c65222a0c"
+    },
+    {
+      "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg",
+      "localPath": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.jpg",
+      "bytes": 130107,
+      "sha256": "5790b4f0f219b22531b23ed702d7bb5b236c42778864d009a1b3d7ebaf735e1c"
+    },
+    {
+      "code": "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.B.jpg",
+      "localPath": "/cards/f63c9a8e-23dc-4c3a-bbff-00bd585e27bc.B.jpg",
+      "bytes": 168794,
+      "sha256": "79d4cc8014f97f3dee1fba3f36e0c6e283c6e4a430d618a21927c03f17155d49"
+    },
+    {
+      "code": "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8716c9e-b35a-474d-8800-cc0256f38b36.jpg",
+      "localPath": "/cards/f8716c9e-b35a-474d-8800-cc0256f38b36.jpg",
+      "bytes": 143923,
+      "sha256": "f804d3da7d33456469bbabaa98cf61e9ad344eaabd5c7d5b0f69abe8e61713d2"
+    },
+    {
+      "code": "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f8716c9e-b35a-474d-8800-cc0256f38b36.B.jpg",
+      "localPath": "/cards/f8716c9e-b35a-474d-8800-cc0256f38b36.B.jpg",
+      "bytes": 144809,
+      "sha256": "4a03aa95b85907fcc79b674a192c8818d58cc88e8daa0f845c5770d149bae76f"
+    }
+  ]
+}

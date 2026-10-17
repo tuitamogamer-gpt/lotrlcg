@@ -1,0 +1,55 @@
+.ghost-framsburg-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 235px), 1fr));
+  gap: 12px;
+  margin-block: 12px;
+}
+.ghost-framsburg-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface, #171e18) 94%, #576d82);
+}
+.ghost-framsburg-summary button,
+.ghost-framsburg-reference button {
+  font: inherit;
+  text-align: left;
+  padding: 7px 9px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.ghost-framsburg-summary span {
+  line-height: 1.45;
+}
+.ghost-framsburg-reference {
+  grid-column: 1/-1;
+  padding: 10px;
+  border: 1px solid var(--border, #645637);
+  border-radius: 8px;
+}
+.ghost-framsburg-reference > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.redbook .ghost-framsburg-state .quest-goals > span {
+  color: #e8dabc;
+  background: #16242d80;
+}
+@media (max-width: 480px) {
+  .ghost-framsburg-summary {
+    padding: 11px;
+  }
+  .ghost-framsburg-reference button {
+    width: 100%;
+  }
+}

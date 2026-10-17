@@ -16,7 +16,8 @@ import {
   get,
   make,
   prepend,
-  removeShadowCard,
+  removePlayerShadowCard,
+  canPlayerAffectShadow,
   requireRule,
   shuffle,
   skip,
@@ -56,9 +57,7 @@ export const REALM_ATTACKS_STARTED = "phase:normal-enemy-attacks";
 const countEnemies = (s: GameState, p = activeSeat(s)) =>
   engagedEnemies(s, p).length;
 const enemies = (s: GameState) =>
-  [...s.staging, ...allEngaged(s)].filter(
-    (u) => playerUnitIsEnemy(u),
-  );
+  [...s.staging, ...allEngaged(s)].filter((u) => playerUnitIsEnemy(u));
 const movableEnemies = (s: GameState) =>
   enemies(s).filter(
     (u) =>
@@ -489,6 +488,7 @@ export function realmEffect(s: GameState, e: Effect) {
     case "realmTirelessShadow":
       if (
         u &&
+        canPlayerAffectShadow(s, u) &&
         engagedEnemies(s).some((enemy) => enemy.id === u.id) &&
         u.shadows.length
       )
@@ -507,7 +507,7 @@ export function realmEffect(s: GameState, e: Effect) {
       break;
     case "realmDiscardShadow":
       if (u && e.value !== undefined) {
-        const code = removeShadowCard(u, e.value);
+        const code = removePlayerShadowCard(s, u, e.value);
         if (code) s.encounterDiscard.push(code);
       }
       break;

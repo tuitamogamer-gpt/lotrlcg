@@ -216,6 +216,36 @@ jobs:
       - run: npm ci
       - run: npm run test:batch4-simulation
 
+  ered-simulation:
+    name: Ered Mithrin complete games (${{ matrix.scenario }}, 14 games)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario:
+          [
+            the-withered-heath,
+            roam-across-rhovanion,
+            fire-in-the-night,
+            the-ghost-of-framsburg,
+          ]
+    env:
+      ERED_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:ered-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ered-simulation-${{ matrix.scenario }}
+          path: output/ered-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -317,6 +347,16 @@ jobs:
             suite: test:browser-wilds-rhovanion
           - group: batch4-players
             suite: test:browser-batch4-players
+          - group: withered-heath
+            suite: test:browser-withered-heath
+          - group: roam-rhovanion
+            suite: test:browser-roam-rhovanion
+          - group: fire-night
+            suite: test:browser-fire-night
+          - group: ghost-framsburg
+            suite: test:browser-ghost-framsburg
+          - group: ered-players
+            suite: test:browser-ered-players
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

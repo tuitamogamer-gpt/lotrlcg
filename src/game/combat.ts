@@ -1,6 +1,8 @@
+import * as EredPlayers from "./ered-mithrin-player";
 import * as WildsPlayers from "./wilds-player";
 import * as BatchPlayers from "./batch4-player";
 import { batch4Scenario } from "./batch4-scenarios";
+import { dealEnemyShadows } from "./considered-engagement";
 import * as SandsPlayers from "./beneath-sands-player";
 import * as RacePlayers from "./race-harad-player";
 import { haradPlayerNoExhaustDefense } from "./harad-player-support";
@@ -27,7 +29,6 @@ import { dikeAttackDeclared } from "./deadmens-dike";
 import * as Realm from "./lost-realm-player";
 import * as Angmar from "./angmar-player";
 import * as Rhudaur from "./rhudaur";
-import { carnShadowDealt } from "./carn-dum";
 import * as Antlered from "./antlered";
 import * as Tharbad from "./tharbad";
 import { threatOf } from "./core";
@@ -110,15 +111,7 @@ import {
   hasKeyword,
 } from "./table";
 
-import {
-  encounterDraw,
-  fx,
-  get,
-  log,
-  prepend,
-  requireRule,
-  stats,
-} from "./core";
+import { fx, get, log, prepend, requireRule, stats } from "./core";
 import { damage, raiseThreat, exhaustCharacter } from "./board";
 import { carrockCombatDamage, carrockNoExhaustDefender } from "./carrock";
 import { gondorAttackKilled } from "./gondor-player-cards";
@@ -131,7 +124,6 @@ import {
   heirsCanDefend,
   heirsCombatDamageTarget,
   heirsDamageAmount,
-  heirsShadowDealt,
 } from "./heirs-numenor";
 import { stewardFearAttackStarted } from "./steward-fear";
 
@@ -155,6 +147,7 @@ export function playerAttack(
       const u = get(s, id);
       return (
         u &&
+        !batch4Scenario(s).cannotAttack?.(s, u, enemy) &&
         shipCanAttack(enemy, u) &&
         Cobas.cobasCanAttackEnemy(s, enemy, u) &&
         Voyage.voyageCanAttackEnemy(s, enemy, u) &&
@@ -288,6 +281,11 @@ export function playerAttack(
       attackers as Unit[],
     ),
     ...WildsPlayers.wildsPlayerAttackersDeclared(s, enemy, attackers as Unit[]),
+    ...EredPlayers.eredMithrinPlayerAttackersDeclared(
+      s,
+      enemy,
+      attackers as Unit[],
+    ),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -389,6 +387,7 @@ export function playerAttackResolved(
 ) {
   SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
   WildsPlayers.wildsPlayerAttackResolved(s, ids);
+  EredPlayers.eredMithrinPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);
   Depths.depthsPlayerAttackFinished(s, enemy);
   TempleEncounters.templePlayerAttackFinished(s, enemy);
@@ -423,6 +422,7 @@ export function playerAttackKilled(
       s,
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
+  EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);
   CobasPlayers.cobasPlayerAttackKilled(s);
@@ -465,6 +465,8 @@ export function combatDefenderDefense(
   enemy: Unit,
   combat: NonNullable<GameState["combat"]>,
 ) {
+  const override = batch4Scenario(s).defenseOverride?.(s, defender, enemy);
+  if (override !== undefined) return Math.max(0, override);
   return Math.max(
     0,
     stats(s, defender).defense +
@@ -616,11 +618,8 @@ export function beginEnemyAttack(
     return;
   // Beastmaster's Forced effect precedes declaration responses (including Spearman).
   if (enemy.code === "01091") {
-    const code = encounterDraw(s, true);
-    if (code) {
-      enemy.shadows.push(code);
-      heirsShadowDealt(s, enemy);
-      carnShadowDealt(s, enemy);
+    const dealt = dealEnemyShadows(s, enemy);
+    if (dealt.length) {
       log(
         s,
         "Dol Guldur Beastmaster receives an additional facedown shadow before the defender is declared.",
@@ -680,6 +679,11 @@ export function beginEnemyAttack(
     ...forcedResponses,
     ...exhaustionResponses,
     fx("redhornDefenders", { ids }),
+    ...EredPlayers.eredMithrinPlayerDefendersDeclared(
+      s,
+      enemy,
+      defenders as Unit[],
+    ),
     ...BatchPlayers.batch4PlayerDefendersDeclared(
       s,
       enemy,

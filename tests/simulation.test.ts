@@ -1,4 +1,13 @@
 import {
+  isEredScenario,
+  eredSimulationAction,
+  eredSimulationChoice,
+} from "./ered-simulation-policy";
+import {
+  assertEredSaveRestoration,
+  eredSimulationObserver,
+} from "./ered-simulation-invariants";
+import {
   batch4SimulationAction,
   batch4SimulationChoice,
   isBatch4Scenario,
@@ -151,6 +160,8 @@ const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   if (!listOnly) return nodeTest(...args);
 }) as typeof nodeTest;
 function choose(s: GameState): Option {
+  const ered = eredSimulationChoice(s);
+  if (ered) return ered;
   const batch4 = batch4SimulationChoice(s);
   if (batch4) return batch4;
   const beneathSands = beneathSandsSimulationChoice(s);
@@ -256,17 +267,19 @@ function run(
           ? cobasSimulationObserver()
           : scenarioId === "the-city-of-corsairs"
             ? citySimulationObserver()
-            : isBatch4Scenario(scenarioId)
-              ? batch4SimulationObserver()
-              : isBeneathSandsScenario(scenarioId)
-                ? beneathSandsSimulationObserver()
-                : isRaceHaradScenario(scenarioId)
-                  ? raceHaradSimulationObserver()
-                  : isMumakilScenario(scenarioId)
-                    ? mumakilSimulationObserver()
-                    : isHaradScenario(scenarioId)
-                      ? haradSimulationObserver()
-                      : undefined;
+            : isEredScenario(scenarioId)
+              ? eredSimulationObserver()
+              : isBatch4Scenario(scenarioId)
+                ? batch4SimulationObserver()
+                : isBeneathSandsScenario(scenarioId)
+                  ? beneathSandsSimulationObserver()
+                  : isRaceHaradScenario(scenarioId)
+                    ? raceHaradSimulationObserver()
+                    : isMumakilScenario(scenarioId)
+                      ? mumakilSimulationObserver()
+                      : isHaradScenario(scenarioId)
+                        ? haradSimulationObserver()
+                        : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -301,6 +314,7 @@ function run(
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
     else if (
+      eredSimulationAction(s) ??
       batch4SimulationAction(s) ??
       beneathSandsSimulationAction(s) ??
       raceHaradSimulationAction(s) ??
@@ -308,7 +322,8 @@ function run(
       haradSimulationAction(s) ??
       greyHavensSimulationAction(s)
     )
-      action = (batch4SimulationAction(s) ??
+      action = (eredSimulationAction(s) ??
+        batch4SimulationAction(s) ??
         beneathSandsSimulationAction(s) ??
         raceHaradSimulationAction(s) ??
         mumakilSimulationAction(s) ??
@@ -484,6 +499,7 @@ function run(
       );
     try {
       s =
+        isEredScenario(scenarioId) ||
         isBatch4Scenario(scenarioId) ||
         isBeneathSandsScenario(scenarioId) ||
         isRaceHaradScenario(scenarioId) ||
@@ -507,6 +523,7 @@ function run(
     );
     if (
       angmarScenarios.includes(scenarioId) ||
+      isEredScenario(scenarioId) ||
       isBatch4Scenario(scenarioId) ||
       isBeneathSandsScenario(scenarioId) ||
       isRaceHaradScenario(scenarioId) ||
@@ -527,6 +544,8 @@ function run(
         assertCobasSaveRestoration(savedState, restored);
       else if (scenarioId === "the-city-of-corsairs")
         assertCitySaveRestoration(savedState, restored);
+      else if (isEredScenario(scenarioId))
+        assertEredSaveRestoration(savedState, restored);
       else if (isBatch4Scenario(scenarioId))
         assertBatch4SaveRestoration(savedState, restored);
       else if (isBeneathSandsScenario(scenarioId))

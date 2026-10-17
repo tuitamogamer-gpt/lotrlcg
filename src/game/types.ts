@@ -89,6 +89,8 @@ export interface Attachment {
   blanked?: boolean;
 }
 export interface Unit {
+  /** Thalion becomes a hero while three side quests are in the victory display. */
+  eredThalionHero?: boolean;
   /** Captured Corsair Skirmishers retain their physical card as Ship objectives. */
   cobasShipObjective?: boolean;
   cobasGuarding?: string[];
@@ -229,6 +231,10 @@ export type ScenarioId =
   | "journey-up-the-anduin"
   | "lost-in-mirkwood"
   | "the-kings-quest"
+  | "the-withered-heath"
+  | "roam-across-rhovanion"
+  | "fire-in-the-night"
+  | "the-ghost-of-framsburg"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -264,6 +270,8 @@ export interface Effect {
   shadowEnemyId?: string;
   /** Objective that must receive undefended damage from this attack. */
   damageTarget?: string;
+  /** Printed attacks may explicitly omit their ordinary shadow deal. */
+  noShadow?: boolean;
   revealOrigin?: "encounter" | "underworld";
   /** Serializable event resolution retains paid costs and cancellation continuations. */
   effects?: Effect[];
@@ -368,9 +376,14 @@ export interface GameState {
   cirithGurat?: import("./cirith-gurat-support").CirithGuratState;
   crossingsPoros?: import("./crossings-poros-support").CrossingsPorosState;
   wildsRhovanion?: import("./wilds-rhovanion-support").WildsRhovanionState;
+  witheredHeath?: import("./withered-heath-types").WitheredHeathState;
+  roamRhovanion?: import("./roam-rhovanion-types").RoamRhovanionState;
+  fireNight?: import("./fire-night-types").FireNightState;
+  ghostFramsburg?: import("./ghost-framsburg-types").GhostFramsburgState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   batch4WindReserves?: Record<number, number>;
+  eredEagleReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
   sideQuestSelections?: Record<
     string,
@@ -576,6 +589,7 @@ export interface GameState {
     raidFiresOnKill?: number;
     /** Every defender that actually took damage during this attack, including costs. */
     damagedDefenders?: string[];
+    heathSpiderDamageIds?: string[];
     stewardRemoveTokensIfKilled?: boolean;
     heirsScrollDamage?: boolean;
     bloodTurnOnKill?: boolean;

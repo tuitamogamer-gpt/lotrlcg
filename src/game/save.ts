@@ -1,4 +1,9 @@
 import { validateBlackSerpent } from "./black-serpent-support";
+import { validateWitheredHeath } from "./withered-heath-support";
+import { validateRoamRhovanion } from "./roam-rhovanion-support";
+import { validateFireNight } from "./fire-night-support";
+import { validateGhostFramsburg } from "./ghost-framsburg-support";
+import { eredScenarioUnits } from "./ered-scenario-state";
 import { validateCirithGurat } from "./cirith-gurat-support";
 import { validateCrossingsPoros } from "./crossings-poros-support";
 import {
@@ -163,6 +168,21 @@ export function validateSave(
     )
       return false;
     if (
+      s.eredEagleReserves !== undefined &&
+      (!s.eredEagleReserves ||
+        typeof s.eredEagleReserves !== "object" ||
+        Array.isArray(s.eredEagleReserves) ||
+        Object.entries(s.eredEagleReserves).some(
+          ([p, n]) =>
+            !/^\d+$/.test(p) ||
+            +p >= seatCount ||
+            !integer(n) ||
+            n < 0 ||
+            n > 3,
+        ))
+    )
+      return false;
+    if (
       s.deck?.some((code) => hasEncounterKeyword(card(code))) ||
       s.hand?.some((u) => hasEncounterKeyword(card(u.code)))
     )
@@ -172,7 +192,8 @@ export function validateSave(
         { length: seatCount },
         (_, player) =>
           (s.rangerReserves?.[player] ?? 3) +
-          (s.batch4WindReserves?.[player] ?? 0),
+          (s.batch4WindReserves?.[player] ?? 0) +
+          (s.eredEagleReserves?.[player] ?? 0),
       ).some((count) => count > 3)
     )
       return false;
@@ -232,6 +253,11 @@ export function validateSave(
       (a.owner === undefined ||
         (integer(a.owner) && a.owner >= 0 && a.owner < seatCount));
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
+      (c.heathSpiderDamageIds === undefined ||
+        (Array.isArray(c.heathSpiderDamageIds) &&
+          new Set(c.heathSpiderDamageIds).size ===
+            c.heathSpiderDamageIds.length &&
+          c.heathSpiderDamageIds.every((id) => typeof id === "string"))) &&
       (c.damagedDefenders === undefined ||
         (Array.isArray(c.damagedDefenders) &&
           c.damagedDefenders.every((id) => typeof id === "string"))) &&
@@ -419,6 +445,16 @@ export function validateSave(
           new Set(c.desperateDefenderIds).size ===
             c.desperateDefenderIds.length));
     const validUnit = (u: Unit) =>
+      (u?.eredThalionHero === undefined ||
+        (typeof u.eredThalionHero === "boolean" &&
+          u.code === "19065" &&
+          (!u.eredThalionHero ||
+            (!u.blanked &&
+              (s.victoryCards ?? []).filter((code) =>
+                ["player-side-quest", "encounter-side-quest"].includes(
+                  card(code).type_code,
+                ),
+              ).length >= 3)))) &&
       (u.cobasShipObjective === undefined ||
         (u.cobasShipObjective === true &&
           s.scenarioId === "a-storm-on-cobas-haven" &&
@@ -674,6 +710,13 @@ export function validateSave(
             (event.destination !== "spent" ||
               (event.unit.code === "12119" &&
                 !!s.victoryCards?.includes("12119")) ||
+              !!s.roamRhovanion?.storedCards?.some(
+                (entry) =>
+                  entry.player === event.player &&
+                  entry.cards.some(
+                    (u) => u.id === event.unit.id && u.code === event.unit.code,
+                  ),
+              ) ||
               !!s.wildsRhovanion?.storedCards?.some(
                 (entry) =>
                   entry.player === event.player &&
@@ -748,6 +791,14 @@ export function validateSave(
         ) ||
         !validateCrossingsPoros(s, validUnit as (value: unknown) => boolean) ||
         !validateWildsRhovanion(s, validUnit as (value: unknown) => boolean) ||
+        !validateWitheredHeath(s, validUnit as (value: unknown) => boolean) ||
+        !validateRoamRhovanion(
+          s,
+          validUnit as (value: unknown) => boolean,
+          (code) => card(code).type_code,
+        ) ||
+        !validateFireNight(s, validUnit as (value: unknown) => boolean) ||
+        !validateGhostFramsburg(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1083,6 +1134,7 @@ export function validateSave(
         (integer(e.player) &&
           e.player >= 0 &&
           e.player < (s.table?.seats.length ?? 1))) &&
+      (e.noShadow === undefined || typeof e.noShadow === "boolean") &&
       (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
       (e.shadowEnemyId === undefined || typeof e.shadowEnemyId === "string") &&
       typeof e.kind === "string" &&
@@ -1384,6 +1436,7 @@ export function validateSave(
       ...(s.wildsRhovanion?.storedCards.flatMap((p) => p.cards) ?? []),
       ...(s.wildsRhovanion?.guardedHeroes.map((p) => p.hero) ?? []),
       ...(s.wildsRhovanion?.guardedPlayerCards.map((p) => p.card) ?? []),
+      ...eredScenarioUnits(s),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

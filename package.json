@@ -120,7 +120,20 @@
     "test:browser-wilds-rhovanion": "npm run test:wilds-rhovanion-quests",
     "test:browser-batch4-players": "npm run test:batch4-players",
     "test:browser-batch4": "npm run test:black-serpent-quests && npm run test:cirith-gurat-quests && npm run test:crossings-poros-quests && npm run test:wilds-rhovanion-quests && npm run test:batch4-players",
-    "test:batch4-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-black-serpent|the-dungeons-of-cirith-gurat|the-crossings-of-poros|journey-up-the-anduin|lost-in-mirkwood|the-kings-quest) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:batch4-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-black-serpent|the-dungeons-of-cirith-gurat|the-crossings-of-poros|journey-up-the-anduin|lost-in-mirkwood|the-kings-quest) normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:ered-simulation": "node --import tsx --test tests/ered-simulation.test.ts",
+    "test:withered-heath-quests": "node --import tsx scripts/browser-withered-heath.mjs",
+    "test:roam-rhovanion-quests": "node --import tsx scripts/browser-roam-rhovanion.mjs",
+    "test:fire-night-quests": "node --import tsx scripts/browser-fire-night.mjs",
+    "test:ghost-framsburg-quests": "node --import tsx scripts/browser-ghost-framsburg.mjs",
+    "test:ered-mithrin-players": "node --import tsx scripts/browser-ered-mithrin-players.mjs",
+    "test:browser-withered-heath": "npm run test:withered-heath-quests",
+    "test:browser-roam-rhovanion": "npm run test:roam-rhovanion-quests",
+    "test:browser-fire-night": "npm run test:fire-night-quests",
+    "test:browser-ghost-framsburg": "npm run test:ghost-framsburg-quests",
+    "test:browser-ered-players": "npm run test:ered-mithrin-players",
+    "test:browser-ered": "npm run test:withered-heath-quests && npm run test:roam-rhovanion-quests && npm run test:fire-night-quests && npm run test:ghost-framsburg-quests && npm run test:ered-mithrin-players",
+    "test:ered-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-withered-heath|roam-across-rhovanion|fire-in-the-night|the-ghost-of-framsburg) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

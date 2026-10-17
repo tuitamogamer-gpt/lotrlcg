@@ -1,0 +1,45 @@
+.roam-rhovanion-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid #77815f;
+  border-radius: 12px;
+  background: linear-gradient(115deg, #18251df0, #25261ced);
+  color: #f3ead4;
+  min-width: 0;
+}
+.roam-rhovanion-state > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.roam-rhovanion-state p {
+  margin: 0;
+  line-height: 1.5;
+}
+.roam-rhovanion-state button {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  color: inherit;
+  background: #ffffff0d;
+  border: 1px solid #b6b39060;
+  border-radius: 6px;
+  padding: 5px 8px;
+  text-align: left;
+}
+.roam-rhovanion-state details {
+  grid-column: 1/-1;
+  min-width: 0;
+}
+.roam-rhovanion-state details button {
+  margin: 5px 5px 0 0;
+}
+.roam-rhovanion-state span {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}

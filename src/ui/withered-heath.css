@@ -1,0 +1,60 @@
+.withered-heath-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 0.8rem;
+  margin: 0.8rem 0;
+  padding: 0.8rem;
+  border: 1px solid #72909e;
+  background: linear-gradient(120deg, #24323b, #171f24);
+  border-radius: 8px;
+}
+.withered-heath-state > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.withered-heath-state span {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.withered-heath-state button {
+  display: block;
+  min-width: 0;
+  border: 1px solid #66838b;
+  border-radius: 4px;
+  background: #30434b;
+  color: #e7f1ef;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  line-height: 1.3;
+  cursor: pointer;
+  text-align: left;
+  white-space: normal;
+  font-size: 0.8rem;
+}
+.withered-heath-state button:hover {
+  background: #425b64;
+}
+.withered-heath-state button:focus-visible,
+.withered-heath-state summary:focus-visible {
+  outline: 2px solid #b7dcda;
+  outline-offset: 3px;
+}
+.withered-heath-state summary {
+  cursor: pointer;
+}
+.withered-heath-state details {
+  grid-column: 1/-1;
+}
+.withered-heath-state details button {
+  margin: 0.4rem 0;
+  width: 100%;
+}
+@media (max-width: 480px) {
+  .withered-heath-state {
+    padding: 0.6rem;
+    gap: 0.8rem;
+  }
+}

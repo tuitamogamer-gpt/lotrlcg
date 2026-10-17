@@ -91,7 +91,12 @@ export function addCurrentQuestProgress(s: GameState, amount: number) {
 }
 
 export const sideQuestGoal = (s: GameState, quest: Unit) =>
-  Math.max(0, (card(quest.code).quest ?? 0) + rhudaurQuestPoints(s, quest));
+  Math.max(
+    0,
+    (card(quest.code).quest ?? 0) +
+      rhudaurQuestPoints(s, quest) +
+      (batch4Scenario(s).sideQuestGoalBonus?.(s, quest) ?? 0),
+  );
 
 /** Place progress on an explicit physical quest without changing the phase's current quest. */
 export function addQuestProgress(s: GameState, quest: Unit, amount: number) {

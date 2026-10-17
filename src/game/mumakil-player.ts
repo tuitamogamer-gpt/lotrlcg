@@ -3,13 +3,14 @@ import { card, name } from "./cards";
 import {
   cannotReady,
   canPay,
+  canPlayerAffectShadow,
   choose,
   fx,
   get,
   log,
   prepend,
   putPlayerDeck,
-  removeShadowCard,
+  removePlayerShadowCard,
   requireRule,
   shuffle,
   skip,
@@ -60,13 +61,15 @@ const enemies = (s: GameState) =>
 const yazanTargets = (s: GameState) =>
   enemies(s).filter((u) => !playerEffectImmune(s, u, P.yazan));
 const facedownShadows = (s: GameState) =>
-  enemies(s).flatMap((u) =>
-    u.shadows.flatMap((code, index) =>
-      index >= (u.revealedShadowCount ?? 0) && !u.faceupShadows?.[index]
-        ? [{ enemy: u, code, index }]
-        : [],
-    ),
-  );
+  enemies(s)
+    .filter((u) => canPlayerAffectShadow(s, u))
+    .flatMap((u) =>
+      u.shadows.flatMap((code, index) =>
+        index >= (u.revealedShadowCount ?? 0) && !u.faceupShadows?.[index]
+          ? [{ enemy: u, code, index }]
+          : [],
+      ),
+    );
 const topHarad = (s: GameState) => {
   for (let i = s.discard.length - 1; i >= 0; i--)
     if (
@@ -577,7 +580,7 @@ export function handleMumakilPlayerEffect(s: GameState, e: Effect): boolean {
         "Jubayr needs the chosen physical facedown shadow.",
       );
       s.used.push(phaseLimit(source!));
-      const code = removeShadowCard(target!, e.value!);
+      const code = removePlayerShadowCard(s, target!, e.value!);
       if (code) s.encounterDiscard.push(code);
       return true;
     }

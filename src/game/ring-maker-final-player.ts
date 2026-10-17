@@ -20,7 +20,8 @@ import {
   opts,
   prepend,
   random,
-  removeShadowCard,
+  removePlayerShadowCard,
+  canPlayerAffectShadow,
   requireRule,
   shuffle,
   skip,
@@ -77,6 +78,17 @@ export function finalRingPlayTargets(
   return null;
 }
 export function finalRingPlayProblem(s: GameState, code: string) {
+  if (
+    code === "08143" &&
+    units(s).some((u) => playerUnitIsEnemy(u) && u.shadows.length > 0) &&
+    !units(s).some(
+      (u) =>
+        playerUnitIsEnemy(u) &&
+        u.shadows.length > 0 &&
+        canPlayerAffectShadow(s, u),
+    )
+  )
+    return "No shadow card can be discarded by a player card effect.";
   if (code === "08086") {
     if (s.used.includes(BELTS))
       return "Only one Tighten Our Belts may be played by the players each round.";
@@ -159,10 +171,16 @@ export function finalRingEvent(
         });
       return true;
     case "08143":
-      // Shadows are separate cards: an enemy's immunity does not protect them.
-      for (const u of units(s).filter((u) => playerUnitIsEnemy(u)))
-        while (u.shadows.length)
-          s.encounterDiscard.push(removeShadowCard(u, 0)!);
+      // An enemy's immunity is separate from immunity on its shadow cards.
+      for (const u of units(s).filter(
+        (u) => playerUnitIsEnemy(u) && canPlayerAffectShadow(s, u),
+      )) {
+        while (u.shadows.length) {
+          const shadow = removePlayerShadowCard(s, u, 0);
+          if (!shadow) break;
+          s.encounterDiscard.push(shadow);
+        }
+      }
       return true;
     case "08145":
       for (const u of allCharacters(s))
@@ -308,6 +326,8 @@ export function finalRingShadowOptions(
   effectiveShadow = !!card(code).shadow,
 ): Option[] {
   if (!effectiveShadow) return [];
+  const enemy = get(s, s.combat?.enemyId);
+  if (enemy && !canPlayerAffectShadow(s, enemy)) return [];
   const defenders =
     s.combat?.defenderIds ??
     (s.combat?.defenderId ? [s.combat.defenderId] : []);

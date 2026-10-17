@@ -19,6 +19,16 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-withered-heath": {
+    lead: "Track the dragon",
+    em: "across the Withered Heath.",
+  },
+  "roam-across-rhovanion": { lead: "Follow Urdug", em: "across Rhovanion." },
+  "fire-in-the-night": { lead: "Defend the town", em: "from Dagnir’s fire." },
+  "the-ghost-of-framsburg": {
+    lead: "Discover the treasures",
+    em: "of Framsburg.",
+  },
   "the-black-serpent": { lead: "Raid the camp", em: "of the Black Serpent." },
   "the-dungeons-of-cirith-gurat": {
     lead: "Rescue the prisoners",

@@ -1,3 +1,4 @@
+import * as EredSupport from "./ered-mithrin-player-support";
 import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
@@ -64,7 +65,10 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       if (blanked || attachment.facedown || attachment.namelessCard)
         attachment.blanked = true;
       else delete attachment.blanked;
-      const traits = heirsPlayerTraitGrants(s, attachment.id);
+      const traits = [
+        ...heirsPlayerTraitGrants(s, attachment.id),
+        ...EredSupport.eredMithrinPlayerAttachmentTraits(attachment),
+      ];
       if (traits.length) attachment.dynamicTraits = traits;
       else delete attachment.dynamicTraits;
     }
@@ -103,7 +107,10 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ];
     if (traits.length) host.dynamicTraits = traits;
     else delete host.dynamicTraits;
-    const icons = Angmar.angmarResourceIcons(s, host);
+    const icons = [
+      ...Angmar.angmarResourceIcons(s, host),
+      ...EredSupport.eredMithrinPlayerResourceIcons(s, host),
+    ];
     if (icons.length) host.dynamicResourceIcons = icons;
     else delete host.dynamicResourceIcons;
   }

@@ -5,6 +5,7 @@ import type { Unit } from "./types";
 export function unitType(u: Unit): string {
   const printed = card(u.code).type_code;
   if (printed === "objective-hero") return "hero";
+  if (u.code === "19065" && u.eredThalionHero) return "hero";
   if (u.cobasShipObjective) return "ship-objective";
   return printed === "ally" &&
     u.attachments.some((a) => a.code === "10149" && !a.blanked && !a.facedown)

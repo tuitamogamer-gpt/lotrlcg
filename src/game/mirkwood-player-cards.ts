@@ -17,12 +17,14 @@ import type { Effect, GameState, Unit } from "./types";
 import { gramActiveLocationChanged } from "./mount-gram";
 import {
   canPay,
+  canPlayerAffectShadow,
   choose,
   fx,
   get,
   log,
   opts,
   prepend,
+  removePlayerShadowCard,
   requireRule,
   skip,
   stats,
@@ -75,7 +77,9 @@ const facedownShadows = (s: GameState) =>
         .flatMap((player) => engagedEnemies(s, player))
         .map((u) => [u.id, u]),
     ).values(),
-  ].flatMap((u) => u.shadows.slice(u.revealedShadowCount ?? 0));
+  ]
+    .filter((u) => canPlayerAffectShadow(s, u))
+    .flatMap((u) => u.shadows.slice(u.revealedShadowCount ?? 0));
 const attackResolved = (s: GameState) =>
   playerOrder(s).some((i) =>
     seatView(s, i).used.includes("phase:attack-resolved"),
@@ -296,25 +300,27 @@ export function mirkwoodPlayerCombatWindow(s: GameState) {
     );
 }
 function dawnOptions(s: GameState) {
-  return engagedEnemies(s).flatMap((enemy) =>
-    enemy.shadows.flatMap((code, index) =>
-      index < (enemy.revealedShadowCount ?? 0)
-        ? []
-        : [
-            {
-              id: `${enemy.id}-shadow-${index}`,
-              label: `${card(enemy.code).name} · face-down shadow ${index + 1}`,
-              effects: [
-                fx("mirkwoodDawnDiscard", {
-                  target: enemy.id,
-                  value: index,
-                  code,
-                }),
-              ],
-            },
-          ],
-    ),
-  );
+  return engagedEnemies(s)
+    .filter((enemy) => canPlayerAffectShadow(s, enemy))
+    .flatMap((enemy) =>
+      enemy.shadows.flatMap((code, index) =>
+        index < (enemy.revealedShadowCount ?? 0)
+          ? []
+          : [
+              {
+                id: `${enemy.id}-shadow-${index}`,
+                label: `${card(enemy.code).name} · face-down shadow ${index + 1}`,
+                effects: [
+                  fx("mirkwoodDawnDiscard", {
+                    target: enemy.id,
+                    value: index,
+                    code,
+                  }),
+                ],
+              },
+            ],
+      ),
+    );
 }
 function sourceAvailable(s: GameState, e: Effect): boolean {
   if (!leaveCardAvailable(s, e.source)) return false;
@@ -427,12 +433,13 @@ export function handleMirkwoodPlayerEffect(s: GameState, e: Effect): boolean {
         index = e.value ?? -1;
       requireRule(
         enemy &&
+          canPlayerAffectShadow(s, enemy) &&
           index >= (enemy.revealedShadowCount ?? 0) &&
           enemy.shadows[index] === e.code,
         "Choose a still face-down shadow on an enemy engaged with you.",
       );
-      enemy.faceupShadows?.splice(index, 1);
-      s.encounterDiscard.push(...enemy.shadows.splice(index, 1));
+      const discarded = removePlayerShadowCard(s, enemy, index);
+      if (discarded) s.encounterDiscard.push(discarded);
       log(
         s,
         "Dawn Take You All discards a face-down shadow without resolving its effect.",

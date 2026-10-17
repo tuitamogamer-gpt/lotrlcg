@@ -1,3 +1,4 @@
+import { batch4Scenario } from "./batch4-scenarios";
 import { cobasCanAttackEnemy } from "./cobas";
 import * as Drowned from "./drowned";
 import * as Mordor from "./long-arm-mordor";
@@ -312,6 +313,7 @@ export const attackersFor = (
       (!u.exhausted ||
         u.id === paidAttackerId ||
         angmarNoCombatExhaust(s, u)) &&
+      !batch4Scenario(s).cannotAttack?.(s, u, enemy) &&
       longDarkCanAttack(s, enemy) &&
       !Drowned.drownedCannotAttack(s) &&
       shipCanAttack(enemy, u) &&

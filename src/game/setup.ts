@@ -1,3 +1,5 @@
+import { eredMithrinPlayerSetup } from "./ered-mithrin-player";
+import { encounterReserveDefaults } from "./encounter-reserves";
 import { batch4PlayerSetup } from "./batch4-player";
 import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
@@ -135,6 +137,7 @@ export function createGame(
     rangerReserves?: Record<number, number>;
     /** Wind from the Sea shares the official three-card Encounter reserve. */
     batch4WindReserves?: Record<number, number>;
+    eredEagleReserves?: Record<number, number>;
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -330,27 +333,40 @@ export function createGame(
   }
   s.rangerReserves = {};
   s.batch4WindReserves = {};
+  s.eredEagleReserves = {};
   for (const player of playerOrder(s)) {
-    const deck = seatView(s, player).deck;
-    const hasFlight = deck.includes("17140"),
-      hasSummons = deck.includes("09007");
-    const defaultWind = hasFlight ? (hasSummons ? 1 : 3) : 0;
+    const defaults = encounterReserveDefaults(seatView(s, player).deck);
     const explicitRangers = options.rangerReserves?.[player],
-      explicitWind = options.batch4WindReserves?.[player];
+      explicitWind = options.batch4WindReserves?.[player],
+      explicitEagles = options.eredEagleReserves?.[player];
+    const eagles =
+      explicitEagles ??
+      Math.max(
+        0,
+        Math.min(
+          defaults.eagles,
+          3 - (explicitRangers ?? 0) - (explicitWind ?? 0),
+        ),
+      );
     const rangers =
       explicitRangers ??
-      (explicitWind !== undefined ? 3 - explicitWind : 3 - defaultWind);
-    const wind = explicitWind ?? Math.min(defaultWind, 3 - rangers);
+      (explicitWind !== undefined || explicitEagles !== undefined
+        ? 3 - (explicitWind ?? defaults.wind) - eagles
+        : defaults.rangers);
+    const wind = explicitWind ?? Math.min(defaults.wind, 3 - rangers - eagles);
     requireRule(
-      [rangers, wind].every((n) => Number.isInteger(n) && n >= 0 && n <= 3),
+      [rangers, wind, eagles].every(
+        (n) => Number.isInteger(n) && n >= 0 && n <= 3,
+      ),
       "Set aside between zero and three Encounter cards per player.",
     );
     requireRule(
-      rangers + wind <= 3,
+      rangers + wind + eagles <= 3,
       "A player can set aside at most three Encounter cards in total.",
     );
     s.rangerReserves[player] = rangers;
     s.batch4WindReserves[player] = wind;
+    s.eredEagleReserves[player] = eagles;
   }
   if (!s.table) s.startingThreat = s.threat;
   if (options.easy) {
@@ -527,6 +543,7 @@ export function createGame(
     enqueue(s, fx("capturePrisoner"));
   }
   batch4PlayerSetup(s);
+  eredMithrinPlayerSetup(s);
   log(
     s,
     `${scenario(scenarioId).name} · ${playMode === "campaign" ? "Mirkwood Paths campaign" : "Normal game"}.`,

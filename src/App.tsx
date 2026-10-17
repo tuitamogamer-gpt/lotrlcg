@@ -1,3 +1,9 @@
+import { ROAM_RHOVANION as ROAM } from "./game/roam-rhovanion-support";
+import { encounterReserveDefaults } from "./game/encounter-reserves";
+import { WitheredHeathScenarioState } from "./ui/withered-heath-state";
+import { RoamRhovanionScenarioState } from "./ui/roam-rhovanion-state";
+import { FireNightScenarioState } from "./ui/fire-night-state";
+import { GhostFramsburgScenarioState } from "./ui/ghost-framsburg-state";
 import { isEnemy } from "./game/ships";
 import { currentQuestProgress } from "./game/quest-state";
 import { SignificantMoment } from "./ui/SignificantMoment";
@@ -489,11 +495,20 @@ function CardDetail({
   onClose: () => void;
   action?: ReactNode;
 }) {
-  const companionFront = [TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(
-    c.code,
-  )
-    ? card(c.code.slice(0, -2))
-    : undefined;
+  const companionFront =
+    c.code === ROAM.urdugEnemy
+      ? card(ROAM.urdug)
+      : c.code === ROAM.tinyEnemy
+        ? card(ROAM.tiny)
+        : [TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(c.code)
+          ? card(c.code.slice(0, -2))
+          : undefined;
+  const reverseDefinition =
+    c.code === ROAM.urdug
+      ? card(ROAM.urdugEnemy)
+      : c.code === ROAM.tiny
+        ? card(ROAM.tinyEnemy)
+        : undefined;
   if (companionFront)
     c = {
       ...c,
@@ -512,7 +527,8 @@ function CardDetail({
     printing.position ?? (!c.code.startsWith("octgn:") ? c.code : undefined);
   const [reverse, setReverse] = useState(!!c.initialReverse);
   const shown = reverse
-    ? (companionFront ?? {
+    ? (companionFront ??
+      reverseDefinition ?? {
         ...c,
         name: c.back_name ?? c.name,
         traits: c.back_traits ?? c.traits,
@@ -576,29 +592,29 @@ function CardDetail({
                 {["enemy", "ship-enemy"].includes(shown.type_code) ? (
                   <StatBadge
                     kind="threat"
-                    value={shown.threat ?? shown.printed_stats?.threat}
+                    value={shown.printed_stats?.threat ?? shown.threat}
                     caption
                   />
                 ) : (
                   <StatBadge
                     kind="willpower"
-                    value={shown.willpower ?? shown.printed_stats?.willpower}
+                    value={shown.printed_stats?.willpower ?? shown.willpower}
                     caption
                   />
                 )}
                 <StatBadge
                   kind="attack"
-                  value={shown.attack ?? shown.printed_stats?.attack}
+                  value={shown.printed_stats?.attack ?? shown.attack}
                   caption
                 />
                 <StatBadge
                   kind="defense"
-                  value={shown.defense ?? shown.printed_stats?.defense}
+                  value={shown.printed_stats?.defense ?? shown.defense}
                   caption
                 />
                 <StatBadge
                   kind="health"
-                  value={shown.health ?? shown.printed_stats?.health}
+                  value={shown.printed_stats?.health ?? shown.health}
                   caption
                 />
               </div>
@@ -821,12 +837,31 @@ export default function App() {
   const [reserveWindCounts, setReserveWindCounts] = useState<
     Record<string, number>
   >({});
+  const [reserveEagleCounts, setReserveEagleCounts] = useState<
+    Record<string, number>
+  >({});
   const encounterReserveDecks = (style: "classic" | "hotseat") =>
     (style === "hotseat" ? seats.map((p) => p.deckId) : [selectedDeck]).flatMap(
       (id, player) => {
         const d = describeDeck(id, decks);
-        return d && (d.cards["17140"] ?? 0) > 0 && (d.cards["09007"] ?? 0) > 0
-          ? [{ player, id, name: d.name }]
+        if (!d) return [];
+        const wind = (d.cards["17140"] ?? 0) > 0,
+          rangers = (d.cards["09007"] ?? 0) > 0,
+          eagles = (d.cards["19032"] ?? 0) > 0;
+        return Number(wind) + Number(rangers) + Number(eagles) >= 2
+          ? [
+              {
+                player,
+                id,
+                name: d.name,
+                wind,
+                rangers,
+                eagles,
+                defaults: encounterReserveDefaults(
+                  Object.keys(d.cards).filter((c) => d.cards[c] > 0),
+                ),
+              },
+            ]
           : [];
       },
     );
@@ -839,34 +874,52 @@ export default function App() {
         aria-label="Encounter card reserves"
       >
         <h3>Encounter card reserves</h3>
-        <p>
-          Choose three set aside cards: Wind from the Sea and Ranger of the
-          North.
-        </p>
-        {eligible.map(({ player, id, name }) => (
-          <label key={`${style}:${player}:${id}`}>
-            <span>
-              Player {player + 1} · {name}
-            </span>
-            <select
-              aria-label={`Player ${player + 1} Encounter reserves`}
-              value={reserveWindCounts[`${player}:${id}`] ?? 1}
-              onChange={(event) =>
-                setReserveWindCounts((current) => ({
-                  ...current,
-                  [`${player}:${id}`]: Number(event.target.value),
-                }))
+        <p>Choose three set aside Encounter cards for each player.</p>
+        {eligible.map(
+          ({ player, id, name, wind, rangers, eagles, defaults }) => {
+            const key = `${player}:${id}`;
+            const allocations = [];
+            for (let w = 0; w <= (wind ? 3 : 0); w++)
+              for (let e = 0; e <= (eagles ? 3 - w : 0); e++) {
+                const r = 3 - w - e;
+                if (r > 0 && !rangers) continue;
+                allocations.push({ w, e, r });
               }
-            >
-              {[0, 1, 2, 3].map((wind) => (
-                <option key={wind} value={wind}>
-                  {wind} Wind · {3 - wind}{" "}
-                  {3 - wind === 1 ? "Ranger" : "Rangers"}
-                </option>
-              ))}
-            </select>
-          </label>
-        ))}
+            return (
+              <label key={`${style}:${key}`}>
+                <span>
+                  Player {player + 1} · {name}
+                </span>
+                <select
+                  aria-label={`Player ${player + 1} Encounter reserves`}
+                  value={
+                    (reserveWindCounts[key] ?? defaults.wind) +
+                    4 * (reserveEagleCounts[key] ?? defaults.eagles)
+                  }
+                  onChange={(event) => {
+                    const value = Number(event.target.value);
+                    setReserveWindCounts((current) => ({
+                      ...current,
+                      [key]: value % 4,
+                    }));
+                    setReserveEagleCounts((current) => ({
+                      ...current,
+                      [key]: Math.floor(value / 4),
+                    }));
+                  }}
+                >
+                  {allocations.map(({ w, e, r }) => (
+                    <option key={w + 4 * e} value={w + 4 * e}>
+                      {eagles
+                        ? `${w} Wind · ${e} Eagles · ${r} Rangers`
+                        : `${w} Wind · ${r} ${r === 1 ? "Ranger" : "Rangers"}`}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            );
+          },
+        )}
       </section>
     ) : null;
   };
@@ -1223,11 +1276,14 @@ export default function App() {
       const startingDeck =
         style === "hotseat" ? describeDeck(seats[0].deckId, decks)! : starter;
       const batch4WindReserves: Record<number, number> = {},
-        rangerReserves: Record<number, number> = {};
-      for (const { player, id } of encounterReserveDecks(style)) {
-        const wind = reserveWindCounts[`${player}:${id}`] ?? 1;
+        rangerReserves: Record<number, number> = {},
+        eredEagleReserves: Record<number, number> = {};
+      for (const { player, id, defaults } of encounterReserveDecks(style)) {
+        const wind = reserveWindCounts[`${player}:${id}`] ?? defaults.wind;
+        const eagles = reserveEagleCounts[`${player}:${id}`] ?? defaults.eagles;
         batch4WindReserves[player] = wind;
-        rangerReserves[player] = 3 - wind;
+        eredEagleReserves[player] = eagles;
+        rangerReserves[player] = 3 - wind - eagles;
       }
       const s = createGame(
         Date.now(),
@@ -1239,6 +1295,7 @@ export default function App() {
           reviewMode,
           batch4WindReserves,
           rangerReserves,
+          eredEagleReserves,
           easy: easyMode === "on",
           scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
           playMode,
@@ -2823,6 +2880,13 @@ export default function App() {
             <MumakilScenarioState s={game} inspect={setDetail} />
             <RaceHaradScenarioState s={game} inspect={setDetail} />
             <BeneathSandsScenarioState s={game} inspect={setDetail} />
+            <WitheredHeathScenarioState s={game} inspect={setDetail} />
+            <RoamRhovanionScenarioState s={game} inspect={setDetail} />
+            <FireNightScenarioState s={game} inspect={setDetail} />
+            <GhostFramsburgScenarioState
+              s={game}
+              onInspect={(code) => setDetail(card(code))}
+            />
             <BlackSerpentScenarioState s={game} inspect={setDetail} />
             <CirithGuratScenarioState s={game} inspect={setDetail} />
             <CrossingsPorosScenarioState s={game} inspect={setDetail} />

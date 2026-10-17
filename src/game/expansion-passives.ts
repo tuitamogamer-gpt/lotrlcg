@@ -1,3 +1,4 @@
+import * as EredSupport from "./ered-mithrin-player-support";
 import * as WildsSupport from "./wilds-player-support";
 import { batch4Scenario } from "./batch4-scenarios";
 import { beneathSandsPlayerDoesNotExhaustToQuest } from "./beneath-sands-player-support";
@@ -364,7 +365,8 @@ export const restrictedAttachment = (code: string) =>
 export function questExhausts(s: GameState, u: Unit) {
   if (
     batch4Scenario(s).doesNotExhaustToQuest?.(s, u) ||
-    !WildsSupport.wildsPlayerQuestExhausts(s, u)
+    !WildsSupport.wildsPlayerQuestExhausts(s, u) ||
+    !EredSupport.eredMithrinPlayerQuestExhausts(s, u)
   )
     return false;
   if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;

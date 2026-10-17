@@ -4,13 +4,14 @@ import type { Attachment, Effect, GameState, Option, Unit } from "./types";
 import { card, name, plain } from "./cards";
 import {
   canPay,
+  canPlayerAffectShadow,
   cannotReady,
   choose,
   fx,
   get,
   log,
   prepend,
-  removeShadowCard,
+  removePlayerShadowCard,
   requireRule,
   skip,
   spendResources,
@@ -347,6 +348,8 @@ export function templePlayerShadowOptions(
   hasText: boolean,
 ): Option[] {
   if (!hasText || !s.combat) return [];
+  const enemy = get(s, s.combat.enemyId);
+  if (enemy && !canPlayerAffectShadow(s, enemy)) return [];
   const defenders =
     s.combat.defenderIds ?? (s.combat.defenderId ? [s.combat.defenderId] : []);
   const deorwine = defenders
@@ -581,7 +584,9 @@ export function templePlayerEffect(s: GameState, e: Effect): boolean {
     }
     case "templePlayerDestrierShadow": {
       const shadows = engagedEnemies(s, e.owner ?? activeSeat(s))
-        .filter((enemy) => enemy.id !== e.text)
+        .filter(
+          (enemy) => enemy.id !== e.text && canPlayerAffectShadow(s, enemy),
+        )
         .flatMap((enemy) =>
           enemy.shadows.map((code, index) => ({ enemy, code, index })),
         );
@@ -609,12 +614,13 @@ export function templePlayerEffect(s: GameState, e: Effect): boolean {
     case "templePlayerDestrierDiscard":
       if (
         target &&
+        canPlayerAffectShadow(s, target) &&
         target.id !== e.text &&
         engagedEnemies(s, e.owner ?? activeSeat(s)).some(
           (enemy) => enemy.id === target.id,
         )
       ) {
-        const code = removeShadowCard(target, e.value ?? -1);
+        const code = removePlayerShadowCard(s, target, e.value ?? -1);
         if (code) s.encounterDiscard.push(code);
       }
       break;
@@ -624,6 +630,9 @@ export function templePlayerEffect(s: GameState, e: Effect): boolean {
         (s.combat?.defenderId ? [s.combat.defenderId] : []);
       requireRule(
         u?.code === P.deorwine &&
+          !!s.combat &&
+          !!get(s, s.combat.enemyId) &&
+          canPlayerAffectShadow(s, get(s, s.combat.enemyId)!) &&
           usable(u) &&
           defenders.includes(u.id) &&
           target &&

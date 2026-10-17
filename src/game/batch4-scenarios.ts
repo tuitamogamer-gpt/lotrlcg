@@ -4,10 +4,22 @@ import { BLACK_SERPENT_HOOKS } from "./black-serpent";
 import { CIRITH_GURAT_HOOKS } from "./cirith-gurat";
 import { CROSSINGS_POROS_HOOKS } from "./crossings-poros";
 import { WILDS_RHOVANION_HOOKS } from "./wilds-rhovanion";
+import { WITHERED_HEATH_HOOKS } from "./withered-heath";
+import { ROAM_RHOVANION_HOOKS } from "./roam-rhovanion";
+import { FIRE_NIGHT_HOOKS } from "./fire-night";
+import { GHOST_FRAMSBURG_HOOKS } from "./ghost-framsburg";
 
 const empty: Batch4ScenarioHooks = {};
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
+    case "the-withered-heath":
+      return WITHERED_HEATH_HOOKS;
+    case "roam-across-rhovanion":
+      return ROAM_RHOVANION_HOOKS;
+    case "fire-in-the-night":
+      return FIRE_NIGHT_HOOKS;
+    case "the-ghost-of-framsburg":
+      return GHOST_FRAMSBURG_HOOKS;
     case "the-black-serpent":
       return BLACK_SERPENT_HOOKS;
     case "the-dungeons-of-cirith-gurat":
@@ -28,4 +40,8 @@ export const batch4SharedEffect = (effect: Effect) =>
     CIRITH_GURAT_HOOKS,
     CROSSINGS_POROS_HOOKS,
     WILDS_RHOVANION_HOOKS,
+    WITHERED_HEATH_HOOKS,
+    ROAM_RHOVANION_HOOKS,
+    FIRE_NIGHT_HOOKS,
+    GHOST_FRAMSBURG_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

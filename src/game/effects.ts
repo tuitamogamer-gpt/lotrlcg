@@ -1,7 +1,10 @@
+import * as EredPlayers from "./ered-mithrin-player";
+import * as EredSupport from "./ered-mithrin-player-support";
 import { mainQuestUnit } from "./quest-state";
 import * as BatchPlayers from "./batch4-player";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario, batch4SharedEffect } from "./batch4-scenarios";
+import { dealEnemyShadows } from "./considered-engagement";
 import { finishOpeningHands } from "./actions";
 import * as Sands from "./beneath-sands";
 import * as SandsPlayers from "./beneath-sands-player";
@@ -219,7 +222,6 @@ import {
   heirsQuestFailed,
   heirsForcedCombatDamageTarget,
   heirsUndefendedDamage,
-  heirsShadowDealt,
 } from "./heirs-numenor";
 import {
   handleStewardFearEffect,
@@ -572,6 +574,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
   if (SandsPlayers.handleBeneathSandsPlayerEffect(s, e)) return;
+  if (EredPlayers.handleEredMithrinPlayerEffect(s, e)) return;
   if (BatchPlayers.handleBatch4PlayerEffect(s, e)) return;
   if (WildsPlayers.handleWildsPlayerEffect(s, e)) return;
   if (HaradResponses.handleHaradResponseEffect(s, e)) return;
@@ -797,13 +800,8 @@ function handleEffect(s: GameState, e: Effect) {
         u.revealedShadowCount = 0;
         delete u.shadowCancelsDamage;
         delete u.shadowCancelsCombatDamage;
-        const code =
-          e.text === "desert-no-shadow" ? undefined : encounterDraw(s, true);
-        if (code) {
-          u.shadows.push(code);
-          heirsShadowDealt(s, u);
-          Carn.carnShadowDealt(s, u);
-        }
+        if (!e.noShadow && e.text !== "desert-no-shadow")
+          dealEnemyShadows(s, u);
       }
       prepend(
         s,
@@ -1025,6 +1023,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "failedQuest":
+      if (batch4Scenario(s).failedQuest?.(s, e.value ?? 0)) break;
       Sands.beneathSandsQuestFailed(s);
       if (Angmar.angmarPreventQuestThreat(s)) {
         log(
@@ -1083,7 +1082,7 @@ function handleEffect(s: GameState, e: Effect) {
       batch4Scenario(s).committed?.(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
-      const reveals = rohanRevealReduction(
+      const revealsBeforeEred = rohanRevealReduction(
         s,
         emynPlayerRevealReduction(
           s,
@@ -1098,6 +1097,12 @@ function handleEffect(s: GameState, e: Effect) {
                 Race.raceHaradExtraReveals(s) +
                 stewardFearExtraRevealCount(s),
         ),
+      );
+      const reveals = Math.max(
+        0,
+        revealsBeforeEred -
+          EredSupport.eredMarks(s).filter((k) => k === "phase:ered-hidden")
+            .length,
       );
       const player = firstPlayer(s);
       khazadBeforeStaging(s);
@@ -1797,6 +1802,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       if (!e.flag) startPhase(s, "quest");
       if (!e.flag && sailingQuestStart(s, [{ ...e, flag: true }])) break;
+      EredPlayers.eredMithrinPlayerQuestStart(s);
       emynMuilQuestStart(s);
       rhosgobelQuestStart(s);
       rohanQuestBegins(s);
@@ -2139,6 +2145,11 @@ function handleEffect(s: GameState, e: Effect) {
             khazadAutoEngageAllowed(s, u) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
+            !EredSupport.eredMithrinPlayerPreventEngagement(
+              s,
+              u,
+              activeSeat(s),
+            ) &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
             engagementCost(s, u) <= effectiveThreat(s, i),
         ),
@@ -2193,6 +2204,11 @@ function handleEffect(s: GameState, e: Effect) {
             khazadAutoEngageAllowed(s, u) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
+            !EredSupport.eredMithrinPlayerPreventEngagement(
+              s,
+              u,
+              activeSeat(s),
+            ) &&
             !longDarkPlayerIgnoreEngagement(s, u) &&
             engagementCost(s, u) <= effectiveThreat(s),
         )
@@ -2225,6 +2241,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanCombatBegins(s);
       break;
     case "combatStartEffects":
+      EredPlayers.eredMithrinPlayerCombatStart(s);
       prepend(s, ...City.cityCombatStart(s));
       heirsCombatStart(s);
       {
@@ -2600,6 +2617,8 @@ function handleEffect(s: GameState, e: Effect) {
         WildsPlayers.wildsPlayerAttackResolved(s, defenders);
         if (enemy)
           BatchPlayers.batch4PlayerEnemyAttackResolved(s, enemy, defenders);
+        if (enemy)
+          EredPlayers.eredMithrinPlayerEnemyAttackResolved(s, enemy, defenders);
       }
       if (completed) prepend(s, ...Mordor.mordorAttackFinished(s, completed));
       if (completed) prepend(s, ...Mumakil.mumakilAttackFinished(s, completed));
@@ -2725,12 +2744,18 @@ export function shadowResponse(s: GameState, code: string) {
   const watcher = roadRivendellCannotCancel(s)
     ? []
     : marshPlayerShadowOptions(s, code, !!shadowText);
+  const eredOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : EredPlayers.eredMithrinPlayerShadowOptions(s, code, !!shadowText);
   const templeOptions =
     roadRivendellCannotCancel(s) ||
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
       : TemplePlayers.templePlayerShadowOptions(s, code, !!shadowText);
   if (
+    eredOptions.length ||
     eligible.length ||
     brand.length ||
     watcher.length ||
@@ -2741,6 +2766,7 @@ export function shadowResponse(s: GameState, code: string) {
       s,
       "A shadow falls",
       [
+        ...eredOptions,
         ...templeOptions,
         ...brand,
         ...erkenbrand,

@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 639,
-    "heroes": 73,
-    "deckCards": 564,
-    "encounterCards": 960,
-    "scenarios": 66,
+    "playerCards": 675,
+    "heroes": 77,
+    "deckCards": 595,
+    "encounterCards": 1018,
+    "scenarios": 70,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -73,17 +73,21 @@
       "the-crossings-of-poros",
       "journey-up-the-anduin",
       "lost-in-mirkwood",
-      "the-kings-quest"
+      "the-kings-quest",
+      "the-withered-heath",
+      "roam-across-rhovanion",
+      "fire-in-the-night",
+      "the-ghost-of-framsburg"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1805,
-    "pending": 2378
+    "scripted": 1910,
+    "pending": 2273
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 132
+    "scripted": 140
   },
   "registeredCodes": [
     "01001",
@@ -759,10 +763,46 @@
     "18013",
     "18014",
     "18015",
+    "19001",
+    "19002",
     "19003",
+    "19004",
+    "19005",
+    "19006",
+    "19007",
+    "19008",
+    "19009",
+    "19010",
+    "19026",
+    "19027",
     "19028",
+    "19029",
+    "19030",
+    "19031",
+    "19032",
+    "19033",
+    "19034",
+    "19035",
+    "19056",
+    "19057",
+    "19058",
+    "19059",
+    "19060",
+    "19061",
+    "19062",
+    "19063",
+    "19064",
+    "19065",
+    "19084",
+    "19085",
+    "19086",
+    "19087",
+    "19088",
     "19089",
+    "19090",
+    "19091",
     "19092",
+    "19093",
     "19120",
     "22001",
     "22002",
@@ -818,6 +858,7 @@
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
+    "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
@@ -831,6 +872,7 @@
     "octgn:0e192334-fa2b-4c1a-bfab-0aa44bf88db4",
     "octgn:0e205159-5e62-4d24-b0df-635853aea9c0",
     "octgn:0e58ae5a-0670-4c00-836a-3bef017bf279",
+    "octgn:0e90a1fb-b498-4b6e-a6c8-de3e3ed38aa4",
     "octgn:0e9fb174-59a2-4e7b-8eab-1f9185f75ea7",
     "octgn:0ebedc5b-fd8b-46b8-a2a1-1a6f739e8819",
     "octgn:0ec5f691-e5b3-41b5-bcec-2f963786ef4d",
@@ -844,6 +886,7 @@
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
     "octgn:119cfabc-2cbf-4ffd-a25e-00ec140b8f26",
     "octgn:11a29b18-0e86-4383-a463-e020f8b1d0f6",
+    "octgn:11c67697-29da-4c76-bf89-985c2c036940",
     "octgn:11cb3eda-b7fa-493f-a9fd-cd31e5ae41f2",
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
@@ -854,8 +897,10 @@
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
+    "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
     "octgn:1589883f-87ae-4f4d-a92b-e5e23c25c8e0",
     "octgn:159f5a8f-1e1f-4282-9936-94b10e348176",
+    "octgn:15ebc613-43fc-4c9b-ac71-91840d853e60",
     "octgn:160c8dcb-baa1-4176-9308-7328e500d62e",
     "octgn:16361c0e-f422-44d4-8f25-bc32b7a9aadd",
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
@@ -868,6 +913,7 @@
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+    "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -890,6 +936,7 @@
     "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
     "octgn:21f520fd-5efe-41f9-9f02-7a65e36eb31f",
@@ -930,7 +977,9 @@
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
+    "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
@@ -953,6 +1002,7 @@
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
+    "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
@@ -966,6 +1016,7 @@
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
     "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
+    "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
     "octgn:356f37d9-34c9-4fae-864d-c34dff7eaaa4",
     "octgn:35787b76-d4d5-4bff-bc05-a270b6e4d98e",
@@ -973,7 +1024,9 @@
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+    "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+    "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
@@ -981,6 +1034,7 @@
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
@@ -988,6 +1042,7 @@
     "octgn:3d9db37c-4b51-4da8-be2b-25cd2d48e28b",
     "octgn:3de80480-6316-4c43-824c-44d3ad424a7b",
     "octgn:3dfaab4d-04b1-49a6-bd17-63c184784985",
+    "octgn:3e0619e9-ffd1-4c1b-8b65-f603202cde4f",
     "octgn:3e0e63ba-d11b-4c8a-aab6-047f19013ca7",
     "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
     "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
@@ -1018,6 +1073,7 @@
     "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
+    "octgn:463d0c53-2275-410f-b311-139f19561b46",
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
@@ -1085,6 +1141,7 @@
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
+    "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
@@ -1093,14 +1150,17 @@
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+    "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
+    "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
+    "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
     "octgn:4daa4ff5-625a-4949-aef5-fb1349e249fd",
     "octgn:4e12f20f-aec3-4311-a656-10a517fd97fe",
@@ -1333,6 +1393,7 @@
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
+    "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
     "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
@@ -1355,18 +1416,23 @@
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
+    "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
+    "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
+    "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
@@ -1375,6 +1441,8 @@
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
+    "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
+    "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
     "octgn:69a3ace6-7588-4ec4-91de-780b56502d8a",
     "octgn:6a3ae84d-6c74-4fbf-9254-b8c1d17c8384",
@@ -1393,6 +1461,7 @@
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6fe8d036-9b7a-4ca4-bab4-272d2a6a8949",
+    "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
@@ -1401,9 +1470,11 @@
     "octgn:71d7dd78-a967-43dd-ab73-e46a5d4d4519",
     "octgn:71f1436f-bc66-4bf9-ac87-369ddea7dc64",
     "octgn:720b2482-f69c-4a88-8352-721d854704d2",
+    "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
+    "octgn:73515869-890b-4169-9104-b2e882d921ae",
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
@@ -1427,6 +1498,7 @@
     "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
+    "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
     "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
@@ -1443,6 +1515,7 @@
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
+    "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
@@ -1492,6 +1565,8 @@
     "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
+    "octgn:8c4cc797-13e6-4ee4-a991-7ec76866418a",
+    "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
@@ -1521,6 +1596,7 @@
     "octgn:95d26956-eda3-43b2-b68b-6f8010d076bd",
     "octgn:95f2f7ac-5d85-43e5-930d-d866b00bef26",
     "octgn:962991f0-44af-47ba-9ff0-0f7ed302a543",
+    "octgn:9656a1c9-dd90-4096-b2ba-eb2491d08403",
     "octgn:96f8534a-2683-4c8f-981d-daa470b792b7",
     "octgn:97584fc2-835e-411c-aae3-eb841c90fc43",
     "octgn:976d7409-0e67-43f1-b1bd-56cdeac073ef",
@@ -1540,6 +1616,7 @@
     "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
     "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
+    "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
@@ -1551,6 +1628,7 @@
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
     "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+    "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
@@ -1565,6 +1643,7 @@
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+    "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
@@ -1572,21 +1651,26 @@
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
+    "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
+    "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
     "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
+    "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
     "octgn:a8918c80-f092-4649-bb5c-9f7fde3cef75",
     "octgn:a8980fe0-a42b-4de5-a8ab-388bea8038b1",
+    "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
     "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
+    "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
@@ -1602,6 +1686,7 @@
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+    "octgn:b1612370-142d-4557-8884-b3da12b4baca",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
     "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
@@ -1620,6 +1705,7 @@
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
+    "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
@@ -1635,15 +1721,19 @@
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
     "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
+    "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
+    "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
     "octgn:be784402-7f83-43aa-9e77-c2aac8dd3526",
+    "octgn:bececd5f-87dd-4141-8ecf-69e43ecc0ff4",
+    "octgn:beedf6c6-6214-47d8-bd82-81280543b141",
     "octgn:befbd3c9-45b3-4e68-b19e-5981a6571835",
     "octgn:bf925a7c-b427-4fb6-ba6b-dbc86304a69f",
     "octgn:bfa3b9da-d0e3-4ad6-8d1d-f32975f69551",
@@ -1663,6 +1753,7 @@
     "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
     "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
     "octgn:c3907d39-6fd7-4b33-8fe2-215fd9f90be2",
+    "octgn:c3aff9c9-640f-4e90-85f3-6e245c2156fe",
     "octgn:c3c34a86-6089-4a3f-b1b6-f81d8cbc2caa",
     "octgn:c3e07d8f-3af3-4f21-8951-d3300ca376fa",
     "octgn:c3f9965f-711d-4c51-b9aa-a0b5d5953b49",
@@ -1696,10 +1787,12 @@
     "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
+    "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
+    "octgn:cb64fac2-c5ea-4233-86ed-90e30181a520",
     "octgn:cbbcf9d4-f9d8-448a-9454-3e36c493a31e",
     "octgn:cc13ea34-ab19-474e-afe5-29c8651126d0",
     "octgn:cc2cf907-a433-47e7-bc7f-21fa837aa025",
@@ -1741,6 +1834,7 @@
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
     "octgn:da6d1bd2-575b-4292-9757-3792b79a4b78",
     "octgn:daa67624-18ba-43a3-92c6-6e5586166bb0",
+    "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
     "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
@@ -1757,6 +1851,7 @@
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
     "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
+    "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
@@ -1787,26 +1882,33 @@
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
+    "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
     "octgn:e920ecab-29dc-48a6-908d-f4919d5b468d",
+    "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
     "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
+    "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+    "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
+    "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
+    "octgn:ef4ae3ca-ce48-4cad-88ee-23917e9dcdcc",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
@@ -1817,6 +1919,7 @@
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+    "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
@@ -1829,13 +1932,19 @@
     "octgn:f49b1e33-6190-4e21-8779-ecfb3a39bb75",
     "octgn:f4b35e95-7f32-490d-9591-ac9eb050bb7e",
     "octgn:f542bca1-68d1-4975-aea9-3ff3e7801be5",
+    "octgn:f57aeb37-4f19-4e5f-ae34-326c3b8b62f2",
+    "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+    "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
     "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
+    "octgn:f829839e-b79d-465a-8ca9-bf6af975ce7b",
     "octgn:f86ef645-bc8b-41a0-b288-80118f5433cc",
+    "octgn:f8716c9e-b35a-474d-8800-cc0256f38b36",
     "octgn:f89b8962-1081-4f61-bc08-b2ca4eb08ba8",
     "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
@@ -1890,6 +1999,8 @@
     "rc136",
     "rc137",
     "rc138",
+    "roam-tiny-enemy",
+    "roam-urdug-enemy",
     "temple-lost-island",
     "temple-uncharted-temple",
     "wilds-haldan"
@@ -2080,9 +2191,9 @@
     {
       "product": "fire-in-the-night",
       "total": 28,
-      "scripted": 0,
+      "scripted": 28,
       "player": 10,
-      "playerScripted": 0
+      "playerScripted": 10
     },
     {
       "product": "flight-of-the-stormcaller",
@@ -2241,9 +2352,9 @@
     {
       "product": "roam-across-rhovanion",
       "total": 28,
-      "scripted": 1,
+      "scripted": 28,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "shadow-and-flame",
@@ -2479,9 +2590,9 @@
     {
       "product": "the-ghost-of-framsburg",
       "total": 28,
-      "scripted": 2,
+      "scripted": 28,
       "player": 10,
-      "playerScripted": 2
+      "playerScripted": 10
     },
     {
       "product": "the-grey-havens",
@@ -2822,9 +2933,9 @@
     {
       "product": "the-withered-heath",
       "total": 25,
-      "scripted": 1,
+      "scripted": 25,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "the-wizard-s-quest",
@@ -10411,7 +10522,7 @@
       "name": "Grimbeorn the Old",
       "type": "hero",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10419,7 +10530,7 @@
       "name": "Guardian of Esgaroth",
       "type": "ally",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10435,7 +10546,7 @@
       "name": "Beorning Skin-changer",
       "type": "ally",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10443,7 +10554,7 @@
       "name": "Beorn's Rage",
       "type": "event",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10451,7 +10562,7 @@
       "name": "Woodmen's Clearing",
       "type": "attachment",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10459,7 +10570,7 @@
       "name": "The Hidden Way",
       "type": "event",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10467,7 +10578,7 @@
       "name": "Long Lake Fisherman",
       "type": "ally",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10475,7 +10586,7 @@
       "name": "Grey Cloak",
       "type": "attachment",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10483,7 +10594,7 @@
       "name": "The Arkenstone",
       "type": "attachment",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -10491,7 +10602,7 @@
       "name": "Haldan",
       "type": "hero",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10499,7 +10610,7 @@
       "name": "Wiglaf",
       "type": "ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10515,7 +10626,7 @@
       "name": "Glamdring",
       "type": "attachment",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10523,7 +10634,7 @@
       "name": "Woodmen's Path",
       "type": "attachment",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10531,7 +10642,7 @@
       "name": "Meneldor",
       "type": "ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10539,7 +10650,7 @@
       "name": "Flight of the Eagles",
       "type": "event",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10547,7 +10658,7 @@
       "name": "Wild Stallion",
       "type": "ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10555,7 +10666,7 @@
       "name": "South Away!",
       "type": "event",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10563,7 +10674,7 @@
       "name": "Eagle of the North",
       "type": "ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -10571,7 +10682,7 @@
       "name": "Thranduil",
       "type": "hero",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10579,7 +10690,7 @@
       "name": "The Elvenking",
       "type": "attachment",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10587,7 +10698,7 @@
       "name": "Orcrist",
       "type": "attachment",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10595,7 +10706,7 @@
       "name": "Forest Road Traveler",
       "type": "ally",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10603,7 +10714,7 @@
       "name": "Leather Boots",
       "type": "attachment",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10611,7 +10722,7 @@
       "name": "Giant Bear",
       "type": "ally",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10619,7 +10730,7 @@
       "name": "Outmatched",
       "type": "attachment",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10627,7 +10738,7 @@
       "name": "Galion",
       "type": "ally",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10635,7 +10746,7 @@
       "name": "Quicker Than Sight",
       "type": "event",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10643,7 +10754,7 @@
       "name": "Thalion",
       "type": "ally",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -10651,7 +10762,7 @@
       "name": "Dáin Ironfoot",
       "type": "hero",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10659,7 +10770,7 @@
       "name": "Soldier of Erebor",
       "type": "ally",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10667,7 +10778,7 @@
       "name": "Man the Walls",
       "type": "event",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10675,7 +10786,7 @@
       "name": "Mirkwood Hunter",
       "type": "ally",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10683,7 +10794,7 @@
       "name": "Familiar Lands",
       "type": "event",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10699,7 +10810,7 @@
       "name": "Swift and Strong",
       "type": "event",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10707,7 +10818,7 @@
       "name": "Descendant of Girion",
       "type": "ally",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -10723,7 +10834,7 @@
       "name": "Ring of Thrór",
       "type": "attachment",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -12307,7 +12418,7 @@
       "name": "Durin's Key",
       "type": "objective",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -12699,7 +12810,7 @@
       "name": "Urdug",
       "type": "objective-ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -12963,7 +13074,7 @@
       "name": "Forgotten Crypt",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -13211,7 +13322,7 @@
       "name": "Face the Dragon",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -13267,7 +13378,7 @@
       "name": "Cave Entrance",
       "type": "location",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -13627,7 +13738,7 @@
       "name": "Hrogar's Hill",
       "type": "quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -14187,7 +14298,7 @@
       "name": "Searching for Dragon Sign",
       "type": "quest",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -15011,7 +15122,7 @@
       "name": "Old Lantern",
       "type": "objective",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -15107,7 +15218,7 @@
       "name": "High Falls",
       "type": "location",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -15659,7 +15770,7 @@
       "name": "The Cursed Tomb",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -16051,7 +16162,7 @@
       "name": "Mountain Pass",
       "type": "location",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -16259,7 +16370,7 @@
       "name": "Crypt Stalker",
       "type": "enemy",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -16307,7 +16418,7 @@
       "name": "Slopes of Ered Mithrin",
       "type": "location",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -16547,7 +16658,7 @@
       "name": "Wooden Palisade",
       "type": "location",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -16723,7 +16834,7 @@
       "name": "Orc of the Flame",
       "type": "enemy",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -17339,7 +17450,7 @@
       "name": "Bright Flames",
       "type": "treachery",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -18059,7 +18170,7 @@
       "name": "Searching the Ruins",
       "type": "quest",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -18291,7 +18402,7 @@
       "name": "Hidden Staircase",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -18363,7 +18474,7 @@
       "name": "Hunting Eagle",
       "type": "enemy",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -18483,7 +18594,7 @@
       "name": "The Goblin's Task",
       "type": "quest",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -21779,7 +21890,7 @@
       "name": "Heavy Snow",
       "type": "treachery",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -22251,7 +22362,7 @@
       "name": "Scatha's Teeth",
       "type": "objective",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -22355,7 +22466,7 @@
       "name": "Harsh Weather",
       "type": "treachery",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -22427,7 +22538,7 @@
       "name": "Douse the Flames",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -22491,7 +22602,7 @@
       "name": "The Cold-Drake Attacks!",
       "type": "quest",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -22643,7 +22754,7 @@
       "name": "Evil Spectre",
       "type": "enemy",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -23019,7 +23130,7 @@
       "name": "Deep Ravine",
       "type": "location",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -23035,7 +23146,7 @@
       "name": "The Cursed Shade",
       "type": "quest",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -23555,7 +23666,7 @@
       "name": "Grey Moorland",
       "type": "location",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -23723,7 +23834,7 @@
       "name": "Powerful in Wrath",
       "type": "treachery",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -23827,7 +23938,7 @@
       "name": "Rally the Woodmen",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -24515,7 +24626,7 @@
       "name": "Retrieve Urdug's Horn",
       "type": "quest",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -25035,7 +25146,7 @@
       "name": "Creature Den",
       "type": "location",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -26187,7 +26298,7 @@
       "name": "Haunted Hall",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -26211,7 +26322,7 @@
       "name": "Rescue Tiny",
       "type": "quest",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -26899,7 +27010,7 @@
       "name": "A Cornered Dragon",
       "type": "quest",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -27331,7 +27442,7 @@
       "name": "The Haunted Keep",
       "type": "quest",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -27579,7 +27690,7 @@
       "name": "Urdug's Horn",
       "type": "objective",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -28027,7 +28138,7 @@
       "name": "Find Durin's Key",
       "type": "quest",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -28211,7 +28322,7 @@
       "name": "Fortify the Defense",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -28227,7 +28338,7 @@
       "name": "Hold the Door",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -28363,7 +28474,7 @@
       "name": "Defend the Town",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -28427,7 +28538,7 @@
       "name": "The Dragon's Thrall",
       "type": "enemy",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -28603,7 +28714,7 @@
       "name": "Town Gate",
       "type": "location",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -29139,7 +29250,7 @@
       "name": "Sneaking Off",
       "type": "treachery",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -29491,7 +29602,7 @@
       "name": "Terrible Shadows",
       "type": "treachery",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -30235,7 +30346,7 @@
       "name": "Dragon Sign",
       "type": "objective",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -30483,7 +30594,7 @@
       "name": "The Dragon's Fury",
       "type": "treachery",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -30603,7 +30714,7 @@
       "name": "Abandoned Ruins",
       "type": "treachery",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -30611,7 +30722,7 @@
       "name": "Dragon Hatchling",
       "type": "enemy",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -30979,7 +31090,7 @@
       "name": "Crypt Key",
       "type": "objective",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -31667,7 +31778,7 @@
       "name": "Grey Mountain Giant",
       "type": "enemy",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -31731,7 +31842,7 @@
       "name": "Deadly Cold",
       "type": "treachery",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -32867,7 +32978,7 @@
       "name": "Draw Her Fire",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -33163,7 +33274,7 @@
       "name": "Rout the Goblins",
       "type": "encounter-side-quest",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -33755,7 +33866,7 @@
       "name": "Hunting the Beast",
       "type": "quest",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -34131,7 +34242,7 @@
       "name": "Cold-Drake",
       "type": "enemy",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -34323,7 +34434,7 @@
       "name": "Snow-troll",
       "type": "enemy",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -34475,7 +34586,7 @@
       "name": "Moonlit Passage",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -34507,7 +34618,7 @@
       "name": "Wild Creatures",
       "type": "treachery",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -34571,7 +34682,7 @@
       "name": "Wilderland Bear",
       "type": "enemy",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -34587,7 +34698,7 @@
       "name": "Dwarven Door",
       "type": "location",
       "pack": "The Withered Heath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-withered-heath"
     },
     {
@@ -34971,7 +35082,7 @@
       "name": "Cursed Tower",
       "type": "location",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -35171,7 +35282,7 @@
       "name": "Burning Watchtower",
       "type": "location",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -35187,7 +35298,7 @@
       "name": "Slammed Shut",
       "type": "treachery",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -35251,7 +35362,7 @@
       "name": "Urdug's Gambit",
       "type": "quest",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -35387,7 +35498,7 @@
       "name": "Dagnir",
       "type": "enemy",
       "pack": "Fire in the Night",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "fire-in-the-night"
     },
     {
@@ -35427,7 +35538,7 @@
       "name": "Fram's Shade",
       "type": "enemy",
       "pack": "The Ghost of Framsburg",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-ghost-of-framsburg"
     },
     {
@@ -35443,7 +35554,7 @@
       "name": "Tiny",
       "type": "objective-ally",
       "pack": "Roam Across Rhovanion",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "roam-across-rhovanion"
     },
     {
@@ -36816,29 +36927,29 @@
       "id": "E08.4",
       "name": "The Withered Heath (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-withered-heath",
+      "state": "scripted"
     },
     {
       "id": "E08.5",
       "name": "Roam Across Rhovanion (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "roam-across-rhovanion",
+      "state": "scripted"
     },
     {
       "id": "E08.6",
       "name": "Fire in the Night (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "fire-in-the-night",
+      "state": "scripted"
     },
     {
       "id": "E08.7",
       "name": "The Ghost of Framsburg (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ghost-of-framsburg",
+      "state": "scripted"
     },
     {
       "id": "E08.8",
@@ -38307,29 +38418,29 @@
       "id": "Q08.4",
       "name": "The Withered Heath",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-withered-heath",
+      "state": "scripted"
     },
     {
       "id": "Q08.5",
       "name": "Roam Across Rhovanion",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "roam-across-rhovanion",
+      "state": "scripted"
     },
     {
       "id": "Q08.6",
       "name": "Fire in the Night",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "fire-in-the-night",
+      "state": "scripted"
     },
     {
       "id": "Q08.7",
       "name": "The Ghost of Framsburg",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ghost-of-framsburg",
+      "state": "scripted"
     },
     {
       "id": "Q08.8",

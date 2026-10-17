@@ -1,3 +1,4 @@
+import * as EredSupport from "./ered-mithrin-player-support";
 import * as BatchSupport from "./batch4-player-support";
 import * as WildsSupport from "./wilds-player-support";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -349,6 +350,15 @@ export function removeShadowCard(enemy: Unit, index: number) {
   return removed;
 }
 
+export const canPlayerAffectShadow = (s: GameState, enemy: Unit) =>
+  !batch4Scenario(s).shadowImmune?.(s, enemy);
+export const removePlayerShadowCard = (
+  s: GameState,
+  enemy: Unit,
+  index: number,
+) =>
+  canPlayerAffectShadow(s, enemy) ? removeShadowCard(enemy, index) : undefined;
+
 export function random(s: GameState) {
   s.seed = (s.seed + 0x6d2b79f5) | 0;
   let t = Math.imul(s.seed ^ (s.seed >>> 15), 1 | s.seed);
@@ -560,7 +570,8 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           BatchSupport.batch4PlayerStats(s, u).will,
-          WildsSupport.wildsPlayerStats(s, u).will,
+          EredSupport.eredMithrinPlayerStats(s, u).will +
+            WildsSupport.wildsPlayerStats(s, u).will,
           chetwoodBonus.will,
           cobasBonus.will,
           Mordor.mordorWillBonus(s, u),
@@ -631,6 +642,7 @@ export function stats(s: GameState, u: Unit) {
         Sands.beneathSandsStats(s, u).attack +
         (batch4Scenario(s).stats?.(s, u).attack ?? 0) +
         BatchSupport.batch4PlayerStats(s, u).attack +
+        EredSupport.eredMithrinPlayerStats(s, u).attack +
         WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
         Umbar.umbarStats(s, u).attack +
@@ -705,6 +717,7 @@ export function stats(s: GameState, u: Unit) {
             Sands.beneathSandsStats(s, u).defense +
             (batch4Scenario(s).stats?.(s, u).defense ?? 0) +
             BatchSupport.batch4PlayerStats(s, u).defense +
+            EredSupport.eredMithrinPlayerStats(s, u).defense +
             WildsSupport.wildsPlayerStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
             Desert.desertCrossingStats(s, u).defense +
@@ -747,6 +760,7 @@ export function stats(s: GameState, u: Unit) {
       Mordor.mordorStats(s, u).health +
       Race.raceHaradStats(s, u).health +
       (batch4Scenario(s).stats?.(s, u).health ?? 0) +
+      EredSupport.eredMithrinPlayerStats(s, u).health +
       WildsSupport.wildsPlayerStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
@@ -823,7 +837,8 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   ? (batch4Scenario(s).allyCost?.(s) ?? 0)
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
-                WildsSupport.wildsPlayerCostReduction(s, c, target) +
+                WildsSupport.wildsPlayerCostReduction(s, c, target) -
+                EredSupport.eredMithrinPlayerCostReduction(s, c, target) +
                 Dike.dikePlayCost(
                   s,
                   c,
@@ -943,7 +958,8 @@ export const threatOf = (s: GameState, u: Unit) =>
             s.staging.some((x) => x.id === u.id)
               ? (s.fog ?? 0)
               : 0) +
-            (u.tempThreat ?? 0) -
+            (u.tempThreat ?? 0) +
+            EredSupport.eredMithrinPlayerLocationThreat(s, u) -
             Realm.realmThreatPenalty(u) -
             u.attachments.filter((a) => !a.blanked && a.code === "01056")
               .length,
@@ -1004,7 +1020,7 @@ export const questStat = (s: GameState) =>
       heirsQuestStat(s) ??
       druadanPlayerQuestStat(s)));
 
-export const locationQuest = (s: GameState, u: Unit) =>
+const baseLocationQuest = (s: GameState, u: Unit) =>
   Temple.templeLocationQuest(s, u) ??
   Depths.depthsLocationQuest(s, u) ??
   Fate.fateLocationQuest(s, u) ??
@@ -1020,6 +1036,8 @@ export const locationQuest = (s: GameState, u: Unit) =>
     stewardFearLocationQuestBonus(s, u) +
     Rhu.rhudaurLocationQuestBonus(s, u) +
     (batch4Scenario(s).locationQuestBonus?.(s, u) ?? 0);
+export const locationQuest = (s: GameState, u: Unit) =>
+  EredSupport.eredMithrinPlayerLocationQuest(s, u, baseLocationQuest(s, u));
 export const engagementCost = (s: GameState, u: Unit) =>
   Wastes.wastesEngagementCost(s, u) ??
   heirsEngagementCost(s, u) ??
@@ -1129,6 +1147,7 @@ export const enemyAttackPrevented = (
   MumakPlayers.mumakilEnemyCannotAttack(s, u, player);
 
 export const canFight = (u: Unit) =>
+  !EredSupport.eredMithrinPlayerCannotFight(u) &&
   (u.code !== "08112" || !!u.blanked) &&
   (u.code !== "10089" || !!u.blanked) &&
   returnMirkwoodCanFight(u) &&
@@ -1189,6 +1208,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
       (h) =>
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
+        EredSupport.eredMithrinPlayerNoResourceMatch(s, c) ||
         WildsSupport.wildsPlayerNoResourceMatch(s, c) ||
         WildsSupport.wildsPlayerPayer(h, c) ||
         MumakSupport.mumakilKahlielPays(h, c) ||

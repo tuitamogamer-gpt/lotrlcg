@@ -18,6 +18,11 @@ import {
   WILDS_RHOVANION_QUESTS,
 } from "./wilds-rhovanion-scenario-data";
 import wildsRhovanionPlayers from "../data/wilds-rhovanion-player-cards.json";
+import eredMithrinPlayers from "../data/ered-mithrin-player-cards.json";
+import { WITHERED_HEATH_ENCOUNTERS, WITHERED_HEATH_QUESTS } from "./withered-heath-scenario-data";
+import { ROAM_RHOVANION_ENCOUNTERS, ROAM_RHOVANION_QUESTS } from "./roam-rhovanion-scenario-data";
+import { FIRE_NIGHT_ENCOUNTERS, FIRE_NIGHT_QUESTS } from "./fire-night-scenario-data";
+import { GHOST_FRAMSBURG_ENCOUNTERS, GHOST_FRAMSBURG_QUESTS } from "./ghost-framsburg-scenario-data";
 import { DIKE_ENCOUNTERS, DIKE_QUESTS } from "./deadmens-dike-support";
 import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
@@ -231,6 +236,7 @@ export const playerCards = [
           ...cirithGuratPlayers,
           ...crossingsPorosPlayers,
           ...wildsRhovanionPlayers,
+          ...eredMithrinPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "17087") return { ...c, quest: 6, victory: 1 };
@@ -358,6 +364,10 @@ export const encounterCards = [
       ...CIRITH_GURAT_ENCOUNTERS,
       ...CROSSINGS_POROS_ENCOUNTERS,
       ...WILDS_RHOVANION_ENCOUNTERS,
+      ...WITHERED_HEATH_ENCOUNTERS,
+      ...ROAM_RHOVANION_ENCOUNTERS,
+      ...FIRE_NIGHT_ENCOUNTERS,
+      ...GHOST_FRAMSBURG_ENCOUNTERS,
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -414,6 +424,10 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...CROSSINGS_POROS_QUESTS,
     ...WILDS_RHOVANION_QUESTS,
     ...CAMPAIGN_CARDS,
+    ...WITHERED_HEATH_QUESTS,
+    ...ROAM_RHOVANION_QUESTS,
+    ...FIRE_NIGHT_QUESTS,
+    ...GHOST_FRAMSBURG_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -512,6 +526,10 @@ export const SCRIPTED = new Set(
     ...CROSSINGS_POROS_QUESTS,
     ...WILDS_RHOVANION_QUESTS,
     ...DEAD_MARSHES_QUESTS,
+    ...WITHERED_HEATH_QUESTS,
+    ...ROAM_RHOVANION_QUESTS,
+    ...FIRE_NIGHT_QUESTS,
+    ...GHOST_FRAMSBURG_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

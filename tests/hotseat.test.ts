@@ -1,4 +1,14 @@
 import {
+  ERED_SCENARIOS,
+  isEredScenario,
+  eredSimulationAction,
+  eredSimulationChoice,
+} from "./ered-simulation-policy";
+import {
+  assertEredSaveRestoration,
+  eredSimulationObserver,
+} from "./ered-simulation-invariants";
+import {
   batch4SimulationAction,
   batch4SimulationChoice,
   isBatch4Scenario,
@@ -530,6 +540,7 @@ const importedLostRealmScenario = (id: ScenarioId) =>
     ...RACE_HARAD_SCENARIOS,
     ...BENEATH_SANDS_SCENARIOS,
     ...BATCH4_SCENARIOS,
+    ...ERED_SCENARIOS,
   ].includes(id);
 for (const scenarioId of [
   ...coreScenarios,
@@ -547,6 +558,7 @@ for (const scenarioId of [
   ...RACE_HARAD_SCENARIOS,
   ...BENEATH_SANDS_SCENARIOS,
   ...BATCH4_SCENARIOS,
+  ...ERED_SCENARIOS,
 ] as const)
   for (const campaign of importedLostRealmScenario(scenarioId)
     ? [false]
@@ -602,17 +614,19 @@ for (const scenarioId of [
                     ? cobasSimulationObserver()
                     : scenarioId === "the-city-of-corsairs"
                       ? citySimulationObserver()
-                      : isBatch4Scenario(scenarioId)
-                        ? batch4SimulationObserver()
-                        : isBeneathSandsScenario(scenarioId)
-                          ? beneathSandsSimulationObserver()
-                          : isRaceHaradScenario(scenarioId)
-                            ? raceHaradSimulationObserver()
-                            : isMumakilScenario(scenarioId)
-                              ? mumakilSimulationObserver()
-                              : isHaradScenario(scenarioId)
-                                ? haradSimulationObserver()
-                                : undefined;
+                      : isEredScenario(scenarioId)
+                        ? eredSimulationObserver()
+                        : isBatch4Scenario(scenarioId)
+                          ? batch4SimulationObserver()
+                          : isBeneathSandsScenario(scenarioId)
+                            ? beneathSandsSimulationObserver()
+                            : isRaceHaradScenario(scenarioId)
+                              ? raceHaradSimulationObserver()
+                              : isMumakilScenario(scenarioId)
+                                ? mumakilSimulationObserver()
+                                : isHaradScenario(scenarioId)
+                                  ? haradSimulationObserver()
+                                  : undefined;
             mapObserver?.observe(s);
             while (
               (s.status === "playing" || s.flow?.pending) &&
@@ -629,6 +643,7 @@ for (const scenarioId of [
                 a = {
                   type: "CHOOSE",
                   id: (
+                    eredSimulationChoice(s) ??
                     batch4SimulationChoice(s) ??
                     beneathSandsSimulationChoice(s) ??
                     raceHaradSimulationChoice(s) ??
@@ -641,6 +656,7 @@ for (const scenarioId of [
                   ).id,
                 };
               else if (
+                eredSimulationAction(s) ??
                 batch4SimulationAction(s) ??
                 beneathSandsSimulationAction(s) ??
                 raceHaradSimulationAction(s) ??
@@ -648,7 +664,8 @@ for (const scenarioId of [
                 haradSimulationAction(s) ??
                 greyHavensSimulationAction(s)
               )
-                a = (batch4SimulationAction(s) ??
+                a = (eredSimulationAction(s) ??
+                  batch4SimulationAction(s) ??
                   beneathSandsSimulationAction(s) ??
                   raceHaradSimulationAction(s) ??
                   mumakilSimulationAction(s) ??
@@ -696,7 +713,8 @@ for (const scenarioId of [
                 (!s.activeLocation ||
                   (scenarioId === "the-thing-in-the-depths" &&
                     s.stage === 3)) &&
-                (isBatch4Scenario(scenarioId) ||
+                (isEredScenario(scenarioId) ||
+                  isBatch4Scenario(scenarioId) ||
                   isBeneathSandsScenario(scenarioId) ||
                   isRaceHaradScenario(scenarioId) ||
                   isMumakilScenario(scenarioId) ||
@@ -735,6 +753,7 @@ for (const scenarioId of [
                     }) + "\n",
                   );
                 s =
+                  isEredScenario(scenarioId) ||
                   isBatch4Scenario(scenarioId) ||
                   isBeneathSandsScenario(scenarioId) ||
                   isRaceHaradScenario(scenarioId) ||
@@ -795,6 +814,8 @@ for (const scenarioId of [
                 assertCobasSaveRestoration(savedState, restored);
               else if (scenarioId === "the-city-of-corsairs")
                 assertCitySaveRestoration(savedState, restored);
+              else if (isEredScenario(scenarioId))
+                assertEredSaveRestoration(savedState, restored);
               else if (isBatch4Scenario(scenarioId))
                 assertBatch4SaveRestoration(savedState, restored);
               else if (isBeneathSandsScenario(scenarioId))

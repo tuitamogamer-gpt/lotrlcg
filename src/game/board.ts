@@ -1,7 +1,10 @@
+import * as EredPlayers from "./ered-mithrin-player";
+import * as EredSupport from "./ered-mithrin-player-support";
 import type { DamageContext } from "./damage-context";
 import * as BatchPlayers from "./batch4-player";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
+import { dealEnemyShadows } from "./considered-engagement";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
 import * as RacePlayers from "./race-harad-player";
@@ -106,7 +109,6 @@ import {
   ringMakerLocationRevealed,
   ringMakerThreatRaised,
 } from "./ring-maker-player";
-import { heirsShadowDealt } from "./heirs-numenor";
 import * as Isengard from "./voice-isengard";
 import * as BloodQuest from "./blood-gondor";
 import * as MorgulQuest from "./morgul-vale";
@@ -336,7 +338,6 @@ import {
   characters,
   choose,
   draw,
-  encounterDraw,
   enqueue,
   followFirstPlayer,
   fx,
@@ -484,6 +485,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
   redhornCharacterExhausted(s, u);
   roadRivendellCharacterExhausted(s, u);
   stewardFearCharacterExhausted(s, u);
+  batch4Scenario(s).characterExhausted?.(s, u);
   return true;
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
@@ -816,6 +818,7 @@ export function check(s: GameState) {
   TempleEncounters.templeEncounterCheck(s);
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
+  EredSupport.eredMithrinPlayerRefresh(s);
   finalRingFollowFirst(s);
   Angmar.angmarSyncSwordThain(s);
   globalEachSeat(s, () => {
@@ -900,6 +903,8 @@ export function check(s: GameState) {
         !Mumakil.mumakilIndestructible(s, u) &&
         !DunlandQuest.dunlandCannotLeave(u) &&
         !Trials.trialsCannotLeave(s, u) &&
+        !batch4Scenario(s).cannotLeave?.(s, u) &&
+        !batch4Scenario(s).indestructible?.(s, u) &&
         u.damage >= stats(s, u).health,
     );
     if (unit) doomed = { unit, player: activeSeat(s) };
@@ -1236,6 +1241,7 @@ export function addVictoryCard(s: GameState, code: string) {
   s.victoryCards.push(code);
   s.victory += card(code).victory ?? 0;
   if (s.khazad) s.khazad.victoryCards.push(code);
+  EredSupport.eredMithrinPlayerRefresh(s);
 }
 
 export function damage(
@@ -1578,13 +1584,15 @@ export function destroy(
       Carn.carnIndestructible(s, u) ||
       Depths.depthsIndestructible(s, u) ||
       City.cityIndestructible(s, u) ||
-      Mumakil.mumakilIndestructible(s, u))
+      Mumakil.mumakilIndestructible(s, u) ||
+      batch4Scenario(s).indestructible?.(s, u))
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   if (batch4Scenario(s).cannotLeave?.(s, u)) return;
   if (destruction) batch4Scenario(s).characterDestroyed?.(s, u, damageContext);
   batch4Scenario(s).hostLeaves?.(s, u, destruction);
+  EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   City.cityDestroyed(s, u, destruction);
   Umbar.umbarEnemyDestroyed(s, u, destruction);
@@ -1620,6 +1628,7 @@ export function destroy(
   const lastKnownBlanked = !!u.blanked;
   const lastAttachments = [...u.attachments];
   if (isHero(u) || isAlly(u)) WildsPlayers.wildsPlayerCharacterLeaving(s, u);
+  EredPlayers.eredMithrinPlayerCharacterLeaving(s, u);
   const wasEngaged = allEngaged(s).some((enemy) => enemy.id === u.id);
   if (s.sailing?.test)
     s.sailing.test.committedIds = s.sailing.test.committedIds.filter(
@@ -1859,6 +1868,7 @@ export function discardLocation(s: GameState, u: Unit) {
   );
   if (batch4Scenario(s).cannotLeave?.(s, u)) return;
   batch4Scenario(s).hostLeaves?.(s, u, false);
+  EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   const wasActive = allActiveLocations(s).some(
     (location) => location.id === u.id,
@@ -1917,6 +1927,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     watcherWaterProgressCapacity(s, u) ?? Infinity,
   );
   u.progress += value;
+  batch4Scenario(s).locationProgressPlaced?.(s, u, value);
   watcherWaterProgressPlaced(s, u, value);
   roadRivendellProgressPlaced(s, u, value);
   Celebrimbor.celebrimborProgressPlaced(s, u, value);
@@ -1926,6 +1937,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
   batch4Scenario(s).hostLeaves?.(s, u, false);
+  EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   log(s, `${name(u)} is explored.`, "good");
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
@@ -1944,6 +1956,12 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     }
   }
   const exploredAttachments = [...u.attachments];
+  EredPlayers.eredMithrinPlayerLocationExplored(
+    s,
+    u,
+    wasActive,
+    exploredAttachments,
+  );
   stewardFearLocationLeft(s, u, true, wasActive);
   Amon.amonDinLocationLeft(s, u, true);
   BloodQuest.bloodGondorExplored(s, u);
@@ -2123,6 +2141,11 @@ export function progress(
     addCurrentQuestProgress(s, n);
     return;
   }
+  if (
+    fromSuccessfulQuest &&
+    batch4Scenario(s).successfulQuestProgressBlocked?.(s)
+  )
+    return;
   if (Temple.templeQuestProgress(s, n)) return;
   if (Umbar.umbarProgress(s, n)) {
     advanceQuest(s);
@@ -2320,6 +2343,7 @@ export function advanceQuest(s: GameState) {
 }
 
 export function phaseEnd(s: GameState) {
+  EredPlayers.eredMithrinPlayerPhaseEnd(s);
   const cityDepartures = CityPlayers.cityPlayerPhaseEnd(s);
   cobasPlayerPhaseEnd(s);
   Cobas.cobasPhaseEnd(s);
@@ -2384,6 +2408,7 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
   const lastKnownTraits = effectiveTraits(u);
   const lastKnownType = unitType(u);
   WildsPlayers.wildsPlayerCharacterLeaving(s, u);
+  EredPlayers.eredMithrinPlayerCharacterLeaving(s, u);
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
   forOwner(s, controller, () => {
     s.allies = s.allies.filter((a) => a.id !== u.id);
@@ -2436,6 +2461,7 @@ export function returnAlliesToHand(s: GameState, allies: Unit[]) {
     }));
   for (const move of moves) {
     WildsPlayers.wildsPlayerCharacterLeaving(s, move.u);
+    EredPlayers.eredMithrinPlayerCharacterLeaving(s, move.u);
     for (const a of [...move.u.attachments])
       discardAttachment(s, move.u, a, true);
     forOwner(s, move.controller, () => {
@@ -2527,6 +2553,7 @@ export function nextRound(s: GameState) {
 }
 
 export function collectResources(s: GameState) {
+  EredSupport.eredMithrinPlayerRefresh(s);
   const draws: Effect[] = [];
   globalEachSeat(s, (player) => {
     for (const h of s.heroes)
@@ -2622,6 +2649,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   const realmBefore = s.queue.length;
   Voyage.voyageEngaged(s, u, fromStaging);
   Cobas.cobasEngaged(s, u);
+  EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u);
@@ -2691,7 +2719,7 @@ export function revealed(
     !thalinDefeats &&
     Wastes.wastesCancelAllowed(s) &&
     !Sands.beneathSandsCannotCancel(s) &&
-    !batch4Scenario(s).cannotCancel?.(s) &&
+    !batch4Scenario(s).cannotCancel?.(s, false, code) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
     Storm.stormcallerCanCancelWhenRevealed(s, code) &&
     !allActiveLocations(s).some((l) => l.code === "02016")
@@ -2915,7 +2943,7 @@ export function resolveReveal(
     code !== NIN.remnants &&
     !Fords.fordsCannotCancel(s, code) &&
     !Sands.beneathSandsCannotCancel(s) &&
-    !batch4Scenario(s).cannotCancel?.(s) &&
+    !batch4Scenario(s).cannotCancel?.(s, false, code) &&
     !Drowned.drownedCannotCancel(s, code) &&
     Wastes.wastesCancelAllowed(s) &&
     Voyage.voyageCanCancelWhenRevealed(s, code) &&
@@ -3120,6 +3148,14 @@ export function placeEncounter(
     Cobas.cobasCardEntered(s, fresh, fromReveal, cancel);
     City.cityCardEntered(s, fresh, fromReveal, cancel);
     Mordor.mordorCardEntered(s, fresh, fromReveal, cancel);
+    if (fromReveal && EredPlayers.eredMithrinPlayerEagleRevealed(s, fresh))
+      return;
+    if (
+      fromReveal &&
+      c.type_code === "location" &&
+      revealOrigin === "encounter"
+    )
+      EredPlayers.eredMithrinPlayerLocationRevealed(s, fresh);
     if (fromReveal && BatchPlayers.batch4PlayerWindRevealed(s, fresh)) return;
     Sands.beneathSandsCardEntered(s, fresh, fromReveal, cancel);
     batch4Scenario(s).cardEntered?.(s, fresh, fromReveal, cancel);
@@ -3509,6 +3545,7 @@ export function allyEntryResponses(
     batch4Scenario(s).allyEntered?.(s, u, played, fromHand)
   )
     return;
+  EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);
   if (
     !forcedResolved &&
@@ -3861,12 +3898,12 @@ export function shadow(s: GameState, code: string) {
       const enemy = get(s, c.enemyId),
         effects: Effect[] = [];
       for (const _player of livingSeats(s)) {
-        const extra = encounterDraw(s, true);
-        if (enemy && extra) {
-          enemy.shadows.push(extra);
-          heirsShadowDealt(s, enemy);
-          effects.push(fx("shadowReveal", { code: extra }));
-        }
+        if (enemy)
+          effects.push(
+            ...dealEnemyShadows(s, enemy).map((code) =>
+              fx("shadowReveal", { code }),
+            ),
+          );
       }
       prepend(s, ...effects);
       break;
