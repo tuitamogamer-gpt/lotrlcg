@@ -63,7 +63,7 @@ export function LandingHero({
   }
 
   function explore() {
-    const setup = document.getElementById("fellowship-setup");
+    const setup = document.getElementById("quest-selection");
     setup?.focus({ preventScroll: true });
     setup?.scrollIntoView({
       behavior: reducedMotion ? "instant" : "smooth",
@@ -223,7 +223,7 @@ export function LandingHero({
           </span>
         </div>
         <button className="landing-explore" onClick={explore}>
-          Your story begins below <ArrowDown size={19} weight="light" />
+          Explore the adventures <ArrowDown size={19} weight="light" />
         </button>
       </div>
     </section>

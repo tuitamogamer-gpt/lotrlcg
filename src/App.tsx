@@ -1944,6 +1944,32 @@ export default function App() {
               onResume={() => nav("table")}
               onLearn={() => nav("guide")}
             />
+            <nav className="journey-steps" aria-label="Prepare your adventure">
+              <a href="#fellowship-setup">
+                <span>01</span>
+                <div>
+                  <small>GATHER YOUR COMPANY</small>
+                  <strong>Your fellowship</strong>
+                </div>
+                <ArrowRight size={18} />
+              </a>
+              <a href="#quest-selection">
+                <span>02</span>
+                <div>
+                  <small>FIND YOUR NEXT CHAPTER</small>
+                  <strong>Choose an adventure</strong>
+                </div>
+                <ArrowRight size={18} />
+              </a>
+              <a href="#adventure-preview">
+                <span>03</span>
+                <div>
+                  <small>THE ROAD AWAITS</small>
+                  <strong>Review & begin</strong>
+                </div>
+                <ArrowRight size={18} />
+              </a>
+            </nav>
             <FellowshipSetup
               mode={setupMode}
               changeMode={setSetupMode}
@@ -1957,7 +1983,12 @@ export default function App() {
             />
             {encounterReserveControls(setupMode)}
             <AccountStrip account={account} open={() => setShowAccount(true)} />
-            <section className="mode-selection" aria-label="Choose game mode">
+            <section
+              id="quest-selection"
+              tabIndex={-1}
+              className="mode-selection"
+              aria-label="Choose game mode"
+            >
               <div className="mode-heading">
                 <span className="book-kicker">II · CHOOSE YOUR QUEST</span>
                 <h2>Where will the road lead?</h2>
@@ -1999,7 +2030,12 @@ export default function App() {
               }
               onSelect={setSelectedScenario}
             />
-            <section className={`adventure-hero adventure-${quest.id}`}>
+            <section
+              id="adventure-preview"
+              tabIndex={-1}
+              aria-labelledby="adventure-preview-title"
+              className={`adventure-hero adventure-${quest.id}`}
+            >
               <div className="forest-bg" />
               <Ambient />
               <div className="hero-copy">
@@ -2009,7 +2045,13 @@ export default function App() {
                     ? `MIRKWOOD PATHS · CHAPTER ${quest.chapter}`
                     : quest.tagline.toUpperCase()}
                 </div>
-                <h2>
+                <div className="adventure-preview-meta">
+                  <span>{scenarioRelease(quest.id)}</span>
+                  <span>
+                    Difficulty <strong>{quest.difficulty}</strong> / 10
+                  </span>
+                </div>
+                <h2 id="adventure-preview-title">
                   <QuestHeadline id={quest.id} />
                 </h2>
                 <p>{quest.description}</p>

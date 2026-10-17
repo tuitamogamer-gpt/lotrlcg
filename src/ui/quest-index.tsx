@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { Check } from "@phosphor-icons/react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Check, MagnifyingGlass, X } from "@phosphor-icons/react";
 import { encounterCards } from "../game/cards";
 import { cardProductInfo } from "../game/products";
 import { SCENARIOS, scenario } from "../game/scenarios";
@@ -167,6 +167,35 @@ export function QuestIndex({
   onSelect: (id: ScenarioId) => void;
 }) {
   const index = useRef<HTMLDivElement>(null);
+  const search = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("");
+  const [release, setRelease] = useState("");
+  const normalize = (value: string) =>
+    value
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  const term = normalize(query.trim());
+  const groups = RELEASE_GROUPS.map((group) => ({
+    ...group,
+    quests: group.quests.filter(
+      (q) =>
+        (locked || !release || group.name === release) &&
+        (locked ||
+          normalize(`${q.name} ${q.tagline} ${group.name}`).includes(term)),
+    ),
+  })).filter((group) => group.quests.length > 0);
+  const count = groups.reduce((total, group) => total + group.quests.length, 0);
+  function clearFilters() {
+    setQuery("");
+    setRelease("");
+    search.current?.focus();
+  }
+  function viewAdventure() {
+    const preview = document.getElementById("adventure-preview");
+    preview?.focus({ preventScroll: true });
+    preview?.scrollIntoView({ block: "start", behavior: "instant" });
+  }
   useEffect(() => {
     const list = index.current;
     const current = list?.querySelector<HTMLElement>(".mission-card.selected");
@@ -179,51 +208,117 @@ export function QuestIndex({
         0,
         current.offsetTop - list.clientHeight / 2 + current.offsetHeight / 2,
       );
-  }, [selected]);
+  }, [selected, query, release, locked]);
   return (
-    <section className="mission-selection" aria-label="Missions">
-      <div className="mission-index" ref={index}>
-        {RELEASE_GROUPS.map((group) => (
-          <div
-            className="mission-group"
-            key={group.name}
-            role="group"
-            aria-label={group.name}
-          >
-            <h3>{group.name}</h3>
-            {group.quests.map((q) => {
-              const done = completed.includes(q.id);
-              return (
-                <button
-                  key={q.id}
-                  className={`mission-card mission-${q.id}${selected === q.id ? " selected" : ""}`}
-                  aria-pressed={selected === q.id}
-                  disabled={locked && q.id !== selected}
-                  onClick={() => onSelect(q.id)}
-                >
-                  <span className="mission-number" aria-hidden="true">
-                    {done ? <Check size={16} weight="bold" /> : q.chapter}
-                  </span>
-                  <span className="mission-text">
-                    <strong>{q.name}</strong>
-                    <em>{q.tagline}</em>
-                  </span>
-                  <small
-                    className="mission-difficulty"
-                    aria-label={
-                      done
-                        ? "Chapter complete"
-                        : `Difficulty ${q.difficulty} of 10`
-                    }
+    <>
+      {!locked && (
+        <div
+          className="adventure-filters"
+          role="search"
+          aria-label="Find an adventure"
+        >
+          <label className="adventure-search">
+            <MagnifyingGlass size={21} aria-hidden="true" />
+            <input
+              ref={search}
+              type="search"
+              aria-label="Search adventures"
+              placeholder="Find your next adventure…"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </label>
+          <label className="adventure-release">
+            <span>Collection</span>
+            <select
+              aria-label="Filter adventures by collection"
+              value={release}
+              onChange={(event) => setRelease(event.target.value)}
+            >
+              <option value="">All collections</option>
+              {RELEASE_GROUPS.map((group) => (
+                <option key={group.name} value={group.name}>
+                  {group.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <span className="adventure-results" role="status">
+            {count} {count === 1 ? "adventure" : "adventures"}
+          </span>
+          {(query || release) && (
+            <button className="adventure-clear" onClick={clearFilters}>
+              <X size={16} /> Clear filters
+            </button>
+          )}
+        </div>
+      )}
+      <section className="mission-selection" aria-label="Missions">
+        <div className="mission-index-heading">
+          <span>The adventure archive</span>
+          <span>{String(count).padStart(2, "0")}</span>
+        </div>
+        <div className="mission-index" ref={index}>
+          {groups.length === 0 && (
+            <div className="adventure-empty">
+              <MagnifyingGlass size={30} aria-hidden="true" />
+              <h3>No adventures found</h3>
+              <p>Try another title or explore a different collection.</p>
+              <button onClick={clearFilters}>
+                Show all adventures <ArrowRight size={16} />
+              </button>
+            </div>
+          )}
+          {groups.map((group) => (
+            <div
+              className="mission-group"
+              key={group.name}
+              role="group"
+              aria-label={group.name}
+            >
+              <h3>{group.name}</h3>
+              {group.quests.map((q) => {
+                const done = completed.includes(q.id);
+                return (
+                  <button
+                    key={q.id}
+                    className={`mission-card mission-${q.id}${selected === q.id ? " selected" : ""}`}
+                    aria-pressed={selected === q.id}
+                    disabled={locked && q.id !== selected}
+                    onClick={() => onSelect(q.id)}
                   >
-                    {done ? "Done" : `${q.difficulty} / 10`}
-                  </small>
-                </button>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-    </section>
+                    <span className="mission-number" aria-hidden="true">
+                      {done ? <Check size={16} weight="bold" /> : q.chapter}
+                    </span>
+                    <span className="mission-text">
+                      <strong>{q.name}</strong>
+                      <em>{q.tagline}</em>
+                    </span>
+                    <small
+                      className="mission-difficulty"
+                      aria-label={
+                        done
+                          ? "Chapter complete"
+                          : `Difficulty ${q.difficulty} of 10`
+                      }
+                    >
+                      {done ? "Done" : `${q.difficulty} / 10`}
+                    </small>
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <button className="mission-current" onClick={viewAdventure}>
+          <span>
+            <small>YOUR SELECTED ADVENTURE</small>
+            <strong>{scenario(selected).name}</strong>
+          </span>
+          <ArrowRight size={20} aria-hidden="true" />
+          <span className="mission-current-action">View adventure</span>
+        </button>
+      </section>
+    </>
   );
 }

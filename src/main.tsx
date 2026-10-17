@@ -28,6 +28,8 @@ import "./ui/fellowship-choices.css";
 import "./ui/stats.css";
 import "./ui/resolution-layout.css";
 import "./ui/card-table.css";
+import "./ui/fellowship-gallery.css";
+import "./ui/adventure-atlas.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MotionConfig reducedMotion="user">

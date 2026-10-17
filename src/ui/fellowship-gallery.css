@@ -1,0 +1,134 @@
+/* Keep every printed fellowship within reach without lengthening the setup page. */
+#fellowship-setup {
+  min-width: 0;
+}
+#fellowship-setup .deck-picker-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+#fellowship-setup .deck-picker-heading > div:first-child {
+  min-width: 0;
+}
+#fellowship-setup .deck-picker-heading h3 {
+  margin: 0;
+  line-height: 1.25;
+}
+#fellowship-setup .fellowship-gallery-status {
+  margin: 6px 0 0;
+  color: #665c46;
+  font-size: 15px;
+  line-height: 1.4;
+}
+#fellowship-setup .fellowship-gallery-status strong {
+  color: #354a34;
+  font-weight: 600;
+}
+#fellowship-setup .fellowship-gallery-controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+#fellowship-setup .fellowship-gallery-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #9c8b68;
+  border-radius: 50%;
+  color: #354a34;
+  background: #f8f3e6;
+  transition:
+    background 160ms,
+    color 160ms;
+}
+#fellowship-setup .fellowship-gallery-controls button:hover:not(:disabled) {
+  background: #354a34;
+  color: #fff5dc;
+}
+#fellowship-setup .fellowship-gallery-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+#fellowship-setup .fellowship-gallery-controls button:focus-visible {
+  outline: 2px solid #354a34;
+  outline-offset: 3px;
+}
+#fellowship-setup .fellowship-gallery {
+  min-width: 0;
+  max-width: 100%;
+}
+#fellowship-setup .deck-picker {
+  position: relative;
+  display: grid;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: min(300px, calc(100% - 24px));
+  align-items: stretch;
+  gap: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #8b9879 #e7dfcd;
+  padding: 6px 6px 18px;
+}
+#fellowship-setup .deck-picker-group {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#fellowship-setup .deck-choice {
+  scroll-snap-align: start;
+  border-radius: 4px 14px 4px 4px;
+}
+#fellowship-setup .deck-choice-select {
+  padding: 16px 14px 0;
+}
+#fellowship-setup .deck-choice h3 {
+  min-height: 0;
+  font-size: 25px;
+}
+#fellowship-setup .deck-choice p {
+  min-height: 2.7em;
+  font-size: 16px;
+}
+#fellowship-setup .deck-hero-triptych {
+  gap: 7px;
+}
+#fellowship-setup .deck-hero-triptych strong {
+  font-size: 15px;
+}
+#fellowship-setup .deck-view {
+  min-height: 44px;
+}
+#fellowship-setup .company-note {
+  margin-top: 12px;
+}
+@media (max-width: 599px) {
+  #fellowship-setup .deck-picker-heading {
+    gap: 12px;
+    align-items: flex-start;
+  }
+  #fellowship-setup .deck-picker-heading h3 {
+    font-size: 20px;
+  }
+  #fellowship-setup .fellowship-gallery-controls {
+    gap: 6px;
+  }
+  #fellowship-setup .fellowship-gallery-status {
+    font-size: 14px;
+  }
+  #fellowship-setup .deck-picker {
+    gap: 14px;
+  }
+}

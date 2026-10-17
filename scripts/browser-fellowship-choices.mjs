@@ -19,7 +19,7 @@ await fs.mkdir("output/fellowship-choices", { recursive: true });
 await page.goto(base);
 const state = () =>
   page.evaluate(() => JSON.parse(window.render_game_to_text()));
-assert.equal(await page.locator("main select").count(), 0);
+assert.equal(await page.locator("#fellowship-setup select").count(), 0);
 assert.equal(
   await page.locator(".deck-choice:not(.deck-choice-build)").count(),
   10,

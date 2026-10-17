@@ -9,6 +9,8 @@ import {
   Check,
   UsersThree,
   Sword,
+  ArrowLeft,
+  ArrowRight,
 } from "@phosphor-icons/react";
 import { card, imageUrl } from "../game/cards";
 import { BUILT_IN_DECKS } from "../game/built-in-decks";
@@ -58,6 +60,63 @@ export function FellowshipSetup({
 }) {
   const [editingSeat, setEditingSeat] = useState(0);
   const active = Math.min(editingSeat, seats.length - 1);
+  const gallery = useRef<HTMLDivElement>(null);
+  const [galleryEdges, setGalleryEdges] = useState({ start: true, end: false });
+  const activeDeck = mode === "hotseat" ? seats[active].deckId : selectedDeck;
+  const activeDeckName =
+    describeDeck(activeDeck, decks)?.name ?? "Choose a deck";
+  useEffect(() => {
+    const list = gallery.current?.querySelector<HTMLElement>(".deck-picker");
+    if (!list) return;
+    const updateEdges = () => {
+      const start = list.scrollLeft <= 2;
+      const end = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
+      setGalleryEdges((current) =>
+        current.start === start && current.end === end
+          ? current
+          : { start, end },
+      );
+    };
+    updateEdges();
+    list.addEventListener("scroll", updateEdges, { passive: true });
+    const observer = new ResizeObserver(updateEdges);
+    observer.observe(list);
+    return () => {
+      list.removeEventListener("scroll", updateEdges);
+      observer.disconnect();
+    };
+  }, [decks.length]);
+  useEffect(() => {
+    const list = gallery.current?.querySelector<HTMLElement>(".deck-picker");
+    const selected = list?.querySelector<HTMLElement>(
+      ".deck-choice.is-selected",
+    );
+    if (!list || !selected) return;
+    const listBounds = list.getBoundingClientRect();
+    const selectedBounds = selected.getBoundingClientRect();
+    if (
+      selectedBounds.left < listBounds.left + 4 ||
+      selectedBounds.right > listBounds.right - 4
+    )
+      list.scrollTo({
+        left: list.scrollLeft + selectedBounds.left - listBounds.left - 6,
+        behavior: "instant",
+      });
+  }, [activeDeck, active, mode]);
+  function moveGallery(direction: -1 | 1) {
+    const list = gallery.current?.querySelector<HTMLElement>(".deck-picker");
+    if (!list) return;
+    const first = list.querySelector<HTMLElement>(".deck-choice");
+    const gap = Number.parseFloat(getComputedStyle(list).columnGap) || 0;
+    const cardWidth = (first?.getBoundingClientRect().width ?? 300) + gap;
+    const visibleCards = Math.max(1, Math.floor(list.clientWidth / cardWidth));
+    list.scrollBy({
+      left: direction * cardWidth * visibleCards,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    });
+  }
   const unavailable =
     mode === "hotseat"
       ? Object.fromEntries(
@@ -174,34 +233,64 @@ export function FellowshipSetup({
         </div>
       )}
       <div className="deck-picker-heading">
-        <h3>
-          {mode === "hotseat"
-            ? `Player ${active + 1} · Choose a fellowship`
-            : "Choose your fellowship."}
-        </h3>
-        <span>PRECONSTRUCTED · READY TO PLAY</span>
+        <div>
+          <h3>
+            {mode === "hotseat"
+              ? `Player ${active + 1} · Choose a fellowship`
+              : "Choose your fellowship."}
+          </h3>
+          <p className="fellowship-gallery-status">
+            {BUILT_IN_DECKS.length + decks.length} fellowships
+            <span aria-hidden="true"> · </span>
+            Selected: <strong>{activeDeckName}</strong>
+          </p>
+        </div>
+        <div
+          className="fellowship-gallery-controls"
+          role="group"
+          aria-label="Browse fellowships"
+        >
+          <button
+            aria-label="Previous fellowships"
+            aria-controls="fellowship-gallery"
+            disabled={galleryEdges.start}
+            onClick={() => moveGallery(-1)}
+          >
+            <ArrowLeft size={19} />
+          </button>
+          <button
+            aria-label="Next fellowships"
+            aria-controls="fellowship-gallery"
+            disabled={galleryEdges.end}
+            onClick={() => moveGallery(1)}
+          >
+            <ArrowRight size={19} />
+          </button>
+        </div>
       </div>
-      <DeckPicker
-        value={mode === "hotseat" ? seats[active].deckId : selectedDeck}
-        onChange={(id) => {
-          if (mode === "classic") selectDeck(id);
-          else
-            setSeats(
-              seats.map((p, i) =>
-                i === active
-                  ? {
-                      deckId: id,
-                      heroes: [...(describeDeck(id, decks)?.heroes ?? [])],
-                    }
-                  : p,
-              ),
-            );
-        }}
-        unavailable={unavailable}
-        inspect={inspect}
-        custom={decks}
-        onBuild={onBuild}
-      />
+      <div id="fellowship-gallery" className="fellowship-gallery" ref={gallery}>
+        <DeckPicker
+          value={activeDeck}
+          onChange={(id) => {
+            if (mode === "classic") selectDeck(id);
+            else
+              setSeats(
+                seats.map((p, i) =>
+                  i === active
+                    ? {
+                        deckId: id,
+                        heroes: [...(describeDeck(id, decks)?.heroes ?? [])],
+                      }
+                    : p,
+                ),
+              );
+          }}
+          unavailable={unavailable}
+          inspect={inspect}
+          custom={decks}
+          onBuild={onBuild}
+        />
+      </div>
       <p className="company-note">
         <Check size={15} />
         {mode === "hotseat"
