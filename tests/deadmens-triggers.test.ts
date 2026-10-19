@@ -228,7 +228,16 @@ test("The Gate's forced discard follows a canceled When Revealed Response before
   s = choose(s, option.id);
   assert.equal(s.status, "lost");
   assert.equal(gateDiscards(s), 1);
-  assert.ok(!s.encounterDiscard.includes(D.fog));
+  assert.ok(
+    !s.log.some((entry) =>
+      entry.text.includes("when-revealed effect was cancelled"),
+    ),
+    "Gate eliminates the fellowship before the canceled encounter continues",
+  );
+  assert.ok(
+    s.encounterDiscard.includes(D.fog),
+    "ending the game keeps the drawn encounter card instead of dropping it",
+  );
 });
 
 test("A genuine Iârion objective Response counts once while its decline does not initiate an ability", () => {

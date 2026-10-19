@@ -795,6 +795,57 @@ export function advanceDefense(s: GameState) {
   }
 }
 
+const IN_FLIGHT_ENCOUNTER = new Set([
+  "resolveReveal",
+  "placeEncounter",
+  "revealCard",
+]);
+
+function inFlightEncounterCards(
+  effects: Effect[] | undefined,
+): { kind: string; code: string }[] {
+  if (!effects) return [];
+  const found: { kind: string; code: string }[] = [];
+  for (const effect of effects) {
+    if (
+      effect.code &&
+      IN_FLIGHT_ENCOUNTER.has(effect.kind) &&
+      card(effect.code).sphere_code === "encounter"
+    )
+      found.push({ kind: effect.kind, code: effect.code });
+    found.push(
+      ...inFlightEncounterCards(effect.effects),
+      ...inFlightEncounterCards(effect.costEffects),
+    );
+  }
+  return found;
+}
+
+/** A drawn encounter card can exist only as a queued reveal. Ending the game
+ * used to drop that continuation, so the copy never reached a zone. */
+export function depositInFlightEncounterCards(s: GameState) {
+  // Ghost of Framsburg leaves a non-treachery in the discover pile while its
+  // revealCard continuation names that same copy.
+  const stillHeld = new Map<string, number>();
+  for (const unit of s.ghostFramsburg?.discoverCards ?? [])
+    stillHeld.set(unit.code, (stillHeld.get(unit.code) ?? 0) + 1);
+  const pending = [
+    ...inFlightEncounterCards(s.queue),
+    ...inFlightEncounterCards(
+      s.choice?.options.find((option) => option.id === "resolve")?.effects,
+    ),
+  ]
+    .filter((pending) => {
+      if (pending.kind !== "revealCard") return true;
+      const remaining = stillHeld.get(pending.code) ?? 0;
+      if (!remaining) return true;
+      stillHeld.set(pending.code, remaining - 1);
+      return false;
+    })
+    .map((pending) => pending.code);
+  if (pending.length) s.encounterDiscard.push(...pending);
+}
+
 export function check(s: GameState) {
   if (s.status !== "playing") return;
   Cobas.cobasCheck(s);
@@ -859,6 +910,7 @@ export function check(s: GameState) {
       s.status = "lost";
       s.reason =
         "The prisoner's fellowship has been eliminated. The prisoner cannot be rescued.";
+      depositInFlightEncounterCards(s);
       s.choice = null;
       s.queue = [];
       log(s, s.reason, "danger");
@@ -1085,6 +1137,7 @@ export function check(s: GameState) {
         foundationsPlayerCardDiscarded(s, play.unit);
         Dread.dreadPlayerCardDiscarded(s, play.unit);
       });
+    depositInFlightEncounterCards(s);
     s.choice = null;
     s.queue = [];
     delete s.escapeTest;
@@ -2698,7 +2751,9 @@ export function engage(s: GameState, u: Unit, optional = false) {
 }
 
 export function returnTreachery(s: GameState, code: string) {
-  if (!["01080", "01105"].includes(code)) s.encounterDiscard.push(code);
+  // Iron Shackles is a counter on the first player, not a discarded card.
+  // Caught in a Web stays in the discard until the player attaches that copy.
+  if (code !== "01105") s.encounterDiscard.push(code);
 }
 
 export function revealed(

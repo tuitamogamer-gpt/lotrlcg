@@ -1406,12 +1406,15 @@ function handleEffect(s: GameState, e: Effect) {
       if (u) removeFromQuest(s, u);
       break;
     case "web":
-      if (u)
+      if (u) {
+        const discarded = s.encounterDiscard.lastIndexOf("01080");
+        if (discarded >= 0) s.encounterDiscard.splice(discarded, 1);
         u.attachments.push({
           id: `a${s.nextId++}`,
           code: "01080",
           exhausted: false,
         });
+      }
       break;
     case "eventPlay": {
       const physical = s.hand.find(

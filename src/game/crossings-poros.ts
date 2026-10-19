@@ -5,6 +5,7 @@ import { isAlly, isHero } from "./card-types";
 import { choose, fx, get, log, make, prepend, shuffle } from "./core";
 import {
   allyEntryResponses,
+  depositInFlightEncounterCards,
   discardHandCard,
   enemyAddedToStaging,
   engage,
@@ -110,6 +111,7 @@ export function crossingsPorosCheck(s: GameState) {
 function loseGarrison(s: GameState) {
   s.status = "lost";
   s.reason = "Poros Garrison has left play. The crossings fall to the enemy.";
+  depositInFlightEncounterCards(s);
   s.queue = [];
   s.choice = null;
   if (s.flow) s.flow.pending = null;
