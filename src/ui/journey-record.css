@@ -1,0 +1,86 @@
+/* Recent history leads; complete quest totals stay within an accessible frame. */
+.redbook .journey-record {
+  min-width: 0;
+  max-width: 100%;
+}
+.redbook .journey-record h3 {
+  margin: 24px 0 8px;
+  color: #493824;
+  font-size: 24px;
+}
+.redbook .journey-record .journey-record-note {
+  margin: 0 0 12px;
+  color: #6b573b;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.redbook .journey-record .journey-record-scroll {
+  min-width: 0;
+  max-width: 100%;
+  max-height: 360px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #967c50 #e9dcc0;
+  border: 1px solid #967c5055;
+  border-radius: 3px;
+}
+.redbook .journey-record .journey-record-scroll:focus-visible {
+  outline: 2px solid #7e6133;
+  outline-offset: 3px;
+}
+.redbook .journey-record .records-table {
+  margin: 0;
+  color: #493824;
+  font-size: 15px;
+}
+.redbook .journey-record .recent-adventures-table {
+  min-width: 540px;
+}
+.redbook .journey-record .quest-results-table {
+  min-width: 320px;
+}
+.redbook .journey-record .records-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #e7d8b8;
+  color: #493824;
+  font-weight: 600;
+}
+.redbook .journey-record .records-table td {
+  vertical-align: top;
+  line-height: 1.4;
+}
+.redbook .journey-record .records-table time {
+  display: block;
+  margin-top: 3px;
+  color: #6b573b;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.redbook .journey-record .journey-record-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.redbook .journey-record .journey-record-heading h3 {
+  margin: 0;
+}
+.redbook .journey-record .journey-record-heading button {
+  min-height: 44px;
+}
+@media (max-width: 599px) {
+  .redbook .journey-record .records-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .redbook .journey-record .journey-record-scroll {
+    max-height: 300px;
+  }
+  .redbook .journey-record .journey-record-heading {
+    margin-bottom: 10px;
+  }
+}

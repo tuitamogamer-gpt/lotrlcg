@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   Check,
+  Copy,
   DownloadSimple,
   MagnifyingGlass,
   Minus,
@@ -60,6 +61,18 @@ const newDeck = (): CustomDeck => ({
   updatedAt: Date.now(),
 });
 
+const deckCardTypes = [
+  ...new Set(DECK_CARDS.map((c) => c.type_code.replaceAll("_", "-"))),
+].sort();
+const cardTypeLabels: Record<string, string> = {
+  ally: "Allies",
+  attachment: "Attachments",
+  event: "Events",
+  "player-side-quest": "Side quests",
+  contract: "Contracts",
+  treasure: "Treasures",
+};
+
 export default function DeckBuilder({
   decks,
   setDecks,
@@ -80,9 +93,28 @@ export default function DeckBuilder({
   const [query, setQuery] = useState("");
   const [heroQuery, setHeroQuery] = useState("");
   const [cardLimit, setCardLimit] = useState(48);
+  const [cardView, setCardView] = useState<"all" | "deck">("all");
+  const [cardType, setCardType] = useState("all");
   const heroSearch = useRef<HTMLInputElement>(null);
   const cardSearch = useRef<HTMLInputElement>(null);
   const heroGallery = useRef<HTMLDivElement>(null);
+  const cardList = useRef<HTMLDivElement>(null);
+  const cardHeading = useRef<HTMLHeadingElement>(null);
+  const pendingCardFocus = useRef<{ code?: string } | null>(null);
+  useLayoutEffect(() => {
+    const pending = pendingCardFocus.current;
+    if (!pending) return;
+    pendingCardFocus.current = null;
+    const row = [
+      ...(cardList.current?.querySelectorAll<HTMLElement>(
+        "[data-deck-card-code]",
+      ) ?? []),
+    ].find((node) => node.dataset.deckCardCode === pending.code);
+    const remove = row?.querySelector<HTMLButtonElement>(
+      '[aria-label^="Remove one "]',
+    );
+    (remove ?? cardHeading.current)?.focus({ preventScroll: true });
+  }, [editing, cardView]);
   useEffect(() => {
     if (heroGallery.current) heroGallery.current.scrollTop = 0;
   }, [heroQuery]);
@@ -120,6 +152,8 @@ export default function DeckBuilder({
     setQuery("");
     setHeroQuery("");
     setCardLimit(48);
+    setCardView("all");
+    setCardType("all");
     setSphere("all");
     setProduct("all");
     setEditing({ ...deck, cards: { ...deck.cards }, heroes: [...deck.heroes] });
@@ -175,6 +209,17 @@ export default function DeckBuilder({
       notify(
         "Could not save the deletion to this device. It may return after reload.",
       );
+  };
+  const copy = (deck: CustomDeck) => {
+    const suffix = " (copy)";
+    edit({
+      ...deck,
+      id: createDeckId(),
+      name: `${(deck.name.trim() || "Untitled deck").slice(0, 60 - suffix.length)}${suffix}`,
+      heroes: [...deck.heroes],
+      cards: { ...deck.cards },
+      updatedAt: Date.now(),
+    });
   };
   const setCount = (code: string, n: number) => {
     if (!editing) return;
@@ -233,6 +278,8 @@ export default function DeckBuilder({
       setQuery("");
       setHeroQuery("");
       setCardLimit(48);
+      setCardView("all");
+      setCardType("all");
       setSphere("all");
       setProduct("all");
       setImportText("");
@@ -251,6 +298,8 @@ export default function DeckBuilder({
     const heroTerm = normalizeSearchText(heroQuery);
     const visible = DECK_CARDS.filter(
       (c) =>
+        (cardView === "all" || (editing.cards[c.code] ?? 0) > 0) &&
+        (cardType === "all" || c.type_code.replaceAll("_", "-") === cardType) &&
         (sphere === "all" || c.sphere_code === sphere) &&
         (product === "all" || cardProductInfo(c).originLabel === product) &&
         normalizeSearchText(
@@ -270,6 +319,7 @@ export default function DeckBuilder({
       setQuery("");
       setSphere("all");
       setProduct("all");
+      setCardType("all");
       setCardLimit(48);
       cardSearch.current?.focus();
     };
@@ -428,6 +478,48 @@ export default function DeckBuilder({
         </section>
         <div className="builder-body">
           <section className="builder-cards" aria-label="Cards">
+            <div
+              className="builder-card-views"
+              role="group"
+              aria-label="Card collection view"
+            >
+              <button
+                className="secondary"
+                aria-label="All supported cards"
+                aria-description={`${DECK_CARDS.length} supported card designs`}
+                aria-pressed={cardView === "all"}
+                onClick={() => {
+                  setCardView("all");
+                  setCardLimit(48);
+                }}
+              >
+                All supported cards <small>{DECK_CARDS.length} designs</small>
+              </button>
+              <button
+                className="secondary"
+                aria-label="In your deck"
+                aria-description={`${Object.keys(editing.cards).length} card designs, ${size} total cards`}
+                aria-pressed={cardView === "deck"}
+                onClick={() => {
+                  setCardView("deck");
+                  setCardLimit(48);
+                }}
+              >
+                In your deck{" "}
+                <small>
+                  {Object.keys(editing.cards).length} designs · {size} cards
+                </small>
+              </button>
+            </div>
+            <h3
+              className="builder-card-browser-heading"
+              ref={cardHeading}
+              tabIndex={-1}
+            >
+              {cardView === "deck"
+                ? "Cards in your deck"
+                : "Browse supported cards"}
+            </h3>
             <div className="library-toolbar">
               <label className="search-field">
                 <MagnifyingGlass size={19} />
@@ -460,6 +552,21 @@ export default function DeckBuilder({
                 )}
               </select>
               <select
+                aria-label="Filter deck card type"
+                value={cardType}
+                onChange={(event) => {
+                  setCardType(event.target.value);
+                  setCardLimit(48);
+                }}
+              >
+                <option value="all">All card types</option>
+                {deckCardTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {cardTypeLabels[type] ?? type.replaceAll("-", " ")}
+                  </option>
+                ))}
+              </select>
+              <select
                 aria-label="Filter playable card product"
                 value={product}
                 onChange={(e) => {
@@ -480,18 +587,40 @@ export default function DeckBuilder({
                 {visible.length} cards found · Showing{" "}
                 {Math.min(cardLimit, visible.length)}
               </span>
-              {(query || sphere !== "all" || product !== "all") && (
+              {(query ||
+                sphere !== "all" ||
+                product !== "all" ||
+                cardType !== "all") && (
                 <button className="secondary" onClick={clearCardFilters}>
                   Clear card filters
                 </button>
               )}
             </div>
-            <div className="builder-card-list">
-              {visible.length === 0 && (
-                <p role="status">
-                  No cards match this search and sphere. Try a different name or
-                  clear the filters.
-                </p>
+            <div className="builder-card-list" ref={cardList}>
+              {cardView === "deck" &&
+              Object.keys(editing.cards).length === 0 ? (
+                <div className="builder-browse-empty" role="status">
+                  <h4>Your deck has no cards yet.</h4>
+                  <p>Add cards from the supported collection to begin.</p>
+                  <button
+                    className="secondary"
+                    onClick={() => {
+                      setCardView("all");
+                      clearCardFilters();
+                    }}
+                  >
+                    Browse supported cards
+                  </button>
+                </div>
+              ) : (
+                visible.length === 0 && (
+                  <p role="status">
+                    {cardView === "deck"
+                      ? "No cards in your deck match these filters."
+                      : "No cards match these filters."}{" "}
+                    Try a different name or clear the filters.
+                  </p>
+                )
               )}
               {visible.slice(0, cardLimit).map((c) => {
                 const n = editing.cards[c.code] ?? 0;
@@ -499,6 +628,8 @@ export default function DeckBuilder({
                 return (
                   <div
                     key={c.code}
+                    data-card-code={c.code}
+                    data-deck-card-code={c.code}
                     className={`builder-card ${n ? "in-deck" : ""} ${legal ? "" : "not-legal"}`}
                   >
                     <button
@@ -525,7 +656,17 @@ export default function DeckBuilder({
                       <button
                         aria-label={`Remove one ${c.name}`}
                         disabled={!n}
-                        onClick={() => setCount(c.code, n - 1)}
+                        onClick={() => {
+                          if (cardView === "deck" && n === 1) {
+                            const index = visible.findIndex(
+                              (entry) => entry.code === c.code,
+                            );
+                            const neighbor =
+                              visible[index + 1] ?? visible[index - 1];
+                            pendingCardFocus.current = { code: neighbor?.code };
+                          }
+                          setCount(c.code, n - 1);
+                        }}
                       >
                         <Minus size={14} />
                       </button>
@@ -727,6 +868,19 @@ export default function DeckBuilder({
                     onClick={() => edit(d)}
                   >
                     Edit
+                  </button>
+                  <button
+                    className="secondary"
+                    aria-label={`Copy ${d.name}`}
+                    disabled={importing || decks.length >= 50}
+                    title={
+                      decks.length >= 50
+                        ? "Delete a deck before copying another; this shelf holds 50 decks."
+                        : undefined
+                    }
+                    onClick={() => copy(d)}
+                  >
+                    <Copy size={15} /> Copy
                   </button>
                   <button
                     className="text-link"

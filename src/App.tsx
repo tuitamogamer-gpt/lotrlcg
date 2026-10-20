@@ -135,7 +135,8 @@ import {
 import type { CustomDeck } from "./game/decks";
 import { collectRecoveryBundle, parseRecoveryImport } from "./ui/save-recovery";
 import type { RecoveryImport, RecoveryCandidate } from "./ui/save-recovery";
-import { readRecords, recordGame, summarize, writeRecords } from "./ui/records";
+import { readRecords, recordGame, writeRecords } from "./ui/records";
+import { JourneyRecord } from "./ui/journey-record";
 const Library = lazy(() => import("./ui/library"));
 const DeckBuilder = lazy(() => import("./ui/deck-builder"));
 const PublishedContent = lazy(() => import("./ui/published-content"));
@@ -3486,121 +3487,22 @@ export default function App() {
             </div>
           </Modal>
         )}
-      {showRecords &&
-        (() => {
-          const sum = summarize(records);
-          return (
-            <Modal
-              title="Your journey record"
-              onClose={() => setShowRecords(false)}
-            >
-              <div className="records-summary">
-                <div>
-                  <strong>{sum.played}</strong>
-                  <small>games</small>
-                </div>
-                <div>
-                  <strong>{sum.won}</strong>
-                  <small>victories</small>
-                </div>
-                <div>
-                  <strong>
-                    {sum.played ? Math.round((sum.won / sum.played) * 100) : 0}%
-                  </strong>
-                  <small>win rate</small>
-                </div>
-                <div>
-                  <strong>{sum.bestScore ?? "—"}</strong>
-                  <small>best score · lower is better</small>
-                </div>
-              </div>
-              {records.length === 0 ? (
-                <p>Finish an adventure and it will be recorded here.</p>
-              ) : (
-                <>
-                  <table
-                    className="records-table"
-                    aria-label="Results by quest"
-                  >
-                    <thead>
-                      <tr>
-                        <th>Quest</th>
-                        <th>Played</th>
-                        <th>Won</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {SCENARIOS.map((q) => (
-                        <tr key={q.id}>
-                          <td>{q.name}</td>
-                          <td>{sum.byScenario[q.id]?.played ?? 0}</td>
-                          <td>{sum.byScenario[q.id]?.won ?? 0}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <h3>Recent adventures</h3>
-                  <table
-                    className="records-table"
-                    aria-label="Recent adventures"
-                  >
-                    <thead>
-                      <tr>
-                        <th>Result</th>
-                        <th>Quest</th>
-                        <th>Deck</th>
-                        <th>Rounds</th>
-                        <th>Score</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[...records]
-                        .reverse()
-                        .slice(0, 15)
-                        .map((r) => (
-                          <tr key={r.key}>
-                            <td
-                              className={
-                                r.result === "won" ? "is-won" : "is-lost"
-                              }
-                            >
-                              {r.result === "won" ? "Won" : "Lost"}
-                            </td>
-                            <td>
-                              {scenario(r.scenarioId).shortName}
-                              {r.playMode === "campaign" ? " · campaign" : ""}
-                              {r.easy ? " · easy" : ""}
-                            </td>
-                            <td>
-                              {r.deck}
-                              {r.players > 1 ? ` · ${r.players} players` : ""}
-                            </td>
-                            <td>{r.rounds}</td>
-                            <td>{r.result === "won" ? r.score : "—"}</td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
-                  <div className="modal-actions">
-                    <button
-                      className="secondary"
-                      onClick={() => {
-                        if (
-                          confirm("Clear your journey record on this device?")
-                        ) {
-                          writeRecords([]);
-                          setRecords([]);
-                        }
-                      }}
-                    >
-                      Clear record
-                    </button>
-                  </div>
-                </>
-              )}
-            </Modal>
-          );
-        })()}
+      {showRecords && (
+        <Modal
+          title="Your journey record"
+          onClose={() => setShowRecords(false)}
+        >
+          <JourneyRecord
+            records={records}
+            onClear={() => {
+              if (confirm("Clear your journey record on this device?")) {
+                writeRecords([]);
+                setRecords([]);
+              }
+            }}
+          />
+        </Modal>
+      )}
       {recoveryImport && (
         <Modal
           title="Choose an adventure to restore"
