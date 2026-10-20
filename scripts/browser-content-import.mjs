@@ -167,8 +167,21 @@ assert.equal(
 );
 assert.equal(
   await page.locator(".builder-card").count(),
+  Math.min(48, registry.deckCards),
+  "the builder opens a bounded page of supported cards",
+);
+while (
+  await page
+    .getByRole("button", { name: "Show more deck cards", exact: true })
+    .count()
+)
+  await page
+    .getByRole("button", { name: "Show more deck cards", exact: true })
+    .click();
+assert.equal(
+  await page.locator(".builder-card").count(),
   registry.deckCards,
-  "the builder keeps its supported card pool",
+  "every supported card remains available when the list is expanded",
 );
 assert.equal(
   await page.locator(".builder-hero .card-product-note").count(),

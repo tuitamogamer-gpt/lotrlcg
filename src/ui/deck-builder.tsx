@@ -10,6 +10,8 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import { card, imageUrl, plain } from "../game/cards";
+import { normalizeSearchText } from "../search-text";
+import "./deck-builder-browse.css";
 import {
   DECK_CARDS,
   HERO_CARDS,
@@ -76,6 +78,14 @@ export default function DeckBuilder({
     initialDraft?.deck ?? null,
   );
   const [query, setQuery] = useState("");
+  const [heroQuery, setHeroQuery] = useState("");
+  const [cardLimit, setCardLimit] = useState(48);
+  const heroSearch = useRef<HTMLInputElement>(null);
+  const cardSearch = useRef<HTMLInputElement>(null);
+  const heroGallery = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (heroGallery.current) heroGallery.current.scrollTop = 0;
+  }, [heroQuery]);
   const [sphere, setSphere] = useState("all");
   const [product, setProduct] = useState("all");
   const [importText, setImportText] = useState("");
@@ -108,6 +118,8 @@ export default function DeckBuilder({
     setRestored(false);
     setReport([]);
     setQuery("");
+    setHeroQuery("");
+    setCardLimit(48);
     setSphere("all");
     setProduct("all");
     setEditing({ ...deck, cards: { ...deck.cards }, heroes: [...deck.heroes] });
@@ -219,6 +231,8 @@ export default function DeckBuilder({
       setRestored(false);
       setEditing(result.deck);
       setQuery("");
+      setHeroQuery("");
+      setCardLimit(48);
       setSphere("all");
       setProduct("all");
       setImportText("");
@@ -233,14 +247,32 @@ export default function DeckBuilder({
     }
   };
   if (editing) {
+    const cardTerm = normalizeSearchText(query);
+    const heroTerm = normalizeSearchText(heroQuery);
     const visible = DECK_CARDS.filter(
       (c) =>
         (sphere === "all" || c.sphere_code === sphere) &&
         (product === "all" || cardProductInfo(c).originLabel === product) &&
-        (c.name + " " + (c.traits ?? "") + " " + cardProductInfo(c).originLabel)
-          .toLocaleLowerCase()
-          .includes(query.toLocaleLowerCase()),
+        normalizeSearchText(
+          `${c.name} ${c.traits ?? ""} ${cardProductInfo(c).originLabel}`,
+        ).includes(cardTerm),
     );
+    const matchingHeroes = HERO_CARDS.filter((h) =>
+      normalizeSearchText(
+        `${h.name} ${h.traits ?? ""} ${cardProductInfo(h).originLabel}`,
+      ).includes(heroTerm),
+    );
+    const visibleHeroes = [
+      ...HERO_CARDS.filter((h) => editing.heroes.includes(h.code)),
+      ...matchingHeroes.filter((h) => !editing.heroes.includes(h.code)),
+    ];
+    const clearCardFilters = () => {
+      setQuery("");
+      setSphere("all");
+      setProduct("all");
+      setCardLimit(48);
+      cardSearch.current?.focus();
+    };
     const spheres = sphereCounts(editing.cards);
     const curve = costCurve(editing.cards);
     const peak = Math.max(1, ...curve);
@@ -313,8 +345,45 @@ export default function DeckBuilder({
             {editing.heroes.length > 0 &&
               ` · ${startingThreat(editing.heroes)} starting threat`}
           </h2>
-          <div className="builder-hero-grid">
-            {HERO_CARDS.map((h) => {
+          <div className="builder-hero-toolbar">
+            <label className="search-field">
+              <MagnifyingGlass size={19} aria-hidden="true" />
+              <input
+                ref={heroSearch}
+                type="search"
+                aria-label="Search heroes"
+                placeholder="Find heroes by name, trait or release…"
+                value={heroQuery}
+                onChange={(event) => setHeroQuery(event.target.value)}
+              />
+            </label>
+            <span role="status">
+              {matchingHeroes.length}{" "}
+              {matchingHeroes.length === 1 ? "hero matches" : "heroes match"} ·{" "}
+              {editing.heroes.length} selected
+            </span>
+            {heroQuery && (
+              <button
+                className="secondary"
+                onClick={() => {
+                  setHeroQuery("");
+                  heroSearch.current?.focus();
+                }}
+              >
+                Clear hero search
+              </button>
+            )}
+          </div>
+          {matchingHeroes.length === 0 && (
+            <p className="builder-browse-empty" role="status">
+              No heroes match this search.{" "}
+              {editing.heroes.length > 0
+                ? "Your selected heroes remain available below."
+                : "Try another name, trait or release, or clear the search."}
+            </p>
+          )}
+          <div className="builder-hero-grid" ref={heroGallery}>
+            {visibleHeroes.map((h) => {
               const on = editing.heroes.includes(h.code);
               return (
                 <div
@@ -363,16 +432,23 @@ export default function DeckBuilder({
               <label className="search-field">
                 <MagnifyingGlass size={19} />
                 <input
+                  ref={cardSearch}
                   aria-label="Search cards"
                   placeholder="Search by name, trait or release…"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setCardLimit(48);
+                  }}
                 />
               </label>
               <select
                 aria-label="Filter sphere"
                 value={sphere}
-                onChange={(e) => setSphere(e.target.value)}
+                onChange={(e) => {
+                  setSphere(e.target.value);
+                  setCardLimit(48);
+                }}
               >
                 <option value="all">All spheres</option>
                 {["leadership", "tactics", "spirit", "lore", "neutral"].map(
@@ -386,7 +462,10 @@ export default function DeckBuilder({
               <select
                 aria-label="Filter playable card product"
                 value={product}
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => {
+                  setProduct(e.target.value);
+                  setCardLimit(48);
+                }}
               >
                 <option value="all">All supported releases</option>
                 {playableProductNames.map((name) => (
@@ -396,6 +475,17 @@ export default function DeckBuilder({
                 ))}
               </select>
             </div>
+            <div className="builder-results">
+              <span role="status">
+                {visible.length} cards found · Showing{" "}
+                {Math.min(cardLimit, visible.length)}
+              </span>
+              {(query || sphere !== "all" || product !== "all") && (
+                <button className="secondary" onClick={clearCardFilters}>
+                  Clear card filters
+                </button>
+              )}
+            </div>
             <div className="builder-card-list">
               {visible.length === 0 && (
                 <p role="status">
@@ -403,7 +493,7 @@ export default function DeckBuilder({
                   clear the filters.
                 </p>
               )}
-              {visible.map((c) => {
+              {visible.slice(0, cardLimit).map((c) => {
                 const n = editing.cards[c.code] ?? 0;
                 const legal = legalSphere(c.code, editing.heroes);
                 return (
@@ -452,8 +542,21 @@ export default function DeckBuilder({
                 );
               })}
             </div>
+            {visible.length > cardLimit && (
+              <button
+                className="secondary builder-show-more"
+                onClick={() => setCardLimit((count) => count + 48)}
+              >
+                Show more deck cards <Plus size={16} />
+              </button>
+            )}
           </section>
-          <aside className="builder-summary" aria-label="Deck summary">
+          <aside
+            id="deck-summary"
+            tabIndex={-1}
+            className="builder-summary"
+            aria-label="Deck summary"
+          >
             <h2>
               {size} <span>/ 50 cards</span>
             </h2>
@@ -505,6 +608,20 @@ export default function DeckBuilder({
             </div>
           </aside>
         </div>
+        <a className="builder-mobile-status" href="#deck-summary">
+          <span>
+            <strong>{size} / 50 cards</strong>
+            <small>
+              {editing.heroes.length} / 3 heroes ·{" "}
+              {problems.length
+                ? `${problems.length} ${problems.length === 1 ? "issue" : "issues"} to review`
+                : "Ready to save"}
+            </small>
+          </span>
+          <span>
+            Review deck <ArrowRight size={17} />
+          </span>
+        </a>
       </main>
     );
   }

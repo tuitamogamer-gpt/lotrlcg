@@ -4,6 +4,7 @@ import { encounterCards } from "../game/cards";
 import { cardProductInfo } from "../game/products";
 import { SCENARIOS, scenario } from "../game/scenarios";
 import type { ScenarioId } from "../game/types";
+import { normalizeSearchText as normalize } from "../search-text";
 
 type Scenario = (typeof SCENARIOS)[number];
 
@@ -170,11 +171,6 @@ export function QuestIndex({
   const search = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [release, setRelease] = useState("");
-  const normalize = (value: string) =>
-    value
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
   const term = normalize(query.trim());
   const groups = RELEASE_GROUPS.map((group) => ({
     ...group,

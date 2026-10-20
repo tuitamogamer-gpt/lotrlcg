@@ -1,3 +1,4 @@
+import "./ui/save-status.css";
 import { ROAM_RHOVANION as ROAM } from "./game/roam-rhovanion-support";
 import { encounterReserveDefaults } from "./game/encounter-reserves";
 import { WitheredHeathScenarioState } from "./ui/withered-heath-state";
@@ -68,6 +69,7 @@ import { isHero } from "./game/card-types";
 import {
   useState,
   useEffect,
+  useLayoutEffect,
   useRef,
   useCallback,
   useMemo,
@@ -744,6 +746,30 @@ export default function App() {
   const reducedMotion = useReducedMotion();
   const [initialChoices] = useState(readChoices);
   const [page, setPage] = useState<Page>("adventures");
+  const focusedPage = useRef(page);
+  useLayoutEffect(() => {
+    if (focusedPage.current === page) return;
+    focusedPage.current = page;
+    let observer: MutationObserver | undefined;
+    const focusPage = () => {
+      const main = document.getElementById("main-content");
+      if (!main) return false;
+      // A rules choice already in the top layer keeps its own focus.
+      if (!document.querySelector("dialog[open]"))
+        main.focus({ preventScroll: true });
+      observer?.disconnect();
+      return true;
+    };
+    if (!focusPage()) {
+      // Lazy routes replace their loading state after the page has changed.
+      observer = new MutationObserver(focusPage);
+      observer.observe(document.getElementById("root")!, {
+        childList: true,
+        subtree: true,
+      });
+    }
+    return () => observer?.disconnect();
+  }, [page]);
   const [significantMoment, setSignificantMoment] =
     useState<ActiveSignificantMoment | null>(null);
   const momentSerial = useRef(0);
@@ -986,6 +1012,7 @@ export default function App() {
   const [toast, setToast] = useState("");
   const [restart, setRestart] = useState(false);
   const [menu, setMenu] = useState(false);
+  const restoreMenuFocus = useRef(true);
   const [sound, setSound] = useState(false);
   const [playCard, setPlayCard] = useState<Unit | null>(null);
   const [playDiscardIndex, setPlayDiscardIndex] = useState<number | null>(null);
@@ -1048,6 +1075,7 @@ export default function App() {
         : quest.id
       : playmat;
   const [saved, setSaved] = useState(true);
+  const saveFailureNotified = useRef(false);
   const [history, setHistory] = useState<GameState[]>([]);
   const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
@@ -1154,19 +1182,30 @@ export default function App() {
     return () => clearTimeout(t);
   }, [toast]);
   useEffect(() => {
-    if (game)
-      try {
-        localStorage.setItem(
-          game.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY,
-          JSON.stringify(game),
-        );
-        setSaved(true);
-      } catch {
-        setSaved(false);
-        notify(
-          "The game is playable, but browser storage is full. Export your save to keep it.",
-        );
+    const warning =
+      "Your latest progress could not be saved on this device. Export the adventure to keep it.";
+    if (!game) {
+      setSaved(true);
+      saveFailureNotified.current = false;
+      return;
+    }
+    try {
+      localStorage.setItem(
+        game.playMode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY,
+        JSON.stringify(game),
+      );
+      setSaved(true);
+      if (saveFailureNotified.current) {
+        saveFailureNotified.current = false;
+        setToast((current) => (current === warning ? "" : current));
       }
+    } catch {
+      setSaved(false);
+      if (!saveFailureNotified.current) {
+        saveFailureNotified.current = true;
+        notify(warning);
+      }
+    }
   }, [game, notify]);
   // Finished adventures join the journey record once.
   useEffect(() => {
@@ -1420,6 +1459,7 @@ export default function App() {
     }
   };
   const nav = (p: Page) => {
+    if (menu) restoreMenuFocus.current = p === page;
     setPage(p);
     setMenu(false);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -1630,6 +1670,7 @@ export default function App() {
   useEffect(() => {
     if (!menu) return;
     const previous = document.activeElement as HTMLElement | null;
+    restoreMenuFocus.current = true;
     const panel = document.querySelector<HTMLElement>("#navigation-panel")!;
     const focusable = () => [
       ...panel.querySelectorAll<HTMLElement>("button:not(:disabled),a[href]"),
@@ -1651,7 +1692,7 @@ export default function App() {
     document.addEventListener("keydown", trap);
     return () => {
       document.removeEventListener("keydown", trap);
-      previous?.focus();
+      if (restoreMenuFocus.current) previous?.focus();
     };
   }, [menu]);
   useEffect(() => {
@@ -1804,6 +1845,7 @@ export default function App() {
             <button
               key={item.id}
               aria-label={item.label}
+              aria-current={page === item.id ? "page" : undefined}
               title={item.label}
               className={`nav-item ${page === item.id ? "active" : ""}`}
               onClick={() => nav(item.id)}
@@ -1821,6 +1863,7 @@ export default function App() {
           <button
             className={`resume-side ${page === "table" ? "active" : ""}`}
             aria-label="Return to adventure"
+            aria-current={page === "table" ? "page" : undefined}
             title="Return to adventure"
             onClick={() => nav("table")}
           >
@@ -2772,6 +2815,27 @@ export default function App() {
                   dismiss={dismissMoment}
                 />
               )}
+            {!saved && (
+              <div
+                className="save-failure-banner"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <WarningCircle size={23} aria-hidden="true" />
+                <div>
+                  <strong>Changes are not saved on this device.</strong>
+                  <p>Export this adventure to keep your latest progress.</p>
+                </div>
+                <button
+                  onClick={exportSave}
+                  aria-label="Export unsaved adventure"
+                >
+                  <DownloadSimple size={18} aria-hidden="true" />
+                  Export adventure
+                </button>
+              </div>
+            )}
             <div className="table-heading">
               <div>
                 <button className="text-link" onClick={() => nav("adventures")}>
@@ -2805,10 +2869,15 @@ export default function App() {
                 </button>
                 <span
                   className={`save-status ${saved ? "" : "unsaved"}`}
-                  role="status"
+                  role={saved ? "status" : undefined}
+                  title={
+                    saved
+                      ? "Saved on this device"
+                      : "Changes are not saved on this device."
+                  }
                 >
                   {saved ? <Check size={14} /> : <WarningCircle size={14} />}{" "}
-                  {saved ? "Saved on this device" : "Export to save"}
+                  {saved ? "Saved on this device" : "Not saved"}
                 </span>
                 <button
                   className="icon-button"

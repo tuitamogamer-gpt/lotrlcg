@@ -568,7 +568,7 @@ try {
         .getByRole("button", { name: "Scenario lists", exact: true })
         .click();
       await p
-        .getByRole("textbox", { name: "Search cards", exact: true })
+        .getByRole("textbox", { name: "Search scenarios", exact: true })
         .fill("Conflict at the Carrock");
       await p
         .getByRole("combobox", { name: "Filter scenario mode", exact: true })
@@ -605,7 +605,7 @@ try {
         .getByRole("button", { name: "Scenario lists", exact: true })
         .click();
       await p
-        .getByRole("textbox", { name: "Search cards", exact: true })
+        .getByRole("textbox", { name: "Search scenarios", exact: true })
         .fill("Conflict at the Carrock");
       await p
         .getByRole("combobox", { name: "Filter scenario mode", exact: true })

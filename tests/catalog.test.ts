@@ -39,6 +39,8 @@ test("archive search finds product, encounter set and rules text", () => {
     "angmar orcs",
     "response",
     "enemy engages",
+    "DUNEDAIN",
+    "  dunedain   ranger  ",
   ])
     assert.equal(searchCards([imported], query).length, 1);
   assert.equal(searchCards([imported], "unpublished").length, 0);

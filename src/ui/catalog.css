@@ -301,3 +301,28 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Keep filtering visible and reversible in both the card and scenario archives. */
+.catalog-active-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border: 1px solid #9d895e66;
+  background: #f8f2e3;
+  color: #554b35;
+  font-size: 16px;
+}
+.catalog-active-filters button {
+  min-height: 44px;
+}
+.library .library-toolbar:has(input[aria-label="Search scenarios"]) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.redbook .library .library-summary,
+.redbook .library .library-summary label {
+  color: #625037;
+}

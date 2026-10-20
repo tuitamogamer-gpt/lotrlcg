@@ -1,0 +1,167 @@
+/* Keep finding a hero or card within reach as the supported collection grows. */
+.deck-builder .builder-hero-toolbar,
+.deck-builder .builder-results {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 12px 0;
+}
+.deck-builder .builder-hero-toolbar .search-field {
+  flex: 1 1 300px;
+  min-width: 0;
+  min-height: 46px;
+}
+.deck-builder .builder-hero-toolbar input {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+}
+.deck-builder .builder-hero-toolbar > span,
+.deck-builder .builder-results > span {
+  color: #655d48;
+  font-size: 15px;
+}
+.deck-builder .builder-hero-toolbar .secondary,
+.deck-builder .builder-results .secondary {
+  min-height: 44px;
+}
+.deck-builder .builder-hero-grid {
+  max-height: 340px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #8b9879 #e7dfcd;
+  scrollbar-gutter: stable;
+  padding: 5px;
+  margin-inline: -5px;
+  border-block: 1px solid #a18a5c55;
+  scroll-padding-block: 5px;
+}
+.deck-builder .builder-hero {
+  min-width: 0;
+}
+.deck-builder .builder-hero > button:first-child {
+  min-height: 104px;
+  height: calc(100% - 30px);
+}
+.deck-builder .builder-hero > button:first-child > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.deck-builder .builder-hero.is-selected > button:first-child {
+  background: #e5ead9;
+  border-color: #4a633e;
+}
+.deck-builder .builder-hero button:focus-visible {
+  outline: 2px solid #4a633e;
+  outline-offset: 2px;
+}
+.deck-builder .builder-browse-empty {
+  padding: 14px;
+  background: #f4eedf;
+  color: #665333;
+  border: 1px solid #ac967255;
+}
+.deck-builder .builder-results {
+  justify-content: space-between;
+}
+.deck-builder .builder-show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  margin-top: 16px;
+  width: 100%;
+}
+.deck-builder .builder-summary {
+  top: 112px;
+  max-height: calc(100svh - 132px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scroll-margin-top: 112px;
+}
+.deck-builder .builder-summary:focus-visible {
+  outline: 2px solid #4a633e;
+  outline-offset: 3px;
+}
+.deck-builder .builder-mobile-status {
+  display: none;
+}
+@media (max-width: 860px) {
+  .deck-builder:has(.builder-mobile-status) {
+    padding-bottom: 110px;
+  }
+  .deck-builder .builder-summary {
+    top: auto;
+    max-height: none;
+    overflow-y: visible;
+    scroll-margin-top: 80px;
+  }
+  .deck-builder .builder-mobile-status {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 55;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 72px;
+    padding: 12px max(16px, env(safe-area-inset-right))
+      calc(12px + env(safe-area-inset-bottom))
+      max(16px, env(safe-area-inset-left));
+    border-top: 1px solid #a9905d;
+    background: #30442e;
+    color: #faf0d6;
+    box-shadow: 0 -4px 18px #28221622;
+    text-decoration: none;
+  }
+  .deck-builder .builder-mobile-status strong {
+    display: block;
+    font-size: 19px;
+  }
+  .deck-builder .builder-mobile-status small {
+    display: block;
+    margin-top: 3px;
+    font-size: 14px;
+    color: #e0d6ba;
+  }
+  .deck-builder .builder-mobile-status > span:last-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+}
+@media (max-width: 400px) {
+  .deck-builder .builder-mobile-status {
+    gap: 8px;
+    padding-inline: 12px;
+  }
+  .deck-builder .builder-mobile-status > span:last-child {
+    font-size: 14px;
+  }
+}
+/* Give printed names enough room, and keep unmatching spheres readable. */
+.deck-builder .builder-hero-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+.deck-builder .builder-card.not-legal {
+  opacity: 1;
+}
+.deck-builder .builder-card.not-legal .builder-card-info small {
+  color: #72543a;
+  opacity: 1;
+}
+.deck-builder .builder-counter button {
+  width: 44px;
+  height: 44px;
+}
+.deck-builder .search-field {
+  background: #f8f1df;
+  border-color: #a9906677;
+  color: #66563b;
+}

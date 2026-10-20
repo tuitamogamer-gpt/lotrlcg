@@ -1,4 +1,5 @@
 import type { Card } from "./types";
+import { normalizeSearchText } from "../search-text";
 import { isAutomatedCard } from "./support";
 export const isScriptedCard = isAutomatedCard;
 
@@ -53,14 +54,14 @@ export function loadCatalog(refresh = false) {
 }
 
 export function searchCards(cards: Card[], query: string) {
-  const needle = query.trim().toLocaleLowerCase();
+  const needle = normalizeSearchText(query);
   if (!needle) return cards;
   return cards.filter((c) =>
-    [c.name, c.traits, c.pack_name, c.encounter_set, c.text]
-      .filter(Boolean)
-      .join(" ")
-      .replace(/<[^>]*>/g, "")
-      .toLocaleLowerCase()
-      .includes(needle),
+    normalizeSearchText(
+      [c.name, c.traits, c.pack_name, c.encounter_set, c.text]
+        .filter(Boolean)
+        .join(" ")
+        .replace(/<[^>]*>/g, ""),
+    ).includes(needle),
   );
 }

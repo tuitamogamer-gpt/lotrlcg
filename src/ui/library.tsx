@@ -46,6 +46,7 @@ export default function Library({
   const [edition, setEdition] = useState("all");
   const [section, setSection] = useState("all");
   const [scripted, setScripted] = useState(false);
+  const [scenarioReset, setScenarioReset] = useState(0);
   const [limit, setLimit] = useState(32);
   useEffect(() => {
     let ignore = false;
@@ -113,12 +114,12 @@ export default function Library({
       (!scripted || isScriptedCard(c)),
   );
   const clear = () => {
+    setScenarioReset((value) => value + 1);
     setQuery("");
     setSphere("all");
     setType("all");
     setProduct("all");
     setEdition("all");
-    setSection("all");
     setScripted(false);
     setLimit(32);
   };
@@ -170,6 +171,10 @@ export default function Library({
             onClick={() => {
               setSection(id);
               setType("all");
+              if (id === "scenarios") {
+                setSphere("all");
+                setScripted(false);
+              }
               setLimit(32);
             }}
           >
@@ -181,8 +186,14 @@ export default function Library({
         <label className="search-field">
           <MagnifyingGlass size={19} />
           <input
-            aria-label="Search cards"
-            placeholder="Name, trait, set or rules text…"
+            aria-label={
+              section === "scenarios" ? "Search scenarios" : "Search cards"
+            }
+            placeholder={
+              section === "scenarios"
+                ? "Search scenario or campaign titles…"
+                : "Name, trait, set or rules text…"
+            }
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
@@ -190,36 +201,40 @@ export default function Library({
             }}
           />
         </label>
-        <select
-          aria-label="Filter sphere"
-          value={sphere}
-          onChange={(e) => {
-            setSphere(e.target.value);
-            setLimit(32);
-          }}
-        >
-          <option value="all">All spheres</option>
-          {spheres.map((v) => (
-            <option key={v} value={v}>
-              {v[0]?.toUpperCase() + v.slice(1)}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label="Filter card type"
-          value={type}
-          onChange={(e) => {
-            setType(e.target.value);
-            setLimit(32);
-          }}
-        >
-          <option value="all">All card types</option>
-          {types.map((v) => (
-            <option key={v} value={v}>
-              {v.replace(/[-_]/g, " ")}
-            </option>
-          ))}
-        </select>
+        {section !== "scenarios" && (
+          <>
+            <select
+              aria-label="Filter sphere"
+              value={sphere}
+              onChange={(e) => {
+                setSphere(e.target.value);
+                setLimit(32);
+              }}
+            >
+              <option value="all">All spheres</option>
+              {spheres.map((v) => (
+                <option key={v} value={v}>
+                  {v[0]?.toUpperCase() + v.slice(1)}
+                </option>
+              ))}
+            </select>
+            <select
+              aria-label="Filter card type"
+              value={type}
+              onChange={(e) => {
+                setType(e.target.value);
+                setLimit(32);
+              }}
+            >
+              <option value="all">All card types</option>
+              {types.map((v) => (
+                <option key={v} value={v}>
+                  {v.replace(/[-_]/g, " ")}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
       </div>
       <div className="catalog-product-filters">
         <label>
@@ -256,6 +271,22 @@ export default function Library({
           </select>
         </label>
       </div>
+      {(query ||
+        sphere !== "all" ||
+        type !== "all" ||
+        product !== "all" ||
+        edition !== "all" ||
+        scripted) && (
+        <div className="catalog-active-filters">
+          <span>
+            Filters are active in{" "}
+            {section === "scenarios" ? "scenario lists" : "this collection"}.
+          </span>
+          <button className="secondary" onClick={clear}>
+            Clear filters
+          </button>
+        </div>
+      )}
       {section === "scenarios" ? (
         <Suspense fallback={<p>Loading scenario lists…</p>}>
           <ScenarioArchive
@@ -276,6 +307,8 @@ export default function Library({
                   )
             }
             inspect={inspect}
+            clearFilters={clear}
+            resetVersion={scenarioReset}
             chooseAdventure={chooseAdventure}
           />
         </Suspense>
@@ -324,9 +357,6 @@ export default function Library({
               <MagnifyingGlass size={40} weight="thin" />
               <h2>No cards on this path.</h2>
               <p>Try another name, trait, or filter.</p>
-              <button className="secondary" onClick={clear}>
-                Clear filters
-              </button>
             </div>
           )}
           {found.length > limit && (

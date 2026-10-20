@@ -32,7 +32,13 @@ try {
       .locator('script[type="module"][src]')
       .evaluateAll((nodes) => nodes.map((node) => node.src)))
       entries.add(src);
+    assert.notEqual(
+      await page.evaluate(() => document.activeElement.id),
+      "main-content",
+      "initial load leaves keyboard focus undisturbed",
+    );
     const panel = page.locator("#navigation-panel");
+    assert.equal(await panel.locator('[aria-current="page"]').count(), 1);
     const opener = page.getByRole("button", {
       name: "Open navigation",
       exact: true,
@@ -105,11 +111,64 @@ try {
     await page.waitForFunction(
       () => JSON.parse(window.render_game_to_text()).mode === "guide",
     );
+    await page.waitForFunction(
+      () => document.activeElement.id === "main-content",
+    );
+    assert.equal(
+      await panel
+        .getByRole("button", { name: "How to play", exact: true })
+        .getAttribute("aria-current"),
+      "page",
+    );
     await capture(page, dir, `navigation-${width}`, screenshots);
-    checks.push(`actual navigation succeeds without overflow @ ${width}`);
+    checks.push(
+      `desktop destination receives focus and current-page semantics @ ${width}`,
+    );
+
+    await page.setViewportSize({ width: Math.min(width, 390), height: 900 });
+    await opener.click();
+    await panel
+      .getByRole("button", { name: "Deck builder", exact: true })
+      .click();
+    await page.waitForFunction(
+      () =>
+        JSON.parse(window.render_game_to_text()).mode === "decks" &&
+        document.activeElement.id === "main-content" &&
+        !!document.querySelector(".deck-builder"),
+    );
+    assert.equal(await panel.isVisible(), false);
+    assert.equal(
+      await panel
+        .getByRole("button", {
+          name: "Deck builder",
+          exact: true,
+          includeHidden: true,
+        })
+        .getAttribute("aria-current"),
+      "page",
+    );
+    checks.push(
+      `mobile destination focuses the loaded route instead of its menu opener @ ${width}`,
+    );
+
+    await opener.click();
+    await panel
+      .getByRole("button", { name: "Card library", exact: true })
+      .click();
+    await page.waitForFunction(
+      () =>
+        JSON.parse(window.render_game_to_text()).mode === "library" &&
+        document.activeElement.id === "main-content" &&
+        !!document.querySelector(".library"),
+    );
+    assert.equal(await panel.locator('[aria-current="page"]').count(), 1);
+    await capture(page, dir, `mobile-destination-${width}`, screenshots);
+    checks.push(
+      `lazy library route receives focus without overflow @ ${width}`,
+    );
     await context.close();
   }
-  assert.equal(checks.length, 12);
+  assert.equal(checks.length, 18);
   await report(dir, { checks, errors, screenshots, entries, smoke: false });
   console.log(`Navigation improvements: ${checks.length} checks passed.`);
 } catch (error) {

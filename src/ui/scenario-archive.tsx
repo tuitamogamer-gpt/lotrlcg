@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight, MagnifyingGlass } from "@phosphor-icons/react";
+import { normalizeSearchText } from "../search-text";
 import type { Card, ScenarioId } from "../game/types";
 import { automatedScenarioId } from "../game/support";
 import { SCENARIOS } from "../game/scenarios";
@@ -33,6 +34,8 @@ export default function ScenarioArchive({
   edition,
   productCodes,
   inspect,
+  clearFilters,
+  resetVersion,
   chooseAdventure,
 }: {
   catalog: Card[];
@@ -40,11 +43,14 @@ export default function ScenarioArchive({
   edition: string;
   productCodes?: Set<string>;
   inspect: (c: Card) => void;
+  clearFilters: () => void;
+  resetVersion: number;
   chooseAdventure?: (id: ScenarioId, mode: string) => void;
 }) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [status, setStatus] = useState("Loading scenario lists…");
   const [mode, setMode] = useState("all");
+  useEffect(() => setMode("all"), [resetVersion]);
   const [selected, setSelected] = useState<string | null>(null);
   const [limit, setLimit] = useState(24);
   useEffect(() => {
@@ -91,7 +97,7 @@ export default function ScenarioArchive({
   );
   const found = recipes.filter(
     (r) =>
-      r.name.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()) &&
+      normalizeSearchText(r.name).includes(normalizeSearchText(query)) &&
       (mode === "all" || r.mode === mode) &&
       (edition === "all" ||
         (edition === "nightmare"
@@ -99,11 +105,12 @@ export default function ScenarioArchive({
           : r.mode !== "nightmare")) &&
       (!productCodes || r.card_codes.some((code) => productCodes.has(code))),
   );
-  const recipe = recipes.find((r) => r.id === selected);
+  const recipe = found.find((r) => r.id === selected);
   const supported = recipe ? automatedScenarioId(recipe) : null;
+  useEffect(() => setLimit(24), [query, edition, productCodes]);
   return (
     <section className="scenario-archive" aria-label="Published scenario lists">
-      <div className="library-summary">
+      <div className="library-summary" aria-live="polite">
         <span>
           {found.length} scenario & campaign lists · {SCENARIOS.length}{" "}
           automated adventures
@@ -159,7 +166,20 @@ export default function ScenarioArchive({
         </button>
       )}
       {!status && !found.length && (
-        <p>No scenario lists match these filters.</p>
+        <div className="library-empty">
+          <MagnifyingGlass size={36} weight="thin" aria-hidden="true" />
+          <h2>No scenario lists match these filters.</h2>
+          <p>Try another title, product, edition or mode.</p>
+          <button
+            className="secondary"
+            onClick={() => {
+              setMode("all");
+              clearFilters();
+            }}
+          >
+            Show all scenario lists
+          </button>
+        </div>
       )}
       {recipe && (
         <div className="published-deck-detail">
