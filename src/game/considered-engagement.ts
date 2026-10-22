@@ -27,6 +27,7 @@ export function dealEnemyShadows(s: GameState, u: Unit, amount = 1): string[] {
     if (u.faceupShadows) u.faceupShadows.push(false);
     heirsShadowDealt(s, u);
     carnShadowDealt(s, u);
+    batch4Scenario(s).shadowDealt?.(s, u, code);
     dealt.push(code);
   }
   return dealt;
@@ -79,7 +80,7 @@ export function resetEnemyAttacks(u: Unit) {
   u.attackedBy = [];
   delete (u as ConsideredEnemy).consideredEnemyAttackedBy;
 }
-/** Bane's printed fresh-shadow instruction replaces the ordinary framework deal. */
+/** Considered-engaged enemies receive a new shadow for each attack (designer FAQ 3.346). */
 export function prepareEnemyShadows(s: GameState, u: Unit) {
   resetEnemyAttacks(u);
   u.revealedShadowCount = 0;
@@ -92,6 +93,7 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
     delete u.faceupShadows;
     return;
   }
+  if (playerOrder(s).some((player) => consideredEngaged(s, u, player))) return;
   if (batch4Scenario(s).skipShadowDeal?.(s, u)) return;
   if (hasHinder(u)) return;
   dealEnemyShadows(s, u);
@@ -100,20 +102,23 @@ export function prepareEnemyShadows(s: GameState, u: Unit) {
 export function beginConsideredEnemyShadows(s: GameState, u: Unit): boolean {
   if (batch4Scenario(s).beginShadows?.(s, u)) return true;
   if (carnConsideredEngaged(s, u)) return carnImmediateShadows(s, u);
-  if (u.code !== SHADOW_FLAME.bane || u.blanked) return false;
+  if (
+    !(u.code === SHADOW_FLAME.bane && !u.blanked) &&
+    !playerOrder(s).some((player) => consideredEngaged(s, u, player))
+  )
+    return false;
   // Immediate attacks suspend their original shadows separately before this call.
   // A normal attack must never lose a physical card left by an earlier attack.
   s.encounterDiscard.push(...u.shadows);
-  const code = encounterDraw(s, true);
-  u.shadows = code ? [code] : [];
+  u.shadows = [];
   delete u.faceupShadows;
-  if (code) heirsShadowDealt(s, u);
+  dealEnemyShadows(s, u);
   u.revealedShadowCount = 0;
   delete u.shadowCancelsDamage;
   delete u.shadowCancelsCombatDamage;
   return true;
 }
-/** Each Bane attack discards its own shadows before the next player attacks. */
+/** Each considered-engaged attack discards its shadows before the next attack. */
 export function finishEnemyShadows(
   s: GameState,
   u: Unit,
@@ -137,7 +142,11 @@ export function finishEnemyShadows(
   if (batch4Scenario(s).finishShadows?.(s, u, startedWithFreshShadow))
     return true;
   if (carnFinishEnemyShadows(s, u)) return true;
-  if (u.code !== SHADOW_FLAME.bane || (u.blanked && !startedWithFreshShadow))
+  if (
+    !startedWithFreshShadow &&
+    !(u.code === SHADOW_FLAME.bane && !u.blanked) &&
+    !playerOrder(s).some((player) => consideredEngaged(s, u, player))
+  )
     return false;
   s.encounterDiscard.push(...u.shadows);
   u.shadows = [];

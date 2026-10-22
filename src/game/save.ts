@@ -3,6 +3,9 @@ import { validateWitheredHeath } from "./withered-heath-support";
 import { validateRoamRhovanion } from "./roam-rhovanion-support";
 import { validateFireNight } from "./fire-night-support";
 import { validateGhostFramsburg } from "./ghost-framsburg-support";
+import { validateMountGundabad } from "./mount-gundabad-support";
+import { validateFateWilderland } from "./fate-wilderland-support";
+import { validDamageContextEffectText } from "./damage-context";
 import { eredScenarioUnits } from "./ered-scenario-state";
 import { validateCirithGurat } from "./cirith-gurat-support";
 import { validateCrossingsPoros } from "./crossings-poros-support";
@@ -253,6 +256,18 @@ export function validateSave(
       (a.owner === undefined ||
         (integer(a.owner) && a.owner >= 0 && a.owner < seatCount));
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
+      (c.attackResolved === undefined ||
+        typeof c.attackResolved === "boolean") &&
+      (c.freshConsideredShadows === undefined ||
+        typeof c.freshConsideredShadows === "boolean") &&
+      (c.wilderAssaultOnKill === undefined ||
+        (integer(c.wilderAssaultOnKill) && c.wilderAssaultOnKill >= 0)) &&
+      (c.wilderKilledCharacter === undefined ||
+        typeof c.wilderKilledCharacter === "boolean") &&
+      (c.wilderDiscardAlly === undefined ||
+        (integer(c.wilderDiscardAlly) && c.wilderDiscardAlly >= 0)) &&
+      (c.wilderPackAttacks === undefined ||
+        (integer(c.wilderPackAttacks) && c.wilderPackAttacks >= 0)) &&
       (c.heathSpiderDamageIds === undefined ||
         (Array.isArray(c.heathSpiderDamageIds) &&
           new Set(c.heathSpiderDamageIds).size ===
@@ -717,6 +732,13 @@ export function validateSave(
                     (u) => u.id === event.unit.id && u.code === event.unit.code,
                   ),
               ) ||
+              !!s.fateWilderland?.storedCards?.some(
+                (entry) =>
+                  entry.player === event.player &&
+                  entry.cards.some(
+                    (u) => u.id === event.unit.id && u.code === event.unit.code,
+                  ),
+              ) ||
               !!s.wildsRhovanion?.storedCards?.some(
                 (entry) =>
                   entry.player === event.player &&
@@ -799,6 +821,8 @@ export function validateSave(
         ) ||
         !validateFireNight(s, validUnit as (value: unknown) => boolean) ||
         !validateGhostFramsburg(s, validUnit as (value: unknown) => boolean) ||
+        !validateMountGundabad(s, validUnit as (value: unknown) => boolean) ||
+        !validateFateWilderland(s, validUnit as (value: unknown) => boolean) ||
         !validateFoundationsState(
           s,
           validUnit as (value: unknown) => boolean,
@@ -1137,6 +1161,7 @@ export function validateSave(
       (e.noShadow === undefined || typeof e.noShadow === "boolean") &&
       (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
       (e.shadowEnemyId === undefined || typeof e.shadowEnemyId === "string") &&
+      validDamageContextEffectText(e.text) &&
       typeof e.kind === "string" &&
       (!e.code || SCRIPTED.has(e.code) || knownQuest(e.code)) &&
       (e.owner === undefined ||

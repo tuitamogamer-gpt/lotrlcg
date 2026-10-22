@@ -1,3 +1,4 @@
+import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import * as BatchSupport from "./batch4-player-support";
 import * as WildsSupport from "./wilds-player-support";
@@ -534,6 +535,7 @@ export function hasGondor(u: Unit) {
 export function stats(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
   const c = card(u.code);
+  const eredFinalBonus = EredFinalSupport.eredFinalPlayerStats(s, u);
   const bonus = expansionStats(s, u);
   const carrockBonus = carrockStatBonus(s, u);
   const gondorBonus = gondorRoundStats(s, u);
@@ -570,6 +572,7 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           BatchSupport.batch4PlayerStats(s, u).will,
+          eredFinalBonus.will,
           EredSupport.eredMithrinPlayerStats(s, u).will +
             WildsSupport.wildsPlayerStats(s, u).will,
           chetwoodBonus.will,
@@ -642,6 +645,7 @@ export function stats(s: GameState, u: Unit) {
         Sands.beneathSandsStats(s, u).attack +
         (batch4Scenario(s).stats?.(s, u).attack ?? 0) +
         BatchSupport.batch4PlayerStats(s, u).attack +
+        eredFinalBonus.attack +
         EredSupport.eredMithrinPlayerStats(s, u).attack +
         WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
@@ -717,6 +721,7 @@ export function stats(s: GameState, u: Unit) {
             Sands.beneathSandsStats(s, u).defense +
             (batch4Scenario(s).stats?.(s, u).defense ?? 0) +
             BatchSupport.batch4PlayerStats(s, u).defense +
+            eredFinalBonus.defense +
             EredSupport.eredMithrinPlayerStats(s, u).defense +
             WildsSupport.wildsPlayerStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
@@ -761,6 +766,7 @@ export function stats(s: GameState, u: Unit) {
       Race.raceHaradStats(s, u).health +
       (batch4Scenario(s).stats?.(s, u).health ?? 0) +
       EredSupport.eredMithrinPlayerStats(s, u).health +
+      eredFinalBonus.health +
       WildsSupport.wildsPlayerStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
@@ -837,6 +843,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   ? (batch4Scenario(s).allyCost?.(s) ?? 0)
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
+                EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 WildsSupport.wildsPlayerCostReduction(s, c, target) -
                 EredSupport.eredMithrinPlayerCostReduction(s, c, target) +
                 Dike.dikePlayCost(
@@ -1139,6 +1146,7 @@ export const enemyAttackPrevented = (
   Depths.depthsCannotAttack(s, u) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
+  EredFinalSupport.eredFinalPlayerPreventAttack(s, u, player) ||
   has(u, "01069") ||
   amonPlayerEnemyCannotAttack(s, u, player) ||
   elfEnemyCannotAttack(s, u, player) ||
@@ -1147,6 +1155,7 @@ export const enemyAttackPrevented = (
   MumakPlayers.mumakilEnemyCannotAttack(s, u, player);
 
 export const canFight = (u: Unit) =>
+  !EredFinalSupport.eredFinalPlayerCannotFight(u) &&
   !EredSupport.eredMithrinPlayerCannotFight(u) &&
   (u.code !== "08112" || !!u.blanked) &&
   (u.code !== "10089" || !!u.blanked) &&
@@ -1209,6 +1218,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
         EredSupport.eredMithrinPlayerNoResourceMatch(s, c) ||
+        EredFinalSupport.eredFinalPlayerResourceMatch(s, h, c) ||
         WildsSupport.wildsPlayerNoResourceMatch(s, c) ||
         WildsSupport.wildsPlayerPayer(h, c) ||
         MumakSupport.mumakilKahlielPays(h, c) ||
@@ -1296,7 +1306,8 @@ const hasTraitCard = (c: Card, trait: string) =>
 export const canPay = (s: GameState, c: Card) =>
   !Antlered.antleredPlayProblem(s, c.code) &&
   !Nin.ninPlayProblem(s, c.code) &&
-  (!["01036", "08143", "10085"].includes(c.code) ||
+  !batch4Scenario(s).playProblem?.(s, c.code) &&
+  (!["01036", "08143", "10085", "19149"].includes(c.code) ||
     (playCost(s, c) >= 3 &&
       eligiblePayers(s, c).filter((h) => h.resources > 0 && isHero(h)).length >=
         3)) &&
@@ -1330,7 +1341,7 @@ export function pay(
   let cost = playCost(s, c, target);
   const spent: Record<string, number> = {};
   const payers = eligiblePayers(s, c, target);
-  if (["01036", "08143", "10085"].includes(c.code))
+  if (["01036", "08143", "10085", "19149"].includes(c.code))
     requireRule(
       payment &&
         Object.entries(payment).filter(

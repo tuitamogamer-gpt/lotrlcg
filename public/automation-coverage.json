@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 675,
-    "heroes": 77,
-    "deckCards": 595,
-    "encounterCards": 1018,
-    "scenarios": 70,
+    "playerCards": 694,
+    "heroes": 79,
+    "deckCards": 612,
+    "encounterCards": 1044,
+    "scenarios": 72,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -77,17 +77,19 @@
       "the-withered-heath",
       "roam-across-rhovanion",
       "fire-in-the-night",
-      "the-ghost-of-framsburg"
+      "the-ghost-of-framsburg",
+      "mount-gundabad",
+      "the-fate-of-wilderland"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1910,
-    "pending": 2273
+    "scripted": 1966,
+    "pending": 2217
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 140
+    "scripted": 144
   },
   "registeredCodes": [
     "01001",
@@ -803,7 +805,26 @@
     "19091",
     "19092",
     "19093",
+    "19112",
+    "19113",
+    "19114",
+    "19115",
+    "19116",
+    "19117",
+    "19118",
+    "19119",
     "19120",
+    "19121",
+    "19145",
+    "19146",
+    "19147",
+    "19148",
+    "19149",
+    "19150",
+    "19151",
+    "19152",
+    "19153",
+    "19154",
     "22001",
     "22002",
     "22003",
@@ -840,6 +861,7 @@
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
+    "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
     "octgn:047ca6cd-733d-46aa-b2db-48a9c63bfc24",
     "octgn:04a23a2e-a14f-4c54-b54f-eeef36d3a92b",
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
@@ -880,6 +902,7 @@
     "octgn:0f3c746e-2d23-4cb9-a481-f919ffc8cdee",
     "octgn:0f5ffc36-fe0f-4097-ad67-dafda700d96f",
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
+    "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
@@ -1004,6 +1027,7 @@
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
+    "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
@@ -1015,6 +1039,7 @@
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
     "octgn:34bfcbad-5557-48bc-8abd-3ac472ee4d3b",
+    "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
     "octgn:35055e3e-d806-4c21-ad37-8177d70be329",
     "octgn:351afed2-188b-42d4-9b3a-bccb510ae7d2",
     "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
@@ -1034,8 +1059,10 @@
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
     "octgn:3a8869dc-077e-4b8c-b3d5-474e4f9c14ba",
+    "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
     "octgn:3b7c4f67-7de4-4b77-be50-0fd86e4ef2bc",
     "octgn:3bc03452-6c37-45e2-9241-e626ea51f382",
+    "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
     "octgn:3d19de02-b3a9-4612-a90a-30b37bd1e9b1",
     "octgn:3d1a7e6f-382a-49cb-9873-e6e5e86d12d2",
     "octgn:3d25a41e-6a10-4fd7-a159-2b25bfc54454",
@@ -1049,6 +1076,7 @@
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
@@ -1077,6 +1105,8 @@
     "octgn:46affe37-a561-4c15-bc0e-7c36d78ba056",
     "octgn:46c7bfd7-96b7-4fe4-a110-3464ba6c0023",
     "octgn:4732976c-a400-498f-9f97-108995fcd99f",
+    "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+    "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
     "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
     "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
@@ -1148,6 +1178,7 @@
     "octgn:4a18a702-0c0e-4be8-b26d-ccf5d4d95e2a",
     "octgn:4a28b128-1f89-4ad0-b27b-4cb1755c2d23",
     "octgn:4a5c11eb-44b8-4c6e-a9fa-83112dbd57c0",
+    "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
     "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
@@ -1394,6 +1425,7 @@
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
+    "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
     "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
@@ -1404,11 +1436,13 @@
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
     "octgn:590dd523-5743-4c36-b905-c34c021c2676",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
+    "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
     "octgn:5a4545c3-8b25-4fad-9798-b67921c9e7d3",
     "octgn:5a654416-4449-4d0c-add8-8b3ca04bb401",
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
+    "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
     "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
     "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
@@ -1432,6 +1466,7 @@
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
+    "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
@@ -1464,6 +1499,7 @@
     "octgn:702e659f-949c-491d-84ab-e1d5b4166f46",
     "octgn:70cc4fe9-8e97-4d83-8f48-06dc6a43c43e",
     "octgn:70decac2-b07f-4c96-9684-4c008f19610b",
+    "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
     "octgn:71079813-3afe-41b7-8746-92dcc1f91084",
     "octgn:715625a1-320e-478c-afd3-bec7111105f2",
     "octgn:718d940a-2b58-4986-af10-06a81546bc9f",
@@ -1510,8 +1546,10 @@
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
+    "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
+    "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
@@ -1545,8 +1583,10 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
+    "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
     "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
@@ -1572,6 +1612,7 @@
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
+    "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
     "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
@@ -1605,8 +1646,10 @@
     "octgn:97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
     "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
     "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
+    "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
+    "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
@@ -1620,6 +1663,7 @@
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
+    "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
     "octgn:9d2926dc-ab14-492a-8f1e-b07c1b32b2d8",
     "octgn:9d451960-2db3-43df-9cd8-d525ef58cf55",
     "octgn:9d58de28-c518-4888-8e91-a52bb5c3e663",
@@ -1658,6 +1702,7 @@
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
+    "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
     "octgn:a837fe8b-6f21-4d20-9897-89a3c4706b40",
     "octgn:a8494d53-c8a4-4f74-b3e1-2e4183aeea2a",
@@ -1680,6 +1725,7 @@
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
+    "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
@@ -1695,6 +1741,7 @@
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
     "octgn:b2fcd022-5409-4a2f-9775-390d2c3ce7d2",
     "octgn:b2ff9ad8-c9c6-42bb-a5cd-cb2af0b006a0",
+    "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
     "octgn:b34e79d4-7806-4fd9-b12d-bb291e44f354",
     "octgn:b3ab2d77-ada8-42cb-9a87-dfac20d3a9f8",
     "octgn:b4543d6e-168b-4ac6-ae65-022e13ce4098",
@@ -1748,6 +1795,7 @@
     "octgn:c179ea26-838b-449c-b0a0-f2049e20b01f",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
+    "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
@@ -1767,6 +1815,7 @@
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
+    "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
@@ -1806,16 +1855,19 @@
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
+    "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
     "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+    "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
     "octgn:d03bdefa-cc39-43b6-9af9-feeb33858958",
     "octgn:d0bf9c82-d626-4602-a383-4a5660a08c5f",
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
+    "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
     "octgn:d658967b-662e-4dfb-afb6-4b3444074b79",
@@ -1828,6 +1880,7 @@
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
     "octgn:d80a5ca5-20d8-4c4b-814c-0c91bba40d43",
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
+    "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
     "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
     "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
@@ -1891,6 +1944,7 @@
     "octgn:e9217231-de12-48ef-9351-f7d992643c2f",
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
+    "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
@@ -1939,6 +1993,8 @@
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+    "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
     "octgn:f811f153-81f4-4688-8b4d-400215e6748a",
@@ -1968,6 +2024,7 @@
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
     "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
+    "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
     "octgn:fd3e323b-0fea-49ce-90d2-cbfea27be8cd",
     "octgn:fd726884-459b-4c66-a046-6fa86402ce6a",
@@ -1987,6 +2044,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
     "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
+    "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
@@ -2268,9 +2326,9 @@
     {
       "product": "mount-gundabad",
       "total": 31,
-      "scripted": 1,
+      "scripted": 31,
       "player": 11,
-      "playerScripted": 1
+      "playerScripted": 11
     },
     {
       "product": "murder-at-the-prancing-pony",
@@ -2569,9 +2627,9 @@
     {
       "product": "the-fate-of-wilderland",
       "total": 26,
-      "scripted": 0,
+      "scripted": 26,
       "player": 10,
-      "playerScripted": 0
+      "playerScripted": 10
     },
     {
       "product": "the-flame-of-the-west",
@@ -10842,7 +10900,7 @@
       "name": "Bilbo Baggins",
       "type": "hero",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10850,7 +10908,7 @@
       "name": "Greenwood Defender",
       "type": "ally",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10858,7 +10916,7 @@
       "name": "Elf Guide",
       "type": "event",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10866,7 +10924,7 @@
       "name": "Gaffer Gamgee",
       "type": "ally",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10874,7 +10932,7 @@
       "name": "Drinking Song",
       "type": "event",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10882,7 +10940,7 @@
       "name": "Sting",
       "type": "attachment",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10890,7 +10948,7 @@
       "name": "Round Shield",
       "type": "attachment",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10898,7 +10956,7 @@
       "name": "Erebor Toymaker",
       "type": "ally",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10914,7 +10972,7 @@
       "name": "The Shirefolk",
       "type": "event",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -10922,7 +10980,7 @@
       "name": "Radagast",
       "type": "hero",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10930,7 +10988,7 @@
       "name": "Messenger Raven",
       "type": "ally",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10938,7 +10996,7 @@
       "name": "The King's Return",
       "type": "event",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10946,7 +11004,7 @@
       "name": "Loyal Hound",
       "type": "ally",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10954,7 +11012,7 @@
       "name": "The Great Hunt",
       "type": "event",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10962,7 +11020,7 @@
       "name": "Bywater Shirriff",
       "type": "ally",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10970,7 +11028,7 @@
       "name": "Gwaihir's Debt",
       "type": "event",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10978,7 +11036,7 @@
       "name": "Mithril Shirt",
       "type": "attachment",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10986,7 +11044,7 @@
       "name": "Reforged",
       "type": "event",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -10994,7 +11052,7 @@
       "name": "Radagast's Staff",
       "type": "attachment",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -12050,7 +12108,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -12962,7 +13020,7 @@
       "name": "The Final Push",
       "type": "quest",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -15786,7 +15844,7 @@
       "name": "Urdug",
       "type": "enemy",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -16138,7 +16196,7 @@
       "name": "Desecrated Ruins",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -16642,7 +16700,7 @@
       "name": "Urdug's Elite",
       "type": "enemy",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -16714,7 +16772,7 @@
       "name": "Guardian of Gundabad",
       "type": "enemy",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -16954,7 +17012,7 @@
       "name": "Fierce Vanguard",
       "type": "enemy",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -17538,7 +17596,7 @@
       "name": "Dagnir's Slave",
       "type": "enemy",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -17570,7 +17628,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -18322,7 +18380,7 @@
       "name": "Warg-rider",
       "type": "enemy",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -21922,7 +21980,7 @@
       "name": "Urdug's Command",
       "type": "treachery",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -22098,7 +22156,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -22178,7 +22236,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -22746,7 +22804,7 @@
       "name": "Wilderland's Bane",
       "type": "treachery",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -23722,7 +23780,7 @@
       "name": "The First Forge",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -24866,7 +24924,7 @@
       "name": "Dwarven Watchtower",
       "type": "location",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -25026,7 +25084,7 @@
       "name": "The Heroes' Defense",
       "type": "objective",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -25858,7 +25916,7 @@
       "name": "Slopes of Gundabad",
       "type": "location",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -25970,7 +26028,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -26458,7 +26516,7 @@
       "name": "The Side Door",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -27146,7 +27204,7 @@
       "name": "Gate of Gundabad",
       "type": "location",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -27274,7 +27332,7 @@
       "name": "Urdug's Assault",
       "type": "quest",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -27578,7 +27636,7 @@
       "name": "Dagnir's Hoard",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -28458,7 +28516,7 @@
       "name": "Mines of Gundabad",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -29042,7 +29100,7 @@
       "name": "The Goblins' Assault",
       "type": "objective",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -29362,7 +29420,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -30994,7 +31052,7 @@
       "name": "Fierce Attack",
       "type": "treachery",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -31338,7 +31396,7 @@
       "name": "Dark Clouds",
       "type": "treachery",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -32106,7 +32164,7 @@
       "name": "Exploring Gundabad",
       "type": "quest",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -32194,7 +32252,7 @@
       "name": "Wormsbane",
       "type": "attachment",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -32434,7 +32492,7 @@
       "name": "Deep-dweller",
       "type": "enemy",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -32834,7 +32892,7 @@
       "name": "Outflanked",
       "type": "quest",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -34290,7 +34348,7 @@
       "name": "Throat of the Mountain",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -35434,7 +35492,7 @@
       "name": "Hilltop Battlements",
       "type": "location",
       "pack": "The Fate of Wilderland",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fate-of-wilderland"
     },
     {
@@ -35474,7 +35532,7 @@
       "name": "Narrow Stair",
       "type": "location",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -36058,7 +36116,7 @@
       "name": "Suffocating Shadows",
       "type": "treachery",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -36258,7 +36316,7 @@
       "name": "Dagnir",
       "type": "enemy",
       "pack": "Mount Gundabad",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "mount-gundabad"
     },
     {
@@ -36955,15 +37013,15 @@
       "id": "E08.8",
       "name": "Mount Gundabad (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-gundabad",
+      "state": "scripted"
     },
     {
       "id": "E08.9",
       "name": "The Fate of Wilderland (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fate-of-wilderland",
+      "state": "scripted"
     },
     {
       "id": "E09.1",
@@ -38446,15 +38504,15 @@
       "id": "Q08.8",
       "name": "Mount Gundabad",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "mount-gundabad",
+      "state": "scripted"
     },
     {
       "id": "Q08.9",
       "name": "The Fate of Wilderland",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fate-of-wilderland",
+      "state": "scripted"
     },
     {
       "id": "Q09.1",

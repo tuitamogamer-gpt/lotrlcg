@@ -1,0 +1,328 @@
+[
+  {
+    "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+    "octgnid": "044a7b39-8ef6-41c7-bb99-ce209f700b09",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 136,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "The Upper Levels",
+    "back_text": "Forced: After characters are committed to the quest, raise each player's threat by 1. Forced: When this stage is defeated, shuffle The First Forge into the Caves deck. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 3,
+    "back_imagesrc": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 136,
+        "quantity": 1,
+        "octgnid": "044a7b39-8ef6-41c7-bb99-ce209f700b09",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+    "octgnid": "47aada3f-9ee6-455d-8c2d-786962633f34",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 142,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "The Great Worm",
+    "back_text": "Dagnir gets -5 engagement cost for each character the first player controls. Response: After a player resolve an attack against Dagnir, if Dagnir has no hit points remaining, that player may discard a Reforged Wormsbane he controls to add Dagnir to the victory display. Then, the players win the game. At the end of the combat phase, if there are 4 or fewer quests in the victory display, the players must bypass this stage.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 142,
+        "quantity": 1,
+        "octgnid": "47aada3f-9ee6-455d-8c2d-786962633f34",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47aada3f-9ee6-455d-8c2d-786962633f34.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+    "octgnid": "5a0d35ad-e9af-48b1-8454-534753394ed2",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 137,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "The Lower Deeps",
+    "back_text": "The 'when revealed' effects of the first treachery revealed each round cannot be canceled. Forced: When this stage is defeated, search the Caves deck for a location and make it the active location. Shuffle the Caves deck. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 3,
+    "back_imagesrc": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 137,
+        "quantity": 1,
+        "octgnid": "5a0d35ad-e9af-48b1-8454-534753394ed2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+    "octgnid": "5abd3a4b-2769-401d-aa3c-c904da21b97a",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 141,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "Imminent Pursuit",
+    "back_text": "Forced: After characters are committed to the quest, each player must deal 2 damage to a questing character he controls. Forced: When this stage is defeated, discard a non-unique enemy from play. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 141,
+        "quantity": 1,
+        "octgnid": "5abd3a4b-2769-401d-aa3c-c904da21b97a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+    "octgnid": "89cd149f-69d3-4d75-887d-96b45730792a",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 140,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "Foreboding Darkness",
+    "back_text": "Each player cannot play more than 1 card each phase. Forced: When this stage is defeated, the first player looks at the top 2 cards of the quest deck and chooses 1 to place on the bottom of the quest deck. Then, flip over the top card of the quest deck. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 140,
+        "quantity": 1,
+        "octgnid": "89cd149f-69d3-4d75-887d-96b45730792a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89cd149f-69d3-4d75-887d-96b45730792a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+    "octgnid": "8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+    "name": "The Side Door",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Dagnir to the staging area and set The First Forge aside, out of play. Create the Caves deck and the quest deck (see insert). Attach Wormsbane to a hero, Broken side face-up. Shuffle the encounter deck and discard cards from the top until X locations have been discarded, where X is 1 less than the number of players in the game. Add those locations to the staging area. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 134,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "The Side Door",
+    "back_text": "Forced: At the end of the planning phase, the first player looks at the top 2 cards of the quest deck and chooses 1 to place on the bottom of the quest deck. Then, add The Side Door to the victory display and advance to the top stage 2A of the quest deck.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 134,
+        "quantity": 1,
+        "octgnid": "8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+    "octgnid": "b3147b4e-2a60-402f-a1aa-5d56c002326d",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 139,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "Dagnir's Wrath",
+    "back_text": "Forced: After characters are committed to the quest, Dagnir makes an immediate attack against each player with 6 or more characters. Forced: When this stage is defeated, deal 5 damage to Dagnir. This damage is not limited by Dagnir's text, and does not count toward her X value. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 139,
+        "quantity": 1,
+        "octgnid": "b3147b4e-2a60-402f-a1aa-5d56c002326d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+    "octgnid": "cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+    "name": "Exploring Gundabad",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 138,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Mount Gundabad",
+    "side": "A",
+    "back_name": "Frenzied Warrens",
+    "back_text": "Forced: After characters are committed to the quest, discard the top 5 cards of the encounter deck. Add a random enemy discarded this way to the staging area. Forced: When this stage is defeated, reduce each player's threat by 5. At the end of the combat phase, the players may bypass this stage.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 138,
+        "quantity": 1,
+        "octgnid": "cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  }
+]

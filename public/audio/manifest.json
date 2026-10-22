@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "provider": "Fish Audio",
+  "model": "s2.1-pro",
+  "voice": {
+    "id": "bf322df2096a46f18c579d0baa36f41d",
+    "name": "Adrian",
+    "author": "Fish Official",
+    "type": "official-stock"
+  },
+  "generatedOn": "2026-10-22",
+  "totalCreditsCharged": 118,
+  "encoding": {
+    "mimeType": "audio/mpeg",
+    "codec": "mp3",
+    "sampleRate": 44100,
+    "channels": 1,
+    "bitrate": 128000
+  },
+  "qualityCheckedAt": "2026-10-22T17:22:34.265833+00:00",
+  "qualityChecks": [
+    "full-ffmpeg-decode",
+    "sample-peak",
+    "true-peak",
+    "integrated-loudness"
+  ],
+  "cues": {
+    "stage": {
+      "src": "/audio/quest-advance.mp3",
+      "text": "A new path opens.",
+      "prompt": "[soft]A new path opens.",
+      "durationSeconds": 1.593375,
+      "bytes": 25563,
+      "sha256": "6c6142f0d87f7a3c8127512b334f508241c92272d2deb28bf2cc1392ee56d0be",
+      "samplePeakDbfs": -8.842932,
+      "truePeakDbfs": -8.82,
+      "integratedLufs": -23.39,
+      "creditsCharged": 23,
+      "taskId": "f7250cb73ddb4e74a96e5d5150c024fd",
+      "sourceUrl": "https://platform.r2.fish.audio/tasks/2026-10-22/f7250cb73ddb4e74a96e5d5150c024fd.mp3"
+    },
+    "side-quest": {
+      "src": "/audio/side-quest.mp3",
+      "text": "The way is clear.",
+      "prompt": "[soft]The way is clear.",
+      "durationSeconds": 1.227688,
+      "bytes": 19712,
+      "sha256": "8869a5e96fa828cdaf73c8769bb2608b1a3a319b52705f8227cd909310b081e2",
+      "samplePeakDbfs": -9.59708,
+      "truePeakDbfs": -9.56,
+      "integratedLufs": -23.41,
+      "creditsCharged": 23,
+      "taskId": "846a95ae34494e9480916fed335876a1",
+      "sourceUrl": "https://platform.r2.fish.audio/tasks/2026-10-22/846a95ae34494e9480916fed335876a1.mp3"
+    },
+    "hero-fall": {
+      "src": "/audio/hero-fall.mp3",
+      "text": "A hero has fallen.",
+      "prompt": "[sad]A hero has fallen.",
+      "durationSeconds": 1.515,
+      "bytes": 24309,
+      "sha256": "e8d3fdb48f6ffe4e3a78c652c708c30542444c7ebe9c52cd2ed597fa56944163",
+      "samplePeakDbfs": -5.589152,
+      "truePeakDbfs": -5.59,
+      "integratedLufs": -22.45,
+      "creditsCharged": 23,
+      "taskId": "9995116fdae047d48c3d0fda1c679d1f",
+      "sourceUrl": "https://platform.r2.fish.audio/tasks/2026-10-22/9995116fdae047d48c3d0fda1c679d1f.mp3"
+    },
+    "victory": {
+      "src": "/audio/victory.mp3",
+      "text": "Victory is ours.",
+      "prompt": "[joyful]Victory is ours.",
+      "durationSeconds": 1.593375,
+      "bytes": 25563,
+      "sha256": "95d92dff4f026cc03e9c147a4fe9af0c9a3b8b5988fd8623834b8b7d8831ca84",
+      "samplePeakDbfs": -5.62833,
+      "truePeakDbfs": -5.63,
+      "integratedLufs": -24.97,
+      "creditsCharged": 24,
+      "taskId": "36516df07495406abcc70f140c58ce21",
+      "sourceUrl": "https://platform.r2.fish.audio/tasks/2026-10-22/36516df07495406abcc70f140c58ce21.mp3"
+    },
+    "defeat": {
+      "src": "/audio/defeat.mp3",
+      "text": "Our quest has ended.",
+      "prompt": "[sad]Our quest has ended.",
+      "durationSeconds": 1.593375,
+      "bytes": 25563,
+      "sha256": "48b0dda565b047617e15dec6b9bafae196443100c6c5cc1c03cd2b8b4b606705",
+      "samplePeakDbfs": -6.268424,
+      "truePeakDbfs": -6.27,
+      "integratedLufs": -22.68,
+      "creditsCharged": 25,
+      "taskId": "64f8ef4cff554827a6f28a279409f433",
+      "sourceUrl": "https://platform.r2.fish.audio/tasks/2026-10-22/64f8ef4cff554827a6f28a279409f433.mp3"
+    }
+  }
+}

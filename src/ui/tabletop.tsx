@@ -45,6 +45,7 @@ import { collectorAbilityAnyPlayer } from "../game/collector-player-cards";
 import { depthsPlayerAbilityAnyPlayer } from "../game/depths-player";
 import { templePlayerAbilityAnyPlayer } from "../game/temple-player";
 import { WATCHER_WATER } from "../game/watcher-water-support";
+import { currentQuestInspection } from "./quest-inspection";
 
 // Presentation only: the engine remains the source of every count and action.
 export function questStageLabel(s: GameState) {
@@ -262,7 +263,9 @@ export function JourneyArea({
       {sideQuest && mainQuestCode(s) && (
         <button
           className="journey-main-quest"
-          onClick={() => inspect(card(mainQuestCode(s)!))}
+          onClick={() =>
+            inspect(currentQuestInspection(s, card(mainQuestCode(s)!)))
+          }
         >
           Inspect main quest
         </button>

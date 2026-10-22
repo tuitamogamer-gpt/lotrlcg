@@ -135,8 +135,12 @@
     "test:browser-fire-night": "npm run test:fire-night-quests",
     "test:browser-ghost-framsburg": "npm run test:ghost-framsburg-quests",
     "test:browser-ered-players": "npm run test:ered-mithrin-players",
-    "test:browser-ered": "npm run test:withered-heath-quests && npm run test:roam-rhovanion-quests && npm run test:fire-night-quests && npm run test:ghost-framsburg-quests && npm run test:ered-mithrin-players",
-    "test:ered-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-withered-heath|roam-across-rhovanion|fire-in-the-night|the-ghost-of-framsburg) normal: complete seeded games with save checks$\" tests/hotseat.test.ts"
+    "test:browser-ered": "npm run test:withered-heath-quests && npm run test:roam-rhovanion-quests && npm run test:fire-night-quests && npm run test:ghost-framsburg-quests && npm run test:ered-mithrin-players && npm run test:browser-ered-finale",
+    "test:ered-multiplayer": "node --import tsx --test --test-name-pattern=\"^hot-seat (the-withered-heath|roam-across-rhovanion|fire-in-the-night|the-ghost-of-framsburg|mount-gundabad|the-fate-of-wilderland) normal: complete seeded games with save checks$\" tests/hotseat.test.ts",
+    "test:significant-audio": "node --import tsx scripts/browser-significant-audio.mjs",
+    "test:ered-finale-quests": "node --import tsx scripts/browser-ered-finale.mjs",
+    "test:ered-finale-players": "node --import tsx scripts/browser-ered-final-player.mjs",
+    "test:browser-ered-finale": "npm run test:ered-finale-quests && npm run test:ered-finale-players"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

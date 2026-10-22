@@ -1,10 +1,18 @@
 import "./ui/save-status.css";
+import { currentQuestInspection } from "./ui/quest-inspection";
+import { GUNDABAD } from "./game/mount-gundabad-support";
+import { useSignificantAudio } from "./ui/use-significant-audio";
+import { AudioSettings } from "./ui/AudioSettings";
 import { ROAM_RHOVANION as ROAM } from "./game/roam-rhovanion-support";
 import { encounterReserveDefaults } from "./game/encounter-reserves";
 import { WitheredHeathScenarioState } from "./ui/withered-heath-state";
 import { RoamRhovanionScenarioState } from "./ui/roam-rhovanion-state";
 import { FireNightScenarioState } from "./ui/fire-night-state";
 import { GhostFramsburgScenarioState } from "./ui/ghost-framsburg-state";
+import {
+  MountGundabadScenarioState,
+  FateWilderlandScenarioState,
+} from "./ui/ered-finale-state";
 import { isEnemy } from "./game/ships";
 import { currentQuestProgress } from "./game/quest-state";
 import { SignificantMoment } from "./ui/SignificantMoment";
@@ -402,7 +410,7 @@ const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
 };
 function planCardPayment(s: GameState, c: Card, cost: number, target?: Unit) {
   const payers = eligiblePayers(s, c, target);
-  if (["01036", "08143", "10085"].includes(c.code)) {
+  if (["01036", "08143", "10085", "19149"].includes(c.code)) {
     const heroes = payers
       .filter((u) => u.resources > 0 && s.heroes.some((h) => h.id === u.id))
       .slice(0, 3);
@@ -778,7 +786,10 @@ export default function App() {
     setSignificantMoment((m) => (m?.serial === serial ? null : m));
   }, []);
   useEffect(() => {
-    if (page !== "table") setSignificantMoment(null);
+    if (page !== "table") {
+      audio.stop();
+      setSignificantMoment(null);
+    }
   }, [page]);
   const [libraryProduct, setLibraryProduct] = useState("all");
   const [game, setGame] = useState<GameState | null>(() =>
@@ -815,6 +826,7 @@ export default function App() {
     if (mode === playMode) return;
     const saved = readSave(mode === "campaign" ? CAMPAIGN_KEY : SAVE_KEY);
     setPlayMode(mode);
+    audio.stop();
     setSignificantMoment(null);
     setGame(saved);
     if (saved) {
@@ -1014,7 +1026,8 @@ export default function App() {
   const [restart, setRestart] = useState(false);
   const [menu, setMenu] = useState(false);
   const restoreMenuFocus = useRef(true);
-  const [sound, setSound] = useState(false);
+  const audio = useSignificantAudio(page === "table", game?.originalSeed);
+  const sound = !audio.preferences.muted;
   const [playCard, setPlayCard] = useState<Unit | null>(null);
   const [playDiscardIndex, setPlayDiscardIndex] = useState<number | null>(null);
   const [target, setTarget] = useState("");
@@ -1078,7 +1091,6 @@ export default function App() {
   const [saved, setSaved] = useState(true);
   const saveFailureNotified = useRef(false);
   const [history, setHistory] = useState<GameState[]>([]);
-  const audioCtx = useRef<AudioContext | null>(null);
   const notify = useCallback((message: string) => setToast(message), []);
   useEffect(() => {
     // Persist a genuinely missing saved fellowship without rewriting a shelf
@@ -1151,6 +1163,7 @@ export default function App() {
       );
       setSelectedScenario(restored.scenario);
       setPlayMode(restored.playMode);
+      audio.stop();
       setSignificantMoment(null);
       setGame(saved);
       if (
@@ -1248,36 +1261,17 @@ export default function App() {
       );
     window.advanceTime = () => Promise.resolve();
   }, [game, page, playMode, quest.id, choices]);
-  const chime = () => {
-    if (!sound) return;
-    try {
-      const ctx = audioCtx.current ?? new AudioContext();
-      audioCtx.current = ctx;
-      const osc = ctx.createOscillator(),
-        gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(330, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.14);
-      gain.gain.setValueAtTime(0.025, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.3);
-    } catch {
-      /* sound is optional */
-    }
-  };
   const dispatch = (action: Action) => {
     if (!game) return;
     try {
       const next = applyAction(game, action);
       const milestone = detectSignificantMoment(game, next);
-      if (milestone)
+      if (milestone) {
         setSignificantMoment({ ...milestone, serial: ++momentSerial.current });
+        audio.announce(game, next, milestone);
+      }
       setHistory((h) => [...h.slice(-19), game]);
       setGame(next);
-      chime();
       // Events that were recorded without a pause still get a brief mention.
       const firstNew = game.flow?.nextId ?? Infinity;
       const recorded =
@@ -1297,6 +1291,7 @@ export default function App() {
     }
   };
   const start = (style: "classic" | "hotseat" = setupMode) => {
+    audio.stop();
     setSignificantMoment(null);
     try {
       const selected =
@@ -1438,6 +1433,7 @@ export default function App() {
           ? nextSeatDecks
           : undefined,
       );
+      audio.stop();
       setSignificantMoment(null);
       setGame(next);
       setHistory([]);
@@ -1451,6 +1447,7 @@ export default function App() {
   const retry = () => {
     if (!game) return;
     try {
+      audio.stop();
       setSignificantMoment(null);
       setGame(retryAdventure(game));
       setHistory([]);
@@ -1561,6 +1558,7 @@ export default function App() {
     }
     const shelfSaved = setDecks(recovered);
     setRecoveryImport(null);
+    audio.stop();
     setSignificantMoment(null);
     setGame(s);
     setPlayMode(s.playMode);
@@ -1602,6 +1600,7 @@ export default function App() {
   const undo = () => {
     const prev = history.at(-1);
     if (prev) {
+      audio.stop();
       setSignificantMoment(null);
       setGame(prev);
       setHistory((h) => h.slice(0, -1));
@@ -1962,8 +1961,12 @@ export default function App() {
               title={sound ? "Mute sounds" : "Enable sounds"}
               aria-label={sound ? "Mute sounds" : "Enable sounds"}
               onClick={() => {
-                setSound(!sound);
-                notify(sound ? "Sound effects off." : "Sound effects on.");
+                audio.setMuted(sound);
+                notify(
+                  sound
+                    ? "Voice announcements muted."
+                    : "Voice announcements on.",
+                );
               }}
             >
               {sound ? <SpeakerHigh size={19} /> : <SpeakerSlash size={19} />}
@@ -2993,6 +2996,8 @@ export default function App() {
             <RaceHaradScenarioState s={game} inspect={setDetail} />
             <BeneathSandsScenarioState s={game} inspect={setDetail} />
             <WitheredHeathScenarioState s={game} inspect={setDetail} />
+            <MountGundabadScenarioState s={game} inspect={setDetail} />
+            <FateWilderlandScenarioState s={game} inspect={setDetail} />
             <RoamRhovanionScenarioState s={game} inspect={setDetail} />
             <FireNightScenarioState s={game} inspect={setDetail} />
             <GhostFramsburgScenarioState
@@ -3543,6 +3548,11 @@ export default function App() {
           title="Make the table yours"
           onClose={() => setShowSettings(false)}
         >
+          <AudioSettings
+            preferences={audio.preferences}
+            setMuted={audio.setMuted}
+            setVolume={audio.setVolume}
+          />
           <TableCollection
             selected={playmat}
             active={activePlaymat}
@@ -3728,7 +3738,7 @@ export default function App() {
                       );
                     if (printed) {
                       setShowQuest(false);
-                      setDetail(printed);
+                      setDetail(currentQuestInspection(game, printed));
                     } else
                       notify(
                         "The printed quest is not available in the imported snapshot.",
@@ -3877,7 +3887,11 @@ export default function App() {
         })()}
       {detail && (
         <CardDetail
-          c={detail}
+          c={
+            game?.mountGundabad?.reforged && detail.code === GUNDABAD.sword
+              ? { ...detail, initialReverse: true }
+              : detail
+          }
           onClose={() => setDetail(null)}
           action={
             inspectedHand && game ? (
@@ -4072,7 +4086,9 @@ export default function App() {
                             (id) => (candidate[id] ?? 0) === (payment[id] ?? 0),
                           ),
                         ))) ||
-                    (["01036", "08143", "10085"].includes(playCard.code) &&
+                    (["01036", "08143", "10085", "19149"].includes(
+                      playCard.code,
+                    ) &&
                       Object.entries(payment).filter(
                         ([id, n]) =>
                           n > 0 && game.heroes.some((h) => h.id === id),
@@ -4168,11 +4184,13 @@ export default function App() {
                         onSelect={() => {
                           setTarget(u.id);
                           const c = handPlayDefinition(game, playCard);
-                          const amount =
-                            playCard.code === "01051"
-                              ? Number(card(u.code).cost) || 0
-                              : xCost;
-                          if (playCard.code === "01051") setXCost(amount);
+                          const amount = ["01051", "19153"].includes(
+                            playCard.code,
+                          )
+                            ? Number(card(u.code).cost) || 0
+                            : xCost;
+                          if (["01051", "19153"].includes(playCard.code))
+                            setXCost(amount);
                           setPayment(
                             playDiscardIndex !== null
                               ? (eventReplayPayments(
@@ -4217,7 +4235,7 @@ export default function App() {
                 )}{" "}
                 resources
               </h3>
-              {["01036", "08143", "10085"].includes(playCard.code) && (
+              {["01036", "08143", "10085", "19149"].includes(playCard.code) && (
                 <p>Use resources from three different heroes.</p>
               )}
               {["01067", "06083"].includes(playCard.code) && (

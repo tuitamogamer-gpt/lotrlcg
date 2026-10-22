@@ -1,3 +1,4 @@
+import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
 import type { DamageContext } from "./damage-context";
@@ -532,6 +533,7 @@ export function charactersCommitted(
     s,
     actual.map((u) => u.id),
   );
+  EredFinalPlayers.eredFinalPlayerCharactersCommitted(s, actual);
   WildsPlayers.wildsPlayerCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
@@ -635,7 +637,8 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   if (
     cardEffect &&
     (Desert.desertCrossingCannotPlayerReady(s) ||
-      batch4Scenario(s).cannotPlayerReady?.(s)) &&
+      batch4Scenario(s).cannotPlayerReady?.(s) ||
+      batch4Scenario(s).cannotPlayerReadyCharacter?.(s, u)) &&
     (!abilitySource || isPlayerCardSource(abilitySource))
   )
     return;
@@ -1364,6 +1367,11 @@ export function damage(
     Angmar.offerAngmarDamage(s, u, value, context)
   )
     return false;
+  if (
+    !context.cost &&
+    EredFinalPlayers.offerEredFinalDamage(s, u, value, context)
+  )
+    return false;
   if (!context.cost && offerGondorianDiscipline(s, u, value, context))
     return false;
   if (!context.cost && offerCloseCall(s, u, value, context)) return false;
@@ -1534,6 +1542,7 @@ export function characterLeftPlay(
   byCardEffect = false,
   lastKnownType = unitType(u),
 ) {
+  EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   TempleEncounters.templeCharacterLeft(s, u, destination);
   DrownedCompanions.drownedCharacterLeft(s, u, destination);
   Fate.fateCharacterLeft(s, u, destination);
@@ -1642,9 +1651,10 @@ export function destroy(
   )
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
-  if (batch4Scenario(s).cannotLeave?.(s, u)) return;
+  if (batch4Scenario(s).cannotLeave?.(s, u, destruction)) return;
   if (destruction) batch4Scenario(s).characterDestroyed?.(s, u, damageContext);
   batch4Scenario(s).hostLeaves?.(s, u, destruction);
+  EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   City.cityDestroyed(s, u, destruction);
@@ -1782,11 +1792,12 @@ export function destroy(
     ) {
     } else if (batch4Scenario(s).enemyDestination?.(s, u)) {
     } else if (Dread.dreadEnemyLeaves(s, u)) {
-    } else if (u.code === "01115") {
+    } else if (destruction && u.code === "01115") {
       s.encounterDeck.push(u.code);
       shuffle(s, s.encounterDeck);
     } else if (City.cityEnemyDestination(s, u, destruction)) {
-    } else if (c.victory) addVictoryCard(s, u.code);
+    } else if (Raid.raidEliteGoesToVictory(s, u)) addVictoryCard(s, u.code);
+    else if (destruction && c.victory) addVictoryCard(s, u.code);
     else if (
       !Tharbad.tharbadEnemyDestroyed(s, u, destruction) &&
       !Catch.catchEnemyDefeated(s, u, destruction) &&
@@ -1921,6 +1932,7 @@ export function discardLocation(s: GameState, u: Unit) {
   );
   if (batch4Scenario(s).cannotLeave?.(s, u)) return;
   batch4Scenario(s).hostLeaves?.(s, u, false);
+  EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   const wasActive = allActiveLocations(s).some(
@@ -1990,6 +2002,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
   batch4Scenario(s).hostLeaves?.(s, u, false);
+  EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
   WildsPlayers.wildsPlayerGuardLeaving(s, u);
   log(s, `${name(u)} is explored.`, "good");
@@ -2763,7 +2776,10 @@ export function revealed(
   revealOrigin: Effect["revealOrigin"] = "encounter",
   resumed = false,
 ) {
-  if (!resumed) Angmar.angmarRevealed(s, code, revealOrigin);
+  if (!resumed) {
+    Angmar.angmarRevealed(s, code, revealOrigin);
+    batch4Scenario(s).revealed?.(s, code, revealOrigin);
+  }
   const thalinDefeats =
     revealOrigin === "encounter" &&
     ["enemy", "ship-enemy"].includes(card(code).type_code) &&
@@ -3600,6 +3616,7 @@ export function allyEntryResponses(
     batch4Scenario(s).allyEntered?.(s, u, played, fromHand)
   )
     return;
+  EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);
   if (
@@ -3796,7 +3813,9 @@ export function spendEvent(
   doomedX = 0,
 ) {
   const problem =
-    Antlered.antleredPlayProblem(s, code) ?? Nin.ninPlayProblem(s, code);
+    Antlered.antleredPlayProblem(s, code) ??
+    Nin.ninPlayProblem(s, code) ??
+    batch4Scenario(s).playProblem?.(s, code);
   requireRule(!problem, problem ?? "");
   const u = s.hand.find((u) => u.code === code && (!id || u.id === id));
   requireRule(u, "That event is no longer in hand.");
@@ -3810,6 +3829,7 @@ export function spendEvent(
   s.hand = s.hand.filter((x) => x.id !== u.id);
   if (s.ninEilph) s.used.push("nin:played");
   holdPlayedEvent(s, u);
+  batch4Scenario(s).playerCardPlayed?.(s, u);
   Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);
   RacePlayers.raceHaradPlayerEventPlayed(s, u);
   stewardFearEventPlayed(s);

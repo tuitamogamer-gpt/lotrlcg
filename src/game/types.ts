@@ -235,6 +235,8 @@ export type ScenarioId =
   | "roam-across-rhovanion"
   | "fire-in-the-night"
   | "the-ghost-of-framsburg"
+  | "mount-gundabad"
+  | "the-fate-of-wilderland"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -380,6 +382,8 @@ export interface GameState {
   roamRhovanion?: import("./roam-rhovanion-types").RoamRhovanionState;
   fireNight?: import("./fire-night-types").FireNightState;
   ghostFramsburg?: import("./ghost-framsburg-types").GhostFramsburgState;
+  mountGundabad?: import("./mount-gundabad-types").MountGundabadState;
+  fateWilderland?: import("./fate-wilderland-types").FateWilderlandState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   batch4WindReserves?: Record<number, number>;
@@ -646,11 +650,19 @@ export interface GameState {
     enemyId: string;
     /** Original player attacked, independent of Sentinel defense or damage replacement. */
     attackPlayer?: number;
+    /** Damage resolution began with a live attacker after declaration and shadows. */
+    attackResolved?: boolean;
+    /** This attack's fresh shadow must be discarded even if virtual engagement ends. */
+    freshConsideredShadows?: boolean;
     defenderId: string | null;
     attackBonus: number;
     defensePenalty?: number;
     /** An encounter shadow may redirect otherwise undefended damage. */
     undefendedTargetId?: string;
+    wilderAssaultOnKill?: number;
+    wilderKilledCharacter?: boolean;
+    wilderPackAttacks?: number;
+    wilderDiscardAlly?: number;
     defenderIds?: string[];
     ignoreDefense?: boolean;
     returnToStaging?: boolean;

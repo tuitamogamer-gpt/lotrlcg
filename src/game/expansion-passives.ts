@@ -1,3 +1,4 @@
+import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import * as WildsSupport from "./wilds-player-support";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -291,7 +292,11 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
       (rule.restricted ?? 0) > 0
     )
       return false;
-    if (playerCardImmune(u)) return false;
+    if (
+      playerCardImmune(u) ||
+      !EredFinalSupport.eredFinalPlayerCanHaveAttachments(u)
+    )
+      return false;
     if (
       rule.type &&
       (rule.type === "ally" ? !isAlly(u) : unitType(u) !== rule.type)
@@ -366,7 +371,8 @@ export function questExhausts(s: GameState, u: Unit) {
   if (
     batch4Scenario(s).doesNotExhaustToQuest?.(s, u) ||
     !WildsSupport.wildsPlayerQuestExhausts(s, u) ||
-    !EredSupport.eredMithrinPlayerQuestExhausts(s, u)
+    !EredSupport.eredMithrinPlayerQuestExhausts(s, u) ||
+    !EredFinalSupport.eredFinalPlayerQuestExhausts(s, u)
   )
     return false;
   if (beneathSandsPlayerDoesNotExhaustToQuest(s, u)) return false;

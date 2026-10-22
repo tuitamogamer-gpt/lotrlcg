@@ -42,7 +42,7 @@ export function detectSignificantMoment(
     return {
       kind: "stage",
       title:
-        quest?.back_name ??
+        (after.mountGundabad?.questFront ? quest?.name : quest?.back_name) ??
         quest?.name ??
         adventure.stages[after.stage - 1]?.name ??
         adventure.name,

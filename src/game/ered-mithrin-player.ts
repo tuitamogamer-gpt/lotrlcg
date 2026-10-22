@@ -962,7 +962,13 @@ export function handleEredMithrinPlayerEffect(
         }
         const code = s.encounterDeck.shift()!;
         if (
-          ["enemy", "ship-enemy", "location"].includes(card(code).type_code)
+          e.code === "19117"
+            ? ["enemy", "ship-enemy"].includes(card(code).type_code)
+            : e.code === "19152"
+              ? card(code).type_code === "location"
+              : ["enemy", "ship-enemy", "location"].includes(
+                  card(code).type_code,
+                )
         ) {
           const guard = make(s, code);
           guard.attachments.push({

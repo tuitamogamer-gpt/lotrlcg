@@ -1,0 +1,497 @@
+[
+  {
+    "code": "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+    "octgnid": "34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+    "name": "Desecrated Ruins",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Deep.\nWhile there are 3 or more quest cards in the victory display, Desecrated Ruins gets +2 [threat]. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 131,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 4,
+    "shadow": "Shadow: Attacking enemy gets +1[attack]. If this attack destroys a character, each player discards a random card from his hand. ",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 131,
+        "quantity": 2,
+        "octgnid": "34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+    "octgnid": "3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+    "name": "Guardian of Gundabad",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "While there are 3 or more quest cards in the victory display, Guardian of Gundabad gets +2 [defense]. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 126,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 4,
+    "defense": 1,
+    "health": 5,
+    "engagement": 39,
+    "shadow": "Shadow: Attacking enemy gets +2 [defense] until the end of the phase.",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "1",
+      "health": "5",
+      "engagement": "39"
+    },
+    "imagesrc": "/cards/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 126,
+        "quantity": 3,
+        "octgnid": "3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+    "octgnid": "475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+    "name": "Dagnir's Slave",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Goblin.",
+    "text": "Dagnir cannot take damage from non-quest effects.",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 127,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 26,
+    "shadow": "Shadow: Attacking enemy gets +1[attack] (+2 [attack] instead if Dagnir is engaged with you).",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "26"
+    },
+    "imagesrc": "/cards/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 127,
+        "quantity": 3,
+        "octgnid": "475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
+    "octgnid": "62d5807c-caef-49bd-8cbc-cb6429647fce",
+    "name": "Wilderland's Bane",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Dagnir makes an immediate attack against each engaged player. If no attacks were made this way, Dagnir gets -30 engagement cost until the end of the round. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 132,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {},
+    "imagesrc": "/cards/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 132,
+        "quantity": 2,
+        "octgnid": "62d5807c-caef-49bd-8cbc-cb6429647fce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+    "octgnid": "71060c15-34c0-44ad-885b-4b6c18d2962a",
+    "name": "The First Forge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Immune to player card effects. Forced: After The First Forge becomes the active location, exhaust the hero with Wormsbane attached. That hero cannot ready while The First Forge is the active location. Response: After The First Forge is explored, flip Wormsbane to its Reforged side and attach it to any hero. ",
+    "is_unique": true,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 122,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 1,
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "71060c15-34c0-44ad-885b-4b6c18d2962a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+    "octgnid": "9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+    "name": "Dagnir's Hoard",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Forced: When Dagnir's Hoard is explored, Dagnir returns to the staging area and makes an immediate attack against each player in turn order. Response: After Dagnir's Hoard is explored, each player may search his deck for an Item attachment, add it to his hand, and shuffle his deck. ",
+    "is_unique": true,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 123,
+    "quantity": 1,
+    "threat": 7,
+    "quest": 7,
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "7",
+      "quest": "7"
+    },
+    "imagesrc": "/cards/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 123,
+        "quantity": 1,
+        "octgnid": "9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+    "octgnid": "a802fd4f-0a1b-440e-8648-ff44601bda2c",
+    "name": "Mines of Gundabad",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Deep.\nDagnir gets -10 engagement cost.",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 129,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "shadow": "Shadow: If attacking enemy is Dagnir, the defending player must assign X damage among characters he controls, where X is 1 more than the number of quest cards in the victory display. ",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 129,
+        "quantity": 3,
+        "octgnid": "a802fd4f-0a1b-440e-8648-ff44601bda2c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+    "octgnid": "cfe00736-4ac0-4f51-b698-705b04eca9a4",
+    "name": "Wormsbane",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Weapon. Broken.",
+    "text": "Restricted.\nAttach to a hero. Attached hero gets +1 [attack]. If attached hero leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 143,
+    "quantity": 1,
+    "cost": 2,
+    "side": "A",
+    "back_name": "Wormsbane",
+    "back_text": "Restricted.\nAttach to a hero. Attached hero gets +X [attack], where X is 1 more than the number of quest cards in the victory display. If attached hero leaves play, the players lose the game.",
+    "back_type_code": "objective",
+    "back_imagesrc": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 143,
+        "quantity": 1,
+        "octgnid": "cfe00736-4ac0-4f51-b698-705b04eca9a4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_traits": "Artifact. Weapon. Reforged."
+  },
+  {
+    "code": "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+    "octgnid": "d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+    "name": "Deep-dweller",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Forced: When Deep-dweller engages you, it makes an immediate attack. Forced: When Deep-dweller takes any amount of damage (and survives), return it to the staging area. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 128,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 32,
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 128,
+        "quantity": 2,
+        "octgnid": "d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+    "octgnid": "ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+    "name": "Throat of the Mountain",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground. Dark.",
+    "text": "Response: When Throat of the Mountain is explored, search the quest deck for a quest card and make it the current main quest. Then, flip it over. Shuffle the rest of the quest deck. ",
+    "is_unique": true,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 124,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 124,
+        "quantity": 1,
+        "octgnid": "ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "victory": 1
+  },
+  {
+    "code": "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+    "octgnid": "f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+    "name": "Narrow Stair",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Deep.\nWhen faced with the option to travel, the players must travel to Narrow Stair. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 130,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Until the end of the round, defending character cannot be readied by player card effects. ",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 130,
+        "quantity": 2,
+        "octgnid": "f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+    "octgnid": "fd06cd6e-5741-4bd2-b50c-52052f973208",
+    "name": "Suffocating Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns X damage among allies he controls, where X is 1 more than the number of quest cards in the victory display. ",
+    "is_unique": false,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 133,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1[attack] (+3 [attack] instead if there are 3 or more quests in the victory display).",
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {},
+    "imagesrc": "/cards/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 133,
+        "quantity": 2,
+        "octgnid": "fd06cd6e-5741-4bd2-b50c-52052f973208",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+    "octgnid": "fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+    "name": "Dagnir",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Indestructible. Immune to player card effects. X is 1 more than the number of quest cards in the victory display.\nCannot take more than X damage each round. While there are 5 or more quest cards in the victory display, Dagnir cannot leave the staging area and is considered to be engaged with each player. ",
+    "is_unique": true,
+    "pack_code": "MG",
+    "pack_name": "Mount Gundabad",
+    "position": 125,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 7,
+    "defense": 5,
+    "health": 20,
+    "engagement": 50,
+    "encounter_set": "Mount Gundabad",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "7",
+      "defense": "5",
+      "health": "20",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg",
+    "packs": [
+      {
+        "pack_code": "MG",
+        "pack_name": "Mount Gundabad",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

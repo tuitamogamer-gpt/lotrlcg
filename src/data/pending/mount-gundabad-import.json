@@ -1,0 +1,2282 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Mount Gundabad",
+  "slug": "mount-gundabad",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+      "octgnid": "044a7b39-8ef6-41c7-bb99-ce209f700b09",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 136,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "The Upper Levels",
+      "back_text": "Forced: After characters are committed to the quest, raise each player's threat by 1. Forced: When this stage is defeated, shuffle The First Forge into the Caves deck. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 3,
+      "back_imagesrc": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 136,
+          "quantity": 1,
+          "octgnid": "044a7b39-8ef6-41c7-bb99-ce209f700b09",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+      "octgnid": "1062dfa2-d821-474d-9a8f-9eda79753222",
+      "name": "Forked Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Deep.\nResponse: When you travel to Forked Passage (before resolving the deep keyword), raise each player's threat by 2 to look at the top 2 cards of the Caves deck. Put 1 on top of the Caves deck and put the other on the bottom. Then, add Forked Passage to the victory display.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 55,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "Deep Underground",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/1062dfa2-d821-474d-9a8f-9eda79753222.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 55,
+          "quantity": 2,
+          "octgnid": "1062dfa2-d821-474d-9a8f-9eda79753222",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1062dfa2-d821-474d-9a8f-9eda79753222.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+      "octgnid": "14f41245-2616-4358-a8bb-6b9bcf83cf56",
+      "name": "Dark Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Deep.\nWhile Dark Tunnel is in the staging area, progress cannot be placed on Dark locations in the staging area.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 54,
+      "quantity": 4,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Deep Underground",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 54,
+          "quantity": 4,
+          "octgnid": "14f41245-2616-4358-a8bb-6b9bcf83cf56",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "name": "Stone Troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have non-objective attachments. Forced: After Stone Troll attacks and destroys a character you control, discard 1 card from your hand for each excess point of damage dealt.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 49,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "engagement": 36,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Fell Beasts",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "9",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+      "octgnid": "286a5206-9ebb-4ec4-a349-2960ccb2f669",
+      "name": "Lost Armory",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Response: After Lost Armory becomes the active location, each player may search his deck for a Weapon or Armor attachment, add it to his hand, and shuffle his deck. Limit once per game for the group.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 60,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 60,
+          "quantity": 1,
+          "octgnid": "286a5206-9ebb-4ec4-a349-2960ccb2f669",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+      "octgnid": "34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+      "name": "Desecrated Ruins",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Deep.\nWhile there are 3 or more quest cards in the victory display, Desecrated Ruins gets +2 [threat]. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 131,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy gets +1[attack]. If this attack destroys a character, each player discards a random card from his hand. ",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 131,
+          "quantity": 2,
+          "octgnid": "34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "name": "Afraid of the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to a questing hero and remove it from the quest. (Counts as a Condition attachment with the text: \"Limit 1 per hero. While the active location has the Dark trait, reduce attached hero's [willpower] to 0 and treat its text box as if it were blank, except for Traits.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 48,
+      "quantity": 2,
+      "encounter_set": "Afraid of the Dark",
+      "printed_stats": {},
+      "imagesrc": "/cards/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+      "octgnid": "3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+      "name": "Guardian of Gundabad",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "While there are 3 or more quest cards in the victory display, Guardian of Gundabad gets +2 [defense]. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 126,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 39,
+      "shadow": "Shadow: Attacking enemy gets +2 [defense] until the end of the phase.",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "39"
+      },
+      "imagesrc": "/cards/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 126,
+          "quantity": 3,
+          "octgnid": "3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+      "octgnid": "475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+      "name": "Dagnir's Slave",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Dagnir cannot take damage from non-quest effects.",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 127,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 26,
+      "shadow": "Shadow: Attacking enemy gets +1[attack] (+2 [attack] instead if Dagnir is engaged with you).",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "26"
+      },
+      "imagesrc": "/cards/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 127,
+          "quantity": 3,
+          "octgnid": "475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+      "octgnid": "47aada3f-9ee6-455d-8c2d-786962633f34",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 142,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "The Great Worm",
+      "back_text": "Dagnir gets -5 engagement cost for each character the first player controls. Response: After a player resolve an attack against Dagnir, if Dagnir has no hit points remaining, that player may discard a Reforged Wormsbane he controls to add Dagnir to the victory display. Then, the players win the game. At the end of the combat phase, if there are 4 or fewer quests in the victory display, the players must bypass this stage.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 142,
+          "quantity": 1,
+          "octgnid": "47aada3f-9ee6-455d-8c2d-786962633f34",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47aada3f-9ee6-455d-8c2d-786962633f34.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+      "octgnid": "51b186ac-ddf5-4909-a484-20d273be27c9",
+      "name": "Dragon Scales",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Surge.\nWhen Revealed: Attach to a Dragon enemy. (Counts as a Condition attachment with the text: \"Limit 1 per enemy. Forced: When attached enemy would take any amount of damage, cancel all of that damage. Then, discard Dragon Scales.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 59,
+      "quantity": 2,
+      "encounter_set": "Dragon Might",
+      "printed_stats": {},
+      "imagesrc": "/cards/51b186ac-ddf5-4909-a484-20d273be27c9.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 59,
+          "quantity": 2,
+          "octgnid": "51b186ac-ddf5-4909-a484-20d273be27c9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b186ac-ddf5-4909-a484-20d273be27c9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+      "octgnid": "5a0d35ad-e9af-48b1-8454-534753394ed2",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 137,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "The Lower Deeps",
+      "back_text": "The 'when revealed' effects of the first treachery revealed each round cannot be canceled. Forced: When this stage is defeated, search the Caves deck for a location and make it the active location. Shuffle the Caves deck. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 3,
+      "back_imagesrc": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 137,
+          "quantity": 1,
+          "octgnid": "5a0d35ad-e9af-48b1-8454-534753394ed2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+      "octgnid": "5abd3a4b-2769-401d-aa3c-c904da21b97a",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 141,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "Imminent Pursuit",
+      "back_text": "Forced: After characters are committed to the quest, each player must deal 2 damage to a questing character he controls. Forced: When this stage is defeated, discard a non-unique enemy from play. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 141,
+          "quantity": 1,
+          "octgnid": "5abd3a4b-2769-401d-aa3c-c904da21b97a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+      "octgnid": "6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+      "name": "Dragon Breath",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Surge.\nWhen Revealed: Attach to a Dragon enemy. (Counts as a Condition attachment with the text: \"Limit 1 per enemy. Forced: When attached enemy attacks you, deal 1 damage to each character you control. Then, discard Dragon Breath.\")",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 58,
+      "quantity": 2,
+      "encounter_set": "Dragon Might",
+      "printed_stats": {},
+      "imagesrc": "/cards/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
+      "octgnid": "62d5807c-caef-49bd-8cbc-cb6429647fce",
+      "name": "Wilderland's Bane",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Dagnir makes an immediate attack against each engaged player. If no attacks were made this way, Dagnir gets -30 engagement cost until the end of the round. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 132,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack against you after this one.",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {},
+      "imagesrc": "/cards/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 132,
+          "quantity": 2,
+          "octgnid": "62d5807c-caef-49bd-8cbc-cb6429647fce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+      "octgnid": "71060c15-34c0-44ad-885b-4b6c18d2962a",
+      "name": "The First Forge",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Immune to player card effects. Forced: After The First Forge becomes the active location, exhaust the hero with Wormsbane attached. That hero cannot ready while The First Forge is the active location. Response: After The First Forge is explored, flip Wormsbane to its Reforged side and attach it to any hero. ",
+      "is_unique": true,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 122,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 1,
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 122,
+          "quantity": 1,
+          "octgnid": "71060c15-34c0-44ad-885b-4b6c18d2962a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+      "octgnid": "89cd149f-69d3-4d75-887d-96b45730792a",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 140,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "Foreboding Darkness",
+      "back_text": "Each player cannot play more than 1 card each phase. Forced: When this stage is defeated, the first player looks at the top 2 cards of the quest deck and chooses 1 to place on the bottom of the quest deck. Then, flip over the top card of the quest deck. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 4,
+      "back_imagesrc": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 140,
+          "quantity": 1,
+          "octgnid": "89cd149f-69d3-4d75-887d-96b45730792a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89cd149f-69d3-4d75-887d-96b45730792a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+      "octgnid": "8be23a53-ba85-4db3-8d1f-821da0323cbf",
+      "name": "Underground Lake",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "X is the number of characters controlled by the player who controls the most characters. Forced: After an ally enters player, exhaust it.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 65,
+      "quantity": 1,
+      "threat": 0,
+      "quest": 0,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "0",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "8be23a53-ba85-4db3-8d1f-821da0323cbf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+      "octgnid": "8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+      "name": "The Side Door",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Dagnir to the staging area and set The First Forge aside, out of play. Create the Caves deck and the quest deck (see insert). Attach Wormsbane to a hero, Broken side face-up. Shuffle the encounter deck and discard cards from the top until X locations have been discarded, where X is 1 less than the number of players in the game. Add those locations to the staging area. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 134,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "The Side Door",
+      "back_text": "Forced: At the end of the planning phase, the first player looks at the top 2 cards of the quest deck and chooses 1 to place on the bottom of the quest deck. Then, add The Side Door to the victory display and advance to the top stage 2A of the quest deck.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 134,
+          "quantity": 1,
+          "octgnid": "8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+      "octgnid": "9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+      "name": "Crumbling Cavern",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Forced: After Crumbling Cavern becomes the active location, each player assigns X damage among characters he controls, where X is the number of characters he controls.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 64,
+      "quantity": 1,
+      "threat": 6,
+      "quest": 6,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "6",
+        "quest": "6",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 64,
+          "quantity": 1,
+          "octgnid": "9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+      "octgnid": "9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+      "name": "Dagnir's Hoard",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Forced: When Dagnir's Hoard is explored, Dagnir returns to the staging area and makes an immediate attack against each player in turn order. Response: After Dagnir's Hoard is explored, each player may search his deck for an Item attachment, add it to his hand, and shuffle his deck. ",
+      "is_unique": true,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 123,
+      "quantity": 1,
+      "threat": 7,
+      "quest": 7,
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "7",
+        "quest": "7"
+      },
+      "imagesrc": "/cards/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 123,
+          "quantity": 1,
+          "octgnid": "9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+      "octgnid": "9e490f6c-3873-4cd7-8c80-98a6640b9043",
+      "name": "Frightful Den",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Forced: After Frightful Den becomes the active location, shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 62,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 62,
+          "quantity": 1,
+          "octgnid": "9e490f6c-3873-4cd7-8c80-98a6640b9043",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+      "octgnid": "a802fd4f-0a1b-440e-8648-ff44601bda2c",
+      "name": "Mines of Gundabad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Deep.\nDagnir gets -10 engagement cost.",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 129,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: If attacking enemy is Dagnir, the defending player must assign X damage among characters he controls, where X is 1 more than the number of quest cards in the victory display. ",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 129,
+          "quantity": 3,
+          "octgnid": "a802fd4f-0a1b-440e-8648-ff44601bda2c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+      "octgnid": "acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+      "name": "Lightless Grotto",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Forced: After the players commit characters to the quest, discard cards from the encounter deck until a treachery is discarded. Resolve the 'when revealed' effect on that treachery.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 63,
+      "quantity": 1,
+      "threat": 5,
+      "quest": 5,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "5",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+      "octgnid": "b3147b4e-2a60-402f-a1aa-5d56c002326d",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 139,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "Dagnir's Wrath",
+      "back_text": "Forced: After characters are committed to the quest, Dagnir makes an immediate attack against each player with 6 or more characters. Forced: When this stage is defeated, deal 5 damage to Dagnir. This damage is not limited by Dagnir's text, and does not count toward her X value. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 7,
+      "back_imagesrc": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 139,
+          "quantity": 1,
+          "octgnid": "b3147b4e-2a60-402f-a1aa-5d56c002326d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "name": "Hobgoblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc.",
+      "text": "While Hobgoblin is guarding a card, it gets +X [threat], +X [attack], and +X [defense], where X is that card's cost. Forced: After Hobgoblin enters play, the first player attaches the top card of his deck to Hobgoblin faceup as a guarded attachment. When Hobgoblin leaves play, return the card it was guarding to its owner's hand.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 50,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 5,
+      "engagement": 38,
+      "encounter_set": "Fell Beasts",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "5",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+      "octgnid": "c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+      "name": "Ancient Treasury",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Response: After Ancient Treasury becomes the active location, each player may (choose one): reduce his threat by 3, draw 2 cards, or add 1 resource to a hero's resource pool. Limit once per game for the group.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 61,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 3,
+      "victory": 1,
+      "encounter_set": "Lost Caves",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 61,
+          "quantity": 1,
+          "octgnid": "c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+      "octgnid": "cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+      "name": "Exploring Gundabad",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return Dagnir to the staging area. If Exploring Gundabad is the current main quest, do not flip it over until the beginning of the quest phase. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 138,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Mount Gundabad",
+      "side": "A",
+      "back_name": "Frenzied Warriors",
+      "back_text": "Forced: After characters are committed to the quest, discard the top 5 cards of the encounter deck. Add a random enemy discarded this way to the staging area. Forced: When this stage is defeated, reduce each player's threat by 5. At the end of the combat phase, the players may bypass this stage.",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 138,
+          "quantity": 1,
+          "octgnid": "cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "name": "Eyes in the Dark",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each questing character you control, or discard a questing character you control.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 57,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack is undefended, discard an ally you control.",
+      "encounter_set": "Afraid of the Dark",
+      "printed_stats": {},
+      "imagesrc": "/cards/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+      "octgnid": "cfe00736-4ac0-4f51-b698-705b04eca9a4",
+      "name": "Wormsbane",
+      "type_code": "attachment",
+      "sphere_code": "encounter",
+      "traits": "Artifact.   Weapon.   Broken.",
+      "text": "Restricted.\nAttach to a hero. Attached hero gets +1 [attack]. If attached hero leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 143,
+      "quantity": 1,
+      "cost": 2,
+      "side": "A",
+      "back_name": "Wormsbane",
+      "back_text": "Restricted.\nAttach to a hero. Attached hero gets +X [attack], where X is 1 more than the number of quest cards in the victory display. If attached hero leaves play, the players lose the game.",
+      "back_type_code": "attachment",
+      "back_imagesrc": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 143,
+          "quantity": 1,
+          "octgnid": "cfe00736-4ac0-4f51-b698-705b04eca9a4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+      "octgnid": "d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+      "name": "Deep-dweller",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "Forced: When Deep-dweller engages you, it makes an immediate attack. Forced: When Deep-dweller takes any amount of damage (and survives), return it to the staging area. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 128,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 32,
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 128,
+          "quantity": 2,
+          "octgnid": "d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+      "octgnid": "ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+      "name": "Throat of the Mountain",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground. Dark.",
+      "text": "Response: When Throat of the Mountain is explored, search the quest deck for a quest card and make it the current main quest. Then, flip it over. Shuffle the rest of the quest deck. ",
+      "is_unique": true,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 124,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 124,
+          "quantity": 1,
+          "octgnid": "ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+      "octgnid": "f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+      "name": "Narrow Stair",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Deep.\nWhen faced with the option to travel, the players must travel to Narrow Stair. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 130,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: Until the end of the round, defending character cannot be readied by player card effects. ",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 130,
+          "quantity": 2,
+          "octgnid": "f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+      "octgnid": "f945cfde-271f-4e93-8eed-93eaaf0fb408",
+      "name": "Dark Places",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the total [threat] of the active location to the total [threat] in the staging area until the end of the phase. If there is no active location, discard cards from the top of the encounter deck until a location is discarded and add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 56,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+      "encounter_set": "Deep Underground",
+      "printed_stats": {},
+      "imagesrc": "/cards/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 56,
+          "quantity": 3,
+          "octgnid": "f945cfde-271f-4e93-8eed-93eaaf0fb408",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+      "octgnid": "fd06cd6e-5741-4bd2-b50c-52052f973208",
+      "name": "Suffocating Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player assigns X damage among allies he controls, where X is 1 more than the number of quest cards in the victory display. ",
+      "is_unique": false,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 133,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1[attack] (+3 [attack] instead if there are 3 or more quests in the victory display).",
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {},
+      "imagesrc": "/cards/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 133,
+          "quantity": 2,
+          "octgnid": "fd06cd6e-5741-4bd2-b50c-52052f973208",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+      "octgnid": "fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+      "name": "Dagnir",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Indestructible. Immune to player card effects. X is 1 more than the number of quest cards in the victory display.\nCannot take more than X damage each round. While there are 5 or more quest cards in the victory display, Dagnir cannot leave the staging area and is considered to be engaged with each player. ",
+      "is_unique": true,
+      "pack_code": "MG",
+      "pack_name": "Mount Gundabad",
+      "position": 125,
+      "quantity": 1,
+      "threat": 0,
+      "attack": 7,
+      "defense": 5,
+      "health": 20,
+      "engagement": 50,
+      "encounter_set": "Mount Gundabad",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "7",
+        "defense": "5",
+        "health": "20",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg",
+      "packs": [
+        {
+          "pack_code": "MG",
+          "pack_name": "Mount Gundabad",
+          "position": 125,
+          "quantity": 1,
+          "octgnid": "fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E08.8",
+      "name": "Mount Gundabad (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "MG",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+        "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+        "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+        "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+        "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+        "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+        "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+        "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+        "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+        "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+        "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+        "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+        "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+        "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+        "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+        "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+        "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+        "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+        "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+        "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+        "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+        "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+        "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+        "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+        "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+        "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+        "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+        "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+        "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+        "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+        "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+        "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+        "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+        "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+        "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4"
+      ],
+      "cards": [
+        {
+          "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d": 1,
+          "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09": 1,
+          "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2": 1,
+          "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72": 1,
+          "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d": 1,
+          "octgn:89cd149f-69d3-4d75-887d-96b45730792a": 1,
+          "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a": 1,
+          "octgn:47aada3f-9ee6-455d-8c2d-786962633f34": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f": 3,
+          "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03": 2,
+          "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4": 1,
+          "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c": 2,
+          "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926": 1,
+          "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342": 2,
+          "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208": 2,
+          "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966": 1,
+          "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6": 2,
+          "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709": 1,
+          "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669": 1,
+          "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0": 1,
+          "octgn:51b186ac-ddf5-4909-a484-20d273be27c9": 1,
+          "octgn:1062dfa2-d821-474d-9a8f-9eda79753222": 2,
+          "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56": 3,
+          "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd": 1,
+          "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669": 1,
+          "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8": 1,
+          "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043": 1,
+          "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5": 1,
+          "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d": 1,
+          "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf": 1,
+          "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4": 1
+        },
+        "sharedSetAside": {
+          "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e": 1,
+          "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q08.8",
+      "name": "Mount Gundabad",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "MG",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+        "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+        "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+        "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+        "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+        "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+        "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+        "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+        "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+        "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+        "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+        "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+        "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+        "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+        "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
+        "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+        "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+        "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+        "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+        "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+        "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+        "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+        "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+        "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+        "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+        "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+        "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+        "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+        "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+        "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+        "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+        "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+        "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+        "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+        "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+        "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4"
+      ],
+      "cards": [
+        {
+          "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d": 1,
+          "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09": 1,
+          "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2": 1,
+          "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72": 1,
+          "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d": 1,
+          "octgn:89cd149f-69d3-4d75-887d-96b45730792a": 1,
+          "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a": 1,
+          "octgn:47aada3f-9ee6-455d-8c2d-786962633f34": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f": 3,
+          "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03": 3,
+          "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4": 2,
+          "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c": 3,
+          "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926": 2,
+          "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342": 2,
+          "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce": 2,
+          "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208": 2,
+          "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966": 2,
+          "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6": 3,
+          "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709": 2,
+          "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669": 2,
+          "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0": 2,
+          "octgn:51b186ac-ddf5-4909-a484-20d273be27c9": 2,
+          "octgn:1062dfa2-d821-474d-9a8f-9eda79753222": 2,
+          "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56": 4,
+          "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd": 1,
+          "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669": 1,
+          "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8": 1,
+          "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043": 1,
+          "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5": 1,
+          "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d": 1,
+          "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf": 1,
+          "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4": 1
+        },
+        "sharedSetAside": {
+          "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a": 1
+        },
+        "sharedStagingArea": {
+          "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e": 1,
+          "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg",
+      "localPath": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/044a7b39-8ef6-41c7-bb99-ce209f700b09.B.jpg",
+      "localPath": "/cards/044a7b39-8ef6-41c7-bb99-ce209f700b09.B.jpg",
+      "bytes": 146015,
+      "sha256": "6e2388573d2f7562a2b4c8de5ddf307889594039b5b1f7660a0c5ae13a1e04b8"
+    },
+    {
+      "code": "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1062dfa2-d821-474d-9a8f-9eda79753222.jpg",
+      "localPath": "/cards/1062dfa2-d821-474d-9a8f-9eda79753222.jpg",
+      "bytes": 159232,
+      "sha256": "baaba092195f268bf4c51df9df9dd8c64b3187442bcec3df4c62bd42d296baa5"
+    },
+    {
+      "code": "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg",
+      "localPath": "/cards/14f41245-2616-4358-a8bb-6b9bcf83cf56.jpg",
+      "bytes": 150551,
+      "sha256": "84d7e2f39e0247990c6d348b33d07ac910640eade3478217cbbb474c4a361e2c"
+    },
+    {
+      "code": "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "localPath": "/cards/23fb0422-0e54-4064-bb76-e5bf3c214709.jpg",
+      "bytes": 159847,
+      "sha256": "c01b37d76020dc3096bc357c8196f6ebaf100d32e2f307306f5026bac17dd861"
+    },
+    {
+      "code": "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg",
+      "localPath": "/cards/286a5206-9ebb-4ec4-a349-2960ccb2f669.jpg",
+      "bytes": 168098,
+      "sha256": "cfb6254a7264933c74d6a4560dbefa569fa3868b27f79392af6a469717a7dc8e"
+    },
+    {
+      "code": "octgn:34c61d95-cb2e-49c4-b85e-5d3c32b02342",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg",
+      "localPath": "/cards/34c61d95-cb2e-49c4-b85e-5d3c32b02342.jpg",
+      "bytes": 152126,
+      "sha256": "492946a3c95e635047b56aeef3b15fc63a52ad91015563f83479ea4d1516d235"
+    },
+    {
+      "code": "octgn:3566b6df-a1cd-4417-b202-27e0ecc0a966",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "localPath": "/cards/3566b6df-a1cd-4417-b202-27e0ecc0a966.jpg",
+      "bytes": 148879,
+      "sha256": "520a435da45c10683f1a2b8c9feca69ddd1990bc207439a0b67134b6810d777f"
+    },
+    {
+      "code": "octgn:3cbe2fe1-e7ab-4213-85dd-fd9b6244479f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg",
+      "localPath": "/cards/3cbe2fe1-e7ab-4213-85dd-fd9b6244479f.jpg",
+      "bytes": 155308,
+      "sha256": "220e64906ba1d527722cb24b043e570cb5c0746b68a01043dbdb9ed4136f72b0"
+    },
+    {
+      "code": "octgn:475d31c0-45d5-4a9f-aaac-c23b93c73f03",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg",
+      "localPath": "/cards/475d31c0-45d5-4a9f-aaac-c23b93c73f03.jpg",
+      "bytes": 150270,
+      "sha256": "b8c8ea56cba9340710f11b7f247672e8323d19224482897e273e96948abdbc44"
+    },
+    {
+      "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47aada3f-9ee6-455d-8c2d-786962633f34.jpg",
+      "localPath": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47aada3f-9ee6-455d-8c2d-786962633f34.B.jpg",
+      "localPath": "/cards/47aada3f-9ee6-455d-8c2d-786962633f34.B.jpg",
+      "bytes": 161619,
+      "sha256": "4dda550ddab713cfcf88162fc7e351d492fe23b285247bf18c6833a94e8c2e6d"
+    },
+    {
+      "code": "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b186ac-ddf5-4909-a484-20d273be27c9.jpg",
+      "localPath": "/cards/51b186ac-ddf5-4909-a484-20d273be27c9.jpg",
+      "bytes": 160140,
+      "sha256": "1639a2171b8f50bdda3cf3f58ef6b2dda84a067729081be66cb35cd979eaf6b9"
+    },
+    {
+      "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg",
+      "localPath": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5a0d35ad-e9af-48b1-8454-534753394ed2.B.jpg",
+      "localPath": "/cards/5a0d35ad-e9af-48b1-8454-534753394ed2.B.jpg",
+      "bytes": 153854,
+      "sha256": "1b88a4a0c54f27f8bb0bfcb23ae2dc38be42a364791f83fe74a0fec5fdbb551f"
+    },
+    {
+      "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg",
+      "localPath": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5abd3a4b-2769-401d-aa3c-c904da21b97a.B.jpg",
+      "localPath": "/cards/5abd3a4b-2769-401d-aa3c-c904da21b97a.B.jpg",
+      "bytes": 151450,
+      "sha256": "a0ed620ce9241f601411653343c46e2f38b850dce88bfa9506559d2b03cc6470"
+    },
+    {
+      "code": "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg",
+      "localPath": "/cards/6220ef6b-f314-4cf9-92df-f9551d6cfde0.jpg",
+      "bytes": 163429,
+      "sha256": "8b60aa45916b287d2b77e0caa9b4598e3132ba1fbbb6bae06a625c0dd1edc0fc"
+    },
+    {
+      "code": "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg",
+      "localPath": "/cards/62d5807c-caef-49bd-8cbc-cb6429647fce.jpg",
+      "bytes": 149091,
+      "sha256": "b933cfd961593ba7d368a1e87b7f2c94c6e02fd5df39c61ab49160930632f295"
+    },
+    {
+      "code": "octgn:71060c15-34c0-44ad-885b-4b6c18d2962a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg",
+      "localPath": "/cards/71060c15-34c0-44ad-885b-4b6c18d2962a.jpg",
+      "bytes": 154829,
+      "sha256": "ddef6b454aee19fa4eb28261f183c90d7713b3aa2ac66df089121ee60462197a"
+    },
+    {
+      "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89cd149f-69d3-4d75-887d-96b45730792a.jpg",
+      "localPath": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89cd149f-69d3-4d75-887d-96b45730792a.B.jpg",
+      "localPath": "/cards/89cd149f-69d3-4d75-887d-96b45730792a.B.jpg",
+      "bytes": 152267,
+      "sha256": "8469731ddb9c7e1ad03f64ee71edadf6618e8d20fa8ca4e132713219b73d06b4"
+    },
+    {
+      "code": "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg",
+      "localPath": "/cards/8be23a53-ba85-4db3-8d1f-821da0323cbf.jpg",
+      "bytes": 156671,
+      "sha256": "0c91513e72b316752ff7318f0c65157c70003181930e92bf5c02cca8344ed04e"
+    },
+    {
+      "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg",
+      "localPath": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.jpg",
+      "bytes": 165620,
+      "sha256": "2c11ee81b5aa54a159a71c33ba3eac8cc4e689c3270231f95a57ca3eac6ba253"
+    },
+    {
+      "code": "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.B.jpg",
+      "localPath": "/cards/8eae3ce5-c37e-4092-b91d-02c0721ffc0d.B.jpg",
+      "bytes": 164033,
+      "sha256": "56b301fdd8716e015e4655603213a2e01cab9167991bf2c9d2fef930d885ab87"
+    },
+    {
+      "code": "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg",
+      "localPath": "/cards/9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d.jpg",
+      "bytes": 164922,
+      "sha256": "f766ed13ec7f1ec5ded64e1e5b9bae2e8d43026b2915151697f1e0b06b5c178f"
+    },
+    {
+      "code": "octgn:9d1daee2-2d6e-4d9a-87e4-b706779555d4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg",
+      "localPath": "/cards/9d1daee2-2d6e-4d9a-87e4-b706779555d4.jpg",
+      "bytes": 155459,
+      "sha256": "ca8c7f8c88e0fe23bdff0eda6fd564206b1297ea4717c340b166739e5add0759"
+    },
+    {
+      "code": "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg",
+      "localPath": "/cards/9e490f6c-3873-4cd7-8c80-98a6640b9043.jpg",
+      "bytes": 169462,
+      "sha256": "499a72c85dab60a6b484e2c2d5bf492af29b992a6c3099f7fa4a612cc19957d5"
+    },
+    {
+      "code": "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg",
+      "localPath": "/cards/a802fd4f-0a1b-440e-8648-ff44601bda2c.jpg",
+      "bytes": 151617,
+      "sha256": "dbc8bb7128174818a90b4b093508302e72b8eb6569b4d45a84b24d2d44d3836f"
+    },
+    {
+      "code": "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg",
+      "localPath": "/cards/acbf7fd1-9f93-4d0b-b18a-8f0854e028f5.jpg",
+      "bytes": 155450,
+      "sha256": "f3fa7ecf4ca7afb2d6966f57cd2671feb52f033c6d765910e6b627869f3bc373"
+    },
+    {
+      "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg",
+      "localPath": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:b3147b4e-2a60-402f-a1aa-5d56c002326d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b3147b4e-2a60-402f-a1aa-5d56c002326d.B.jpg",
+      "localPath": "/cards/b3147b4e-2a60-402f-a1aa-5d56c002326d.B.jpg",
+      "bytes": 156323,
+      "sha256": "49e0873ccb48bd17e621fb97df55d00faf62d35cec858b57579ff6f3907593ab"
+    },
+    {
+      "code": "octgn:b7431f72-5157-4a6d-a6c0-86bcf88f2669",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "localPath": "/cards/b7431f72-5157-4a6d-a6c0-86bcf88f2669.jpg",
+      "bytes": 163312,
+      "sha256": "e686e7b92abc285f1cd5b21e9c8c5ccc7db55f98717e0d2169d0c0bb9ef96915"
+    },
+    {
+      "code": "octgn:c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg",
+      "localPath": "/cards/c0c522b2-5f5c-45a0-b6fc-e05c8bb835d8.jpg",
+      "bytes": 164395,
+      "sha256": "07e8ba87f0aed2f1ce97b5e81edbcadc9a8d8640d64d0c7d793f948c872ec05d"
+    },
+    {
+      "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg",
+      "localPath": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.jpg",
+      "bytes": 144656,
+      "sha256": "09231e26a7a3820db5b4493169f361c46fa797f993ed73f7f62b39a12c527140"
+    },
+    {
+      "code": "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cf435143-655b-4a7c-ac6b-f9f61b4cba72.B.jpg",
+      "localPath": "/cards/cf435143-655b-4a7c-ac6b-f9f61b4cba72.B.jpg",
+      "bytes": 168592,
+      "sha256": "ca3d663445a3be95bb0f9b2f77b161333f0763f0841f7402a8a7cc0d1cfb1bad"
+    },
+    {
+      "code": "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "localPath": "/cards/cfddac0a-3055-46bd-af9a-8bdda8c9abb6.jpg",
+      "bytes": 144433,
+      "sha256": "913d0c46c184892627a1309aaf169168ec2b51d0a9c85909876153f0bb3379eb"
+    },
+    {
+      "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg",
+      "localPath": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.jpg",
+      "bytes": 138567,
+      "sha256": "b7edf08ac010faf6c9b2e540c54694fccb4fec3777cd42f902b36c1b3ca95877"
+    },
+    {
+      "code": "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfe00736-4ac0-4f51-b698-705b04eca9a4.B.jpg",
+      "localPath": "/cards/cfe00736-4ac0-4f51-b698-705b04eca9a4.B.jpg",
+      "bytes": 141390,
+      "sha256": "06b7637f56dfa48d51c9f05e81d48d0ee4d7245176a9a79b58400595a53b85c0"
+    },
+    {
+      "code": "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg",
+      "localPath": "/cards/d3bd47e5-cf59-4097-9cec-92a15fe56bf4.jpg",
+      "bytes": 157814,
+      "sha256": "8e7b8315fb492b7d4265708cd2548b8ee333729a2f866dba37cfa4e45d52819a"
+    },
+    {
+      "code": "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg",
+      "localPath": "/cards/ea5faa85-5a47-4ab3-a623-3f88df71f7fd.jpg",
+      "bytes": 152582,
+      "sha256": "1ba0fb1d1bccfa2702079ab12f4a794cba7095e09b82bb95554d339b9d1da5e8"
+    },
+    {
+      "code": "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg",
+      "localPath": "/cards/f77ffb66-297c-49e0-8ed5-9cc3bd715926.jpg",
+      "bytes": 146170,
+      "sha256": "0b58ab727e7cfc6e8a2b489444dce1216387f558175670aa7af14772435e3ca6"
+    },
+    {
+      "code": "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg",
+      "localPath": "/cards/f945cfde-271f-4e93-8eed-93eaaf0fb408.jpg",
+      "bytes": 159636,
+      "sha256": "81ab76a1f1521ff97183897253f0503f4bce33cf756a13455ba84b909cef3e60"
+    },
+    {
+      "code": "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg",
+      "localPath": "/cards/fd06cd6e-5741-4bd2-b50c-52052f973208.jpg",
+      "bytes": 149165,
+      "sha256": "9d96d2e3ca45e54c1d413e2c558d1368e5a73adbc4b0e31f1739598eb2246625"
+    },
+    {
+      "code": "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg",
+      "localPath": "/cards/fe2c30ae-dd35-48de-a2c2-4886a0c0783e.jpg",
+      "bytes": 155368,
+      "sha256": "f4676aa5460679760959738447a2a3ba4c89969a8a2630128385b3e37667a915"
+    }
+  ]
+}

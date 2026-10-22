@@ -8,12 +8,11 @@ const requestedScenario = process.env.ERED_SIMULATION_SCENARIO;
 if (requestedScenario !== undefined)
   assert.ok(
     ERED_SCENARIOS.some((id) => id === requestedScenario),
-    "ERED_SIMULATION_SCENARIO must be one of the four original Ered Mithrin quests",
+    "ERED_SIMULATION_SCENARIO must be one of the six original Ered Mithrin quests",
   );
 
-// Exactly 32 baseline games plus 24 paced games, using baseline two-player
-// outcomes again for 24 exact terminal-state comparisons. CI partitions only
-// by scenario and runs the same 56 games, rather than expanding the matrix.
+// Each adventure has eight baseline games and six paced games, with six
+// exact terminal-state comparisons. CI partitions this same matrix by scenario.
 for (const scenario of ERED_SCENARIOS.filter(
   (id) => !requestedScenario || id === requestedScenario,
 ))

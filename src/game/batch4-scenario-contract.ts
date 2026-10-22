@@ -14,6 +14,7 @@ export interface Batch4ScenarioHooks {
         quest: number;
         story: string;
         questImage?: string;
+        side?: "A" | "B";
       }
     | undefined;
   stats?(
@@ -34,9 +35,10 @@ export interface Batch4ScenarioHooks {
   sideQuestChosen?(s: GameState, u: Unit): void;
   cannotReady?(s: GameState, u: Unit): boolean;
   cannotPlayerReady?(s: GameState): boolean;
+  cannotPlayerReadyCharacter?(s: GameState, u: Unit): boolean;
   characterBlanked?(s: GameState, u: Unit): boolean;
   immune?(s: GameState, u: Unit): boolean;
-  cannotLeave?(s: GameState, u: Unit): boolean;
+  cannotLeave?(s: GameState, u: Unit, destruction?: boolean): boolean;
   indestructible?(s: GameState, u: Unit): boolean;
   cannotEngage?(s: GameState, u: Unit): boolean;
   cannotOptionallyEngage?(s: GameState, u: Unit): boolean;
@@ -97,7 +99,15 @@ export interface Batch4ScenarioHooks {
   eventPlayed?(s: GameState, u: Unit): void;
   eventCancelled?(s: GameState, id: string): boolean;
   playerCardPlayed?(s: GameState, u: Unit): void;
+  playProblem?(s: GameState, code: string): string | null;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
+  playerAttackResolved?(
+    s: GameState,
+    enemy: Unit,
+    ids: string[],
+    amount: number,
+    remainingHealth: number,
+  ): void;
   enemyAttackStarted?(s: GameState, enemy: Unit, player: number): void;
   attackFinished?(s: GameState, combat: Combat, skipped?: boolean): Effect[];
   skipShadowDeal?(s: GameState, u: Unit): boolean;
@@ -112,6 +122,11 @@ export interface Batch4ScenarioHooks {
     fromReveal: boolean,
     cancelled: boolean,
   ): void;
+  revealed?(
+    s: GameState,
+    code: string,
+    revealOrigin: Effect["revealOrigin"],
+  ): void;
   encounter?(
     s: GameState,
     code: string,
@@ -119,6 +134,7 @@ export interface Batch4ScenarioHooks {
     fromReveal: boolean,
   ): boolean;
   shadow?(s: GameState, code: string): boolean;
+  shadowDealt?(s: GameState, enemy: Unit, code: string): void;
   shadowResolved?(s: GameState, enemy: Unit, code: string): void;
   cannotDiscardHand?(
     s: GameState,

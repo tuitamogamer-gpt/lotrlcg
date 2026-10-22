@@ -16,6 +16,11 @@ import {
 } from "../src/game/roam-rhovanion-support";
 import { FIRE_NIGHT_RECIPES } from "../src/game/fire-night-support";
 import { GHOST_FRAMSBURG_RECIPES } from "../src/game/ghost-framsburg-support";
+import { MOUNT_GUNDABAD_RECIPES } from "../src/game/mount-gundabad-support";
+import {
+  FATE_WILDERLAND_RECIPES,
+  FATE_WILDERLAND_QUESTS,
+} from "../src/game/fate-wilderland-support";
 import { isEredScenario } from "./ered-simulation-policy";
 import type { Effect, GameState } from "../src/game/types";
 
@@ -49,13 +54,17 @@ function pendingPhysicalCards(effects: Effect[]): string[] {
   ]);
 }
 export function eredRecipe(s: GameState) {
-  const recipes = s.witheredHeath
-    ? WITHERED_HEATH_RECIPES
-    : s.roamRhovanion
-      ? ROAM_RHOVANION_RECIPES
-      : s.fireNight
-        ? FIRE_NIGHT_RECIPES
-        : GHOST_FRAMSBURG_RECIPES;
+  const recipes = s.mountGundabad
+    ? MOUNT_GUNDABAD_RECIPES
+    : s.fateWilderland
+      ? FATE_WILDERLAND_RECIPES
+      : s.witheredHeath
+        ? WITHERED_HEATH_RECIPES
+        : s.roamRhovanion
+          ? ROAM_RHOVANION_RECIPES
+          : s.fireNight
+            ? FIRE_NIGHT_RECIPES
+            : GHOST_FRAMSBURG_RECIPES;
   return recipes.find((r) => r.mode === (s.easyMode ? "easy" : "standard"))!;
 }
 const physicalCode = (code: string) =>
@@ -82,10 +91,17 @@ export function eredPhysicalCards(s: GameState) {
     units.length + attachments.length,
     "every physical Ered unit and attachment occupies one zone",
   );
-  const q = s.witheredHeath ?? s.roamRhovanion ?? s.ghostFramsburg;
+  const q =
+    s.witheredHeath ?? s.roamRhovanion ?? s.ghostFramsburg ?? s.mountGundabad;
   const questCodes = q
-    ? [...q.completedQuests, q.currentQuest, ...q.questDeck]
-    : [s.fireNight!.currentQuest];
+    ? [
+        ...q.completedQuests.filter((code) => !s.victoryCards?.includes(code)),
+        q.currentQuest,
+        ...q.questDeck,
+      ]
+    : s.fateWilderland
+      ? FATE_WILDERLAND_QUESTS.map((c) => c.code)
+      : [s.fireNight!.currentQuest];
   const codes = [
     ...questCodes,
     ...units.map((u) => u.code),
@@ -98,6 +114,7 @@ export function eredPhysicalCards(s: GameState) {
     ...(s.roamRhovanion?.keyPeek ?? []),
     ...(s.roamRhovanion?.resolving ?? []),
     ...(s.fireNight?.resolving ?? []),
+    ...(s.fateWilderland?.resolving ?? []),
     ...pendingPhysicalCards(s.queue),
     ...pendingPhysicalCards(
       s.choice?.options.find((o) => o.id === "resolve")?.effects ?? [],
@@ -127,7 +144,7 @@ export function eredSimulationObserver() {
   let priorBoundary: string | undefined;
   const observe = (s: GameState) => {
     assert.ok(isEredScenario(s.scenarioId));
-    const boundary = `${s.round}/${s.phase}/${s.table?.active ?? 0}/${s.stage}/${s.status}`;
+    const boundary = `${s.round}/${s.phase}/${s.table?.active ?? 0}/${s.stage}/${s.mountGundabad?.currentQuest ?? ""}/${s.mountGundabad?.questFront ?? ""}/${s.status}`;
     if (boundary === priorBoundary) return;
     priorBoundary = boundary;
     counts.boundaryObservations++;
@@ -196,6 +213,13 @@ export function eredSimulationObserver() {
     if (alternate.fireNight) swap(alternate.fireNight.sideDeck, (x) => x.code);
     if (alternate.ghostFramsburg)
       swap(alternate.ghostFramsburg.questDeck, (x) => x);
+    if (alternate.mountGundabad) {
+      swap(alternate.mountGundabad.questDeck, (x) => x);
+      swap(alternate.mountGundabad.cavesDeck, (x) => x.code);
+    }
+    if (alternate.fateWilderland)
+      for (const held of alternate.fateWilderland.storedCards)
+        swap(held.cards, (x) => x.code);
     for (const viewer of seatIndices(s)) {
       const projected = publicState(seatView(s, viewer));
       counts.playerViews++;

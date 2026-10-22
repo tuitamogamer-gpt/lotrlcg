@@ -1,3 +1,5 @@
+import * as EredFinalSupport from "./ered-final-player-support";
+import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as WildsPlayers from "./wilds-player";
 import * as BatchPlayers from "./batch4-player";
@@ -243,6 +245,13 @@ export function playerAttack(
   });
   const exhaustionResponses = s.queue.splice(0, s.queue.length - priorQueue);
   utilityAttackDeclared(s, enemy, attackers as Unit[]);
+  const beforeSting = s.queue.length;
+  EredFinalPlayers.eredFinalPlayerAttackersDeclared(
+    s,
+    enemy,
+    attackers as Unit[],
+  );
+  const stingResponses = s.queue.splice(0, s.queue.length - beforeSting);
   if (regular) {
     if (!s.earlyAttackPlayers) enemy.attacked = true;
     if (
@@ -255,6 +264,7 @@ export function playerAttack(
   prepend(
     s,
     ...exhaustionResponses,
+    ...stingResponses,
     fx("roadAttackers", { ids }),
     ...attackers
       .filter((u) =>
@@ -395,6 +405,13 @@ export function playerAttackResolved(
   CobasPlayers.cobasPlayerAttackFinished(s, enemy.id, true);
   StormPlayers.stormcallerAttackFinished(s, ids);
   if (s.status !== "playing") return;
+  batch4Scenario(s).playerAttackResolved?.(
+    s,
+    enemy,
+    ids,
+    amount,
+    remainingHealth,
+  );
   rohanAttackResolved(s, enemy, ids, amount, remainingHealth);
   amonPlayerAttackResolved(s, enemy, ids, amount);
   khazadPlayerAttackResolved(s, enemy, ids);
@@ -539,10 +556,13 @@ export function beginEnemyAttack(
   anchorDefenders = false,
   holdLine?: "skip" | "declared",
 ) {
+  const priorImmediate =
+    s.combat?.immediate && s.combat.enemyId === enemy.id ? s.combat : undefined;
   const cobasRamming = s.combat?.enemyId === enemy.id && s.combat?.cobasRamming;
   syncAttachmentText(s, enemy);
   if (enemyAttackPrevented(s, enemy)) {
     s.combat = {
+      ...priorImmediate,
       enemyId: enemy.id,
       defenderId: null,
       defenderIds: [],
@@ -627,7 +647,8 @@ export function beginEnemyAttack(
     }
   }
   if (!shadowsPrepared) cityPrepareAttack(s, enemy);
-  if (!shadowsPrepared) beginConsideredEnemyShadows(s, enemy);
+  const freshConsideredShadows =
+    !shadowsPrepared && beginConsideredEnemyShadows(s, enemy);
   const beforeForced = s.queue.length;
   if (!shadowsPrepared) enemyAttackStarted(s, enemy, activeSeat(s));
   redhornDefendersDeclared(s, enemy, ids);
@@ -638,6 +659,7 @@ export function beginEnemyAttack(
     if (
       !anchorDefenders &&
       !Antlered.antleredNoDefenseExhaust(d!) &&
+      !EredFinalSupport.eredFinalPlayerNoDefenseExhaust(s, d!) &&
       !Angmar.angmarNoCombatExhaust(s, d!) &&
       !heirsPlayerNoDefenseExhaust(s, d!) &&
       !haradPlayerNoExhaustDefense(s, d!) &&
@@ -650,6 +672,9 @@ export function beginEnemyAttack(
     }
   const exhaustionResponses = s.queue.splice(0, s.queue.length - priorQueue);
   s.combat = {
+    // Declaration responses can suspend this function before it builds the attack.
+    // Retain the pending immediate attack's source, bonuses and cleanup metadata.
+    ...priorImmediate,
     enemyId: enemy.id,
     ...(Trials.trialsGuardian(enemy)
       ? { trialsGuardianThreat: threatOf(s, enemy) }
@@ -659,7 +684,9 @@ export function beginEnemyAttack(
     ...(cobasRamming ? { cobasRamming: true } : {}),
     defenderId: ids[0] ?? null,
     defenderIds: ids,
-    attackBonus: 0,
+    attackBonus: priorImmediate?.attackBonus ?? 0,
+    ...(freshConsideredShadows ? { freshConsideredShadows: true } : {}),
+    ...(priorImmediate ? { immediatePendingDeclaration: false } : {}),
     returnWolf,
     returnToStaging:
       ["01085", KHAZAD.warg].includes(enemy.code) &&
@@ -669,15 +696,28 @@ export function beginEnemyAttack(
   if (!ids.length) Osgiliath.assaultOsgiliathAttackUndefended(s, s.combat);
   if (enemy.code === "01084") raiseThreat(s, 1, "encounter");
   for (const d of defenders.filter((d) => d && get(s, d.id)))
-    if (d!.code === "01029") damage(s, enemy.id, 1);
+    if (
+      d!.code === "01029" &&
+      !d!.blanked &&
+      !playerEffectImmune(s, enemy, "01029")
+    )
+      damage(s, enemy.id, 1);
   if (!get(s, enemy.id)) {
     prepend(s, ...forcedResponses, ...exhaustionResponses, fx("enemyDone"));
     return;
   }
+  const beforeSting = s.queue.length;
+  EredFinalPlayers.eredFinalPlayerDefendersDeclared(
+    s,
+    enemy,
+    defenders.filter((d): d is Unit => !!d),
+  );
+  const stingResponses = s.queue.splice(0, s.queue.length - beforeSting);
   prepend(
     s,
     ...forcedResponses,
     ...exhaustionResponses,
+    ...stingResponses,
     fx("redhornDefenders", { ids }),
     ...EredPlayers.eredMithrinPlayerDefendersDeclared(
       s,

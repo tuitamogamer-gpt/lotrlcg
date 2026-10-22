@@ -1,0 +1,1451 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Fate of Wilderland",
+  "slug": "the-fate-of-wilderland",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+      "octgnid": "0fffdddc-d9f9-498a-9669-e840304ebb9b",
+      "name": "The Final Push",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 170,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Fate of Wilderland",
+      "side": "A",
+      "back_name": "The Final Push",
+      "back_text": "Forced: At the end of the round, place 1 progress on The Goblins' Assault for each enemy in play. Then, if there is X or more progress on The Goblins' Assault, the players lose the game. X is equal to 8, plus 8 per player. ",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 170,
+          "quantity": 1,
+          "octgnid": "0fffdddc-d9f9-498a-9669-e840304ebb9b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+      "octgnid": "315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+      "name": "Urdug",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Immune to player card effects. Cannot leave the staging area. Forced: When Urdug attacks, discard the top card of the encounter deck. He gets +X [attack] for this attack, where X is the discarded card's printed [threat]. When Urdug is destroyed, the players win the game. ",
+      "is_unique": true,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 157,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 50,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 157,
+          "quantity": 1,
+          "octgnid": "315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+      "octgnid": "3b26d048-24cb-4978-86f9-d255048426d8",
+      "name": "Urdug's Elite",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Forced: After Urdug's Elite engages you, either exhaust a character you control, or palce 1 progress on The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 158,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 5,
+      "engagement": 25,
+      "shadow": "Shadow: Exhaust a character you control.",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "5",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/3b26d048-24cb-4978-86f9-d255048426d8.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 158,
+          "quantity": 3,
+          "octgnid": "3b26d048-24cb-4978-86f9-d255048426d8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b26d048-24cb-4978-86f9-d255048426d8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+      "octgnid": "3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+      "name": "Fierce Vanguard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Forced: After Fierce Vanguard engages you, either it gets +2 [attack] until the end of the round, or place 1 progress on The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 159,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 20,
+      "shadow": "Shadow: Attacking enemy gets +2 [attack] and +2 [defense] until the end of the phase.",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/3f8273a2-f64c-407c-97fb-4a4ef0bddb0b.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 159,
+          "quantity": 3,
+          "octgnid": "3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f8273a2-f64c-407c-97fb-4a4ef0bddb0b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+      "octgnid": "4abe9f52-1e56-479a-a59f-c3f7075ec493",
+      "name": "Warg-rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Forced: After Warg-rider is dealt a shadow card with no effect, either return it to the staging area or place 1 progress on The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 160,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 4,
+      "engagement": 30,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "4",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/4abe9f52-1e56-479a-a59f-c3f7075ec493.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 160,
+          "quantity": 2,
+          "octgnid": "4abe9f52-1e56-479a-a59f-c3f7075ec493",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4abe9f52-1e56-479a-a59f-c3f7075ec493.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "name": "Stray Goblin",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Surge. Cannot be optionally engaged.\nWhile Stray Goblin is in the staging area, it gains: \"Forced: After a player engages an enemy, Stray Goblin engages that player.\"",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 21,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 0,
+      "health": 3,
+      "engagement": 50,
+      "shadow": "Shadow: Add Stray Goblin to staging area.",
+      "encounter_set": "Grey Mountain Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "0",
+        "health": "3",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+      "octgnid": "5775b97c-4047-4dc2-b148-b852bad4f9bb",
+      "name": "Urdug's Command",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Urdug makes an immediate attack against the first player. If this attack destroys a character, place 1 progress on The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 166,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 progress on The Goblins' Assault. ",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/5775b97c-4047-4dc2-b148-b852bad4f9bb.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 166,
+          "quantity": 3,
+          "octgnid": "5775b97c-4047-4dc2-b148-b852bad4f9bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5775b97c-4047-4dc2-b148-b852bad4f9bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "name": "Lonely Lands",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Lonely Lands gets +2 [threat] for each facedown card under it. While Lonely Lands is in the staging area, it gains: \"Forced: After an event is played during the quest phase, place it facedown under Lonely Lands.\"",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 24,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 24,
+          "quantity": 3,
+          "octgnid": "74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+      "octgnid": "7d71aa09-badb-4ba8-9d08-597a8d814020",
+      "name": "Dwarven Watchtower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain. Fortification.",
+      "text": "While Dwarven Watchtower is the active location, each hero gets +1 [defense]. Response: After Dwarven Watchtower is explored, the first player chooses: either place 1 resource on The Heroes' Defense, or remove 1 progress from The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 163,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/7d71aa09-badb-4ba8-9d08-597a8d814020.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 163,
+          "quantity": 3,
+          "octgnid": "7d71aa09-badb-4ba8-9d08-597a8d814020",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d71aa09-badb-4ba8-9d08-597a8d814020.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+      "octgnid": "7f9cf578-980e-43af-995f-27a84fd54a01",
+      "name": "The Heroes' Defense",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Defense.",
+      "text": "While there are X or more resources on The Heroes' Defense, Urdug is considered to be engaged with each player. X is five times the number of players. Response: After an enemy is destroyed, place 1 resource here. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 156,
+      "quantity": 1,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/7f9cf578-980e-43af-995f-27a84fd54a01.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 156,
+          "quantity": 1,
+          "octgnid": "7f9cf578-980e-43af-995f-27a84fd54a01",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f9cf578-980e-43af-995f-27a84fd54a01.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "name": "Pack of Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Forced: If Pack of Wargs is dealt a shadow card with no effect, Pack of Wargs makes an additional attack after this one. (Do not deal it a shadow card.)",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 22,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 4,
+      "defense": 3,
+      "health": 5,
+      "engagement": 40,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "4",
+        "defense": "3",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+      "octgnid": "882952c5-c3a7-43aa-91d2-8a130b300d5f",
+      "name": "Slopes of Gundabad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "When Revealed: Either place 1 progress on The Goblins' Assault, or reveal an additional encounter card. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 164,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "shadow": "Shadow: Attacking enemy cannot take damage this phase.",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/882952c5-c3a7-43aa-91d2-8a130b300d5f.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 164,
+          "quantity": 3,
+          "octgnid": "882952c5-c3a7-43aa-91d2-8a130b300d5f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/882952c5-c3a7-43aa-91d2-8a130b300d5f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+      "octgnid": "98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+      "name": "Gate of Gundabad",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain. Gate.",
+      "text": "Immune to player card effects. While Gate of Gundabad is in the staging area, resources cannot be placed on The Heroes' Defense. Travel: Search the encounter deck, discard pile, and victory display for a Goblin Troop and add it to the staging area. Shuffle the encounter deck. ",
+      "is_unique": true,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 161,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/98461b3e-54c4-4eb9-9172-616c9bebb0f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 161,
+          "quantity": 1,
+          "octgnid": "98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98461b3e-54c4-4eb9-9172-616c9bebb0f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+      "octgnid": "99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+      "name": "Urdug's Assault",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add The Goblins' Assault, The Heroes' Defense, and Urdug to the staging area. Shuffle the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 168,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Fate of Wilderland",
+      "side": "A",
+      "back_name": "Urdug's Assault",
+      "back_text": "Forced: At the end of the round, place 1 progress on The Goblins' Assault for each enemy in the staging area. Then, if there is X or more progress on The Goblins' Assault, advance. X is equal to 2, plus 2 per player. ",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 168,
+          "quantity": 1,
+          "octgnid": "99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+      "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+      "name": "Swarms of Bats",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards each resource from each of his hero's resource pools and raises his threat by 1 for each resource he discarded this way. If no resources were discarded this way, Swarm of Bats gains surge.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 41,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending character has an attachment).",
+      "encounter_set": "Gathering Gloom",
+      "printed_stats": {},
+      "imagesrc": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 41,
+          "quantity": 3,
+          "octgnid": "9b5e1acd-c396-464d-ab54-df86833aad07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+      "octgnid": "aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+      "name": "The Goblins' Assault",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Assault.",
+      "text": "Urdug gets +2 [defense] for each other enemy in play and cannot be dealt damage unless he has resolved an attack this phase. Forced: After the players quest unsuccessfully, place 1 progress here for each player in the game. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 155,
+      "quantity": 1,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/aeb2f711-4597-42c1-af8c-eb7d6f4fa79a.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 155,
+          "quantity": 1,
+          "octgnid": "aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aeb2f711-4597-42c1-af8c-eb7d6f4fa79a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+      "octgnid": "c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+      "name": "Fierce Attack",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Place X progress on The Goblins' Assault, where X is the stage number of the main quest. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 165,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +X [attack], where X is the stage number of the main quest. ",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/c2d8cd64-a1dc-4bf2-9e61-0336170e73af.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 165,
+          "quantity": 3,
+          "octgnid": "c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2d8cd64-a1dc-4bf2-9e61-0336170e73af.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+      "octgnid": "c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+      "name": "Dark Clouds",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each enemy and each location in the staging area gets +1 [threat] until the end of the phase. If the players quest unsuccessfully this phase, place 1 progress on The Goblins' Assault. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 167,
+      "quantity": 2,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/c5e9ef20-a88f-40fb-861f-c44de8e12bd9.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 167,
+          "quantity": 2,
+          "octgnid": "c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5e9ef20-a88f-40fb-861f-c44de8e12bd9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+      "octgnid": "d90a8977-78e1-445d-b57d-a13e0e98f450",
+      "name": "Outflanked",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 169,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Fate of Wilderland",
+      "side": "A",
+      "back_name": "Outflanked",
+      "back_text": "Forced: After an enemy attacks, place 1 progress on The Goblins' Assault. Forced: At the end of the round, if there is X or more progress on The Goblins' Assault, advance. X is equal to 4, plus 4 per player. ",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 169,
+          "quantity": 1,
+          "octgnid": "d90a8977-78e1-445d-b57d-a13e0e98f450",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "name": "Hills of Wilderland",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "X is the number of characters controlled by the player with the most characters. Quest Action: Exhaust a character to reduce Hills of Wilderland [threat] by 1 until the end of the phase. Only the first player can trigger this effect.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 23,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 0,
+      "encounter_set": "Hills of Wilderland",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "0"
+      },
+      "imagesrc": "/cards/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "name": "Goblin Troop",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Goblin.",
+      "text": "Cannot have player card attachments. While Goblin Troop is engaged with you, each other Goblin enemy engaged with you gets +1 [attack] and +1 [defense].",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 20,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 4,
+      "health": 6,
+      "engagement": 35,
+      "shadow": "Shadow: Attacking enemy gets +2 [attack].",
+      "encounter_set": "Grey Mountain Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "4",
+        "health": "6",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+      "octgnid": "f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+      "name": "Hilltop Battlements",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain. Fortification.",
+      "text": "While Hilltop Battlements is in the staging area, each non-unique enemy gets -5 engagement cost. Forced: When Hilltop Battlements is explored, discard the top X cards of the encounter deck, where X is the number of players in the game. Add each enemy discarded by this effect to the staging area. ",
+      "is_unique": false,
+      "pack_code": "TFoW",
+      "pack_name": "The Fate of Wilderland",
+      "position": 162,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Fate of Wilderland",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoW",
+          "pack_name": "The Fate of Wilderland",
+          "position": 162,
+          "quantity": 3,
+          "octgnid": "f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "name": "Gathering Gloom",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1. When Revealed: Each player must choose: either raise your threat by 1 for each ally you control, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "TWoR",
+      "pack_name": "The Wilds of Rhovanion",
+      "position": 40,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, discard an ally you control.",
+      "encounter_set": "Gathering Gloom",
+      "printed_stats": {},
+      "imagesrc": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "packs": [
+        {
+          "pack_code": "TWoR",
+          "pack_name": "The Wilds of Rhovanion",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E08.9",
+      "name": "The Fate of Wilderland (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TFoW",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+        "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+        "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+        "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+        "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+        "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+        "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+        "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+        "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+        "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+        "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+        "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+        "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+        "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+        "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+        "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+        "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+        "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+        "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+        "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7"
+      ],
+      "cards": [
+        {
+          "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedEncounterDeck": {
+          "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07": 1,
+          "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd": 2,
+          "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532": 1,
+          "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf": 1,
+          "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c": 2,
+          "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780": 1,
+          "octgn:9b5e1acd-c396-464d-ab54-df86833aad07": 2,
+          "octgn:3b26d048-24cb-4978-86f9-d255048426d8": 2,
+          "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b": 2,
+          "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493": 2,
+          "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6": 1,
+          "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455": 3,
+          "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020": 3,
+          "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f": 1,
+          "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af": 2,
+          "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb": 2,
+          "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9": 2
+        },
+        "sharedQuestDeck": {
+          "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d": 1,
+          "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450": 1,
+          "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b": 1
+        },
+        "sharedStagingArea": {
+          "octgn:7f9cf578-980e-43af-995f-27a84fd54a01": 1,
+          "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a": 1,
+          "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q08.9",
+      "name": "The Fate of Wilderland",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TFoW",
+        "TWoR"
+      ],
+      "card_codes": [
+        "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+        "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+        "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+        "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+        "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+        "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+        "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+        "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+        "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+        "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+        "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+        "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+        "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+        "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+        "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+        "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+        "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+        "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+        "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+        "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+        "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+        "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+        "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7"
+      ],
+      "cards": [
+        {
+          "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedEncounterDeck": {
+          "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07": 2,
+          "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd": 3,
+          "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532": 2,
+          "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf": 2,
+          "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c": 3,
+          "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780": 2,
+          "octgn:9b5e1acd-c396-464d-ab54-df86833aad07": 3,
+          "octgn:3b26d048-24cb-4978-86f9-d255048426d8": 3,
+          "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b": 3,
+          "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493": 2,
+          "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6": 1,
+          "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455": 3,
+          "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020": 3,
+          "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f": 3,
+          "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af": 3,
+          "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb": 3,
+          "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9": 2
+        },
+        "sharedQuestDeck": {
+          "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d": 1,
+          "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450": 1,
+          "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b": 1
+        },
+        "sharedStagingArea": {
+          "octgn:7f9cf578-980e-43af-995f-27a84fd54a01": 1,
+          "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a": 1,
+          "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg",
+      "localPath": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg",
+      "bytes": 157711,
+      "sha256": "1820d6379a116aa6e6c0eb0175f49e36b669028381e090a318168d24909ceb99"
+    },
+    {
+      "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fffdddc-d9f9-498a-9669-e840304ebb9b.B.jpg",
+      "localPath": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.B.jpg",
+      "bytes": 165186,
+      "sha256": "d3c36c3659b748d6d260a6b29955ee7a32686f400aca1b7a731f40944d5532d3"
+    },
+    {
+      "code": "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7.jpg",
+      "localPath": "/cards/315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7.jpg",
+      "bytes": 154914,
+      "sha256": "a7cfeef6222d7ded7bc410bd6e1b075901169a3d93ba36969136d87dede9eae7"
+    },
+    {
+      "code": "octgn:3b26d048-24cb-4978-86f9-d255048426d8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3b26d048-24cb-4978-86f9-d255048426d8.jpg",
+      "localPath": "/cards/3b26d048-24cb-4978-86f9-d255048426d8.jpg",
+      "bytes": 159586,
+      "sha256": "36c5c075a5a05970dd22a0c2d7736700eabe578ea0c252a241a77255e123f831"
+    },
+    {
+      "code": "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f8273a2-f64c-407c-97fb-4a4ef0bddb0b.jpg",
+      "localPath": "/cards/3f8273a2-f64c-407c-97fb-4a4ef0bddb0b.jpg",
+      "bytes": 161531,
+      "sha256": "0fd84e62dff2492af9196b67151b3cc56b92c82962a1a48d9f73d3fd8a95632a"
+    },
+    {
+      "code": "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4abe9f52-1e56-479a-a59f-c3f7075ec493.jpg",
+      "localPath": "/cards/4abe9f52-1e56-479a-a59f-c3f7075ec493.jpg",
+      "bytes": 148836,
+      "sha256": "b181338a1debd555673270944b43ff3174dbbff1f5d005107fbb50d23a322530"
+    },
+    {
+      "code": "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "localPath": "/cards/552b11aa-b91e-44aa-8e54-1bad1aa74bbd.jpg",
+      "bytes": 164038,
+      "sha256": "493c5a092e11493d28d67674b3c7098334ad2e17e56a6a299d4f2dcf1f24d57d"
+    },
+    {
+      "code": "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5775b97c-4047-4dc2-b148-b852bad4f9bb.jpg",
+      "localPath": "/cards/5775b97c-4047-4dc2-b148-b852bad4f9bb.jpg",
+      "bytes": 152685,
+      "sha256": "164a86410c36fedc42e1d9f7c3da0a9170a782272bfd0a03b117df8c23a9e1d3"
+    },
+    {
+      "code": "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "localPath": "/cards/74fc62c2-b1b6-4338-819a-1f00f871312c.jpg",
+      "bytes": 152794,
+      "sha256": "767eaa4124368f06c0e67893641fe5e9f90ce24c162cdd6c58b5966cf800b41d"
+    },
+    {
+      "code": "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7d71aa09-badb-4ba8-9d08-597a8d814020.jpg",
+      "localPath": "/cards/7d71aa09-badb-4ba8-9d08-597a8d814020.jpg",
+      "bytes": 152526,
+      "sha256": "c9217760fea14d5a58f5c6d6d286e5da921bcc5afeef660bee51d168882a7a6c"
+    },
+    {
+      "code": "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f9cf578-980e-43af-995f-27a84fd54a01.jpg",
+      "localPath": "/cards/7f9cf578-980e-43af-995f-27a84fd54a01.jpg",
+      "bytes": 143030,
+      "sha256": "5bc505053b6f7bb648c3e3b406ebd5f2582d50627230c7d06eaf32d7bf15c53b"
+    },
+    {
+      "code": "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "localPath": "/cards/8615beb7-a9f7-4852-bc0a-3d1a5f2c9532.jpg",
+      "bytes": 157244,
+      "sha256": "e5b9a569a644700ab413ee3db5e316153eee92a869e16099c68fe4679e897191"
+    },
+    {
+      "code": "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/882952c5-c3a7-43aa-91d2-8a130b300d5f.jpg",
+      "localPath": "/cards/882952c5-c3a7-43aa-91d2-8a130b300d5f.jpg",
+      "bytes": 141029,
+      "sha256": "a9a03093fa8590c1ec1a2242ed25dc38fc9302bedd766d8d2ee1cf4f27ebf076"
+    },
+    {
+      "code": "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98461b3e-54c4-4eb9-9172-616c9bebb0f6.jpg",
+      "localPath": "/cards/98461b3e-54c4-4eb9-9172-616c9bebb0f6.jpg",
+      "bytes": 157784,
+      "sha256": "386754b32e2b6f2f0ca0ec8d921ea045d1d97b9d47b34835f0a09145c0d11758"
+    },
+    {
+      "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg",
+      "localPath": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg",
+      "bytes": 167847,
+      "sha256": "da4511f6538d404ece88614c2a7c57d777065145cc3d9bfb0c0716bf5a0e7567"
+    },
+    {
+      "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99ab7a92-0e3e-4ec2-9a40-0f467920879d.B.jpg",
+      "localPath": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.B.jpg",
+      "bytes": 160495,
+      "sha256": "b9dfea383d0cc61b74557bf70a74ff2d23b201f68848c9f7574ebf1f59920828"
+    },
+    {
+      "code": "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "localPath": "/cards/9b5e1acd-c396-464d-ab54-df86833aad07.jpg",
+      "bytes": 167832,
+      "sha256": "34163f8e9f633d9a4e712f2eae3fa15b8979cc0ab603640cade455769f3192a0"
+    },
+    {
+      "code": "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aeb2f711-4597-42c1-af8c-eb7d6f4fa79a.jpg",
+      "localPath": "/cards/aeb2f711-4597-42c1-af8c-eb7d6f4fa79a.jpg",
+      "bytes": 151197,
+      "sha256": "3f5aab19265ffd14bd81418ecb73dcd2611373fe43390d39f348f3986387c1ac"
+    },
+    {
+      "code": "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2d8cd64-a1dc-4bf2-9e61-0336170e73af.jpg",
+      "localPath": "/cards/c2d8cd64-a1dc-4bf2-9e61-0336170e73af.jpg",
+      "bytes": 143661,
+      "sha256": "813bc616bc077dfc6df0d155b6e3b2da6b363a3412c91de4579a946b5efb9b4c"
+    },
+    {
+      "code": "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5e9ef20-a88f-40fb-861f-c44de8e12bd9.jpg",
+      "localPath": "/cards/c5e9ef20-a88f-40fb-861f-c44de8e12bd9.jpg",
+      "bytes": 147876,
+      "sha256": "bd51efde2d8bc4aed38adc2e49fc45aa5eb419a2f5966a38d157f93764c60e70"
+    },
+    {
+      "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg",
+      "localPath": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg",
+      "bytes": 144885,
+      "sha256": "9d120195cd63d173275caf8fe3d71ac9d72559e016913e3f54643a3168b197b0"
+    },
+    {
+      "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d90a8977-78e1-445d-b57d-a13e0e98f450.B.jpg",
+      "localPath": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.B.jpg",
+      "bytes": 144116,
+      "sha256": "2c28a84239e52af0c1ed8966d5451c4fa944107838e553ef9ed33687cd90733a"
+    },
+    {
+      "code": "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "localPath": "/cards/db960347-11ee-4ad7-8784-e4827fb7daaf.jpg",
+      "bytes": 153335,
+      "sha256": "1f56cd2f2bf673875e651bce1b90235c4c16ef9782c36fa440d3762961166e03"
+    },
+    {
+      "code": "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "localPath": "/cards/ec9f4d54-a419-4b3e-a6b9-605119950d07.jpg",
+      "bytes": 158168,
+      "sha256": "00c13b221ed12ef877359cc29ae47306fe7d8089541d02af980c08cf7084888e"
+    },
+    {
+      "code": "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455.jpg",
+      "localPath": "/cards/f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455.jpg",
+      "bytes": 153659,
+      "sha256": "df75824832c4acaba32f369ee78db902efdbeea5b9620d8e750cd1b40230b5d6"
+    },
+    {
+      "code": "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "localPath": "/cards/fc70a2bc-c2ba-4364-a609-811daa0d6780.jpg",
+      "bytes": 155400,
+      "sha256": "4888b440ba6ab53a308b7d8a20fdad4c16174fdd7e6e77c6430ca6cbb7c1d234"
+    }
+  ]
+}

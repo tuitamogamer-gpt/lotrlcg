@@ -148,7 +148,12 @@ export function mirkwoodPlayerEventEffect(s: GameState, code: string): boolean {
         .find(
           (event) => event.player === activeSeat(s) && event.unit.code === code,
         );
-    const payers = resolving || !dikeCannotLeaveDiscard(s) ? lorePayers(s) : [];
+    const payers =
+      resolving?.destination === "spent"
+        ? []
+        : resolving || !dikeCannotLeaveDiscard(s)
+          ? lorePayers(s)
+          : [];
     choose(
       s,
       "Rumour from the Earth · Look at top encounter card",

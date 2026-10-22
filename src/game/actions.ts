@@ -1,3 +1,6 @@
+import * as EredFinalSupport from "./ered-final-player-support";
+import { ERED_GUARDED } from "./ered-mithrin-player-support";
+import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
 import { cirithGuratPublicState } from "./cirith-gurat-support";
@@ -733,10 +736,15 @@ export function canPlay(
   if (crownProblem) return crownProblem;
   const ninProblem = Nin.ninPlayProblem(s, u.code);
   if (ninProblem) return ninProblem;
+  const scenarioPlayProblem = batch4Scenario(s).playProblem?.(s, u.code);
+  if (scenarioPlayProblem) return scenarioPlayProblem;
   const c = {
     ...card(u.code),
     playOwner: u.owner ?? activeSeat(s),
     ...(options.playOrigin ? { playOrigin: options.playOrigin } : {}),
+    ...(["01051", "19153"].includes(u.code) && options.target
+      ? { cost: Number(card(options.target.code).cost) || 0 }
+      : {}),
   };
   if (
     dikeCannotLeaveDiscard(s) &&
@@ -805,6 +813,7 @@ export function canPlay(
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
   const batchProblem =
+    EredFinalPlayers.eredFinalPlayerPlayProblem(s, u) ??
     BatchPlayers.batch4PlayerPlayProblem(s, u) ??
     WildsPlayers.wildsPlayerPlayProblem(s, u) ??
     EredPlayers.eredMithrinPlayerPlayProblem(s, u);
@@ -929,7 +938,7 @@ export function canPlay(
   )
     return "There is no damaged character that can be healed.";
   if (
-    ["01036", "08143", "10085"].includes(u.code) &&
+    ["01036", "08143", "10085", "19149"].includes(u.code) &&
     (options.noCost ||
       playCost(s, c) < 3 ||
       eligiblePayers(s, c).filter(
@@ -1080,7 +1089,7 @@ export function effectCardPlayTargets(
   options: { putIntoPlay: boolean } = { putIntoPlay: false },
 ): Unit[] {
   const targets = playTargets(s, u, options);
-  return u.code === "01051"
+  return ["01051", "19153"].includes(u.code)
     ? targets.filter((target) => (Number(card(target.code).cost) || 0) === 0)
     : targets;
 }
@@ -1107,7 +1116,7 @@ export function replayEventProblem(
   }
   if (card(u.code).type_code !== "event")
     return "Choose an event in your discard pile.";
-  if (u.code === "01051" && target === undefined)
+  if (["01051", "19153"].includes(u.code) && target === undefined)
     return playTargets(s, u).some(
       (candidate) => !replayEventProblem(s, u, candidate.id),
     )
@@ -1130,7 +1139,7 @@ export function replayEventProblem(
     return "This event has no legal target.";
   if (
     (card(u.code).printed_stats?.cost === "X" || card(u.code).cost === "X") &&
-    !["01051", "01067", "06083", "08010"].includes(u.code)
+    !["01051", "19153", "01067", "06083", "08010"].includes(u.code)
   )
     return "Choose an event with a fixed resource cost.";
   if (["01067", "06083"].includes(u.code)) {
@@ -1167,7 +1176,7 @@ export function eventReplayPayments(
   target?: string,
   amount?: number,
 ): Record<string, number>[] {
-  if (u.code === "01051" && target === undefined) return [];
+  if (["01051", "19153"].includes(u.code) && target === undefined) return [];
   const definition = card(u.code),
     effectiveCost = replayEventCost(s, u, target, amount),
     c = { ...definition, cost: effectiveCost, playOrigin: "discard" as const },
@@ -1184,7 +1193,7 @@ export function eventReplayPayments(
         left === 0 &&
         (!singlePoolCard(c) ||
           Object.values(payment).filter((n) => n > 0).length <= 1) &&
-        (!["01036", "08143", "10085"].includes(u.code) ||
+        (!["01036", "08143", "10085", "19149"].includes(u.code) ||
           Object.values(payment).filter((n) => n > 0).length === 3)
       )
         result.push(payment);
@@ -1212,7 +1221,7 @@ function replayEventCost(
   amount?: number,
 ) {
   if (u.code === "08010") return playerOrder(s).length;
-  if (u.code === "01051") {
+  if (["01051", "19153"].includes(u.code)) {
     const selected = discardTarget(s, target!);
     return (
       Number(card(seatView(s, selected.player).discard[selected.index]).cost) ||
@@ -1263,7 +1272,7 @@ export function playEventFromDiscardEffect(
       playTargets(s, preview).some((target) => target.id === options.target),
       "Choose a legal event target.",
     );
-  if (["01036", "08143", "10085"].includes(preview.code))
+  if (["01036", "08143", "10085", "19149"].includes(preview.code))
     requireRule(
       options.payment &&
         Object.values(options.payment).filter((n) => n > 0).length === 3,
@@ -1440,8 +1449,8 @@ export function resolvePlayerCard(
     enterAlly(s, u, false, played, fromHand);
   } else if (
     c.type_code === "attachment" &&
-    (played || ["17139", "18011"].includes(u.code)) &&
-    ((played && EredPlayers.eredMithrinPlayerSpecialAttachmentEntry(s, u)) ||
+    (played || ["17139", "18011", ...ERED_GUARDED].includes(u.code)) &&
+    (EredPlayers.eredMithrinPlayerSpecialAttachmentEntry(s, u) ||
       BatchPlayers.batch4PlayerSpecialAttachmentEntry(s, u) ||
       WildsPlayers.wildsPlayerSpecialAttachmentEntry(s, u) ||
       heirsPlayerSpecialAttachmentEntry(s, u) ||
@@ -1509,6 +1518,7 @@ export function resolvePlayerCard(
       s,
       u,
       () => {
+        EredFinalPlayers.eredFinalPlayerEventCost(s, u, target);
         EredPlayers.eredMithrinPlayerEventCost(s, u, target);
         WildsPlayers.wildsPlayerEventCost(s, u, target);
         CobasEconomy.cobasEconomyEventCost(s, u);
@@ -1538,6 +1548,7 @@ export function resolvePlayerCard(
     RacePlayers.raceHaradPlayerEventPlayed(s, u);
   }
   if (played) {
+    EredFinalPlayers.eredFinalPlayerCardPlayed(s, c, u, fromHand);
     WildsPlayers.wildsPlayerCardPlayed(s, c);
     batch4Scenario(s).playerCardPlayed?.(s, u);
   }
@@ -1558,6 +1569,13 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !EredFinalPlayers.eredFinalPlayerEvent(
+      s,
+      physical.code,
+      e.source,
+      physical.id,
+      e.count,
+    ) &&
     !EredPlayers.eredMithrinPlayerEvent(
       s,
       physical.code,
@@ -1647,6 +1665,7 @@ export function playTargets(
           !Temple.templeCannotAttach(s, target) &&
           !Drowned.drownedCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
+          EredFinalSupport.eredFinalPlayerCanHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
         target.blanked ||
@@ -1667,6 +1686,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    EredFinalPlayers.eredFinalPlayerPlayTargets(s, c.code) ??
     BatchPlayers.batch4PlayerPlayTargets(s, c.code) ??
     WildsPlayers.wildsPlayerPlayTargets(s, c.code) ??
     EredPlayers.eredMithrinPlayerPlayTargets(s, c.code);
@@ -1821,7 +1841,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
               id: s.table ? `discard-${player}-${i}` : `discard-${i}`,
             }))
             .filter((a) =>
-              u.code === "01051"
+              ["01051", "19153"].includes(u.code)
                 ? allyCanEnter(s, a.code) &&
                   card(a.code).sphere_code !== "neutral"
                 : u.code === "01053"
@@ -1834,6 +1854,9 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 
 export const needsTarget = (u: Unit) =>
   [
+    "19114",
+    "19149",
+    "19153",
     "19032",
     "19034",
     "17113",
@@ -1847,6 +1870,8 @@ export const needsTarget = (u: Unit) =>
   u.code === "12118" ||
   u.code === "09008" ||
   (![
+    "19117",
+    "19152",
     "19010",
     "19029",
     "19058",
@@ -2018,6 +2043,10 @@ export function availableAbilities(s: GameState, u: Unit) {
       disabled: !!TempleEncounters.templeEncounterAbilityProblem(s, u),
     });
   for (const [label, problem] of [
+    [
+      EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
+      EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
+    ],
     [
       EredPlayers.eredMithrinPlayerAbilityLabel(u.code),
       EredPlayers.eredMithrinPlayerAbilityProblem(s, u),
@@ -2259,6 +2288,10 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     for (const [label, problem] of [
+      [
+        EredFinalPlayers.eredFinalPlayerAbilityLabel(a.code),
+        EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u, a.id),
+      ],
       [
         EredPlayers.eredMithrinPlayerAbilityLabel(a.code),
         EredPlayers.eredMithrinPlayerAbilityProblem(s, u, a.id),
@@ -2757,7 +2790,7 @@ export function applyAction(input: GameState, action: Action): GameState {
           s.hand.some((a) => allyCanEnter(s, a.code)),
           "You need an eligible ally in hand.",
         );
-      if (["01036", "08143", "10085"].includes(u.code))
+      if (["01036", "08143", "10085", "19149"].includes(u.code))
         requireRule(
           action.payment &&
             Object.values(action.payment).filter((v) => v > 0).length === 3,
@@ -2765,7 +2798,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         );
       let effectiveCost =
         c.code === "08010" ? playerOrder(s).length : Number(c.cost) || 0;
-      if (u.code === "01051") {
+      if (["01051", "19153"].includes(u.code)) {
         const target = discardTarget(s, action.target!);
         effectiveCost =
           Number(card(seatView(s, target.player).discard[target.index]).cost) ||
@@ -2934,6 +2967,11 @@ export function applyAction(input: GameState, action: Action): GameState {
           ) {
           } else if (!action.attachmentId && Depths.useDepthsAbility(s, u)) {
           } else if (
+            !EredFinalPlayers.useEredFinalPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            ) &&
             !EredPlayers.useEredMithrinPlayerAbility(
               s,
               u,

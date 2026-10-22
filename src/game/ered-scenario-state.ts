@@ -5,6 +5,14 @@ import {
 } from "./withered-heath-support";
 import { roamRhovanionPublicState } from "./roam-rhovanion-support";
 import { ghostFramsburgPublicState } from "./ghost-framsburg-support";
+import {
+  mountGundabadUnits,
+  mountGundabadPublicState,
+} from "./mount-gundabad-support";
+import {
+  fateWilderlandUnits,
+  fateWilderlandPublicState,
+} from "./fate-wilderland-support";
 
 /** Physical cards outside ordinary play zones still participate in save identity checks. */
 export function eredScenarioUnits(s: GameState): Unit[] {
@@ -13,6 +21,8 @@ export function eredScenarioUnits(s: GameState): Unit[] {
     f = s.fireNight,
     g = s.ghostFramsburg;
   return [
+    ...mountGundabadUnits(s),
+    ...fateWilderlandUnits(s),
     ...(h
       ? [
           ...h.setAside,
@@ -46,6 +56,10 @@ export function eredScenarioUnits(s: GameState): Unit[] {
 /** Report counts for unrevealed zones; never expose looked-at cards or hidden order. */
 export function eredScenarioPublicState(s: GameState) {
   return {
+    ...(s.mountGundabad ? { mountGundabad: mountGundabadPublicState(s) } : {}),
+    ...(s.fateWilderland
+      ? { fateWilderland: fateWilderlandPublicState(s) }
+      : {}),
     ...(s.witheredHeath
       ? {
           witheredHeath: {

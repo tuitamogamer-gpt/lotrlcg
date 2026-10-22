@@ -8,10 +8,16 @@ import { WITHERED_HEATH_HOOKS } from "./withered-heath";
 import { ROAM_RHOVANION_HOOKS } from "./roam-rhovanion";
 import { FIRE_NIGHT_HOOKS } from "./fire-night";
 import { GHOST_FRAMSBURG_HOOKS } from "./ghost-framsburg";
+import { MOUNT_GUNDABAD_HOOKS } from "./mount-gundabad";
+import { FATE_WILDERLAND_HOOKS } from "./fate-wilderland";
 
 const empty: Batch4ScenarioHooks = {};
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
+    case "mount-gundabad":
+      return MOUNT_GUNDABAD_HOOKS;
+    case "the-fate-of-wilderland":
+      return FATE_WILDERLAND_HOOKS;
     case "the-withered-heath":
       return WITHERED_HEATH_HOOKS;
     case "roam-across-rhovanion":
@@ -44,4 +50,6 @@ export const batch4SharedEffect = (effect: Effect) =>
     ROAM_RHOVANION_HOOKS,
     FIRE_NIGHT_HOOKS,
     GHOST_FRAMSBURG_HOOKS,
+    MOUNT_GUNDABAD_HOOKS,
+    FATE_WILDERLAND_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

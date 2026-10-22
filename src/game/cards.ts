@@ -19,10 +19,31 @@ import {
 } from "./wilds-rhovanion-scenario-data";
 import wildsRhovanionPlayers from "../data/wilds-rhovanion-player-cards.json";
 import eredMithrinPlayers from "../data/ered-mithrin-player-cards.json";
-import { WITHERED_HEATH_ENCOUNTERS, WITHERED_HEATH_QUESTS } from "./withered-heath-scenario-data";
-import { ROAM_RHOVANION_ENCOUNTERS, ROAM_RHOVANION_QUESTS } from "./roam-rhovanion-scenario-data";
-import { FIRE_NIGHT_ENCOUNTERS, FIRE_NIGHT_QUESTS } from "./fire-night-scenario-data";
-import { GHOST_FRAMSBURG_ENCOUNTERS, GHOST_FRAMSBURG_QUESTS } from "./ghost-framsburg-scenario-data";
+import {
+  MOUNT_GUNDABAD_ENCOUNTERS,
+  MOUNT_GUNDABAD_QUESTS,
+} from "./mount-gundabad-scenario-data";
+import {
+  FATE_WILDERLAND_ENCOUNTERS,
+  FATE_WILDERLAND_QUESTS,
+} from "./fate-wilderland-scenario-data";
+import eredFinalPlayers from "../data/ered-final-player-cards.json";
+import {
+  WITHERED_HEATH_ENCOUNTERS,
+  WITHERED_HEATH_QUESTS,
+} from "./withered-heath-scenario-data";
+import {
+  ROAM_RHOVANION_ENCOUNTERS,
+  ROAM_RHOVANION_QUESTS,
+} from "./roam-rhovanion-scenario-data";
+import {
+  FIRE_NIGHT_ENCOUNTERS,
+  FIRE_NIGHT_QUESTS,
+} from "./fire-night-scenario-data";
+import {
+  GHOST_FRAMSBURG_ENCOUNTERS,
+  GHOST_FRAMSBURG_QUESTS,
+} from "./ghost-framsburg-scenario-data";
 import { DIKE_ENCOUNTERS, DIKE_QUESTS } from "./deadmens-dike-support";
 import { CHETWOOD_ENCOUNTERS, CHETWOOD_QUESTS } from "./chetwood-support";
 import { WEATHER_ENCOUNTERS, WEATHER_QUESTS } from "./weather-hills-support";
@@ -237,8 +258,24 @@ export const playerCards = [
           ...crossingsPorosPlayers,
           ...wildsRhovanionPlayers,
           ...eredMithrinPlayers,
+          ...eredFinalPlayers.filter((c) => c.code !== "19120"),
         ] as Card[]
       ).map((c) => {
+        if (c.code === "19146")
+          return {
+            ...c,
+            text: c.text
+              ?.replace("defend, of have", "defend, or have")
+              .replace("it's owner's", "its owner's"),
+          };
+        if (c.code === "19152")
+          return {
+            ...c,
+            text: c.text?.replace(
+              /Guarded \(location\)\.\s*Guarded \(location\)\./,
+              "Guarded (location).",
+            ),
+          };
         if (c.code === "17087") return { ...c, quest: 6, victory: 1 };
         if (c.code === "17113")
           return {
@@ -368,6 +405,8 @@ export const encounterCards = [
       ...ROAM_RHOVANION_ENCOUNTERS,
       ...FIRE_NIGHT_ENCOUNTERS,
       ...GHOST_FRAMSBURG_ENCOUNTERS,
+      ...MOUNT_GUNDABAD_ENCOUNTERS,
+      ...FATE_WILDERLAND_ENCOUNTERS,
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -428,6 +467,8 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ROAM_RHOVANION_QUESTS,
     ...FIRE_NIGHT_QUESTS,
     ...GHOST_FRAMSBURG_QUESTS,
+    ...MOUNT_GUNDABAD_QUESTS,
+    ...FATE_WILDERLAND_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -530,6 +571,8 @@ export const SCRIPTED = new Set(
     ...ROAM_RHOVANION_QUESTS,
     ...FIRE_NIGHT_QUESTS,
     ...GHOST_FRAMSBURG_QUESTS,
+    ...MOUNT_GUNDABAD_QUESTS,
+    ...FATE_WILDERLAND_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

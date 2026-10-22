@@ -1,3 +1,4 @@
+import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
 import { mainQuestUnit } from "./quest-state";
@@ -574,6 +575,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
   if (SandsPlayers.handleBeneathSandsPlayerEffect(s, e)) return;
+  if (EredFinalPlayers.handleEredFinalPlayerEffect(s, e)) return;
   if (EredPlayers.handleEredMithrinPlayerEffect(s, e)) return;
   if (BatchPlayers.handleBatch4PlayerEffect(s, e)) return;
   if (WildsPlayers.handleWildsPlayerEffect(s, e)) return;
@@ -781,7 +783,9 @@ function handleEffect(s: GameState, e: Effect) {
           : {}),
         ...(e.damageTarget ? { undefendedTargetId: e.damageTarget } : {}),
         immediate: true,
+        ...(consideredEngaged(s, u) ? { freshConsideredShadows: true } : {}),
         ...(e.text === "cobas-ramming" ? { cobasRamming: true } : {}),
+        ...(e.text === "wilder-command" ? { wilderAssaultOnKill: 1 } : {}),
         immediatePendingDeclaration: true,
         immediatePreviousAttacked: previous.attacked,
         ...(!existingCarnShadows
@@ -846,24 +850,6 @@ function handleEffect(s: GameState, e: Effect) {
         "The same immediate attack must remain pending.",
       );
       beginEnemyAttack(s, u, e.ids ?? [], false, false, true);
-      if (s.combat)
-        Object.assign(s.combat, {
-          immediate: true,
-          immediatePendingDeclaration: false,
-          undefendedTargetId: prior.undefendedTargetId,
-          attackPlayer: prior.attackPlayer,
-          immediatePreviousAttacked: prior.immediatePreviousAttacked,
-          immediatePreviousShadows: prior.immediatePreviousShadows,
-          immediatePreviousFaceupShadows: prior.immediatePreviousFaceupShadows,
-          immediatePreviousRevealedShadowCount:
-            prior.immediatePreviousRevealedShadowCount,
-          immediatePreviousShadowCancelsDamage:
-            prior.immediatePreviousShadowCancelsDamage,
-          immediatePreviousShadowCancelsCombatDamage:
-            prior.immediatePreviousShadowCancelsCombatDamage,
-          templeRainOnKill: prior.templeRainOnKill,
-          cobasRamming: prior.cobasRamming,
-        });
       break;
     }
     case "startPlanning":
@@ -946,6 +932,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     }
     case "questSuccessResponses":
+      EredFinalPlayers.eredFinalPlayerQuestSucceeded(s);
       batch4Scenario(s).questSucceeded?.(s, s.lastQuest?.net ?? 0);
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
@@ -1981,6 +1968,7 @@ function handleEffect(s: GameState, e: Effect) {
       const passives: Effect[] = ringMakerRoundEnd(s),
         forced: Effect[] = [];
       eachArea(s, () => {
+        passives.push(...EredFinalPlayers.eredFinalPlayerRoundEnd(s));
         passives.push(...bloodPlayerRoundEndEffects(s));
         passives.push(...Isengard.isengardRoundEnd(s));
         passives.push(...CobasEconomy.cobasEconomyRoundEnd(s));
@@ -2310,6 +2298,7 @@ function handleEffect(s: GameState, e: Effect) {
         s,
         fx("shadowResolved", {
           code: e.code,
+          flag: !!shadowText,
           source: enemy.id,
           player: s.combat?.attackPlayer ?? activeSeat(s),
         }),
@@ -2338,6 +2327,13 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "shadowResolved": {
       const enemy = get(s, e.source);
+      if (enemy && e.code)
+        EredFinalPlayers.eredFinalPlayerShadowTriggered(
+          s,
+          enemy,
+          e.code,
+          e.flag ?? !!Carn.carnShadowText(s, e.code),
+        );
       if (enemy && e.code) Dread.dreadShadowResolved(s, enemy, e.code);
       if (enemy && e.code) batch4Scenario(s).shadowResolved?.(s, enemy, e.code);
       break;
@@ -2358,6 +2354,7 @@ function handleEffect(s: GameState, e: Effect) {
       const c = s.combat;
       const enemy = get(s, c?.enemyId);
       if (!c || !enemy) break;
+      c.attackResolved = true;
       const defenders = (c.defenderIds ?? (c.defenderId ? [c.defenderId] : []))
         .map((id) => get(s, id))
         .filter((x): x is Unit => !!x);
@@ -2485,7 +2482,8 @@ function handleEffect(s: GameState, e: Effect) {
           );
         if (completed) City.cityAttackFinished(s, completed, true);
         if (completed) Umbar.umbarAttackFinished(s, completed, true);
-        if (skipped) finishEnemyShadows(s, skipped);
+        if (skipped)
+          finishEnemyShadows(s, skipped, !!completed?.freshConsideredShadows);
         if (
           immediate &&
           skipped &&
@@ -2629,7 +2627,8 @@ function handleEffect(s: GameState, e: Effect) {
       if (completed)
         prepend(s, ...(batch4Scenario(s).attackFinished?.(s, completed) ?? []));
       Voyage.voyageAfterAttack(s);
-      if (enemy) finishEnemyShadows(s, enemy);
+      if (enemy)
+        finishEnemyShadows(s, enemy, !!completed?.freshConsideredShadows);
       s.combat = s.suspendedCombats.pop() ?? null;
       if (
         immediate &&

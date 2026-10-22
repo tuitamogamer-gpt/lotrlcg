@@ -56,7 +56,14 @@ export const ERED_MITHRIN_PLAYER = {
   determination: "19092",
   ring: "19093",
 } as const;
-export const ERED_GUARDED = ["19010", "19029", "19058", "19093"];
+export const ERED_GUARDED = [
+  "19010",
+  "19029",
+  "19058",
+  "19093",
+  "19117",
+  "19152",
+];
 export const eredPlayerAttachment = (a: Attachment) =>
   !a.facedown &&
   !a.namelessCard &&

@@ -258,6 +258,9 @@ export function raidEngagementPlayer(
   if (u.code === R.naasiyah) return playerOrder(s).at(-1);
   return undefined;
 }
+/** The original insert routes Elites to victory whenever they leave as enemies. */
+export const raidEliteGoesToVictory = (s: GameState, u: Unit) =>
+  isRaid(s) && [R.sahir, R.naasiyah].includes(u.code);
 export function raidResourcesCollected(s: GameState) {
   if (!corsairRules(s)) return;
   ordered(

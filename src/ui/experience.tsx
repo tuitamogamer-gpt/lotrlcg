@@ -2,6 +2,10 @@ import { WitheredHeathQuestGoals } from "./withered-heath-state";
 import { RoamRhovanionQuestGoals } from "./roam-rhovanion-state";
 import { FireNightQuestGoals } from "./fire-night-state";
 import { GhostFramsburgQuestGoals } from "./ghost-framsburg-state";
+import {
+  MountGundabadQuestGoals,
+  FateWilderlandQuestGoals,
+} from "./ered-finale-state";
 import { BlackSerpentQuestGoals } from "./black-serpent-state";
 import { CirithGuratQuestGoals } from "./cirith-gurat-state";
 import { CrossingsPorosQuestGoals } from "./crossings-poros-state";
@@ -719,6 +723,8 @@ export function QuestGoals({ s }: { s: GameState }) {
   if (s.roamRhovanion) return <RoamRhovanionQuestGoals s={s} />;
   if (s.fireNight) return <FireNightQuestGoals s={s} />;
   if (s.ghostFramsburg) return <GhostFramsburgQuestGoals s={s} />;
+  if (s.mountGundabad) return <MountGundabadQuestGoals s={s} />;
+  if (s.fateWilderland) return <FateWilderlandQuestGoals s={s} />;
   if (s.blackSerpent) return <BlackSerpentQuestGoals s={s} />;
   if (s.cirithGurat) return <CirithGuratQuestGoals s={s} />;
   if (s.crossingsPoros) return <CrossingsPorosQuestGoals s={s} />;

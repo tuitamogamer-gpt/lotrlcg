@@ -63,6 +63,7 @@ export function returnPlayedEventToHand(
         (id === undefined || event.unit.id === id),
     );
   if (pending) {
+    if (pending.destination === "spent") return false;
     pending.destination = "hand";
     return true;
   }
@@ -82,8 +83,9 @@ export function putPlayedEventInVictory(s: GameState, code: string) {
     .find(
       (event) => event.player === activeSeat(s) && event.unit.code === code,
     );
-  if (pending) pending.destination = "victory";
-  else if (!dikeCannotLeaveDiscard(s)) {
+  if (pending) {
+    if (pending.destination !== "spent") pending.destination = "victory";
+  } else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
     if (index >= 0) {
       takePlayerDiscard(s, index);
@@ -99,8 +101,9 @@ export function removePlayedEvent(s: GameState, code: string) {
     .find(
       (event) => event.player === activeSeat(s) && event.unit.code === code,
     );
-  if (pending) pending.destination = "removed";
-  else if (!dikeCannotLeaveDiscard(s)) {
+  if (pending) {
+    if (pending.destination !== "spent") pending.destination = "removed";
+  } else if (!dikeCannotLeaveDiscard(s)) {
     const index = s.discard.lastIndexOf(code);
     if (index >= 0) takePlayerDiscard(s, index);
     s.removed.push(code);

@@ -1,0 +1,125 @@
+[
+  {
+    "code": "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+    "octgnid": "99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+    "name": "Urdug's Assault",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add The Goblins' Assault, The Heroes' Defense, and Urdug to the staging area. Shuffle the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+    "is_unique": false,
+    "pack_code": "TFoW",
+    "pack_name": "The Fate of Wilderland",
+    "position": 168,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Fate of Wilderland",
+    "side": "A",
+    "back_name": "Urdug's Assault",
+    "back_text": "Forced: At the end of the round, place 1 progress on The Goblins' Assault for each enemy in the staging area. Then, if there is X or more progress on The Goblins' Assault, advance. X is equal to 2, plus 2 per player. ",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoW",
+        "pack_name": "The Fate of Wilderland",
+        "position": 168,
+        "quantity": 1,
+        "octgnid": "99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99ab7a92-0e3e-4ec2-9a40-0f467920879d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1,
+    "back_quest": 0
+  },
+  {
+    "code": "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
+    "octgnid": "d90a8977-78e1-445d-b57d-a13e0e98f450",
+    "name": "Outflanked",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+    "is_unique": false,
+    "pack_code": "TFoW",
+    "pack_name": "The Fate of Wilderland",
+    "position": 169,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Fate of Wilderland",
+    "side": "A",
+    "back_name": "Outflanked",
+    "back_text": "Forced: After an enemy attacks, place 1 progress on The Goblins' Assault. Forced: At the end of the round, if there is X or more progress on The Goblins' Assault, advance. X is equal to 4, plus 4 per player. ",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoW",
+        "pack_name": "The Fate of Wilderland",
+        "position": 169,
+        "quantity": 1,
+        "octgnid": "d90a8977-78e1-445d-b57d-a13e0e98f450",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d90a8977-78e1-445d-b57d-a13e0e98f450.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1,
+    "back_quest": 0
+  },
+  {
+    "code": "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
+    "octgnid": "0fffdddc-d9f9-498a-9669-e840304ebb9b",
+    "name": "The Final Push",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players in the game. Add those enemies to the staging area.",
+    "is_unique": false,
+    "pack_code": "TFoW",
+    "pack_name": "The Fate of Wilderland",
+    "position": 170,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Fate of Wilderland",
+    "side": "A",
+    "back_name": "The Final Push",
+    "back_text": "Forced: At the end of the round, place 1 progress on The Goblins' Assault for each enemy in play. Then, if there is X or more progress on The Goblins' Assault, the players lose the game. X is equal to 8, plus 8 per player. ",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoW",
+        "pack_name": "The Fate of Wilderland",
+        "position": 170,
+        "quantity": 1,
+        "octgnid": "0fffdddc-d9f9-498a-9669-e840304ebb9b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0fffdddc-d9f9-498a-9669-e840304ebb9b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "easy_quantity": 1,
+    "back_quest": 0
+  }
+]

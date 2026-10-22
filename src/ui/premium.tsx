@@ -3,6 +3,14 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "mount-gundabad": {
+    name: "Mount Gundabad",
+    detail: "Reforge Wormsbane and confront Dagnir in the mountain",
+  },
+  "the-fate-of-wilderland": {
+    name: "The Fate of Wilderland",
+    detail: "Defend the valley of Dale against Urdug’s goblin army",
+  },
   "the-withered-heath": {
     name: "The Withered Heath",
     detail: "Hunt the Cold-Drake through the northern caverns",
@@ -343,6 +351,8 @@ export const PLAYMAT_CHOICES = [
   "roam-across-rhovanion",
   "fire-in-the-night",
   "the-ghost-of-framsburg",
+  "mount-gundabad",
+  "the-fate-of-wilderland",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
   "the-crossings-of-poros",

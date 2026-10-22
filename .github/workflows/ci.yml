@@ -228,6 +228,8 @@ jobs:
             roam-across-rhovanion,
             fire-in-the-night,
             the-ghost-of-framsburg,
+            mount-gundabad,
+            the-fate-of-wilderland,
           ]
     env:
       ERED_SIMULATION_SCENARIO: ${{ matrix.scenario }}
@@ -355,6 +357,10 @@ jobs:
             suite: test:browser-fire-night
           - group: ghost-framsburg
             suite: test:browser-ghost-framsburg
+          - group: significant-audio
+            suite: test:significant-audio
+          - group: ered-finale
+            suite: test:browser-ered-finale
           - group: ered-players
             suite: test:browser-ered-players
     steps:

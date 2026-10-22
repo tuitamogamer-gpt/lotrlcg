@@ -1,5 +1,7 @@
 /** Serializable information that follows one damage assignment through replacements. */
 export interface DamageContext {
+  /** Printed quest effects retain their source through damage replacement windows. */
+  questEffect?: boolean;
   /** Curse of the Downfallen follows its damage through replacements to the actual recipient. */
   fateBottomOnDestroy?: boolean;
   /** One Dark Abyss damage assignment, preserved through replacement effects. */
@@ -15,6 +17,9 @@ export interface DamageContext {
   bypassDiscipline?: boolean;
   bypassCloseCall?: boolean;
   bypassAngmar?: boolean;
+  bypassEredFinal?: boolean;
+  /** Physical prevention sources already offered for this damage assignment. */
+  eredFinalPrevented?: string[];
   mockingVisited?: string[];
 }
 
@@ -48,6 +53,7 @@ export function readDamageContext(effect: {
     if ("enemyId" in raw && typeof raw.enemyId === "string")
       context.enemyId = raw.enemyId;
     for (const key of [
+      "questEffect",
       "fateBottomOnDestroy",
       "cost",
       "combatDamage",
@@ -56,9 +62,16 @@ export function readDamageContext(effect: {
       "bypassDiscipline",
       "bypassCloseCall",
       "bypassAngmar",
+      "bypassEredFinal",
     ] as const)
       if (key in raw && typeof values[key] === "boolean")
         context[key] = values[key] as boolean;
+    if (
+      "eredFinalPrevented" in raw &&
+      Array.isArray(raw.eredFinalPrevented) &&
+      raw.eredFinalPrevented.every((v) => typeof v === "string")
+    )
+      context.eredFinalPrevented = raw.eredFinalPrevented;
     if (
       "mockingVisited" in raw &&
       Array.isArray(raw.mockingVisited) &&
@@ -69,6 +82,51 @@ export function readDamageContext(effect: {
   } catch {
     return legacy;
   }
+}
+
+/** Validate recognized encoded contexts while retaining legacy effect text. */
+export function validDamageContextEffectText(text?: string): boolean {
+  if (text === undefined) return true;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return true;
+  }
+  if (
+    !parsed ||
+    typeof parsed !== "object" ||
+    Array.isArray(parsed) ||
+    !("damageContext" in parsed)
+  )
+    return true;
+  const raw = parsed.damageContext;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return false;
+  const values = raw as Record<string, unknown>;
+  for (const key of [
+    "questEffect",
+    "fateBottomOnDestroy",
+    "cost",
+    "combatDamage",
+    "bypassFrodo",
+    "bypassDori",
+    "bypassDiscipline",
+    "bypassCloseCall",
+    "bypassAngmar",
+    "bypassEredFinal",
+  ])
+    if (key in values && typeof values[key] !== "boolean") return false;
+  for (const key of ["enemyId", "drownedThenToken", "cobasGuardToken"])
+    if (key in values && typeof values[key] !== "string") return false;
+  for (const key of ["mockingVisited", "eredFinalPrevented"]) {
+    if (!(key in values)) continue;
+    const list = values[key];
+    if (!Array.isArray(list) || !list.every((v) => typeof v === "string"))
+      return false;
+    if (key === "eredFinalPrevented" && new Set(list).size !== list.length)
+      return false;
+  }
+  return true;
 }
 
 /** Transitional callers may still pass enemy id and Song history as separate arguments. */

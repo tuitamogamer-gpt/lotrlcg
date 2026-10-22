@@ -6,6 +6,8 @@ import { WITHERED_HEATH_ADVENTURES } from "./withered-heath-scenario-data";
 import { ROAM_RHOVANION_ADVENTURES } from "./roam-rhovanion-scenario-data";
 import { FIRE_NIGHT_ADVENTURES } from "./fire-night-scenario-data";
 import { GHOST_FRAMSBURG_ADVENTURES } from "./ghost-framsburg-scenario-data";
+import { MOUNT_GUNDABAD_ADVENTURES } from "./mount-gundabad-scenario-data";
+import { FATE_WILDERLAND_ADVENTURES } from "./fate-wilderland-scenario-data";
 import { DIKE_QUESTS } from "./deadmens-dike-support";
 import { ANGMAR_ADVENTURES } from "./angmar-scenario-data";
 import { GREY_HAVENS_ADVENTURES } from "./grey-havens-scenario-data";
@@ -1143,6 +1145,8 @@ export const SCENARIOS = [
   ...ROAM_RHOVANION_ADVENTURES,
   ...FIRE_NIGHT_ADVENTURES,
   ...GHOST_FRAMSBURG_ADVENTURES,
+  ...MOUNT_GUNDABAD_ADVENTURES,
+  ...FATE_WILDERLAND_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

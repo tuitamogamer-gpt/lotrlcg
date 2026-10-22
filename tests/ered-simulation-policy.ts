@@ -8,6 +8,8 @@ export const ERED_SCENARIOS = [
   "roam-across-rhovanion",
   "fire-in-the-night",
   "the-ghost-of-framsburg",
+  "mount-gundabad",
+  "the-fate-of-wilderland",
 ] as const satisfies readonly ScenarioId[];
 export type EredScenario = (typeof ERED_SCENARIOS)[number];
 export const isEredScenario = (id: ScenarioId): id is EredScenario =>
