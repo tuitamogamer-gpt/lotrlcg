@@ -2,7 +2,6 @@ import encounters from "../data/mount-gundabad-encounter-cards.json";
 import quests from "../data/mount-gundabad-quest-cards.json";
 import recipes from "../data/mount-gundabad-recipes.json";
 import { WILDS_RHOVANION as W } from "./wilds-rhovanion-support";
-import { card } from "./cards";
 import type { Card, GameState, Unit } from "./types";
 
 export const MOUNT_GUNDABAD_ENCOUNTERS = encounters as Card[];
@@ -85,11 +84,24 @@ export const mountGundabadUnits = (s: GameState): Unit[] =>
         ...s.mountGundabad.guardedPlayerCards.map((g) => g.card),
       ]
     : [];
+const QUEST_VICTORY_TYPES = [
+  "quest",
+  "player-side-quest",
+  "encounter-side-quest",
+];
+// cards.ts owns the registry and also imports this module's encounter list.
+// A direct card() import here would read that list before it is initialized.
+let victoryType = (code: string): string => {
+  throw new Error(
+    `Gundabad quest count ran before the card registry could resolve ${code}`,
+  );
+};
+export function registerGundabadCardTypes(lookup: (code: string) => string) {
+  victoryType = lookup;
+}
 export const gundabadQuestCount = (s: GameState) =>
   (s.victoryCards ?? []).filter((code) =>
-    ["quest", "player-side-quest", "encounter-side-quest"].includes(
-      card(code).type_code,
-    ),
+    QUEST_VICTORY_TYPES.includes(victoryType(code)),
   ).length;
 export const gundabadX = (s: GameState) => 1 + gundabadQuestCount(s);
 export const gundabadDragon = (s: GameState) =>

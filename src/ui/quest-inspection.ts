@@ -4,7 +4,10 @@ import { GUNDABAD } from "../game/mount-gundabad-support";
 
 export type InspectedCard = Card & { initialReverse?: boolean };
 
-/** The identity of a selected Gundabad passage remains hidden on side A. */
+/**
+ * Hidden Gundabad stage 2A stays on the shared front. A revealed Gundabad
+ * quest opens on side B. Every other quest opens on side A.
+ */
 export function currentQuestInspection(
   s: GameState,
   printed: Card,
@@ -19,5 +22,7 @@ export function currentQuestInspection(
     ) as unknown as Card;
     return { ...visible, initialReverse: false };
   }
-  return { ...printed, initialReverse: !!printed.back_imagesrc };
+  if (s.mountGundabad && !s.mountGundabad.questFront)
+    return { ...printed, initialReverse: !!printed.back_imagesrc };
+  return { ...printed };
 }
