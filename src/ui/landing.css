@@ -115,6 +115,7 @@
   color: #ecdeb6b3;
   gap: 3px;
   pointer-events: none;
+  text-shadow: 0 1px 6px #0b1813;
 }
 .landing-waymark span:first-child {
   font-family: var(--serif);

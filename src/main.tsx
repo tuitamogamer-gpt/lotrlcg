@@ -30,6 +30,7 @@ import "./ui/resolution-layout.css";
 import "./ui/card-table.css";
 import "./ui/fellowship-gallery.css";
 import "./ui/adventure-atlas.css";
+import "./ui/guide.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MotionConfig reducedMotion="user">

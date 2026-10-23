@@ -16,7 +16,7 @@ body {
   color: #382a20;
   background:
     linear-gradient(#f2e9d5e6, #e3d0aee0),
-    url("/art/westmarch-atlas.jpg") center top / 1680px auto fixed;
+    url("/art/westmarch-atlas.jpg") center top / cover fixed;
   min-height: 100dvh;
 }
 .redbook .main-shell,

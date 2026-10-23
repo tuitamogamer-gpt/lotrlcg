@@ -3436,8 +3436,8 @@ export default function App() {
             onClose={() => setTutorial("seen")}
           >
             <p className="tutorial-lead">
-              A round has seven phases. The table walks you through them; this
-              is the whole rhythm.
+              A round has seven phases, grouped here into five steps. The table
+              walks you through them; this is the whole rhythm.
             </p>
             <ol className="tutorial-steps">
               <li>

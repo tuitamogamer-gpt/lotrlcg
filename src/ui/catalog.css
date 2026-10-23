@@ -326,3 +326,14 @@
 .redbook .library .library-summary label {
   color: #625037;
 }
+/* The source links were tuned for the old dark library; keep them legible on paper. */
+.redbook .library-source a {
+  color: #5f4a28;
+  font-weight: 600;
+  text-decoration-color: #846b3666;
+  text-underline-offset: 3px;
+}
+.redbook .library-source a:hover {
+  color: #3e4936;
+  text-decoration-color: currentColor;
+}

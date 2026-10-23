@@ -1,0 +1,170 @@
+/* How to play reads as one bound chapter: a single column width, headings in
+   the margin beside their text, and numbered phase cards on the same paper. */
+.redbook .content-page.guide {
+  max-width: 1120px;
+}
+.redbook .guide .page-heading > svg {
+  flex-shrink: 0;
+  color: #a27b44;
+}
+.redbook .guide-intro {
+  max-width: none;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 28px 30px;
+  border-left: 3px solid #846b36;
+  box-shadow: 0 4px 12px #3429140d;
+}
+.redbook .guide-intro > svg {
+  flex-shrink: 0;
+}
+.redbook .guide-intro p {
+  max-width: 68ch;
+  margin: 12px 0 20px;
+}
+.redbook .guide-note {
+  display: grid;
+  grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+  column-gap: 40px;
+  margin-top: 22px;
+  padding: 26px 30px;
+  border-radius: 3px;
+}
+.redbook .guide-note > * {
+  grid-column: 2;
+  min-width: 0;
+}
+.redbook .guide-note > h2 {
+  grid-column: 1;
+  grid-row: 1 / span 12;
+  align-self: start;
+  margin: 2px 0 0;
+  line-height: 1.25;
+}
+.redbook .guide-note p {
+  max-width: 72ch;
+  margin: 0;
+}
+.redbook .guide-note > * + * {
+  margin-top: 12px;
+}
+.redbook .guide-note .support-summary {
+  margin-bottom: 0;
+}
+.redbook .guide-links {
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 16px 0 4px;
+}
+.redbook .guide-links a {
+  color: #5f4a28;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #846b3666;
+  text-underline-offset: 4px;
+}
+.redbook .guide-links a:hover {
+  color: #3e4936;
+  text-decoration-color: currentColor;
+}
+.redbook .guide-note .fine-print {
+  color: #74644a;
+  font-style: italic;
+}
+.redbook .guide-steps {
+  gap: 16px;
+  margin: 28px 0 6px;
+}
+.redbook .guide-steps section {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 16px;
+  padding: 20px 22px;
+}
+.redbook .guide-steps section:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+.redbook .guide-steps section > svg {
+  grid-column: 1;
+  grid-row: 1;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  padding: 9px;
+  border: 1px solid #a27b4466;
+  border-radius: 50%;
+  background: #f8f0dc;
+}
+.redbook .guide-steps section > div {
+  grid-column: 2;
+  grid-row: 1;
+}
+.redbook .guide-number {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.redbook .guide-steps h3 {
+  margin: 2px 0 6px;
+  padding-right: 32px;
+}
+.redbook .guide-steps p {
+  max-width: none;
+}
+.redbook .guide .save-tools {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 18px 22px;
+  border: 1px solid #a5835066;
+  border-radius: 3px;
+}
+.redbook .guide .save-tools h3 {
+  font-size: 19px;
+}
+@media (max-width: 899px) {
+  .redbook .guide-note {
+    display: block;
+    padding: 22px;
+  }
+  .redbook .guide-note > h2 {
+    margin-bottom: 12px;
+  }
+  .redbook .guide-steps {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 599px) {
+  .redbook .guide .page-heading > svg {
+    display: none;
+  }
+  .redbook .guide-intro {
+    flex-direction: column;
+    padding: 22px 18px;
+    gap: 10px;
+  }
+  .redbook .guide-note {
+    padding: 20px 18px;
+  }
+  .redbook .guide-steps section {
+    padding: 18px 16px;
+    grid-template-columns: 38px minmax(0, 1fr);
+    column-gap: 13px;
+  }
+  .redbook .guide-steps section > svg {
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+  }
+  .redbook .guide .save-tools {
+    padding: 16px;
+  }
+  .redbook .guide .save-tools h3 {
+    flex-basis: 100%;
+  }
+}

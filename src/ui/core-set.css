@@ -25,7 +25,7 @@ h4,
   background:
     radial-gradient(ellipse at 50% 10%, #fffdf085, transparent 75%),
     linear-gradient(#f1eddfec, #dfd8c4ed),
-    url("/art/westmarch-atlas.jpg") center top / 1680px auto fixed;
+    url("/art/westmarch-atlas.jpg") center top / cover fixed;
 }
 
 /* A restrained charcoal-and-gold frame, like the printed game components. */
