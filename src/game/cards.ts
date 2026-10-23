@@ -23,6 +23,7 @@ import {
   MOUNT_GUNDABAD_ENCOUNTERS,
   MOUNT_GUNDABAD_QUESTS,
 } from "./mount-gundabad-scenario-data";
+import { registerGundabadCardTypes } from "./mount-gundabad-support";
 import {
   FATE_WILDERLAND_ENCOUNTERS,
   FATE_WILDERLAND_QUESTS,
@@ -609,6 +610,7 @@ export const card = (code: string): Card => {
   if (!c) throw new Error(`Unknown card: ${code}`);
   return c;
 };
+registerGundabadCardTypes((code) => card(code).type_code);
 export const cachedImageSource = (src: string | undefined) =>
   scriptedScenarioArt[src as keyof typeof scriptedScenarioArt] ??
   referenceScenarioArt[src as keyof typeof referenceScenarioArt] ??
