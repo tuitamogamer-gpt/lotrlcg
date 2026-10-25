@@ -5,6 +5,7 @@ import { card, name, plain } from "./cards";
 import {
   canPay,
   canPlayerAffectShadow,
+  canChoosePlayerShadowDiscard,
   cannotReady,
   choose,
   fx,
@@ -588,7 +589,11 @@ export function templePlayerEffect(s: GameState, e: Effect): boolean {
           (enemy) => enemy.id !== e.text && canPlayerAffectShadow(s, enemy),
         )
         .flatMap((enemy) =>
-          enemy.shadows.map((code, index) => ({ enemy, code, index })),
+          enemy.shadows.flatMap((code, index) =>
+            canChoosePlayerShadowDiscard(s, enemy, index)
+              ? [{ enemy, code, index }]
+              : [],
+          ),
         );
       if (shadows.length)
         choose(

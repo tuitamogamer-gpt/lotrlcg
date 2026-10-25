@@ -140,7 +140,11 @@
     "test:significant-audio": "node --import tsx scripts/browser-significant-audio.mjs",
     "test:ered-finale-quests": "node --import tsx scripts/browser-ered-finale.mjs",
     "test:ered-finale-players": "node --import tsx scripts/browser-ered-final-player.mjs",
-    "test:browser-ered-finale": "npm run test:ered-finale-quests && npm run test:ered-finale-players"
+    "test:browser-ered-finale": "npm run test:ered-finale-quests && npm run test:ered-finale-players",
+    "test:shadow-east-simulation": "node --import tsx --test tests/shadow-east-simulation.test.ts",
+    "test:shadow-east-quests": "node --import tsx scripts/browser-shadow-east.mjs",
+    "test:shadow-east-players": "node --import tsx scripts/browser-shadow-east-players.mjs",
+    "test:browser-shadow-east": "npm run test:shadow-east-quests && npm run test:shadow-east-players"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

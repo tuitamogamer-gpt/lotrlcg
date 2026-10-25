@@ -299,7 +299,8 @@ export const defendersFor = (s: GameState, enemy?: Unit) =>
       (!enemy ||
         (Mordor.mordorCanDefend(s, enemy, u) &&
           !Desert.desertCrossingCannotDefend(s, enemy) &&
-          !Sands.beneathSandsCannotDefend(s, enemy))) &&
+          !Sands.beneathSandsCannotDefend(s, enemy) &&
+          !batch4Scenario(s).cannotDefend?.(s, enemy, u))) &&
       (ownerOf(s, u) === activeSeat(s) || hasKeyword(u, "Sentinel")) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108"),
   );

@@ -1,6 +1,9 @@
 import "./ui/save-status.css";
 import { currentQuestInspection } from "./ui/quest-inspection";
 import { GUNDABAD } from "./game/mount-gundabad-support";
+import { ShadowEastPlayerState } from "./ui/shadow-east-player-state";
+import { ShadowEastScenarioState } from "./ui/shadow-east-state";
+import { shadowEastPlayerScenarioProblem } from "./game/deck-setup";
 import { useSignificantAudio } from "./ui/use-significant-audio";
 import { AudioSettings } from "./ui/AudioSettings";
 import { ROAM_RHOVANION as ROAM } from "./game/roam-rhovanion-support";
@@ -507,19 +510,23 @@ function CardDetail({
   action?: ReactNode;
 }) {
   const companionFront =
-    c.code === ROAM.urdugEnemy
-      ? card(ROAM.urdug)
-      : c.code === ROAM.tinyEnemy
-        ? card(ROAM.tiny)
-        : [TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(c.code)
-          ? card(c.code.slice(0, -2))
-          : undefined;
+    c.code === "21072.B"
+      ? card("21072")
+      : c.code === ROAM.urdugEnemy
+        ? card(ROAM.urdug)
+        : c.code === ROAM.tinyEnemy
+          ? card(ROAM.tiny)
+          : [TEMPLE.sahirAlly, TEMPLE.naasiyahAlly].includes(c.code)
+            ? card(c.code.slice(0, -2))
+            : undefined;
   const reverseDefinition =
-    c.code === ROAM.urdug
-      ? card(ROAM.urdugEnemy)
-      : c.code === ROAM.tiny
-        ? card(ROAM.tinyEnemy)
-        : undefined;
+    c.code === "21072"
+      ? card("21072.B")
+      : c.code === ROAM.urdug
+        ? card(ROAM.urdugEnemy)
+        : c.code === ROAM.tiny
+          ? card(ROAM.tinyEnemy)
+          : undefined;
   if (companionFront)
     c = {
       ...c,
@@ -545,6 +552,14 @@ function CardDetail({
         traits: c.back_traits ?? c.traits,
         text: c.back_text ?? (c.type_code === "quest" ? "" : c.text),
         imagesrc: c.back_imagesrc ?? c.imagesrc,
+        type_code: c.back_type_code ?? c.type_code,
+        sphere_code: c.back_sphere_code ?? c.sphere_code,
+        engagement: c.back_engagement ?? c.engagement,
+        threat: c.back_threat ?? c.threat,
+        willpower: c.back_willpower ?? c.willpower,
+        attack: c.back_attack ?? c.attack,
+        defense: c.back_defense ?? c.defense,
+        health: c.back_health ?? c.health,
         quest: c.back_quest ?? c.quest,
       })
     : c;
@@ -1014,6 +1029,10 @@ export default function App() {
       : setupMode === "hotseat"
         ? seats.flatMap((p) => p.heroes)
         : starter.heroes;
+  const selectedScenarioProblem = shadowEastPlayerScenarioProblem(
+    playMode === "campaign" ? "mirkwood" : selectedScenario,
+    displayHeroes,
+  );
   const [detail, setDetail] = useState<Card | null>(null);
   const templeViewer = game?.temple ? activeSeat(game) : undefined;
   useEffect(() => {
@@ -2185,6 +2204,10 @@ export default function App() {
                 <button
                   className="primary hero-cta"
                   id="start-btn"
+                  disabled={
+                    !!selectedScenarioProblem &&
+                    !(resumable && game?.status === "playing")
+                  }
                   onClick={() =>
                     resumable &&
                     (game?.status === "playing" || playMode === "campaign")
@@ -2204,6 +2227,12 @@ export default function App() {
                       : "Begin adventure"}
                   <ArrowRight size={20} />
                 </button>
+                {selectedScenarioProblem &&
+                  !(resumable && game?.status === "playing") && (
+                    <p className="builder-note" role="status">
+                      {selectedScenarioProblem}
+                    </p>
+                  )}
                 {game && (
                   <button
                     className="new-adventure"
@@ -2998,6 +3027,8 @@ export default function App() {
             <WitheredHeathScenarioState s={game} inspect={setDetail} />
             <MountGundabadScenarioState s={game} inspect={setDetail} />
             <FateWilderlandScenarioState s={game} inspect={setDetail} />
+            <ShadowEastPlayerState s={game} inspect={setDetail} />
+            <ShadowEastScenarioState s={game} inspect={setDetail} />
             <RoamRhovanionScenarioState s={game} inspect={setDetail} />
             <FireNightScenarioState s={game} inspect={setDetail} />
             <GhostFramsburgScenarioState
@@ -4747,9 +4778,7 @@ function BoardCard({
   dispatch?: (a: Action) => unknown;
 }) {
   const c = card(u.code);
-  const combatStats = ["enemy", "ship-enemy"].includes(c.type_code)
-    ? stats(s, u)
-    : null;
+  const combatStats = isEnemy(u) ? stats(s, u) : null;
   const consideredPlayers = livingSeats(s).filter((player) =>
     consideredEngaged(s, u, player),
   );
@@ -4774,7 +4803,7 @@ function BoardCard({
         onClick={inspect}
         aria-label={`Inspect ${name(u)}`}
         aria-description={
-          ["enemy", "ship-enemy"].includes(c.type_code)
+          isEnemy(u)
             ? `${u.damage} damage. ${combatStats!.health - u.damage} hit points remaining.`
             : c.type_code === "location"
               ? `${u.progress} of ${locationQuest(s, u)} progress.`
@@ -4831,7 +4860,7 @@ function BoardCard({
         </div>
       )}
       {s.phase === "defense" &&
-        ["enemy", "ship-enemy"].includes(c.type_code) &&
+        isEnemy(u) &&
         enemyAttackPrevented(
           s,
           u,
@@ -4843,20 +4872,17 @@ function BoardCard({
         {threatOf(s, u) !== (c.threat ?? 0) && (
           <StatBadge kind="threat" value={threatOf(s, u)} />
         )}
-        {["enemy", "ship-enemy"].includes(c.type_code) &&
-          engagementCost(s, u) !== (c.engagement ?? 0) && (
-            <span className="engaged-owner">
-              Engagement cost {engagementCost(s, u)}
-            </span>
-          )}
-        {["enemy", "ship-enemy"].includes(c.type_code) &&
-          combatStats!.attack !== (c.attack ?? 0) && (
-            <StatBadge kind="attack" value={combatStats!.attack} />
-          )}
-        {["enemy", "ship-enemy"].includes(c.type_code) &&
-          combatStats!.defense !== (c.defense ?? 0) && (
-            <StatBadge kind="defense" value={combatStats!.defense} />
-          )}
+        {isEnemy(u) && engagementCost(s, u) !== (c.engagement ?? 0) && (
+          <span className="engaged-owner">
+            Engagement cost {engagementCost(s, u)}
+          </span>
+        )}
+        {isEnemy(u) && combatStats!.attack !== (c.attack ?? 0) && (
+          <StatBadge kind="attack" value={combatStats!.attack} />
+        )}
+        {isEnemy(u) && combatStats!.defense !== (c.defense ?? 0) && (
+          <StatBadge kind="defense" value={combatStats!.defense} />
+        )}
       </div>
       {["player-side-quest", "encounter-side-quest"].includes(c.type_code) && (
         <div className="objective-status">

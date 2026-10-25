@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 694,
-    "heroes": 79,
-    "deckCards": 612,
-    "encounterCards": 1044,
-    "scenarios": 72,
+    "playerCards": 707,
+    "heroes": 81,
+    "deckCards": 623,
+    "encounterCards": 1105,
+    "scenarios": 75,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -79,17 +79,20 @@
       "fire-in-the-night",
       "the-ghost-of-framsburg",
       "mount-gundabad",
-      "the-fate-of-wilderland"
+      "the-fate-of-wilderland",
+      "the-river-running",
+      "danger-in-dorwinion",
+      "temple-of-doom"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 1966,
-    "pending": 2217
+    "scripted": 2049,
+    "pending": 2134
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 144
+    "scripted": 150
   },
   "registeredCodes": [
     "01001",
@@ -825,6 +828,21 @@
     "19152",
     "19153",
     "19154",
+    "21001",
+    "21002",
+    "21003",
+    "21004",
+    "21005",
+    "21006",
+    "21007",
+    "21008",
+    "21009",
+    "21010",
+    "21011",
+    "21071",
+    "21072",
+    "21072.B",
+    "21074",
     "22001",
     "22002",
     "22003",
@@ -858,7 +876,9 @@
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+    "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
+    "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
     "octgn:03b6d303-7722-4319-9623-e182b50c90b2",
     "octgn:041e412b-4d21-421a-a029-e1fdcb62e76d",
     "octgn:044a7b39-8ef6-41c7-bb99-ce209f700b09",
@@ -937,10 +957,12 @@
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
     "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
+    "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
+    "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
     "octgn:1cdc36d4-fd78-4ebe-850b-13f24ee73244",
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
@@ -951,13 +973,17 @@
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
     "octgn:1edaecb1-72e8-49db-98fd-6fc377815c4b",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
+    "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
     "octgn:200ec48a-dd14-41c4-994b-2f5b753f47de",
     "octgn:201569b2-d203-4a2a-b3e4-5dd396b8341a",
     "octgn:20291f58-7e45-4d2c-bbd8-c292e44dfcdc",
+    "octgn:203ed863-1738-4974-ae79-19977eea868d",
     "octgn:205f938d-8dc8-4366-adc0-35897aaef600",
     "octgn:206a9350-41f1-48ba-adf2-241d07a90885",
     "octgn:207b12bd-20b4-470d-81cc-7896904334d5",
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
+    "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
@@ -968,6 +994,7 @@
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
+    "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
     "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
@@ -978,6 +1005,7 @@
     "octgn:24772594-75f3-4789-aeec-41526d845e11",
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
+    "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
     "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
@@ -985,10 +1013,12 @@
     "octgn:25aec3b5-3221-411c-83a0-b3ceed2b5c06",
     "octgn:25b9113d-1096-4b8d-a2d3-1eb134fbca62",
     "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
+    "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
+    "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
     "octgn:275c7232-3671-4092-bb9a-9a62f9538225",
     "octgn:276e1411-be34-44fa-af2b-ebe9b36541f0",
     "octgn:27748abf-80e8-4928-b506-53d7c23d76c6",
@@ -1002,6 +1032,7 @@
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
@@ -1019,8 +1050,10 @@
     "octgn:2e441298-dafc-41bc-a46f-a0f483ac18bd",
     "octgn:2e5e6e97-003b-4500-8372-495f5ee86051",
     "octgn:2e810a9b-5d79-4828-8268-33e82c5fc1fa",
+    "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
     "octgn:2f7770cd-3102-4f35-a3bc-bd9afcab8303",
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
+    "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
@@ -1028,6 +1061,7 @@
     "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
     "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+    "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
@@ -1051,6 +1085,7 @@
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
     "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
+    "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
@@ -1109,6 +1144,7 @@
     "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
     "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
     "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+    "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9003",
@@ -1181,14 +1217,18 @@
     "octgn:4abe9f52-1e56-479a-a59f-c3f7075ec493",
     "octgn:4ae7d13b-4b73-477b-ab71-5bd6bfc7b912",
     "octgn:4b3a4229-eb85-49b0-9f34-78cb17301b34",
+    "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+    "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
     "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
+    "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
     "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
+    "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
@@ -1203,6 +1243,7 @@
     "octgn:5073c7a3-a3f6-4aca-b2a2-e0b830af3985",
     "octgn:50950a5b-0002-432a-b6d6-4ac2ca12e501",
     "octgn:50e62ade-1958-439d-9314-383d8621ecf5",
+    "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
     "octgn:51124d05-205c-49e6-ad19-aa67185c8bdc",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9002",
     "octgn:51223bd0-ffd1-11df-a976-0801202c9005",
@@ -1408,26 +1449,34 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
+    "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
+    "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
     "octgn:528afc17-e78f-4b02-8080-e936955a77b9",
     "octgn:529bb9e4-36c3-45bd-bac0-1ce5de6a581d",
+    "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
     "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
+    "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
     "octgn:5585680f-0609-4cc4-96b5-37e53992af56",
+    "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
     "octgn:55d8f78d-2dd7-4b44-80db-fb539ff05f00",
     "octgn:56634de4-2ef2-4739-b549-fa591e7032eb",
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
+    "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
+    "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
     "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
     "octgn:577c3577-78e4-4cf3-a638-fe15162eca31",
     "octgn:57b1cf62-1841-4f65-b9eb-fc82b1eac918",
+    "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
     "octgn:57f80fa2-0fdb-47b1-a441-939ee4cc6b4e",
     "octgn:5842e027-3789-4253-a382-27527ec4fe8a",
     "octgn:5855e76e-e807-4a8c-9035-de7b9cb4366e",
@@ -1444,6 +1493,7 @@
     "octgn:5a90429e-d5cf-442f-b8d8-af144b3ea861",
     "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
+    "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
     "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
     "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
@@ -1463,6 +1513,7 @@
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+    "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
@@ -1470,12 +1521,15 @@
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
+    "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
+    "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
     "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
     "octgn:6987d363-bcba-4f34-97b1-d26f080c843e",
@@ -1490,6 +1544,7 @@
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
     "octgn:6cfc4fa5-bbcc-4c99-82b7-bb6359d24750",
     "octgn:6d2cbe18-4504-46df-821c-d3ce588bcb3f",
+    "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
     "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
@@ -1517,6 +1572,7 @@
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
+    "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
@@ -1555,6 +1611,7 @@
     "octgn:801078c6-56a9-45f2-b5a4-7e38cb5bc507",
     "octgn:80764232-a3c9-47f1-9034-9c9ac82002e4",
     "octgn:809ff5de-8273-4491-adfb-3a27d4b316f3",
+    "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
     "octgn:81632d10-625e-42f0-9e6b-09574a9ffbc3",
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
@@ -1588,6 +1645,7 @@
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
+    "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
     "octgn:8a0a834b-d10c-43b1-a43c-75b459c18374",
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
@@ -1602,6 +1660,7 @@
     "octgn:8b7c17f3-09d1-45a4-93ff-3b17a3285f35",
     "octgn:8bb270a0-72b4-49d5-a4d3-a962edd5f67b",
     "octgn:8bd2808a-55d4-41f7-946a-2726a3583eaf",
+    "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
     "octgn:8be23a53-ba85-4db3-8d1f-821da0323cbf",
     "octgn:8bf452c7-09ab-482b-b44c-0861b7e63ecc",
     "octgn:8c15fd9d-0956-474a-9051-51f36890c7a5",
@@ -1609,6 +1668,7 @@
     "octgn:8cb63364-11e8-4044-9712-613ccbfcfa5f",
     "octgn:8cc366fb-68f0-4401-9df9-20f9258a728c",
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
+    "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
     "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
@@ -1618,11 +1678,15 @@
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
+    "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
+    "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
+    "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+    "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
     "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
     "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
@@ -1660,6 +1724,7 @@
     "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
     "octgn:9b75cef3-e5a3-4284-aff6-9a0b473fa37d",
+    "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
     "octgn:9c3c6e43-7548-4eaf-8225-2f51ecafbc4a",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b",
     "octgn:9c6798e3-9c5a-4609-b499-e6b1d6ae567b:B",
@@ -1700,6 +1765,7 @@
     "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
     "octgn:a6ea339d-aec3-4ec7-9374-c1442385c260",
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
+    "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
     "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
@@ -1712,6 +1778,7 @@
     "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
+    "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
@@ -1724,6 +1791,7 @@
     "octgn:ad251ffd-8653-4a45-b88e-def2ffecc2dc",
     "octgn:ad7fc95f-4a8d-4a15-b170-b0db3c3002f0",
     "octgn:adf2480a-644a-47ee-8deb-bd08ff32bf31",
+    "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
@@ -1767,14 +1835,18 @@
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
     "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
+    "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+    "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
+    "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
     "octgn:bc041e0b-dd7f-4b82-8eb0-d155b1b08398",
     "octgn:bc4f2e17-197c-4131-ad81-b892fe66ad88",
     "octgn:bcd41784-d260-4165-ae0f-74cb844d10b3",
+    "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
     "octgn:be3ca12f-2550-48b4-9384-e71a1b401d4e",
     "octgn:be43a52a-370a-4481-bc84-8e004ecbfdca",
     "octgn:be6cf29d-bb8b-494a-9635-85ee9322a690",
@@ -1794,9 +1866,11 @@
     "octgn:c1273c2f-a616-45ee-804d-a16c28b6e63d",
     "octgn:c179ea26-838b-449c-b0a0-f2049e20b01f",
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
+    "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
+    "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
     "octgn:c354e410-e15a-4999-bb14-696b5e89cee9",
     "octgn:c35f2635-fa68-44be-9ce9-80446831f0e0",
@@ -1817,6 +1891,7 @@
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
+    "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
     "octgn:c73317e6-133e-4e35-af48-ad3ffc9f252d",
     "octgn:c749f16f-1b34-48ce-ba8e-45f36b8b8229",
@@ -1875,6 +1950,7 @@
     "octgn:d69092af-f96b-4885-a194-5d5f31d90e6d",
     "octgn:d6d4ea3a-402c-413b-9732-a07a21dd15b0",
     "octgn:d760ba6c-e377-4d22-ac46-04bfb2b3c65f",
+    "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
     "octgn:d7885efa-3af6-48e6-8eb1-5750892fdb34",
     "octgn:d7ef4ad0-93f1-4c03-a04b-cdfe6339eb41",
     "octgn:d7fd973b-6b4e-4f4b-9fc5-4886dcf80996",
@@ -1921,6 +1997,7 @@
     "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
     "octgn:e38f5043-50b5-4b2a-a23f-f786106c4055",
     "octgn:e3adad02-fa99-4905-bb20-d414ba76f75f",
+    "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
     "octgn:e3bc9212-fbc0-48e0-b1c5-42b80ee58b5e",
     "octgn:e3d50c1b-4626-4bff-a247-f965166f9d2f",
     "octgn:e3d50fbb-2b94-481a-a1e5-7925ca8384ff",
@@ -1945,9 +2022,11 @@
     "octgn:ea225b12-75e1-4253-9458-c71c1c304a8f",
     "octgn:ea4bc222-6fb5-494e-8f1f-de30974694db",
     "octgn:ea5faa85-5a47-4ab3-a623-3f88df71f7fd",
+    "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
     "octgn:eaad2b4a-3ac0-4672-ad43-036152d81322",
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
+    "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
@@ -1963,17 +2042,21 @@
     "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef4ae3ca-ce48-4cad-88ee-23917e9dcdcc",
+    "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
+    "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
+    "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
+    "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
@@ -1993,7 +2076,9 @@
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
+    "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
     "octgn:f7badc7a-4e37-4606-8557-0fa4719227c0",
     "octgn:f7f5ca4e-42db-48f9-b4a5-efe419f53fa3",
@@ -2019,6 +2104,7 @@
     "octgn:fb40f70e-0d36-4d18-ae51-23be5f1a3260",
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
+    "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
@@ -2049,6 +2135,7 @@
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
+    "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
     "rc132",
     "rc133",
@@ -2081,9 +2168,9 @@
     {
       "product": "a-shadow-in-the-east",
       "total": 83,
-      "scripted": 0,
+      "scripted": 83,
       "player": 13,
-      "playerScripted": 0
+      "playerScripted": 13
     },
     {
       "product": "a-storm-on-cobas-haven",
@@ -11060,7 +11147,7 @@
       "name": "The One Ring",
       "type": "attachment",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11068,7 +11155,7 @@
       "name": "Frodo Baggins",
       "type": "hero",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11076,7 +11163,7 @@
       "name": "Merry",
       "type": "ally",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11084,7 +11171,7 @@
       "name": "Pippin",
       "type": "ally",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11092,7 +11179,7 @@
       "name": "Faramir",
       "type": "ally",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11100,7 +11187,7 @@
       "name": "Derufin",
       "type": "ally",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11108,7 +11195,7 @@
       "name": "The Gathering Storm",
       "type": "event",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11116,7 +11203,7 @@
       "name": "Put Off Pursuit",
       "type": "attachment",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11124,7 +11211,7 @@
       "name": "The Master Ring",
       "type": "event",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11132,7 +11219,7 @@
       "name": "The Ruling Ring",
       "type": "event",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11140,7 +11227,7 @@
       "name": "The Ring of Power",
       "type": "event",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11148,7 +11235,7 @@
       "name": "Stinker",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11156,7 +11243,7 @@
       "name": "Sméagol",
       "type": "hero",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -11164,7 +11251,7 @@
       "name": "Fellowship",
       "type": "contract",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -12028,7 +12115,7 @@
       "name": "City Forum",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -12060,7 +12147,7 @@
       "name": "Thane Ulchor",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -13804,7 +13891,7 @@
       "name": "Fanaticism",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -13964,7 +14051,7 @@
       "name": "Rhûn Backstabber",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14156,7 +14243,7 @@
       "name": "Weary Lands",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14188,7 +14275,7 @@
       "name": "River Running",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14236,7 +14323,7 @@
       "name": "Unwelcome Travelers",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14284,7 +14371,7 @@
       "name": "Tribute to Mordor",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14564,7 +14651,7 @@
       "name": "Priest of Sauron",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14724,7 +14811,7 @@
       "name": "Place of Evil",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14828,7 +14915,7 @@
       "name": "A City in Turmoil",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -14964,7 +15051,7 @@
       "name": "Hall of Horrors",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -15260,7 +15347,7 @@
       "name": "Easterling Outrider",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -15668,7 +15755,7 @@
       "name": "Seedy Tavern",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -15724,7 +15811,7 @@
       "name": "Khamûl the Easterling",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -15860,7 +15947,7 @@
       "name": "The Forgotten Temple",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -16468,7 +16555,7 @@
       "name": "Painful Fatigue",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -17660,7 +17747,7 @@
       "name": "The Tower of Barad-dûr",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -18428,7 +18515,7 @@
       "name": "Narrow Opening",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -18444,7 +18531,7 @@
       "name": "Darkness in the East",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -18508,7 +18595,7 @@
       "name": "Easterling Raider",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -18564,7 +18651,7 @@
       "name": "Under the Watchful Eye",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -18892,7 +18979,7 @@
       "name": "Hillside Manor",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21452,7 +21539,7 @@
       "name": "Leader of the Cult",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21508,7 +21595,7 @@
       "name": "Disappearances",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21564,7 +21651,7 @@
       "name": "Black Nûmenórean",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21644,7 +21731,7 @@
       "name": "Easterling Horse",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21828,7 +21915,7 @@
       "name": "Side Street",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21900,7 +21987,7 @@
       "name": "Easterling Pursuit",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -21964,7 +22051,7 @@
       "name": "Recurve Bow",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -22004,7 +22091,7 @@
       "name": "Evidence of the Cult",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -22252,7 +22339,7 @@
       "name": "Rider of Rhûn",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -22732,7 +22819,7 @@
       "name": "Secret Cultist",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -22900,7 +22987,7 @@
       "name": "Fearful Shadows",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -23060,7 +23147,7 @@
       "name": "Twisted Tunnel",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -23148,7 +23235,7 @@
       "name": "Crumbling Passage",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -23524,7 +23611,7 @@
       "name": "Messenger from Mordor",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -24148,7 +24235,7 @@
       "name": "Ulchor's Guard",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -25252,7 +25339,7 @@
       "name": "Servant of Sauron",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26044,7 +26131,7 @@
       "name": "Temple of Sauron",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26300,7 +26387,7 @@
       "name": "The Crossing of Araw",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26428,7 +26515,7 @@
       "name": "Ulchor's Rage",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26612,7 +26699,7 @@
       "name": "Bribes",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26668,7 +26755,7 @@
       "name": "Easterling Captain",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26764,7 +26851,7 @@
       "name": "The Lord of Middle-earth",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -26804,7 +26891,7 @@
       "name": "Rocky Outcrop",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -27540,7 +27627,7 @@
       "name": "Under Guard",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -28436,7 +28523,7 @@
       "name": "Enemies Close Behind",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -28708,7 +28795,7 @@
       "name": "Warrior of Rhûn",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -29052,7 +29139,7 @@
       "name": "Sauron Worship",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -30132,7 +30219,7 @@
       "name": "Sword of Rhûn",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -30492,7 +30579,7 @@
       "name": "Shadow of Fear",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -30596,7 +30683,7 @@
       "name": "Warriors of the East",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -30692,7 +30779,7 @@
       "name": "The Armies of Mordor",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -30988,7 +31075,7 @@
       "name": "An Arduous Journey",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -31084,7 +31171,7 @@
       "name": "Lost in the Dark",
       "type": "encounter-side-quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -31500,7 +31587,7 @@
       "name": "Rolling Plains",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -32780,7 +32867,7 @@
       "name": "Catacombs",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -33628,7 +33715,7 @@
       "name": "Overwhelmed",
       "type": "treachery",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -34372,7 +34459,7 @@
       "name": "Shrine to Sauron",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -34428,7 +34515,7 @@
       "name": "Treacherous Easterling",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -34764,7 +34851,7 @@
       "name": "Submit or Die",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -34884,7 +34971,7 @@
       "name": "Memory of the Dark Years",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -35092,7 +35179,7 @@
       "name": "The Governor",
       "type": "enemy",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -35164,7 +35251,7 @@
       "name": "Covered in Darkness",
       "type": "objective",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -35468,7 +35555,7 @@
       "name": "Exposed Riverbank",
       "type": "location",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -35524,7 +35611,7 @@
       "name": "The Shadow of Mordor",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -35948,7 +36035,7 @@
       "name": "Chased by Easterlings",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     },
     {
@@ -36500,7 +36587,7 @@
       "name": "The Legacy of Mordor",
       "type": "quest",
       "pack": "A Shadow in the East",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "a-shadow-in-the-east"
     }
   ],
@@ -37027,22 +37114,22 @@
       "id": "E09.1",
       "name": "The River Running (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-river-running",
+      "state": "scripted"
     },
     {
       "id": "E09.2",
       "name": "Danger in Dorwinion (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "danger-in-dorwinion",
+      "state": "scripted"
     },
     {
       "id": "E09.3",
       "name": "Temple of Doom (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "temple-of-doom",
+      "state": "scripted"
     },
     {
       "id": "E09.4",
@@ -38518,22 +38605,22 @@
       "id": "Q09.1",
       "name": "The River Running",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-river-running",
+      "state": "scripted"
     },
     {
       "id": "Q09.2",
       "name": "Danger in Dorwinion",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "danger-in-dorwinion",
+      "state": "scripted"
     },
     {
       "id": "Q09.3",
       "name": "Temple of Doom",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "temple-of-doom",
+      "state": "scripted"
     },
     {
       "id": "Q09.4",

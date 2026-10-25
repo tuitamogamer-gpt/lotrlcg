@@ -1,4 +1,5 @@
 import { WitheredHeathQuestGoals } from "./withered-heath-state";
+import { ShadowEastQuestGoals } from "./shadow-east-state";
 import { RoamRhovanionQuestGoals } from "./roam-rhovanion-state";
 import { FireNightQuestGoals } from "./fire-night-state";
 import { GhostFramsburgQuestGoals } from "./ghost-framsburg-state";
@@ -205,7 +206,10 @@ export const nextLabel = (s: GameState) =>
                   : {
                       setup: "Keep hand",
                       resource: "Begin planning",
-                      planning: "Begin quest",
+                      planning:
+                        s.templeDoom && s.stage === 1
+                          ? "Finish planning"
+                          : "Begin quest",
                       quest: "Commit & reveal",
                       staging: "Resolve quest",
                       travel: allActiveLocations(s).length
@@ -725,6 +729,8 @@ export function QuestGoals({ s }: { s: GameState }) {
   if (s.ghostFramsburg) return <GhostFramsburgQuestGoals s={s} />;
   if (s.mountGundabad) return <MountGundabadQuestGoals s={s} />;
   if (s.fateWilderland) return <FateWilderlandQuestGoals s={s} />;
+  if (s.riverRunning || s.dangerDorwinion || s.templeDoom)
+    return <ShadowEastQuestGoals s={s} />;
   if (s.blackSerpent) return <BlackSerpentQuestGoals s={s} />;
   if (s.cirithGurat) return <CirithGuratQuestGoals s={s} />;
   if (s.crossingsPoros) return <CrossingsPorosQuestGoals s={s} />;

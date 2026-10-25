@@ -4,8 +4,19 @@ import type { DamageContext } from "./damage-context";
 type Combat = NonNullable<GameState["combat"]>;
 export interface Batch4ScenarioHooks {
   setup?(s: GameState): void;
+  cardsDrawn?(s: GameState, player: number, count: number): void;
+  threatRaised?(s: GameState, player: number, amount: number): void;
+  threatEliminationReduction?(s: GameState, player: number): number;
+  cannotHeal?(s: GameState, unit: Unit): boolean;
+  canSelectSideQuest?(s: GameState, unit: Unit): boolean;
+  refreshCharacters?(s: GameState, player: number): Effect[] | undefined;
+  whenRevealedCancelled?(s: GameState, code: string): void;
+  combatBegin?(s: GameState): void;
+  enemyEntered?(s: GameState, unit: Unit): void;
   openingHandsKept?(s: GameState): boolean;
   check?(s: GameState): void;
+  playerEliminating?(s: GameState, player: number): void;
+  playerEliminated?(s: GameState, player: number): void;
   advance?(s: GameState): boolean;
   stageInfo?(s: GameState):
     | {
@@ -51,6 +62,7 @@ export interface Batch4ScenarioHooks {
   threatReduction?(s: GameState, amount: number, reason?: string): number;
   allyCost?(s: GameState): number;
   planningEnd?(s: GameState): void;
+  skipQuestPhase?(s: GameState): boolean;
   questBegin?(s: GameState): Effect[] | void;
   encounterBegin?(s: GameState): void;
   encounterEnd?(s: GameState): Effect[];
@@ -110,6 +122,10 @@ export interface Batch4ScenarioHooks {
   ): void;
   enemyAttackStarted?(s: GameState, enemy: Unit, player: number): void;
   attackFinished?(s: GameState, combat: Combat, skipped?: boolean): Effect[];
+  cannotDiscardShadow?(s: GameState, u: Unit, code: string): boolean;
+  usesExistingShadows?(s: GameState, u: Unit): boolean;
+  immediateShadows?(s: GameState, u: Unit, noDeal: boolean): boolean;
+  combatEndShadows?(s: GameState, u: Unit): boolean;
   skipShadowDeal?(s: GameState, u: Unit): boolean;
   beginShadows?(s: GameState, u: Unit): boolean;
   finishShadows?(s: GameState, u: Unit, fresh?: boolean): boolean;

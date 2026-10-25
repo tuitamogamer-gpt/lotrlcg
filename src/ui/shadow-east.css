@@ -1,0 +1,55 @@
+.shadow-east-state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+  margin: 12px 0;
+  padding: 14px;
+  color: var(--ink, #302d25);
+  background: #eee8d8ed;
+  border: 3px double #846b3680;
+}
+
+.shadow-east-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+}
+
+.shadow-east-summary strong {
+  font-size: 18px;
+}
+
+.shadow-east-summary button {
+  max-width: 100%;
+  min-height: 40px;
+  padding: 7px 10px;
+  white-space: normal;
+  text-align: left;
+  color: #302d25;
+  background: #f5efdf;
+  border: 1px solid #846b3680;
+}
+
+.shadow-east-reference {
+  grid-column: 1 / -1;
+}
+
+.shadow-east-reference > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+@media (max-width: 420px) {
+  .shadow-east-state {
+    padding: 10px;
+  }
+  .shadow-east-summary button {
+    width: 100%;
+  }
+}

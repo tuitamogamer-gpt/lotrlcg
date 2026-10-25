@@ -48,6 +48,14 @@ export interface Card {
   official?: boolean;
   nightmare?: boolean;
   back_text?: string;
+  back_type_code?: string;
+  back_sphere_code?: Sphere;
+  back_engagement?: number;
+  back_threat?: number;
+  back_willpower?: number;
+  back_attack?: number;
+  back_defense?: number;
+  back_health?: number;
   back_quest?: number;
   back_name?: string;
   back_traits?: string;
@@ -237,6 +245,9 @@ export type ScenarioId =
   | "the-ghost-of-framsburg"
   | "mount-gundabad"
   | "the-fate-of-wilderland"
+  | "the-river-running"
+  | "danger-in-dorwinion"
+  | "temple-of-doom"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -274,7 +285,7 @@ export interface Effect {
   damageTarget?: string;
   /** Printed attacks may explicitly omit their ordinary shadow deal. */
   noShadow?: boolean;
-  revealOrigin?: "encounter" | "underworld";
+  revealOrigin?: "encounter" | "underworld" | "power";
   /** Serializable event resolution retains paid costs and cancellation continuations. */
   effects?: Effect[];
   cancelledEffects?: Effect[];
@@ -356,6 +367,8 @@ export interface GuidedFlow {
   mode?: ReviewMode;
 }
 export interface GameState {
+  /** A saved early Ring decision resumes before opening hands/scenario initialization. */
+  setupPending?: boolean;
   /** Innermost printed player ability; retained across choices and nested responses. */
   playerAbilitySources?: { source: string; code: string }[];
   sailing?: import("./sailing").SailingState;
@@ -384,6 +397,10 @@ export interface GameState {
   ghostFramsburg?: import("./ghost-framsburg-types").GhostFramsburgState;
   mountGundabad?: import("./mount-gundabad-types").MountGundabadState;
   fateWilderland?: import("./fate-wilderland-types").FateWilderlandState;
+  riverRunning?: import("./river-running-types").RiverRunningState;
+  dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
+  templeDoom?: import("./temple-doom-types").TempleDoomState;
+  shadowEastPlayers?: import("./shadow-east-player-types").ShadowEastPlayersState;
   /** Up to three Encounter allies set aside by each player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   batch4WindReserves?: Record<number, number>;
@@ -659,6 +676,13 @@ export interface GameState {
     defensePenalty?: number;
     /** An encounter shadow may redirect otherwise undefended damage. */
     undefendedTargetId?: string;
+    riverPursuitOnKill?: number;
+    dorwinionKilledCharacter?: boolean;
+    dorwinionKilledAlly?: boolean;
+    dorwinionUnderGuard?: number;
+    doomUlchor?: boolean;
+    doomTributeOnKill?: number;
+    doomKilledCharacter?: boolean;
     wilderAssaultOnKill?: number;
     wilderKilledCharacter?: boolean;
     wilderPackAttacks?: number;

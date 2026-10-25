@@ -1,3 +1,4 @@
+import { threatElimination } from "./tharbad-support";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
 // Original Return to Mirkwood: controlled Gollum, guard transfers and all printed encounters.
@@ -105,7 +106,7 @@ export function returnMirkwoodCheck(s: GameState) {
   const guard = ownerOf(s, g),
     p = seatView(s, guard);
   if (
-    p.threat >= 50 ||
+    p.threat >= threatElimination(p) ||
     !p.heroes.length ||
     s.table?.seats[guard].eliminated
   )

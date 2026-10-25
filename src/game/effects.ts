@@ -1,3 +1,5 @@
+import { finishGameSetup } from "./setup";
+import * as ShadowEastPlayers from "./shadow-east-player";
 import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
@@ -575,6 +577,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
   if (SandsPlayers.handleBeneathSandsPlayerEffect(s, e)) return;
+  if (ShadowEastPlayers.handleShadowEastPlayerEffect(s, e)) return;
   if (EredFinalPlayers.handleEredFinalPlayerEffect(s, e)) return;
   if (EredPlayers.handleEredMithrinPlayerEffect(s, e)) return;
   if (BatchPlayers.handleBatch4PlayerEffect(s, e)) return;
@@ -714,6 +717,9 @@ function handleEffect(s: GameState, e: Effect) {
   )
     return;
   switch (e.kind) {
+    case "gameSetupContinue":
+      finishGameSetup(s);
+      break;
     case "afterPlayerAbility":
       afterPlayerAbility(s, ...(e.effects ?? []));
       break;
@@ -755,13 +761,10 @@ function handleEffect(s: GameState, e: Effect) {
       DepthsPlayers.depthsPlayerSurgeRevealed(s, e.code!);
       break;
     case "immediateAttack": {
-      if (
-        !u ||
-        !["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
-        enemyAttackPrevented(s, u)
-      )
-        break;
-      const existingCarnShadows = Carn.carnUsesExistingShadows(s, u);
+      if (!u || !isEnemy(u) || enemyAttackPrevented(s, u)) break;
+      const existingCarnShadows =
+        Carn.carnUsesExistingShadows(s, u) ||
+        batch4Scenario(s).usesExistingShadows?.(s, u);
       const previous = {
         shadows: [...u.shadows],
         faceup: u.faceupShadows?.slice(),
@@ -798,7 +801,10 @@ function handleEffect(s: GameState, e: Effect) {
             }
           : {}),
       };
-      if (!Carn.carnImmediateShadows(s, u, !!e.flag)) {
+      if (
+        !Carn.carnImmediateShadows(s, u, !!e.flag) &&
+        !batch4Scenario(s).immediateShadows?.(s, u, !!e.flag)
+      ) {
         u.shadows = [];
         delete u.faceupShadows;
         u.revealedShadowCount = 0;
@@ -933,6 +939,7 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "questSuccessResponses":
       EredFinalPlayers.eredFinalPlayerQuestSucceeded(s);
+      ShadowEastPlayers.shadowEastPlayerQuestSucceeded(s);
       batch4Scenario(s).questSucceeded?.(s, s.lastQuest?.net ?? 0);
       redhornPlayerQuestSucceeded(s);
       rohanQuestSucceeded(s);
@@ -1059,8 +1066,8 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "commitSeat": {
       if (!passSeat(s)) break;
-      if (Angmar.angmarSkipQuest(s)) {
-        log(s, "Doom Hangs Still · Skip the quest phase.", "good");
+      if (Angmar.angmarSkipQuest(s) || batch4Scenario(s).skipQuestPhase?.(s)) {
+        log(s, "Skip the quest phase.", "good");
         prepend(s, fx("finishQuestPhase", { player: firstPlayer(s) }));
         break;
       }
@@ -1249,6 +1256,11 @@ function handleEffect(s: GameState, e: Effect) {
         );
         Race.raceHaradTravelEntered(s, u);
         batch4Scenario(s).travelEntered?.(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
+        ShadowEastPlayers.shadowEastPlayerTravelEntered(
           s,
           u,
           !e.flag || e.text === "strider-replace",
@@ -1559,7 +1571,7 @@ function handleEffect(s: GameState, e: Effect) {
       break;
     case "discardAttachment": {
       const a = u?.attachments.find((a) => a.id === e.source);
-      if (u && a) discardAttachment(s, u, a);
+      if (u && a) discardAttachment(s, u, a, false, !e.flag);
       break;
     }
     case "chooseExhaust": {
@@ -1785,8 +1797,8 @@ function handleEffect(s: GameState, e: Effect) {
       commitCharacters(s);
       break;
     case "startQuest":
-      if (Angmar.angmarSkipQuest(s)) {
-        log(s, "Doom Hangs Still · Skip the quest phase.", "good");
+      if (Angmar.angmarSkipQuest(s) || batch4Scenario(s).skipQuestPhase?.(s)) {
+        log(s, "Skip the quest phase.", "good");
         prepend(s, fx("startTravel", { player: firstPlayer(s) }));
         break;
       }
@@ -1882,7 +1894,11 @@ function handleEffect(s: GameState, e: Effect) {
           ...allEngaged(s),
           ...s.staging.filter((u) => isEnemy(u)),
         ]) {
-          if (Carn.carnCombatEndShadows(s, enemy)) continue;
+          if (
+            Carn.carnCombatEndShadows(s, enemy) ||
+            batch4Scenario(s).combatEndShadows?.(s, enemy)
+          )
+            continue;
           delete enemy.shadowCancelsDamage;
           delete enemy.shadowCancelsCombatDamage;
           if (s.staging.some((u) => u.id === enemy.id)) {
@@ -1895,7 +1911,10 @@ function handleEffect(s: GameState, e: Effect) {
       });
       globalEachSeat(s, () => {
         for (const enemy of s.engaged) {
-          if (Carn.carnCombatEndShadows(s, enemy)) {
+          if (
+            Carn.carnCombatEndShadows(s, enemy) ||
+            batch4Scenario(s).combatEndShadows?.(s, enemy)
+          ) {
             enemy.attacked = false;
             continue;
           }
@@ -1948,7 +1967,9 @@ function handleEffect(s: GameState, e: Effect) {
         ))
           u.exhausted = false;
       globalEachSeat(s, (player) => {
-        const fangornReady = Fangorn.fangornRefreshCharacters(s, player);
+        const fangornReady =
+          batch4Scenario(s).refreshCharacters?.(s, player) ??
+          Fangorn.fangornRefreshCharacters(s, player);
         for (const u of characters(s)) {
           u.committed = false;
           u.attacked = false;
@@ -2232,6 +2253,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanCombatBegins(s);
       break;
     case "combatStartEffects":
+      batch4Scenario(s).combatBegin?.(s);
       EredPlayers.eredMithrinPlayerCombatStart(s);
       prepend(s, ...City.cityCombatStart(s));
       heirsCombatStart(s);
@@ -2500,7 +2522,8 @@ function handleEffect(s: GameState, e: Effect) {
           immediate &&
           skipped &&
           completed?.immediatePreviousShadows === undefined &&
-          !Carn.carnUsesExistingShadows(s, skipped)
+          !Carn.carnUsesExistingShadows(s, skipped) &&
+          !batch4Scenario(s).usesExistingShadows?.(s, skipped)
         ) {
           skipped.attacked = !!previousAttacked;
           if (!["defense", "attack"].includes(s.phase)) {
@@ -2640,7 +2663,8 @@ function handleEffect(s: GameState, e: Effect) {
         immediate &&
         enemy &&
         completed?.immediatePreviousShadows === undefined &&
-        !Carn.carnUsesExistingShadows(s, enemy)
+        !Carn.carnUsesExistingShadows(s, enemy) &&
+        !batch4Scenario(s).usesExistingShadows?.(s, enemy)
       ) {
         enemy.attacked = !!previousAttacked;
         if (!["defense", "attack"].includes(s.phase)) {

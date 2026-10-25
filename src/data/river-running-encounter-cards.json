@@ -1,0 +1,653 @@
+[
+  {
+    "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "name": "Weary Lands",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Each exhausted character gets -1 [willpower] until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 27,
+    "quantity": 2,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Rolling Plains",
+    "printed_stats": {},
+    "imagesrc": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 27,
+        "quantity": 2,
+        "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+    "octgnid": "1fdfdb77-31e0-458d-85d1-9c158f12717f",
+    "name": "River Running",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Riverland.",
+    "text": "While River Running is in the staging area, enemies cannot be optionally engaged.Travel: The first player engages the highest engagement cost enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 14,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 5,
+    "encounter_set": "The River Running",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 14,
+        "quantity": 2,
+        "octgnid": "1fdfdb77-31e0-458d-85d1-9c158f12717f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+    "octgnid": "2af71d2e-0b70-43a2-b94e-89770992ef9c",
+    "name": "Easterling Outrider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nForced: After Easterling Outrider engages a player, either place 1 resource on Easterling Pursuit, or Easterling Outrider makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 13,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 24,
+    "shadow": "Shadow: Discard an attachment you control.",
+    "encounter_set": "The River Running",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "24"
+    },
+    "imagesrc": "/cards/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 13,
+        "quantity": 3,
+        "octgnid": "2af71d2e-0b70-43a2-b94e-89770992ef9c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+    "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+    "name": "Painful Fatigue",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to it.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 28,
+    "quantity": 2,
+    "shadow": "Shadow: Either exhaust a character you control, or return attacking enemy to the staging area after this attack.",
+    "encounter_set": "Rolling Plains",
+    "printed_stats": {},
+    "imagesrc": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 28,
+        "quantity": 2,
+        "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "name": "Easterling Raider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Archery 1.\nEasterling Raider gets +1 [attack] and +1 [defense] for each Easterling attachment on it.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 20,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "engagement": 28,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it has an Easterling attachment).",
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 20,
+        "quantity": 3,
+        "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+    "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+    "name": "Easterling Horse",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "While attached to an enemy, counts as a Mount attachment with the text: `Attached enemy gets +2 [threat]. Forced: At the end of the round, return attached enemy to the staging area.`When Revealed: Attach to the lowest engagement cost Easterling enemy without an Easterling Horse and return it to the staging area. Otherwise, Easterling Horse gains surge.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 19,
+    "quantity": 3,
+    "encounter_set": "Riders of Rhun",
+    "printed_stats": {},
+    "imagesrc": "/cards/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 19,
+        "quantity": 3,
+        "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+    "octgnid": "56b24d25-a04a-418b-add0-7b1971dae38e",
+    "name": "Easterling Pursuit",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: At the end of the round, place 1 resource here. Then if there are at least 3 resources here, remove 3 of them and shuffle the encounter discard pile into the encounter deck. Discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 12,
+    "quantity": 1,
+    "encounter_set": "The River Running",
+    "printed_stats": {},
+    "imagesrc": "/cards/56b24d25-a04a-418b-add0-7b1971dae38e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 12,
+        "quantity": 1,
+        "octgnid": "56b24d25-a04a-418b-add0-7b1971dae38e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56b24d25-a04a-418b-add0-7b1971dae38e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "name": "Recurve Bow",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gains Archery 2.`When Revealed: Attach to the highest engagement cost Easterling enemy without a Recurve Bow.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 23,
+    "quantity": 2,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {},
+    "imagesrc": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+    "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+    "name": "Rider of Rhûn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Archery 2.\nRider of Rhun gets -10 engagement cost for each Easterling attachment it has.When Revealed: Search the encounter deck and discard pile for an Easterling Horse and attach it to Rider of Rhun. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 18,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 5,
+    "defense": 2,
+    "health": 5,
+    "engagement": 40,
+    "encounter_set": "Riders of Rhun",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "5",
+      "defense": "2",
+      "health": "5",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 18,
+        "quantity": 2,
+        "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5af4be18-af74-46ef-a235-9c1002b85338.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+    "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+    "name": "Easterling Captain",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Forced: When Easterling Captain enters play, discard cards from the encounter deck until an Easterling treachery is discarded. Attach that treachery to Easterling Captain.Forced: When Easterling Captain would take any amount of damage, discard an Easterling attachment from him. Then, cancel the damage.",
+    "is_unique": true,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 17,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 6,
+    "engagement": 36,
+    "victory": 6,
+    "encounter_set": "Riders of Rhun",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "6",
+      "engagement": "36",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9042242b-054d-413e-83c7-bb9f42551a8a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "name": "Rocky Outcrop",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "While Rocky Outcrop is in the staging area, characters cannot be readied by player card effects.Travel: The first player exhausts a hero he controls.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 26,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Rolling Plains",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 26,
+        "quantity": 2,
+        "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+    "octgnid": "a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+    "name": "Enemies Close Behind",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 1 resource on Easterling Pursuit. Then, raise each player`s threat by 1 for each resource on Easterling Pursuit.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 16,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 resource on Easterling Pursuit. ",
+    "encounter_set": "The River Running",
+    "printed_stats": {},
+    "imagesrc": "/cards/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 16,
+        "quantity": 2,
+        "octgnid": "a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "name": "Warrior of Rhûn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Forced: When Warrior of Rhun attacks, attach the top Easterling treachery in the discard pile to it.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 21,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 4,
+    "engagement": 34,
+    "shadow": "Shadow: Attach the top Easterling treachery in the discard pile to attacking enemy.",
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "4",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+    "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+    "name": "Sword of Rhûn",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gets +2 [attack].`When Revealed: Attach to the Easterling enemy with the lowest [attack] without a Sword of Rhun.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 22,
+    "quantity": 2,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {},
+    "imagesrc": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+    "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+    "name": "Warriors of the East",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nForced: After an Easterling enemy enters play, attach the top Easterling treachery in the discard pile to that enemy.Forced: After Warriors of the East becomes the current quest, the highest [attack] Easterling enemy in the staging area attacks the first player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 24,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+    "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+    "name": "An Arduous Journey",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each player cannot ready more than 6 characters he controls during the refresh phase.Response: When this stage is defeated, each player may ready a hero he controls.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 29,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Rolling Plains",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 29,
+        "quantity": 1,
+        "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 6
+  },
+  {
+    "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+    "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+    "name": "Rolling Plains",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "When Revealed: Each copy of Rolling Plains gets +2 [threat] until the end of the phase.Travel: Raise each player`s threat by 2.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 25,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Rolling Plains",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 25,
+        "quantity": 4,
+        "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+    "octgnid": "f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+    "name": "Exposed Riverbank",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Riverland.",
+    "text": "While Exposed Riverbank is in the staging area, it gains: `Forced: After a `when revealed` effect is canceled, place 1 resource on Easterling Pursuit.`Travel: Place 1 resource on Easterling Pursuit.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 15,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "The River Running",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 15,
+        "quantity": 2,
+        "octgnid": "f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

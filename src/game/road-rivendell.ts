@@ -1,3 +1,4 @@
+import { threatElimination } from "./tharbad-support";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { surgeEffects } from "./surge";
 import { wastesCancelAllowed } from "./wastes-eriador";
@@ -135,7 +136,7 @@ export function roadRivendellCheck(s: GameState) {
     p = seatView(s, player);
   if (
     s.table?.seats[player].eliminated ||
-    p.threat >= 50 ||
+    p.threat >= threatElimination(p) ||
     !p.heroes.length
   )
     lose(s, "Arwen Undómiel's controlling fellowship has been eliminated.");

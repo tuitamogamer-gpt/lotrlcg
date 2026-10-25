@@ -1,3 +1,4 @@
+import { shadowEastPlayerImmune } from "./shadow-east-player-support";
 import { card, playerCards } from "./cards";
 import { playerCardImmune } from "./card-immunity";
 import { hasTrait } from "./expansion-passives";
@@ -24,6 +25,7 @@ export function playerEffectImmune(
   u: Unit,
   sourceCode = activePlayerAbilityCode(s),
 ): boolean {
+  if (shadowEastPlayerImmune(s, u, sourceCode)) return true;
   // Control does not turn an encounter objective into a player card. Its
   // printed action can affect enemies immune only to player card effects.
   if (sourceCode) {

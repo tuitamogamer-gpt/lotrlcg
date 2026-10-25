@@ -35,7 +35,10 @@ export interface TharbadState {
   setAside: Unit[];
   removedSources: string[];
 }
-export const threatElimination = (s: GameState) => s.tharbad?.elimination ?? 50;
+export {
+  threatElimination,
+  threatEliminationLevel,
+} from "./threat-elimination";
 export const tharbadTimeLimit = (stage: number) => (stage === 1 ? 4 : 3);
 export function validateTharbad(
   s: GameState,

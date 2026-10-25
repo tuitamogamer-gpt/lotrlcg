@@ -1,0 +1,121 @@
+[
+  {
+    "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+    "octgnid": "25e58441-df9d-4935-a3c7-0a5b210538c5",
+    "name": "A City in Turmoil",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set each plot objective and each Cultist enemy aside, out of play. Each player searches the encounter deck for a different location and adds it to the staging area. One of those locations must be Side Street. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 77,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Danger in Dorwinion",
+    "side": "A",
+    "back_name": "A City in Turmoil",
+    "back_text": "Forced: After the active location leaves play as an explored location, place 1 resource here.This stage cannot be defeated unless there are at least 2 resources here.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "25e58441-df9d-4935-a3c7-0a5b210538c5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+    "octgnid": "51b45e84-3f63-46ea-aa08-b83dd89244ff",
+    "name": "Leader of the Cult",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add 1 random set-aside Cultist enemy to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards until X enemies are discarded, where X is one less than the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 79,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Danger in Dorwinion",
+    "side": "A",
+    "back_name": "Leader of the Cult",
+    "back_text": "The Cultist cannot take more than X damage each round, where X is the printed quest points of the active location.When the Cultist enemy is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "51b45e84-3f63-46ea-aa08-b83dd89244ff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+    "octgnid": "f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+    "name": "The Shadow of Mordor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add 1 random set aside Plot objective to the staging area. Reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 78,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Danger in Dorwinion",
+    "side": "A",
+    "back_name": "The Shadow of Mordor",
+    "back_text": "Forced: After the active location leaves play as an explored location, reveal the top card of the encounter deck. Then, place 1 resource here.This stage cannot be defeated unless there are at least X resources here, where X is 3 more than the number of players.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

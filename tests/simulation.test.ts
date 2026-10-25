@@ -1,4 +1,10 @@
 import {
+  isShadowEastScenario,
+  shadowEastSimulationAction,
+  shadowEastSimulationChoice,
+} from "./shadow-east-simulation-policy";
+import { shadowEastSimulationObserver } from "./shadow-east-simulation-invariants";
+import {
   isEredScenario,
   eredSimulationAction,
   eredSimulationChoice,
@@ -160,6 +166,8 @@ const test: typeof nodeTest = ((...args: Parameters<typeof nodeTest>) => {
   if (!listOnly) return nodeTest(...args);
 }) as typeof nodeTest;
 function choose(s: GameState): Option {
+  const shadowEast = shadowEastSimulationChoice(s);
+  if (shadowEast) return shadowEast;
   const ered = eredSimulationChoice(s);
   if (ered) return ered;
   const batch4 = batch4SimulationChoice(s);
@@ -267,19 +275,21 @@ function run(
           ? cobasSimulationObserver()
           : scenarioId === "the-city-of-corsairs"
             ? citySimulationObserver()
-            : isEredScenario(scenarioId)
-              ? eredSimulationObserver()
-              : isBatch4Scenario(scenarioId)
-                ? batch4SimulationObserver()
-                : isBeneathSandsScenario(scenarioId)
-                  ? beneathSandsSimulationObserver()
-                  : isRaceHaradScenario(scenarioId)
-                    ? raceHaradSimulationObserver()
-                    : isMumakilScenario(scenarioId)
-                      ? mumakilSimulationObserver()
-                      : isHaradScenario(scenarioId)
-                        ? haradSimulationObserver()
-                        : undefined;
+            : isShadowEastScenario(scenarioId)
+              ? shadowEastSimulationObserver()
+              : isEredScenario(scenarioId)
+                ? eredSimulationObserver()
+                : isBatch4Scenario(scenarioId)
+                  ? batch4SimulationObserver()
+                  : isBeneathSandsScenario(scenarioId)
+                    ? beneathSandsSimulationObserver()
+                    : isRaceHaradScenario(scenarioId)
+                      ? raceHaradSimulationObserver()
+                      : isMumakilScenario(scenarioId)
+                        ? mumakilSimulationObserver()
+                        : isHaradScenario(scenarioId)
+                          ? haradSimulationObserver()
+                          : undefined;
   mapObserver?.observe(s);
   let steps = 0;
   while (
@@ -314,6 +324,7 @@ function run(
       action = { type: "CONTINUE", stepId: s.flow.pending.id };
     else if (s.choice) action = { type: "CHOOSE", id: choose(s).id };
     else if (
+      shadowEastSimulationAction(s) ??
       eredSimulationAction(s) ??
       batch4SimulationAction(s) ??
       beneathSandsSimulationAction(s) ??
@@ -322,7 +333,8 @@ function run(
       haradSimulationAction(s) ??
       greyHavensSimulationAction(s)
     )
-      action = (eredSimulationAction(s) ??
+      action = (shadowEastSimulationAction(s) ??
+        eredSimulationAction(s) ??
         batch4SimulationAction(s) ??
         beneathSandsSimulationAction(s) ??
         raceHaradSimulationAction(s) ??

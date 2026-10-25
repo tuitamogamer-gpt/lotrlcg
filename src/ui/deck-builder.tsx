@@ -142,6 +142,11 @@ export default function DeckBuilder({
     [editing],
   );
   const size = editing ? deckSize(editing.cards) : 0;
+  const contracts = editing
+    ? Object.entries(editing.cards).filter(
+        ([code, count]) => count > 0 && card(code).type_code === "contract",
+      )
+    : [];
   const warnings = useMemo(
     () => (editing ? deckWarnings(editing) : []),
     [editing],
@@ -349,7 +354,8 @@ export default function DeckBuilder({
               Choose up to three heroes, then add at least 50 cards with at most
               3 copies each, respecting printed deck limits. Match your heroes’
               spheres or plan another way to play the cards. You can save an
-              unfinished deck as a draft.
+              unfinished deck as a draft. You may also choose one contract; it
+              starts in play and does not count toward the 50 cards.
             </p>
           </div>
           <div className="builder-actions">
@@ -641,8 +647,12 @@ export default function DeckBuilder({
                       <span>
                         <strong>{c.name}</strong>
                         <small>
-                          <Sphere sphere={c.sphere_code} /> {c.type_code} · cost{" "}
-                          {c.cost}
+                          <Sphere sphere={c.sphere_code} /> {c.type_code}
+                          {c.type_code === "contract"
+                            ? " · starts in play"
+                            : c.cost === undefined
+                              ? ""
+                              : ` · cost ${c.cost}`}
                           {!legal && " · no matching hero"}
                         </small>
                         <CardProductNote c={c} />
@@ -701,6 +711,14 @@ export default function DeckBuilder({
             <h2>
               {size} <span>/ 50 cards</span>
             </h2>
+            {contracts.length > 0 && (
+              <p className="builder-note" data-deck-contracts>
+                Contract ·{" "}
+                {contracts.map(([code]) => card(code).name).join(", ")}
+                <br />
+                Starts in play, separate from your draw deck.
+              </p>
+            )}
             <DeckProductNote deck={editing} />
             <div className="builder-spheres">
               {Object.entries(spheres).map(([s, n]) => (

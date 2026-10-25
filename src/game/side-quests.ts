@@ -254,6 +254,9 @@ export function sideQuestEffect(s: GameState, e: Effect) {
                 card(u.code).type_code,
               ),
             )
+            .filter(
+              (u) => batch4Scenario(s).canSelectSideQuest?.(s, u) !== false,
+            )
             .map((u) => ({
               id: u.id,
               code: u.code,
@@ -269,6 +272,7 @@ export function sideQuestEffect(s: GameState, e: Effect) {
       const u = s.staging.find((x) => x.id === e.target && x.code === e.code);
       if (
         u &&
+        batch4Scenario(s).canSelectSideQuest?.(s, u) !== false &&
         ["player-side-quest", "encounter-side-quest"].includes(
           card(u.code).type_code,
         )

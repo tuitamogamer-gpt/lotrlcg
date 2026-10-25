@@ -10,10 +10,19 @@ import { FIRE_NIGHT_HOOKS } from "./fire-night";
 import { GHOST_FRAMSBURG_HOOKS } from "./ghost-framsburg";
 import { MOUNT_GUNDABAD_HOOKS } from "./mount-gundabad";
 import { FATE_WILDERLAND_HOOKS } from "./fate-wilderland";
+import { RIVER_RUNNING_HOOKS } from "./river-running";
+import { DANGER_DORWINION_HOOKS } from "./danger-dorwinion";
+import { TEMPLE_DOOM_HOOKS } from "./temple-doom";
 
 const empty: Batch4ScenarioHooks = {};
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
+    case "the-river-running":
+      return RIVER_RUNNING_HOOKS;
+    case "danger-in-dorwinion":
+      return DANGER_DORWINION_HOOKS;
+    case "temple-of-doom":
+      return TEMPLE_DOOM_HOOKS;
     case "mount-gundabad":
       return MOUNT_GUNDABAD_HOOKS;
     case "the-fate-of-wilderland":
@@ -52,4 +61,7 @@ export const batch4SharedEffect = (effect: Effect) =>
     GHOST_FRAMSBURG_HOOKS,
     MOUNT_GUNDABAD_HOOKS,
     FATE_WILDERLAND_HOOKS,
+    RIVER_RUNNING_HOOKS,
+    DANGER_DORWINION_HOOKS,
+    TEMPLE_DOOM_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

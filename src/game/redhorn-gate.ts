@@ -1,3 +1,4 @@
+import { threatElimination } from "./tharbad-support";
 import { surgeEffects } from "./surge";
 import { mainQuestCode } from "./quest-state";
 import { realmWillProtected } from "./lost-realm-player";
@@ -135,7 +136,7 @@ export function redhornCheck(s: GameState) {
     p = seatView(s, controller);
   if (
     s.table?.seats[controller].eliminated ||
-    p.threat >= 50 ||
+    p.threat >= threatElimination(p) ||
     !p.heroes.length
   ) {
     lose(s, "Arwen Undómiel's controlling fellowship has been eliminated.");

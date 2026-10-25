@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+    "octgnid": "8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+    "name": "The Crossing of Araw",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Warriors of the East to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 76,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The River Running",
+    "side": "A",
+    "back_name": "The Crossing of Araw",
+    "back_text": "Each enemy in the staging area gets -10 engagement cost.While at least one player is engaged with an enemy, no more than 5 progress can be placed here each round.When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+    "octgnid": "fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+    "name": "Chased by Easterlings",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Warriors of the East aside, out of play. Add Easterling Pursuit and 1 copy of River Running to the staging area. Each player adds 1 different Easterling enemy to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 75,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The River Running",
+    "side": "A",
+    "back_name": "Chased by Easterlings",
+    "back_text": "This stage gets +5 quest points per player.Add +1 [threat] to the total threat in the staging area for each resource token on Easterling Pursuit.",
+    "back_type_code": "quest",
+    "back_quest": 5,
+    "back_imagesrc": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

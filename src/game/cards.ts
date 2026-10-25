@@ -29,6 +29,20 @@ import {
   FATE_WILDERLAND_QUESTS,
 } from "./fate-wilderland-scenario-data";
 import eredFinalPlayers from "../data/ered-final-player-cards.json";
+import shadowEastPlayers from "../data/shadow-east-player-cards.json";
+import shadowEastEncounterPlayers from "../data/shadow-east-encounter-players.json";
+import {
+  RIVER_RUNNING_ENCOUNTERS,
+  RIVER_RUNNING_QUESTS,
+} from "./river-running-scenario-data";
+import {
+  DANGER_DORWINION_ENCOUNTERS,
+  DANGER_DORWINION_QUESTS,
+} from "./danger-dorwinion-scenario-data";
+import {
+  TEMPLE_DOOM_ENCOUNTERS,
+  TEMPLE_DOOM_QUESTS,
+} from "./temple-doom-scenario-data";
 import {
   WITHERED_HEATH_ENCOUNTERS,
   WITHERED_HEATH_QUESTS,
@@ -260,6 +274,7 @@ export const playerCards = [
           ...wildsRhovanionPlayers,
           ...eredMithrinPlayers,
           ...eredFinalPlayers.filter((c) => c.code !== "19120"),
+          ...shadowEastPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -408,6 +423,10 @@ export const encounterCards = [
       ...GHOST_FRAMSBURG_ENCOUNTERS,
       ...MOUNT_GUNDABAD_ENCOUNTERS,
       ...FATE_WILDERLAND_ENCOUNTERS,
+      ...RIVER_RUNNING_ENCOUNTERS,
+      ...DANGER_DORWINION_ENCOUNTERS,
+      ...TEMPLE_DOOM_ENCOUNTERS,
+      ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
 ];
@@ -470,6 +489,9 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...GHOST_FRAMSBURG_QUESTS,
     ...MOUNT_GUNDABAD_QUESTS,
     ...FATE_WILDERLAND_QUESTS,
+    ...RIVER_RUNNING_QUESTS,
+    ...DANGER_DORWINION_QUESTS,
+    ...TEMPLE_DOOM_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -574,6 +596,9 @@ export const SCRIPTED = new Set(
     ...GHOST_FRAMSBURG_QUESTS,
     ...MOUNT_GUNDABAD_QUESTS,
     ...FATE_WILDERLAND_QUESTS,
+    ...RIVER_RUNNING_QUESTS,
+    ...DANGER_DORWINION_QUESTS,
+    ...TEMPLE_DOOM_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

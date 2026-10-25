@@ -1,0 +1,1621 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Danger in Dorwinion",
+  "slug": "danger-in-dorwinion",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+      "octgnid": "0323e852-a05c-4c2d-a038-3f2596af7a85",
+      "name": "City Forum",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "City Forum gets +1 [threat] for each resource here.While City Forum is in the staging area, it gains: `Forced: After a location is explored, place 1 resource here.`Travel: Each player raises his threat by 1 for each resource here.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 46,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 5,
+      "encounter_set": "City of Rhun",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/0323e852-a05c-4c2d-a038-3f2596af7a85.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 46,
+          "quantity": 2,
+          "octgnid": "0323e852-a05c-4c2d-a038-3f2596af7a85",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0323e852-a05c-4c2d-a038-3f2596af7a85.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+      "octgnid": "1cd05eb5-2456-467a-8d24-efaadd027145",
+      "name": "Rhûn Backstabber",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: After Rhun Backstabber engages you, either raise your threat by 2, or discard an ally you control with printed cost 2 or higher.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 44,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Raise your threat by 1 for each enemy engaged with you.",
+      "encounter_set": "City of Rhun",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/1cd05eb5-2456-467a-8d24-efaadd027145.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 44,
+          "quantity": 2,
+          "octgnid": "1cd05eb5-2456-467a-8d24-efaadd027145",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1cd05eb5-2456-467a-8d24-efaadd027145.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+      "name": "Unwelcome Travelers",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each location in the staging area gets +1 [threat].Forced: After Unwelcome Travelers becomes the current quest, the first player discards cards from the top of the encounter deck until an enemy is discarded and puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 52,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
+      "octgnid": "2351fadd-4348-4a17-b062-f0e8142f2e6f",
+      "name": "Priest of Sauron",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Cultist.",
+      "text": "Immune to player card effects.Cannot be optionally engaged.Forced: After Priest of Sauron attacks and destroys an ally, raise each player`s threat by 2.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 30,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 2,
+      "health": 8,
+      "engagement": 38,
+      "victory": 6,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "2",
+        "health": "8",
+        "engagement": "38",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/2351fadd-4348-4a17-b062-f0e8142f2e6f.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 30,
+          "quantity": 1,
+          "octgnid": "2351fadd-4348-4a17-b062-f0e8142f2e6f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2351fadd-4348-4a17-b062-f0e8142f2e6f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+      "octgnid": "25e58441-df9d-4935-a3c7-0a5b210538c5",
+      "name": "A City in Turmoil",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set each plot objective and each Cultist enemy aside, out of play. Each player searches the encounter deck for a different location and adds it to the staging area. One of those locations must be Side Street. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 77,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Danger in Dorwinion",
+      "side": "A",
+      "back_name": "A City in Turmoil",
+      "back_text": "Forced: After the active location leaves play as an explored location, place 1 resource here.This stage cannot be defeated unless there are at least 2 resources here.",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 77,
+          "quantity": 1,
+          "octgnid": "25e58441-df9d-4935-a3c7-0a5b210538c5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+      "octgnid": "2f5221a8-8afd-48d8-afd3-352151d87ed6",
+      "name": "Seedy Tavern",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "Immune to player card effects.Forced: When Seedy Travern is explored, reveal each facedown card under it.Travel: Look at the top 5 cards of the encounter deck. Put one of those cards facedown under Seedy Tavern and shuffle the rest back into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 47,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 5,
+      "victory": 2,
+      "encounter_set": "City of Rhun",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/2f5221a8-8afd-48d8-afd3-352151d87ed6.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 47,
+          "quantity": 2,
+          "octgnid": "2f5221a8-8afd-48d8-afd3-352151d87ed6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2f5221a8-8afd-48d8-afd3-352151d87ed6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+      "octgnid": "4b7db087-febb-4e88-bd30-e0f7919511c7",
+      "name": "Darkness in the East",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Raise each player`s threat by X, where X is the active location`s [threat]. If there is no active location, Darkness in the East gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 48,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you raised your threat this round).",
+      "encounter_set": "City of Rhun",
+      "printed_stats": {},
+      "imagesrc": "/cards/4b7db087-febb-4e88-bd30-e0f7919511c7.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 48,
+          "quantity": 2,
+          "octgnid": "4b7db087-febb-4e88-bd30-e0f7919511c7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b7db087-febb-4e88-bd30-e0f7919511c7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+      "octgnid": "5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+      "name": "Hillside Manor",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Hillside Manor is in the staging area, each player`s threat cannot be reduced by more than 1 each round by player card effects.Travel: Each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 37,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/5100f009-8c78-4f2a-b77e-1bd9ccbfef77.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 37,
+          "quantity": 3,
+          "octgnid": "5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5100f009-8c78-4f2a-b77e-1bd9ccbfef77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+      "octgnid": "51b45e84-3f63-46ea-aa08-b83dd89244ff",
+      "name": "Leader of the Cult",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add 1 random set-aside Cultist enemy to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards until X enemies are discarded, where X is one less than the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 79,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Danger in Dorwinion",
+      "side": "A",
+      "back_name": "Leader of the Cult",
+      "back_text": "The Cultist cannot take more than X damage each round, where X is the printed quest points of the active location.When the Cultist enemy is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "51b45e84-3f63-46ea-aa08-b83dd89244ff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+      "octgnid": "522c612d-5f3c-4a02-a1a7-7d87191922e0",
+      "name": "Disappearances",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards all ally cards from his hand. If no cards are discarded this way, Disappearances gains doomed 2.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 38,
+      "quantity": 2,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {},
+      "imagesrc": "/cards/522c612d-5f3c-4a02-a1a7-7d87191922e0.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "522c612d-5f3c-4a02-a1a7-7d87191922e0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/522c612d-5f3c-4a02-a1a7-7d87191922e0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+      "octgnid": "52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+      "name": "Black Nûmenórean",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Cultist.",
+      "text": "Immune to player card effects.Do not discard shadow cards dealt to Black Numenorean if they have a shadow effect.Forward: When Black Numenorean attacks, resolve each of his faceup shadow cards as if they had been dealt this round.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 32,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 9,
+      "engagement": 40,
+      "victory": 6,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "9",
+        "engagement": "40",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/52b0bc28-37bb-4097-b96a-cc7dc4af8721.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52b0bc28-37bb-4097-b96a-cc7dc4af8721.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+      "name": "Side Street",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Side Street is in the staging area, progress cannot be placed on other locations in the staging area.Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 49,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+      "octgnid": "57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+      "name": "Evidence of the Cult",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Clue.",
+      "text": "Guarded (enemy).\nAttached enemy gets +1 [threat], +1 [attack], and +1 [defense].When Evidence of the Cult is free of encounters, add it to the victory display. Then, place 1 resource on the main quest.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 36,
+      "quantity": 3,
+      "victory": 1,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {
+        "victory": "1"
+      },
+      "imagesrc": "/cards/57e22e64-6ff5-4133-8c70-2ee3460d02f9.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 36,
+          "quantity": 3,
+          "octgnid": "57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57e22e64-6ff5-4133-8c70-2ee3460d02f9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+      "octgnid": "617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+      "name": "Secret Cultist",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to the highest attack ally in play. (Counts as a Condition attachment with the text: `Attached ally loses the ally card type, gains the enemy card type, and engages its owner. Treat attached ally`s text box as if it were blank. If Secret Cultist is discarded, or the attached ally`s owner is eliminated, discard attached ally.`)",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 39,
+      "quantity": 2,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {},
+      "imagesrc": "/cards/617bc2e6-05a9-4c99-b3ff-8304ecb6ef32.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 39,
+          "quantity": 2,
+          "octgnid": "617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617bc2e6-05a9-4c99-b3ff-8304ecb6ef32.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+      "octgnid": "6d485bbc-6876-4160-8111-77f3935123c9",
+      "name": "Messenger from Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "When Revealed: Either raise each player`s threat by X, where X is the active location`s [threat], or Messenger from Mordor makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 40,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 40,
+          "quantity": 3,
+          "octgnid": "6d485bbc-6876-4160-8111-77f3935123c9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d485bbc-6876-4160-8111-77f3935123c9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "octgnid": "80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "name": "Servant of Sauron",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Surge.\nServant of Sauron engages the first player.Forced: After the engaged player raises his threat, Servant of Sauron makes an immediate attack. (Limit once per phase.)",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 41,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 36,
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+      "octgnid": "8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+      "name": "Bribes",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Plot.",
+      "text": "Add +1 to the total [threat] in the staging area for each resource here.Forced: When the active location is explored, discard the top X cards of each player`s deck, when X is that location`s [threat]. Then, place 1 resource here for each event discarded this way.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 33,
+      "quantity": 1,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {},
+      "imagesrc": "/cards/8f6e5d67-81c7-4db8-9cb0-ef45b71490c6.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 33,
+          "quantity": 1,
+          "octgnid": "8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f6e5d67-81c7-4db8-9cb0-ef45b71490c6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "name": "Under Guard",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Resolve the Travel effect on the active location. If there is no active location, discard cards from the encounter deck until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 51,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack destroys a character, resolve the Travel effect on the active location.",
+      "encounter_set": "Under Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 51,
+          "quantity": 3,
+          "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+      "octgnid": "ae20c7c6-9950-4799-a88e-d0b394879af2",
+      "name": "Sauron Worship",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Plot.",
+      "text": "Sauron Worship enters play with 1 damage token on it.Each player`s threat elimination level is reduced by 1 for each damage token here.Forced: At the end of the round, place 1 damage token here.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 35,
+      "quantity": 1,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {},
+      "imagesrc": "/cards/ae20c7c6-9950-4799-a88e-d0b394879af2.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 35,
+          "quantity": 1,
+          "octgnid": "ae20c7c6-9950-4799-a88e-d0b394879af2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae20c7c6-9950-4799-a88e-d0b394879af2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "octgnid": "ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "name": "Shadow of Fear",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nForced: After an enemy engages a player, that player raises his threat by 1.Response: When Shadow of Fear is defeated, reduce each player`s threat by 3.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 43,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "name": "Catacombs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Catacombs is in the staging area, enemes in the staging area cannot take damage.Travel: Each player discards the top card of the encounter deck. If a player discards an enemy this way, he puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 50,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "octgnid": "e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "name": "Overwhelmed",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Until the end of the round, enemies engaged with the first player cannot take damage.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 42,
+      "quantity": 2,
+      "shadow": "Shadow: Either raise your threat by 2, or attacking enemy cannot take damage this round. ",
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {},
+      "imagesrc": "/cards/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 42,
+          "quantity": 2,
+          "octgnid": "e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+      "octgnid": "eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+      "name": "Treacherous Easterling",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Treacherous Easterlings gets +1 [attack] and +1 [defense] for each resource token on it (Limit +3 [attack] and +3 [defense].)Forced: After the engaged player raises his threat, place 1 resource token on Treacherous Easterling.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 45,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 1,
+      "health": 5,
+      "engagement": 32,
+      "encounter_set": "City of Rhun",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "1",
+        "health": "5",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+      "octgnid": "ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+      "name": "Submit or Die",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Plot.",
+      "text": "Each non-unique enemy gets +1 [attack].Forced: After an enemy attacks and destroys a character, place 1 damage token here. Then, if there are X damage tokens here, the players lose the game. X is 4 more than the number of players.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 34,
+      "quantity": 1,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {},
+      "imagesrc": "/cards/ef6ebaef-6b53-4aa0-b03b-9929bd2bc492.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 34,
+          "quantity": 1,
+          "octgnid": "ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef6ebaef-6b53-4aa0-b03b-9929bd2bc492.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+      "octgnid": "f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+      "name": "The Governor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Cultist.",
+      "text": "Immune to player card effects.Forced: After a location is revealed from the encounter deck, The Governor engages the first player and makes an immediate attack.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 31,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 3,
+      "health": 8,
+      "engagement": 44,
+      "victory": 6,
+      "encounter_set": "Danger in Dorwinion",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "3",
+        "health": "8",
+        "engagement": "44",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/f250a697-b5aa-4041-9bad-a66b2ab8ccba.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f250a697-b5aa-4041-9bad-a66b2ab8ccba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+      "octgnid": "f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+      "name": "The Shadow of Mordor",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add 1 random set aside Plot objective to the staging area. Reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 78,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Danger in Dorwinion",
+      "side": "A",
+      "back_name": "The Shadow of Mordor",
+      "back_text": "Forced: After the active location leaves play as an explored location, reveal the top card of the encounter deck. Then, place 1 resource here.This stage cannot be defeated unless there are at least X resources here, where X is 3 more than the number of players.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.2",
+      "name": "Danger in Dorwinion (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+        "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+        "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+        "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+        "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+        "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+        "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+        "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+        "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+        "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+        "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+        "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+        "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+        "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+        "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+        "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+        "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+        "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+        "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+        "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f"
+      ],
+      "cards": [
+        {
+          "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        },
+        {
+          "code": "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        },
+        {
+          "code": "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5": 1,
+          "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633": 1,
+          "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c": 1,
+          "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e": 1,
+          "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7": 2,
+          "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85": 2,
+          "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6": 2,
+          "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a": 1,
+          "octgn:1cd05eb5-2456-467a-8d24-efaadd027145": 2,
+          "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722": 1,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 2,
+          "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32": 1,
+          "octgn:6d485bbc-6876-4160-8111-77f3935123c9": 3,
+          "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9": 3,
+          "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0": 1,
+          "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77": 3,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 1,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2": 1,
+          "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6": 1,
+          "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492": 1
+        },
+        "sharedEncounterDeck3": {
+          "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721": 1,
+          "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba": 1,
+          "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.2",
+      "name": "Danger in Dorwinion",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+        "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+        "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+        "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+        "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+        "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+        "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+        "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+        "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+        "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+        "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+        "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+        "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+        "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+        "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+        "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+        "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+        "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+        "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+        "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f"
+      ],
+      "cards": [
+        {
+          "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        },
+        {
+          "code": "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        },
+        {
+          "code": "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck3"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5": 1,
+          "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633": 1,
+          "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c": 2,
+          "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e": 2,
+          "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7": 2,
+          "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85": 2,
+          "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6": 2,
+          "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a": 2,
+          "octgn:1cd05eb5-2456-467a-8d24-efaadd027145": 2,
+          "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722": 1,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 3,
+          "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32": 2,
+          "octgn:6d485bbc-6876-4160-8111-77f3935123c9": 3,
+          "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9": 3,
+          "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0": 2,
+          "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77": 3,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 2,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2": 1,
+          "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6": 1,
+          "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492": 1
+        },
+        "sharedEncounterDeck3": {
+          "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721": 1,
+          "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba": 1,
+          "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0323e852-a05c-4c2d-a038-3f2596af7a85.jpg",
+      "localPath": "/cards/0323e852-a05c-4c2d-a038-3f2596af7a85.jpg",
+      "bytes": 158046,
+      "sha256": "269647c729707ff7c10386b440d87cd445fed3eb4ba85c97a688385456a56f77"
+    },
+    {
+      "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1cd05eb5-2456-467a-8d24-efaadd027145.jpg",
+      "localPath": "/cards/1cd05eb5-2456-467a-8d24-efaadd027145.jpg",
+      "bytes": 158049,
+      "sha256": "ee804e60b32aee69345d7fe5bdc0e83d28e41b64cbbc1072fb61d1b9fd5ca3b7"
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "localPath": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "bytes": 147730,
+      "sha256": "a9682b7837d3946484c7ebcc777e7db69bca366a3562f25c01481b88e8416779"
+    },
+    {
+      "code": "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2351fadd-4348-4a17-b062-f0e8142f2e6f.jpg",
+      "localPath": "/cards/2351fadd-4348-4a17-b062-f0e8142f2e6f.jpg",
+      "bytes": 151892,
+      "sha256": "1792524866475be149470d5433d52fdafae00265d4975c55c17ad255c2b6bf0f"
+    },
+    {
+      "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg",
+      "localPath": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.jpg",
+      "bytes": 155890,
+      "sha256": "f64167892d79dbdaebf022a52dc9e6fda959587d8419658de166768b4d17f9e3"
+    },
+    {
+      "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/25e58441-df9d-4935-a3c7-0a5b210538c5.B.jpg",
+      "localPath": "/cards/25e58441-df9d-4935-a3c7-0a5b210538c5.B.jpg",
+      "bytes": 146173,
+      "sha256": "ceffac4d034020a7995a8a55622baafc97bafaf1201bba4795b74e8888bef839"
+    },
+    {
+      "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2f5221a8-8afd-48d8-afd3-352151d87ed6.jpg",
+      "localPath": "/cards/2f5221a8-8afd-48d8-afd3-352151d87ed6.jpg",
+      "bytes": 157308,
+      "sha256": "f405b3e6fae2ac1a800134fe4b37a1a52ad36c2070cf39bd8e159f09159cb6c6"
+    },
+    {
+      "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b7db087-febb-4e88-bd30-e0f7919511c7.jpg",
+      "localPath": "/cards/4b7db087-febb-4e88-bd30-e0f7919511c7.jpg",
+      "bytes": 153041,
+      "sha256": "49b1d6022406a66bc5e596b60956bde0a05287335a9ce9198a638378fe30ca8c"
+    },
+    {
+      "code": "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5100f009-8c78-4f2a-b77e-1bd9ccbfef77.jpg",
+      "localPath": "/cards/5100f009-8c78-4f2a-b77e-1bd9ccbfef77.jpg",
+      "bytes": 157395,
+      "sha256": "daa4d2b91d9be8927a86154595d80e1986501fd73d9a804b4bba6b36bc1e62b8"
+    },
+    {
+      "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg",
+      "localPath": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.jpg",
+      "bytes": 159273,
+      "sha256": "d20095d64a63bf01db1bbe18ab8a9c683e772a96e27267f60ccb5c33ebb46589"
+    },
+    {
+      "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51b45e84-3f63-46ea-aa08-b83dd89244ff.B.jpg",
+      "localPath": "/cards/51b45e84-3f63-46ea-aa08-b83dd89244ff.B.jpg",
+      "bytes": 163344,
+      "sha256": "1adaa00c24ebe6f947aaf33ae049adfb587dd90b9f69d746a768d9ac3e5d8346"
+    },
+    {
+      "code": "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/522c612d-5f3c-4a02-a1a7-7d87191922e0.jpg",
+      "localPath": "/cards/522c612d-5f3c-4a02-a1a7-7d87191922e0.jpg",
+      "bytes": 157226,
+      "sha256": "7041d742f0241f0234e57383ca36fec9234d35e98bba7aeebf13446dfc7fe876"
+    },
+    {
+      "code": "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/52b0bc28-37bb-4097-b96a-cc7dc4af8721.jpg",
+      "localPath": "/cards/52b0bc28-37bb-4097-b96a-cc7dc4af8721.jpg",
+      "bytes": 147427,
+      "sha256": "ed07beaec8f78c63d17a986c39b74315ad0ad82e2371081290073ac5a4d6b2c6"
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "localPath": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "bytes": 153955,
+      "sha256": "99cc340c5f6dd5f087ba872e410761f2d0fae44b0ab4cfa2680943c9d40678eb"
+    },
+    {
+      "code": "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57e22e64-6ff5-4133-8c70-2ee3460d02f9.jpg",
+      "localPath": "/cards/57e22e64-6ff5-4133-8c70-2ee3460d02f9.jpg",
+      "bytes": 140955,
+      "sha256": "637d58ab5e1ccf165b5c68c821090f900ae359d08e51ff660e992acef6667537"
+    },
+    {
+      "code": "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/617bc2e6-05a9-4c99-b3ff-8304ecb6ef32.jpg",
+      "localPath": "/cards/617bc2e6-05a9-4c99-b3ff-8304ecb6ef32.jpg",
+      "bytes": 162489,
+      "sha256": "9721585f4617873f42157e6f9d0feb5ae991f4d4283d137d92c8f3f3603d6db5"
+    },
+    {
+      "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "localPath": "/cards/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "bytes": 154209,
+      "sha256": "8a47cc776b19a02e25afc7dcf69ef97ede8db95f87c06260b8c6019188cbd65d"
+    },
+    {
+      "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "localPath": "/cards/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "bytes": 149128,
+      "sha256": "9701bddc839bbbb576a1b3ddcd712c396740187b0bcfed775928d6eaf0d6569c"
+    },
+    {
+      "code": "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f6e5d67-81c7-4db8-9cb0-ef45b71490c6.jpg",
+      "localPath": "/cards/8f6e5d67-81c7-4db8-9cb0-ef45b71490c6.jpg",
+      "bytes": 146540,
+      "sha256": "2e8bff872cd91bc85e8288c7997c80bc6ba4332845d79e217d586cb216e1894f"
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "localPath": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "bytes": 157285,
+      "sha256": "c97d0a7c077f42f4085cc9472afd84a59060b380816adec65d54ea3f24a919c8"
+    },
+    {
+      "code": "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae20c7c6-9950-4799-a88e-d0b394879af2.jpg",
+      "localPath": "/cards/ae20c7c6-9950-4799-a88e-d0b394879af2.jpg",
+      "bytes": 146931,
+      "sha256": "2ae08ab5e37d23cb8be7299de1f6fcc5c034deaf841d217d9ebcc7970376e179"
+    },
+    {
+      "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "localPath": "/cards/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "bytes": 140471,
+      "sha256": "f18d67588d605898ca2f0ad8acf4166cd08dbfa9bd95fe3f84cdc0df473dfd04"
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "localPath": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "bytes": 152973,
+      "sha256": "5be561d83123177b060b6d1ca2e64c1960d34b5f0504f3c202e52ff04009684f"
+    },
+    {
+      "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "localPath": "/cards/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "bytes": 148826,
+      "sha256": "4009836f978436004f3db168a9a6dd94a8fe2a974b20fad54a618aaf3acb9b24"
+    },
+    {
+      "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e.jpg",
+      "localPath": "/cards/eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e.jpg",
+      "bytes": 149493,
+      "sha256": "8b081362852ca76f419ade2ff11b511c4a9b320042bb6c1dd655e10ef5bfdc5b"
+    },
+    {
+      "code": "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef6ebaef-6b53-4aa0-b03b-9929bd2bc492.jpg",
+      "localPath": "/cards/ef6ebaef-6b53-4aa0-b03b-9929bd2bc492.jpg",
+      "bytes": 147224,
+      "sha256": "fb4e337a9f05d1fbe19522f49234d9d291f4305c0fd7b45876fa7c4eee495b82"
+    },
+    {
+      "code": "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f250a697-b5aa-4041-9bad-a66b2ab8ccba.jpg",
+      "localPath": "/cards/f250a697-b5aa-4041-9bad-a66b2ab8ccba.jpg",
+      "bytes": 158777,
+      "sha256": "12ff5c35b61444b856fcb00146aa1dbebf5f73ae17244dbcf07782e70c7c38db"
+    },
+    {
+      "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg",
+      "localPath": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.jpg",
+      "bytes": 150474,
+      "sha256": "cc2807b05ab194006cb268283c1f111948ec99c4df767afd747eba83d9d6c52f"
+    },
+    {
+      "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f77e471a-7dd2-4f05-ac8f-fbb534c66633.B.jpg",
+      "localPath": "/cards/f77e471a-7dd2-4f05-ac8f-fbb534c66633.B.jpg",
+      "bytes": 158047,
+      "sha256": "f40cf1f93870785e8f25a4c8658d323bbbc06c4f7c85323c9338a8a141856042"
+    }
+  ]
+}

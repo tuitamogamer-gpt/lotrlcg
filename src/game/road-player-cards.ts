@@ -12,6 +12,7 @@ import type { Attachment, Effect, GameState, Unit } from "./types";
 import {
   canPay,
   canPlayerAffectShadow,
+  canChoosePlayerShadowDiscard,
   choose,
   fx,
   get,
@@ -401,13 +402,22 @@ export function handleRoadPlayerEffect(s: GameState, e: Effect): boolean {
         const options = engagedEnemies(s)
           .filter((enemy) => canPlayerAffectShadow(s, enemy))
           .flatMap((enemy) =>
-            enemy.shadows.map((_code, index) => ({
-              id: `${enemy.id}-shadow-${index}`,
-              label: `${card(enemy.code).name} · shadow ${index + 1}`,
-              effects: [
-                fx("roadRiderShadow", { target: enemy.id, value: index }),
-              ],
-            })),
+            enemy.shadows.flatMap((_code, index) =>
+              canChoosePlayerShadowDiscard(s, enemy, index)
+                ? [
+                    {
+                      id: `${enemy.id}-shadow-${index}`,
+                      label: `${card(enemy.code).name} · shadow ${index + 1}`,
+                      effects: [
+                        fx("roadRiderShadow", {
+                          target: enemy.id,
+                          value: index,
+                        }),
+                      ],
+                    },
+                  ]
+                : [],
+            ),
           );
         if (options.length)
           choosePlayerResponse(

@@ -1,0 +1,467 @@
+[
+  {
+    "scenario": "river-running",
+    "source": "https://hallofbeorn.com/LotR/Scenarios/The-River-Running",
+    "checkedOn": "2026-10-25",
+    "cards": [
+      {
+        "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+        "name": "Easterling Pursuit",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+        "name": "Easterling Outrider",
+        "normal": 3,
+        "easy": 1
+      },
+      {
+        "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+        "name": "River Running",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+        "name": "Exposed Riverbank",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+        "name": "Enemies Close Behind",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+        "name": "Easterling Captain",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+        "name": "Rider of Rhûn",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "name": "Easterling Horse",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "name": "Easterling Raider",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "name": "Warrior of Rhûn",
+        "normal": 3,
+        "easy": 2
+      },
+      {
+        "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "name": "Sword of Rhûn",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "name": "Recurve Bow",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "name": "Warriors of the East",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "name": "Rolling Plains",
+        "normal": 4,
+        "easy": 3
+      },
+      {
+        "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "name": "Rocky Outcrop",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "name": "Weary Lands",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "name": "Painful Fatigue",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "name": "An Arduous Journey",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+        "name": "Chased by Easterlings",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+        "name": "The Crossing of Araw",
+        "normal": 1,
+        "easy": 1
+      }
+    ]
+  },
+  {
+    "scenario": "danger-dorwinion",
+    "source": "https://hallofbeorn.com/LotR/Scenarios/Danger-in-Dorwinion",
+    "checkedOn": "2026-10-25",
+    "cards": [
+      {
+        "code": "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
+        "name": "Priest of Sauron",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+        "name": "The Governor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:52b0bc28-37bb-4097-b96a-cc7dc4af8721",
+        "name": "Black Nûmenórean",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
+        "name": "Bribes",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+        "name": "Submit or Die",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:ae20c7c6-9950-4799-a88e-d0b394879af2",
+        "name": "Sauron Worship",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:57e22e64-6ff5-4133-8c70-2ee3460d02f9",
+        "name": "Evidence of the Cult",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:5100f009-8c78-4f2a-b77e-1bd9ccbfef77",
+        "name": "Hillside Manor",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:522c612d-5f3c-4a02-a1a7-7d87191922e0",
+        "name": "Disappearances",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
+        "name": "Secret Cultist",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+        "name": "Messenger from Mordor",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+        "name": "Servant of Sauron",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+        "name": "Overwhelmed",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+        "name": "Shadow of Fear",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+        "name": "Rhûn Backstabber",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+        "name": "Treacherous Easterling",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+        "name": "City Forum",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+        "name": "Seedy Tavern",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+        "name": "Darkness in the East",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "name": "Side Street",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "name": "Catacombs",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "name": "Under Guard",
+        "normal": 3,
+        "easy": 2
+      },
+      {
+        "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "name": "Unwelcome Travelers",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
+        "name": "A City in Turmoil",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
+        "name": "The Shadow of Mordor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
+        "name": "Leader of the Cult",
+        "normal": 1,
+        "easy": 1
+      }
+    ]
+  },
+  {
+    "scenario": "temple-doom",
+    "source": "https://hallofbeorn.com/LotR/Scenarios/The-Temple-of-Doom",
+    "checkedOn": "2026-10-25",
+    "cards": [
+      {
+        "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "name": "Easterling Raider",
+        "normal": 3,
+        "easy": 3
+      },
+      {
+        "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "name": "Warrior of Rhûn",
+        "normal": 3,
+        "easy": 2
+      },
+      {
+        "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "name": "Sword of Rhûn",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "name": "Recurve Bow",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "name": "Warriors of the East",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+        "name": "Tribute to Mordor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+        "name": "Thane Ulchor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+        "name": "Temple of Sauron",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+        "name": "Hall of Horrors",
+        "normal": 3,
+        "easy": 2
+      },
+      {
+        "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+        "name": "Place of Evil",
+        "normal": 3,
+        "easy": 1
+      },
+      {
+        "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "name": "Ulchor's Guard",
+        "normal": 4,
+        "easy": 3
+      },
+      {
+        "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "name": "Ulchor's Rage",
+        "normal": 3,
+        "easy": 1
+      },
+      {
+        "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "name": "Fanaticism",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "name": "Twisted Tunnel",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "name": "Narrow Opening",
+        "normal": 2,
+        "easy": 2
+      },
+      {
+        "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "name": "Crumbling Passage",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "name": "Fearful Shadows",
+        "normal": 2,
+        "easy": 1
+      },
+      {
+        "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "name": "Lost in the Dark",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "name": "Khamûl the Easterling",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "name": "The Tower of Barad-dûr",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "name": "Under the Watchful Eye",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "name": "The Armies of Mordor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "name": "Covered in Darkness",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+        "name": "The Forgotten Temple",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+        "name": "The Legacy of Mordor",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+        "name": "Memory of the Dark Years",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+        "name": "Shrine to Sauron",
+        "normal": 1,
+        "easy": 1
+      },
+      {
+        "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+        "name": "The Lord of Middle-earth",
+        "normal": 1,
+        "easy": 1
+      }
+    ]
+  }
+]

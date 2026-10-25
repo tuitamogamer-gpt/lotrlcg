@@ -1,3 +1,5 @@
+import * as ShadowEastPlayers from "./shadow-east-player";
+import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
@@ -337,6 +339,7 @@ export function resolvePlayerAttack(
         : stats(s, u).attack +
           StormPlayers.stormcallerAttackBonus(s, u) +
           finalRingAttackBonus(s, u, enemy) +
+          ShadowEastSupport.shadowEastPlayerAttackBonus(s, u, enemy) +
           cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
@@ -380,7 +383,11 @@ export function resolvePlayerAttack(
   if (watcherWaterRedirectAttack(s, enemy, ids, amount, remainingHealth))
     return;
   const assigned = damage(s, enemy.id, amount, { combatDamage: true });
-  const killed = lethal && assigned && !get(s, enemy.id);
+  const killed =
+    lethal &&
+    assigned &&
+    (!get(s, enemy.id) ||
+      (enemy.code === "21072.B" && get(s, enemy.id)?.code === "21072"));
   if (killed && s.status === "playing")
     playerAttackKilled(s, enemy, ids, engagedPlayer, lastKnownTraits);
   playerAttackResolved(s, enemy, ids, assigned ? amount : 0, remainingHealth);
@@ -439,6 +446,7 @@ export function playerAttackKilled(
       s,
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
+  ShadowEastPlayers.shadowEastPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);

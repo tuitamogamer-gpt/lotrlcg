@@ -22,6 +22,7 @@ import {
   random,
   removePlayerShadowCard,
   canPlayerAffectShadow,
+  canChoosePlayerShadowDiscard,
   requireRule,
   shuffle,
   skip,
@@ -84,8 +85,7 @@ export function finalRingPlayProblem(s: GameState, code: string) {
     !units(s).some(
       (u) =>
         playerUnitIsEnemy(u) &&
-        u.shadows.length > 0 &&
-        canPlayerAffectShadow(s, u),
+        u.shadows.some((_code, i) => canChoosePlayerShadowDiscard(s, u, i)),
     )
   )
     return "No shadow card can be discarded by a player card effect.";
@@ -175,10 +175,10 @@ export function finalRingEvent(
       for (const u of units(s).filter(
         (u) => playerUnitIsEnemy(u) && canPlayerAffectShadow(s, u),
       )) {
-        while (u.shadows.length) {
-          const shadow = removePlayerShadowCard(s, u, 0);
-          if (!shadow) break;
-          s.encounterDiscard.push(shadow);
+        // A protected card must not prevent discarding other, legal shadows.
+        for (let index = u.shadows.length - 1; index >= 0; index--) {
+          const shadow = removePlayerShadowCard(s, u, index);
+          if (shadow) s.encounterDiscard.push(shadow);
         }
       }
       return true;

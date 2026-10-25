@@ -1,0 +1,1287 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The River Running",
+  "slug": "the-river-running",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "name": "Weary Lands",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each exhausted character gets -1 [willpower] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 27,
+      "quantity": 2,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+      "octgnid": "1fdfdb77-31e0-458d-85d1-9c158f12717f",
+      "name": "River Running",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Riverland.",
+      "text": "While River Running is in the staging area, enemies cannot be optionally engaged.Travel: The first player engages the highest engagement cost enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 14,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "The River Running",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 14,
+          "quantity": 2,
+          "octgnid": "1fdfdb77-31e0-458d-85d1-9c158f12717f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+      "octgnid": "2af71d2e-0b70-43a2-b94e-89770992ef9c",
+      "name": "Easterling Outrider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nForced: After Easterling Outrider engages a player, either place 1 resource on Easterling Pursuit, or Easterling Outrider makes an immediate attack.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 13,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 24,
+      "shadow": "Shadow: Discard an attachment you control.",
+      "encounter_set": "The River Running",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "24"
+      },
+      "imagesrc": "/cards/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 13,
+          "quantity": 3,
+          "octgnid": "2af71d2e-0b70-43a2-b94e-89770992ef9c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+      "name": "Painful Fatigue",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: Either exhaust a character you control, or return attacking enemy to the staging area. ",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "name": "Easterling Raider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 1.\nEasterling Raider gets +1 [attack] and +1 [defense] for each Easterling attachment on it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 20,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [defense] instead if it has an Easterling attachment).",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 20,
+          "quantity": 3,
+          "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "name": "Easterling Horse",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While attached to an enemy, counts as a Mount attachment with the text: `Attached enemy gets +2 [threat]. Forced: At the end of the round, return attached enemy to the staging area.`When Revealed: Attach to the lowest engagement cost Easterling enemy without an Easterling Horse and return it to the staging area. Otherwise, Easterling Horse gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 19,
+      "quantity": 3,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {},
+      "imagesrc": "/cards/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+      "octgnid": "56b24d25-a04a-418b-add0-7b1971dae38e",
+      "name": "Easterling Pursuit",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: At the end of the round, place 1 resource here. Then if there are at lest 3 resources here, remove 3 of them and shuffle the encounter discard pile into the encounter deck. Discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 12,
+      "quantity": 1,
+      "encounter_set": "The River Running",
+      "printed_stats": {},
+      "imagesrc": "/cards/56b24d25-a04a-418b-add0-7b1971dae38e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 12,
+          "quantity": 1,
+          "octgnid": "56b24d25-a04a-418b-add0-7b1971dae38e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56b24d25-a04a-418b-add0-7b1971dae38e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "name": "Recurve Bow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gains Archery 2.`When Revealed: Attach to the highest engagement cost Easterling enemy without a Recurve Bow.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 23,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+      "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+      "name": "Rider of Rhûn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 2.\nRider of Rhun gets -10 enagement cost for each Easterling attachment it has.When Revealed: Search the encounter deck and discard pile for an Easterling Horse and attach it to Rider of Rhun. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 18,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5af4be18-af74-46ef-a235-9c1002b85338.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+      "octgnid": "8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+      "name": "The Crossing of Araw",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Warriors of the East to the staging area. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 76,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The River Running",
+      "side": "A",
+      "back_name": "The Crossing of Araw",
+      "back_text": "Each enemy in the staging area gets -10 enagement cost.While at least one player is engaged with an enemy, no more than 5 progress can be placed here each round.When this stage is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+      "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+      "name": "Easterling Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: When Easterling Captain enters play, discard cards from the encounter deck until an Easterling treachery is discarded. Attach that treachery to Easterling Captain.Forced: When Easterling Captain would take any amount of damage, discard an Easterling attachment from him. Then, cancel the damage.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 17,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 6,
+      "engagement": 36,
+      "victory": 6,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "6",
+        "engagement": "36",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 17,
+          "quantity": 1,
+          "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9042242b-054d-413e-83c7-bb9f42551a8a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "name": "Rocky Outcrop",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Rocky Outcrop is in the staging area, characters cannot be readied by player card effects.Travel: The first player exhausts a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 26,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+      "octgnid": "a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+      "name": "Enemies Close Behind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 1 resource on Easterling Pursuit. Then, raise each player`s threat by 1 for each resource on Easterling Pursuit.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 16,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 resource on Easterling Pursuit. ",
+      "encounter_set": "The River Running",
+      "printed_stats": {},
+      "imagesrc": "/cards/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 16,
+          "quantity": 2,
+          "octgnid": "a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "name": "Warrior of Rhûn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: When Warrior of Rhun attacks, attach the top Easterling treachery in the discard pile to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 21,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attach the top Easterling treachery in the discard pile to attacking enemy.",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "name": "Sword of Rhûn",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gets +2 [attack].`When Revealed: Attach to the Easterling enemy with the lowest [attack] without a Sword of Rhun.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 22,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "name": "Warriors of the East",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: After an Easterling enemy enters play, attach the top Easterling treachery in the discard pile to that enemy.Forced: After Warriors of the East becomes the current quest, the highest [attack] Easterling enemy in the staging area attacks the first player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 24,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "name": "An Arduous Journey",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each player cannot ready more than 6 characters he controls during the refresh phase.Response: When this stage is defeated, each player may ready a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 29,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "name": "Rolling Plains",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "When Revealed: Each copy of Rolling Plains gets +2 [threat] until the end of the phase.Travel: Raise each player`s threat by 2.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 25,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 25,
+          "quantity": 4,
+          "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+      "octgnid": "f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+      "name": "Exposed Riverbank",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Riverland.",
+      "text": "While Exposed Riverbank is in the staging area, it gains: `Forced: After a `when revealed` effect is canceled, place 1 resource on Easterling Pursuit.`Travel: Place 1 resource on Easterling Pursuit.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 15,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The River Running",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 15,
+          "quantity": 2,
+          "octgnid": "f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+      "octgnid": "fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+      "name": "Chased by Easterlings",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Warriors of the East aside, out of play. Add Easterling Pursuit and 1 copy of River Running to the staging area. Each player adds 1 different Easterling enemy to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 75,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The River Running",
+      "side": "A",
+      "back_name": "Chased by Easterlings",
+      "back_text": "This stage gets +5 quest points per player.Add +1 [threat] to the total threat in the staging area for each resource token on Easterling Pursuit.",
+      "back_type_code": "quest",
+      "back_quest": 5,
+      "back_imagesrc": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.1",
+      "name": "The River Running (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+        "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+        "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+        "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+        "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+        "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+        "octgn:9042242b-054d-413e-83c7-bb9f42551a8a"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e": 1,
+          "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 1,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1,
+          "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376": 3,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 3,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 2,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 1,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 1,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 1,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 2,
+          "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2": 2,
+          "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32": 1,
+          "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f": 1
+        },
+        "sharedSetAside": {
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1
+        },
+        "sharedStagingArea": {
+          "octgn:56b24d25-a04a-418b-add0-7b1971dae38e": 1,
+          "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c": 1,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 1,
+          "octgn:5af4be18-af74-46ef-a235-9c1002b85338": 1,
+          "octgn:9042242b-054d-413e-83c7-bb9f42551a8a": 1,
+          "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.1",
+      "name": "The River Running",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+        "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+        "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+        "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+        "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+        "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+        "octgn:9042242b-054d-413e-83c7-bb9f42551a8a"
+      ],
+      "cards": [
+        {
+          "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e": 1,
+          "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 2,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1,
+          "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376": 3,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 4,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 3,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 2,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 2,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 2,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 2,
+          "octgn:5af4be18-af74-46ef-a235-9c1002b85338": 1,
+          "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2": 2,
+          "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32": 2,
+          "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c": 2,
+          "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f": 1
+        },
+        "sharedSetAside": {
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1
+        },
+        "sharedStagingArea": {
+          "octgn:56b24d25-a04a-418b-add0-7b1971dae38e": 1,
+          "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c": 1,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 1,
+          "octgn:5af4be18-af74-46ef-a235-9c1002b85338": 1,
+          "octgn:9042242b-054d-413e-83c7-bb9f42551a8a": 1,
+          "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "localPath": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "bytes": 144643,
+      "sha256": "11a61bf9f58b6b2f35e20c4d642b500db2ce65f2fe8a22408104d89aee11164d"
+    },
+    {
+      "code": "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg",
+      "localPath": "/cards/1fdfdb77-31e0-458d-85d1-9c158f12717f.jpg",
+      "bytes": 152237,
+      "sha256": "3fe3cf7254c27ed632fe2eb6b67eb44fa6315ce9a27c106639af99b6e88e3196"
+    },
+    {
+      "code": "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg",
+      "localPath": "/cards/2af71d2e-0b70-43a2-b94e-89770992ef9c.jpg",
+      "bytes": 152032,
+      "sha256": "291eafe5d5dbd170d797f8d82f41505a1ad134666091d3a0a3f18659a8970048"
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "localPath": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "bytes": 151606,
+      "sha256": "18269f1fe0d476aa7ca804087ad75761a16e1aefd1d37151a9afafe4fcdd5ba6"
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "localPath": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "bytes": 149459,
+      "sha256": "f78301084bf3113c676acc28edca0290f4539b30424ae402337fd976277a67cb"
+    },
+    {
+      "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "localPath": "/cards/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "bytes": 152948,
+      "sha256": "afda11c21782327d48a4fc15745a5ef3bf3532572fda8eb9ed5d498f4915a915"
+    },
+    {
+      "code": "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56b24d25-a04a-418b-add0-7b1971dae38e.jpg",
+      "localPath": "/cards/56b24d25-a04a-418b-add0-7b1971dae38e.jpg",
+      "bytes": 154393,
+      "sha256": "449d3be31544b3f221c421a44737aac44335fb695cd0f9fa74ace22b0aaa98e6"
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "localPath": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "bytes": 153229,
+      "sha256": "4cf09d61e218c21a66b1cb564c7cc6052d93a7c8c01bb765bc6306e76933d478"
+    },
+    {
+      "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "localPath": "/cards/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "bytes": 150161,
+      "sha256": "8b4642b1c4719f101b118d6b4040f97de51d9a2f3a8b8b5896cb02b4e8e22898"
+    },
+    {
+      "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg",
+      "localPath": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.jpg",
+      "bytes": 166971,
+      "sha256": "6a8760fd8000501b708930dcea6a73f87d582f96421f92ad6b96fed3bbffd806"
+    },
+    {
+      "code": "octgn:8bd42629-07e8-4d8e-ac82-1f463c1cb7e6",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.B.jpg",
+      "localPath": "/cards/8bd42629-07e8-4d8e-ac82-1f463c1cb7e6.B.jpg",
+      "bytes": 159012,
+      "sha256": "0928abea1790f9ef2b42c21fcfd1d837dce801700d364568a69b8cab5f3d2872"
+    },
+    {
+      "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "localPath": "/cards/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "bytes": 162030,
+      "sha256": "fcaebc700ee888815f66e9eb87f1ef5da2e80bbe25db1dde0e1b92ef59da79f5"
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "localPath": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "bytes": 141699,
+      "sha256": "7fae932ba8a2834c51448feb5c810fa87fcc6c0e40865a2dc0e2d4878e8b5e27"
+    },
+    {
+      "code": "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg",
+      "localPath": "/cards/a750ab9c-9b29-4ca4-8221-8fa27cd74fe2.jpg",
+      "bytes": 153407,
+      "sha256": "d58e243d1f907051657915dfcfbe8fab7dbf65318a9e62f81cb04f550e16809c"
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "localPath": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "bytes": 166180,
+      "sha256": "affe3681b465cf4e91f9916d83eeefed4037d1227908860be740f25e32b01952"
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "localPath": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "bytes": 152172,
+      "sha256": "0c06cb926feabe9ffa8312f577e90023c3cec6912fb22979b35f29264281dc2a"
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "localPath": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "bytes": 152157,
+      "sha256": "6eb911620b8e327843c0d4fbb44b465fc1abc2313bf9dedc03d2b2b4fc123027"
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "localPath": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "bytes": 133557,
+      "sha256": "bed38b94436243d1c814f43ade753106e2664f90cd0ffcd71b7f7cff8d323596"
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "localPath": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "bytes": 144450,
+      "sha256": "413e91e94d860fd0638b2c3b69219bc88cafd194d665a85b3d529f3bc161a625"
+    },
+    {
+      "code": "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg",
+      "localPath": "/cards/f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32.jpg",
+      "bytes": 148074,
+      "sha256": "ffb4137230cedd9eecd49db754bf0138ef4f1fc9db033e81e8028491005b69f8"
+    },
+    {
+      "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg",
+      "localPath": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.jpg",
+      "bytes": 163236,
+      "sha256": "a896a1870583a0cb01c37e689ed548276db55d9ddff72be4fd0455de3a3c8a82"
+    },
+    {
+      "code": "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbc99604-7183-41fe-b37c-d5a8f54bea0e.B.jpg",
+      "localPath": "/cards/fbc99604-7183-41fe-b37c-d5a8f54bea0e.B.jpg",
+      "bytes": 155816,
+      "sha256": "043dbb0b44d1df8972c5b773e7c76e587a9363a93e8012b839c56ec2e4b60067"
+    }
+  ]
+}

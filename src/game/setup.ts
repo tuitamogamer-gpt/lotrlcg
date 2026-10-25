@@ -1,3 +1,5 @@
+import { shadowEastPlayerScenarioProblem } from "./deck-setup";
+import * as ShadowEastPlayers from "./shadow-east-player";
 import { eredMithrinPlayerSetup } from "./ered-mithrin-player";
 import { encounterReserveDefaults } from "./encounter-reserves";
 import { batch4PlayerSetup } from "./batch4-player";
@@ -97,7 +99,21 @@ export function validateDeckList(
   deck: Record<string, number>,
   originalStarter = false,
 ) {
-  const size = Object.values(deck).reduce((n, v) => n + v, 0);
+  const size = Object.entries(deck).reduce(
+    (n, [code, count]) =>
+      n +
+      (SCRIPTED.has(code) && card(code).type_code === "contract" ? 0 : count),
+    0,
+  );
+  requireRule(
+    Object.entries(deck).reduce(
+      (n, [code, count]) =>
+        n +
+        (SCRIPTED.has(code) && card(code).type_code === "contract" ? count : 0),
+      0,
+    ) <= 1,
+    "Choose at most one contract to begin in play.",
+  );
   requireRule(
     (size >= 50 && size <= 100) || (size === 30 && originalStarter),
     "Use an original 30-card starter list or at least 50 cards for a custom deck.",
@@ -163,6 +179,11 @@ export function createGame(
   const scenarioId = options.scenarioId ?? "mirkwood";
   const playMode = options.playMode ?? "normal";
   const chosenHeroes = options.seats?.flatMap((p) => p.heroes) ?? heroCodes;
+  const shadowEastProblem = shadowEastPlayerScenarioProblem(
+    scenarioId,
+    chosenHeroes,
+  );
+  requireRule(!shadowEastProblem, shadowEastProblem ?? "");
   requireRule(
     scenarioId !== "fords-of-isen" ||
       !chosenHeroes.some((c) => card(c).name === "Gríma"),
@@ -369,7 +390,21 @@ export function createGame(
     s.eredEagleReserves[player] = eagles;
   }
   if (!s.table) s.startingThreat = s.threat;
-  if (options.easy) {
+  ShadowEastPlayers.shadowEastPlayerSetup(s);
+  if (s.choice || s.queue.length) {
+    s.setupPending = true;
+    enqueue(s, fx("gameSetupContinue"));
+  } else finishGameSetup(s);
+  flush(s);
+  syncAttachmentText(s);
+  return s;
+}
+
+/** Saved continuation: Ring selection resolves before hands and scenario setup. */
+export function finishGameSetup(s: GameState) {
+  delete s.setupPending;
+  const { scenarioId, playMode, campaign } = s;
+  if (s.easyMode) {
     eachSeat(s, () => {
       for (const h of s.heroes) h.resources += 1;
     });
@@ -542,6 +577,7 @@ export function createGame(
     }
     enqueue(s, fx("capturePrisoner"));
   }
+  ShadowEastPlayers.shadowEastPlayerEncounterSetup(s);
   batch4PlayerSetup(s);
   eredMithrinPlayerSetup(s);
   log(
@@ -558,7 +594,4 @@ export function createGame(
       cards: s.staging.map((u) => ({ code: u.code, label: "Scenario setup" })),
       lines: s.log.slice(),
     });
-  flush(s);
-  syncAttachmentText(s);
-  return s;
 }

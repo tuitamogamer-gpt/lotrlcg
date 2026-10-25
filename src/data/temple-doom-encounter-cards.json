@@ -1,0 +1,822 @@
+[
+  {
+    "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+    "octgnid": "039a688f-8bef-4a77-97c4-84b942f3d91a",
+    "name": "Thane Ulchor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Indestructible.\nImmune to player card effects.X is 1 more than the number of quest stages in the victory display. Cannot be engaged unless X is equal to 5.Forced: When Thane Ulchor attacks and destroys a character, place 1 damage token on Tribute to Mordor.",
+    "is_unique": true,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 54,
+    "quantity": 1,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 50,
+    "victory": 6,
+    "encounter_set": "Temple of Doom",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "50",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 54,
+        "quantity": 1,
+        "octgnid": "039a688f-8bef-4a77-97c4-84b942f3d91a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+    "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+    "name": "Fanaticism",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "While attached to an enemy, counts as a Condition attachment with the text: `Attached enemy gets +1 [threat], +1 [attack], +1 [defense], and is immune to player card effects.`When Revealed: Attach to the Easterling enemy with the lowest [defense] without a copy of Fanaticism. Otherwise, Fanaticism gains surge.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 60,
+    "quantity": 2,
+    "encounter_set": "Ulchor's Guard",
+    "printed_stats": {},
+    "imagesrc": "/cards/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 60,
+        "quantity": 2,
+        "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+    "octgnid": "20a011e7-0153-45b1-9c6c-a68753683a79",
+    "name": "Tribute to Mordor",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: At the end of the round, place 1 damage token here. Then, if there are 4 or more damage tokens here, remove 4 of them and reveal the top card of the Power of Mordor deck. If you cannot, the player lose the game.This stage cannot be the active quest while Thane Ulchor has any hit points remaining. When this stage is defeated, the players win the game.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 53,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Temple of Doom",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "12"
+    },
+    "imagesrc": "/cards/20a011e7-0153-45b1-9c6c-a68753683a79.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "20a011e7-0153-45b1-9c6c-a68753683a79",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20a011e7-0153-45b1-9c6c-a68753683a79.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  },
+  {
+    "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+    "octgnid": "24ffba46-0c66-4559-ae13-d0980180f537",
+    "name": "Place of Evil",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 1 damage token on Tribute to Mordor. Then, either place 1 additional damage token on Tribute to Mordor, or Place of Evil gains surge.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 57,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [Attack]. If this attack destroys a character, place 1 damage token on Tribute to Mordor. ",
+    "encounter_set": "Temple of Doom",
+    "printed_stats": {},
+    "imagesrc": "/cards/24ffba46-0c66-4559-ae13-d0980180f537.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 57,
+        "quantity": 3,
+        "octgnid": "24ffba46-0c66-4559-ae13-d0980180f537",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24ffba46-0c66-4559-ae13-d0980180f537.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+    "octgnid": "2744032b-21e4-4b52-a66e-f4c1926f451b",
+    "name": "Hall of Horrors",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "X is 1 more than the number of quest stages in the victory display.Forced: When Hall of Horrors leaves play, each player deals X damage to a character he controls.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 56,
+    "quantity": 3,
+    "quest": 5,
+    "encounter_set": "Temple of Doom",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 56,
+        "quantity": 3,
+        "octgnid": "2744032b-21e4-4b52-a66e-f4c1926f451b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+    "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+    "name": "Khamûl the Easterling",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl. Easterling. Mordor.",
+    "text": "Immune to player card effects.Khamul the Easterling engages the first player.Only the engaged player can declare attackers or defenders against Khamul the Easterling.",
+    "is_unique": true,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 66,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 6,
+    "defense": 4,
+    "health": 9,
+    "engagement": 49,
+    "encounter_set": "The Power of Mordor",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "4",
+      "health": "9",
+      "engagement": "49"
+    },
+    "imagesrc": "/cards/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 66,
+        "quantity": 1,
+        "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+    "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+    "name": "The Tower of Barad-dûr",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects.The player cannot travel here.Each player`s threat elimination level is reduced by 5.",
+    "is_unique": true,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 67,
+    "quantity": 1,
+    "threat": 5,
+    "encounter_set": "The Power of Mordor",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "-"
+    },
+    "imagesrc": "/cards/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+    "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+    "name": "Narrow Opening",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Narrow Opening is the active location, each player cannot play more than 1 card each round.Forced: When Narrow Opening leaves play, each player discards 1 random card from his hand.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 62,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 62,
+        "quantity": 2,
+        "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "name": "Easterling Raider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Archery 1.\nEasterling Raider gets +1 [attack] and +1 [defense] for each Easterling attachment on it.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 20,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "engagement": 28,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it has an Easterling attachment).",
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "3",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 20,
+        "quantity": 3,
+        "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+    "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+    "name": "Under the Watchful Eye",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "When Revealed: Each player with more than 5 cards in his hand discards cards from his hand until he has only 5.Forced: After a player draws any number of cards, he raises his threat by 1.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 68,
+    "quantity": 1,
+    "encounter_set": "The Power of Mordor",
+    "printed_stats": {},
+    "imagesrc": "/cards/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "name": "Recurve Bow",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gains Archery 2.`When Revealed: Attach to the highest engagement cost Easterling enemy without a Recurve Bow.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 23,
+    "quantity": 2,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {},
+    "imagesrc": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 23,
+        "quantity": 2,
+        "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "name": "Fearful Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Until the end of the round, treat the printed text box of each character as if it were blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 64,
+    "quantity": 2,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {},
+    "imagesrc": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 64,
+        "quantity": 2,
+        "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Defending character cannot ready until the end of the round."
+  },
+  {
+    "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+    "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+    "name": "Twisted Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until an enemy is discarded. Add that enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 61,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Discard the top card of the encounter deck. If that card is an enemy, add it to the staging area.",
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 61,
+        "quantity": 2,
+        "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+    "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+    "name": "Crumbling Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Make Crumbling Passage the active location, returning any previously active location to the staging area.Forced: When Crumbling Passage leaves play, deal 1 damage to each exhausted character.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 63,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 3,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 63,
+        "quantity": 2,
+        "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+    "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+    "name": "Ulchor's Guard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "While Thane Ulchor is engaged with a player, Ulchor`s Guard engages that player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 58,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 1,
+    "health": 5,
+    "engagement": 25,
+    "shadow": "Shadow: Attacking enemy gets +2 [Defense] until the end of the phase.",
+    "encounter_set": "Ulchor's Guard",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "1",
+      "health": "5",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 58,
+        "quantity": 4,
+        "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+    "octgnid": "89fba072-2af9-460c-8556-3bf3a8f0091e",
+    "name": "Temple of Sauron",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "Forced: When Temple of Sauron leaves play, place 1 damage token on Tribute to Mordor.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 55,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 1,
+    "shadow": "Shadow: Attacking enemy gets +1 [Attack] for each quest stage in the victory display.",
+    "encounter_set": "Temple of Doom",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "1"
+    },
+    "imagesrc": "/cards/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 55,
+        "quantity": 2,
+        "octgnid": "89fba072-2af9-460c-8556-3bf3a8f0091e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+    "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+    "name": "Ulchor's Rage",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Thane Ulchor makes an immediate attack against the first player. If no attack is made this way, Ulchor`s Rage gains surge.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 59,
+    "quantity": 3,
+    "shadow": "Shadow: Deal 1 damage to the defending character.",
+    "encounter_set": "Ulchor's Guard",
+    "printed_stats": {},
+    "imagesrc": "/cards/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 59,
+        "quantity": 3,
+        "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "name": "Warrior of Rhûn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Forced: When Warrior of Rhun attacks, attach the top Easterling treachery in the discard pile to it.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 21,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 4,
+    "engagement": 34,
+    "shadow": "Shadow: Attach the top Easterling treachery in the discard pile to attacking enemy.",
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "4",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 21,
+        "quantity": 3,
+        "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+    "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+    "name": "Sword of Rhûn",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gets +2 [attack].`When Revealed: Attach to the Easterling enemy with the lowest [attack] without a Sword of Rhun.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 22,
+    "quantity": 2,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {},
+    "imagesrc": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 22,
+        "quantity": 2,
+        "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+    "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+    "name": "Warriors of the East",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nForced: After an Easterling enemy enters play, attach the top Easterling treachery in the discard pile to that enemy.Forced: After Warriors of the East becomes the current quest, the highest [attack] Easterling enemy in the staging area attacks the first player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 24,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Easterling Raiders",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+    "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+    "name": "The Armies of Mordor",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Forced: After a non-unique enemy engages a player, that enemy cannot take damage until the end of the round.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 69,
+    "quantity": 1,
+    "encounter_set": "The Power of Mordor",
+    "printed_stats": {},
+    "imagesrc": "/cards/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+    "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+    "name": "Lost in the Dark",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player places the top 10 cards of his deck facedown under his threat dial (without looking at them). When this stage is defeated, each player shuffles all cards under his threat dial back into his deck.Forced: After a player raises his threat by any amount, he discards the top card from under his threat dial.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 65,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+    "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+    "name": "Covered in Darkness",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Doomed 5.\nEach player`s threat cannot be reduced by more than 1 each round by player card effects.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 70,
+    "quantity": 1,
+    "encounter_set": "The Power of Mordor",
+    "printed_stats": {},
+    "imagesrc": "/cards/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

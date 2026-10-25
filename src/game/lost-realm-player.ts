@@ -18,6 +18,7 @@ import {
   prepend,
   removePlayerShadowCard,
   canPlayerAffectShadow,
+  canChoosePlayerShadowDiscard,
   requireRule,
   shuffle,
   skip,
@@ -495,14 +496,22 @@ export function realmEffect(s: GameState, e: Effect) {
         choose(
           s,
           "Tireless Hunters · Discard a shadow",
-          u.shadows.map((code, i) => ({
-            id: `shadow-${i}`,
-            label: u.faceupShadows?.[i]
-              ? `Discard ${card(code).name}`
-              : `Discard facedown shadow ${i + 1}`,
-            ...(u.faceupShadows?.[i] ? { code } : {}),
-            effects: [fx("realmDiscardShadow", { target: u.id, value: i })],
-          })),
+          u.shadows.flatMap((code, i) =>
+            canChoosePlayerShadowDiscard(s, u, i)
+              ? [
+                  {
+                    id: `shadow-${i}`,
+                    label: u.faceupShadows?.[i]
+                      ? `Discard ${card(code).name}`
+                      : `Discard facedown shadow ${i + 1}`,
+                    ...(u.faceupShadows?.[i] ? { code } : {}),
+                    effects: [
+                      fx("realmDiscardShadow", { target: u.id, value: i }),
+                    ],
+                  },
+                ]
+              : [],
+          ),
         );
       break;
     case "realmDiscardShadow":

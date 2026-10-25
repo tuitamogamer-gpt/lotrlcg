@@ -62,7 +62,11 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       host.immuneToPlayerEffects = true;
     else delete host.immuneToPlayerEffects;
     for (const attachment of host.attachments) {
-      if (blanked || attachment.facedown || attachment.namelessCard)
+      if (
+        (blanked && attachment.code !== "21001") ||
+        attachment.facedown ||
+        attachment.namelessCard
+      )
         attachment.blanked = true;
       else delete attachment.blanked;
       const traits = [
@@ -73,6 +77,10 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       else delete attachment.dynamicTraits;
     }
     const normalBlanking =
+      host.attachments.some(
+        (a) =>
+          a.code === "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32" && !a.blanked,
+      ) ||
       khazadBlanked(host) ||
       Mordor.mordorBlanked(s, host) ||
       (Mumakil.mumakilCharacterBlanked(s, host) &&
@@ -90,7 +98,10 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       Desert.desertCrossingCharacterBlanked(s, host) ||
       (Mumakil.mumakilCharacterBlanked(s, host) &&
         Mumakil.mumakilPreservesTraits(s, host));
-    if (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
+    if (
+      host.code !== "21072.B" &&
+      (normalBlanking || coldBlanking || safeBlanking || wrathBlanking)
+    )
       host.blanked = true;
     else delete host.blanked;
     if (coldBlanking && !normalBlanking && !wrathBlanking)

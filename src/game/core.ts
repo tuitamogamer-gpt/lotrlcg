@@ -1,3 +1,4 @@
+import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import * as BatchSupport from "./batch4-player-support";
@@ -58,7 +59,7 @@ import * as Dread from "./dread-realm";
 import * as Rhu from "./rhudaur";
 import * as Carn from "./carn-dum";
 import { gramAllAreaUnits, gramStageInfo } from "./mount-gram-support";
-import { isHero } from "./card-types";
+import { isHero, unitType } from "./card-types";
 import * as Antlered from "./antlered";
 import * as Celebrimbor from "./celebrimbor";
 import { imageUrl } from "./cards";
@@ -353,12 +354,36 @@ export function removeShadowCard(enemy: Unit, index: number) {
 
 export const canPlayerAffectShadow = (s: GameState, enemy: Unit) =>
   !batch4Scenario(s).shadowImmune?.(s, enemy);
+/** Discard legality at resolution, including printed restrictions on retained shadows. */
+export const canPlayerDiscardShadow = (
+  s: GameState,
+  enemy: Unit,
+  index: number,
+) =>
+  index >= 0 &&
+  index < enemy.shadows.length &&
+  canPlayerAffectShadow(s, enemy) &&
+  !batch4Scenario(s).cannotDiscardShadow?.(s, enemy, enemy.shadows[index]);
+/** A facedown card's hidden text must not change the choices shown to a player. */
+export const canChoosePlayerShadowDiscard = (
+  s: GameState,
+  enemy: Unit,
+  index: number,
+) =>
+  index >= 0 &&
+  index < enemy.shadows.length &&
+  canPlayerAffectShadow(s, enemy) &&
+  ((!enemy.faceupShadows?.[index] &&
+    index >= (enemy.revealedShadowCount ?? 0)) ||
+    canPlayerDiscardShadow(s, enemy, index));
 export const removePlayerShadowCard = (
   s: GameState,
   enemy: Unit,
   index: number,
 ) =>
-  canPlayerAffectShadow(s, enemy) ? removeShadowCard(enemy, index) : undefined;
+  canPlayerDiscardShadow(s, enemy, index)
+    ? removeShadowCard(enemy, index)
+    : undefined;
 
 export function random(s: GameState) {
   s.seed = (s.seed + 0x6d2b79f5) | 0;
@@ -505,7 +530,9 @@ export function restrictAttachments(s: GameState, u: Unit) {
       id: a.id,
       code: a.code,
       label: `Discard ${card(a.code).name}`,
-      effects: [fx("discardAttachment", { target: u.id, source: a.id })],
+      effects: [
+        fx("discardAttachment", { target: u.id, source: a.id, flag: true }),
+      ],
     })),
     `Choose one attachment to discard. This character has ${restrictedSlots(u)} restricted slots used and may keep ${restrictedLimit(u)}.`,
   );
@@ -536,6 +563,7 @@ export function stats(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
   const c = card(u.code);
   const eredFinalBonus = EredFinalSupport.eredFinalPlayerStats(s, u);
+  const shadowEastBonus = ShadowEastSupport.shadowEastPlayerStats(s, u);
   const bonus = expansionStats(s, u);
   const carrockBonus = carrockStatBonus(s, u);
   const gondorBonus = gondorRoundStats(s, u);
@@ -572,7 +600,7 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           BatchSupport.batch4PlayerStats(s, u).will,
-          eredFinalBonus.will,
+          eredFinalBonus.will + shadowEastBonus.will,
           EredSupport.eredMithrinPlayerStats(s, u).will +
             WildsSupport.wildsPlayerStats(s, u).will,
           chetwoodBonus.will,
@@ -646,6 +674,7 @@ export function stats(s: GameState, u: Unit) {
         (batch4Scenario(s).stats?.(s, u).attack ?? 0) +
         BatchSupport.batch4PlayerStats(s, u).attack +
         eredFinalBonus.attack +
+        shadowEastBonus.attack +
         EredSupport.eredMithrinPlayerStats(s, u).attack +
         WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
@@ -695,7 +724,7 @@ export function stats(s: GameState, u: Unit) {
         (u.code === "01004" && !u.blanked ? u.damage : 0) +
         u.attachments.filter((a) => !a.blanked && a.code === "01041").length *
           (c.traits?.includes("Dwarf") ? 2 : 1) +
-        (["enemy", "ship-enemy"].includes(c.type_code)
+        (["enemy", "ship-enemy"].includes(unitType(u))
           ? u.boost +
             (u.code === "01090" ? u.resources * 2 : 0) +
             (u.code === "02021" ? 2 * cluesInPlay(s) : 0)
@@ -722,6 +751,7 @@ export function stats(s: GameState, u: Unit) {
             (batch4Scenario(s).stats?.(s, u).defense ?? 0) +
             BatchSupport.batch4PlayerStats(s, u).defense +
             eredFinalBonus.defense +
+            shadowEastBonus.defense +
             EredSupport.eredMithrinPlayerStats(s, u).defense +
             WildsSupport.wildsPlayerStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
@@ -767,6 +797,7 @@ export function stats(s: GameState, u: Unit) {
       (batch4Scenario(s).stats?.(s, u).health ?? 0) +
       EredSupport.eredMithrinPlayerStats(s, u).health +
       eredFinalBonus.health +
+      shadowEastBonus.health +
       WildsSupport.wildsPlayerStats(s, u).health +
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
@@ -844,6 +875,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
+                ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 WildsSupport.wildsPlayerCostReduction(s, c, target) -
                 EredSupport.eredMithrinPlayerCostReduction(s, c, target) +
                 Dike.dikePlayCost(
@@ -992,7 +1024,7 @@ export const stagingThreat = (s: GameState) =>
       BloodQuest.bloodGondorStagingBonus(s) +
       s.staging
         .filter((u) =>
-          ["enemy", "ship-enemy", "location"].includes(card(u.code).type_code),
+          ["enemy", "ship-enemy", "location"].includes(unitType(u)),
         )
         .filter(
           (u) => !RacePlayerSupport.raceHaradPlayerStagingThreatExcluded(s, u),
@@ -1039,6 +1071,7 @@ const baseLocationQuest = (s: GameState, u: Unit) =>
     Fords.fordsLocationBonus(s, u) +
     Fangorn.fangornLocationBonus(s, u) +
     collectorLocationQuestBonus(u) +
+    ShadowEastSupport.shadowEastPlayerLocationQuestBonus(s, u) +
     BloodQuest.bloodGondorLocationBonus(s, u) +
     stewardFearLocationQuestBonus(s, u) +
     Rhu.rhudaurLocationQuestBonus(s, u) +
@@ -1146,6 +1179,7 @@ export const enemyAttackPrevented = (
   Depths.depthsCannotAttack(s, u) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
+  ShadowEastSupport.shadowEastPlayerPreventAttack(s, u, player) ||
   EredFinalSupport.eredFinalPlayerPreventAttack(s, u, player) ||
   has(u, "01069") ||
   amonPlayerEnemyCannotAttack(s, u, player) ||
@@ -1421,6 +1455,7 @@ export function draw(
   if (n) {
     log(s, `Drew ${n} ${n === 1 ? "card" : "cards"}.`);
     Fords.fordsCardsDrawn(s);
+    batch4Scenario(s).cardsDrawn?.(s, activeSeat(s), n);
   }
 }
 

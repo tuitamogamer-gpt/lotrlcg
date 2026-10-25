@@ -3,6 +3,18 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-river-running": {
+    name: "The River Running",
+    detail: "Escape the Easterling pursuit on the journey to Dorwinion",
+  },
+  "danger-in-dorwinion": {
+    name: "Dorwinion",
+    detail: "Gather evidence and expose the hidden cult",
+  },
+  "temple-of-doom": {
+    name: "The Temple of Sauron",
+    detail: "Enter the temple and confront the power of Mordor",
+  },
   "mount-gundabad": {
     name: "Mount Gundabad",
     detail: "Reforge Wormsbane and confront Dagnir in the mountain",
@@ -353,6 +365,9 @@ export const PLAYMAT_CHOICES = [
   "the-ghost-of-framsburg",
   "mount-gundabad",
   "the-fate-of-wilderland",
+  "the-river-running",
+  "danger-in-dorwinion",
+  "temple-of-doom",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
   "the-crossings-of-poros",

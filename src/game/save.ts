@@ -1,3 +1,11 @@
+import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
+import {
+  shadowEastPlayerUnits,
+  validateShadowEastPlayers,
+} from "./shadow-east-player-support";
+import { validateRiverRunning } from "./river-running-support";
+import { validateDangerDorwinion } from "./danger-dorwinion-support";
+import { validateTempleDoom } from "./temple-doom-support";
 import { validateBlackSerpent } from "./black-serpent-support";
 import { validateWitheredHeath } from "./withered-heath-support";
 import { validateRoamRhovanion } from "./roam-rhovanion-support";
@@ -40,7 +48,7 @@ import { validateEttenmoors } from "./ettenmoors-support";
 import { validateRhudaur } from "./rhudaur-support";
 import { validateCarnDum } from "./carn-dum-support";
 import { validateDreadRealm, DREAD } from "./dread-realm-support";
-import { isHero, isAlly } from "./card-types";
+import { isHero, isAlly, unitType } from "./card-types";
 import { ANGMAR } from "./angmar-player-support";
 import {
   validateChetwood,
@@ -108,6 +116,15 @@ export function validateSave(
     const s = value as GameState;
     const seatCount = inheritedSeatCount ?? s.table?.seats.length ?? 1;
     if (!validFlow(s.flow)) return false;
+    if (
+      inheritedSeatCount === undefined &&
+      s.setupPending !== undefined &&
+      (s.setupPending !== true ||
+        s.phase !== "setup" ||
+        !s.queue?.some((e) => e.kind === "gameSetupContinue") ||
+        !s.shadowEastPlayers)
+    )
+      return false;
     if (
       s.refreshReadied !== undefined &&
       (!s.refreshReadied ||
@@ -256,6 +273,15 @@ export function validateSave(
       (a.owner === undefined ||
         (integer(a.owner) && a.owner >= 0 && a.owner < seatCount));
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
+      [c.riverPursuitOnKill, c.dorwinionUnderGuard, c.doomTributeOnKill].every(
+        (n) => n === undefined || (integer(n) && n >= 0),
+      ) &&
+      [
+        c.dorwinionKilledCharacter,
+        c.dorwinionKilledAlly,
+        c.doomUlchor,
+        c.doomKilledCharacter,
+      ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
       (c.freshConsideredShadows === undefined ||
@@ -790,7 +816,11 @@ export function validateSave(
       return false;
     if (
       inheritedSeatCount === undefined &&
-      (!validateVoyage(s, validUnit as (value: unknown) => boolean) ||
+      !s.setupPending &&
+      (!validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
+        !validateDangerDorwinion(s, validUnit as (v: unknown) => boolean) ||
+        !validateTempleDoom(s, validUnit as (v: unknown) => boolean) ||
+        !validateVoyage(s, validUnit as (value: unknown) => boolean) ||
         !validateFateNumenor(s, validUnit as (value: unknown) => boolean) ||
         !validateRaidGreyHavens(s, validUnit as (value: unknown) => boolean) ||
         !validateStormcaller(s, validUnit as (value: unknown) => boolean) ||
@@ -1039,9 +1069,7 @@ export function validateSave(
     if (
       !s.heroes.every(isHero) ||
       !s.allies.every(isAlly) ||
-      !s.engaged.every((u) =>
-        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
-      )
+      !s.engaged.every((u) => ["enemy", "ship-enemy"].includes(unitType(u)))
     )
       return false;
     if (
@@ -1147,6 +1175,11 @@ export function validateSave(
       )
         return false;
     }
+    if (
+      inheritedSeatCount === undefined &&
+      !validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean)
+    )
+      return false;
     const validEffect = (e: Effect): boolean =>
       [e?.effects, e?.cancelledEffects, e?.costEffects].every(
         (list) =>
@@ -1159,6 +1192,8 @@ export function validateSave(
           e.player >= 0 &&
           e.player < (s.table?.seats.length ?? 1))) &&
       (e.noShadow === undefined || typeof e.noShadow === "boolean") &&
+      (e.revealOrigin === undefined ||
+        ["encounter", "underworld", "power"].includes(e.revealOrigin)) &&
       (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
       (e.shadowEnemyId === undefined || typeof e.shadowEnemyId === "string") &&
       validDamageContextEffectText(e.text) &&
@@ -1462,6 +1497,8 @@ export function validateSave(
       ...(s.wildsRhovanion?.guardedHeroes.map((p) => p.hero) ?? []),
       ...(s.wildsRhovanion?.guardedPlayerCards.map((p) => p.card) ?? []),
       ...eredScenarioUnits(s),
+      ...shadowEastScenarioUnits(s),
+      ...shadowEastPlayerUnits(s),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

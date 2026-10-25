@@ -1,3 +1,5 @@
+import * as ShadowEastPlayers from "./shadow-east-player";
+import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import { ERED_GUARDED } from "./ered-mithrin-player-support";
 import * as EredFinalPlayers from "./ered-final-player";
@@ -5,6 +7,7 @@ import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
 import { cirithGuratPublicState } from "./cirith-gurat-support";
 import * as BatchPlayers from "./batch4-player";
+import { shadowEastScenarioPublicState } from "./shadow-east-scenario-state";
 import { eredScenarioPublicState } from "./ered-scenario-state";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
@@ -60,7 +63,7 @@ import { rangerPlayProblem } from "./ranger-north";
 import * as Realm from "./lost-realm-player";
 import * as Angmar from "./angmar-player";
 import { angmarDiscardEvents } from "./angmar-player-support";
-import { isHero } from "./card-types";
+import { isHero, unitType } from "./card-types";
 import * as Wastes from "./wastes-eriador";
 import * as Gram from "./mount-gram";
 import * as Etten from "./ettenmoors";
@@ -666,7 +669,7 @@ export function optionalEngagementProblem(
   )
     return "You may optionally engage one enemy during the encounter phase.";
   if (
-    !["enemy", "ship-enemy"].includes(card(u.code).type_code) ||
+    !["enemy", "ship-enemy"].includes(unitType(u)) ||
     !s.staging.some((enemy) => enemy.id === u.id)
   )
     return "Choose an enemy in staging.";
@@ -697,8 +700,7 @@ export function optionalEngagementProblem(
     u.code === "01083" &&
     s.staging.some(
       (enemy) =>
-        enemy.id !== u.id &&
-        ["enemy", "ship-enemy"].includes(card(enemy.code).type_code),
+        enemy.id !== u.id && ["enemy", "ship-enemy"].includes(unitType(enemy)),
     )
   )
     return "Goblin Sniper cannot be optionally engaged while another enemy is in staging.";
@@ -813,6 +815,7 @@ export function canPlay(
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
   const batchProblem =
+    ShadowEastPlayers.shadowEastPlayerPlayProblem(s, u) ??
     EredFinalPlayers.eredFinalPlayerPlayProblem(s, u) ??
     BatchPlayers.batch4PlayerPlayProblem(s, u) ??
     WildsPlayers.wildsPlayerPlayProblem(s, u) ??
@@ -1518,6 +1521,7 @@ export function resolvePlayerCard(
       s,
       u,
       () => {
+        ShadowEastPlayers.shadowEastPlayerEventCost(s, u, target);
         EredFinalPlayers.eredFinalPlayerEventCost(s, u, target);
         EredPlayers.eredMithrinPlayerEventCost(s, u, target);
         WildsPlayers.wildsPlayerEventCost(s, u, target);
@@ -1548,6 +1552,7 @@ export function resolvePlayerCard(
     RacePlayers.raceHaradPlayerEventPlayed(s, u);
   }
   if (played) {
+    ShadowEastPlayers.shadowEastPlayerCardPlayed(s, c, u, fromHand);
     EredFinalPlayers.eredFinalPlayerCardPlayed(s, c, u, fromHand);
     WildsPlayers.wildsPlayerCardPlayed(s, c);
     batch4Scenario(s).playerCardPlayed?.(s, u);
@@ -1569,6 +1574,13 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !ShadowEastPlayers.shadowEastPlayerEvent(
+      s,
+      physical.code,
+      e.source,
+      physical.id,
+      e.count,
+    ) &&
     !EredFinalPlayers.eredFinalPlayerEvent(
       s,
       physical.code,
@@ -1666,6 +1678,7 @@ export function playTargets(
           !Drowned.drownedCannotAttach(s, target) &&
           !heirsCannotHaveAttachments(target) &&
           EredFinalSupport.eredFinalPlayerCanHaveAttachments(target) &&
+          ShadowEastSupport.shadowEastPlayerCanHaveAttachments(target) &&
           Trials.trialsCanAttach(target, u.code))) &&
       (card(u.code).type_code !== "attachment" ||
         target.blanked ||
@@ -1686,6 +1699,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    ShadowEastPlayers.shadowEastPlayerPlayTargets(s, c.code) ??
     EredFinalPlayers.eredFinalPlayerPlayTargets(s, c.code) ??
     BatchPlayers.batch4PlayerPlayTargets(s, c.code) ??
     WildsPlayers.wildsPlayerPlayTargets(s, c.code) ??
@@ -1800,7 +1814,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
         [
           ...allEngaged(s),
           ...s.staging.filter((e) =>
-            ["enemy", "ship-enemy"].includes(card(e.code).type_code),
+            ["enemy", "ship-enemy"].includes(unitType(e)),
           ),
         ].some((enemy) => attackersFor(s, enemy).some((x) => x.id === a.id)),
     );
@@ -1820,7 +1834,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   if (u.code === "01063") return allCharacters(s).filter((a) => a.damage > 0);
   if (u.code === "01065")
     return s.staging.filter((a) =>
-      ["enemy", "ship-enemy"].includes(card(a.code).type_code),
+      ["enemy", "ship-enemy"].includes(unitType(a)),
     );
   if (u.code === "01066")
     return s.staging.filter(
@@ -1854,6 +1868,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 
 export const needsTarget = (u: Unit) =>
   [
+    "21010",
     "19114",
     "19149",
     "19153",
@@ -2652,8 +2667,14 @@ export function applyAction(input: GameState, action: Action): GameState {
         s.phase === "setup" && !s.mulled,
         "You may mulligan once before the first round.",
       );
-      for (const u of s.hand) putPlayerDeck(s, u);
-      s.hand = [];
+      {
+        const kept = new Set(
+          s.shadowEastPlayers?.setupHandIds?.[activeSeat(s)] ?? [],
+        );
+        for (const u of s.hand.filter((u) => !kept.has(u.id)))
+          putPlayerDeck(s, u);
+        s.hand = s.hand.filter((u) => kept.has(u.id));
+      }
       shuffle(s, s.deck);
       draw(s, 6);
       s.mulled = true;
@@ -2661,6 +2682,8 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "KEEP":
       requireRule(s.phase === "setup", "Your opening hand is already kept.");
+      if (s.shadowEastPlayers?.setupHandIds)
+        delete s.shadowEastPlayers.setupHandIds[activeSeat(s)];
       if (passSeat(s)) {
         if (RacePlayers.raceHaradPlayerSetup(s))
           s.queue.push(fx("openingHandsKept", { player: firstPlayer(s) }));
@@ -3182,8 +3205,7 @@ export function applyAction(input: GameState, action: Action): GameState {
     case "ENGAGE": {
       const u = s.staging.find(
         (x) =>
-          x.id === action.id &&
-          ["enemy", "ship-enemy"].includes(card(x.code).type_code),
+          x.id === action.id && ["enemy", "ship-enemy"].includes(unitType(x)),
       );
       requireRule(u, "Choose an enemy in staging.");
       requireRule(
@@ -3251,7 +3273,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       const enemy = [
         ...allEngaged(s),
         ...s.staging.filter((u) =>
-          ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+          ["enemy", "ship-enemy"].includes(unitType(u)),
         ),
       ].find(
         (u) =>
@@ -3348,6 +3370,8 @@ export function publicState(s: GameState) {
   });
   return {
     ...eredScenarioPublicState(s),
+    ...shadowEastScenarioPublicState(s),
+    shadowEastPlayers: ShadowEastSupport.shadowEastPlayerPublicState(s),
     ...(s.depths
       ? {
           depths: {

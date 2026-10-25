@@ -51,8 +51,14 @@ export function automatedScenarioId(reference: { name: string; mode: string }) {
   const name = reference.name
     .replace(/\s*\((?:Easy|Campaign)\)\s*$/i, "")
     .trim();
+  // The frozen source recipe drops the article printed in the MEC77 title.
+  const canonicalName =
+    name.toLocaleLowerCase("en") === "temple of doom"
+      ? "The Temple of Doom"
+      : name;
   const match = SCENARIOS.find(
-    (s) => s.name.toLocaleLowerCase("en") === name.toLocaleLowerCase("en"),
+    (s) =>
+      s.name.toLocaleLowerCase("en") === canonicalName.toLocaleLowerCase("en"),
   );
   if (
     !match ||

@@ -248,6 +248,30 @@ jobs:
           path: output/ered-release/failures
           retention-days: 7
 
+  shadow-east-simulation:
+    name: Shadow in the East complete games (${{ matrix.scenario }}, 14 games)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [the-river-running, danger-in-dorwinion, temple-of-doom]
+    env:
+      SHADOW_EAST_SIMULATION_SCENARIO: ${{ matrix.scenario }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:shadow-east-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: shadow-east-simulation-${{ matrix.scenario }}
+          path: output/shadow-east-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -363,6 +387,10 @@ jobs:
             suite: test:browser-ered-finale
           - group: ered-players
             suite: test:browser-ered-players
+          - group: shadow-east-quests
+            suite: test:shadow-east-quests
+          - group: shadow-east-players
+            suite: test:shadow-east-players
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

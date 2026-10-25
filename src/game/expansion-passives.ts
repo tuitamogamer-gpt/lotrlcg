@@ -223,14 +223,17 @@ export function effectiveTraits(u: Unit): string[] {
 }
 export const hasTrait = (u: Unit, trait: string) =>
   effectiveTraits(u).includes(trait);
-/** Encounter treacheries can become Condition attachments without a printed trait line. */
+/** Encounter cards can acquire an attachment trait through their printed text. */
 export function attachmentHasTrait(a: Attachment, trait: string) {
   if (a.blanked || a.facedown || a.namelessCard) return false;
   return (
     (card(a.code).traits ?? "").split(".").some((t) => t.trim() === trait) ||
     !!a.dynamicTraits?.includes(trait) ||
-    (trait === "Condition" &&
-      /counts as a Condition attachment/i.test(card(a.code).text ?? ""))
+    [
+      ...(card(a.code).text ?? "").matchAll(
+        /counts as a (Condition|Mount|Weapon) attachment/gi,
+      ),
+    ].some((match) => match[1].toLowerCase() === trait.toLowerCase())
   );
 }
 export function effectiveKeyword(u: Unit, keyword: string): boolean {

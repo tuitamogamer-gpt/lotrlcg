@@ -131,6 +131,14 @@ export function DeckPicker({
                       ? ` · ${d.heroes.length} ${d.heroes.length === 1 ? "hero" : "heroes"}`
                       : ""}
                   </span>
+                  {Object.entries(d.cards)
+                    .filter(
+                      ([code, copies]) =>
+                        copies > 0 && card(code).type_code === "contract",
+                    )
+                    .map(([code]) => (
+                      <span key={code}>{card(code).name} contract</span>
+                    ))}
                   {showHeroes && (
                     <span>
                       <Eye size={15} /> {startingThreat(d.heroes)} threat

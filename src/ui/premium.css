@@ -23,6 +23,8 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="the-river-running"],
+.mat-the-river-running,
 .redbook[data-playmat="journey-up-the-anduin"],
 .mat-journey-up-the-anduin,
 .redbook[data-playmat="the-crossings-of-poros"],
@@ -77,6 +79,10 @@
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
+.redbook[data-playmat="danger-in-dorwinion"],
+.mat-danger-in-dorwinion,
+.redbook[data-playmat="temple-of-doom"],
+.mat-temple-of-doom,
 .redbook[data-playmat="the-black-serpent"],
 .mat-the-black-serpent,
 .redbook[data-playmat="the-dungeons-of-cirith-gurat"],

@@ -1,0 +1,1751 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Temple of Doom",
+  "slug": "temple-of-doom",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+      "octgnid": "039a688f-8bef-4a77-97c4-84b942f3d91a",
+      "name": "Thane Ulchor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Indestructible.\nImmune to player card effects.X is 1 more than the number of quest stages in the victory display. Cannot be engaged unless X is equal to 5.Forced: When Thane Ulchor attacks and destroys a character, place 1 damage token on Tribute to Mordor.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 54,
+      "quantity": 1,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 50,
+      "victory": 6,
+      "encounter_set": "Temple of Doom",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "50",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 54,
+          "quantity": 1,
+          "octgnid": "039a688f-8bef-4a77-97c4-84b942f3d91a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "name": "Fanaticism",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While attached to an enemy, counts as a Condition attachment with the text: `Attached enemy gets +1 [threat], +1 [attack], +1 [defense], and is immune to player card effects.`When Revealed: Attach to the Easterling enemy with the lowest [defense] without a copy of Fanaticism. Otherwise, Fanaticism gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 60,
+      "quantity": 2,
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+      "octgnid": "20a011e7-0153-45b1-9c6c-a68753683a79",
+      "name": "Tribute to Mordor",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: At the end of the round, place 1 damage token here. Then, if there are 4 or more damage tokens here, remove 4 of them and reveal the top card of the Power of Mordor deck. If you cannot, the player lose the game.This stage cannot be the active quest while Thane Ulchor has any hit points remaining. When this stage is defeated, the players win the game.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 53,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Temple of Doom",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/20a011e7-0153-45b1-9c6c-a68753683a79.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "20a011e7-0153-45b1-9c6c-a68753683a79",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20a011e7-0153-45b1-9c6c-a68753683a79.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+      "octgnid": "24ffba46-0c66-4559-ae13-d0980180f537",
+      "name": "Place of Evil",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 1 damage token on Tribute to Mordor. Then, either place 1 additional damage token on Tribute to Mordor, or Place of Evil gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 57,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [Attack]. If this attack destroys a character, place 1 damage token on Tribute to Mordor. ",
+      "encounter_set": "Temple of Doom",
+      "printed_stats": {},
+      "imagesrc": "/cards/24ffba46-0c66-4559-ae13-d0980180f537.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 57,
+          "quantity": 3,
+          "octgnid": "24ffba46-0c66-4559-ae13-d0980180f537",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24ffba46-0c66-4559-ae13-d0980180f537.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+      "octgnid": "2744032b-21e4-4b52-a66e-f4c1926f451b",
+      "name": "Hall of Horrors",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "X is 1 more than the number of quest stages in the victory display.Forced: When Hall of Horrors leaves play, each player deals X damage to a character he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 56,
+      "quantity": 3,
+      "quest": 5,
+      "encounter_set": "Temple of Doom",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 56,
+          "quantity": 3,
+          "octgnid": "2744032b-21e4-4b52-a66e-f4c1926f451b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "name": "Khamûl the Easterling",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl. Easterling. Mordor.",
+      "text": "Immune to player card effects.Khamul the Easterling engages the first player.Only the engaged player can declare attackers or defenders against Khamul the Easterling.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 66,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 49,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "49"
+      },
+      "imagesrc": "/cards/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+      "octgnid": "31acc133-3c82-4c6e-8fc1-ced6537f735e",
+      "name": "The Forgotten Temple",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Shuffle each of the stage 2 quest cards together and place them facedown under this stage. Create The Power of Mordor deck (see insert) and set it next to the quest deck. Add Thane Ulchor and Tribute to Mordor to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 80,
+      "quantity": 1,
+      "cost": 1,
+      "victory": 10,
+      "encounter_set": "Temple of Doom",
+      "side": "A",
+      "back_name": "The Forgotten Temple",
+      "back_text": "Forced: At the end of the planning phase, place 1 resource token here. Then, if there are 2 resource tokens here, add this stage to the victory display and advance to the topmost stage 2A.",
+      "back_type_code": "quest",
+      "back_victory": 10,
+      "back_imagesrc": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.B.jpg",
+      "printed_stats": {
+        "cost": "1",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "31acc133-3c82-4c6e-8fc1-ced6537f735e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "name": "The Tower of Barad-dûr",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects.The player cannot travel here.Each player`s threat elimination level is reduced by 5.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 67,
+      "quantity": 1,
+      "threat": 5,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "-"
+      },
+      "imagesrc": "/cards/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+      "name": "Narrow Opening",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Narrow Opening is the active location, each player cannot play more than 1 card each round.Forced: When Narrow Opening leaves play, each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 62,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 62,
+          "quantity": 2,
+          "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "name": "Easterling Raider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 1.\nEasterling Raider gets +1 [attack] and +1 [defense] for each Easterling attachment on it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 20,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [defense] instead if it has an Easterling attachment).",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 20,
+          "quantity": 3,
+          "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "name": "Under the Watchful Eye",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "When Revealed: Each player with more than 5 cards in his hand discards cards from his hand until he has only 5.Forced: After a player draws any number of cards, he raises his threat by 1.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 68,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "name": "Recurve Bow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gains Archery 2.`When Revealed: Attach to the highest engagement cost Easterling enemy without a Recurve Bow.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 23,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "name": "Fearful Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Until the end of the round, treat the printed text box of each character as if it were blank (except for Traits).",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 64,
+      "quantity": 2,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {},
+      "imagesrc": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 64,
+          "quantity": 2,
+          "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+      "name": "Twisted Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Discard cards from the top of the encounter deck until an enemy is discarded. Add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 61,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 61,
+          "quantity": 2,
+          "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "name": "Crumbling Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Make Crumbling Passage the active location, returning any previously active location to the staging area.Forced: When Crumbling Passage leaves play, deal 1 damage to each exhausted character.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 63,
+      "quantity": 2,
+      "threat": 5,
+      "quest": 3,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 63,
+          "quantity": 2,
+          "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "name": "Ulchor's Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While Thane of Ulchor is engaged with a player, Ulchor`s Guard engages that player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 58,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +2 [Defense] until the end of the phase.",
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 58,
+          "quantity": 4,
+          "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+      "octgnid": "89fba072-2af9-460c-8556-3bf3a8f0091e",
+      "name": "Temple of Sauron",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "Forced: When Temple of Sauron leaves play, place 1 damage token on Tribute to Mordor.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 55,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 1,
+      "shadow": "Shadow: Attacking enemy gets +1 [Attack] for each quest stage in the victory display.",
+      "encounter_set": "Temple of Doom",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 55,
+          "quantity": 2,
+          "octgnid": "89fba072-2af9-460c-8556-3bf3a8f0091e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "name": "Ulchor's Rage",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Thane Ulchor makes an immediate attack against the first player. If no attack is made this way, Ulchor`s Rage gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 59,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+      "octgnid": "91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+      "name": "The Lord of Middle-earth",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 85,
+      "quantity": 1,
+      "cost": 5,
+      "victory": 1,
+      "encounter_set": "Temple of Doom",
+      "side": "A",
+      "back_name": "The Lord of Middle-earth",
+      "back_text": "This stage gets +4 quest points per player. Forced: At the beginning of the quest phase, each player discards 1 card from his hand. Until the end of the round, no more than X progress can be placed on this stage. X is the total cost of each card discarded by this effect.   While there are 4 quest stages in the victory display, progress cannot be placed here.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_victory": 1,
+      "back_imagesrc": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.B.jpg",
+      "printed_stats": {
+        "cost": "5",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 85,
+          "quantity": 1,
+          "octgnid": "91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "name": "Warrior of Rhûn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: When Warrior of Rhun attacks, attach the top Easterling treachery in the discard pile to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 21,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attach the top Easterling treachery in the discard pile to attacking enemy.",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "name": "Sword of Rhûn",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gets +2 [attack].`When Revealed: Attach to the Easterling enemy with the lowest [attack] without a Sword of Rhun.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 22,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "name": "Warriors of the East",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: After an Easterling enemy enters play, attach the top Easterling treachery in the discard pile to that enemy.Forced: After Warriors of the East becomes the current quest, the highest [attack] Easterling enemy in the staging area attacks the first player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 24,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "name": "The Armies of Mordor",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Forced: After a non-unique enemy engages a player, that enemy cannot take damage until the end of the round.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 69,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+      "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+      "name": "Lost in the Dark",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player places the top 10 cards of his deck facedown under his threat dial (without looking at them). When this stage is defeated, each player shuffles all cards under his threat dial back into his deck.Forced: After a player raises his threat by any amount, he discards the top card from under his threat dial.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 65,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+      "octgnid": "ea80809a-c719-41a9-8729-5f58cdec149b",
+      "name": "Shrine to Sauron",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 84,
+      "quantity": 1,
+      "cost": 4,
+      "victory": 1,
+      "encounter_set": "Temple of Doom",
+      "side": "A",
+      "back_name": "Shrine to Sauron",
+      "back_text": "Forced: At the beginning of the quest phase, each player discards the top X cards of his deck, where X is 1 more than the number of quest stages in the victory display. Each player examines the cards he controls and the cards in his hand. If any of these cards are copies of the cards he just discarded from the top of his deck, he must discard those copies as well.   While there are 4 quest stages in the victory display, progress cannot be placed here.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_victory": 1,
+      "back_imagesrc": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.B.jpg",
+      "printed_stats": {
+        "cost": "4",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 84,
+          "quantity": 1,
+          "octgnid": "ea80809a-c719-41a9-8729-5f58cdec149b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea80809a-c719-41a9-8729-5f58cdec149b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+      "octgnid": "f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+      "name": "Memory of the Dark Years",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 83,
+      "quantity": 1,
+      "cost": 3,
+      "victory": 1,
+      "encounter_set": "Temple of Doom",
+      "side": "A",
+      "back_name": "Memory of the Dark Years",
+      "back_text": "Forced: At the beginning of the quest phase, discard X cards from the top of the encounter deck, where X is 1 more than the number of quest stages in the victory display. Add 2 to the total Threat in the staging area for each different card type discarded this way.   While there are 4 quest stages in the victory display, progress cannot be place here.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_victory": 1,
+      "back_imagesrc": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.B.jpg",
+      "printed_stats": {
+        "cost": "3",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 83,
+          "quantity": 1,
+          "octgnid": "f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "name": "Covered in Darkness",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Doomed 5.\nEach player`s threat cannot be reduced by more than 1 each round by player card effects.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 70,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+      "octgnid": "ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+      "name": "The Legacy of Mordor",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 81,
+      "quantity": 1,
+      "cost": 2,
+      "victory": 1,
+      "encounter_set": "Temple of Doom",
+      "side": "A",
+      "back_name": "The Legacy of Mordor",
+      "back_text": "Forced: At the beginning of the quest phase, each player deals 1 damage to a hero he controls and exhausts that hero. That hero cannot ready or be healed until the refresh phase.  While there are 4 quest stages in the victory display, progress cannot be placed here.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_victory": 1,
+      "back_imagesrc": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.B.jpg",
+      "printed_stats": {
+        "cost": "2",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 81,
+          "quantity": 1,
+          "octgnid": "ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.3",
+      "name": "Temple of Doom (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+        "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+        "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+        "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+        "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+        "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+        "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+        "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+        "octgn:20a011e7-0153-45b1-9c6c-a68753683a79"
+      ],
+      "cards": [
+        {
+          "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e": 1,
+          "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae": 1,
+          "octgn:ea80809a-c719-41a9-8729-5f58cdec149b": 1,
+          "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8": 1,
+          "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e": 1,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 3,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 1,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 2,
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 1,
+          "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1,
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1,
+          "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 1,
+          "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+          "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 1,
+          "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+          "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906": 2,
+          "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd": 1,
+          "octgn:24ffba46-0c66-4559-ae13-d0980180f537": 1,
+          "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb": 3,
+          "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2": 1,
+          "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd": 1,
+          "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e": 1,
+          "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48": 1,
+          "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695": 1
+        },
+        "sharedStagingArea": {
+          "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a": 1,
+          "octgn:20a011e7-0153-45b1-9c6c-a68753683a79": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.3",
+      "name": "Temple of Doom",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE"
+      ],
+      "card_codes": [
+        "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+        "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+        "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+        "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+        "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+        "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+        "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+        "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+        "octgn:20a011e7-0153-45b1-9c6c-a68753683a79"
+      ],
+      "cards": [
+        {
+          "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e": 1,
+          "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae": 1,
+          "octgn:ea80809a-c719-41a9-8729-5f58cdec149b": 1,
+          "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8": 1,
+          "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e": 2,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 3,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 2,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 3,
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 2,
+          "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1,
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1,
+          "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 2,
+          "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+          "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 2,
+          "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+          "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906": 2,
+          "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd": 3,
+          "octgn:24ffba46-0c66-4559-ae13-d0980180f537": 3,
+          "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb": 4,
+          "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b": 3
+        },
+        "sharedEncounterDeck2": {
+          "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2": 1,
+          "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd": 1,
+          "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e": 1,
+          "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48": 1,
+          "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695": 1
+        },
+        "sharedStagingArea": {
+          "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a": 1,
+          "octgn:20a011e7-0153-45b1-9c6c-a68753683a79": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg",
+      "localPath": "/cards/039a688f-8bef-4a77-97c4-84b942f3d91a.jpg",
+      "bytes": 154758,
+      "sha256": "674e2577c9d1689b1b5f47e6c7b998ddfd62e0197ad9db8976d0e41185b366c7"
+    },
+    {
+      "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "localPath": "/cards/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "bytes": 154410,
+      "sha256": "0a7ef64dbd0ee97854dcc12a838480d52b6e233497a8b804bbeb293c0419b606"
+    },
+    {
+      "code": "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/20a011e7-0153-45b1-9c6c-a68753683a79.jpg",
+      "localPath": "/cards/20a011e7-0153-45b1-9c6c-a68753683a79.jpg",
+      "bytes": 157467,
+      "sha256": "977d8f882b5579ef44603d4a39cdd3a9a40613089955bbfec5d442482b686842"
+    },
+    {
+      "code": "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/24ffba46-0c66-4559-ae13-d0980180f537.jpg",
+      "localPath": "/cards/24ffba46-0c66-4559-ae13-d0980180f537.jpg",
+      "bytes": 151577,
+      "sha256": "e91829837ef0e99d91327ad2d3a8c24ceff32dcb2fcf9a4e7460dcde23568f48"
+    },
+    {
+      "code": "octgn:2744032b-21e4-4b52-a66e-f4c1926f451b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg",
+      "localPath": "/cards/2744032b-21e4-4b52-a66e-f4c1926f451b.jpg",
+      "bytes": 158702,
+      "sha256": "3318d656b6793f0b82d89f29a6e5e5d352fd288350378f35e4d24196fe212cfe"
+    },
+    {
+      "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "localPath": "/cards/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "bytes": 149241,
+      "sha256": "9dde0ffed88233431d6e558ba179e7b15bcb9437ef941e5e6f18756ee6f31a5f"
+    },
+    {
+      "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg",
+      "localPath": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg",
+      "bytes": 166619,
+      "sha256": "5b26b65d9c1526a14d96142d78dab54aa6d7eb0cf63a9fc19189931ed305df4f"
+    },
+    {
+      "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31acc133-3c82-4c6e-8fc1-ced6537f735e.B.jpg",
+      "localPath": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.B.jpg",
+      "bytes": 158908,
+      "sha256": "7a7c8362051d4b070ac031e9324148bc422b50eb43c3e0378d6ceb399f07c1d4"
+    },
+    {
+      "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "localPath": "/cards/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "bytes": 152923,
+      "sha256": "b77cf0e8c0a861737fa96beaa1e627bf38a99a2092f88a2cf7283328f55e77a4"
+    },
+    {
+      "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "localPath": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "bytes": 157854,
+      "sha256": "134ad68c926d6fde0b13b53dee3d9fae88e999052cb7daf3ec55963dbfed00a2"
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "localPath": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "bytes": 149459,
+      "sha256": "f78301084bf3113c676acc28edca0290f4539b30424ae402337fd976277a67cb"
+    },
+    {
+      "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "localPath": "/cards/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "bytes": 153095,
+      "sha256": "0514c9f03c14ef61ec3e7f69a8bd5c065d90aaabc5593c90331ea26847f08f48"
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "localPath": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "bytes": 153229,
+      "sha256": "4cf09d61e218c21a66b1cb564c7cc6052d93a7c8c01bb765bc6306e76933d478"
+    },
+    {
+      "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "localPath": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "bytes": 155756,
+      "sha256": "a33ebbf0ccac1e8b5e1f4799d0929be26868e86deb408ab5116c7e08c442fb1b"
+    },
+    {
+      "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "localPath": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "bytes": 151261,
+      "sha256": "5e9b6fe1c06006b5e43a692a51bd9bbd292f999907d0113659333fd60a3c89a2"
+    },
+    {
+      "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "localPath": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "bytes": 156572,
+      "sha256": "98f92912737564a0f06b71bbbddc481509e1618e9f55729bba697e8e627a3552"
+    },
+    {
+      "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "localPath": "/cards/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "bytes": 144679,
+      "sha256": "591b17b302cafcf9cffbbdbe3dbf2af80166934456d1349e79a6f852feb08205"
+    },
+    {
+      "code": "octgn:89fba072-2af9-460c-8556-3bf3a8f0091e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg",
+      "localPath": "/cards/89fba072-2af9-460c-8556-3bf3a8f0091e.jpg",
+      "bytes": 149874,
+      "sha256": "ea84b5bfe7e855987ac35c69a9918faa3b6764e5789331ddd90aa4386f2db0f8"
+    },
+    {
+      "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "localPath": "/cards/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "bytes": 144411,
+      "sha256": "22fba2f1a1e7c793aa889a7d203ab88d0d8869a7ca5fe6288164f9a192ab9f12"
+    },
+    {
+      "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg",
+      "localPath": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg",
+      "bytes": 152200,
+      "sha256": "706b45c44b4c58f1c3eb5d52d2a692084b2221ef41b0fec3ba61bb39c6ca270b"
+    },
+    {
+      "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.B.jpg",
+      "localPath": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.B.jpg",
+      "bytes": 163130,
+      "sha256": "1e0970c8554b1a39697f6ebf570c1ae70325d6f34cd573b7356822c4980ccf41"
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "localPath": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "bytes": 166180,
+      "sha256": "affe3681b465cf4e91f9916d83eeefed4037d1227908860be740f25e32b01952"
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "localPath": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "bytes": 152172,
+      "sha256": "0c06cb926feabe9ffa8312f577e90023c3cec6912fb22979b35f29264281dc2a"
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "localPath": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "bytes": 152157,
+      "sha256": "6eb911620b8e327843c0d4fbb44b465fc1abc2313bf9dedc03d2b2b4fc123027"
+    },
+    {
+      "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "localPath": "/cards/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "bytes": 148854,
+      "sha256": "0fe7054d50d2ea45d4ae2c2e2d2fb157254802c28f7703649c8d8690751ff644"
+    },
+    {
+      "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "localPath": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "bytes": 154073,
+      "sha256": "1900a13459796feab41a5344d5f76be44c0dbc6f5b0a9dc68fe57aa64726ebef"
+    },
+    {
+      "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea80809a-c719-41a9-8729-5f58cdec149b.jpg",
+      "localPath": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.jpg",
+      "bytes": 154878,
+      "sha256": "b5b5d426162ccafb674504fbe8dc39597471541d1b33ce9ab3cd438d8fef0d5c"
+    },
+    {
+      "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea80809a-c719-41a9-8729-5f58cdec149b.B.jpg",
+      "localPath": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.B.jpg",
+      "bytes": 163068,
+      "sha256": "aba09e4cfb8b2a5cf30d911d8809a19ed4a032dce3125430ff02d98845ea123b"
+    },
+    {
+      "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg",
+      "localPath": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg",
+      "bytes": 147886,
+      "sha256": "bad4a02f552de893926c1a1def14cfcb507e51426300947bb842da9dbeb3e57c"
+    },
+    {
+      "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f015bc92-42c1-405d-a54e-1a1c7bc0afae.B.jpg",
+      "localPath": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.B.jpg",
+      "bytes": 162232,
+      "sha256": "5d9ead19e2d3b1ce9584dcbe66803bb2f84c448dd1659f6ff491b35c4000bf68"
+    },
+    {
+      "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "localPath": "/cards/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "bytes": 150912,
+      "sha256": "42f55e20e73d6ae1a77cb8b61c184a73cdd6a1003d749ca1f61e678818387f4b"
+    },
+    {
+      "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg",
+      "localPath": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg",
+      "bytes": 150917,
+      "sha256": "84a40fbfecf036a7fa4bd44f85df54e77f8d15991df5a570ae6219a0f20322eb"
+    },
+    {
+      "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.B.jpg",
+      "localPath": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.B.jpg",
+      "bytes": 154174,
+      "sha256": "5023225ddbfc8d19aa176ca3f6e4e4c757a4fcd666419b3753c0ea50233fe64f"
+    }
+  ]
+}

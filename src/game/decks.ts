@@ -40,7 +40,11 @@ const heroCodes = new Set(HERO_CARDS.map((c) => c.code));
 const deckCodes = new Set(DECK_CARDS.map((c) => c.code));
 const names = new Map(playerCards.map((c) => [c.code, c.name]));
 export const deckSize = (cards: Record<string, number>) =>
-  Object.values(cards).reduce((n, v) => n + v, 0);
+  Object.entries(cards).reduce(
+    (n, [code, v]) =>
+      n + (SCRIPTED.has(code) && card(code).type_code === "contract" ? 0 : v),
+    0,
+  );
 
 /** Card has a matching printed hero sphere; effects may provide other ways to play it. */
 export function legalSphere(code: string, heroes: string[]) {
@@ -65,6 +69,17 @@ export function deckProblems(deck: Pick<CustomDeck, "heroes" | "cards">) {
     problems.push(
       "Different versions of the same unique hero cannot share a deck.",
     );
+  if (
+    Object.entries(deck.cards).reduce(
+      (n, [code, count]) =>
+        n +
+        (deckCodes.has(code) && card(code).type_code === "contract"
+          ? count
+          : 0),
+      0,
+    ) > 1
+  )
+    problems.push("Choose at most one contract to begin in play.");
   const size = deckSize(deck.cards);
   if (size < 50) problems.push(`Add ${50 - size} more cards to reach 50.`);
   if (size > 100)

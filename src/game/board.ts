@@ -1,3 +1,5 @@
+import * as ShadowEastPlayers from "./shadow-east-player";
+import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
@@ -469,6 +471,7 @@ export function raiseThreat(
 ) {
   if (amount <= 0) return;
   s.threat += amount;
+  batch4Scenario(s).threatRaised?.(s, activeSeat(s), amount);
   marshPlayerThreatRaised(s, activeSeat(s), amount, reason);
   roadPlayerThreatRaised(s, activeSeat(s), amount);
   heirsThreatRaised(s, activeSeat(s), amount);
@@ -491,6 +494,7 @@ export function exhaustCharacter(s: GameState, u: Unit): boolean {
 }
 /** Every addition to staging shares the response timing, including a return from engagement. */
 export function enemyAddedToStaging(s: GameState, u: Unit) {
+  batch4Scenario(s).enemyEntered?.(s, u);
   TemplePlayers.templePlayerEnemyEntered(s, u);
   Weather.weatherOrcAdded(s, u);
   Rhudaur.rhudaurEnemyAdded(s, u);
@@ -534,6 +538,7 @@ export function charactersCommitted(
     actual.map((u) => u.id),
   );
   EredFinalPlayers.eredFinalPlayerCharactersCommitted(s, actual);
+  ShadowEastPlayers.shadowEastPlayerCharactersCommitted(s, actual);
   WildsPlayers.wildsPlayerCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
@@ -873,6 +878,8 @@ export function check(s: GameState) {
   if (s.status !== "playing") return;
   eachArea(s, () => syncAttachmentText(s));
   EredSupport.eredMithrinPlayerRefresh(s);
+  ShadowEastPlayers.shadowEastPlayerCheck(s);
+  if (s.status !== "playing") return;
   finalRingFollowFirst(s);
   Angmar.angmarSyncSwordThain(s);
   globalEachSeat(s, () => {
@@ -907,7 +914,7 @@ export function check(s: GameState) {
   if (s.prisoner) {
     const p = seatView(s, s.prisoner.owner ?? 0);
     if (
-      p.threat >= 50 ||
+      p.threat >= threatElimination(p) ||
       (!p.heroes.length && p.startingHeroes.some((h) => h !== s.prisoner!.code))
     ) {
       s.status = "lost";
@@ -943,9 +950,7 @@ export function check(s: GameState) {
     const unit = [
       ...allCharacters(s),
       ...allEngaged(s),
-      ...s.staging.filter((u) =>
-        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
-      ),
+      ...s.staging.filter((u) => ["enemy", "ship-enemy"].includes(unitType(u))),
     ].find(
       (u) =>
         !shadowFlameIndestructible(u) &&
@@ -980,12 +985,14 @@ export function check(s: GameState) {
         !s.used.includes("game:race-harad-mumak-lost") &&
         (s.heroes.length ||
           s.prisoner?.owner === i ||
+          ShadowEastSupport.shadowEastPlayerMissingHeroAllowed(s, i) ||
           batch4Scenario(s).missingHeroAllowed?.(s, i) ||
           foundationsHeroMissingAllowed(s, i) ||
           Gram.gramHeroMissingAllowed(s, i))
       )
         return;
       if (s.table!.seats[i].eliminated) return;
+      batch4Scenario(s).playerEliminating?.(s, i);
       for (const host of [
         ...s.staging,
         ...(s.stormcaller?.area ?? []),
@@ -1088,6 +1095,8 @@ export function check(s: GameState) {
         BloodQuest.bloodGondorCharacterLeft(s, u);
         Osgiliath.assaultOsgiliathCharacterLeft(s);
       }
+      ShadowEastPlayers.shadowEastPlayerEliminated(s, i);
+      batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
     const alive = globalLivingSeats(s);
@@ -1112,6 +1121,7 @@ export function check(s: GameState) {
     s.used.includes("game:race-harad-mumak-lost") ||
     (!s.heroes.length &&
       !s.prisoner &&
+      !ShadowEastSupport.shadowEastPlayerMissingHeroAllowed(s, 0) &&
       !batch4Scenario(s).missingHeroAllowed?.(s, 0) &&
       !foundationsHeroMissingAllowed(s, 0) &&
       !Gram.gramHeroMissingAllowed(s, 0))
@@ -1327,6 +1337,11 @@ export function damage(
     playerEffectImmune(s, u)
   )
     return false;
+  if (
+    !context.combatDamage &&
+    ShadowEastSupport.shadowEastPlayerImmune(s, u, activePlayerAbilityCode(s))
+  )
+    return false;
   const raidLocation = Raid.raidDamageLocation(s, u, value);
   if (raidLocation !== undefined) return raidLocation;
   if (!context.cost && MorgulQuest.morgulRedirectDamage(s, u, value, context))
@@ -1493,8 +1508,19 @@ export function discardAttachment(
   u: Unit,
   a: Attachment,
   leaving = false,
+  byCardEffect = true,
 ) {
-  if (!leaving && card(a.code).text?.includes("Permanent")) return;
+  if (
+    !leaving &&
+    byCardEffect &&
+    (card(a.code).text?.includes("Permanent") ||
+      ShadowEastSupport.shadowEastAttachmentImmune(
+        a,
+        activePlayerAbilityCode(s),
+      ))
+  )
+    return;
+  ShadowEastPlayers.shadowEastPlayerAttachmentLeft(s, u, a);
   Catch.catchAttachmentLeaves(s, u, a, leaving);
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
   if (u.id.startsWith("quest:"))
@@ -1542,6 +1568,7 @@ export function characterLeftPlay(
   byCardEffect = false,
   lastKnownType = unitType(u),
 ) {
+  ShadowEastPlayers.shadowEastPlayerCharacterLeft(s, u, controller);
   EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   TempleEncounters.templeCharacterLeft(s, u, destination);
   DrownedCompanions.drownedCharacterLeft(s, u, destination);
@@ -1627,6 +1654,11 @@ export function destroy(
   damageContext: DamageContext = {},
 ) {
   syncAttachmentText(s);
+  if (
+    byCardEffect &&
+    ShadowEastSupport.shadowEastPlayerImmune(s, u, activePlayerAbilityCode(s))
+  )
+    return;
   if (byCardEffect && activePlayerAbilityCode(s) && playerEffectImmune(s, u))
     return;
   if (
@@ -1760,7 +1792,7 @@ export function destroy(
     );
   }
   for (const a of [...u.attachments]) discardAttachment(s, u, a, true);
-  if (["enemy", "ship-enemy"].includes(unitType(u))) {
+  if (["enemy", "ship-enemy"].includes(lastKnownType)) {
     Gram.gramCardLeaves(s, u);
     DrownedPlayers.drownedPlayerUnitLeft(s, u);
     s.staging = s.staging.filter((x) => x.id !== u.id);
@@ -1789,6 +1821,9 @@ export function destroy(
         wasEngaged,
         lastKnownBlanked,
       )
+    ) {
+    } else if (
+      ShadowEastPlayers.shadowEastPlayerEnemyDestination(s, u, destruction)
     ) {
     } else if (batch4Scenario(s).enemyDestination?.(s, u)) {
     } else if (Dread.dreadEnemyLeaves(s, u)) {
@@ -2038,6 +2073,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   Race.raceHaradExplored(s, u, wasActive);
   Sands.beneathSandsExplored(s, u, wasActive);
   batch4Scenario(s).explored?.(s, u, wasActive);
+  ShadowEastPlayers.shadowEastPlayerLocationExplored(s, u, wasActive);
   RacePlayers.raceHaradPlayerLocationExplored(s, u, wasActive);
   Mordor.mordorExplored(s, u);
   Rhudaur.rhudaurExplored(s, u, wasActive);
@@ -2345,7 +2381,7 @@ export function advanceQuest(s: GameState) {
       !s.queue.length &&
       !s.choice &&
       ![...s.staging, ...allEngaged(s)].some((u) =>
-        ["enemy", "ship-enemy"].includes(card(u.code).type_code),
+        ["enemy", "ship-enemy"].includes(unitType(u)),
       )
     )
       win(s);
@@ -2717,6 +2753,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Cobas.cobasEngaged(s, u);
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
+  ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u);
   Desert.desertCrossingEngaged(s, u);
@@ -2801,7 +2838,12 @@ export function revealed(
       revealOrigin,
       text: "angmar-resume",
     });
-    const options = Angmar.angmarRevealOptions(s, code, revealOrigin, resume);
+    const options = [
+      ...Angmar.angmarRevealOptions(s, code, revealOrigin, resume),
+      ...(revealOrigin === "encounter"
+        ? ShadowEastPlayers.shadowEastPlayerRevealOptions(s, code, resume)
+        : []),
+    ];
     if (options.length) {
       choose(
         s,
@@ -3275,6 +3317,7 @@ export function placeEncounter(
   }
   if (cancel) {
     Weather.weatherCanceled(s, code);
+    batch4Scenario(s).whenRevealedCancelled?.(s, code);
     if (c.type_code === "treachery") s.encounterDiscard.push(code);
     log(s, `${c.name}’s when-revealed effect was cancelled.`, "good");
     return;
@@ -3288,6 +3331,8 @@ export function placeEncounter(
     log(s, `${c.name}’s When Revealed effect is ignored at the Safe location.`);
     return;
   }
+  if (ShadowEastPlayers.shadowEastPlayerEncounter(s, code, false, fromReveal))
+    return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
@@ -3437,9 +3482,7 @@ export function placeEncounter(
       if (s.staging.length)
         s.staging
           .filter((u) =>
-            ["enemy", "ship-enemy", "location"].includes(
-              card(u.code).type_code,
-            ),
+            ["enemy", "ship-enemy", "location"].includes(unitType(u)),
           )
           .forEach((u) => {
             u.tempThreat = (u.tempThreat ?? 0) + 1;
@@ -3529,7 +3572,12 @@ export function placeEncounter(
 /** Put-into-play legality is shared with normal play, without play costs or caps. */
 export function allyCanEnter(s: GameState, code: string): boolean {
   const c = card(code);
-  if (c.type_code !== "ally" || City.cityAllyProblem(s)) return false;
+  if (
+    c.type_code !== "ally" ||
+    City.cityAllyProblem(s) ||
+    ShadowEastSupport.shadowEastPlayerAllyProblem(s, code)
+  )
+    return false;
   if (s.scenarioId === "the-morgul-vale" && c.name === "Faramir") return false;
   const key = (title: string) =>
     title
@@ -3616,6 +3664,7 @@ export function allyEntryResponses(
     batch4Scenario(s).allyEntered?.(s, u, played, fromHand)
   )
     return;
+  ShadowEastPlayers.shadowEastPlayerAllyEntered(s, u, played, fromHand);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);
@@ -3689,7 +3738,7 @@ export function allyEntryResponses(
           ...opts(
             [
               ...s.staging.filter((x) =>
-                ["enemy", "ship-enemy"].includes(card(x.code).type_code),
+                ["enemy", "ship-enemy"].includes(unitType(x)),
               ),
               ...allEngaged(s).filter((x) => ownerOf(s, x) !== activeSeat(s)),
             ].filter((x) => !Carn.carnCannotEngage(s, x)),
@@ -3885,6 +3934,7 @@ export function shadow(s: GameState, code: string) {
     return;
   }
   if (Sands.beneathSandsShadow(s, code)) return;
+  if (ShadowEastPlayers.shadowEastPlayerShadow(s, code)) return;
   if (batch4Scenario(s).shadow?.(s, code)) return;
   if (Cobas.cobasShadow(s, code)) return;
   if (Storm.stormcallerShadow(s, code)) return;

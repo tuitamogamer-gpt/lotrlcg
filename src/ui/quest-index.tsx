@@ -20,6 +20,12 @@ export const scenarioRelease = (id: ScenarioId) => {
 const HEADLINES: Partial<
   Record<ScenarioId, { lead: string; tail?: string; em: string }>
 > = {
+  "the-river-running": {
+    lead: "Escape the pursuit",
+    em: "along the River Running.",
+  },
+  "danger-in-dorwinion": { lead: "Expose the cult", em: "in Dorwinion." },
+  "temple-of-doom": { lead: "Enter", em: "the Temple of Doom." },
   "the-withered-heath": {
     lead: "Track the dragon",
     em: "across the Withered Heath.",

@@ -1,3 +1,5 @@
+import { threatElimination } from "./tharbad-support";
+import { batch4Scenario } from "./batch4-scenarios";
 import { mainQuestCode } from "./quest-state";
 import { WEATHER } from "./weather-hills-support";
 import { syncAttachmentText } from "./attachment-text";
@@ -105,7 +107,7 @@ export function rhosgobelCheck(s: GameState) {
     seat = seatView(s, player);
   if (
     s.table?.seats[player].eliminated ||
-    seat.threat >= 50 ||
+    seat.threat >= threatElimination(seat) ||
     !seat.heroes.length
   )
     lose(
@@ -189,6 +191,7 @@ export const rhosgobelTravelProblem = (s: GameState, u: Unit) =>
     ? "Complete stage one before traveling to Rhosgobel."
     : null;
 export const rhosgobelHealingAllowed = (s: GameState, u: Unit) =>
+  !batch4Scenario(s).cannotHeal?.(s, u) &&
   !s.staging.some((q) => q.code === WEATHER.camp && !q.blanked) &&
   !(
     s.scenarioId === "road-to-rivendell" &&

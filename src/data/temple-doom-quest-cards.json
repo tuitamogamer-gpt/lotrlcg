@@ -1,0 +1,216 @@
+[
+  {
+    "code": "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+    "octgnid": "31acc133-3c82-4c6e-8fc1-ced6537f735e",
+    "name": "The Forgotten Temple",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Shuffle each of the stage 2 quest cards together and place them facedown under this stage. Create The Power of Mordor deck (see insert) and set it next to the quest deck. Add Thane Ulchor and Tribute to Mordor to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 80,
+    "quantity": 1,
+    "cost": 1,
+    "victory": 10,
+    "encounter_set": "Temple of Doom",
+    "side": "A",
+    "back_name": "The Forgotten Temple",
+    "back_text": "Skip the quest phase.\nForced: At the end of the planning phase, place 1 resource token here. Then, if there are 2 resource tokens here, add this stage to the victory display and advance to the topmost stage 2A.",
+    "back_type_code": "quest",
+    "back_victory": 10,
+    "back_imagesrc": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.B.jpg",
+    "printed_stats": {
+      "cost": "1",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "31acc133-3c82-4c6e-8fc1-ced6537f735e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31acc133-3c82-4c6e-8fc1-ced6537f735e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+    "octgnid": "91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+    "name": "The Lord of Middle-earth",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 85,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Temple of Doom",
+    "side": "A",
+    "back_name": "The Lord of Middle-earth",
+    "back_text": "This stage gets +4 quest points per player. Forced: At the beginning of the quest phase, each player discards 1 card from his hand. Until the end of the round, no more than X progress can be placed on this stage. X is the total cost of each card discarded by this effect.   While there are 4 quest stages in the victory display, progress cannot be placed here.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_victory": 1,
+    "back_imagesrc": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 85,
+        "quantity": 1,
+        "octgnid": "91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ea80809a-c719-41a9-8729-5f58cdec149b",
+    "octgnid": "ea80809a-c719-41a9-8729-5f58cdec149b",
+    "name": "Shrine to Sauron",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 84,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Temple of Doom",
+    "side": "A",
+    "back_name": "Shrine to Sauron",
+    "back_text": "Forced: At the beginning of the quest phase, each player discards the top X cards of his deck, where X is 1 more than the number of quest stages in the victory display. Each player examines the cards he controls and the cards in his hand. If any of these cards are copies of the cards he just discarded from the top of his deck, he must discard those copies as well.   While there are 4 quest stages in the victory display, progress cannot be placed here.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_victory": 1,
+    "back_imagesrc": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/ea80809a-c719-41a9-8729-5f58cdec149b.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 84,
+        "quantity": 1,
+        "octgnid": "ea80809a-c719-41a9-8729-5f58cdec149b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ea80809a-c719-41a9-8729-5f58cdec149b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+    "octgnid": "f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+    "name": "Memory of the Dark Years",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 83,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Temple of Doom",
+    "side": "A",
+    "back_name": "Memory of the Dark Years",
+    "back_text": "Forced: At the beginning of the quest phase, discard X cards from the top of the encounter deck, where X is 1 more than the number of quest stages in the victory display. Add 2 to the total Threat in the staging area for each different card type discarded this way.   While there are 4 quest stages in the victory display, progress cannot be placed here.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_victory": 1,
+    "back_imagesrc": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 83,
+        "quantity": 1,
+        "octgnid": "f015bc92-42c1-405d-a54e-1a1c7bc0afae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f015bc92-42c1-405d-a54e-1a1c7bc0afae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+    "octgnid": "ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+    "name": "The Legacy of Mordor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 81,
+    "quantity": 1,
+    "cost": 2,
+    "victory": 1,
+    "encounter_set": "Temple of Doom",
+    "side": "A",
+    "back_name": "The Legacy of Mordor",
+    "back_text": "Forced: At the beginning of the quest phase, each player deals 1 damage to a hero he controls and exhausts that hero. That hero cannot ready or be healed until the refresh phase.  While there are 4 quest stages in the victory display, progress cannot be placed here.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_victory": 1,
+    "back_imagesrc": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.B.jpg",
+    "printed_stats": {
+      "cost": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 81,
+        "quantity": 1,
+        "octgnid": "ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
