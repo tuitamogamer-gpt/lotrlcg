@@ -70,6 +70,7 @@ import {
 } from "./actions";
 import { allQuestUnits, mainQuestUnit } from "./quest-state";
 import { gondorResourcesGained } from "./gondor-player-cards";
+import { engagedEnemies } from "./considered-engagement";
 
 const codes = {
   gildor: "22081",
@@ -277,7 +278,7 @@ export function collectorAttackersDeclared(s: GameState, ids: string[]) {
           u.code === codes.thorin &&
           !u.blanked &&
           seatView(s, ownerOf(s, u)).deck.length > 0 &&
-          seatView(s, ownerOf(s, u)).engaged.some(affected),
+          engagedEnemies(s, ownerOf(s, u)).some(affected),
       )
       .map((u) =>
         fx("collectorThorinResponse", { source: u.id, player: ownerOf(s, u) }),
@@ -996,7 +997,7 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "collectorThorinResponse":
-      if (s.deck.length && s.engaged.some(affected))
+      if (s.deck.length && engagedEnemies(s).some(affected))
         optional(
           s,
           "Thorin Stonehelm · Declared attacker",
@@ -1009,13 +1010,13 @@ export function handleCollectorPlayerEffect(s: GameState, e: Effect): boolean {
       choose(
         s,
         "Thorin Stonehelm · Enemy engaged with you",
-        opts(s.engaged.filter(affected), (u) => [
+        opts(engagedEnemies(s).filter(affected), (u) => [
           fx("collectorThorinDamage", { target: u.id }),
         ]),
       );
       return true;
     case "collectorThorinDamage": {
-      const u = s.engaged.find((u) => u.id === e.target && affected(u));
+      const u = engagedEnemies(s).find((u) => u.id === e.target && affected(u));
       requireRule(
         u && s.deck.length,
         "Discard a top deck card to damage an enemy engaged with you.",

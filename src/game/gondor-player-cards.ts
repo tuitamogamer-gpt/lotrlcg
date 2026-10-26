@@ -20,7 +20,12 @@ import {
   shuffle,
   skip,
 } from "./core";
-import { exhaustCharacter, readyCharacter, spendEvent } from "./board";
+import {
+  exhaustCharacter,
+  raiseThreat,
+  readyCharacter,
+  spendEvent,
+} from "./board";
 import { isSacked } from "./carrock";
 import { druadanPlayerResourcesGained } from "./druadan-player-cards";
 import { hasTrait } from "./expansion-passives";
@@ -123,7 +128,7 @@ export function gondorEventEffect(
     case "22003": {
       const increase = 40 - s.threat;
       if (increase < 0) reduceThreat(s, -increase, code);
-      else s.threat = 40;
+      else if (increase > 0) raiseThreat(s, increase, "player-card");
       if (increase > 0) draw(s, increase >= 10 ? 4 : 1);
       return true;
     }

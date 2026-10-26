@@ -466,7 +466,11 @@ export function wildsPlayerSpecialAttachmentEntry(s: GameState, u: Unit) {
 export function wildsPlayerGuardLeaving(s: GameState, u: Unit) {
   if (!["enemy", "ship-enemy", "location"].includes(card(u.code).type_code))
     return;
-  const necklaces = u.attachments.filter((a) => a.code === P.necklace);
+  const necklaces = u.attachments.filter(
+    (a) =>
+      a.code === P.necklace &&
+      !s.burglarContract?.guarded.some((g) => g.attachmentId === a.id),
+  );
   u.attachments = u.attachments.filter((a) => !necklaces.includes(a));
   prepend(
     s,

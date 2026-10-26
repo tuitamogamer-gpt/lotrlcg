@@ -1,5 +1,6 @@
 import { DECK_CARDS, HERO_CARDS } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
+import { burglarLootListValid } from "../game/burglar-contract-support";
 
 export const DECK_EDITOR_DRAFT_KEY =
   "there-and-back-again.deck-editor-draft.v1";
@@ -39,6 +40,7 @@ export function parseDeckEditorDraft(value: unknown): DeckEditorDraft | null {
     new Set(d.heroes).size !== d.heroes.length ||
     !d.heroes.every((h) => typeof h === "string" && heroCodes.has(h)) ||
     !object(d.cards) ||
+    (d.loot !== undefined && !burglarLootListValid(d.loot)) ||
     Object.keys(d.cards).length > deckCodes.size ||
     Object.entries(d.cards).some(
       ([code, n]) =>
@@ -71,6 +73,7 @@ export function parseDeckEditorDraft(value: unknown): DeckEditorDraft | null {
     updatedAt: d.updatedAt,
   };
   if (d.source !== undefined) deck.source = d.source as string;
+  if (d.loot !== undefined) deck.loot = [...d.loot] as string[];
   if (d.productId !== undefined) deck.productId = d.productId as string;
   if (d.deckKind !== undefined)
     deck.deckKind = d.deckKind as CustomDeck["deckKind"];

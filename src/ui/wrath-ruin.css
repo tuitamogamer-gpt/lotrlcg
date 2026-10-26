@@ -1,0 +1,38 @@
+.wrath-ruin-state {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 14px;
+  margin: 14px 0;
+  color: #302e25;
+  background: #e9e2cf;
+  border: 3px double #9e8b58;
+}
+.wrath-ruin-summary {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
+}
+.wrath-ruin-state button {
+  width: fit-content;
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+  padding: 6px 10px;
+  background: #f8f1df;
+  border: 1px solid #bca56b;
+  color: inherit;
+}
+.wrath-ruin-controlled {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .wrath-ruin-state {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px;
+  }
+}

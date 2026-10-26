@@ -30,6 +30,8 @@ import {
 } from "../game/decks";
 import type { CustomDeck } from "../game/decks";
 import type { Card } from "../game/types";
+import { BURGLAR_CONTRACT } from "../game/burglar-contract-support";
+import { BurglarLootSelector } from "./burglar-contract";
 import { Art, Sphere } from "./card-art";
 import { CardProductNote, DeckProductNote } from "./product-note";
 import { SupportSummary, playableProductNames } from "./support-summary";
@@ -223,6 +225,7 @@ export default function DeckBuilder({
       name: `${(deck.name.trim() || "Untitled deck").slice(0, 60 - suffix.length)}${suffix}`,
       heroes: [...deck.heroes],
       cards: { ...deck.cards },
+      ...(deck.loot ? { loot: [...deck.loot] } : {}),
       updatedAt: Date.now(),
     });
   };
@@ -482,6 +485,13 @@ export default function DeckBuilder({
             })}
           </div>
         </section>
+        {!!editing.cards[BURGLAR_CONTRACT] && (
+          <BurglarLootSelector
+            loot={editing.loot ?? []}
+            onChange={(loot) => setEditing({ ...editing, loot })}
+            inspect={inspect}
+          />
+        )}
         <div className="builder-body">
           <section className="builder-cards" aria-label="Cards">
             <div
@@ -717,6 +727,12 @@ export default function DeckBuilder({
                 {contracts.map(([code]) => card(code).name).join(", ")}
                 <br />
                 Starts in play, separate from your draw deck.
+                {!!editing.cards[BURGLAR_CONTRACT] && (
+                  <>
+                    <br />
+                    Loot deck · {editing.loot?.length ?? 0} / 14 attachments
+                  </>
+                )}
               </p>
             )}
             <DeckProductNote deck={editing} />

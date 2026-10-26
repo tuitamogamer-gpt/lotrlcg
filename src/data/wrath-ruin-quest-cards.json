@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
+    "octgnid": "138ee2a3-0982-48ab-945e-60fab6f06586",
+    "name": "Drive Them Out",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player returns the highest [threat] location he controls to the staging area. Shuffle the encounter discard pile into the encounter deck. Starting with the first player, each player discards cards from the top of the encounter deck until he discards an enemy and puts that enemy into play engaged with him.",
+    "is_unique": false,
+    "pack_code": "WaR",
+    "pack_name": "Wrath and Ruin",
+    "position": 26,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Wrath and Ruin",
+    "side": "A",
+    "back_name": "Drive Them Out",
+    "back_text": "Progress cannot be placed on locations in the staging area by player card effects.\nThe players cannot travel to Gate of Dorwinion unless there are more locations under the players’ control than in the staging area.\nForced: When a location is explored, the first player takes control of it.\nAt the end of the round, if the players control Gate of Dorwinion, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/138ee2a3-0982-48ab-945e-60fab6f06586.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/138ee2a3-0982-48ab-945e-60fab6f06586.jpg",
+    "packs": [
+      {
+        "pack_code": "WaR",
+        "pack_name": "Wrath and Ruin",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "138ee2a3-0982-48ab-945e-60fab6f06586",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/138ee2a3-0982-48ab-945e-60fab6f06586.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
+    "octgnid": "cefd0596-2e3b-4496-95e0-57899ab83b04",
+    "name": "Inside the Walls",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add Thane Ulchor and Gate of Dorwinion to the staging area. Each player adds a different location to the staging area. Make a copy of Makeshift Fortification the active location. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "WaR",
+    "pack_name": "Wrath and Ruin",
+    "position": 25,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Wrath and Ruin",
+    "side": "A",
+    "back_name": "Inside the Walls",
+    "back_text": "This stage gets +4 quest points per player. Progress cannot be placed on locations in the staging area by player card effects.\nForced: When a location is explored, the first player takes control of it.\nThis stage cannot be defeated unless there are more locations under the players’ control than in the staging area at the end of the round.",
+    "back_type_code": "quest",
+    "back_quest": 4,
+    "back_imagesrc": "/cards/cefd0596-2e3b-4496-95e0-57899ab83b04.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/cefd0596-2e3b-4496-95e0-57899ab83b04.jpg",
+    "packs": [
+      {
+        "pack_code": "WaR",
+        "pack_name": "Wrath and Ruin",
+        "position": 25,
+        "quantity": 1,
+        "octgnid": "cefd0596-2e3b-4496-95e0-57899ab83b04",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cefd0596-2e3b-4496-95e0-57899ab83b04.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

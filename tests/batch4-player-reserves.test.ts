@@ -31,12 +31,12 @@ const game = (
     "custom",
     options,
   );
-test("setup reserves share the official three Encounter cards and use deterministic defaults for either or both enabling events", () => {
+test("current official Encounter rule allows three of each enabled reserve design", () => {
   for (const [flight, summons, r, w] of [
     [false, false, 3, 0],
     [false, true, 3, 0],
     [true, false, 0, 3],
-    [true, true, 2, 1],
+    [true, true, 3, 3],
   ] as const) {
     const s = game(flight, summons);
     assert.deepEqual(s.rangerReserves, { 0: r });
@@ -44,7 +44,7 @@ test("setup reserves share the official three Encounter cards and use determinis
     assert.ok(validateSave(s));
   }
 });
-test("explicit Encounter reserve allocations support zero, mixed and Wind-only selections and reject totals above three", () => {
+test("explicit Encounter reserve counts remain independent and reject more than three of one design", () => {
   const cases = [
     { rangerReserves: { 0: 1 }, batch4WindReserves: { 0: 2 } },
     { batch4WindReserves: { 0: 2 } },
@@ -52,16 +52,20 @@ test("explicit Encounter reserve allocations support zero, mixed and Wind-only s
   ];
   for (const options of cases) {
     const s = game(true, true, options);
-    assert.equal(s.rangerReserves![0] + s.batch4WindReserves![0], 3);
+    assert.equal(s.rangerReserves![0], options.rangerReserves?.[0] ?? 3);
+    assert.equal(
+      s.batch4WindReserves![0],
+      options.batch4WindReserves?.[0] ?? 3,
+    );
     assert.ok(validateSave(s));
   }
-  assert.throws(
-    () =>
-      game(true, true, {
-        rangerReserves: { 0: 2 },
-        batch4WindReserves: { 0: 2 },
-      }),
-    /at most three/,
+  const six = game(true, true, {
+    rangerReserves: { 0: 3 },
+    batch4WindReserves: { 0: 3 },
+  });
+  assert.ok(
+    validateSave(six),
+    "MEC107 page 2 permits three copies of each Encounter card",
   );
   assert.throws(
     () => game(true, true, { batch4WindReserves: { 0: 4 } }),
@@ -92,14 +96,14 @@ test("each hotseat player keeps its own reserve allocation and total; reload ret
       },
     ],
   });
-  assert.deepEqual(s.rangerReserves, { 0: 0, 1: 2 });
-  assert.deepEqual(s.batch4WindReserves, { 0: 3, 1: 1 });
+  assert.deepEqual(s.rangerReserves, { 0: 0, 1: 3 });
+  assert.deepEqual(s.batch4WindReserves, { 0: 3, 1: 3 });
   const restored = restoreSave(JSON.parse(JSON.stringify(s)))!;
   assert.ok(restored);
   assert.deepEqual(restored.rangerReserves, s.rangerReserves);
   assert.deepEqual(restored.batch4WindReserves, s.batch4WindReserves);
   const invalid = JSON.parse(JSON.stringify(s));
-  invalid.batch4WindReserves[1] = 2;
+  invalid.batch4WindReserves[1] = 4;
   assert.equal(validateSave(invalid), false);
 });
 test("native Flight consumes a selected Wind reserve and cannot recycle its removed-from-game copy", () => {

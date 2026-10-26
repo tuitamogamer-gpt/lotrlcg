@@ -1,4 +1,6 @@
 import * as ShadowEastPlayers from "./shadow-east-player";
+import * as WrathPlayers from "./wrath-ruin-player";
+import { wrathRuinAllPublicState } from "./wrath-ruin-state";
 import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import { ERED_GUARDED } from "./ered-mithrin-player-support";
@@ -815,6 +817,7 @@ export function canPlay(
   const haradProblem = HaradPlayers.haradPlayerPlayProblem(s, u);
   if (haradProblem) return haradProblem;
   const batchProblem =
+    WrathPlayers.wrathRuinPlayerPlayProblem(s, u) ??
     ShadowEastPlayers.shadowEastPlayerPlayProblem(s, u) ??
     EredFinalPlayers.eredFinalPlayerPlayProblem(s, u) ??
     BatchPlayers.batch4PlayerPlayProblem(s, u) ??
@@ -1391,7 +1394,7 @@ export function handlePaidPlayerCardEntry(s: GameState, e: Effect): boolean {
   forOwner(s, pending.player, () => {
     if (
       card(pending.unit.code).type_code === "attachment" &&
-      !["18011", "17139"].includes(pending.unit.code) &&
+      !["18011", "17139", ...ERED_GUARDED].includes(pending.unit.code) &&
       !playTargets(s, pending.unit).some(
         (target) => target.id === pending.target,
       )
@@ -1428,6 +1431,7 @@ export function resolvePlayerCard(
   fromHand: boolean,
   bottom = false,
   amount = 0,
+  ignoreGuarded = false,
 ) {
   const c = card(u.code);
   if (played && s.ninEilph) s.used.push("nin:played");
@@ -1452,6 +1456,7 @@ export function resolvePlayerCard(
     enterAlly(s, u, false, played, fromHand);
   } else if (
     c.type_code === "attachment" &&
+    !ignoreGuarded &&
     (played || ["17139", "18011", ...ERED_GUARDED].includes(u.code)) &&
     (EredPlayers.eredMithrinPlayerSpecialAttachmentEntry(s, u) ||
       BatchPlayers.batch4PlayerSpecialAttachmentEntry(s, u) ||
@@ -1522,6 +1527,7 @@ export function resolvePlayerCard(
       u,
       () => {
         ShadowEastPlayers.shadowEastPlayerEventCost(s, u, target);
+        WrathPlayers.wrathRuinPlayerEventCost(s, u);
         EredFinalPlayers.eredFinalPlayerEventCost(s, u, target);
         EredPlayers.eredMithrinPlayerEventCost(s, u, target);
         WildsPlayers.wildsPlayerEventCost(s, u, target);
@@ -1574,6 +1580,13 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !WrathPlayers.wrathRuinPlayerEvent(
+      s,
+      physical.code,
+      e.source,
+      physical.id,
+      e.count,
+    ) &&
     !ShadowEastPlayers.shadowEastPlayerEvent(
       s,
       physical.code,
@@ -1699,6 +1712,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
     ShadowEastPlayers.shadowEastPlayerPlayTargets(s, c.code) ??
     EredFinalPlayers.eredFinalPlayerPlayTargets(s, c.code) ??
     BatchPlayers.batch4PlayerPlayTargets(s, c.code) ??
@@ -1885,6 +1899,7 @@ export const needsTarget = (u: Unit) =>
   u.code === "12118" ||
   u.code === "09008" ||
   (![
+    "22006",
     "19117",
     "19152",
     "19010",
@@ -3370,6 +3385,7 @@ export function publicState(s: GameState) {
   });
   return {
     ...eredScenarioPublicState(s),
+    ...wrathRuinAllPublicState(s),
     ...shadowEastScenarioPublicState(s),
     shadowEastPlayers: ShadowEastSupport.shadowEastPlayerPublicState(s),
     ...(s.depths

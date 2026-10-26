@@ -1,3 +1,5 @@
+import { BurglarContractStateView } from "./ui/burglar-contract";
+import { WrathRuinScenarioState } from "./ui/wrath-ruin-state";
 import "./ui/save-status.css";
 import { currentQuestInspection } from "./ui/quest-inspection";
 import { GUNDABAD } from "./game/mount-gundabad-support";
@@ -894,6 +896,12 @@ export default function App() {
   const [reserveEagleCounts, setReserveEagleCounts] = useState<
     Record<string, number>
   >({});
+  const [reserveRangerCounts, setReserveRangerCounts] = useState<
+    Record<string, number>
+  >({});
+  const [reserveBombadilCounts, setReserveBombadilCounts] = useState<
+    Record<string, number>
+  >({});
   const encounterReserveDecks = (style: "classic" | "hotseat") =>
     (style === "hotseat" ? seats.map((p) => p.deckId) : [selectedDeck]).flatMap(
       (id, player) => {
@@ -901,8 +909,13 @@ export default function App() {
         if (!d) return [];
         const wind = (d.cards["17140"] ?? 0) > 0,
           rangers = (d.cards["09007"] ?? 0) > 0,
-          eagles = (d.cards["19032"] ?? 0) > 0;
-        return Number(wind) + Number(rangers) + Number(eagles) >= 2
+          eagles = (d.cards["19032"] ?? 0) > 0,
+          bombadil = (d.cards["22005"] ?? 0) > 0;
+        return Number(wind) +
+          Number(rangers) +
+          Number(eagles) +
+          Number(bombadil) >=
+          1
           ? [
               {
                 player,
@@ -911,6 +924,7 @@ export default function App() {
                 wind,
                 rangers,
                 eagles,
+                bombadil,
                 defaults: encounterReserveDefaults(
                   Object.keys(d.cards).filter((c) => d.cards[c] > 0),
                 ),
@@ -919,6 +933,20 @@ export default function App() {
           : [];
       },
     );
+  type ReserveDeck = ReturnType<typeof encounterReserveDecks>[number];
+  const selectedReserveAllocation = (entry: ReserveDeck) => {
+    const key = `${entry.player}:${entry.id}`;
+    return {
+      w: entry.wind ? (reserveWindCounts[key] ?? entry.defaults.wind) : 0,
+      e: entry.eagles ? (reserveEagleCounts[key] ?? entry.defaults.eagles) : 0,
+      r: entry.rangers
+        ? (reserveRangerCounts[key] ?? entry.defaults.rangers)
+        : 0,
+      b: entry.bombadil
+        ? (reserveBombadilCounts[key] ?? entry.defaults.bombadil ?? 0)
+        : 0,
+    };
+  };
   const encounterReserveControls = (style: "classic" | "hotseat") => {
     const eligible = encounterReserveDecks(style);
     return eligible.length ? (
@@ -928,52 +956,65 @@ export default function App() {
         aria-label="Encounter card reserves"
       >
         <h3>Encounter card reserves</h3>
-        <p>Choose three set aside Encounter cards for each player.</p>
-        {eligible.map(
-          ({ player, id, name, wind, rangers, eagles, defaults }) => {
-            const key = `${player}:${id}`;
-            const allocations = [];
-            for (let w = 0; w <= (wind ? 3 : 0); w++)
-              for (let e = 0; e <= (eagles ? 3 - w : 0); e++) {
-                const r = 3 - w - e;
-                if (r > 0 && !rangers) continue;
-                allocations.push({ w, e, r });
-              }
-            return (
-              <label key={`${style}:${key}`}>
+        <p>
+          Set aside up to three copies of each Encounter card for each player.
+        </p>
+        {eligible.flatMap((entry) => {
+          const { player, id, name } = entry;
+          const key = `${player}:${id}`;
+          const selection = selectedReserveAllocation(entry);
+          const kinds = [
+            {
+              enabled: entry.rangers,
+              label: "Ranger of the North",
+              count: selection.r,
+              set: setReserveRangerCounts,
+            },
+            {
+              enabled: entry.wind,
+              label: "Wind from the Sea",
+              count: selection.w,
+              set: setReserveWindCounts,
+            },
+            {
+              enabled: entry.eagles,
+              label: "Eagle of the North",
+              count: selection.e,
+              set: setReserveEagleCounts,
+            },
+            {
+              enabled: entry.bombadil,
+              label: "Tom Bombadil",
+              count: selection.b,
+              set: setReserveBombadilCounts,
+            },
+          ];
+          return kinds
+            .filter((kind) => kind.enabled)
+            .map((kind) => (
+              <label key={`${style}:${key}:${kind.label}`}>
                 <span>
-                  Player {player + 1} · {name}
+                  Player {player + 1} · {name} · {kind.label}
                 </span>
                 <select
-                  aria-label={`Player ${player + 1} Encounter reserves`}
-                  value={
-                    (reserveWindCounts[key] ?? defaults.wind) +
-                    4 * (reserveEagleCounts[key] ?? defaults.eagles)
+                  aria-label={`Player ${player + 1} ${kind.label} reserves`}
+                  value={kind.count}
+                  onChange={(event) =>
+                    kind.set((current) => ({
+                      ...current,
+                      [key]: Number(event.target.value),
+                    }))
                   }
-                  onChange={(event) => {
-                    const value = Number(event.target.value);
-                    setReserveWindCounts((current) => ({
-                      ...current,
-                      [key]: value % 4,
-                    }));
-                    setReserveEagleCounts((current) => ({
-                      ...current,
-                      [key]: Math.floor(value / 4),
-                    }));
-                  }}
                 >
-                  {allocations.map(({ w, e, r }) => (
-                    <option key={w + 4 * e} value={w + 4 * e}>
-                      {eagles
-                        ? `${w} Wind · ${e} Eagles · ${r} Rangers`
-                        : `${w} Wind · ${r} ${r === 1 ? "Ranger" : "Rangers"}`}
+                  {[0, 1, 2, 3].map((n) => (
+                    <option key={n} value={n}>
+                      {n} {n === 1 ? "copy" : "copies"}
                     </option>
                   ))}
                 </select>
               </label>
-            );
-          },
-        )}
+            ));
+        })}
       </section>
     ) : null;
   };
@@ -1331,14 +1372,23 @@ export default function App() {
         style === "hotseat" ? describeDeck(seats[0].deckId, decks)! : starter;
       const batch4WindReserves: Record<number, number> = {},
         rangerReserves: Record<number, number> = {},
-        eredEagleReserves: Record<number, number> = {};
-      for (const { player, id, defaults } of encounterReserveDecks(style)) {
-        const wind = reserveWindCounts[`${player}:${id}`] ?? defaults.wind;
-        const eagles = reserveEagleCounts[`${player}:${id}`] ?? defaults.eagles;
-        batch4WindReserves[player] = wind;
-        eredEagleReserves[player] = eagles;
-        rangerReserves[player] = 3 - wind - eagles;
+        eredEagleReserves: Record<number, number> = {},
+        wrathBombadilReserves: Record<number, number> = {};
+      for (const entry of encounterReserveDecks(style)) {
+        const { w, e, r, b } = selectedReserveAllocation(entry);
+        batch4WindReserves[entry.player] = w;
+        eredEagleReserves[entry.player] = e;
+        rangerReserves[entry.player] = r;
+        wrathBombadilReserves[entry.player] = b;
       }
+      const burglarLoot = Object.fromEntries(
+        selected.flatMap((id, player) => {
+          const description = describeDeck(id, decks);
+          return description?.loot?.length
+            ? [[player, [...description.loot]]]
+            : [];
+        }),
+      );
       const s = createGame(
         Date.now(),
         startingDeck.cards,
@@ -1350,6 +1400,8 @@ export default function App() {
           batch4WindReserves,
           rangerReserves,
           eredEagleReserves,
+          wrathBombadilReserves,
+          burglarLoot,
           easy: easyMode === "on",
           scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
           playMode,
@@ -3029,6 +3081,8 @@ export default function App() {
             <FateWilderlandScenarioState s={game} inspect={setDetail} />
             <ShadowEastPlayerState s={game} inspect={setDetail} />
             <ShadowEastScenarioState s={game} inspect={setDetail} />
+            <WrathRuinScenarioState s={game} inspect={setDetail} />
+            <BurglarContractStateView s={game} inspect={setDetail} />
             <RoamRhovanionScenarioState s={game} inspect={setDetail} />
             <FireNightScenarioState s={game} inspect={setDetail} />
             <GhostFramsburgScenarioState

@@ -29,6 +29,11 @@ import {
   FATE_WILDERLAND_QUESTS,
 } from "./fate-wilderland-scenario-data";
 import eredFinalPlayers from "../data/ered-final-player-cards.json";
+import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
+import {
+  WRATH_RUIN_ENCOUNTERS,
+  WRATH_RUIN_QUESTS,
+} from "./wrath-ruin-scenario-data";
 import shadowEastPlayers from "../data/shadow-east-player-cards.json";
 import shadowEastEncounterPlayers from "../data/shadow-east-encounter-players.json";
 import {
@@ -275,6 +280,7 @@ export const playerCards = [
           ...eredMithrinPlayers,
           ...eredFinalPlayers.filter((c) => c.code !== "19120"),
           ...shadowEastPlayers,
+          ...wrathRuinPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -426,6 +432,7 @@ export const encounterCards = [
       ...RIVER_RUNNING_ENCOUNTERS,
       ...DANGER_DORWINION_ENCOUNTERS,
       ...TEMPLE_DOOM_ENCOUNTERS,
+      ...WRATH_RUIN_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -492,6 +499,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...RIVER_RUNNING_QUESTS,
     ...DANGER_DORWINION_QUESTS,
     ...TEMPLE_DOOM_QUESTS,
+    ...WRATH_RUIN_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -599,6 +607,7 @@ export const SCRIPTED = new Set(
     ...RIVER_RUNNING_QUESTS,
     ...DANGER_DORWINION_QUESTS,
     ...TEMPLE_DOOM_QUESTS,
+    ...WRATH_RUIN_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

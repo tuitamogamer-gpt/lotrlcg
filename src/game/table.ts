@@ -226,6 +226,8 @@ export function ownerOf(s: GameState, u: Unit) {
 }
 /** Player attachments follow their host's controller; ownership never changes. */
 export function attachmentController(s: GameState, host: Unit, a: Attachment) {
+  if (s.burglarContract?.guarded.some((g) => g.attachmentId === a.id))
+    return null;
   if (a.code === KHAZAD.fear) return ownerOf(s, host);
   return card(a.code).sphere_code === "encounter" &&
     card(a.code).type_code !== "objective"
@@ -308,6 +310,7 @@ export const attackersFor = (
   s: GameState,
   enemy: Unit,
   paidAttackerId?: string,
+  asIfEngaged = false,
 ) =>
   allCharacters(s).filter(
     (u) =>
@@ -322,12 +325,20 @@ export const attackersFor = (
       voyageCanAttackEnemy(s, enemy, u) &&
       canFight(u) &&
       khazadCanAttack(u) &&
-      khazadCanRangedAttack(s, enemy, u, ownerOf(s, enemy) !== ownerOf(s, u)) &&
+      khazadCanRangedAttack(
+        s,
+        enemy,
+        u,
+        (asIfEngaged ? activeSeat(s) : ownerOf(s, enemy)) !== ownerOf(s, u),
+      ) &&
       rhosgobelCanFight(enemy, u) &&
       foundationsCanFight(enemy, u) &&
       ettenCanAttack(s, enemy, u) &&
       !u.attachments.some((a) => !a.blanked && a.code === "01108") &&
       (amonPlayerCanAttackEnemy(s, enemy, u) ||
+        (asIfEngaged &&
+          (ownerOf(s, u) === activeSeat(s) ||
+            (hasKeyword(u, "Ranged") && !fateLoseRanged(s, u)))) ||
         (ownerOf(s, u) === activeSeat(s) &&
           (consideredEngaged(s, enemy) ||
             (s.staging.some((e) => e.id === enemy.id)

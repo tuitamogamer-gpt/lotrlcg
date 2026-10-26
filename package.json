@@ -144,7 +144,11 @@
     "test:shadow-east-simulation": "node --import tsx --test tests/shadow-east-simulation.test.ts",
     "test:shadow-east-quests": "node --import tsx scripts/browser-shadow-east.mjs",
     "test:shadow-east-players": "node --import tsx scripts/browser-shadow-east-players.mjs",
-    "test:browser-shadow-east": "npm run test:shadow-east-quests && npm run test:shadow-east-players"
+    "test:browser-shadow-east": "npm run test:shadow-east-quests && npm run test:shadow-east-players",
+    "test:wrath-ruin-simulation": "node --import tsx --test tests/wrath-ruin-simulation.test.ts",
+    "test:wrath-ruin-quests": "node --import tsx scripts/browser-wrath-ruin.mjs",
+    "test:wrath-ruin-players": "node --import tsx scripts/browser-wrath-ruin-players.mjs",
+    "test:browser-wrath-ruin": "npm run test:wrath-ruin-quests && npm run test:wrath-ruin-players"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

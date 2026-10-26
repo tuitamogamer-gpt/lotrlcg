@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "wrath-and-ruin": {
+    name: "The Siege of Dorwinion",
+    detail: "Reclaim the city and drive out Thane Ulchor",
+  },
   "the-river-running": {
     name: "The River Running",
     detail: "Escape the Easterling pursuit on the journey to Dorwinion",
@@ -368,6 +372,7 @@ export const PLAYMAT_CHOICES = [
   "the-river-running",
   "danger-in-dorwinion",
   "temple-of-doom",
+  "wrath-and-ruin",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
   "the-crossings-of-poros",

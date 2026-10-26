@@ -1,0 +1,71 @@
+.burglar-loot-selector {
+  margin-block: 20px;
+  padding: 18px;
+  border: 1px solid #b89a60;
+  background: #eee7d5;
+  color: #302b21;
+  min-width: 0;
+}
+.burglar-loot-selector h2 {
+  margin-top: 0;
+}
+.burglar-loot-selector p {
+  max-width: 80ch;
+}
+.burglar-loot-search {
+  display: grid;
+  gap: 6px;
+  margin-block: 14px;
+}
+.burglar-loot-search input {
+  width: 100%;
+  min-width: 0;
+}
+.burglar-selected-loot,
+.burglar-loot-options {
+  display: grid;
+  gap: 8px;
+}
+.burglar-selected-loot {
+  margin-top: 12px;
+}
+.burglar-loot-options {
+  max-height: 26rem;
+  overflow: auto;
+  padding-right: 4px;
+}
+.burglar-selected-loot > div,
+.burglar-loot-options > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px;
+  border-bottom: 1px solid #b89a6066;
+}
+.burglar-selected-loot button:first-child,
+.burglar-loot-options span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.burglar-loot-options span {
+  display: grid;
+  gap: 4px;
+}
+.burglar-loot-options small {
+  font-size: 13px;
+}
+.burglar-loot-options button,
+.burglar-selected-loot button:last-child {
+  flex-shrink: 0;
+}
+@media (max-width: 420px) {
+  .burglar-loot-selector {
+    padding: 12px;
+  }
+  .burglar-selected-loot > div,
+  .burglar-loot-options > div {
+    padding: 6px 0;
+    gap: 6px;
+  }
+}

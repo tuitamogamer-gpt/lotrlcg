@@ -38,6 +38,8 @@ export function consideredEngaged(
   player = activeSeat(s),
 ): boolean {
   return (
+    (s.playerAttackContexts?.at(-1)?.enemyId === u.id &&
+      s.playerAttackContexts.at(-1)?.player === player) ||
     batch4Scenario(s).consideredEngaged?.(s, u, player) ||
     carnConsideredEngaged(s, u, player) ||
     (u.code === SHADOW_FLAME.bane &&

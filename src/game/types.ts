@@ -248,6 +248,7 @@ export type ScenarioId =
   | "the-river-running"
   | "danger-in-dorwinion"
   | "temple-of-doom"
+  | "wrath-and-ruin"
   | "the-antlered-crown"
   | "celebrimbors-secret"
   | "the-nin-in-eilph"
@@ -400,11 +401,15 @@ export interface GameState {
   riverRunning?: import("./river-running-types").RiverRunningState;
   dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
   templeDoom?: import("./temple-doom-types").TempleDoomState;
+  wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
+  burglarContract?: import("./burglar-contract-types").BurglarContractState;
+  wrathRuinPlayers?: import("./wrath-ruin-player-types").WrathRuinPlayersState;
   shadowEastPlayers?: import("./shadow-east-player-types").ShadowEastPlayersState;
-  /** Up to three Encounter allies set aside by each player; never replenished on departure. */
+  /** Up to three copies of each Encounter design per player; never replenished on departure. */
   rangerReserves?: Record<number, number>;
   batch4WindReserves?: Record<number, number>;
   eredEagleReserves?: Record<number, number>;
+  wrathBombadilReserves?: Record<number, number>;
   /** Selection survives defeat until the end of this quest phase. */
   sideQuestSelections?: Record<
     string,
@@ -566,6 +571,8 @@ export interface GameState {
   queue: Effect[];
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
+  /** Scoped "as if engaged" attacks keep the enemy in its physical staging zone. */
+  playerAttackContexts?: { enemyId: string; player: number }[];
   combat: {
     /** Ramming Speed tracks actual damage from this physical attack. */
     cobasRamming?: boolean;
@@ -683,6 +690,9 @@ export interface GameState {
     doomUlchor?: boolean;
     doomTributeOnKill?: number;
     doomKilledCharacter?: boolean;
+    wrathKilledPlayers?: number[];
+    wrathReturnHighest?: number;
+    wrathExtraAttacks?: number;
     wilderAssaultOnKill?: number;
     wilderKilledCharacter?: boolean;
     wilderPackAttacks?: number;

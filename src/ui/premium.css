@@ -79,6 +79,8 @@
   --mat-shade: #0b202f70;
   --mat-tint: #1d3037;
 }
+.redbook[data-playmat="wrath-and-ruin"],
+.mat-wrath-and-ruin,
 .redbook[data-playmat="danger-in-dorwinion"],
 .mat-danger-in-dorwinion,
 .redbook[data-playmat="temple-of-doom"],

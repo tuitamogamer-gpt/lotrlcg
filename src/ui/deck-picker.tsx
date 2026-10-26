@@ -44,7 +44,11 @@ export function DeckPicker({
   onBuild?: () => void;
 }) {
   const choices = [
-    ...BUILT_IN_DECKS.map((d) => ({ ...d, custom: false })),
+    ...BUILT_IN_DECKS.map((d) => ({
+      ...d,
+      loot: undefined as string[] | undefined,
+      custom: false,
+    })),
     ...custom.map((d) => ({
       id: customId(d),
       name: d.name,
@@ -54,6 +58,7 @@ export function DeckPicker({
         : "Assembled in the deck builder.",
       heroes: d.heroes,
       cards: d.cards,
+      loot: d.loot,
       source: d.source,
       productId: d.productId,
       deckKind: d.deckKind ?? "custom",
@@ -139,6 +144,9 @@ export function DeckPicker({
                     .map(([code]) => (
                       <span key={code}>{card(code).name} contract</span>
                     ))}
+                  {!!d.cards["22024"] && (
+                    <span>{d.loot?.length ?? 0} / 14 loot attachments</span>
+                  )}
                   {showHeroes && (
                     <span>
                       <Eye size={15} /> {startingThreat(d.heroes)} threat

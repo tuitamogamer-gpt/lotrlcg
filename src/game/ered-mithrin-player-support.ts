@@ -63,6 +63,7 @@ export const ERED_GUARDED = [
   "19093",
   "19117",
   "19152",
+  "22006",
 ];
 export const eredPlayerAttachment = (a: Attachment) =>
   !a.facedown &&

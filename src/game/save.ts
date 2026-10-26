@@ -1,4 +1,8 @@
 import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
+import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
+import { validateWrathRuin } from "./wrath-ruin-support";
+import { validateWrathRuinPlayers } from "./wrath-ruin-player-support";
+import { validateBurglarContract } from "./burglar-contract-support";
 import {
   shadowEastPlayerUnits,
   validateShadowEastPlayers,
@@ -142,6 +146,27 @@ export function validateSave(
       return false;
     const integer = (n: unknown) =>
       typeof n === "number" && Number.isInteger(n) && Number.isFinite(n);
+    if (
+      s.playerAttackContexts !== undefined &&
+      (!Array.isArray(s.playerAttackContexts) ||
+        s.playerAttackContexts.some(
+          (c) =>
+            !c ||
+            typeof c.enemyId !== "string" ||
+            !c.enemyId ||
+            !integer(c.player) ||
+            c.player < 0 ||
+            c.player >= seatCount ||
+            (inheritedSeatCount === undefined &&
+              !s.queue?.some(
+                (e) =>
+                  e.kind === "playerAttackContextEnd" &&
+                  e.target === c.enemyId &&
+                  e.player === c.player,
+              )),
+        ))
+    )
+      return false;
     const codes = (v: unknown): v is string[] =>
       Array.isArray(v) &&
       v.every(
@@ -208,13 +233,18 @@ export function validateSave(
     )
       return false;
     if (
-      Array.from(
-        { length: seatCount },
-        (_, player) =>
-          (s.rangerReserves?.[player] ?? 3) +
-          (s.batch4WindReserves?.[player] ?? 0) +
-          (s.eredEagleReserves?.[player] ?? 0),
-      ).some((count) => count > 3)
+      s.wrathBombadilReserves !== undefined &&
+      (!s.wrathBombadilReserves ||
+        typeof s.wrathBombadilReserves !== "object" ||
+        Array.isArray(s.wrathBombadilReserves) ||
+        Object.entries(s.wrathBombadilReserves).some(
+          ([p, n]) =>
+            !/^\d+$/.test(p) ||
+            +p >= seatCount ||
+            !integer(n) ||
+            n < 0 ||
+            n > 3,
+        ))
     )
       return false;
     const knownQuest = (code: unknown) =>
@@ -273,9 +303,20 @@ export function validateSave(
       (a.owner === undefined ||
         (integer(a.owner) && a.owner >= 0 && a.owner < seatCount));
     const validAttackExtension = (c: NonNullable<GameState["combat"]>) =>
-      [c.riverPursuitOnKill, c.dorwinionUnderGuard, c.doomTributeOnKill].every(
-        (n) => n === undefined || (integer(n) && n >= 0),
-      ) &&
+      [
+        c.riverPursuitOnKill,
+        c.dorwinionUnderGuard,
+        c.doomTributeOnKill,
+        c.wrathReturnHighest,
+        c.wrathExtraAttacks,
+      ].every((n) => n === undefined || (integer(n) && n >= 0)) &&
+      (c.wrathKilledPlayers === undefined ||
+        (Array.isArray(c.wrathKilledPlayers) &&
+          c.wrathKilledPlayers.every(
+            (p) => integer(p) && p >= 0 && p < seatCount,
+          ) &&
+          new Set(c.wrathKilledPlayers).size ===
+            c.wrathKilledPlayers.length)) &&
       [
         c.dorwinionKilledCharacter,
         c.dorwinionKilledAlly,
@@ -751,6 +792,8 @@ export function validateSave(
             (event.destination !== "spent" ||
               (event.unit.code === "12119" &&
                 !!s.victoryCards?.includes("12119")) ||
+              (event.unit.code === "22005" &&
+                !!s.victoryCards?.includes("22005")) ||
               !!s.roamRhovanion?.storedCards?.some(
                 (entry) =>
                   entry.player === event.player &&
@@ -817,7 +860,8 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
+      (!validateWrathRuin(s, validUnit as (v: unknown) => boolean) ||
+        !validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
         !validateDangerDorwinion(s, validUnit as (v: unknown) => boolean) ||
         !validateTempleDoom(s, validUnit as (v: unknown) => boolean) ||
         !validateVoyage(s, validUnit as (value: unknown) => boolean) ||
@@ -1177,7 +1221,9 @@ export function validateSave(
     }
     if (
       inheritedSeatCount === undefined &&
-      !validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean)
+      (!validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean) ||
+        !validateWrathRuinPlayers(s) ||
+        !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
     )
       return false;
     const validEffect = (e: Effect): boolean =>
@@ -1499,6 +1545,7 @@ export function validateSave(
       ...eredScenarioUnits(s),
       ...shadowEastScenarioUnits(s),
       ...shadowEastPlayerUnits(s),
+      ...wrathRuinSavedExtraUnits(s),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

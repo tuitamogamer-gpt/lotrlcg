@@ -2,6 +2,10 @@ import { hasEncounterKeyword } from "./encounter-keyword";
 export { startingThreat } from "./starting-threat";
 import { card, playerCards, SCRIPTED } from "./cards";
 import { BUILT_IN_DECKS } from "./built-in-decks";
+import {
+  burglarDeckProblems,
+  burglarLootListValid,
+} from "./burglar-contract-support";
 import type { Card } from "./types";
 
 /** A player-built deck. Only registered, scripted player cards can be included. */
@@ -10,6 +14,8 @@ export interface CustomDeck {
   name: string;
   heroes: string[];
   cards: Record<string, number>;
+  /** Optional separate loot deck for The Burglar's Turn; never part of the fifty cards. */
+  loot?: string[];
   updatedAt: number;
   /** Where the list came from, for example a RingsDB decklist URL. */
   source?: string;
@@ -55,7 +61,9 @@ export function legalSphere(code: string, heroes: string[]) {
 }
 
 /** Deckbuilding rules from the Rules Reference, as readable problems. */
-export function deckProblems(deck: Pick<CustomDeck, "heroes" | "cards">) {
+export function deckProblems(
+  deck: Pick<CustomDeck, "heroes" | "cards" | "loot">,
+) {
   const problems: string[] = [];
   const heroes = deck.heroes.filter((h) => heroCodes.has(h));
   for (const h of deck.heroes)
@@ -95,7 +103,7 @@ export function deckProblems(deck: Pick<CustomDeck, "heroes" | "cards">) {
     if (!Number.isInteger(n) || n < 0 || n > limit)
       problems.push(`${card(code).name}: at most ${limit} copies.`);
   }
-  return problems;
+  return [...problems, ...burglarDeckProblems(deck)];
 }
 
 /** Matching spheres are deckbuilding advice, not a deck legality requirement. */
@@ -256,6 +264,7 @@ const validDeck = (d: unknown): d is CustomDeck => {
     new Set(v.heroes).size === v.heroes.length &&
     v.heroes.every((h) => typeof h === "string" && heroCodes.has(h)) &&
     !!v.cards &&
+    (v.loot === undefined || burglarLootListValid(v.loot)) &&
     typeof v.cards === "object" &&
     !Array.isArray(v.cards) &&
     Object.entries(v.cards).every(
@@ -339,7 +348,12 @@ export function writeDecks(decks: CustomDeck[], expectedRaw?: string | null) {
 /** A starter-shaped description for the setup screens. */
 export function describeDeck(id: string, decks: CustomDeck[]) {
   const starter = BUILT_IN_DECKS.find((d) => d.id === id);
-  if (starter) return { ...starter, custom: false as const };
+  if (starter)
+    return {
+      ...starter,
+      loot: undefined as string[] | undefined,
+      custom: false as const,
+    };
   const deck = decks.find((d) => customId(d) === id);
   if (!deck) return null;
   return {
@@ -349,6 +363,7 @@ export function describeDeck(id: string, decks: CustomDeck[]) {
     description: `${deckSize(deck.cards)} cards in this saved list${deck.source ? "; its source is linked" : ""}.`,
     heroes: deck.heroes,
     cards: deck.cards,
+    loot: deck.loot,
     source: deck.source,
     productId: deck.productId,
     deckKind: deck.deckKind,

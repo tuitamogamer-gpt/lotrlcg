@@ -104,7 +104,10 @@ export function shadowEastCombatBegin(s: GameState) {
   if (n) prepend(s, fx("heirsArchery", { value: n, player: firstPlayer(s) }));
 }
 export function shadowEastEnemyEntered(s: GameState, u: Unit) {
-  const seen = s.riverRunning?.enteredEnemies ?? s.templeDoom?.enteredEnemies;
+  const seen =
+    s.riverRunning?.enteredEnemies ??
+    s.templeDoom?.enteredEnemies ??
+    s.wrathRuin?.enteredEnemies;
   if (!seen || seen.includes(u.id)) return;
   seen.push(u.id);
   const effects: Effect[] = [];
@@ -149,7 +152,9 @@ const tied = (units: Unit[], value: (u: Unit) => number, highest = false) => {
   return units.filter((u) => value(u) === goal);
 };
 const resolving = (s: GameState) =>
-  s.riverRunning?.resolving ?? s.templeDoom?.resolving;
+  s.riverRunning?.resolving ??
+  s.templeDoom?.resolving ??
+  s.wrathRuin?.resolving;
 function takeResolving(s: GameState, id: string | undefined) {
   const pile = resolving(s);
   const i = pile?.findIndex((u) => u.id === id) ?? -1;

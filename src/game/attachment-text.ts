@@ -1,4 +1,5 @@
 import * as EredSupport from "./ered-mithrin-player-support";
+import { burglarGuardedObjective } from "./burglar-contract-support";
 import { batch4Scenario } from "./batch4-scenarios";
 import * as Sands from "./beneath-sands";
 import * as Race from "./race-harad";
@@ -47,6 +48,8 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ...(s.prisoner ? [s.prisoner] : []),
     ...(s.captiveMendor ? [s.captiveMendor] : []),
     ...(s.mordor?.captured ?? []),
+    ...(s.wrathRuin?.controlled ?? []),
+    ...(s.wrathRuin?.pendingExplored ?? []),
     ...(extra ? [extra] : []),
   ];
   for (const host of hosts) {
@@ -65,6 +68,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       if (
         (blanked && attachment.code !== "21001") ||
         attachment.facedown ||
+        burglarGuardedObjective(s, attachment) ||
         attachment.namelessCard
       )
         attachment.blanked = true;

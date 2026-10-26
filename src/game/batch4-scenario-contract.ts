@@ -73,6 +73,22 @@ export interface Batch4ScenarioHooks {
   missingHeroAllowed?(s: GameState, player: number): boolean;
   engaged?(s: GameState, u: Unit): void;
   hostLeaves?(s: GameState, u: Unit, defeated?: boolean): void;
+  /** Printed replacement effects run before defeat and leave-play reactions. */
+  beforeDestroy?(
+    s: GameState,
+    u: Unit,
+    destruction: boolean,
+    context: DamageContext,
+  ): boolean;
+  /** Capture an explored location without discarding it or its attachments. */
+  locationDestination?(s: GameState, u: Unit): boolean;
+  /** Schedule simultaneous When-explored effects ahead of queued After responses. */
+  explorationWhen?(
+    s: GameState,
+    u: Unit,
+    wasActive: boolean,
+    playerEffects: Effect[],
+  ): boolean;
   attachmentLeaves?(
     s: GameState,
     host: Unit,

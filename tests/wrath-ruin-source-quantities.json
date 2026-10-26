@@ -1,0 +1,157 @@
+{
+  "scenario": "wrath-and-ruin",
+  "source": "https://hallofbeorn.com/LotR/Scenarios/Wrath-and-Ruin",
+  "checkedOn": "2026-10-26",
+  "cards": [
+    {
+      "code": "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
+      "name": "Inside the Walls",
+      "normal": 1,
+      "easy": 1
+    },
+    {
+      "code": "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
+      "name": "Drive Them Out",
+      "normal": 1,
+      "easy": 1
+    },
+    {
+      "code": "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
+      "name": "Thane Ulchor",
+      "normal": 1,
+      "easy": 1
+    },
+    {
+      "code": "octgn:f2981455-b642-4d9b-851d-0209a12cffae",
+      "name": "Champion of Rhûn",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
+      "name": "Easterling Skirmisher",
+      "normal": 4,
+      "easy": 2
+    },
+    {
+      "code": "octgn:31c36264-7e6f-45df-a345-167d4df70885",
+      "name": "Gate of Dorwinion",
+      "normal": 1,
+      "easy": 1
+    },
+    {
+      "code": "octgn:0198aa68-aced-42d0-8816-719ce166ef15",
+      "name": "Contested Square",
+      "normal": 3,
+      "easy": 2
+    },
+    {
+      "code": "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
+      "name": "Ransacked House",
+      "normal": 3,
+      "easy": 3
+    },
+    {
+      "code": "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
+      "name": "Makeshift Fortification",
+      "normal": 3,
+      "easy": 2
+    },
+    {
+      "code": "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
+      "name": "Captured Tower",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
+      "name": "Fury",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
+      "name": "Caught Off Guard",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:f054a6e2-71ae-4acb-ba62-2548ecbfcf9a",
+      "name": "Street Fighting",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:9a870606-9e85-4bdc-a70d-3d1831703eb8",
+      "name": "Under Siege",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
+      "name": "Ulchor's Revenge",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "name": "Easterling Raider",
+      "normal": 3,
+      "easy": 3
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "name": "Warrior of Rhûn",
+      "normal": 3,
+      "easy": 2
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "name": "Sword of Rhûn",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "name": "Recurve Bow",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "name": "Warriors of the East",
+      "normal": 1,
+      "easy": 1
+    },
+    {
+      "code": "octgn:1cd05eb5-2456-467a-8d24-efaadd027145",
+      "name": "Rhûn Backstabber",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+      "name": "Treacherous Easterling",
+      "normal": 2,
+      "easy": 1
+    },
+    {
+      "code": "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
+      "name": "City Forum",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:2f5221a8-8afd-48d8-afd3-352151d87ed6",
+      "name": "Seedy Tavern",
+      "normal": 2,
+      "easy": 2
+    },
+    {
+      "code": "octgn:4b7db087-febb-4e88-bd30-e0f7919511c7",
+      "name": "Darkness in the East",
+      "normal": 2,
+      "easy": 2
+    }
+  ]
+}

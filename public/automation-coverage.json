@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 707,
+    "playerCards": 714,
     "heroes": 81,
-    "deckCards": 623,
-    "encounterCards": 1105,
-    "scenarios": 75,
+    "deckCards": 629,
+    "encounterCards": 1118,
+    "scenarios": 76,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -82,17 +82,18 @@
       "the-fate-of-wilderland",
       "the-river-running",
       "danger-in-dorwinion",
-      "temple-of-doom"
+      "temple-of-doom",
+      "wrath-and-ruin"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2049,
-    "pending": 2134
+    "scripted": 2071,
+    "pending": 2112
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 150
+    "scripted": 152
   },
   "registeredCodes": [
     "01001",
@@ -846,7 +847,14 @@
     "22001",
     "22002",
     "22003",
+    "22004",
+    "22005",
+    "22006",
+    "22007",
     "22008",
+    "22009",
+    "22010",
+    "22024",
     "22027",
     "22028",
     "22029",
@@ -871,11 +879,13 @@
     "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136:B",
+    "octgn:0198aa68-aced-42d0-8816-719ce166ef15",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
+    "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
@@ -935,6 +945,7 @@
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
+    "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
@@ -956,6 +967,7 @@
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+    "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
     "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
     "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
@@ -985,6 +997,7 @@
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
     "octgn:21ee317d-9aca-43be-9782-521539827cb8",
@@ -1032,6 +1045,7 @@
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
@@ -1063,7 +1077,9 @@
     "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
     "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
+    "octgn:31c36264-7e6f-45df-a345-167d4df70885",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+    "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
@@ -1448,6 +1464,7 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
+    "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
     "octgn:51b45e84-3f63-46ea-aa08-b83dd89244ff",
     "octgn:51e187ea-691c-46bc-b74f-c03d110d02cd",
@@ -1717,6 +1734,7 @@
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
+    "octgn:9a870606-9e85-4bdc-a70d-3d1831703eb8",
     "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
@@ -1760,6 +1778,7 @@
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
     "octgn:a5aef3fe-7bb9-4165-ba0f-91127d8f21e3",
     "octgn:a5e60892-b524-43cf-a501-372a624e785e",
+    "octgn:a652a7ef-25ad-4e43-94b4-f18c68e34e83",
     "octgn:a6b39458-b0f1-4b5d-a915-d3921eb35658",
     "octgn:a6dd52d0-375a-41ea-ae77-b0fd9bcb6629",
     "octgn:a6e68650-e413-4e85-b687-b927d5a87821",
@@ -1928,6 +1947,7 @@
     "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
     "octgn:ceb5ede8-0acc-40b6-ac43-b9f1ff006d9e",
     "octgn:cedfcb4c-9f28-46c6-b6ec-7986be79f7b1",
+    "octgn:cefd0596-2e3b-4496-95e0-57899ab83b04",
     "octgn:cf070c26-dd32-4ee8-bd6c-ffe9c011bd64",
     "octgn:cf33276f-22e5-467d-9543-6b345d17e7bc",
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
@@ -2049,11 +2069,13 @@
     "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
+    "octgn:f054a6e2-71ae-4acb-ba62-2548ecbfcf9a",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
+    "octgn:f2981455-b642-4d9b-851d-0209a12cffae",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
@@ -2076,6 +2098,7 @@
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
+    "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
@@ -3120,9 +3143,9 @@
     {
       "product": "wrath-and-ruin",
       "total": 25,
-      "scripted": 3,
+      "scripted": 25,
       "player": 10,
-      "playerScripted": 3
+      "playerScripted": 10
     }
   ],
   "cards": [
@@ -11283,7 +11306,7 @@
       "name": "Cautious Halfling",
       "type": "ally",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11291,7 +11314,7 @@
       "name": "Tom Bombadillo!",
       "type": "event",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11299,7 +11322,7 @@
       "name": "Durin's Axe",
       "type": "attachment",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11307,7 +11330,7 @@
       "name": "Charge into Battle",
       "type": "event",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11323,7 +11346,7 @@
       "name": "Inner Strength",
       "type": "attachment",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11331,7 +11354,7 @@
       "name": "Tom Bombadil",
       "type": "ally",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11339,7 +11362,7 @@
       "name": "The Burglar's Turn",
       "type": "contract",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -11979,7 +12002,7 @@
       "name": "Contested Square",
       "type": "location",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -12075,7 +12098,7 @@
       "name": "Thane Ulchor",
       "type": "enemy",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -13347,7 +13370,7 @@
       "name": "Drive them Out",
       "type": "quest",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -13875,7 +13898,7 @@
       "name": "Caught Off Guard",
       "type": "treachery",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -14427,7 +14450,7 @@
       "name": "Easterling Skirmisher",
       "type": "enemy",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -15323,7 +15346,7 @@
       "name": "Makeshift Fortification",
       "type": "location",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -15971,7 +15994,7 @@
       "name": "Gate of Dorwinion",
       "type": "location",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -16043,7 +16066,7 @@
       "name": "Fury",
       "type": "treachery",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -21523,7 +21546,7 @@
       "name": "Captured Tower",
       "type": "location",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -27483,7 +27506,7 @@
       "name": "Under Siege",
       "type": "treachery",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -28443,7 +28466,7 @@
       "name": "Ulchor's Revenge",
       "type": "treachery",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -32203,7 +32226,7 @@
       "name": "Inside the Walls",
       "type": "quest",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -35003,7 +35026,7 @@
       "name": "Street Fighting",
       "type": "treachery",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -35195,7 +35218,7 @@
       "name": "Champion of Rhûn",
       "type": "enemy",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -35539,7 +35562,7 @@
       "name": "Ransacked House",
       "type": "location",
       "pack": "Wrath and Ruin",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "wrath-and-ruin"
     },
     {
@@ -37135,8 +37158,8 @@
       "id": "E09.4",
       "name": "Wrath and Ruin (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "wrath-and-ruin",
+      "state": "scripted"
     },
     {
       "id": "E09.5",
@@ -38626,8 +38649,8 @@
       "id": "Q09.4",
       "name": "Wrath and Ruin",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "wrath-and-ruin",
+      "state": "scripted"
     },
     {
       "id": "Q09.5",

@@ -22,6 +22,7 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function mainQuestCode(s: GameState): string | undefined {
+  if (s.wrathRuin) return s.wrathRuin.currentQuest;
   if (s.riverRunning) return s.riverRunning.currentQuest;
   if (s.dangerDorwinion) return s.dangerDorwinion.currentQuest;
   if (s.templeDoom) return s.templeDoom.currentQuest;

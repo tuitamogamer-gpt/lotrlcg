@@ -1,4 +1,5 @@
 import { shadowEastPlayerScenarioProblem } from "./deck-setup";
+import { burglarContractSetup } from "./burglar-contract";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import { eredMithrinPlayerSetup } from "./ered-mithrin-player";
 import { encounterReserveDefaults } from "./encounter-reserves";
@@ -151,9 +152,12 @@ export function createGame(
     /** Official easy mode: each hero starts with one additional resource. */
     easy?: boolean;
     rangerReserves?: Record<number, number>;
-    /** Wind from the Sea shares the official three-card Encounter reserve. */
+    /** Each Encounter design has an independent zero-to-three reserve. */
     batch4WindReserves?: Record<number, number>;
     eredEagleReserves?: Record<number, number>;
+    wrathBombadilReserves?: Record<number, number>;
+    /** Fourteen distinct Item/Artifact attachments per Burglar contract. */
+    burglarLoot?: Record<number, string[]>;
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -355,41 +359,27 @@ export function createGame(
   s.rangerReserves = {};
   s.batch4WindReserves = {};
   s.eredEagleReserves = {};
+  s.wrathBombadilReserves = {};
   for (const player of playerOrder(s)) {
     const defaults = encounterReserveDefaults(seatView(s, player).deck);
-    const explicitRangers = options.rangerReserves?.[player],
-      explicitWind = options.batch4WindReserves?.[player],
-      explicitEagles = options.eredEagleReserves?.[player];
-    const eagles =
-      explicitEagles ??
-      Math.max(
-        0,
-        Math.min(
-          defaults.eagles,
-          3 - (explicitRangers ?? 0) - (explicitWind ?? 0),
-        ),
-      );
-    const rangers =
-      explicitRangers ??
-      (explicitWind !== undefined || explicitEagles !== undefined
-        ? 3 - (explicitWind ?? defaults.wind) - eagles
-        : defaults.rangers);
-    const wind = explicitWind ?? Math.min(defaults.wind, 3 - rangers - eagles);
+    const rangers = options.rangerReserves?.[player] ?? defaults.rangers,
+      wind = options.batch4WindReserves?.[player] ?? defaults.wind,
+      eagles = options.eredEagleReserves?.[player] ?? defaults.eagles,
+      bombadil =
+        options.wrathBombadilReserves?.[player] ?? defaults.bombadil ?? 0;
     requireRule(
-      [rangers, wind, eagles].every(
+      [rangers, wind, eagles, bombadil].every(
         (n) => Number.isInteger(n) && n >= 0 && n <= 3,
       ),
-      "Set aside between zero and three Encounter cards per player.",
-    );
-    requireRule(
-      rangers + wind + eagles <= 3,
-      "A player can set aside at most three Encounter cards in total.",
+      "Set aside between zero and three copies of each Encounter card per player.",
     );
     s.rangerReserves[player] = rangers;
     s.batch4WindReserves[player] = wind;
     s.eredEagleReserves[player] = eagles;
+    s.wrathBombadilReserves[player] = bombadil;
   }
   if (!s.table) s.startingThreat = s.threat;
+  burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;

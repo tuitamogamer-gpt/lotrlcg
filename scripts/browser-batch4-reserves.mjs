@@ -93,17 +93,26 @@ try {
     await page.getByRole("button", { name: /Classic solo/ }).click();
     await chooseDeck("Reserve Alpha");
     const one = page.getByRole("combobox", {
-      name: "Player 1 Encounter reserves",
+      name: "Player 1 Wind from the Sea reserves",
       exact: true,
     });
-    assert.equal(await one.inputValue(), "1");
+    assert.equal(await one.inputValue(), "3");
+    assert.equal(
+      await page
+        .getByRole("combobox", {
+          name: "Player 1 Ranger of the North reserves",
+          exact: true,
+        })
+        .inputValue(),
+      "3",
+    );
     await one.selectOption("2");
     await one.scrollIntoViewIfNeeded();
     await checkpoint("classic-reserve-allocation", width);
     await page.locator("#start-btn").click();
     let s = await opening(page);
     assert.equal(s.batch4WindReserves[0], 2);
-    assert.equal(s.rangerReserves[0], 1);
+    assert.equal(s.rangerReserves[0], 3);
     await resume(page);
     await fresh(page, "mirkwood", 2, false);
     await chooseDeck("Reserve Alpha");
@@ -113,13 +122,13 @@ try {
     await chooseDeck("Reserve Beta");
     await page
       .getByRole("combobox", {
-        name: "Player 1 Encounter reserves",
+        name: "Player 1 Wind from the Sea reserves",
         exact: true,
       })
       .selectOption("0");
     await page
       .getByRole("combobox", {
-        name: "Player 2 Encounter reserves",
+        name: "Player 2 Wind from the Sea reserves",
         exact: true,
       })
       .selectOption("3");
@@ -130,13 +139,13 @@ try {
     await page.locator("#start-btn").click();
     s = await opening(page);
     assert.deepEqual(s.batch4WindReserves, { 0: 0, 1: 3 });
-    assert.deepEqual(s.rangerReserves, { 0: 3, 1: 0 });
+    assert.deepEqual(s.rangerReserves, { 0: 3, 1: 3 });
     await resume(page);
     await fresh(page, "mirkwood", 1, false);
     await chooseDeck("Flight Only");
     assert.equal(
-      await page.locator("[data-encounter-reserve-setup]").count(),
-      0,
+      await page.locator("[data-encounter-reserve-setup] select").count(),
+      1,
     );
     await page.locator("#start-btn").click();
     s = await opening(page);

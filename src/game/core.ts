@@ -1,4 +1,6 @@
 import * as ShadowEastSupport from "./shadow-east-player-support";
+import * as WrathSupport from "./wrath-ruin-player-support";
+import { burglarContractLocationQuestBonus } from "./burglar-contract-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import * as BatchSupport from "./batch4-player-support";
@@ -309,6 +311,7 @@ export const units = (s: GameState) => [
   ...allEngaged(s),
   ...allActiveLocations(s),
   ...(s.assaultOsgiliath?.controlled ?? []),
+  ...(s.wrathRuin?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
   ...(s.mordor?.captured ?? []),
 ];
@@ -321,6 +324,7 @@ export const globalUnits = (s: GameState) => [
   ...globalEngaged(s),
   ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
   ...(s.assaultOsgiliath?.controlled ?? []),
+  ...(s.wrathRuin?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
   ...(s.mordor?.captured ?? []),
 ];
@@ -564,6 +568,7 @@ export function stats(s: GameState, u: Unit) {
   const c = card(u.code);
   const eredFinalBonus = EredFinalSupport.eredFinalPlayerStats(s, u);
   const shadowEastBonus = ShadowEastSupport.shadowEastPlayerStats(s, u);
+  const wrathBonus = WrathSupport.wrathRuinPlayerStats(s, u);
   const bonus = expansionStats(s, u);
   const carrockBonus = carrockStatBonus(s, u);
   const gondorBonus = gondorRoundStats(s, u);
@@ -675,6 +680,7 @@ export function stats(s: GameState, u: Unit) {
         BatchSupport.batch4PlayerStats(s, u).attack +
         eredFinalBonus.attack +
         shadowEastBonus.attack +
+        wrathBonus.attack +
         EredSupport.eredMithrinPlayerStats(s, u).attack +
         WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
@@ -752,6 +758,7 @@ export function stats(s: GameState, u: Unit) {
             BatchSupport.batch4PlayerStats(s, u).defense +
             eredFinalBonus.defense +
             shadowEastBonus.defense +
+            wrathBonus.defense +
             EredSupport.eredMithrinPlayerStats(s, u).defense +
             WildsSupport.wildsPlayerStats(s, u).defense +
             Umbar.umbarStats(s, u).defense +
@@ -1077,7 +1084,8 @@ const baseLocationQuest = (s: GameState, u: Unit) =>
     Rhu.rhudaurLocationQuestBonus(s, u) +
     (batch4Scenario(s).locationQuestBonus?.(s, u) ?? 0);
 export const locationQuest = (s: GameState, u: Unit) =>
-  EredSupport.eredMithrinPlayerLocationQuest(s, u, baseLocationQuest(s, u));
+  EredSupport.eredMithrinPlayerLocationQuest(s, u, baseLocationQuest(s, u)) +
+  burglarContractLocationQuestBonus(s, u);
 export const engagementCost = (s: GameState, u: Unit) =>
   Wastes.wastesEngagementCost(s, u) ??
   heirsEngagementCost(s, u) ??

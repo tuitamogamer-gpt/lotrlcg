@@ -1,4 +1,6 @@
 import * as ShadowEastPlayers from "./shadow-east-player";
+import * as WrathPlayers from "./wrath-ruin-player";
+import * as Burglar from "./burglar-contract";
 import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
@@ -52,7 +54,10 @@ import {
   DIKE_DISCARD_REASON,
 } from "./deadmens-discard";
 import { DIKE } from "./deadmens-dike-support";
-import { choosePlayerResponse } from "./player-ability-triggers";
+import {
+  choosePlayerResponse,
+  mandatoryPlayerResponse,
+} from "./player-ability-triggers";
 import { allQuestUnits } from "./quest-state";
 import * as Dike from "./deadmens-dike";
 import { CHETWOOD } from "./chetwood-support";
@@ -504,6 +509,19 @@ export function enemyAddedToStaging(s: GameState, u: Unit) {
   longDarkPlayerEnemyAddedToStaging(s, u);
 }
 
+/** Put a new enemy directly into play engaged, without staging-only Trap triggers. */
+export function enterEnemyEngaged(
+  s: GameState,
+  u: Unit,
+  player = activeSeat(s),
+) {
+  forOwner(s, player, () => {
+    engage(s, u);
+    if (allEngaged(s).some((enemy) => enemy.id === u.id))
+      batch4Scenario(s).enemyEntered?.(s, u);
+  });
+}
+
 /** An effect removes a quester; ordinary end-of-round cleanup is not a removal. */
 export function removeFromQuest(s: GameState, u: Unit) {
   if (!u.committed) return;
@@ -599,7 +617,7 @@ function coreCommitResponse(
 ): Effect {
   return coreGateActive(s)
     ? fx("coreResponseOffer", { source: u.id, code: u.code, effects, player })
-    : fx("coreResponseAutomatic", { effects, player });
+    : mandatoryPlayerResponse(s, u.id, u.code, effects, player);
 }
 
 /** Preserve automatic Core responses while allowing a player to decline Gate's cost. */
@@ -993,6 +1011,7 @@ export function check(s: GameState) {
         return;
       if (s.table!.seats[i].eliminated) return;
       batch4Scenario(s).playerEliminating?.(s, i);
+      Burglar.burglarContractPlayerEliminating(s, i);
       for (const host of [
         ...s.staging,
         ...(s.stormcaller?.area ?? []),
@@ -1000,6 +1019,7 @@ export function check(s: GameState) {
         ...(s.temple?.outOfStaging ?? []),
         ...allEngaged(s),
         ...allActiveLocations(s),
+        ...(s.wrathRuin?.controlled ?? []),
         ...(mainQuestUnit(s) ? [mainQuestUnit(s)!] : []),
       ]) {
         for (const a of [...host.attachments]) {
@@ -1521,6 +1541,7 @@ export function discardAttachment(
   )
     return;
   ShadowEastPlayers.shadowEastPlayerAttachmentLeft(s, u, a);
+  Burglar.burglarContractAttachmentLeft(s, a);
   Catch.catchAttachmentLeaves(s, u, a, leaving);
   u.attachments = u.attachments.filter((x) => x.id !== a.id);
   if (u.id.startsWith("quest:"))
@@ -1684,6 +1705,15 @@ export function destroy(
     return;
   if (!destruction && MorgulQuest.morgulCannotLeave(s, u)) return;
   if (batch4Scenario(s).cannotLeave?.(s, u, destruction)) return;
+  if (batch4Scenario(s).beforeDestroy?.(s, u, destruction, damageContext))
+    return;
+  if (card(u.code).type_code === "location")
+    Burglar.burglarContractLocationLeaving(
+      s,
+      u,
+      false,
+      allActiveLocations(s).some((location) => location.id === u.id),
+    );
   if (destruction) batch4Scenario(s).characterDestroyed?.(s, u, damageContext);
   batch4Scenario(s).hostLeaves?.(s, u, destruction);
   EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
@@ -1966,6 +1996,12 @@ export function discardLocation(s: GameState, u: Unit) {
     "This location is immune to player card effects.",
   );
   if (batch4Scenario(s).cannotLeave?.(s, u)) return;
+  Burglar.burglarContractLocationLeaving(
+    s,
+    u,
+    false,
+    allActiveLocations(s).some((location) => location.id === u.id),
+  );
   batch4Scenario(s).hostLeaves?.(s, u, false);
   EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
   EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
@@ -1993,6 +2029,7 @@ export function discardLocation(s: GameState, u: Unit) {
 /** Exploration on the Island Map keeps the physical location and attachments. */
 export function templeMapLocationExplored(s: GameState, u: Unit) {
   if (!s.temple || !Temple.templeIsMapLocation(s, u)) return;
+  const burglarEffects = Burglar.burglarContractExploreEffects(s, u, true);
   const attachments = [...u.attachments];
   heirsPlayerLocationExplored(s, u, undefined);
   Angmar.angmarLocationExplored(s, u, undefined, attachments, true);
@@ -2000,6 +2037,18 @@ export function templeMapLocationExplored(s: GameState, u: Unit) {
   rhosgobelLocationExplored(s, u);
   rhosgobelExplored(s, u);
   returnMirkwoodExplored(s, u);
+  prepend(
+    s,
+    ...(burglarEffects.length > 1
+      ? [
+          fx("fangornOrder", {
+            effects: burglarEffects,
+            text: "Explore · Choose the next contract",
+            player: firstPlayer(s),
+          }),
+        ]
+      : burglarEffects),
+  );
 }
 
 export function progressLocation(s: GameState, u: Unit, value: number) {
@@ -2034,19 +2083,23 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (u.progress < locationQuest(s, u)) return;
   if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
     return;
+  const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
+  const burglarEffects = Burglar.burglarContractExploreEffects(s, u, wasActive);
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
   batch4Scenario(s).hostLeaves?.(s, u, false);
   EredFinalPlayers.eredFinalPlayerUnitLeaving(s, u);
-  EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
-  WildsPlayers.wildsPlayerGuardLeaving(s, u);
+  if (!s.wrathRuin || !burglarEffects.length) {
+    EredPlayers.eredMithrinPlayerGuardLeaving(s, u);
+    WildsPlayers.wildsPlayerGuardLeaving(s, u);
+  }
   log(s, `${name(u)} is explored.`, "good");
-  const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
   if (wasActive) removeActiveLocation(s, u.id);
   else s.staging = s.staging.filter((x) => x.id !== u.id);
   const captured =
     Drowned.drownedLocationDestination(s, u) ||
-    Osgiliath.assaultOsgiliathCapture(s, u);
+    Osgiliath.assaultOsgiliathCapture(s, u) ||
+    !!batch4Scenario(s).locationDestination?.(s, u);
   let exploredDiscardIndex: number | undefined;
   if (!captured) {
     if (u.code === "01113") s.encounterDeck.unshift(u.code);
@@ -2111,6 +2164,19 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     prepend(
       s,
       ...playerOrder(s).map((player) => fx("mountainReward", { player })),
+    );
+  if (!batch4Scenario(s).explorationWhen?.(s, u, wasActive, burglarEffects))
+    prepend(
+      s,
+      ...(burglarEffects.length > 1
+        ? [
+            fx("fangornOrder", {
+              effects: burglarEffects,
+              text: "Explore · Choose the next contract",
+              player: firstPlayer(s),
+            }),
+          ]
+        : burglarEffects),
     );
 }
 
@@ -3333,6 +3399,7 @@ export function placeEncounter(
   }
   if (ShadowEastPlayers.shadowEastPlayerEncounter(s, code, false, fromReveal))
     return;
+  if (WrathPlayers.wrathRuinPlayerEncounter(s, code, false, fromReveal)) return;
   if (batch4Scenario(s).encounter?.(s, code, false, fromReveal)) return;
   if (City.cityEncounter(s, code)) return;
   if (Umbar.umbarEncounter(s, code)) return;
@@ -3665,6 +3732,7 @@ export function allyEntryResponses(
   )
     return;
   ShadowEastPlayers.shadowEastPlayerAllyEntered(s, u, played, fromHand);
+  WrathPlayers.wrathRuinPlayerAllyEntered(s, u, played, fromHand);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

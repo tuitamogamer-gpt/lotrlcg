@@ -26,6 +26,7 @@ const HEADLINES: Partial<
   },
   "danger-in-dorwinion": { lead: "Expose the cult", em: "in Dorwinion." },
   "temple-of-doom": { lead: "Enter", em: "the Temple of Doom." },
+  "wrath-and-ruin": { lead: "Reclaim the streets", em: "of Dorwinion." },
   "the-withered-heath": {
     lead: "Track the dragon",
     em: "across the Withered Heath.",

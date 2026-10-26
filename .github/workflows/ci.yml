@@ -272,6 +272,24 @@ jobs:
           path: output/shadow-east-release/failures
           retention-days: 7
 
+  wrath-ruin-simulation:
+    name: Wrath and Ruin complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:wrath-ruin-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: wrath-ruin-simulation
+          path: output/wrath-ruin-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -391,6 +409,10 @@ jobs:
             suite: test:shadow-east-quests
           - group: shadow-east-players
             suite: test:shadow-east-players
+          - group: wrath-ruin-quests
+            suite: test:wrath-ruin-quests
+          - group: wrath-ruin-players
+            suite: test:wrath-ruin-players
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

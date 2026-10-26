@@ -25,13 +25,13 @@ const game = (
     "custom",
     options,
   );
-test("native Eagle defaults preserve old two-species defaults and share a total of three across all enabling events", () => {
+test("native Eagle defaults use the current published three-of-each Encounter limit", () => {
   for (const [codes, expected] of [
     [[], { rangers: 3, wind: 0, eagles: 0 }],
     [["19032"], { rangers: 0, wind: 0, eagles: 3 }],
-    [["19032", "09007"], { rangers: 2, wind: 0, eagles: 1 }],
-    [["19032", "17140"], { rangers: 0, wind: 1, eagles: 2 }],
-    [["19032", "17140", "09007"], { rangers: 1, wind: 1, eagles: 1 }],
+    [["19032", "09007"], { rangers: 3, wind: 0, eagles: 3 }],
+    [["19032", "17140"], { rangers: 0, wind: 3, eagles: 3 }],
+    [["19032", "17140", "09007"], { rangers: 3, wind: 3, eagles: 3 }],
   ] as const) {
     assert.deepEqual(encounterReserveDefaults(codes), expected);
     const s = game([...codes]);
@@ -45,7 +45,7 @@ test("native Eagle defaults preserve old two-species defaults and share a total 
     );
   }
 });
-test("native explicit three-species allocations accept zero and mixed choices, reject total four, and validate per-seat corruption", () => {
+test("native explicit three-species reserves accept mixed totals and reject more than three of one design", () => {
   const s = game(["19032", "17140", "09007"], {
     rangerReserves: { 0: 0 },
     batch4WindReserves: { 0: 1 },
@@ -63,14 +63,14 @@ test("native explicit three-species allocations accept zero and mixed choices, r
   });
   assert.equal(zero.eredEagleReserves![0], 0);
   assert.ok(validateSave(zero));
-  assert.throws(
-    () =>
-      game(["19032"], {
-        rangerReserves: { 0: 1 },
-        batch4WindReserves: { 0: 1 },
-        eredEagleReserves: { 0: 2 },
-      }),
-    /at most three/,
+  const nine = game(["19032"], {
+    rangerReserves: { 0: 3 },
+    batch4WindReserves: { 0: 3 },
+    eredEagleReserves: { 0: 3 },
+  });
+  assert.ok(
+    validateSave(nine),
+    "MEC107 page 2 caps each design, not their combined total",
   );
   for (const badCount of [-1, 4, 1.5]) {
     const bad = structuredClone(s);
@@ -78,7 +78,7 @@ test("native explicit three-species allocations accept zero and mixed choices, r
     assert.equal(validateSave(bad), false);
   }
   const bad = structuredClone(s);
-  bad.rangerReserves![0] = 1;
+  bad.rangerReserves![0] = 4;
   assert.equal(validateSave(bad), false);
 });
 test("save validation rejects forged Thalion hero claims on other cards and before three side quests", () => {

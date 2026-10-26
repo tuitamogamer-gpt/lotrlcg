@@ -1,4 +1,5 @@
 import * as ShadowEastPlayers from "./shadow-east-player";
+import * as WrathPlayers from "./wrath-ruin-player";
 import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredFinalPlayers from "./ered-final-player";
@@ -143,7 +144,12 @@ export function playerAttack(
   enemy: Unit,
   ids: string[],
   regular = false,
-  abilityMode?: "haldir" | "hands-upon-bow" | "knight" | "battle-fury",
+  abilityMode?:
+    | "haldir"
+    | "hands-upon-bow"
+    | "knight"
+    | "battle-fury"
+    | "charge-into-battle",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -192,11 +198,19 @@ export function playerAttack(
             s,
             enemy,
             abilityMode === "battle-fury" ? ids[0] : undefined,
+            abilityMode === "charge-into-battle",
           )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
     requireRule(ids.length === 1, "Haldir must attack alone with his ability.");
+  if (abilityMode === "charge-into-battle")
+    requireRule(
+      s.staging.some((u) => u.id === enemy.id) &&
+        !card(enemy.code).is_unique &&
+        !playerEffectImmune(s, enemy, "22007"),
+      "Charge into Battle requires an eligible non-unique enemy in the staging area.",
+    );
   if (abilityMode === "hands-upon-bow")
     requireRule(
       ids.length === 1 &&
@@ -231,6 +245,11 @@ export function playerAttack(
     batch4Scenario(s).playerAttackDeclared?.(s, enemy, ids) !== false,
     "This attack cannot pay the scenario's progress cost.",
   );
+  if (abilityMode === "charge-into-battle")
+    (s.playerAttackContexts ??= []).push({
+      enemyId: enemy.id,
+      player: activeSeat(s),
+    });
   Raid.raidPlayerAttackStarted(s, enemy);
   Depths.depthsPlayerAttackStarted(s, enemy);
   const priorQueue = s.queue.length;
@@ -314,7 +333,19 @@ export function playerAttack(
     (e) => e.kind === "resolvePlayerAttack" && e.target === enemy.id,
   );
   if (attackResultIndex >= 0)
-    s.queue.splice(attackResultIndex + 1, 0, fx("wildsAttackCleanup", { ids }));
+    s.queue.splice(
+      attackResultIndex + 1,
+      0,
+      fx("wildsAttackCleanup", { ids }),
+      ...(abilityMode === "charge-into-battle"
+        ? [
+            fx("playerAttackContextEnd", {
+              target: enemy.id,
+              player: activeSeat(s),
+            }),
+          ]
+        : []),
+    );
   rohanAttackDeclared(s, enemy, attackers as Unit[]);
   longDarkPlayerAttackersDeclared(s, ids);
   collectorAttackersDeclared(s, ids);
@@ -374,7 +405,9 @@ export function resolvePlayerAttack(
   const remainingHealth = stats(s, enemy).health - enemy.damage;
   const lethal = amount >= remainingHealth;
   const engagedPlayer = s.staging.some((u) => u.id === enemy.id)
-    ? undefined
+    ? s.playerAttackContexts?.at(-1)?.enemyId === enemy.id
+      ? s.playerAttackContexts.at(-1)!.player
+      : undefined
     : ownerOf(s, enemy);
   if (Druadan.druadanForestAttackProgress(s, enemy, amount)) {
     playerAttackResolved(s, enemy, ids, 0, remainingHealth);
@@ -447,6 +480,7 @@ export function playerAttackKilled(
       fx("attackProgress", { ids: responses, player: s.table?.first ?? 0 }),
     );
   ShadowEastPlayers.shadowEastPlayerAttackKilled(s, enemy, ids, engagedPlayer);
+  WrathPlayers.wrathRuinPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);

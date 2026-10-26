@@ -1,3 +1,4 @@
+import { WRATH_RUIN_ADVENTURES } from "./wrath-ruin-scenario-data";
 import { BLACK_SERPENT_ADVENTURES } from "./black-serpent-scenario-data";
 import { CIRITH_GURAT_ADVENTURES } from "./cirith-gurat-scenario-data";
 import { CROSSINGS_POROS_ADVENTURES } from "./crossings-poros-scenario-data";
@@ -1153,6 +1154,7 @@ export const SCENARIOS = [
   ...RIVER_RUNNING_ADVENTURES,
   ...DANGER_DORWINION_ADVENTURES,
   ...TEMPLE_DOOM_ADVENTURES,
+  ...WRATH_RUIN_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

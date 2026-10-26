@@ -1,4 +1,6 @@
 import { finishGameSetup } from "./setup";
+import * as WrathPlayers from "./wrath-ruin-player";
+import * as Burglar from "./burglar-contract";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import * as EredFinalPlayers from "./ered-final-player";
 import * as EredPlayers from "./ered-mithrin-player";
@@ -573,6 +575,15 @@ export function handle(s: GameState, e: Effect) {
 }
 
 function handleEffect(s: GameState, e: Effect) {
+  if (e.kind === "playerAttackContextEnd") {
+    const context = s.playerAttackContexts?.at(-1);
+    if (context && context.enemyId === e.target && context.player === e.player)
+      s.playerAttackContexts!.pop();
+    if (!s.playerAttackContexts?.length) delete s.playerAttackContexts;
+    return;
+  }
+  if (Burglar.handleBurglarContractEffect(s, e)) return;
+  if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -1289,7 +1300,8 @@ function handleEffect(s: GameState, e: Effect) {
         Gram.gramActiveLocationChanged(s, u);
         Angmar.angmarTraveled(s);
         log(s, `Travelled to ${name(u)}.`, "good");
-        if (u.code === "01087") progressLocation(s, u, 1);
+        if (u.code === "01087" && !Burglar.burglarContractHandlesBrownLands(s))
+          progressLocation(s, u, 1);
         if (u.code === "01107") eachSeat(s, () => orcGuard(s));
         const responses = [
           ...(u.code === "01099"
@@ -1308,6 +1320,11 @@ function handleEffect(s: GameState, e: Effect) {
         carrockTravel(s, u);
         emynMuilTravel(s, u);
         deadMarshesTravel(s, u);
+        Burglar.burglarContractTravelEntered(
+          s,
+          u,
+          !e.flag || e.text === "strider-replace",
+        );
       }
       break;
     case "templeTravelResponses":
@@ -1321,6 +1338,7 @@ function handleEffect(s: GameState, e: Effect) {
             fx("strengthOfWill", { target: u.id, player }),
           ),
         );
+        Burglar.burglarContractTravelEntered(s, u, true);
       }
       break;
     case "reshufflePlayer":
@@ -2015,6 +2033,7 @@ function handleEffect(s: GameState, e: Effect) {
           (effect.kind === "stewardCounsels" ? passives : forced).push(effect);
         }
       });
+      passives.push(...WrathPlayers.wrathRuinPlayerRoundEnd(s));
       prepend(s, ...passives, ...forced, fx("endRoundAfterCollector"));
       break;
     }
@@ -2780,7 +2799,13 @@ export function shadowResponse(s: GameState, code: string) {
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
       : TemplePlayers.templePlayerShadowOptions(s, code, !!shadowText);
+  const wrathOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : WrathPlayers.wrathRuinPlayerShadowOptions(s, code, !!shadowText);
   if (
+    wrathOptions.length ||
     eredOptions.length ||
     eligible.length ||
     brand.length ||
@@ -2793,6 +2818,7 @@ export function shadowResponse(s: GameState, code: string) {
       "A shadow falls",
       [
         ...eredOptions,
+        ...wrathOptions,
         ...templeOptions,
         ...brand,
         ...erkenbrand,

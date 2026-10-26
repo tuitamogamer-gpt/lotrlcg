@@ -614,7 +614,11 @@ export function eredMithrinPlayerSpecialAttachmentEntry(s: GameState, u: Unit) {
 export function eredMithrinPlayerGuardLeaving(s: GameState, u: Unit) {
   if (!["enemy", "ship-enemy", "location"].includes(card(u.code).type_code))
     return;
-  const guards = u.attachments.filter((a) => ERED_GUARDED.includes(a.code));
+  const guards = u.attachments.filter(
+    (a) =>
+      ERED_GUARDED.includes(a.code) &&
+      !s.burglarContract?.guarded.some((g) => g.attachmentId === a.id),
+  );
   u.attachments = u.attachments.filter((a) => !guards.includes(a));
   prepend(
     s,
@@ -962,7 +966,7 @@ export function handleEredMithrinPlayerEffect(
         }
         const code = s.encounterDeck.shift()!;
         if (
-          e.code === "19117"
+          ["19117", "22006"].includes(e.code!)
             ? ["enemy", "ship-enemy"].includes(card(code).type_code)
             : e.code === "19152"
               ? card(code).type_code === "location"
