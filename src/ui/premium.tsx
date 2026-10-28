@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-city-of-ulfast": {
+    name: "The City of Ulfast",
+    detail: "Search for Ulchor and evade the City Guard",
+  },
   "wrath-and-ruin": {
     name: "The Siege of Dorwinion",
     detail: "Reclaim the city and drive out Thane Ulchor",
@@ -373,6 +377,7 @@ export const PLAYMAT_CHOICES = [
   "danger-in-dorwinion",
   "temple-of-doom",
   "wrath-and-ruin",
+  "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
   "the-crossings-of-poros",

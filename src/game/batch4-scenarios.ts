@@ -1,3 +1,4 @@
+import { ULFAST_HOOKS } from "./ulfast";
 import { WRATH_RUIN_HOOKS } from "./wrath-ruin";
 import type { GameState, Effect } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
@@ -18,6 +19,8 @@ import { TEMPLE_DOOM_HOOKS } from "./temple-doom";
 const empty: Batch4ScenarioHooks = {};
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
+    case "the-city-of-ulfast":
+      return ULFAST_HOOKS;
     case "wrath-and-ruin":
       return WRATH_RUIN_HOOKS;
     case "the-river-running":
@@ -68,4 +71,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     DANGER_DORWINION_HOOKS,
     TEMPLE_DOOM_HOOKS,
     WRATH_RUIN_HOOKS,
+    ULFAST_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

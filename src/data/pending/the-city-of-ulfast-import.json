@@ -1,0 +1,1569 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The City of Ulfast",
+  "slug": "the-city-of-ulfast",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+      "octgnid": "1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+      "name": "Ulchor's Trap",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded. X is the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 53,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The City of Ulfast",
+      "side": "A",
+      "back_name": "Ulchor's Trap",
+      "back_text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded. X is the number of players. Add each enemy discarded this way to the staging area.City Guard cannot have more than 20 damage, and it gets -5 engagement cost for each resource here.Forced: At the end of the round, place 1 resource here.This stage cannot be defeated while City Guardhas hit points remaining. When this stage is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+      "name": "Unwelcome Travelers",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each location in the staging area gets +1 [threat].Forced: After Unwelcome Travelers becomes the current quest, the first player discards cards from the top of the encounter deck until an enemy is discarded and puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 52,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+      "octgnid": "3043df29-f8e9-426e-bd14-5cb720ed8f10",
+      "name": "City Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Indestructible.\nImmune to player card effects. Indestructible. X is 1 more than the number of resources on the main quest.City Guard cannot leave the staging area but is considered to be engaged with each player whose threat is equal to or higher than its engagement cost.",
+      "is_unique": true,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 37,
+      "quantity": 1,
+      "attack": 9,
+      "defense": 4,
+      "health": 20,
+      "engagement": 45,
+      "victory": 5,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "9",
+        "defense": "4",
+        "health": "20",
+        "engagement": "45",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/3043df29-f8e9-426e-bd14-5cb720ed8f10.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 37,
+          "quantity": 1,
+          "octgnid": "3043df29-f8e9-426e-bd14-5cb720ed8f10",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3043df29-f8e9-426e-bd14-5cb720ed8f10.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+      "octgnid": "33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+      "name": "The King's Elite",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Cannot have player card attachments. Forced: When The King`s Elite attacks, place 1 resource on the main quest.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 39,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 39,
+          "quantity": 2,
+          "octgnid": "33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+      "octgnid": "379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+      "name": "Patrolling the Streets",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 1 resource on the main quest. Then, either progress cannot be placedon the current quest this phase, or raise each player`s threat by X, where X is 1 more than the number of resources on the main quest.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 47,
+      "quantity": 3,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {},
+      "imagesrc": "/cards/379415fb-39c8-4cb8-aa19-ac54c46bcb4a.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 47,
+          "quantity": 3,
+          "octgnid": "379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/379415fb-39c8-4cb8-aa19-ac54c46bcb4a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+      "name": "Side Street",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Side Street is in the staging area, progress cannot be placed on other locations in the staging area.Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 49,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+      "octgnid": "59314974-a07d-4024-9951-40736209b6b9",
+      "name": "Drawing Attention",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 5, or City Guard makes an immediate attack against you.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 52,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The City of Ulfast",
+      "side": "A",
+      "back_name": "Drawing Attention",
+      "back_text": "City Guard cannot have more than 15 damage, and it gets -5 engagement cost for each resource here.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/59314974-a07d-4024-9951-40736209b6b9.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/59314974-a07d-4024-9951-40736209b6b9.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "59314974-a07d-4024-9951-40736209b6b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59314974-a07d-4024-9951-40736209b6b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+      "octgnid": "60b96a86-77b5-4184-9703-f55b8c857eb9",
+      "name": "Ulchor's Agent",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "When Revealed: Raise each player`s threat by 3.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 40,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 32,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/60b96a86-77b5-4184-9703-f55b8c857eb9.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "60b96a86-77b5-4184-9703-f55b8c857eb9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60b96a86-77b5-4184-9703-f55b8c857eb9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+      "octgnid": "6d485bbc-6876-4160-8111-77f3935123c9",
+      "name": "Messenger from Mordor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "When Revealed: Either raise each player`s threat by X, where X is the active location`s [threat], or Messenger from Mordor makes an immediate attack against the first player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 40,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack].",
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 40,
+          "quantity": 3,
+          "octgnid": "6d485bbc-6876-4160-8111-77f3935123c9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d485bbc-6876-4160-8111-77f3935123c9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+      "octgnid": "7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+      "name": "Trying to Blend In",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either raise your threat by 5, or reveal an encounter card.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 51,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The City of Ulfast",
+      "side": "A",
+      "back_name": "Trying to Blend In",
+      "back_text": "When Revealed: Each player must choose: either raise your threat by 5, or reveal an encounter card.City Guard cannot have more than 10 damage, and it gets -5 engagement cost for each resource here.Forced: At the end of the round, place 1 resource here.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 51,
+          "quantity": 1,
+          "octgnid": "7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "octgnid": "80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "name": "Servant of Sauron",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Surge.\nServant of Sauron engages the first player.Forced: After the engaged player raises his threat, Servant of Sauron makes an immediate attack. (Limit once per phase.)",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 41,
+      "quantity": 2,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 36,
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "36"
+      },
+      "imagesrc": "/cards/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+      "octgnid": "92d8276b-0839-44b4-b7ce-e18e135fe407",
+      "name": "We've Been Seen",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must choose: either City Guard makes an attack against you, or raise your threat by X, where X is 1 more than the number of allies you control.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 46,
+      "quantity": 3,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {},
+      "imagesrc": "/cards/92d8276b-0839-44b4-b7ce-e18e135fe407.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "92d8276b-0839-44b4-b7ce-e18e135fe407",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92d8276b-0839-44b4-b7ce-e18e135fe407.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "name": "Under Guard",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Resolve the Travel effect on the active location. If there is no active location, discard cards from the encounter deck until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 51,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack destroys a character, resolve the Travel effect on the active location.",
+      "encounter_set": "Under Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 51,
+          "quantity": 3,
+          "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+      "octgnid": "a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+      "name": "The King's Lawn",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While The King`s Lawn is in the staging area, each player must raise his threat by 1 additional point during the refresh phase. Travel: Place 1 resource on the main quest.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 41,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/a7ae0add-ff9b-4976-8932-cff6d6e9a4dc.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7ae0add-ff9b-4976-8932-cff6d6e9a4dc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+      "octgnid": "af3543c4-f30f-4522-bbb7-5ef039344fdf",
+      "name": "Streets of Ulfast",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "X is 1 more than the number of resources on the main quest. Travel: Raise each player`s threat by X.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 44,
+      "quantity": 3,
+      "quest": 5,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/af3543c4-f30f-4522-bbb7-5ef039344fdf.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "af3543c4-f30f-4522-bbb7-5ef039344fdf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/af3543c4-f30f-4522-bbb7-5ef039344fdf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+      "octgnid": "b07cec11-452d-423a-b33e-3f9345c9f6e1",
+      "name": "Crowded Market",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Crowded Market is the active location, City Guard gets +20 engagement cost.Travel: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until an enemy is discarded. Add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 43,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/b07cec11-452d-423a-b33e-3f9345c9f6e1.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 43,
+          "quantity": 2,
+          "octgnid": "b07cec11-452d-423a-b33e-3f9345c9f6e1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b07cec11-452d-423a-b33e-3f9345c9f6e1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "octgnid": "ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "name": "Shadow of Fear",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nForced: After an enemy engages a player, that player raises his threat by 1.Response: When Shadow of Fear is defeated, reduce each player`s threat by 3.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 43,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+      "octgnid": "c2720938-450b-4017-9ac3-f3130164bdf9",
+      "name": "Ulfast Sentry",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "X is 1 more than the number of resources on the main quest.Forced: After Ulfast Sentry engages you, either place 1 resource on the main quest or Ulfast Sentry makes an attack.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 38,
+      "quantity": 3,
+      "threat": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 25,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "X",
+        "defense": "1",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/c2720938-450b-4017-9ac3-f3130164bdf9.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 38,
+          "quantity": 3,
+          "octgnid": "c2720938-450b-4017-9ac3-f3130164bdf9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2720938-450b-4017-9ac3-f3130164bdf9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "name": "Catacombs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Catacombs is in the staging area, enemes in the staging area cannot take damage.Travel: Each player discards the top card of the encounter deck. If a player discards an enemy this way, he puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 50,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+      "octgnid": "e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+      "name": "Searching for Ulchor",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add City Guard to the staging area. Each player adds a different location to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 50,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The City of Ulfast",
+      "side": "A",
+      "back_name": "Searching for Ulchor",
+      "back_text": "Setup: Add City Guard to the staging area. Each player adds a different location to the staging area. Shuffle the encounter deck.City Guard cannot have more than 5 damage, and it gets -5 engagement cost for each resource here.Forced: At the end of the round, place 1 resource here.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 50,
+          "quantity": 1,
+          "octgnid": "e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "octgnid": "e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "name": "Overwhelmed",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Until the end of the round, enemies engaged with the first player cannot take damage.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 42,
+      "quantity": 2,
+      "shadow": "Shadow: Either raise your threat by 2, or attacking enemy cannot take damage this round. ",
+      "encounter_set": "Servants of Sauron",
+      "printed_stats": {},
+      "imagesrc": "/cards/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 42,
+          "quantity": 2,
+          "octgnid": "e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+      "octgnid": "e4ad5220-6251-4c65-8206-ab656540cc3b",
+      "name": "Extra Vigil",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Attach to City Guard. (Counts as a Condition attachment with the text: `City Guard gets -10 engagement cost. Response: After you attack and damage City Guard, raise your threat by 1 and discard Extra Vigil.`)",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 45,
+      "quantity": 2,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {},
+      "imagesrc": "/cards/e4ad5220-6251-4c65-8206-ab656540cc3b.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "e4ad5220-6251-4c65-8206-ab656540cc3b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4ad5220-6251-4c65-8206-ab656540cc3b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+      "octgnid": "f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+      "name": "Guarded Archway",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Guarded Archway is in the staging area, each player engaged with City Guard cannot reduce his threat. Travel: City Guard makes an attack against the first player.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 42,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/f6f56327-cc71-458c-bcdb-51ca6dab2fa1.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 42,
+          "quantity": 3,
+          "octgnid": "f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6f56327-cc71-458c-bcdb-51ca6dab2fa1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+      "octgnid": "fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+      "name": "Cat and Mouse",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each enemy in the staging area gets -10 engagement cost.Response: After Cat and Mouse is defeated, each player may discard a non-unique enemy engaged with him.",
+      "is_unique": false,
+      "pack_code": "TCoU",
+      "pack_name": "The City of Ulfast",
+      "position": 48,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The City of Ulfast",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/fdf01cb8-5798-43f3-adbd-e2870c53f0cf.jpg",
+      "packs": [
+        {
+          "pack_code": "TCoU",
+          "pack_name": "The City of Ulfast",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fdf01cb8-5798-43f3-adbd-e2870c53f0cf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.5",
+      "name": "The City of Ulfast (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TCoU"
+      ],
+      "card_codes": [
+        "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+        "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+        "octgn:59314974-a07d-4024-9951-40736209b6b9",
+        "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+        "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+        "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+        "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+        "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+        "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+        "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+        "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+        "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+        "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+        "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+        "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+        "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+        "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+        "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+        "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278"
+      ],
+      "cards": [
+        {
+          "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716": 1,
+          "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3": 1,
+          "octgn:59314974-a07d-4024-9951-40736209b6b9": 1,
+          "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:c2720938-450b-4017-9ac3-f3130164bdf9": 2,
+          "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959": 1,
+          "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9": 2,
+          "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc": 1,
+          "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1": 1,
+          "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1": 1,
+          "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf": 1,
+          "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b": 2,
+          "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407": 1,
+          "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a": 3,
+          "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf": 1,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 2,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1,
+          "octgn:6d485bbc-6876-4160-8111-77f3935123c9": 3,
+          "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c": 1,
+          "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a": 1,
+          "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722": 1
+        },
+        "sharedStagingArea": {
+          "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 1,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 1,
+          "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf": 1,
+          "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1": 1,
+          "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1": 1,
+          "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.5",
+      "name": "The City of Ulfast",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TCoU"
+      ],
+      "card_codes": [
+        "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+        "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+        "octgn:59314974-a07d-4024-9951-40736209b6b9",
+        "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+        "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+        "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+        "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+        "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+        "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+        "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+        "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+        "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+        "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+        "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+        "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+        "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+        "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+        "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+        "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10"
+      ],
+      "cards": [
+        {
+          "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716": 1,
+          "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3": 1,
+          "octgn:59314974-a07d-4024-9951-40736209b6b9": 1,
+          "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:c2720938-450b-4017-9ac3-f3130164bdf9": 3,
+          "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959": 2,
+          "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9": 2,
+          "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc": 1,
+          "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1": 2,
+          "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1": 1,
+          "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf": 2,
+          "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b": 2,
+          "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407": 3,
+          "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a": 3,
+          "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf": 1,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 1,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 3,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1,
+          "octgn:6d485bbc-6876-4160-8111-77f3935123c9": 3,
+          "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c": 2,
+          "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a": 2,
+          "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722": 1
+        },
+        "sharedStagingArea": {
+          "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 1,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 1,
+          "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf": 1,
+          "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1": 1,
+          "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1": 1,
+          "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg",
+      "localPath": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg",
+      "bytes": 163654,
+      "sha256": "b75b5ae92e73992946f3e700ba400604f05768c442df9a74013f13f46bc2fabe"
+    },
+    {
+      "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b0de48c-a010-490f-b0e3-0ced635b3b3b.B.jpg",
+      "localPath": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.B.jpg",
+      "bytes": 158304,
+      "sha256": "bbbc649cf0056cada7e8fb9ec9a45d5b7f511c74d33711a7812e2d1fb9dbffc8"
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "localPath": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "bytes": 147730,
+      "sha256": "a9682b7837d3946484c7ebcc777e7db69bca366a3562f25c01481b88e8416779"
+    },
+    {
+      "code": "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3043df29-f8e9-426e-bd14-5cb720ed8f10.jpg",
+      "localPath": "/cards/3043df29-f8e9-426e-bd14-5cb720ed8f10.jpg",
+      "bytes": 55649,
+      "sha256": "1c5baa9f9ac828b0df6817a796783220d84313e14387e5c64f59106cce11deba"
+    },
+    {
+      "code": "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959.jpg",
+      "localPath": "/cards/33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959.jpg",
+      "bytes": 59501,
+      "sha256": "1e47d35ffbaca338c8eaf6517bb41e8c295061b72166894e09ea132b8b24aac8"
+    },
+    {
+      "code": "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/379415fb-39c8-4cb8-aa19-ac54c46bcb4a.jpg",
+      "localPath": "/cards/379415fb-39c8-4cb8-aa19-ac54c46bcb4a.jpg",
+      "bytes": 53527,
+      "sha256": "6afc798b1496c157aabd491c5d58f5f0819c980d442ac03943856169ea1989dc"
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "localPath": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "bytes": 153955,
+      "sha256": "99cc340c5f6dd5f087ba872e410761f2d0fae44b0ab4cfa2680943c9d40678eb"
+    },
+    {
+      "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59314974-a07d-4024-9951-40736209b6b9.jpg",
+      "localPath": "/cards/59314974-a07d-4024-9951-40736209b6b9.jpg",
+      "bytes": 151200,
+      "sha256": "295e47fd325879c5778312d259e28bf1122285987d56f62d8721de6b40266971"
+    },
+    {
+      "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59314974-a07d-4024-9951-40736209b6b9.B.jpg",
+      "localPath": "/cards/59314974-a07d-4024-9951-40736209b6b9.B.jpg",
+      "bytes": 145933,
+      "sha256": "8b7e6fee2d21bbb5a2a64f464679f27bc1a7064041fcb3b7fb5217b3c733b306"
+    },
+    {
+      "code": "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60b96a86-77b5-4184-9703-f55b8c857eb9.jpg",
+      "localPath": "/cards/60b96a86-77b5-4184-9703-f55b8c857eb9.jpg",
+      "bytes": 53002,
+      "sha256": "7662cbb1d207f207cdba1289fa712fb34f647f58e84016dd13e4ffcec0798e03"
+    },
+    {
+      "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "localPath": "/cards/6d485bbc-6876-4160-8111-77f3935123c9.jpg",
+      "bytes": 154209,
+      "sha256": "8a47cc776b19a02e25afc7dcf69ef97ede8db95f87c06260b8c6019188cbd65d"
+    },
+    {
+      "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg",
+      "localPath": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg",
+      "bytes": 160233,
+      "sha256": "2b83415da1d377741e3c5eb943a96eafc9a86561d8cdbf49940c6d146f17ce93"
+    },
+    {
+      "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.B.jpg",
+      "localPath": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.B.jpg",
+      "bytes": 155723,
+      "sha256": "282ddda73e6ba8a4525379b0800df101a1fb445820fc0de32635ddab2069a11f"
+    },
+    {
+      "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "localPath": "/cards/80e25c61-e49c-40cb-b8e7-b4c45620163c.jpg",
+      "bytes": 149128,
+      "sha256": "9701bddc839bbbb576a1b3ddcd712c396740187b0bcfed775928d6eaf0d6569c"
+    },
+    {
+      "code": "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/92d8276b-0839-44b4-b7ce-e18e135fe407.jpg",
+      "localPath": "/cards/92d8276b-0839-44b4-b7ce-e18e135fe407.jpg",
+      "bytes": 56279,
+      "sha256": "49a9ef619ea615f999c48e34dc98cd5c774b9282717265e885009eb81b8b153c"
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "localPath": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "bytes": 157285,
+      "sha256": "c97d0a7c077f42f4085cc9472afd84a59060b380816adec65d54ea3f24a919c8"
+    },
+    {
+      "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7ae0add-ff9b-4976-8932-cff6d6e9a4dc.jpg",
+      "localPath": "/cards/a7ae0add-ff9b-4976-8932-cff6d6e9a4dc.jpg",
+      "bytes": 54331,
+      "sha256": "9d3108519fe50f5ae082c477d4c5452964f4add3767ec0e3646f739acf11ac0f"
+    },
+    {
+      "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/af3543c4-f30f-4522-bbb7-5ef039344fdf.jpg",
+      "localPath": "/cards/af3543c4-f30f-4522-bbb7-5ef039344fdf.jpg",
+      "bytes": 55319,
+      "sha256": "2e5ecbedb4e50adebf819d2f3b1c3c96d1da6c8f672e7c7e38844839d31e99ec"
+    },
+    {
+      "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b07cec11-452d-423a-b33e-3f9345c9f6e1.jpg",
+      "localPath": "/cards/b07cec11-452d-423a-b33e-3f9345c9f6e1.jpg",
+      "bytes": 54853,
+      "sha256": "35b6b89b10fce27019863f02679975bfe378eec49a17e613be267da45590e313"
+    },
+    {
+      "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "localPath": "/cards/ba630f98-6ad5-4c4a-adfd-aeeac5485722.jpg",
+      "bytes": 140471,
+      "sha256": "f18d67588d605898ca2f0ad8acf4166cd08dbfa9bd95fe3f84cdc0df473dfd04"
+    },
+    {
+      "code": "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2720938-450b-4017-9ac3-f3130164bdf9.jpg",
+      "localPath": "/cards/c2720938-450b-4017-9ac3-f3130164bdf9.jpg",
+      "bytes": 52963,
+      "sha256": "67cef014d0e38ee016dded008ba13708592e01be4f52202c6ea44fb1646882ce"
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "localPath": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "bytes": 152973,
+      "sha256": "5be561d83123177b060b6d1ca2e64c1960d34b5f0504f3c202e52ff04009684f"
+    },
+    {
+      "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg",
+      "localPath": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg",
+      "bytes": 149084,
+      "sha256": "fb366de2b248b5cc04250e7c041f8c64aa5914dc3e80499c45d67475322fcde7"
+    },
+    {
+      "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.B.jpg",
+      "localPath": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.B.jpg",
+      "bytes": 146143,
+      "sha256": "536b5a9ed897b631b84670cbf29293ff595ae4b8b3ae74852361ecdbc5892dc1"
+    },
+    {
+      "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "localPath": "/cards/e3b4dfb0-2875-4e73-aea3-c63cab5cc43a.jpg",
+      "bytes": 148826,
+      "sha256": "4009836f978436004f3db168a9a6dd94a8fe2a974b20fad54a618aaf3acb9b24"
+    },
+    {
+      "code": "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4ad5220-6251-4c65-8206-ab656540cc3b.jpg",
+      "localPath": "/cards/e4ad5220-6251-4c65-8206-ab656540cc3b.jpg",
+      "bytes": 54585,
+      "sha256": "49b28b40b12e5e824be9a81e57022376a32705326fc7924411aa7fb384fd7392"
+    },
+    {
+      "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f6f56327-cc71-458c-bcdb-51ca6dab2fa1.jpg",
+      "localPath": "/cards/f6f56327-cc71-458c-bcdb-51ca6dab2fa1.jpg",
+      "bytes": 54993,
+      "sha256": "4189c293aacb520a503f861076496cfeeffb0f894cd510e8951c3f76d2ab0632"
+    },
+    {
+      "code": "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fdf01cb8-5798-43f3-adbd-e2870c53f0cf.jpg",
+      "localPath": "/cards/fdf01cb8-5798-43f3-adbd-e2870c53f0cf.jpg",
+      "bytes": 150080,
+      "sha256": "f63f660cdf7f891535f19459d238864dd6f81d9dd7e9cc1e6c2aca2e76a28ce2"
+    }
+  ]
+}

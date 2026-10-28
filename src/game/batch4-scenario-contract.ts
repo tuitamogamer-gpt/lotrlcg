@@ -67,6 +67,7 @@ export interface Batch4ScenarioHooks {
   encounterBegin?(s: GameState): void;
   encounterEnd?(s: GameState): Effect[];
   combatEnd?(s: GameState): void;
+  refreshThreatBonus?(s: GameState): number;
   roundEnd?(s: GameState): Effect[];
   endQuest?(s: GameState): void;
   committed?(s: GameState): void;

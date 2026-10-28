@@ -1,4 +1,6 @@
 import * as ShadowEastPlayers from "./shadow-east-player";
+import { ulfastPublicState } from "./ulfast-support";
+import * as UlfastPlayers from "./ulfast-player";
 import * as WrathPlayers from "./wrath-ruin-player";
 import { wrathRuinAllPublicState } from "./wrath-ruin-state";
 import * as ShadowEastSupport from "./shadow-east-player-support";
@@ -1488,6 +1490,7 @@ export function resolvePlayerCard(
       );
       forOwner(s, player, () => (s.threatAttachments ??= []).push(attachment));
     } else host.attachments.push(attachment);
+    UlfastPlayers.huntersAttachmentPlayed(s, host, u.code, played);
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     BatchPlayers.batch4PlayerAttachmentPlayed(
@@ -1712,6 +1715,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
     ShadowEastPlayers.shadowEastPlayerPlayTargets(s, c.code) ??
     EredFinalPlayers.eredFinalPlayerPlayTargets(s, c.code) ??
@@ -2906,6 +2910,12 @@ export function applyAction(input: GameState, action: Action): GameState {
             return;
           }
           const u = get(s, action.id);
+          if (
+            u &&
+            !action.attachmentId &&
+            UlfastPlayers.useHuntersAbility(s, u)
+          )
+            return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           if (
             u &&
@@ -3386,6 +3396,14 @@ export function publicState(s: GameState) {
   return {
     ...eredScenarioPublicState(s),
     ...wrathRuinAllPublicState(s),
+    ulfast: ulfastPublicState(s),
+    ulfastPlayers: s.ulfastPlayers?.contracts.map((c) => ({
+      player: c.player,
+      id: c.unit.id,
+      code: c.unit.code,
+      side: c.side,
+      exhausted: c.unit.exhausted,
+    })),
     ...shadowEastScenarioPublicState(s),
     shadowEastPlayers: ShadowEastSupport.shadowEastPlayerPublicState(s),
     ...(s.depths

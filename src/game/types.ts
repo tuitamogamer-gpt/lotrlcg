@@ -248,6 +248,7 @@ export type ScenarioId =
   | "the-river-running"
   | "danger-in-dorwinion"
   | "temple-of-doom"
+  | "the-city-of-ulfast"
   | "wrath-and-ruin"
   | "the-antlered-crown"
   | "celebrimbors-secret"
@@ -401,6 +402,8 @@ export interface GameState {
   riverRunning?: import("./river-running-types").RiverRunningState;
   dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
   templeDoom?: import("./temple-doom-types").TempleDoomState;
+  ulfast?: import("./ulfast-types").UlfastState;
+  ulfastPlayers?: import("./ulfast-player-types").UlfastPlayersState;
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
   burglarContract?: import("./burglar-contract-types").BurglarContractState;
   wrathRuinPlayers?: import("./wrath-ruin-player-types").WrathRuinPlayersState;
@@ -690,6 +693,10 @@ export interface GameState {
     doomUlchor?: boolean;
     doomTributeOnKill?: number;
     doomKilledCharacter?: boolean;
+    ulfastAgent?: number;
+    ulfastExcess?: number;
+    ulfastUnderGuard?: number;
+    ulfastKilled?: boolean;
     wrathKilledPlayers?: number[];
     wrathReturnHighest?: number;
     wrathExtraAttacks?: number;

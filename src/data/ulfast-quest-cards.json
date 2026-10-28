@@ -1,0 +1,162 @@
+[
+  {
+    "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+    "octgnid": "e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+    "name": "Searching for Ulchor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add City Guard to the staging area. Each player adds a different location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TCoU",
+    "pack_name": "The City of Ulfast",
+    "position": 50,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The City of Ulfast",
+    "side": "A",
+    "back_name": "Searching for Ulchor",
+    "back_text": "City Guard cannot have more than 5 damage, and it gets -5 engagement cost for each resource here.\nForced: At the end of the round, place 1 resource here.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg",
+    "packs": [
+      {
+        "pack_code": "TCoU",
+        "pack_name": "The City of Ulfast",
+        "position": 50,
+        "quantity": 1,
+        "octgnid": "e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0fd5147-e1aa-42c3-972f-5cf0c93a6716.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 5
+  },
+  {
+    "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+    "octgnid": "7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+    "name": "Trying to Blend In",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either raise your threat by 5, or reveal an encounter card.",
+    "is_unique": false,
+    "pack_code": "TCoU",
+    "pack_name": "The City of Ulfast",
+    "position": 51,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The City of Ulfast",
+    "side": "A",
+    "back_name": "Trying to Blend In",
+    "back_text": "City Guard cannot have more than 10 damage, and it gets -5 engagement cost for each resource here.\nForced: At the end of the round, place 1 resource here.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg",
+    "packs": [
+      {
+        "pack_code": "TCoU",
+        "pack_name": "The City of Ulfast",
+        "position": 51,
+        "quantity": 1,
+        "octgnid": "7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 10
+  },
+  {
+    "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+    "octgnid": "59314974-a07d-4024-9951-40736209b6b9",
+    "name": "Drawing Attention",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose: either raise your threat by 5, or City Guard makes an immediate attack against you.",
+    "is_unique": false,
+    "pack_code": "TCoU",
+    "pack_name": "The City of Ulfast",
+    "position": 52,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The City of Ulfast",
+    "side": "A",
+    "back_name": "Drawing Attention",
+    "back_text": "City Guard cannot have more than 15 damage, and it gets -5 engagement cost for each resource here.\nForced: At the end of the round, place 1 resource here.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/59314974-a07d-4024-9951-40736209b6b9.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/59314974-a07d-4024-9951-40736209b6b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TCoU",
+        "pack_name": "The City of Ulfast",
+        "position": 52,
+        "quantity": 1,
+        "octgnid": "59314974-a07d-4024-9951-40736209b6b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/59314974-a07d-4024-9951-40736209b6b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 15
+  },
+  {
+    "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+    "octgnid": "1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+    "name": "Ulchor's Trap",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded. X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TCoU",
+    "pack_name": "The City of Ulfast",
+    "position": 53,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The City of Ulfast",
+    "side": "A",
+    "back_name": "Ulchor's Trap",
+    "back_text": "City Guard cannot have more than 20 damage, and it gets -5 engagement cost for each resource here.\nForced: At the end of the round, place 1 resource here.\nThis stage cannot be defeated while City Guard has hit points remaining. When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg",
+    "packs": [
+      {
+        "pack_code": "TCoU",
+        "pack_name": "The City of Ulfast",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b0de48c-a010-490f-b0e3-0ced635b3b3b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "back_quest": 20
+  }
+]

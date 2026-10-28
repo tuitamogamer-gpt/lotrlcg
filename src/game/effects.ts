@@ -1,3 +1,4 @@
+import { ulfastPlayerEffect } from "./ulfast-player";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as Burglar from "./burglar-contract";
@@ -584,6 +585,7 @@ function handleEffect(s: GameState, e: Effect) {
   }
   if (Burglar.handleBurglarContractEffect(s, e)) return;
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
+  if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
   if (RacePlayers.handleRaceHaradPlayerEffect(s, e)) return;
@@ -1979,6 +1981,8 @@ function handleEffect(s: GameState, e: Effect) {
         }
       }
       s.refreshReadied = {};
+      for (const c of s.ulfastPlayers?.contracts ?? [])
+        c.unit.exhausted = false;
       if (s.cobas)
         for (const u of s.staging.filter(
           (u) => card(u.code).type_code === "objective",
@@ -2724,7 +2728,11 @@ function handleEffect(s: GameState, e: Effect) {
     }
     case "refreshEnd":
       globalEachSeat(s, () => {
-        raiseThreat(s, 1, "framework");
+        raiseThreat(
+          s,
+          1 + (batch4Scenario(s).refreshThreatBonus?.(s) ?? 0),
+          "framework",
+        );
         raiseThreat(
           s,
           allActiveLocations(s).filter((l) => l.code === "01114").length,

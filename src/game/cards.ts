@@ -29,6 +29,8 @@ import {
   FATE_WILDERLAND_QUESTS,
 } from "./fate-wilderland-scenario-data";
 import eredFinalPlayers from "../data/ered-final-player-cards.json";
+import ulfastPlayers from "../data/ulfast-player-cards.json";
+import { ULFAST_ENCOUNTERS, ULFAST_QUESTS } from "./ulfast-scenario-data";
 import wrathRuinPlayers from "../data/wrath-ruin-player-cards.json";
 import {
   WRATH_RUIN_ENCOUNTERS,
@@ -281,6 +283,7 @@ export const playerCards = [
           ...eredFinalPlayers.filter((c) => c.code !== "19120"),
           ...shadowEastPlayers,
           ...wrathRuinPlayers,
+          ...ulfastPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -433,6 +436,7 @@ export const encounterCards = [
       ...DANGER_DORWINION_ENCOUNTERS,
       ...TEMPLE_DOOM_ENCOUNTERS,
       ...WRATH_RUIN_ENCOUNTERS,
+      ...ULFAST_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -500,6 +504,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...DANGER_DORWINION_QUESTS,
     ...TEMPLE_DOOM_QUESTS,
     ...WRATH_RUIN_QUESTS,
+    ...ULFAST_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -608,6 +613,7 @@ export const SCRIPTED = new Set(
     ...DANGER_DORWINION_QUESTS,
     ...TEMPLE_DOOM_QUESTS,
     ...WRATH_RUIN_QUESTS,
+    ...ULFAST_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

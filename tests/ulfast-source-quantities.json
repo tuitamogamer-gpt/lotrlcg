@@ -1,0 +1,146 @@
+[
+  {
+    "code": "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
+    "name": "Searching for Ulchor",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
+    "name": "Trying to Blend In",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:59314974-a07d-4024-9951-40736209b6b9",
+    "name": "Drawing Attention",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
+    "name": "Ulchor's Trap",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
+    "name": "City Guard",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+    "name": "Ulfast Sentry",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
+    "name": "The King's Elite",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
+    "name": "Ulchor's Agent",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+    "name": "The King's Lawn",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
+    "name": "Guarded Archway",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
+    "name": "Crowded Market",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
+    "name": "Streets of Ulfast",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+    "name": "Extra Vigil",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
+    "name": "We've Been Seen",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "code": "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
+    "name": "Patrolling the Streets",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+    "name": "Cat and Mouse",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:6d485bbc-6876-4160-8111-77f3935123c9",
+    "name": "Messenger from Mordor",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:80e25c61-e49c-40cb-b8e7-b4c45620163c",
+    "name": "Servant of Sauron",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:e3b4dfb0-2875-4e73-aea3-c63cab5cc43a",
+    "name": "Overwhelmed",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+    "name": "Shadow of Fear",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+    "name": "Side Street",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+    "name": "Catacombs",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+    "name": "Under Guard",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+    "name": "Unwelcome Travelers",
+    "normal": 1,
+    "easy": 1
+  }
+]

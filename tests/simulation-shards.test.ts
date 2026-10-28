@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 389);
+  assert.equal(baseline.registeredCases, 394);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -55,6 +55,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "Danger in Dorwinion",
             "The Temple of Doom",
             "Wrath and Ruin",
+            "The City of Ulfast",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

@@ -1,5 +1,7 @@
 import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
 import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
+import { validateUlfast } from "./ulfast-support";
+import { validateUlfastPlayers } from "./ulfast-player-support";
 import { validateWrathRuin } from "./wrath-ruin-support";
 import { validateWrathRuinPlayers } from "./wrath-ruin-player-support";
 import { validateBurglarContract } from "./burglar-contract-support";
@@ -432,6 +434,7 @@ export function validateSave(
         c.wildsDiscardAlly,
         c.wildsCannotReady,
         c.cancelCombatDamage,
+        c.ulfastKilled,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
         undefined ||
@@ -466,6 +469,9 @@ export function validateSave(
         c.fordsExtraAttacks,
         c.fordsTimeOnKill,
         c.extraAttacks,
+        c.ulfastAgent,
+        c.ulfastExcess,
+        c.ulfastUnderGuard,
         c.timeOnKill,
         c.wastesNextPlayerAttacks,
         c.wastesExtraAttacks,
@@ -860,7 +866,8 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateWrathRuin(s, validUnit as (v: unknown) => boolean) ||
+      (!validateUlfast(s, validUnit as (v: unknown) => boolean) ||
+        !validateWrathRuin(s, validUnit as (v: unknown) => boolean) ||
         !validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
         !validateDangerDorwinion(s, validUnit as (v: unknown) => boolean) ||
         !validateTempleDoom(s, validUnit as (v: unknown) => boolean) ||
@@ -1223,6 +1230,7 @@ export function validateSave(
       inheritedSeatCount === undefined &&
       (!validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuinPlayers(s) ||
+        !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
     )
       return false;
@@ -1546,6 +1554,8 @@ export function validateSave(
       ...shadowEastScenarioUnits(s),
       ...shadowEastPlayerUnits(s),
       ...wrathRuinSavedExtraUnits(s),
+      ...(s.ulfast?.resolving ?? []),
+      ...(s.ulfastPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

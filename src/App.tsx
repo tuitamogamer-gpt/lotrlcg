@@ -1,4 +1,5 @@
 import { BurglarContractStateView } from "./ui/burglar-contract";
+import { UlfastScenarioState, HuntersContractState } from "./ui/ulfast-state";
 import { WrathRuinScenarioState } from "./ui/wrath-ruin-state";
 import "./ui/save-status.css";
 import { currentQuestInspection } from "./ui/quest-inspection";
@@ -3082,6 +3083,12 @@ export default function App() {
             <ShadowEastPlayerState s={game} inspect={setDetail} />
             <ShadowEastScenarioState s={game} inspect={setDetail} />
             <WrathRuinScenarioState s={game} inspect={setDetail} />
+            <UlfastScenarioState s={game} inspect={setDetail} />
+            <HuntersContractState
+              s={game}
+              inspect={setDetail}
+              dispatch={dispatch}
+            />
             <BurglarContractStateView s={game} inspect={setDetail} />
             <RoamRhovanionScenarioState s={game} inspect={setDetail} />
             <FireNightScenarioState s={game} inspect={setDetail} />

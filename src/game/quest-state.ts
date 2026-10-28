@@ -22,6 +22,7 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function mainQuestCode(s: GameState): string | undefined {
+  if (s.ulfast) return s.ulfast.currentQuest;
   if (s.wrathRuin) return s.wrathRuin.currentQuest;
   if (s.riverRunning) return s.riverRunning.currentQuest;
   if (s.dangerDorwinion) return s.dangerDorwinion.currentQuest;
@@ -83,7 +84,7 @@ export function mainQuestUnit(s: GameState): Unit | undefined {
     exhausted: false,
     damage: 0,
     progress: s.progress,
-    resources: 0,
+    resources: s.ulfast?.resources ?? 0,
     committed: false,
     boost: 0,
     attacked: false,

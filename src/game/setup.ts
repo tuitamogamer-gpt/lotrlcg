@@ -1,3 +1,4 @@
+import { huntersSetup } from "./ulfast-player";
 import { shadowEastPlayerScenarioProblem } from "./deck-setup";
 import { burglarContractSetup } from "./burglar-contract";
 import * as ShadowEastPlayers from "./shadow-east-player";
@@ -379,6 +380,7 @@ export function createGame(
     s.wrathBombadilReserves[player] = bombadil;
   }
   if (!s.table) s.startingThreat = s.threat;
+  huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);
   if (s.choice || s.queue.length) {

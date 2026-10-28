@@ -1,3 +1,7 @@
+import {
+  huntersPlayerEliminated,
+  ulfastPlayerAllyEntered,
+} from "./ulfast-player";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as Burglar from "./burglar-contract";
@@ -1116,6 +1120,7 @@ export function check(s: GameState) {
         Osgiliath.assaultOsgiliathCharacterLeft(s);
       }
       ShadowEastPlayers.shadowEastPlayerEliminated(s, i);
+      huntersPlayerEliminated(s, i);
       batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
@@ -1240,7 +1245,7 @@ export function check(s: GameState) {
     Carn.carnCheck(s);
     checkSideQuestDefeats(s);
     const overloaded = globalCharacters(s).find(
-      (u) => restrictedSlots(u) > restrictedLimit(u),
+      (u) => restrictedSlots(u) > restrictedLimit(u, s),
     );
     if (overloaded) {
       if (!s.choice) restrictAttachments(s, overloaded);
@@ -1313,6 +1318,8 @@ export function win(s: GameState) {
                                                         "flight-from-moria"
                                                       ? "Your fellowship finds an exit and escapes the darkness of Moria."
                                                       : "The prisoner is free, the Nazgûl defeated, and your fellowship has escaped Dol Guldur.";
+  if (s.ulfast)
+    s.reason = "Your fellowship defeats the City Guard and escapes Ulfast.";
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
@@ -3733,6 +3740,7 @@ export function allyEntryResponses(
     return;
   ShadowEastPlayers.shadowEastPlayerAllyEntered(s, u, played, fromHand);
   WrathPlayers.wrathRuinPlayerAllyEntered(s, u, played, fromHand);
+  ulfastPlayerAllyEntered(s, u, played, fromHand);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

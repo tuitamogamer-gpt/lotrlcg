@@ -148,7 +148,9 @@
     "test:wrath-ruin-simulation": "node --import tsx --test tests/wrath-ruin-simulation.test.ts",
     "test:wrath-ruin-quests": "node --import tsx scripts/browser-wrath-ruin.mjs",
     "test:wrath-ruin-players": "node --import tsx scripts/browser-wrath-ruin-players.mjs",
-    "test:browser-wrath-ruin": "npm run test:wrath-ruin-quests && npm run test:wrath-ruin-players"
+    "test:browser-wrath-ruin": "npm run test:wrath-ruin-quests && npm run test:wrath-ruin-players",
+    "test:ulfast-simulation": "node --import tsx --test tests/ulfast-simulation.test.ts",
+    "test:browser-ulfast": "node --import tsx scripts/browser-ulfast.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

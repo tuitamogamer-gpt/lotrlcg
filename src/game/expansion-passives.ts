@@ -1,3 +1,4 @@
+import { huntersRestrictedBonus } from "./ulfast-player-support";
 import * as EredFinalSupport from "./ered-final-player-support";
 import * as EredSupport from "./ered-mithrin-player-support";
 import * as WildsSupport from "./wilds-player-support";
@@ -42,6 +43,13 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "22031": {
+    type: "hero",
+    sphere: "lore",
+    limit: 1,
+    restricted: 1,
+    keywords: ["Ranged"],
+  },
   "17030": {
     type: "hero",
     traits: ["Dúnedain", "Dunedain", "Ranger"],
@@ -365,8 +373,10 @@ export const restrictedSlots = (u: Unit) =>
           (/\bRestricted\b/.test(card(a.code).text ?? "") ? 1 : 0))),
     0,
   );
-export const restrictedLimit = (u: Unit) =>
-  2 + u.attachments.filter((a) => !a.blanked && a.code === "22060").length;
+export const restrictedLimit = (u: Unit, s?: GameState) =>
+  2 +
+  huntersRestrictedBonus(s, u) +
+  u.attachments.filter((a) => !a.blanked && a.code === "22060").length;
 export const restrictedAttachment = (code: string) =>
   (rules[code]?.restricted ??
     (/\bRestricted\b/.test(card(code).text ?? "") ? 1 : 0)) > 0;

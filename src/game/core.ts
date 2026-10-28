@@ -1,3 +1,7 @@
+import {
+  ulfastPlayerStats,
+  huntersCostReduction,
+} from "./ulfast-player-support";
 import * as ShadowEastSupport from "./shadow-east-player-support";
 import * as WrathSupport from "./wrath-ruin-player-support";
 import { burglarContractLocationQuestBonus } from "./burglar-contract-support";
@@ -331,6 +335,7 @@ export const globalUnits = (s: GameState) => [
 
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
+  s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined) ??
   (id &&
   /^threat:[0-3]$/.test(id) &&
@@ -525,7 +530,7 @@ export const restricted = (u: Unit) =>
 
 export function restrictAttachments(s: GameState, u: Unit) {
   syncAttachmentText(s, u);
-  if (restrictedSlots(u) <= restrictedLimit(u)) return;
+  if (restrictedSlots(u) <= restrictedLimit(u, s)) return;
   selectSeat(s, ownerOf(s, u));
   choose(
     s,
@@ -538,7 +543,7 @@ export function restrictAttachments(s: GameState, u: Unit) {
         fx("discardAttachment", { target: u.id, source: a.id, flag: true }),
       ],
     })),
-    `Choose one attachment to discard. This character has ${restrictedSlots(u)} restricted slots used and may keep ${restrictedLimit(u)}.`,
+    `Choose one attachment to discard. This character has ${restrictedSlots(u)} restricted slots used and may keep ${restrictedLimit(u, s)}.`,
   );
 }
 
@@ -569,7 +574,9 @@ export function stats(s: GameState, u: Unit) {
   const eredFinalBonus = EredFinalSupport.eredFinalPlayerStats(s, u);
   const shadowEastBonus = ShadowEastSupport.shadowEastPlayerStats(s, u);
   const wrathBonus = WrathSupport.wrathRuinPlayerStats(s, u);
+  const ulfastBonus = ulfastPlayerStats(s, u);
   const bonus = expansionStats(s, u);
+  bonus.will += ulfastBonus.will;
   const carrockBonus = carrockStatBonus(s, u);
   const gondorBonus = gondorRoundStats(s, u);
   const elfBonus = elfStats(s, u);
@@ -681,6 +688,7 @@ export function stats(s: GameState, u: Unit) {
         eredFinalBonus.attack +
         shadowEastBonus.attack +
         wrathBonus.attack +
+        ulfastBonus.attack +
         EredSupport.eredMithrinPlayerStats(s, u).attack +
         WildsSupport.wildsPlayerStats(s, u).attack +
         Mumakil.mumakilStats(s, u).attack +
@@ -883,6 +891,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 BatchSupport.batch4PlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
+                huntersCostReduction(s, c, target) -
                 WildsSupport.wildsPlayerCostReduction(s, c, target) -
                 EredSupport.eredMithrinPlayerCostReduction(s, c, target) +
                 Dike.dikePlayCost(

@@ -1,3 +1,5 @@
+import { ulfastPlayerAttackEffects } from "./ulfast-player";
+import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as ShadowEastSupport from "./shadow-east-player-support";
@@ -300,6 +302,7 @@ export function playerAttack(
           player: ownerOf(s, u!),
         }),
       ),
+    ...ulfastPlayerAttackEffects(s, enemy, attackers as Unit[]),
     ...Depths.depthsPlayerAttackEffects(s, enemy, ids),
     ...TempleEncounters.templePlayerAttackEffects(s, enemy, ids),
     ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
@@ -337,6 +340,7 @@ export function playerAttack(
       attackResultIndex + 1,
       0,
       fx("wildsAttackCleanup", { ids }),
+      fx("ulfastPlayerAttackCleanup", { ids, target: enemy.id }),
       ...(abilityMode === "charge-into-battle"
         ? [
             fx("playerAttackContextEnd", {
@@ -371,6 +375,7 @@ export function resolvePlayerAttack(
           StormPlayers.stormcallerAttackBonus(s, u) +
           finalRingAttackBonus(s, u, enemy) +
           ShadowEastSupport.shadowEastPlayerAttackBonus(s, u, enemy) +
+          ulfastPlayerAttackBonus(s, u, enemy) +
           cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +

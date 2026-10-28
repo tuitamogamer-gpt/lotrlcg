@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 714,
+    "playerCards": 719,
     "heroes": 81,
-    "deckCards": 629,
-    "encounterCards": 1118,
-    "scenarios": 76,
+    "deckCards": 634,
+    "encounterCards": 1130,
+    "scenarios": 77,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -83,17 +83,18 @@
       "the-river-running",
       "danger-in-dorwinion",
       "temple-of-doom",
-      "wrath-and-ruin"
+      "wrath-and-ruin",
+      "the-city-of-ulfast"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2071,
-    "pending": 2112
+    "scripted": 2092,
+    "pending": 2091
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 152
+    "scripted": 154
   },
   "registeredCodes": [
     "01001",
@@ -858,9 +859,14 @@
     "22027",
     "22028",
     "22029",
+    "22030",
+    "22031",
     "22032",
+    "22033",
+    "22034",
     "22035",
     "22036",
+    "22049",
     "22060",
     "22062",
     "22081",
@@ -970,6 +976,7 @@
     "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
     "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
     "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+    "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -1069,6 +1076,7 @@
     "octgn:2fd16de8-3286-4003-9978-574738b2a337",
     "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
+    "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
@@ -1085,6 +1093,7 @@
     "octgn:3309e01a-db7f-4754-bd41-21a0b4316415",
     "octgn:3371c102-4aab-4b15-a738-a4b3483a6004",
     "octgn:3385b644-5fd6-4473-9fec-45d7262f5824",
+    "octgn:33ed5e88-f3ba-4970-9e4a-fbb8c2a6d959",
     "octgn:346fda89-94df-410a-8027-41eacbf27238",
     "octgn:3470ed02-38dc-4387-8fe0-265b13fe96a1",
     "octgn:34a59958-0d34-49a9-8beb-b6f8ba8dcd4c",
@@ -1103,6 +1112,7 @@
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
     "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
     "octgn:3733b627-08bd-4d12-a2ec-dadfcbfc6695",
+    "octgn:379415fb-39c8-4cb8-aa19-ac54c46bcb4a",
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
@@ -1501,6 +1511,7 @@
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3",
     "octgn:58f1cb80-d8de-4f96-98d0-0fdf61988da3:B",
     "octgn:590dd523-5743-4c36-b905-c34c021c2676",
+    "octgn:59314974-a07d-4024-9951-40736209b6b9",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
     "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
@@ -1527,6 +1538,7 @@
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
+    "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
@@ -1622,6 +1634,7 @@
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
+    "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
     "octgn:7f9cf578-980e-43af-995f-27a84fd54a01",
     "octgn:7fa34ed7-6c3d-41a2-9c03-d8a766a35ece",
     "octgn:7fc629f3-3115-47df-b997-4a5026d97d2b",
@@ -1704,6 +1717,7 @@
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
     "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "octgn:92d8276b-0839-44b4-b7ce-e18e135fe407",
     "octgn:92ef70d1-b46c-454d-ab7d-2ab56227d9be",
     "octgn:92fec8c5-53e7-477a-9c47-8d97578bc1e7",
     "octgn:93008a44-68db-40ea-8b41-81cf5bb2bae8",
@@ -1786,6 +1800,7 @@
     "octgn:a7231cbd-0620-4b15-9c2c-68d4e7c79a8f",
     "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
+    "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
     "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
     "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
@@ -1814,9 +1829,11 @@
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+    "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
@@ -1887,6 +1904,7 @@
     "octgn:c1db9a5b-1377-49b2-833f-4d8e95928b60",
     "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
+    "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
@@ -2001,6 +2019,7 @@
     "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
     "octgn:e15ba98d-806f-4847-823c-ca90c0f58f0b",
@@ -2028,6 +2047,7 @@
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
+    "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
@@ -2100,6 +2120,7 @@
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
     "octgn:f672b4f9-6ce8-4be0-95ab-fb5d2091f4ca",
     "octgn:f6e8459b-b0d6-4d30-ad8e-6aacfa34ec32",
+    "octgn:f6f56327-cc71-458c-bcdb-51ca6dab2fa1",
     "octgn:f7117e07-e8d2-4e7d-a5c3-5dd0f1c0d455",
     "octgn:f77e471a-7dd2-4f05-ac8f-fbb534c66633",
     "octgn:f77ffb66-297c-49e0-8ed5-9cc3bd715926",
@@ -2153,6 +2174,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93079",
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
     "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
+    "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
     "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
@@ -2639,9 +2661,9 @@
     {
       "product": "the-city-of-ulfast",
       "total": 27,
-      "scripted": 6,
+      "scripted": 27,
       "player": 11,
-      "playerScripted": 6
+      "playerScripted": 11
     },
     {
       "product": "the-crossings-of-poros",
@@ -11394,7 +11416,7 @@
       "name": "Woodland Sentry",
       "type": "ally",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -11402,7 +11424,7 @@
       "name": "Keen Longbow",
       "type": "attachment",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -11418,7 +11440,7 @@
       "name": "Strength and Courage",
       "type": "attachment",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -11426,7 +11448,7 @@
       "name": "Knight of Belfalas",
       "type": "ally",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -11450,7 +11472,7 @@
       "name": "Forth, The Three Hunters!",
       "type": "contract",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -13938,7 +13960,7 @@
       "name": "Ulchor's Trap",
       "type": "quest",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -15866,7 +15888,7 @@
       "name": "City Guard",
       "type": "enemy",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -16218,7 +16240,7 @@
       "name": "The King's Elite",
       "type": "enemy",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -16610,7 +16632,7 @@
       "name": "Patrolling the Streets",
       "type": "treachery",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -22226,7 +22248,7 @@
       "name": "Drawing Attention",
       "type": "quest",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -22762,7 +22784,7 @@
       "name": "Ulchor's Agent",
       "type": "enemy",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -25186,7 +25208,7 @@
       "name": "Trying to Blend In",
       "type": "quest",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -26946,7 +26968,7 @@
       "name": "We've Been Seen",
       "type": "treachery",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -28594,7 +28616,7 @@
       "name": "The King's Lawn",
       "type": "location",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -29266,7 +29288,7 @@
       "name": "Streets of Ulfast",
       "type": "location",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -29346,7 +29368,7 @@
       "name": "Crowded Market",
       "type": "location",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -31130,7 +31152,7 @@
       "name": "Ulfast Sentry",
       "type": "enemy",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -33530,7 +33552,7 @@
       "name": "Searching for Ulchor",
       "type": "quest",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -33866,7 +33888,7 @@
       "name": "Extra Vigil",
       "type": "treachery",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -35594,7 +35616,7 @@
       "name": "Guarded Archway",
       "type": "location",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -36410,7 +36432,7 @@
       "name": "Cat and Mouse",
       "type": "encounter-side-quest",
       "pack": "The City of Ulfast",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-city-of-ulfast"
     },
     {
@@ -37165,8 +37187,8 @@
       "id": "E09.5",
       "name": "The City of Ulfast (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-city-of-ulfast",
+      "state": "scripted"
     },
     {
       "id": "E09.6",
@@ -38656,8 +38678,8 @@
       "id": "Q09.5",
       "name": "The City of Ulfast",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-city-of-ulfast",
+      "state": "scripted"
     },
     {
       "id": "Q09.6",
