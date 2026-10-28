@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 719,
-    "heroes": 81,
-    "deckCards": 634,
-    "encounterCards": 1130,
-    "scenarios": 77,
+    "playerCards": 728,
+    "heroes": 82,
+    "deckCards": 642,
+    "encounterCards": 1141,
+    "scenarios": 78,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -84,17 +84,18 @@
       "danger-in-dorwinion",
       "temple-of-doom",
       "wrath-and-ruin",
-      "the-city-of-ulfast"
+      "the-city-of-ulfast",
+      "challenge-of-the-wainriders"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2092,
-    "pending": 2091
+    "scripted": 2118,
+    "pending": 2065
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 154
+    "scripted": 156
   },
   "registeredCodes": [
     "01001",
@@ -867,8 +868,17 @@
     "22035",
     "22036",
     "22049",
+    "22054",
+    "22055",
+    "22056",
+    "22057",
+    "22058",
+    "22059",
     "22060",
+    "22061",
     "22062",
+    "22063",
+    "22074",
     "22081",
     "22083",
     "22138",
@@ -1004,6 +1014,7 @@
     "octgn:2087cb2d-ce6f-4d3a-befc-01859ec82e6c",
     "octgn:20a011e7-0153-45b1-9c6c-a68753683a79",
     "octgn:20c5f7b7-cfc4-44e1-aaf5-0010ceb9a1b9",
+    "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
     "octgn:215881a3-df0a-4163-a19d-33b444e7aa95",
     "octgn:21786f6e-9f9c-4850-9277-9ee77b6e0912",
     "octgn:21eb71b5-6b96-4388-bd95-e2576483a95a",
@@ -1012,6 +1023,7 @@
     "octgn:21fec323-3155-4b64-8506-fa87d44f01fc",
     "octgn:228a03b8-ec05-4562-90f5-0c7d969490b0",
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
+    "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
     "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
     "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
@@ -1047,11 +1059,13 @@
     "octgn:27d6c3df-c7dc-4ea0-941f-dcad65b3f1eb",
     "octgn:27da4ea2-7892-409e-b6e0-38ad215d5d0c",
     "octgn:2809f147-b000-419c-bbb2-39e6221d72de",
+    "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
+    "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
@@ -1078,11 +1092,13 @@
     "octgn:303b01b8-2d61-4c20-81a0-50800e18d617",
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
+    "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
     "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
+    "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
     "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:31c36264-7e6f-45df-a345-167d4df70885",
@@ -1251,6 +1267,7 @@
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
     "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
     "octgn:4c653b80-0b0e-4383-b0bb-aa31f12b3e74",
     "octgn:4c68d3ef-2309-47db-ba21-08bf2f7336b9",
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
@@ -1542,6 +1559,7 @@
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
     "octgn:60e40838-a6f2-4dbd-8ed2-88ba94d9ac0b",
     "octgn:610f3112-1123-4956-a955-df9d42b937bf",
+    "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
     "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
@@ -1592,6 +1610,7 @@
     "octgn:720b2482-f69c-4a88-8352-721d854704d2",
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
+    "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
@@ -1614,6 +1633,7 @@
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
+    "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
     "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
     "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
@@ -1772,6 +1792,7 @@
     "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
+    "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
     "octgn:a0417d08-1905-46f9-bd65-067c1c59f0a3",
     "octgn:a0d5be90-8618-4fe4-a917-d8d969c11264",
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
@@ -1869,6 +1890,7 @@
     "octgn:b793d1f1-012e-4e13-aad0-d91833f6f8c6",
     "octgn:b79e8b2a-0ebe-4698-bc6d-43c19d44202d",
     "octgn:b7c19049-9587-48bc-8807-5cc7334399b9",
+    "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
     "octgn:b81a014a-af32-41a9-abdf-8dbebf29f685",
     "octgn:b81e837e-f4e8-43e9-892a-8bfaecbd1416",
     "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
@@ -1906,6 +1928,7 @@
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
+    "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
     "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
     "octgn:c34384a8-44de-4c55-8d49-ec68a69fc3f0",
@@ -1971,6 +1994,7 @@
     "octgn:cf435143-655b-4a7c-ac6b-f9f61b4cba72",
     "octgn:cf6094fe-6a58-4784-8e41-1ad546f8b6aa",
     "octgn:cfa94470-c25c-4af3-ba71-941d1fa48a9c",
+    "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
     "octgn:cfcee6c8-9eee-4623-afd1-a49ea77e2322",
     "octgn:cfddac0a-3055-46bd-af9a-8bdda8c9abb6",
     "octgn:cfe00736-4ac0-4f51-b698-705b04eca9a4",
@@ -2051,6 +2075,7 @@
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6808a55-528f-444e-bf61-67748e7261e9",
+    "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
@@ -2115,6 +2140,7 @@
     "octgn:f5a65abc-e3df-4d26-aeed-2a3b1effb005",
     "octgn:f5ba58db-76fc-497e-b0d7-0382c0b9c0c0",
     "octgn:f5d539b2-0b65-493d-8493-5122a0761eed",
+    "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
     "octgn:f63c9a8e-23dc-4c3a-bbff-00bd585e27bc",
     "octgn:f63cbcf5-e846-476f-abc6-a9e86e89a2fd",
     "octgn:f6578eb7-1b94-458b-aba1-82b406507a4d",
@@ -2149,6 +2175,7 @@
     "octgn:fb5e0cb9-914f-49ee-8e21-534e89bc5533",
     "octgn:fb7d55c5-7198-45c5-97d7-be4c6a26fa68",
     "octgn:fbc99604-7183-41fe-b37c-d5a8f54bea0e",
+    "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
@@ -2297,9 +2324,9 @@
     {
       "product": "challenge-of-the-wainriders",
       "total": 28,
-      "scripted": 2,
+      "scripted": 28,
       "player": 11,
-      "playerScripted": 2
+      "playerScripted": 11
     },
     {
       "product": "conflict-at-the-carrock",
@@ -11480,7 +11507,7 @@
       "name": "Saruman",
       "type": "hero",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11488,7 +11515,7 @@
       "name": "Power of Command",
       "type": "attachment",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11496,7 +11523,7 @@
       "name": "Horns! Horns! Horns!",
       "type": "event",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11504,7 +11531,7 @@
       "name": "Soldier of Isengard",
       "type": "ally",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11512,7 +11539,7 @@
       "name": "Far-sighted",
       "type": "event",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11520,7 +11547,7 @@
       "name": "Nori",
       "type": "ally",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11536,7 +11563,7 @@
       "name": "Rohirrim Scout",
       "type": "ally",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11552,7 +11579,7 @@
       "name": "Saruman's Staff",
       "type": "attachment",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -11560,7 +11587,7 @@
       "name": "The Grey Wanderer",
       "type": "contract",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -14456,7 +14483,7 @@
       "name": "Wainrider Camp",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -14656,7 +14683,7 @@
       "name": "Aggressive Racer",
       "type": "enemy",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -15184,7 +15211,7 @@
       "name": "First Sprint",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -15352,7 +15379,7 @@
       "name": "The Farthest Edge",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -15912,7 +15939,7 @@
       "name": "Wainrider Chariot",
       "type": "treachery",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -15984,7 +16011,7 @@
       "name": "Crowded Track",
       "type": "location",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -18648,7 +18675,7 @@
       "name": "Last Climb",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -22848,7 +22875,7 @@
       "name": "The Champion's Cunning",
       "type": "treachery",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -24080,7 +24107,7 @@
       "name": "The Wainriders",
       "type": "objective",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -24752,7 +24779,7 @@
       "name": "Veteran Wainrider",
       "type": "enemy",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -28000,7 +28027,7 @@
       "name": "Ravine Ledge",
       "type": "location",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -30232,7 +30259,7 @@
       "name": "Home Stretch",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -31192,7 +31219,7 @@
       "name": "The Challengers",
       "type": "objective",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -32352,7 +32379,7 @@
       "name": "Narrow Pass",
       "type": "location",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -34000,7 +34027,7 @@
       "name": "Chariot Driver",
       "type": "enemy",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -35536,7 +35563,7 @@
       "name": "Wainrider Champion",
       "type": "enemy",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -36088,7 +36115,7 @@
       "name": "The Turnaround",
       "type": "quest",
       "pack": "Challenge of the Wainriders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "challenge-of-the-wainriders"
     },
     {
@@ -37194,8 +37221,8 @@
       "id": "E09.6",
       "name": "Challenge of the Wainriders (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "challenge-of-the-wainriders",
+      "state": "scripted"
     },
     {
       "id": "E09.7",
@@ -38685,8 +38712,8 @@
       "id": "Q09.6",
       "name": "Challenge of the Wainriders",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "challenge-of-the-wainriders",
+      "state": "scripted"
     },
     {
       "id": "Q09.7",

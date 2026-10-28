@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "challenge-of-the-wainriders": {
+    name: "Wainrider Circuit",
+    detail: "Six stages · Two circuits · Race for freedom",
+  },
   "the-city-of-ulfast": {
     name: "The City of Ulfast",
     detail: "Search for Ulchor and evade the City Guard",
@@ -377,6 +381,7 @@ export const PLAYMAT_CHOICES = [
   "danger-in-dorwinion",
   "temple-of-doom",
   "wrath-and-ruin",
+  "challenge-of-the-wainriders",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

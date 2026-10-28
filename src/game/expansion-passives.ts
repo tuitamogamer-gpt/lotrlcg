@@ -43,6 +43,8 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  "22055": { type: "hero", limit: 1, will: 1 },
+  "22063": { names: ["Saruman"], restricted: 1 },
   "22031": {
     type: "hero",
     sphere: "lore",

@@ -1,3 +1,8 @@
+import { wainridersDoomedAmount } from "./wainriders-player-support";
+import {
+  wainridersPlayerPlayedEffects,
+  wainridersDoomedResponses,
+} from "./wainriders-player";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { playerCardImmune } from "./card-immunity";
 import { mainQuestUnit } from "./quest-state";
@@ -88,6 +93,7 @@ export function isengardPlayerPlayed(
   after?: Effect,
   doomedX = 0,
   gainedDoomed = 0,
+  played = true,
 ) {
   const extra = fromHand && s.used.includes(GRIMA) ? 1 : 0;
   if (extra) s.used = s.used.filter((k) => k !== GRIMA);
@@ -99,13 +105,23 @@ export function isengardPlayerPlayed(
         : Number(printedDoomed(u.code) ?? 0)) +
     extra +
     gainedDoomed;
-  if (n)
+  const amount = wainridersDoomedAmount(s, u, n, played);
+  const responses = wainridersPlayerPlayedEffects(
+    s,
+    u,
+    !!printedDoomed(u.code) || n > 0,
+    played,
+  );
+  if (amount || responses.length)
     prepend(
       s,
-      fx("isengardDoomed", { value: n, code: u.code }),
+      ...(amount
+        ? [fx("isengardDoomed", { value: amount, code: u.code })]
+        : []),
+      ...responses,
       ...(after ? [after] : []),
     );
-  return n > 0;
+  return amount > 0 || responses.length > 0;
 }
 /** Threat is raised for all players before any optional keyword responses resolve. */
 export function resolveDoomed(
@@ -114,6 +130,7 @@ export function resolveDoomed(
   source: "encounter" | "player-card",
 ) {
   const effects: Effect[] = [];
+  const raised: number[] = [];
   for (const p of playerOrder(s))
     forOwner(s, p, () => {
       const before = s.threat;
@@ -124,6 +141,7 @@ export function resolveDoomed(
         s.status !== "playing"
       )
         return;
+      raised.push(p);
       for (const u of s.allies) {
         if (u.blanked || isSacked(u)) continue;
         if (u.code === "07004" && u.exhausted)
@@ -158,7 +176,7 @@ export function resolveDoomed(
               }),
             );
     });
-  prepend(s, ...effects);
+  prepend(s, ...effects, ...wainridersDoomedResponses(s, raised));
 }
 export function isengardAllyEntered(s: GameState, u: Unit) {
   if (u.code === "07003" && !u.blanked)

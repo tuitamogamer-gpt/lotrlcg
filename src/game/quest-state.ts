@@ -1,3 +1,4 @@
+import { wainridersQuestUnits } from "./wainriders-support";
 import { stormcallerCurrentQuest } from "./stormcaller-support";
 import { depthsCurrentQuest } from "./depths-support";
 import { card } from "./cards";
@@ -22,6 +23,7 @@ const coreQuests: Record<string, readonly string[]> = {
 };
 
 export function mainQuestCode(s: GameState): string | undefined {
+  if (s.wainriders) return s.wainriders.currentQuest;
   if (s.ulfast) return s.ulfast.currentQuest;
   if (s.wrathRuin) return s.wrathRuin.currentQuest;
   if (s.riverRunning) return s.riverRunning.currentQuest;
@@ -71,6 +73,7 @@ export function mainQuestCode(s: GameState): string | undefined {
 
 /** This view never increments card IDs or changes the hidden quest deck. */
 export function mainQuestUnit(s: GameState): Unit | undefined {
+  if (s.wainriders) return wainridersQuestUnits(s)[s.stage - 1];
   const gram = gramQuestUnit(s);
   if (gram) {
     gram.progress = s.progress;
@@ -103,7 +106,11 @@ export function attachToQuest(
     side.attachments.push(attachment);
     return true;
   }
-  if (mainQuestCode(s) !== code) return false;
+  if (
+    mainQuestCode(s) !== code &&
+    !wainridersQuestUnits(s).some((u) => u.code === code)
+  )
+    return false;
   const gram = gramQuestUnit(s);
   if (gram) {
     gram.attachments.push(attachment);
@@ -128,7 +135,9 @@ export const currentQuestProgress = (s: GameState) => {
     : s.progress;
 };
 export const allQuestUnits = (s: GameState): Unit[] => [
-  ...[mainQuestUnit(s)].filter((u): u is Unit => !!u),
+  ...(s.wainriders
+    ? wainridersQuestUnits(s)
+    : [mainQuestUnit(s)].filter((u): u is Unit => !!u)),
   ...s.staging.filter((u) =>
     ["player-side-quest", "encounter-side-quest"].includes(
       card(u.code).type_code,

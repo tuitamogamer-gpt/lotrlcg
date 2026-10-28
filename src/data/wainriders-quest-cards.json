@@ -1,0 +1,242 @@
+[
+  {
+    "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+    "octgnid": "21165a65-1296-4664-a880-d85eea19a4ae",
+    "name": "Wainrider Camp",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Build the circuit (see insert). Place The Wainriders and The Challengers objective cards at this stage. The first player adds Wainrider Champion to the staging area. Each other player adds 1 different location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 75,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "Wainrider Camp",
+    "back_text": "Race. This stage gets +4 quest points per player. Forced: When this stage is defeated, make a racing [defense] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, each player discards 1 random card from his hand.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "21165a65-1296-4664-a880-d85eea19a4ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21165a65-1296-4664-a880-d85eea19a4ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+    "octgnid": "282bca71-ff04-4447-a4e9-a7e5f70e0083",
+    "name": "First Sprint",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 76,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "First Sprint",
+    "back_text": "Race. This stage gets +4 quest points per player.\nForced: When this stage is defeated, make a racing [attack] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, deal 1 damage to each character.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "282bca71-ff04-4447-a4e9-a7e5f70e0083",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+    "octgnid": "fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+    "name": "The Turnaround",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 77,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "The Turnaround",
+    "back_text": "Race. This stage gets +4 quest points per player.\nForced: When this stage is defeated, make a racing [willpower] test. To pass requires 1 TURN result, plus an additional TURN result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, each player discards an ally he controls.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+    "octgnid": "29fd0721-10ed-4315-b415-5fadeb010051",
+    "name": "The Farthest Edge",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 78,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "The Farthest Edge",
+    "back_text": "Race. This stage gets +4 quest points per player.\nForced: When this stage is defeated, make a racing [defense] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, reveal the top card of the encounter deck (top 2 cards instead if there are 3 or more players).",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "29fd0721-10ed-4315-b415-5fadeb010051",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29fd0721-10ed-4315-b415-5fadeb010051.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+    "octgnid": "4c1e8a5c-db6b-4d36-8202-bf0960870914",
+    "name": "Last Climb",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 79,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "Last Climb",
+    "back_text": "Race. This stage gets +4 quest points per player.\nForced: When this stage is defeated, make a racing [willpower] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, place 2 damage per player on The Wainriders' stage.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.B.jpg",
+    "printed_stats": {
+      "cost": "5"
+    },
+    "imagesrc": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "4c1e8a5c-db6b-4d36-8202-bf0960870914",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+    "octgnid": "b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+    "name": "Home Stretch",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "CotW",
+    "pack_name": "Challenge of the Wainriders",
+    "position": 80,
+    "quantity": 1,
+    "cost": 6,
+    "encounter_set": "Challenge of the Wainriders",
+    "side": "A",
+    "back_name": "Home Stretch",
+    "back_text": "Race. This stage gets +4 quest points per player.\nForced: When this stage is defeated, make a racing [attack] test. To pass requires 1 TURN result, plus an additional TURN result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, this stage is not defeated and all progress here is discarded.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.B.jpg",
+    "printed_stats": {
+      "cost": "6"
+    },
+    "imagesrc": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg",
+    "packs": [
+      {
+        "pack_code": "CotW",
+        "pack_name": "Challenge of the Wainriders",
+        "position": 80,
+        "quantity": 1,
+        "octgnid": "b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

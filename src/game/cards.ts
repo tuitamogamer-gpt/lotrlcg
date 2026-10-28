@@ -1,3 +1,8 @@
+import wainridersPlayers from "../data/wainriders-player-cards.json";
+import {
+  WAINRIDERS_ENCOUNTERS,
+  WAINRIDERS_QUESTS,
+} from "./wainriders-scenario-data";
 import {
   BLACK_SERPENT_ENCOUNTERS,
   BLACK_SERPENT_QUESTS,
@@ -284,6 +289,7 @@ export const playerCards = [
           ...shadowEastPlayers,
           ...wrathRuinPlayers,
           ...ulfastPlayers,
+          ...wainridersPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -437,6 +443,7 @@ export const encounterCards = [
       ...TEMPLE_DOOM_ENCOUNTERS,
       ...WRATH_RUIN_ENCOUNTERS,
       ...ULFAST_ENCOUNTERS,
+      ...WAINRIDERS_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -505,6 +512,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...TEMPLE_DOOM_QUESTS,
     ...WRATH_RUIN_QUESTS,
     ...ULFAST_QUESTS,
+    ...WAINRIDERS_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -614,6 +622,7 @@ export const SCRIPTED = new Set(
     ...TEMPLE_DOOM_QUESTS,
     ...WRATH_RUIN_QUESTS,
     ...ULFAST_QUESTS,
+    ...WAINRIDERS_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

@@ -103,6 +103,12 @@ export interface Batch4ScenarioHooks {
     controller: number,
     destination?: string,
   ): void;
+  replaceDamage?(
+    s: GameState,
+    u: Unit,
+    amount: number,
+    context: DamageContext,
+  ): boolean;
   damageAmount?(
     s: GameState,
     u: Unit,

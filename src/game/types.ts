@@ -248,6 +248,7 @@ export type ScenarioId =
   | "the-river-running"
   | "danger-in-dorwinion"
   | "temple-of-doom"
+  | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
   | "wrath-and-ruin"
   | "the-antlered-crown"
@@ -402,6 +403,8 @@ export interface GameState {
   riverRunning?: import("./river-running-types").RiverRunningState;
   dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
   templeDoom?: import("./temple-doom-types").TempleDoomState;
+  wainriders?: import("./wainriders-types").WainridersState;
+  wainridersPlayers?: import("./wainriders-player-types").WainridersPlayersState;
   ulfast?: import("./ulfast-types").UlfastState;
   ulfastPlayers?: import("./ulfast-player-types").UlfastPlayersState;
   wrathRuin?: import("./wrath-ruin-types").WrathRuinState;
@@ -697,6 +700,9 @@ export interface GameState {
     ulfastExcess?: number;
     ulfastUnderGuard?: number;
     ulfastKilled?: boolean;
+    wainRacerKilled?: boolean;
+    wainReturnOnKill?: boolean;
+    wainDamageOnKill?: number;
     wrathKilledPlayers?: number[];
     wrathReturnHighest?: number;
     wrathExtraAttacks?: number;

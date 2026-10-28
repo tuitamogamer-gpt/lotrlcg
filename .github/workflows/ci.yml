@@ -308,6 +308,24 @@ jobs:
           path: output/ulfast-release/failures
           retention-days: 7
 
+  wainriders-simulation:
+    name: Challenge of the Wainriders complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:wainriders-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: wainriders-simulation
+          path: output/wainriders-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -427,6 +445,8 @@ jobs:
             suite: test:shadow-east-quests
           - group: shadow-east-players
             suite: test:shadow-east-players
+          - group: wainriders
+            suite: test:browser-wainriders
           - group: ulfast
             suite: test:browser-ulfast
           - group: wrath-ruin-quests

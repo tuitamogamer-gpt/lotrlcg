@@ -1,3 +1,5 @@
+import { wainridersQuestUnits } from "./wainriders-support";
+import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
   ulfastPlayerStats,
   huntersCostReduction,
@@ -335,6 +337,8 @@ export const globalUnits = (s: GameState) => [
 
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
+  wainridersQuestUnits(s).find((u) => u.id === id) ??
+  s.wainridersPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined) ??
   (id &&
@@ -1266,6 +1270,8 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
     .filter((h) => actualCost === 0 || heirsCanSpendResources(s, h))
     .filter(
       (h) =>
+        wandererNoMatch(s, c) ||
+        sarumanPays(h, c) ||
         stewardPlayerCanPay(s, h, c, actualCost) ||
         HaradPlayers.haradStormNoResourceMatch(s, c) ||
         EredSupport.eredMithrinPlayerNoResourceMatch(s, c) ||

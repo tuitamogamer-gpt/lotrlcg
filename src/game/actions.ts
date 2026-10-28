@@ -1,3 +1,9 @@
+import * as WainPlayers from "./wainriders-player";
+import {
+  wainridersPlayerCardPlayed,
+  wainridersPlayerPublic,
+} from "./wainriders-player-support";
+import { wainridersPublicState } from "./wainriders-support";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import { ulfastPublicState } from "./ulfast-support";
 import * as UlfastPlayers from "./ulfast-player";
@@ -845,6 +851,8 @@ export function canPlay(
   );
   if (templeProblem) return templeProblem;
   if (greyProblem) return greyProblem;
+  const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
+  if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
   if (isengardProblem) return isengardProblem;
   const druadanProblem = druadanPlayerPlayProblem(s, c.code);
@@ -1436,6 +1444,7 @@ export function resolvePlayerCard(
   ignoreGuarded = false,
 ) {
   const c = card(u.code);
+  if (played) wainridersPlayerCardPlayed(s, c);
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
   if (played) cityPlayerCardPlayed(s, c);
@@ -1555,7 +1564,15 @@ export function resolvePlayerCard(
     );
   }
   if (c.type_code !== "ally")
-    Isengard.isengardPlayerPlayed(s, u, played && fromHand);
+    Isengard.isengardPlayerPlayed(
+      s,
+      u,
+      played && fromHand,
+      undefined,
+      0,
+      0,
+      played,
+    );
   if (played && c.type_code === "event") {
     batch4Scenario(s).eventPlayed?.(s, u);
     RacePlayers.raceHaradPlayerEventPlayed(s, u);
@@ -1583,6 +1600,7 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
       physical.code,
@@ -1715,6 +1733,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
     ShadowEastPlayers.shadowEastPlayerPlayTargets(s, c.code) ??
@@ -2078,6 +2097,10 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const [label, problem] of [
     [
+      WainPlayers.wainridersPlayerAbilityLabel(u.code),
+      WainPlayers.wainridersPlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -2322,6 +2345,10 @@ export function availableAbilities(s: GameState, u: Unit) {
     });
   for (const a of u.attachments) {
     for (const [label, problem] of [
+      [
+        WainPlayers.wainridersPlayerAbilityLabel(a.code),
+        WainPlayers.wainridersPlayerAbilityProblem(s, u, a.id),
+      ],
       [
         EredFinalPlayers.eredFinalPlayerAbilityLabel(a.code),
         EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u, a.id),
@@ -2916,6 +2943,11 @@ export function applyAction(input: GameState, action: Action): GameState {
             UlfastPlayers.useHuntersAbility(s, u)
           )
             return;
+          if (
+            u &&
+            WainPlayers.useWainridersPlayerAbility(s, u, action.attachmentId)
+          )
+            return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           if (
             u &&
@@ -3397,6 +3429,8 @@ export function publicState(s: GameState) {
     ...eredScenarioPublicState(s),
     ...wrathRuinAllPublicState(s),
     ulfast: ulfastPublicState(s),
+    wainriders: wainridersPublicState(s),
+    wainridersPlayers: wainridersPlayerPublic(s),
     ulfastPlayers: s.ulfastPlayers?.contracts.map((c) => ({
       player: c.player,
       id: c.unit.id,

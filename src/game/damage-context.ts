@@ -18,6 +18,7 @@ export interface DamageContext {
   bypassCloseCall?: boolean;
   bypassAngmar?: boolean;
   bypassEredFinal?: boolean;
+  bypassWainriders?: boolean;
   /** Physical prevention sources already offered for this damage assignment. */
   eredFinalPrevented?: string[];
   mockingVisited?: string[];
@@ -63,6 +64,7 @@ export function readDamageContext(effect: {
       "bypassCloseCall",
       "bypassAngmar",
       "bypassEredFinal",
+      "bypassWainriders",
     ] as const)
       if (key in raw && typeof values[key] === "boolean")
         context[key] = values[key] as boolean;
@@ -114,6 +116,7 @@ export function validDamageContextEffectText(text?: string): boolean {
     "bypassCloseCall",
     "bypassAngmar",
     "bypassEredFinal",
+    "bypassWainriders",
   ])
     if (key in values && typeof values[key] !== "boolean") return false;
   for (const key of ["enemyId", "drownedThenToken", "cobasGuardToken"])

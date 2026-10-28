@@ -1,3 +1,4 @@
+import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { ulfastPlayerAttackEffects } from "./ulfast-player";
 import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
 import * as ShadowEastPlayers from "./shadow-east-player";
@@ -492,6 +493,7 @@ export function playerAttackKilled(
   CobasPlayers.cobasPlayerAttackKilled(s);
   Angmar.angmarAttackKilled(s, enemy, ids);
   Isengard.isengardAttackKilled(s, ids);
+  wainridersPlayerAttackKilled(s, ids);
   RacePlayers.raceHaradPlayerAttackKilled(s, enemy, ids);
   druadanPlayerAttackKilled(s, enemy, ids, lastKnownTraits);
   collectorAttackKilled(s, enemy, ids, lastKnownTraits);

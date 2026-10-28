@@ -23,6 +23,8 @@
   --mat-shade: #071e176b;
   --mat-tint: #173127;
 }
+.redbook[data-playmat="challenge-of-the-wainriders"],
+.mat-challenge-of-the-wainriders,
 .redbook[data-playmat="the-river-running"],
 .mat-the-river-running,
 .redbook[data-playmat="journey-up-the-anduin"],

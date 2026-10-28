@@ -1,0 +1,1637 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Challenge of the Wainriders",
+  "slug": "challenge-of-the-wainriders",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "name": "Weary Lands",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each exhausted character gets -1 [willpower] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 27,
+      "quantity": 2,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+      "octgnid": "21165a65-1296-4664-a880-d85eea19a4ae",
+      "name": "Wainrider Camp",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.\nSetup: Build the circuit (see insert). Place The Wainriders and The Challengers objective cards at this stage. The first player adds Wainrider Champion to the staging area. Each other player adds 1 different location to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 75,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "Wainrider Camp",
+      "back_text": "Race. This stage gets +4 quest points per player. Forced: When this stage is defeated, make a racing [defense] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, each player discards 1 random card from his hand.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "21165a65-1296-4664-a880-d85eea19a4ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21165a65-1296-4664-a880-d85eea19a4ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+      "octgnid": "2301fc93-a05e-4dd4-b06e-40d659783d8b",
+      "name": "Aggressive Racer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 1.\nArchery 1. While The Challengers is ahead of the The Wainriders, Aggressive Racer gains surge. Forced: After Aggressive Racer attacks and destroys a character, place 2 damage on The Wainriders` stage.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 67,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 4,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "4",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/2301fc93-a05e-4dd4-b06e-40d659783d8b.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 67,
+          "quantity": 4,
+          "octgnid": "2301fc93-a05e-4dd4-b06e-40d659783d8b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2301fc93-a05e-4dd4-b06e-40d659783d8b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+      "octgnid": "282bca71-ff04-4447-a4e9-a7e5f70e0083",
+      "name": "First Sprint",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 76,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "First Sprint",
+      "back_text": "Forced: When this stage is defeated, make a racing [attack] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, deal 1 damage to each character.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "282bca71-ff04-4447-a4e9-a7e5f70e0083",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+      "octgnid": "29fd0721-10ed-4315-b415-5fadeb010051",
+      "name": "The Farthest Edge",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 78,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "The Farthest Edge",
+      "back_text": "Forced: When this stage is defeated, make a racing [defense] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, reveal the top card of the encounter deck (top 2 cards instead if there are 3 or more players).",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "29fd0721-10ed-4315-b415-5fadeb010051",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29fd0721-10ed-4315-b415-5fadeb010051.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+      "octgnid": "309c763a-60c9-4e33-bb0b-2b5e3a015227",
+      "name": "Wainrider Chariot",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nSurge. While attached, counts as a Weapon attachment with the text: `Attached enemy gets +1 [attack]. Excess damage dealt by attached enemy must be placed on The Wainriders` stage. `When Revealed: Attach to a non-unique Easterling enemy without a Wainrider Chariot attached.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 73,
+      "quantity": 2,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {},
+      "imagesrc": "/cards/309c763a-60c9-4e33-bb0b-2b5e3a015227.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 73,
+          "quantity": 2,
+          "octgnid": "309c763a-60c9-4e33-bb0b-2b5e3a015227",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/309c763a-60c9-4e33-bb0b-2b5e3a015227.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+      "octgnid": "31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+      "name": "Crowded Track",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Crowded Track gets +1 [threat] for each character controlled by the first player. Forced: After Crowded Track becomes the active location, each player searches the encounter deck and discard pile for an enemy and adds it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 71,
+      "quantity": 2,
+      "threat": 0,
+      "quest": 6,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "0",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/31911895-7f61-4cd1-aeeb-6ae706ffa4f5.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 71,
+          "quantity": 2,
+          "octgnid": "31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31911895-7f61-4cd1-aeeb-6ae706ffa4f5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+      "name": "Painful Fatigue",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: Either exhaust a character you control, or return attacking enemy to the staging area. ",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+      "octgnid": "4c1e8a5c-db6b-4d36-8202-bf0960870914",
+      "name": "Last Climb",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 79,
+      "quantity": 1,
+      "cost": 5,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "Last Climb",
+      "back_text": "Forced: When this stage is defeated, make a racing [willpower] test. To pass requires 1 STRAIGHT result, plus an additional STRAIGHT result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, place 2 damage per player on The Wainriders` stage.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.B.jpg",
+      "printed_stats": {
+        "cost": "5"
+      },
+      "imagesrc": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "4c1e8a5c-db6b-4d36-8202-bf0960870914",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "name": "Easterling Horse",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While attached to an enemy, counts as a Mount attachment with the text: `Attached enemy gets +2 [threat]. Forced: At the end of the round, return attached enemy to the staging area.`When Revealed: Attach to the lowest engagement cost Easterling enemy without an Easterling Horse and return it to the staging area. Otherwise, Easterling Horse gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 19,
+      "quantity": 3,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {},
+      "imagesrc": "/cards/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+      "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+      "name": "Rider of Rhûn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 2.\nRider of Rhun gets -10 enagement cost for each Easterling attachment it has.When Revealed: Search the encounter deck and discard pile for an Easterling Horse and attach it to Rider of Rhun. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 18,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 40,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "5af4be18-af74-46ef-a235-9c1002b85338",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5af4be18-af74-46ef-a235-9c1002b85338.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+      "octgnid": "611c0811-1810-4b3e-a00e-4d34f1f986b1",
+      "name": "The Champion's Cunning",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Wainrider Champion makes an attack against each engaged player. If no attacks were made, place damage on The Wainriders` stage equal to the Wainrider Champion`s [threat].",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 73,
+      "quantity": 3,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {},
+      "imagesrc": "/cards/611c0811-1810-4b3e-a00e-4d34f1f986b1.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 73,
+          "quantity": 3,
+          "octgnid": "611c0811-1810-4b3e-a00e-4d34f1f986b1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/611c0811-1810-4b3e-a00e-4d34f1f986b1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+      "octgnid": "727b90c5-46b3-4568-9ab9-cb7c6e662428",
+      "name": "The Wainriders",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "If The Wainriders` stage has damage on it equal to or greater than its quest points, The Wainriders advances to the next stage in the circuit. Place any excess damage on that stage. Forced: At the end of the quest phase, place X damage on The Wainriders` stage, where X is the total [threat] of each enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 64,
+      "quantity": 1,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {},
+      "imagesrc": "/cards/727b90c5-46b3-4568-9ab9-cb7c6e662428.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 64,
+          "quantity": 1,
+          "octgnid": "727b90c5-46b3-4568-9ab9-cb7c6e662428",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/727b90c5-46b3-4568-9ab9-cb7c6e662428.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+      "octgnid": "79e00002-0087-4bb1-9e44-a460f4aa2894",
+      "name": "Veteran Wainrider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While The Challengers is ahead of The Wainriders, Veteran Wainrider gets +2 [threat] and cannot leave the staging area.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 69,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 45,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/79e00002-0087-4bb1-9e44-a460f4aa2894.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 69,
+          "quantity": 3,
+          "octgnid": "79e00002-0087-4bb1-9e44-a460f4aa2894",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79e00002-0087-4bb1-9e44-a460f4aa2894.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+      "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+      "name": "Easterling Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: When Easterling Captain enters play, discard cards from the encounter deck until an Easterling treachery is discarded. Attach that treachery to Easterling Captain.Forced: When Easterling Captain would take any amount of damage, discard an Easterling attachment from him. Then, cancel the damage.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 17,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 6,
+      "engagement": 36,
+      "victory": 6,
+      "encounter_set": "Riders of Rhun",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "6",
+        "engagement": "36",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 17,
+          "quantity": 1,
+          "octgnid": "9042242b-054d-413e-83c7-bb9f42551a8a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9042242b-054d-413e-83c7-bb9f42551a8a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "name": "Rocky Outcrop",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Rocky Outcrop is in the staging area, characters cannot be readied by player card effects.Travel: The first player exhausts a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 26,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+      "octgnid": "9ff94935-ae08-4d86-859f-f4d0776a66e5",
+      "name": "Ravine Ledge",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Ravine Ledge is in the staging area, each racing test requires 1 additional matching result. Travel: The first player makes a racing [attack] test. To pass requires 1 TURN result. If the players pass the test, each player draws 1 card. If the players faill the test, each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 72,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/9ff94935-ae08-4d86-859f-f4d0776a66e5.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 72,
+          "quantity": 2,
+          "octgnid": "9ff94935-ae08-4d86-859f-f4d0776a66e5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ff94935-ae08-4d86-859f-f4d0776a66e5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+      "octgnid": "b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+      "name": "Home Stretch",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 80,
+      "quantity": 1,
+      "cost": 6,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "Home Stretch",
+      "back_text": "Forced: When this stage is defeated, make a racing [attack] test. To pass requires 1 TURN result, plus an additional TURN result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, this stage is not defeated and all progress here is discarded.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.B.jpg",
+      "printed_stats": {
+        "cost": "6"
+      },
+      "imagesrc": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 80,
+          "quantity": 1,
+          "octgnid": "b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "name": "An Arduous Journey",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each player cannot ready more than 6 characters he controls during the refresh phase.Response: When this stage is defeated, each player may ready a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 29,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+      "octgnid": "c2ff668a-6174-47d4-bbab-46f9c91403eb",
+      "name": "The Challengers",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: When the players defeat a quest stage with the race keyword, advance this card to the next quest stage in the circuit. If The Challengers completes two circuits before the Wainriders, the players win the game. If The Wainriders completes two circuits before the challenges, the players lose the game.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 65,
+      "quantity": 1,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {},
+      "imagesrc": "/cards/c2ff668a-6174-47d4-bbab-46f9c91403eb.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "c2ff668a-6174-47d4-bbab-46f9c91403eb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2ff668a-6174-47d4-bbab-46f9c91403eb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "name": "Rolling Plains",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "When Revealed: Each copy of Rolling Plains gets +2 [threat] until the end of the phase.Travel: Raise each player`s threat by 2.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 25,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 25,
+          "quantity": 4,
+          "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+      "octgnid": "cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+      "name": "Narrow Pass",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "while Narrow Pass is the active location, it gains: `Response: When damage would be placed on Wainrider Champion, remove an equal amount of damage from The Wainriders` stage instead. `",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 70,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 5,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/cfaa761e-c273-451f-bb1e-84d25c4bedbb.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 70,
+          "quantity": 3,
+          "octgnid": "cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfaa761e-c273-451f-bb1e-84d25c4bedbb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+      "octgnid": "e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+      "name": "Chariot Driver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "When Revealed: Either place 3 damage on The Wainriders` stage, or Chariot Driver makes an attack against the first player.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 68,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 5,
+      "defense": 1,
+      "health": 6,
+      "engagement": 38,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "1",
+        "health": "6",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/e6995a7d-46af-4c90-86dc-9ef9c8e3a666.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 68,
+          "quantity": 3,
+          "octgnid": "e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6995a7d-46af-4c90-86dc-9ef9c8e3a666.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+      "octgnid": "f607e8d7-ca95-4f83-80b9-a07726d38f65",
+      "name": "Wainrider Champion",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Indestructible.\nX is 2 per player. Indestructible. Immune to player card effects. Cannot leave the staging area. While The Challengers is at the same stage as The Wainriders, Wainrider Champion is considered to be engaged with each player.",
+      "is_unique": true,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 66,
+      "quantity": 1,
+      "attack": 4,
+      "health": 5,
+      "engagement": 50,
+      "victory": 4,
+      "encounter_set": "Challenge of the Wainriders",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "4",
+        "defense": "X",
+        "health": "5",
+        "engagement": "50",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/f607e8d7-ca95-4f83-80b9-a07726d38f65.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "f607e8d7-ca95-4f83-80b9-a07726d38f65",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f607e8d7-ca95-4f83-80b9-a07726d38f65.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+      "octgnid": "fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+      "name": "The Turnaround",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Race.",
+      "is_unique": false,
+      "pack_code": "CotW",
+      "pack_name": "Challenge of the Wainriders",
+      "position": 77,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Challenge of the Wainriders",
+      "side": "A",
+      "back_name": "The Turnaround",
+      "back_text": "Forced: When this stage is defeated, make a racing [willpower] test. To pass requires 1 TURN result, plus an additional TURN result for each stage you have completed this round. If the players pass the test, excess progress is placed on the next stage. If the players fail the test, each player discards an ally he controls.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg",
+      "packs": [
+        {
+          "pack_code": "CotW",
+          "pack_name": "Challenge of the Wainriders",
+          "position": 77,
+          "quantity": 1,
+          "octgnid": "fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.6",
+      "name": "Challenge of the Wainriders (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "CotW"
+      ],
+      "card_codes": [
+        "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+        "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+        "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+        "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+        "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+        "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+        "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+        "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+        "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+        "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+        "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+        "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+        "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+        "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+        "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+        "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+        "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+        "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5"
+      ],
+      "cards": [
+        {
+          "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:21165a65-1296-4664-a880-d85eea19a4ae": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b": 3,
+          "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666": 2,
+          "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894": 3,
+          "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb": 2,
+          "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227": 1,
+          "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1": 2,
+          "octgn:9042242b-054d-413e-83c7-bb9f42551a8a": 1,
+          "octgn:5af4be18-af74-46ef-a235-9c1002b85338": 1,
+          "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376": 3,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 2,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 1,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1
+        },
+        "sharedSetAside": {
+          "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb": 1,
+          "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428": 1,
+          "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65": 1,
+          "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083": 1,
+          "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e": 1,
+          "octgn:29fd0721-10ed-4315-b415-5fadeb010051": 1,
+          "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914": 1,
+          "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06": 1
+        },
+        "sharedStagingArea": {
+          "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5": 1,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 1,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 1,
+          "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb": 1,
+          "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.6",
+      "name": "Challenge of the Wainriders",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "CotW"
+      ],
+      "card_codes": [
+        "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+        "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+        "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+        "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+        "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+        "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+        "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+        "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+        "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+        "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+        "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+        "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+        "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+        "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+        "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+        "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+        "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+        "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+        "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06"
+      ],
+      "cards": [
+        {
+          "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:21165a65-1296-4664-a880-d85eea19a4ae": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b": 4,
+          "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666": 3,
+          "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894": 3,
+          "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb": 2,
+          "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5": 1,
+          "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5": 1,
+          "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227": 2,
+          "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1": 3,
+          "octgn:9042242b-054d-413e-83c7-bb9f42551a8a": 1,
+          "octgn:5af4be18-af74-46ef-a235-9c1002b85338": 2,
+          "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376": 3,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 3,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 1,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 2,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1
+        },
+        "sharedSetAside": {
+          "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb": 1,
+          "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428": 1,
+          "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65": 1,
+          "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083": 1,
+          "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e": 1,
+          "octgn:29fd0721-10ed-4315-b415-5fadeb010051": 1,
+          "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914": 1,
+          "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06": 1
+        },
+        "sharedStagingArea": {
+          "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5": 1,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 1,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 1,
+          "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb": 1,
+          "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "localPath": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "bytes": 144643,
+      "sha256": "11a61bf9f58b6b2f35e20c4d642b500db2ce65f2fe8a22408104d89aee11164d"
+    },
+    {
+      "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21165a65-1296-4664-a880-d85eea19a4ae.jpg",
+      "localPath": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.jpg",
+      "bytes": 164817,
+      "sha256": "386f76ca0f234cb843d7044f2bc204f52801654a6ae3e193cf4f143eb5a9ec40"
+    },
+    {
+      "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/21165a65-1296-4664-a880-d85eea19a4ae.B.jpg",
+      "localPath": "/cards/21165a65-1296-4664-a880-d85eea19a4ae.B.jpg",
+      "bytes": 163821,
+      "sha256": "51f4d2dcd643764a4d1fb326e628bc8a152a6eb30597b233b21eb5269b481a56"
+    },
+    {
+      "code": "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2301fc93-a05e-4dd4-b06e-40d659783d8b.jpg",
+      "localPath": "/cards/2301fc93-a05e-4dd4-b06e-40d659783d8b.jpg",
+      "bytes": 57566,
+      "sha256": "523dd6f0150909719b820fc9b91aba0be71947395b289e0f5a3b2599275281a0"
+    },
+    {
+      "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg",
+      "localPath": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.jpg",
+      "bytes": 144262,
+      "sha256": "9d3d1c112dd680d985e823cc0aac200d8ac71c6d96b7a7fa3d721b092a6059b9"
+    },
+    {
+      "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/282bca71-ff04-4447-a4e9-a7e5f70e0083.B.jpg",
+      "localPath": "/cards/282bca71-ff04-4447-a4e9-a7e5f70e0083.B.jpg",
+      "bytes": 153493,
+      "sha256": "78079a28e3aeafd2a6b5f3a8d4533acaa92ebedd1c2e1cc948ad11e6b935aa3d"
+    },
+    {
+      "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29fd0721-10ed-4315-b415-5fadeb010051.jpg",
+      "localPath": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.jpg",
+      "bytes": 133376,
+      "sha256": "86963b26aae75e61a078dc8ad670344d9579c85d7bdc2f8940d833f7aeb5cd67"
+    },
+    {
+      "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29fd0721-10ed-4315-b415-5fadeb010051.B.jpg",
+      "localPath": "/cards/29fd0721-10ed-4315-b415-5fadeb010051.B.jpg",
+      "bytes": 149212,
+      "sha256": "6f6dfb5428c196cb68c6809d945f4b2378c57addbc3f9a73ec0cbe0f09681dcd"
+    },
+    {
+      "code": "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/309c763a-60c9-4e33-bb0b-2b5e3a015227.jpg",
+      "localPath": "/cards/309c763a-60c9-4e33-bb0b-2b5e3a015227.jpg",
+      "bytes": 54398,
+      "sha256": "f58fad250ab5e54991ba39457534e24d04723de4754e8f599ee70c476dae840c"
+    },
+    {
+      "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/31911895-7f61-4cd1-aeeb-6ae706ffa4f5.jpg",
+      "localPath": "/cards/31911895-7f61-4cd1-aeeb-6ae706ffa4f5.jpg",
+      "bytes": 57334,
+      "sha256": "c9b5ac543aa7c043e2a56ce3e9e8c4fd9c6e2aa5463d45eda3c86dd1adf2c05d"
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "localPath": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "bytes": 151606,
+      "sha256": "18269f1fe0d476aa7ca804087ad75761a16e1aefd1d37151a9afafe4fcdd5ba6"
+    },
+    {
+      "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg",
+      "localPath": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.jpg",
+      "bytes": 136160,
+      "sha256": "34eb03e7316864f8b864ef19ac9e23fc2ed8b9b7eb9425c947ad272fcffbae62"
+    },
+    {
+      "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4c1e8a5c-db6b-4d36-8202-bf0960870914.B.jpg",
+      "localPath": "/cards/4c1e8a5c-db6b-4d36-8202-bf0960870914.B.jpg",
+      "bytes": 145096,
+      "sha256": "1e45853662e7884bc2b2b1c84328e5c0a150639e94044a869f284996a127e9ac"
+    },
+    {
+      "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "localPath": "/cards/53c01bdc-2761-4f8f-90bc-1eedd14ca376.jpg",
+      "bytes": 152948,
+      "sha256": "afda11c21782327d48a4fc15745a5ef3bf3532572fda8eb9ed5d498f4915a915"
+    },
+    {
+      "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "localPath": "/cards/5af4be18-af74-46ef-a235-9c1002b85338.jpg",
+      "bytes": 150161,
+      "sha256": "8b4642b1c4719f101b118d6b4040f97de51d9a2f3a8b8b5896cb02b4e8e22898"
+    },
+    {
+      "code": "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/611c0811-1810-4b3e-a00e-4d34f1f986b1.jpg",
+      "localPath": "/cards/611c0811-1810-4b3e-a00e-4d34f1f986b1.jpg",
+      "bytes": 50376,
+      "sha256": "c1f5a9e517cbce13023170eaf349b4a8053430d20f10efb93c1b27a938e14b9f"
+    },
+    {
+      "code": "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/727b90c5-46b3-4568-9ab9-cb7c6e662428.jpg",
+      "localPath": "/cards/727b90c5-46b3-4568-9ab9-cb7c6e662428.jpg",
+      "bytes": 52002,
+      "sha256": "42ba3694639f082c94b6c923f3cf66039608d7a80519ae70b961d415bca21b91"
+    },
+    {
+      "code": "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79e00002-0087-4bb1-9e44-a460f4aa2894.jpg",
+      "localPath": "/cards/79e00002-0087-4bb1-9e44-a460f4aa2894.jpg",
+      "bytes": 57595,
+      "sha256": "cd1ad7ad6a6bc3046b681ab5f4c0a9d09c1ea7b8d9952ad719553e409d7c26c9"
+    },
+    {
+      "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "localPath": "/cards/9042242b-054d-413e-83c7-bb9f42551a8a.jpg",
+      "bytes": 162030,
+      "sha256": "fcaebc700ee888815f66e9eb87f1ef5da2e80bbe25db1dde0e1b92ef59da79f5"
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "localPath": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "bytes": 141699,
+      "sha256": "7fae932ba8a2834c51448feb5c810fa87fcc6c0e40865a2dc0e2d4878e8b5e27"
+    },
+    {
+      "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9ff94935-ae08-4d86-859f-f4d0776a66e5.jpg",
+      "localPath": "/cards/9ff94935-ae08-4d86-859f-f4d0776a66e5.jpg",
+      "bytes": 56823,
+      "sha256": "ad983d7dbb11a63b4c551efc125ce8216a0d9cfc0a6cd823f8d4b6d3a4384301"
+    },
+    {
+      "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg",
+      "localPath": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.jpg",
+      "bytes": 140522,
+      "sha256": "be28d87811226b3a141968a1da57a7ea48caf16f7ec99334e7ba24c9be37b3e7"
+    },
+    {
+      "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.B.jpg",
+      "localPath": "/cards/b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06.B.jpg",
+      "bytes": 148544,
+      "sha256": "0bda11a4bd2b7265063d595b2c6c80dc6efa4b3e22c7720198c0069e55a26d75"
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "localPath": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "bytes": 133557,
+      "sha256": "bed38b94436243d1c814f43ade753106e2664f90cd0ffcd71b7f7cff8d323596"
+    },
+    {
+      "code": "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c2ff668a-6174-47d4-bbab-46f9c91403eb.jpg",
+      "localPath": "/cards/c2ff668a-6174-47d4-bbab-46f9c91403eb.jpg",
+      "bytes": 50916,
+      "sha256": "10025e4491b016356db6a9824dc9532d9e6bc00f78f59908e27c6c62331939f9"
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "localPath": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "bytes": 144450,
+      "sha256": "413e91e94d860fd0638b2c3b69219bc88cafd194d665a85b3d529f3bc161a625"
+    },
+    {
+      "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cfaa761e-c273-451f-bb1e-84d25c4bedbb.jpg",
+      "localPath": "/cards/cfaa761e-c273-451f-bb1e-84d25c4bedbb.jpg",
+      "bytes": 56708,
+      "sha256": "d65e4c768d25e1ed63a9f3963b4ca6b47377ab3ccd0f69aa9ecca8dd798e804e"
+    },
+    {
+      "code": "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6995a7d-46af-4c90-86dc-9ef9c8e3a666.jpg",
+      "localPath": "/cards/e6995a7d-46af-4c90-86dc-9ef9c8e3a666.jpg",
+      "bytes": 58884,
+      "sha256": "93cf1c620172816e8880b3ee43906632abbc9fcc14ee2fb96ea55062f24c875d"
+    },
+    {
+      "code": "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f607e8d7-ca95-4f83-80b9-a07726d38f65.jpg",
+      "localPath": "/cards/f607e8d7-ca95-4f83-80b9-a07726d38f65.jpg",
+      "bytes": 59719,
+      "sha256": "07632af7a5ae7575e51ea838a5f8fd68e0c85a04379a04c848452afc70830ace"
+    },
+    {
+      "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg",
+      "localPath": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.jpg",
+      "bytes": 138762,
+      "sha256": "6acd68430c739fc02202773126688d793610ffa3dfdee82e453fe4b975232c35"
+    },
+    {
+      "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.B.jpg",
+      "localPath": "/cards/fbfee53c-fec3-4b55-a8b4-c7329f8f973e.B.jpg",
+      "bytes": 150435,
+      "sha256": "ee53ffed141cc6bda2bd8d37c505ae4f3e0696e2e0ef5292b3abdd24f6504818"
+    }
+  ]
+}

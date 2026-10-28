@@ -107,7 +107,8 @@ export function shadowEastEnemyEntered(s: GameState, u: Unit) {
   const seen =
     s.riverRunning?.enteredEnemies ??
     s.templeDoom?.enteredEnemies ??
-    s.wrathRuin?.enteredEnemies;
+    s.wrathRuin?.enteredEnemies ??
+    s.wainriders?.enteredEnemies;
   if (!seen || seen.includes(u.id)) return;
   seen.push(u.id);
   const effects: Effect[] = [];
@@ -154,7 +155,8 @@ const tied = (units: Unit[], value: (u: Unit) => number, highest = false) => {
 const resolving = (s: GameState) =>
   s.riverRunning?.resolving ??
   s.templeDoom?.resolving ??
-  s.wrathRuin?.resolving;
+  s.wrathRuin?.resolving ??
+  s.wainriders?.resolving;
 function takeResolving(s: GameState, id: string | undefined) {
   const pile = resolving(s);
   const i = pile?.findIndex((u) => u.id === id) ?? -1;

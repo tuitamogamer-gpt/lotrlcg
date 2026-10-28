@@ -1,3 +1,5 @@
+import { validateWainridersPlayers } from "./wainriders-player-support";
+import { validateWainriders } from "./wainriders-support";
 import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
 import { wrathRuinSavedExtraUnits } from "./wrath-ruin-state";
 import { validateUlfast } from "./ulfast-support";
@@ -128,7 +130,7 @@ export function validateSave(
       (s.setupPending !== true ||
         s.phase !== "setup" ||
         !s.queue?.some((e) => e.kind === "gameSetupContinue") ||
-        !s.shadowEastPlayers)
+        (!s.shadowEastPlayers && !s.wainridersPlayers?.contracts.length))
     )
       return false;
     if (
@@ -435,6 +437,8 @@ export function validateSave(
         c.wildsCannotReady,
         c.cancelCombatDamage,
         c.ulfastKilled,
+        c.wainRacerKilled,
+        c.wainReturnOnKill,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       ((c as typeof c & { druadanReturnCount?: number }).druadanReturnCount ===
         undefined ||
@@ -470,6 +474,7 @@ export function validateSave(
         c.fordsTimeOnKill,
         c.extraAttacks,
         c.ulfastAgent,
+        c.wainDamageOnKill,
         c.ulfastExcess,
         c.ulfastUnderGuard,
         c.timeOnKill,
@@ -866,7 +871,10 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateUlfast(s, validUnit as (v: unknown) => boolean) ||
+      (!validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
+        SCRIPTED.has(c),
+      ) ||
+        !validateUlfast(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuin(s, validUnit as (v: unknown) => boolean) ||
         !validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
         !validateDangerDorwinion(s, validUnit as (v: unknown) => boolean) ||
@@ -1230,6 +1238,7 @@ export function validateSave(
       inheritedSeatCount === undefined &&
       (!validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuinPlayers(s) ||
+        !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
     )
@@ -1555,7 +1564,9 @@ export function validateSave(
       ...shadowEastPlayerUnits(s),
       ...wrathRuinSavedExtraUnits(s),
       ...(s.ulfast?.resolving ?? []),
+      ...(s.wainriders?.resolving ?? []),
       ...(s.ulfastPlayers?.contracts.map((c) => c.unit) ?? []),
+      ...(s.wainridersPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.umbar?.underAlley.flatMap((entry) => entry.enemies) ?? []),
       ...(s.cobas?.capturePending ?? []),
       ...(s.cobas?.belfalas.map((x) => x.enemy) ?? []),

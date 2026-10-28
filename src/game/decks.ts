@@ -1,3 +1,4 @@
+import { wandererDeckProblems } from "./wainriders-player-support";
 import { huntersDeckProblems } from "./ulfast-player-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
 export { startingThreat } from "./starting-threat";
@@ -65,7 +66,10 @@ export function legalSphere(code: string, heroes: string[]) {
 export function deckProblems(
   deck: Pick<CustomDeck, "heroes" | "cards" | "loot">,
 ) {
-  const problems: string[] = huntersDeckProblems(deck.cards);
+  const problems: string[] = [
+    ...huntersDeckProblems(deck.cards),
+    ...wandererDeckProblems(deck.heroes, deck.cards),
+  ];
   const heroes = deck.heroes.filter((h) => heroCodes.has(h));
   for (const h of deck.heroes)
     if (!heroCodes.has(h))

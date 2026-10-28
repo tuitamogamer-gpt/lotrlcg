@@ -1,0 +1,152 @@
+[
+  {
+    "code": "octgn:21165a65-1296-4664-a880-d85eea19a4ae",
+    "name": "Wainrider Camp",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
+    "name": "First Sprint",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
+    "name": "The Turnaround",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:29fd0721-10ed-4315-b415-5fadeb010051",
+    "name": "The Farthest Edge",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:4c1e8a5c-db6b-4d36-8202-bf0960870914",
+    "name": "Last Climb",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:b7f25c2a-b9f1-4ec7-8ab3-4843aaef4e06",
+    "name": "Home Stretch",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+    "name": "The Wainriders",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
+    "name": "The Challengers",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:f607e8d7-ca95-4f83-80b9-a07726d38f65",
+    "name": "Wainrider Champion",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
+    "name": "Aggressive Racer",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "code": "octgn:e6995a7d-46af-4c90-86dc-9ef9c8e3a666",
+    "name": "Chariot Driver",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
+    "name": "Veteran Wainrider",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:cfaa761e-c273-451f-bb1e-84d25c4bedbb",
+    "name": "Narrow Pass",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
+    "name": "Crowded Track",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9ff94935-ae08-4d86-859f-f4d0776a66e5",
+    "name": "Ravine Ledge",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+    "name": "Wainrider Chariot",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:611c0811-1810-4b3e-a00e-4d34f1f986b1",
+    "name": "The Champion's Cunning",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+    "name": "Rolling Plains",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "name": "Rocky Outcrop",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "name": "Weary Lands",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+    "name": "Painful Fatigue",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+    "name": "An Arduous Journey",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
+    "name": "Easterling Captain",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+    "name": "Rider of Rhûn",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
+    "name": "Easterling Horse",
+    "normal": 3,
+    "easy": 3
+  }
+]

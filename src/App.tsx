@@ -1,3 +1,7 @@
+import {
+  WainridersScenarioState,
+  WandererContractState,
+} from "./ui/wainriders-state";
 import { BurglarContractStateView } from "./ui/burglar-contract";
 import { UlfastScenarioState, HuntersContractState } from "./ui/ulfast-state";
 import { WrathRuinScenarioState } from "./ui/wrath-ruin-state";
@@ -3083,6 +3087,12 @@ export default function App() {
             <ShadowEastPlayerState s={game} inspect={setDetail} />
             <ShadowEastScenarioState s={game} inspect={setDetail} />
             <WrathRuinScenarioState s={game} inspect={setDetail} />
+            <WainridersScenarioState s={game} inspect={setDetail} />
+            <WandererContractState
+              s={game}
+              inspect={setDetail}
+              dispatch={dispatch}
+            />
             <UlfastScenarioState s={game} inspect={setDetail} />
             <HuntersContractState
               s={game}

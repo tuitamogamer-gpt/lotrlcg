@@ -1,3 +1,4 @@
+import { wandererSetup } from "./wainriders-player";
 import { huntersSetup } from "./ulfast-player";
 import { shadowEastPlayerScenarioProblem } from "./deck-setup";
 import { burglarContractSetup } from "./burglar-contract";
@@ -383,6 +384,7 @@ export function createGame(
   huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);
+  wandererSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;
     enqueue(s, fx("gameSetupContinue"));

@@ -1,3 +1,5 @@
+import { wainridersPlayerEffect } from "./wainriders-player";
+import { wainridersNoEngagement } from "./wainriders-player-support";
 import { ulfastPlayerEffect } from "./ulfast-player";
 import { finishGameSetup } from "./setup";
 import * as WrathPlayers from "./wrath-ruin-player";
@@ -585,6 +587,7 @@ function handleEffect(s: GameState, e: Effect) {
   }
   if (Burglar.handleBurglarContractEffect(s, e)) return;
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
+  if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
   if (MumakPlayers.handleMumakilPlayerEffect(s, e)) return;
@@ -1981,6 +1984,8 @@ function handleEffect(s: GameState, e: Effect) {
         }
       }
       s.refreshReadied = {};
+      for (const c of s.wainridersPlayers?.contracts ?? [])
+        c.unit.exhausted = false;
       for (const c of s.ulfastPlayers?.contracts ?? [])
         c.unit.exhausted = false;
       if (s.cobas)
@@ -2178,6 +2183,7 @@ function handleEffect(s: GameState, e: Effect) {
             amonPlayerCanEngage(s, u, i) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
+            !wainridersNoEngagement(s, u, i) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
             !EredSupport.eredMithrinPlayerPreventEngagement(
@@ -2237,6 +2243,7 @@ function handleEffect(s: GameState, e: Effect) {
             !celebrimborProtected(s, u) &&
             shadowFlameCanMove(s, u) &&
             khazadAutoEngageAllowed(s, u) &&
+            !wainridersNoEngagement(s, u, activeSeat(s)) &&
             !heirsPlayerNoEngagementCheck(u) &&
             u.noEngagementRound !== s.round &&
             !EredSupport.eredMithrinPlayerPreventEngagement(

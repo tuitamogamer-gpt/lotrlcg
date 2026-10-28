@@ -1,3 +1,9 @@
+import { wainridersPlayerCardPlayed } from "./wainriders-player-support";
+import {
+  wainridersPlayerCommitted,
+  wainridersPlayerPhaseEnd,
+  wainridersPlayerEliminated,
+} from "./wainriders-player";
 import {
   huntersPlayerEliminated,
   ulfastPlayerAllyEntered,
@@ -561,6 +567,7 @@ export function charactersCommitted(
   );
   EredFinalPlayers.eredFinalPlayerCharactersCommitted(s, actual);
   ShadowEastPlayers.shadowEastPlayerCharactersCommitted(s, actual);
+  wainridersPlayerCommitted(s, actual);
   WildsPlayers.wildsPlayerCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
@@ -910,7 +917,9 @@ export function check(s: GameState) {
   });
   if (s.status !== "playing") return;
   const activeQuests = new Set(
-    globalPlayerOrder(s).map((player) => mainQuestCode(seatView(s, player))),
+    globalPlayerOrder(s).flatMap((player) =>
+      allQuestUnits(seatView(s, player)).map((quest) => quest.code),
+    ),
   );
   for (const [code, attachments] of Object.entries(s.questAttachments ?? {})) {
     if (activeQuests.has(code)) continue;
@@ -1121,6 +1130,7 @@ export function check(s: GameState) {
       }
       ShadowEastPlayers.shadowEastPlayerEliminated(s, i);
       huntersPlayerEliminated(s, i);
+      wainridersPlayerEliminated(s, i);
       batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
@@ -1383,6 +1393,7 @@ export function damage(
   value = Mumakil.mumakilDamageAmount(s, u, value);
   value = Race.raceHaradDamageAmount(s, u, value);
   value = Sands.beneathSandsDamageAmount(s, u, value);
+  if (batch4Scenario(s).replaceDamage?.(s, u, value, context)) return false;
   value = batch4Scenario(s).damageAmount?.(s, u, value, context) ?? value;
   if (value <= 0) return false;
   if (Dread.dreadCancelEnemyDamage(s, u, value)) return false;
@@ -2345,6 +2356,7 @@ export function progress(
   if (Amon.amonDinQuestProgress(s, n)) return;
   if (["assault-on-osgiliath", "the-morgul-vale"].includes(s.scenarioId))
     return;
+  if (s.wainriders && playerEffect) return;
   addCurrentQuestProgress(s, n);
   Fangorn.fangornProgressPlaced(s);
   if (fromSuccessfulQuest) Mordor.mordorSuccessfulQuest(s, n);
@@ -2519,6 +2531,7 @@ export function advanceQuest(s: GameState) {
 
 export function phaseEnd(s: GameState) {
   EredPlayers.eredMithrinPlayerPhaseEnd(s);
+  const wainDepartures = wainridersPlayerPhaseEnd(s);
   const cityDepartures = CityPlayers.cityPlayerPhaseEnd(s);
   cobasPlayerPhaseEnd(s);
   Cobas.cobasPhaseEnd(s);
@@ -2532,7 +2545,13 @@ export function phaseEnd(s: GameState) {
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
   globalEachSeat(s, () => phaseEndPlayer(s));
   eachArea(s, () => redhornPhaseEnd(s));
-  prepend(s, ...bloodEffects, ...departures, ...cityDepartures);
+  prepend(
+    s,
+    ...bloodEffects,
+    ...departures,
+    ...cityDepartures,
+    ...wainDepartures,
+  );
   eachArea(s, () => rohanPhaseEnd(s));
   if (s.bloodGondor) s.bloodGondor.conflict = false;
   eachArea(s, () => heirsPhaseEnd(s));
@@ -3717,6 +3736,7 @@ export function resolveAllyKeywords(
       }),
       0,
       gainedDoomed,
+      played,
     )
   )
     return;
@@ -3954,6 +3974,7 @@ export function spendEvent(
   s.hand = s.hand.filter((x) => x.id !== u.id);
   if (s.ninEilph) s.used.push("nin:played");
   holdPlayedEvent(s, u);
+  wainridersPlayerCardPlayed(s, card(u.code));
   batch4Scenario(s).playerCardPlayed?.(s, u);
   Isengard.isengardPlayerPlayed(s, u, true, undefined, doomedX);
   RacePlayers.raceHaradPlayerEventPlayed(s, u);
