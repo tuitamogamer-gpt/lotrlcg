@@ -338,6 +338,7 @@ export const globalUnits = (s: GameState) => [
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
   wainridersQuestUnits(s).find((u) => u.id === id) ??
+  s.ashPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.wainridersPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   (mainQuestUnit(s)?.id === id ? mainQuestUnit(s) : undefined) ??

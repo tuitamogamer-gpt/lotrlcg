@@ -326,6 +326,24 @@ jobs:
           path: output/wainriders-release/failures
           retention-days: 7
 
+  ash-mountains-simulation:
+    name: Under the Ash Mountains complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:ash-mountains-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ash-mountains-simulation
+          path: output/ash-mountains-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -445,6 +463,8 @@ jobs:
             suite: test:shadow-east-quests
           - group: shadow-east-players
             suite: test:shadow-east-players
+          - group: ash-mountains
+            suite: test:browser-ash-mountains
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

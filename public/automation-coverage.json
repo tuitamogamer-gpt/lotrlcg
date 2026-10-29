@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 728,
+    "playerCards": 737,
     "heroes": 82,
-    "deckCards": 642,
-    "encounterCards": 1141,
-    "scenarios": 78,
+    "deckCards": 651,
+    "encounterCards": 1155,
+    "scenarios": 79,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -85,17 +85,18 @@
       "temple-of-doom",
       "wrath-and-ruin",
       "the-city-of-ulfast",
-      "challenge-of-the-wainriders"
+      "challenge-of-the-wainriders",
+      "under-the-ash-mountains"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2118,
-    "pending": 2065
+    "scripted": 2143,
+    "pending": 2040
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 156
+    "scripted": 158
   },
   "registeredCodes": [
     "01001",
@@ -880,7 +881,16 @@
     "22063",
     "22074",
     "22081",
+    "22082",
     "22083",
+    "22084",
+    "22085",
+    "22086",
+    "22087",
+    "22088",
+    "22089",
+    "22090",
+    "22091",
     "22138",
     "22142",
     "22143",
@@ -960,6 +970,7 @@
     "octgn:1208f735-6984-4c4d-ab8c-429664e4e060",
     "octgn:123bc772-2c27-4f26-a7f2-a3c4928a9dc4",
     "octgn:125e7884-7f75-42cd-80ba-065cf88eef9a",
+    "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
     "octgn:1339dfb5-49c1-46ce-a4c9-970d0e118cfa",
     "octgn:138ee2a3-0982-48ab-945e-60fab6f06586",
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
@@ -1176,6 +1187,7 @@
     "octgn:4489214b-775c-4e63-b8ec-c504526e478f",
     "octgn:44c49a79-6396-494c-a311-bf1b25263acb",
     "octgn:44d3c25c-e3ef-4ff0-a16a-8a75937bfffe",
+    "octgn:451b7209-4dea-4167-948e-dca0079fb997",
     "octgn:4576db5c-fdc2-45f2-ac8b-d1edb8150678",
     "octgn:460a1e18-8a57-44a5-bd06-f0c1b13c86b5",
     "octgn:463d0c53-2275-410f-b311-139f19561b46",
@@ -1648,6 +1660,7 @@
     "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
     "octgn:7c92fba9-f79a-4004-886b-eb36698d1d34",
     "octgn:7cbf23fd-28c4-494c-97aa-b7fed050ad8b",
+    "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
     "octgn:7d0387db-eba6-44e0-8602-b031a2927ca4",
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
@@ -1677,6 +1690,7 @@
     "octgn:83a8586f-bb6d-4e90-84c7-3909034dad16",
     "octgn:8472068c-fdd7-4197-8046-b9da12c29135",
     "octgn:84877af6-0720-4ef8-802b-69b792c32e15",
+    "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
     "octgn:85045e14-3abc-4d58-824f-249b1fb3643d",
     "octgn:855580e2-87b1-444c-b37a-1062c050d9ee",
     "octgn:857da3db-7159-4dfa-a925-8547fb6df455",
@@ -1760,6 +1774,7 @@
     "octgn:97bf780d-cd76-492f-a970-37f78273c5bb:B",
     "octgn:97f3e5c2-8ba8-44f9-a3e3-3bad40fd67e8",
     "octgn:97f3e879-eeee-4cc2-beb9-dc7c49c681ac",
+    "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
     "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
     "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
@@ -1879,6 +1894,7 @@
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
     "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
+    "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
@@ -1896,8 +1912,10 @@
     "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
     "octgn:b89a5a01-88c0-434a-a061-1654c6f84477",
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
+    "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
+    "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
@@ -1962,6 +1980,7 @@
     "octgn:c7bb88f6-a6b7-44f3-8bc2-8c4be788e7da",
     "octgn:c7bcb6fc-dde8-4df0-bd0e-3791b0fef4d0",
     "octgn:c7e3bde9-8348-41d6-8272-aa733f60a108",
+    "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
@@ -2028,6 +2047,7 @@
     "octgn:dae6e913-3b2e-4e53-aad4-69946d3386ca",
     "octgn:db1ee7dd-d43c-40a0-9e89-89a5b233af70",
     "octgn:db512bcc-1bc7-4008-ba2b-18d56abc3b67",
+    "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
     "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
@@ -2040,9 +2060,11 @@
     "octgn:de903b76-e5e1-478b-a782-1e91f5a7261e",
     "octgn:ded946a7-99f0-42bf-92f6-a2c46ca64d98",
     "octgn:def7d5a8-3af5-428d-ac94-485c33388ff9",
+    "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
     "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
     "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
     "octgn:e1479aa5-7a6d-426a-930b-64ae24143733",
@@ -2100,6 +2122,7 @@
     "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
+    "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
     "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
@@ -2108,6 +2131,7 @@
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
     "octgn:ef4ae3ca-ce48-4cad-88ee-23917e9dcdcc",
     "octgn:ef6ebaef-6b53-4aa0-b03b-9929bd2bc492",
+    "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
@@ -2180,6 +2204,7 @@
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
     "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
+    "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
@@ -2207,6 +2232,7 @@
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
+    "octgn:ff815834-bf79-4914-8057-903f834190f1",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
     "rc132",
@@ -3185,9 +3211,9 @@
     {
       "product": "under-the-ash-mountains",
       "total": 26,
-      "scripted": 1,
+      "scripted": 26,
       "player": 10,
-      "playerScripted": 1
+      "playerScripted": 10
     },
     {
       "product": "wrath-and-ruin",
@@ -11603,7 +11629,7 @@
       "name": "Wandering Exile",
       "type": "ally",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11619,7 +11645,7 @@
       "name": "Stone of Elostirion",
       "type": "attachment",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11627,7 +11653,7 @@
       "name": "Well Preserved",
       "type": "attachment",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11635,7 +11661,7 @@
       "name": "Northern Bowmaster",
       "type": "ally",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11643,7 +11669,7 @@
       "name": "Reckless Attack",
       "type": "event",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11651,7 +11677,7 @@
       "name": "Odo Proudfoot",
       "type": "ally",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11659,7 +11685,7 @@
       "name": "Defiant Challenge",
       "type": "event",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11667,7 +11693,7 @@
       "name": "Helm of Secrecy",
       "type": "event",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -11675,7 +11701,7 @@
       "name": "Council of the Wise",
       "type": "contract",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -13363,7 +13389,7 @@
       "name": "Burning Reek",
       "type": "treachery",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -17603,7 +17629,7 @@
       "name": "Ash Mountain Werewolf",
       "type": "enemy",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -25019,7 +25045,7 @@
       "name": "An Evil Place",
       "type": "quest",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -25763,7 +25789,7 @@
       "name": "The Tunnels of Torech Gorgor",
       "type": "encounter-side-quest",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -27339,7 +27365,7 @@
       "name": "Ransacked Supplies",
       "type": "treachery",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -29835,7 +29861,7 @@
       "name": "Writhing Shadows",
       "type": "treachery",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -30571,7 +30597,7 @@
       "name": "Hideous Deeps",
       "type": "location",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -30659,7 +30685,7 @@
       "name": "Spawn of Shelob",
       "type": "enemy",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -31827,7 +31853,7 @@
       "name": "Nameless Beast",
       "type": "enemy",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -33227,7 +33253,7 @@
       "name": "Passage into Mordor",
       "type": "quest",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -33459,7 +33485,7 @@
       "name": "Torech Gorgor Patrol",
       "type": "enemy",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -33555,7 +33581,7 @@
       "name": "Overwhelming Darkness",
       "type": "encounter-side-quest",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -34827,7 +34853,7 @@
       "name": "A Haunt for Beasts",
       "type": "encounter-side-quest",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -34939,7 +34965,7 @@
       "name": "Fiery Chasm",
       "type": "location",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -36219,7 +36245,7 @@
       "name": "Orc Passage",
       "type": "location",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -36603,7 +36629,7 @@
       "name": "Mordor Cave Troll",
       "type": "enemy",
       "pack": "Under the Ash Mountains",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "under-the-ash-mountains"
     },
     {
@@ -37228,8 +37254,8 @@
       "id": "E09.7",
       "name": "Under the Ash Mountains (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "under-the-ash-mountains",
+      "state": "scripted"
     },
     {
       "id": "E09.8",
@@ -38719,8 +38745,8 @@
       "id": "Q09.7",
       "name": "Under the Ash Mountains",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "under-the-ash-mountains",
+      "state": "scripted"
     },
     {
       "id": "Q09.8",

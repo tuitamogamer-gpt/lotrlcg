@@ -968,7 +968,7 @@ export function handleEredMithrinPlayerEffect(
         if (
           ["19117", "22006"].includes(e.code!)
             ? ["enemy", "ship-enemy"].includes(card(code).type_code)
-            : e.code === "19152"
+            : ["19152", "22084"].includes(e.code!)
               ? card(code).type_code === "location"
               : ["enemy", "ship-enemy", "location"].includes(
                   card(code).type_code,

@@ -248,6 +248,7 @@ export type ScenarioId =
   | "the-river-running"
   | "danger-in-dorwinion"
   | "temple-of-doom"
+  | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
   | "wrath-and-ruin"
@@ -403,6 +404,8 @@ export interface GameState {
   riverRunning?: import("./river-running-types").RiverRunningState;
   dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
   templeDoom?: import("./temple-doom-types").TempleDoomState;
+  ashMountains?: import("./ash-mountains-types").AshMountainsState;
+  ashPlayers?: import("./ash-mountains-types").AshPlayersState;
   wainriders?: import("./wainriders-types").WainridersState;
   wainridersPlayers?: import("./wainriders-player-types").WainridersPlayersState;
   ulfast?: import("./ulfast-types").UlfastState;
@@ -457,6 +460,7 @@ export interface GameState {
   heirsNumenor?: import("./heirs-numenor").HeirsNumenorState;
   resolvingEvents?: {
     unit: Unit;
+    fromHand?: boolean;
     player: number;
     destination:
       "discard" | "bottom" | "removed" | "victory" | "hand" | "spent";
@@ -700,6 +704,12 @@ export interface GameState {
     ulfastExcess?: number;
     ulfastUnderGuard?: number;
     ulfastKilled?: boolean;
+    ashKilled?: boolean;
+    ashWolf?: boolean;
+    ashTroll?: boolean;
+    ashExcess?: number;
+    ashDiscardOnKill?: number;
+    ashAttachmentOnKill?: number;
     wainRacerKilled?: boolean;
     wainReturnOnKill?: boolean;
     wainDamageOnKill?: number;

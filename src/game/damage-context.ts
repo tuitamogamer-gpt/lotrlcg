@@ -8,6 +8,8 @@ export interface DamageContext {
   drownedThenToken?: string;
   /** One Vigilant Guard assignment across its redirected and remaining damage. */
   cobasGuardToken?: string;
+  /** Writhing Shadows tracks the actual recipients through damage replacements. */
+  ashWrithingToken?: string;
   /** Ability costs cannot be canceled or redirected by optional replacements. */
   cost?: boolean;
   enemyId?: string;
@@ -51,6 +53,8 @@ export function readDamageContext(effect: {
       context.drownedThenToken = raw.drownedThenToken;
     if ("cobasGuardToken" in raw && typeof raw.cobasGuardToken === "string")
       context.cobasGuardToken = raw.cobasGuardToken;
+    if ("ashWrithingToken" in raw && typeof raw.ashWrithingToken === "string")
+      context.ashWrithingToken = raw.ashWrithingToken;
     if ("enemyId" in raw && typeof raw.enemyId === "string")
       context.enemyId = raw.enemyId;
     for (const key of [
@@ -119,7 +123,12 @@ export function validDamageContextEffectText(text?: string): boolean {
     "bypassWainriders",
   ])
     if (key in values && typeof values[key] !== "boolean") return false;
-  for (const key of ["enemyId", "drownedThenToken", "cobasGuardToken"])
+  for (const key of [
+    "enemyId",
+    "drownedThenToken",
+    "cobasGuardToken",
+    "ashWrithingToken",
+  ])
     if (key in values && typeof values[key] !== "string") return false;
   for (const key of ["mockingVisited", "eredFinalPrevented"]) {
     if (!(key in values)) continue;

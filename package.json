@@ -152,7 +152,9 @@
     "test:ulfast-simulation": "node --import tsx --test tests/ulfast-simulation.test.ts",
     "test:browser-ulfast": "node --import tsx scripts/browser-ulfast.mjs",
     "test:wainriders-simulation": "node --import tsx --test tests/wainriders-simulation.test.ts",
-    "test:browser-wainriders": "node --import tsx scripts/browser-wainriders.mjs"
+    "test:browser-wainriders": "node --import tsx scripts/browser-wainriders.mjs",
+    "test:ash-mountains-simulation": "node --import tsx --test tests/ash-mountains-simulation.test.ts",
+    "test:browser-ash-mountains": "node --import tsx scripts/browser-ash-mountains.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

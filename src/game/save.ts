@@ -1,3 +1,5 @@
+import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
+import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
 import { validateWainriders } from "./wainriders-support";
 import { shadowEastScenarioUnits } from "./shadow-east-scenario-state";
@@ -437,6 +439,9 @@ export function validateSave(
         c.wildsCannotReady,
         c.cancelCombatDamage,
         c.ulfastKilled,
+        c.ashKilled,
+        c.ashWolf,
+        c.ashTroll,
         c.wainRacerKilled,
         c.wainReturnOnKill,
       ].every((v) => v === undefined || typeof v === "boolean") &&
@@ -474,6 +479,9 @@ export function validateSave(
         c.fordsTimeOnKill,
         c.extraAttacks,
         c.ulfastAgent,
+        c.ashExcess,
+        c.ashDiscardOnKill,
+        c.ashAttachmentOnKill,
         c.wainDamageOnKill,
         c.ulfastExcess,
         c.ulfastUnderGuard,
@@ -786,6 +794,8 @@ export function validateSave(
         !s.resolvingEvents.every(
           (event) =>
             event &&
+            (event.fromHand === undefined ||
+              typeof event.fromHand === "boolean") &&
             validUnit(event.unit) &&
             (event.unit.owner === undefined || event.unit.owner < seatCount) &&
             card(event.unit.code).type_code === "event" &&
@@ -871,9 +881,10 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
-        SCRIPTED.has(c),
-      ) ||
+      (!validateAsh(s, validUnit as (v: unknown) => boolean) ||
+        !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
+          SCRIPTED.has(c),
+        ) ||
         !validateUlfast(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuin(s, validUnit as (v: unknown) => boolean) ||
         !validateRiverRunning(s, validUnit as (v: unknown) => boolean) ||
@@ -1238,6 +1249,7 @@ export function validateSave(
       inheritedSeatCount === undefined &&
       (!validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuinPlayers(s) ||
+        !validateAshPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
@@ -1564,6 +1576,9 @@ export function validateSave(
       ...shadowEastPlayerUnits(s),
       ...wrathRuinSavedExtraUnits(s),
       ...(s.ulfast?.resolving ?? []),
+      ...ashExtraUnits(s),
+      ...(s.ashPlayers?.contracts.map((c) => c.unit) ?? []),
+      ...(s.ashPlayers?.returnedHeroes ?? []),
       ...(s.wainriders?.resolving ?? []),
       ...(s.ulfastPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.wainridersPlayers?.contracts.map((c) => c.unit) ?? []),

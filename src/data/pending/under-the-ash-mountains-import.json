@@ -1,0 +1,1321 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Under the Ash Mountains",
+  "slug": "under-the-ash-mountains",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+      "octgnid": "12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+      "name": "Burning Reek",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nDoomed 1.When Revealed: Each player discard 1 card from the top of his deck for each character he controls.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 104,
+      "quantity": 2,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {},
+      "imagesrc": "/cards/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 104,
+          "quantity": 2,
+          "octgnid": "12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+      "octgnid": "451b7209-4dea-4167-948e-dca0079fb997",
+      "name": "Ash Mountain Werewolf",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Werewolf.",
+      "text": "Forced: After Ash Mountain Werewolf attacks you, discard the top card of your deck (top 2 cards instead if this attack destroyed a character).",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 97,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 28,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/451b7209-4dea-4167-948e-dca0079fb997.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 97,
+          "quantity": 3,
+          "octgnid": "451b7209-4dea-4167-948e-dca0079fb997",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/451b7209-4dea-4167-948e-dca0079fb997.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+      "name": "Narrow Opening",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Narrow Opening is the active location, each player cannot play more than 1 card each round.Forced: When Narrow Opening leaves play, each player discards 1 random card from his hand.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 62,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 62,
+          "quantity": 2,
+          "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "name": "Fearful Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Until the end of the round, treat the printed text box of each character as if it were blank (except for Traits).",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 64,
+      "quantity": 2,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {},
+      "imagesrc": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 64,
+          "quantity": 2,
+          "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+      "name": "Twisted Tunnel",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Discard cards from the top of the encounter deck until an enemy is discarded. Add that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 61,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 2,
+      "shadow": "Shadow: Defending character cannot ready until the end of the round.",
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 61,
+          "quantity": 2,
+          "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "name": "Crumbling Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Make Crumbling Passage the active location, returning any previously active location to the staging area.Forced: When Crumbling Passage leaves play, deal 1 damage to each exhausted character.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 63,
+      "quantity": 2,
+      "threat": 5,
+      "quest": 3,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 63,
+          "quantity": 2,
+          "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "octgnid": "7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "name": "An Evil Place",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Search the encounter deck and discard pile for an encounter side quest and reveal it. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 107,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Under the Ash Mountains",
+      "side": "A",
+      "back_name": "An Evil Place",
+      "back_text": "Event cards cannot shuffle cards from a player`s discard pile into his deck.Forced: At the end of the round, each player discards X cards from the top of his deck, where X is 1 more than the number of quest cards in play. If a player has no cards left in his deck, he is eliminated from the game.If the player defeat this stage, they win the game.",
+      "back_type_code": "quest",
+      "back_quest": 25,
+      "back_imagesrc": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 107,
+          "quantity": 1,
+          "octgnid": "7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+      "octgnid": "84b7e934-3d4d-4966-accf-c257c4413035",
+      "name": "The Tunnels of Torech Gorgor",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "During the travel phase, the players must travel to a location, if able.Forced: When the active location is explored, place 1 resource here.Progress cannot be placed on this quest unless there are at least 3 resources here.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 92,
+      "quantity": 1,
+      "quest": 3,
+      "victory": 10,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "quest": "3",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/84b7e934-3d4d-4966-accf-c257c4413035.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 92,
+          "quantity": 1,
+          "octgnid": "84b7e934-3d4d-4966-accf-c257c4413035",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84b7e934-3d4d-4966-accf-c257c4413035.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+      "octgnid": "9832252b-4c87-4a03-b249-aa8abe404459",
+      "name": "Ransacked Supplies",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards the top card of his deck. Until the end of the phase, add the total cost of each card discarded this way to the [threat] in the staging area.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 103,
+      "quantity": 3,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {},
+      "imagesrc": "/cards/9832252b-4c87-4a03-b249-aa8abe404459.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 103,
+          "quantity": 3,
+          "octgnid": "9832252b-4c87-4a03-b249-aa8abe404459",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9832252b-4c87-4a03-b249-aa8abe404459.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+      "octgnid": "b622efab-65dd-4a49-af87-8984066ab4ae",
+      "name": "Writhing Shadows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player assigns X damage among character he controls, where X is 1 more than the number of quest cards in play. Exhaust each character damaged by this effect.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 105,
+      "quantity": 2,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {},
+      "imagesrc": "/cards/b622efab-65dd-4a49-af87-8984066ab4ae.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 105,
+          "quantity": 2,
+          "octgnid": "b622efab-65dd-4a49-af87-8984066ab4ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b622efab-65dd-4a49-af87-8984066ab4ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+      "octgnid": "b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+      "name": "Hideous Deeps",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "When Revealed: Each player places the top 3 cards of his deck facedown under Hideous Deeps.Forced: When Hideous Deeps is explored as the active location, shuffle each facedown card under it into its owner`s deck.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 101,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 6,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 101,
+          "quantity": 2,
+          "octgnid": "b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+      "octgnid": "ba77505a-1def-4537-a194-0b7482433a72",
+      "name": "Spawn of Shelob",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Spider.",
+      "text": "Surge.\nSurge.Forced: After Spawn of Shelob engages you, either discard the top card of your deck, or Spawn of Shelob gets +2 [attack] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 98,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 12,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/ba77505a-1def-4537-a194-0b7482433a72.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 98,
+          "quantity": 3,
+          "octgnid": "ba77505a-1def-4537-a194-0b7482433a72",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba77505a-1def-4537-a194-0b7482433a72.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+      "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+      "name": "Lost in the Dark",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player places the top 10 cards of his deck facedown under his threat dial (without looking at them). When this stage is defeated, each player shuffles all cards under his threat dial back into his deck.Forced: After a player raises his threat by any amount, he discards the top card from under his threat dial.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 65,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Twisted Tunnels",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 65,
+          "quantity": 1,
+          "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+      "octgnid": "c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+      "name": "Nameless Beast",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nameless.",
+      "text": "Forced: When Nameless Beast attacks you, discard the top card of your deck. Nameless Beast gets +X [attack] for this attack, where X is that card's cost.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 95,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 6,
+      "engagement": 30,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "6",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 95,
+          "quantity": 2,
+          "octgnid": "c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+      "octgnid": "db69ea89-f018-4534-9661-7c748298e1f5",
+      "name": "Passage into Mordor",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Each player with more than 40 cards in his deck discards cards from the top of his deck until he has 40 cards left. The first player adds a copy of Torech Gorgor Patrol to the staging area. Each other player adds 1 different location to the staging area. Shuffle the encounter deck and discard cards from the top until a side quest is discarded. Reveal that side quest. Shuffle the encounter discard pile into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 106,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Under the Ash Mountains",
+      "side": "A",
+      "back_name": "Passage into Mordor",
+      "back_text": "Event cards cannot shuffle cards from a player`s discard pile into his deck.Forced: At the end of the round, each player discards X cards from the top of his deck, where X is 1 more than the number of quest cards in play. If a player has no cards left in his deck, he is eliminated from the game.",
+      "back_type_code": "quest",
+      "back_quest": 25,
+      "back_imagesrc": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 106,
+          "quantity": 1,
+          "octgnid": "db69ea89-f018-4534-9661-7c748298e1f5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db69ea89-f018-4534-9661-7c748298e1f5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+      "octgnid": "df3f0718-7558-48c5-b680-2c2fc38d3de2",
+      "name": "Torech Gorgor Patrol",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Orc. Uruk.",
+      "text": "X is 1 more than the number of quest cards in play.While Torech Gorgor Patrol is in the staging area, no more than 5 progress can be placed on the main quest each round.Forced: After Torech Gorgor Patrol engages a player, it makes an attack.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 99,
+      "quantity": 2,
+      "attack": 5,
+      "defense": 4,
+      "health": 9,
+      "engagement": 45,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "5",
+        "defense": "4",
+        "health": "9",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 99,
+          "quantity": 2,
+          "octgnid": "df3f0718-7558-48c5-b680-2c2fc38d3de2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+      "octgnid": "e0841275-753f-47bd-8d6d-807e4fb747ac",
+      "name": "Overwhelming Darkness",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Forced: After a player players a card, he discards the top card of his deck.Response: When this stage is defeated, each player shuffles the top 3 cards of his discard pile into his deck.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 94,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 10,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "quest": "6",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 94,
+          "quantity": 1,
+          "octgnid": "e0841275-753f-47bd-8d6d-807e4fb747ac",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+      "octgnid": "ede538df-8c8e-44b6-bab2-3a60e8a50449",
+      "name": "A Haunt for Beasts",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each enemy cannot take more than 4 damage each round.While there is at least one enemy in the staging area, this stage cannot be chosen as the current quest.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 93,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 93,
+          "quantity": 1,
+          "octgnid": "ede538df-8c8e-44b6-bab2-3a60e8a50449",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+      "octgnid": "ef7c6601-a62d-440a-89b1-5a9d6208481b",
+      "name": "Fiery Chasm",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "X is 1 more than the number of quest cards in play.Forced: When Fiery Chasm is explored, discard the top X cards of your deck.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 100,
+      "quantity": 2,
+      "quest": 5,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 100,
+          "quantity": 2,
+          "octgnid": "ef7c6601-a62d-440a-89b1-5a9d6208481b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+      "octgnid": "fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+      "name": "Orc Passage",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Orc Passage is in the staging area, encounter card effects cannot be canceled.Forced: When Orc Passage is explored, search the encounter deck and discard pile for a copy of Torech Gorgor Patrol and add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 102,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 102,
+          "quantity": 3,
+          "octgnid": "fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+      "octgnid": "ff815834-bf79-4914-8057-903f834190f1",
+      "name": "Mordor Cave Troll",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have attachments.Forced: After Mordor Cave Troll attacks and destroys a character, discard the top card of your deck for each point of excess damage dealt by this attack.",
+      "is_unique": false,
+      "pack_code": "UtAM",
+      "pack_name": "Under the Ash Mountains",
+      "position": 96,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 6,
+      "defense": 3,
+      "health": 8,
+      "engagement": 33,
+      "encounter_set": "Under the Ash Mountains",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "6",
+        "defense": "3",
+        "health": "8",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/ff815834-bf79-4914-8057-903f834190f1.jpg",
+      "packs": [
+        {
+          "pack_code": "UtAM",
+          "pack_name": "Under the Ash Mountains",
+          "position": 96,
+          "quantity": 2,
+          "octgnid": "ff815834-bf79-4914-8057-903f834190f1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff815834-bf79-4914-8057-903f834190f1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.7",
+      "name": "Under the Ash Mountains (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "UtAM"
+      ],
+      "card_codes": [
+        "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+        "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+        "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+        "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+        "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+        "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+        "octgn:ff815834-bf79-4914-8057-903f834190f1",
+        "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+        "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+        "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+        "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+        "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+        "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+        "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+        "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2"
+      ],
+      "cards": [
+        {
+          "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:db69ea89-f018-4534-9661-7c748298e1f5": 1,
+          "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:84b7e934-3d4d-4966-accf-c257c4413035": 1,
+          "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449": 1,
+          "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac": 1,
+          "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d": 2,
+          "octgn:ff815834-bf79-4914-8057-903f834190f1": 1,
+          "octgn:451b7209-4dea-4167-948e-dca0079fb997": 2,
+          "octgn:ba77505a-1def-4537-a194-0b7482433a72": 2,
+          "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b": 2,
+          "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8": 2,
+          "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316": 1,
+          "octgn:9832252b-4c87-4a03-b249-aa8abe404459": 3,
+          "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548": 1,
+          "octgn:b622efab-65dd-4a49-af87-8984066ab4ae": 1,
+          "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+          "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+          "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 1,
+          "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 1,
+          "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1
+        },
+        "sharedStagingArea": {
+          "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.7",
+      "name": "Under the Ash Mountains",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "UtAM"
+      ],
+      "card_codes": [
+        "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+        "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+        "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+        "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+        "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+        "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+        "octgn:ff815834-bf79-4914-8057-903f834190f1",
+        "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+        "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+        "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+        "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+        "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+        "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+        "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+        "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+        "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175"
+      ],
+      "cards": [
+        {
+          "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:db69ea89-f018-4534-9661-7c748298e1f5": 1,
+          "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:84b7e934-3d4d-4966-accf-c257c4413035": 1,
+          "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449": 1,
+          "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac": 1,
+          "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d": 2,
+          "octgn:ff815834-bf79-4914-8057-903f834190f1": 2,
+          "octgn:451b7209-4dea-4167-948e-dca0079fb997": 2,
+          "octgn:ba77505a-1def-4537-a194-0b7482433a72": 3,
+          "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1,
+          "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b": 3,
+          "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8": 2,
+          "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316": 2,
+          "octgn:9832252b-4c87-4a03-b249-aa8abe404459": 3,
+          "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548": 2,
+          "octgn:b622efab-65dd-4a49-af87-8984066ab4ae": 2,
+          "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+          "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+          "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 2,
+          "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 2,
+          "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1
+        },
+        "sharedStagingArea": {
+          "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg",
+      "localPath": "/cards/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg",
+      "bytes": 53547,
+      "sha256": "03de78ce7491ce5c6154b9afa19fee3a8042e19224b97a41cc372ab8bbb924b0"
+    },
+    {
+      "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/451b7209-4dea-4167-948e-dca0079fb997.jpg",
+      "localPath": "/cards/451b7209-4dea-4167-948e-dca0079fb997.jpg",
+      "bytes": 56859,
+      "sha256": "f1522eff0db85820bd30edf9397db56bbd2b56467bb03dcf5829765a8c90d305"
+    },
+    {
+      "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "localPath": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+      "bytes": 157854,
+      "sha256": "134ad68c926d6fde0b13b53dee3d9fae88e999052cb7daf3ec55963dbfed00a2"
+    },
+    {
+      "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "localPath": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+      "bytes": 155756,
+      "sha256": "a33ebbf0ccac1e8b5e1f4799d0929be26868e86deb408ab5116c7e08c442fb1b"
+    },
+    {
+      "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "localPath": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+      "bytes": 151261,
+      "sha256": "5e9b6fe1c06006b5e43a692a51bd9bbd292f999907d0113659333fd60a3c89a2"
+    },
+    {
+      "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "localPath": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+      "bytes": 156572,
+      "sha256": "98f92912737564a0f06b71bbbddc481509e1618e9f55729bba697e8e627a3552"
+    },
+    {
+      "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg",
+      "localPath": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg",
+      "bytes": 88260,
+      "sha256": "95ab1875771ff7991f919d250c03bce2db3ff74bb8e8e177abf370ddc881ea54"
+    },
+    {
+      "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.B.jpg",
+      "localPath": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.B.jpg",
+      "bytes": 86864,
+      "sha256": "7bc38ebadbfe8ee111337cd1cf7c2fa430f3113e31473600ac42a59e08965423"
+    },
+    {
+      "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84b7e934-3d4d-4966-accf-c257c4413035.jpg",
+      "localPath": "/cards/84b7e934-3d4d-4966-accf-c257c4413035.jpg",
+      "bytes": 83856,
+      "sha256": "c2bcdc6e82aeaa2b1b065f23525e56c84cc29160563c74409b8988596644f56c"
+    },
+    {
+      "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9832252b-4c87-4a03-b249-aa8abe404459.jpg",
+      "localPath": "/cards/9832252b-4c87-4a03-b249-aa8abe404459.jpg",
+      "bytes": 53565,
+      "sha256": "1b167cd84055318139ed5bf669746358192fccc1aaac3732aae8039f80ade5d3"
+    },
+    {
+      "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b622efab-65dd-4a49-af87-8984066ab4ae.jpg",
+      "localPath": "/cards/b622efab-65dd-4a49-af87-8984066ab4ae.jpg",
+      "bytes": 54140,
+      "sha256": "4f92b73865042aa2b35db15c6441a212db317b2d0f45b6e8ab85279a9b98584c"
+    },
+    {
+      "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg",
+      "localPath": "/cards/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg",
+      "bytes": 53147,
+      "sha256": "c1bd3ebb6447c57b035663cfe4e7cdc78298e8a9affd33d4627aab4785e9db1f"
+    },
+    {
+      "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba77505a-1def-4537-a194-0b7482433a72.jpg",
+      "localPath": "/cards/ba77505a-1def-4537-a194-0b7482433a72.jpg",
+      "bytes": 56209,
+      "sha256": "d74d5ecc88f69bed4ab3eed710c75098aabd72b9e0047076325fae41859f230b"
+    },
+    {
+      "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "localPath": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+      "bytes": 154073,
+      "sha256": "1900a13459796feab41a5344d5f76be44c0dbc6f5b0a9dc68fe57aa64726ebef"
+    },
+    {
+      "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg",
+      "localPath": "/cards/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg",
+      "bytes": 58654,
+      "sha256": "19f6ca88b77b25a2686381519b01f65d0a647d707d958496762454631404d682"
+    },
+    {
+      "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db69ea89-f018-4534-9661-7c748298e1f5.jpg",
+      "localPath": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.jpg",
+      "bytes": 90342,
+      "sha256": "4c50128af4ff194e41ca1fed4467369c382b4ddc3fa517ab29ace17dc1e7139d"
+    },
+    {
+      "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db69ea89-f018-4534-9661-7c748298e1f5.B.jpg",
+      "localPath": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.B.jpg",
+      "bytes": 90807,
+      "sha256": "34a576a1ac6ba4b4abee38952b110b913ec38ad07639efa5f862f57dc403194e"
+    },
+    {
+      "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg",
+      "localPath": "/cards/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg",
+      "bytes": 58166,
+      "sha256": "58836c8530ba6e03f1827cb2a9db80bf8741b5bb890e006e57c69e8aefb18448"
+    },
+    {
+      "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg",
+      "localPath": "/cards/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg",
+      "bytes": 84782,
+      "sha256": "58914b4a4624dfcbc32cbd5584043580861eb20f477523d8c4e7091cead3f1f3"
+    },
+    {
+      "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg",
+      "localPath": "/cards/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg",
+      "bytes": 83530,
+      "sha256": "4ad4dedd19498800b59684ca71048958dd753951060cd34cb781c3eda3ff191f"
+    },
+    {
+      "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg",
+      "localPath": "/cards/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg",
+      "bytes": 53494,
+      "sha256": "9ea4a63a01dfb0cf88fafeb42d649a876fdca4c228490e5cc93d5b50c15f1872"
+    },
+    {
+      "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg",
+      "localPath": "/cards/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg",
+      "bytes": 55572,
+      "sha256": "cb8557b50611b174a8b5b8bd5b17575d15c7adcede5b4feed7f821c88c031343"
+    },
+    {
+      "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff815834-bf79-4914-8057-903f834190f1.jpg",
+      "localPath": "/cards/ff815834-bf79-4914-8057-903f834190f1.jpg",
+      "bytes": 53643,
+      "sha256": "4045ebec91ea692e680354336770c5e4771f4d9bddf58892d6a99eab2b52ac78"
+    }
+  ]
+}

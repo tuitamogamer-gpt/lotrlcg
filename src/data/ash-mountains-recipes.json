@@ -1,0 +1,352 @@
+[
+  {
+    "id": "E09.7",
+    "name": "Under the Ash Mountains (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": [
+      "ASitE",
+      "UtAM"
+    ],
+    "card_codes": [
+      "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+      "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+      "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+      "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+      "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+      "octgn:ff815834-bf79-4914-8057-903f834190f1",
+      "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+      "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+      "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+      "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+      "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+      "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+      "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+      "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+      "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+      "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2"
+    ],
+    "cards": [
+      {
+        "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:db69ea89-f018-4534-9661-7c748298e1f5": 1,
+        "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:84b7e934-3d4d-4966-accf-c257c4413035": 1,
+        "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449": 1,
+        "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac": 1,
+        "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d": 2,
+        "octgn:ff815834-bf79-4914-8057-903f834190f1": 1,
+        "octgn:451b7209-4dea-4167-948e-dca0079fb997": 3,
+        "octgn:ba77505a-1def-4537-a194-0b7482433a72": 2,
+        "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b": 2,
+        "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8": 2,
+        "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316": 1,
+        "octgn:9832252b-4c87-4a03-b249-aa8abe404459": 3,
+        "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548": 1,
+        "octgn:b622efab-65dd-4a49-af87-8984066ab4ae": 1,
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 1,
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 1,
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1
+      },
+      "sharedStagingArea": {
+        "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q09.7",
+    "name": "Under the Ash Mountains",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": [
+      "ASitE",
+      "UtAM"
+    ],
+    "card_codes": [
+      "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+      "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+      "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+      "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+      "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+      "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+      "octgn:ff815834-bf79-4914-8057-903f834190f1",
+      "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+      "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+      "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+      "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+      "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+      "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+      "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+      "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+      "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+      "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+      "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+      "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+      "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+      "octgn:c33f8472-2563-438e-94d3-77490d7c2175"
+    ],
+    "cards": [
+      {
+        "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:db69ea89-f018-4534-9661-7c748298e1f5": 1,
+        "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:84b7e934-3d4d-4966-accf-c257c4413035": 1,
+        "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449": 1,
+        "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac": 1,
+        "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d": 2,
+        "octgn:ff815834-bf79-4914-8057-903f834190f1": 2,
+        "octgn:451b7209-4dea-4167-948e-dca0079fb997": 3,
+        "octgn:ba77505a-1def-4537-a194-0b7482433a72": 3,
+        "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1,
+        "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b": 3,
+        "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8": 2,
+        "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316": 2,
+        "octgn:9832252b-4c87-4a03-b249-aa8abe404459": 3,
+        "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548": 2,
+        "octgn:b622efab-65dd-4a49-af87-8984066ab4ae": 2,
+        "octgn:67251171-ee5f-46d5-b3c8-10523350c60c": 2,
+        "octgn:4b678143-ec9f-4727-998a-85dfef48d47a": 2,
+        "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d": 2,
+        "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9": 2,
+        "octgn:c33f8472-2563-438e-94d3-77490d7c2175": 1
+      },
+      "sharedStagingArea": {
+        "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

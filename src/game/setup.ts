@@ -1,3 +1,4 @@
+import { councilSetup } from "./ash-mountains-player";
 import { wandererSetup } from "./wainriders-player";
 import { huntersSetup } from "./ulfast-player";
 import { shadowEastPlayerScenarioProblem } from "./deck-setup";
@@ -385,6 +386,7 @@ export function createGame(
   burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);
   wandererSetup(s);
+  councilSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;
     enqueue(s, fx("gameSetupContinue"));

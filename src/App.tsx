@@ -1,3 +1,8 @@
+import { ASH_QUESTS } from "./game/ash-mountains-support";
+import {
+  AshMountainsState,
+  CouncilOfTheWiseState,
+} from "./ui/ash-mountains-state";
 import {
   WainridersScenarioState,
   WandererContractState,
@@ -3087,6 +3092,8 @@ export default function App() {
             <ShadowEastPlayerState s={game} inspect={setDetail} />
             <ShadowEastScenarioState s={game} inspect={setDetail} />
             <WrathRuinScenarioState s={game} inspect={setDetail} />
+            <AshMountainsState s={game} inspect={setDetail} />
+            <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
             <WandererContractState
               s={game}
@@ -3821,6 +3828,7 @@ export default function App() {
                   if (!("cardCode" in stage)) return;
                   try {
                     const local = [
+                      ...ASH_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

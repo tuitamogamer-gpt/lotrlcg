@@ -1,3 +1,4 @@
+import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
 import { ULFAST_ADVENTURES } from "./ulfast-scenario-data";
 import { WRATH_RUIN_ADVENTURES } from "./wrath-ruin-scenario-data";
@@ -1159,6 +1160,7 @@ export const SCENARIOS = [
   ...WRATH_RUIN_ADVENTURES,
   ...ULFAST_ADVENTURES,
   ...WAINRIDERS_ADVENTURES,
+  ...ASH_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

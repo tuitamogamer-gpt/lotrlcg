@@ -1,3 +1,10 @@
+import {
+  ashPlayerAllyEntered,
+  ashPlayerCommitted,
+  ashPlayerEliminated,
+  ashPlayerRoundBegin,
+  ashPlayerResourceDraw,
+} from "./ash-mountains-player";
 import { wainridersPlayerCardPlayed } from "./wainriders-player-support";
 import {
   wainridersPlayerCommitted,
@@ -568,6 +575,7 @@ export function charactersCommitted(
   EredFinalPlayers.eredFinalPlayerCharactersCommitted(s, actual);
   ShadowEastPlayers.shadowEastPlayerCharactersCommitted(s, actual);
   wainridersPlayerCommitted(s, actual);
+  ashPlayerCommitted(s, actual);
   WildsPlayers.wildsPlayerCharactersCommitted(s, actual);
   Storm.stormcallerCharactersCommitted(s, actual);
   TemplePlayers.templePlayerCharactersCommitted(s, actual);
@@ -1009,6 +1017,7 @@ export function check(s: GameState) {
     globalEachSeat(s, (i) => {
       if (
         !Dike.dikePlayerDeckEmpty(s, i) &&
+        !batch4Scenario(s).playerEliminationReason?.(s, i) &&
         s.threat < threatElimination(s) &&
         !s.used.includes("game:ship-controller-eliminated") &&
         !s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED) &&
@@ -1131,6 +1140,7 @@ export function check(s: GameState) {
       ShadowEastPlayers.shadowEastPlayerEliminated(s, i);
       huntersPlayerEliminated(s, i);
       wainridersPlayerEliminated(s, i);
+      ashPlayerEliminated(s, i);
       batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
@@ -1148,6 +1158,7 @@ export function check(s: GameState) {
       if (s.table.seats[s.table.active].eliminated) selectSeat(s, s.table.turn);
     }
   } else if (
+    batch4Scenario(s).playerEliminationReason?.(s, 0) ||
     Dike.dikePlayerDeckEmpty(s, 0) ||
     s.threat >= threatElimination(s) ||
     s.used.includes("game:ship-controller-eliminated") ||
@@ -1162,19 +1173,21 @@ export function check(s: GameState) {
       !Gram.gramHeroMissingAllowed(s, 0))
   ) {
     s.status = "lost";
-    s.reason = Dike.dikePlayerDeckEmpty(s, 0)
-      ? "Your deck is empty. The dead overwhelm your fellowship."
-      : s.used.includes("game:race-harad-mumak-lost")
-        ? "Your Tamed Mûmak left play. Your fellowship is eliminated."
-        : s.used.includes("game:mordor-objective-lost")
-          ? "A Harad objective-hero left play. Your fellowship is eliminated."
-          : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
-            ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
-            : s.used.includes("game:ship-controller-eliminated")
-              ? "Your Ship objective was destroyed. Your fellowship is eliminated."
-              : s.threat >= threatElimination(s)
-                ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
-                : "The last hero has fallen.";
+    s.reason =
+      batch4Scenario(s).playerEliminationReason?.(s, 0) ??
+      (Dike.dikePlayerDeckEmpty(s, 0)
+        ? "Your deck is empty. The dead overwhelm your fellowship."
+        : s.used.includes("game:race-harad-mumak-lost")
+          ? "Your Tamed Mûmak left play. Your fellowship is eliminated."
+          : s.used.includes("game:mordor-objective-lost")
+            ? "A Harad objective-hero left play. Your fellowship is eliminated."
+            : s.used.includes(CobasEconomy.COBAS_JUSTICE_ELIMINATED)
+              ? "Justice Shall Be Done eliminates your fellowship at the end of the round."
+              : s.used.includes("game:ship-controller-eliminated")
+                ? "Your Ship objective was destroyed. Your fellowship is eliminated."
+                : s.threat >= threatElimination(s)
+                  ? `Your threat reached ${threatElimination(s)}. The shadow has found you.`
+                  : "The last hero has fallen.");
   }
   if (s.status === "lost") {
     const pending = s.pendingPlayerPlays ?? [];
@@ -2737,6 +2750,15 @@ export function nextRound(s: GameState) {
     s.peek = null;
     s.optionalEngagement = false;
   });
+  const responses = ashPlayerRoundBegin(s);
+  if (responses.length) {
+    prepend(s, ...responses, fx("resourceBegin"));
+    return;
+  }
+  beginResources(s);
+}
+
+export function beginResources(s: GameState) {
   const cityResourceEffects = City.cityResourcesBegin(s);
   if (cityResourceEffects.length) {
     prepend(s, ...cityResourceEffects, fx("resourceCollect"));
@@ -2775,6 +2797,7 @@ export function collectResources(s: GameState) {
       frameworkDraw === 0
         ? 0
         : frameworkDraw +
+          ashPlayerResourceDraw(s, player) +
           huntResourceDrawBonus(s, player) +
           MumakSupport.mumakilResourceDrawBonus(s, player) +
           dwarfResourceDrawBonus(s, player) +
@@ -3761,6 +3784,7 @@ export function allyEntryResponses(
   ShadowEastPlayers.shadowEastPlayerAllyEntered(s, u, played, fromHand);
   WrathPlayers.wrathRuinPlayerAllyEntered(s, u, played, fromHand);
   ulfastPlayerAllyEntered(s, u, played, fromHand);
+  ashPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

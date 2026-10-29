@@ -57,6 +57,7 @@ export const ERED_MITHRIN_PLAYER = {
   ring: "19093",
 } as const;
 export const ERED_GUARDED = [
+  "22084",
   "19010",
   "19029",
   "19058",

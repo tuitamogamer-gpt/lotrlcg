@@ -1,0 +1,702 @@
+[
+  {
+    "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+    "octgnid": "12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+    "name": "Burning Reek",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Each player discards 1 card from the top of his deck for each character he controls.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 104,
+    "quantity": 2,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {},
+    "imagesrc": "/cards/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 104,
+        "quantity": 2,
+        "octgnid": "12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/12a9c24d-c09d-4fd8-a746-4d75d30b7548.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Either discard the top 2 cards of your deck, or return attacking enemy to the staging area after this attack."
+  },
+  {
+    "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+    "octgnid": "451b7209-4dea-4167-948e-dca0079fb997",
+    "name": "Ash Mountain Werewolf",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Werewolf.",
+    "text": "Forced: After Ash Mountain Werewolf attacks you, discard the top card of your deck (top 2 cards instead if this attack destroyed a character).",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 97,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 4,
+    "defense": 1,
+    "health": 5,
+    "engagement": 28,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "1",
+      "health": "5",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/451b7209-4dea-4167-948e-dca0079fb997.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 97,
+        "quantity": 3,
+        "octgnid": "451b7209-4dea-4167-948e-dca0079fb997",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/451b7209-4dea-4167-948e-dca0079fb997.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "If this attack destroys a character, discard the top 2 cards of your deck."
+  },
+  {
+    "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+    "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+    "name": "Narrow Opening",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Narrow Opening is the active location, each player cannot play more than 1 card each round.Forced: When Narrow Opening leaves play, each player discards 1 random card from his hand.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 62,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/4b678143-ec9f-4727-998a-85dfef48d47a.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 62,
+        "quantity": 2,
+        "octgnid": "4b678143-ec9f-4727-998a-85dfef48d47a",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b678143-ec9f-4727-998a-85dfef48d47a.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "name": "Fearful Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 1.\nWhen Revealed: Until the end of the round, treat the printed text box of each character as if it were blank (except for Traits).",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 64,
+    "quantity": 2,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {},
+    "imagesrc": "/cards/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 64,
+        "quantity": 2,
+        "octgnid": "64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/64d1e3f3-3265-44a8-97f7-9a1c744a01b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Shadow: Defending character cannot ready until the end of the round."
+  },
+  {
+    "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+    "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+    "name": "Twisted Tunnel",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until an enemy is discarded. Add that enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 61,
+    "quantity": 2,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Discard the top card of the encounter deck. If that card is an enemy, add it to the staging area.",
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/67251171-ee5f-46d5-b3c8-10523350c60c.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 61,
+        "quantity": 2,
+        "octgnid": "67251171-ee5f-46d5-b3c8-10523350c60c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67251171-ee5f-46d5-b3c8-10523350c60c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+    "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+    "name": "Crumbling Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Make Crumbling Passage the active location, returning any previously active location to the staging area.Forced: When Crumbling Passage leaves play, deal 1 damage to each exhausted character.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 63,
+    "quantity": 2,
+    "threat": 5,
+    "quest": 3,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "threat": "5",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 63,
+        "quantity": 2,
+        "octgnid": "6885658b-983d-459f-83f8-5a4d3ee5db9d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6885658b-983d-459f-83f8-5a4d3ee5db9d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+    "octgnid": "84b7e934-3d4d-4966-accf-c257c4413035",
+    "name": "The Tunnels of Torech Gorgor",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "During the travel phase, the players must travel to a location, if able.Forced: When the active location is explored, place 1 resource here.Progress cannot be placed on this quest unless there are at least 3 resources here.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 92,
+    "quantity": 1,
+    "quest": 3,
+    "victory": 10,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "quest": "3",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/84b7e934-3d4d-4966-accf-c257c4413035.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 92,
+        "quantity": 1,
+        "octgnid": "84b7e934-3d4d-4966-accf-c257c4413035",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/84b7e934-3d4d-4966-accf-c257c4413035.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+    "octgnid": "9832252b-4c87-4a03-b249-aa8abe404459",
+    "name": "Ransacked Supplies",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player discardss the top card of his deck. Until the end of the phase, add the total cost of each card discarded this way to the [threat] in the staging area.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 103,
+    "quantity": 3,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {},
+    "imagesrc": "/cards/9832252b-4c87-4a03-b249-aa8abe404459.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 103,
+        "quantity": 3,
+        "octgnid": "9832252b-4c87-4a03-b249-aa8abe404459",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9832252b-4c87-4a03-b249-aa8abe404459.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Discard an attachment you control. If this attack destroys a character, discard another attachment you control."
+  },
+  {
+    "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+    "octgnid": "b622efab-65dd-4a49-af87-8984066ab4ae",
+    "name": "Writhing Shadows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player assigns X damage among characters he controls, where X is 1 more than the number of quest cards in play. Exhaust each character damaged by this effect.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 105,
+    "quantity": 2,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {},
+    "imagesrc": "/cards/b622efab-65dd-4a49-af87-8984066ab4ae.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 105,
+        "quantity": 2,
+        "octgnid": "b622efab-65dd-4a49-af87-8984066ab4ae",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b622efab-65dd-4a49-af87-8984066ab4ae.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Attacking enemy makes an additional attack against you after this one."
+  },
+  {
+    "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+    "octgnid": "b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+    "name": "Hideous Deeps",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "When Revealed: Each player places the top 3 cards of his deck facedown under Hideous Deeps.Forced: When Hideous Deeps is explored as the active location, shuffle each facedown card under it into its owner's deck.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 101,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 6,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 101,
+        "quantity": 2,
+        "octgnid": "b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b93c5b70-0655-4577-9f5e-68ca00d4bfc8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+    "octgnid": "ba77505a-1def-4537-a194-0b7482433a72",
+    "name": "Spawn of Shelob",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Spider.",
+    "text": "Surge.\nForced: After Spawn of Shelob engages you, either discard the top card of your deck, or Spawn of Shelob gets +2 [attack] until the end of the round.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 98,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 12,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "12"
+    },
+    "imagesrc": "/cards/ba77505a-1def-4537-a194-0b7482433a72.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 98,
+        "quantity": 3,
+        "octgnid": "ba77505a-1def-4537-a194-0b7482433a72",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba77505a-1def-4537-a194-0b7482433a72.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Exhaust a character you control."
+  },
+  {
+    "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+    "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+    "name": "Lost in the Dark",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player places the top 10 cards of his deck facedown under his threat dial (without looking at them). When this stage is defeated, each player shuffles all cards under his threat dial back into his deck.Forced: After a player raises his threat by any amount, he discards the top card from under his threat dial.",
+    "is_unique": false,
+    "pack_code": "ASitE",
+    "pack_name": "A Shadow in the East",
+    "position": 65,
+    "quantity": 1,
+    "victory": 10,
+    "encounter_set": "Twisted Tunnels",
+    "printed_stats": {
+      "victory": "10",
+      "quest": "8"
+    },
+    "imagesrc": "/cards/c33f8472-2563-438e-94d3-77490d7c2175.jpg",
+    "packs": [
+      {
+        "pack_code": "ASitE",
+        "pack_name": "A Shadow in the East",
+        "position": 65,
+        "quantity": 1,
+        "octgnid": "c33f8472-2563-438e-94d3-77490d7c2175",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c33f8472-2563-438e-94d3-77490d7c2175.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+    "octgnid": "c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+    "name": "Nameless Beast",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nameless.",
+    "text": "Forced: When Nameless Beast attacks you, discard the top card of your deck. Nameless Beast gets +X [attack] for this attack, where X is that card's cost.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 95,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 6,
+    "engagement": 30,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "6",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 95,
+        "quantity": 2,
+        "octgnid": "c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c88d317b-d8b9-43ef-b41d-427ae4337f8d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Attacking enemy gets +X [attack], where X is the cost of the top card in your discard pile."
+  },
+  {
+    "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+    "octgnid": "df3f0718-7558-48c5-b680-2c2fc38d3de2",
+    "name": "Torech Gorgor Patrol",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Orc. Uruk.",
+    "text": "X is 1 more than the number of quest cards in play.While Torech Gorgor Patrol is in the staging area, no more than 5 progress can be placed on the main quest each round.Forced: After Torech Gorgor Patrol engages a player, it makes an attack.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 99,
+    "quantity": 2,
+    "attack": 5,
+    "defense": 4,
+    "health": 9,
+    "engagement": 45,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "5",
+      "defense": "4",
+      "health": "9",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 99,
+        "quantity": 2,
+        "octgnid": "df3f0718-7558-48c5-b680-2c2fc38d3de2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df3f0718-7558-48c5-b680-2c2fc38d3de2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+    "octgnid": "e0841275-753f-47bd-8d6d-807e4fb747ac",
+    "name": "Overwhelming Darkness",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Forced: After a player plays a card, he discards the top card of his deck.Response: When this stage is defeated, each player shuffles the top 3 cards of his discard pile into his deck.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 94,
+    "quantity": 1,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 94,
+        "quantity": 1,
+        "octgnid": "e0841275-753f-47bd-8d6d-807e4fb747ac",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e0841275-753f-47bd-8d6d-807e4fb747ac.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+    "octgnid": "ede538df-8c8e-44b6-bab2-3a60e8a50449",
+    "name": "A Haunt for Beasts",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Each enemy cannot take more than 4 damage each round.While there is at least one enemy in the staging area, this stage cannot be chosen as the current quest.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 93,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 10,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 93,
+        "quantity": 1,
+        "octgnid": "ede538df-8c8e-44b6-bab2-3a60e8a50449",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ede538df-8c8e-44b6-bab2-3a60e8a50449.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+    "octgnid": "ef7c6601-a62d-440a-89b1-5a9d6208481b",
+    "name": "Fiery Chasm",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "X is 1 more than the number of quest cards in play.Forced: When Fiery Chasm is explored, discard the top X cards of your deck.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 100,
+    "quantity": 3,
+    "quest": 5,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 100,
+        "quantity": 2,
+        "octgnid": "ef7c6601-a62d-440a-89b1-5a9d6208481b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ef7c6601-a62d-440a-89b1-5a9d6208481b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+    "octgnid": "fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+    "name": "Orc Passage",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Underground.",
+    "text": "While Orc Passage is in the staging area, encounter card effects cannot be canceled.Forced: When Orc Passage is explored, search the encounter deck and discard pile for a copy of Torech Gorgor Patrol and add it to the staging area.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 102,
+    "quantity": 2,
+    "threat": 4,
+    "quest": 4,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 102,
+        "quantity": 3,
+        "octgnid": "fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc8711c3-a458-4f0b-86d2-61fb3fd70316.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+    "octgnid": "ff815834-bf79-4914-8057-903f834190f1",
+    "name": "Mordor Cave Troll",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Cannot have attachments.Forced: After Mordor Cave Troll attacks and destroys a character, discard the top card of your deck for each point of excess damage dealt by this attack.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 96,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 6,
+    "defense": 3,
+    "health": 8,
+    "engagement": 33,
+    "encounter_set": "Under the Ash Mountains",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "6",
+      "defense": "3",
+      "health": "8",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/ff815834-bf79-4914-8057-903f834190f1.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 96,
+        "quantity": 2,
+        "octgnid": "ff815834-bf79-4914-8057-903f834190f1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff815834-bf79-4914-8057-903f834190f1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

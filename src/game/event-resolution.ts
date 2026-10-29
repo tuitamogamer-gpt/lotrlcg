@@ -1,3 +1,4 @@
+import { ashPlayerEventFinished } from "./ash-mountains-player";
 import { dikeCannotLeaveDiscard } from "./deadmens-discard";
 import { resolvePlayerAbility } from "./player-ability-triggers";
 import type { GameState, Unit } from "./types";
@@ -8,9 +9,15 @@ import { addVictoryCard, takePlayerDiscard } from "./board";
 import { ringMakerCharacterLeft } from "./ring-maker-player";
 
 /** Events remain outside hand/discard while their entire ability resolves (RR p8). */
-export function holdPlayedEvent(s: GameState, unit: Unit, bottom = false) {
+export function holdPlayedEvent(
+  s: GameState,
+  unit: Unit,
+  bottom = false,
+  fromHand = true,
+) {
   (s.resolvingEvents ??= []).push({
     unit,
+    ...(fromHand ? {} : { fromHand: false }),
     player: activeSeat(s),
     destination: bottom ? "bottom" : "discard",
   });
@@ -20,6 +27,12 @@ export function holdPlayedEvent(s: GameState, unit: Unit, bottom = false) {
 export function finishPlayedEvent(s: GameState, id: string) {
   const pending = s.resolvingEvents?.find((event) => event.unit.id === id);
   if (!pending) return;
+  ashPlayerEventFinished(
+    s,
+    pending.unit,
+    pending.player,
+    pending.fromHand !== false,
+  );
   s.resolvingEvents = s.resolvingEvents!.filter((event) => event !== pending);
   if (!s.resolvingEvents.length) delete s.resolvingEvents;
   // Some printed costs have already moved this exact event out of resolution.
@@ -116,12 +129,13 @@ export function resolveEventAbility(
   unit: Unit,
   ability: () => void,
   bottom = false,
+  fromHand = true,
 ) {
   resolvePlayerAbility(
     s,
     { player: activeSeat(s), source: unit.id, code: unit.code, type: "action" },
     () => {
-      holdPlayedEvent(s, unit, bottom);
+      holdPlayedEvent(s, unit, bottom, fromHand);
       const finish = s.queue.shift()!;
       ability();
       s.queue.push(finish);

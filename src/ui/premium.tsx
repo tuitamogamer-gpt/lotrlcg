@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "under-the-ash-mountains": {
+    name: "Torech Gorgor",
+    detail: "Dark tunnels · Dwindling supplies",
+  },
   "challenge-of-the-wainriders": {
     name: "Wainrider Circuit",
     detail: "Six stages · Two circuits · Race for freedom",
@@ -382,6 +386,7 @@ export const PLAYMAT_CHOICES = [
   "temple-of-doom",
   "wrath-and-ruin",
   "challenge-of-the-wainriders",
+  "under-the-ash-mountains",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

@@ -1,0 +1,82 @@
+[
+  {
+    "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+    "octgnid": "db69ea89-f018-4534-9661-7c748298e1f5",
+    "name": "Passage into Mordor",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player with more than 40 cards in his deck discards cards from the top of his deck until he has 40 cards left. The first player adds a copy of Torech Gorgor Patrol to the staging area. Each other player adds 1 different location to the staging area. Shuffle the encounter deck and discard cards from the top until a side quest is discarded. Reveal that side quest. Shuffle the encounter discard pile into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 106,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Under the Ash Mountains",
+    "side": "A",
+    "back_name": "Passage into Mordor",
+    "back_text": "Event cards cannot shuffle cards from a player's discard pile into his deck.Forced: At the end of the round, each player discards X cards from the top of his deck, where X is 1 more than the number of quest cards in play. If a player has no cards left in his deck, he is eliminated from the game.",
+    "back_type_code": "quest",
+    "back_quest": 25,
+    "back_imagesrc": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/db69ea89-f018-4534-9661-7c748298e1f5.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 106,
+        "quantity": 1,
+        "octgnid": "db69ea89-f018-4534-9661-7c748298e1f5",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db69ea89-f018-4534-9661-7c748298e1f5.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+    "octgnid": "7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+    "name": "An Evil Place",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Search the encounter deck and discard pile for an encounter side quest and reveal it. Shuffle the encounter discard pile into the encounter deck and discard cards from the top until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "UtAM",
+    "pack_name": "Under the Ash Mountains",
+    "position": 107,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Under the Ash Mountains",
+    "side": "A",
+    "back_name": "An Evil Place",
+    "back_text": "Event cards cannot shuffle cards from a player's discard pile into his deck.Forced: At the end of the round, each player discards X cards from the top of his deck, where X is 1 more than the number of quest cards in play. If a player has no cards left in his deck, he is eliminated from the game.If the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 25,
+    "back_imagesrc": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg",
+    "packs": [
+      {
+        "pack_code": "UtAM",
+        "pack_name": "Under the Ash Mountains",
+        "position": 107,
+        "quantity": 1,
+        "octgnid": "7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7ce50ea4-2496-414f-8fd5-5b076b58c9ee.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

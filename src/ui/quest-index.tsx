@@ -27,6 +27,10 @@ const HEADLINES: Partial<
   "danger-in-dorwinion": { lead: "Expose the cult", em: "in Dorwinion." },
   "temple-of-doom": { lead: "Enter", em: "the Temple of Doom." },
   "wrath-and-ruin": { lead: "Reclaim the streets", em: "of Dorwinion." },
+  "under-the-ash-mountains": {
+    lead: "Escape the tunnels",
+    em: "before supplies run out.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

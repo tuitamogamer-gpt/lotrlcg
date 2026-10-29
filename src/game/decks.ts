@@ -1,3 +1,4 @@
+import { councilDeckProblems } from "./ash-mountains-player";
 import { wandererDeckProblems } from "./wainriders-player-support";
 import { huntersDeckProblems } from "./ulfast-player-support";
 import { hasEncounterKeyword } from "./encounter-keyword";
@@ -68,6 +69,7 @@ export function deckProblems(
 ) {
   const problems: string[] = [
     ...huntersDeckProblems(deck.cards),
+    ...councilDeckProblems(deck.cards),
     ...wandererDeckProblems(deck.heroes, deck.cards),
   ];
   const heroes = deck.heroes.filter((h) => heroCodes.has(h));

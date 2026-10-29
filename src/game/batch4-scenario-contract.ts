@@ -16,6 +16,7 @@ export interface Batch4ScenarioHooks {
   openingHandsKept?(s: GameState): boolean;
   check?(s: GameState): void;
   playerEliminating?(s: GameState, player: number): void;
+  playerEliminationReason?(s: GameState, player: number): string | undefined;
   playerEliminated?(s: GameState, player: number): void;
   advance?(s: GameState): boolean;
   stageInfo?(s: GameState):

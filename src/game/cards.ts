@@ -1,3 +1,5 @@
+import ashPlayers from "../data/ash-mountains-player-cards.json";
+import { ASH_ENCOUNTERS, ASH_QUESTS } from "./ash-mountains-scenario-data";
 import wainridersPlayers from "../data/wainriders-player-cards.json";
 import {
   WAINRIDERS_ENCOUNTERS,
@@ -290,6 +292,7 @@ export const playerCards = [
           ...wrathRuinPlayers,
           ...ulfastPlayers,
           ...wainridersPlayers,
+          ...ashPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -444,6 +447,7 @@ export const encounterCards = [
       ...WRATH_RUIN_ENCOUNTERS,
       ...ULFAST_ENCOUNTERS,
       ...WAINRIDERS_ENCOUNTERS,
+      ...ASH_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -513,6 +517,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...WRATH_RUIN_QUESTS,
     ...ULFAST_QUESTS,
     ...WAINRIDERS_QUESTS,
+    ...ASH_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -623,6 +628,7 @@ export const SCRIPTED = new Set(
     ...WRATH_RUIN_QUESTS,
     ...ULFAST_QUESTS,
     ...WAINRIDERS_QUESTS,
+    ...ASH_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

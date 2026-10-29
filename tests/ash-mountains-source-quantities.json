@@ -1,0 +1,128 @@
+[
+  {
+    "code": "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
+    "name": "Passage into Mordor",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:7ce50ea4-2496-414f-8fd5-5b076b58c9ee",
+    "name": "An Evil Place",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:84b7e934-3d4d-4966-accf-c257c4413035",
+    "name": "The Tunnels of Torech Gorgor",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:ede538df-8c8e-44b6-bab2-3a60e8a50449",
+    "name": "A Haunt for Beasts",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
+    "name": "Overwhelming Darkness",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:c88d317b-d8b9-43ef-b41d-427ae4337f8d",
+    "name": "Nameless Beast",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:ff815834-bf79-4914-8057-903f834190f1",
+    "name": "Mordor Cave Troll",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:451b7209-4dea-4167-948e-dca0079fb997",
+    "name": "Ash Mountain Werewolf",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:ba77505a-1def-4537-a194-0b7482433a72",
+    "name": "Spawn of Shelob",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:df3f0718-7558-48c5-b680-2c2fc38d3de2",
+    "name": "Torech Gorgor Patrol",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
+    "name": "Fiery Chasm",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
+    "name": "Hideous Deeps",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+    "name": "Orc Passage",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9832252b-4c87-4a03-b249-aa8abe404459",
+    "name": "Ransacked Supplies",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:12a9c24d-c09d-4fd8-a746-4d75d30b7548",
+    "name": "Burning Reek",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
+    "name": "Writhing Shadows",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+    "name": "Twisted Tunnel",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:4b678143-ec9f-4727-998a-85dfef48d47a",
+    "name": "Narrow Opening",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
+    "name": "Crumbling Passage",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "name": "Fearful Shadows",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:c33f8472-2563-438e-94d3-77490d7c2175",
+    "name": "Lost in the Dark",
+    "normal": 1,
+    "easy": 1
+  }
+]

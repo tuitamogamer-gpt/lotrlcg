@@ -1,3 +1,6 @@
+import { ashPlayerEffect } from "./ash-mountains-player";
+import { ashEventShuffleBlocked } from "./ash-mountains";
+import { beginResources } from "./board";
 import { wainridersPlayerEffect } from "./wainriders-player";
 import { wainridersNoEngagement } from "./wainriders-player-support";
 import { ulfastPlayerEffect } from "./ulfast-player";
@@ -587,6 +590,7 @@ function handleEffect(s: GameState, e: Effect) {
   }
   if (Burglar.handleBurglarContractEffect(s, e)) return;
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
+  if (ashPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -768,6 +772,9 @@ function handleEffect(s: GameState, e: Effect) {
           e.text === "desert-resolved" || e.text === "desert-race-resolved",
           e.text === "desert-race-resolved",
         );
+      break;
+    case "resourceBegin":
+      beginResources(s);
       break;
     case "eventFinish":
       finishPlayedEvent(s, e.target!);
@@ -1347,7 +1354,7 @@ function handleEffect(s: GameState, e: Effect) {
       }
       break;
     case "reshufflePlayer":
-      if (dikeCannotLeaveDiscard(s)) break;
+      if (ashEventShuffleBlocked(s) || dikeCannotLeaveDiscard(s)) break;
       while (s.discard.length) putPlayerDeck(s, takePlayerDiscard(s, 0));
       shuffle(s, s.deck);
       break;

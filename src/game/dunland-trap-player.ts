@@ -1,3 +1,4 @@
+import { ashEventShuffleBlocked } from "./ash-mountains";
 import { stormcallerEffectiveThreat as effectiveThreat } from "./threat-read";
 import { isEnemy as playerUnitIsEnemy } from "./ships";
 import { choosePlayerResponse } from "./player-ability-triggers";
@@ -210,7 +211,12 @@ function councilOptions(s: GameState) {
     !allActiveLocations(s).some((u) => u.code === "01095")
   )
     options.add("draw");
-  if (s.discard.length && !dikeCannotLeaveDiscard(s)) options.add("shuffle");
+  if (
+    s.discard.length &&
+    !ashEventShuffleBlocked(s) &&
+    !dikeCannotLeaveDiscard(s)
+  )
+    options.add("shuffle");
   return options;
 }
 
@@ -391,7 +397,8 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       const available = ["ready", "resource", "draw", "shuffle"].filter(
         (id) =>
           !used.includes(id) &&
-          (id !== "shuffle" || !dikeCannotLeaveDiscard(s)),
+          (id !== "shuffle" ||
+            (!ashEventShuffleBlocked(s) && !dikeCannotLeaveDiscard(s))),
       );
       const choices = available.some((id) => useful.has(id))
         ? available.filter((id) => useful.has(id))
@@ -469,6 +476,7 @@ export function dunlandEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "dunlandCouncilShuffle":
+      if (ashEventShuffleBlocked(s)) return true;
       requireRule(!dikeCannotLeaveDiscard(s), DIKE_DISCARD_REASON);
       requireRule(
         s.discard[e.value!] === e.code,

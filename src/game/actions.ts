@@ -1,3 +1,5 @@
+import * as AshPlayers from "./ash-mountains-player";
+import { ashPublicState } from "./ash-mountains-support";
 import * as WainPlayers from "./wainriders-player";
 import {
   wainridersPlayerCardPlayed,
@@ -851,6 +853,12 @@ export function canPlay(
   );
   if (templeProblem) return templeProblem;
   if (greyProblem) return greyProblem;
+  const ashProblem = AshPlayers.ashPlayerPlayProblem(
+    s,
+    c.code,
+    options.playOrigin ?? "hand",
+  );
+  if (ashProblem) return ashProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1561,6 +1569,7 @@ export function resolvePlayerCard(
         );
       },
       bottom,
+      fromHand,
     );
   }
   if (c.type_code !== "ally")
@@ -1600,6 +1609,7 @@ export function handlePlayerEventAbilityEffect(
   if (
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
+    !AshPlayers.ashPlayerEvent(s, physical.code) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -1733,6 +1743,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   syncAttachmentText(s);
   const c = card(u.code);
   const batchTargets =
+    AshPlayers.ashPlayerTargets(s, c.code) ??
     WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
@@ -1922,6 +1933,7 @@ export const needsTarget = (u: Unit) =>
   u.code === "12118" ||
   u.code === "09008" ||
   (![
+    "22084",
     "22006",
     "19117",
     "19152",
@@ -3429,6 +3441,8 @@ export function publicState(s: GameState) {
     ...eredScenarioPublicState(s),
     ...wrathRuinAllPublicState(s),
     ulfast: ulfastPublicState(s),
+    ashMountains: ashPublicState(s),
+    ashPlayers: AshPlayers.councilPublic(s),
     wainriders: wainridersPublicState(s),
     wainridersPlayers: wainridersPlayerPublic(s),
     ulfastPlayers: s.ulfastPlayers?.contracts.map((c) => ({
