@@ -491,28 +491,30 @@
   }
 }
 @media (max-width: 600px) {
+  /* One full-width card per row: two columns split hero names mid-word. */
   .deck-picker {
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
   }
   .deck-choice-select {
-    padding: 12px 8px 0;
+    padding: 14px 14px 0;
   }
   .deck-choice h3 {
-    font-size: 20px;
-    min-height: 2.3em;
+    font-size: 22px;
+    min-height: 0;
   }
   .deck-choice p {
-    font-size: 15px;
-    min-height: 5.4em;
+    font-size: 16px;
+    min-height: 0;
   }
   .deck-hero-triptych {
-    gap: 3px;
+    gap: 8px;
   }
   .deck-hero-triptych strong {
-    font-size: 13px;
+    font-size: 15px;
   }
   .deck-choice-facts {
-    font-size: 13px;
+    font-size: 14px;
   }
   .deck-choice-state,
   .deck-view {

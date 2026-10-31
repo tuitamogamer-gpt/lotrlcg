@@ -1,0 +1,92 @@
+/* Phone and tablet refinements, loaded last so they settle earlier overrides. */
+
+/* Below the desktop masthead the table keeps a compact top bar. Its paper tint
+   was translucent over the dark tabletop, which left brown ink on brown; use
+   the charcoal frame of the masthead instead. */
+@media (max-width: 1099px) {
+  .redbook.playing .topbar {
+    background: linear-gradient(100deg, #1f2522, #32362e 50%, #1b211e);
+    border-bottom: 1px solid #b29a6266;
+    color: #e8dcb8;
+  }
+  .redbook.playing .topbar .breadcrumbs strong,
+  .redbook.playing .topbar .icon-button,
+  .redbook.playing .topbar .solo-label,
+  .redbook.playing .topbar .mobile-menu {
+    color: #e8dcb8;
+  }
+  .redbook.playing .topbar .icon-button:hover {
+    background: #f4e6bd14;
+  }
+  /* The threat dial now sits inside .threat-dial-area, so the compact turn
+     panel placed that wrapper full width and pushed the phase title and its
+     help links into a narrow right-hand column below. Keep the dial in the
+     left column and let the title and links fill the space beside it. */
+  .redbook .card-table .turn-panel {
+    grid-auto-flow: row dense;
+  }
+  .redbook .card-table .turn-panel > .threat-dial-area {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    width: 120px;
+  }
+}
+
+@media (max-width: 599px) {
+  /* Player banners fill the row: a lone seat no longer sits in a 210px box
+     with its threat wrapped underneath, and extra seats still peek in. */
+  .redbook .seat-tab {
+    flex: 1 0 min(300px, 86%);
+  }
+}
+
+@media (max-width: 599px) {
+  /* Comfortable touch targets for the small text-only controls. */
+  .redbook .lobby-footer button,
+  .redbook .guide-links a,
+  .redbook .library-summary label {
+    min-height: 44px;
+  }
+  .redbook .library-summary label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .redbook .support-summary summary {
+    padding-block: 9px;
+  }
+  /* Single-column fellowship cards have room for readable product notes. */
+  .deck-hero-triptych .card-product-note {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 899px) {
+  /* The drawer is 300px wide: let the masthead subtitle wrap instead of
+     running under the drawer edge. */
+  .redbook .sidebar.is-open .brand small {
+    white-space: normal;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 599px) {
+  /* Page introductions are long italic paragraphs; at 20px the deck editor's
+     intro filled the whole first screen. */
+  .redbook .page-heading p {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 599px) {
+  /* Inspector statistics wrapped three-plus-one; an even two-column grid
+     keeps willpower/attack and defense/hit points paired. */
+  .redbook .detail-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .redbook .detail-stats > .stat-badge {
+    min-width: 0;
+  }
+}

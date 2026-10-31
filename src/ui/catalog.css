@@ -337,3 +337,21 @@
   color: #3e4936;
   text-decoration-color: currentColor;
 }
+/* Search fields were dark frames around a paper input, leaving the
+   placeholder flush with the input edge and a dark strip at the end. */
+.redbook .search-field {
+  background: #f6edd9;
+  border: 1px solid #98774766;
+  color: #846b36;
+}
+.redbook .search-field:focus-within {
+  border-color: #846b36;
+  box-shadow: 0 0 0 2px #846b3633;
+}
+.redbook .search-field input {
+  min-width: 0;
+  background: none;
+  border: 0;
+  padding: 13px 0;
+  box-shadow: none;
+}
