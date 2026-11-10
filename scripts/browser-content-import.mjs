@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { chromium } from "playwright";
 
-const base = process.env.GAME_URL ?? "http://127.0.0.1:5201";
+const base = process.env.GAME_URL ?? "http://127.0.0.1:5178";
 const dir = "output/content-import";
 await fs.mkdir(dir, { recursive: true });
 const browser = await chromium.launch({ headless: true });

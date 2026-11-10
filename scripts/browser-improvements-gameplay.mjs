@@ -11,7 +11,7 @@ import {
   observeBrowserArtifact,
 } from "./browser-artifact-evidence.mjs";
 
-const url = process.env.GAME_URL ?? "http://127.0.0.1:5182";
+const url = process.env.GAME_URL ?? "http://127.0.0.1:5178";
 const dir = "output/improvement-round-20261013/ux-gameplay/verification";
 await fs.mkdir(dir, { recursive: true });
 const starter = STARTERS[0];

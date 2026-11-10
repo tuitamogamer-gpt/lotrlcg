@@ -4,7 +4,7 @@ import { chromium } from "playwright";
 import { DECK_EDITOR_DRAFT_KEY } from "../src/ui/deck-editor-draft.ts";
 import { DECKS_KEY } from "../src/game/decks.ts";
 
-const url = process.env.GAME_URL ?? "http://127.0.0.1:5182";
+const url = process.env.GAME_URL ?? "http://127.0.0.1:5178";
 process.env.GAME_URL = url;
 const { context, capture, report } =
   await import("./browser-angmar-helpers.mjs");

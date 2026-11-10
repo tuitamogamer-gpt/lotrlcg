@@ -24,11 +24,18 @@
      left column and let the title and links fill the space beside it. */
   .redbook .card-table .turn-panel {
     grid-auto-flow: row dense;
+    /* The vine ornament is painted from 5px to 23px at the top of the panel;
+       with 12px of padding it ran through the threat label and phase title. */
+    padding-top: 28px;
   }
   .redbook .card-table .turn-panel > .threat-dial-area {
     grid-column: 1;
     grid-row: 1 / 5;
     width: 120px;
+  }
+  /* "Your turn" sat flush between the threat caption and the action button. */
+  .redbook .card-table .turn-panel > .turn-panel-top {
+    margin-block: 10px 6px;
   }
 }
 

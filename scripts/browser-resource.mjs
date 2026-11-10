@@ -11,7 +11,7 @@ import {
   reviewedState,
   finishResourcePhase,
 } from "./browser-review-helpers.mjs";
-const base = process.env.GAME_URL ?? "http://127.0.0.1:5201",
+const base = process.env.GAME_URL ?? "http://127.0.0.1:5178",
   dir = "output/resource";
 await fs.mkdir(dir, { recursive: true });
 const leader = STARTERS[0];

@@ -335,9 +335,11 @@
   outline: 2px solid #846b36;
   outline-offset: 6px;
 }
+/* A ruled footer rather than a panel: with no side padding, a tinted
+   background left the text touching the edges of a visible box. */
 .redbook .lobby > .official-resources {
   margin-top: 8px;
-  background: #f8f4e966;
+  background: none;
   border-width: 1px 0 0;
   padding: 24px 0 8px;
 }

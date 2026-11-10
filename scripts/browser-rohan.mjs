@@ -10,7 +10,7 @@ import {
   reviewedState,
 } from "./browser-review-helpers.mjs";
 
-const base = process.env.GAME_URL ?? "http://127.0.0.1:5201";
+const base = process.env.GAME_URL ?? "http://127.0.0.1:5178";
 const dir = "output/rohan";
 await fs.mkdir(dir, { recursive: true });
 const deck = officialStarterDecks.find((d) => d.id === "starter-rohan");
