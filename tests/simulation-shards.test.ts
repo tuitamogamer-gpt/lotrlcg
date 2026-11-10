@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 409);
+  assert.equal(baseline.registeredCases, 414);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -59,6 +59,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "Challenge of the Wainriders",
             "Under the Ash Mountains",
             "The Land of Sorrow",
+            "The Fortress of Nurn",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

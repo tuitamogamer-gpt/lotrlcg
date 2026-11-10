@@ -1,0 +1,1828 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Fortress of Nurn",
+  "slug": "the-fortress-of-nurn",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:015c235b-877b-4433-b979-99c4097ef784",
+      "octgnid": "015c235b-877b-4433-b979-99c4097ef784",
+      "name": "Thane Ulchor",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects.X is 1 more than the number of Castle side quests in the victory display.Forced: After Thane Ulchor attacks, reveal the top card of the encounter deck.",
+      "is_unique": true,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 148,
+      "quantity": 1,
+      "attack": 6,
+      "defense": 4,
+      "health": 12,
+      "engagement": 0,
+      "victory": 6,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "6",
+        "defense": "4",
+        "health": "12",
+        "engagement": "0",
+        "victory": "6"
+      },
+      "imagesrc": "/cards/015c235b-877b-4433-b979-99c4097ef784.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 148,
+          "quantity": 1,
+          "octgnid": "015c235b-877b-4433-b979-99c4097ef784",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/015c235b-877b-4433-b979-99c4097ef784.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+      "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+      "name": "Storm the Castle",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "Castle.",
+      "text": "The faceup encounter card underneath this quest is not in play.Forced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card ovewr and make it the current quest until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 163,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The Fortress of Nurn",
+      "back_name": "No Quarter",
+      "back_text": "When Revealed: Each player randomly discards 4 of his cards from under this quest. Then, each player discards each card he controls, or holds in his hand, that share a title with one of the cards he just discarded. When this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card. ",
+      "back_type_code": "encounter-side-quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.B.jpg",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 163,
+          "quantity": 1,
+          "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "name": "Fanaticism",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While attached to an enemy, counts as a Condition attachment with the text: `Attached enemy gets +1 [threat], +1 [attack], +1 [defense], and is immune to player card effects.`When Revealed: Attach to the Easterling enemy with the lowest [defense] without a copy of Fanaticism. Otherwise, Fanaticism gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 60,
+      "quantity": 2,
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 60,
+          "quantity": 2,
+          "octgnid": "1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+      "name": "Unwelcome Travelers",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each location in the staging area gets +1 [threat].Forced: After Unwelcome Travelers becomes the current quest, the first player discards cards from the top of the encounter deck until an enemy is discarded and puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 52,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "203ed863-1738-4974-ae79-19977eea868d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+      "octgnid": "254444df-3e65-4531-b6db-2fdacd0788b4",
+      "name": "The Dungeons of Dol Rhugar",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nSurge.No more than 4 progress can be placed on the current quest each round.Response: When this stage is defeated, the first player chooses a Castle side quest. Each player looks at his facedown cards under that quest and adds 1 to his hand.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 158,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/254444df-3e65-4531-b6db-2fdacd0788b4.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 158,
+          "quantity": 1,
+          "octgnid": "254444df-3e65-4531-b6db-2fdacd0788b4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/254444df-3e65-4531-b6db-2fdacd0788b4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+      "octgnid": "2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+      "name": "Soldier of Nurn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Forced: After Soldier of Nurn attacks, place 1 card from your hand facedown under a Castle side quest.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 149,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 4,
+      "engagement": 28,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "4",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 149,
+          "quantity": 3,
+          "octgnid": "2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+      "octgnid": "2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+      "name": "Easterling Mercenary",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "When Revealed: Either reveal an additional encounter card, or no progress can be placed on the current quest this phase.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 150,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 2,
+      "health": 3,
+      "engagement": 32,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "2",
+        "health": "3",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 150,
+          "quantity": 2,
+          "octgnid": "2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "name": "Khamûl the Easterling",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl. Easterling. Mordor.",
+      "text": "Immune to player card effects.Khamul the Easterling engages the first player.Only the engaged player can declare attackers or defenders against Khamul the Easterling.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 66,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 6,
+      "defense": 4,
+      "health": 9,
+      "engagement": 49,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "4",
+        "health": "9",
+        "engagement": "49"
+      },
+      "imagesrc": "/cards/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 66,
+          "quantity": 1,
+          "octgnid": "2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+      "octgnid": "30a1913f-03e2-46fb-be6d-3b86064d1afd",
+      "name": "Determined Defense",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the phase, add 2 [threat] to the staging area. Add 2 additional [threat] for each Castle side quest in the victory display.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 156,
+      "quantity": 3,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {},
+      "imagesrc": "/cards/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 156,
+          "quantity": 3,
+          "octgnid": "30a1913f-03e2-46fb-be6d-3b86064d1afd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+      "octgnid": "43867521-f76f-48be-9911-a90ac0f539f6",
+      "name": "Mordor Olog-hai",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Cannot have attachments.Forced: After Mordor Olog-hai attacks and destroys a character you control, exhaust a character you control.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 151,
+      "quantity": 2,
+      "threat": 4,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "engagement": 34,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "6",
+        "defense": "3",
+        "health": "9",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/43867521-f76f-48be-9911-a90ac0f539f6.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 151,
+          "quantity": 2,
+          "octgnid": "43867521-f76f-48be-9911-a90ac0f539f6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43867521-f76f-48be-9911-a90ac0f539f6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "name": "The Tower of Barad-dûr",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Immune to player card effects.The player cannot travel here.Each player`s threat elimination level is reduced by 5.",
+      "is_unique": true,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 67,
+      "quantity": 1,
+      "threat": 5,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {
+        "threat": "5",
+        "quest": "-"
+      },
+      "imagesrc": "/cards/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 67,
+          "quantity": 1,
+          "octgnid": "47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "name": "Under the Watchful Eye",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "When Revealed: Each player with more than 5 cards in his hand discards cards from his hand until he has only 5.Forced: After a player draws any number of cards, he raises his threat by 1.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 68,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+      "name": "Side Street",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Side Street is in the staging area, progress cannot be placed on other locations in the staging area.Travel: Shuffle the encounter discard pile into the encounter deck and discard cards until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 49,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "55d05b39-c993-45bb-874c-3eacbcf49278",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+      "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+      "name": "Storm the Castle",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "Castle.",
+      "text": "The faceup encounter card underneath this quest is not in play.Forced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card ovewr and make it the current quest until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 164,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The Fortress of Nurn",
+      "back_name": "Stronghold of Mordor",
+      "back_text": "When Revealed: Discard cards from the top of the encounter deck until X locations are discarded, where X is the number of players. Added each location discarded this way to the staging area. When this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card. ",
+      "back_type_code": "encounter-side-quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.B.jpg",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 164,
+          "quantity": 1,
+          "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+      "octgnid": "67455bf8-25ea-453e-9066-58e66fdf0528",
+      "name": "Guard Dogs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nSurge.Forced: After Guard Dogs engages you, deal 1 damage to a character you control.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 152,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 2,
+      "engagement": 12,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "2",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/67455bf8-25ea-453e-9066-58e66fdf0528.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 152,
+          "quantity": 3,
+          "octgnid": "67455bf8-25ea-453e-9066-58e66fdf0528",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67455bf8-25ea-453e-9066-58e66fdf0528.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+      "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+      "name": "Storm the Castle",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "Castle.",
+      "text": "The faceup encounter card underneath this quest is not in play.Forced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card ovewr and make it the current quest until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 162,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The Fortress of Nurn",
+      "back_name": "Lethal Counterattack",
+      "back_text": "When Revealed: Deal 1 damage to each character in play. When this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card. ",
+      "back_type_code": "encounter-side-quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.B.jpg",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 162,
+          "quantity": 1,
+          "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "name": "Ulchor's Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While Thane of Ulchor is engaged with a player, Ulchor`s Guard engages that player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 58,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 25,
+      "shadow": "Shadow: Attacking enemy gets +2 [Defense] until the end of the phase.",
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 58,
+          "quantity": 4,
+          "octgnid": "74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "name": "Ulchor's Rage",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Thane Ulchor makes an immediate attack against the first player. If no attack is made this way, Ulchor`s Rage gains surge.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 59,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Ulchor's Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "name": "Under Guard",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Resolve the Travel effect on the active location. If there is no active location, discard cards from the encounter deck until a location is discarded. Add that location to the staging area.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 51,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack destroys a character, resolve the Travel effect on the active location.",
+      "encounter_set": "Under Guard",
+      "printed_stats": {},
+      "imagesrc": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 51,
+          "quantity": 3,
+          "octgnid": "9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+      "octgnid": "ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+      "name": "Guard Tower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Guard Tower is in the staging area, players cannot draw cards or gain resources from player card effects.Travel: Each player exhausts a character he controls.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 154,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 154,
+          "quantity": 3,
+          "octgnid": "ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+      "octgnid": "aefb838f-b748-4249-8f24-8dce9e838880",
+      "name": "The Dark Lord's Reach",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each exhausted character. Discard an attachment from each character damaged by this effect.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 157,
+      "quantity": 2,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {},
+      "imagesrc": "/cards/aefb838f-b748-4249-8f24-8dce9e838880.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 157,
+          "quantity": 2,
+          "octgnid": "aefb838f-b748-4249-8f24-8dce9e838880",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aefb838f-b748-4249-8f24-8dce9e838880.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+      "octgnid": "b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+      "name": "Assault on Dol Rhugar",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Player decks cannot exceed 50 cards. Create the Power of Mordor deck (see insert) and set it next to the quest deck. Each player puts 1 copy of Ulchor`s Guard into play engaged with him. Add Thane Ulchor and all 4 copies of the Storm the Castle side quest to the staging area. Place the top card of the Power of Mordor deck faceup under each side quest in play. Each player places 8 cards from top of his deck under the quest deck and each side quest in play.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 159,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Fortress of Nurn",
+      "side": "A",
+      "back_name": "Assault on Dol Rhugar",
+      "back_text": "Thane Ulchor cannot leave the staging area.While there are at least 3 progress tokens on this stage, it cannot be chosen as the current quest stage during the quest phase.This stage cannot be defeated unless it is the end of the round and there are 3 Castle side quests in the victory display.",
+      "back_type_code": "quest",
+      "back_quest": 3,
+      "back_imagesrc": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 159,
+          "quantity": 1,
+          "octgnid": "b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+      "octgnid": "b645ea89-caa8-44ee-b290-fcd93204e838",
+      "name": "Fortress Walls",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Fortress Walls is in the staging area, the cost to play each ally is increased by 1.Travel: Each player places 1 card from his hand under a Castle side quest.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 153,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 6,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/b645ea89-caa8-44ee-b290-fcd93204e838.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 153,
+          "quantity": 2,
+          "octgnid": "b645ea89-caa8-44ee-b290-fcd93204e838",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b645ea89-caa8-44ee-b290-fcd93204e838.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+      "octgnid": "ba090102-5f80-4dbc-aefd-2f965685e954",
+      "name": "The Final Confrontation",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reveal the top card of The Power of Mordor deck. Shuffle the encounter discard pile into the encounter deck. Thane Ulchor makes an immediate attack against each player in turn order.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 160,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Fortress of Nurn",
+      "side": "A",
+      "back_name": "The Final Confrontation",
+      "back_text": "Encounter card effects cannot be canceled.The number of damage tokens on Than Ulchor cannot exceed the number of progress tokens here.When Thane Ulchor is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 160,
+          "quantity": 1,
+          "octgnid": "ba090102-5f80-4dbc-aefd-2f965685e954",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba090102-5f80-4dbc-aefd-2f965685e954.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "name": "The Armies of Mordor",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Forced: After a non-unique enemy engages a player, that enemy cannot take damage until the end of the round.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 69,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 69,
+          "quantity": 1,
+          "octgnid": "bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+      "octgnid": "cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+      "name": "Plaza of Nurn",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "X is 1 more than the number of Castle side quests in the victory display.Travel: Each player assigns X damage characters he controls.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 155,
+      "quantity": 3,
+      "quest": 5,
+      "encounter_set": "The Fortress of Nurn",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 155,
+          "quantity": 3,
+          "octgnid": "cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "name": "Catacombs",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "City.",
+      "text": "While Catacombs is in the staging area, enemes in the staging area cannot take damage.Travel: Each player discards the top card of the encounter deck. If a player discards an enemy this way, he puts it into play engaged with him.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 50,
+      "quantity": 2,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "Under Guard",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 50,
+          "quantity": 2,
+          "octgnid": "d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+      "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+      "name": "Storm the Castle",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "Castle.",
+      "text": "The faceup encounter card underneath this quest is not in play.Forced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card ovewr and make it the current quest until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "TFoN",
+      "pack_name": "The Fortress of Nurn",
+      "position": 161,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "The Fortress of Nurn",
+      "back_name": "Castle Garrison",
+      "back_text": "When Revealed: Discard cards from the top of the encounter deck until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area. When this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card.",
+      "back_type_code": "encounter-side-quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.B.jpg",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg",
+      "packs": [
+        {
+          "pack_code": "TFoN",
+          "pack_name": "The Fortress of Nurn",
+          "position": 161,
+          "quantity": 1,
+          "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "name": "Covered in Darkness",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Mordor.",
+      "text": "Doomed 5.\nEach player`s threat cannot be reduced by more than 1 each round by player card effects.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 70,
+      "quantity": 1,
+      "encounter_set": "The Power of Mordor",
+      "printed_stats": {},
+      "imagesrc": "/cards/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 70,
+          "quantity": 1,
+          "octgnid": "f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.9",
+      "name": "The Fortress of Nurn (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TFoN"
+      ],
+      "card_codes": [
+        "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+        "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+        "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+        "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+        "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+        "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+        "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+        "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+        "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+        "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+        "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+        "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+        "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "octgn:015c235b-877b-4433-b979-99c4097ef784",
+        "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+        "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+        "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+        "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "quantity": 3,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:015c235b-877b-4433-b979-99c4097ef784",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+          "quantity": 1,
+          "section": "sharedMap"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463": 1,
+          "octgn:ba090102-5f80-4dbc-aefd-2f965685e954": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b": 3,
+          "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b": 1,
+          "octgn:43867521-f76f-48be-9911-a90ac0f539f6": 1,
+          "octgn:67455bf8-25ea-453e-9066-58e66fdf0528": 1,
+          "octgn:b645ea89-caa8-44ee-b290-fcd93204e838": 1,
+          "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa": 3,
+          "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2": 2,
+          "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd": 3,
+          "octgn:aefb838f-b748-4249-8f24-8dce9e838880": 1,
+          "octgn:254444df-3e65-4531-b6db-2fdacd0788b4": 1,
+          "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd": 1,
+          "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906": 2,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 1,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 1,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 2,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e": 1,
+          "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695": 1,
+          "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48": 1,
+          "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd": 1,
+          "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2": 1
+        },
+        "sharedSetAside": {
+          "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb": 3
+        },
+        "sharedStagingArea": {
+          "octgn:015c235b-877b-4433-b979-99c4097ef784": 1
+        },
+        "sharedMap": {
+          "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4": 1,
+          "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49": 1,
+          "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42": 1,
+          "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.9",
+      "name": "The Fortress of Nurn",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TFoN"
+      ],
+      "card_codes": [
+        "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+        "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+        "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+        "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+        "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+        "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+        "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+        "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+        "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+        "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+        "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+        "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+        "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+        "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+        "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+        "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+        "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+        "octgn:203ed863-1738-4974-ae79-19977eea868d",
+        "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+        "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+        "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+        "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+        "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+        "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+        "octgn:015c235b-877b-4433-b979-99c4097ef784",
+        "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+        "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+        "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+        "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768"
+      ],
+      "cards": [
+        {
+          "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+          "quantity": 4,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:015c235b-877b-4433-b979-99c4097ef784",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+          "quantity": 1,
+          "section": "sharedMap"
+        },
+        {
+          "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+          "quantity": 1,
+          "section": "sharedMap"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463": 1,
+          "octgn:ba090102-5f80-4dbc-aefd-2f965685e954": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b": 3,
+          "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b": 2,
+          "octgn:43867521-f76f-48be-9911-a90ac0f539f6": 2,
+          "octgn:67455bf8-25ea-453e-9066-58e66fdf0528": 3,
+          "octgn:b645ea89-caa8-44ee-b290-fcd93204e838": 2,
+          "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa": 3,
+          "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2": 3,
+          "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd": 3,
+          "octgn:aefb838f-b748-4249-8f24-8dce9e838880": 2,
+          "octgn:254444df-3e65-4531-b6db-2fdacd0788b4": 1,
+          "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd": 3,
+          "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906": 2,
+          "octgn:55d05b39-c993-45bb-874c-3eacbcf49278": 2,
+          "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b": 2,
+          "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664": 3,
+          "octgn:203ed863-1738-4974-ae79-19977eea868d": 1
+        },
+        "sharedEncounterDeck2": {
+          "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e": 1,
+          "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695": 1,
+          "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48": 1,
+          "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd": 1,
+          "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2": 1
+        },
+        "sharedSetAside": {
+          "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb": 4
+        },
+        "sharedStagingArea": {
+          "octgn:015c235b-877b-4433-b979-99c4097ef784": 1
+        },
+        "sharedMap": {
+          "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4": 1,
+          "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49": 1,
+          "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42": 1,
+          "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:015c235b-877b-4433-b979-99c4097ef784",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/015c235b-877b-4433-b979-99c4097ef784.jpg",
+      "localPath": "/cards/015c235b-877b-4433-b979-99c4097ef784.jpg",
+      "bytes": 64393,
+      "sha256": "734b9f72abe498908feefe4005dc7bf3f0091a8bf6ee1761bb75b40184982f1d"
+    },
+    {
+      "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg",
+      "localPath": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg",
+      "bytes": 71345,
+      "sha256": "dce4f3bcd5ec0e9ae1759928e3410ea5e6d80cbcc0cf2a296972fc31249c2af9"
+    },
+    {
+      "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.B.jpg",
+      "localPath": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.B.jpg",
+      "bytes": 76869,
+      "sha256": "6db96f1db86f4b7c31e9fbdf57f2cb6db07618dd0c1c5edae3a4e7c2e09b3f62"
+    },
+    {
+      "code": "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "localPath": "/cards/1ac7e2b5-aa19-4608-b101-e22390c8a906.jpg",
+      "bytes": 154410,
+      "sha256": "0a7ef64dbd0ee97854dcc12a838480d52b6e233497a8b804bbeb293c0419b606"
+    },
+    {
+      "code": "octgn:203ed863-1738-4974-ae79-19977eea868d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "localPath": "/cards/203ed863-1738-4974-ae79-19977eea868d.jpg",
+      "bytes": 147730,
+      "sha256": "a9682b7837d3946484c7ebcc777e7db69bca366a3562f25c01481b88e8416779"
+    },
+    {
+      "code": "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/254444df-3e65-4531-b6db-2fdacd0788b4.jpg",
+      "localPath": "/cards/254444df-3e65-4531-b6db-2fdacd0788b4.jpg",
+      "bytes": 63448,
+      "sha256": "b1a67b0c08b727e55e199540d5449be8a0f080265ee7fac8ede53cde8451fef0"
+    },
+    {
+      "code": "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg",
+      "localPath": "/cards/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg",
+      "bytes": 77305,
+      "sha256": "eeb7630607e6bb5380f5079b9092e60507219ca08ce7bab4db6b66adf1812746"
+    },
+    {
+      "code": "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg",
+      "localPath": "/cards/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg",
+      "bytes": 73994,
+      "sha256": "02c9fcc2157cf7657ebbe591456a0d4cdce54aa04304f57a912f5612a1ee4e47"
+    },
+    {
+      "code": "octgn:2fe95d8c-0f30-4c20-b926-d92e4feea8e2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "localPath": "/cards/2fe95d8c-0f30-4c20-b926-d92e4feea8e2.jpg",
+      "bytes": 149241,
+      "sha256": "9dde0ffed88233431d6e558ba179e7b15bcb9437ef941e5e6f18756ee6f31a5f"
+    },
+    {
+      "code": "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg",
+      "localPath": "/cards/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg",
+      "bytes": 67786,
+      "sha256": "f3fd67a4a2daa4cc16b8a360022711f7f5a557591ab8ba7571671bb8f0b454b4"
+    },
+    {
+      "code": "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43867521-f76f-48be-9911-a90ac0f539f6.jpg",
+      "localPath": "/cards/43867521-f76f-48be-9911-a90ac0f539f6.jpg",
+      "bytes": 68546,
+      "sha256": "a3792c26a0b269cc9db53086735f434f7d051b7bc3852de667b1fdbd20c4c648"
+    },
+    {
+      "code": "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "localPath": "/cards/47ecf6a6-84e9-4aa7-ba23-9afe914027cd.jpg",
+      "bytes": 152923,
+      "sha256": "b77cf0e8c0a861737fa96beaa1e627bf38a99a2092f88a2cf7283328f55e77a4"
+    },
+    {
+      "code": "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "localPath": "/cards/4cd62a82-6bc9-4e38-8561-49b5fa2aba7e.jpg",
+      "bytes": 153095,
+      "sha256": "0514c9f03c14ef61ec3e7f69a8bd5c065d90aaabc5593c90331ea26847f08f48"
+    },
+    {
+      "code": "octgn:55d05b39-c993-45bb-874c-3eacbcf49278",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "localPath": "/cards/55d05b39-c993-45bb-874c-3eacbcf49278.jpg",
+      "bytes": 153955,
+      "sha256": "99cc340c5f6dd5f087ba872e410761f2d0fae44b0ab4cfa2680943c9d40678eb"
+    },
+    {
+      "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg",
+      "localPath": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg",
+      "bytes": 71345,
+      "sha256": "dce4f3bcd5ec0e9ae1759928e3410ea5e6d80cbcc0cf2a296972fc31249c2af9"
+    },
+    {
+      "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63f46289-b5ef-44d1-b6cb-ce382031a768.B.jpg",
+      "localPath": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.B.jpg",
+      "bytes": 60277,
+      "sha256": "56f3a55cf12cd9855fe3f8a1529a37700c3a1bf79c1fa5cbafb95d18d9ec427e"
+    },
+    {
+      "code": "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67455bf8-25ea-453e-9066-58e66fdf0528.jpg",
+      "localPath": "/cards/67455bf8-25ea-453e-9066-58e66fdf0528.jpg",
+      "bytes": 61451,
+      "sha256": "3b09542b86ee613c7afecb04f0a063017714d688f3b84a91e401a24d154ea2de"
+    },
+    {
+      "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg",
+      "localPath": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg",
+      "bytes": 71345,
+      "sha256": "dce4f3bcd5ec0e9ae1759928e3410ea5e6d80cbcc0cf2a296972fc31249c2af9"
+    },
+    {
+      "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6860f9ad-0f09-450a-adf9-6ebe9b872a49.B.jpg",
+      "localPath": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.B.jpg",
+      "bytes": 56583,
+      "sha256": "dffae5de4453c827b8315135f34e7ef3e45f82d15c0dc0c3a5fc061a00f5696b"
+    },
+    {
+      "code": "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "localPath": "/cards/74ceb68a-a1c9-41bc-aeb8-41738b34a3bb.jpg",
+      "bytes": 144679,
+      "sha256": "591b17b302cafcf9cffbbdbe3dbf2af80166934456d1349e79a6f852feb08205"
+    },
+    {
+      "code": "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "localPath": "/cards/8d61982f-acf9-4b03-969f-6e75688ee1fd.jpg",
+      "bytes": 144411,
+      "sha256": "22fba2f1a1e7c793aa889a7d203ab88d0d8869a7ca5fe6288164f9a192ab9f12"
+    },
+    {
+      "code": "octgn:9bcae7d4-8bbc-4d82-a173-ca2f63557664",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "localPath": "/cards/9bcae7d4-8bbc-4d82-a173-ca2f63557664.jpg",
+      "bytes": 157285,
+      "sha256": "c97d0a7c077f42f4085cc9472afd84a59060b380816adec65d54ea3f24a919c8"
+    },
+    {
+      "code": "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg",
+      "localPath": "/cards/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg",
+      "bytes": 65560,
+      "sha256": "93255a4738e2a2e9a742bb12225f82d41bbfe860e841bed4876ce642436fa0b7"
+    },
+    {
+      "code": "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aefb838f-b748-4249-8f24-8dce9e838880.jpg",
+      "localPath": "/cards/aefb838f-b748-4249-8f24-8dce9e838880.jpg",
+      "bytes": 66916,
+      "sha256": "0b3fdbf0c9a96dbf46165b7e03de3e374872af87b704ae296868289bd6eec6c3"
+    },
+    {
+      "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg",
+      "localPath": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg",
+      "bytes": 70434,
+      "sha256": "6ef64e34faf14a4ca901377966efe876522cd240aa80c7852bc3806b5fae9409"
+    },
+    {
+      "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b56f7d39-ca8d-4979-baa6-8a2f875d6463.B.jpg",
+      "localPath": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.B.jpg",
+      "bytes": 65819,
+      "sha256": "2cbee630d4f04a334fba0003b724e3aed36d6a0bfa47b86430aef89881f7b44f"
+    },
+    {
+      "code": "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b645ea89-caa8-44ee-b290-fcd93204e838.jpg",
+      "localPath": "/cards/b645ea89-caa8-44ee-b290-fcd93204e838.jpg",
+      "bytes": 72494,
+      "sha256": "17441e6feaab13e5577e125080e776faa0ba83b96e96df5d0b137e92465ad0d5"
+    },
+    {
+      "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba090102-5f80-4dbc-aefd-2f965685e954.jpg",
+      "localPath": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.jpg",
+      "bytes": 67848,
+      "sha256": "b43a648364fe8890182cd7ce11f2210a792b8b2034cbf8012099fb74e71020f5"
+    },
+    {
+      "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba090102-5f80-4dbc-aefd-2f965685e954.B.jpg",
+      "localPath": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.B.jpg",
+      "bytes": 62468,
+      "sha256": "78682ab58985026af2a67d783012f7cf1b7d95e65a104419912a6320d6a7250e"
+    },
+    {
+      "code": "octgn:bd837efe-9358-4fe9-8770-69b9b1fefb48",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "localPath": "/cards/bd837efe-9358-4fe9-8770-69b9b1fefb48.jpg",
+      "bytes": 148854,
+      "sha256": "0fe7054d50d2ea45d4ae2c2e2d2fb157254802c28f7703649c8d8690751ff644"
+    },
+    {
+      "code": "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg",
+      "localPath": "/cards/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg",
+      "bytes": 67770,
+      "sha256": "528dd91c9bb365af6ded830b68465c758c797df5c9156844972d9c1f07c85d02"
+    },
+    {
+      "code": "octgn:d7775ec0-caf0-42b8-9aef-ca70a1e6950b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "localPath": "/cards/d7775ec0-caf0-42b8-9aef-ca70a1e6950b.jpg",
+      "bytes": 152973,
+      "sha256": "5be561d83123177b060b6d1ca2e64c1960d34b5f0504f3c202e52ff04009684f"
+    },
+    {
+      "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg",
+      "localPath": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg",
+      "bytes": 71345,
+      "sha256": "dce4f3bcd5ec0e9ae1759928e3410ea5e6d80cbcc0cf2a296972fc31249c2af9"
+    },
+    {
+      "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.B.jpg",
+      "localPath": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.B.jpg",
+      "bytes": 65418,
+      "sha256": "6bff87b7849af95eb70aec1d00717f4dc76351354677b6c80e654ecc780ae4da"
+    },
+    {
+      "code": "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "localPath": "/cards/f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695.jpg",
+      "bytes": 150912,
+      "sha256": "42f55e20e73d6ae1a77cb8b61c184a73cdd6a1003d749ca1f61e678818387f4b"
+    }
+  ]
+}

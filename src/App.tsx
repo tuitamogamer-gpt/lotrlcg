@@ -1,5 +1,10 @@
 import { ASH_QUESTS } from "./game/ash-mountains-support";
 import { LAND_SORROW_QUESTS } from "./game/land-sorrow-support";
+import { FORTRESS_NURN_QUESTS } from "./game/fortress-nurn-support";
+import {
+  BondOfFriendshipState,
+  FortressNurnState,
+} from "./ui/fortress-nurn-state";
 import {
   LandSorrowState,
   MessengerOfTheKingState,
@@ -3099,6 +3104,8 @@ export default function App() {
             <WrathRuinScenarioState s={game} inspect={setDetail} />
             <LandSorrowState s={game} inspect={setDetail} />
             <MessengerOfTheKingState s={game} inspect={setDetail} />
+            <FortressNurnState s={game} inspect={setDetail} />
+            <BondOfFriendshipState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3837,6 +3844,7 @@ export default function App() {
                     const local = [
                       ...ASH_QUESTS,
                       ...LAND_SORROW_QUESTS,
+                      ...FORTRESS_NURN_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

@@ -5,6 +5,7 @@ import {
   landSorrowPlayerCharacterReadied,
   landSorrowPlayerEliminated,
 } from "./land-sorrow-player";
+import { bondPlayerEliminated } from "./fortress-nurn-player";
 import {
   ashPlayerAllyEntered,
   ashPlayerCommitted,
@@ -111,7 +112,6 @@ import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
 import { NIN } from "./nin-eilph-support";
-import { ninNoCardEconomy } from "./nin-eilph-support";
 import * as Nin from "./nin-eilph";
 import { threatElimination } from "./tharbad-support";
 import * as Tharbad from "./tharbad";
@@ -120,7 +120,7 @@ import { playerCardImmune } from "./card-immunity";
 import * as DunlandQuest from "./dunland-trap";
 import { FANGORN } from "./fangorn-support";
 import * as Fangorn from "./fangorn";
-import { cannotReady } from "./core";
+import { cannotReady, noPlayerCardEconomy } from "./core";
 import * as Catch from "./catch-orc";
 import * as Fords from "./fords-isen";
 import { canLeaveHand } from "./hand-rules";
@@ -1150,6 +1150,7 @@ export function check(s: GameState) {
       wainridersPlayerEliminated(s, i);
       ashPlayerEliminated(s, i);
       landSorrowPlayerEliminated(s, i);
+      bondPlayerEliminated(s, i);
       batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
@@ -2794,7 +2795,7 @@ export function collectResources(s: GameState) {
       )
         h.resources +=
           1 +
-          (ninNoCardEconomy(s)
+          (noPlayerCardEconomy(s)
             ? 0
             : resourcePhaseBonus(h) +
               Angmar.angmarResourceBonus(s, h) +
@@ -2822,7 +2823,7 @@ export function collectResources(s: GameState) {
     if (GreyPlayers.greyHavensResourceDrawBonus(s, player))
       draws.push(fx("greyHavensResourceDraw", { value: count, player }));
     else if (s.dunlandTrap) draws.push(fx("draw", { value: count, player }));
-    else if (ninNoCardEconomy(s)) draw(s, frameworkDraw, false);
+    else if (noPlayerCardEconomy(s)) draw(s, frameworkDraw, false);
     else draw(s, count, false);
   });
   if (

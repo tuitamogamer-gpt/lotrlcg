@@ -362,6 +362,24 @@ jobs:
           path: output/land-sorrow-release/failures
           retention-days: 7
 
+  fortress-nurn-simulation:
+    name: The Fortress of Nurn complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:fortress-nurn-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fortress-nurn-simulation
+          path: output/fortress-nurn-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -485,6 +503,8 @@ jobs:
             suite: test:browser-ash-mountains
           - group: land-sorrow
             suite: test:browser-land-sorrow
+          - group: fortress-nurn
+            suite: test:browser-fortress-nurn
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

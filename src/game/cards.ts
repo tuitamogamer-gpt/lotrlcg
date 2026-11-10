@@ -1,3 +1,8 @@
+import fortressNurnPlayers from "../data/fortress-nurn-player-cards.json";
+import {
+  FORTRESS_NURN_ENCOUNTERS,
+  FORTRESS_NURN_QUESTS,
+} from "./fortress-nurn-scenario-data";
 import landSorrowPlayers from "../data/land-sorrow-player-cards.json";
 import {
   LAND_SORROW_ENCOUNTERS,
@@ -299,6 +304,7 @@ export const playerCards = [
           ...wainridersPlayers,
           ...ashPlayers,
           ...landSorrowPlayers,
+          ...fortressNurnPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -455,6 +461,7 @@ export const encounterCards = [
       ...WAINRIDERS_ENCOUNTERS,
       ...ASH_ENCOUNTERS,
       ...LAND_SORROW_ENCOUNTERS,
+      ...FORTRESS_NURN_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -526,6 +533,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...WAINRIDERS_QUESTS,
     ...ASH_QUESTS,
     ...LAND_SORROW_QUESTS,
+    ...FORTRESS_NURN_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -638,6 +646,7 @@ export const SCRIPTED = new Set(
     ...WAINRIDERS_QUESTS,
     ...ASH_QUESTS,
     ...LAND_SORROW_QUESTS,
+    ...FORTRESS_NURN_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

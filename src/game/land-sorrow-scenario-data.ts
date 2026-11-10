@@ -9,7 +9,7 @@ export const LAND_SORROW_ADVENTURES = [
     id: "the-land-of-sorrow" as ScenarioId,
     name: "The Land of Sorrow",
     shortName: "Land of Sorrow",
-    chapter: "VII",
+    chapter: "VIII",
     difficulty: 9,
     tagline: "Free Ulchor’s captives and lead their revolt.",
     description:

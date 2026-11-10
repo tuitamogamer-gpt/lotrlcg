@@ -234,11 +234,19 @@ export function sideQuestEffect(s: GameState, e: Effect) {
       break;
     case "sideQuestChoose": {
       const main = mainQuestCode(s);
+      const sides = s.staging
+        .filter((u) =>
+          ["player-side-quest", "encounter-side-quest"].includes(
+            card(u.code).type_code,
+          ),
+        )
+        .filter((u) => batch4Scenario(s).canSelectSideQuest?.(s, u) !== false);
       choose(
         s,
         "Choose the current quest",
         [
-          ...(rhudaurMainQuestAvailable(s)
+          ...(rhudaurMainQuestAvailable(s) &&
+          (!sides.length || !batch4Scenario(s).mainQuestUnavailable?.(s))
             ? [
                 {
                   id: "main",
@@ -248,21 +256,12 @@ export function sideQuestEffect(s: GameState, e: Effect) {
                 },
               ]
             : []),
-          ...s.staging
-            .filter((u) =>
-              ["player-side-quest", "encounter-side-quest"].includes(
-                card(u.code).type_code,
-              ),
-            )
-            .filter(
-              (u) => batch4Scenario(s).canSelectSideQuest?.(s, u) !== false,
-            )
-            .map((u) => ({
-              id: u.id,
-              code: u.code,
-              label: `${name(u)} · ${u.progress}/${sideQuestGoal(s, u)} progress`,
-              effects: [fx("sideQuestSelect", { target: u.id, code: u.code })],
-            })),
+          ...sides.map((u) => ({
+            id: u.id,
+            code: u.code,
+            label: `${name(u)} · ${u.progress}/${sideQuestGoal(s, u)} progress`,
+            effects: [fx("sideQuestSelect", { target: u.id, code: u.code })],
+          })),
         ],
         "The first player chooses. Progress goes to this quest for the entire quest phase, after the active location.",
       );

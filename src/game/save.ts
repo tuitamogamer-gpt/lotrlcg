@@ -1,5 +1,13 @@
 import { validateLandSorrow, sorrowExtraUnits } from "./land-sorrow-support";
 import { validateLandSorrowPlayers } from "./land-sorrow-player";
+import {
+  fortressNurnBondPlayers,
+  validateFortressNurnPlayers,
+} from "./fortress-nurn-player";
+import {
+  fortressNurnUnits,
+  validateFortressNurn,
+} from "./fortress-nurn-support";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -885,7 +893,8 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
+      (!validateFortressNurn(s, validUnit as (v: unknown) => boolean) ||
+        !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
           SCRIPTED.has(c),
@@ -986,7 +995,7 @@ export function validateSave(
       !["normal", "campaign"].includes(s.playMode) ||
       !codes(s.startingHeroes) ||
       s.startingHeroes.length < 1 ||
-      s.startingHeroes.length > 3 ||
+      s.startingHeroes.length > (fortressNurnBondPlayers(s).length ? 4 : 3) ||
       new Set(s.startingHeroes).size !== s.startingHeroes.length ||
       !s.startingHeroes.every((c) => card(c).type_code === "hero") ||
       ![s.alliesPlayed, s.threatModifier, s.shackles].every(integer) ||
@@ -1256,6 +1265,7 @@ export function validateSave(
         !validateWrathRuinPlayers(s) ||
         !validateAshPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrowPlayers(s, validUnit as (v: unknown) => boolean) ||
+        !validateFortressNurnPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
@@ -1469,7 +1479,8 @@ export function validateSave(
         if (
           typeof p.eliminated !== "boolean" ||
           p.startingHeroes.length < 1 ||
-          p.startingHeroes.length > 3 ||
+          p.startingHeroes.length >
+            (fortressNurnBondPlayers(s).includes(t.seats.indexOf(p)) ? 4 : 3) ||
           !validateSave(
             {
               ...player,
@@ -1583,6 +1594,8 @@ export function validateSave(
       ...wrathRuinSavedExtraUnits(s),
       ...(s.ulfast?.resolving ?? []),
       ...sorrowExtraUnits(s),
+      ...fortressNurnUnits(s),
+      ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],
       ) ?? []),

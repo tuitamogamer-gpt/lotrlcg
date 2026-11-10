@@ -1,4 +1,5 @@
 import { messengerDeckProblems } from "./land-sorrow-player";
+import { bondDeckProblems, bondHeroLimit } from "./fortress-nurn-player";
 import { councilDeckProblems } from "./ash-mountains-player";
 import { wandererDeckProblems } from "./wainriders-player-support";
 import { huntersDeckProblems } from "./ulfast-player-support";
@@ -72,6 +73,7 @@ export function deckProblems(
     ...huntersDeckProblems(deck.cards),
     ...councilDeckProblems(deck.cards),
     ...messengerDeckProblems(deck.heroes, deck.cards),
+    ...bondDeckProblems(deck.heroes, deck.cards),
     ...wandererDeckProblems(deck.heroes, deck.cards),
   ];
   const heroes = deck.heroes.filter((h) => heroCodes.has(h));
@@ -79,7 +81,12 @@ export function deckProblems(
     if (!heroCodes.has(h))
       problems.push(`${names.get(h) ?? h} is not a supported hero.`);
   if (heroes.length < 1) problems.push("Choose at least one hero.");
-  if (heroes.length > 3) problems.push("A deck has at most three heroes.");
+  if (heroes.length > bondHeroLimit(deck.cards))
+    problems.push(
+      bondHeroLimit(deck.cards) === 4
+        ? "Bond of Friendship allows at most four heroes."
+        : "A deck has at most three heroes.",
+    );
   if (new Set(heroes).size !== heroes.length)
     problems.push("Each hero can appear only once.");
   if (new Set(heroes.map((h) => card(h).name)).size !== heroes.length)
@@ -215,7 +222,16 @@ export function parseRingsDbDeck(
     );
   for (const [code, qty] of Object.entries(heroEntries)) {
     if (!quantityOf(code, qty)) continue;
-    if (heroCodes.has(code) && heroes.length < 3) heroes.push(code);
+    if (
+      heroCodes.has(code) &&
+      heroes.length <
+        bondHeroLimit(
+          Object.fromEntries(
+            Object.entries(v.slots ?? {}).map(([c, n]) => [c, Number(n) || 0]),
+          ),
+        )
+    )
+      heroes.push(code);
     else heroesDropped.push(known.get(code)?.name ?? code);
   }
   for (const [code, qty] of Object.entries(v.slots ?? {})) {
@@ -249,7 +265,7 @@ export function parseRingsDbDeck(
         typeof v.name === "string" && v.name.trim()
           ? v.name.trim().slice(0, 60)
           : "Imported deck",
-      heroes: heroes.slice(0, 3),
+      heroes,
       cards,
       updatedAt: now,
       source,
@@ -269,7 +285,7 @@ const validDeck = (d: unknown): d is CustomDeck => {
     typeof v.name === "string" &&
     v.name.length <= 60 &&
     Array.isArray(v.heroes) &&
-    v.heroes.length <= 3 &&
+    v.heroes.length <= bondHeroLimit(v.cards) &&
     new Set(v.heroes).size === v.heroes.length &&
     v.heroes.every((h) => typeof h === "string" && heroCodes.has(h)) &&
     !!v.cards &&

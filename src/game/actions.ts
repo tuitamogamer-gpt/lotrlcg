@@ -1,3 +1,5 @@
+import * as FortressPlayers from "./fortress-nurn-player";
+import { fortressNurnPublicState } from "./fortress-nurn-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -87,7 +89,7 @@ import * as Rhudaur from "./rhudaur";
 import * as Antlered from "./antlered";
 import { celebrimborProtected } from "./celebrimbor-support";
 import * as Celebrimbor from "./celebrimbor";
-import { NIN, ninNoCardEconomy } from "./nin-eilph-support";
+import { NIN } from "./nin-eilph-support";
 import * as Nin from "./nin-eilph";
 import * as Tharbad from "./tharbad";
 import * as Trials from "./three-trials";
@@ -95,7 +97,7 @@ import * as DunlandQuest from "./dunland-trap";
 import * as Fangorn from "./fangorn";
 import * as Catch from "./catch-orc";
 import { questTime } from "./quest-time";
-import { cannotReady } from "./core";
+import { cannotReady, noPlayerCardEconomy } from "./core";
 import { discardableHand } from "./hand-rules";
 import * as Fords from "./fords-isen";
 import { FORDS } from "./fords-isen-support";
@@ -866,6 +868,12 @@ export function canPlay(
     c.code,
   );
   if (sorrowProblem) return sorrowProblem;
+  const nurnProblem = FortressPlayers.fortressNurnPlayerPlayProblem(
+    s,
+    u,
+    options.playOrigin ?? "hand",
+  );
+  if (nurnProblem) return nurnProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1460,6 +1468,7 @@ export function resolvePlayerCard(
 ) {
   const c = card(u.code);
   if (played) LandSorrowPlayers.landSorrowPlayerCardPlayed(s);
+  if (played) FortressPlayers.fortressNurnPlayerCardPlayed(s, c);
   if (played) wainridersPlayerCardPlayed(s, c);
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
@@ -1625,6 +1634,7 @@ export function handlePlayerEventAbilityEffect(
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
     !AshPlayers.ashPlayerEvent(s, physical.code) &&
     !LandSorrowPlayers.landSorrowPlayerEvent(s, physical.code) &&
+    !FortressPlayers.fortressNurnPlayerEvent(s, physical.code, e.source) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -1759,6 +1769,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const c = card(u.code);
   const batchTargets =
     AshPlayers.ashPlayerTargets(s, c.code) ??
+    FortressPlayers.fortressNurnPlayerTargets(s, c.code) ??
     WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
@@ -2128,6 +2139,10 @@ export function availableAbilities(s: GameState, u: Unit) {
       WainPlayers.wainridersPlayerAbilityProblem(s, u),
     ],
     [
+      FortressPlayers.fortressNurnPlayerAbilityLabel(u.code),
+      FortressPlayers.fortressNurnPlayerAbilityProblem(s, u),
+    ],
+    [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
       EredFinalPlayers.eredFinalPlayerAbilityProblem(s, u),
     ],
@@ -2355,7 +2370,7 @@ export function availableAbilities(s: GameState, u: Unit) {
     results.push({
       label: heroAbility[u.code],
       disabled:
-        (["01012", "01062"].includes(u.code) && ninNoCardEconomy(s)) ||
+        (["01012", "01062"].includes(u.code) && noPlayerCardEconomy(s)) ||
         (u.code === "01007"
           ? s.eowynUsed || !discardableHand(s).length
           : u.code === "01011"
@@ -2988,6 +3003,15 @@ export function applyAction(input: GameState, action: Action): GameState {
             )
           )
             return;
+          if (
+            u &&
+            FortressPlayers.useFortressNurnPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            )
+          )
+            return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           if (
             u &&
@@ -3471,6 +3495,8 @@ export function publicState(s: GameState) {
     ulfast: ulfastPublicState(s),
     landSorrow: sorrowPublicState(s),
     landSorrowPlayers: LandSorrowPlayers.landSorrowPlayerPublic(s),
+    fortressNurn: fortressNurnPublicState(s),
+    fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),
     wainriders: wainridersPublicState(s),

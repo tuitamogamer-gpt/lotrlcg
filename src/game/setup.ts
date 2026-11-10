@@ -1,4 +1,5 @@
 import { messengerSetup } from "./land-sorrow-player";
+import { bondHeroLimit, bondSetup } from "./fortress-nurn-player";
 import { councilSetup } from "./ash-mountains-player";
 import { wandererSetup } from "./wainriders-player";
 import { huntersSetup } from "./ulfast-player";
@@ -178,11 +179,11 @@ export function createGame(
   );
   requireRule(
     heroCodes.length >= 1 &&
-      heroCodes.length <= 3 &&
+      heroCodes.length <= bondHeroLimit(deck) &&
       new Set(heroCodes).size === heroCodes.length &&
       heroCodes.every((c) => SCRIPTED.has(c) && card(c).type_code === "hero") &&
       new Set(heroCodes.map((c) => card(c).name)).size === heroCodes.length,
-    "Choose one to three different heroes.",
+    "Choose one to three different heroes (four with Bond of Friendship).",
   );
   const scenarioId = options.scenarioId ?? "mirkwood";
   const playMode = options.playMode ?? "normal";
@@ -323,11 +324,11 @@ export function createGame(
       requireRule(
         (d || config.cards) &&
           config.heroes.length >= 1 &&
-          config.heroes.length <= 3 &&
+          config.heroes.length <= bondHeroLimit(config.cards ?? d?.cards) &&
           config.heroes.every(
             (h) => SCRIPTED.has(h) && card(h).type_code === "hero",
           ),
-        "Each player needs one to three supported heroes and a starter or custom deck.",
+        "Each player needs one to three supported heroes (four with Bond of Friendship) and a starter or custom deck.",
       );
       if (config.cards) validateDeckList(config.cards);
     }
@@ -389,6 +390,7 @@ export function createGame(
   wandererSetup(s);
   councilSetup(s);
   messengerSetup(s);
+  bondSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;
     enqueue(s, fx("gameSetupContinue"));

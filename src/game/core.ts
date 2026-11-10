@@ -5,6 +5,7 @@ import {
   landSorrowPlayerStats,
   landSorrowPlayerUnit,
 } from "./land-sorrow-player";
+import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
   ulfastPlayerStats,
@@ -285,6 +286,10 @@ export const skip: Option = {
   effects: [],
 };
 
+/** Player card effects cannot draw cards or gain resources (No End in Sight, Guard Tower). */
+export const noPlayerCardEconomy = (s: GameState) =>
+  ninNoCardEconomy(s) || !!batch4Scenario(s).playerCardEconomyBlocked?.(s);
+
 /** Positive resource gains include transfers; the resource phase is not a card effect. */
 export const canGainResources = (
   s: GameState,
@@ -292,7 +297,7 @@ export const canGainResources = (
   cardEffect = true,
   transfer = false,
 ) =>
-  !(cardEffect && !transfer && ninNoCardEconomy(s)) &&
+  !(cardEffect && !transfer && noPlayerCardEconomy(s)) &&
   !isSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
@@ -346,6 +351,7 @@ export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
   wainridersQuestUnits(s).find((u) => u.id === id) ??
   landSorrowPlayerUnit(s, id) ??
+  fortressNurnPlayerUnit(s, id) ??
   s.ashPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.wainridersPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
@@ -1466,8 +1472,13 @@ export function draw(
     log(s, "Shrine to Morgoth prevents card draw.", "danger");
     return;
   }
-  if (cardEffect && ninNoCardEconomy(s)) {
-    log(s, "No End in Sight prevents player-card draws.");
+  if (cardEffect && noPlayerCardEconomy(s)) {
+    log(
+      s,
+      ninNoCardEconomy(s)
+        ? "No End in Sight prevents player-card draws."
+        : "Guard Tower prevents player-card draws.",
+    );
     return;
   }
   if (allActiveLocations(s).some((l) => l.code === "01095")) {

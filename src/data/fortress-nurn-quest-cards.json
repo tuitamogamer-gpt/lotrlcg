@@ -1,0 +1,84 @@
+[
+  {
+    "code": "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+    "octgnid": "b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+    "name": "Assault on Dol Rhugar",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Player decks cannot exceed 50 cards. Create the Power of Mordor deck (see insert) and set it next to the quest deck. Each player puts 1 copy of Ulchor's Guard into play engaged with him. Add Thane Ulchor and all 4 copies of the Storm the Castle side quest to the staging area. Place the top card of the Power of Mordor deck faceup under each side quest in play. Each player places 8 cards from top of his deck under the quest deck and each side quest in play.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 159,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Fortress of Nurn",
+    "side": "A",
+    "back_name": "Assault on Dol Rhugar",
+    "back_text": "Thane Ulchor cannot leave the staging area.\nWhile there are at least 3 progress tokens on this stage, it cannot be chosen as the current quest stage during the quest phase.\nThis stage cannot be defeated unless it is the end of the round and there are 3 Castle side quests in the victory display.",
+    "back_type_code": "quest",
+    "back_quest": 3,
+    "back_imagesrc": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 159,
+        "quantity": 1,
+        "octgnid": "b56f7d39-ca8d-4979-baa6-8a2f875d6463",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b56f7d39-ca8d-4979-baa6-8a2f875d6463.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 3
+  },
+  {
+    "code": "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+    "octgnid": "ba090102-5f80-4dbc-aefd-2f965685e954",
+    "name": "The Final Confrontation",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Reveal the top card of The Power of Mordor deck. Shuffle the encounter discard pile into the encounter deck. Thane Ulchor makes an immediate attack against each player in turn order.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 160,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Fortress of Nurn",
+    "side": "A",
+    "back_name": "The Final Confrontation",
+    "back_text": "Encounter card effects cannot be canceled.\nThe number of damage tokens on Thane Ulchor cannot exceed the number of progress tokens here.\nWhen Thane Ulchor is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/ba090102-5f80-4dbc-aefd-2f965685e954.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 160,
+        "quantity": 1,
+        "octgnid": "ba090102-5f80-4dbc-aefd-2f965685e954",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba090102-5f80-4dbc-aefd-2f965685e954.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  }
+]

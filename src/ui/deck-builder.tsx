@@ -36,6 +36,7 @@ import { Art, Sphere } from "./card-art";
 import { CardProductNote, DeckProductNote } from "./product-note";
 import { SupportSummary, playableProductNames } from "./support-summary";
 import { cardProductInfo } from "../game/products";
+import { bondHeroLimit } from "../game/fortress-nurn-player";
 import {
   clearDeckEditorDraft,
   readDeckEditorDraft,
@@ -240,7 +241,7 @@ export default function DeckBuilder({
     if (!editing) return;
     const heroes = editing.heroes.includes(code)
       ? editing.heroes.filter((h) => h !== code)
-      : editing.heroes.length < 3
+      : editing.heroes.length < bondHeroLimit(editing.cards)
         ? [...editing.heroes, code]
         : editing.heroes;
     setEditing({ ...editing, heroes });
@@ -400,7 +401,7 @@ export default function DeckBuilder({
         )}
         <section className="builder-heroes" aria-label="Heroes">
           <h2>
-            Heroes · {editing.heroes.length}/3
+            Heroes · {editing.heroes.length}/{bondHeroLimit(editing.cards)}
             {editing.heroes.length > 0 &&
               ` · ${startingThreat(editing.heroes)} starting threat`}
           </h2>
@@ -457,7 +458,7 @@ export default function DeckBuilder({
                     onClick={() => toggleHero(h.code)}
                     disabled={
                       !on &&
-                      (editing.heroes.length >= 3 ||
+                      (editing.heroes.length >= bondHeroLimit(editing.cards) ||
                         editing.heroes.some(
                           (code) => card(code).name === h.name,
                         ))
@@ -787,7 +788,7 @@ export default function DeckBuilder({
           <span>
             <strong>{size} / 50 cards</strong>
             <small>
-              {editing.heroes.length} / 3 heroes ·{" "}
+              {editing.heroes.length} / {bondHeroLimit(editing.cards)} heroes ·{" "}
               {problems.length
                 ? `${problems.length} ${problems.length === 1 ? "issue" : "issues"} to review`
                 : "Ready to save"}

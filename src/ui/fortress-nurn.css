@@ -1,0 +1,56 @@
+.fortress-nurn-state {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 8px 16px;
+  padding: 10px 14px;
+}
+
+.fortress-nurn-state .shadow-east-summary {
+  gap: 2px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.fortress-nurn-state .shadow-east-summary:first-child {
+  grid-column: 1 / -1;
+}
+
+.fortress-nurn-state .shadow-east-summary strong {
+  font-size: 16px;
+}
+
+.fortress-nurn-state .shadow-east-summary button.fortress-nurn-link {
+  display: inline;
+  width: auto;
+  min-height: 24px;
+  padding: 2px 0;
+  font: inherit;
+  font-weight: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.fortress-nurn-state
+  .shadow-east-summary
+  button.fortress-nurn-link:focus-visible {
+  outline: 2px solid #846b36;
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .fortress-nurn-state {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 10px;
+    padding: 8px 10px;
+  }
+  .fortress-nurn-state .shadow-east-summary {
+    font-size: 14px;
+  }
+  .fortress-nurn-state .shadow-east-summary strong {
+    font-size: 15px;
+  }
+}

@@ -249,6 +249,7 @@ export type ScenarioId =
   | "danger-in-dorwinion"
   | "temple-of-doom"
   | "the-land-of-sorrow"
+  | "the-fortress-of-nurn"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -407,6 +408,8 @@ export interface GameState {
   templeDoom?: import("./temple-doom-types").TempleDoomState;
   landSorrow?: import("./land-sorrow-types").LandSorrowState;
   landSorrowPlayers?: import("./land-sorrow-types").LandSorrowPlayersState;
+  fortressNurn?: import("./fortress-nurn-types").FortressNurnState;
+  fortressNurnPlayers?: import("./fortress-nurn-types").FortressNurnPlayersState;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
   ashPlayers?: import("./ash-mountains-types").AshPlayersState;
   wainriders?: import("./wainriders-types").WainridersState;
@@ -710,6 +713,10 @@ export interface GameState {
     sorrowEnemy?: string;
     sorrowKilled?: boolean;
     sorrowExcess?: number;
+    nurnEnemy?: string;
+    nurnKilled?: boolean;
+    nurnSoldier?: number;
+    nurnUnderGuard?: number;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

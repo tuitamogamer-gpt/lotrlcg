@@ -1,0 +1,704 @@
+[
+  {
+    "code": "octgn:015c235b-877b-4433-b979-99c4097ef784",
+    "octgnid": "015c235b-877b-4433-b979-99c4097ef784",
+    "name": "Thane Ulchor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Immune to player card effects.\nX is 1 more than the number of Castle side quests in the victory display.\nForced: After Thane Ulchor attacks, reveal the top card of the encounter deck.",
+    "is_unique": true,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 148,
+    "quantity": 1,
+    "attack": 6,
+    "defense": 4,
+    "health": 12,
+    "engagement": 0,
+    "victory": 6,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "6",
+      "defense": "4",
+      "health": "12",
+      "engagement": "0",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/015c235b-877b-4433-b979-99c4097ef784.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 148,
+        "quantity": 1,
+        "octgnid": "015c235b-877b-4433-b979-99c4097ef784",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/015c235b-877b-4433-b979-99c4097ef784.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+    "octgnid": "2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+    "name": "Soldier of Nurn",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Mordor.",
+    "text": "Forced: After Soldier of Nurn attacks, place 1 card from your hand facedown under a Castle side quest.",
+    "shadow": "Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 card from your hand facedown under a Castle side quest.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 149,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 28,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 149,
+        "quantity": 3,
+        "octgnid": "2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+    "octgnid": "2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+    "name": "Easterling Mercenary",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "When Revealed: Either reveal an additional encounter card, or no progress can be placed on the current quest this phase.",
+    "shadow": "Attacking enemy gets +1 [attack] for each Castle side quest in the victory display.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 150,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 3,
+    "engagement": 32,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "3",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 150,
+        "quantity": 2,
+        "octgnid": "2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2c32f4b8-83c7-4ac6-9401-3378a4ca530b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+    "octgnid": "43867521-f76f-48be-9911-a90ac0f539f6",
+    "name": "Mordor Olog-hai",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Troll.",
+    "text": "Cannot have attachments.\nForced: After Mordor Olog-hai attacks and destroys a character you control, exhaust a character you control.",
+    "shadow": "Attacking enemy gets +2 [attack].",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 151,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 6,
+    "defense": 3,
+    "health": 9,
+    "engagement": 34,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "6",
+      "defense": "3",
+      "health": "9",
+      "engagement": "34"
+    },
+    "imagesrc": "/cards/43867521-f76f-48be-9911-a90ac0f539f6.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 151,
+        "quantity": 2,
+        "octgnid": "43867521-f76f-48be-9911-a90ac0f539f6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43867521-f76f-48be-9911-a90ac0f539f6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+    "octgnid": "67455bf8-25ea-453e-9066-58e66fdf0528",
+    "name": "Guard Dogs",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Surge.\nForced: After Guard Dogs engages you, deal 1 damage to a character you control.",
+    "shadow": "Put Guard Dogs into play engaged with you.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 152,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 2,
+    "defense": 1,
+    "health": 2,
+    "engagement": 12,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "1",
+      "health": "2",
+      "engagement": "12"
+    },
+    "imagesrc": "/cards/67455bf8-25ea-453e-9066-58e66fdf0528.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 152,
+        "quantity": 3,
+        "octgnid": "67455bf8-25ea-453e-9066-58e66fdf0528",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/67455bf8-25ea-453e-9066-58e66fdf0528.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
+    "octgnid": "b645ea89-caa8-44ee-b290-fcd93204e838",
+    "name": "Fortress Walls",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "While Fortress Walls is in the staging area, the cost to play each ally is increased by 1.\nTravel: Each player places 1 card from his hand facedown under a Castle side quest.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 153,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 6,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/b645ea89-caa8-44ee-b290-fcd93204e838.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 153,
+        "quantity": 2,
+        "octgnid": "b645ea89-caa8-44ee-b290-fcd93204e838",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b645ea89-caa8-44ee-b290-fcd93204e838.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+    "octgnid": "ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+    "name": "Guard Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "While Guard Tower is in the staging area, players cannot draw cards or gain resources from player card effects.\nTravel: Each player exhausts a character he controls.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 154,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 154,
+        "quantity": 3,
+        "octgnid": "ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab92ac2e-30e8-4eb2-9818-7d7efd3658aa.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+    "octgnid": "cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+    "name": "Plaza of Nurn",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "X is 1 more than the number of Castle side quests in the victory display.\nTravel: Each player assigns X damage among characters he controls.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 155,
+    "quantity": 3,
+    "quest": 5,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 155,
+        "quantity": 3,
+        "octgnid": "cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb2e53d5-5a62-4a70-88b0-3ee464b397c2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
+    "octgnid": "30a1913f-03e2-46fb-be6d-3b86064d1afd",
+    "name": "Determined Defense",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Until the end of the phase, add 2 [threat] to the staging area. Add 2 additional [threat] for each Castle side quest in the victory display.",
+    "shadow": "Exhaust a character you control.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 156,
+    "quantity": 3,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 156,
+        "quantity": 3,
+        "octgnid": "30a1913f-03e2-46fb-be6d-3b86064d1afd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/30a1913f-03e2-46fb-be6d-3b86064d1afd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
+    "octgnid": "aefb838f-b748-4249-8f24-8dce9e838880",
+    "name": "The Dark Lord's Reach",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each exhausted character. Discard an attachment from each character damaged by this effect.",
+    "shadow": "Discard an attachment you control.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 157,
+    "quantity": 2,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/aefb838f-b748-4249-8f24-8dce9e838880.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 157,
+        "quantity": 2,
+        "octgnid": "aefb838f-b748-4249-8f24-8dce9e838880",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aefb838f-b748-4249-8f24-8dce9e838880.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
+    "octgnid": "254444df-3e65-4531-b6db-2fdacd0788b4",
+    "name": "The Dungeons of Dol Rhugar",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nNo more than 4 progress can be placed on the current quest each round.\nResponse: When this stage is defeated, the first player chooses a Castle side quest. Each player looks at his facedown cards under that quest and adds 1 to his hand.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 158,
+    "quantity": 1,
+    "quest": 4,
+    "victory": 10,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "quest": "4",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/254444df-3e65-4531-b6db-2fdacd0788b4.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 158,
+        "quantity": 1,
+        "octgnid": "254444df-3e65-4531-b6db-2fdacd0788b4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/254444df-3e65-4531-b6db-2fdacd0788b4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+    "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+    "name": "Storm the Castle",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "The faceup encounter card underneath this quest is not in play.\nForced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card over and make it the current quest until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 161,
+    "quantity": 1,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 161,
+        "quantity": 1,
+        "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4:B",
+    "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+    "name": "Castle Garrison",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until X enemies are discarded, where X is the number of players. Add each enemy discarded this way to the staging area.\nWhen this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 161,
+    "quantity": 0,
+    "quest": 6,
+    "victory": 10,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "quest": "6",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.B.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 161,
+        "quantity": 1,
+        "octgnid": "dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dc074506-e478-4b63-88e4-9d6e4f8eb6d4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "source_face": "back",
+    "physical_code": "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+    "set_number": "1/29"
+  },
+  {
+    "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+    "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+    "name": "Storm the Castle",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "The faceup encounter card underneath this quest is not in play.\nForced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card over and make it the current quest until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 162,
+    "quantity": 1,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 162,
+        "quantity": 1,
+        "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
+    "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+    "name": "Lethal Counterattack",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "When Revealed: Deal 1 damage to each character in play.\nWhen this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 162,
+    "quantity": 0,
+    "quest": 10,
+    "victory": 10,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "quest": "10",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/6860f9ad-0f09-450a-adf9-6ebe9b872a49.B.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 162,
+        "quantity": 1,
+        "octgnid": "6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6860f9ad-0f09-450a-adf9-6ebe9b872a49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "source_face": "back",
+    "physical_code": "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+    "set_number": "2/29"
+  },
+  {
+    "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+    "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+    "name": "Storm the Castle",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "The faceup encounter card underneath this quest is not in play.\nForced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card over and make it the current quest until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 163,
+    "quantity": 1,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 163,
+        "quantity": 1,
+        "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42:B",
+    "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+    "name": "No Quarter",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "When Revealed: Each player randomly discards 4 of his cards from under this quest. Then, each player discards each card he controls, or holds in his hand, that shares a title with one of the cards he just discarded.\nWhen this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 163,
+    "quantity": 0,
+    "quest": 12,
+    "victory": 10,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "quest": "12",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.B.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 163,
+        "quantity": 1,
+        "octgnid": "107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/107805c4-6abf-4eb1-87fd-0ad7ffcfbf42.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "source_face": "back",
+    "physical_code": "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+    "set_number": "3/29"
+  },
+  {
+    "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+    "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+    "name": "Storm the Castle",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "The faceup encounter card underneath this quest is not in play.\nForced: When this quest becomes the current quest, reveal the faceup encounter card under it. Then, flip this card over and make it the current quest until the end of the phase.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 164,
+    "quantity": 1,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {},
+    "imagesrc": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 164,
+        "quantity": 1,
+        "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
+    "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+    "name": "Stronghold of Mordor",
+    "type_code": "encounter-side-quest",
+    "sphere_code": "encounter",
+    "traits": "Castle.",
+    "text": "When Revealed: Discard cards from the top of the encounter deck until X locations are discarded, where X is the number of players. Add each location discarded this way to the staging area.\nWhen this stage is defeated, shuffle each player card underneath it into its owner's deck. Then, each player draws 1 card.",
+    "is_unique": false,
+    "pack_code": "TFoN",
+    "pack_name": "The Fortress of Nurn",
+    "position": 164,
+    "quantity": 0,
+    "quest": 8,
+    "victory": 10,
+    "encounter_set": "The Fortress of Nurn",
+    "printed_stats": {
+      "quest": "8",
+      "victory": "10"
+    },
+    "imagesrc": "/cards/63f46289-b5ef-44d1-b6cb-ce382031a768.B.jpg",
+    "packs": [
+      {
+        "pack_code": "TFoN",
+        "pack_name": "The Fortress of Nurn",
+        "position": 164,
+        "quantity": 1,
+        "octgnid": "63f46289-b5ef-44d1-b6cb-ce382031a768",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/63f46289-b5ef-44d1-b6cb-ce382031a768.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "source_face": "back",
+    "physical_code": "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+    "set_number": "4/29"
+  }
+]

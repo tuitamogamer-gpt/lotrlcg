@@ -9,6 +9,10 @@ export interface Batch4ScenarioHooks {
   threatEliminationReduction?(s: GameState, player: number): number;
   cannotHeal?(s: GameState, unit: Unit): boolean;
   canSelectSideQuest?(s: GameState, unit: Unit): boolean;
+  /** The main quest cannot be chosen as the current quest while a side quest can. */
+  mainQuestUnavailable?(s: GameState): boolean;
+  /** Player card effects cannot draw cards or gain resources. */
+  playerCardEconomyBlocked?(s: GameState): boolean;
   refreshCharacters?(s: GameState, player: number): Effect[] | undefined;
   whenRevealedCancelled?(s: GameState, code: string): void;
   combatBegin?(s: GameState): void;

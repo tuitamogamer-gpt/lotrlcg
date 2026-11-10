@@ -1,4 +1,9 @@
 import {
+  fortressNurnPlayerEffect,
+  fortressNurnPlayerQuestSucceeded,
+  fortressNurnPlayerStagingEnd,
+} from "./fortress-nurn-player";
+import {
   landSorrowPlayerEffect,
   landSorrowPlayerQuestSucceeded,
   landSorrowPlayerRoundEnd,
@@ -598,6 +603,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
   if (ashPlayerEffect(s, e)) return;
   if (landSorrowPlayerEffect(s, e)) return;
+  if (fortressNurnPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -976,6 +982,7 @@ function handleEffect(s: GameState, e: Effect) {
       DepthsPlayers.depthsPlayerQuestSucceeded(s);
       Mumakil.mumakilQuestSucceeded(s);
       landSorrowPlayerQuestSucceeded(s);
+      fortressNurnPlayerQuestSucceeded(s);
       break;
     case "successfulQuestProgress": {
       const before = s.progress,
@@ -1799,6 +1806,7 @@ function handleEffect(s: GameState, e: Effect) {
         prepend(s, { ...e, text: "angmar-staging-end" });
         Dread.dreadStagingEnd(s);
         Storm.stormcallerEndStaging(s);
+        fortressNurnPlayerStagingEnd(s);
         break;
       }
       if (Osgiliath.assaultOsgiliathPrepareQuest(s, e)) break;

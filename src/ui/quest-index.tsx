@@ -35,6 +35,10 @@ const HEADLINES: Partial<
     lead: "Free the captives",
     em: "and lead the revolt.",
   },
+  "the-fortress-of-nurn": {
+    lead: "Storm the castle",
+    em: "and face the Thane.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

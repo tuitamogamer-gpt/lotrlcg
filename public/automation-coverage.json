@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 748,
-    "heroes": 83,
-    "deckCards": 661,
-    "encounterCards": 1171,
-    "scenarios": 80,
+    "playerCards": 755,
+    "heroes": 84,
+    "deckCards": 667,
+    "encounterCards": 1190,
+    "scenarios": 81,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -87,17 +87,18 @@
       "the-city-of-ulfast",
       "challenge-of-the-wainriders",
       "under-the-ash-mountains",
-      "the-land-of-sorrow"
+      "the-land-of-sorrow",
+      "the-fortress-of-nurn"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2172,
-    "pending": 2011
+    "scripted": 2196,
+    "pending": 1987
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 160
+    "scripted": 162
   },
   "registeredCodes": [
     "01001",
@@ -903,9 +904,16 @@
     "22116",
     "22117",
     "22134",
+    "22137",
     "22138",
+    "22139",
+    "22140",
+    "22141",
     "22142",
     "22143",
+    "22144",
+    "22145",
+    "22147",
     "dread:reanimated-dead",
     "drowned-cursed-caverns",
     "drowned-undersea-grotto",
@@ -917,6 +925,7 @@
     "octgn:00e25526-9804-4b05-89d6-557d9ef7ad77",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136",
     "octgn:011a4573-f21a-4897-9b23-8b64391f5136:B",
+    "octgn:015c235b-877b-4433-b979-99c4097ef784",
     "octgn:0198aa68-aced-42d0-8816-719ce166ef15",
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
@@ -972,6 +981,8 @@
     "octgn:0f7ce386-9510-4fd5-93aa-145190f8d1de",
     "octgn:0fffdddc-d9f9-498a-9669-e840304ebb9b",
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
+    "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
+    "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42:B",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
@@ -1064,6 +1075,7 @@
     "octgn:24a816f2-172f-4945-8d9b-21eb7fb68263",
     "octgn:24e431be-cde9-4f93-943a-de5e5ca9108b",
     "octgn:24ffba46-0c66-4559-ae13-d0980180f537",
+    "octgn:254444df-3e65-4531-b6db-2fdacd0788b4",
     "octgn:2573b8e3-d3a1-47c0-acc8-e6151f223383",
     "octgn:257ffa68-7458-4f3c-bc7e-8d46b27cd837",
     "octgn:25940aea-cc56-43bf-a8d6-f9d349b0c01f",
@@ -1073,6 +1085,7 @@
     "octgn:25cf58f2-9d92-4971-8817-a7e335d9ac5d",
     "octgn:25e58441-df9d-4935-a3c7-0a5b210538c5",
     "octgn:25eb1da3-b559-4e47-ae20-e6096a8cbc96",
+    "octgn:2629ae83-bfb8-4be1-84a5-fa9e8b1fc20b",
     "octgn:264adf61-31e1-46db-a655-7fee1d4282ae",
     "octgn:26642db7-c3a2-47f3-989d-27396e586d06",
     "octgn:26bb74c2-3c66-4828-8188-404bc42e713e",
@@ -1101,6 +1114,7 @@
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+    "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
     "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
@@ -1120,6 +1134,7 @@
     "octgn:3043df29-f8e9-426e-bd14-5cb720ed8f10",
     "octgn:3065a397-5346-4148-8e0a-47009fe9b87d",
     "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
+    "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
@@ -1197,6 +1212,7 @@
     "octgn:434cf78e-2e8e-4d79-9662-eb50e33bc3f9",
     "octgn:43509bf0-3250-420f-b743-e56c3ad5cd90",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
+    "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
     "octgn:447061f6-3399-4309-9885-1045f115820f",
     "octgn:447dd08d-693c-407f-8155-87164f212351",
@@ -1596,6 +1612,8 @@
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
+    "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768",
+    "octgn:63f46289-b5ef-44d1-b6cb-ce382031a768:B",
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
     "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
@@ -1604,7 +1622,10 @@
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
+    "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
+    "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
+    "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
     "octgn:6885658b-983d-459f-83f8-5a4d3ee5db9d",
     "octgn:68e3c34a-1af7-410f-ad57-85386181c6d7",
     "octgn:6948a0fa-e13f-4023-865f-3c8b6599c6a0",
@@ -1878,6 +1899,7 @@
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+    "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
@@ -1892,6 +1914,7 @@
     "octgn:ae5727cb-4d88-4a28-99be-84a565292b67",
     "octgn:aeb2f711-4597-42c1-af8c-eb7d6f4fa79a",
     "octgn:aede410a-9d4c-4abd-9f55-143f5027f9c4",
+    "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
     "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
@@ -1917,12 +1940,14 @@
     "octgn:b4b0bdc8-5edb-40c9-a9ca-dac60fe7cb38",
     "octgn:b53fd0fc-5734-4bdc-b26f-c2133da31c3d",
     "octgn:b546c9b7-7721-4275-ba8b-ba28364aeb95",
+    "octgn:b56f7d39-ca8d-4979-baa6-8a2f875d6463",
     "octgn:b585f28e-7612-4f07-83f7-0fed8d391e3d",
     "octgn:b59afed1-a224-4793-b149-0a6aadc9ba7e",
     "octgn:b5c08c5b-dd05-4139-b262-e9d5c0f29016",
     "octgn:b5c7bf41-7642-4d25-9794-cb247f540182",
     "octgn:b622efab-65dd-4a49-af87-8984066ab4ae",
     "octgn:b640a0b7-f23e-4859-96fb-b558274b90a8",
+    "octgn:b645ea89-caa8-44ee-b290-fcd93204e838",
     "octgn:b64d2e55-f304-4356-a491-7ee80e149c5c",
     "octgn:b659e2a1-55b1-4562-ab2c-0e36772d8183",
     "octgn:b6af7b48-e072-45e8-a745-4de2ac8ded8c",
@@ -1941,6 +1966,7 @@
     "octgn:b922eedf-eea0-471d-bc52-90becc2a0769",
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
+    "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
@@ -2020,6 +2046,7 @@
     "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgn:cb2e53d5-5a62-4a70-88b0-3ee464b397c2",
     "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
@@ -2078,6 +2105,8 @@
     "octgn:db69ea89-f018-4534-9661-7c748298e1f5",
     "octgn:db960347-11ee-4ad7-8784-e4827fb7daaf",
     "octgn:dbdb65b4-924c-4d74-adcc-14b6d8e1e2f8",
+    "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4",
+    "octgn:dc074506-e478-4b63-88e4-9d6e4f8eb6d4:B",
     "octgn:dc8f31b6-73af-4aec-be26-8d297909d14d",
     "octgn:dce8ff38-bcc7-49b4-ba27-ae3e2cac1d32",
     "octgn:dd394c76-c2b9-4b1c-8948-a056de97b779",
@@ -2856,9 +2885,9 @@
     {
       "product": "the-fortress-of-nurn",
       "total": 28,
-      "scripted": 3,
+      "scripted": 27,
       "player": 11,
-      "playerScripted": 3
+      "playerScripted": 10
     },
     {
       "product": "the-ghost-of-framsburg",
@@ -11827,7 +11856,7 @@
       "name": "Aragorn",
       "type": "hero",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11843,7 +11872,7 @@
       "name": "Knowledge of the Enemy",
       "type": "event",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11851,7 +11880,7 @@
       "name": "Haleth",
       "type": "ally",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11859,7 +11888,7 @@
       "name": "Woodman Lore",
       "type": "event",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11883,7 +11912,7 @@
       "name": "Misty Mountain Journeyman",
       "type": "ally",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11891,7 +11920,7 @@
       "name": "A Desperate Path",
       "type": "event",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -11907,7 +11936,7 @@
       "name": "Bond of Friendship",
       "type": "contract",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -12099,7 +12128,7 @@
       "name": "Thane Ulchor",
       "type": "enemy",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -13259,7 +13288,7 @@
       "name": "Storm the Castle",
       "type": "encounter-side-quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -14963,7 +14992,7 @@
       "name": "The Dungeons of Dol Rhugar",
       "type": "encounter-side-quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -15075,7 +15104,7 @@
       "name": "Soldier of Nurn",
       "type": "enemy",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -15635,7 +15664,7 @@
       "name": "Easterling Mercenary",
       "type": "enemy",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -16003,7 +16032,7 @@
       "name": "Determined Defense",
       "type": "treachery",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -17555,7 +17584,7 @@
       "name": "Mordor Olog-hai",
       "type": "enemy",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -23075,7 +23104,7 @@
       "name": "Storm the Castle",
       "type": "encounter-side-quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -23283,7 +23312,7 @@
       "name": "Guard Dogs",
       "type": "enemy",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -23339,7 +23368,7 @@
       "name": "Storm the Castle",
       "type": "encounter-side-quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -28971,7 +29000,7 @@
       "name": "Guard Tower",
       "type": "location",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -29363,7 +29392,7 @@
       "name": "The Dark Lord's Reach",
       "type": "treachery",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -29835,7 +29864,7 @@
       "name": "Assault on Dol Rhugar",
       "type": "quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -29915,7 +29944,7 @@
       "name": "Fortress Walls",
       "type": "location",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -30667,7 +30696,7 @@
       "name": "The Final Confrontation",
       "type": "quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -32083,7 +32112,7 @@
       "name": "Plaza of Nurn",
       "type": "location",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -33323,7 +33352,7 @@
       "name": "Storm the Castle",
       "type": "encounter-side-quest",
       "pack": "The Fortress of Nurn",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-fortress-of-nurn"
     },
     {
@@ -37298,8 +37327,8 @@
       "id": "E09.9",
       "name": "The Fortress of Nurn (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fortress-of-nurn",
+      "state": "scripted"
     },
     {
       "id": "E0A.1",
@@ -38789,8 +38818,8 @@
       "id": "Q09.9",
       "name": "The Fortress of Nurn",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-fortress-of-nurn",
+      "state": "scripted"
     },
     {
       "id": "Q0A.1",

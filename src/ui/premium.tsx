@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-fortress-of-nurn": {
+    name: "Dol Rhugar",
+    detail: "Four castle defences · The Thane’s great hall",
+  },
   "the-land-of-sorrow": {
     name: "Fields of Nurn",
     detail: "Three slave camps · A desperate revolt",
@@ -392,6 +396,7 @@ export const PLAYMAT_CHOICES = [
   "challenge-of-the-wainriders",
   "under-the-ash-mountains",
   "the-land-of-sorrow",
+  "the-fortress-of-nurn",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
