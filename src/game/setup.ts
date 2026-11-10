@@ -1,3 +1,4 @@
+import { messengerSetup } from "./land-sorrow-player";
 import { councilSetup } from "./ash-mountains-player";
 import { wandererSetup } from "./wainriders-player";
 import { huntersSetup } from "./ulfast-player";
@@ -387,6 +388,7 @@ export function createGame(
   ShadowEastPlayers.shadowEastPlayerSetup(s);
   wandererSetup(s);
   councilSetup(s);
+  messengerSetup(s);
   if (s.choice || s.queue.length) {
     s.setupPending = true;
     enqueue(s, fx("gameSetupContinue"));

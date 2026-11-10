@@ -1,3 +1,9 @@
+import {
+  landSorrowPlayerEffect,
+  landSorrowPlayerQuestSucceeded,
+  landSorrowPlayerRoundEnd,
+  landSorrowPlayerSkipsRefresh,
+} from "./land-sorrow-player";
 import { ashPlayerEffect } from "./ash-mountains-player";
 import { ashEventShuffleBlocked } from "./ash-mountains";
 import { beginResources } from "./board";
@@ -591,6 +597,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (Burglar.handleBurglarContractEffect(s, e)) return;
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
   if (ashPlayerEffect(s, e)) return;
+  if (landSorrowPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -968,6 +975,7 @@ function handleEffect(s: GameState, e: Effect) {
       rohanQuestSucceeded(s);
       DepthsPlayers.depthsPlayerQuestSucceeded(s);
       Mumakil.mumakilQuestSucceeded(s);
+      landSorrowPlayerQuestSucceeded(s);
       break;
     case "successfulQuestProgress": {
       const before = s.progress,
@@ -2009,7 +2017,7 @@ function handleEffect(s: GameState, e: Effect) {
           u.attacked = false;
           u.boost = 0;
           for (const a of u.attachments) a.exhausted = false;
-          if (!fangornReady) {
+          if (!fangornReady && !landSorrowPlayerSkipsRefresh(u)) {
             if (!has(u, "01080")) readyCharacter(s, u, false);
             else enqueue(s, fx("webRefresh", { target: u.id, player }));
           }
@@ -2040,6 +2048,7 @@ function handleEffect(s: GameState, e: Effect) {
         forced.push(...Mumakil.mumakilRoundEnd(s));
         forced.push(...Depths.depthsRoundEnd(s));
         forced.push(...collectorRoundEndEffects(s));
+        forced.push(...landSorrowPlayerRoundEnd(s));
         forced.push(...Amon.amonDinRoundEndEffects(s));
         forced.push(
           ...BloodQuest.bloodGondorRoundEnd(s),

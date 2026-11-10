@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 737,
-    "heroes": 82,
-    "deckCards": 651,
-    "encounterCards": 1155,
-    "scenarios": 79,
+    "playerCards": 748,
+    "heroes": 83,
+    "deckCards": 661,
+    "encounterCards": 1171,
+    "scenarios": 80,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -86,17 +86,18 @@
       "wrath-and-ruin",
       "the-city-of-ulfast",
       "challenge-of-the-wainriders",
-      "under-the-ash-mountains"
+      "under-the-ash-mountains",
+      "the-land-of-sorrow"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2143,
-    "pending": 2040
+    "scripted": 2172,
+    "pending": 2011
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 158
+    "scripted": 160
   },
   "registeredCodes": [
     "01001",
@@ -891,6 +892,17 @@
     "22089",
     "22090",
     "22091",
+    "22108",
+    "22109",
+    "22110",
+    "22111",
+    "22112",
+    "22113",
+    "22114",
+    "22115",
+    "22116",
+    "22117",
+    "22134",
     "22138",
     "22142",
     "22143",
@@ -999,6 +1011,7 @@
     "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
+    "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
     "octgn:1c9d4501-fa65-41b9-977f-896f2286511d",
@@ -1007,6 +1020,7 @@
     "octgn:1ce63cb5-0022-48b2-a864-af49bdf18bef",
     "octgn:1d1adc93-c364-41d0-b987-6038d9df0c07",
     "octgn:1d4d59f4-def5-4c9e-ba3f-8a28e7f66c73",
+    "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
     "octgn:1dab3395-7a34-4b66-aa7f-7834045a7eba",
     "octgn:1dcf16e8-8882-4b61-93ac-a7da643c52bd",
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
@@ -1041,6 +1055,7 @@
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
     "octgn:23670d99-7a26-4838-a112-2f6d8a7186f8",
     "octgn:23768a0d-bf6c-4405-9b09-ea8fdbfded31",
+    "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
     "octgn:23c33968-01db-4f79-94bd-45ea1e0d50d0",
     "octgn:23dec64e-9e30-4329-9df7-4d2628d2a7a8",
     "octgn:23fb0422-0e54-4064-bb76-e5bf3c214709",
@@ -1088,6 +1103,7 @@
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
+    "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
     "octgn:2d1d915f-f889-4100-81b7-910ce93edff7",
     "octgn:2d2e4f42-009d-4fde-ab42-3cd9351a4d0f",
     "octgn:2d4b1381-467e-4bb4-9265-d26dec6125ea",
@@ -1581,6 +1597,7 @@
     "octgn:6302e603-fade-43b3-a6b3-235af412fdfa",
     "octgn:63b0498f-9180-4e62-83c1-b9aa29f24712",
     "octgn:64d1e3f3-3265-44a8-97f7-9a1c744a01b9",
+    "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
@@ -1630,6 +1647,7 @@
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
@@ -1640,10 +1658,12 @@
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
+    "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
+    "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
@@ -1653,6 +1673,7 @@
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
     "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
     "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
+    "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
@@ -1665,6 +1686,7 @@
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+    "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
     "octgn:7f5e53ea-a9a7-4a7d-b5cb-06924fdde2c3",
@@ -1714,6 +1736,7 @@
     "octgn:8a0c8aef-d820-495f-b8f6-f2148f0786ba",
     "octgn:8a2d9c58-cf82-4e3f-90df-240e2bebb5e9",
     "octgn:8a4aebc3-32db-4b2f-965c-548058440a7c",
+    "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
     "octgn:8a7a0942-0bd2-44b1-9a9b-057f38b225e9",
     "octgn:8ab3701c-7814-403c-be93-21cdff4283ed",
     "octgn:8ac2d3ea-7e6d-4e9e-9cc5-70b65b24b835",
@@ -1747,6 +1770,7 @@
     "octgn:9042242b-054d-413e-83c7-bb9f42551a8a",
     "octgn:90b5e33a-3708-40ab-8d20-5a997237e536",
     "octgn:90ba49e5-142b-4c40-8085-8087342d9b92",
+    "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
     "octgn:91143aee-41e7-4cac-8ec2-e112689fcc17",
     "octgn:918c4387-bf40-48f1-bf65-5ad5acb91784",
     "octgn:91c259ee-7c5c-45d4-9a97-bb0a2a05d7f8",
@@ -1780,6 +1804,7 @@
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
+    "octgn:99b98ca0-1320-4630-8791-984a578685d2",
     "octgn:99bdb330-27f2-4534-a355-0bb9f1682a8d",
     "octgn:9a29c251-6119-47b2-8e10-ba4d33c0747e",
     "octgn:9a5884f4-c2a8-4696-97b5-f0c5c5e92b6d",
@@ -1787,6 +1812,7 @@
     "octgn:9afed95c-399f-4823-a277-342ece74a9e4",
     "octgn:9b135a59-15f9-4e3b-be8e-76b7f5841658",
     "octgn:9b2302dc-3084-447f-8104-a4569fd26e38",
+    "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
     "octgn:9b3c0e2a-c874-41b7-9ccd-2798a4884b34",
     "octgn:9b5e1acd-c396-464d-ab54-df86833aad07",
     "octgn:9b75695b-8431-40ea-8041-afaaa34dc3f4",
@@ -1847,6 +1873,7 @@
     "octgn:a917100d-1b9b-4335-a55f-75291e0cab6e",
     "octgn:a9321cbd-897f-4a77-a548-85ad00112273",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
+    "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
@@ -1993,6 +2020,7 @@
     "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
     "octgn:cafa6a4e-1994-4a22-a465-3c03f1c0a425",
+    "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4",
     "octgn:cb3ca114-400e-4abf-87e6-124b75e92cb4:B",
     "octgn:cb64fac2-c5ea-4233-86ed-90e30181a520",
@@ -2078,6 +2106,7 @@
     "octgn:e2c02f11-fdfb-402b-89de-1729d1364e4c",
     "octgn:e2e8fe14-f019-4fd9-af2c-81f1a4282660",
     "octgn:e2f901ad-f5bc-4d29-b6c3-50c261e5668a",
+    "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
     "octgn:e347f103-7444-4681-ae57-49c7b84dd3c0",
     "octgn:e35e9d1e-48bb-41f3-95c9-402f84e46ef8",
     "octgn:e38f5043-50b5-4b2a-a23f-f786106c4055",
@@ -2101,6 +2130,7 @@
     "octgn:e6d7da0a-eb6d-429b-b9f9-e32027866d1b",
     "octgn:e70fa96c-f4c7-4d6c-ab14-41831a6eb8c8",
     "octgn:e7413cb0-3443-40d4-88f4-06d7cfa1ab1d",
+    "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
     "octgn:e83f33da-6723-4730-8691-8d1a48b1f8e0",
     "octgn:e8c78f25-00d0-4b3b-8cac-03e533edfe41",
     "octgn:e8d205e0-5951-403b-b36e-f992e1b9de7e",
@@ -2903,9 +2933,9 @@
     {
       "product": "the-land-of-sorrow",
       "total": 29,
-      "scripted": 0,
+      "scripted": 29,
       "player": 11,
-      "playerScripted": 0
+      "playerScripted": 11
     },
     {
       "product": "the-long-dark",
@@ -11709,7 +11739,7 @@
       "name": "Gwaihir",
       "type": "hero",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11717,7 +11747,7 @@
       "name": "Hobbit Archer",
       "type": "ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11725,7 +11755,7 @@
       "name": "Red Book of Westmarch",
       "type": "attachment",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11733,7 +11763,7 @@
       "name": "Dale Messenger",
       "type": "ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11741,7 +11771,7 @@
       "name": "Song of Healing",
       "type": "attachment",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11749,7 +11779,7 @@
       "name": "Eagle Emissary",
       "type": "ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11757,7 +11787,7 @@
       "name": "Bilbo's Plan",
       "type": "event",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11765,7 +11795,7 @@
       "name": "Spare Pipe",
       "type": "attachment",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11773,7 +11803,7 @@
       "name": "Smoke and Think",
       "type": "event",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11781,7 +11811,7 @@
       "name": "Wilyador",
       "type": "ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -11789,7 +11819,7 @@
       "name": "Messenger of the King",
       "type": "contract",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -14029,7 +14059,7 @@
       "name": "Overseer's Whip",
       "type": "treachery",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -14205,7 +14235,7 @@
       "name": "Arador",
       "type": "objective-ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -14797,7 +14827,7 @@
       "name": "Edrahil",
       "type": "objective-ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -15653,7 +15683,7 @@
       "name": "Cruelty of Mordor",
       "type": "treachery",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -23101,7 +23131,7 @@
       "name": "Slaves of the Dark Lord",
       "type": "quest",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -24293,7 +24323,7 @@
       "name": "Lead the Revolt",
       "type": "quest",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -24549,7 +24579,7 @@
       "name": "Lorgan",
       "type": "enemy",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -24773,7 +24803,7 @@
       "name": "Borlach",
       "type": "enemy",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -24901,7 +24931,7 @@
       "name": "Working Fields",
       "type": "location",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -25221,7 +25251,7 @@
       "name": "Watch Tower",
       "type": "location",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -26309,7 +26339,7 @@
       "name": "The Storehouse",
       "type": "location",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -26877,7 +26907,7 @@
       "name": "Nurn Slaver",
       "type": "enemy",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -27525,7 +27555,7 @@
       "name": "Easterling Guard",
       "type": "enemy",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -27653,7 +27683,7 @@
       "name": "Farin",
       "type": "objective-ally",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -28845,7 +28875,7 @@
       "name": "Broken Captives",
       "type": "treachery",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -32061,7 +32091,7 @@
       "name": "Ulwarth",
       "type": "enemy",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -33773,7 +33803,7 @@
       "name": "Slave Quarters",
       "type": "location",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -34197,7 +34227,7 @@
       "name": "The Barracks",
       "type": "location",
       "pack": "The Land of Sorrow",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-land-of-sorrow"
     },
     {
@@ -37261,8 +37291,8 @@
       "id": "E09.8",
       "name": "The Land of Sorrow (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-land-of-sorrow",
+      "state": "scripted"
     },
     {
       "id": "E09.9",
@@ -38752,8 +38782,8 @@
       "id": "Q09.8",
       "name": "The Land of Sorrow",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-land-of-sorrow",
+      "state": "scripted"
     },
     {
       "id": "Q09.9",

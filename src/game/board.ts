@@ -1,4 +1,11 @@
 import {
+  landSorrowPlayerAllyEntered,
+  landSorrowPlayerAttachmentLeaves,
+  landSorrowPlayerCharacterLeft,
+  landSorrowPlayerCharacterReadied,
+  landSorrowPlayerEliminated,
+} from "./land-sorrow-player";
+import {
   ashPlayerAllyEntered,
   ashPlayerCommitted,
   ashPlayerEliminated,
@@ -694,6 +701,7 @@ export function readyCharacter(s: GameState, u: Unit, cardEffect = true) {
   if (wasExhausted) stewardFearCharacterReadied(s, u);
   if (wasExhausted) Angmar.angmarCharacterReadied(s, u);
   if (wasExhausted) batch4Scenario(s).characterReadied?.(s, u);
+  if (wasExhausted) landSorrowPlayerCharacterReadied(s, u);
 }
 /** Move actual top cards atomically; deck-discard responses run after the causing effect. */
 export function discardPlayerDeck(
@@ -1141,6 +1149,7 @@ export function check(s: GameState) {
       huntersPlayerEliminated(s, i);
       wainridersPlayerEliminated(s, i);
       ashPlayerEliminated(s, i);
+      landSorrowPlayerEliminated(s, i);
       batch4Scenario(s).playerEliminated?.(s, i);
       if (s.choice && activeSeat(s) === i) s.choice = null;
     });
@@ -1571,6 +1580,10 @@ export function discardAttachment(
       ))
   )
     return;
+  if (landSorrowPlayerAttachmentLeaves(s, u, a, leaving, byCardEffect)) {
+    syncAttachmentText(s);
+    return;
+  }
   ShadowEastPlayers.shadowEastPlayerAttachmentLeft(s, u, a);
   Burglar.burglarContractAttachmentLeft(s, a);
   Catch.catchAttachmentLeaves(s, u, a, leaving);
@@ -1637,6 +1650,7 @@ export function characterLeftPlay(
   Mordor.mordorCharacterLeft(s, u, controller);
   Race.raceHaradCharacterLeft(s, u, controller);
   batch4Scenario(s).characterLeft?.(s, u, controller, destination.zone);
+  landSorrowPlayerCharacterLeft(s, u, lastKnownType, lastKnownTraits);
   DrownedPlayers.drownedPlayerUnitLeft(s, u);
   // A later entry starts a new instance even when its physical card keeps its id.
   globalEachSeat(s, () => {
@@ -3785,6 +3799,7 @@ export function allyEntryResponses(
   WrathPlayers.wrathRuinPlayerAllyEntered(s, u, played, fromHand);
   ulfastPlayerAllyEntered(s, u, played, fromHand);
   ashPlayerAllyEntered(s, u);
+  landSorrowPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

@@ -1,3 +1,5 @@
+import { validateLandSorrow, sorrowExtraUnits } from "./land-sorrow-support";
+import { validateLandSorrowPlayers } from "./land-sorrow-player";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -132,7 +134,9 @@ export function validateSave(
       (s.setupPending !== true ||
         s.phase !== "setup" ||
         !s.queue?.some((e) => e.kind === "gameSetupContinue") ||
-        (!s.shadowEastPlayers && !s.wainridersPlayers?.contracts.length))
+        (!s.shadowEastPlayers &&
+          !s.wainridersPlayers?.contracts.length &&
+          !s.landSorrowPlayers?.contracts.length))
     )
       return false;
     if (
@@ -881,7 +885,8 @@ export function validateSave(
     if (
       inheritedSeatCount === undefined &&
       !s.setupPending &&
-      (!validateAsh(s, validUnit as (v: unknown) => boolean) ||
+      (!validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
+        !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
           SCRIPTED.has(c),
         ) ||
@@ -1250,6 +1255,7 @@ export function validateSave(
       (!validateShadowEastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWrathRuinPlayers(s) ||
         !validateAshPlayers(s, validUnit as (v: unknown) => boolean) ||
+        !validateLandSorrowPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateWainridersPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateUlfastPlayers(s, validUnit as (v: unknown) => boolean) ||
         !validateBurglarContract(s, validUnit as (v: unknown) => boolean))
@@ -1576,6 +1582,10 @@ export function validateSave(
       ...shadowEastPlayerUnits(s),
       ...wrathRuinSavedExtraUnits(s),
       ...(s.ulfast?.resolving ?? []),
+      ...sorrowExtraUnits(s),
+      ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
+        c.unit ? [c.unit] : [],
+      ) ?? []),
       ...ashExtraUnits(s),
       ...(s.ashPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.ashPlayers?.returnedHeroes ?? []),

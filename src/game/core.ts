@@ -1,4 +1,10 @@
 import { wainridersQuestUnits } from "./wainriders-support";
+import {
+  landSorrowPlayerCannotReady,
+  landSorrowPlayerCostReduction,
+  landSorrowPlayerStats,
+  landSorrowPlayerUnit,
+} from "./land-sorrow-player";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
   ulfastPlayerStats,
@@ -303,6 +309,7 @@ export const cannotReady = (u: Unit, s?: GameState) =>
       Mumakil.mumakilCannotReady(s, u) ||
       Sands.beneathSandsCannotReady(s, u) ||
       batch4Scenario(s).cannotReady?.(s, u) ||
+      landSorrowPlayerCannotReady(s, u) ||
       Fangorn.fangornCannotReady(s, u) ||
       Etten.ettenCannotReady(s, u)));
 
@@ -338,6 +345,7 @@ export const globalUnits = (s: GameState) => [
 export const get = (s: GameState, id?: string) =>
   units(s).find((u) => u.id === id) ??
   wainridersQuestUnits(s).find((u) => u.id === id) ??
+  landSorrowPlayerUnit(s, id) ??
   s.ashPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.wainridersPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
   s.ulfastPlayers?.contracts.find((c) => c.unit.id === id)?.unit ??
@@ -617,6 +625,7 @@ export function stats(s: GameState, u: Unit) {
         [
           batch4Scenario(s).stats?.(s, u).will ?? 0,
           BatchSupport.batch4PlayerStats(s, u).will,
+          landSorrowPlayerStats(s, u).will,
           eredFinalBonus.will + shadowEastBonus.will,
           EredSupport.eredMithrinPlayerStats(s, u).will +
             WildsSupport.wildsPlayerStats(s, u).will,
@@ -894,6 +903,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   ? (batch4Scenario(s).allyCost?.(s) ?? 0)
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
+                landSorrowPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 huntersCostReduction(s, c, target) -

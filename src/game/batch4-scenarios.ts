@@ -1,3 +1,4 @@
+import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
 import { ULFAST_HOOKS } from "./ulfast";
@@ -21,6 +22,8 @@ import { TEMPLE_DOOM_HOOKS } from "./temple-doom";
 const empty: Batch4ScenarioHooks = {};
 export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
   switch (s.scenarioId) {
+    case "the-land-of-sorrow":
+      return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
       return ASH_HOOKS;
     case "challenge-of-the-wainriders":
@@ -80,4 +83,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     ULFAST_HOOKS,
     WAINRIDERS_HOOKS,
     ASH_HOOKS,
+    LAND_SORROW_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

@@ -284,7 +284,7 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
         "19113": 1,
         "21003": 1,
         "22004": 1,
-        "22114": 1,
+        "22139": 1,
       },
     },
     "https://ringsdb.com/decklist/view/1",
@@ -306,6 +306,6 @@ test("deckbuilding rules explain every problem and RingsDB lists import with a r
     "22004": 1,
   });
   assert.equal(report.unsupported.length, 1);
-  assert.equal(report.unsupported[0].code, "22114");
+  assert.equal(report.unsupported[0].code, "22139");
   assert.deepEqual(report.heroesDropped, ["142002"]);
 });

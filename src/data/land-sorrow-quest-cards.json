@@ -1,0 +1,84 @@
+[
+  {
+    "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+    "octgnid": "6566587d-e2ac-46e6-adbd-fe667b077136",
+    "name": "Slaves of the Dark Lord",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Add each Camp location to the staging area. Attach a random Captive objective-ally to each Camp location as a guarded objective. Place 1 random Warden enemy faceup (but not in play) under each Camp location. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is 1 less than the number of players. Add each location discarded this way to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 135,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Land of Sorrow",
+    "side": "A",
+    "back_name": "Slaves of the Dark Lord",
+    "back_text": "Each Camp location is immune to player card effects, and players cannot travel there while a Warden enemy is in play.\nForced: At the end of the round, raise each player’s threat by 1 for each Camp location in the staging area.\nThis stage cannot be defeated unless the players control all 3 Captive objective-allies.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 135,
+        "quantity": 1,
+        "octgnid": "6566587d-e2ac-46e6-adbd-fe667b077136",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6566587d-e2ac-46e6-adbd-fe667b077136.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "flavor": "You’ve decided to risk everything to rescue Ulchor’s captives from slavery."
+  },
+  {
+    "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+    "octgnid": "744536a0-0ff0-47e8-b938-ee0f379b1370",
+    "name": "Lead the Revolt",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player returns each Warden enemy in the victory display to the staging area. Each other player discards cards from the top of the encounter deck until he discards an enemy and adds that enemy to the staging area.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 136,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Land of Sorrow",
+    "side": "A",
+    "back_name": "Lead the Revolt",
+    "back_text": "This stage gets +10 quest points per player.\nForced: After a player commits characters to the quest, if he is not engaged with a Warden enemy he must reveal an encounter card.\nThis stage cannot be defeated while a Warden enemy is in play. When this stage is defeated, the players win the game.",
+    "back_type_code": "quest",
+    "back_quest": 10,
+    "back_imagesrc": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 136,
+        "quantity": 1,
+        "octgnid": "744536a0-0ff0-47e8-b938-ee0f379b1370",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "flavor": "You’ve freed Ulchor’s slaves, but his lieutenants are advancing with a garrison to recapture them. You must lead the prisoners in a desperate fight to win their freedom."
+  }
+]

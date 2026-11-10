@@ -1,3 +1,5 @@
+import * as LandSorrowPlayers from "./land-sorrow-player";
+import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
 import { ashPublicState } from "./ash-mountains-support";
 import * as WainPlayers from "./wainriders-player";
@@ -859,6 +861,11 @@ export function canPlay(
     options.playOrigin ?? "hand",
   );
   if (ashProblem) return ashProblem;
+  const sorrowProblem = LandSorrowPlayers.landSorrowPlayerPlayProblem(
+    s,
+    c.code,
+  );
+  if (sorrowProblem) return sorrowProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1452,6 +1459,7 @@ export function resolvePlayerCard(
   ignoreGuarded = false,
 ) {
   const c = card(u.code);
+  if (played) LandSorrowPlayers.landSorrowPlayerCardPlayed(s);
   if (played) wainridersPlayerCardPlayed(s, c);
   if (played && s.ninEilph) s.used.push("nin:played");
   if (played) Voyage.voyagePlayerCardPlayed(s, c);
@@ -1508,6 +1516,12 @@ export function resolvePlayerCard(
       forOwner(s, player, () => (s.threatAttachments ??= []).push(attachment));
     } else host.attachments.push(attachment);
     UlfastPlayers.huntersAttachmentPlayed(s, host, u.code, played);
+    LandSorrowPlayers.landSorrowPlayerAttachmentPlayed(
+      s,
+      host,
+      attachment,
+      played,
+    );
     if (played)
       redhornPlayerAttachmentPlayed(s, host, attachment, activeSeat(s));
     BatchPlayers.batch4PlayerAttachmentPlayed(
@@ -1610,6 +1624,7 @@ export function handlePlayerEventAbilityEffect(
     !shadowFlameEventCancelled(s) &&
     !batch4Scenario(s).eventCancelled?.(s, physical.id) &&
     !AshPlayers.ashPlayerEvent(s, physical.code) &&
+    !LandSorrowPlayers.landSorrowPlayerEvent(s, physical.code) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -2381,6 +2396,10 @@ export function availableAbilities(s: GameState, u: Unit) {
         batch4Scenario(s).abilityLabel?.(a.code),
         batch4Scenario(s).abilityProblem?.(s, u, a.id),
       ],
+      [
+        LandSorrowPlayers.landSorrowPlayerAbilityLabel(a.code),
+        LandSorrowPlayers.landSorrowPlayerAbilityProblem(s, u, a.id),
+      ],
     ])
       if (label) results.push({ id: a.id, label, disabled: !!problem });
     if (a.blanked) continue;
@@ -2960,6 +2979,15 @@ export function applyAction(input: GameState, action: Action): GameState {
             WainPlayers.useWainridersPlayerAbility(s, u, action.attachmentId)
           )
             return;
+          if (
+            u &&
+            LandSorrowPlayers.useLandSorrowPlayerAbility(
+              s,
+              u,
+              action.attachmentId,
+            )
+          )
+            return;
           if (u && Cobas.cobasAbility(s, u, action.attachmentId)) return;
           if (
             u &&
@@ -3441,6 +3469,8 @@ export function publicState(s: GameState) {
     ...eredScenarioPublicState(s),
     ...wrathRuinAllPublicState(s),
     ulfast: ulfastPublicState(s),
+    landSorrow: sorrowPublicState(s),
+    landSorrowPlayers: LandSorrowPlayers.landSorrowPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),
     wainriders: wainridersPublicState(s),

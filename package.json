@@ -154,7 +154,9 @@
     "test:wainriders-simulation": "node --import tsx --test tests/wainriders-simulation.test.ts",
     "test:browser-wainriders": "node --import tsx scripts/browser-wainriders.mjs",
     "test:ash-mountains-simulation": "node --import tsx --test tests/ash-mountains-simulation.test.ts",
-    "test:browser-ash-mountains": "node --import tsx scripts/browser-ash-mountains.mjs"
+    "test:browser-ash-mountains": "node --import tsx scripts/browser-ash-mountains.mjs",
+    "test:land-sorrow-simulation": "node --import tsx --test tests/land-sorrow-simulation.test.ts",
+    "test:browser-land-sorrow": "node --import tsx scripts/browser-land-sorrow.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

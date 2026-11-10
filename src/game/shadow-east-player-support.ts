@@ -53,7 +53,10 @@ export const shadowEastPlayerCanHaveAttachments = (u: Unit) =>
 export const shadowEastAttachmentImmune = (
   a: Attachment,
   sourceCode?: string,
-) => a.code === P.ring && !a.blanked && !shadowEastIsMaster(sourceCode);
+) =>
+  // Messenger of the King (22134) is immune to card effects while attached.
+  a.code === "22134" ||
+  (a.code === P.ring && !a.blanked && !shadowEastIsMaster(sourceCode));
 export const shadowEastPlayerImmune = (
   _s: GameState,
   u: Unit,

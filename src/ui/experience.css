@@ -2466,6 +2466,7 @@ kbd {
 }
 .import-panel p {
   margin: 0 0 12px;
+  font-size: 16px;
   line-height: 1.55;
 }
 .import-form {

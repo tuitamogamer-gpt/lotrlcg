@@ -248,6 +248,7 @@ export type ScenarioId =
   | "the-river-running"
   | "danger-in-dorwinion"
   | "temple-of-doom"
+  | "the-land-of-sorrow"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -404,6 +405,8 @@ export interface GameState {
   riverRunning?: import("./river-running-types").RiverRunningState;
   dangerDorwinion?: import("./danger-dorwinion-types").DangerDorwinionState;
   templeDoom?: import("./temple-doom-types").TempleDoomState;
+  landSorrow?: import("./land-sorrow-types").LandSorrowState;
+  landSorrowPlayers?: import("./land-sorrow-types").LandSorrowPlayersState;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
   ashPlayers?: import("./ash-mountains-types").AshPlayersState;
   wainriders?: import("./wainriders-types").WainridersState;
@@ -704,6 +707,9 @@ export interface GameState {
     ulfastExcess?: number;
     ulfastUnderGuard?: number;
     ulfastKilled?: boolean;
+    sorrowEnemy?: string;
+    sorrowKilled?: boolean;
+    sorrowExcess?: number;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

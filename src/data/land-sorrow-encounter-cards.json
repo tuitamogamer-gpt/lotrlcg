@@ -1,0 +1,620 @@
+[
+  {
+    "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+    "octgnid": "cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+    "name": "Ulwarth",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling. Warden.",
+    "text": "Immune to player card effects.\nOnly the engaged player can declare attackers or defenders against Ulwarth.\nAllies cannot be declared as attackers or defenders against Ulwarth.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 118,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 4,
+    "defense": 1,
+    "health": 6,
+    "engagement": 34,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "1",
+      "health": "6",
+      "engagement": "34",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 118,
+        "quantity": 1,
+        "octgnid": "cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+    "octgnid": "77833ba7-253c-4d4b-9c45-1764ce014dce",
+    "name": "Lorgan",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling. Warden.",
+    "text": "Immune to player card effects.\nOnly the engaged player can declare attackers or defenders against Lorgan.\nForced: After Lorgan attacks, raise each player’s threat by 1 (2 instead if this attack destroyed a character).",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 119,
+    "quantity": 1,
+    "threat": 1,
+    "attack": 5,
+    "defense": 3,
+    "health": 8,
+    "engagement": 29,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "5",
+      "defense": "3",
+      "health": "8",
+      "engagement": "29",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 119,
+        "quantity": 1,
+        "octgnid": "77833ba7-253c-4d4b-9c45-1764ce014dce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+    "octgnid": "79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+    "name": "Borlach",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling. Warden.",
+    "text": "Immune to player card effects.\nOnly the engaged player can declare attackers or defenders against Borlach.\nForced: After Borlach attacks and destroys a character, any excess damage must be assigned among characters you control.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 120,
+    "quantity": 1,
+    "threat": 2,
+    "attack": 6,
+    "defense": 2,
+    "health": 9,
+    "engagement": 33,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "6",
+      "defense": "2",
+      "health": "9",
+      "engagement": "33",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 120,
+        "quantity": 1,
+        "octgnid": "79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+    "octgnid": "e839fa89-15b4-451f-9fac-6a8f38e31d65",
+    "name": "The Barracks",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Camp.",
+    "text": "Forced: After The Barracks becomes the active location, add the enemy under it to the staging area. That enemy cannot take damage this round.\nForced: When The Barracks is explored, the first player gains control of the objective ally it was guarding.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 121,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 5,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 121,
+        "quantity": 1,
+        "octgnid": "e839fa89-15b4-451f-9fac-6a8f38e31d65",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+    "octgnid": "e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+    "name": "Slave Quarters",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Camp.",
+    "text": "Forced: After Slave Quarters becomes the active location, the enemy under it engages the first player and makes an immediate attack.\nForced: When Slave Quarters is explored, the first player gains control of the objective ally it was guarding.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 122,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 3,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "3",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 122,
+        "quantity": 1,
+        "octgnid": "e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+    "octgnid": "8a703700-ca1b-46fa-b5fc-67544c5ad254",
+    "name": "The Storehouse",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Camp.",
+    "text": "Forced: After The Storehouse becomes the active location, add the enemy under it to the staging area. That enemy gets +3 [attack] and -30 engagement cost until the end of the round.\nForced: When The Storehouse is explored, the first player gains control of the objective ally it was guarding.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 123,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 123,
+        "quantity": 1,
+        "octgnid": "8a703700-ca1b-46fa-b5fc-67544c5ad254",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+    "octgnid": "23befee6-1e3f-4955-826d-62562a5433ed",
+    "name": "Edrahil",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Captive. Silvan.",
+    "text": "Immune to player card effects.\nResponse: After Edrahil quests successfully, choose a player to draw 1 card.\nIf Edrahil leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 124,
+    "quantity": 1,
+    "willpower": 3,
+    "attack": 1,
+    "defense": 0,
+    "health": 3,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "1",
+      "defense": "0",
+      "health": "3"
+    },
+    "imagesrc": "/cards/23befee6-1e3f-4955-826d-62562a5433ed.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 124,
+        "quantity": 1,
+        "octgnid": "23befee6-1e3f-4955-826d-62562a5433ed",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23befee6-1e3f-4955-826d-62562a5433ed.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+    "octgnid": "1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+    "name": "Arador",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Captive. Gondor.",
+    "text": "Immune to player card effects.\nResponse: After Arador is declared as a defender, ready him. (Limit once per round.)\nIf Arador leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 125,
+    "quantity": 1,
+    "willpower": 0,
+    "attack": 1,
+    "defense": 3,
+    "health": 5,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "willpower": "0",
+      "attack": "1",
+      "defense": "3",
+      "health": "5"
+    },
+    "imagesrc": "/cards/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 125,
+        "quantity": 1,
+        "octgnid": "1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+    "octgnid": "9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+    "name": "Farin",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Captive. Dwarf.",
+    "text": "Immune to player card effects.\nResponse: After Farin is declared as an attacker against an enemy, deal 1 damage to an enemy engaged with a player.\nIf Farin leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 126,
+    "quantity": 1,
+    "willpower": 1,
+    "attack": 3,
+    "defense": 0,
+    "health": 4,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "willpower": "1",
+      "attack": "3",
+      "defense": "0",
+      "health": "4"
+    },
+    "imagesrc": "/cards/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 126,
+        "quantity": 1,
+        "octgnid": "9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+    "octgnid": "99b98ca0-1320-4630-8791-984a578685d2",
+    "name": "Easterling Guard",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Archery 2.\nWhen Revealed: Assign X damage among characters in play. X is the current archery total.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 127,
+    "quantity": 3,
+    "threat": 3,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 32,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "32"
+    },
+    "imagesrc": "/cards/99b98ca0-1320-4630-8791-984a578685d2.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 127,
+        "quantity": 3,
+        "octgnid": "99b98ca0-1320-4630-8791-984a578685d2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99b98ca0-1320-4630-8791-984a578685d2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Defending character cannot ready this round."
+  },
+  {
+    "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+    "octgnid": "90bdfcd8-0505-4f40-bf51-092f21525ef7",
+    "name": "Nurn Slaver",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "While the number of Camp locations in the staging area is less than the number of players, Nurn Slaver gains surge.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 128,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 6,
+    "engagement": 23,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "6",
+      "engagement": "23"
+    },
+    "imagesrc": "/cards/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 128,
+        "quantity": 4,
+        "octgnid": "90bdfcd8-0505-4f40-bf51-092f21525ef7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Attacking enemy gets +1 [attack] for each Camp location in the victory display."
+  },
+  {
+    "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+    "octgnid": "7b261ec7-bc90-4bd3-884d-d14a44e88942",
+    "name": "Working Fields",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "While Working Fields is in the staging area, characters cannot be healed.\nTravel: Each player deals 1 damage to a character he controls.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 129,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 129,
+        "quantity": 3,
+        "octgnid": "7b261ec7-bc90-4bd3-884d-d14a44e88942",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+    "octgnid": "7edae662-fc3f-40b3-868b-e5a43dbd0670",
+    "name": "Watch Tower",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Plains.",
+    "text": "While Watch Tower is in the staging area, it gains archery X.\nX is 1 more than the number of Captive objective allies the players control.\nTravel: Reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 130,
+    "quantity": 3,
+    "quest": 5,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 130,
+        "quantity": 3,
+        "octgnid": "7edae662-fc3f-40b3-868b-e5a43dbd0670",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "octgnid": "1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "name": "Overseer's Whip",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Easterling.",
+    "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: “Forced: When attached enemy attacks, deal 1 damage to an exhausted character you control.”\nWhen Revealed: Attach to the Easterling enemy with the lowest engagement cost.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 131,
+    "quantity": 2,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {},
+    "imagesrc": "/cards/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 131,
+        "quantity": 2,
+        "octgnid": "1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+    "octgnid": "2d14c8ba-a35a-491b-867b-d43b5547f235",
+    "name": "Cruelty of Mordor",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player deals 1 damage to a character he controls. Then, each player must choose: either deal 1 damage to each damaged character you control, or raise your threat by 1 for each damaged character you control.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 132,
+    "quantity": 3,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {},
+    "imagesrc": "/cards/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 132,
+        "quantity": 3,
+        "octgnid": "2d14c8ba-a35a-491b-867b-d43b5547f235",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "Attacking enemy gets +2 [defense] until the end of the phase."
+  },
+  {
+    "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+    "octgnid": "a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+    "name": "Broken Captives",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Exhaust each damaged character. If no characters are exhausted by this effect, Broken Captives gains surge and doomed 1.",
+    "is_unique": false,
+    "pack_code": "TLoS",
+    "pack_name": "The Land of Sorrow",
+    "position": 133,
+    "quantity": 2,
+    "encounter_set": "The Land of Sorrow",
+    "printed_stats": {},
+    "imagesrc": "/cards/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg",
+    "packs": [
+      {
+        "pack_code": "TLoS",
+        "pack_name": "The Land of Sorrow",
+        "position": 133,
+        "quantity": 2,
+        "octgnid": "a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "shadow": "If attacking enemy is a Warden, it makes an additional attack against you after this one."
+  }
+]

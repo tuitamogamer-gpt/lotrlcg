@@ -1,3 +1,4 @@
+import { skipsFrameworkRefresh } from "./refresh-rules";
 import type { Effect, GameState, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import type { DamageContext } from "./damage-context";
@@ -618,7 +619,10 @@ export function riverRunningEffect(s: GameState, e: Effect) {
           ...seatView(s, player).allies,
         ].filter(
           (u) =>
-            u.exhausted && !considered.includes(u.id) && !cannotReady(u, s),
+            u.exhausted &&
+            !considered.includes(u.id) &&
+            !cannotReady(u, s) &&
+            !skipsFrameworkRefresh(u),
         );
       const remaining = 6 - (s.refreshReadied?.[player]?.length ?? 0);
       if (!candidates.length || remaining <= 0) break;

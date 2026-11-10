@@ -344,6 +344,24 @@ jobs:
           path: output/ash-mountains-release/failures
           retention-days: 7
 
+  land-sorrow-simulation:
+    name: The Land of Sorrow complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:land-sorrow-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: land-sorrow-simulation
+          path: output/land-sorrow-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -465,6 +483,8 @@ jobs:
             suite: test:shadow-east-players
           - group: ash-mountains
             suite: test:browser-ash-mountains
+          - group: land-sorrow
+            suite: test:browser-land-sorrow
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

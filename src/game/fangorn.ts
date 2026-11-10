@@ -1,3 +1,4 @@
+import { skipsFrameworkRefresh } from "./refresh-rules";
 import { removeFromQuest } from "./board";
 import { removeCurrentQuestProgress } from "./side-quests";
 import { mainQuestCode } from "./quest-state";
@@ -668,7 +669,11 @@ export function fangornEffect(s: GameState, e: Effect): boolean {
     case "fangornRefresh": {
       const considered = e.ids ?? [];
       const candidates = [...s.heroes, ...s.allies].filter(
-        (u) => u.exhausted && !considered.includes(u.id) && !cannotReady(u, s),
+        (u) =>
+          u.exhausted &&
+          !considered.includes(u.id) &&
+          !cannotReady(u, s) &&
+          !skipsFrameworkRefresh(u),
       );
       if (!candidates.length) break;
       const effectsFor = (u: Unit) => [

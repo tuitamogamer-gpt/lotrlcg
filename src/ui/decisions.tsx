@@ -1,4 +1,5 @@
 import { cityPlayerAttackBonus } from "../game/city-player-support";
+import { landSorrowPlayerAttackBonus } from "../game/land-sorrow-player";
 import { druadanForestAttackStat } from "../game/druadan-forest";
 import { stormcallerAttackBonus } from "../game/stormcaller-player";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
@@ -193,7 +194,10 @@ export function DecisionStats({
           st[attackStat] +
           (attackContribution && attackStat === "attack"
             ? stormcallerAttackBonus(s, u) +
-              (enemy ? cityPlayerAttackBonus(s, u, enemy) : 0)
+              (enemy
+                ? cityPlayerAttackBonus(s, u, enemy) +
+                  landSorrowPlayerAttackBonus(s, u, enemy)
+                : 0)
             : 0)
         }
         caption
@@ -307,7 +311,9 @@ export function CombatDialog({
       sum +
       stats(s, u)[defending ? "defense" : attackStat] +
       (!defending && attackStat === "attack"
-        ? stormcallerAttackBonus(s, u) + cityPlayerAttackBonus(s, u, enemy)
+        ? stormcallerAttackBonus(s, u) +
+          cityPlayerAttackBonus(s, u, enemy) +
+          landSorrowPlayerAttackBonus(s, u, enemy)
         : 0),
     0,
   );

@@ -31,6 +31,10 @@ const HEADLINES: Partial<
     lead: "Escape the tunnels",
     em: "before supplies run out.",
   },
+  "the-land-of-sorrow": {
+    lead: "Free the captives",
+    em: "and lead the revolt.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

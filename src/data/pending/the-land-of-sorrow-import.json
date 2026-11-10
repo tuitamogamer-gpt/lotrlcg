@@ -1,0 +1,1748 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Land of Sorrow",
+  "slug": "the-land-of-sorrow",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+      "octgnid": "1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+      "name": "Overseer's Whip",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nSurge.While attached to an enemy, counts as a Weapon attachment with the text: `Forced: When attached enemy attacks, deal 1 damage to an exhausted character you control.When Revealed: Attach to the Easterling enemy with the lowest engagement cost.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 131,
+      "quantity": 2,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {},
+      "imagesrc": "/cards/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 131,
+          "quantity": 2,
+          "octgnid": "1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+      "octgnid": "1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+      "name": "Arador",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Captive. Gondor.",
+      "text": "Immune to player card effects.Response: After Arador is declared as a defender, ready him. (Limit once per round.)If Arador leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 125,
+      "quantity": 1,
+      "willpower": 0,
+      "attack": 1,
+      "defense": 3,
+      "health": 5,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "willpower": "0",
+        "attack": "1",
+        "defense": "3",
+        "health": "5"
+      },
+      "imagesrc": "/cards/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 125,
+          "quantity": 1,
+          "octgnid": "1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "name": "Weary Lands",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each exhausted character gets -1 [willpower] until the end of the phase.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 27,
+      "quantity": 2,
+      "shadow": "Shadow: Deal 1 damage to the defending character.",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+      "octgnid": "23befee6-1e3f-4955-826d-62562a5433ed",
+      "name": "Edrahil",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Captive. Silvan.",
+      "text": "Immune to player card effects.Response: After Edrahil quests successfully, choose a player to draw 1 card.If Edrahil leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 124,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 1,
+      "defense": 0,
+      "health": 3,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "1",
+        "defense": "0",
+        "health": "3"
+      },
+      "imagesrc": "/cards/23befee6-1e3f-4955-826d-62562a5433ed.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 124,
+          "quantity": 1,
+          "octgnid": "23befee6-1e3f-4955-826d-62562a5433ed",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23befee6-1e3f-4955-826d-62562a5433ed.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+      "octgnid": "2d14c8ba-a35a-491b-867b-d43b5547f235",
+      "name": "Cruelty of Mordor",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player deals 1 damage to a character he controls. Then, each player must choose: either deal 1 damage to each damaged character you control, or raise your threat by 1 for each damaged character you control.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 132,
+      "quantity": 3,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {},
+      "imagesrc": "/cards/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 132,
+          "quantity": 3,
+          "octgnid": "2d14c8ba-a35a-491b-867b-d43b5547f235",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+      "name": "Painful Fatigue",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player exhausts a character he controls and deals 1 damage to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 28,
+      "quantity": 2,
+      "shadow": "Shadow: Either exhaust a character you control, or return attacking enemy to the staging area. ",
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {},
+      "imagesrc": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "37153373-7a82-484e-9aca-7ed47a6a7703",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "name": "Easterling Raider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 1.\nEasterling Raider gets +1 [attack] and +1 [defense] for each Easterling attachment on it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 20,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 28,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [defense] instead if it has an Easterling attachment).",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 20,
+          "quantity": 3,
+          "octgnid": "4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "name": "Recurve Bow",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gains Archery 2.`When Revealed: Attach to the highest engagement cost Easterling enemy without a Recurve Bow.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 23,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+      "octgnid": "6566587d-e2ac-46e6-adbd-fe667b077136",
+      "name": "Slaves of the Dark Lord",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add each Camp location to the staging area. Attach a random Captive objective-ally to each Camp location as a guarded objective. Place 1 random Warden enemy faceup (but not in play) under each Camp location. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is 1 less than the number of players. Add each location discarded this way to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 135,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Land of Sorrow",
+      "side": "A",
+      "back_name": "Slaves of the Dark Lord",
+      "back_text": "Setup: Add each Camp location to the staging area. Attach a random Captive objective-ally to each Camp location as a guarded objective. Place 1 random Warden enemy faceup (but not in play) under each Camp location. Shuffle the encounter deck and discard cards from the top until X locations are discarded, where X is 1 less than the number of players. Add each location discarded this way to the staging area.Each Camp location is immune to player card effects, and player cannot travel there while a Warden enemy is in play.Forced: At the end of the round, raise each player`s threat by 1 for each Camp location in the staging area.This stage cannot be defeated unless players control all 3 Captive objective-allies.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 135,
+          "quantity": 1,
+          "octgnid": "6566587d-e2ac-46e6-adbd-fe667b077136",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6566587d-e2ac-46e6-adbd-fe667b077136.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+      "octgnid": "744536a0-0ff0-47e8-b938-ee0f379b1370",
+      "name": "Lead the Revolt",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player returns each Warden enemy in the victory display to the staging area. Each other player discards cards from the top of the encounter deck until he discards an enemy and adds that enemy to the staging area.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 136,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Land of Sorrow",
+      "side": "A",
+      "back_name": "Lead the Revolt",
+      "back_text": "When Revealed: The first player returns each Warden enemy in the victory display to the staging area. Each other player discards cards from the top of the encounter deck until he discards an enemy and adds that enemy to the staging area.This stage gets +10 quest points per player.Forced: After a player commits characters to the quest, if he is not engaged with a Warden enemy he must reveal an encounter card.This stage cannot be defeated while a Warden enemy is in play. When this stage is defeated, the players win the game.",
+      "back_type_code": "quest",
+      "back_quest": 10,
+      "back_imagesrc": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 136,
+          "quantity": 1,
+          "octgnid": "744536a0-0ff0-47e8-b938-ee0f379b1370",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+      "octgnid": "77833ba7-253c-4d4b-9c45-1764ce014dce",
+      "name": "Lorgan",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling. Warden.",
+      "text": "Immune to player card effects.Only the engaged player can declare attackers or defenders against Lorgan.Forced: After Lorgan attacks, raise each player`s threat by 1 (2 instead if this attack destroys a character.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 119,
+      "quantity": 1,
+      "threat": 1,
+      "attack": 5,
+      "defense": 3,
+      "health": 8,
+      "engagement": 29,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "5",
+        "defense": "3",
+        "health": "8",
+        "engagement": "29",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 119,
+          "quantity": 1,
+          "octgnid": "77833ba7-253c-4d4b-9c45-1764ce014dce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+      "octgnid": "79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+      "name": "Borlach",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling. Warden.",
+      "text": "Immune to player card effects.Only the engaged player can declare attackers or defenders against Borlach.Forced: After Borlach attacks and destroys a character, any excess damage must be assigned among characters you control.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 120,
+      "quantity": 1,
+      "threat": 2,
+      "attack": 6,
+      "defense": 2,
+      "health": 9,
+      "engagement": 33,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "6",
+        "defense": "2",
+        "health": "9",
+        "engagement": "33",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 120,
+          "quantity": 1,
+          "octgnid": "79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+      "octgnid": "7b261ec7-bc90-4bd3-884d-d14a44e88942",
+      "name": "Working Fields",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Working Fields is in the staging area, characters cannot be healed.Travel: Each player deals 1 damage to a character he controls.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 129,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 129,
+          "quantity": 3,
+          "octgnid": "7b261ec7-bc90-4bd3-884d-d14a44e88942",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+      "octgnid": "7edae662-fc3f-40b3-868b-e5a43dbd0670",
+      "name": "Watch Tower",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Watch Tower is in the staging area, it gains archery X.X is 1 more than the number of Captive objective allies the players control.Travel: Reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 130,
+      "quantity": 3,
+      "quest": 5,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 130,
+          "quantity": 3,
+          "octgnid": "7edae662-fc3f-40b3-868b-e5a43dbd0670",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+      "octgnid": "8a703700-ca1b-46fa-b5fc-67544c5ad254",
+      "name": "The Storehouse",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Camp.",
+      "text": "Forced: After The Storehouse becomes the active location, add the enemy under it to the staging area. That enemy gets +3 [attack] and -30 engagement cost until the end of the round.Forced: When The Storehouse is explored, the first player gains control of the objective ally it was guarding.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 123,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 4,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 123,
+          "quantity": 1,
+          "octgnid": "8a703700-ca1b-46fa-b5fc-67544c5ad254",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+      "octgnid": "90bdfcd8-0505-4f40-bf51-092f21525ef7",
+      "name": "Nurn Slaver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "While the number of Camp locations in the staging area is less than the number of players, Nurn Slavers gains surge.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 128,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 6,
+      "engagement": 23,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "6",
+        "engagement": "23"
+      },
+      "imagesrc": "/cards/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 128,
+          "quantity": 4,
+          "octgnid": "90bdfcd8-0505-4f40-bf51-092f21525ef7",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "name": "Rocky Outcrop",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "While Rocky Outcrop is in the staging area, characters cannot be readied by player card effects.Travel: The first player exhausts a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 26,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+      "octgnid": "99b98ca0-1320-4630-8791-984a578685d2",
+      "name": "Easterling Guard",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Archery 2.\nArchery 2.When Revealed: Assign X damage among characters in play. X is the current archery total.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 127,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 32,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "32"
+      },
+      "imagesrc": "/cards/99b98ca0-1320-4630-8791-984a578685d2.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 127,
+          "quantity": 3,
+          "octgnid": "99b98ca0-1320-4630-8791-984a578685d2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99b98ca0-1320-4630-8791-984a578685d2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+      "octgnid": "9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+      "name": "Farin",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Captive. Dwarf.",
+      "text": "Immune to player card effects.Response: After Farin is declared as an attacker against an enemy, deal 1 damage to an enemy engaged with a player.If Farin leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 126,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 1,
+      "defense": 0,
+      "health": 3,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "1",
+        "defense": "0",
+        "health": "3"
+      },
+      "imagesrc": "/cards/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 126,
+          "quantity": 1,
+          "octgnid": "9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+      "octgnid": "a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+      "name": "Broken Captives",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Exhaust each damaged character. If no characters are exhausted by this effect, Broken Captives gains surge and Doomed 1.",
+      "is_unique": false,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 133,
+      "quantity": 2,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {},
+      "imagesrc": "/cards/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 133,
+          "quantity": 2,
+          "octgnid": "a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "name": "Warrior of Rhûn",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Forced: When Warrior of Rhun attacks, attach the top Easterling treachery in the discard pile to it.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 21,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 4,
+      "engagement": 34,
+      "shadow": "Shadow: Attach the top Easterling treachery in the discard pile to attacking enemy.",
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "4",
+        "engagement": "34"
+      },
+      "imagesrc": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 21,
+          "quantity": 3,
+          "octgnid": "aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "name": "Sword of Rhûn",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Easterling.",
+      "text": "Surge.\nWhile attached to an enemy, counts as a Weapon attachment with the text: `Attached enemy gets +2 [attack].`When Revealed: Attach to the Easterling enemy with the lowest [attack] without a Sword of Rhun.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 22,
+      "quantity": 2,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {},
+      "imagesrc": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "name": "Warriors of the East",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: After an Easterling enemy enters play, attach the top Easterling treachery in the discard pile to that enemy.Forced: After Warriors of the East becomes the current quest, the highest [attack] Easterling enemy in the staging area attacks the first player.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 24,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Easterling Raiders",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "name": "An Arduous Journey",
+      "type_code": "encounter-side-quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Each player cannot ready more than 6 characters he controls during the refresh phase.Response: When this stage is defeated, each player may ready a hero he controls.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 29,
+      "quantity": 1,
+      "victory": 10,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "victory": "10"
+      },
+      "imagesrc": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "name": "Rolling Plains",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Plains.",
+      "text": "When Revealed: Each copy of Rolling Plains gets +2 [threat] until the end of the phase.Travel: Raise each player`s threat by 2.",
+      "is_unique": false,
+      "pack_code": "ASitE",
+      "pack_name": "A Shadow in the East",
+      "position": 25,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Rolling Plains",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "packs": [
+        {
+          "pack_code": "ASitE",
+          "pack_name": "A Shadow in the East",
+          "position": 25,
+          "quantity": 4,
+          "octgnid": "c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+      "octgnid": "cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+      "name": "Ulwarth",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Easterling. Warden.",
+      "text": "Immune to player card effects.Only the engaged player can declare attackers or defenders against Ulwarth.Allies cannot be declared as attackers or defenders against Ulwarth.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 118,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 6,
+      "engagement": 34,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "6",
+        "engagement": "34",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 118,
+          "quantity": 1,
+          "octgnid": "cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+      "octgnid": "e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+      "name": "Slave Quarters",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Camp.",
+      "text": "Forced: After Slave Quarters becomes the active location, the enemy under it engages the first player and makes an immediate attack.Forced: When Slave Quarters is explored, the first player gains control of the objective ally it was guarding.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 122,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 3,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 122,
+          "quantity": 1,
+          "octgnid": "e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+      "octgnid": "e839fa89-15b4-451f-9fac-6a8f38e31d65",
+      "name": "The Barracks",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Camp.",
+      "text": "Forced: After The Barracks becomes the active location, add the enemy under it to the staging area. That enemy cannot take damage this round.Forced: When The Baracks is explored, the first player gains control of the objective ally it was guarding.",
+      "is_unique": true,
+      "pack_code": "TLoS",
+      "pack_name": "The Land of Sorrow",
+      "position": 121,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 5,
+      "victory": 1,
+      "encounter_set": "The Land of Sorrow",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg",
+      "packs": [
+        {
+          "pack_code": "TLoS",
+          "pack_name": "The Land of Sorrow",
+          "position": 121,
+          "quantity": 1,
+          "octgnid": "e839fa89-15b4-451f-9fac-6a8f38e31d65",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E09.8",
+      "name": "The Land of Sorrow (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TLoS"
+      ],
+      "card_codes": [
+        "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+        "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+        "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+        "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+        "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+        "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+        "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+        "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+        "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+        "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+        "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+        "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+        "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+        "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+        "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+        "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+        "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254"
+      ],
+      "cards": [
+        {
+          "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:6566587d-e2ac-46e6-adbd-fe667b077136": 1,
+          "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:99b98ca0-1320-4630-8791-984a578685d2": 2,
+          "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7": 3,
+          "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942": 3,
+          "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670": 1,
+          "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84": 1,
+          "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235": 2,
+          "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624": 1,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 3,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 2,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 1,
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 1,
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 3,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 1,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 1,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1
+        },
+        "sharedSetAside": {
+          "octgn:23befee6-1e3f-4955-826d-62562a5433ed": 1,
+          "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330": 1,
+          "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979": 1,
+          "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d": 1,
+          "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce": 1,
+          "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038": 1
+        },
+        "sharedStagingArea": {
+          "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65": 1,
+          "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e": 1,
+          "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q09.8",
+      "name": "The Land of Sorrow",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "ASitE",
+        "TLoS"
+      ],
+      "card_codes": [
+        "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+        "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+        "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+        "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+        "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+        "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+        "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+        "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+        "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+        "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+        "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+        "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+        "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+        "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+        "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+        "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+        "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+        "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+        "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+        "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+        "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+        "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+        "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+        "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+        "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+        "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+        "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+        "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254"
+      ],
+      "cards": [
+        {
+          "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:6566587d-e2ac-46e6-adbd-fe667b077136": 1,
+          "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:99b98ca0-1320-4630-8791-984a578685d2": 3,
+          "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7": 4,
+          "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942": 3,
+          "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670": 3,
+          "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84": 2,
+          "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235": 3,
+          "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624": 2,
+          "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7": 3,
+          "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658": 3,
+          "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1": 2,
+          "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae": 2,
+          "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff": 1,
+          "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f": 4,
+          "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77": 2,
+          "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d": 2,
+          "octgn:37153373-7a82-484e-9aca-7ed47a6a7703": 2,
+          "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d": 1
+        },
+        "sharedSetAside": {
+          "octgn:23befee6-1e3f-4955-826d-62562a5433ed": 1,
+          "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330": 1,
+          "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979": 1,
+          "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d": 1,
+          "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce": 1,
+          "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038": 1
+        },
+        "sharedStagingArea": {
+          "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65": 1,
+          "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e": 1,
+          "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg",
+      "localPath": "/cards/1b5b129a-0c2c-4750-b1d6-dd3ea82acb84.jpg",
+      "bytes": 62734,
+      "sha256": "da5866a971d9ceec1c26ab48ced5dfee313756647d629909054dbbb8fffd0c44"
+    },
+    {
+      "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg",
+      "localPath": "/cards/1d7a27ca-e24b-4449-8f2c-3bb44b088330.jpg",
+      "bytes": 63879,
+      "sha256": "995767006f4e3efa8fea40e1f0cc8c060f08a2e6d53d360e946a10b686ea2751"
+    },
+    {
+      "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "localPath": "/cards/1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d.jpg",
+      "bytes": 144643,
+      "sha256": "11a61bf9f58b6b2f35e20c4d642b500db2ce65f2fe8a22408104d89aee11164d"
+    },
+    {
+      "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/23befee6-1e3f-4955-826d-62562a5433ed.jpg",
+      "localPath": "/cards/23befee6-1e3f-4955-826d-62562a5433ed.jpg",
+      "bytes": 62171,
+      "sha256": "7660e2cbd91296102950054000f41c5e17e435970e1310af37994ca739875f76"
+    },
+    {
+      "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg",
+      "localPath": "/cards/2d14c8ba-a35a-491b-867b-d43b5547f235.jpg",
+      "bytes": 61006,
+      "sha256": "7ffa032160a7b04f8d34692b0c64c4294d3409b228017ddcbbfeeac43b974a2c"
+    },
+    {
+      "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "localPath": "/cards/37153373-7a82-484e-9aca-7ed47a6a7703.jpg",
+      "bytes": 151606,
+      "sha256": "18269f1fe0d476aa7ca804087ad75761a16e1aefd1d37151a9afafe4fcdd5ba6"
+    },
+    {
+      "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "localPath": "/cards/4befb4c8-e350-48ed-a7dd-ee803e2ca8d7.jpg",
+      "bytes": 149459,
+      "sha256": "f78301084bf3113c676acc28edca0290f4539b30424ae402337fd976277a67cb"
+    },
+    {
+      "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "localPath": "/cards/576b4f3c-add2-42b6-b78c-8a2e482290ae.jpg",
+      "bytes": 153229,
+      "sha256": "4cf09d61e218c21a66b1cb564c7cc6052d93a7c8c01bb765bc6306e76933d478"
+    },
+    {
+      "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6566587d-e2ac-46e6-adbd-fe667b077136.jpg",
+      "localPath": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.jpg",
+      "bytes": 76048,
+      "sha256": "668f3075c28b4305184211b2755c205f923e1a73e69911282547ae8f0b73726f"
+    },
+    {
+      "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6566587d-e2ac-46e6-adbd-fe667b077136.B.jpg",
+      "localPath": "/cards/6566587d-e2ac-46e6-adbd-fe667b077136.B.jpg",
+      "bytes": 69428,
+      "sha256": "e28896f03ea48886db0c625e9190b60ccad11ee036603a03cb7da070b6d0fe44"
+    },
+    {
+      "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg",
+      "localPath": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.jpg",
+      "bytes": 71632,
+      "sha256": "c27bf5ee5f0a9463fe6955c5875cf88e4f71534015da34668d6b62eabac7c6e5"
+    },
+    {
+      "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/744536a0-0ff0-47e8-b938-ee0f379b1370.B.jpg",
+      "localPath": "/cards/744536a0-0ff0-47e8-b938-ee0f379b1370.B.jpg",
+      "bytes": 69981,
+      "sha256": "c296c8b86595c54df188c5a9e388911566cc3d55063d346e96e7cfd404660df5"
+    },
+    {
+      "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg",
+      "localPath": "/cards/77833ba7-253c-4d4b-9c45-1764ce014dce.jpg",
+      "bytes": 73012,
+      "sha256": "4bf7255936d8eccec673de9ea478a1fd984ee9ffef4c9589af7334102ee76d84"
+    },
+    {
+      "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg",
+      "localPath": "/cards/79a9dd7a-48c9-4f29-9090-5edde6b5f038.jpg",
+      "bytes": 65618,
+      "sha256": "99b0572f17c33ea6fc1ee193c0eeb1f7c68fbf814b5818e467ac3a66cba98770"
+    },
+    {
+      "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg",
+      "localPath": "/cards/7b261ec7-bc90-4bd3-884d-d14a44e88942.jpg",
+      "bytes": 64360,
+      "sha256": "85546c3d1274fb03072be896ee958674b265e3e5d322acd7789097605320fe96"
+    },
+    {
+      "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg",
+      "localPath": "/cards/7edae662-fc3f-40b3-868b-e5a43dbd0670.jpg",
+      "bytes": 69488,
+      "sha256": "720310886a1c7645dabe09fbd2e6bcad0676664376f11a9e0b57eea8d950abcc"
+    },
+    {
+      "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg",
+      "localPath": "/cards/8a703700-ca1b-46fa-b5fc-67544c5ad254.jpg",
+      "bytes": 70446,
+      "sha256": "0e8a6c404072e51a928dd1428628fb28016d20af613fa262c4f86ad8a41c835a"
+    },
+    {
+      "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg",
+      "localPath": "/cards/90bdfcd8-0505-4f40-bf51-092f21525ef7.jpg",
+      "bytes": 66873,
+      "sha256": "992d1b795259d2ef19c56120f79abcb29ca973a27065745a3a39dce839870928"
+    },
+    {
+      "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "localPath": "/cards/926a17c6-ea0b-43ba-925a-71ba5ef1ed77.jpg",
+      "bytes": 141699,
+      "sha256": "7fae932ba8a2834c51448feb5c810fa87fcc6c0e40865a2dc0e2d4878e8b5e27"
+    },
+    {
+      "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/99b98ca0-1320-4630-8791-984a578685d2.jpg",
+      "localPath": "/cards/99b98ca0-1320-4630-8791-984a578685d2.jpg",
+      "bytes": 67024,
+      "sha256": "d00c81ddbff1aa6ac1567571b29d913ba68cd2fa0878cb86c28c84cbe530700f"
+    },
+    {
+      "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg",
+      "localPath": "/cards/9b2c868d-9d09-4d1c-9383-e81b77fe4979.jpg",
+      "bytes": 64595,
+      "sha256": "e7cd4e05b55f0029c353641547ae2c48116a621f32f7960190d432fa6bf64287"
+    },
+    {
+      "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg",
+      "localPath": "/cards/a9e14405-1ac0-4db8-8357-1ac2e9d59624.jpg",
+      "bytes": 62249,
+      "sha256": "4e2f4afe5c31ad25cd1fa3b40cca93aaf1b716ee1e11bebc9982d5fd2f4bfb3f"
+    },
+    {
+      "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "localPath": "/cards/aabc830a-4833-42cf-9b26-d8f2c5eb9658.jpg",
+      "bytes": 166180,
+      "sha256": "affe3681b465cf4e91f9916d83eeefed4037d1227908860be740f25e32b01952"
+    },
+    {
+      "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "localPath": "/cards/b897b63d-86ac-417c-88d2-1a594f3674f1.jpg",
+      "bytes": 152172,
+      "sha256": "0c06cb926feabe9ffa8312f577e90023c3cec6912fb22979b35f29264281dc2a"
+    },
+    {
+      "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "localPath": "/cards/bbc72a18-cf4c-469f-bd01-6b1d3492c2ff.jpg",
+      "bytes": 152157,
+      "sha256": "6eb911620b8e327843c0d4fbb44b465fc1abc2313bf9dedc03d2b2b4fc123027"
+    },
+    {
+      "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "localPath": "/cards/c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d.jpg",
+      "bytes": 133557,
+      "sha256": "bed38b94436243d1c814f43ade753106e2664f90cd0ffcd71b7f7cff8d323596"
+    },
+    {
+      "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "localPath": "/cards/c6ffa525-d499-4dcc-9f07-cbd0da50479f.jpg",
+      "bytes": 144450,
+      "sha256": "413e91e94d860fd0638b2c3b69219bc88cafd194d665a85b3d529f3bc161a625"
+    },
+    {
+      "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg",
+      "localPath": "/cards/cb3c0b3a-1c07-4da9-a65a-2e108d39736d.jpg",
+      "bytes": 67800,
+      "sha256": "7708254482efe610530285c04dc03b00e1068f68ca77ed61b1e9115d4be68aec"
+    },
+    {
+      "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg",
+      "localPath": "/cards/e33fbbde-d10b-4392-bc2e-bd4a39b5188e.jpg",
+      "bytes": 70474,
+      "sha256": "a6d48aac203fd4393bd5264edca56b3f8a1b69d890d7f4922861c7736ba85ee8"
+    },
+    {
+      "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg",
+      "localPath": "/cards/e839fa89-15b4-451f-9fac-6a8f38e31d65.jpg",
+      "bytes": 72446,
+      "sha256": "3bcd2bcf6b534ab844b6b7c593735a1438cdcf272cb212de56c572f8f61444de"
+    }
+  ]
+}

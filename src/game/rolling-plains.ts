@@ -1,3 +1,4 @@
+import { skipsFrameworkRefresh } from "./refresh-rules";
 import type { GameState, Effect, Unit } from "./types";
 import { name } from "./cards";
 import { cannotReady, choose, fx, get, prepend, skip } from "./core";
@@ -86,7 +87,10 @@ export function plainsEffect(s: GameState, e: Effect) {
           ...seatView(s, player).allies,
         ].filter(
           (u) =>
-            u.exhausted && !considered.includes(u.id) && !cannotReady(u, s),
+            u.exhausted &&
+            !considered.includes(u.id) &&
+            !cannotReady(u, s) &&
+            !skipsFrameworkRefresh(u),
         );
       const remaining = 6 - (s.refreshReadied?.[player]?.length ?? 0);
       if (!candidates.length || remaining <= 0) break;

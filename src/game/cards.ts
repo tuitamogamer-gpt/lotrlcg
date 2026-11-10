@@ -1,3 +1,8 @@
+import landSorrowPlayers from "../data/land-sorrow-player-cards.json";
+import {
+  LAND_SORROW_ENCOUNTERS,
+  LAND_SORROW_QUESTS,
+} from "./land-sorrow-scenario-data";
 import ashPlayers from "../data/ash-mountains-player-cards.json";
 import { ASH_ENCOUNTERS, ASH_QUESTS } from "./ash-mountains-scenario-data";
 import wainridersPlayers from "../data/wainriders-player-cards.json";
@@ -293,6 +298,7 @@ export const playerCards = [
           ...ulfastPlayers,
           ...wainridersPlayers,
           ...ashPlayers,
+          ...landSorrowPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -448,6 +454,7 @@ export const encounterCards = [
       ...ULFAST_ENCOUNTERS,
       ...WAINRIDERS_ENCOUNTERS,
       ...ASH_ENCOUNTERS,
+      ...LAND_SORROW_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -518,6 +525,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ULFAST_QUESTS,
     ...WAINRIDERS_QUESTS,
     ...ASH_QUESTS,
+    ...LAND_SORROW_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -629,6 +637,7 @@ export const SCRIPTED = new Set(
     ...ULFAST_QUESTS,
     ...WAINRIDERS_QUESTS,
     ...ASH_QUESTS,
+    ...LAND_SORROW_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

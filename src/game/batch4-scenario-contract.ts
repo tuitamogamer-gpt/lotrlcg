@@ -137,6 +137,10 @@ export interface Batch4ScenarioHooks {
   playerCardPlayed?(s: GameState, u: Unit): void;
   playProblem?(s: GameState, code: string): string | null;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
+  /** Responses after attackers are declared, resolved before the attack's damage. */
+  attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];
+  /** Responses after defenders are declared, resolved before shadows and damage. */
+  defendersDeclared?(s: GameState, enemy: Unit, defenders: Unit[]): Effect[];
   playerAttackResolved?(
     s: GameState,
     enemy: Unit,

@@ -1,3 +1,4 @@
+import { messengerDeckProblems } from "./land-sorrow-player";
 import { councilDeckProblems } from "./ash-mountains-player";
 import { wandererDeckProblems } from "./wainriders-player-support";
 import { huntersDeckProblems } from "./ulfast-player-support";
@@ -70,6 +71,7 @@ export function deckProblems(
   const problems: string[] = [
     ...huntersDeckProblems(deck.cards),
     ...councilDeckProblems(deck.cards),
+    ...messengerDeckProblems(deck.heroes, deck.cards),
     ...wandererDeckProblems(deck.heroes, deck.cards),
   ];
   const heroes = deck.heroes.filter((h) => heroCodes.has(h));

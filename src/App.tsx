@@ -1,4 +1,9 @@
 import { ASH_QUESTS } from "./game/ash-mountains-support";
+import { LAND_SORROW_QUESTS } from "./game/land-sorrow-support";
+import {
+  LandSorrowState,
+  MessengerOfTheKingState,
+} from "./ui/land-sorrow-state";
 import {
   AshMountainsState,
   CouncilOfTheWiseState,
@@ -3092,6 +3097,8 @@ export default function App() {
             <ShadowEastPlayerState s={game} inspect={setDetail} />
             <ShadowEastScenarioState s={game} inspect={setDetail} />
             <WrathRuinScenarioState s={game} inspect={setDetail} />
+            <LandSorrowState s={game} inspect={setDetail} />
+            <MessengerOfTheKingState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3829,6 +3836,7 @@ export default function App() {
                   try {
                     const local = [
                       ...ASH_QUESTS,
+                      ...LAND_SORROW_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

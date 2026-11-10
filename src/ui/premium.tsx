@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-land-of-sorrow": {
+    name: "Fields of Nurn",
+    detail: "Three slave camps · A desperate revolt",
+  },
   "under-the-ash-mountains": {
     name: "Torech Gorgor",
     detail: "Dark tunnels · Dwindling supplies",
@@ -387,6 +391,7 @@ export const PLAYMAT_CHOICES = [
   "wrath-and-ruin",
   "challenge-of-the-wainriders",
   "under-the-ash-mountains",
+  "the-land-of-sorrow",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

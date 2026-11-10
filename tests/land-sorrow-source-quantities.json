@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Slaves of the Dark Lord",
+    "code": "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Lead the Revolt",
+    "code": "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ulwarth",
+    "code": "octgn:cb3c0b3a-1c07-4da9-a65a-2e108d39736d",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Lorgan",
+    "code": "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Borlach",
+    "code": "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Barracks",
+    "code": "octgn:e839fa89-15b4-451f-9fac-6a8f38e31d65",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Slave Quarters",
+    "code": "octgn:e33fbbde-d10b-4392-bc2e-bd4a39b5188e",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Storehouse",
+    "code": "octgn:8a703700-ca1b-46fa-b5fc-67544c5ad254",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Edrahil",
+    "code": "octgn:23befee6-1e3f-4955-826d-62562a5433ed",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Arador",
+    "code": "octgn:1d7a27ca-e24b-4449-8f2c-3bb44b088330",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Farin",
+    "code": "octgn:9b2c868d-9d09-4d1c-9383-e81b77fe4979",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Easterling Guard",
+    "code": "octgn:99b98ca0-1320-4630-8791-984a578685d2",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Nurn Slaver",
+    "code": "octgn:90bdfcd8-0505-4f40-bf51-092f21525ef7",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Working Fields",
+    "code": "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Watch Tower",
+    "code": "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Overseer's Whip",
+    "code": "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Cruelty of Mordor",
+    "code": "octgn:2d14c8ba-a35a-491b-867b-d43b5547f235",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Broken Captives",
+    "code": "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Easterling Raider",
+    "code": "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Warrior of Rhûn",
+    "code": "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Sword of Rhûn",
+    "code": "octgn:b897b63d-86ac-417c-88d2-1a594f3674f1",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Recurve Bow",
+    "code": "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Warriors of the East",
+    "code": "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Rolling Plains",
+    "code": "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "name": "Rocky Outcrop",
+    "code": "octgn:926a17c6-ea0b-43ba-925a-71ba5ef1ed77",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Weary Lands",
+    "code": "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Painful Fatigue",
+    "code": "octgn:37153373-7a82-484e-9aca-7ed47a6a7703",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "An Arduous Journey",
+    "code": "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
+    "normal": 1,
+    "easy": 1
+  }
+]

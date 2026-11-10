@@ -1,6 +1,10 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { ulfastPlayerAttackEffects } from "./ulfast-player";
 import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
+import {
+  landSorrowPlayerAttackBonus,
+  landSorrowPlayerAttackKilled,
+} from "./land-sorrow-player";
 import * as ShadowEastPlayers from "./shadow-east-player";
 import * as WrathPlayers from "./wrath-ruin-player";
 import * as ShadowEastSupport from "./shadow-east-player-support";
@@ -309,6 +313,7 @@ export function playerAttack(
     ...DrownedCompanions.drownedPlayerAttackEffects(s, enemy, ids),
     ...CobasPlayers.cobasPlayerAttackEffects(s, enemy, ids),
     ...Mordor.mordorPlayerAttackEffects(s, enemy, ids),
+    ...(batch4Scenario(s).attackersDeclared?.(s, enemy, ids) ?? []),
     ...MumakPlayers.mumakilAttackersDeclared(s, enemy, attackers as Unit[]),
     ...SandsPlayers.beneathSandsPlayerAttackersDeclared(
       s,
@@ -377,6 +382,7 @@ export function resolvePlayerAttack(
           finalRingAttackBonus(s, u, enemy) +
           ShadowEastSupport.shadowEastPlayerAttackBonus(s, u, enemy) +
           ulfastPlayerAttackBonus(s, u, enemy) +
+          landSorrowPlayerAttackBonus(s, u, enemy) +
           cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
@@ -487,6 +493,7 @@ export function playerAttackKilled(
     );
   ShadowEastPlayers.shadowEastPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   WrathPlayers.wrathRuinPlayerAttackKilled(s, enemy, ids, engagedPlayer);
+  landSorrowPlayerAttackKilled(s, enemy, ids);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);
@@ -809,6 +816,11 @@ export function beginEnemyAttack(
       enemy,
       defenders.filter((d): d is Unit => !!d),
     ),
+    ...(batch4Scenario(s).defendersDeclared?.(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+    ) ?? []),
     ...MumakPlayers.mumakilDefendersDeclared(
       s,
       enemy,
