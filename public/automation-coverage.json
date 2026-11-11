@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 755,
-    "heroes": 84,
+    "playerCards": 756,
+    "heroes": 85,
     "deckCards": 667,
-    "encounterCards": 1205,
-    "scenarios": 82,
+    "encounterCards": 1231,
+    "scenarios": 83,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -89,17 +89,18 @@
       "under-the-ash-mountains",
       "the-land-of-sorrow",
       "the-fortress-of-nurn",
-      "the-massing-at-osgiliath"
+      "the-massing-at-osgiliath",
+      "we-must-away-ere-break-of-day"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2215,
-    "pending": 1968
+    "scripted": 2245,
+    "pending": 1938
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 163
+    "scripted": 165
   },
   "registeredCodes": [
     "01001",
@@ -667,6 +668,7 @@
     "12144",
     "12145",
     "12146",
+    "131001",
     "131003",
     "131004",
     "131006",
@@ -1554,6 +1556,35 @@
     "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
     "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
     "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
@@ -2618,9 +2649,9 @@
     {
       "product": "over-hill-and-under-hill",
       "total": 84,
-      "scripted": 9,
+      "scripted": 39,
       "player": 22,
-      "playerScripted": 9
+      "playerScripted": 10
     },
     {
       "product": "over-hill-and-under-hill-nightmare",
@@ -8764,7 +8795,7 @@
       "name": "Bilbo Baggins",
       "type": "hero",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21164,7 +21195,7 @@
       "name": "A Deep Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21172,7 +21203,7 @@
       "name": "A Foul Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21180,7 +21211,7 @@
       "name": "A Large Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21188,7 +21219,7 @@
       "name": "A Nice Pickle",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21204,7 +21235,7 @@
       "name": "A Smelly Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21212,7 +21243,7 @@
       "name": "A Strong Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21220,7 +21251,7 @@
       "name": "A Suspicious Crow",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21228,7 +21259,7 @@
       "name": "A Tough Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21236,7 +21267,7 @@
       "name": "A Worn Sack",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21244,7 +21275,7 @@
       "name": "An Unexpected Party",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21252,7 +21283,7 @@
       "name": "Bert",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21268,7 +21299,7 @@
       "name": "Cave Entrance",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21292,7 +21323,7 @@
       "name": "Dawn Take You All",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21308,7 +21339,7 @@
       "name": "Dreary Hills",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21420,7 +21451,7 @@
       "name": "Hobbit-lands",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21428,7 +21459,7 @@
       "name": "Hungry Troll",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21460,7 +21491,7 @@
       "name": "Lone-Lands",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21468,7 +21499,7 @@
       "name": "Lots or None at All",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21476,7 +21507,7 @@
       "name": "More Like a Grocer",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21484,7 +21515,7 @@
       "name": "No Campfire",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21524,7 +21555,7 @@
       "name": "Roast 'Em or Boil 'Em?",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21532,7 +21563,7 @@
       "name": "Roast Mutton",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21588,7 +21619,7 @@
       "name": "Tom",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21596,7 +21627,7 @@
       "name": "Troll Camp",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21604,7 +21635,7 @@
       "name": "Troll Cave",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21612,7 +21643,7 @@
       "name": "Troll Key",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21620,7 +21651,7 @@
       "name": "Troll Purse",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21644,7 +21675,7 @@
       "name": "William",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21652,7 +21683,7 @@
       "name": "Wind-whipped Rain",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -37354,8 +37385,8 @@
       "id": "E0A.1",
       "name": "We Must Away, Ere Break of Day (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "we-must-away-ere-break-of-day",
+      "state": "scripted"
     },
     {
       "id": "E0A.2",
@@ -38845,8 +38876,8 @@
       "id": "Q0A.1",
       "name": "We Must Away, Ere Break of Day",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "we-must-away-ere-break-of-day",
+      "state": "scripted"
     },
     {
       "id": "Q0A.2",

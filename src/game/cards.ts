@@ -3,6 +3,8 @@ import {
   MASSING_ENCOUNTERS,
   MASSING_QUESTS,
 } from "./massing-osgiliath-scenario-data";
+import { WMA_ENCOUNTERS, WMA_QUESTS } from "./we-must-away-scenario-data";
+import hobbitPlayers from "../data/hobbit-player-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
   FORTRESS_NURN_QUESTS,
@@ -309,6 +311,7 @@ export const playerCards = [
           ...ashPlayers,
           ...landSorrowPlayers,
           ...fortressNurnPlayers,
+          ...hobbitPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -467,6 +470,7 @@ export const encounterCards = [
       ...LAND_SORROW_ENCOUNTERS,
       ...FORTRESS_NURN_ENCOUNTERS,
       ...MASSING_ENCOUNTERS,
+      ...WMA_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -540,6 +544,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...LAND_SORROW_QUESTS,
     ...FORTRESS_NURN_QUESTS,
     ...MASSING_QUESTS,
+    ...WMA_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -654,6 +659,7 @@ export const SCRIPTED = new Set(
     ...LAND_SORROW_QUESTS,
     ...FORTRESS_NURN_QUESTS,
     ...MASSING_QUESTS,
+    ...WMA_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,
@@ -715,7 +721,8 @@ export const plain = (s = "") =>
     .replace(/\[defense\]/g, "defense")
     .replace(/\[threat\]/g, "threat")
     .replace(/\[spirit\]/g, "Spirit")
-    .replace(/\[leadership\]/g, "Leadership");
+    .replace(/\[leadership\]/g, "Leadership")
+    .replace(/\[baggins\]/g, "Baggins");
 export const STAGES = [
   {
     name: "Flies and Spiders",

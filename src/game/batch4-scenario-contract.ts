@@ -152,6 +152,12 @@ export interface Batch4ScenarioHooks {
     revealOrigin: Effect["revealOrigin"],
   ): number;
   playProblem?(s: GameState, code: string): string | null;
+  /** A declared player attack that the scenario forbids, with the reason. */
+  attackProblem?(s: GameState, enemy: Unit, ids: string[]): string | null;
+  /** Replaces the printed Doomed keyword read from a card's text. */
+  printedDoomed?(s: GameState, code: string): number | undefined;
+  /** This character may trigger an ability even while Sacked. */
+  abilitySackExempt?(s: GameState, u: Unit): boolean;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */
   attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];

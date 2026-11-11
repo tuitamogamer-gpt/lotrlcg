@@ -36,8 +36,12 @@ let nextDeckId = 0;
 export const createDeckId = (now = Date.now()) =>
   `d${now.toString(36)}-${globalThis.crypto?.randomUUID?.() ?? ++nextDeckId}`;
 
+/** The Baggins Bilbo joins the first player in The Hobbit and is never chosen. */
 export const HERO_CARDS: Card[] = playerCards.filter(
-  (c) => c.type_code === "hero" && SCRIPTED.has(c.code),
+  (c) =>
+    c.type_code === "hero" &&
+    SCRIPTED.has(c.code) &&
+    c.sphere_code !== "baggins",
 );
 export const DECK_CARDS: Card[] = playerCards.filter(
   (c) =>

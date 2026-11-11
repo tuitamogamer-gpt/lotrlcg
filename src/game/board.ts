@@ -410,8 +410,10 @@ import {
   carrockEncounter,
   carrockShadow,
   carrockDefeated,
+  carrockSacked,
   isSacked,
 } from "./carrock";
+import { HOBBIT_BILBO } from "./hobbit-codes";
 import {
   advanceEmynMuil,
   emynMuilRevealSurge,
@@ -2805,13 +2807,14 @@ export function collectResources(s: GameState) {
   globalEachSeat(s, (player) => {
     for (const h of s.heroes)
       if (
-        !isSacked(h) &&
+        !carrockSacked(h) &&
         khazadResourcePhase(s) &&
         !Etten.ettenCannotCollectResources(s, h)
       )
         h.resources +=
           1 +
-          (noPlayerCardEconomy(s)
+          // Player card bonuses never add resources to the Baggins Bilbo.
+          (noPlayerCardEconomy(s) || h.code === HOBBIT_BILBO
             ? 0
             : resourcePhaseBonus(h) +
               Angmar.angmarResourceBonus(s, h) +
@@ -3149,6 +3152,7 @@ export function resolveReveal(
   const doomed = /Doomed (\d+)/.exec(revealText);
   const doomedAmount =
     (TempleEncounters.templePrintedDoomed(s, code) ??
+      batch4Scenario(s).printedDoomed?.(s, code) ??
       Number(doomed?.[1] ?? 0)) +
     Etten.ettenRevealDoomed(s, code) +
     Rhudaur.rhudaurRevealDoomed(s, code) +

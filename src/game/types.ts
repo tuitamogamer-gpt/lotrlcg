@@ -251,6 +251,7 @@ export type ScenarioId =
   | "the-land-of-sorrow"
   | "the-fortress-of-nurn"
   | "the-massing-at-osgiliath"
+  | "we-must-away-ere-break-of-day"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -292,7 +293,7 @@ export interface Effect {
   damageTarget?: string;
   /** Printed attacks may explicitly omit their ordinary shadow deal. */
   noShadow?: boolean;
-  revealOrigin?: "encounter" | "underworld" | "power";
+  revealOrigin?: "encounter" | "underworld" | "power" | "discard";
   /** Serializable event resolution retains paid costs and cancellation continuations. */
   effects?: Effect[];
   cancelledEffects?: Effect[];
@@ -412,6 +413,7 @@ export interface GameState {
   fortressNurn?: import("./fortress-nurn-types").FortressNurnState;
   fortressNurnPlayers?: import("./fortress-nurn-types").FortressNurnPlayersState;
   massing?: import("./massing-osgiliath-types").MassingState;
+  weMustAway?: import("./we-must-away-types").WeMustAwayState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -723,6 +725,9 @@ export interface GameState {
     nurnUnderGuard?: number;
     massingEnemy?: string;
     massingKilled?: boolean;
+    /** A Suspicious Crow shadows to shuffle back if this attack dealt damage. */
+    wmaCrow?: number;
+    wmaDamaged?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

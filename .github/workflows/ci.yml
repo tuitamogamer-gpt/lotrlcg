@@ -396,6 +396,23 @@ jobs:
           name: massing-osgiliath-simulation
           path: output/massing-osgiliath-release/failures
           retention-days: 7
+  we-must-away-simulation:
+    name: We Must Away, Ere Break of Day complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:we-must-away-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: we-must-away-simulation
+          path: output/we-must-away-release/failures
+          retention-days: 7
 
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
@@ -524,6 +541,8 @@ jobs:
             suite: test:browser-fortress-nurn
           - group: massing-osgiliath
             suite: test:browser-massing-osgiliath
+          - group: we-must-away
+            suite: test:browser-we-must-away
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

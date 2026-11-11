@@ -7,6 +7,10 @@ export const PLAYMATS = {
     name: "Osgiliath",
     detail: "The Anduin crossing · A horde beyond expectations",
   },
+  "we-must-away-ere-break-of-day": {
+    name: "Trollshaws",
+    detail: "Three Trolls at the fire · Waiting for the dawn",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -402,6 +406,7 @@ export const PLAYMAT_CHOICES = [
   "the-land-of-sorrow",
   "the-fortress-of-nurn",
   "the-massing-at-osgiliath",
+  "we-must-away-ere-break-of-day",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

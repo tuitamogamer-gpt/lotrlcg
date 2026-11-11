@@ -1,6 +1,7 @@
 import * as FortressPlayers from "./fortress-nurn-player";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
+import { wmaPublicState } from "./we-must-away-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -2580,7 +2581,9 @@ export function availableAbilities(s: GameState, u: Unit) {
     (s.phase === "setup" && !s.escapeTest) ||
     !!s.sailing?.test ||
     Fate.fateForbiddenSearchAbility(s, u) ||
-    (!a.id && (isSacked(u) || u.blanked))
+    (!a.id &&
+      ((isSacked(u) && !batch4Scenario(s).abilitySackExempt?.(s, u)) ||
+        u.blanked))
       ? { ...a, disabled: true }
       : a,
   );
@@ -3499,6 +3502,7 @@ export function publicState(s: GameState) {
     landSorrowPlayers: LandSorrowPlayers.landSorrowPlayerPublic(s),
     fortressNurn: fortressNurnPublicState(s),
     massing: massingPublicState(s),
+    weMustAway: wmaPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

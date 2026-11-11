@@ -234,8 +234,10 @@ import {
   carrockStatBonus,
   carrockThreatBonus,
   carrockPaysLeadership,
+  carrockSacked,
   isSacked,
 } from "./carrock";
+import { HOBBIT_BILBO } from "./hobbit-codes";
 import {
   emynMuilPlayCost,
   emynMuilThreatBonus,
@@ -298,7 +300,9 @@ export const canGainResources = (
   transfer = false,
 ) =>
   !(cardEffect && !transfer && noPlayerCardEconomy(s)) &&
-  !isSacked(u) &&
+  // The Baggins Bilbo cannot gain resources from player card effects.
+  !(cardEffect && u.code === HOBBIT_BILBO) &&
+  !carrockSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
 

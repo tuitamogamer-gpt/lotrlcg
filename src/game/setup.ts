@@ -1,3 +1,8 @@
+import {
+  HOBBIT_BILBO,
+  isHobbitScenarioId,
+  placeBagginsBilbo,
+} from "./hobbit-saga";
 import { messengerSetup } from "./land-sorrow-player";
 import { bondHeroLimit, bondSetup } from "./fortress-nurn-player";
 import { councilSetup } from "./ash-mountains-player";
@@ -204,6 +209,15 @@ export function createGame(
     "Faramir is reserved by this scenario; choose another hero.",
   );
   requireRule(
+    !chosenHeroes.includes(HOBBIT_BILBO),
+    "The Baggins Bilbo Baggins joins the first player only in The Hobbit scenarios; he is not chosen as a hero.",
+  );
+  requireRule(
+    !isHobbitScenarioId(scenarioId) ||
+      !chosenHeroes.some((c) => card(c).name === "Bilbo Baggins"),
+    "Bilbo Baggins is reserved by The Hobbit; choose another hero.",
+  );
+  requireRule(
     SCENARIOS.some((q) => q.id === scenarioId),
     "Unknown or unsupported scenario.",
   );
@@ -384,6 +398,8 @@ export function createGame(
     s.wrathBombadilReserves[player] = bombadil;
   }
   if (!s.table) s.startingThreat = s.threat;
+  // The Hobbit: the first player gains control of Bilbo Baggins (threat 0).
+  placeBagginsBilbo(s);
   huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);

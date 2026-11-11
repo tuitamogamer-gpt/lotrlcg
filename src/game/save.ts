@@ -9,6 +9,7 @@ import {
   validateFortressNurn,
 } from "./fortress-nurn-support";
 import { massingUnits, validateMassing } from "./massing-osgiliath-support";
+import { validateWeMustAway, wmaUnits } from "./we-must-away-support";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -896,6 +897,7 @@ export function validateSave(
       !s.setupPending &&
       (!validateFortressNurn(s, validUnit as (v: unknown) => boolean) ||
         !validateMassing(s, validUnit as (v: unknown) => boolean) ||
+        !validateWeMustAway(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1286,7 +1288,9 @@ export function validateSave(
           e.player < (s.table?.seats.length ?? 1))) &&
       (e.noShadow === undefined || typeof e.noShadow === "boolean") &&
       (e.revealOrigin === undefined ||
-        ["encounter", "underworld", "power"].includes(e.revealOrigin)) &&
+        ["encounter", "underworld", "power", "discard"].includes(
+          e.revealOrigin,
+        )) &&
       (e.damageTarget === undefined || typeof e.damageTarget === "string") &&
       (e.shadowEnemyId === undefined || typeof e.shadowEnemyId === "string") &&
       validDamageContextEffectText(e.text) &&
@@ -1598,6 +1602,7 @@ export function validateSave(
       ...sorrowExtraUnits(s),
       ...fortressNurnUnits(s),
       ...massingUnits(s),
+      ...wmaUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

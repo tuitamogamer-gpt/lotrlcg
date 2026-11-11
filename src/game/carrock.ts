@@ -1,5 +1,6 @@
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { mainQuestCode } from "./quest-state";
+import { HOBBIT_SACKS } from "./hobbit-codes";
 // Complete original Conflict at the Carrock rules; Nightmare is a separate quest.
 import definitions from "../data/carrock-encounter-cards.json";
 import { card, name } from "./cards";
@@ -65,7 +66,18 @@ export const CARROCK_TROLLS: readonly string[] = [
   CARROCK.stuart,
   CARROCK.rupert,
 ];
+/**
+ * Sacked characters cannot attack, defend, commit or trigger their effects:
+ * Conflict at the Carrock's Sacked! and We Must Away's Sack objectives.
+ */
 export const isSacked = (u: Unit) =>
+  u.attachments.some(
+    (a) =>
+      (a.code === CARROCK.sacked || HOBBIT_SACKS.includes(a.code)) &&
+      !a.blanked,
+  );
+/** Only the Carrock's Sacked! also stops its hero collecting resources. */
+export const carrockSacked = (u: Unit) =>
   u.attachments.some((a) => a.code === CARROCK.sacked && !a.blanked);
 const hasSackAttached = (u: Unit) =>
   u.attachments.some((a) => a.code === CARROCK.sacked);

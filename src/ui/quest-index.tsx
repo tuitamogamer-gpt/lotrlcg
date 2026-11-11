@@ -43,6 +43,10 @@ const HEADLINES: Partial<
     lead: "Outrun the horde",
     em: "across the Anduin.",
   },
+  "we-must-away-ere-break-of-day": {
+    lead: "Outwit the Trolls",
+    em: "before the dawn.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

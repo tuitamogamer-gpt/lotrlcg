@@ -1,0 +1,45 @@
+[
+  {
+    "code": "131001",
+    "name": "Bilbo Baggins",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "baggins",
+    "sphere_name": "Baggins",
+    "threat": 0,
+    "willpower": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 3,
+    "traits": "Hobbit.",
+    "text": "The first player gains control of Bilbo Baggins.\nBilbo Baggins cannot gain resources from player card effects.\nIf Bilbo Baggins leaves play, the players lose the game.",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "Over Hill and Under Hill",
+    "pack_code": "OHaUH",
+    "position": 1,
+    "illustrator": "Magali Villeneuve",
+    "imagesrc": "/cards/131001.png",
+    "url": "https://ringsdb.com/card/131001",
+    "quantity": 1,
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "131001",
+        "illustrator": "Magali Villeneuve",
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+        "imagesrc": "/bundles/cards/131001.png",
+        "date_release": "2012-08-17"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/131001",
+    "official": true,
+    "nightmare": false
+  }
+]

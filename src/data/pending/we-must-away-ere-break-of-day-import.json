@@ -1,0 +1,1801 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "We Must Away, Ere Break of Day",
+  "slug": "we-must-away-ere-break-of-day",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "131001",
+      "name": "Bilbo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "baggins",
+      "sphere_name": "Baggins",
+      "threat": 0,
+      "willpower": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "traits": "Hobbit.",
+      "text": "The first player gains control of Bilbo Baggins.\r\nBilbo Baggins cannot gain resources from player card effects.\r\n<b>If Bilbo Baggins leaves play, the players lose the game.</b>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "Over Hill and Under Hill",
+      "pack_code": "OHaUH",
+      "position": 1,
+      "illustrator": "Magali Villeneuve",
+      "imagesrc": "/cards/131001.png",
+      "url": "https://ringsdb.com/card/131001",
+      "quantity": 1,
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "131001",
+          "illustrator": "Magali Villeneuve",
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+          "imagesrc": "/bundles/cards/131001.png",
+          "date_release": "2012-08-17"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/131001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9001",
+      "name": "A Deep Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the character (excluding Gandalf) with the highest printed [willpower] without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 48,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9001.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 48,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9001",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9001.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9002",
+      "name": "A Foul Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the character (excluding Gandalf) with the most attachments without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 49,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9002.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 49,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9002",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9002.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9003",
+      "name": "A Large Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the character (excluding Gandalf) with the highest printed hit points without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 47,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9003.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 47,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9003",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9003.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9004",
+      "name": "A Nice Pickle",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Place the top X cards of the encounter discard pile on the bottom of the encounter deck. X is equal to twice the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 52,
+      "quantity": 2,
+      "shadow": "Shadow: Shuffle this card into the encounter deck.",
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9004.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 52,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9004",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9004.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9007",
+      "name": "A Smelly Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the ally (excluding Gandalf) with the highest printed cost without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 44,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9007.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 44,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9007",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9007.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9008",
+      "name": "A Strong Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the character (excluding Gandalf) with the highest printed [attack] without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 45,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9008.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 45,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9008",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9008.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9009",
+      "name": "A Suspicious Crow",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "When Revealed: Reveal the top card of the encounter discard pile and add it to the staging area, if able.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 35,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 1,
+      "engagement": 25,
+      "shadow": "Shadow: If this attack deals at least 1 damage, shuffle this card back into the encounter deck.",
+      "encounter_set": "Western Lands",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "1",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9009.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 35,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9009",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9009.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9010",
+      "name": "A Tough Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to the character (excluding Gandalf) with the highest printed [defense] without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 46,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9010.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 46,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9010",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9010.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9012",
+      "name": "A Worn Sack",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Sack.",
+      "text": "When Sacked: Attach to hero with the most resources without a Sack attached.  Attached character cannot ready, attack, defend, commit to quests, or trigger effects. If this Sack card is removed, shuffle it into the sack deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 50,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9012.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 50,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9012",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9012.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9013",
+      "name": "An Unexpected Party",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Remove and shuffle the 7 Sack cards into a Sack deck and set it aside face down. Remove the 3 Troll enemies and the Troll Cave from the encounter deck and set them aside out of play. Then, shuffle the encounter deck. Each player reveals 1 card from the top of the encounter deck and adds it to the staging area.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 23,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "side": "A",
+      "back_name": "An Unexpected Party",
+      "back_type_code": "quest",
+      "back_quest": 7,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9013.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9013.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9013",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9013.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9016",
+      "name": "Bert",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Players cannot play attachment cards on Troll enemies.  Forced: After Bert engages a player, sack 1.  Forced: Return Bert to the staging area at the end of the combat phase. The engaged player may raise his threat by 1 to cancel this effect.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 33,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 10,
+      "engagement": 23,
+      "victory": 3,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "10",
+        "engagement": "23",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9016.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 33,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9016",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9016.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9021",
+      "name": "Cave Entrance",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Western Lands.",
+      "text": "While Cave Entrance is in the staging area, it gains: \"Forced: At the end of the round, place the top X cards of the encounter discard pile on the bottom of the encounter deck. X is the number of players in the game.\"",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 41,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "Western Lands",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9021.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 41,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9021",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9021.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9025",
+      "name": "Dawn Take You All",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 25,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "side": "A",
+      "back_name": "Dawn Take You All",
+      "back_text": "When Revealed: Remove all Troll enemies and Sack cards from the game. If Troll Cave is in the victory display, the players have discovered the treasure cards Sting, Glamdring, and Orcrist.  The players have won the game.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9025.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9025.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 25,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9025",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9025.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9030",
+      "name": "Dreary Hills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Western Lands.",
+      "text": "Forced: After placing 1 or more progress tokens on Dreary Hills, each player must discard 1 card at random from his hand.  Response: After Dreary Hills leaves play as an explored location, Bilbo Baggins gains 1 resource.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 39,
+      "quantity": 2,
+      "threat": 3,
+      "quest": 2,
+      "encounter_set": "Western Lands",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9030.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 39,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9030",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9030.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9050",
+      "name": "Hobbit-lands",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Western Lands.",
+      "text": "Response: After placing 1 or more progress tokens on Hobbit-lands, the first player draws 1 card.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 38,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 1,
+      "shadow": "Shadow: Defending player must put the top card of the encounter deck discard pile on top of the encounter deck.",
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9050.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9050",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9050.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9051",
+      "name": "Hungry Troll",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player chooses a Troll enemy in the staging area and engages that enemy. If there are no Troll enemies in the staging area, this card gains Surge.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 54,
+      "quantity": 3,
+      "shadow": "Shadow: Deal 4 damage to each character with a Sack card attached. (The first player may spend 2 [baggins] resources to cancel this effect.)",
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9051.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 54,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9051",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9051.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9058",
+      "name": "Lone-Lands",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Western Lands.",
+      "text": "Forced: After placing 1 or more progress tokens on Lone-Lands, each player removes 1 resource from one of his hero's resource pools, if able.  Response: After Lone-Lands leaves play as an explored location, Bilbo Baggins gains 1 resource.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 40,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Western Lands",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9058.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 40,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9058",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9058.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9059",
+      "name": "Lots or None at All",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If there is a Troll enemy in the staging area, Sack 1. If there are no Troll enemies in the staging area, this card gains Doomed 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 51,
+      "quantity": 3,
+      "shadow": "Shadow: If the attacking enemy is a Troll, Sack 1. (The first player may spend 1 [baggins] resource to cancel this effect.)",
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9059.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 51,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9059",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9059.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9060",
+      "name": "More Like a Grocer",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Discard all [baggins] resources.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 57,
+      "quantity": 1,
+      "shadow": "Shadow: Resolve this card's \"When Revealed\" effect.",
+      "encounter_set": "Western Lands",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9060.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 57,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9060",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9060.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9061",
+      "name": "No Campfire",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 1.\nWhen Revealed: Each player must choose one: increase his threat by 4, or reveal an additional encounter card from the encounter deck and add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 55,
+      "quantity": 2,
+      "shadow": "Shadow: The defending player raises his threat by 2.",
+      "encounter_set": "Western Lands",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9061.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 55,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9061",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9061.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9071",
+      "name": "Roast 'Em or Boil 'Em?",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each ally. (2 damage instead if there is a Troll enemy in the staging area.)",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 53,
+      "quantity": 3,
+      "shadow": "Shadow: Search the encounter deck for Troll Camp and add it to the staging area. Then, shuffle the encounter deck.",
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9071.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 53,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9071",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9071.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9072",
+      "name": "Roast Mutton",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add the set-aside Troll enemies and the Troll Cave to the staging area. Shuffle the encounter discard pile back into the encounter deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 24,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "side": "A",
+      "back_name": "Roast Mutton",
+      "back_text": "Forced: If there are no Troll enemies left in play, or if there are no cards left in the encounter deck, advance to the next stage.  Any time players would place progress tokens on this quest, discard an equal number of cards from the encounter deck instead. (Progress is placed on the active location before triggering this effect.)",
+      "back_type_code": "quest",
+      "back_quest": 1,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9072.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9072.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9072",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9072.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9085",
+      "name": "Tom",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Troll enemies can only be attacked by one character at a time.  Forced: After Tom engages a player, sack 1.  Forced: Return Tom to the staging area at the end of the combat phase. The engaged player may raise his threat by 1 to cancel this effect.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 34,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 11,
+      "engagement": 33,
+      "victory": 4,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "11",
+        "engagement": "33",
+        "victory": "4"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9085.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 34,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9085",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9085.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9086",
+      "name": "Troll Camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Trollshaws.",
+      "text": "While Troll Camp is in the staging area, Troll enemies get +1 [threat] for each player in the game.  While Troll Camp is in play, Bilbo Baggins gains: \"Action: Exhaust Bilbo Baggins and spend 1 [baggins] resource to remove 1 Sack card from a character. Bilbo Baggins may trigger this effect even with a Sack card attached to him.\"",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 36,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9086.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 36,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9086",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9086.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9087",
+      "name": "Troll Cave",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cave. Trollshaws.",
+      "text": "Immune to player card effects.\nPlayers cannot travel to Troll Cave unless Bilbo Baggins has the Troll Key attached and the first player spends 5 [baggins] resources. (2 [baggins] resources instead if Bilbo Baggins has the Troll Purse attached.)",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 37,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 4,
+      "victory": 2,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9087.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 37,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9087",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9087.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9088",
+      "name": "Troll Key",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Item.",
+      "text": "If Troll Key is discarded, add it to the staging area. If Troll Key is unattached and in the staging area, attach it to a Troll enemy, if able.  Response: After attached Troll enemy takes damage as the result of an attack, the first player may exhaust Bilbo Baggins to claim this objective and attach it to him.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 43,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9088.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9088",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9088.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9089",
+      "name": "Troll Purse",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Item.",
+      "text": "If Troll Purse is discarded, add it to the staging area. If Troll Purse is unattached and in the staging area, attach it to a Troll enemy, if able.  Response: After attached Troll enemy is destroyed, the first player may spend 1 [baggins] resource to claim this objective and attach it to Bilbo Baggins.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 42,
+      "quantity": 1,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9089.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 42,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9089",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9089.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9092",
+      "name": "William",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Troll.",
+      "text": "Troll enemies not engaged with a player cannot take damage.  Forced: After William engages a player, sack 2.  Forced: Return William to the staging area at the end of the combat phase. The engaged player may raise his threat by 1 to cancel this effect.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 32,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 2,
+      "health": 12,
+      "engagement": 38,
+      "victory": 5,
+      "encounter_set": "We Must Away, Ere Break of Day",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "2",
+        "health": "12",
+        "engagement": "38",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9092.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 32,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9092",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9092.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9093",
+      "name": "Wind-whipped Rain",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Discard all non-treasure, non-objective attachments in play.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 56,
+      "quantity": 2,
+      "shadow": "Shadow: The defending character gets -1 [defense].",
+      "encounter_set": "Western Lands",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9093.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 56,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9093",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9093.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0A.1",
+      "name": "We Must Away, Ere Break of Day (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "OHaUH"
+      ],
+      "card_codes": [
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+        "131001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "131001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9013": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9072": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9025": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9050": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9059": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9071": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9086": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9088": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9089": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9009": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9021": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9030": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9058": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9060": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9093": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9004": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9001": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9002": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9003": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9007": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9008": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9010": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9012": 1
+        },
+        "sharedSetAside": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9085": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9016": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9092": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9087": 1
+        },
+        "player1Play1": {
+          "131001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0A.1",
+      "name": "We Must Away, Ere Break of Day",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "OHaUH"
+      ],
+      "card_codes": [
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+        "131001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "131001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9013": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9072": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9025": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9050": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9051": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9059": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9071": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9086": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9088": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9089": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9009": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9021": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9030": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9058": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9060": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9061": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9093": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9004": 2
+        },
+        "sharedEncounterDeck2": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9001": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9002": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9003": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9007": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9008": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9010": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9012": 1
+        },
+        "sharedSetAside": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9085": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9016": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9092": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9087": 1
+        },
+        "player1Play1": {
+          "131001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "131001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/131001.png",
+      "localPath": "/cards/131001.png",
+      "bytes": 158958,
+      "sha256": "af64331f038db74561a487f636061c0b13bf4a2c40fca9b25d3def969542062f"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9001.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9001.jpg",
+      "bytes": 138992,
+      "sha256": "a40e4b8527fca8c2460ceaa664da0a3a6632adf16ae04017ac23c862e94dad32"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9002.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9002.jpg",
+      "bytes": 139974,
+      "sha256": "97a8089c5347bdd75ad7e8805ec73bdc0bcd913f54276ffacf84a8253923c02c"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9003.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9003.jpg",
+      "bytes": 148491,
+      "sha256": "21fe125a54d8dd04bf5a7e06e27ba288b4a9d6af7e1f887c137b990eae246aa8"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9004.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9004.jpg",
+      "bytes": 139637,
+      "sha256": "c07d3ee3b311f4de20a6a372850861a5e754b4b1fd0f0b4ce33516202997476d"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9007.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9007.jpg",
+      "bytes": 136976,
+      "sha256": "8d7716c86ff2b083a27f234f30221c64e02fced328730fe0d71045512e9388d9"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9008.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9008.jpg",
+      "bytes": 143140,
+      "sha256": "1b49b879c2a117dd0ab3a754c3d65d98a2ad794f2b7b26463ff922942c095c05"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9009.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9009.jpg",
+      "bytes": 139833,
+      "sha256": "fb2a61fd5bad6936ea79976571824ca3194c8a04fd640e14aa757cc8f89b95ef"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9010",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9010.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9010.jpg",
+      "bytes": 140602,
+      "sha256": "c5f3a6a86ddcbf9b1c745e3194c34586bcf494b2d4767bdee92025e96cdac9ac"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9012.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9012.jpg",
+      "bytes": 152060,
+      "sha256": "0ad2d723b6fb78d1a91a312f8416657bc1f487f337b4e90eef8e1c0b2406ff05"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9013.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9013.jpg",
+      "bytes": 150739,
+      "sha256": "e4c9e587f61882f18baf7bcf85383093aab25bd4cba1fb31d44225587b803f16"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9013.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9013.B.jpg",
+      "bytes": 153302,
+      "sha256": "224e541684bc6bea41e03daf60c171134a5b04245b2ab396f5aec4f0277f3383"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9016.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9016.jpg",
+      "bytes": 165532,
+      "sha256": "1e58463b5e15c3194592ae00546c7008010d63d8fbabca2a342d6a591f9dd935"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9021.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9021.jpg",
+      "bytes": 151224,
+      "sha256": "f692b56b471cc618c1724d4431e14d7adddbc651493590f3485f06c693a8a25f"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9025.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9025.jpg",
+      "bytes": 164034,
+      "sha256": "1de3c7ac040b1326d5b9765b7ba405a2bcc3f019a8620bf96b016da93e8ce0f8"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9025.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9025.B.jpg",
+      "bytes": 174882,
+      "sha256": "ea6c76d906bcf357360e3a341bf6a2418d44e578394be1c132ff77c97d7d03da"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9030.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9030.jpg",
+      "bytes": 145338,
+      "sha256": "97a5eb93c3a0280e30be6499987dd040e483dd134703756f6577d9bceaef1034"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9050.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9050.jpg",
+      "bytes": 156578,
+      "sha256": "a100c804e63e812b52ce06a11e388f28aab1034a131e87bbaf3fde8f052f3903"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9051.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9051.jpg",
+      "bytes": 150894,
+      "sha256": "a90e97f060b9ddceb6a29dd47a369e4d660589aeba050c68c460e51e3bba6338"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9058.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9058.jpg",
+      "bytes": 157768,
+      "sha256": "9ad2aad2090710f7a45800bb2373f3dda80307d23fb16aa784ece4cf3626e4e2"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9059.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9059.jpg",
+      "bytes": 155826,
+      "sha256": "2cefab6883a7533008389cc3afdbdc095308e8c5c4f68ce6cc8cbc2c8fdae4b0"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9060.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9060.jpg",
+      "bytes": 151631,
+      "sha256": "2afffc4b672624d3c314b1ebce679d352bbdbf7f7adab1e50119d99452bacd43"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9061.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9061.jpg",
+      "bytes": 137912,
+      "sha256": "d05cc8dcaed7adc8ab90db37ce0943d86c1a37746388d33ba674c46a1449ccdd"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9071.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9071.jpg",
+      "bytes": 158345,
+      "sha256": "27cd08b22fdf92b84d2eb80f8283d3a568d7ef2032aeca476ec57e339c16c617"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9072.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9072.jpg",
+      "bytes": 160717,
+      "sha256": "23d6ec39a8b53985e816b4f6bd16b1dc4d8b6623ced4b6691f38cea52f9f7bf5"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9072.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9072.B.jpg",
+      "bytes": 169208,
+      "sha256": "14c4688df8bd7919dec7c598868d4ef2a489cf5671c96c0068bfeb35b787abbb"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9085.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9085.jpg",
+      "bytes": 160651,
+      "sha256": "23cf415894ff8426f1dbd2d0e3dd74c64f61e76a15b7551534db8fb7620d446d"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9086.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9086.jpg",
+      "bytes": 161354,
+      "sha256": "c29ed9acec93b2a7d455505226445a54de4a312218300466502744b32c958928"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9087.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9087.jpg",
+      "bytes": 146943,
+      "sha256": "7c6df16208595b58a3179a63e7620a9e80f8cdc0d70c92eff7356a10be57a0f2"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9088.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9088.jpg",
+      "bytes": 153445,
+      "sha256": "277b68007a3b8c20d0cceedf675fe31ac2818590ac30f8e1e8ff4495cca327e1"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9089.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9089.jpg",
+      "bytes": 133931,
+      "sha256": "2da9ecbb1d285baa032a104ebcf2bee6f6617b3c66aca8c5db78c3f8b28f06c1"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9092.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9092.jpg",
+      "bytes": 164237,
+      "sha256": "5053ca61d7338afd13ca99411fa0f3f5907e1745d1e741b3705947b1b10f7353"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9093.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9093.jpg",
+      "bytes": 148024,
+      "sha256": "f40bb43bb990d056ff3cc961fe9ec2337fa949f6511443def36e40c67833a222"
+    }
+  ]
+}

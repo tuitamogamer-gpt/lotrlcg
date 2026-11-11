@@ -7,6 +7,8 @@ import {
   FortressNurnState,
 } from "./ui/fortress-nurn-state";
 import { MassingOsgiliathState } from "./ui/massing-osgiliath-state";
+import { WeMustAwayState } from "./ui/we-must-away-state";
+import { WMA_QUESTS } from "./game/we-must-away-support";
 import {
   LandSorrowState,
   MessengerOfTheKingState,
@@ -3109,6 +3111,7 @@ export default function App() {
             <FortressNurnState s={game} inspect={setDetail} />
             <BondOfFriendshipState s={game} inspect={setDetail} />
             <MassingOsgiliathState s={game} inspect={setDetail} />
+            <WeMustAwayState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3849,6 +3852,7 @@ export default function App() {
                       ...LAND_SORROW_QUESTS,
                       ...FORTRESS_NURN_QUESTS,
                       ...MASSING_QUESTS,
+                      ...WMA_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

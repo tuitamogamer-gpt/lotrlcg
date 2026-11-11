@@ -1,3 +1,4 @@
+import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
 import {
   fortressNurnPlayerEffect,
   fortressNurnPlayerQuestSucceeded,
@@ -2780,6 +2781,7 @@ function handleEffect(s: GameState, e: Effect) {
         const order = globalPlayerOrder(s);
         s.table.first = order[1 % order.length] ?? 0;
         followFirstPlayer(s);
+        bagginsBilboFollowsFirstPlayer(s);
         Depths.depthsFirstPlayerChanged(s);
         DrownedCompanions.drownedFirstPlayerChanged(s);
       }

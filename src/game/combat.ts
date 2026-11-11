@@ -248,6 +248,12 @@ export function playerAttack(
       ),
     "Only Dúnhere can attack a staging enemy, and he must attack alone.",
   );
+  const scenarioAttackProblem = batch4Scenario(s).attackProblem?.(
+    s,
+    enemy,
+    ids,
+  );
+  requireRule(!scenarioAttackProblem, scenarioAttackProblem ?? "");
   requireRule(
     batch4Scenario(s).playerAttackDeclared?.(s, enemy, ids) !== false,
     "This attack cannot pay the scenario's progress cost.",
