@@ -9,16 +9,18 @@ const root = new URL("..", import.meta.url);
 const args = process.argv.slice(2);
 let recipeId,
   download = false,
-  checkOnly = false;
+  checkOnly = false,
+  standalone = false;
 for (let i = 0; i < args.length; i++) {
   if (args[i] === "--recipe") recipeId = args[++i];
   else if (args[i] === "--download") download = true;
   else if (args[i] === "--check") checkOnly = true;
+  else if (args[i] === "--standalone") standalone = true;
   else throw new Error(`Unknown argument: ${args[i]}`);
 }
 if (!recipeId)
   throw new Error(
-    "Usage: npm run prepare:scenario-import -- --recipe Q05.1 [--download] [--check]",
+    "Usage: npm run prepare:scenario-import -- --recipe Q05.1 [--download] [--check] [--standalone]",
   );
 const readJson = async (path) =>
   JSON.parse(await readFile(new URL(path, root), "utf8"));
@@ -45,11 +47,17 @@ const matching = recipes.filter(
     ["standard", "easy"].includes(r.mode) &&
     title(r.name) === name,
 );
+// Standalone scenarios published before official easy mode have one recipe;
+// easy mode then only adds the framework resource, as no card is marked.
 if (
   matching.filter((r) => r.mode === "standard").length !== 1 ||
-  matching.filter((r) => r.mode === "easy").length !== 1
+  matching.filter((r) => r.mode === "easy").length !== (standalone ? 0 : 1)
 )
-  throw new Error("The source must contain one standard and one easy recipe.");
+  throw new Error(
+    standalone
+      ? "A standalone source must contain exactly one standard recipe."
+      : "The source must contain one standard and one easy recipe.",
+  );
 const ids = [...new Set(matching.flatMap((r) => r.card_codes))].sort();
 const cards = ids.map((id) => {
   const c = catalog.find((c) => c.code === id);

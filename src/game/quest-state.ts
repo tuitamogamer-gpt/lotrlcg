@@ -24,6 +24,7 @@ const coreQuests: Record<string, readonly string[]> = {
 
 export function mainQuestCode(s: GameState): string | undefined {
   if (s.fortressNurn) return s.fortressNurn.currentQuest;
+  if (s.massing) return s.massing.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

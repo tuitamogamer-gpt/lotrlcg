@@ -5,8 +5,8 @@
     "playerCards": 755,
     "heroes": 84,
     "deckCards": 667,
-    "encounterCards": 1190,
-    "scenarios": 81,
+    "encounterCards": 1205,
+    "scenarios": 82,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -88,17 +88,18 @@
       "challenge-of-the-wainriders",
       "under-the-ash-mountains",
       "the-land-of-sorrow",
-      "the-fortress-of-nurn"
+      "the-fortress-of-nurn",
+      "the-massing-at-osgiliath"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2196,
-    "pending": 1987
+    "scripted": 2215,
+    "pending": 1968
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 162
+    "scripted": 163
   },
   "registeredCodes": [
     "01001",
@@ -1534,6 +1535,25 @@
     "octgn:51223bd0-ffd1-11df-a976-0801213c9024",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9025",
     "octgn:51223bd0-ffd1-11df-a976-0801213c9029",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9001",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9002",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9003",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9004",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9005",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9006",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9007",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9008",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9009",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9010",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9011",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9012",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9013",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9014",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9015",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9016",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
+    "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
     "octgn:51a5e288-cf6e-430d-bc66-715ad2be1a16",
     "octgn:51b186ac-ddf5-4909-a484-20d273be27c9",
@@ -2997,7 +3017,7 @@
     {
       "product": "the-massing-at-osgiliath",
       "total": 19,
-      "scripted": 0,
+      "scripted": 19,
       "player": 0,
       "playerScripted": 0
     },
@@ -20800,7 +20820,7 @@
       "name": "The Witch-king",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20808,7 +20828,7 @@
       "name": "Snaga Scouts",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20816,7 +20836,7 @@
       "name": "Wolves from Mordor",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20824,7 +20844,7 @@
       "name": "Wainriders",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20832,7 +20852,7 @@
       "name": "Wainrider Captain",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20840,7 +20860,7 @@
       "name": "Uruk Vanguard",
       "type": "enemy",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20848,7 +20868,7 @@
       "name": "Captured Watchtower",
       "type": "location",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20856,7 +20876,7 @@
       "name": "Emyn Arnen Overlook",
       "type": "location",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20864,7 +20884,7 @@
       "name": "Morgulduin",
       "type": "location",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20872,7 +20892,7 @@
       "name": "Pelennor Fields",
       "type": "location",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20880,7 +20900,7 @@
       "name": "Ruins of Osgiliath",
       "type": "location",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20888,7 +20908,7 @@
       "name": "Cut Off",
       "type": "treachery",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20896,7 +20916,7 @@
       "name": "Dark Pursuit",
       "type": "treachery",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20904,7 +20924,7 @@
       "name": "Massing at Osgiliath",
       "type": "treachery",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20912,7 +20932,7 @@
       "name": "Ranger of Ithilien",
       "type": "objective-ally",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20920,7 +20940,7 @@
       "name": "Beyond Expectations",
       "type": "quest",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20928,7 +20948,7 @@
       "name": "Through the Ruins",
       "type": "quest",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20936,7 +20956,7 @@
       "name": "Anduin Crossing",
       "type": "quest",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -20944,7 +20964,7 @@
       "name": "Race to Minas Tirith",
       "type": "quest",
       "pack": "The Massing at Osgiliath",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-massing-at-osgiliath"
     },
     {
@@ -39133,8 +39153,8 @@
       "id": "Q99.01",
       "name": "The Massing at Osgiliath",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-massing-at-osgiliath",
+      "state": "scripted"
     },
     {
       "id": "Q99.02",

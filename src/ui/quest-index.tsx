@@ -39,6 +39,10 @@ const HEADLINES: Partial<
     lead: "Storm the castle",
     em: "and face the Thane.",
   },
+  "the-massing-at-osgiliath": {
+    lead: "Outrun the horde",
+    em: "across the Anduin.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

@@ -1840,6 +1840,7 @@ function handleEffect(s: GameState, e: Effect) {
         removeQuestTime(s);
       break;
     case "ninCommitAfterCost":
+    case "paidCommit":
       commitCharacters(s);
       break;
     case "startQuest":
@@ -1880,6 +1881,7 @@ function handleEffect(s: GameState, e: Effect) {
       Storm.stormcallerTravelStart(s);
       Depths.depthsTravelStart(s);
       Temple.templeTravelStart(s);
+      batch4Scenario(s).travelBegin?.(s);
       break;
     case "startEncounter":
       startPhase(s, "encounter");

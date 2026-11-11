@@ -1,5 +1,9 @@
 import fortressNurnPlayers from "../data/fortress-nurn-player-cards.json";
 import {
+  MASSING_ENCOUNTERS,
+  MASSING_QUESTS,
+} from "./massing-osgiliath-scenario-data";
+import {
   FORTRESS_NURN_ENCOUNTERS,
   FORTRESS_NURN_QUESTS,
 } from "./fortress-nurn-scenario-data";
@@ -462,6 +466,7 @@ export const encounterCards = [
       ...ASH_ENCOUNTERS,
       ...LAND_SORROW_ENCOUNTERS,
       ...FORTRESS_NURN_ENCOUNTERS,
+      ...MASSING_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -534,6 +539,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...ASH_QUESTS,
     ...LAND_SORROW_QUESTS,
     ...FORTRESS_NURN_QUESTS,
+    ...MASSING_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -647,6 +653,7 @@ export const SCRIPTED = new Set(
     ...ASH_QUESTS,
     ...LAND_SORROW_QUESTS,
     ...FORTRESS_NURN_QUESTS,
+    ...MASSING_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

@@ -1,5 +1,6 @@
 import * as FortressPlayers from "./fortress-nurn-player";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
+import { massingPublicState } from "./massing-osgiliath-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -1613,7 +1614,7 @@ export function resolvePlayerCard(
     ShadowEastPlayers.shadowEastPlayerCardPlayed(s, c, u, fromHand);
     EredFinalPlayers.eredFinalPlayerCardPlayed(s, c, u, fromHand);
     WildsPlayers.wildsPlayerCardPlayed(s, c);
-    batch4Scenario(s).playerCardPlayed?.(s, u);
+    batch4Scenario(s).playerCardPlayed?.(s, u, fromHand);
   }
   if (played && c.type_code !== "ally") heirsPlayerCardPlayed(s, c);
   if (played && c.type_code !== "ally")
@@ -2809,6 +2810,7 @@ export function applyAction(input: GameState, action: Action): GameState {
     }
     case "COMMIT": {
       if (Nin.ninPayCommit(s)) break;
+      if (batch4Scenario(s).payCommit?.(s)) break;
       commitCharacters(s);
       break;
     }
@@ -3496,6 +3498,7 @@ export function publicState(s: GameState) {
     landSorrow: sorrowPublicState(s),
     landSorrowPlayers: LandSorrowPlayers.landSorrowPlayerPublic(s),
     fortressNurn: fortressNurnPublicState(s),
+    massing: massingPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

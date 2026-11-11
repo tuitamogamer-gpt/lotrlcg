@@ -250,6 +250,7 @@ export type ScenarioId =
   | "temple-of-doom"
   | "the-land-of-sorrow"
   | "the-fortress-of-nurn"
+  | "the-massing-at-osgiliath"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -410,6 +411,9 @@ export interface GameState {
   landSorrowPlayers?: import("./land-sorrow-types").LandSorrowPlayersState;
   fortressNurn?: import("./fortress-nurn-types").FortressNurnState;
   fortressNurnPlayers?: import("./fortress-nurn-types").FortressNurnPlayersState;
+  massing?: import("./massing-osgiliath-types").MassingState;
+  /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
+  massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
   ashPlayers?: import("./ash-mountains-types").AshPlayersState;
   wainriders?: import("./wainriders-types").WainridersState;
@@ -717,6 +721,8 @@ export interface GameState {
     nurnKilled?: boolean;
     nurnSoldier?: number;
     nurnUnderGuard?: number;
+    massingEnemy?: string;
+    massingKilled?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

@@ -1,10 +1,12 @@
 import { ASH_QUESTS } from "./game/ash-mountains-support";
 import { LAND_SORROW_QUESTS } from "./game/land-sorrow-support";
 import { FORTRESS_NURN_QUESTS } from "./game/fortress-nurn-support";
+import { MASSING_QUESTS } from "./game/massing-osgiliath-support";
 import {
   BondOfFriendshipState,
   FortressNurnState,
 } from "./ui/fortress-nurn-state";
+import { MassingOsgiliathState } from "./ui/massing-osgiliath-state";
 import {
   LandSorrowState,
   MessengerOfTheKingState,
@@ -3106,6 +3108,7 @@ export default function App() {
             <MessengerOfTheKingState s={game} inspect={setDetail} />
             <FortressNurnState s={game} inspect={setDetail} />
             <BondOfFriendshipState s={game} inspect={setDetail} />
+            <MassingOsgiliathState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3845,6 +3848,7 @@ export default function App() {
                       ...ASH_QUESTS,
                       ...LAND_SORROW_QUESTS,
                       ...FORTRESS_NURN_QUESTS,
+                      ...MASSING_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

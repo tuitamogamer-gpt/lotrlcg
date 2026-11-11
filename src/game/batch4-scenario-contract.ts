@@ -138,7 +138,19 @@ export interface Batch4ScenarioHooks {
   ): boolean;
   eventPlayed?(s: GameState, u: Unit): void;
   eventCancelled?(s: GameState, id: string): boolean;
-  playerCardPlayed?(s: GameState, u: Unit): void;
+  playerCardPlayed?(s: GameState, u: Unit, fromHand?: boolean): void;
+  /** Allies cannot be put into play from a player's hand right now. */
+  handEntryBlocked?(s: GameState): boolean;
+  /** A commit cost: return true after offering the payment that then commits. */
+  payCommit?(s: GameState): boolean;
+  /** The beginning of the travel phase, before any travel decision. */
+  travelBegin?(s: GameState): void;
+  /** Additional doomed gained by a card as it is revealed. */
+  revealedDoomed?(
+    s: GameState,
+    code: string,
+    revealOrigin: Effect["revealOrigin"],
+  ): number;
   playProblem?(s: GameState, code: string): string | null;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */

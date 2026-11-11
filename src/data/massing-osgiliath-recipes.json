@@ -1,0 +1,157 @@
+[
+  {
+    "id": "Q99.01",
+    "name": "The Massing at Osgiliath",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": ["TMaO"],
+    "card_codes": [
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9016",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9005",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9006",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9007",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9008",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9009",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9010",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9011",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9012",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9013",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9014",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9015",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9001",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9002",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9003",
+      "octgn:51223bd0-ffd1-11df-a976-1801202c9004"
+    ],
+    "cards": [
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9016",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9005",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9006",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9007",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9008",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9009",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9010",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9011",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9012",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9013",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9014",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9015",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9001",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9002",
+        "quantity": 4,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9003",
+        "quantity": 4,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9004",
+        "quantity": 4,
+        "section": "sharedSetAside"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9016": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9018": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9020": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9022": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9005": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9006": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9007": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9008": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9009": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9010": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9011": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9012": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9013": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9014": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9015": 2
+      },
+      "sharedSetAside": {
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9001": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9002": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9003": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801202c9004": 4
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

@@ -2226,11 +2226,27 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     );
 }
 
+let resolvingQuestProgress = 0;
+/** Quest resolution, rather than a card effect, is placing progress now. */
+export const questResolutionProgress = () => resolvingQuestProgress > 0;
 export function progress(
   s: GameState,
   n: number,
   playerEffect = false,
   fromSuccessfulQuest = false,
+) {
+  if (fromSuccessfulQuest) resolvingQuestProgress++;
+  try {
+    placeProgress(s, n, playerEffect, fromSuccessfulQuest);
+  } finally {
+    if (fromSuccessfulQuest) resolvingQuestProgress--;
+  }
+}
+function placeProgress(
+  s: GameState,
+  n: number,
+  playerEffect: boolean,
+  fromSuccessfulQuest: boolean,
 ) {
   if (n <= 0 || s.status !== "playing") return;
   if (
@@ -3135,7 +3151,8 @@ export function resolveReveal(
     (TempleEncounters.templePrintedDoomed(s, code) ??
       Number(doomed?.[1] ?? 0)) +
     Etten.ettenRevealDoomed(s, code) +
-    Rhudaur.rhudaurRevealDoomed(s, code);
+    Rhudaur.rhudaurRevealDoomed(s, code) +
+    (batch4Scenario(s).revealedDoomed?.(s, code, revealOrigin) ?? 0);
   if (doomedAmount && !doomedResolved) {
     prepend(
       s,
@@ -3746,6 +3763,11 @@ export function enterAlly(
     allyCanEnter(s, u.code),
     "This ally cannot enter play: its unique title or scenario restriction is already in effect.",
   );
+  if (fromHand && !played && batch4Scenario(s).handEntryBlocked?.(s)) {
+    s.hand.push(u);
+    log(s, `${name(u)} cannot be put into play from hand this round.`);
+    return;
+  }
   u.temporary = temporary;
   s.allies.push(u);
   City.cityAllyEntered(s, u);

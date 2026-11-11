@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Beyond Expectations",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9016",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Through the Ruins",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Anduin Crossing",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Race to Minas Tirith",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Wainrider Captain",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9005",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Uruk Vanguard",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9006",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Captured Watchtower",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9007",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Emyn Arnen Overlook",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9008",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Morgulduin",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9009",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Pelennor Fields",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9010",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Ruins of Osgiliath",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9011",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Cut Off",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9012",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Dark Pursuit",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9013",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Massing at Osgiliath",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9014",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Ranger of Ithilien",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9015",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Witch-king",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Snaga Scouts",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9002",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Wolves from Mordor",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9003",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Wainriders",
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801202c9004",
+    "normal": 4,
+    "easy": 4
+  }
+]

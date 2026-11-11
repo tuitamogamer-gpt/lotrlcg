@@ -158,7 +158,9 @@
     "test:land-sorrow-simulation": "node --import tsx --test tests/land-sorrow-simulation.test.ts",
     "test:browser-land-sorrow": "node --import tsx scripts/browser-land-sorrow.mjs",
     "test:fortress-nurn-simulation": "node --import tsx --test tests/fortress-nurn-simulation.test.ts",
-    "test:browser-fortress-nurn": "node --import tsx scripts/browser-fortress-nurn.mjs"
+    "test:browser-fortress-nurn": "node --import tsx scripts/browser-fortress-nurn.mjs",
+    "test:massing-osgiliath-simulation": "node --import tsx --test tests/massing-osgiliath-simulation.test.ts",
+    "test:browser-massing-osgiliath": "node --import tsx scripts/browser-massing-osgiliath.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

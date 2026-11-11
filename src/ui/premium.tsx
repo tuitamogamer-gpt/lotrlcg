@@ -3,6 +3,10 @@ import type { ScenarioId } from "../game/types";
 import { CardBack, TableToken } from "./tabletop";
 
 export const PLAYMATS = {
+  "the-massing-at-osgiliath": {
+    name: "Osgiliath",
+    detail: "The Anduin crossing · A horde beyond expectations",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -397,6 +401,7 @@ export const PLAYMAT_CHOICES = [
   "under-the-ash-mountains",
   "the-land-of-sorrow",
   "the-fortress-of-nurn",
+  "the-massing-at-osgiliath",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",
