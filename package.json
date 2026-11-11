@@ -162,7 +162,9 @@
     "test:massing-osgiliath-simulation": "node --import tsx --test tests/massing-osgiliath-simulation.test.ts",
     "test:browser-massing-osgiliath": "node --import tsx scripts/browser-massing-osgiliath.mjs",
     "test:we-must-away-simulation": "node --import tsx --test tests/we-must-away-simulation.test.ts",
-    "test:browser-we-must-away": "node --import tsx scripts/browser-we-must-away.mjs"
+    "test:browser-we-must-away": "node --import tsx scripts/browser-we-must-away.mjs",
+    "test:misty-mountains-simulation": "node --import tsx --test tests/misty-mountains-simulation.test.ts",
+    "test:browser-misty-mountains": "node --import tsx scripts/browser-misty-mountains.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

@@ -10,6 +10,7 @@ import {
 } from "./fortress-nurn-support";
 import { massingUnits, validateMassing } from "./massing-osgiliath-support";
 import { validateWeMustAway, wmaUnits } from "./we-must-away-support";
+import { ommUnits, validateMistyMountains } from "./misty-mountains-support";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -898,6 +899,7 @@ export function validateSave(
       (!validateFortressNurn(s, validUnit as (v: unknown) => boolean) ||
         !validateMassing(s, validUnit as (v: unknown) => boolean) ||
         !validateWeMustAway(s, validUnit as (v: unknown) => boolean) ||
+        !validateMistyMountains(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1603,6 +1605,7 @@ export function validateSave(
       ...fortressNurnUnits(s),
       ...massingUnits(s),
       ...wmaUnits(s),
+      ...ommUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

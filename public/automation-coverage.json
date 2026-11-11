@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 756,
+    "playerCards": 759,
     "heroes": 85,
-    "deckCards": 667,
-    "encounterCards": 1231,
-    "scenarios": 83,
+    "deckCards": 670,
+    "encounterCards": 1247,
+    "scenarios": 84,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -90,17 +90,18 @@
       "the-land-of-sorrow",
       "the-fortress-of-nurn",
       "the-massing-at-osgiliath",
-      "we-must-away-ere-break-of-day"
+      "we-must-away-ere-break-of-day",
+      "over-the-misty-mountains-grim"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2245,
-    "pending": 1938
+    "scripted": 2267,
+    "pending": 1916
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 165
+    "scripted": 167
   },
   "registeredCodes": [
     "01001",
@@ -678,6 +679,9 @@
     "131013",
     "131014",
     "131015",
+    "131020",
+    "131021",
+    "131022",
     "132006",
     "132018",
     "141016",
@@ -1560,6 +1564,7 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9004",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9007",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9008",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
@@ -1568,16 +1573,34 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9022",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9034",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9035",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9039",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
@@ -2649,9 +2672,9 @@
     {
       "product": "over-hill-and-under-hill",
       "total": 84,
-      "scripted": 39,
+      "scripted": 61,
       "player": 22,
-      "playerScripted": 10
+      "playerScripted": 13
     },
     {
       "product": "over-hill-and-under-hill-nightmare",
@@ -8947,7 +8970,7 @@
       "name": "Sting",
       "type": "treasure",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8955,7 +8978,7 @@
       "name": "Orcrist",
       "type": "treasure",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8963,7 +8986,7 @@
       "name": "Glamdring",
       "type": "treasure",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21227,7 +21250,7 @@
       "name": "A Short Rest",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21307,7 +21330,7 @@
       "name": "Chaos in the Cavern",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21331,7 +21354,7 @@
       "name": "Down, Down to Goblin Town",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21347,7 +21370,7 @@
       "name": "Front Porch",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21355,7 +21378,7 @@
       "name": "Galloping Boulders",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21363,7 +21386,7 @@
       "name": "Goblin Axeman",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21371,7 +21394,7 @@
       "name": "Goblin Bent-Swords",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21379,7 +21402,7 @@
       "name": "Goblin Driver",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21387,7 +21410,7 @@
       "name": "Goblin Miners",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21395,7 +21418,7 @@
       "name": "Goblin Runners",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21411,7 +21434,7 @@
       "name": "Great Cavern Room",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21427,7 +21450,7 @@
       "name": "Grip, grab! Pinch, nab!",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21435,7 +21458,7 @@
       "name": "Guffawing of Giants",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21539,7 +21562,7 @@
       "name": "Overhanging Rock",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21571,7 +21594,7 @@
       "name": "Stone-Giant",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21579,7 +21602,7 @@
       "name": "The Goblins' Caves",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21587,7 +21610,7 @@
       "name": "The Great Goblin",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21595,7 +21618,7 @@
       "name": "The High Pass",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21603,7 +21626,7 @@
       "name": "The Mountain Pass",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -37392,8 +37415,8 @@
       "id": "E0A.2",
       "name": "Over the Misty Mountains Grim (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "over-the-misty-mountains-grim",
+      "state": "scripted"
     },
     {
       "id": "E0A.3",
@@ -38883,8 +38906,8 @@
       "id": "Q0A.2",
       "name": "Over the Misty Mountains Grim",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "over-the-misty-mountains-grim",
+      "state": "scripted"
     },
     {
       "id": "Q0A.3",

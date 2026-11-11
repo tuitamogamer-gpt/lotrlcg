@@ -623,3 +623,15 @@ test("Lone-Lands removes a hero resource from each player, No Campfire offers th
   flush(s);
   assert.equal(seatView(s, 0).threat, 26);
 });
+
+test("Roast Mutton advances as soon as a reveal empties the deck, before a second queued reveal could refill it", () => {
+  let s = base(2, 2);
+  for (const code of WMA_TROLLS) stage(s, code);
+  s.phase = "staging";
+  s.encounterDeck = [W.loneLands];
+  s.encounterDiscard = [W.rain, W.grocer];
+  s.queue = [fx("reveal", { player: 0 }), fx("reveal", { player: 1 })];
+  s = run(s);
+  assert.equal(s.status, "won");
+  assert.equal(s.stage, 3);
+});

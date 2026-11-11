@@ -2,6 +2,7 @@ import * as FortressPlayers from "./fortress-nurn-player";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
+import { ommPublicState } from "./misty-mountains-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -3503,6 +3504,7 @@ export function publicState(s: GameState) {
     fortressNurn: fortressNurnPublicState(s),
     massing: massingPublicState(s),
     weMustAway: wmaPublicState(s),
+    mistyMountains: ommPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

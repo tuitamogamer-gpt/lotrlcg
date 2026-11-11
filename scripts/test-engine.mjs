@@ -29,7 +29,8 @@ const files = readdirSync(new URL("../tests", import.meta.url))
       name !== "land-sorrow-simulation.test.ts" &&
       name !== "fortress-nurn-simulation.test.ts" &&
       name !== "massing-osgiliath-simulation.test.ts" &&
-      name !== "we-must-away-simulation.test.ts",
+      name !== "we-must-away-simulation.test.ts" &&
+      name !== "misty-mountains-simulation.test.ts",
   )
   .sort()
   .map((name) => `tests/${name}`);

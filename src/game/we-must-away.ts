@@ -90,6 +90,145 @@ const takeShadow = (enemy: Unit, code: string) => {
   return true;
 };
 const isGandalf = (u: Unit) => card(u.code).name === "Gandalf";
+/** The Western Lands encounter set appears in two Hobbit scenarios. */
+export const westernActive = (s: GameState) =>
+  !!s.weMustAway || !!s.mistyMountains;
+/** The resolving zone of the Hobbit scenario in play. */
+export const hobbitResolving = (s: GameState): Unit[] =>
+  s.weMustAway?.resolving ?? s.mistyMountains?.resolving ?? [];
+const WESTERN_TREACHERIES = [W.grocer, W.campfire, W.rain];
+const WESTERN_EFFECTS = [
+  "wmaTreachery",
+  "wmaTreacheryDone",
+  "wmaThreat",
+  "wmaGrocer",
+  "wmaCampfire",
+  "wmaCrow",
+  "wmaDreary",
+  "wmaLoneLands",
+  "wmaRemoveResource",
+  "wmaBilboResponse",
+  "wmaBilboGains",
+  "wmaCaveEntrance",
+];
+/** Hold a revealed treachery physically until its effects finish. */
+export function holdTreachery(
+  s: GameState,
+  code: string,
+  replay: boolean,
+  fromReveal: boolean,
+) {
+  if (!fromReveal) {
+    if (!replay) s.encounterDiscard.push(code);
+    return;
+  }
+  if (replay) {
+    const i = s.encounterDiscard.lastIndexOf(code);
+    if (i >= 0) s.encounterDiscard.splice(i, 1);
+  }
+  const u = make(s, code);
+  hobbitResolving(s).push(u);
+  const player = firstPlayer(s);
+  prepend(
+    s,
+    fx("wmaTreachery", { code, source: u.id, player }),
+    fx("wmaTreacheryDone", { source: u.id, player }),
+  );
+}
+/** Western Lands When Revealed effects. */
+export function westernEncounter(
+  s: GameState,
+  code: string,
+  replay = false,
+  fromReveal = true,
+) {
+  if (!westernActive(s)) return false;
+  if (code === W.crow) {
+    if (fromReveal) prepend(s, fx("wmaCrow", { player: firstPlayer(s) }));
+    return true;
+  }
+  if (!WESTERN_TREACHERIES.includes(code)) return false;
+  holdTreachery(s, code, replay, fromReveal);
+  return true;
+}
+/** Western Lands shadow effects. */
+export function westernShadow(s: GameState, code: string) {
+  const c = s.combat;
+  if (!c || !westernActive(s)) return false;
+  const p = c.attackPlayer ?? activeSeat(s);
+  if (code === W.crow) c.wmaCrow = (c.wmaCrow ?? 0) + 1;
+  else if (code === W.grocer)
+    prepend(s, fx("wmaGrocer", { player: firstPlayer(s) }));
+  else if (code === W.campfire)
+    prepend(s, fx("wmaThreat", { value: 2, player: p }));
+  else if (code === W.rain) c.defensePenalty = (c.defensePenalty ?? 0) + 1;
+  else return false;
+  return true;
+}
+/** Western Lands "after placing progress" and explored responses. */
+export function westernLocationProgress(s: GameState, u: Unit, amount: number) {
+  if (!westernActive(s) || amount <= 0 || u.blanked) return;
+  if (u.code === W.drearyHills)
+    prepend(s, ...playerOrder(s).map((player) => fx("wmaDreary", { player })));
+  else if (u.code === W.loneLands)
+    prepend(
+      s,
+      ...playerOrder(s).map((player) => fx("wmaLoneLands", { player })),
+    );
+}
+export function westernExplored(s: GameState, u: Unit) {
+  if (!westernActive(s) || u.blanked) return;
+  if (u.code === W.drearyHills || u.code === W.loneLands)
+    prepend(
+      s,
+      fx("wmaBilboResponse", { code: u.code, player: firstPlayer(s) }),
+    );
+}
+export const westernRoundEnd = (s: GameState): Effect[] =>
+  westernActive(s)
+    ? s.staging
+        .filter((u) => u.code === W.caveEntrance && !u.blanked)
+        .map(() =>
+          fx("wmaCaveEntrance", { value: players(s), player: firstPlayer(s) }),
+        )
+    : [];
+/** A Suspicious Crow's shadow returns it to the deck after damage. */
+export function westernAttackStarted(s: GameState) {
+  if (!s.combat) return;
+  s.combat.wmaCrow = 0;
+  s.combat.wmaDamaged = false;
+}
+export function westernDamageDealt(
+  s: GameState,
+  u: Unit,
+  amount: number,
+  ctx: { combatDamage?: boolean; enemyId?: string },
+) {
+  const c = s.combat;
+  if (!c || !ctx.combatDamage || ctx.enemyId !== c.enemyId || amount <= 0)
+    return;
+  if (["hero", "ally"].includes(typeOf(u))) c.wmaDamaged = true;
+}
+export function westernAttackFinished(s: GameState, c: Combat) {
+  if (!westernActive(s) || !c.wmaCrow || !c.wmaDamaged) return;
+  const enemy = get(s, c.enemyId);
+  for (let i = 0; i < c.wmaCrow; i++) {
+    if (enemy && takeShadow(enemy, W.crow)) s.encounterDeck.push(W.crow);
+    else {
+      const at = s.encounterDiscard.lastIndexOf(W.crow);
+      if (at < 0) continue;
+      s.encounterDiscard.splice(at, 1);
+      s.encounterDeck.push(W.crow);
+    }
+    shuffle(s, s.encounterDeck);
+    log(
+      s,
+      "A Suspicious Crow is shuffled back into the encounter deck.",
+      "danger",
+    );
+  }
+  c.wmaCrow = 0;
+}
 /** The characters a Sack card targets; ties are chosen by the first player. */
 export function sackTargets(s: GameState, code: string) {
   const open = allCharacters(s).filter(
@@ -215,52 +354,22 @@ function encounter(
 ) {
   const q = s.weMustAway;
   if (!q) return false;
-  const first = firstPlayer(s);
+  if (westernEncounter(s, code, replay, fromReveal)) return true;
   if (code === W.key || code === W.purse) {
-    prepend(s, fx("wmaAttachObjectives", { player: first }));
+    prepend(s, fx("wmaAttachObjectives", { player: firstPlayer(s) }));
     return true;
   }
-  if (code === W.crow) {
-    if (fromReveal) prepend(s, fx("wmaCrow", { player: first }));
-    return true;
-  }
-  if (
-    ![
-      W.hungry,
-      W.lots,
-      W.grocer,
-      W.campfire,
-      W.roast,
-      W.rain,
-      W.pickle,
-    ].includes(code)
-  )
-    return false;
-  if (!fromReveal) {
-    if (!replay) s.encounterDiscard.push(code);
-    return true;
-  }
-  if (replay) {
-    const i = s.encounterDiscard.lastIndexOf(code);
-    if (i >= 0) s.encounterDiscard.splice(i, 1);
-  }
-  const u = make(s, code);
-  q.resolving.push(u);
-  prepend(
-    s,
-    fx("wmaTreachery", { code, source: u.id, player: first }),
-    fx("wmaTreacheryDone", { source: u.id, player: first }),
-  );
+  if (![W.hungry, W.lots, W.roast, W.pickle].includes(code)) return false;
+  holdTreachery(s, code, replay, fromReveal);
   return true;
 }
 function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c || !s.weMustAway) return false;
-  const p = c.attackPlayer ?? activeSeat(s),
-    first = firstPlayer(s),
+  if (westernShadow(s, code)) return true;
+  const first = firstPlayer(s),
     enemy = get(s, c.enemyId);
-  if (code === W.crow) c.wmaCrow = (c.wmaCrow ?? 0) + 1;
-  else if (code === W.pickle) {
+  if (code === W.pickle) {
     if (enemy && takeShadow(enemy, code)) {
       s.encounterDeck.push(code);
       shuffle(s, s.encounterDeck);
@@ -298,11 +407,7 @@ function shadow(s: GameState, code: string) {
           effects: [fx("wmaSack", { value: 1, player: first })],
         }),
       );
-  } else if (code === W.grocer) prepend(s, fx("wmaGrocer", { player: first }));
-  else if (code === W.campfire)
-    prepend(s, fx("wmaThreat", { value: 2, player: p }));
-  else if (code === W.roast) prepend(s, fx("wmaFindCamp", { player: first }));
-  else if (code === W.rain) c.defensePenalty = (c.defensePenalty ?? 0) + 1;
+  } else if (code === W.roast) prepend(s, fx("wmaFindCamp", { player: first }));
   else return false;
   return true;
 }
@@ -327,27 +432,11 @@ function returnToStaging(s: GameState, u: Unit) {
   s.staging.push(u);
   enemyAddedToStaging(s, u);
 }
-/** Shared "after placing progress" triggers of the Western Lands. */
 function locationProgressPlaced(s: GameState, u: Unit, amount: number) {
   if (!s.weMustAway || amount <= 0 || u.blanked) return;
-  const first = firstPlayer(s);
-  if (u.code === W.drearyHills)
-    prepend(s, ...playerOrder(s).map((player) => fx("wmaDreary", { player })));
-  else if (u.code === W.loneLands)
-    prepend(
-      s,
-      ...playerOrder(s).map((player) => fx("wmaLoneLands", { player })),
-    );
-  else if (u.code === W.hobbitLands)
-    prepend(s, fx("wmaHobbitLands", { player: first }));
-}
-function explored(s: GameState, u: Unit) {
-  if (!s.weMustAway || u.blanked) return;
-  if (u.code === W.drearyHills || u.code === W.loneLands)
-    prepend(
-      s,
-      fx("wmaBilboResponse", { code: u.code, player: firstPlayer(s) }),
-    );
+  westernLocationProgress(s, u, amount);
+  if (u.code === W.hobbitLands)
+    prepend(s, fx("wmaHobbitLands", { player: firstPlayer(s) }));
 }
 /** Remove the Sack from a character and shuffle it into the sack deck. */
 function removeSack(s: GameState, u: Unit) {
@@ -408,8 +497,209 @@ function campAbilityProblem(s: GameState, u: Unit) {
     return "No character has a Sack card attached.";
   return null;
 }
+/** Effects of the Western Lands and shared treachery handling, in either scenario. */
+function westernEffect(s: GameState, e: Effect): boolean {
+  const p = e.player ?? activeSeat(s),
+    first = firstPlayer(s);
+  switch (e.kind) {
+    case "wmaTreachery": {
+      const held = hobbitResolving(s).find((x) => x.id === e.source);
+      if (!held) break;
+      const code = held.code;
+      if (code === W.hungry) {
+        const options = stagingTrolls(s);
+        if (options.length)
+          choose(
+            s,
+            "Hungry Troll · The first player engages a Troll",
+            options.map((t) =>
+              option(t, [fx("wmaEngage", { target: t.id, player: first })]),
+            ),
+          );
+      } else if (code === W.lots) {
+        if (stagingTrolls(s).length)
+          prepend(s, fx("wmaSack", { value: 1, player: first }));
+      } else if (code === W.grocer)
+        prepend(s, fx("wmaGrocer", { player: first }));
+      else if (code === W.campfire)
+        prepend(
+          s,
+          ...playerOrder(s).map((player) => fx("wmaCampfire", { player })),
+        );
+      else if (code === W.roast) {
+        const value = stagingTrolls(s).length ? 2 : 1;
+        prepend(
+          s,
+          ...allCharacters(s)
+            .filter((u) => typeOf(u) === "ally")
+            .map((u) =>
+              fx("damage", { target: u.id, value, player: ownerOf(s, u) }),
+            ),
+        );
+      } else if (code === W.rain) {
+        let discarded = 0;
+        for (const u of [
+          ...allCharacters(s),
+          ...s.staging,
+          ...allEngaged(s),
+          ...allActiveLocations(s),
+        ])
+          for (const a of [...u.attachments])
+            if (typeOf(a.code) !== "objective" && !card(a.code).treasure) {
+              discardAttachment(s, u, a);
+              discarded++;
+            }
+        log(
+          s,
+          `Wind-whipped Rain discards ${discarded} attachment${discarded === 1 ? "" : "s"}.`,
+          "danger",
+        );
+      } else if (code === W.pickle) {
+        const n = 2 * players(s);
+        let moved = 0;
+        while (moved < n && s.encounterDiscard.length) {
+          s.encounterDeck.push(s.encounterDiscard.pop()!);
+          moved++;
+        }
+        if (moved)
+          log(
+            s,
+            `A Nice Pickle places ${moved} card${moved === 1 ? "" : "s"} from the encounter discard pile on the bottom of the encounter deck.`,
+            "danger",
+          );
+      }
+      break;
+    }
+    case "wmaTreacheryDone": {
+      const i = hobbitResolving(s).findIndex((x) => x.id === e.source);
+      if (i >= 0)
+        s.encounterDiscard.push(hobbitResolving(s).splice(i, 1)[0].code);
+      break;
+    }
+    case "wmaThreat":
+      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
+      break;
+    case "wmaGrocer": {
+      const bilbo = bagginsBilbo(s);
+      if (bilbo && bilbo.resources) {
+        log(
+          s,
+          `More Like a Grocer discards ${bilbo.resources} Baggins resource${bilbo.resources === 1 ? "" : "s"}.`,
+          "danger",
+        );
+        bilbo.resources = 0;
+      }
+      break;
+    }
+    case "wmaCampfire":
+      choose(
+        s,
+        "No Campfire · Raise your threat by 4 or reveal an encounter card",
+        [
+          {
+            id: "threat",
+            label: "Raise your threat by 4",
+            effects: [fx("wmaThreat", { value: 4, player: p })],
+          },
+          {
+            id: "reveal",
+            label: "Reveal an additional encounter card",
+            effects: [fx("reveal", { player: p })],
+          },
+        ],
+      );
+      break;
+    case "wmaCrow": {
+      const top = s.encounterDiscard.pop();
+      if (!top) break;
+      log(
+        s,
+        `A Suspicious Crow reveals ${card(top).name} from the encounter discard pile.`,
+        "danger",
+      );
+      prepend(
+        s,
+        fx("revealCard", { code: top, revealOrigin: "discard", player: p }),
+      );
+      break;
+    }
+    case "wmaDreary":
+      forOwner(s, p, () => {
+        if (!s.hand.length) return;
+        const pick = s.hand[Math.floor(random(s) * s.hand.length)];
+        discardHandCard(s, pick.id, { encounterEffect: true });
+        log(s, `Dreary Hills: ${name(pick)} is discarded at random.`, "danger");
+      });
+      break;
+    case "wmaLoneLands": {
+      const heroes = seatView(s, p).heroes.filter((h) => h.resources > 0);
+      if (heroes.length === 1)
+        prepend(
+          s,
+          fx("wmaRemoveResource", { target: heroes[0].id, player: p }),
+        );
+      else if (heroes.length > 1)
+        choose(
+          s,
+          "Lone-Lands · Remove 1 resource from one of your heroes",
+          heroes.map((h) =>
+            option(h, [fx("wmaRemoveResource", { target: h.id, player: p })]),
+          ),
+        );
+      break;
+    }
+    case "wmaRemoveResource": {
+      const h = get(s, e.target);
+      if (h && h.resources > 0) {
+        h.resources--;
+        log(s, `Lone-Lands removes 1 resource from ${name(h)}.`, "danger");
+      }
+      break;
+    }
+    case "wmaBilboResponse": {
+      if (!bagginsBilbo(s)) break;
+      choose(s, `${card(e.code!).name} · Bilbo Baggins gains 1 resource?`, [
+        {
+          id: "gain",
+          label: "Bilbo Baggins gains 1 resource",
+          effects: [fx("wmaBilboGains", { player: first })],
+        },
+        skip,
+      ]);
+      break;
+    }
+    case "wmaBilboGains": {
+      const bilbo = bagginsBilbo(s);
+      if (bilbo) {
+        bilbo.resources++;
+        log(s, "Bilbo Baggins gains 1 resource.", "good");
+      }
+      break;
+    }
+    case "wmaCaveEntrance": {
+      const n = e.value ?? 0;
+      let moved = 0;
+      while (moved < n && s.encounterDiscard.length) {
+        s.encounterDeck.push(s.encounterDiscard.pop()!);
+        moved++;
+      }
+      if (moved)
+        log(
+          s,
+          `Cave Entrance places ${moved} card${moved === 1 ? "" : "s"} from the encounter discard pile on the bottom of the encounter deck.`,
+          "danger",
+        );
+      break;
+    }
+    default:
+      return false;
+  }
+  return true;
+}
 export function wmaEffect(s: GameState, e: Effect): boolean {
   if (!e.kind.startsWith("wma")) return false;
+  if (WESTERN_EFFECTS.includes(e.kind) && westernActive(s))
+    return westernEffect(s, e);
   const q = s.weMustAway;
   if (!q) return true;
   const p = e.player ?? activeSeat(s),
@@ -482,79 +772,6 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
         ? "Dawn turns the Trolls to stone. The company has discovered Sting, Glamdring and Orcrist in the Troll Cave."
         : "Dawn turns the Trolls to stone, and the company escapes the Trollshaws.";
       log(s, s.reason, "good");
-      break;
-    }
-    case "wmaTreachery": {
-      const held = q.resolving.find((x) => x.id === e.source);
-      if (!held) break;
-      const code = held.code;
-      if (code === W.hungry) {
-        const options = stagingTrolls(s);
-        if (options.length)
-          choose(
-            s,
-            "Hungry Troll · The first player engages a Troll",
-            options.map((t) =>
-              option(t, [fx("wmaEngage", { target: t.id, player: first })]),
-            ),
-          );
-      } else if (code === W.lots) {
-        if (stagingTrolls(s).length)
-          prepend(s, fx("wmaSack", { value: 1, player: first }));
-      } else if (code === W.grocer)
-        prepend(s, fx("wmaGrocer", { player: first }));
-      else if (code === W.campfire)
-        prepend(
-          s,
-          ...playerOrder(s).map((player) => fx("wmaCampfire", { player })),
-        );
-      else if (code === W.roast) {
-        const value = stagingTrolls(s).length ? 2 : 1;
-        prepend(
-          s,
-          ...allCharacters(s)
-            .filter((u) => typeOf(u) === "ally")
-            .map((u) =>
-              fx("damage", { target: u.id, value, player: ownerOf(s, u) }),
-            ),
-        );
-      } else if (code === W.rain) {
-        let discarded = 0;
-        for (const u of [
-          ...allCharacters(s),
-          ...s.staging,
-          ...allEngaged(s),
-          ...allActiveLocations(s),
-        ])
-          for (const a of [...u.attachments])
-            if (!["objective", "treasure"].includes(typeOf(a.code))) {
-              discardAttachment(s, u, a);
-              discarded++;
-            }
-        log(
-          s,
-          `Wind-whipped Rain discards ${discarded} attachment${discarded === 1 ? "" : "s"}.`,
-          "danger",
-        );
-      } else if (code === W.pickle) {
-        const n = 2 * players(s);
-        let moved = 0;
-        while (moved < n && s.encounterDiscard.length) {
-          s.encounterDeck.push(s.encounterDiscard.pop()!);
-          moved++;
-        }
-        if (moved)
-          log(
-            s,
-            `A Nice Pickle places ${moved} card${moved === 1 ? "" : "s"} from the encounter discard pile on the bottom of the encounter deck.`,
-            "danger",
-          );
-      }
-      break;
-    }
-    case "wmaTreacheryDone": {
-      const i = q.resolving.findIndex((x) => x.id === e.source);
-      if (i >= 0) s.encounterDiscard.push(q.resolving.splice(i, 1)[0].code);
       break;
     }
     case "wmaEngage": {
@@ -774,53 +991,6 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
       log(s, `${name(t)} returns to the staging area.`, "danger");
       break;
     }
-    case "wmaThreat":
-      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
-      break;
-    case "wmaGrocer": {
-      const bilbo = bagginsBilbo(s);
-      if (bilbo && bilbo.resources) {
-        log(
-          s,
-          `More Like a Grocer discards ${bilbo.resources} Baggins resource${bilbo.resources === 1 ? "" : "s"}.`,
-          "danger",
-        );
-        bilbo.resources = 0;
-      }
-      break;
-    }
-    case "wmaCampfire":
-      choose(
-        s,
-        "No Campfire · Raise your threat by 4 or reveal an encounter card",
-        [
-          {
-            id: "threat",
-            label: "Raise your threat by 4",
-            effects: [fx("wmaThreat", { value: 4, player: p })],
-          },
-          {
-            id: "reveal",
-            label: "Reveal an additional encounter card",
-            effects: [fx("reveal", { player: p })],
-          },
-        ],
-      );
-      break;
-    case "wmaCrow": {
-      const top = s.encounterDiscard.pop();
-      if (!top) break;
-      log(
-        s,
-        `A Suspicious Crow reveals ${card(top).name} from the encounter discard pile.`,
-        "danger",
-      );
-      prepend(
-        s,
-        fx("revealCard", { code: top, revealOrigin: "discard", player: p }),
-      );
-      break;
-    }
     case "wmaFindCamp": {
       const i = s.encounterDeck.indexOf(W.camp);
       if (i >= 0) {
@@ -870,39 +1040,6 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
           ),
       );
       break;
-    case "wmaDreary":
-      forOwner(s, p, () => {
-        if (!s.hand.length) return;
-        const pick = s.hand[Math.floor(random(s) * s.hand.length)];
-        discardHandCard(s, pick.id, { encounterEffect: true });
-        log(s, `Dreary Hills: ${name(pick)} is discarded at random.`, "danger");
-      });
-      break;
-    case "wmaLoneLands": {
-      const heroes = seatView(s, p).heroes.filter((h) => h.resources > 0);
-      if (heroes.length === 1)
-        prepend(
-          s,
-          fx("wmaRemoveResource", { target: heroes[0].id, player: p }),
-        );
-      else if (heroes.length > 1)
-        choose(
-          s,
-          "Lone-Lands · Remove 1 resource from one of your heroes",
-          heroes.map((h) =>
-            option(h, [fx("wmaRemoveResource", { target: h.id, player: p })]),
-          ),
-        );
-      break;
-    }
-    case "wmaRemoveResource": {
-      const h = get(s, e.target);
-      if (h && h.resources > 0) {
-        h.resources--;
-        log(s, `Lone-Lands removes 1 resource from ${name(h)}.`, "danger");
-      }
-      break;
-    }
     case "wmaHobbitLands":
       choose(s, "Hobbit-lands · The first player draws 1 card?", [
         {
@@ -913,26 +1050,6 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
         skip,
       ]);
       break;
-    case "wmaBilboResponse": {
-      if (!bagginsBilbo(s)) break;
-      choose(s, `${card(e.code!).name} · Bilbo Baggins gains 1 resource?`, [
-        {
-          id: "gain",
-          label: "Bilbo Baggins gains 1 resource",
-          effects: [fx("wmaBilboGains", { player: first })],
-        },
-        skip,
-      ]);
-      break;
-    }
-    case "wmaBilboGains": {
-      const bilbo = bagginsBilbo(s);
-      if (bilbo) {
-        bilbo.resources++;
-        log(s, "Bilbo Baggins gains 1 resource.", "good");
-      }
-      break;
-    }
     case "wmaCaveCost":
       if (!spendBaggins(s, e.value ?? 0))
         log(s, "Bilbo Baggins cannot pay for Troll Cave.", "danger");
@@ -940,21 +1057,6 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
     case "wmaCampSack": {
       const u = get(s, e.target);
       if (u && hasSack(u)) removeSack(s, u);
-      break;
-    }
-    case "wmaCaveEntrance": {
-      const n = e.value ?? 0;
-      let moved = 0;
-      while (moved < n && s.encounterDiscard.length) {
-        s.encounterDeck.push(s.encounterDiscard.pop()!);
-        moved++;
-      }
-      if (moved)
-        log(
-          s,
-          `Cave Entrance places ${moved} card${moved === 1 ? "" : "s"} from the encounter discard pile on the bottom of the encounter deck.`,
-          "danger",
-        );
       break;
     }
     case "wmaMuttonDiscard": {
@@ -966,6 +1068,7 @@ export function wmaEffect(s: GameState, e: Effect): boolean {
           s,
           `Roast Mutton discards ${discarded.length} card${discarded.length === 1 ? "" : "s"} from the encounter deck instead of placing progress.`,
         );
+      if (!q.advancing && forcedAdvance(s)) startAdvance(s);
       break;
     }
     default:
@@ -1001,6 +1104,12 @@ export const WMA_HOOKS: Batch4ScenarioHooks = {
   revealedDoomed: (s, code) =>
     code === W.lots && !stagingTrolls(s).length ? 2 : 0,
   revealedSurge: (s, code) => code === W.hungry && !stagingTrolls(s).length,
+  // The deck may empty during a reveal; advance before another reveal could
+  // refill it, even when a guided pause defers the framework check.
+  revealed: (s) => {
+    if (s.weMustAway && !s.weMustAway.advancing && forcedAdvance(s))
+      startAdvance(s);
+  },
   engaged: (s, u) => {
     if (!s.weMustAway || !isTroll(u) || u.blanked) return;
     const n =
@@ -1024,7 +1133,7 @@ export const WMA_HOOKS: Batch4ScenarioHooks = {
     return 0;
   },
   locationProgressPlaced,
-  explored: (s, u) => explored(s, u),
+  explored: (s, u) => westernExplored(s, u),
   attachmentLeaves,
   playerAttackResolved: (s, enemy, _ids, amount) => {
     if (
@@ -1038,50 +1147,13 @@ export const WMA_HOOKS: Batch4ScenarioHooks = {
       return;
     prepend(s, fx("wmaKeyClaim", { target: enemy.id, player: firstPlayer(s) }));
   },
-  enemyAttackStarted: (s, u) => {
-    if (!s.combat) return;
-    s.combat.wmaCrow = 0;
-    s.combat.wmaDamaged = false;
-    void u;
-  },
-  damageDealt: (s, u, amount, ctx) => {
-    const c = s.combat;
-    if (!c || !ctx.combatDamage || ctx.enemyId !== c.enemyId || amount <= 0)
-      return;
-    if (["hero", "ally"].includes(typeOf(u))) c.wmaDamaged = true;
-  },
+  enemyAttackStarted: (s) => westernAttackStarted(s),
+  damageDealt: (s, u, amount, ctx) => westernDamageDealt(s, u, amount, ctx),
   attackFinished: (s, c: Combat) => {
-    if (!s.weMustAway || !c.wmaCrow || !c.wmaDamaged) return [];
-    const enemy = get(s, c.enemyId);
-    for (let i = 0; i < c.wmaCrow; i++) {
-      if (enemy && takeShadow(enemy, W.crow)) s.encounterDeck.push(W.crow);
-      else {
-        const at = s.encounterDiscard.lastIndexOf(W.crow);
-        if (at < 0) continue;
-        s.encounterDiscard.splice(at, 1);
-        s.encounterDeck.push(W.crow);
-      }
-      shuffle(s, s.encounterDeck);
-      log(
-        s,
-        "A Suspicious Crow is shuffled back into the encounter deck.",
-        "danger",
-      );
-    }
-    c.wmaCrow = 0;
+    westernAttackFinished(s, c);
     return [];
   },
-  roundEnd: (s) =>
-    s.weMustAway
-      ? s.staging
-          .filter((u) => u.code === W.caveEntrance && !u.blanked)
-          .map(() =>
-            fx("wmaCaveEntrance", {
-              value: players(s),
-              player: firstPlayer(s),
-            }),
-          )
-      : [],
+  roundEnd: (s) => (s.weMustAway ? westernRoundEnd(s) : []),
   characterLeft: (s, u) => {
     if (u.code === HOBBIT_BILBO) loseBilbo(s);
   },

@@ -1,5 +1,6 @@
 import {
   HOBBIT_BILBO,
+  addHobbitTreasures,
   isHobbitScenarioId,
   placeBagginsBilbo,
 } from "./hobbit-saga";
@@ -135,8 +136,9 @@ export function validateDeckList(
         !hasEncounterKeyword(card(code)) &&
         card(code).type_code !== "hero" &&
         card(code).sphere_code !== "encounter" &&
-        !code.startsWith("rc"),
-      "Only scripted player cards can be included.",
+        !code.startsWith("rc") &&
+        !card(code).treasure,
+      "Only scripted player cards can be included; a treasure joins a deck only once discovered.",
     );
     requireRule(
       Number.isInteger(n) &&
@@ -168,6 +170,8 @@ export function createGame(
     wrathBombadilReserves?: Record<number, number>;
     /** Fourteen distinct Item/Artifact attachments per Burglar contract. */
     burglarLoot?: Record<number, string[]>;
+    /** The Hobbit: discovered treasures each player adds to their deck. */
+    hobbitTreasures?: Record<number, string[]>;
   } = {},
 ): GameState {
   const starter = BUILT_IN_DECKS.find((d) => d.id === deckId);
@@ -400,6 +404,7 @@ export function createGame(
   if (!s.table) s.startingThreat = s.threat;
   // The Hobbit: the first player gains control of Bilbo Baggins (threat 0).
   placeBagginsBilbo(s);
+  addHobbitTreasures(s, options.hobbitTreasures);
   huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);
   ShadowEastPlayers.shadowEastPlayerSetup(s);

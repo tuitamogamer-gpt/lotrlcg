@@ -1,6 +1,7 @@
 import { FORTRESS_NURN_HOOKS } from "./fortress-nurn";
 import { MASSING_HOOKS } from "./massing-osgiliath";
 import { WMA_HOOKS } from "./we-must-away";
+import { OMM_HOOKS } from "./misty-mountains";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -31,6 +32,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return MASSING_HOOKS;
     case "we-must-away-ere-break-of-day":
       return WMA_HOOKS;
+    case "over-the-misty-mountains-grim":
+      return OMM_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -96,4 +99,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     FORTRESS_NURN_HOOKS,
     MASSING_HOOKS,
     WMA_HOOKS,
+    OMM_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

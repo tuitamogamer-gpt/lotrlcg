@@ -73,8 +73,9 @@ into the sack deck. An empty sack deck ignores the effect.
 Engine additions: scenario hooks for forbidden attacks, printed doomed overrides
 and abilities that ignore a Sack; the `discard` reveal origin.
 
-Treasure inclusion in later Hobbit scenarios arrives with Over the Misty
-Mountains Grim, whose setup lists the treasure set.
+A win with Troll Cave explored records the treasures for that group of heroes;
+[Over the Misty Mountains Grim](MISTY-MOUNTAINS.md) describes how they join
+later decks. The Western Lands rules are shared with that scenario.
 
 ## Verification
 

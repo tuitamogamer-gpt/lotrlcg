@@ -1,0 +1,125 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9005",
+    "name": "A Short Rest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Shuffle the Over the Misty Mountains Grim and Western Lands encounter sets into one encounter deck and make it the active encounter deck. Then, shuffle the The Great Goblin and Misty Mountain Goblins encounter sets into a second encounter deck and set it aside, inactive.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 26,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Over the Misty Mountains Grim",
+    "side": "A",
+    "back_name": "A Short Rest",
+    "back_text": "When Revealed: Each player may search his deck for 1 treasure card and add it to his hand, then shuffle his deck. Advance to stage 2A.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9005.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9005.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 0
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9080",
+    "name": "The Mountain Pass",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 27,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Over the Misty Mountains Grim",
+    "side": "A",
+    "back_name": "The Mountain Pass",
+    "back_text": "When Revealed: Search the encounter deck for 1 copy of Stone-giant and add it to the staging area. Then, shuffle the encounter deck. Reveal 1 card per player from the encounter deck and add it to the staging area.",
+    "back_type_code": "quest",
+    "back_quest": 16,
+    "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9080.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9080.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9080",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9080.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 16
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9028",
+    "name": "Down, Down to Goblin Town",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Shuffle all encounter cards back into the encounter deck and set it aside, inactive. The second encounter deck becomes the active encounter deck. Search the encounter deck for The Great Goblin and add it to the staging area. Then, shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 28,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Great Goblin",
+    "side": "A",
+    "back_name": "Down, Down to Goblin Town",
+    "back_text": "Players cannot defeat this stage unless The Great Goblin is in the victory display.\nWhen Revealed: Reveal 3 encounter cards per player. Bilbo Baggins may spend X resources to reduce the total number of encounter cards revealed by X. (To a minimum of 1.)\nIf the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9028.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9028.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 28,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9028",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9028.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 20
+  }
+]

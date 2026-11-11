@@ -1,6 +1,7 @@
 import { FORTRESS_NURN_ADVENTURES } from "./fortress-nurn-scenario-data";
 import { MASSING_ADVENTURES } from "./massing-osgiliath-scenario-data";
 import { WMA_ADVENTURES } from "./we-must-away-scenario-data";
+import { OMM_ADVENTURES } from "./misty-mountains-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1169,6 +1170,7 @@ export const SCENARIOS = [
   ...FORTRESS_NURN_ADVENTURES,
   ...MASSING_ADVENTURES,
   ...WMA_ADVENTURES,
+  ...OMM_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

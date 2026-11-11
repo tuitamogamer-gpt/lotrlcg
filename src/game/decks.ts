@@ -49,7 +49,8 @@ export const DECK_CARDS: Card[] = playerCards.filter(
     !hasEncounterKeyword(c) &&
     c.sphere_code !== "encounter" &&
     SCRIPTED.has(c.code) &&
-    !c.code.startsWith("rc"),
+    !c.code.startsWith("rc") &&
+    !c.treasure,
 );
 const heroCodes = new Set(HERO_CARDS.map((c) => c.code));
 const deckCodes = new Set(DECK_CARDS.map((c) => c.code));

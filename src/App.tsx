@@ -8,6 +8,14 @@ import {
 } from "./ui/fortress-nurn-state";
 import { MassingOsgiliathState } from "./ui/massing-osgiliath-state";
 import { WeMustAwayState } from "./ui/we-must-away-state";
+import { MistyMountainsState } from "./ui/misty-mountains-state";
+import {
+  discoveredTreasures,
+  recordTreasures,
+  tableHeroes,
+} from "./game/hobbit-treasure-records";
+import { HOBBIT_TREASURE_SCENARIOS } from "./game/hobbit-codes";
+import { OMM_QUESTS } from "./game/misty-mountains-support";
 import { WMA_QUESTS } from "./game/we-must-away-support";
 import {
   LandSorrowState,
@@ -1042,6 +1050,68 @@ export default function App() {
       </section>
     ) : null;
   };
+  // The Hobbit: treasures discovered by this group of heroes may join decks.
+  const [treasureSeats, setTreasureSeats] = useState<Record<string, number>>(
+    {},
+  );
+  const fellowshipHeroes = (style: "classic" | "hotseat") =>
+    style === "hotseat"
+      ? seats.flatMap((p) => p.heroes)
+      : (describeDeck(selectedDeck, decks)?.heroes ?? []);
+  const treasureChoices = (style: "classic" | "hotseat") =>
+    playMode !== "campaign" &&
+    HOBBIT_TREASURE_SCENARIOS.includes(selectedScenario)
+      ? discoveredTreasures(fellowshipHeroes(style))
+      : [];
+  const selectedTreasures = (style: "classic" | "hotseat") => {
+    const players = style === "hotseat" ? seats.length : 1;
+    const result: Record<number, string[]> = {};
+    for (const code of treasureChoices(style)) {
+      const seat = treasureSeats[code] ?? 0;
+      if (seat >= 0 && seat < players) (result[seat] ??= []).push(code);
+    }
+    return result;
+  };
+  const treasureControls = (style: "classic" | "hotseat") => {
+    const choices = treasureChoices(style);
+    if (!choices.length) return null;
+    const players = style === "hotseat" ? seats.length : 1;
+    return (
+      <section
+        className="encounter-reserve-setup"
+        data-treasure-setup
+        aria-label="Discovered treasures"
+      >
+        <h3>Discovered treasures</h3>
+        <p>
+          These heroes discovered the Trolls' hoard. Each treasure may join one
+          deck; it does not count toward the deck size.
+        </p>
+        {choices.map((code) => (
+          <label key={`${style}:${code}`}>
+            <span>{card(code).name}</span>
+            <select
+              aria-label={`${card(code).name} treasure`}
+              value={treasureSeats[code] ?? 0}
+              onChange={(event) =>
+                setTreasureSeats((current) => ({
+                  ...current,
+                  [code]: Number(event.target.value),
+                }))
+              }
+            >
+              {Array.from({ length: players }, (_, p) => (
+                <option key={p} value={p}>
+                  Player {p + 1}'s deck
+                </option>
+              ))}
+              <option value={-1}>Leave it out</option>
+            </select>
+          </label>
+        ))}
+      </section>
+    );
+  };
   const setDecks = (list: CustomDeck[]) => {
     const current = readDeckStorage();
     if (current.raw !== observedDeckRaw.current) {
@@ -1103,6 +1173,10 @@ export default function App() {
   useEffect(() => {
     setDetail(null);
   }, [templeViewer]);
+  useEffect(() => {
+    if (game?.status === "won" && game.weMustAway?.treasures.length)
+      recordTreasures(tableHeroes(game), game.weMustAway.treasures);
+  }, [game?.status, game?.weMustAway?.treasures.length]);
   const [recoveryImport, setRecoveryImport] = useState<RecoveryImport | null>(
     null,
   );
@@ -1426,6 +1500,7 @@ export default function App() {
           eredEagleReserves,
           wrathBombadilReserves,
           burglarLoot,
+          hobbitTreasures: selectedTreasures(style),
           easy: easyMode === "on",
           scenarioId: playMode === "campaign" ? "mirkwood" : selectedScenario,
           playMode,
@@ -2124,6 +2199,7 @@ export default function App() {
               onBuild={() => nav("decks")}
             />
             {encounterReserveControls(setupMode)}
+            {treasureControls(setupMode)}
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <section
               id="quest-selection"
@@ -2603,6 +2679,7 @@ export default function App() {
               onBuild={() => nav("decks")}
             />
             {encounterReserveControls("classic")}
+            {treasureControls("classic")}
             <AccountStrip account={account} open={() => setShowAccount(true)} />
             <div className="hero-roster">
               {starter.heroes.map((code) => (
@@ -3112,6 +3189,7 @@ export default function App() {
             <BondOfFriendshipState s={game} inspect={setDetail} />
             <MassingOsgiliathState s={game} inspect={setDetail} />
             <WeMustAwayState s={game} inspect={setDetail} />
+            <MistyMountainsState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3853,6 +3931,7 @@ export default function App() {
                       ...FORTRESS_NURN_QUESTS,
                       ...MASSING_QUESTS,
                       ...WMA_QUESTS,
+                      ...OMM_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

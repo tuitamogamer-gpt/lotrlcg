@@ -1,6 +1,17 @@
-import type { GameState, Unit } from "./types";
-import { card } from "./cards";
-import { log, make, spendResources } from "./core";
+import type { Effect, GameState, Unit } from "./types";
+import { card, name } from "./cards";
+import {
+  canGainResources,
+  choose,
+  draw,
+  fx,
+  get,
+  log,
+  make,
+  prepend,
+  requireRule,
+  spendResources,
+} from "./core";
 import { depositInFlightEncounterCards } from "./board";
 import {
   firstPlayer,
@@ -8,8 +19,16 @@ import {
   globalCharacters,
   globalPlayerOrder,
   ownerOf,
+  playerOrder,
+  seatIndices,
 } from "./table";
-import { HOBBIT_BILBO, isHobbitScenarioId } from "./hobbit-codes";
+import {
+  HOBBIT_BILBO,
+  HOBBIT_TREASURES,
+  HOBBIT_TREASURE_SCENARIOS,
+  HOBBIT_X_THREAT,
+  isHobbitScenarioId,
+} from "./hobbit-codes";
 export * from "./hobbit-codes";
 
 /**
@@ -77,3 +96,155 @@ export function loseBilbo(s: GameState) {
 /** A Baggins card or a neutral card may be paid with Bilbo's resources. */
 export const bagginsCanPay = (code: string) =>
   ["baggins", "neutral"].includes(card(code).sphere_code ?? "");
+
+/** Setup: each player adds the treasures they discovered to their deck. */
+export function addHobbitTreasures(
+  s: GameState,
+  treasures: Record<number, string[]> | undefined,
+) {
+  const entries = Object.entries(treasures ?? {}).filter(
+    ([, codes]) => codes.length,
+  );
+  if (!entries.length) return;
+  requireRule(
+    HOBBIT_TREASURE_SCENARIOS.includes(s.scenarioId),
+    "Treasures join decks only in Hobbit scenarios whose setup lists their treasure set.",
+  );
+  const all = entries.flatMap(([, codes]) => codes);
+  requireRule(
+    all.every((c) => HOBBIT_TREASURES.includes(c)) &&
+      new Set(all).size === all.length,
+    "Each discovered treasure joins one deck, at most once.",
+  );
+  for (const [seat, codes] of entries) {
+    const player = Number(seat);
+    requireRule(
+      seatIndices(s).includes(player),
+      "A treasure must join a player's deck.",
+    );
+    forOwner(s, player, () => s.deck.push(...codes));
+  }
+  log(
+    s,
+    `Discovered treasures join the decks: ${all.map((c) => card(c).name).join(", ")}.`,
+    "good",
+  );
+}
+const STING = "131020",
+  ORCRIST = "131021",
+  GLAMDRING = "131022";
+const live = (u: Unit, code: string) =>
+  u.attachments.some((a) => a.code === code && !a.blanked);
+/** Sting: after Bilbo exhausts to defend. */
+export function hobbitTreasureDefense(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+): Effect[] {
+  const bilbo = defenders.find(
+    (d) => d.code === HOBBIT_BILBO && d.exhausted && live(d, STING),
+  );
+  return bilbo
+    ? [fx("hobbitSting", { target: enemy.id, player: ownerOf(s, bilbo) })]
+    : [];
+}
+/** Orcrist and Glamdring: after the attached character destroys an Orc enemy. */
+export function hobbitTreasureKill(
+  s: GameState,
+  enemy: Unit,
+  ids: string[],
+  amount: number,
+  remainingHealth: number,
+): Effect[] {
+  if (
+    amount < remainingHealth ||
+    get(s, enemy.id) ||
+    !/\bOrc\b/.test(card(enemy.code).traits ?? "")
+  )
+    return [];
+  return ids.flatMap((id) => {
+    const u = get(s, id);
+    if (!u) return [];
+    return [
+      ...(live(u, ORCRIST) && card(u.code).type_code === "hero"
+        ? [fx("hobbitOrcrist", { target: u.id, player: ownerOf(s, u) })]
+        : []),
+      ...(live(u, GLAMDRING)
+        ? [fx("hobbitGlamdring", { target: u.id, player: ownerOf(s, u) })]
+        : []),
+    ];
+  });
+}
+const printedThreat = (s: GameState, code: string) =>
+  card(code).threat ?? (HOBBIT_X_THREAT[code] ?? 0) * playerOrder(s).length;
+export function hobbitTreasureEffect(s: GameState, e: Effect): boolean {
+  const u = get(s, e.target);
+  switch (e.kind) {
+    case "hobbitSting":
+      if (!u || !s.encounterDeck.length) break;
+      choose(
+        s,
+        "Sting · Discard the top encounter card to damage the attacker?",
+        [
+          {
+            id: "sting",
+            label: "Discard the top card and deal damage equal to its threat",
+            effects: [
+              fx("hobbitStingResolve", { target: u.id, player: e.player }),
+            ],
+          },
+          { id: "skip", label: "Decline", effects: [] },
+        ],
+      );
+      break;
+    case "hobbitStingResolve": {
+      const code = s.encounterDeck.shift();
+      if (!code) break;
+      s.encounterDiscard.push(code);
+      const amount = printedThreat(s, code);
+      log(s, `Sting discards ${card(code).name} (${amount} threat).`, "good");
+      if (u && amount > 0)
+        prepend(
+          s,
+          fx("damage", { target: u.id, value: amount, player: e.player }),
+        );
+      break;
+    }
+    case "hobbitOrcrist":
+      if (!u || !canGainResources(s, u)) break;
+      choose(s, `Orcrist · Add 1 resource to ${name(u)}?`, [
+        {
+          id: "orcrist",
+          label: `Add 1 resource to ${name(u)}`,
+          effects: [
+            fx("hobbitOrcristGain", { target: u.id, player: e.player }),
+          ],
+        },
+        { id: "skip", label: "Decline", effects: [] },
+      ]);
+      break;
+    case "hobbitOrcristGain":
+      if (u && canGainResources(s, u)) {
+        u.resources++;
+        log(s, `Orcrist adds 1 resource to ${name(u)}.`, "good");
+      }
+      break;
+    case "hobbitGlamdring":
+      if (!u) break;
+      choose(s, "Glamdring · Draw 1 card?", [
+        {
+          id: "glamdring",
+          label: "Draw 1 card",
+          effects: [fx("hobbitGlamdringDraw", { player: e.player })],
+        },
+        { id: "skip", label: "Decline", effects: [] },
+      ]);
+      break;
+    case "hobbitGlamdringDraw":
+      forOwner(s, e.player ?? firstPlayer(s), () => draw(s, 1));
+      break;
+    default:
+      return false;
+  }
+  return true;
+}

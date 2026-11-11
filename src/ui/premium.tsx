@@ -11,6 +11,10 @@ export const PLAYMATS = {
     name: "Trollshaws",
     detail: "Three Trolls at the fire · Waiting for the dawn",
   },
+  "over-the-misty-mountains-grim": {
+    name: "Misty Mountains",
+    detail: "Stone-giants at play · Down to Goblin Town",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -407,6 +411,7 @@ export const PLAYMAT_CHOICES = [
   "the-fortress-of-nurn",
   "the-massing-at-osgiliath",
   "we-must-away-ere-break-of-day",
+  "over-the-misty-mountains-grim",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

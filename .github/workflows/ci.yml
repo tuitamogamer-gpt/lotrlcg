@@ -413,6 +413,23 @@ jobs:
           name: we-must-away-simulation
           path: output/we-must-away-release/failures
           retention-days: 7
+  misty-mountains-simulation:
+    name: Over the Misty Mountains Grim complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:misty-mountains-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: misty-mountains-simulation
+          path: output/misty-mountains-release/failures
+          retention-days: 7
 
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
@@ -543,6 +560,8 @@ jobs:
             suite: test:browser-massing-osgiliath
           - group: we-must-away
             suite: test:browser-we-must-away
+          - group: misty-mountains
+            suite: test:browser-misty-mountains
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

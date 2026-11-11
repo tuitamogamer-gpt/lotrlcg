@@ -1,6 +1,8 @@
 export type Sphere =
   "leadership" | "spirit" | "tactics" | "lore" | "neutral" | "encounter";
 export interface Card {
+  /** A Saga treasure: played as an attachment, added only when discovered. */
+  treasure?: boolean;
   /** Cost context for plays from another zone; never changes the printed definition. */
   playOrigin?: "hand" | "deck" | "discard";
   /** Physical owner for costs that inspect an owner’s private zones. */
@@ -252,6 +254,7 @@ export type ScenarioId =
   | "the-fortress-of-nurn"
   | "the-massing-at-osgiliath"
   | "we-must-away-ere-break-of-day"
+  | "over-the-misty-mountains-grim"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -414,6 +417,7 @@ export interface GameState {
   fortressNurnPlayers?: import("./fortress-nurn-types").FortressNurnPlayersState;
   massing?: import("./massing-osgiliath-types").MassingState;
   weMustAway?: import("./we-must-away-types").WeMustAwayState;
+  mistyMountains?: import("./misty-mountains-types").MistyMountainsState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -728,6 +732,9 @@ export interface GameState {
     /** A Suspicious Crow shadows to shuffle back if this attack dealt damage. */
     wmaCrow?: number;
     wmaDamaged?: boolean;
+    ommEnemy?: string;
+    /** Chaos in the Cavern's shadow returns the attacker after its attack. */
+    ommChaosReturn?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

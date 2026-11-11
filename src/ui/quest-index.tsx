@@ -47,6 +47,10 @@ const HEADLINES: Partial<
     lead: "Outwit the Trolls",
     em: "before the dawn.",
   },
+  "over-the-misty-mountains-grim": {
+    lead: "Cross the mountains",
+    em: "and escape Goblin Town.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

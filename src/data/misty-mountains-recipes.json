@@ -1,0 +1,421 @@
+[
+  {
+    "id": "E0A.2",
+    "name": "Over the Misty Mountains Grim (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": [
+      "OHaUH"
+    ],
+    "card_codes": [
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9035",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9034",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9039",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+      "131001",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9076"
+    ],
+    "cards": [
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9035",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9034",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9039",
+        "quantity": 4,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+        "quantity": 2,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "131001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9005": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9080": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9028": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9035": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9048": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9068": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9079": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9009": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9021": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9030": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9058": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9060": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9093": 1
+      },
+      "sharedEncounterDeck2": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9078": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9034": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9039": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9045": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9038": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9040": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9041": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9042": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9077": 2
+      },
+      "player1Play1": {
+        "131001": 1
+      },
+      "sharedStagingArea": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9076": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q0A.2",
+    "name": "Over the Misty Mountains Grim",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": [
+      "OHaUH"
+    ],
+    "card_codes": [
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9035",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9022",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9034",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9039",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+      "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+      "131001"
+    ],
+    "cards": [
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9005",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9035",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9009",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9022",
+        "quantity": 2,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9034",
+        "quantity": 2,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9039",
+        "quantity": 4,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+        "quantity": 3,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "131001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9005": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9080": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9028": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9035": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9048": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9068": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9076": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9079": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9009": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9021": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9030": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9058": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9060": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9061": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9093": 2
+      },
+      "sharedEncounterDeck2": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9078": 1,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9022": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9034": 2,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9039": 4,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9045": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9038": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9040": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9041": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9042": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9047": 3,
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9077": 3
+      },
+      "player1Play1": {
+        "131001": 1
+      },
+      "sharedStagingArea": {
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9076": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

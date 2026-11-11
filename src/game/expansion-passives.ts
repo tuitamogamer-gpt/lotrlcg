@@ -43,6 +43,16 @@ type AttachmentRule = {
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
+  // The Hobbit: Over Hill and Under Hill treasures.
+  "131020": {
+    names: ["Bilbo Baggins"],
+    restricted: 1,
+    will: 1,
+    attack: 1,
+    defense: 1,
+  },
+  "131021": { type: "hero", restricted: 1, attack: 2 },
+  "131022": { restricted: 1, attack: 2 },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },
@@ -336,7 +346,11 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     // (original Core rules, p. 8); gained icons therefore satisfy restrictions.
     const sphereMatch = rule.sphere && hasResourceIcon(u, rule.sphere);
     // Ancestral Armor and Warrior Sword say sphere OR trait.
-    if (c.code === "04057") {
+    if (c.code === "131022") {
+      // Glamdring: attach to a hero or Gandalf.
+      if (unitType(u) !== "hero" && card(u.code).name !== "Gandalf")
+        return false;
+    } else if (c.code === "04057") {
       if (!traitMatch && card(u.code).name !== "Aragorn") return false;
     } else if (c.code === "12116") {
       if (!hasResourceIcon(u, "spirit") && card(u.code).name !== "Éowyn")
