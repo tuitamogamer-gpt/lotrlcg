@@ -465,6 +465,24 @@ jobs:
           path: output/flies-spiders-release/failures
           retention-days: 7
 
+  lonely-mountain-simulation:
+    name: The Lonely Mountain complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:lonely-mountain-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lonely-mountain-simulation
+          path: output/lonely-mountain-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -600,6 +618,8 @@ jobs:
             suite: test:browser-dungeons-deep
           - group: flies-spiders
             suite: test:browser-flies-spiders
+          - group: lonely-mountain
+            suite: test:browser-lonely-mountain
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: wainriders

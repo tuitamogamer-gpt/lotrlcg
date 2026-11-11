@@ -6,6 +6,8 @@ import { wmaPublicState } from "./we-must-away-support";
 import { ommPublicState } from "./misty-mountains-support";
 import { ddcdPublicState } from "./dungeons-deep-support";
 import { fasPublicState } from "./flies-spiders-support";
+import { tlmPublicState } from "./lonely-mountain-support";
+import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -1497,6 +1499,7 @@ export function resolvePlayerCard(
     if (played) {
       s.alliesPlayed++;
       GreyPlayers.greyHavensAllyPlayed(s, u.code);
+      ereborAllyPlayed(s, u.code);
     }
     enterAlly(s, u, false, played, fromHand);
   } else if (
@@ -3538,6 +3541,7 @@ export function publicState(s: GameState) {
     mistyMountains: ommPublicState(s),
     dungeonsDeep: ddcdPublicState(s),
     fliesSpiders: fasPublicState(s),
+    lonelyMountain: tlmPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

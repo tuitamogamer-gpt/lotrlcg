@@ -1,0 +1,1692 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Lonely Mountain",
+  "slug": "the-lonely-mountain",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "132001",
+      "name": "Bilbo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "baggins",
+      "sphere_name": "Baggins",
+      "threat": 0,
+      "willpower": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "traits": "Hobbit. Burglar.",
+      "text": "Bilbo Baggins does not count against the hero limit and cannot gain resources from non-treasure cards. The first player gains control of Bilbo Baggins.\r\n<b>Action:</b> Spend 1 [baggins] resource to search your deck for a treasure card and add it to your hand.\r\n<b>If Bilbo Baggins leaves play, the players have lost the game.</b>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 1,
+      "illustrator": "Magali Villeneuve",
+      "imagesrc": "/cards/132001.png",
+      "url": "https://ringsdb.com/card/132001",
+      "quantity": 1,
+      "octgnid": "4e61b160-2104-497f-9977-4b353e54fbb7",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "132001",
+          "illustrator": "Magali Villeneuve",
+          "octgnid": "4e61b160-2104-497f-9977-4b353e54fbb7",
+          "imagesrc": "/bundles/cards/132001.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "132020",
+      "name": "The Arkenstone",
+      "type_code": "treasure",
+      "type_name": "Campaign",
+      "sphere_code": "neutral",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Artifact. Erebor. Item.",
+      "text": "Attach to a hero.\r\n<b>Action:</b> Exhaust The Arkenstone and raise your threat by X to lower by X the cost of the next ally you play this phase that matches the attached hero's sphere.",
+      "flavor": "\"...the Heart of the Mountain; and it is also the heart of Thorin. He values it above a river of gold.\" <cite>Bilbo, The Hobbit</cite>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 20,
+      "illustrator": "Mike Nash",
+      "imagesrc": "/cards/132020.png",
+      "url": "https://ringsdb.com/card/132020",
+      "quantity": 1,
+      "octgnid": "ae774680-c6e9-49eb-96b8-fcdebe90b49d",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 20,
+          "quantity": 1,
+          "image_code": "132020",
+          "illustrator": "Mike Nash",
+          "octgnid": "ae774680-c6e9-49eb-96b8-fcdebe90b49d",
+          "imagesrc": "/bundles/cards/132020.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132020",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "132021",
+      "name": "Mithril Shirt",
+      "type_code": "treasure",
+      "type_name": "Campaign",
+      "sphere_code": "neutral",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Artifact. Erebor. Item.",
+      "text": "Attach to Bilbo Baggins.\r\nAttached hero gets +1 [defense] and +1 hit point.",
+      "flavor": "\"Mr. Baggins!\" he cried. \"Here is the first payment of your reward! Cast off your old coat and put on this!\" <cite>Thorin, The Hobbit</cite>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 21,
+      "illustrator": "Tiziano Baracchi",
+      "imagesrc": "/cards/132021.png",
+      "url": "https://ringsdb.com/card/132021",
+      "quantity": 1,
+      "octgnid": "12d51424-0edd-4977-9df1-5f6a7a5a96e1",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 21,
+          "quantity": 1,
+          "image_code": "132021",
+          "illustrator": "Tiziano Baracchi",
+          "octgnid": "12d51424-0edd-4977-9df1-5f6a7a5a96e1",
+          "imagesrc": "/bundles/cards/132021.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132021",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "132022",
+      "name": "Thrór's Battle Axe",
+      "type_code": "treasure",
+      "type_name": "Campaign",
+      "sphere_code": "neutral",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Artifact. Erebor. Item.",
+      "text": "Attach to a hero. Restricted.\r\nAttached hero gets +2 [attack].\r\n<b>Response:</b> After attached hero attacks and destroys an enemy, deal 1 damage to another enemy engaged with you.",
+      "flavor": "Royal indeed did Thorin look, clad in a coat of gold-plated rings, with a silver hafted axe... <cite>The Hobbit</cite>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 22,
+      "illustrator": "Tiziano Baracchi",
+      "imagesrc": "/cards/132022.png",
+      "url": "https://ringsdb.com/card/132022",
+      "quantity": 1,
+      "octgnid": "857d6dc8-ba1e-4839-8e96-a8a0136a2302",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 22,
+          "quantity": 1,
+          "image_code": "132022",
+          "illustrator": "Tiziano Baracchi",
+          "octgnid": "857d6dc8-ba1e-4839-8e96-a8a0136a2302",
+          "imagesrc": "/bundles/cards/132022.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132022",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "132023",
+      "name": "Thrór's Hunting Bow",
+      "type_code": "treasure",
+      "type_name": "Campaign",
+      "sphere_code": "neutral",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Artifact. Erebor. Item.",
+      "text": "Attach to a hero. Restricted.\r\nAttached hero gains Ranged.\r\nWhen making a ranged attack, attached hero gets +2 [attack].",
+      "flavor": "Thorin seized a bow of horn and shot an arrow at the speaker. <cite>The Hobbit</cite>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 23,
+      "illustrator": "David Horne",
+      "imagesrc": "/cards/132023.png",
+      "url": "https://ringsdb.com/card/132023",
+      "quantity": 1,
+      "octgnid": "7adc49c0-640d-4934-89c5-312ab584b77c",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 23,
+          "quantity": 1,
+          "image_code": "132023",
+          "illustrator": "David Horne",
+          "octgnid": "7adc49c0-640d-4934-89c5-312ab584b77c",
+          "imagesrc": "/bundles/cards/132023.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132023",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "132024",
+      "name": "Thrór's Golden Cup",
+      "type_code": "treasure",
+      "type_name": "Campaign",
+      "sphere_code": "neutral",
+      "sphere_name": "Neutral",
+      "cost": "0",
+      "traits": "Artifact. Erebor. Item.",
+      "text": "Attach to a hero.\r\n<b>Action:</b> Add Thrór's Golden Cup to the victory display to draw 3 cards.",
+      "flavor": "...the great golden cup of Thrór, two-handed, hammered and carven with birds and flowers whose eyes and petals were of jewels... <cite>The Hobbit</cite>",
+      "is_unique": true,
+      "deck_limit": 3,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 24,
+      "illustrator": "Melanie Maier",
+      "imagesrc": "/cards/132024.png",
+      "url": "https://ringsdb.com/card/132024",
+      "quantity": 1,
+      "octgnid": "ff7b0b9d-f8ae-4464-9db3-7205c5ae4db7",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 24,
+          "quantity": 1,
+          "image_code": "132024",
+          "illustrator": "Melanie Maier",
+          "octgnid": "ff7b0b9d-f8ae-4464-9db3-7205c5ae4db7",
+          "imagesrc": "/bundles/cards/132024.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132024",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure"
+    },
+    {
+      "code": "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+      "octgnid": "0554f2f9-c578-4644-9c28-b617e846b787",
+      "name": "The Lonely Mountain",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "While at least 1 card is stacked underneath, The Lonely Mountain is immune to player card effects, cannot leave the staging area, and gets -2 [threat] for each card stacked under it.  Action: While making a burgle attempt, the first player may spend 2 [baggins] resources to take the revealed card into hand and reveal the next card of his deck.",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 43,
+      "quantity": 1,
+      "threat": 12,
+      "quest": 4,
+      "victory": 10,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "12",
+        "quest": "4",
+        "victory": "10"
+      },
+      "imagesrc": "/cards/0554f2f9-c578-4644-9c28-b617e846b787.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 43,
+          "quantity": 1,
+          "octgnid": "0554f2f9-c578-4644-9c28-b617e846b787",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0554f2f9-c578-4644-9c28-b617e846b787.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "octgnid": "10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "name": "Weighed Down",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the round, exhausted characters get -1 [willpower], -1 [attack], and -1 [defense].",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 38,
+      "quantity": 2,
+      "shadow": "Shadow: If the defending character is destroyed by this attack, its controller must raise his threat by 5.",
+      "encounter_set": "Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
+      "octgnid": "1c65b78b-6b68-458f-9510-a00a9576a042",
+      "name": "Great Hall",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Underground.",
+      "text": "While Great Hall is the active location, it gains: \"Forced: Put 1 progress on Smaug the Golden at the end of each round.\"  Burgle: The first player shuffles his deck and reveals the top card. He may discard 3 cards from his hand that match the revealed card's type.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 44,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 4,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/1c65b78b-6b68-458f-9510-a00a9576a042.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 44,
+          "quantity": 3,
+          "octgnid": "1c65b78b-6b68-458f-9510-a00a9576a042",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c65b78b-6b68-458f-9510-a00a9576a042.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+      "octgnid": "1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+      "name": "Western Slopes",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "Response: When Western Slopes leaves play as an explored location (choose one): the first player draws 2 cards, or remove 1 progress token from Smaug the Golden.  Burgle: The first player shuffles his deck and reveals the top card. He may discard 2 cards from his hand that match the revealed card's sphere.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 47,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 5,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/1e54fa6e-c2a1-4456-ac48-8912ecc4722a.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 47,
+          "quantity": 3,
+          "octgnid": "1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e54fa6e-c2a1-4456-ac48-8912ecc4722a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+      "octgnid": "240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+      "name": "Thieves! Fire! Murder!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Remove all progress from Smaug the Golden and set him aside, out of play. Then, add Smaug the Magnificent to the staging area.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 74,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Lonely Mountain",
+      "side": "A",
+      "back_name": "Thieves! Fire! Murder!",
+      "back_text": "Forced: After placing the 7th progress token on this stage, remove all damage from Smaug the Magnificent and set him aside, out of play. Then, add Smaug the Golden to the staging area and reset the quest deck to stage 2B.",
+      "back_type_code": "quest",
+      "back_quest": 7,
+      "back_imagesrc": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 74,
+          "quantity": 1,
+          "octgnid": "240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "octgnid": "323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "name": "Dark Bats",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Dark Bats damages a character, attach it to that character. (While attached, counts as a Condition attachment with the text: \"Attached character gets -1 [willpower], -1 [attack], and -1 [defense].\")",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 36,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 0,
+      "health": 1,
+      "engagement": 15,
+      "shadow": "Shadow: Attach this card to the defending character.",
+      "encounter_set": "Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "0",
+        "health": "1",
+        "engagement": "15"
+      },
+      "imagesrc": "/cards/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 36,
+          "quantity": 3,
+          "octgnid": "323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "octgnid": "3f78ed57-49cc-4886-b84f-3fe886203794",
+      "name": "Hidden Path",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Mountain.",
+      "text": "While Hidden Path is the active location, locations in the staging area get -1 [threat].  Travel: Spend 2 [baggins] resources to travel here.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 35,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 1,
+      "encounter_set": "Wilderland",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 35,
+          "quantity": 3,
+          "octgnid": "3f78ed57-49cc-4886-b84f-3fe886203794",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f78ed57-49cc-4886-b84f-3fe886203794.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+      "octgnid": "4355352b-307e-407b-98f9-3d4fb2a14a49",
+      "name": "The Burglar's Turn",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 72,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Lonely Mountain",
+      "side": "A",
+      "back_name": "The Burglar's Turn",
+      "back_text": "Forced: After questing successfully, place 1 progress on Smaug the Golden. Then, the first player makes a burgle attempt. If successful, the first player takes the top treasure card from under The Lonely Mountain into his hand. Then, the players may advance to stage 3.  Forced: After the first player makes an unsuccessful burgle attempt, Smaug the Golden attacks the first player.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 72,
+          "quantity": 1,
+          "octgnid": "4355352b-307e-407b-98f9-3d4fb2a14a49",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+      "octgnid": "435e12a1-d479-42f6-a40d-8067615ec9e1",
+      "name": "Desolation of Smaug",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Wasteland.",
+      "text": "While Desolation of Smaug is the active location, the first treachery card revealed each round gains surge.  Burgle: The first player shuffles his deck and reveals the top card. He may discard 2 cards from his hand that match the revealed card's cost.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 46,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/435e12a1-d479-42f6-a40d-8067615ec9e1.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 46,
+          "quantity": 3,
+          "octgnid": "435e12a1-d479-42f6-a40d-8067615ec9e1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/435e12a1-d479-42f6-a40d-8067615ec9e1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+      "octgnid": "57fc374c-ca6d-4556-9181-c1b578d7a01d",
+      "name": "A Warm Welcome",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for Smaug the Golden, Smaug the Magnificent, The Lonely Mountain, and A Bare Patch. Set Smaug the Magnificent and A Bare Patch aside, out of play. Add Smaug the Golden and The Lonely Mountain to the staging area. Shuffle the five Erebor treasure cards and stack them facedown under The Lonely Mountain.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 71,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Lonely Mountain",
+      "side": "A",
+      "back_name": "A Warm Welcome",
+      "back_text": "Skip the Quest phase.  Forced: At the end of round, advance to stage 2.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 71,
+          "quantity": 1,
+          "octgnid": "57fc374c-ca6d-4556-9181-c1b578d7a01d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+      "octgnid": "65ad784f-d82e-4659-8d1c-53d2e4d19336",
+      "name": "Smaug the Magnificent",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Indestructible. Immune to player card effects.\nCannot leave the staging area (except by quest effect) but is considered to be engaged with the first player.  Forced: If Smaug the Magnificent is dealt a shadow card with a burgle effect, he makes an additional attack immediately after this one.",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 41,
+      "quantity": 1,
+      "threat": 6,
+      "attack": 8,
+      "defense": 8,
+      "health": 20,
+      "engagement": 50,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "6",
+        "attack": "8",
+        "defense": "8",
+        "health": "20",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/65ad784f-d82e-4659-8d1c-53d2e4d19336.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 41,
+          "quantity": 1,
+          "octgnid": "65ad784f-d82e-4659-8d1c-53d2e4d19336",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65ad784f-d82e-4659-8d1c-53d2e4d19336.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+      "octgnid": "6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+      "name": "Belching Fire",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each Dragon enemy in the staging area makes an immediate attack against the player with the highest total [willpower] committed to the quest. (Do not deal a shadow card for this attack.)  Burgle: The first player shuffles his deck and reveals the top card. He may discard 1 card from his hand that matches the revealed card's type and cost.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 50,
+      "quantity": 4,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {},
+      "imagesrc": "/cards/6f999889-bd70-42c9-ad2a-b159a5e2f73c.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 50,
+          "quantity": 4,
+          "octgnid": "6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6f999889-bd70-42c9-ad2a-b159a5e2f73c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+      "octgnid": "81b31016-bcc3-4445-8f4d-64187e99aff3",
+      "name": "Smaug the Golden",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Dragon.",
+      "text": "Indestructible. Immune to player card effects.\nCannot be engaged.  X is the number of non-Burglar characters committed to the quest.  Forced: After the 6th progress token is placed here, the players advance to stage 4A.",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 40,
+      "quantity": 1,
+      "attack": 6,
+      "defense": 9,
+      "health": 20,
+      "engagement": 50,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "6",
+        "defense": "9",
+        "health": "20",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/81b31016-bcc3-4445-8f4d-64187e99aff3.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 40,
+          "quantity": 1,
+          "octgnid": "81b31016-bcc3-4445-8f4d-64187e99aff3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81b31016-bcc3-4445-8f4d-64187e99aff3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+      "octgnid": "9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+      "name": "A Bare Patch",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Information.",
+      "text": "While attached, Smaug the Magnificent gets -3 [defense].  Response: After the players quest successfully, the first player makes a burgle attempt. If successful, attach A Bare Patch to Smaug the Magnificent.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 39,
+      "quantity": 1,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {},
+      "imagesrc": "/cards/9a37677f-6bb6-4ff1-bf0e-8d0798e268c9.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 39,
+          "quantity": 1,
+          "octgnid": "9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a37677f-6bb6-4ff1-bf0e-8d0798e268c9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+      "octgnid": "a944e2e1-56e4-461d-b703-db991b673b9b",
+      "name": "Inside Information",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Set Smaug the Golden aside, out of play. Add Smaug the Magnificent and A Bare Patch to the staging area.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 73,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Lonely Mountain",
+      "side": "A",
+      "back_name": "Inside Information",
+      "back_text": "Players cannot defeat this stage while Smaug the Magnificent is in play.  Forced: If the total number of progress on this stage is greater than the total remaining hit points on Smaug the Magnificent, remove Smaug the Magnificent from play.  If the players defeat this stage, they have won the game and discovered any treasure successfully burgled from The Lonely Mountain.",
+      "back_type_code": "quest",
+      "back_quest": 20,
+      "back_imagesrc": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 73,
+          "quantity": 1,
+          "octgnid": "a944e2e1-56e4-461d-b703-db991b673b9b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a944e2e1-56e4-461d-b703-db991b673b9b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+      "octgnid": "b7b62c58-7d5d-483d-807e-f4d7e2869579",
+      "name": "Pretending to Sleep",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Put 1 progress token on Smaug the Golden. Then, spend X [baggins] resources or advance to stage 4A. X is the number of progress tokens on Smaug the Golden.  Burgle: The first player shuffles his deck and reveals the top card. He may discard 2 cards from his hand that match the revealed card's type.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 48,
+      "quantity": 3,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {},
+      "imagesrc": "/cards/b7b62c58-7d5d-483d-807e-f4d7e2869579.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 48,
+          "quantity": 3,
+          "octgnid": "b7b62c58-7d5d-483d-807e-f4d7e2869579",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7b62c58-7d5d-483d-807e-f4d7e2869579.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+      "octgnid": "babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+      "name": "Croaking Crows",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Surge.\nForced: When a location is revealed from the encounter deck, put 1 progress on Smaug the Golden.  Burgle: The first player shuffles his deck and reveals the top card. He may discard 1 card from his hand that matches the revealed card's sphere and type.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 42,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 2,
+      "engagement": 33,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "2",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 42,
+          "quantity": 3,
+          "octgnid": "babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+      "octgnid": "da46fcb3-2810-4c21-9070-43969532ef9b",
+      "name": "Known to an Ounce",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player discards 2 random cards from hand. Until the end of the phase, each Dragon enemy in play gets +1 [threat] for each event discarded by this effect.  Burgle: The first player shuffles his deck and reveals the top card. He may discard 1 card from his hand that matches the revealed card's sphere and cost.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 49,
+      "quantity": 2,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {},
+      "imagesrc": "/cards/da46fcb3-2810-4c21-9070-43969532ef9b.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 49,
+          "quantity": 2,
+          "octgnid": "da46fcb3-2810-4c21-9070-43969532ef9b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da46fcb3-2810-4c21-9070-43969532ef9b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+      "octgnid": "db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+      "name": "Dragon-Spell",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Enchantment.",
+      "text": "When Revealed: Attach to the hero with the most resources without Dragon-Spell attached. (Counts as a Condition attachment with the text: \"Attached hero gets -1 [willpower] for each resource in its resource pool. Forced: When attached hero spends resources, attached hero takes X damage. X is equal to the number of resources spent.\")",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 51,
+      "quantity": 2,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {},
+      "imagesrc": "/cards/db6355c7-3edd-4573-a63c-1b6fc08bb8fa.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 51,
+          "quantity": 2,
+          "octgnid": "db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db6355c7-3edd-4573-a63c-1b6fc08bb8fa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+      "octgnid": "de8d68fc-15c4-4689-933e-1b2ca638cd78",
+      "name": "Secret Entrance",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "While Secret Entrance is the active location, The Lonely Mountain's [threat] is reduced by half (round up).  Travel: The first player must exhaust a hero and name a card type to travel here. Then, reveal the top card of the encounter deck. If the revealed card is not the named type, return Secret Entrance to the staging area. (The players cannot travel again this round.)",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 45,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 1,
+      "encounter_set": "The Lonely Mountain",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/de8d68fc-15c4-4689-933e-1b2ca638cd78.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 45,
+          "quantity": 2,
+          "octgnid": "de8d68fc-15c4-4689-933e-1b2ca638cd78",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de8d68fc-15c4-4689-933e-1b2ca638cd78.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+      "octgnid": "ffe307bf-dd8e-4df3-9355-55564137d311",
+      "name": "Fighting Among Friends",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player names a sphere. Then, all non-Baggins characters who do not belong to the named sphere are removed from the quest.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 37,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+2 [attack] instead if undefended.)",
+      "encounter_set": "Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "ffe307bf-dd8e-4df3-9355-55564137d311",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe307bf-dd8e-4df3-9355-55564137d311.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0A.5",
+      "name": "The Lonely Mountain (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "OtD"
+      ],
+      "card_codes": [
+        "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+        "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+        "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+        "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+        "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+        "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+        "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+        "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+        "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+        "132021",
+        "132020",
+        "132022",
+        "132024",
+        "132023",
+        "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+        "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+        "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+        "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+        "132001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "132021",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132020",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132022",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132024",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132023",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "132001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d": 1,
+          "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49": 1,
+          "octgn:a944e2e1-56e4-461d-b703-db991b673b9b": 1,
+          "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+          "octgn:ffe307bf-dd8e-4df3-9355-55564137d311": 2,
+          "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+          "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 2,
+          "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c": 4,
+          "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb": 3,
+          "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1": 3,
+          "octgn:da46fcb3-2810-4c21-9070-43969532ef9b": 2,
+          "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78": 2,
+          "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a": 3
+        },
+        "sharedEncounterDeck2": {
+          "132020": 1,
+          "132021": 1,
+          "132022": 1,
+          "132023": 1,
+          "132024": 1
+        },
+        "sharedSetAside": {
+          "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336": 1,
+          "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:0554f2f9-c578-4644-9c28-b617e846b787": 1,
+          "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3": 1
+        },
+        "player1Play1": {
+          "132001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0A.5",
+      "name": "The Lonely Mountain",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "OtD"
+      ],
+      "card_codes": [
+        "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+        "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+        "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+        "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+        "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+        "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+        "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
+        "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+        "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+        "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+        "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+        "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+        "132021",
+        "132020",
+        "132022",
+        "132024",
+        "132023",
+        "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+        "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+        "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+        "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+        "132001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "132021",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132020",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132022",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132024",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "132023",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "132001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d": 1,
+          "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49": 1,
+          "octgn:a944e2e1-56e4-461d-b703-db991b673b9b": 1,
+          "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+          "octgn:ffe307bf-dd8e-4df3-9355-55564137d311": 2,
+          "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+          "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 2,
+          "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c": 4,
+          "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb": 3,
+          "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1": 3,
+          "octgn:1c65b78b-6b68-458f-9510-a00a9576a042": 3,
+          "octgn:da46fcb3-2810-4c21-9070-43969532ef9b": 2,
+          "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579": 3,
+          "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78": 2,
+          "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a": 3,
+          "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa": 2
+        },
+        "sharedEncounterDeck2": {
+          "132020": 1,
+          "132021": 1,
+          "132022": 1,
+          "132023": 1,
+          "132024": 1
+        },
+        "sharedSetAside": {
+          "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336": 1,
+          "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9": 1
+        },
+        "sharedStagingArea": {
+          "octgn:0554f2f9-c578-4644-9c28-b617e846b787": 1,
+          "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3": 1
+        },
+        "player1Play1": {
+          "132001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "132001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132001.png",
+      "localPath": "/cards/132001.png",
+      "bytes": 153053,
+      "sha256": "fed2177e64a1f65249d5a4351c77e257f5577214cef59f335ede3c51428496ff"
+    },
+    {
+      "code": "132020",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132020.png",
+      "localPath": "/cards/132020.png",
+      "bytes": 156714,
+      "sha256": "3918fdade8a2f981b5af7fcc9b338d7eac61c8df61b7e1935a00b522ab39c70b"
+    },
+    {
+      "code": "132021",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132021.png",
+      "localPath": "/cards/132021.png",
+      "bytes": 156796,
+      "sha256": "f1adb8ef482c0ae580d65315c03eb4fab831ec07e1af76006d1ca02b4e4ef47c"
+    },
+    {
+      "code": "132022",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132022.png",
+      "localPath": "/cards/132022.png",
+      "bytes": 163674,
+      "sha256": "25fdd3fe0e935bf8b880605bdb2f140ffadc33b206acfc46c90d39cda101623c"
+    },
+    {
+      "code": "132023",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132023.png",
+      "localPath": "/cards/132023.png",
+      "bytes": 175514,
+      "sha256": "3d0e9f927f3245024736f40ecadb69691db1849bcfb12cecf3646320fcf006a9"
+    },
+    {
+      "code": "132024",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132024.png",
+      "localPath": "/cards/132024.png",
+      "bytes": 171103,
+      "sha256": "35b621ac14ccd0ff7c817789260d2648453210fbfe8d30602c5205d24922fdce"
+    },
+    {
+      "code": "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0554f2f9-c578-4644-9c28-b617e846b787.jpg",
+      "localPath": "/cards/0554f2f9-c578-4644-9c28-b617e846b787.jpg",
+      "bytes": 144982,
+      "sha256": "d03039ca11c019e49b4ff76e3052c3b7eb3fbbfdf38baaf2ceed44d1c7762e39"
+    },
+    {
+      "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "localPath": "/cards/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "bytes": 142443,
+      "sha256": "9db52443f05ad9601fe422e8550b51b5fbc86c1fcf0d3bd4e8b875658803b36a"
+    },
+    {
+      "code": "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1c65b78b-6b68-458f-9510-a00a9576a042.jpg",
+      "localPath": "/cards/1c65b78b-6b68-458f-9510-a00a9576a042.jpg",
+      "bytes": 148213,
+      "sha256": "eef86ef76b9485e55ecedc945e0a8942f8f595d11d533382f7b6a05bcbefd697"
+    },
+    {
+      "code": "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1e54fa6e-c2a1-4456-ac48-8912ecc4722a.jpg",
+      "localPath": "/cards/1e54fa6e-c2a1-4456-ac48-8912ecc4722a.jpg",
+      "bytes": 150480,
+      "sha256": "49f5df3d37856803d05427484516e3768ce7b52cd644c67a9cff153bdcaa6fb7"
+    },
+    {
+      "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg",
+      "localPath": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg",
+      "bytes": 134872,
+      "sha256": "870c54df4a370d0781dafe39fe37aaa192ee4989bca1d93f713e2dbe166bc829"
+    },
+    {
+      "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/240a9f5b-17dc-4182-b854-3d2dd5a33f68.B.jpg",
+      "localPath": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.B.jpg",
+      "bytes": 138004,
+      "sha256": "8ec61b3e6aa152188f57850be03dbc30d217f5c09cf6fc822f417761a6543c48"
+    },
+    {
+      "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "localPath": "/cards/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "bytes": 150467,
+      "sha256": "0bc07a8f9cf4602ee64d6bcf31ef003f0173b0f4786580953902d7d0b80e2474"
+    },
+    {
+      "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "localPath": "/cards/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "bytes": 155790,
+      "sha256": "705bf066aaf8a8d5621dccc07f6c7a96fdaf412fa6fbae597fc72bd0790154b5"
+    },
+    {
+      "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg",
+      "localPath": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg",
+      "bytes": 146622,
+      "sha256": "298c133de567dcc745a6c12a39782e7ceed92317b8190c274ed4cbb65408a300"
+    },
+    {
+      "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4355352b-307e-407b-98f9-3d4fb2a14a49.B.jpg",
+      "localPath": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.B.jpg",
+      "bytes": 153464,
+      "sha256": "7d52802fa242576540f6e8a5cdce540afc036af1baef5f8d8a52f1d7351aafc8"
+    },
+    {
+      "code": "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/435e12a1-d479-42f6-a40d-8067615ec9e1.jpg",
+      "localPath": "/cards/435e12a1-d479-42f6-a40d-8067615ec9e1.jpg",
+      "bytes": 150567,
+      "sha256": "91a62916c23efbfc6d941267543d11bab7e2645fb2bbcdd52032e4471189c35d"
+    },
+    {
+      "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg",
+      "localPath": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg",
+      "bytes": 136746,
+      "sha256": "9e43e4b74510fc176cb0bc27323272036e93ab41013bc23d68de61b11caff5ea"
+    },
+    {
+      "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fc374c-ca6d-4556-9181-c1b578d7a01d.B.jpg",
+      "localPath": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.B.jpg",
+      "bytes": 132327,
+      "sha256": "a2795d88b5ce315231000405683e55221d6bc171943245f8909aca2ffcfebc9d"
+    },
+    {
+      "code": "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65ad784f-d82e-4659-8d1c-53d2e4d19336.jpg",
+      "localPath": "/cards/65ad784f-d82e-4659-8d1c-53d2e4d19336.jpg",
+      "bytes": 171727,
+      "sha256": "5a7bbc30405b617c9ad56b0f9bba02217498cb9892d0b7f970f9598a72ce032a"
+    },
+    {
+      "code": "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6f999889-bd70-42c9-ad2a-b159a5e2f73c.jpg",
+      "localPath": "/cards/6f999889-bd70-42c9-ad2a-b159a5e2f73c.jpg",
+      "bytes": 157149,
+      "sha256": "3df738ef15f30f73da3031ee6d23485e4ba942902e156f93909c889eee74a696"
+    },
+    {
+      "code": "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81b31016-bcc3-4445-8f4d-64187e99aff3.jpg",
+      "localPath": "/cards/81b31016-bcc3-4445-8f4d-64187e99aff3.jpg",
+      "bytes": 168677,
+      "sha256": "b7d522d393d03853e3030853edb1008d7556368966b022900d6f7e7a767a225c"
+    },
+    {
+      "code": "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9a37677f-6bb6-4ff1-bf0e-8d0798e268c9.jpg",
+      "localPath": "/cards/9a37677f-6bb6-4ff1-bf0e-8d0798e268c9.jpg",
+      "bytes": 171819,
+      "sha256": "3064c18d32c7a5851910816e9e208897bb885a6c87ffcafe5c23b5b414de97b4"
+    },
+    {
+      "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a944e2e1-56e4-461d-b703-db991b673b9b.jpg",
+      "localPath": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.jpg",
+      "bytes": 134144,
+      "sha256": "1c1a9ce92a158f5d7f83354dfe651ffa3dba3655693d948c842a9eaee735b2fd"
+    },
+    {
+      "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a944e2e1-56e4-461d-b703-db991b673b9b.B.jpg",
+      "localPath": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.B.jpg",
+      "bytes": 136804,
+      "sha256": "f69832961dff9ac96b2839e7e22d6722b418058a546ce1533e73d4e942b539f3"
+    },
+    {
+      "code": "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b7b62c58-7d5d-483d-807e-f4d7e2869579.jpg",
+      "localPath": "/cards/b7b62c58-7d5d-483d-807e-f4d7e2869579.jpg",
+      "bytes": 154805,
+      "sha256": "850cca505f58ca4fe9e96e35a48b3bf975c5efd059c4bb355ed15f96dbb15b4f"
+    },
+    {
+      "code": "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb.jpg",
+      "localPath": "/cards/babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb.jpg",
+      "bytes": 141685,
+      "sha256": "ce85d6ca6d9269f93b9e7db3216dfc9664eed08ea3649f5e7849d2735ef0c129"
+    },
+    {
+      "code": "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/da46fcb3-2810-4c21-9070-43969532ef9b.jpg",
+      "localPath": "/cards/da46fcb3-2810-4c21-9070-43969532ef9b.jpg",
+      "bytes": 168802,
+      "sha256": "ffbdd2a2d00bb38f6e5681e497af57a2a9753edb226a5ab5929e610c7b767e83"
+    },
+    {
+      "code": "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/db6355c7-3edd-4573-a63c-1b6fc08bb8fa.jpg",
+      "localPath": "/cards/db6355c7-3edd-4573-a63c-1b6fc08bb8fa.jpg",
+      "bytes": 169434,
+      "sha256": "d476fd0be611966fbb18d65765e80381dc91c2f9771d59424ea8ae3622cfdf4e"
+    },
+    {
+      "code": "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/de8d68fc-15c4-4689-933e-1b2ca638cd78.jpg",
+      "localPath": "/cards/de8d68fc-15c4-4689-933e-1b2ca638cd78.jpg",
+      "bytes": 163153,
+      "sha256": "0f60996da2b98f4f8c4012ab96f7d84c59b3ee008a857e0161cda9865fb8bac2"
+    },
+    {
+      "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "localPath": "/cards/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "bytes": 153259,
+      "sha256": "37e50460a65bf7bce677fac7d489fff1e7671942f7ca7199db6a47a4089e6b4f"
+    }
+  ]
+}

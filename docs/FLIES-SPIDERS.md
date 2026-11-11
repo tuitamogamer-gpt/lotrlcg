@@ -5,7 +5,8 @@ expansion, follows [Dungeons Deep and Caverns Dim](DUNGEONS-DEEP.md). It is
 playable in classic solo and with one to four local players, in normal and
 easy mode. This import also adds the On the Doorstep Bilbo Baggins and the
 treasure Bilbo's Magic Ring. The other Saga rules are described with
-[We Must Away, Ere Break of Day](WE-MUST-AWAY.md).
+[We Must Away, Ere Break of Day](WE-MUST-AWAY.md), and
+[The Lonely Mountain](LONELY-MOUNTAIN.md) follows.
 
 ## Sources and corrections
 
@@ -20,6 +21,9 @@ treasure Bilbo's Magic Ring. The other Saga rules are described with
 - The recipe provides three copies of Bilbo's Magic Ring. At setup each player
   in turn order may shuffle one into their deck while copies remain, so in a
   four-player game the fourth player cannot add one.
+- Sting, Orcrist and Glamdring, once discovered by the same heroes in We Must
+  Away, may join decks here: the rules insert lists a treasure set for each On
+  the Doorstep scenario, and Over Hill and Under Hill's is the only earlier one.
 - The official FAQ answers that Crazy Cob still attacks when no character has
   poison; the first player then chooses the target.
 - The immutable snapshot `src/data/pending/flies-and-spiders-import.json` has
@@ -96,7 +100,9 @@ Interpretations:
   still at stage 3, the players win.
 
 Engine additions: scenario hooks for one staging step, one quest resolution
-and one travel decision per area, and for keeping the first player token. A
+and one travel decision per area, and for keeping the first player token. The
+Wilderland cards (Dark Bats, Hidden Path, Weighed Down and Fighting Among
+Friends) live in `src/game/wilderland.ts`, shared with The Lonely Mountain. A
 `poison` flag on facedown attachments and an `unconscious` flag on
 characters, which share the Sacked restrictions and also stop resource
 collection. Bilbo's Magic Ring cancels the current attack's damage.

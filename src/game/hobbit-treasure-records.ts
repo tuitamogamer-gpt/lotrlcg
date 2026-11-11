@@ -1,5 +1,5 @@
 import type { GameState } from "./types";
-import { HOBBIT_TREASURES } from "./hobbit-codes";
+import { DISCOVERABLE_TREASURES } from "./hobbit-codes";
 
 /**
  * Discovered Hobbit treasures, remembered locally per group of heroes: a
@@ -33,7 +33,7 @@ export function readTreasureRecords(): TreasureRecord[] {
           .map((r) => ({
             heroes: heroGroup(r.heroes),
             treasures: r.treasures.filter((t: unknown) =>
-              HOBBIT_TREASURES.includes(t as string),
+              DISCOVERABLE_TREASURES.includes(t as string),
             ),
           }))
       : [];
@@ -43,7 +43,7 @@ export function readTreasureRecords(): TreasureRecord[] {
 }
 /** Remember treasures discovered by this group of heroes; returns success. */
 export function recordTreasures(heroes: string[], treasures: string[]) {
-  const found = treasures.filter((t) => HOBBIT_TREASURES.includes(t));
+  const found = treasures.filter((t) => DISCOVERABLE_TREASURES.includes(t));
   if (!heroes.length || !found.length) return false;
   const records = readTreasureRecords();
   const existing = records.find((r) => sameGroup(r.heroes, heroes));

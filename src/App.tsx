@@ -12,13 +12,18 @@ import { MistyMountainsState } from "./ui/misty-mountains-state";
 import { DungeonsDeepState } from "./ui/dungeons-deep-state";
 import { FliesSpidersState } from "./ui/flies-spiders-state";
 import { FAS_QUESTS } from "./game/flies-spiders-support";
+import { LonelyMountainState } from "./ui/lonely-mountain-state";
+import { TLM_QUESTS } from "./game/lonely-mountain-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
   recordTreasures,
   tableHeroes,
 } from "./game/hobbit-treasure-records";
-import { HOBBIT_TREASURE_SCENARIOS } from "./game/hobbit-codes";
+import {
+  HOBBIT_TREASURE_SCENARIOS,
+  scenarioTreasures,
+} from "./game/hobbit-codes";
 import { OMM_QUESTS } from "./game/misty-mountains-support";
 import { WMA_QUESTS } from "./game/we-must-away-support";
 import {
@@ -1065,7 +1070,9 @@ export default function App() {
   const treasureChoices = (style: "classic" | "hotseat") =>
     playMode !== "campaign" &&
     HOBBIT_TREASURE_SCENARIOS.includes(selectedScenario)
-      ? discoveredTreasures(fellowshipHeroes(style))
+      ? discoveredTreasures(fellowshipHeroes(style)).filter((code) =>
+          scenarioTreasures(selectedScenario).includes(code),
+        )
       : [];
   const selectedTreasures = (style: "classic" | "hotseat") => {
     const players = style === "hotseat" ? seats.length : 1;
@@ -1088,8 +1095,9 @@ export default function App() {
       >
         <h3>Discovered treasures</h3>
         <p>
-          These heroes discovered the Trolls' hoard. Each treasure may join one
-          deck; it does not count toward the deck size.
+          These heroes discovered treasure that this scenario's setup allows.
+          Each treasure may join one deck; it does not count toward the deck
+          size.
         </p>
         {choices.map((code) => (
           <label key={`${style}:${code}`}>
@@ -1179,13 +1187,17 @@ export default function App() {
   }, [templeViewer]);
   useEffect(() => {
     const treasures =
-      game?.weMustAway?.treasures ?? game?.fliesSpiders?.treasures ?? [];
+      game?.weMustAway?.treasures ??
+      game?.fliesSpiders?.treasures ??
+      game?.lonelyMountain?.treasures ??
+      [];
     if (game?.status === "won" && treasures.length)
       recordTreasures(tableHeroes(game), treasures);
   }, [
     game?.status,
     game?.weMustAway?.treasures.length,
     game?.fliesSpiders?.treasures.length,
+    game?.lonelyMountain?.treasures.length,
   ]);
   const [recoveryImport, setRecoveryImport] = useState<RecoveryImport | null>(
     null,
@@ -3206,6 +3218,7 @@ export default function App() {
               inspect={setDetail}
               dispatch={dispatch}
             />
+            <LonelyMountainState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3950,6 +3963,7 @@ export default function App() {
                       ...OMM_QUESTS,
                       ...DDCD_QUESTS,
                       ...FAS_QUESTS,
+                      ...TLM_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

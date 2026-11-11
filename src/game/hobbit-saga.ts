@@ -13,6 +13,7 @@ import {
   spendResources,
 } from "./core";
 import { depositInFlightEncounterCards } from "./board";
+import { ereborKillResponses } from "./erebor-treasures";
 import {
   firstPlayer,
   forOwner,
@@ -23,8 +24,8 @@ import {
   seatIndices,
 } from "./table";
 import {
-  HOBBIT_TREASURES,
   hobbitBilboCode,
+  scenarioTreasures,
   isBagginsBilbo,
   HOBBIT_TREASURE_SCENARIOS,
   HOBBIT_X_THREAT,
@@ -112,9 +113,13 @@ export function addHobbitTreasures(
     "Treasures join decks only in Hobbit scenarios whose setup lists their treasure set.",
   );
   const all = entries.flatMap(([, codes]) => codes);
+  const allowed = scenarioTreasures(s.scenarioId);
   requireRule(
-    all.every((c) => HOBBIT_TREASURES.includes(c)) &&
-      new Set(all).size === all.length,
+    all.every((c) => allowed.includes(c)),
+    "Only treasures from a set this scenario's setup lists may join decks.",
+  );
+  requireRule(
+    new Set(all).size === all.length,
     "Each discovered treasure joins one deck, at most once.",
   );
   for (const [seat, codes] of entries) {
@@ -157,24 +162,24 @@ export function hobbitTreasureKill(
   amount: number,
   remainingHealth: number,
 ): Effect[] {
-  if (
-    amount < remainingHealth ||
-    get(s, enemy.id) ||
-    !/\bOrc\b/.test(card(enemy.code).traits ?? "")
-  )
-    return [];
-  return ids.flatMap((id) => {
-    const u = get(s, id);
-    if (!u) return [];
-    return [
-      ...(live(u, ORCRIST) && card(u.code).type_code === "hero"
-        ? [fx("hobbitOrcrist", { target: u.id, player: ownerOf(s, u) })]
-        : []),
-      ...(live(u, GLAMDRING)
-        ? [fx("hobbitGlamdring", { target: u.id, player: ownerOf(s, u) })]
-        : []),
-    ];
-  });
+  if (amount < remainingHealth || get(s, enemy.id)) return [];
+  const axe = ereborKillResponses(s, ids);
+  if (!/\bOrc\b/.test(card(enemy.code).traits ?? "")) return axe;
+  return [
+    ...axe,
+    ...ids.flatMap((id) => {
+      const u = get(s, id);
+      if (!u) return [];
+      return [
+        ...(live(u, ORCRIST) && card(u.code).type_code === "hero"
+          ? [fx("hobbitOrcrist", { target: u.id, player: ownerOf(s, u) })]
+          : []),
+        ...(live(u, GLAMDRING)
+          ? [fx("hobbitGlamdring", { target: u.id, player: ownerOf(s, u) })]
+          : []),
+      ];
+    }),
+  ];
 }
 const printedThreat = (s: GameState, code: string) =>
   card(code).threat ?? (HOBBIT_X_THREAT[code] ?? 0) * playerOrder(s).length;

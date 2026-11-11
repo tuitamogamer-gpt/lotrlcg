@@ -59,6 +59,10 @@ const HEADLINES: Partial<
     lead: "Escape the webs",
     em: "of Mirkwood's spiders.",
   },
+  "the-lonely-mountain": {
+    lead: "Burgle Smaug's hoard",
+    em: "and survive his wrath.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

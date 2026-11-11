@@ -7,6 +7,7 @@ import {
 } from "./land-sorrow-player";
 import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
+import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
   ulfastPlayerStats,
@@ -919,6 +920,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   ? (batch4Scenario(s).allyCost?.(s) ?? 0)
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
+                ereborCostReduction(s, c) -
                 landSorrowPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
@@ -1350,6 +1352,7 @@ export function spendResources(
   if (amount > 0) hero.resourcesSpentRound = s.round;
   Etten.ettenResourcesSpent(s, hero, amount);
   Carn.carnResourceSpent(s, hero, amount);
+  if (amount > 0) batch4Scenario(s).resourcesSpent?.(s, hero, amount);
   if (notifyCity) City.cityResourcesSpent(s, ownerOf(s, hero), amount);
 }
 

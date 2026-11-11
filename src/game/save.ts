@@ -13,6 +13,7 @@ import { validateWeMustAway, wmaUnits } from "./we-must-away-support";
 import { ommUnits, validateMistyMountains } from "./misty-mountains-support";
 import { ddcdUnits, validateDungeonsDeep } from "./dungeons-deep-support";
 import { fasUnits, validateFliesSpiders } from "./flies-spiders-support";
+import { tlmUnits, validateLonelyMountain } from "./lonely-mountain-support";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -904,6 +905,7 @@ export function validateSave(
         !validateMistyMountains(s, validUnit as (v: unknown) => boolean) ||
         !validateDungeonsDeep(s, validUnit as (v: unknown) => boolean) ||
         !validateFliesSpiders(s, validUnit as (v: unknown) => boolean) ||
+        !validateLonelyMountain(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1612,6 +1614,7 @@ export function validateSave(
       ...ommUnits(s),
       ...ddcdUnits(s),
       ...fasUnits(s),
+      ...tlmUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

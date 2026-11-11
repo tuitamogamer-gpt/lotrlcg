@@ -52,6 +52,12 @@ import { isEnemy } from "./ships";
 import { OTD_BILBO, OTD_RING, isBagginsBilbo } from "./hobbit-codes";
 import { choosePlayerResponse } from "./player-ability-triggers";
 import { spendResources } from "./core";
+import {
+  ereborAbilityLabel,
+  ereborAbilityProblem,
+  ereborTreasureEffect,
+  useEreborAbility,
+} from "./erebor-treasures";
 
 /**
  * The remaining player cards of The Hobbit: Over Hill and Under Hill. Nori,
@@ -338,7 +344,7 @@ export const hobbitPlayerAbilityLabel = (code: string) =>
         ? "Bilbo Baggins · Spend 1 Baggins resource: search your deck for a treasure"
         : code === OTD_RING
           ? "Bilbo's Magic Ring · Exhaust and raise your threat by 1: gain 1 Baggins resource"
-          : undefined;
+          : ereborAbilityLabel(code);
 const ringKey = (a: Attachment) => `round:${OTD_RING}:${a.id}`;
 function ringProblem(s: GameState, u: Unit, a: Attachment) {
   if (!enabled(a)) return "Bilbo's Magic Ring's text is inactive.";
@@ -391,6 +397,7 @@ export function hobbitPlayerAbilityProblem(
   if (attachmentId) {
     const a = u.attachments.find((x) => x.id === attachmentId);
     if (a?.code === OTD_RING) return ringProblem(s, u, a);
+    if (a && ereborAbilityLabel(a.code)) return ereborAbilityProblem(s, u, a);
     if (!a || a.code !== P.hood) return undefined;
     if (!enabled(a)) return "Spare Hood and Cloak's text is inactive.";
     if (attachmentController(s, u, a) !== activeSeat(s))
@@ -419,6 +426,7 @@ export function useHobbitPlayerAbility(
   const a = attachmentId
     ? u.attachments.find((x) => x.id === attachmentId)
     : undefined;
+  if (a && ereborAbilityLabel(a.code)) return useEreborAbility(s, u, a);
   if (
     attachmentId
       ? a?.code !== P.hood && a?.code !== OTD_RING
@@ -697,6 +705,6 @@ export function hobbitPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     default:
-      return false;
+      return ereborTreasureEffect(s, e);
   }
 }

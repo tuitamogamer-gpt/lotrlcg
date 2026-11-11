@@ -1,0 +1,160 @@
+[
+  {
+    "code": "octgn:240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+    "octgnid": "240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+    "name": "Thieves! Fire! Murder!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all progress from Smaug the Golden and set him aside, out of play. Then, add Smaug the Magnificent to the staging area.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 74,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Lonely Mountain",
+    "side": "A",
+    "back_name": "Thieves! Fire! Murder!",
+    "back_text": "Forced: After placing the 7th progress token on this stage, remove all damage from Smaug the Magnificent and set him aside, out of play. Then, add Smaug the Golden to the staging area and reset the quest deck to stage 2B.",
+    "back_type_code": "quest",
+    "back_quest": 7,
+    "back_imagesrc": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "240a9f5b-17dc-4182-b854-3d2dd5a33f68",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/240a9f5b-17dc-4182-b854-3d2dd5a33f68.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4355352b-307e-407b-98f9-3d4fb2a14a49",
+    "octgnid": "4355352b-307e-407b-98f9-3d4fb2a14a49",
+    "name": "The Burglar's Turn",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 72,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Lonely Mountain",
+    "side": "A",
+    "back_name": "The Burglar's Turn",
+    "back_text": "Forced: After questing successfully, place 1 progress on Smaug the Golden. Then, the first player makes a burgle attempt. If successful, the first player takes the top treasure card from under The Lonely Mountain into his hand. Then, the players may advance to stage 3.  Forced: After the first player makes an unsuccessful burgle attempt, Smaug the Golden attacks the first player.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 72,
+        "quantity": 1,
+        "octgnid": "4355352b-307e-407b-98f9-3d4fb2a14a49",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4355352b-307e-407b-98f9-3d4fb2a14a49.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:57fc374c-ca6d-4556-9181-c1b578d7a01d",
+    "octgnid": "57fc374c-ca6d-4556-9181-c1b578d7a01d",
+    "name": "A Warm Welcome",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for Smaug the Golden, Smaug the Magnificent, The Lonely Mountain, and A Bare Patch. Set Smaug the Magnificent and A Bare Patch aside, out of play. Add Smaug the Golden and The Lonely Mountain to the staging area. Shuffle the five Erebor treasure cards and stack them facedown under The Lonely Mountain.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 71,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Lonely Mountain",
+    "side": "A",
+    "back_name": "A Warm Welcome",
+    "back_text": "Skip the Quest phase.  Forced: At the end of round, advance to stage 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 71,
+        "quantity": 1,
+        "octgnid": "57fc374c-ca6d-4556-9181-c1b578d7a01d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57fc374c-ca6d-4556-9181-c1b578d7a01d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
+    "octgnid": "a944e2e1-56e4-461d-b703-db991b673b9b",
+    "name": "Inside Information",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Set Smaug the Golden aside, out of play. Add Smaug the Magnificent and A Bare Patch to the staging area.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 73,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Lonely Mountain",
+    "side": "A",
+    "back_name": "Inside Information",
+    "back_text": "Players cannot defeat this stage while Smaug the Magnificent is in play.  Forced: If the total number of progress on this stage is greater than the total remaining hit points on Smaug the Magnificent, remove Smaug the Magnificent from play.  If the players defeat this stage, they have won the game and discovered any treasure successfully burgled from The Lonely Mountain.",
+    "back_type_code": "quest",
+    "back_quest": 20,
+    "back_imagesrc": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/a944e2e1-56e4-461d-b703-db991b673b9b.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 73,
+        "quantity": 1,
+        "octgnid": "a944e2e1-56e4-461d-b703-db991b673b9b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a944e2e1-56e4-461d-b703-db991b673b9b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

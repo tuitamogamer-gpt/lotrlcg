@@ -23,6 +23,10 @@ export const PLAYMATS = {
     name: "Mirkwood Webs",
     detail: "Poison and webs · Lost in the dark",
   },
+  "the-lonely-mountain": {
+    name: "Smaug's Hoard",
+    detail: "Burgle attempts · The dragon wakes",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -422,6 +426,7 @@ export const PLAYMAT_CHOICES = [
   "over-the-misty-mountains-grim",
   "dungeons-deep-and-caverns-dim",
   "flies-and-spiders",
+  "the-lonely-mountain",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

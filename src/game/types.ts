@@ -261,6 +261,7 @@ export type ScenarioId =
   | "over-the-misty-mountains-grim"
   | "dungeons-deep-and-caverns-dim"
   | "flies-and-spiders"
+  | "the-lonely-mountain"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -426,6 +427,7 @@ export interface GameState {
   mistyMountains?: import("./misty-mountains-types").MistyMountainsState;
   dungeonsDeep?: import("./dungeons-deep-types").DungeonsDeepState;
   fliesSpiders?: import("./flies-spiders-types").FliesSpidersState;
+  lonelyMountain?: import("./lonely-mountain-types").LonelyMountainState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;

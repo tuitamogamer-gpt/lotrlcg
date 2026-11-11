@@ -54,6 +54,12 @@ const rules: Record<string, AttachmentRule> = {
   },
   "131021": { type: "hero", restricted: 1, attack: 2 },
   "131022": { restricted: 1, attack: 2 },
+  // The Hobbit: On the Doorstep's Erebor treasures.
+  "132020": { type: "hero" },
+  "132021": { names: ["Bilbo Baggins"], defense: 1, health: 1 },
+  "132022": { type: "hero", restricted: 1, attack: 2 },
+  "132023": { type: "hero", restricted: 1, keywords: ["Ranged"] },
+  "132024": { type: "hero" },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },

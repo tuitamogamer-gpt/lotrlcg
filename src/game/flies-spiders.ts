@@ -11,7 +11,6 @@ import {
   opts,
   prepend,
   questWill,
-  removeShadowCard,
   requireRule,
   shuffle,
   stagingThreat,
@@ -23,7 +22,6 @@ import {
   discardAttachment,
   exhaustCharacter,
   questDefeated,
-  raiseThreat,
   removeFromQuest,
   win,
 } from "./board";
@@ -55,6 +53,19 @@ import {
 } from "./hobbit-saga";
 import { hobbitRingDefense } from "./hobbit-player-cards";
 import {
+  WILDERLAND_SHARED_EFFECTS,
+  wilderlandAttackFinished,
+  wilderlandCharacterDestroyed,
+  wilderlandDamageDealt,
+  wilderlandEffect,
+  wilderlandPenalty,
+  wilderlandShadow,
+  wilderlandThreatBonus,
+  wilderlandTravelEffects,
+  wilderlandTravelProblem,
+  wilderlandTreachery,
+} from "./wilderland";
+import {
   FAS as F,
   FAS_RECIPES,
   fasArea,
@@ -74,7 +85,6 @@ const traitOf = (code: string, trait: string) =>
   (card(code).traits ?? "").split(".").some((t) => t.trim() === trait);
 const isSpider = (code: string) =>
   typeOf(code) === "enemy" && traitOf(code, "Spider");
-const sphereOf = (u: Unit) => card(u.code).sphere_code ?? "";
 export const poisonOf = (u: Unit) =>
   u.attachments.filter((a) => a.poison).length;
 const printedHealth = (u: Unit) => Number(card(u.code).health ?? 0);
@@ -532,33 +542,14 @@ function treachery(s: GameState, e: Effect) {
       if (!damaged) prepend(s, ...surgeEffects(held.code));
       break;
     }
-    case F.friends:
-      choose(
-        s,
-        "Fighting Among Friends · The first player names a sphere",
-        ["leadership", "lore", "spirit", "tactics"].map((sphere) => ({
-          id: sphere,
-          label: sphere[0].toUpperCase() + sphere.slice(1),
-          effects: [fx("fasFriends", { text: sphere, player: first })],
-        })),
-        "All non-Baggins characters who do not belong to the named sphere are removed from the quest.",
-      );
-      break;
-    case F.weighed:
-      if (!q.weighedDown.includes(s.round)) q.weighedDown.push(s.round);
-      log(
-        s,
-        "Weighed Down: until the end of the round, exhausted characters get -1 willpower, -1 attack and -1 defense.",
-        "danger",
-      );
-      break;
+    default:
+      wilderlandTreachery(s, held.code);
   }
   return true;
 }
 function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c || !s.fliesSpiders) return false;
-  const enemy = get(s, c.enemyId);
   const defenders = (c.defenderIds ?? [])
     .map((id) => get(s, id))
     .filter((u): u is Unit => !!u);
@@ -602,28 +593,8 @@ function shadow(s: GameState, code: string) {
         );
       return true;
     }
-    case F.bats: {
-      const d = defenders[0];
-      if (!d || !enemy) return true;
-      const index = enemy.shadows.indexOf(F.bats);
-      if (index >= 0 && removeShadowCard(enemy, index)) {
-        d.attachments.push({
-          id: `a${s.nextId++}`,
-          code: F.bats,
-          exhausted: false,
-        });
-        log(s, `Dark Bats attaches to ${name(d)}.`, "danger");
-      }
-      return true;
-    }
-    case F.friends:
-      c.attackBonus = (c.attackBonus ?? 0) + (defenders.length ? 1 : 2);
-      return true;
-    case F.weighed:
-      c.fasWeighed = true;
-      return true;
   }
-  return false;
+  return wilderlandShadow(s, code);
 }
 function gladeSearch(s: GameState, remaining: number) {
   const spiders = [...new Set(s.encounterDeck.filter(isSpider))];
@@ -808,19 +779,6 @@ export function fasEffect(s: GameState, e: Effect): boolean {
         makeUnconscious(s, u);
       }
       return true;
-    case "fasFriends": {
-      const removed = allCharacters(s).filter(
-        (c) =>
-          c.committed && sphereOf(c) !== "baggins" && sphereOf(c) !== e.text,
-      );
-      for (const c of removed) removeFromQuest(s, c);
-      log(
-        s,
-        `Fighting Among Friends: ${removed.length} character${removed.length === 1 ? " is" : "s are"} removed from the quest.`,
-        "danger",
-      );
-      return true;
-    }
     case "fasPoison":
       if (u) givePoison(s, u, e.value ?? 1);
       return true;
@@ -928,10 +886,6 @@ export function fasEffect(s: GameState, e: Effect): boolean {
     case "fasStageWakePay":
       if (u?.unconscious && spendBaggins(s, 2)) wakeCharacter(s, u);
       return true;
-    case "fasPathCost":
-      if (!spendBaggins(s, 2))
-        log(s, "Bilbo Baggins cannot pay for Hidden Path.", "danger");
-      return true;
     case "fasGladeCost": {
       const bilbo = areaBilbo(s);
       if (!bilbo || !exhaustCharacter(s, bilbo))
@@ -956,30 +910,6 @@ export function fasEffect(s: GameState, e: Effect): boolean {
       gladeSearch(s, (e.value ?? 1) - 1);
       return true;
     }
-    case "fasBatsAttach": {
-      const bats = get(s, e.source);
-      if (!u || !bats || !inPlay(s, u) || !isEnemy(bats)) return true;
-      for (const p of globalPlayerOrder(s))
-        forOwner(s, p, () => {
-          s.engaged = s.engaged.filter((x) => x.id !== bats.id);
-        });
-      s.staging = s.staging.filter((x) => x.id !== bats.id);
-      s.encounterDiscard.push(...bats.shadows);
-      bats.shadows = [];
-      u.attachments.push({ id: bats.id, code: bats.code, exhausted: false });
-      log(s, `Dark Bats attaches to ${name(u)}.`, "danger");
-      return true;
-    }
-    case "fasWeighedThreat":
-      forOwner(s, e.player ?? activeSeat(s), () =>
-        raiseThreat(s, 5, "encounter"),
-      );
-      log(
-        s,
-        "Weighed Down: the destroyed defender's controller raises their threat by 5.",
-        "danger",
-      );
-      return true;
   }
   return false;
 }
@@ -1021,28 +951,22 @@ export const FAS_HOOKS: Batch4ScenarioHooks = {
   travelProblem: (s, u) => {
     if (!s.fliesSpiders || u.blanked) return null;
     const bilbo = areaBilbo(s);
-    if (u.code === F.path && (bilbo?.resources ?? 0) < 2)
-      return "Travel to Hidden Path: spend 2 Baggins resources from Bilbo Baggins.";
+    const path = wilderlandTravelProblem(s, u, bilbo);
+    if (path) return path;
     if (u.code === F.glade && (!bilbo || bilbo.exhausted || bilbo.unconscious))
       return "Travel to The Spider's Glade: exhaust Bilbo Baggins.";
     return null;
   },
   travelEffects: (s, u) => {
     if (!s.fliesSpiders || u.blanked) return undefined;
-    if (u.code === F.path)
-      return [fx("fasPathCost", { player: firstPlayer(s) })];
+    const path = wilderlandTravelEffects(s, u);
+    if (path) return path;
     if (u.code === F.glade)
       return [fx("fasGladeCost", { player: firstPlayer(s) })];
     return undefined;
   },
   immune: (s, u) => !!s.fliesSpiders && u.code === F.glade && !u.blanked,
-  threatBonus: (s, u) =>
-    s.fliesSpiders &&
-    typeOf(u) === "location" &&
-    s.staging.some((x) => x.id === u.id) &&
-    activeIs(s, F.path)
-      ? -1
-      : 0,
+  threatBonus: (s, u) => (s.fliesSpiders ? wilderlandThreatBonus(s, u) : 0),
   stats: (s, u) => {
     const q = s.fliesSpiders;
     if (!q) return {};
@@ -1059,8 +983,7 @@ export const FAS_HOOKS: Batch4ScenarioHooks = {
       return poisoned ? { attack: 3 } : {};
     }
     if (!isCharacter(u)) return {};
-    let penalty = u.attachments.filter((a) => a.code === F.bats).length;
-    if (q.weighedDown.includes(s.round) && u.exhausted) penalty++;
+    let penalty = wilderlandPenalty(s, u);
     if (activeIs(s, F.web)) penalty += poisonOf(u);
     return penalty
       ? { will: -penalty, attack: -penalty, defense: -penalty }
@@ -1131,29 +1054,12 @@ export const FAS_HOOKS: Batch4ScenarioHooks = {
         s,
         fx("fasPoison", { target: u.id, value: 1, player: ownerOf(s, u) }),
       );
-    if (enemy.code === F.bats && s.combat?.enemyId === enemy.id)
-      s.combat.fasBats = u.id;
+    wilderlandDamageDealt(s, u, amount, ctx);
   },
   attackFinished: (s, combat) =>
-    s.fliesSpiders && combat.fasBats
-      ? [
-          fx("fasBatsAttach", {
-            target: combat.fasBats,
-            source: combat.enemyId,
-            player: firstPlayer(s),
-          }),
-        ]
-      : [],
+    s.fliesSpiders ? wilderlandAttackFinished(s, combat) : [],
   characterDestroyed: (s, u, ctx) => {
-    const c = s.combat;
-    if (
-      s.fliesSpiders &&
-      c?.fasWeighed &&
-      ctx.combatDamage &&
-      ctx.enemyId === c.enemyId &&
-      (c.defenderIds ?? []).includes(u.id)
-    )
-      prepend(s, fx("fasWeighedThreat", { player: ownerOf(s, u) }));
+    if (s.fliesSpiders) prepend(s, ...wilderlandCharacterDestroyed(s, u, ctx));
   },
   defendersDeclared: (s, enemy, defenders) => [
     ...hobbitTreasureDefense(s, enemy, defenders),
@@ -1180,7 +1086,8 @@ export const FAS_HOOKS: Batch4ScenarioHooks = {
   },
   encounter,
   shadow,
-  effect: (s, e) => fasEffect(s, e) || hobbitTreasureEffect(s, e),
+  effect: (s, e) =>
+    fasEffect(s, e) || wilderlandEffect(s, e) || hobbitTreasureEffect(s, e),
   sharedEffect: (e) =>
     [
       "fasSetup",
@@ -1192,7 +1099,7 @@ export const FAS_HOOKS: Batch4ScenarioHooks = {
       "fasAreaQuestDone",
       "fasTreachery",
       "fasTreacheryDone",
-      "fasFriends",
+      ...WILDERLAND_SHARED_EFFECTS,
       "fasStreamDiscard",
       "fasStreamTake",
       "fasWebWake",

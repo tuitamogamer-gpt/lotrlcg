@@ -1,0 +1,104 @@
+[
+  {
+    "code": "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
+    "name": "The Lonely Mountain",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+    "name": "Weighed Down",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
+    "name": "Great Hall",
+    "normal": 3,
+    "easy": 0
+  },
+  {
+    "code": "octgn:1e54fa6e-c2a1-4456-ac48-8912ecc4722a",
+    "name": "Western Slopes",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+    "name": "Dark Bats",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+    "name": "Hidden Path",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
+    "name": "Desolation of Smaug",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
+    "name": "Smaug the Magnificent",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
+    "name": "Belching Fire",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "code": "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
+    "name": "Smaug the Golden",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:9a37677f-6bb6-4ff1-bf0e-8d0798e268c9",
+    "name": "A Bare Patch",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:b7b62c58-7d5d-483d-807e-f4d7e2869579",
+    "name": "Pretending to Sleep",
+    "normal": 3,
+    "easy": 0
+  },
+  {
+    "code": "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+    "name": "Croaking Crows",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:da46fcb3-2810-4c21-9070-43969532ef9b",
+    "name": "Known to an Ounce",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:db6355c7-3edd-4573-a63c-1b6fc08bb8fa",
+    "name": "Dragon-Spell",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:de8d68fc-15c4-4689-933e-1b2ca638cd78",
+    "name": "Secret Entrance",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+    "name": "Fighting Among Friends",
+    "normal": 2,
+    "easy": 0
+  }
+]

@@ -1,5 +1,6 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
+import { ereborAttackBonus } from "./erebor-treasures";
 import { ulfastPlayerAttackEffects } from "./ulfast-player";
 import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
 import {
@@ -393,6 +394,7 @@ export function resolvePlayerAttack(
           cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
+          ereborAttackBonus(s, u, enemy) +
           watcherPlayerAttackBonus(s, u, enemy) +
           Rhudaur.rhudaurAttackBonus(s, enemy, u) +
           (card(enemy.code).traits?.includes("Orc")

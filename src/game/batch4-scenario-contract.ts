@@ -170,6 +170,8 @@ export interface Batch4ScenarioHooks {
   travelNext?(s: GameState): boolean;
   /** The first player token does not pass in the refresh phase. */
   keepFirstPlayer?(s: GameState): boolean;
+  /** A hero actually spent resources from its pool. */
+  resourcesSpent?(s: GameState, hero: Unit, amount: number): void;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */
   attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];
