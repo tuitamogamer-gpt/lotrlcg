@@ -74,10 +74,77 @@ const players = (s: GameState) => playerOrder(s).length;
 const greatGoblinDefeated = (s: GameState) =>
   !!s.victoryCards?.includes(O.greatGoblin);
 /** "Cave location in play": the staging area and the active location. */
+const hasTraitText = (u: Unit, trait: string) =>
+  (card(u.code).traits ?? "").split(".").some((t) => t.trim() === trait);
 const caves = (s: GameState) =>
   [...s.staging, ...allActiveLocations(s)].filter(
-    (u) => typeOf(u) === "location" && ommTrait(u, "Cave"),
+    (u) => typeOf(u) === "location" && hasTraitText(u, "Cave"),
   ).length;
+/** The Misty Mountain Goblins set appears in two Hobbit scenarios. */
+export const goblinActive = (s: GameState) =>
+  !!s.mistyMountains || !!s.dungeonsDeep;
+const GOBLIN_EFFECTS = [
+  "ommExhaustOwn",
+  "ommExhaust",
+  "ommSpreadDamage",
+  "ommGrip",
+  "ommGripTake",
+  "ommThreat",
+];
+/** Misty Mountain Goblins When Revealed effects. */
+export function goblinEncounter(
+  s: GameState,
+  code: string,
+  replay = false,
+  fromReveal = true,
+) {
+  if (!goblinActive(s)) return false;
+  if (code === O.driver) {
+    if (fromReveal) prepend(s, fx("ommExhaustOwn", { player: firstPlayer(s) }));
+    return true;
+  }
+  if (code !== O.grip) return false;
+  holdTreachery(s, code, replay, fromReveal);
+  return true;
+}
+/** Misty Mountain Goblins shadow effects. */
+export function goblinShadow(s: GameState, code: string) {
+  const c = s.combat;
+  if (!c || !goblinActive(s)) return false;
+  const p = c.attackPlayer ?? activeSeat(s);
+  if (code === O.axeman) c.defensePenalty = (c.defensePenalty ?? 0) + 1;
+  else if (code === O.driver) prepend(s, fx("ommExhaustOwn", { player: p }));
+  else if (code === O.miners) c.attackBonus += 1;
+  else if (code === O.runners) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
+  else if (code === O.grip) {
+    const n = goblinsEngagedWith(s, p);
+    if (n) prepend(s, fx("ommSpreadDamage", { value: n, player: p }));
+  } else if (code === O.caves) {
+    const n = goblinsEngagedWith(s, p);
+    if (n) prepend(s, fx("ommThreat", { value: n, player: p }));
+  } else return false;
+  return true;
+}
+export const goblinStats = (s: GameState, u: Unit) =>
+  u.blanked || !goblinActive(s)
+    ? {}
+    : {
+        attack: u.code === O.axeman ? caves(s) : 0,
+        defense: u.code === O.miners ? caves(s) : 0,
+      };
+/** The Goblins' Caves: while active, Goblin enemies get +1 threat. */
+export const goblinThreat = (s: GameState, u: Unit) =>
+  goblinActive(s) && !u.blanked && isGoblin(u) && activeLive(s, O.caves)
+    ? 1
+    : 0;
+/** Grip, grab! Pinch, nab! held in the shared Hobbit resolving zone. */
+export function goblinTreachery(s: GameState, e: Effect) {
+  if (e.kind !== "wmaTreachery" || !goblinActive(s)) return false;
+  const held = hobbitResolving(s).find((x) => x.id === e.source);
+  if (held?.code !== O.grip) return false;
+  prepend(s, ...playerOrder(s).map((player) => fx("ommGrip", { player })));
+  return true;
+}
 const porchBlank = (s: GameState, u: Unit) =>
   !!s.mistyMountains?.porchBlank.some(
     (m) => m.id === u.id && m.round === s.round,
@@ -178,12 +245,8 @@ function encounter(
 ) {
   if (!s.mistyMountains) return false;
   if (westernEncounter(s, code, replay, fromReveal)) return true;
-  const first = firstPlayer(s);
-  if (code === O.driver) {
-    if (fromReveal) prepend(s, fx("ommExhaustOwn", { player: first }));
-    return true;
-  }
-  if (![O.boulders, O.guffawing, O.chaos, O.grip].includes(code)) return false;
+  if (goblinEncounter(s, code, replay, fromReveal)) return true;
+  if (![O.boulders, O.guffawing, O.chaos].includes(code)) return false;
   holdTreachery(s, code, replay, fromReveal);
   return true;
 }
@@ -191,27 +254,17 @@ function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c || !s.mistyMountains) return false;
   if (westernShadow(s, code)) return true;
-  const p = c.attackPlayer ?? activeSeat(s),
-    enemy = get(s, c.enemyId);
+  if (goblinShadow(s, code)) return true;
+  const enemy = get(s, c.enemyId);
   if (code === O.boulders) {
     if (enemy && takeShadow(enemy, code)) {
       s.encounterDeck.unshift(code);
       log(s, "Galloping Boulders returns to the top of the encounter deck.");
     }
   } else if (code === O.chaos) c.ommChaosReturn = true;
-  else if (code === O.axeman) c.defensePenalty = (c.defensePenalty ?? 0) + 1;
   else if (code === O.bentSwords)
     c.attackBonus += greatGoblinDefeated(s) ? 2 : 1;
-  else if (code === O.driver) prepend(s, fx("ommExhaustOwn", { player: p }));
-  else if (code === O.miners) c.attackBonus += 1;
-  else if (code === O.runners) c.extraAttacks = (c.extraAttacks ?? 0) + 1;
-  else if (code === O.grip) {
-    const n = goblinsEngagedWith(s, p);
-    if (n) prepend(s, fx("ommSpreadDamage", { value: n, player: p }));
-  } else if (code === O.caves) {
-    const n = goblinsEngagedWith(s, p);
-    if (n) prepend(s, fx("ommThreat", { value: n, player: p }));
-  } else return false;
+  else return false;
   return true;
 }
 function returnToStaging(s: GameState, u: Unit) {
@@ -289,8 +342,87 @@ function abilityProblem(s: GameState, u: Unit) {
   }
   return "No action.";
 }
+/** Misty Mountain Goblins effects, in either scenario. */
+function goblinEffect(s: GameState, e: Effect): boolean {
+  const p = e.player ?? activeSeat(s),
+    u = get(s, e.target);
+  switch (e.kind) {
+    case "ommExhaustOwn": {
+      const ready = allCharacters(s).filter(
+        (c) => ownerOf(s, c) === p && !c.exhausted,
+      );
+      if (!ready.length) break;
+      choose(
+        s,
+        "Goblin Driver · Exhaust 1 character you control",
+        ready.map((c) =>
+          option(c, [fx("ommExhaust", { target: c.id, player: p })]),
+        ),
+      );
+      break;
+    }
+    case "ommExhaust":
+      if (u) exhaustCharacter(s, u);
+      break;
+    case "ommSpreadDamage": {
+      const remaining = e.value ?? 0;
+      const own = allCharacters(s).filter((c) => ownerOf(s, c) === p);
+      if (remaining <= 0 || !own.length) break;
+      choose(
+        s,
+        `Grip, grab! Pinch, nab! · Deal 1 damage to a character you control (${remaining} remaining)`,
+        own.map((c) =>
+          option(c, [
+            fx("damage", { target: c.id, value: 1, player: p }),
+            fx("ommSpreadDamage", { value: remaining - 1, player: p }),
+          ]),
+        ),
+      );
+      break;
+    }
+    case "ommGrip": {
+      const goblins = [
+        ...new Set(s.encounterDiscard.filter((c) => isGoblin(c))),
+      ];
+      if (!goblins.length) break;
+      choose(
+        s,
+        "Grip, grab! Pinch, nab! · Choose a Goblin enemy in the discard pile",
+        goblins.map((code) => ({
+          id: code,
+          code,
+          label: `Add ${card(code).name} to the staging area`,
+          effects: [fx("ommGripTake", { code, player: p })],
+        })),
+      );
+      break;
+    }
+    case "ommGripTake": {
+      const i = s.encounterDiscard.lastIndexOf(e.code!);
+      if (i < 0) break;
+      s.encounterDiscard.splice(i, 1);
+      const goblin = make(s, e.code!);
+      s.staging.push(goblin);
+      enemyAddedToStaging(s, goblin);
+      log(
+        s,
+        `${card(e.code!).name} returns from the discard pile to the staging area.`,
+        "danger",
+      );
+      break;
+    }
+    case "ommThreat":
+      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
+      break;
+    default:
+      return false;
+  }
+  return true;
+}
 export function ommEffect(s: GameState, e: Effect): boolean {
   if (!e.kind.startsWith("omm")) return false;
+  if (GOBLIN_EFFECTS.includes(e.kind) && goblinActive(s))
+    return goblinEffect(s, e);
   const q = s.mistyMountains;
   if (!q) return true;
   const p = e.player ?? activeSeat(s),
@@ -479,23 +611,6 @@ export function ommEffect(s: GameState, e: Effect): boolean {
     case "ommDiscardTarget":
       if (u) forOwner(s, ownerOf(s, u), () => discardCharacter(s, u));
       break;
-    case "ommExhaustOwn": {
-      const ready = allCharacters(s).filter(
-        (c) => ownerOf(s, c) === p && !c.exhausted,
-      );
-      if (!ready.length) break;
-      choose(
-        s,
-        "Goblin Driver · Exhaust 1 character you control",
-        ready.map((c) =>
-          option(c, [fx("ommExhaust", { target: c.id, player: p })]),
-        ),
-      );
-      break;
-    }
-    case "ommExhaust":
-      if (u) exhaustCharacter(s, u);
-      break;
     case "ommCavernDamage": {
       const own = allCharacters(s).filter((c) => ownerOf(s, c) === p);
       if (!own.length) break;
@@ -508,56 +623,6 @@ export function ommEffect(s: GameState, e: Effect): boolean {
       );
       break;
     }
-    case "ommSpreadDamage": {
-      const remaining = e.value ?? 0;
-      const own = allCharacters(s).filter((c) => ownerOf(s, c) === p);
-      if (remaining <= 0 || !own.length) break;
-      choose(
-        s,
-        `Grip, grab! Pinch, nab! · Deal 1 damage to a character you control (${remaining} remaining)`,
-        own.map((c) =>
-          option(c, [
-            fx("damage", { target: c.id, value: 1, player: p }),
-            fx("ommSpreadDamage", { value: remaining - 1, player: p }),
-          ]),
-        ),
-      );
-      break;
-    }
-    case "ommGrip": {
-      const goblins = [
-        ...new Set(s.encounterDiscard.filter((c) => isGoblin(c))),
-      ];
-      if (!goblins.length) break;
-      choose(
-        s,
-        "Grip, grab! Pinch, nab! · Choose a Goblin enemy in the discard pile",
-        goblins.map((code) => ({
-          id: code,
-          code,
-          label: `Add ${card(code).name} to the staging area`,
-          effects: [fx("ommGripTake", { code, player: p })],
-        })),
-      );
-      break;
-    }
-    case "ommGripTake": {
-      const i = s.encounterDiscard.lastIndexOf(e.code!);
-      if (i < 0) break;
-      s.encounterDiscard.splice(i, 1);
-      const goblin = make(s, e.code!);
-      s.staging.push(goblin);
-      enemyAddedToStaging(s, goblin);
-      log(
-        s,
-        `${card(e.code!).name} returns from the discard pile to the staging area.`,
-        "danger",
-      );
-      break;
-    }
-    case "ommThreat":
-      forOwner(s, p, () => raiseThreat(s, e.value ?? 0, "encounter"));
-      break;
     case "ommGreatGoblin": {
       const n = players(s);
       const discarded = s.encounterDeck.splice(0, n);
@@ -680,9 +745,6 @@ function ommTreachery(s: GameState, e: Effect) {
       );
       return true;
     }
-    case O.grip:
-      prepend(s, ...playerOrder(s).map((player) => fx("ommGrip", { player })));
-      return true;
   }
   return false;
 }
@@ -703,18 +765,12 @@ export const OMM_HOOKS: Batch4ScenarioHooks = {
     greatGoblinDefeated(s) &&
     !allActiveLocations(s).length &&
     s.staging.some((l) => l.code === O.cavern && !l.blanked),
-  stats: (s, u) =>
-    u.blanked
-      ? {}
-      : {
-          attack: u.code === O.axeman ? caves(s) : 0,
-          defense: u.code === O.miners ? caves(s) : 0,
-        },
+  stats: (s, u) => goblinStats(s, u),
   threatBonus: (s, u) => {
     if (!s.mistyMountains || u.blanked) return 0;
     let bonus = u.code === O.highPass ? players(s) : 0;
+    bonus += goblinThreat(s, u);
     if (isGoblin(u)) {
-      if (activeLive(s, O.caves)) bonus += 1;
       bonus += s.mistyMountains.chaos.filter(
         (m) => m.round === s.round && m.phase === ommPhase(s),
       ).length;
@@ -820,6 +876,7 @@ export const OMM_HOOKS: Batch4ScenarioHooks = {
     prepend(s, ...hobbitTreasureKill(s, enemy, ids, amount, remainingHealth)),
   effect: (s, e) =>
     ommTreachery(s, e) ||
+    goblinTreachery(s, e) ||
     ommEffect(s, e) ||
     hobbitTreasureEffect(s, e) ||
     wmaEffect(s, e),

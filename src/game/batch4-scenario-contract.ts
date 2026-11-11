@@ -158,6 +158,10 @@ export interface Batch4ScenarioHooks {
   printedDoomed?(s: GameState, code: string): number | undefined;
   /** This character may trigger an ability even while Sacked. */
   abilitySackExempt?(s: GameState, u: Unit): boolean;
+  /** This character cannot commit to the quest. */
+  cannotCommit?(s: GameState, u: Unit): boolean;
+  /** Additional encounter cards revealed during the staging step. */
+  extraStagingReveals?(s: GameState): number;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */
   attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];

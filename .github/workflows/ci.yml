@@ -430,6 +430,23 @@ jobs:
           name: misty-mountains-simulation
           path: output/misty-mountains-release/failures
           retention-days: 7
+  dungeons-deep-simulation:
+    name: Dungeons Deep and Caverns Dim complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:dungeons-deep-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: dungeons-deep-simulation
+          path: output/dungeons-deep-release/failures
+          retention-days: 7
 
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
@@ -562,6 +579,8 @@ jobs:
             suite: test:browser-we-must-away
           - group: misty-mountains
             suite: test:browser-misty-mountains
+          - group: dungeons-deep
+            suite: test:browser-dungeons-deep
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

@@ -51,6 +51,10 @@ const HEADLINES: Partial<
     lead: "Cross the mountains",
     em: "and escape Goblin Town.",
   },
+  "dungeons-deep-and-caverns-dim": {
+    lead: "Win the riddle game",
+    em: "and flee the wargs.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

@@ -6,6 +6,7 @@ export const HOBBIT_BILBO = "131001";
 export const HOBBIT_SCENARIO_IDS: readonly string[] = [
   "we-must-away-ere-break-of-day",
   "over-the-misty-mountains-grim",
+  "dungeons-deep-and-caverns-dim",
 ];
 /** Over Hill and Under Hill treasures: Sting, Orcrist and Glamdring. */
 export const HOBBIT_TREASURES: readonly string[] = [
@@ -16,6 +17,7 @@ export const HOBBIT_TREASURES: readonly string[] = [
 /** Hobbit scenarios whose setup lists the Over Hill and Under Hill treasure set. */
 export const HOBBIT_TREASURE_SCENARIOS: readonly string[] = [
   "over-the-misty-mountains-grim",
+  "dungeons-deep-and-caverns-dim",
 ];
 /** Printed X threat: The High Pass (X = players), Lake in the Cavern (2×). */
 export const HOBBIT_X_THREAT: Readonly<Record<string, number>> = {

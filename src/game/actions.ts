@@ -3,6 +3,7 @@ import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
 import { ommPublicState } from "./misty-mountains-support";
+import { ddcdPublicState } from "./dungeons-deep-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -543,6 +544,7 @@ export function canCommit(s: GameState, u: Unit, byEffect = false): boolean {
     (byEffect || !u.exhausted || GreyPlayers.greyHavensCanQuestExhausted(u)) &&
     !u.committed &&
     !isSacked(u) &&
+    !batch4Scenario(s).cannotCommit?.(s, u) &&
     (s.scenarioId !== "hunt-for-gollum" ||
       s.stage !== 3 ||
       s.heroes.some(hasClue))
@@ -3505,6 +3507,7 @@ export function publicState(s: GameState) {
     massing: massingPublicState(s),
     weMustAway: wmaPublicState(s),
     mistyMountains: ommPublicState(s),
+    dungeonsDeep: ddcdPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

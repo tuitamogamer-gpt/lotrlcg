@@ -15,6 +15,10 @@ export const PLAYMATS = {
     name: "Misty Mountains",
     detail: "Stone-giants at play · Down to Goblin Town",
   },
+  "dungeons-deep-and-caverns-dim": {
+    name: "Gollum's Lake",
+    detail: "Riddles in the dark · Wargs in the pines",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -412,6 +416,7 @@ export const PLAYMAT_CHOICES = [
   "the-massing-at-osgiliath",
   "we-must-away-ere-break-of-day",
   "over-the-misty-mountains-grim",
+  "dungeons-deep-and-caverns-dim",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

@@ -5,8 +5,8 @@
     "playerCards": 759,
     "heroes": 85,
     "deckCards": 670,
-    "encounterCards": 1247,
-    "scenarios": 84,
+    "encounterCards": 1258,
+    "scenarios": 85,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -91,17 +91,18 @@
       "the-fortress-of-nurn",
       "the-massing-at-osgiliath",
       "we-must-away-ere-break-of-day",
-      "over-the-misty-mountains-grim"
+      "over-the-misty-mountains-grim",
+      "dungeons-deep-and-caverns-dim"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2267,
-    "pending": 1916
+    "scripted": 2281,
+    "pending": 1902
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 167
+    "scripted": 169
   },
   "registeredCodes": [
     "01001",
@@ -1572,8 +1573,10 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9012",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9013",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9016",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9021",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9022",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9025",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9028",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9030",
@@ -1584,16 +1587,25 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9045",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9048",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9050",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9051",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9058",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9059",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9060",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9061",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9068",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9071",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9072",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9076",
@@ -1601,11 +1613,14 @@
     "octgn:51223bd0-ffd1-11df-a976-1801204c9078",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9079",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9080",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9085",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9086",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9087",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9088",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9089",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+    "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9092",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9093",
     "octgn:51681809-60af-4819-bfa0-3f568987f4ea",
@@ -2672,7 +2687,7 @@
     {
       "product": "over-hill-and-under-hill",
       "total": 84,
-      "scripted": 61,
+      "scripted": 75,
       "player": 22,
       "playerScripted": 13
     },
@@ -21314,7 +21329,7 @@
       "name": "Bilbo's Magic Ring",
       "type": "objective",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21338,7 +21353,7 @@
       "name": "Come down little bird",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21426,7 +21441,7 @@
       "name": "Gollum",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21442,7 +21457,7 @@
       "name": "Great Gray Wolf",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21466,7 +21481,7 @@
       "name": "Hiding in the Trees",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21490,7 +21505,7 @@
       "name": "Into the Fire",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21498,7 +21513,7 @@
       "name": "It Likes Riddles?",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21506,7 +21521,7 @@
       "name": "Lake in the Cavern",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21546,7 +21561,7 @@
       "name": "Not fair! Not fair!",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21554,7 +21569,7 @@
       "name": "Out of the Frying Pan",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21570,7 +21585,7 @@
       "name": "Riddles in the Dark",
       "type": "quest",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21634,7 +21649,7 @@
       "name": "The Wargs' Glade",
       "type": "location",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21682,7 +21697,7 @@
       "name": "What's In My Pocket?",
       "type": "treachery",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -21690,7 +21705,7 @@
       "name": "Wild Wargs",
       "type": "enemy",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -37422,8 +37437,8 @@
       "id": "E0A.3",
       "name": "Dungeons Deep and Caverns Dim (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "dungeons-deep-and-caverns-dim",
+      "state": "scripted"
     },
     {
       "id": "E0A.4",
@@ -38913,8 +38928,8 @@
       "id": "Q0A.3",
       "name": "Dungeons Deep and Caverns Dim",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "dungeons-deep-and-caverns-dim",
+      "state": "scripted"
     },
     {
       "id": "Q0A.4",

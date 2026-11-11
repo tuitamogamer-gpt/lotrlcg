@@ -9,6 +9,8 @@ import {
 import { MassingOsgiliathState } from "./ui/massing-osgiliath-state";
 import { WeMustAwayState } from "./ui/we-must-away-state";
 import { MistyMountainsState } from "./ui/misty-mountains-state";
+import { DungeonsDeepState } from "./ui/dungeons-deep-state";
+import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
   recordTreasures,
@@ -3190,6 +3192,7 @@ export default function App() {
             <MassingOsgiliathState s={game} inspect={setDetail} />
             <WeMustAwayState s={game} inspect={setDetail} />
             <MistyMountainsState s={game} inspect={setDetail} />
+            <DungeonsDeepState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3932,6 +3935,7 @@ export default function App() {
                       ...MASSING_QUESTS,
                       ...WMA_QUESTS,
                       ...OMM_QUESTS,
+                      ...DDCD_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

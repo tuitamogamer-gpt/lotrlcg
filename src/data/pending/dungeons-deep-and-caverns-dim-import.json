@@ -1,0 +1,1327 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Dungeons Deep and Caverns Dim",
+  "slug": "dungeons-deep-and-caverns-dim",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "131001",
+      "name": "Bilbo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "baggins",
+      "sphere_name": "Baggins",
+      "threat": 0,
+      "willpower": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "traits": "Hobbit.",
+      "text": "The first player gains control of Bilbo Baggins.\r\nBilbo Baggins cannot gain resources from player card effects.\r\n<b>If Bilbo Baggins leaves play, the players lose the game.</b>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "Over Hill and Under Hill",
+      "pack_code": "OHaUH",
+      "position": 1,
+      "illustrator": "Magali Villeneuve",
+      "imagesrc": "/cards/131001.png",
+      "url": "https://ringsdb.com/card/131001",
+      "quantity": 1,
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "131001",
+          "illustrator": "Magali Villeneuve",
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9017",
+          "imagesrc": "/bundles/cards/131001.png",
+          "date_release": "2012-08-17"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/131001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9018",
+      "name": "Bilbo's Magic Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Ring.",
+      "text": "Attach to Bilbo Baggins.\nAction: When answering a riddle, spend 1 [baggins] resource to discard an additional player card from the top of your deck.  Action: Exhaust Bilbo's Magic Ring and raise each player's threat by 2 to add 1 [baggins] resource to Bilbo Baggins' resource pool.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 79,
+      "quantity": 1,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9018.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9018",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9018.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9023",
+      "name": "Come down little bird",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player must search the encounter deck and encounter discard pile for 1 Creature enemy and put it into play engaged with him. Then, shuffle the encounter deck.  Riddle: The first player names a card type and cost, shuffles his deck, then discards the top 3 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 80,
+      "quantity": 2,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9023.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 80,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9023",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9023.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9038",
+      "name": "Goblin Axeman",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Goblin Axeman gets +1 [attack] for each Cave location in play.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 58,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "engagement": 25,
+      "shadow": "Shadow: Defending character gets -1 [defense].",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "1",
+        "defense": "2",
+        "health": "2",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9038.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 58,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9038",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9038.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9040",
+      "name": "Goblin Driver",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "When Revealed: The first player exhausts 1 character he controls.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 61,
+      "quantity": 3,
+      "threat": 3,
+      "attack": 2,
+      "defense": 2,
+      "health": 3,
+      "engagement": 30,
+      "shadow": "Shadow: Defending player exhausts 1 character he controls.",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "2",
+        "defense": "2",
+        "health": "3",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9040.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 61,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9040",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9040.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9041",
+      "name": "Goblin Miners",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Goblin Miners gets +1 [defense] for each Cave location in play.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 59,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 0,
+      "health": 2,
+      "engagement": 25,
+      "shadow": "Shadow: attacking enemy gets +1 [attack].",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "0",
+        "health": "2",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9041.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9041",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9041.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9042",
+      "name": "Goblin Runners",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Surge.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 60,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 1,
+      "health": 2,
+      "engagement": 20,
+      "shadow": "Shadow: attacking enemy makes an additional attack immediately after this one. (Deal a new shadow card for that attack.)",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "1",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9042.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 60,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9042",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9042.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9044",
+      "name": "Gollum",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Gollum.",
+      "text": "Forced: After the first player answers a riddle and fails to find at least 1 match, Gollum attacks Bilbo Baggins. (Do not deal a shadow card for this attack.)",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 74,
+      "quantity": 1,
+      "threat": 0,
+      "attack": 2,
+      "defense": 3,
+      "health": 5,
+      "engagement": 50,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {
+        "threat": "0",
+        "attack": "2",
+        "defense": "3",
+        "health": "5",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9044.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 74,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9044",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9044.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9046",
+      "name": "Great Gray Wolf",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: If Great Gray Wolf is dealt a shadow card with a riddle, return all Creature enemies to the staging area at the end of the combat phase.  Riddle: The first player names a card type, sphere and cost, shuffles his deck, then discards the top 3 cards. For each of those cards that matches all three items, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 75,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 2,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "2",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9046.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9046",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9046.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9047",
+      "name": "Grip, grab! Pinch, nab!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player must choose 1 Goblin enemy from the discard pile and add it to the staging area.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 70,
+      "quantity": 3,
+      "shadow": "Shadow: Defending player deals damage among characters he controls equal to the number of Goblin enemies engaged with him.",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9047.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 70,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9047",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9047.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9049",
+      "name": "Hiding in the Trees",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Characters get -1 [willpower] and cannot attack until the end of the round.  Riddle: The first player names a card type and sphere, shuffles his deck, then discards the top 3 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 82,
+      "quantity": 2,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9049.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 82,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9049",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9049.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9052",
+      "name": "Into the Fire",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 31,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "side": "A",
+      "back_name": "Into the Fire",
+      "back_text": "When Revealed: The first player gains control of Bilbo Baggins. Reveal 1 encounter card per player and add it to the staging area.  Gollum engages the first player. Damage from undefended attacks made by Gollum must be placed on Bilbo Baggins.  All riddle effects are ignored. Treachery cards gain surge.  If the players defeat this stage, they have won the game.",
+      "back_type_code": "quest",
+      "back_quest": 16,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9052.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9052.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9052",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9052.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9054",
+      "name": "It Likes Riddles?",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose to answer the riddle on this card. If he finds at least 1 match, discard cards from the encounter deck until another card with a riddle is discarded. Then, answer that riddle.  Riddle: The first player names a cost, shuffles his deck, then discards the top 2 cards. For each of those cards that matches, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 81,
+      "quantity": 3,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9054.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 81,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9054",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9054.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9056",
+      "name": "Lake in the Cavern",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cave.",
+      "text": "X is twice the number of players in the game.\nPlayers cannot travel here.  Immune to player card effects.  Forced: After players advance to stage 3, remove Lake in the Cavern from the game.",
+      "is_unique": true,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 78,
+      "quantity": 1,
+      "quest": 0,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "0"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9056.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9056",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9056.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9063",
+      "name": "Not fair! Not fair!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player names a card type and then discards the top 3 cards of the encounter deck. For each of those cards that does not match the named type, remove 1 progress token from stage 2. This effect cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 84,
+      "quantity": 1,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9063.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 84,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9063",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9063.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9066",
+      "name": "Out of the Frying Pan",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Add Lake in the Cavern to the staging area. Create a riddle area with stage 2A and follow the setup instructions on that card.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 29,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "side": "A",
+      "back_name": "Out of the Frying Pan",
+      "back_text": "Players cannot advance to stage 3A unless both 1B and 2B are complete.  Forced: Reveal 1 additional encounter card per player during the staging step.",
+      "back_type_code": "quest",
+      "back_quest": 14,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9066.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9066.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9066",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9066.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9069",
+      "name": "Riddles in the Dark",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for Gollum and Bilbo's Magic Ring. Place Gollum and Bilbo Baggins in the riddle area and attach Bilbo's Magic Ring to Bilbo Baggins. Then, shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 30,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "side": "A",
+      "back_name": "Riddles in the Dark",
+      "back_text": "Players cannot advance to stage 3A unless both 1B and 2B are complete.  Progress tokens cannot be added to, or removed from, this quest except by answering riddles.  Cards in the riddle area are immune to player card effects and cannot leave the riddle area except by quest effects.",
+      "back_type_code": "quest",
+      "back_quest": 9,
+      "back_imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9069.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9069.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 30,
+          "quantity": 1,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9069",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9069.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9077",
+      "name": "The Goblins' Caves",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Cave.",
+      "text": "While The Goblins' Caves is the active location, Goblin enemies get +1 [threat].",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 65,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "shadow": "Shadow: Defending player raises his threat by X. X is the number of Goblin enemies engaged with him.",
+      "encounter_set": "Misty Mountain Goblins",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9077.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 65,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9077",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9077.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9082",
+      "name": "The Wargs' Glade",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Forced: After a character takes damage from an attack made by a Creature enemy, remove 1 progress from the current quest.  Riddle: The first player names a sphere, shuffles his deck, and discards the top card. For each of those cards that matches, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 77,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9082.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 77,
+          "quantity": 3,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9082",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9082.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9090",
+      "name": "What's In My Pocket?",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose to answer the riddle on this card. This effect cannot be canceled.  Riddle: The first player names a sphere and cost, shuffles his deck, then discards the top 2 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 83,
+      "quantity": 2,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {},
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9090.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 83,
+          "quantity": 2,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9090",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9090.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+      "octgnid": "51223bd0-ffd1-11df-a976-1801204c9091",
+      "name": "Wild Wargs",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: If Wild Wargs is dealt a shadow card with a riddle, it gets +2 [attack].  Riddle: The first player names a card type, shuffles his deck, and discards the top 2 cards. For each of those cards that matches, place 1 progress token on stage 2.",
+      "is_unique": false,
+      "pack_code": "OHaUH",
+      "pack_name": "Over Hill and Under Hill",
+      "position": 76,
+      "quantity": 4,
+      "threat": 3,
+      "attack": 3,
+      "defense": 2,
+      "health": 3,
+      "engagement": 25,
+      "encounter_set": "Dungeons Deep and Caverns Dim",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "2",
+        "health": "3",
+        "engagement": "25"
+      },
+      "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9091.jpg",
+      "packs": [
+        {
+          "pack_code": "OHaUH",
+          "pack_name": "Over Hill and Under Hill",
+          "position": 76,
+          "quantity": 4,
+          "octgnid": "51223bd0-ffd1-11df-a976-1801204c9091",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9091.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0A.3",
+      "name": "Dungeons Deep and Caverns Dim (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "OHaUH"
+      ],
+      "card_codes": [
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+        "131001",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9018"
+      ],
+      "cards": [
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "131001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9066": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9069": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9052": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9023": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9049": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9054": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9063": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9082": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9090": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9091": 4,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9038": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9040": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9041": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9042": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9077": 1
+        },
+        "sharedStagingArea": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9056": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9044": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9018": 1
+        },
+        "player1Play1": {
+          "131001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0A.3",
+      "name": "Dungeons Deep and Caverns Dim",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "OHaUH"
+      ],
+      "card_codes": [
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+        "131001",
+        "octgn:51223bd0-ffd1-11df-a976-1801204c9018"
+      ],
+      "cards": [
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "131001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9066": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9069": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9052": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9023": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9046": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9049": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9054": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9063": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9082": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9090": 2,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9091": 4,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9038": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9040": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9041": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9042": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9047": 3,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9077": 3
+        },
+        "sharedStagingArea": {
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9056": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9044": 1,
+          "octgn:51223bd0-ffd1-11df-a976-1801204c9018": 1
+        },
+        "player1Play1": {
+          "131001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "131001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/131001.png",
+      "localPath": "/cards/131001.png",
+      "bytes": 158958,
+      "sha256": "af64331f038db74561a487f636061c0b13bf4a2c40fca9b25d3def969542062f"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9018.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9018.jpg",
+      "bytes": 135864,
+      "sha256": "4d84c5fcc3c5f9f2b9528674fd40f018655bc1e5c0095e32d9bb5af9f4834182"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9023.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9023.jpg",
+      "bytes": 171273,
+      "sha256": "6aaeafcf3dadcad55491086cecb5d8169304d5c53bca126bd29f6df2486bfa6a"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9038",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9038.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9038.jpg",
+      "bytes": 159902,
+      "sha256": "dd1e9cd287196caa80dcb31d36dd8878eb24b3455a73a8c252c5abf9d3dad4fe"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9040",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9040.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9040.jpg",
+      "bytes": 154325,
+      "sha256": "091404a2fc10cce1bc1eb43dfd688eda39bd95551329023b7f7a630d2231c101"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9041",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9041.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9041.jpg",
+      "bytes": 172989,
+      "sha256": "cd7733d7199b13e79386b021931afbd3c1824935db45f193df5a34e5f30dcd38"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9042",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9042.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9042.jpg",
+      "bytes": 155846,
+      "sha256": "f69c652bb2a75ad7a09401146ea6f3fa738eec92d21ca17516a88e587371f4f5"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9044.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9044.jpg",
+      "bytes": 153346,
+      "sha256": "83f156a48a92e41f4b273359d08ae2284d53cb45eea7b0262970cf874327e5c0"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9046.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9046.jpg",
+      "bytes": 154999,
+      "sha256": "5cf0f2c7e9e7147c1ab27b316f35ac241f8f3970a48c39d619afda2537cde7c2"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9047",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9047.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9047.jpg",
+      "bytes": 150720,
+      "sha256": "666d7a6ae6e1a96dc85f69523e4a3f22f6e9e445fdf645a3635c6a44ee03a795"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9049.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9049.jpg",
+      "bytes": 148045,
+      "sha256": "4f3de21ffdfed490e2abb8f4c1eb14a19e30d9f0ebb40fe4ddbafc4196df6cde"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9052.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9052.jpg",
+      "bytes": 149698,
+      "sha256": "f6255d9c68bcabe6e62e48c80269efdb034454d482f82ddfff9441a2350b951f"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9052",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9052.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9052.B.jpg",
+      "bytes": 154008,
+      "sha256": "a1318fb775a26d69009c44ff5949cf2111bf775700324f9e0881b0803134ddf3"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9054.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9054.jpg",
+      "bytes": 154876,
+      "sha256": "a5ae7a4ce4ee18af20f51bd0de968f0cb0e6fc42763c84a5668f152c5267bee1"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9056.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9056.jpg",
+      "bytes": 143814,
+      "sha256": "358a2c9ec7c6f4f4c4d9849031e396b48508eecbc52e89a72ee820a1e782eebc"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9063.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9063.jpg",
+      "bytes": 148309,
+      "sha256": "596c61b1c4fadf821d0101d440979ca95fcb330e6590fe201ef7cb77e5b03dd1"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9066.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9066.jpg",
+      "bytes": 163671,
+      "sha256": "2e9d749d02c600fef69d5f7c5e3b0824c9b11aa79e95c6de098154c6e2a52c06"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9066",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9066.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9066.B.jpg",
+      "bytes": 152753,
+      "sha256": "754f3dc97d4082be8677cba7e86c0c38c841732c567535e999f51a440199bc71"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9069.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9069.jpg",
+      "bytes": 148388,
+      "sha256": "b76ed120c578f6a2a3f249b1d4421cb00eda91fd3bad4dde16fc4e8753bf1282"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9069",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9069.B.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9069.B.jpg",
+      "bytes": 135368,
+      "sha256": "7a2a3e14d8fdf70fa53cf249cc514eec089b30987ea5b5052e41473b035d136c"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9077",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9077.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9077.jpg",
+      "bytes": 148100,
+      "sha256": "a37f38af6ef30b30abe16baa55f19deea5696d18c2497f6abf7a6ada7b2109c0"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9082.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9082.jpg",
+      "bytes": 149378,
+      "sha256": "c2f72203fa2836feda4a5e49615496d4c877b5bac4508a14db064c696029dc4e"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9090.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9090.jpg",
+      "bytes": 145533,
+      "sha256": "fd3f1473b7ec226f7539592e100d54908098edca0dbbc71eb96d0ebc407f4236"
+    },
+    {
+      "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9091.jpg",
+      "localPath": "/cards/51223bd0-ffd1-11df-a976-1801204c9091.jpg",
+      "bytes": 147543,
+      "sha256": "4af1e7a68de7db2d11e8dc69a15807a54ea644e9ff32682ae03a60813c4d37fe"
+    }
+  ]
+}

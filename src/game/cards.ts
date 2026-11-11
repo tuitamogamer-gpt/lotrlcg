@@ -5,6 +5,7 @@ import {
 } from "./massing-osgiliath-scenario-data";
 import { WMA_ENCOUNTERS, WMA_QUESTS } from "./we-must-away-scenario-data";
 import { OMM_ENCOUNTERS, OMM_QUESTS } from "./misty-mountains-scenario-data";
+import { DDCD_ENCOUNTERS, DDCD_QUESTS } from "./dungeons-deep-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -473,6 +474,7 @@ export const encounterCards = [
       ...MASSING_ENCOUNTERS,
       ...WMA_ENCOUNTERS,
       ...OMM_ENCOUNTERS,
+      ...DDCD_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -548,6 +550,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...MASSING_QUESTS,
     ...WMA_QUESTS,
     ...OMM_QUESTS,
+    ...DDCD_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -664,6 +667,7 @@ export const SCRIPTED = new Set(
     ...MASSING_QUESTS,
     ...WMA_QUESTS,
     ...OMM_QUESTS,
+    ...DDCD_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

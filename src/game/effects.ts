@@ -1128,7 +1128,8 @@ function handleEffect(s: GameState, e: Effect) {
                 Etten.ettenExtraReveals(s) +
                 Mumakil.mumakilExtraReveals(s) +
                 Race.raceHaradExtraReveals(s) +
-                stewardFearExtraRevealCount(s),
+                stewardFearExtraRevealCount(s) +
+                (batch4Scenario(s).extraStagingReveals?.(s) ?? 0),
         ),
       );
       const reveals = Math.max(

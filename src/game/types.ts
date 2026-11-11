@@ -255,6 +255,7 @@ export type ScenarioId =
   | "the-massing-at-osgiliath"
   | "we-must-away-ere-break-of-day"
   | "over-the-misty-mountains-grim"
+  | "dungeons-deep-and-caverns-dim"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -418,6 +419,7 @@ export interface GameState {
   massing?: import("./massing-osgiliath-types").MassingState;
   weMustAway?: import("./we-must-away-types").WeMustAwayState;
   mistyMountains?: import("./misty-mountains-types").MistyMountainsState;
+  dungeonsDeep?: import("./dungeons-deep-types").DungeonsDeepState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;

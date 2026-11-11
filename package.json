@@ -164,7 +164,9 @@
     "test:we-must-away-simulation": "node --import tsx --test tests/we-must-away-simulation.test.ts",
     "test:browser-we-must-away": "node --import tsx scripts/browser-we-must-away.mjs",
     "test:misty-mountains-simulation": "node --import tsx --test tests/misty-mountains-simulation.test.ts",
-    "test:browser-misty-mountains": "node --import tsx scripts/browser-misty-mountains.mjs"
+    "test:browser-misty-mountains": "node --import tsx scripts/browser-misty-mountains.mjs",
+    "test:dungeons-deep-simulation": "node --import tsx --test tests/dungeons-deep-simulation.test.ts",
+    "test:browser-dungeons-deep": "node --import tsx scripts/browser-dungeons-deep.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

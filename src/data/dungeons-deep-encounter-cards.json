@@ -1,0 +1,385 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9044",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9044",
+    "name": "Gollum",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Gollum.",
+    "text": "Forced: After the first player answers a riddle and fails to find at least 1 match, Gollum attacks Bilbo Baggins. (Do not deal a shadow card for this attack.)",
+    "is_unique": true,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 74,
+    "quantity": 1,
+    "threat": 0,
+    "attack": 2,
+    "defense": 3,
+    "health": 5,
+    "engagement": 50,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {
+      "threat": "0",
+      "attack": "2",
+      "defense": "3",
+      "health": "5",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9044.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 74,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9044",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9044.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9046",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9046",
+    "name": "Great Gray Wolf",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: If Great Gray Wolf is dealt a shadow card with a riddle, return all Creature enemies to the staging area at the end of the combat phase.\nRiddle: The first player names a card type, sphere and cost, shuffles his deck, then discards the top 3 cards. For each of those cards that matches all three items, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 75,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 2,
+    "health": 5,
+    "engagement": 30,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "2",
+      "health": "5",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9046.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9046",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9046.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9091",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9091",
+    "name": "Wild Wargs",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: If Wild Wargs is dealt a shadow card with a riddle, it gets +2 [attack].\nRiddle: The first player names a card type, shuffles his deck, and discards the top 2 cards. For each of those cards that matches, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 76,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 3,
+    "defense": 2,
+    "health": 3,
+    "engagement": 25,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "3",
+      "defense": "2",
+      "health": "3",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9091.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 76,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9091",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9091.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9082",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9082",
+    "name": "The Wargs' Glade",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Forced: After a character takes damage from an attack made by a Creature enemy, remove 1 progress from the current quest.\nRiddle: The first player names a sphere, shuffles his deck, and discards the top card. For each of those cards that matches, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 77,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9082.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 77,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9082",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9082.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9056",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9056",
+    "name": "Lake in the Cavern",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Cave.",
+    "text": "X is twice the number of players in the game.\nPlayers cannot travel here.\nImmune to player card effects.\nForced: After players advance to stage 3, remove Lake in the Cavern from the game.",
+    "is_unique": true,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 78,
+    "quantity": 1,
+    "quest": 0,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {
+      "threat": "X",
+      "quest": "0"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9056.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9056",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9056.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9018",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9018",
+    "name": "Bilbo's Magic Ring",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Ring.",
+    "text": "Attach to Bilbo Baggins.\nAction: When answering a riddle, spend 1 [baggins] resource to discard an additional player card from the top of your deck.\nAction: Exhaust Bilbo's Magic Ring and raise each player's threat by 2 to add 1 [baggins] resource to Bilbo Baggins' resource pool.",
+    "is_unique": true,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 79,
+    "quantity": 1,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9018.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9018",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9018.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9023",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9023",
+    "name": "Come down little bird",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Starting with the first player, each player must search the encounter deck and encounter discard pile for 1 Creature enemy and put it into play engaged with him. Then, shuffle the encounter deck.\nRiddle: The first player names a card type and cost, shuffles his deck, then discards the top 3 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 80,
+    "quantity": 2,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9023.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 80,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9023",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9023.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9054",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9054",
+    "name": "It Likes Riddles?",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player must choose to answer the riddle on this card. If he finds at least 1 match, discard cards from the encounter deck until another card with a riddle is discarded. Then, answer that riddle.\nRiddle: The first player names a cost, shuffles his deck, then discards the top 2 cards. For each of those cards that matches, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 81,
+    "quantity": 3,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9054.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 81,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9054",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9054.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9049",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9049",
+    "name": "Hiding in the Trees",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Characters get -1 [willpower] and cannot attack until the end of the round.\nRiddle: The first player names a card type and sphere, shuffles his deck, then discards the top 3 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 82,
+    "quantity": 2,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9049.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 82,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9049",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9049.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9090",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9090",
+    "name": "What's In My Pocket?",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player must choose to answer the riddle on this card. This effect cannot be canceled.\nRiddle: The first player names a sphere and cost, shuffles his deck, then discards the top 2 cards. For each of those cards that matches both items, place 1 progress token on stage 2.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 83,
+    "quantity": 2,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9090.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 83,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9090",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9090.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801204c9063",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801204c9063",
+    "name": "Not fair! Not fair!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: The first player names a card type and then discards the top 3 cards of the encounter deck. For each of those cards that does not match the named type, remove 1 progress token from stage 2. This effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "OHaUH",
+    "pack_name": "Over Hill and Under Hill",
+    "position": 84,
+    "quantity": 1,
+    "encounter_set": "Dungeons Deep and Caverns Dim",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801204c9063.jpg",
+    "packs": [
+      {
+        "pack_code": "OHaUH",
+        "pack_name": "Over Hill and Under Hill",
+        "position": 84,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801204c9063",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801204c9063.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

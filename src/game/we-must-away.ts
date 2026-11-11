@@ -95,7 +95,10 @@ export const westernActive = (s: GameState) =>
   !!s.weMustAway || !!s.mistyMountains;
 /** The resolving zone of the Hobbit scenario in play. */
 export const hobbitResolving = (s: GameState): Unit[] =>
-  s.weMustAway?.resolving ?? s.mistyMountains?.resolving ?? [];
+  s.weMustAway?.resolving ??
+  s.mistyMountains?.resolving ??
+  s.dungeonsDeep?.resolving ??
+  [];
 const WESTERN_TREACHERIES = [W.grocer, W.campfire, W.rain];
 const WESTERN_EFFECTS = [
   "wmaTreachery",
