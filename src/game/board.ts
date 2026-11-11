@@ -415,6 +415,10 @@ import {
 } from "./carrock";
 import { HOBBIT_BILBO } from "./hobbit-codes";
 import {
+  hobbitPlayerEnemyRevealed,
+  hobbitPlayerResourceBonus,
+} from "./hobbit-player-cards";
+import {
   advanceEmynMuil,
   emynMuilRevealSurge,
   emynMuilEncounter,
@@ -2818,7 +2822,8 @@ export function collectResources(s: GameState) {
             ? 0
             : resourcePhaseBonus(h) +
               Angmar.angmarResourceBonus(s, h) +
-              cityPlayerResourceBonus(s, h));
+              cityPlayerResourceBonus(s, h) +
+              hobbitPlayerResourceBonus(s, h));
     for (const ally of s.allies)
       if (
         ["02059", "08146"].includes(ally.code) &&
@@ -3140,6 +3145,8 @@ export function resolveReveal(
       khazadRevealedEnemy(s, crow);
       s.staging.push(crow);
       heirsEnemyEntered(s, crow, true);
+      // The destroyed enemy still was the first enemy revealed this phase.
+      hobbitPlayerEnemyRevealed(s, crow);
       destroy(s, crow);
       log(s, `Thalin defeats ${c.name} as it is revealed.`, "good");
       return;
@@ -3430,6 +3437,7 @@ export function placeEncounter(
     ) {
       khazadRevealedEnemy(s, fresh);
       khazadDiscardRevealedEnemy(s, fresh);
+      hobbitPlayerEnemyRevealed(s, fresh);
     }
     if (
       ["enemy", "ship-enemy"].includes(c.type_code) &&

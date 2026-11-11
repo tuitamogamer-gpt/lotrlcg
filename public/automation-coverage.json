@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 759,
-    "heroes": 85,
-    "deckCards": 670,
+    "playerCards": 768,
+    "heroes": 87,
+    "deckCards": 677,
     "encounterCards": 1258,
     "scenarios": 85,
     "scenarioIds": [
@@ -97,8 +97,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2281,
-    "pending": 1902
+    "scripted": 2290,
+    "pending": 1893
   },
   "scenarioRecipes": {
     "total": 355,
@@ -671,15 +671,24 @@
     "12145",
     "12146",
     "131001",
+    "131002",
     "131003",
     "131004",
+    "131005",
     "131006",
     "131007",
+    "131008",
     "131009",
+    "131010",
     "131011",
+    "131012",
     "131013",
     "131014",
     "131015",
+    "131016",
+    "131017",
+    "131018",
+    "131019",
     "131020",
     "131021",
     "131022",
@@ -2687,9 +2696,9 @@
     {
       "product": "over-hill-and-under-hill",
       "total": 84,
-      "scripted": 75,
+      "scripted": 84,
       "player": 22,
-      "playerScripted": 13
+      "playerScripted": 22
     },
     {
       "product": "over-hill-and-under-hill-nightmare",
@@ -8841,7 +8850,7 @@
       "name": "Thorin Oakenshield",
       "type": "hero",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8865,7 +8874,7 @@
       "name": "Beorn",
       "type": "hero",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8889,7 +8898,7 @@
       "name": "Bofur",
       "type": "ally",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8905,7 +8914,7 @@
       "name": "Gandalf",
       "type": "ally",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8921,7 +8930,7 @@
       "name": "Spare Hood and Cloak",
       "type": "attachment",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8953,7 +8962,7 @@
       "name": "Goblin-cleaver",
       "type": "event",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8961,7 +8970,7 @@
       "name": "Late Adventurer",
       "type": "event",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8969,7 +8978,7 @@
       "name": "Expecting Mischief",
       "type": "event",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {
@@ -8977,7 +8986,7 @@
       "name": "Burglar Baggins",
       "type": "event",
       "pack": "Over Hill and Under Hill",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "over-hill-and-under-hill"
     },
     {

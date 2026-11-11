@@ -134,9 +134,10 @@ export function deckWarnings(deck: Pick<CustomDeck, "heroes" | "cards">) {
     .filter(
       ([code, n]) => deckCodes.has(code) && n > 0 && !legalSphere(code, heroes),
     )
-    .map(
-      ([code]) =>
-        `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
+    .map(([code]) =>
+      card(code).sphere_code === "baggins"
+        ? `${card(code).name} is paid with Bilbo Baggins' Baggins resources, so it can only be played in The Hobbit scenarios.`
+        : `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
     );
 }
 

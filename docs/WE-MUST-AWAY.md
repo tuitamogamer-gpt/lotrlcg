@@ -4,7 +4,8 @@ The first scenario of **The Hobbit: Over Hill and Under Hill** (2012), the first
 Saga expansion, follows The Massing at Osgiliath in publication order. It is
 playable in classic solo and with one to four local players, in normal and easy
 mode. This import also adds the shared Hobbit Saga rules for the Baggins-sphere
-Bilbo Baggins.
+Bilbo Baggins. The box's other player cards are described in
+[the Hobbit player scripts](HOBBIT-PLAYER-SCRIPTS.md).
 
 ## Sources and corrections
 
@@ -47,7 +48,8 @@ You All's When Revealed is printed on side 3B.
 
 **Sack X:** the first player draws X cards from the sack deck and resolves them
 in order. Each attaches to the eligible character it names without a Sack
-(never Gandalf); the first player breaks ties. If it names no eligible target the
+(never Gandalf, nor a character that cannot have attachments such as Beorn);
+the first player breaks ties. If it names no eligible target the
 first player chooses any eligible character, and if none exists the card is
 shuffled back. A Sack that leaves play, or is removed by Troll Camp, is shuffled
 into the sack deck. An empty sack deck ignores the effect.

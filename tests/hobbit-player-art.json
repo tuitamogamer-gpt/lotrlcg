@@ -1,0 +1,74 @@
+[
+  {
+    "code": "131002",
+    "name": "Thorin Oakenshield",
+    "localPath": "/cards/131002.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131002.png",
+    "bytes": 145229,
+    "sha256": "8d14d5ffd90ce0e6452ffb16b47f7702bb66167a86ebe12090b6d7e7b48f4754"
+  },
+  {
+    "code": "131005",
+    "name": "Beorn",
+    "localPath": "/cards/131005.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131005.png",
+    "bytes": 144516,
+    "sha256": "4b223d803ee71d4d8427f09a17acce34d83312287dfe8857dfab17c99eeea1a4"
+  },
+  {
+    "code": "131008",
+    "name": "Bofur",
+    "localPath": "/cards/131008.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131008.png",
+    "bytes": 147717,
+    "sha256": "219c7bc0a8d58163b45bf7932417ac3dca2d83b9d08740b2744d89c07e00359f"
+  },
+  {
+    "code": "131010",
+    "name": "Gandalf",
+    "localPath": "/cards/131010.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131010.png",
+    "bytes": 146678,
+    "sha256": "88c413b012d44b25c86d91fa3c4f18a0e03d39fef3f9010ed5be1efb0aaed638"
+  },
+  {
+    "code": "131012",
+    "name": "Spare Hood and Cloak",
+    "localPath": "/cards/131012.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131012.png",
+    "bytes": 141043,
+    "sha256": "96b3a88481d4dabc8bdecbe6c0c296b473510bbd15b65c4163cfbb703fe54eaf"
+  },
+  {
+    "code": "131016",
+    "name": "Goblin-cleaver",
+    "localPath": "/cards/131016.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131016.png",
+    "bytes": 138202,
+    "sha256": "f3bc055f9a2c9124d2f727d91c3fc84d3c83bc269ea16b729b76d7784dc91878"
+  },
+  {
+    "code": "131017",
+    "name": "Late Adventurer",
+    "localPath": "/cards/131017.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131017.png",
+    "bytes": 142016,
+    "sha256": "94ab7106d8ee8899f1e682aeb00d1822ca9b727c5effa92f9b63f1ba9028036f"
+  },
+  {
+    "code": "131018",
+    "name": "Expecting Mischief",
+    "localPath": "/cards/131018.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131018.png",
+    "bytes": 127726,
+    "sha256": "285c4b09624bf294968f5c747dd818927d6ee70f271f15b80db6cf5e5d5facfb"
+  },
+  {
+    "code": "131019",
+    "name": "Burglar Baggins",
+    "localPath": "/cards/131019.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/131019.png",
+    "bytes": 140428,
+    "sha256": "dfedc1f2d9ec893020c5da2c74fdcc674c3e59d680aa3a39a42c0ae4b5edca66"
+  }
+]

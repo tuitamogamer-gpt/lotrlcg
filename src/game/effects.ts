@@ -1,5 +1,9 @@
 import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
 import {
+  hobbitPlayerEffect,
+  hobbitPlayerRefreshEnd,
+} from "./hobbit-player-cards";
+import {
   fortressNurnPlayerEffect,
   fortressNurnPlayerQuestSucceeded,
   fortressNurnPlayerStagingEnd,
@@ -605,6 +609,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (ashPlayerEffect(s, e)) return;
   if (landSorrowPlayerEffect(s, e)) return;
   if (fortressNurnPlayerEffect(s, e)) return;
+  if (hobbitPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -1827,6 +1832,7 @@ function handleEffect(s: GameState, e: Effect) {
       Fate.fatePhaseEnd(s);
 
       if (s.phase === "refresh") {
+        hobbitPlayerRefreshEnd(s);
         Trials.trialsRemoveEnemyTime(s);
         Chetwood.chetwoodRefreshEnd(s);
         Weather.weatherRefreshEnd(s);

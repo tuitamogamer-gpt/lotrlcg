@@ -6,6 +6,7 @@ import {
   landSorrowPlayerUnit,
 } from "./land-sorrow-player";
 import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
+import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
   ulfastPlayerStats,
@@ -1321,6 +1322,7 @@ export function eligiblePayers(s: GameState, c: Card, target?: Unit) {
             c.playOrigin !== "deck" &&
             c.playOrigin !== "discard")),
     ),
+    ...hobbitPlayerExtraPayers(s, c, heroes),
   ];
 }
 

@@ -1,4 +1,5 @@
 import type { Attachment, Effect, GameState, Option, Unit } from "./types";
+import { heirsCannotHaveAttachments } from "./heirs-numenor";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import {
@@ -234,8 +235,13 @@ export function westernAttackFinished(s: GameState, c: Combat) {
 }
 /** The characters a Sack card targets; ties are chosen by the first player. */
 export function sackTargets(s: GameState, code: string) {
+  // A character that cannot have attachments (Beorn) is never stuffed into a Sack.
   const open = allCharacters(s).filter(
-    (u) => ["hero", "ally"].includes(typeOf(u)) && !hasSack(u) && !isGandalf(u),
+    (u) =>
+      ["hero", "ally"].includes(typeOf(u)) &&
+      !hasSack(u) &&
+      !isGandalf(u) &&
+      !heirsCannotHaveAttachments(u),
   );
   const printed = (u: Unit) => card(u.code);
   const value: Record<string, (u: Unit) => number> = {

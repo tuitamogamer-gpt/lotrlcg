@@ -394,3 +394,21 @@ The 17 new faces confirm the catalog text; Hall of Beorn's normal quantities mat
 
 
 Validation on Node 22: 5,924 engine tests pass, including 19 Dungeons Deep scenario and 2 source/art tests and the We Must Away and Misty Mountains suites after the shared Goblin refactor; the dedicated complete-game matrix passes 14 games with the treasures in the first player's deck, 6 exact review comparisons, 1,309 action/save restorations and 429 physical/privacy boundaries (905 private-view comparisons); the generic suite passes 40 starter-deck games plus hidden/decisions/guided parity; the shard manifest covers 434 cases. The production browser suite passes 35 checkpoints, all eight native setups, an answered riddle and Gollum's attack through the real controls, and all 24 face hashes/decodes at 1280/390/320px with zero page or console errors. TypeScript, the production build, formatting and the coverage audit pass. The additive account-choice migration is included; no hosted database migration is claimed.
+
+2026-11-11 The Hobbit: Over Hill and Under Hill player cards complete: continued the user's “Nastavi” after 213e528. The box's nine remaining player cards are scripted in `src/game/hobbit-player-cards.ts`:
+
+- Thorin Oakenshield collects 1 additional resource while his controller has 5 Dwarf characters.
+- Beorn is a Sentinel, cannot have attachments, is immune to player card effects and does not exhaust to defend. The We Must Away sack deck now skips any character that cannot have attachments.
+- Bofur exhausts to search the top five cards for a Weapon attachment.
+- The Hobbit Gandalf commits without exhausting. At the end of each refresh phase his controller raises their threat by 2 to keep him, or he is discarded.
+- Spare Hood and Cloak exhausts itself and its character to ready another character, then moves to that character.
+- Goblin-cleaver exhausts a Weapon as it is played and deals 2 damage to an engaged enemy, or 3 to an Orc.
+- Late Adventurer exhausts a character to commit it to the quest.
+- Expecting Mischief deals 2 damage per copy to the first enemy revealed from the encounter deck this quest phase. It can no longer be played once an enemy has been revealed.
+- Burglar Baggins can be paid from Bilbo's Baggins resources by any player, and the payment dialog lists Bilbo for them.
+
+All 22 player cards of the box are now scripted. The nine RingsDB scans were checked by eye against the catalog text and are pinned in `tests/hobbit-player-art.json`; four flavour texts missing from RingsDB were copied from the scans. Two older events now show their target picker: Knowledge of the Enemy (The Fortress of Nurn) and Bartering (The Wilds of Rhovanion). The deck builder can filter Baggins cards and explains how Burglar Baggins is paid.
+
+Coverage is now 768 player definitions (87 heroes), 1,258 encounters and 85 scenarios. This resolves 2,290 of 4,183 identities and 169 of 355 recipes; 1,893 identities remain pending. See docs/HOBBIT-PLAYER-SCRIPTS.md.
+
+Validation on Node 22: all 5,935 engine tests pass, including 10 focused card tests and 3 seeded complete games built around the new cards (Passage Through Mirkwood solo and with two players, and We Must Away solo, with exact save restoration after every action). The We Must Away, Misty Mountains and Dungeons Deep complete-game matrices still pass. The browser suite passes 24 checkpoints at 1280/390/320px with zero page or console errors: Goblin-cleaver, Burglar Baggins paid from Bilbo's pool by the second player, the Knowledge of the Enemy target picker, Bofur's search, Spare Hood and Cloak, and Gandalf's refresh-phase choice. TypeScript, the production build and the coverage audit pass.

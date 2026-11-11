@@ -1,4 +1,5 @@
 import * as FortressPlayers from "./fortress-nurn-player";
+import * as HobbitPlayers from "./hobbit-player-cards";
 import { fortressNurnPublicState } from "./fortress-nurn-support";
 import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
@@ -879,6 +880,8 @@ export function canPlay(
     options.playOrigin ?? "hand",
   );
   if (nurnProblem) return nurnProblem;
+  const hobbitProblem = HobbitPlayers.hobbitPlayerPlayProblem(s, u);
+  if (hobbitProblem) return hobbitProblem;
   const wainProblem = WainPlayers.wainridersPlayerEventProblem(s, c.code);
   if (wainProblem) return wainProblem;
   const isengardProblem = Isengard.isengardEventProblem(s, c.code);
@@ -1583,6 +1586,7 @@ export function resolvePlayerCard(
         GreyPlayers.greyHavensEventCost(s, u.code, target);
         DepthsPlayers.depthsPlayerEventCost(s, u.code, target);
         DrownedPlayers.drownedPlayerEventCost(s, u.code, target);
+        HobbitPlayers.hobbitPlayerEventCost(s, u, target);
         const abilityCost = finalRingEventCost(s, u.code, target);
         if (played) stewardFearEventPlayed(s);
         s.queue.push(
@@ -1640,6 +1644,7 @@ export function handlePlayerEventAbilityEffect(
     !AshPlayers.ashPlayerEvent(s, physical.code) &&
     !LandSorrowPlayers.landSorrowPlayerEvent(s, physical.code) &&
     !FortressPlayers.fortressNurnPlayerEvent(s, physical.code, e.source) &&
+    !HobbitPlayers.hobbitPlayerEvent(s, physical.code, e.source) &&
     !WainPlayers.wainridersPlayerEvent(s, physical.code) &&
     !WrathPlayers.wrathRuinPlayerEvent(
       s,
@@ -1775,6 +1780,7 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
   const batchTargets =
     AshPlayers.ashPlayerTargets(s, c.code) ??
     FortressPlayers.fortressNurnPlayerTargets(s, c.code) ??
+    HobbitPlayers.hobbitPlayerTargets(s, c.code) ??
     WainPlayers.wainridersPlayerTargets(s, c.code) ??
     UlfastPlayers.ulfastPlayerTargets(s, c.code) ??
     WrathPlayers.wrathRuinPlayerPlayTargets(s, c.code) ??
@@ -1947,6 +1953,10 @@ function rawPlayTargets(s: GameState, u: Unit): Unit[] {
 
 export const needsTarget = (u: Unit) =>
   [
+    "131016",
+    "131017",
+    "18015",
+    "22139",
     "21010",
     "19114",
     "19149",
@@ -2146,6 +2156,10 @@ export function availableAbilities(s: GameState, u: Unit) {
     [
       FortressPlayers.fortressNurnPlayerAbilityLabel(u.code),
       FortressPlayers.fortressNurnPlayerAbilityProblem(s, u),
+    ],
+    [
+      HobbitPlayers.hobbitPlayerAbilityLabel(u.code),
+      HobbitPlayers.hobbitPlayerAbilityProblem(s, u),
     ],
     [
       EredFinalPlayers.eredFinalPlayerAbilityLabel(u.code),
@@ -2423,6 +2437,13 @@ export function availableAbilities(s: GameState, u: Unit) {
     ])
       if (label) results.push({ id: a.id, label, disabled: !!problem });
     if (a.blanked) continue;
+    const hobbitLabel = HobbitPlayers.hobbitPlayerAbilityLabel(a.code);
+    if (hobbitLabel && attachmentController(s, u, a) === activeSeat(s))
+      results.push({
+        id: a.id,
+        label: hobbitLabel,
+        disabled: !!HobbitPlayers.hobbitPlayerAbilityProblem(s, u, a.id),
+      });
     const templeLabel = Temple.templeAbilityLabel(s, u, a.id);
     if (templeLabel && attachmentController(s, u, a) === activeSeat(s))
       results.push({
@@ -3130,6 +3151,7 @@ export function applyAction(input: GameState, action: Action): GameState {
               action.attachmentId,
             ) &&
             !BatchPlayers.useBatch4PlayerAbility(s, u, action.attachmentId) &&
+            !HobbitPlayers.useHobbitPlayerAbility(s, u, action.attachmentId) &&
             !WildsPlayers.useWildsPlayerAbility(s, u, action.attachmentId) &&
             !MumakPlayers.useMumakilPlayerAbility(s, u, action.attachmentId) &&
             !RacePlayers.useRaceHaradPlayerAbility(s, u, action.attachmentId) &&

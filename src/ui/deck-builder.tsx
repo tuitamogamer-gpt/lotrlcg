@@ -560,13 +560,18 @@ export default function DeckBuilder({
                 }}
               >
                 <option value="all">All spheres</option>
-                {["leadership", "tactics", "spirit", "lore", "neutral"].map(
-                  (v) => (
-                    <option key={v} value={v}>
-                      {v[0].toUpperCase() + v.slice(1)}
-                    </option>
-                  ),
-                )}
+                {[
+                  "leadership",
+                  "tactics",
+                  "spirit",
+                  "lore",
+                  "neutral",
+                  "baggins",
+                ].map((v) => (
+                  <option key={v} value={v}>
+                    {v[0].toUpperCase() + v.slice(1)}
+                  </option>
+                ))}
               </select>
               <select
                 aria-label="Filter deck card type"

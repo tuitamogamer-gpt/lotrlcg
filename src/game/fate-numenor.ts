@@ -455,6 +455,7 @@ const playerSearchKinds = new Set([
   "angmarHopeSearch",
   "longDarkCommandTake",
   "shadowFlameForgeTake",
+  "hobbitPlayerBofurTake",
   "mountainReward",
   "takeSearched",
   "collectorPartnerSearch",
@@ -474,7 +475,7 @@ export function fateBlocksSearchEffect(s: GameState, e: Effect) {
   );
 }
 export const fateForbiddenSearchAbility = (s: GameState, u: Unit) =>
-  u.code === "04134" && fateCannotSearch(s);
+  ["04134", "131008"].includes(u.code) && fateCannotSearch(s);
 export function fateEffect(s: GameState, e: Effect) {
   if (fateBlocksSearchEffect(s, e)) {
     log(

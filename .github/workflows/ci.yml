@@ -581,6 +581,8 @@ jobs:
             suite: test:browser-misty-mountains
           - group: dungeons-deep
             suite: test:browser-dungeons-deep
+          - group: hobbit-players
+            suite: test:browser-hobbit-players
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

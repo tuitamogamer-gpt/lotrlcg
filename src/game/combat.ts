@@ -1,4 +1,5 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
+import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import { ulfastPlayerAttackEffects } from "./ulfast-player";
 import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
 import {
@@ -727,6 +728,7 @@ export function beginEnemyAttack(
       !haradPlayerNoExhaustDefense(s, d!) &&
       !watcherPlayerNoDefenseExhaust(d!) &&
       !carrockNoExhaustDefender(enemy, d!) &&
+      !hobbitPlayerNoDefenseExhaust(d!) &&
       !pathOfNeed(s, d!)
     ) {
       requireRule(exhaustCharacter(s, d!), "This defender cannot exhaust.");
