@@ -23,8 +23,9 @@ import {
   seatIndices,
 } from "./table";
 import {
-  HOBBIT_BILBO,
   HOBBIT_TREASURES,
+  hobbitBilboCode,
+  isBagginsBilbo,
   HOBBIT_TREASURE_SCENARIOS,
   HOBBIT_X_THREAT,
   isHobbitScenarioId,
@@ -39,7 +40,7 @@ export * from "./hobbit-codes";
  */
 export const hobbitSaga = (s: GameState) => isHobbitScenarioId(s.scenarioId);
 export const bagginsBilbo = (s: GameState): Unit | undefined =>
-  globalCharacters(s).find((u) => u.code === HOBBIT_BILBO);
+  globalCharacters(s).find((u) => isBagginsBilbo(u.code));
 /** Only Bilbo's resource pool holds Baggins resources. */
 export const bagginsResources = (s: GameState) =>
   bagginsBilbo(s)?.resources ?? 0;
@@ -54,7 +55,7 @@ export function placeBagginsBilbo(s: GameState) {
   if (!hobbitSaga(s) || bagginsBilbo(s)) return;
   const first = s.table?.first ?? 0;
   forOwner(s, first, () => {
-    const bilbo = make(s, HOBBIT_BILBO);
+    const bilbo = make(s, hobbitBilboCode(s.scenarioId));
     bilbo.owner = first;
     bilbo.controller = first;
     s.heroes.push(bilbo);
@@ -142,7 +143,7 @@ export function hobbitTreasureDefense(
   defenders: Unit[],
 ): Effect[] {
   const bilbo = defenders.find(
-    (d) => d.code === HOBBIT_BILBO && d.exhausted && live(d, STING),
+    (d) => isBagginsBilbo(d.code) && d.exhausted && live(d, STING),
   );
   return bilbo
     ? [fx("hobbitSting", { target: enemy.id, player: ownerOf(s, bilbo) })]

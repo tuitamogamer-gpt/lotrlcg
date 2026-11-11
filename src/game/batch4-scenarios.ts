@@ -3,6 +3,7 @@ import { MASSING_HOOKS } from "./massing-osgiliath";
 import { WMA_HOOKS } from "./we-must-away";
 import { OMM_HOOKS } from "./misty-mountains";
 import { DDCD_HOOKS } from "./dungeons-deep";
+import { FAS_HOOKS } from "./flies-spiders";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -37,6 +38,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return OMM_HOOKS;
     case "dungeons-deep-and-caverns-dim":
       return DDCD_HOOKS;
+    case "flies-and-spiders":
+      return FAS_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -104,4 +107,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     WMA_HOOKS,
     OMM_HOOKS,
     DDCD_HOOKS,
+    FAS_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

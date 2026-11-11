@@ -1,0 +1,320 @@
+[
+  {
+    "id": "E0A.4",
+    "name": "Flies and Spiders (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": [
+      "OtD"
+    ],
+    "card_codes": [
+      "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+      "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+      "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+      "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+      "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
+      "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
+      "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
+      "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+      "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
+      "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
+      "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+      "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+      "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+      "132019",
+      "132001"
+    ],
+    "cards": [
+      {
+        "code": "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+        "quantity": 5,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "132019",
+        "quantity": 3,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "132001",
+        "quantity": 1,
+        "section": "player1Play1"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338": 1,
+        "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1": 1,
+        "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b": 1,
+        "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:7a165c5c-caba-4af1-880e-845a124344d7": 2,
+        "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6": 2,
+        "octgn:5b038648-7a06-4014-b207-a5d68c99e76d": 3,
+        "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30": 2,
+        "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5": 3,
+        "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd": 1,
+        "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e": 1,
+        "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5": 5,
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 1
+      },
+      "sharedSetAside": {
+        "132019": 3,
+        "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b": 1
+      },
+      "player1Play1": {
+        "132001": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q0A.4",
+    "name": "Flies and Spiders",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": [
+      "OtD"
+    ],
+    "card_codes": [
+      "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+      "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+      "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+      "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+      "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
+      "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
+      "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
+      "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+      "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
+      "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
+      "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+      "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
+      "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+      "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+      "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+      "132019",
+      "132001"
+    ],
+    "cards": [
+      {
+        "code": "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+        "quantity": 5,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "132019",
+        "quantity": 3,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "132001",
+        "quantity": 1,
+        "section": "player1Play1"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338": 1,
+        "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1": 1,
+        "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b": 1,
+        "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:7a165c5c-caba-4af1-880e-845a124344d7": 2,
+        "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6": 3,
+        "octgn:5b038648-7a06-4014-b207-a5d68c99e76d": 4,
+        "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30": 2,
+        "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5": 4,
+        "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd": 3,
+        "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e": 3,
+        "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041": 2,
+        "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5": 5,
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+        "octgn:ffe307bf-dd8e-4df3-9355-55564137d311": 2,
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 2
+      },
+      "sharedSetAside": {
+        "132019": 3,
+        "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b": 1
+      },
+      "player1Play1": {
+        "132001": 1
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

@@ -8,7 +8,7 @@ The requested goal is automation of the complete official published library, inc
 
 Run `npm run audit:rules` to regenerate `public/automation-coverage.json`. It records the exact reference-catalog SHA-256, implemented and pending card identities, scenario variants, and per-product coverage. The manifest is an inventory, not a substitute for semantic rules tests. Reprints reuse canonical handlers while preserving their product provenance. Nightmare and campaign variants have separate support gates.
 
-The 2026-11-11 local inventory registers 768 player definitions (87 heroes, seven contracts and four set-aside Encounter-backed player cards), 1,258 encounter definitions and 85 scenario designs. It resolves 2,290 of 4,183 reference identities and 169 of 355 setup recipes to registered automation; 1,893 reference identities remain pending. The six complete retail/Collector main deck recipes preserve their printed lists and join all four Core learning decks directly in every fellowship menu. These counts describe registration coverage, with the corresponding semantic and client evidence recorded separately.
+The 2026-11-11 local inventory registers 770 player definitions (88 heroes, seven contracts and four set-aside Encounter-backed player cards), 1,272 encounter definitions and 86 scenario designs. It resolves 2,310 of 4,183 reference identities and 171 of 355 setup recipes to registered automation; 1,873 reference identities remain pending. The six complete retail/Collector main deck recipes preserve their printed lists and join all four Core learning decks directly in every fellowship menu. These counts describe registration coverage, with the corresponding semantic and client evidence recorded separately.
 
 ## Implementation batches
 

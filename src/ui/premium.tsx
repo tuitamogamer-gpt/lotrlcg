@@ -19,6 +19,10 @@ export const PLAYMATS = {
     name: "Gollum's Lake",
     detail: "Riddles in the dark · Wargs in the pines",
   },
+  "flies-and-spiders": {
+    name: "Mirkwood Webs",
+    detail: "Poison and webs · Lost in the dark",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -417,6 +421,7 @@ export const PLAYMAT_CHOICES = [
   "we-must-away-ere-break-of-day",
   "over-the-misty-mountains-grim",
   "dungeons-deep-and-caverns-dim",
+  "flies-and-spiders",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

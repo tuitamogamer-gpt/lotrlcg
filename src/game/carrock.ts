@@ -70,14 +70,20 @@ export const CARROCK_TROLLS: readonly string[] = [
  * Sacked characters cannot attack, defend, commit or trigger their effects:
  * Conflict at the Carrock's Sacked! and We Must Away's Sack objectives.
  */
+/**
+ * Sacked characters cannot quest, attack, defend or use their abilities.
+ * Unconscious characters (Flies and Spiders) share these restrictions.
+ */
 export const isSacked = (u: Unit) =>
+  !!u.unconscious ||
   u.attachments.some(
     (a) =>
       (a.code === CARROCK.sacked || HOBBIT_SACKS.includes(a.code)) &&
       !a.blanked,
   );
-/** Only the Carrock's Sacked! also stops its hero collecting resources. */
+/** The Carrock's Sacked! and unconsciousness also stop collecting resources. */
 export const carrockSacked = (u: Unit) =>
+  !!u.unconscious ||
   u.attachments.some((a) => a.code === CARROCK.sacked && !a.blanked);
 const hasSackAttached = (u: Unit) =>
   u.attachments.some((a) => a.code === CARROCK.sacked);

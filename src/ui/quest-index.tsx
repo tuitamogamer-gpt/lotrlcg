@@ -55,6 +55,10 @@ const HEADLINES: Partial<
     lead: "Win the riddle game",
     em: "and flee the wargs.",
   },
+  "flies-and-spiders": {
+    lead: "Escape the webs",
+    em: "of Mirkwood's spiders.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

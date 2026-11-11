@@ -9,6 +9,7 @@ import { playerCardImmune } from "./card-immunity";
 import { ownerOf, seatIndices, seatView } from "./table";
 import { foundationsAreaPlayers } from "./foundations-stone-support";
 import { gramAreaPlayers } from "./mount-gram-support";
+import { fasAreaPlayers } from "./flies-spiders-support";
 import { stormcallerEffectiveThreat } from "./threat-read";
 
 /** All twenty source records remain distinct; Armor of Erebor reuses its definition. */
@@ -40,7 +41,10 @@ export const ERED_FINAL_PREFIX = "ered-final:";
 export const eredFinalMarks = (s: GameState) =>
   seatIndices(s).flatMap((player) => seatView(s, player).used);
 export const eredFinalAreaPlayers = (s: GameState) =>
-  foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? seatIndices(s);
+  foundationsAreaPlayers(s) ??
+  gramAreaPlayers(s) ??
+  fasAreaPlayers(s) ??
+  seatIndices(s);
 export const eredFinalAttachmentLive = (a: Attachment) =>
   !a.blanked && !a.facedown;
 

@@ -49,7 +49,9 @@ import { watcherWaterCannotExhaust } from "./watcher-water";
 import { heirsCanSpendResources } from "./heirs-numenor";
 import { fateCannotSearch } from "./fate-numenor";
 import { isEnemy } from "./ships";
-import { HOBBIT_BILBO } from "./hobbit-codes";
+import { OTD_BILBO, OTD_RING, isBagginsBilbo } from "./hobbit-codes";
+import { choosePlayerResponse } from "./player-ability-triggers";
+import { spendResources } from "./core";
 
 /**
  * The remaining player cards of The Hobbit: Over Hill and Under Hill. Nori,
@@ -81,8 +83,9 @@ const cardHasTrait = (code: string, trait: string) =>
     .some((t) => t.trim().toLowerCase() === trait.toLowerCase());
 const canExhaust = (u: Unit) =>
   !u.exhausted && !khazadCannotExhaust(u) && !watcherWaterCannotExhaust(u);
+/** Bilbo Baggins in the active player's staging area (all of play unless split). */
 const bilbo = (s: GameState) =>
-  globalCharacters(s).find((u) => u.code === HOBBIT_BILBO);
+  allCharacters(s).find((u) => isBagginsBilbo(u.code));
 
 /** Thorin Oakenshield collects 1 additional resource with 5 Dwarf characters. */
 export function hobbitPlayerResourceBonus(s: GameState, h: Unit) {
@@ -154,6 +157,8 @@ function hoodCanMoveTo(s: GameState, host: Unit, a: Attachment, to: Unit) {
 }
 
 export function hobbitPlayerTargets(s: GameState, code: string) {
+  if (code === OTD_RING)
+    return allCharacters(s).filter((u) => isBagginsBilbo(u.code));
   if (code === P.hood) return allCharacters(s);
   if (code === P.cleaver) return cleaverEnemies(s);
   if (code === P.late) return lateTargets(s);
@@ -329,7 +334,55 @@ export const hobbitPlayerAbilityLabel = (code: string) =>
     ? "Bofur · Exhaust to search the top 5 cards for a Weapon"
     : code === P.hood
       ? "Spare Hood and Cloak · Ready another character"
-      : undefined;
+      : code === OTD_BILBO
+        ? "Bilbo Baggins · Spend 1 Baggins resource: search your deck for a treasure"
+        : code === OTD_RING
+          ? "Bilbo's Magic Ring · Exhaust and raise your threat by 1: gain 1 Baggins resource"
+          : undefined;
+const ringKey = (a: Attachment) => `round:${OTD_RING}:${a.id}`;
+function ringProblem(s: GameState, u: Unit, a: Attachment) {
+  if (!enabled(a)) return "Bilbo's Magic Ring's text is inactive.";
+  if (attachmentController(s, u, a) !== activeSeat(s))
+    return "You do not control Bilbo's Magic Ring.";
+  if (!isBagginsBilbo(u.code))
+    return "Bilbo's Magic Ring must be attached to Bilbo Baggins.";
+  if (a.exhausted) return "Bilbo's Magic Ring must be ready.";
+  if (s.used.includes(ringKey(a)))
+    return "Bilbo's Magic Ring's action is limited to once per round.";
+  return undefined;
+}
+function treasureSearchProblem(s: GameState, u: Unit) {
+  if (u.blanked) return "Bilbo Baggins' printed text is blank.";
+  if (ownerOf(s, u) !== activeSeat(s))
+    return "You do not control Bilbo Baggins.";
+  if (u.resources < 1 || !heirsCanSpendResources(s, u))
+    return "Spend 1 Baggins resource from Bilbo Baggins' resource pool.";
+  if (!s.deck.length) return "Your deck has no cards to search.";
+  if (fateCannotSearch(s))
+    return "An encounter effect prevents searching your deck.";
+  return undefined;
+}
+/** Bilbo's Magic Ring: after Bilbo exhausts to defend an attack. */
+export function hobbitRingDefense(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+): Effect[] {
+  return defenders.flatMap((d) =>
+    isBagginsBilbo(d.code) && d.exhausted
+      ? d.attachments
+          .filter((a) => a.code === OTD_RING && enabled(a) && !a.exhausted)
+          .map((a) =>
+            fx("hobbitPlayerRingOffer", {
+              target: enemy.id,
+              source: a.id,
+              text: d.id,
+              player: attachmentController(s, d, a) ?? ownerOf(s, d),
+            }),
+          )
+      : [],
+  );
+}
 export function hobbitPlayerAbilityProblem(
   s: GameState,
   u: Unit,
@@ -337,6 +390,7 @@ export function hobbitPlayerAbilityProblem(
 ): string | undefined {
   if (attachmentId) {
     const a = u.attachments.find((x) => x.id === attachmentId);
+    if (a?.code === OTD_RING) return ringProblem(s, u, a);
     if (!a || a.code !== P.hood) return undefined;
     if (!enabled(a)) return "Spare Hood and Cloak's text is inactive.";
     if (attachmentController(s, u, a) !== activeSeat(s))
@@ -347,6 +401,7 @@ export function hobbitPlayerAbilityProblem(
       return "Choose another exhausted character that can be readied.";
     return undefined;
   }
+  if (u.code === OTD_BILBO) return treasureSearchProblem(s, u);
   if (u.code !== P.bofur) return undefined;
   if (u.blanked) return "Bofur's printed text is blank.";
   if (ownerOf(s, u) !== activeSeat(s)) return "You do not control Bofur.";
@@ -364,10 +419,55 @@ export function useHobbitPlayerAbility(
   const a = attachmentId
     ? u.attachments.find((x) => x.id === attachmentId)
     : undefined;
-  if (attachmentId ? a?.code !== P.hood : u.code !== P.bofur) return false;
+  if (
+    attachmentId
+      ? a?.code !== P.hood && a?.code !== OTD_RING
+      : u.code !== P.bofur && u.code !== OTD_BILBO
+  )
+    return false;
   const problem = hobbitPlayerAbilityProblem(s, u, attachmentId);
   requireRule(!problem, problem ?? "");
   const player = activeSeat(s);
+  if (a?.code === OTD_RING) {
+    a.exhausted = true;
+    s.used.push(ringKey(a));
+    raiseThreat(s, 1, "cost");
+    u.resources += 1;
+    log(
+      s,
+      "Bilbo's Magic Ring: its controller raises their threat by 1 and Bilbo Baggins gains 1 Baggins resource.",
+      "good",
+    );
+    return true;
+  }
+  if (u.code === OTD_BILBO && !a) {
+    spendResources(s, u, 1);
+    const treasures: Option[] = s.deck.flatMap((code, index) =>
+      card(code).treasure
+        ? [
+            {
+              id: `card-${index}`,
+              label: card(code).name,
+              code,
+              effects: [
+                fx("hobbitPlayerTreasureTake", { code, value: index, player }),
+              ],
+            },
+          ]
+        : [],
+    );
+    choose(s, "Bilbo Baggins · Search your deck for a treasure", [
+      ...treasures,
+      {
+        id: "none",
+        label: treasures.length
+          ? "Take no treasure and shuffle"
+          : "No treasure in your deck · Shuffle",
+        effects: [fx("hobbitPlayerTreasureTake", { value: -1, player })],
+      },
+    ]);
+    return true;
+  }
   if (a) {
     a.exhausted = true;
     requireRule(
@@ -517,6 +617,68 @@ export function hobbitPlayerEffect(s: GameState, e: Effect): boolean {
         restrictAttachments(s, to);
         log(s, `Spare Hood and Cloak moves to ${name(to)}.`);
       }
+      return true;
+    }
+    case "hobbitPlayerRingOffer": {
+      const bilbo = get(s, e.text),
+        ring = bilbo?.attachments.find(
+          (a) => a.id === e.source && a.code === OTD_RING,
+        );
+      if (
+        bilbo &&
+        ring &&
+        enabled(ring) &&
+        !ring.exhausted &&
+        s.combat?.enemyId === e.target
+      )
+        choosePlayerResponse(
+          s,
+          ring.id,
+          OTD_RING,
+          "Bilbo's Magic Ring · Raise your threat by 3 to cancel all damage from this attack?",
+          [
+            {
+              id: "use",
+              label: "Exhaust Bilbo's Magic Ring and raise your threat by 3",
+              effects: [{ ...e, kind: "hobbitPlayerRingCancel" }],
+            },
+            {
+              id: "skip",
+              label: "Continue without using this ability",
+              effects: [],
+            },
+          ],
+        );
+      return true;
+    }
+    case "hobbitPlayerRingCancel": {
+      const bilbo = get(s, e.text),
+        ring = bilbo?.attachments.find(
+          (a) => a.id === e.source && a.code === OTD_RING,
+        );
+      const combat = s.combat;
+      if (!ring || ring.exhausted || !combat || combat.enemyId !== e.target)
+        return true;
+      ring.exhausted = true;
+      raiseThreat(s, 3, "cost");
+      combat.ringCancel = true;
+      log(
+        s,
+        "Bilbo's Magic Ring: all damage from this attack is cancelled.",
+        "good",
+      );
+      return true;
+    }
+    case "hobbitPlayerTreasureTake": {
+      const index = e.value ?? -1;
+      if (index >= 0) {
+        requireRule(
+          s.deck[index] === e.code && !!card(e.code!).treasure,
+          "Choose a treasure card from your deck.",
+        );
+        s.hand.push(takePlayerDeck(s, index));
+      }
+      shuffle(s, s.deck);
       return true;
     }
     case "hobbitPlayerBofurTake": {

@@ -5,7 +5,9 @@ Saga expansion, follows The Massing at Osgiliath in publication order. It is
 playable in classic solo and with one to four local players, in normal and easy
 mode. This import also adds the shared Hobbit Saga rules for the Baggins-sphere
 Bilbo Baggins. The box's other player cards are described in
-[the Hobbit player scripts](HOBBIT-PLAYER-SCRIPTS.md).
+[the Hobbit player scripts](HOBBIT-PLAYER-SCRIPTS.md). The On the Doorstep
+Bilbo and Bilbo's Magic Ring are described with
+[Flies and Spiders](FLIES-SPIDERS.md).
 
 ## Sources and corrections
 

@@ -167,7 +167,9 @@
     "test:browser-misty-mountains": "node --import tsx scripts/browser-misty-mountains.mjs",
     "test:dungeons-deep-simulation": "node --import tsx --test tests/dungeons-deep-simulation.test.ts",
     "test:browser-dungeons-deep": "node --import tsx scripts/browser-dungeons-deep.mjs",
-    "test:browser-hobbit-players": "node --import tsx scripts/browser-hobbit-players.mjs"
+    "test:browser-hobbit-players": "node --import tsx scripts/browser-hobbit-players.mjs",
+    "test:flies-spiders-simulation": "node --import tsx --test tests/flies-spiders-simulation.test.ts",
+    "test:browser-flies-spiders": "node --import tsx scripts/browser-flies-spiders.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

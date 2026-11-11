@@ -10,6 +10,8 @@ import { MassingOsgiliathState } from "./ui/massing-osgiliath-state";
 import { WeMustAwayState } from "./ui/we-must-away-state";
 import { MistyMountainsState } from "./ui/misty-mountains-state";
 import { DungeonsDeepState } from "./ui/dungeons-deep-state";
+import { FliesSpidersState } from "./ui/flies-spiders-state";
+import { FAS_QUESTS } from "./game/flies-spiders-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -1176,9 +1178,15 @@ export default function App() {
     setDetail(null);
   }, [templeViewer]);
   useEffect(() => {
-    if (game?.status === "won" && game.weMustAway?.treasures.length)
-      recordTreasures(tableHeroes(game), game.weMustAway.treasures);
-  }, [game?.status, game?.weMustAway?.treasures.length]);
+    const treasures =
+      game?.weMustAway?.treasures ?? game?.fliesSpiders?.treasures ?? [];
+    if (game?.status === "won" && treasures.length)
+      recordTreasures(tableHeroes(game), treasures);
+  }, [
+    game?.status,
+    game?.weMustAway?.treasures.length,
+    game?.fliesSpiders?.treasures.length,
+  ]);
   const [recoveryImport, setRecoveryImport] = useState<RecoveryImport | null>(
     null,
   );
@@ -3193,6 +3201,11 @@ export default function App() {
             <WeMustAwayState s={game} inspect={setDetail} />
             <MistyMountainsState s={game} inspect={setDetail} />
             <DungeonsDeepState s={game} inspect={setDetail} />
+            <FliesSpidersState
+              s={game}
+              inspect={setDetail}
+              dispatch={dispatch}
+            />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3936,6 +3949,7 @@ export default function App() {
                       ...WMA_QUESTS,
                       ...OMM_QUESTS,
                       ...DDCD_QUESTS,
+                      ...FAS_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
@@ -5287,9 +5301,23 @@ function CharacterCard({
       {u.cobasShipObjective && (
         <div className="engaged-owner">Captured Ship objective</div>
       )}
-      {isSacked(u) && (
-        <div className="engaged-owner">
-          Sacked! · Cannot quest, fight or use own ability
+      {u.unconscious ? (
+        <div className="engaged-owner" data-unconscious="true">
+          Unconscious · Cannot quest, fight, collect resources or ready
+        </div>
+      ) : (
+        isSacked(u) && (
+          <div className="engaged-owner">
+            Sacked! · Cannot quest, fight or use own ability
+          </div>
+        )
+      )}
+      {u.attachments.some((a) => a.poison) && (
+        <div
+          className="engaged-owner"
+          data-poison={u.attachments.filter((a) => a.poison).length}
+        >
+          Poisoned · {u.attachments.filter((a) => a.poison).length} poison
         </div>
       )}
       <div className="abilities">

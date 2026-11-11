@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 434);
+  assert.equal(baseline.registeredCases, 439);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -64,6 +64,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "We Must Away, Ere Break of Day",
             "Over the Misty Mountains Grim",
             "Dungeons Deep and Caverns Dim",
+            "Flies and Spiders",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",

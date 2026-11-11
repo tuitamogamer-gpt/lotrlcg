@@ -412,3 +412,34 @@ All 22 player cards of the box are now scripted. The nine RingsDB scans were che
 Coverage is now 768 player definitions (87 heroes), 1,258 encounters and 85 scenarios. This resolves 2,290 of 4,183 identities and 169 of 355 recipes; 1,893 identities remain pending. See docs/HOBBIT-PLAYER-SCRIPTS.md.
 
 Validation on Node 22: all 5,935 engine tests pass, including 10 focused card tests and 3 seeded complete games built around the new cards (Passage Through Mirkwood solo and with two players, and We Must Away solo, with exact save restoration after every action). The We Must Away, Misty Mountains and Dungeons Deep complete-game matrices still pass. The browser suite passes 24 checkpoints at 1280/390/320px with zero page or console errors: Goblin-cleaver, Burglar Baggins paid from Bilbo's pool by the second player, the Knowledge of the Enemy target picker, Bofur's search, Spare Hood and Cloak, and Gandalf's refresh-phase choice. TypeScript, the production build and the coverage audit pass.
+
+2026-11-11 The Hobbit: On the Doorstep begins with Flies and Spiders: continued the user's “Nastavi” after 13963d8. The second Saga expansion follows Over Hill and Under Hill in publication order. Its first scenario is playable in normal and easy mode for classic solo and 1–4 local players.
+
+On the Doorstep Saga rules:
+
+- The first player controls the On the Doorstep Bilbo Baggins (132001). Other Bilbos are reserved.
+- He does not count against the hero limit and cannot gain resources from non-treasure cards.
+- His action spends 1 Baggins resource to search his controller's deck for a treasure.
+- Bilbo's Magic Ring is a treasure. It gives Bilbo a Baggins resource once per round for 1 threat. After Bilbo exhausts to defend, it cancels all damage from that attack for 3 threat.
+- Setup offers each player one of the recipe's three ring copies. Winning discovers the ring for the hero group.
+
+Poison, Venom and unconsciousness:
+
+- Poison is the top card of the controller's deck, attached facedown. Venom enemies give 1 poison when they damage a character.
+- Poison equal to printed hit points makes a character unconscious and discards the poison.
+- Unconscious characters share the Sacked restrictions, cannot collect resources or ready, and leave the quest.
+
+Stages and separate staging areas:
+
+- Lost in the Dark gives the first player a separate staging area at Captured by Spiders while the others advance to Battle with the Spiders.
+- Each area has its own staging area, active location, progress and quest card. It reveals one card per player in it, resolves its own quest and makes its own travel decision.
+- When stage 3 is complete, the first player joins the original area at the end of the quest phase.
+- Alone, the player discards the staging area instead.
+- The first player token stays during stage 3. Both later stages let players spend 2 Baggins resources to ready an unconscious character.
+- Every encounter card follows the printed text. Crazy Cob follows the FAQ's no-poison ruling.
+
+New scenario hooks: one staging step, one quest resolution and one travel decision per area, and keeping the first player token. See docs/FLIES-SPIDERS.md.
+
+All 24 faces confirm the catalog text, and Hall of Beorn's normal and easy quantities match both recipes. Coverage is now 770 player definitions (88 heroes), 1,272 encounters and 86 scenarios. This resolves 2,310 of 4,183 identities and 171 of 355 recipes; 1,873 identities remain pending.
+
+Validation on Node 22: the engine suite passes 5,960 of 5,961 tests. The one failure was the generic simulation shard manifest, which now counts 439 cases with Flies and Spiders' five; its file passes after the update. This includes 24 focused Flies and Spiders tests and 2 source/art tests. The dedicated complete-game matrix passes 14 games with exact save restoration after every action, physical conservation across both staging areas and private-view checks. The games reach the separate staging areas and stage 4 in two- to four-player games. The generic starter-deck, hidden, decisions and guided cases for Flies and Spiders pass. The We Must Away, Misty Mountains and Dungeons Deep complete-game matrices still pass after the Saga changes. The production browser suite passes 35 checkpoints, all eight native setups with exact physical inventories, and all 24 face hashes/decodes at 1280/390/320px with zero page or console errors. TypeScript, the production build, formatting and the coverage audit pass. The additive account-choice migration is included; no hosted database migration is claimed.

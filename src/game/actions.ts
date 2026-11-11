@@ -5,6 +5,7 @@ import { massingPublicState } from "./massing-osgiliath-support";
 import { wmaPublicState } from "./we-must-away-support";
 import { ommPublicState } from "./misty-mountains-support";
 import { ddcdPublicState } from "./dungeons-deep-support";
+import { fasPublicState } from "./flies-spiders-support";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
 import * as AshPlayers from "./ash-mountains-player";
@@ -2623,6 +2624,7 @@ export function resolveQuestResult(s: GameState) {
   )
     return;
   if (foundationsResolveQuest(s)) return;
+  if (batch4Scenario(s).resolveQuest?.(s)) return;
   if (Gram.gramResolveQuest(s)) return;
   if (redhornBeforeQuestResolution(s)) return;
   const will = questWill(s),
@@ -2851,7 +2853,12 @@ export function applyAction(input: GameState, action: Action): GameState {
       } else if (s.phase === "staging") {
         resolveQuestResult(s);
       } else if (s.phase === "travel") {
-        if (Gram.gramTravelNext(s) || foundationsTravelNext(s)) break;
+        if (
+          Gram.gramTravelNext(s) ||
+          foundationsTravelNext(s) ||
+          batch4Scenario(s).travelNext?.(s)
+        )
+          break;
         requireRule(
           !batch4Scenario(s).mustTravel?.(s),
           "You must travel to the mandatory location, if able.",
@@ -3530,6 +3537,7 @@ export function publicState(s: GameState) {
     weMustAway: wmaPublicState(s),
     mistyMountains: ommPublicState(s),
     dungeonsDeep: ddcdPublicState(s),
+    fliesSpiders: fasPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

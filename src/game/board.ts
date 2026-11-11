@@ -413,7 +413,7 @@ import {
   carrockSacked,
   isSacked,
 } from "./carrock";
-import { HOBBIT_BILBO } from "./hobbit-codes";
+import { isBagginsBilbo } from "./hobbit-codes";
 import {
   hobbitPlayerEnemyRevealed,
   hobbitPlayerResourceBonus,
@@ -1394,6 +1394,13 @@ export function damage(
     Voyage.voyageCannotDamage(s, u) ||
     GreyPlayers.greyHavensCannotDamage(s, u) ||
     Umbar.umbarDamageBlocked(s, u)
+  )
+    return false;
+  // Bilbo's Magic Ring cancels all damage from the current attack.
+  if (
+    context.combatDamage &&
+    s.combat?.ringCancel &&
+    context.enemyId === s.combat.enemyId
   )
     return false;
   if (
@@ -2818,7 +2825,7 @@ export function collectResources(s: GameState) {
         h.resources +=
           1 +
           // Player card bonuses never add resources to the Baggins Bilbo.
-          (noPlayerCardEconomy(s) || h.code === HOBBIT_BILBO
+          (noPlayerCardEconomy(s) || isBagginsBilbo(h.code)
             ? 0
             : resourcePhaseBonus(h) +
               Angmar.angmarResourceBonus(s, h) +

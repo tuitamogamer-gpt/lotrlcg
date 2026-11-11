@@ -447,6 +447,23 @@ jobs:
           name: dungeons-deep-simulation
           path: output/dungeons-deep-release/failures
           retention-days: 7
+  flies-spiders-simulation:
+    name: Flies and Spiders complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:flies-spiders-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: flies-spiders-simulation
+          path: output/flies-spiders-release/failures
+          retention-days: 7
 
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
@@ -581,6 +598,8 @@ jobs:
             suite: test:browser-misty-mountains
           - group: dungeons-deep
             suite: test:browser-dungeons-deep
+          - group: flies-spiders
+            suite: test:browser-flies-spiders
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: wainriders

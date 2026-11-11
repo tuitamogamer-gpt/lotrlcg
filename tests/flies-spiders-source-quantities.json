@@ -1,0 +1,86 @@
+[
+  {
+    "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+    "name": "Weighed Down",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
+    "name": "Wicked Spider",
+    "normal": 5,
+    "easy": 5
+  },
+  {
+    "code": "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
+    "name": "Poisoned by Spiders",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+    "name": "Dark Bats",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+    "name": "Hidden Path",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
+    "name": "The Spider's Glade",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
+    "name": "Fat Spider",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "code": "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
+    "name": "Caught in Webs",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
+    "name": "Forest Stream",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
+    "name": "Lazy Lob",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "code": "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
+    "name": "Crazy Cob",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
+    "name": "Old Tomnoddy",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "code": "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
+    "name": "Giant Web",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+    "name": "Fighting Among Friends",
+    "normal": 2,
+    "easy": 0
+  }
+]

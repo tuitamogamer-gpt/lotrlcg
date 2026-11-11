@@ -1,0 +1,164 @@
+[
+  {
+    "code": "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+    "octgnid": "1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+    "name": "Into Mirkwood",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Each player may shuffle 1 copy Bilbo's Magic Ring into his deck. Search the encounter deck for The Spider's Glade and set it aside, out of play. Then, shuffle the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 67,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Flies and Spiders",
+    "side": "A",
+    "back_name": "Into Mirkwood",
+    "back_text": "Unconscious characters cannot quest, attack, defend, collect resources, trigger abilities, be poisoned, or ready (except by effects that target unconscious characters).",
+    "back_type_code": "quest",
+    "back_quest": 9,
+    "back_imagesrc": "/cards/1866ce74-8552-4ac5-8b0a-1e7a6f3b4338.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/1866ce74-8552-4ac5-8b0a-1e7a6f3b4338.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 67,
+        "quantity": 1,
+        "octgnid": "1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1866ce74-8552-4ac5-8b0a-1e7a6f3b4338.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 9
+  },
+  {
+    "code": "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+    "octgnid": "a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+    "name": "Lost in the Dark",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 68,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flies and Spiders",
+    "side": "A",
+    "back_name": "Lost in the Dark",
+    "back_text": "When Revealed: Reveal stage 3 and create a separate staging area for the first player using that stage. If there are no other players in the game, discard this stage and each card in its staging area. All other players advance to stage 4.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+    "octgnid": "d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+    "name": "Captured by Spiders",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Remove all resources from each hero's resource pool. Then, make each character you control (except Bilbo Baggins) unconscious.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 69,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "Flies and Spiders",
+    "side": "A",
+    "back_name": "Captured by Spiders",
+    "back_text": "Unconscious characters cannot quest, attack, defend, collect resources, trigger abilities, be poisoned, or ready (except by effects that target unconscious characters).\nDo not pass the first player token. When this stage is complete, do not advance to stage 4 until the end of the quest phase. (Combine staging areas if necessary.)\nAction: Spend 2 [baggins] resources to ready an unconscious character you control.",
+    "back_type_code": "quest",
+    "back_quest": 11,
+    "back_imagesrc": "/cards/d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 69,
+        "quantity": 1,
+        "octgnid": "d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 11
+  },
+  {
+    "code": "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+    "octgnid": "1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+    "name": "Battle with the Spiders",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add The Spider's Glade to the staging area.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 70,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "Flies and Spiders",
+    "side": "A",
+    "back_name": "Battle with the Spiders",
+    "back_text": "Unconscious characters cannot quest, attack, defend, collect resources, trigger abilities, be poisoned, or ready (except by effects that target unconscious characters).\nProgress cannot be placed on this stage while The Spider's Glade is in play.\nAction: Spend 2 [baggins] resources to ready an unconscious character you control.\nIf the players defeat this stage, they have won the game and discovered the treasure card Bilbo's Magic Ring.",
+    "back_type_code": "quest",
+    "back_quest": 3,
+    "back_imagesrc": "/cards/1ee75e10-bcc5-4243-ab28-3dc1978a50af.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/1ee75e10-bcc5-4243-ab28-3dc1978a50af.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 70,
+        "quantity": 1,
+        "octgnid": "1ee75e10-bcc5-4243-ab28-3dc1978a50af",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ee75e10-bcc5-4243-ab28-3dc1978a50af.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 3
+  }
+]

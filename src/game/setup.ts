@@ -1,6 +1,6 @@
 import {
-  HOBBIT_BILBO,
   addHobbitTreasures,
+  isBagginsBilbo,
   isHobbitScenarioId,
   placeBagginsBilbo,
 } from "./hobbit-saga";
@@ -213,7 +213,7 @@ export function createGame(
     "Faramir is reserved by this scenario; choose another hero.",
   );
   requireRule(
-    !chosenHeroes.includes(HOBBIT_BILBO),
+    !chosenHeroes.some((c) => isBagginsBilbo(c)),
     "The Baggins Bilbo Baggins joins the first player only in The Hobbit scenarios; he is not chosen as a hero.",
   );
   requireRule(

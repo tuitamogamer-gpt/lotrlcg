@@ -162,6 +162,14 @@ export interface Batch4ScenarioHooks {
   cannotCommit?(s: GameState, u: Unit): boolean;
   /** Additional encounter cards revealed during the staging step. */
   extraStagingReveals?(s: GameState): number;
+  /** Separate staging areas: the scenario runs one staging step per area. */
+  beginStaging?(s: GameState): boolean;
+  /** Separate staging areas: the scenario resolves the active area's quest. */
+  resolveQuest?(s: GameState): boolean;
+  /** Separate staging areas: a travel decision passes to the next area. */
+  travelNext?(s: GameState): boolean;
+  /** The first player token does not pass in the refresh phase. */
+  keepFirstPlayer?(s: GameState): boolean;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */
   attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];

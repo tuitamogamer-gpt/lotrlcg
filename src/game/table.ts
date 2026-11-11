@@ -37,6 +37,12 @@ import {
   foundationsSyncArea,
   foundationsSelectArea,
 } from "./foundations-stone-support";
+import {
+  fasAreaPlayers,
+  fasAreaView,
+  fasSelectArea,
+  fasSyncArea,
+} from "./flies-spiders-support";
 
 // The top-level player fields are the active seat's projection. This keeps
 // existing single-player saves and card scripts compatible with the shared table.
@@ -76,6 +82,7 @@ export function snapshotSeat(s: GameState): PlayerSeat {
 export function syncSeat(s: GameState) {
   foundationsSyncArea(s);
   gramSyncArea(s);
+  fasSyncArea(s);
   if (s.table) {
     const seat = s.table.seats[s.table.active];
     for (const key of PLAYER_FIELDS) if (s[key] === undefined) delete seat[key];
@@ -88,6 +95,7 @@ export function selectSeat(s: GameState, i: number) {
   s.table.active = i;
   foundationsSelectArea(s, i);
   gramSelectArea(s, i);
+  fasSelectArea(s, i);
   for (const key of PLAYER_FIELDS) {
     if (s.table.seats[i][key] === undefined) delete s[key];
     else Object.assign(s, { [key]: s.table.seats[i][key] });
@@ -97,11 +105,13 @@ export function seatView(s: GameState, i: number): GameState {
   if (!s.table || i === s.table.active) return s;
   foundationsSyncArea(s);
   gramSyncArea(s);
+  fasSyncArea(s);
   const view = {
     ...s,
     ...s.table.seats[i],
     ...foundationsAreaView(s, i),
     ...gramAreaView(s, i),
+    ...fasAreaView(s, i),
     table: { ...s.table, active: i },
   };
   for (const key of PLAYER_FIELDS)
@@ -113,7 +123,8 @@ export const seatIndices = (s: GameState) =>
 export const globalLivingSeats = (s: GameState) =>
   seatIndices(s).filter((i) => !s.table?.seats[i].eliminated);
 export const livingSeats = (s: GameState) => {
-  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
+  const area =
+    foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? fasAreaPlayers(s);
   return globalLivingSeats(s).filter((i) => !area || area.includes(i));
 };
 export function globalPlayerOrder(s: GameState) {
@@ -124,7 +135,8 @@ export function globalPlayerOrder(s: GameState) {
   );
 }
 export const playerOrder = (s: GameState) => {
-  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
+  const area =
+    foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? fasAreaPlayers(s);
   return globalPlayerOrder(s).filter((i) => !area || area.includes(i));
 };
 export const firstPlayer = (s: GameState) =>
@@ -145,7 +157,8 @@ export function eachSeat(
   includeEliminated = false,
 ) {
   const previous = activeSeat(s);
-  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
+  const area =
+    foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? fasAreaPlayers(s);
   const players = includeEliminated
     ? seatIndices(s).filter((i) => !area || area.includes(i))
     : playerOrder(s);
@@ -188,7 +201,8 @@ export const globalCharacters = (s: GameState) =>
     return [...p.heroes, ...p.allies];
   });
 export const allCharacters = (s: GameState) => {
-  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
+  const area =
+    foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? fasAreaPlayers(s);
   return globalCharacters(s).filter(
     (u) => !area || area.includes(ownerOf(s, u)),
   );
@@ -199,7 +213,8 @@ export const allHeroes = (s: GameState) => allCharacters(s).filter(isHero);
 export const globalEngaged = (s: GameState) =>
   seatIndices(s).flatMap((i) => seatView(s, i).engaged);
 export const allEngaged = (s: GameState) => {
-  const area = foundationsAreaPlayers(s) ?? gramAreaPlayers(s);
+  const area =
+    foundationsAreaPlayers(s) ?? gramAreaPlayers(s) ?? fasAreaPlayers(s);
   return globalEngaged(s).filter((u) => !area || area.includes(ownerOf(s, u)));
 };
 export const allActiveLocations = (s: GameState) => [

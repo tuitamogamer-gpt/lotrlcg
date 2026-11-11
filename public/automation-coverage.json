@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 768,
-    "heroes": 87,
-    "deckCards": 677,
-    "encounterCards": 1258,
-    "scenarios": 85,
+    "playerCards": 770,
+    "heroes": 88,
+    "deckCards": 678,
+    "encounterCards": 1272,
+    "scenarios": 86,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -92,17 +92,18 @@
       "the-massing-at-osgiliath",
       "we-must-away-ere-break-of-day",
       "over-the-misty-mountains-grim",
-      "dungeons-deep-and-caverns-dim"
+      "dungeons-deep-and-caverns-dim",
+      "flies-and-spiders"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2290,
-    "pending": 1893
+    "scripted": 2310,
+    "pending": 1873
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 169
+    "scripted": 171
   },
   "registeredCodes": [
     "01001",
@@ -692,8 +693,10 @@
     "131020",
     "131021",
     "131022",
+    "132001",
     "132006",
     "132018",
+    "132019",
     "141016",
     "142003",
     "142005",
@@ -1000,6 +1003,7 @@
     "octgn:1062dfa2-d821-474d-9a8f-9eda79753222",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42",
     "octgn:107805c4-6abf-4eb1-87fd-0ad7ffcfbf42:B",
+    "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
     "octgn:10e7e890-727f-49ae-bd5d-d769812d9dce",
     "octgn:112fc5f3-9d26-4711-8a97-e4a83bb23663",
     "octgn:1156ac5f-09cf-418b-9486-030b397a5514",
@@ -1027,6 +1031,7 @@
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+    "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
@@ -1054,6 +1059,7 @@
     "octgn:1e5d3385-4362-4e76-91fc-30e5aebab5e2",
     "octgn:1e96a8e3-ad11-48d5-8554-7cb1a90937a7",
     "octgn:1edaecb1-72e8-49db-98fd-6fc377815c4b",
+    "octgn:1ee75e10-bcc5-4243-ab28-3dc1978a50af",
     "octgn:1f1ad7bb-68ca-4b48-b7fa-516e5314e272",
     "octgn:1f4cdef5-6847-4dd5-96b0-8ce03d21bd8d",
     "octgn:1fdfdb77-31e0-458d-85d1-9c158f12717f",
@@ -1131,6 +1137,7 @@
     "octgn:2ba77eca-870d-41d9-84cb-f0f33b6d9f15",
     "octgn:2bf5a4d1-9d74-4e1a-8725-cf4a3a47dde9",
     "octgn:2c1f75cf-a6b5-4aa6-abbd-e1beb803e2e2",
+    "octgn:2c20ea14-e7bc-4a38-a809-8834d659adf5",
     "octgn:2c32f4b8-83c7-4ac6-9401-3378a4ca530b",
     "octgn:2c7e2c6c-ecaa-48dc-a19e-4477d4fc693d",
     "octgn:2ce0c7c6-e7ae-4847-a02d-2be874afa3d4",
@@ -1159,9 +1166,11 @@
     "octgn:315ed83a-1dae-421f-b5ba-1bcb5cd6c2a7",
     "octgn:31911895-7f61-4cd1-aeeb-6ae706ffa4f5",
     "octgn:31acc133-3c82-4c6e-8fc1-ced6537f735e",
+    "octgn:31ada226-448d-48f8-9f9a-c1f5046ad041",
     "octgn:31bd075d-e116-4a0f-81dd-942b52a6267c",
     "octgn:31c36264-7e6f-45df-a345-167d4df70885",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
+    "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
     "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
@@ -1212,6 +1221,7 @@
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
     "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
@@ -1334,6 +1344,7 @@
     "octgn:4c7d7a31-250d-4e48-a97a-2aebb3b2b47d",
     "octgn:4cd62a82-6bc9-4e38-8561-49b5fa2aba7e",
     "octgn:4d31f077-9f08-435b-ad3c-95d5b7967fa4",
+    "octgn:4d423c39-09c1-4c0b-b46f-6983fae4c07b",
     "octgn:4d85bbe6-1bc7-4890-8974-e42e2d0f9431",
     "octgn:4d85eda6-14e2-4dee-b912-31056fc6a2cc",
     "octgn:4d925556-3a39-4e49-aafa-0adac6cacc52",
@@ -1681,6 +1692,7 @@
     "octgn:5abd3a4b-2769-401d-aa3c-c904da21b97a",
     "octgn:5ae90f6e-1b35-4f08-9f10-912bc9cdd3d1",
     "octgn:5af4be18-af74-46ef-a235-9c1002b85338",
+    "octgn:5b038648-7a06-4014-b207-a5d68c99e76d",
     "octgn:5b3b0e1a-ff08-4d4d-8071-d4de3f3bc9aa",
     "octgn:5bcec205-7f6b-44b9-bb4d-9addde372316",
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
@@ -1786,6 +1798,7 @@
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
+    "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
     "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
     "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
@@ -1820,6 +1833,7 @@
     "octgn:8165f1ef-d9df-464e-bd56-5baf4e43325f",
     "octgn:8174f1b9-6fd0-4eeb-971d-98b2d7a4eaf4",
     "octgn:81779961-8776-4c1d-953d-ed7bf1324fbf",
+    "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
@@ -1845,6 +1859,7 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
     "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
@@ -1968,6 +1983,7 @@
     "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
+    "octgn:a4ffb8cd-fd95-4b47-95d1-637bd2bd78a1",
     "octgn:a516b400-b53f-4c21-8e44-c0a889caa8d5",
     "octgn:a53e4587-03e4-4120-8aa5-9601a7069edd",
     "octgn:a56cab99-d482-4aa3-b5e4-b1e5b857515f",
@@ -2017,9 +2033,11 @@
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
+    "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
     "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
     "octgn:b0a1f83b-f1b0-4945-afc8-91a1c25063e2",
     "octgn:b0b77537-0c91-42c0-b111-647bc445a419",
+    "octgn:b0d31a1c-2155-4a97-a5ff-912e32a4809e",
     "octgn:b1612370-142d-4557-8884-b3da12b4baca",
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
@@ -2192,6 +2210,7 @@
     "octgn:d8c6d8df-9856-4fad-ba85-a96d17b67cfd",
     "octgn:d90a8977-78e1-445d-b57d-a13e0e98f450",
     "octgn:d960e5a1-73eb-4699-b3c1-2eadeb2c6f23",
+    "octgn:d99e07f6-7a57-4b5f-a108-13bd7ce6fa4b",
     "octgn:d9bde488-6391-492f-b3df-6dd6dbe4f9e9",
     "octgn:d9c04b71-93cd-455d-9f6e-4ee16cf7d1b4",
     "octgn:d9da588c-c96d-4971-813a-40e439e46764",
@@ -2271,6 +2290,7 @@
     "octgn:eaaececf-9322-43b5-a190-bdfadd7a695e",
     "octgn:ead7703f-43e0-464e-ac09-304b86a54b50",
     "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
+    "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
@@ -2390,6 +2410,7 @@
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
+    "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
     "rc132",
@@ -2682,9 +2703,9 @@
     {
       "product": "on-the-doorstep",
       "total": 79,
-      "scripted": 2,
+      "scripted": 22,
       "player": 24,
-      "playerScripted": 2
+      "playerScripted": 4
     },
     {
       "product": "on-the-doorstep-nightmare",
@@ -9018,7 +9039,7 @@
       "name": "Bilbo Baggins",
       "type": "hero",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9162,7 +9183,7 @@
       "name": "Bilbo's Magic Ring",
       "type": "treasure",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -13394,7 +13415,7 @@
       "name": "Weighed Down",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -13946,7 +13967,7 @@
       "name": "Into Mirkwood",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -14482,7 +14503,7 @@
       "name": "Battle with the Spiders",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -15746,7 +15767,7 @@
       "name": "Wicked Spider",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -16210,7 +16231,7 @@
       "name": "Poisoned by Spiders",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -16274,7 +16295,7 @@
       "name": "Dark Bats",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -17338,7 +17359,7 @@
       "name": "Hidden Path",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -18946,7 +18967,7 @@
       "name": "The Spider's Glade",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -22610,7 +22631,7 @@
       "name": "Fat Spider",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -24978,7 +24999,7 @@
       "name": "Caught in Webs",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -25666,7 +25687,7 @@
       "name": "Forest Stream",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -26250,7 +26271,7 @@
       "name": "Lazy Lob",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -28578,7 +28599,7 @@
       "name": "Lost in the Dark",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -29570,7 +29591,7 @@
       "name": "Crazy Cob",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -29618,7 +29639,7 @@
       "name": "Old Tomnoddy",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -33266,7 +33287,7 @@
       "name": "Captured by Spiders",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -34786,7 +34807,7 @@
       "name": "Giant Web",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -36834,7 +36855,7 @@
       "name": "Fighting Among Friends",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -37453,8 +37474,8 @@
       "id": "E0A.4",
       "name": "Flies and Spiders (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flies-and-spiders",
+      "state": "scripted"
     },
     {
       "id": "E0A.5",
@@ -38944,8 +38965,8 @@
       "id": "Q0A.4",
       "name": "Flies and Spiders",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "flies-and-spiders",
+      "state": "scripted"
     },
     {
       "id": "Q0A.5",

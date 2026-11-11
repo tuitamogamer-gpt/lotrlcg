@@ -91,6 +91,8 @@ export interface Attachment {
   resourceTokens?: number;
   /** Face-down Eagle cards retain physical ownership but no printed abilities. */
   facedown?: boolean;
+  /** Flies and Spiders: a facedown player card attached as poison. */
+  poison?: boolean;
   owner?: number;
   id: string;
   code: string;
@@ -138,6 +140,8 @@ export interface Unit {
   timeCounters?: number;
   /** Derived immunity granted by an active scenario effect. */
   immuneToPlayerEffects?: boolean;
+  /** Flies and Spiders: an unconscious character (rotated 180 degrees). */
+  unconscious?: boolean;
   shadowCancelsCombatDamage?: boolean;
   /** Derived global continuous traits and keywords. */
   dynamicTraits?: string[];
@@ -256,6 +260,7 @@ export type ScenarioId =
   | "we-must-away-ere-break-of-day"
   | "over-the-misty-mountains-grim"
   | "dungeons-deep-and-caverns-dim"
+  | "flies-and-spiders"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -420,6 +425,7 @@ export interface GameState {
   weMustAway?: import("./we-must-away-types").WeMustAwayState;
   mistyMountains?: import("./misty-mountains-types").MistyMountainsState;
   dungeonsDeep?: import("./dungeons-deep-types").DungeonsDeepState;
+  fliesSpiders?: import("./flies-spiders-types").FliesSpidersState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -737,6 +743,12 @@ export interface GameState {
     ommEnemy?: string;
     /** Chaos in the Cavern's shadow returns the attacker after its attack. */
     ommChaosReturn?: boolean;
+    /** Bilbo's Magic Ring cancelled all damage from this attack. */
+    ringCancel?: boolean;
+    /** Weighed Down's shadow: a destroyed defender raises its controller's threat by 5. */
+    fasWeighed?: boolean;
+    /** Dark Bats damaged this character and attaches to it after the attack. */
+    fasBats?: string;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

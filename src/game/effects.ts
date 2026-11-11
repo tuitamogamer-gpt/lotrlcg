@@ -1120,6 +1120,7 @@ function handleEffect(s: GameState, e: Effect) {
       batch4Scenario(s).committed?.(s);
       if (Gram.gramBeginStaging(s)) break;
       if (foundationsBeginStaging(s)) break;
+      if (batch4Scenario(s).beginStaging?.(s)) break;
       const revealsBeforeEred = rohanRevealReduction(
         s,
         emynPlayerRevealReduction(
@@ -2784,7 +2785,7 @@ function handleEffect(s: GameState, e: Effect) {
       log(s, "Refresh · Threat increases by 1.");
       check(s);
       if (s.status !== "playing") break;
-      if (s.table) {
+      if (s.table && !batch4Scenario(s).keepFirstPlayer?.(s)) {
         const order = globalPlayerOrder(s);
         s.table.first = order[1 % order.length] ?? 0;
         followFirstPlayer(s);

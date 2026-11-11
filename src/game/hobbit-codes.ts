@@ -2,12 +2,30 @@ import wmaEncounters from "../data/we-must-away-encounter-cards.json";
 
 /** The Baggins-sphere Bilbo Baggins who joins the first player in The Hobbit. */
 export const HOBBIT_BILBO = "131001";
-/** The Hobbit: Over Hill and Under Hill scenarios that use this Bilbo. */
-export const HOBBIT_SCENARIO_IDS: readonly string[] = [
+/** The On the Doorstep Bilbo Baggins, the only Bilbo in its scenarios. */
+export const OTD_BILBO = "132001";
+/** Every Baggins-sphere Bilbo Baggins hero. */
+export const BAGGINS_BILBOS: readonly string[] = [HOBBIT_BILBO, OTD_BILBO];
+export const isBagginsBilbo = (code: string) => BAGGINS_BILBOS.includes(code);
+/** The Hobbit: Over Hill and Under Hill scenarios that use the first Bilbo. */
+export const OHAUH_SCENARIO_IDS: readonly string[] = [
   "we-must-away-ere-break-of-day",
   "over-the-misty-mountains-grim",
   "dungeons-deep-and-caverns-dim",
 ];
+/** The Hobbit: On the Doorstep scenarios that use its Bilbo. */
+export const OTD_SCENARIO_IDS: readonly string[] = ["flies-and-spiders"];
+export const HOBBIT_SCENARIO_IDS: readonly string[] = [
+  ...OHAUH_SCENARIO_IDS,
+  ...OTD_SCENARIO_IDS,
+];
+/** The Bilbo Baggins a Hobbit scenario places with the first player. */
+export const hobbitBilboCode = (scenarioId: string | undefined) =>
+  scenarioId && OTD_SCENARIO_IDS.includes(scenarioId)
+    ? OTD_BILBO
+    : HOBBIT_BILBO;
+/** On the Doorstep's Bilbo's Magic Ring (a treasure player card). */
+export const OTD_RING = "132019";
 /** Over Hill and Under Hill treasures: Sting, Orcrist and Glamdring. */
 export const HOBBIT_TREASURES: readonly string[] = [
   "131020",

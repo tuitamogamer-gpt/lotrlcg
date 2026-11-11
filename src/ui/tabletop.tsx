@@ -466,11 +466,16 @@ export function AttachmentStack({
           <span
             key={a.id}
             className="facedown-attachment"
-            aria-label="Facedown attachment"
-            title="Facedown attachment"
+            aria-label={a.poison ? "Poison" : "Facedown attachment"}
+            title={
+              a.poison
+                ? "Poison (a facedown player card)"
+                : "Facedown attachment"
+            }
+            data-poison={a.poison ? "true" : undefined}
           >
             <CardBack encounter={card(a.code).sphere_code === "encounter"} />
-            <span>Facedown attachment</span>
+            <span>{a.poison ? "Poison" : "Facedown attachment"}</span>
           </span>
         ) : (
           <motion.button

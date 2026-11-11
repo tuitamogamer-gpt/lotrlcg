@@ -131,6 +131,7 @@ import {
   foundationsAllAreaUnits,
   foundationsStageInfo,
 } from "./foundations-stone-support";
+import { fasAllAreaUnits } from "./flies-spiders-support";
 import {
   foundationsStats,
   foundationsEnemyX,
@@ -238,7 +239,7 @@ import {
   carrockSacked,
   isSacked,
 } from "./carrock";
-import { HOBBIT_BILBO } from "./hobbit-codes";
+import { isBagginsBilbo } from "./hobbit-codes";
 import {
   emynMuilPlayCost,
   emynMuilThreatBonus,
@@ -302,7 +303,7 @@ export const canGainResources = (
 ) =>
   !(cardEffect && !transfer && noPlayerCardEconomy(s)) &&
   // The Baggins Bilbo cannot gain resources from player card effects.
-  !(cardEffect && u.code === HOBBIT_BILBO) &&
+  !(cardEffect && isBagginsBilbo(u.code)) &&
   !carrockSacked(u) &&
   !druadanForestCannotGainResources(s, u, cardEffect) &&
   !Fords.fordsCannotGainResources(s, cardEffect);
@@ -345,7 +346,11 @@ export const globalUnits = (s: GameState) => [
   ...(s.temple?.outOfStaging ?? []),
   ...globalCharacters(s),
   ...globalEngaged(s),
-  ...(s.mountGram?.split ? gramAllAreaUnits(s) : foundationsAllAreaUnits(s)),
+  ...(s.mountGram?.split
+    ? gramAllAreaUnits(s)
+    : s.fliesSpiders?.split
+      ? fasAllAreaUnits(s)
+      : foundationsAllAreaUnits(s)),
   ...(s.assaultOsgiliath?.controlled ?? []),
   ...(s.wrathRuin?.controlled ?? []),
   ...(s.bloodGondor?.captured ?? []),
