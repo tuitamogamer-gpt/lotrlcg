@@ -254,4 +254,10 @@ export interface Batch4ScenarioHooks {
   successfulQuestProgress?(s: GameState, amount: number): void;
   eventFinished?(s: GameState, u: Unit): void;
   sharedEffect?(e: Effect): boolean;
+  /** A location the players may travel to as a second active location. */
+  secondActiveLocation?(s: GameState, u: Unit): boolean;
+  /** An objective in the staging area that the players may claim. */
+  claimableObjective?(s: GameState, u: Unit): boolean;
+  /** Claim an objective with a hero; true when the scenario handled it. */
+  claim?(s: GameState, objective: Unit, hero: Unit): boolean;
 }

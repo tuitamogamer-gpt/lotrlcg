@@ -67,6 +67,10 @@ const HEADLINES: Partial<
     lead: "Hold three fronts",
     em: "and bring down Bolg.",
   },
+  "the-battle-of-lake-town": {
+    lead: "Save the burning town",
+    em: "and slay the dragon.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

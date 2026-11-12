@@ -1,0 +1,765 @@
+[
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9001",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9001",
+    "name": "Catching Fire",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Choose and shuffle 1 Pier location from the victory display back into the encounter deck. If no location was shuffled into the encounter deck by this effect, Catching Fire gains surge.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 13,
+    "quantity": 2,
+    "shadow": "Shadow: Defending character gets -2 [defense].",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9001.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 13,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9001",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9001.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9002",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9002",
+    "name": "Close to the Flame",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Deal 1 damage to each character in play.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 9,
+    "quantity": 3,
+    "shadow": "Shadow: Deal 1 damage to each character in play. Any player may discard a hero to cancel this effect.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9002.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 9,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9002",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9002.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9003",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9003",
+    "name": "Dire Magnificence",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must choose and discard 1 ally he controls, if able. Deal 2 damage to Lake-town for each player that cannot.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 12,
+    "quantity": 3,
+    "shadow": "Shadow: If this attack destroys a character, Smaug engages the next player and makes an immediate attack against that player.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9003.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 12,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9003",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9003.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9004",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9004",
+    "name": "East Pier",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town. Pier.",
+    "text": "Burn 1.\n\"When Revealed\" effects cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 20,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9004.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 20,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9004",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9004.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9005",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9005",
+    "name": "Esgaroth Wharf",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 1.\nAll locations are immune to player card effects.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 24,
+    "quantity": 4,
+    "threat": 3,
+    "quest": 4,
+    "victory": 4,
+    "shadow": "Shadow: Attacking enemy gets +2 [attack]. Then, it makes an additional attack after this one.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9005.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 24,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9005",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9005.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9008",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9008",
+    "name": "Fisherman's Dock",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 1.\nTravel: If there is 1 active location, exhaust a hero to travel here. (There are now 2 active locations.)",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 23,
+    "quantity": 4,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "shadow": "Shadow: Add this location to the staging area.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9008.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 23,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9008",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9008.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9009",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9009",
+    "name": "Great Bridge",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 2.\nWhen Revealed: Discard X cards from each player's deck. X is the amount of damage on Lake-town. (If no cards are discarded by this effect, Great Bridge gains surge.)",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 22,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9009.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 22,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9009",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9009.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9010",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9010",
+    "name": "Great House",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 3.\nWhen Revealed: Resolve all burn damage from all locations in play.",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 21,
+    "quantity": 1,
+    "threat": 6,
+    "quest": 6,
+    "victory": 6,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "6",
+      "quest": "6",
+      "victory": "6"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9010.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9010",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9010.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9011",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9011",
+    "name": "Lake-town",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "City.",
+    "text": "If Lake-town has 50 or more damage on it, Lake-town has completely burned and the players have lost the game.",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 7,
+    "quantity": 1,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9011.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 7,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9011",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9011.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9012",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9012",
+    "name": "Merchant's District",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 1.\nTravel Action: Deal 2 damage per player to Lake-town to add this location to the victory display.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 19,
+    "quantity": 4,
+    "threat": 4,
+    "quest": 3,
+    "victory": 3,
+    "shadow": "Shadow: Deal 1 damage on Lake-town. (4 damage instead if undefended.)",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "3",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9012.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 19,
+        "quantity": 4,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9012",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9012.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9013",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9013",
+    "name": "North Pier",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town. Pier.",
+    "text": "Burn 2.\nSmaug cannot be damaged.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 18,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9013.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 18,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9013",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9013.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9014",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9014",
+    "name": "Reckless in His Rage",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If Smaug is in play, he gets +2 [threat], +2 [attack], -2 [defense] and gains the text: \"Allies cannot be declared as defenders.\" This effect lasts until the end of the round.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 14,
+    "quantity": 2,
+    "shadow": "Shadow: If this attack destroys a character, resolve all burn damage on locations in play.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9014.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 14,
+        "quantity": 2,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9014",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9014.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9015",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9015",
+    "name": "Scorching Blast",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Resolve all burn damage from all locations in play.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 10,
+    "quantity": 3,
+    "shadow": "Shadow: Resolve this card's \"When Revealed\" effect. Any player may discard a hero to cancel this effect.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9015.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 10,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9015",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9015.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9016",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9016",
+    "name": "Smaug the Magnificent",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Immune to player card effects.\nExcess damage from attacks by Smaug the Magnificent must be assigned to Lake-town.\nWhen Revealed: Move 3 damage from Smaug the Magnificent to Lake-town.",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 6,
+    "quantity": 3,
+    "threat": 5,
+    "attack": 8,
+    "defense": 8,
+    "health": 20,
+    "engagement": 30,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "5",
+      "attack": "8",
+      "defense": "8",
+      "health": "20",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9016.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 6,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9016",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9016.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9017",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9017",
+    "name": "Smaug the Mighty",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Immune to player card effects.\nWhen Revealed: Smaug the Mighty makes an immediate attack against each player (deal and resolve a shadow card for each attack).",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 4,
+    "quantity": 3,
+    "threat": 7,
+    "attack": 5,
+    "defense": 9,
+    "health": 20,
+    "engagement": 40,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "7",
+      "attack": "5",
+      "defense": "9",
+      "health": "20",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9017.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 4,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9017",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9017.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9018",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9018",
+    "name": "Smaug the Terrible",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Dragon.",
+    "text": "Immune to player card effects.\nWhen Revealed: Resolve all burn damage from all locations in play.",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 5,
+    "quantity": 3,
+    "threat": 6,
+    "attack": 7,
+    "defense": 7,
+    "health": 20,
+    "engagement": 35,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "6",
+      "attack": "7",
+      "defense": "7",
+      "health": "20",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9018.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 5,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9018",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9018.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9019",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9019",
+    "name": "South Pier",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town. Pier.",
+    "text": "Burn 2.\nWhen faced with the option to travel, players cannot travel to other locations.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 17,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9019.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 17,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9019",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9019.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9024",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9024",
+    "name": "The Master's Manor",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town.",
+    "text": "Burn 3.\nWhen Revealed: Move all damage from Smaug to Lake-town.",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 16,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 8,
+    "victory": 8,
+    "shadow": "Shadow: If this attack destroys a character, defending player discards his hand.",
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "8",
+      "victory": "8"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9024.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 16,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9024",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9024.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9025",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9025",
+    "name": "The Old Thrush",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Guarded.\nAction: Exhaust a hero to claim this objective and attach it to that hero when it is free of encounters. (Counts as an attachment with the text: \"If detached, discard The Old Thrush.\nResponse: After attached hero exhausts to attack Smaug, discard X cards from hand to reduce Smaug's [defense] by X.\")",
+    "is_unique": true,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 8,
+    "quantity": 1,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9025.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 8,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9025",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9025.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9026",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9026",
+    "name": "Town-Baiting",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Smaug makes an attack against Lake-town. The last player may declare a defender against this attack. Excess damage from this attack must be placed on Lake-town. This effect cannot be canceled.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 11,
+    "quantity": 3,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {},
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9026.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 11,
+        "quantity": 3,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9026",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9026.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:51223bd0-ffd1-11df-a976-1801203c9027",
+    "octgnid": "51223bd0-ffd1-11df-a976-1801203c9027",
+    "name": "West Pier",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Lake-town. Pier.",
+    "text": "Each location in play gains Burn 1.",
+    "is_unique": false,
+    "pack_code": "TBoLT",
+    "pack_name": "The Battle of Lake-town",
+    "position": 15,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 2,
+    "encounter_set": "The Battle of Lake-town",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "2"
+    },
+    "imagesrc": "/cards/51223bd0-ffd1-11df-a976-1801203c9027.jpg",
+    "packs": [
+      {
+        "pack_code": "TBoLT",
+        "pack_name": "The Battle of Lake-town",
+        "position": 15,
+        "quantity": 1,
+        "octgnid": "51223bd0-ffd1-11df-a976-1801203c9027",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/51223bd0-ffd1-11df-a976-1801203c9027.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

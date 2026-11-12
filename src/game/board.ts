@@ -1967,7 +1967,12 @@ export function destroy(
           fx("earnPermanent", { code: "rc133", player }),
         ),
       );
-    log(s, `${c.name} is defeated.`, "good");
+    if (destruction) log(s, `${c.name} is defeated.`, "good");
+    else
+      log(
+        s,
+        `${c.name} ${destination === "removed" ? "is removed from the game" : "is discarded"}.`,
+      );
     carrockDefeated(s, u);
     if (destruction) Osgiliath.assaultOsgiliathEnemyDefeated(s);
     if (destruction) MorgulQuest.morgulEnemyDestroyed(s, u);

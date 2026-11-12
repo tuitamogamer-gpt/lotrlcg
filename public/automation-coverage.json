@@ -5,8 +5,8 @@
     "playerCards": 790,
     "heroes": 92,
     "deckCards": 694,
-    "encounterCards": 1300,
-    "scenarios": 88,
+    "encounterCards": 1321,
+    "scenarios": 89,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -95,17 +95,18 @@
       "dungeons-deep-and-caverns-dim",
       "flies-and-spiders",
       "the-lonely-mountain",
-      "the-battle-of-five-armies"
+      "the-battle-of-five-armies",
+      "the-battle-of-lake-town"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2367,
-    "pending": 1816
+    "scripted": 2391,
+    "pending": 1792
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 175
+    "scripted": 176
   },
   "registeredCodes": [
     "01001",
@@ -1613,6 +1614,30 @@
     "octgn:51223bd0-ffd1-11df-a976-1801202c9018",
     "octgn:51223bd0-ffd1-11df-a976-1801202c9020",
     "octgn:51223bd0-ffd1-11df-a976-1801202c9022",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9001",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9002",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9003",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9004",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9005",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9006",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9008",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9009",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9010",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9011",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9012",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9013",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9014",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9015",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9016",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9017",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9018",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9019",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9020",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9022",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9024",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9025",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9026",
+    "octgn:51223bd0-ffd1-11df-a976-1801203c9027",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9001",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9002",
     "octgn:51223bd0-ffd1-11df-a976-1801204c9003",
@@ -2895,7 +2920,7 @@
     {
       "product": "the-battle-of-lake-town",
       "total": 24,
-      "scripted": 0,
+      "scripted": 24,
       "player": 0,
       "playerScripted": 0
     },
@@ -21130,7 +21155,7 @@
       "name": "Catching Fire",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21138,7 +21163,7 @@
       "name": "Close to the Flame",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21146,7 +21171,7 @@
       "name": "Dire Magnificence",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21154,7 +21179,7 @@
       "name": "East Pier",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21162,7 +21187,7 @@
       "name": "Esgaroth Wharf",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21170,7 +21195,7 @@
       "name": "Fire and Water",
       "type": "quest",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21178,7 +21203,7 @@
       "name": "Fisherman's Dock",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21186,7 +21211,7 @@
       "name": "Great Bridge",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21194,7 +21219,7 @@
       "name": "Great House",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21202,7 +21227,7 @@
       "name": "Lake-town",
       "type": "objective",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21210,7 +21235,7 @@
       "name": "Merchant's District",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21218,7 +21243,7 @@
       "name": "North Pier",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21226,7 +21251,7 @@
       "name": "Reckless in His Rage",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21234,7 +21259,7 @@
       "name": "Scorching Blast",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21242,7 +21267,7 @@
       "name": "Smaug the Magnificent",
       "type": "enemy",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21250,7 +21275,7 @@
       "name": "Smaug the Mighty",
       "type": "enemy",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21258,7 +21283,7 @@
       "name": "Smaug the Terrible",
       "type": "enemy",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21266,7 +21291,7 @@
       "name": "South Pier",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21274,7 +21299,7 @@
       "name": "Terror from the Mountain",
       "type": "quest",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21282,7 +21307,7 @@
       "name": "The Dragon's Wrath",
       "type": "quest",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21290,7 +21315,7 @@
       "name": "The Master's Manor",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21298,7 +21323,7 @@
       "name": "The Old Thrush",
       "type": "objective",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21306,7 +21331,7 @@
       "name": "Town-Baiting",
       "type": "treachery",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -21314,7 +21339,7 @@
       "name": "West Pier",
       "type": "location",
       "pack": "The Battle of Lake-town",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-battle-of-lake-town"
     },
     {
@@ -39318,8 +39343,8 @@
       "id": "Q99.02",
       "name": "The Battle of Lake-town",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-lake-town",
+      "state": "scripted"
     },
     {
       "id": "Q99.03",

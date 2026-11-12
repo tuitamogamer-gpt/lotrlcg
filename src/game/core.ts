@@ -1266,7 +1266,8 @@ export const objectiveFree = (s: GameState, u: Unit) =>
     u.code === FANGORN.mugash ||
     u.code === RHOS.athelas ||
     u.code === KHAZAD.book ||
-    u.code === KHAZAD.tools) &&
+    u.code === KHAZAD.tools ||
+    !!batch4Scenario(s).claimableObjective?.(s, u)) &&
     !units(s).some((x) => x.guarding === u.id));
 
 export const objectiveCount = (s: GameState) =>

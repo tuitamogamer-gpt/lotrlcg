@@ -174,7 +174,9 @@
     "test:lonely-mountain-simulation": "node --import tsx --test tests/lonely-mountain-simulation.test.ts",
     "test:browser-lonely-mountain": "node --import tsx scripts/browser-lonely-mountain.mjs",
     "test:battle-five-armies-simulation": "node --import tsx --test tests/battle-five-armies-simulation.test.ts",
-    "test:browser-battle-five-armies": "node --import tsx scripts/browser-battle-five-armies.mjs"
+    "test:browser-battle-five-armies": "node --import tsx scripts/browser-battle-five-armies.mjs",
+    "test:lake-town-simulation": "node --import tsx --test tests/lake-town-simulation.test.ts",
+    "test:browser-lake-town": "node --import tsx scripts/browser-lake-town.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

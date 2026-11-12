@@ -31,6 +31,10 @@ export const PLAYMATS = {
     name: "Five Armies",
     detail: "Three fronts · Bolg's bodyguard",
   },
+  "the-battle-of-lake-town": {
+    name: "Esgaroth",
+    detail: "A town on fire · The dragon descends",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -432,6 +436,7 @@ export const PLAYMAT_CHOICES = [
   "flies-and-spiders",
   "the-lonely-mountain",
   "the-battle-of-five-armies",
+  "the-battle-of-lake-town",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

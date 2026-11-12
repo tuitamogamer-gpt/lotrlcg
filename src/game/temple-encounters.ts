@@ -506,7 +506,7 @@ export function templeEncounter(s: GameState, code: string, replay = false) {
 export function templeShadow(s: GameState, code: string) {
   if (!live(s) || !s.combat) return false;
   const c = s.combat as TempleCombat;
-  if (code === T.supplies) c.defensePenalty = (c.defensePenalty ?? 0) - 2;
+  if (code === T.supplies) c.defensePenalty = (c.defensePenalty ?? 0) + 2;
   else if (code === T.profane) {
     if (
       allCharacters(s).some((u) => u.attachments.some((a) => a.code === T.key))

@@ -490,3 +490,25 @@ Sources: the RingsDB text and the 15 reviewed scans (pinned by hash), with Black
 Coverage is now 790 player definitions (92 heroes), 1,300 encounters and 88 scenarios. This resolves 2,367 of 4,183 identities and 175 of 355 recipes; 1,816 identities remain pending.
 
 Validation on Node 22: all 6,021 engine tests pass, including 15 focused On the Doorstep player tests and four seeded complete games (Passage Through Mirkwood solo and twice with two players, We Must Away with two players) with exact save restoration after every action, in which every new card and response is used. The six Hobbit scenario simulation suites pass. The production browser suite passes 42 checkpoints at 1280/390/320px with zero page or console errors. TypeScript, the production build, formatting of the changed files and the coverage audit pass.
+
+2026-11-12 The Battle of Lake-town: continued the user's “Nastavi” after ef5dda4. The standalone Gen Con 2012 scenario, next in publication order, is playable in normal and easy mode (the same 49 cards) for classic solo and 1–4 local players.
+
+The scenario:
+
+- Setup builds a separate Smaug deck of 9 cards, adds Lake-town to the staging area and reveals 1 card per player. Stage 1B deals 1 damage to Lake-town per player. Lake-town burns at 50 damage.
+- At the beginning of each quest phase the first player chooses whether the next Smaug goes to the staging area or engages him. The previous Smaug goes to the Smaug discard pile and its damage moves to the new one, up to 1B's limit of 6 or 2B's limit of 12. An empty Smaug deck is reshuffled.
+- Burn: the Burn values of the locations in play are added together. In player order, each player may exhaust characters to take any amount of it, up to their remaining hit points; the rest burns Lake-town.
+- 2B lets the players discard progress to remove damage from Lake-town. 3B reveals 1 extra card each quest phase and has a Refresh Action back to 2B. Defeating Smaug there wins only if the victory display outweighs the damage on Lake-town.
+
+Every encounter card follows its printed text, including Town-Baiting's attack against Lake-town, Fisherman's Dock as a second active location, Merchant's District's Travel Action and The Old Thrush, a Guarded objective claimed by exhausting a hero. New scenario hooks: a second active location, claimable objectives and claims. See docs/BATTLE-LAKE-TOWN.md.
+
+Sources: no rules insert exists (print on demand). The Smaug deck procedure comes from Caleb Grace's announcement of 16 October 2012. Damage carry-over, the reshuffle and burn absorption come from Vision of the Palantir and the FFG forum archive. Great House's When Revealed leaves out its own Burn, following the FAQ ruling on The Impassable Bog. The 27 reviewed scans add the unique symbol on Great Bridge, Great House and The Master's Manor, quest points 14 and 10, the corrected 2B text and several typo fixes.
+
+Fixes found on the way:
+
+- "−X defense" shadow effects raised defense instead in five scenarios: Muck Adder, Borders of Bree-land, Goblin Axeman, Wind-whipped Rain and Ravenous Warg. `defensePenalty` is now a true reduction. Hold Steady! and Dwindling Supplies, which stored a negative value, now store a positive one. Each of the five tests now checks the defender's actual defense.
+- The log no longer calls an enemy "defeated" when an effect only discards it or removes it from the game.
+
+Coverage is now 790 player definitions (92 heroes), 1,321 encounters and 89 scenarios. This resolves 2,391 of 4,183 identities and 176 of 355 recipes; 1,792 identities remain pending.
+
+Validation on Node 22: all 6,049 engine tests pass, including 26 focused Battle of Lake-town tests and 2 source/art tests; the generic simulation shard manifest now counts 454 cases with the scenario's five. The dedicated complete-game matrix passes 14 games (2,333 actions) with exact save restoration after every action, physical conservation with the Smaug deck and discard pile, and private-view checks that also reorder the Smaug deck. Its policy chumps Smaug with allies and lets characters take burn once Lake-town is in danger; the starter decks lose every game by round 5, but one game in each difficulty reaches stage 2B, so 3B is covered by the focused and browser suites. The generic starter-deck, hidden, decisions and guided cases pass (the campaign case is skipped as for every non-Core quest). For the defense fix, the generic simulations of Conflict at the Carrock, Intruders in Chetwood, The Thing in the Depths and Temple of the Deceived and the We Must Away, Misty Mountains and Five Armies matrices still pass. The production browser suite passes 53 checkpoints, all eight native setups with exact physical inventories, and all 27 face hashes/decodes at 1280/390/320px with zero page or console errors. TypeScript, the production build, formatting of the changed files and the coverage audit pass. The additive account-choice migration is included; no hosted database migration is claimed.

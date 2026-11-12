@@ -263,6 +263,7 @@ export type ScenarioId =
   | "flies-and-spiders"
   | "the-lonely-mountain"
   | "the-battle-of-five-armies"
+  | "the-battle-of-lake-town"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -430,6 +431,7 @@ export interface GameState {
   fliesSpiders?: import("./flies-spiders-types").FliesSpidersState;
   lonelyMountain?: import("./lonely-mountain-types").LonelyMountainState;
   battleFiveArmies?: import("./battle-five-armies-types").BattleFiveArmiesState;
+  lakeTown?: import("./lake-town-types").LakeTownState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -718,6 +720,7 @@ export interface GameState {
     freshConsideredShadows?: boolean;
     defenderId: string | null;
     attackBonus: number;
+    /** Each defender's defense is reduced by this much for the attack ("gets −X defense"). */
     defensePenalty?: number;
     /** An encounter shadow may redirect otherwise undefended damage. */
     undefendedTargetId?: string;
@@ -759,6 +762,14 @@ export interface GameState {
     bofaAgain?: boolean;
     /** Vanguard of Bolg shadow: a destroyed character clears the current quest. */
     bofaVanguard?: boolean;
+    /** The Battle of Lake-town: this attack destroyed a character. */
+    lakeKilled?: boolean;
+    /** Dire Magnificence's shadow: Smaug engages the next player after a kill. */
+    lakeLeap?: boolean;
+    /** Reckless in His Rage's shadow: a kill resolves all burn damage. */
+    lakeReckless?: boolean;
+    /** The Master's Manor's shadow: a kill discards the defending player's hand. */
+    lakeManor?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

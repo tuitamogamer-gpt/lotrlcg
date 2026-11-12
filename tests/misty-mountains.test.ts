@@ -8,6 +8,7 @@ import {
 } from "../src/game/engine";
 import { STARTERS, card } from "../src/game/cards";
 import { fx, get, make, stageInfo, stats, threatOf } from "../src/game/core";
+import { combatDefenderDefense } from "../src/game/combat";
 import { check, damage, engage, progress } from "../src/game/board";
 import { flush, handle } from "../src/game/effects";
 import { playTargets } from "../src/game/actions";
@@ -429,6 +430,11 @@ test("Goblin shadows: Runners add an attack, Bent-Swords and Miners add attack, 
   assert.equal(s.combat!.attackBonus, 4);
   hooks.shadow!(s, O.axeman);
   assert.equal(s.combat!.defensePenalty, 1);
+  assert.equal(
+    combatDefenderDefense(s, s.heroes[0], gg, s.combat!),
+    Math.max(0, stats(s, s.heroes[0]).defense - 1),
+    "the defending character gets −1 defense",
+  );
   hooks.shadow!(s, O.caves);
   flush(s);
   assert.equal(seatView(s, 0).threat, 22);

@@ -592,7 +592,7 @@ export function combatDefenderDefense(
     0,
     stats(s, defender).defense +
       Angmar.angmarDefenseBonus(s, defender, enemy) +
-      Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
+      Rhudaur.rhudaurDefenseBonus(s, enemy, defender) -
       (combat.defensePenalty ?? 0),
   );
 }

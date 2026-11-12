@@ -12,6 +12,7 @@ import {
   BOFA_ENCOUNTERS,
   BOFA_QUESTS,
 } from "./battle-five-armies-scenario-data";
+import { LAKE_ENCOUNTERS, LAKE_QUESTS } from "./lake-town-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -484,6 +485,7 @@ export const encounterCards = [
       ...FAS_ENCOUNTERS,
       ...TLM_ENCOUNTERS,
       ...BOFA_ENCOUNTERS,
+      ...LAKE_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -563,6 +565,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...FAS_QUESTS,
     ...TLM_QUESTS,
     ...BOFA_QUESTS,
+    ...LAKE_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -683,6 +686,7 @@ export const SCRIPTED = new Set(
     ...FAS_QUESTS,
     ...TLM_QUESTS,
     ...BOFA_QUESTS,
+    ...LAKE_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

@@ -8,6 +8,7 @@ import { ddcdPublicState } from "./dungeons-deep-support";
 import { fasPublicState } from "./flies-spiders-support";
 import { tlmPublicState } from "./lonely-mountain-support";
 import { bofaPublicState } from "./battle-five-armies-support";
+import { lakeTownPublicState } from "./lake-town-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -561,6 +562,7 @@ export function canTravel(s: GameState, u: Unit): string | null {
     s.phase !== "travel" ||
     (allActiveLocations(s).length > 0 &&
       !Osgiliath.assaultOsgiliathSecondLocation(s, u) &&
+      !batch4Scenario(s).secondActiveLocation?.(s, u) &&
       !Depths.depthsCanReplaceActive(s))
   )
     return "Travel requires an empty active-location slot in the travel phase.";
@@ -3232,6 +3234,7 @@ export function applyAction(input: GameState, action: Action): GameState {
       if (khazadClaim(s, objective, hero)) break;
       if (foundationsClaim(s, objective, hero)) break;
       if (rhosgobelClaim(s, objective, hero)) break;
+      if (batch4Scenario(s).claim?.(s, objective, hero)) break;
       raiseThreat(s, 2, "cost");
       s.staging = s.staging.filter((u) => u.id !== objective.id);
       hero.attachments.push({
@@ -3310,9 +3313,11 @@ export function applyAction(input: GameState, action: Action): GameState {
           fx("travelEnter", {
             target: u.id,
             player: firstPlayer(s),
-            text: Osgiliath.assaultOsgiliathSecondLocation(s, u)
-              ? "osgiliath-second"
-              : undefined,
+            text:
+              Osgiliath.assaultOsgiliathSecondLocation(s, u) ||
+              batch4Scenario(s).secondActiveLocation?.(s, u)
+                ? "osgiliath-second"
+                : undefined,
           }),
         );
         break;
@@ -3559,6 +3564,7 @@ export function publicState(s: GameState) {
     fliesSpiders: fasPublicState(s),
     lonelyMountain: tlmPublicState(s),
     battleFiveArmies: bofaPublicState(s),
+    lakeTown: lakeTownPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

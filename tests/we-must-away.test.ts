@@ -17,6 +17,7 @@ import {
   threatOf,
   cannotReady,
 } from "../src/game/core";
+import { combatDefenderDefense } from "../src/game/combat";
 import {
   check,
   damage,
@@ -619,6 +620,11 @@ test("Lone-Lands removes a hero resource from each player, No Campfire offers th
   assert.equal(s.encounterDeck[0], W.grocer);
   hooks.shadow!(s, W.rain);
   assert.equal(s.combat!.defensePenalty, 1);
+  assert.equal(
+    combatDefenderDefense(s, s.heroes[0], bert, s.combat!),
+    Math.max(0, stats(s, s.heroes[0]).defense - 1),
+    "the defending character gets −1 defense",
+  );
   hooks.shadow!(s, W.campfire);
   flush(s);
   assert.equal(seatView(s, 0).threat, 26);

@@ -707,7 +707,7 @@ export function depthsShadow(s: GameState, code: string) {
     const zero = defs.filter((d) => stats(s, d).defense === 0);
     for (const d of zero) discardCharacter(s, d);
     if (defs.some((d) => !zero.includes(d)))
-      combat.defensePenalty = (combat.defensePenalty ?? 0) - 2;
+      combat.defensePenalty = (combat.defensePenalty ?? 0) + 2;
     return true;
   }
   if (code === D.from) {

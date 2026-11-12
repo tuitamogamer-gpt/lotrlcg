@@ -22,7 +22,8 @@ import {
   shadow,
 } from "../src/game/board";
 import { flush, handle } from "../src/game/effects";
-import { make, pay, questWill } from "../src/game/core";
+import { make, pay, questWill, stats } from "../src/game/core";
+import { combatDefenderDefense } from "../src/game/combat";
 import { seatView, selectSeat, syncSeat } from "../src/game/table";
 import {
   CARROCK as C,
@@ -614,6 +615,11 @@ test("Muck Adder shadow reduces defense only this attack and Roasted shadow heal
   s.combat = { enemyId: enemy.id, defenderId: s.heroes[0].id, attackBonus: 0 };
   shadow(s, C.muckAdder);
   assert.equal(s.combat?.defensePenalty, 1);
+  assert.equal(
+    combatDefenderDefense(s, s.heroes[0], enemy, s.combat!),
+    Math.max(0, stats(s, s.heroes[0]).defense - 1),
+    "the defending character gets −1 defense",
+  );
   assert.equal(s.heroes[0].tempDefense ?? 0, 0);
   shadow(s, C.roastedSlowly);
   assert.equal(enemy.damage, 1);

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { applyAction, validateSave, canTravel } from "../src/game/engine";
 import { card } from "../src/game/cards";
 import { make, fx, get, stats } from "../src/game/core";
+import { combatDefenderDefense } from "../src/game/combat";
 import { check, revealed, placeEncounter } from "../src/game/board";
 import { flush, handle } from "../src/game/effects";
 import {
@@ -214,6 +215,11 @@ test("Rugged Country and Borders of Bree-land shadows count main plus every side
   chetwoodShadow(s, C.borders);
   assert.equal(s.combat.attackBonus, 3);
   assert.equal(s.combat.defensePenalty, 3);
+  assert.equal(
+    combatDefenderDefense(s, d, u, s.combat),
+    Math.max(0, stats(s, d).defense - 3),
+    "the defending character gets −1 defense per quest stage",
+  );
 });
 test("Angmar Marauder shadow counts allies controlled by the attacked player", () => {
   const s = base(2),

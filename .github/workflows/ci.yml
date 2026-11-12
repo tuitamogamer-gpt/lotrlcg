@@ -501,6 +501,24 @@ jobs:
           path: output/battle-five-armies-release/failures
           retention-days: 7
 
+  lake-town-simulation:
+    name: The Battle of Lake-town complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:lake-town-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lake-town-simulation
+          path: output/battle-lake-town-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -640,6 +658,8 @@ jobs:
             suite: test:browser-lonely-mountain
           - group: battle-five-armies
             suite: test:browser-battle-five-armies
+          - group: lake-town
+            suite: test:browser-lake-town
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

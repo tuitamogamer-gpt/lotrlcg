@@ -16,6 +16,8 @@ import { LonelyMountainState } from "./ui/lonely-mountain-state";
 import { TLM_QUESTS } from "./game/lonely-mountain-support";
 import { BattleFiveArmiesState } from "./ui/battle-five-armies-state";
 import { BOFA_QUESTS } from "./game/battle-five-armies-support";
+import { LakeTownState } from "./ui/lake-town-state";
+import { LAKE, LAKE_QUESTS } from "./game/lake-town-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -403,6 +405,7 @@ const claimableObjectives: string[] = [
   F.helm,
   H.scroll,
   ...STEWARD_CLUES,
+  LAKE.thrush,
 ];
 const exhaustedClaimObjectives: string[] = [
   TEMPLE.key,
@@ -413,6 +416,7 @@ const exhaustedClaimObjectives: string[] = [
   F.helm,
   H.scroll,
   ...STEWARD_CLUES,
+  LAKE.thrush,
 ];
 const objectiveClaimExhausts = (s: GameState, id: string) =>
   s.staging.some((u) => u.id === id && u.code === FANGORN.mugash) ||
@@ -424,6 +428,7 @@ const objectiveClaimRestricted = (s: GameState, id: string) =>
     H.scroll,
     FANGORN.mugash,
     ...STEWARD_CLUES,
+    LAKE.thrush,
   ].includes(objectiveClaimCode(s, id) ?? "");
 const objectiveClaimDescription = (s: GameState, id: string) => {
   const code = objectiveClaimCode(s, id);
@@ -3226,6 +3231,7 @@ export default function App() {
               inspect={setDetail}
               dispatch={dispatch}
             />
+            <LakeTownState s={game} inspect={setDetail} dispatch={dispatch} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3972,6 +3978,7 @@ export default function App() {
                       ...FAS_QUESTS,
                       ...TLM_QUESTS,
                       ...BOFA_QUESTS,
+                      ...LAKE_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

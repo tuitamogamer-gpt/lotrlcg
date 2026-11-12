@@ -18,6 +18,7 @@ import {
   bofaUnits,
   validateBattleFiveArmies,
 } from "./battle-five-armies-support";
+import { lakeTownUnits, validateLakeTown } from "./lake-town-support";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -350,6 +351,10 @@ export function validateSave(
         c.dorwinionKilledAlly,
         c.doomUlchor,
         c.doomKilledCharacter,
+        c.lakeKilled,
+        c.lakeLeap,
+        c.lakeReckless,
+        c.lakeManor,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
@@ -911,6 +916,7 @@ export function validateSave(
         !validateFliesSpiders(s, validUnit as (v: unknown) => boolean) ||
         !validateLonelyMountain(s, validUnit as (v: unknown) => boolean) ||
         !validateBattleFiveArmies(s, validUnit as (v: unknown) => boolean) ||
+        !validateLakeTown(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1621,6 +1627,7 @@ export function validateSave(
       ...fasUnits(s),
       ...tlmUnits(s),
       ...bofaUnits(s),
+      ...lakeTownUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

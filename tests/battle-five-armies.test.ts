@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { applyAction, canTravel, validateSave } from "../src/game/engine";
 import { card } from "../src/game/cards";
 import { fx, get, make, questStat, stats, threatOf } from "../src/game/core";
+import { combatDefenderDefense } from "../src/game/combat";
 import { damage } from "../src/game/board";
 import { flush, handle } from "../src/game/effects";
 import { availableAbilities } from "../src/game/actions";
@@ -484,6 +485,11 @@ test("Shadows count the quest stages with no progress: Wolf Rider adds attack, W
   assert.equal(m.combat.attackBonus, 5);
   BOFA_HOOKS.shadow!(m, B.warg);
   assert.equal(m.combat.defensePenalty, 3);
+  assert.equal(
+    combatDefenderDefense(m, m.heroes[0], goblin, m.combat),
+    Math.max(0, stats(m, m.heroes[0]).defense - 3),
+    "the defending character gets −1 defense per empty stage",
+  );
   // Northern Slopes active: a character leaving play removes 1 progress.
   let t = base();
   t.activeLocation = make(t, B.slopes);
