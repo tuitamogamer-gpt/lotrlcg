@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 775,
-    "heroes": 88,
-    "deckCards": 683,
+    "playerCards": 790,
+    "heroes": 92,
+    "deckCards": 694,
     "encounterCards": 1300,
     "scenarios": 88,
     "scenarioIds": [
@@ -100,8 +100,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2352,
-    "pending": 1831
+    "scripted": 2367,
+    "pending": 1816
   },
   "scenarioRecipes": {
     "total": 355,
@@ -696,7 +696,22 @@
     "131021",
     "131022",
     "132001",
+    "132002",
+    "132003",
+    "132004",
+    "132005",
     "132006",
+    "132007",
+    "132008",
+    "132009",
+    "132010",
+    "132011",
+    "132012",
+    "132013",
+    "132014",
+    "132015",
+    "132016",
+    "132017",
     "132018",
     "132019",
     "132020",
@@ -2747,9 +2762,9 @@
     {
       "product": "on-the-doorstep",
       "total": 79,
-      "scripted": 64,
+      "scripted": 79,
       "player": 24,
-      "playerScripted": 9
+      "playerScripted": 24
     },
     {
       "product": "on-the-doorstep-nightmare",
@@ -9091,7 +9106,7 @@
       "name": "Balin",
       "type": "hero",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9099,7 +9114,7 @@
       "name": "Bard the Bowman",
       "type": "hero",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9107,7 +9122,7 @@
       "name": "Óin",
       "type": "hero",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9115,7 +9130,7 @@
       "name": "Bombur",
       "type": "hero",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9131,7 +9146,7 @@
       "name": "Bifur",
       "type": "ally",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9139,7 +9154,7 @@
       "name": "Dwalin",
       "type": "ally",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9147,7 +9162,7 @@
       "name": "Straight Shot",
       "type": "event",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9155,7 +9170,7 @@
       "name": "Desperate Alliance",
       "type": "event",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9163,7 +9178,7 @@
       "name": "Ravens of the Mountain",
       "type": "event",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9171,7 +9186,7 @@
       "name": "To me! O my kinsfolk!",
       "type": "event",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9179,7 +9194,7 @@
       "name": "The Lucky Number",
       "type": "event",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9187,7 +9202,7 @@
       "name": "Great Yew Bow",
       "type": "attachment",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9195,7 +9210,7 @@
       "name": "Black Arrow",
       "type": "attachment",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9203,7 +9218,7 @@
       "name": "Thrór's Key",
       "type": "attachment",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -9211,7 +9226,7 @@
       "name": "Expert Treasure-hunter",
       "type": "attachment",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {

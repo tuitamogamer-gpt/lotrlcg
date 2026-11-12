@@ -637,18 +637,26 @@ export function canTravel(s: GameState, u: Unit): string | null {
   if (returnProblem) return returnProblem;
   const rhosProblem = rhosgobelTravelProblem(s, u);
   if (rhosProblem) return rhosProblem;
-  if (u.code !== "01088" && s.staging.some((x) => x.code === "01088"))
+  if (
+    u.code !== "01088" &&
+    s.staging.some((x) => x.code === "01088" && !x.blanked)
+  )
     return "You must travel to The East Bight.";
   if (
     u.code === "01077" &&
+    !u.blanked &&
     !livingSeats(s).every((i) =>
       seatView(s, i).heroes.some((h) => !h.exhausted),
     )
   )
     return "Great Forest Web requires a ready hero from every player.";
-  if (u.code === "01094" && seatView(s, firstPlayer(s)).hand.length < 2)
+  if (
+    u.code === "01094" &&
+    !u.blanked &&
+    seatView(s, firstPlayer(s)).hand.length < 2
+  )
     return "Necromancer’s Pass requires two cards to discard.";
-  if (u.code === "01078" && !s.encounterDeck.length)
+  if (u.code === "01078" && !u.blanked && !s.encounterDeck.length)
     return "The travel cost needs an encounter card to reveal.";
   if (u.code === EMYN.highlands && !s.encounterDeck.length)
     return "The Highlands requires an encounter card to reveal.";
@@ -1960,6 +1968,10 @@ export const needsTarget = (u: Unit) =>
   [
     "131016",
     "131017",
+    "132009",
+    "132010",
+    "132011",
+    "132013",
     "18015",
     "22139",
     "21010",
@@ -2877,7 +2889,7 @@ export function applyAction(input: GameState, action: Action): GameState {
         );
         requireRule(
           allActiveLocations(s).length > 0 ||
-            !s.staging.some((u) => u.code === "01088"),
+            !s.staging.some((u) => u.code === "01088" && !u.blanked),
           "You must travel to The East Bight.",
         );
         enqueue(s, fx("phaseEnd"), fx("startEncounter"));
@@ -3332,34 +3344,37 @@ export function applyAction(input: GameState, action: Action): GameState {
         "The Carrock is immune to player effects and cannot be travelled to.",
       );
       requireRule(
-        u.code === "01088" || !s.staging.some((x) => x.code === "01088"),
+        u.code === "01088" ||
+          !s.staging.some((x) => x.code === "01088" && !x.blanked),
         "You must travel to The East Bight.",
       );
-      if (u.code === "01077")
+      // Thrór's Key blanks a location's Travel cost.
+      const travelText = !u.blanked;
+      if (u.code === "01077" && travelText)
         requireRule(
           livingSeats(s).every((i) =>
             seatView(s, i).heroes.some((h) => !h.exhausted),
           ),
           "Great Forest Web requires a ready hero.",
         );
-      if (u.code === "01094")
+      if (u.code === "01094" && travelText)
         requireRule(
           seatView(s, firstPlayer(s)).hand.length >= 2,
           "Necromancer’s Pass requires 2 cards to discard.",
         );
-      if (u.code === "01078")
+      if (u.code === "01078" && travelText)
         requireRule(
           s.encounterDeck.length > 0,
           "There is no encounter card to reveal for this travel cost.",
         );
-      if (u.code === "01077")
+      if (u.code === "01077" && travelText)
         enqueue(
           s,
           ...playerOrder(s).map((player) => fx("travelExhaust", { player })),
         );
-      if (u.code === "01094")
+      if (u.code === "01094" && travelText)
         enqueue(s, fx("payPass", { player: firstPlayer(s) }));
-      if (u.code === "01078")
+      if (u.code === "01078" && travelText)
         enqueue(s, fx("reveal", { player: firstPlayer(s) }));
       enqueue(s, fx("travelEnter", { target: u.id, player: firstPlayer(s) }));
       break;

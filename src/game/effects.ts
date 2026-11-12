@@ -4,6 +4,10 @@ import {
   hobbitPlayerRefreshEnd,
 } from "./hobbit-player-cards";
 import {
+  otdPlayerQuestSucceeded,
+  otdPlayerShadowOptions,
+} from "./otd-player-cards";
+import {
   fortressNurnPlayerEffect,
   fortressNurnPlayerQuestSucceeded,
   fortressNurnPlayerStagingEnd,
@@ -995,6 +999,7 @@ function handleEffect(s: GameState, e: Effect) {
       Mumakil.mumakilQuestSucceeded(s);
       landSorrowPlayerQuestSucceeded(s);
       fortressNurnPlayerQuestSucceeded(s);
+      otdPlayerQuestSucceeded(s);
       break;
     case "successfulQuestProgress": {
       const before = s.progress,
@@ -1341,14 +1346,18 @@ function handleEffect(s: GameState, e: Effect) {
         Gram.gramActiveLocationChanged(s, u);
         Angmar.angmarTraveled(s);
         log(s, `Travelled to ${name(u)}.`, "good");
-        if (u.code === "01087" && !Burglar.burglarContractHandlesBrownLands(s))
+        if (
+          u.code === "01087" &&
+          !u.blanked &&
+          !Burglar.burglarContractHandlesBrownLands(s)
+        )
           progressLocation(s, u, 1);
-        if (u.code === "01107") eachSeat(s, () => orcGuard(s));
+        if (u.code === "01107" && !u.blanked) eachSeat(s, () => orcGuard(s));
         const responses = [
-          ...(u.code === "01099"
+          ...(u.code === "01099" && !u.blanked
             ? [fx("travelReady", { player: firstPlayer(s) })]
             : []),
-          ...(u.code === "01100"
+          ...(u.code === "01100" && !u.blanked
             ? [fx("draw", { value: 2, player: firstPlayer(s) })]
             : []),
           ...playerOrder(s).map((player) =>
@@ -2783,7 +2792,8 @@ function handleEffect(s: GameState, e: Effect) {
         );
         raiseThreat(
           s,
-          allActiveLocations(s).filter((l) => l.code === "01114").length,
+          allActiveLocations(s).filter((l) => l.code === "01114" && !l.blanked)
+            .length,
           "encounter",
         );
       });
@@ -2861,7 +2871,13 @@ export function shadowResponse(s: GameState, code: string) {
     allActiveLocations(s).some((l) => l.code === "02016")
       ? []
       : WrathPlayers.wrathRuinPlayerShadowOptions(s, code, !!shadowText);
+  const balinOptions =
+    roadRivendellCannotCancel(s) ||
+    allActiveLocations(s).some((l) => l.code === "02016")
+      ? []
+      : otdPlayerShadowOptions(s, code, !!shadowText);
   if (
+    balinOptions.length ||
     wrathOptions.length ||
     eredOptions.length ||
     eligible.length ||
@@ -2877,6 +2893,7 @@ export function shadowResponse(s: GameState, code: string) {
         ...eredOptions,
         ...wrathOptions,
         ...templeOptions,
+        ...balinOptions,
         ...brand,
         ...erkenbrand,
         ...watcher,

@@ -419,6 +419,11 @@ import {
   hobbitPlayerResourceBonus,
 } from "./hobbit-player-cards";
 import {
+  otdPlayerHeroLent,
+  otdPlayerLocationEntered,
+  otdPlayerPhaseEnd,
+} from "./otd-player-cards";
+import {
   advanceEmynMuil,
   emynMuilRevealSurge,
   emynMuilEncounter,
@@ -1042,7 +1047,8 @@ export function check(s: GameState) {
           ShadowEastSupport.shadowEastPlayerMissingHeroAllowed(s, i) ||
           batch4Scenario(s).missingHeroAllowed?.(s, i) ||
           foundationsHeroMissingAllowed(s, i) ||
-          Gram.gramHeroMissingAllowed(s, i))
+          Gram.gramHeroMissingAllowed(s, i) ||
+          otdPlayerHeroLent(s, i))
       )
         return;
       if (s.table!.seats[i].eliminated) return;
@@ -2143,6 +2149,8 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   if (Storm.stormcallerAreaCannotLeave(s, u) || Race.raceHaradCannotLeave(s, u))
     return;
   const wasActive = allActiveLocations(s).some((l) => l.id === u.id);
+  // Last known text: Thrór's Key blanks the location's own effects.
+  const textBlank = !!u.blanked;
   const burglarEffects = Burglar.burglarContractExploreEffects(s, u, wasActive);
   Storm.stormcallerAreaLeft(s, u);
   Race.raceHaradAreaLeft(s, u);
@@ -2161,7 +2169,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
     !!batch4Scenario(s).locationDestination?.(s, u);
   let exploredDiscardIndex: number | undefined;
   if (!captured) {
-    if (u.code === "01113") s.encounterDeck.unshift(u.code);
+    if (u.code === "01113" && !textBlank) s.encounterDeck.unshift(u.code);
     else if (card(u.code).victory) addVictoryCard(s, u.code);
     else {
       s.encounterDiscard.push(u.code);
@@ -2219,7 +2227,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   ringMakerLocationExplored(s);
   rhosgobelExplored(s, u);
   returnMirkwoodExplored(s, u);
-  if (u.code === "01078")
+  if (u.code === "01078" && !textBlank)
     prepend(
       s,
       ...playerOrder(s).map((player) => fx("mountainReward", { player })),
@@ -2597,6 +2605,7 @@ export function phaseEnd(s: GameState) {
   eachArea(s, () => Angmar.angmarPhaseEnd(s));
   const bloodEffects: Effect[] = [];
   eachArea(s, () => bloodEffects.push(...bloodPlayerPhaseEndEffects(s)));
+  const otdEffects = otdPlayerPhaseEnd(s);
   const departures = globalCharacters(s)
     .filter((u) => u.temporary || u.beornReturn)
     .map((u) => fx("allyDeparture", { target: u.id, player: ownerOf(s, u) }));
@@ -2606,6 +2615,7 @@ export function phaseEnd(s: GameState) {
     s,
     ...bloodEffects,
     ...departures,
+    ...otdEffects,
     ...cityDepartures,
     ...wainDepartures,
   );
@@ -2644,7 +2654,12 @@ export function phaseEndPlayer(s: GameState) {
   }
 }
 
-export function returnAlly(s: GameState, u: Unit, toDeck = false) {
+/** `toDeck` shuffles the ally into its owner's deck; "bottom" places it last. */
+export function returnAlly(
+  s: GameState,
+  u: Unit,
+  toDeck: boolean | "bottom" = false,
+) {
   if (toDeck && hasEncounterKeyword(card(u.code))) {
     destroy(s, u, false, "removed");
     return;
@@ -2668,7 +2683,7 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
   forOwner(s, owner, () => {
     if (toDeck) {
       s.deck.push(u.code);
-      shuffle(s, s.deck);
+      if (toDeck !== "bottom") shuffle(s, s.deck);
     } else {
       const returned = make(s, u.code);
       returnedId = returned.id;
@@ -2677,7 +2692,9 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
   });
   log(
     s,
-    `${name(u)} returns to ${seatName(s, owner)}’s ${toDeck ? "deck" : "hand"}.`,
+    toDeck === "bottom"
+      ? `${name(u)} goes to the bottom of ${seatName(s, owner)}’s deck.`
+      : `${name(u)} returns to ${seatName(s, owner)}’s ${toDeck ? "deck" : "hand"}.`,
   );
   prepend(s, fx("valiant", { player: controller }));
   characterLeftPlay(
@@ -2688,7 +2705,12 @@ export function returnAlly(s: GameState, u: Unit, toDeck = false) {
       zone: toDeck ? "deck" : "hand",
       player: owner,
       id: returnedId,
-      index: toDeck ? seatView(s, owner).deck.indexOf(u.code) : undefined,
+      index:
+        toDeck === "bottom"
+          ? seatView(s, owner).deck.length - 1
+          : toDeck
+            ? seatView(s, owner).deck.indexOf(u.code)
+            : undefined,
     },
     lastKnownAttack,
     lastKnownTraits,
@@ -3468,6 +3490,7 @@ export function placeEncounter(
       stewardFearLocationEntered(s, fresh);
       Amon.amonDinLocationEntered(s, fresh);
       watcherPlayerLocationEntered(s, fresh);
+      otdPlayerLocationEntered(s, fresh);
       if (fromReveal && revealOrigin === "encounter")
         prepend(s, fx("huntLocationResponse", { target: fresh.id }));
     }

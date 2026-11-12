@@ -207,7 +207,7 @@ function councilOptions(s: GameState) {
     !noPlayerCardEconomy(s) &&
     s.deck.length &&
     !s.shackles &&
-    !allActiveLocations(s).some((u) => u.code === "01095")
+    !allActiveLocations(s).some((u) => u.code === "01095" && !u.blanked)
   )
     options.add("draw");
   if (

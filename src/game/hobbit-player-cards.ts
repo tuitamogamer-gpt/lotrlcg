@@ -37,7 +37,6 @@ import {
   playerOrder,
   seatIndices,
   seatName,
-  seatView,
 } from "./table";
 import { hasTrait } from "./expansion-passives";
 import { playerEffectImmune } from "./player-effect-immunity";
@@ -51,6 +50,17 @@ import { fateCannotSearch } from "./fate-numenor";
 import { isEnemy } from "./ships";
 import { OTD_BILBO, OTD_RING, isBagginsBilbo } from "./hobbit-codes";
 import { choosePlayerResponse } from "./player-ability-triggers";
+import { dwarfCount } from "./dwarf-player-cards";
+import {
+  otdPlayerAbilityLabel,
+  otdPlayerAbilityProblem,
+  otdPlayerEffect,
+  otdPlayerEvent,
+  otdPlayerEventCost,
+  otdPlayerPlayProblem,
+  otdPlayerTargets,
+  useOtdPlayerAbility,
+} from "./otd-player-cards";
 import { spendResources } from "./core";
 import {
   ereborAbilityLabel,
@@ -96,11 +106,7 @@ const bilbo = (s: GameState) =>
 /** Thorin Oakenshield collects 1 additional resource with 5 Dwarf characters. */
 export function hobbitPlayerResourceBonus(s: GameState, h: Unit) {
   if (h.code !== P.thorin || h.blanked) return 0;
-  const p = seatView(s, ownerOf(s, h));
-  return [...p.heroes, ...p.allies].filter((u) => hasTrait(u, "Dwarf"))
-    .length >= 5
-    ? 1
-    : 0;
+  return dwarfCount(s, ownerOf(s, h)) >= 5 ? 1 : 0;
 }
 /** Beorn does not exhaust to defend. */
 export const hobbitPlayerNoDefenseExhaust = (u: Unit) =>
@@ -168,7 +174,7 @@ export function hobbitPlayerTargets(s: GameState, code: string) {
   if (code === P.hood) return allCharacters(s);
   if (code === P.cleaver) return cleaverEnemies(s);
   if (code === P.late) return lateTargets(s);
-  return undefined;
+  return otdPlayerTargets(s, code);
 }
 export function hobbitPlayerPlayProblem(s: GameState, u: Unit) {
   if (u.code === P.cleaver) {
@@ -191,7 +197,7 @@ export function hobbitPlayerPlayProblem(s: GameState, u: Unit) {
     if (playerEffectImmune(s, b, P.burglar))
       return "Bilbo Baggins is immune to player card effects.";
   }
-  return null;
+  return otdPlayerPlayProblem(s, u);
 }
 /** Costs printed on the events are paid as they are played. */
 export function hobbitPlayerEventCost(s: GameState, u: Unit, target?: string) {
@@ -231,6 +237,7 @@ export function hobbitPlayerEventCost(s: GameState, u: Unit, target?: string) {
     );
     requireRule(exhaustCharacter(s, t!), "This character cannot exhaust.");
   }
+  otdPlayerEventCost(s, u, target);
 }
 export function hobbitPlayerEvent(
   s: GameState,
@@ -287,7 +294,7 @@ export function hobbitPlayerEvent(
       return true;
     }
     default:
-      return false;
+      return otdPlayerEvent(s, code, target);
   }
 }
 
@@ -344,7 +351,7 @@ export const hobbitPlayerAbilityLabel = (code: string) =>
         ? "Bilbo Baggins · Spend 1 Baggins resource: search your deck for a treasure"
         : code === OTD_RING
           ? "Bilbo's Magic Ring · Exhaust and raise your threat by 1: gain 1 Baggins resource"
-          : ereborAbilityLabel(code);
+          : (ereborAbilityLabel(code) ?? otdPlayerAbilityLabel(code));
 const ringKey = (a: Attachment) => `round:${OTD_RING}:${a.id}`;
 function ringProblem(s: GameState, u: Unit, a: Attachment) {
   if (!enabled(a)) return "Bilbo's Magic Ring's text is inactive.";
@@ -398,6 +405,8 @@ export function hobbitPlayerAbilityProblem(
     const a = u.attachments.find((x) => x.id === attachmentId);
     if (a?.code === OTD_RING) return ringProblem(s, u, a);
     if (a && ereborAbilityLabel(a.code)) return ereborAbilityProblem(s, u, a);
+    if (a && otdPlayerAbilityLabel(a.code))
+      return otdPlayerAbilityProblem(s, u, a.id);
     if (!a || a.code !== P.hood) return undefined;
     if (!enabled(a)) return "Spare Hood and Cloak's text is inactive.";
     if (attachmentController(s, u, a) !== activeSeat(s))
@@ -427,6 +436,8 @@ export function useHobbitPlayerAbility(
     ? u.attachments.find((x) => x.id === attachmentId)
     : undefined;
   if (a && ereborAbilityLabel(a.code)) return useEreborAbility(s, u, a);
+  if (a && otdPlayerAbilityLabel(a.code))
+    return useOtdPlayerAbility(s, u, a.id);
   if (
     attachmentId
       ? a?.code !== P.hood && a?.code !== OTD_RING
@@ -705,6 +716,6 @@ export function hobbitPlayerEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     default:
-      return ereborTreasureEffect(s, e);
+      return otdPlayerEffect(s, e) || ereborTreasureEffect(s, e);
   }
 }

@@ -1,5 +1,9 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
+import {
+  otdPlayerAttackersDeclared,
+  otdPlayerAttackResolved,
+} from "./otd-player-cards";
 import { ereborAttackBonus } from "./erebor-treasures";
 import { ulfastPlayerAttackEffects } from "./ulfast-player";
 import { ulfastPlayerAttackBonus } from "./ulfast-player-support";
@@ -159,7 +163,8 @@ export function playerAttack(
     | "hands-upon-bow"
     | "knight"
     | "battle-fury"
-    | "charge-into-battle",
+    | "charge-into-battle"
+    | "great-yew-bow",
 ) {
   ids = [...new Set(ids)];
   requireRule(
@@ -204,12 +209,19 @@ export function playerAttack(
               khazadCanRangedAttack(s, enemy, u, false) &&
               rhosgobelCanFight(enemy, u),
           )
-        : attackersFor(
-            s,
-            enemy,
-            abilityMode === "battle-fury" ? ids[0] : undefined,
-            abilityMode === "charge-into-battle",
-          )
+        : abilityMode === "great-yew-bow"
+          ? allCharacters(s).filter(
+              (u) =>
+                ownerOf(s, u) === activeSeat(s) &&
+                canFight(u) &&
+                greatYewBowCanAttack(s, enemy, u),
+            )
+          : attackersFor(
+              s,
+              enemy,
+              abilityMode === "battle-fury" ? ids[0] : undefined,
+              abilityMode === "charge-into-battle",
+            )
     ).find((u) => u.id === id),
   );
   if (abilityMode === "haldir")
@@ -227,6 +239,13 @@ export function playerAttack(
         s.staging.some((u) => u.id === enemy.id) &&
         !playerEffectImmune(s, enemy, "04131"),
       "Hands Upon the Bow declares its single paid Ranged attacker against an eligible staging enemy.",
+    );
+  if (abilityMode === "great-yew-bow")
+    requireRule(
+      ids.length === 1 &&
+        s.staging.some((u) => u.id === enemy.id) &&
+        !playerEffectImmune(s, enemy, "132014"),
+      "Great Yew Bow declares only its hero against an enemy in the staging area.",
     );
   requireRule(
     attackers.every(Boolean),
@@ -272,6 +291,7 @@ export function playerAttack(
   attackers.forEach((u) => {
     if (
       abilityMode !== "hands-upon-bow" &&
+      abilityMode !== "great-yew-bow" &&
       abilityMode !== "battle-fury" &&
       !Angmar.angmarNoCombatExhaust(s, u!) &&
       (abilityMode === "knight" ||
@@ -335,6 +355,7 @@ export function playerAttack(
       enemy,
       attackers as Unit[],
     ),
+    ...otdPlayerAttackersDeclared(s, enemy, attackers as Unit[], abilityMode),
     fx("resolvePlayerAttack", {
       target: enemy.id,
       ids,
@@ -370,6 +391,22 @@ export function playerAttack(
   collectorAttackersDeclared(s, ids);
   prepend(s, ...watcherWaterPlayerAttackEffects(s, enemy, ids));
   Angmar.angmarAttackDeclared(s, enemy, attackers as Unit[]);
+}
+
+/** Great Yew Bow: its hero attacks alone, as a ranged attack, into staging. */
+export function greatYewBowCanAttack(s: GameState, enemy: Unit, u: Unit) {
+  return (
+    u.attachments.some((a) => a.code === "132014" && !a.blanked) &&
+    !batch4Scenario(s).cannotAttack?.(s, u, enemy) &&
+    shipCanAttack(enemy, u) &&
+    Cobas.cobasCanAttackEnemy(s, enemy, u) &&
+    Voyage.voyageCanAttackEnemy(s, enemy, u) &&
+    Storm.stormcallerCanAttackEnemy(s, enemy, u) &&
+    longDarkCanAttack(s, enemy) &&
+    khazadCanAttack(u) &&
+    khazadCanRangedAttack(s, enemy, u, true) &&
+    rhosgobelCanFight(enemy, u)
+  );
 }
 
 export function resolvePlayerAttack(
@@ -458,6 +495,7 @@ export function playerAttackResolved(
   remainingHealth: number,
 ) {
   SandsPlayers.beneathSandsPlayerAttackResolved(s, ids);
+  otdPlayerAttackResolved(s, ids);
   WildsPlayers.wildsPlayerAttackResolved(s, ids);
   EredPlayers.eredMithrinPlayerAttackResolved(s, ids);
   Raid.raidPlayerAttackFinished(s, enemy);

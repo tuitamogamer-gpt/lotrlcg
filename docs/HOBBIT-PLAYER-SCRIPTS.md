@@ -1,5 +1,8 @@
 # The Hobbit: Over Hill and Under Hill player cards
 
+The On the Doorstep player cards are described in
+[their own page](OTD-PLAYER-SCRIPTS.md).
+
 All 22 player cards of the box are scripted. Bilbo Baggins and the
 treasures follow the Saga rules described with
 [We Must Away, Ere Break of Day](WE-MUST-AWAY.md). Nori, Ori, Fili, Kili,

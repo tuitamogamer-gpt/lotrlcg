@@ -749,6 +749,8 @@ export interface GameState {
     ommChaosReturn?: boolean;
     /** Bilbo's Magic Ring cancelled all damage from this attack. */
     ringCancel?: boolean;
+    /** Balins whose once-per-attack response was used during this attack. */
+    otdBalin?: string[];
     /** Weighed Down's shadow: a destroyed defender raises its controller's threat by 5. */
     fasWeighed?: boolean;
     /** Dark Bats damaged this character and attaches to it after the attack. */

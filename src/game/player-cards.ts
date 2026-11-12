@@ -641,7 +641,9 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
       );
       requireRule(
         !ninNoCardEconomy(s) &&
-          !allActiveLocations(s).some((l) => l.code === "01095") &&
+          !allActiveLocations(s).some(
+            (l) => l.code === "01095" && !l.blanked,
+          ) &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );
@@ -688,7 +690,9 @@ export function useAbility(s: GameState, u: Unit, attachmentId?: string) {
       requireRule(!u.exhausted, "Gléowine is exhausted.");
       requireRule(
         !ninNoCardEconomy(s) &&
-          !allActiveLocations(s).some((l) => l.code === "01095") &&
+          !allActiveLocations(s).some(
+            (l) => l.code === "01095" && !l.blanked,
+          ) &&
           livingSeats(s).some((i) => seatView(s, i).deck.length > 0),
         "You cannot draw cards now.",
       );

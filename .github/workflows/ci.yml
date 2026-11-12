@@ -642,6 +642,8 @@ jobs:
             suite: test:browser-battle-five-armies
           - group: hobbit-players
             suite: test:browser-hobbit-players
+          - group: otd-players
+            suite: test:browser-otd-players
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

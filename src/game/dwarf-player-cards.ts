@@ -24,7 +24,7 @@ import { takePlayerDiscard } from "./board";
 // Exact Dwarves of Durin starting-deck rules, including current FFG errata.
 // https://cdn.svc.asmodee.net/production-fantasyflightgames/uploads/2026/09/lotr_faq_19_printer_friendly.pdf
 import { card, name, plain } from "./cards";
-import type { Effect, GameState, Unit } from "./types";
+import type { Card, Effect, GameState, Unit } from "./types";
 import {
   choose,
   draw,
@@ -69,6 +69,24 @@ const dwarves = (s: GameState, player: number) => {
   const p = seatView(s, player);
   return [...p.heroes, ...p.allies].filter((u) => hasTrait(u, "Dwarf"));
 };
+/** On the Doorstep Dwarves that count the Dwarf characters their controller has. */
+export const OTD_DWARF = {
+  oin: "132004",
+  bombur: "132005",
+  gloin: "132006",
+  bifur: "132007",
+  dwalin: "132008",
+} as const;
+/** The Dwarf characters a player controls; Bombur counts as two. */
+export function dwarfCount(s: GameState, player: number) {
+  const list = dwarves(s, player);
+  return (
+    list.length +
+    list.filter((u) => u.code === OTD_DWARF.bombur && !u.blanked).length
+  );
+}
+const fiveDwarves = (s: GameState, player: number) =>
+  dwarfCount(s, player) >= 5;
 const readyAllies = (s: GameState) => s.allies.filter((u) => !u.exhausted);
 const dwarfHeroes = (s: GameState) =>
   allHeroes(s).filter((u) => hasTrait(u, "Dwarf"));
@@ -119,12 +137,28 @@ export function dwarfStats(s: GameState, u: Unit) {
     seatView(s, ownerOf(s, u)).used.filter(
       (k) => k === `round:durin-song:${u.id}`,
     ).length * 2;
-  return { will: dain + songs, attack: dain + songs, defense: songs };
+  const oin = oinActive(s, u) ? 1 : 0;
+  return { will: dain + songs, attack: dain + songs + oin, defense: songs };
+}
+const oinActive = (s: GameState, u: Unit) =>
+  u.code === OTD_DWARF.oin &&
+  !u.blanked &&
+  card(u.code).type_code === "hero" &&
+  fiveDwarves(s, ownerOf(s, u));
+/** Óin gains the Tactics resource icon while his controller has 5 Dwarves. */
+export const dwarfResourceIcons = (s: GameState, u: Unit): string[] =>
+  oinActive(s, u) && allHeroes(s).some((h) => h.id === u.id) ? ["tactics"] : [];
+/** Dwalin costs 2 less while the player playing him has 5 Dwarves. */
+export function dwarfCostReduction(s: GameState, c: Card) {
+  return c.code === OTD_DWARF.dwalin &&
+    fiveDwarves(s, c.playOwner ?? activeSeat(s))
+    ? 2
+    : 0;
 }
 export function dwarfResourceDrawBonus(s: GameState, player: number) {
   const p = seatView(s, player);
   return p.heroes.some((h) => h.code === "131004" && !h.blanked) &&
-    dwarves(s, player).length >= 5
+    fiveDwarves(s, player)
     ? 1
     : 0;
 }
@@ -344,10 +378,15 @@ export function dwarfAllyEntered(s: GameState, u: Unit, played: boolean) {
       s,
       fx("dwarfProspectorResponse", { target: u.id, player: ownerOf(s, u) }),
     );
-  if (played && u.code === "132006" && dwarves(s, ownerOf(s, u)).length >= 5)
+  if (played && u.code === OTD_DWARF.gloin && fiveDwarves(s, ownerOf(s, u)))
     prepend(
       s,
       fx("dwarfGloinResponse", { target: u.id, player: ownerOf(s, u) }),
+    );
+  if (played && u.code === OTD_DWARF.bifur && fiveDwarves(s, ownerOf(s, u)))
+    prepend(
+      s,
+      fx("dwarfBifurResponse", { target: u.id, player: ownerOf(s, u) }),
     );
   if (played && hasTrait(u, "Dwarf")) {
     const player = ownerOf(s, u);
@@ -756,6 +795,28 @@ export function handleDwarfPlayerEffect(s: GameState, e: Effect): boolean {
         ],
         "After playing Glóin from hand, add 2 resources to a hero.",
       );
+      return true;
+    case "dwarfBifurResponse":
+      choosePlayerResponse(
+        s,
+        e.target ?? OTD_DWARF.bifur,
+        OTD_DWARF.bifur,
+        "Bifur · Five Dwarves",
+        [
+          {
+            id: "draw",
+            code: OTD_DWARF.bifur,
+            label: "Draw 2 cards",
+            effects: [{ ...e, kind: "dwarfBifurDraw" }],
+          },
+          skip,
+        ],
+        "After playing Bifur from hand, draw 2 cards.",
+      );
+      return true;
+    case "dwarfBifurDraw":
+      draw(s, 2);
+      log(s, "Bifur: his controller draws 2 cards.", "good");
       return true;
     case "dwarfGloinResources": {
       const hero = resourceRecipients(s).find((h) => h.id === e.target);

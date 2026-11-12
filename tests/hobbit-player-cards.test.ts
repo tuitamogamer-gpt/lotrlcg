@@ -90,8 +90,9 @@ test("Every Over Hill and Under Hill player card is scripted, deckable and pinne
   ])
     assert.ok(deck.includes(code), code);
   assert.ok(!deck.includes("131020"));
-  assert.equal(art.length, 9);
-  for (const a of art) {
+  const box = art.filter((a) => a.code.startsWith("1310"));
+  assert.equal(box.length, 9);
+  for (const a of box) {
     assert.equal(readFileSync(`public${a.localPath}`).length, a.bytes);
     assert.equal(hash(`public${a.localPath}`), a.sha256);
     assert.equal(card(a.code).imagesrc, a.localPath);

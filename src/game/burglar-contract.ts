@@ -128,7 +128,7 @@ export function burglarContractTravelEntered(
 ) {
   if (!travelled || !state(s)) return;
   const effects: Effect[] = [];
-  if (u.code === "01087" && burglarContractHandlesBrownLands(s))
+  if (u.code === "01087" && !u.blanked && burglarContractHandlesBrownLands(s))
     effects.push(
       fx("burglarBrownLandsProgress", {
         target: u.id,

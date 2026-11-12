@@ -307,7 +307,7 @@ export function greyHavensAbilityProblem(s: GameState, u: Unit, id?: string) {
       !s.deck.length ||
       ninNoCardEconomy(s) ||
       fateCannotDraw(s) ||
-      allActiveLocations(s).some((l) => l.code === "01095")
+      allActiveLocations(s).some((l) => l.code === "01095" && !l.blanked)
       ? "Galdor needs an empty hand, a drawable deck and his unused once-per-game Action."
       : null;
   if (!a || a.exhausted) return "Choose a ready attachment you control.";

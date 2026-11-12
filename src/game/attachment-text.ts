@@ -25,6 +25,8 @@ import * as Angmar from "./angmar-player";
 import { greyHavensDynamicKeywords } from "./grey-havens-player";
 import { ettenSideQuestBlanked } from "./ettenmoors";
 import { templePlayerBlanked } from "./temple-player";
+import { dwarfResourceIcons } from "./dwarf-player-cards";
+import { otdPlayerLocationBlanked } from "./otd-player-cards";
 
 /** Keep printed-text effects consistent across stats, payment, actions and saves.
  * Blanking removes traits, keywords and abilities within the printed text box.
@@ -96,6 +98,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
       host.damage > 0 &&
       ["hero", "ally", "objective-ally"].includes(card(host.code).type_code);
     const wrathBlanking =
+      otdPlayerLocationBlanked(host) ||
       Sands.beneathSandsCharacterBlanked(s, host) ||
       batch4Scenario(s).characterBlanked?.(s, host) ||
       templePlayerBlanked(s, host) ||
@@ -125,6 +128,7 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     const icons = [
       ...Angmar.angmarResourceIcons(s, host),
       ...EredSupport.eredMithrinPlayerResourceIcons(s, host),
+      ...dwarfResourceIcons(s, host),
     ];
     if (icons.length) host.dynamicResourceIcons = icons;
     else delete host.dynamicResourceIcons;

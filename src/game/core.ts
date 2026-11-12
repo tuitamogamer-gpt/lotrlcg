@@ -254,7 +254,11 @@ import {
   rhosgobelFollowFirstPlayer,
   rhosgobelThreatBonus,
 } from "./rhosgobel";
-import { dwarfStats, dwarfAdditionalCost } from "./dwarf-player-cards";
+import {
+  dwarfStats,
+  dwarfAdditionalCost,
+  dwarfCostReduction,
+} from "./dwarf-player-cards";
 
 import {
   returnMirkwoodCanFight,
@@ -921,6 +925,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                   : 0) -
                 BatchSupport.batch4PlayerCostReduction(s, c) -
                 ereborCostReduction(s, c) -
+                dwarfCostReduction(s, c) -
                 landSorrowPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
@@ -1496,7 +1501,7 @@ export function draw(
     );
     return;
   }
-  if (allActiveLocations(s).some((l) => l.code === "01095")) {
+  if (allActiveLocations(s).some((l) => l.code === "01095" && !l.blanked)) {
     log(s, "Enchanted Stream prevents card draw.", "danger");
     return;
   }

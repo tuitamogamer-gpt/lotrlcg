@@ -41,6 +41,8 @@ type AttachmentRule = {
   health?: number;
   names?: string[];
   requiresKeyword?: string;
+  /** The host's printed text box must carry the keyword. */
+  printedKeyword?: string;
   unique?: boolean;
 };
 const rules: Record<string, AttachmentRule> = {
@@ -60,6 +62,11 @@ const rules: Record<string, AttachmentRule> = {
   "132022": { type: "hero", restricted: 1, attack: 2 },
   "132023": { type: "hero", restricted: 1, keywords: ["Ranged"] },
   "132024": { type: "hero" },
+  // The other On the Doorstep player attachments.
+  "132014": { type: "hero", printedKeyword: "Ranged", restricted: 1 },
+  "132015": { type: "hero", requiresKeyword: "Ranged" },
+  "132016": { type: "hero" },
+  "132017": { type: "hero", limit: 1 },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },
@@ -268,6 +275,16 @@ export function attachmentHasTrait(a: Attachment, trait: string) {
     ].some((match) => match[1].toLowerCase() === trait.toLowerCase())
   );
 }
+/** A keyword printed in the card's own text box, whatever blanks it. */
+export function printedKeyword(u: Unit, keyword: string): boolean {
+  const c = card(u.code);
+  const printed = (
+    (u.flipped ? (c.back_text ?? c.text) : c.text) ?? ""
+  ).replace(/<[^>]*>/g, "");
+  return new RegExp(`(?:^|[.\\n]\\s*)${keyword}(?:[.\\s]|$)`, "i").test(
+    printed,
+  );
+}
 export function effectiveKeyword(u: Unit, keyword: string): boolean {
   const c = card(u.code);
   const printed = (
@@ -344,6 +361,8 @@ export function expansionPlayTargets(s: GameState, c: Card): Unit[] | null {
     )
       return false;
     if (rule.requiresKeyword && !effectiveKeyword(u, rule.requiresKeyword))
+      return false;
+    if (rule.printedKeyword && !printedKeyword(u, rule.printedKeyword))
       return false;
     if (rule.names && !rule.names.includes(card(u.code).name)) return false;
     if (c.code === "04062" && ownerOf(s, u) !== (s.table?.active ?? 0))

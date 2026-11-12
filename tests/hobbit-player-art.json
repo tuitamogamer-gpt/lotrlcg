@@ -70,5 +70,125 @@
     "sourceUrl": "https://ringsdb.com/bundles/cards/131019.png",
     "bytes": 140428,
     "sha256": "dfedc1f2d9ec893020c5da2c74fdcc674c3e59d680aa3a39a42c0ae4b5edca66"
+  },
+  {
+    "code": "132002",
+    "name": "Balin",
+    "localPath": "/cards/132002.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132002.png",
+    "bytes": 141967,
+    "sha256": "0108d4b9691bd69adfce01bfd104566af5f15d593d9efed589fa5e777040b79e"
+  },
+  {
+    "code": "132003",
+    "name": "Bard the Bowman",
+    "localPath": "/cards/132003.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132003.png",
+    "bytes": 152704,
+    "sha256": "c8ec4a6a89fe8a3a6922f6c15fe85156074f15966dff2877e785b0effe198797"
+  },
+  {
+    "code": "132004",
+    "name": "Óin",
+    "localPath": "/cards/132004.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132004.png",
+    "bytes": 147609,
+    "sha256": "fdccc27998d86a935b46c7ef2c179ac6bb0ec46715d556a0255a7eca7e17a48b"
+  },
+  {
+    "code": "132005",
+    "name": "Bombur",
+    "localPath": "/cards/132005.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132005.png",
+    "bytes": 144338,
+    "sha256": "2050549c3131945df0e10065dd37a9557b1f5d7608be470b23a1da9518581f75"
+  },
+  {
+    "code": "132007",
+    "name": "Bifur",
+    "localPath": "/cards/132007.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132007.png",
+    "bytes": 136496,
+    "sha256": "f34956f7aa8b18d3c528c572ba1d482a49e44a5f5a21c4eb0a5a397676777e99"
+  },
+  {
+    "code": "132008",
+    "name": "Dwalin",
+    "localPath": "/cards/132008.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132008.png",
+    "bytes": 135294,
+    "sha256": "479865a32d9861510500e6ee97d3b74f31e17bd810ab609374d464c6dd46ebe9"
+  },
+  {
+    "code": "132009",
+    "name": "Straight Shot",
+    "localPath": "/cards/132009.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132009.png",
+    "bytes": 128510,
+    "sha256": "5586e5c5dcdde49db11918c30a9a8adea67af2e17ab0f0eb63133fc2979e4663"
+  },
+  {
+    "code": "132010",
+    "name": "Desperate Alliance",
+    "localPath": "/cards/132010.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132010.png",
+    "bytes": 140277,
+    "sha256": "03b3de5c2dd13b486a68cf755dc9a98a58510f8100ba99d153de7e2e1339fff7"
+  },
+  {
+    "code": "132011",
+    "name": "Ravens of the Mountain",
+    "localPath": "/cards/132011.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132011.png",
+    "bytes": 510527,
+    "sha256": "962f04cbddcbaf2a863fdee4d3d10fd11af110647b83de2a746c5cde3a790606"
+  },
+  {
+    "code": "132012",
+    "name": "To me! O my kinsfolk!",
+    "localPath": "/cards/132012.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132012.png",
+    "bytes": 143897,
+    "sha256": "4dacc2922b4e3e09a3fa8bc8447f929ece7c53a1574e2672879d8c2e6763068e"
+  },
+  {
+    "code": "132013",
+    "name": "The Lucky Number",
+    "localPath": "/cards/132013.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132013.png",
+    "bytes": 148063,
+    "sha256": "99af279c3b2ae904cc57f618659a7a3f00c5c0edc50621a7730572778062ed99"
+  },
+  {
+    "code": "132014",
+    "name": "Great Yew Bow",
+    "localPath": "/cards/132014.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132014.png",
+    "bytes": 144392,
+    "sha256": "83bd37ac4e2abb0d0da53d42eaf594f0d0de31239bb983d002bdab2dede596da"
+  },
+  {
+    "code": "132015",
+    "name": "Black Arrow",
+    "localPath": "/cards/132015.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132015.png",
+    "bytes": 135662,
+    "sha256": "57f74443c80c7605372615205c4f6935b9b8f59ec185e3daf5cd84fb853885cb"
+  },
+  {
+    "code": "132016",
+    "name": "Thrór's Key",
+    "localPath": "/cards/132016.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132016.png",
+    "bytes": 149505,
+    "sha256": "3a2ff0db23ab62b44568a86f30b69117379bbdca9fdb9c9a2d6d890fb7001d08"
+  },
+  {
+    "code": "132017",
+    "name": "Expert Treasure-hunter",
+    "localPath": "/cards/132017.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/132017.png",
+    "bytes": 524030,
+    "sha256": "29ba248391e07ab325e90d28e2c1c45d4079826b9a74c313f9f9ccb99c9bac7c"
   }
 ]

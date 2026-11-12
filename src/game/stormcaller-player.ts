@@ -75,7 +75,7 @@ const drawable = (s: GameState) =>
   s.deck.length > 0 &&
   !ninNoCardEconomy(s) &&
   !fateCannotDraw(s) &&
-  !allActiveLocations(s).some((u) => u.code === "01095");
+  !allActiveLocations(s).some((u) => u.code === "01095" && !u.blanked);
 const denethorTargets = (s: GameState, u: Unit) =>
   allHeroes(s).filter(
     (h) =>
