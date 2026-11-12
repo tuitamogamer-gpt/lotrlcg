@@ -35,6 +35,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.lakeTown) return s.lakeTown.currentQuest;
   if (s.shadowPast) return s.shadowPast.currentQuest;
   if (s.knifeDark) return s.knifeDark.currentQuest;
+  if (s.flightFord) return s.flightFord.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

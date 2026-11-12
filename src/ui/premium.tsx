@@ -43,6 +43,10 @@ export const PLAYMATS = {
     name: "Bree to Weathertop",
     detail: "Spies at the Prancing Pony · The Ringwraiths attack",
   },
+  "flight-to-the-ford": {
+    name: "The Last Bridge to the Bruinen",
+    detail: "The Ring-bearer's wound · Fell Riders on the Road",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -447,6 +451,7 @@ export const PLAYMAT_CHOICES = [
   "the-battle-of-lake-town",
   "a-shadow-of-the-past",
   "a-knife-in-the-dark",
+  "flight-to-the-ford",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

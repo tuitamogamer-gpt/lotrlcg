@@ -1,0 +1,443 @@
+[
+  {
+    "id": "E0B.03",
+    "name": "Flight to the Ford (Easy)",
+    "mode": "easy",
+    "campaign": false,
+    "pack_codes": ["TBR"],
+    "card_codes": [
+      "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+      "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+      "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+      "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+      "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+      "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+      "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+      "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+      "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+      "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+      "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+      "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+      "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+      "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+      "141084",
+      "141081",
+      "141082",
+      "141083",
+      "141080",
+      "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+      "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+      "141001",
+      "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+      "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+      "octgn:5c31f690-9802-4638-8316-5380ef32575b"
+    ],
+    "cards": [
+      {
+        "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "141084",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141081",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141082",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141083",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141080",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "141001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+        "quantity": 4,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d": 1,
+        "octgn:6b2673af-c764-4599-a265-6e43d3b75310": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb": 1,
+        "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984": 3,
+        "octgn:821a078b-ae42-4b69-bd49-cc235916be77": 3,
+        "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f": 1,
+        "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba": 3,
+        "octgn:edae55ef-8025-4553-9ff8-e81526effd59": 3,
+        "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73": 3,
+        "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b": 1,
+        "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376": 3,
+        "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567": 2,
+        "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0": 1,
+        "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9": 1,
+        "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df": 2
+      },
+      "sharedEncounterDeck2": {
+        "141080": 1,
+        "141081": 1,
+        "141082": 1,
+        "141083": 1,
+        "141084": 1
+      },
+      "sharedSetAside": {
+        "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189": 1,
+        "octgn:c5657436-d6c8-400d-ba1f-a723799ac685": 1
+      },
+      "player1Play1": {
+        "141001": 1,
+        "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33": 1
+      },
+      "sharedStagingArea": {
+        "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6": 1,
+        "octgn:bc43ae57-6010-4924-919c-b37d1e33b958": 1,
+        "octgn:5c31f690-9802-4638-8316-5380ef32575b": 4
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  },
+  {
+    "id": "Q0B.03",
+    "name": "Flight to the Ford",
+    "mode": "standard",
+    "campaign": false,
+    "pack_codes": ["TBR"],
+    "card_codes": [
+      "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+      "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+      "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+      "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+      "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+      "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+      "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+      "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+      "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+      "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+      "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+      "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+      "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+      "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+      "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+      "141084",
+      "141081",
+      "141082",
+      "141083",
+      "141080",
+      "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+      "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+      "141001",
+      "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+      "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+      "octgn:5c31f690-9802-4638-8316-5380ef32575b"
+    ],
+    "cards": [
+      {
+        "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+        "quantity": 1,
+        "section": "sharedQuestDeck"
+      },
+      {
+        "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+        "quantity": 1,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+        "quantity": 2,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+        "quantity": 3,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+        "quantity": 4,
+        "section": "sharedEncounterDeck"
+      },
+      {
+        "code": "141084",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141081",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141082",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141083",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "141080",
+        "quantity": 1,
+        "section": "sharedEncounterDeck2"
+      },
+      {
+        "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+        "quantity": 1,
+        "section": "sharedSetAside"
+      },
+      {
+        "code": "141001",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+        "quantity": 1,
+        "section": "player1Play1"
+      },
+      {
+        "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+        "quantity": 1,
+        "section": "sharedStagingArea"
+      },
+      {
+        "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+        "quantity": 4,
+        "section": "sharedStagingArea"
+      }
+    ],
+    "sections": {
+      "sharedQuestDeck": {
+        "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d": 1,
+        "octgn:6b2673af-c764-4599-a265-6e43d3b75310": 1
+      },
+      "sharedEncounterDeck": {
+        "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb": 1,
+        "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984": 3,
+        "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273": 2,
+        "octgn:821a078b-ae42-4b69-bd49-cc235916be77": 3,
+        "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f": 2,
+        "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba": 3,
+        "octgn:edae55ef-8025-4553-9ff8-e81526effd59": 3,
+        "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73": 3,
+        "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b": 3,
+        "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376": 3,
+        "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567": 2,
+        "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0": 3,
+        "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9": 3,
+        "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df": 4
+      },
+      "sharedEncounterDeck2": {
+        "141080": 1,
+        "141081": 1,
+        "141082": 1,
+        "141083": 1,
+        "141084": 1
+      },
+      "sharedSetAside": {
+        "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189": 1,
+        "octgn:c5657436-d6c8-400d-ba1f-a723799ac685": 1
+      },
+      "player1Play1": {
+        "141001": 1,
+        "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33": 1
+      },
+      "sharedStagingArea": {
+        "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6": 1,
+        "octgn:bc43ae57-6010-4924-919c-b37d1e33b958": 1,
+        "octgn:5c31f690-9802-4638-8316-5380ef32575b": 4
+      }
+    },
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "automated": false
+  }
+]

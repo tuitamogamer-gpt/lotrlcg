@@ -79,6 +79,10 @@ const HEADLINES: Partial<
     lead: "Survive Weathertop",
     em: "and drive off the Nazgûl.",
   },
+  "flight-to-the-ford": {
+    lead: "Race the Riders",
+    em: "to the Ford of Bruinen.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

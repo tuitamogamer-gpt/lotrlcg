@@ -1,0 +1,1720 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "Flight to the Ford",
+  "slug": "flight-to-the-ford",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "141001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Response:</b> Spend 1 [fellowship] resource and exhaust The One Ring to cancel the effect of an encounter card just revealed from the encounter deck. Shuffle that card back into the encounter deck and reveal another encounter card.",
+      "flavor": "\"I will take the Ring,\" he said, \"though I do not know the way.\" <cite>The Fellowship of the Ring</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 1,
+      "illustrator": "Jake Murray",
+      "imagesrc": "/cards/141001.png",
+      "url": "https://ringsdb.com/card/141001",
+      "quantity": 1,
+      "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "141001",
+          "illustrator": "Jake Murray",
+          "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+          "imagesrc": "/bundles/cards/141001.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "141080",
+      "name": "Weight of the Ring",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "text": "Surge.\r\n<b>When Revealed:</b> Attach to the <i><b>Ring-bearer</b></i>. (Counts as a <i><b>Condition</b></i> attachment with the text: \"<b>Forced:</b> At the beginning of each quest phase, either exhaust The One Ring or reveal an additional encounter card this phase.\")",
+      "flavor": "Once more the desire to slip on the Ring came over Frodo... –The Fellowship of the Ring",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 80,
+      "illustrator": "Mike Nash",
+      "imagesrc": "/cards/141080.png",
+      "url": "https://ringsdb.com/card/141080",
+      "quantity": 1,
+      "octgnid": "40c95b3d-6216-4def-bb93-f44871f3ec70",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 80,
+          "quantity": 1,
+          "image_code": "141080",
+          "illustrator": "Mike Nash",
+          "octgnid": "40c95b3d-6216-4def-bb93-f44871f3ec70",
+          "imagesrc": "/bundles/cards/141080.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141080",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "Flight to the Ford"
+    },
+    {
+      "code": "141081",
+      "name": "Fear of Discovery",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "text": "Surge.\r\n<b>When Revealed:</b> The first player must either exhaust the <i><b>Ring-bearer</b></i> or reveal an additional encounter card.\r\n<i><b>Shadow:</b> Defending player raises his threat by 3.</i>",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 81,
+      "illustrator": "Chris Rahn",
+      "imagesrc": "/cards/141081.png",
+      "url": "https://ringsdb.com/card/141081",
+      "quantity": 1,
+      "octgnid": "074cad39-ce55-4dc1-9775-e95363682ef7",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 81,
+          "quantity": 1,
+          "image_code": "141081",
+          "illustrator": "Chris Rahn",
+          "octgnid": "074cad39-ce55-4dc1-9775-e95363682ef7",
+          "imagesrc": "/bundles/cards/141081.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141081",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "Flight to the Ford",
+      "shadow": "Shadow: Defending player raises his threat by 3."
+    },
+    {
+      "code": "141082",
+      "name": "Eaten Alive!",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "text": "Surge.\r\n<b>When Revealed:</b> The first player must deal X damage divided among heroes he controls where X is the number of players in the game.\r\n<i><b>Shadow:</b> Deal 1 damage to defending character.</i>",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 82,
+      "illustrator": "Melanie Maier",
+      "imagesrc": "/cards/141082.png",
+      "url": "https://ringsdb.com/card/141082",
+      "quantity": 1,
+      "octgnid": "e8f413bf-3593-47fc-8813-4553d55dbb2a",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 82,
+          "quantity": 1,
+          "image_code": "141082",
+          "illustrator": "Melanie Maier",
+          "octgnid": "e8f413bf-3593-47fc-8813-4553d55dbb2a",
+          "imagesrc": "/bundles/cards/141082.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141082",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "Flight to the Ford",
+      "shadow": "Shadow: Deal 1 damage to the defending character."
+    },
+    {
+      "code": "141083",
+      "name": "Panicked",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "text": "Surge.\r\n<b>When Revealed:</b> The first player raises his threat by 3 and passes the first player token to the next player.\r\n<i><b>Shadow:</b> Defending player exhausts a character he controls.</i>",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 83,
+      "illustrator": "Marcia George-Bogdan",
+      "imagesrc": "/cards/141083.png",
+      "url": "https://ringsdb.com/card/141083",
+      "quantity": 1,
+      "octgnid": "50c19cd1-3094-4bf7-b2dc-e21b145827b7",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 83,
+          "quantity": 1,
+          "image_code": "141083",
+          "illustrator": "Marcia George-Bogdan",
+          "octgnid": "50c19cd1-3094-4bf7-b2dc-e21b145827b7",
+          "imagesrc": "/bundles/cards/141083.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141083",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "Flight to the Ford",
+      "shadow": "Shadow: Defending player exhausts a character he controls."
+    },
+    {
+      "code": "141084",
+      "name": "Overcome by Terror",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "text": "Surge.\r\n<b>When Revealed:</b> The first player must exhaust The One Ring. If The One Ring is already exhausted, the first player must discard 2 cards at random from his hand.\r\n<i><b>Shadow:</b> Defending player discards 1 card at random from his hand.</i>",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 84,
+      "illustrator": "Daarken",
+      "imagesrc": "/cards/141084.png",
+      "url": "https://ringsdb.com/card/141084",
+      "quantity": 1,
+      "octgnid": "cdc303cb-bb1a-4409-a479-aa4155bd8ed5",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 84,
+          "quantity": 1,
+          "image_code": "141084",
+          "illustrator": "Daarken",
+          "octgnid": "cdc303cb-bb1a-4409-a479-aa4155bd8ed5",
+          "imagesrc": "/bundles/cards/141084.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141084",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "Flight to the Ford",
+      "shadow": "Shadow: Defending player discards 1 card at random from his hand."
+    },
+    {
+      "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+      "octgnid": "09aeff64-6e0d-4dfa-af21-2e7805441376",
+      "name": "Black Steed",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Attach to a Nazgûl enemy in play, if able. (Counts a Mount attachment with the text: \"Limit 1 per enemy. Attached enemy gets -10 engagement cost and gains. 'Forced: At the end of the refresh phase, return attached enemy to the staging area.'\")",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 74,
+      "quantity": 3,
+      "encounter_set": "The Black Riders",
+      "printed_stats": {},
+      "imagesrc": "/cards/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 74,
+          "quantity": 3,
+          "octgnid": "09aeff64-6e0d-4dfa-af21-2e7805441376",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+      "octgnid": "0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+      "name": "The Enemy is Upon Us!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each engaged enemy makes an immediate attack.  If no attack is made this way, The Enemy is Upon Us! gains surge.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: If this attack destroys a character, remove all progress from the current quest.",
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {},
+      "imagesrc": "/cards/0e12b3e5-d330-4a13-be7b-5a07a57a2273.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e12b3e5-d330-4a13-be7b-5a07a57a2273.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+      "octgnid": "1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+      "name": "Rode Like a Gale",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Return each engaged Nazgûl enemy to the staging area.  If no enemies were returned to the staging area by this effect, Rode Like a Gale gains surge.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 75,
+      "quantity": 2,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "The Black Riders",
+      "printed_stats": {},
+      "imagesrc": "/cards/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 75,
+          "quantity": 2,
+          "octgnid": "1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+      "octgnid": "2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+      "name": "Ringwraith",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Cannot have non-Morgul attachments.\nForced: When Ringwraith attacks, deal it an additional shadow card if The One Ring is exhausted.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 69,
+      "quantity": 4,
+      "threat": 3,
+      "attack": 5,
+      "defense": 4,
+      "health": 5,
+      "engagement": 35,
+      "shadow": "Shadow: Shuffle this card into the encounter deck.",
+      "encounter_set": "The Nazgûl",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "4",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 69,
+          "quantity": 4,
+          "octgnid": "2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+      "octgnid": "32416ec8-b50d-4cd2-a62f-10f97c87be73",
+      "name": "Pathless Country",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Pathless Country gets +4 quest points while in the staging area.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 72,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "shadow": "Shadow: After this attack, the attacking enemy engages the next player then makes an immediate attack.",
+      "encounter_set": "Hunted",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 72,
+          "quantity": 3,
+          "octgnid": "32416ec8-b50d-4cd2-a62f-10f97c87be73",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+      "octgnid": "36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+      "name": "The Troll's Camp",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While The Troll's Camp is the active location, each hero gets +1 [willpower], +1 [attack] +1 [defense].",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 60,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 2,
+      "victory": 1,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "2",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/36dd0d2a-ba57-4ca0-b750-967c958e8bfb.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 60,
+          "quantity": 1,
+          "octgnid": "36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36dd0d2a-ba57-4ca0-b750-967c958e8bfb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+      "octgnid": "3cd4bb66-1621-4534-aa25-421d0d8b7189",
+      "name": "Ford of Bruinen",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "River.",
+      "text": "Immune to player card effects\nResponse: After Ford of Bruinen leaves play as an explored location, all engaged enemies are discarded.  Travel: The first player must reveal the top card of the encounter deck to travel here.",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 59,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 6,
+      "victory": 5,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "6",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/3cd4bb66-1621-4534-aa25-421d0d8b7189.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 59,
+          "quantity": 1,
+          "octgnid": "3cd4bb66-1621-4534-aa25-421d0d8b7189",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3cd4bb66-1621-4534-aa25-421d0d8b7189.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+      "octgnid": "4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+      "name": "Power In Their Terror",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each ally gets -1 [willpower] until the end of the round. Deal 2 damage to each ally with 0 [willpower].",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 71,
+      "quantity": 3,
+      "shadow": "Shadow: Discard a non-objective attachment you control.",
+      "encounter_set": "The Nazgûl",
+      "printed_stats": {},
+      "imagesrc": "/cards/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 71,
+          "quantity": 3,
+          "octgnid": "4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+      "octgnid": "4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+      "name": "Pale Blade",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Attach to a Nazgûl enemy in play, if able. (Counts as a Weapon attachment with the text: \"Limit 1 per enemy.  Attached enemy gets +1 [attack] and cannot take non-combat damage.\")",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 70,
+      "quantity": 3,
+      "encounter_set": "The Nazgûl",
+      "printed_stats": {},
+      "imagesrc": "/cards/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 70,
+          "quantity": 3,
+          "octgnid": "4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+      "octgnid": "5c31f690-9802-4638-8316-5380ef32575b",
+      "name": "Fell Rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Cannot have non-Morgul attachments.\nWhile Fell Rider is in the staging area, it gains: \"Forced: At the beginning of the encounter phase, the first player must either reduce the Ring-bearer's life by 1 or engage Fell Rider.\"",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 63,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 3,
+      "health": 6,
+      "engagement": 30,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "3",
+        "health": "6",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/5c31f690-9802-4638-8316-5380ef32575b.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 63,
+          "quantity": 4,
+          "octgnid": "5c31f690-9802-4638-8316-5380ef32575b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5c31f690-9802-4638-8316-5380ef32575b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+      "octgnid": "6b2673af-c764-4599-a265-6e43d3b75310",
+      "name": "Race To Rivendell",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 29,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "Flight to the Ford",
+      "side": "A",
+      "back_name": "Race To Rivendell",
+      "back_text": "When Revealed: Add Ford of Bruinen and The Witch-king to the staging area.  While at least 1 Nazgûl enemy is in play, Race to Rivendell gets +15 quest points.  Forced: At the end of the round. Reduce the Ring-bearer's life by 1.  If the players defeat this stage, they have won the game.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "6b2673af-c764-4599-a265-6e43d3b75310",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b2673af-c764-4599-a265-6e43d3b75310.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+      "octgnid": "71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+      "name": "An Evil Wound",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Morgul.",
+      "text": "Attach to the Ring-bearer. Attached hero cannot be healed.\nWhen attached hero would take any amount of damage, reduce the Ring-bearer's life an equal amount instead.  If the Ring-bearer's life reaches zero, the players lose the game.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 57,
+      "quantity": 1,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {},
+      "imagesrc": "/cards/71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 57,
+          "quantity": 1,
+          "octgnid": "71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+      "octgnid": "7e470346-1828-49c0-b241-58d0dbf27b4b",
+      "name": "Piercing Cry",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Search the encounter deck and discard pile for a Nazgûl enemy. Either add it to the staging area or put it into play engaged with the first player.  Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 73,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+      "encounter_set": "Hunted",
+      "printed_stats": {},
+      "imagesrc": "/cards/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 73,
+          "quantity": 3,
+          "octgnid": "7e470346-1828-49c0-b241-58d0dbf27b4b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+      "octgnid": "821a078b-ae42-4b69-bd49-cc235916be77",
+      "name": "Stricken Dumb",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: You must either shuffle the top card of the burden deck into the encounter deck and reveal an additional encounter card, or raise each player's threat by 3 and immediately end the quest phase (do not resolve the quest).",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 64,
+      "quantity": 3,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {},
+      "imagesrc": "/cards/821a078b-ae42-4b69-bd49-cc235916be77.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 64,
+          "quantity": 3,
+          "octgnid": "821a078b-ae42-4b69-bd49-cc235916be77",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/821a078b-ae42-4b69-bd49-cc235916be77.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+      "octgnid": "98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+      "name": "The Nine are Abroad",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Treat the text box of each character in play as blank (except for Traits) until the end of the round.  If there is a Nazgûl enemy in the staging area, The Nine are Abroad gains surge.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 67,
+      "quantity": 2,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {},
+      "imagesrc": "/cards/98a2fb10-f2fc-462c-9f2e-8945419d9c4f.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 67,
+          "quantity": 2,
+          "octgnid": "98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a2fb10-f2fc-462c-9f2e-8945419d9c4f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+      "octgnid": "98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+      "name": "Pain Assailed Him",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Reduce the Ring-bearer's life by 1.  Then, reduce the Ring-bearers [willpower], [attack], and [defense] to 0 until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 66,
+      "quantity": 3,
+      "shadow": "Shadow: If this attack destroys a character, reduce the Ring-bearer's life by 1.",
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {},
+      "imagesrc": "/cards/98bf5fdc-ff74-48e2-88c8-0e4134fd6984.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 66,
+          "quantity": 3,
+          "octgnid": "98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98bf5fdc-ff74-48e2-88c8-0e4134fd6984.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+      "octgnid": "ae435070-552a-43a9-816f-9f23f1a6dbba",
+      "name": "Ettenmoors",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Ettenmoors is the active location, do not deal Nazgûl enemies a shadow card during the combat phase.  Forced: After any amount of progress is placed on Ettenmoors, reduce the Ring-bearer's life by 1.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 61,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/ae435070-552a-43a9-816f-9f23f1a6dbba.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 61,
+          "quantity": 3,
+          "octgnid": "ae435070-552a-43a9-816f-9f23f1a6dbba",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae435070-552a-43a9-816f-9f23f1a6dbba.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+      "octgnid": "bc43ae57-6010-4924-919c-b37d1e33b958",
+      "name": "The Last Bridge",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Bridge. River.",
+      "text": "Immune to player card effects\nX is the number of players in the game.  Travel: The first player must reveal the top card of the burden deck and resolve that card as if it were just revealed from the encounter deck to travel here.",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 58,
+      "quantity": 1,
+      "quest": 4,
+      "victory": 3,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "4",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/bc43ae57-6010-4924-919c-b37d1e33b958.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 58,
+          "quantity": 1,
+          "octgnid": "bc43ae57-6010-4924-919c-b37d1e33b958",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bc43ae57-6010-4924-919c-b37d1e33b958.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+      "octgnid": "c5657436-d6c8-400d-ba1f-a723799ac685",
+      "name": "The Witch-king",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Nazgûl.",
+      "text": "Immune to player card effects.\nThe Witch-king gets -30 engagement cost while The One Ring is exhausted.  Characters with 1 [willpower] or less cannot defend attacks made by The Witch-king.",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 68,
+      "quantity": 1,
+      "threat": 5,
+      "attack": 6,
+      "defense": 5,
+      "health": 9,
+      "engagement": 45,
+      "encounter_set": "The Nazgûl",
+      "printed_stats": {
+        "threat": "5",
+        "attack": "6",
+        "defense": "5",
+        "health": "9",
+        "engagement": "45"
+      },
+      "imagesrc": "/cards/c5657436-d6c8-400d-ba1f-a723799ac685.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 68,
+          "quantity": 1,
+          "octgnid": "c5657436-d6c8-400d-ba1f-a723799ac685",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5657436-d6c8-400d-ba1f-a723799ac685.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.  Attached hero does not count against the hero limit. The first player gains control of the attached hero.  If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 85,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 85,
+          "quantity": 1,
+          "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+      "octgnid": "edae55ef-8025-4553-9ff8-e81526effd59",
+      "name": "The Old Road",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Road.",
+      "text": "Action: Place the top card of the burden deck on the encounter deck to place 4 progress on The Old Road. (Use this action only if you are playing campaign mode.)",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 62,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "encounter_set": "Flight to the Ford",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/edae55ef-8025-4553-9ff8-e81526effd59.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 62,
+          "quantity": 3,
+          "octgnid": "edae55ef-8025-4553-9ff8-e81526effd59",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edae55ef-8025-4553-9ff8-e81526effd59.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "octgnid": "f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "name": "Pursued by the Enemy",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Shuffle each burden card from the Flight to the Ford burden set into a Burden deck. Attach An Evil Wound to the Ring-bearer.  Set Ford of Bruinen and The Witch-King aside, out of play.  Add The Last Bridge and 1 Fell Rider per player to the staging area.  Set the Ring-bearer's life at 15. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 28,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "Flight to the Ford",
+      "side": "A",
+      "back_name": "Pursued by the Enemy",
+      "back_text": "The players cannot advance unless The Last Bridge is in the victory display.  Forced: At the end of the round, reduce the Ring-bearer's life by 1.",
+      "back_type_code": "quest",
+      "back_quest": 15,
+      "back_imagesrc": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 28,
+          "quantity": 1,
+          "octgnid": "f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.03",
+      "name": "Flight to the Ford (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TBR"
+      ],
+      "card_codes": [
+        "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+        "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+        "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+        "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+        "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+        "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+        "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+        "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+        "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+        "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+        "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+        "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+        "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+        "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+        "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+        "141084",
+        "141081",
+        "141082",
+        "141083",
+        "141080",
+        "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+        "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+        "141001",
+        "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+        "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+        "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+        "octgn:5c31f690-9802-4638-8316-5380ef32575b"
+      ],
+      "cards": [
+        {
+          "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "141084",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141081",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141082",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141083",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141080",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "141001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d": 1,
+          "octgn:6b2673af-c764-4599-a265-6e43d3b75310": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb": 1,
+          "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984": 3,
+          "octgn:821a078b-ae42-4b69-bd49-cc235916be77": 3,
+          "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f": 1,
+          "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba": 3,
+          "octgn:edae55ef-8025-4553-9ff8-e81526effd59": 3,
+          "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73": 3,
+          "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b": 1,
+          "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376": 3,
+          "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567": 2,
+          "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0": 1,
+          "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9": 1,
+          "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df": 2
+        },
+        "sharedEncounterDeck2": {
+          "141080": 1,
+          "141081": 1,
+          "141082": 1,
+          "141083": 1,
+          "141084": 1
+        },
+        "sharedSetAside": {
+          "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189": 1,
+          "octgn:c5657436-d6c8-400d-ba1f-a723799ac685": 1
+        },
+        "player1Play1": {
+          "141001": 1,
+          "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33": 1
+        },
+        "sharedStagingArea": {
+          "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6": 1,
+          "octgn:bc43ae57-6010-4924-919c-b37d1e33b958": 1,
+          "octgn:5c31f690-9802-4638-8316-5380ef32575b": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.03",
+      "name": "Flight to the Ford",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TBR"
+      ],
+      "card_codes": [
+        "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+        "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+        "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+        "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+        "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+        "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+        "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+        "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+        "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+        "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+        "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+        "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+        "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+        "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+        "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+        "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+        "141084",
+        "141081",
+        "141082",
+        "141083",
+        "141080",
+        "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+        "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+        "141001",
+        "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+        "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+        "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+        "octgn:5c31f690-9802-4638-8316-5380ef32575b"
+      ],
+      "cards": [
+        {
+          "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "141084",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141081",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141082",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141083",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "141080",
+          "quantity": 1,
+          "section": "sharedEncounterDeck2"
+        },
+        {
+          "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "141001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+          "quantity": 4,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d": 1,
+          "octgn:6b2673af-c764-4599-a265-6e43d3b75310": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb": 1,
+          "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984": 3,
+          "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273": 2,
+          "octgn:821a078b-ae42-4b69-bd49-cc235916be77": 3,
+          "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f": 2,
+          "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba": 3,
+          "octgn:edae55ef-8025-4553-9ff8-e81526effd59": 3,
+          "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73": 3,
+          "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b": 3,
+          "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376": 3,
+          "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567": 2,
+          "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0": 3,
+          "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9": 3,
+          "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df": 4
+        },
+        "sharedEncounterDeck2": {
+          "141080": 1,
+          "141081": 1,
+          "141082": 1,
+          "141083": 1,
+          "141084": 1
+        },
+        "sharedSetAside": {
+          "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189": 1,
+          "octgn:c5657436-d6c8-400d-ba1f-a723799ac685": 1
+        },
+        "player1Play1": {
+          "141001": 1,
+          "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33": 1
+        },
+        "sharedStagingArea": {
+          "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6": 1,
+          "octgn:bc43ae57-6010-4924-919c-b37d1e33b958": 1,
+          "octgn:5c31f690-9802-4638-8316-5380ef32575b": 4
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "141001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141001.png",
+      "localPath": "/cards/141001.png",
+      "bytes": 148338,
+      "sha256": "ff73769c48ec94f424ca3834bcd0d5e18c1aebbc04f7237485490f115ee5775a"
+    },
+    {
+      "code": "141080",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141080.png",
+      "localPath": "/cards/141080.png",
+      "bytes": 525249,
+      "sha256": "e8c465d0e5538f2aa9068173720a87ff8ea242063267d3b5a3334d66d8780fb6"
+    },
+    {
+      "code": "141081",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141081.png",
+      "localPath": "/cards/141081.png",
+      "bytes": 509872,
+      "sha256": "5132fc77d9d20fda87f2cdffa4bc0e96b1cb130a4cefb62e049fa4e9ec164a45"
+    },
+    {
+      "code": "141082",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141082.png",
+      "localPath": "/cards/141082.png",
+      "bytes": 513857,
+      "sha256": "353c532a5a37ab246b7739b3b3c13c6e8c3499bddc39412ffdc31defc83f87bf"
+    },
+    {
+      "code": "141083",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141083.png",
+      "localPath": "/cards/141083.png",
+      "bytes": 541378,
+      "sha256": "5a9ba0d06b9d7d345c6e752e16cc8c4b6e4c850a072f7c60434c2a36ea252574"
+    },
+    {
+      "code": "141084",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141084.png",
+      "localPath": "/cards/141084.png",
+      "bytes": 517130,
+      "sha256": "5767ffd09ee2b3a0ca62e477d6a89bfa667919459f7f2f5c594256cecda03905"
+    },
+    {
+      "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg",
+      "localPath": "/cards/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg",
+      "bytes": 133560,
+      "sha256": "d566fb46fe80ab379d9175482e7f8fb4dc75abd77d6f79274341d23a9e47e7a1"
+    },
+    {
+      "code": "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e12b3e5-d330-4a13-be7b-5a07a57a2273.jpg",
+      "localPath": "/cards/0e12b3e5-d330-4a13-be7b-5a07a57a2273.jpg",
+      "bytes": 155339,
+      "sha256": "21b17e5431a5109be9eb6700424bbb41c0561a3999e9a627dc93ea51de37bb5c"
+    },
+    {
+      "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg",
+      "localPath": "/cards/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg",
+      "bytes": 128502,
+      "sha256": "bbb3301dc6acc0e36fe3d754bd8dfbf75375d8e5490a87a3bdb1745d0a564ec1"
+    },
+    {
+      "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg",
+      "localPath": "/cards/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg",
+      "bytes": 138716,
+      "sha256": "c5f741acebfa6b46c431dee65e4df4f922ff4661a6bc64f0fedb6f9cffc92a8d"
+    },
+    {
+      "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg",
+      "localPath": "/cards/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg",
+      "bytes": 147712,
+      "sha256": "fb943c455d9eaf1e4e55d7abf55bb6d2c0dd44d07961f06e40980bfa493bd2be"
+    },
+    {
+      "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36dd0d2a-ba57-4ca0-b750-967c958e8bfb.jpg",
+      "localPath": "/cards/36dd0d2a-ba57-4ca0-b750-967c958e8bfb.jpg",
+      "bytes": 147726,
+      "sha256": "c2226f0ade77a48f5a5f0cb608fbcf3394f3feed5465b39ccb78be1d62fd30c5"
+    },
+    {
+      "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3cd4bb66-1621-4534-aa25-421d0d8b7189.jpg",
+      "localPath": "/cards/3cd4bb66-1621-4534-aa25-421d0d8b7189.jpg",
+      "bytes": 143328,
+      "sha256": "025f192cecbb97218e8cc01e1f96c5b694c0d03d4deb3b7fb05ae9417fa6925e"
+    },
+    {
+      "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg",
+      "localPath": "/cards/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg",
+      "bytes": 140942,
+      "sha256": "c166a372f64761b7878a6d2b32aba777f243ba23ca63dc3b99299c77e2337328"
+    },
+    {
+      "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg",
+      "localPath": "/cards/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg",
+      "bytes": 152011,
+      "sha256": "de2805ef485cbdc49d6eac892dce8374de2de8e4f899ab69f886f9ff80bfbe5e"
+    },
+    {
+      "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5c31f690-9802-4638-8316-5380ef32575b.jpg",
+      "localPath": "/cards/5c31f690-9802-4638-8316-5380ef32575b.jpg",
+      "bytes": 157251,
+      "sha256": "225ee13bfef0d1b9244827947f84005b4c47a1e51ceed73acf093473078aa5db"
+    },
+    {
+      "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b2673af-c764-4599-a265-6e43d3b75310.jpg",
+      "localPath": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.jpg",
+      "bytes": 167455,
+      "sha256": "0221e8046ae29206c1c08b4a28c160a4f46deeda2d5b8fcc94a73488364fc071"
+    },
+    {
+      "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b2673af-c764-4599-a265-6e43d3b75310.B.jpg",
+      "localPath": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.B.jpg",
+      "bytes": 156525,
+      "sha256": "1a8f35e5168c913afe6a7fc0029016f145483a6dfef40de4adc19069b4384413"
+    },
+    {
+      "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6.jpg",
+      "localPath": "/cards/71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6.jpg",
+      "bytes": 138456,
+      "sha256": "7a6a5a5b5bc26e6ba737a088021a3987d16dc42e76058e85889dd9e301296d03"
+    },
+    {
+      "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg",
+      "localPath": "/cards/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg",
+      "bytes": 148755,
+      "sha256": "57a30051e3cf9a2429b2ead38f4d70ed281b0dee0e809ece6f3cdb50ea5f5ce1"
+    },
+    {
+      "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/821a078b-ae42-4b69-bd49-cc235916be77.jpg",
+      "localPath": "/cards/821a078b-ae42-4b69-bd49-cc235916be77.jpg",
+      "bytes": 145222,
+      "sha256": "c73fce98c68038ca69ea749ee8beae32d1458a54bab3259e88140db60fe004ee"
+    },
+    {
+      "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98a2fb10-f2fc-462c-9f2e-8945419d9c4f.jpg",
+      "localPath": "/cards/98a2fb10-f2fc-462c-9f2e-8945419d9c4f.jpg",
+      "bytes": 149458,
+      "sha256": "7746df8d5555a4e0dfb1c4f7f35fe0757ef8641db4af4423898d35fa1b0d7209"
+    },
+    {
+      "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98bf5fdc-ff74-48e2-88c8-0e4134fd6984.jpg",
+      "localPath": "/cards/98bf5fdc-ff74-48e2-88c8-0e4134fd6984.jpg",
+      "bytes": 145826,
+      "sha256": "25b4db68a58d86154a710aff06ce5ae55d58c0387ca4fb58532d75299aff5719"
+    },
+    {
+      "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ae435070-552a-43a9-816f-9f23f1a6dbba.jpg",
+      "localPath": "/cards/ae435070-552a-43a9-816f-9f23f1a6dbba.jpg",
+      "bytes": 150497,
+      "sha256": "a634dcb30894e1c092f0f2b58a7b64c065b9b4c0ed8960941aee34380ba7f1c3"
+    },
+    {
+      "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bc43ae57-6010-4924-919c-b37d1e33b958.jpg",
+      "localPath": "/cards/bc43ae57-6010-4924-919c-b37d1e33b958.jpg",
+      "bytes": 143228,
+      "sha256": "79fb6af00011277f6e489e4ed487e2947a20916b23ffea468346c5ee31b84e6a"
+    },
+    {
+      "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5657436-d6c8-400d-ba1f-a723799ac685.jpg",
+      "localPath": "/cards/c5657436-d6c8-400d-ba1f-a723799ac685.jpg",
+      "bytes": 146175,
+      "sha256": "91f70232144b16c8ae403527ce45b3b787bf37dcf80ccbfb5667ef98e0eed64f"
+    },
+    {
+      "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "localPath": "/cards/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "bytes": 134804,
+      "sha256": "865e8e9dfd65691316f42bcf12c8e6cd2c27a115ada618168cafc12b1dde018c"
+    },
+    {
+      "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/edae55ef-8025-4553-9ff8-e81526effd59.jpg",
+      "localPath": "/cards/edae55ef-8025-4553-9ff8-e81526effd59.jpg",
+      "bytes": 158537,
+      "sha256": "53895f72d661b42f83f32d86486fc2860fc7f308facaffaa0ae4e7d75206b812"
+    },
+    {
+      "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg",
+      "localPath": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg",
+      "bytes": 166431,
+      "sha256": "c45828cf09ab67252c47c7a6ecac109fa3730887c5a6148d7aec8d045b86f6c5"
+    },
+    {
+      "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.B.jpg",
+      "localPath": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.B.jpg",
+      "bytes": 166031,
+      "sha256": "4f6c3e74c08239327f29f383077950d33c6e1a5d04a3789bda2fceff96059f79"
+    }
+  ]
+}

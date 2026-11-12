@@ -1,0 +1,84 @@
+[
+  {
+    "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+    "octgnid": "f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+    "name": "Pursued by the Enemy",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Shuffle each burden card from the Flight to the Ford burden set into a Burden deck. Attach An Evil Wound to the Ring-bearer. Set Ford of Bruinen and The Witch-king aside, out of play. Add The Last Bridge and 1 Fell Rider per player to the staging area. Set the Ring-bearer's life at 15. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 28,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "Flight to the Ford",
+    "side": "A",
+    "back_name": "Pursued by the Enemy",
+    "back_text": "The players cannot advance unless The Last Bridge is in the victory display.\nForced: At the end of the round, reduce the Ring-bearer's life by 1.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 28,
+        "quantity": 1,
+        "octgnid": "f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f9824e39-fda8-4e4b-bc74-83b4bd40c72d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  },
+  {
+    "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+    "octgnid": "6b2673af-c764-4599-a265-6e43d3b75310",
+    "name": "Race to Rivendell",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 29,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "Flight to the Ford",
+    "side": "A",
+    "back_name": "Race to Rivendell",
+    "back_text": "When Revealed: Add Ford of Bruinen and The Witch-king to the staging area.\nWhile at least 1 Nazgûl enemy is in play, Race to Rivendell gets +15 quest points.\nForced: At the end of the round, reduce the Ring-bearer's life by 1.\nIf the players defeat this stage, they have won the game.",
+    "back_type_code": "quest",
+    "back_quest": 15,
+    "back_imagesrc": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/6b2673af-c764-4599-a265-6e43d3b75310.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 29,
+        "quantity": 1,
+        "octgnid": "6b2673af-c764-4599-a265-6e43d3b75310",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6b2673af-c764-4599-a265-6e43d3b75310.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 15
+  }
+]

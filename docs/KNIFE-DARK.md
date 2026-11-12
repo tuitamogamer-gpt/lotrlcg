@@ -93,7 +93,10 @@ Interpretations:
 
 Engine additions:
 
-- The shared Hunted/Ring module `src/game/black-riders-hunted.ts`.
+- The shared Hunted/Ring module `src/game/black-riders-hunted.ts`. The
+  Ringwraiths, The Witch-king, Pale Blade and Power in their Terror moved to
+  `src/game/black-riders-nazgul.ts` when [Flight to the Ford](FLIGHT-FORD.md)
+  arrived; their effect names are unchanged.
 - A generic round-long willpower modifier (`roundWill`), saved with the unit
   and cleared at the end of the round.
 - A generic scenario hook for enemies that cannot attack, used by Midgewater.

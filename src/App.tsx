@@ -22,6 +22,8 @@ import { ShadowPastState } from "./ui/shadow-past-state";
 import { SHADOW_PAST_QUESTS } from "./game/shadow-past-support";
 import { KnifeDarkState } from "./ui/knife-dark-state";
 import { KNIFE_DARK_QUESTS } from "./game/knife-dark-support";
+import { FlightFordState } from "./ui/flight-ford-state";
+import { FLIGHT_FORD_QUESTS } from "./game/flight-ford-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3242,6 +3244,7 @@ export default function App() {
             <LakeTownState s={game} inspect={setDetail} dispatch={dispatch} />
             <ShadowPastState s={game} inspect={setDetail} />
             <KnifeDarkState s={game} inspect={setDetail} />
+            <FlightFordState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3991,6 +3994,7 @@ export default function App() {
                       ...LAKE_QUESTS,
                       ...SHADOW_PAST_QUESTS,
                       ...KNIFE_DARK_QUESTS,
+                      ...FLIGHT_FORD_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

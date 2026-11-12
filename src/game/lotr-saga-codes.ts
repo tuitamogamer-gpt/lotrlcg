@@ -9,6 +9,7 @@ export const ONE_RING = sagaCards.find((c) => c.name === "The One Ring")!.code;
 export const BLACK_RIDERS_SCENARIO_IDS: readonly string[] = [
   "a-shadow-of-the-past",
   "a-knife-in-the-dark",
+  "flight-to-the-ford",
 ];
 export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...BLACK_RIDERS_SCENARIO_IDS,

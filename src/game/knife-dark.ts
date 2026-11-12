@@ -1,22 +1,9 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
-import {
-  choose,
-  fx,
-  get,
-  log,
-  make,
-  prepend,
-  random,
-  removeShadowCard,
-  shuffle,
-  stats,
-  units,
-} from "./core";
+import { choose, fx, get, log, make, prepend, random, shuffle } from "./core";
 import {
   allyCanEnter,
-  damage,
   discardAttachment,
   discardHandCard,
   enemyAddedToStaging,
@@ -31,17 +18,14 @@ import {
   activeSeat,
   allActiveLocations,
   allEngaged,
-  attachmentController,
   firstPlayer,
   forOwner,
-  globalCharacters,
   ownerOf,
   playerOrder,
   seatName,
   seatView,
 } from "./table";
 import { currentQuestProgress, mainQuestUnit } from "./quest-state";
-import { dealEnemyShadows } from "./considered-engagement";
 import {
   addCurrentQuestProgress,
   removeCurrentQuestProgress,
@@ -52,11 +36,22 @@ import {
   huntedEffect,
   huntedShadow,
   huntedTreachery,
-  isMorgul,
   pathlessQuestBonus,
   returnToStaging,
   who,
 } from "./black-riders-hunted";
+import {
+  nazgulAttackBonus,
+  nazgulAttackStarted,
+  nazgulCannotAttach,
+  nazgulCannotDefend,
+  nazgulEffect,
+  nazgulEngagementBonus,
+  nazgulImmune,
+  nazgulNoDamage,
+  nazgulShadow,
+  nazgulTreachery,
+} from "./black-riders-nazgul";
 import {
   KD,
   KNIFE_DARK_QUESTS,
@@ -195,7 +190,6 @@ function shadow(s: GameState, code: string) {
   const c = s.combat;
   if (!c || !s.knifeDark) return false;
   const p = c.attackPlayer ?? activeSeat(s);
-  const enemy = get(s, c.enemyId);
   switch (code) {
     case KD.shady:
       c.defensePenalty =
@@ -216,22 +210,8 @@ function shadow(s: GameState, code: string) {
     case KD.unwanted:
       c.spReturn = true;
       return true;
-    case KD.terror:
-      prepend(s, fx("kdTerrorShadow", { player: p }));
-      return true;
-    case KD.ringwraith: {
-      // Shadow: shuffle this card into the encounter deck.
-      const i = enemy?.shadows.indexOf(code) ?? -1;
-      if (enemy && i >= 0) {
-        removeShadowCard(enemy, i);
-        s.encounterDeck.push(code);
-        shuffle(s, s.encounterDeck);
-        log(s, "Ringwraith is shuffled into the encounter deck.", "danger");
-      }
-      return true;
-    }
   }
-  return huntedShadow(s, code);
+  return nazgulShadow(s, code) || huntedShadow(s, code);
 }
 function treachery(s: GameState, code: string, source: string, p: number) {
   switch (code) {
@@ -292,34 +272,13 @@ function treachery(s: GameState, code: string, source: string, p: number) {
       );
       return;
     }
-    case KD.blade: {
-      const nazgul = enemiesInPlay(s).filter(
-        (u) => isKdNazgul(u) && !u.attachments.some((a) => a.code === KD.blade),
-      );
-      if (!nazgul.length) {
-        log(s, "Pale Blade: no Nazgûl enemy in play can take it.");
-        return;
-      }
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `Pale Blade · Attach to a Nazgûl enemy${seatLabel(s, p)}`,
-          nazgul.map((u) => ({
-            id: u.id,
-            code: u.code,
-            label: `${name(u)}${where(s, u)}`,
-            effects: [fx("kdAttach", { target: u.id, source, player: p })],
-          })),
-          "Attached enemy gets +1 attack and cannot take non-combat damage.",
-        ),
-      );
-      return;
-    }
-    case KD.terror:
-      prepend(s, fx("kdTerror", { player: p }));
-      return;
     default:
-      huntedTreachery(s, code, p);
+      if (
+        !nazgulTreachery(s, code, p, (target) =>
+          fx("kdAttach", { target, source, player: p }),
+        )
+      )
+        huntedTreachery(s, code, p);
   }
 }
 
@@ -480,60 +439,6 @@ export function knifeDarkEffect(s: GameState, e: Effect): boolean {
         );
       }
       return true;
-    case "kdTerror": {
-      const allies = globalCharacters(s).filter(isAllyUnit);
-      for (const a of allies) a.roundWill = (a.roundWill ?? 0) - 1;
-      const broken = allies.filter((a) => stats(s, a).will <= 0);
-      log(
-        s,
-        `Power in their Terror: each ally gets −1 willpower until the end of the round${broken.length ? `; ${broken.map((a) => name(a)).join(", ")} take${broken.length === 1 ? "s" : ""} 2 damage` : ""}.`,
-        "danger",
-      );
-      for (const a of broken)
-        forOwner(s, ownerOf(s, a), () => damage(s, a.id, 2, {}));
-      return true;
-    }
-    case "kdTerrorShadow": {
-      const choices = units(s).flatMap((host) =>
-        host.attachments
-          .filter(
-            (a) =>
-              attachmentController(s, host, a) === p &&
-              card(a.code).type_code !== "objective",
-          )
-          .map((a) => ({ host, a })),
-      );
-      if (!choices.length) return true;
-      if (choices.length === 1) {
-        const [{ host, a }] = choices;
-        forOwner(s, p, () => discardAttachment(s, host, a));
-        return true;
-      }
-      forOwner(s, p, () =>
-        choose(
-          s,
-          `Power in their Terror · Discard a non-objective attachment you control${seatLabel(s, p)}`,
-          choices.map(({ host, a }) => ({
-            id: a.id,
-            code: a.code,
-            label: `${card(a.code).name} · ${name(host)}`,
-            effects: [
-              fx("kdDiscardAttachment", {
-                target: host.id,
-                source: a.id,
-                player: p,
-              }),
-            ],
-          })),
-        ),
-      );
-      return true;
-    }
-    case "kdDiscardAttachment": {
-      const a = u?.attachments.find((x) => x.id === e.source);
-      if (u && a) forOwner(s, p, () => discardAttachment(s, u, a));
-      return true;
-    }
     case "kdSquint":
       if (!wraithsAside(s)) {
         log(
@@ -771,16 +676,6 @@ export function knifeDarkEffect(s: GameState, e: Effect): boolean {
     case "kdHillsReturn":
       returnHidden(s);
       return true;
-    case "kdWraithShadow": {
-      if (!u || !oneRingExhausted(s)) return true;
-      if (!dealEnemyShadows(s, u, 1).length) return true;
-      log(
-        s,
-        "Ringwraith attacks while The One Ring is exhausted: it is dealt an additional shadow card.",
-        "danger",
-      );
-      return true;
-    }
     default:
       return true;
   }
@@ -850,7 +745,7 @@ export const KNIFE_DARK_HOOKS: Batch4ScenarioHooks = {
   stats: (s, u) => {
     if (!s.knifeDark) return {};
     if (isEnemyUnit(u))
-      return { attack: spies(s, u) + (attached(u, KD.blade) ? 1 : 0) };
+      return { attack: spies(s, u) + nazgulAttackBonus(s, u) };
     const breath = isHeroUnit(u) && attached(u, KD.breath);
     return {
       will: -riderPenalty(s, u),
@@ -864,27 +759,20 @@ export const KNIFE_DARK_HOOKS: Batch4ScenarioHooks = {
     !s.knifeDark || !isEnemyUnit(u)
       ? 0
       : spies(s, u) - ((s.victoryCards ?? []).includes(KD.weathertop) ? 1 : 0),
-  engagementBonus: (s, u) => {
-    if (!s.knifeDark || !oneRingExhausted(s)) return 0;
-    if (live(u, KD.rider)) return -10;
-    if (live(u, KD.witchKing)) return -30;
-    return 0;
-  },
+  engagementBonus: (s, u) =>
+    !s.knifeDark
+      ? 0
+      : (live(u, KD.rider) && oneRingExhausted(s) ? -10 : 0) +
+        nazgulEngagementBonus(s, u),
   locationQuestBonus: pathlessQuestBonus,
   immune: (s, u) =>
-    !!s.knifeDark && (live(u, KD.witchKing) || live(u, KD.weathertop)),
-  cannotAttach: (s, u, code) =>
-    !!s.knifeDark &&
-    (live(u, KD.rider) || live(u, KD.ringwraith)) &&
-    !isMorgul(code),
+    !!s.knifeDark && (live(u, KD.weathertop) || nazgulImmune(s, u)),
+  cannotAttach: (s, u, code) => !!s.knifeDark && nazgulCannotAttach(s, u, code),
   cannotOptionallyEngage: (s, u) =>
     !!s.knifeDark &&
     (live(u, KD.ferny) || (live(u, KD.shady) && oneRingExhausted(s))),
   cannotDefend: (s, enemy, defender) =>
-    !!s.knifeDark &&
-    live(enemy, KD.witchKing) &&
-    !!defender &&
-    stats(s, defender).will <= 1,
+    !!s.knifeDark && nazgulCannotDefend(s, enemy, defender),
   // Midgewater: while it is the active location, enemies cannot attack, take
   // damage, or be engaged.
   enemyCannotAttack: (s, u) =>
@@ -894,12 +782,11 @@ export const KNIFE_DARK_HOOKS: Batch4ScenarioHooks = {
   damageAmount: (s, u, amount, context) => {
     if (!s.knifeDark || !isEnemyUnit(u)) return amount;
     if (midgewaterActive(s)) return 0;
-    if (attached(u, KD.blade) && !context.combatDamage) return 0;
+    if (nazgulNoDamage(s, u, context)) return 0;
     return amount;
   },
   enemyAttackStarted: (s, enemy, player) => {
-    if (s.knifeDark && live(enemy, KD.ringwraith) && oneRingExhausted(s))
-      prepend(s, fx("kdWraithShadow", { target: enemy.id, player }));
+    if (s.knifeDark) nazgulAttackStarted(s, enemy, player);
   },
   travelProblem: (s, u) => {
     if (!s.knifeDark || !live(u, KD.weathertop)) return null;
@@ -935,7 +822,8 @@ export const KNIFE_DARK_HOOKS: Batch4ScenarioHooks = {
       ? [fx("kdWildForced", { player: firstPlayer(s) })]
       : [],
   attackFinished: huntedAttackFinished,
-  effect: (s, e) => huntedEffect(s, e) || knifeDarkEffect(s, e),
+  effect: (s, e) =>
+    huntedEffect(s, e) || nazgulEffect(s, e) || knifeDarkEffect(s, e),
   sharedEffect: (e) =>
     [
       "kdDefeatQuest",

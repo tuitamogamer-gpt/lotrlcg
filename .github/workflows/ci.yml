@@ -555,6 +555,24 @@ jobs:
           path: output/knife-dark-release/failures
           retention-days: 7
 
+  flight-ford-simulation:
+    name: Flight to the Ford complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:flight-ford-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: flight-ford-simulation
+          path: output/flight-ford-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -700,6 +718,8 @@ jobs:
             suite: test:browser-shadow-past
           - group: knife-dark
             suite: test:browser-knife-dark
+          - group: flight-ford
+            suite: test:browser-flight-ford
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

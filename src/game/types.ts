@@ -268,6 +268,7 @@ export type ScenarioId =
   | "the-battle-of-lake-town"
   | "a-shadow-of-the-past"
   | "a-knife-in-the-dark"
+  | "flight-to-the-ford"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -438,6 +439,7 @@ export interface GameState {
   lakeTown?: import("./lake-town-types").LakeTownState;
   shadowPast?: import("./shadow-past-types").ShadowPastState;
   knifeDark?: import("./knife-dark-types").KnifeDarkState;
+  flightFord?: import("./flight-ford-types").FlightFordState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -784,6 +786,12 @@ export interface GameState {
     spReturn?: boolean;
     /** Pathless Country's shadow: the enemy engages the next player and attacks. */
     spPathless?: boolean;
+    /** Flight to the Ford: The Enemy is Upon Us!'s shadow (a kill removes the quest's progress). */
+    ffUponUs?: boolean;
+    /** Flight to the Ford: Pain Assailed Him's shadow (a kill reduces the Ring-bearer's life). */
+    ffPain?: boolean;
+    /** Flight to the Ford: this attack destroyed a character. */
+    ffDestroyed?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

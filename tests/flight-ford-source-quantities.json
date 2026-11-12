@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Frodo Baggins",
+    "code": "141001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Weight of the Ring",
+    "code": "141080",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Fear of Discovery",
+    "code": "141081",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Eaten Alive!",
+    "code": "141082",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Panicked",
+    "code": "141083",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Overcome by Terror",
+    "code": "141084",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Black Steed",
+    "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "The Enemy is Upon Us!",
+    "code": "octgn:0e12b3e5-d330-4a13-be7b-5a07a57a2273",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Rode Like a Gale",
+    "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Ringwraith",
+    "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+    "normal": 4,
+    "easy": 2
+  },
+  {
+    "name": "Pathless Country",
+    "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "The Troll's Camp",
+    "code": "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ford of Bruinen",
+    "code": "octgn:3cd4bb66-1621-4534-aa25-421d0d8b7189",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Power In Their Terror",
+    "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Pale Blade",
+    "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Fell Rider",
+    "code": "octgn:5c31f690-9802-4638-8316-5380ef32575b",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Race To Rivendell",
+    "code": "octgn:6b2673af-c764-4599-a265-6e43d3b75310",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "An Evil Wound",
+    "code": "octgn:71a2ca21-ff50-4a8a-b30b-7c8eaf6bf6b6",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Piercing Cry",
+    "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Stricken Dumb",
+    "code": "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "The Nine are Abroad",
+    "code": "octgn:98a2fb10-f2fc-462c-9f2e-8945419d9c4f",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Pain Assailed Him",
+    "code": "octgn:98bf5fdc-ff74-48e2-88c8-0e4134fd6984",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Ettenmoors",
+    "code": "octgn:ae435070-552a-43a9-816f-9f23f1a6dbba",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "The Last Bridge",
+    "code": "octgn:bc43ae57-6010-4924-919c-b37d1e33b958",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Witch-king",
+    "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Old Road",
+    "code": "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Pursued by the Enemy",
+    "code": "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+    "normal": 1,
+    "easy": 1
+  }
+]

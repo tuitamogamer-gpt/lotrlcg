@@ -138,7 +138,9 @@ Engine additions:
   the shadow cards held from its earlier attack, which were lost before.
 - Pathless Country, Piercing Cry and Lure of the Ring are shared with
   [A Knife in the Dark](KNIFE-DARK.md) through
-  `src/game/black-riders-hunted.ts`; their effect names are unchanged, so
+  `src/game/black-riders-hunted.ts`, and Black Steed and Rode Like a Gale
+  with [Flight to the Ford](FLIGHT-FORD.md) through
+  `src/game/black-riders-nazgul.ts`; their effect names are unchanged, so
   older saves still load.
 
 ## Verification

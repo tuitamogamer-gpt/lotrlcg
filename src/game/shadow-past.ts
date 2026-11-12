@@ -1,4 +1,4 @@
-import type { Effect, GameState, Option, Unit } from "./types";
+import type { Effect, GameState, Option } from "./types";
 import type { Batch4ScenarioHooks } from "./batch4-scenario-contract";
 import { card, name } from "./cards";
 import { choose, draw, fx, get, log, make, prepend, shuffle } from "./core";
@@ -13,7 +13,6 @@ import {
 import {
   activeSeat,
   allActiveLocations,
-  allEngaged,
   firstPlayer,
   forOwner,
   globalCharacters,
@@ -23,19 +22,24 @@ import {
   seatView,
 } from "./table";
 import { mainQuestUnit } from "./quest-state";
-import { surgeEffects } from "./surge";
 import { hideFailed, hideKeyword } from "./hide-test";
 import {
   huntedAttackFinished,
   huntedEffect,
   huntedShadow,
   huntedTreachery,
-  isMorgul,
   pathlessQuestBonus,
-  returnToStaging,
   searchEncounter,
   who,
 } from "./black-riders-hunted";
+import {
+  blackSteedRoundEnd,
+  nazgulCannotAttach,
+  nazgulEffect,
+  nazgulEngagementBonus,
+  nazgulShadow,
+  nazgulTreachery,
+} from "./black-riders-nazgul";
 import { lotrSagaCheck } from "./lotr-saga";
 import {
   SHADOW_PAST_QUESTS,
@@ -60,8 +64,6 @@ const stageLive = (s: GameState) =>
   !s.stageRevealing && !mainQuestUnit(s)?.blanked;
 const activeIs = (s: GameState, code: string) =>
   allActiveLocations(s).some((l) => l.code === code && !l.blanked);
-const steedOf = (u: Unit) =>
-  u.attachments.some((a) => a.code === SP.steed && !a.blanked);
 
 // ---------------------------------------------------------------------------
 // Setup and the quest stages.
@@ -163,7 +165,6 @@ function shadow(s: GameState, code: string) {
   const p = c.attackPlayer ?? activeSeat(s);
   switch (code) {
     case SP.crawling:
-    case SP.gale:
       c.spReturn = true;
       return true;
     case SP.marish:
@@ -178,7 +179,7 @@ function shadow(s: GameState, code: string) {
       }
       return true;
   }
-  return huntedShadow(s, code);
+  return nazgulShadow(s, code) || huntedShadow(s, code);
 }
 function treachery(s: GameState, code: string, source: string, p: number) {
   switch (code) {
@@ -214,41 +215,13 @@ function treachery(s: GameState, code: string, source: string, p: number) {
       );
       return;
     }
-    case SP.steed: {
-      const riders = [...s.staging, ...allEngaged(s)].filter(
-        (u) => isNazgul(u) && !steedOf(u),
-      );
-      if (!riders.length) {
-        log(s, "Black Steed: no Nazgûl enemy in play can take it.");
-        return;
-      }
-      choose(
-        s,
-        "Black Steed · Attach to a Nazgûl enemy",
-        riders.map((u) => ({
-          id: u.id,
-          code: u.code,
-          label: `${name(u)}${allEngaged(s).some((x) => x.id === u.id) ? ` · engaged with ${who(s, ownerOf(s, u))}` : " · staging area"}`,
-          effects: [fx("spAttach", { target: u.id, source, player: p })],
-        })),
-        "Attached enemy gets −10 engagement cost and returns to the staging area at the end of the refresh phase.",
-      );
-      return;
-    }
-    case SP.gale: {
-      const riders = allEngaged(s).filter((u) => isNazgul(u));
-      for (const u of riders) returnToStaging(s, u);
-      if (!riders.length) {
-        log(
-          s,
-          "Rode Like a Gale: no Nazgûl enemy was engaged. It gains surge.",
-        );
-        prepend(s, ...surgeEffects(SP.gale));
-      }
-      return;
-    }
     default:
-      huntedTreachery(s, code, p);
+      if (
+        !nazgulTreachery(s, code, p, (target) =>
+          fx("spAttach", { target, source, player: p }),
+        )
+      )
+        huntedTreachery(s, code, p);
   }
 }
 /** After a failed Hide test: Black Riders attack, then The Marish, then Baggins. */
@@ -527,9 +500,6 @@ export function shadowPastEffect(s: GameState, e: Effect): boolean {
         "good",
       );
       return true;
-    case "spSteedReturn":
-      if (u && steedOf(u)) returnToStaging(s, u);
-      return true;
     default:
       return true;
   }
@@ -577,9 +547,9 @@ export const SHADOW_PAST_HOOKS: Batch4ScenarioHooks = {
     s.shadowPast && s.stage === 3 && stageLive(s)
       ? [fx("spBucklandOffer", { player })]
       : [],
-  engagementBonus: (s, u) => (s.shadowPast && steedOf(u) ? -10 : 0),
+  engagementBonus: (s, u) => (s.shadowPast ? nazgulEngagementBonus(s, u) : 0),
   cannotAttach: (s, u, code) =>
-    !!s.shadowPast && u.code === SP.rider && !u.blanked && !isMorgul(code),
+    !!s.shadowPast && nazgulCannotAttach(s, u, code),
   immune: (s, u) => !!s.shadowPast && u.code === SP.ferry,
   locationQuestBonus: pathlessQuestBonus,
   travelProblem: (s, u) => {
@@ -621,16 +591,10 @@ export const SHADOW_PAST_HOOKS: Batch4ScenarioHooks = {
     } else if (u.code === SP.bagEnd && !u.blanked)
       prepend(s, fx("spBagEnd", { player: firstPlayer(s) }));
   },
-  roundEnd: (s) =>
-    !s.shadowPast
-      ? []
-      : allEngaged(s)
-          .filter((u) => steedOf(u))
-          .map((u) =>
-            fx("spSteedReturn", { target: u.id, player: ownerOf(s, u) }),
-          ),
+  roundEnd: (s) => (s.shadowPast ? blackSteedRoundEnd(s) : []),
   attackFinished: huntedAttackFinished,
-  effect: (s, e) => huntedEffect(s, e) || shadowPastEffect(s, e),
+  effect: (s, e) =>
+    huntedEffect(s, e) || nazgulEffect(s, e) || shadowPastEffect(s, e),
   sharedEffect: (e) =>
     [
       "spDefeatQuest",

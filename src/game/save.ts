@@ -21,6 +21,7 @@ import {
 import { lakeTownUnits, validateLakeTown } from "./lake-town-support";
 import { shadowPastUnits, validateShadowPast } from "./shadow-past-support";
 import { knifeDarkUnits, validateKnifeDark } from "./knife-dark-support";
+import { flightFordUnits, validateFlightFord } from "./flight-ford-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -360,6 +361,9 @@ export function validateSave(
         c.lakeManor,
         c.spReturn,
         c.spPathless,
+        c.ffUponUs,
+        c.ffPain,
+        c.ffDestroyed,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
@@ -925,6 +929,7 @@ export function validateSave(
         !validateLakeTown(s, validUnit as (v: unknown) => boolean) ||
         !validateShadowPast(s, validUnit as (v: unknown) => boolean) ||
         !validateKnifeDark(s, validUnit as (v: unknown) => boolean) ||
+        !validateFlightFord(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1643,6 +1648,7 @@ export function validateSave(
       ...lakeTownUnits(s),
       ...shadowPastUnits(s),
       ...knifeDarkUnits(s),
+      ...flightFordUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],
