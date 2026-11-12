@@ -9,6 +9,8 @@ import { fasPublicState } from "./flies-spiders-support";
 import { tlmPublicState } from "./lonely-mountain-support";
 import { bofaPublicState } from "./battle-five-armies-support";
 import { lakeTownPublicState } from "./lake-town-support";
+import { hideTestPublic, resolveHideTest } from "./hide-test";
+import { shadowPastPublicState } from "./shadow-past-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -492,6 +494,7 @@ export function commitCharacters(s: GameState) {
     !s.sailing?.test,
     "Resolve the Sailing test before committing to the quest.",
   );
+  requireRule(!s.hideTest, "Resolve the Hide test before committing.");
   requireRule(s.phase === "quest", "Not at the commit step.");
   const foundationsProblem = foundationsCommitProblem(s);
   requireRule(!foundationsProblem, foundationsProblem ?? "");
@@ -540,6 +543,7 @@ export function canCommit(s: GameState, u: Unit, byEffect = false): boolean {
     (u.code !== "08112" || !!u.blanked) &&
     returnMirkwoodCanCommit(s, u) &&
     !s.escapeTest &&
+    !s.hideTest &&
     !s.sailing?.test &&
     !(s.ninEilph?.activeQuest === NIN.weary && !s.hand.length) &&
     (s.phase === "quest" || (byEffect && s.phase === "staging")) &&
@@ -2783,6 +2787,18 @@ export function applyAction(input: GameState, action: Action): GameState {
       action.type === "RESOLVE_SAILING",
       "Resolve the Sailing test before using player Actions or continuing the adventure.",
     );
+  if (s.hideTest) {
+    requireRule(
+      ["PLAY", "ABILITY", "RESOLVE_HIDE"].includes(action.type),
+      "Resolve the Hide test before continuing the adventure.",
+    );
+    if (action.type === "PLAY")
+      requireRule(
+        card(s.hand.find((u) => u.id === action.id)?.code ?? "").type_code ===
+          "event",
+        "Only events and abilities can be used during a Hide test.",
+      );
+  }
   if (s.escapeTest) {
     requireRule(
       ["PLAY", "ABILITY", "RESOLVE_ESCAPE"].includes(action.type),
@@ -2801,6 +2817,9 @@ export function applyAction(input: GameState, action: Action): GameState {
       break;
     case "RESOLVE_ESCAPE":
       deadMarshesContinueEscape(s);
+      break;
+    case "RESOLVE_HIDE":
+      resolveHideTest(s);
       break;
     case "MULLIGAN":
       requireRule(
@@ -3565,6 +3584,8 @@ export function publicState(s: GameState) {
     lonelyMountain: tlmPublicState(s),
     battleFiveArmies: bofaPublicState(s),
     lakeTown: lakeTownPublicState(s),
+    hideTest: hideTestPublic(s),
+    shadowPast: shadowPastPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 790,
-    "heroes": 92,
+    "playerCards": 791,
+    "heroes": 93,
     "deckCards": 694,
-    "encounterCards": 1321,
-    "scenarios": 89,
+    "encounterCards": 1340,
+    "scenarios": 90,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -96,17 +96,18 @@
       "flies-and-spiders",
       "the-lonely-mountain",
       "the-battle-of-five-armies",
-      "the-battle-of-lake-town"
+      "the-battle-of-lake-town",
+      "a-shadow-of-the-past"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2391,
-    "pending": 1792
+    "scripted": 2414,
+    "pending": 1769
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 176
+    "scripted": 179
   },
   "registeredCodes": [
     "01001",
@@ -720,6 +721,7 @@
     "132022",
     "132023",
     "132024",
+    "141001",
     "141016",
     "142003",
     "142005",
@@ -1003,6 +1005,7 @@
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
+    "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
@@ -1010,6 +1013,7 @@
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
+    "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
     "octgn:0d74f863-83c9-4342-ac98-5bbaae0a573f",
     "octgn:0daf1963-a45f-4fe1-bd0b-ad901a1213fa",
     "octgn:0e0b125c-ffed-4473-9a64-7d709b16cca5",
@@ -1056,6 +1060,7 @@
     "octgn:16b71211-85c1-4ad4-8879-831bc7b50ac4",
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
+    "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
@@ -1162,6 +1167,7 @@
     "octgn:2a7b5607-d7ed-4580-b27b-39cf12879297",
     "octgn:2af71d2e-0b70-43a2-b94e-89770992ef9c",
     "octgn:2b158c89-59d6-40a2-af56-6db21dc62e73",
+    "octgn:2b38254c-e992-4fb5-89e8-e7f636658ce0",
     "octgn:2b3939a5-7ee7-4b6a-a889-84487815a1a5",
     "octgn:2b3973f5-e6f6-4611-87b7-b6e3dc33eb66",
     "octgn:2b81f105-3712-4326-ac9f-ed7aa18aace1",
@@ -1191,6 +1197,7 @@
     "octgn:309c763a-60c9-4e33-bb0b-2b5e3a015227",
     "octgn:30a1913f-03e2-46fb-be6d-3b86064d1afd",
     "octgn:30a319ff-6092-4d5f-9b94-2a9b4f44f9c1",
+    "octgn:3104ef1f-4f1c-4603-87cb-f3a70f5e6710",
     "octgn:314e7260-ca85-4842-af5f-913ecbaa13d4",
     "octgn:315c85eb-9c20-46a1-b445-e5197cd15032",
     "octgn:315ddd38-e50f-4db0-8e5c-8030998e4f7f",
@@ -1202,6 +1209,7 @@
     "octgn:31c36264-7e6f-45df-a345-167d4df70885",
     "octgn:321abaed-0b0c-465b-9f2a-bb9796e6b8c5",
     "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+    "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
     "octgn:32621d0f-16a3-4ab9-a553-657834cb6691",
     "octgn:32ac7351-b154-4e94-8348-ed31385fb3a4",
     "octgn:32db1af6-e214-4958-9ca4-bdf3a73758b5",
@@ -1258,6 +1266,8 @@
     "octgn:3ff62e7f-fc09-4569-a45c-1be7e2ba6747",
     "octgn:408148e1-3391-4734-aeac-3e3a7b69c1c1",
     "octgn:408752c0-cee3-41ba-86c2-d01085546cef",
+    "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
+    "octgn:40c7a675-d48f-4e71-8818-5f0ffb9fa0dd",
     "octgn:414353af-e004-4e7c-b288-e168e2acfee7",
     "octgn:418e1e02-52fe-4aef-b543-3875837dd38a",
     "octgn:41b47c87-94c4-47ff-b8c6-3f25dba0ca49",
@@ -1350,6 +1360,7 @@
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9085",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9086",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9088",
+    "octgn:48384e79-d397-4dcd-9862-8a72acb448d0",
     "octgn:486f9475-98e1-42d9-ac90-e6190545a5b9",
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
@@ -1712,6 +1723,7 @@
     "octgn:52b5e077-36f2-4c13-89fb-4f7b3d73463b",
     "octgn:530e7365-0a5a-46e5-9720-5377dfa1a01b",
     "octgn:5388683d-3240-433a-9602-a7367e428406",
+    "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
@@ -1727,6 +1739,7 @@
     "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
     "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+    "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
     "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
     "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
@@ -1809,6 +1822,7 @@
     "octgn:6a4b0ba7-c80b-4580-bc43-d5369b0c44aa",
     "octgn:6ad8ed6c-4b09-4a2a-bc5f-a44b4f180b8e",
     "octgn:6b1a56ae-f173-4842-984c-d07b0545ad23",
+    "octgn:6b34adb4-b510-4db9-aaba-9a1876626dce",
     "octgn:6b828300-4558-4a8b-a591-a9865202a630",
     "octgn:6b8ca34a-1f6f-4eed-841c-a5d0db80619a",
     "octgn:6cb224c2-d164-484e-b20d-fede3dd640d5",
@@ -1839,6 +1853,7 @@
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
+    "octgn:7371cfea-03d0-4bc0-98a1-d99e0acdbf88",
     "octgn:737724a5-2603-40b0-8a0b-4e72dbb3775e",
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
@@ -1861,6 +1876,7 @@
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
     "octgn:79a9dd7a-48c9-4f29-9090-5edde6b5f038",
+    "octgn:79b5dd16-2427-4950-94e9-46905eebe56d",
     "octgn:79d5dc52-cfee-49f9-8a3d-1d4a7a749af2",
     "octgn:79e00002-0087-4bb1-9e44-a460f4aa2894",
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
@@ -1884,6 +1900,7 @@
     "octgn:7d2b321b-d4e6-4dd4-a124-028c772592ee",
     "octgn:7d55e738-cc23-4e78-9a88-2a25fa4f3ca4",
     "octgn:7d71aa09-badb-4ba8-9d08-597a8d814020",
+    "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
     "octgn:7edae662-fc3f-40b3-868b-e5a43dbd0670",
     "octgn:7f0e7969-bca4-48a3-99b5-ba055bd376af",
     "octgn:7f458303-66c1-45db-bf3f-20669fea6ff4",
@@ -1907,6 +1924,7 @@
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
+    "octgn:82c68020-eb2e-4853-9919-df3066d13721",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
     "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
     "octgn:836a759d-d768-4119-929f-cfe874ba944a",
@@ -1961,6 +1979,7 @@
     "octgn:8d55b746-417d-4996-b69b-01c80a7e4602",
     "octgn:8d61982f-acf9-4b03-969f-6e75688ee1fd",
     "octgn:8dad9a85-eae9-4a39-a823-1c58d8c0f86b",
+    "octgn:8df24501-bfd8-4602-92e1-61f5d5cf7035",
     "octgn:8e16a07f-d6c1-4040-b05c-bb2bc1ab92c8",
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
@@ -2006,6 +2025,7 @@
     "octgn:98358a49-2fba-45e3-8a26-5500bc7f04dd",
     "octgn:98461b3e-54c4-4eb9-9172-616c9bebb0f6",
     "octgn:98cc592d-6e3e-494a-bddf-ef5e0908c279",
+    "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
     "octgn:9945fdee-b56e-488d-a5bf-33d5a82afdad",
     "octgn:99ab7a92-0e3e-4ec2-9a40-0f467920879d",
     "octgn:99b98ca0-1320-4630-8791-984a578685d2",
@@ -2051,6 +2071,7 @@
     "octgn:a312e181-9209-4460-b6ba-c90c99e011fe",
     "octgn:a3173fc4-1ddb-470d-ae12-a35e24ea63a3",
     "octgn:a34ffb4e-c821-42aa-8dab-2914d274b3b1",
+    "octgn:a46578d6-303e-4f35-9a11-8b9f807427ba",
     "octgn:a4cd5ce9-fc29-44b6-9bee-eafbbd431c49",
     "octgn:a4df63d1-cb3d-4510-9e26-3b734632f456",
     "octgn:a4e9aa38-54a7-4e99-bab6-330804b24a6e",
@@ -2116,6 +2137,7 @@
     "octgn:b1662195-6d46-474c-9ee9-ccbf14c7b70e",
     "octgn:b171f1fa-a603-43ab-97c9-f950ee3b3599",
     "octgn:b1898a55-730c-493e-9fcd-24a51d817b64",
+    "octgn:b194fe1c-18c8-47d2-a674-8e209339c7e2",
     "octgn:b1f8c611-99a3-4bab-9805-832853d52d4d",
     "octgn:b21850eb-ca62-47d8-b7aa-6d6c5ff29867",
     "octgn:b2acb892-ab3b-4037-8751-c036f9f6f8bd",
@@ -2229,6 +2251,7 @@
     "octgn:c898c9f0-d4a7-4821-b075-1e412cde86a7",
     "octgn:c8decb35-cb3e-4dc9-ad15-d0cc80c157cb",
     "octgn:c9139d8c-0d9d-4d34-bfb5-8d40ca455bfc",
+    "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc",
     "octgn:c95b4c6a-3dd0-4f11-8620-df7af65c11bc:B",
     "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
@@ -2492,6 +2515,7 @@
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
     "octgn:ff4c59d7-6ad7-4fa7-80da-97fd5f8f3169",
+    "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
@@ -2927,9 +2951,9 @@
     {
       "product": "the-black-riders",
       "total": 85,
-      "scripted": 1,
+      "scripted": 24,
       "player": 21,
-      "playerScripted": 1
+      "playerScripted": 2
     },
     {
       "product": "the-black-riders-nightmare",
@@ -9315,7 +9339,7 @@
       "name": "Frodo Baggins",
       "type": "hero",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -12947,7 +12971,7 @@
       "name": "Black Steed",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -13195,7 +13219,7 @@
       "name": "Bag End",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -14035,7 +14059,7 @@
       "name": "Rode Like a Gale",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -15731,7 +15755,7 @@
       "name": "Stock-Brook",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -16259,7 +16283,7 @@
       "name": "Have You Seen Baggins?",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -16387,7 +16411,7 @@
       "name": "Pathless Country",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -17555,7 +17579,7 @@
       "name": "The Marish",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -17571,7 +17595,7 @@
       "name": "A Shortcut to Mushrooms",
       "type": "quest",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -18595,7 +18619,7 @@
       "name": "Lure of the Ring",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -22075,7 +22099,7 @@
       "name": "Bucklebury Ferry",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -22387,7 +22411,7 @@
       "name": "Black Rider",
       "type": "enemy",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -23803,7 +23827,7 @@
       "name": "Three is Company",
       "type": "quest",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -24475,7 +24499,7 @@
       "name": "Escape to Buckland",
       "type": "quest",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -25051,7 +25075,7 @@
       "name": "Crawling Towards Him",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -25427,7 +25451,7 @@
       "name": "Piercing Cry",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -25899,7 +25923,7 @@
       "name": "Bamfurlong",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -26915,7 +26939,7 @@
       "name": "Stock Road",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -27715,7 +27739,7 @@
       "name": "Green Hill Country",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -28635,7 +28659,7 @@
       "name": "Hunting For The Ring",
       "type": "treachery",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -29795,7 +29819,7 @@
       "name": "Woody End",
       "type": "location",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -32187,7 +32211,7 @@
       "name": "The One Ring",
       "type": "objective",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -36867,7 +36891,7 @@
       "name": "Evil Crow",
       "type": "enemy",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -37579,8 +37603,8 @@
       "id": "E0B.01",
       "name": "A Shadow of the Past (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "E0B.02",
@@ -37705,8 +37729,8 @@
       "id": "E0C.01",
       "name": "A Shadow of the Past (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "E0C.02",
@@ -39070,8 +39094,8 @@
       "id": "Q0B.01",
       "name": "A Shadow of the Past",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "a-shadow-of-the-past",
+      "state": "scripted"
     },
     {
       "id": "Q0B.02",

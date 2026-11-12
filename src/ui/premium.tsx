@@ -35,6 +35,10 @@ export const PLAYMATS = {
     name: "Esgaroth",
     detail: "A town on fire · The dragon descends",
   },
+  "a-shadow-of-the-past": {
+    name: "The Shire",
+    detail: "Black Riders on the roads · Bucklebury Ferry",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -437,6 +441,7 @@ export const PLAYMAT_CHOICES = [
   "the-lonely-mountain",
   "the-battle-of-five-armies",
   "the-battle-of-lake-town",
+  "a-shadow-of-the-past",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

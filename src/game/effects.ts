@@ -1,5 +1,11 @@
 import { bagginsBilboFollowsFirstPlayer } from "./hobbit-saga";
 import {
+  lotrSagaEffect,
+  ringBearerFollowsFirstPlayer,
+  sagaRevealPlayer,
+} from "./lotr-saga";
+import { hideTestEffect } from "./hide-test";
+import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
 } from "./hobbit-player-cards";
@@ -610,6 +616,8 @@ function handleEffect(s: GameState, e: Effect) {
     return;
   }
   if (Burglar.handleBurglarContractEffect(s, e)) return;
+  if (hideTestEffect(s, e)) return;
+  if (lotrSagaEffect(s, e)) return;
   if (WrathPlayers.handleWrathRuinPlayerEffect(s, e)) return;
   if (ashPlayerEffect(s, e)) return;
   if (landSorrowPlayerEffect(s, e)) return;
@@ -1159,7 +1167,10 @@ function handleEffect(s: GameState, e: Effect) {
       khazadBeforeStaging(s);
       enqueue(
         s,
-        ...Array.from({ length: reveals }, () => fx("reveal", { player })),
+        // The Lord of the Rings Saga: each player reveals in player order.
+        ...Array.from({ length: reveals }, (_, i) =>
+          fx("reveal", { player: sagaRevealPlayer(s, i, player) }),
+        ),
         fx("khazadStagingEnd", { player }),
         fx("questReady", { player }),
       );
@@ -2739,6 +2750,12 @@ function handleEffect(s: GameState, e: Effect) {
         completed?.immediatePreviousShadows !== undefined
       )
         restoreImmediateShadows(s, enemy, completed);
+      // An enemy destroyed during its immediate attack cannot take back the
+      // shadow cards held from its earlier attack: they are discarded.
+      if (immediate && !enemy && completed?.immediatePreviousShadows?.length)
+        s.encounterDiscard.push(
+          ...completed.immediatePreviousShadows.splice(0),
+        );
       if (
         immediate &&
         enemy &&
@@ -2806,6 +2823,7 @@ function handleEffect(s: GameState, e: Effect) {
         s.table.first = order[1 % order.length] ?? 0;
         followFirstPlayer(s);
         bagginsBilboFollowsFirstPlayer(s);
+        ringBearerFollowsFirstPlayer(s);
         Depths.depthsFirstPlayerChanged(s);
         DrownedCompanions.drownedFirstPlayerChanged(s);
       }
@@ -3254,6 +3272,7 @@ export function flush(s: GameState) {
   if (
     s.table &&
     !s.escapeTest &&
+    !s.hideTest &&
     !s.choice &&
     !s.flow?.pending &&
     [

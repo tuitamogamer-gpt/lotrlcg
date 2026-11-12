@@ -414,6 +414,7 @@ import {
   isSacked,
 } from "./carrock";
 import { isBagginsBilbo } from "./hobbit-codes";
+import { ringBearerRevealOptions } from "./lotr-saga";
 import {
   hobbitPlayerEnemyRevealed,
   hobbitPlayerResourceBonus,
@@ -1224,6 +1225,7 @@ export function check(s: GameState) {
     s.choice = null;
     s.queue = [];
     delete s.escapeTest;
+    delete s.hideTest;
     if (s.sailing) delete s.sailing.test;
     log(s, s.reason, "danger");
     syncAttachmentText(s);
@@ -1368,6 +1370,7 @@ export function win(s: GameState) {
   s.choice = null;
   s.queue = [];
   delete s.escapeTest;
+  delete s.hideTest;
   if (s.sailing) delete s.sailing.test;
   if (s.campaign) resolveCampaign(s);
   log(s, `Victory! ${s.reason}`, "chapter");
@@ -3036,6 +3039,7 @@ export function revealed(
       ...(revealOrigin === "encounter"
         ? ShadowEastPlayers.shadowEastPlayerRevealOptions(s, code, resume)
         : []),
+      ...ringBearerRevealOptions(s, code, revealOrigin, resume),
     ];
     if (options.length) {
       choose(

@@ -13,7 +13,13 @@ import {
   BOFA_QUESTS,
 } from "./battle-five-armies-scenario-data";
 import { LAKE_ENCOUNTERS, LAKE_QUESTS } from "./lake-town-scenario-data";
+import {
+  SHADOW_PAST_ENCOUNTERS,
+  SHADOW_PAST_QUESTS,
+} from "./shadow-past-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
+import blackRidersPlayers from "../data/black-riders-player-cards.json";
+import lotrSagaCards from "../data/lotr-saga-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
   FORTRESS_NURN_QUESTS,
@@ -321,6 +327,7 @@ export const playerCards = [
           ...landSorrowPlayers,
           ...fortressNurnPlayers,
           ...hobbitPlayers,
+          ...blackRidersPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -486,6 +493,8 @@ export const encounterCards = [
       ...TLM_ENCOUNTERS,
       ...BOFA_ENCOUNTERS,
       ...LAKE_ENCOUNTERS,
+      ...(lotrSagaCards as Card[]),
+      ...SHADOW_PAST_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -566,6 +575,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...TLM_QUESTS,
     ...BOFA_QUESTS,
     ...LAKE_QUESTS,
+    ...SHADOW_PAST_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -687,6 +697,7 @@ export const SCRIPTED = new Set(
     ...TLM_QUESTS,
     ...BOFA_QUESTS,
     ...LAKE_QUESTS,
+    ...SHADOW_PAST_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

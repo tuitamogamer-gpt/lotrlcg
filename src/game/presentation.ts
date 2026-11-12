@@ -464,6 +464,7 @@ export function recordObservation(
           COMMIT: "Characters committed",
           RESOLVE_ESCAPE: "Escape test",
           RESOLVE_SAILING: "Sailing test",
+          RESOLVE_HIDE: "Hide test",
           DEFEND: "Defense declared",
           ATTACK: "Attack declared",
           TRAVEL: "A new path",

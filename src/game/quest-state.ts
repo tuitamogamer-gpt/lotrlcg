@@ -33,6 +33,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.lonelyMountain) return s.lonelyMountain.currentQuest;
   if (s.battleFiveArmies) return s.battleFiveArmies.currentQuest;
   if (s.lakeTown) return s.lakeTown.currentQuest;
+  if (s.shadowPast) return s.shadowPast.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

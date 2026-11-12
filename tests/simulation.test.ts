@@ -354,6 +354,7 @@ function run(
         haradSimulationAction(s) ??
         greyHavensSimulationAction(s))!;
     else if (s.escapeTest) action = { type: "RESOLVE_ESCAPE" };
+    else if (s.hideTest?.phase === "actions") action = { type: "RESOLVE_HIDE" };
     else if (s.phase === "setup") action = { type: "KEEP" };
     else if (objective && bearer && s.threat < 46)
       action = { type: "CLAIM", id: objective.id, heroId: bearer.id };

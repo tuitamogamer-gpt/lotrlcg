@@ -5,6 +5,11 @@ import {
   placeBagginsBilbo,
 } from "./hobbit-saga";
 import { messengerSetup } from "./land-sorrow-player";
+import {
+  isFellowshipHero,
+  isLotrSagaScenarioId,
+  placeRingBearer,
+} from "./lotr-saga";
 import { bondHeroLimit, bondSetup } from "./fortress-nurn-player";
 import { councilSetup } from "./ash-mountains-player";
 import { wandererSetup } from "./wainriders-player";
@@ -213,6 +218,15 @@ export function createGame(
     "Faramir is reserved by this scenario; choose another hero.",
   );
   requireRule(
+    !chosenHeroes.some((c) => isFellowshipHero(c)),
+    "Fellowship heroes such as the Ring-bearer are placed by The Lord of the Rings Saga; they are not chosen as heroes.",
+  );
+  requireRule(
+    !isLotrSagaScenarioId(scenarioId) ||
+      !chosenHeroes.some((c) => card(c).name === "Frodo Baggins"),
+    "Frodo Baggins is the Ring-bearer in The Lord of the Rings Saga; choose another hero.",
+  );
+  requireRule(
     !chosenHeroes.some((c) => isBagginsBilbo(c)),
     "The Baggins Bilbo Baggins joins the first player only in The Hobbit scenarios; he is not chosen as a hero.",
   );
@@ -404,6 +418,8 @@ export function createGame(
   if (!s.table) s.startingThreat = s.threat;
   // The Hobbit: the first player gains control of Bilbo Baggins (threat 0).
   placeBagginsBilbo(s);
+  // The Lord of the Rings: the first player claims The One Ring and the Ring-bearer.
+  placeRingBearer(s);
   addHobbitTreasures(s, options.hobbitTreasures);
   huntersSetup(s);
   burglarContractSetup(s, options.burglarLoot);

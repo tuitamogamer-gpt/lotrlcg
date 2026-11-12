@@ -18,6 +18,8 @@ import { BattleFiveArmiesState } from "./ui/battle-five-armies-state";
 import { BOFA_QUESTS } from "./game/battle-five-armies-support";
 import { LakeTownState } from "./ui/lake-town-state";
 import { LAKE, LAKE_QUESTS } from "./game/lake-town-support";
+import { ShadowPastState } from "./ui/shadow-past-state";
+import { SHADOW_PAST_QUESTS } from "./game/shadow-past-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -272,6 +274,7 @@ import {
   QuestGoals,
   TurnActions,
   EscapeTestSummary,
+  HideTestSummary,
   usePreference,
   playReason,
 } from "./ui/experience";
@@ -445,9 +448,11 @@ const phaseTitle = (s: GameState) =>
     ? "Sailing test"
     : s.escapeTest
       ? "Escape test"
-      : s.phase === "attack" && s.earlyAttackPlayers?.length
-        ? "Oath of Eorl · Player attacks"
-        : phaseNames[s.phase];
+      : s.hideTest
+        ? "Hide test"
+        : s.phase === "attack" && s.earlyAttackPlayers?.length
+          ? "Oath of Eorl · Player attacks"
+          : phaseNames[s.phase];
 /** "1 player", "2 players": English plural for the setup summaries. */
 const count = (n: number, noun: string) => `${n} ${noun}${n === 1 ? "" : "s"}`;
 const handPlayDefinition = (s: GameState, u: Unit, amount?: number): Card => {
@@ -3196,6 +3201,7 @@ export default function App() {
               </span>
             </div>
             <EscapeTestSummary s={game} />
+            <HideTestSummary s={game} />
             <SailingTestSummary s={game} />
             <ScenarioState s={game} inspect={setDetail} />
             <DepthsScenarioState s={game} inspect={setDetail} />
@@ -3232,6 +3238,7 @@ export default function App() {
               dispatch={dispatch}
             />
             <LakeTownState s={game} inspect={setDetail} dispatch={dispatch} />
+            <ShadowPastState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3979,6 +3986,7 @@ export default function App() {
                       ...TLM_QUESTS,
                       ...BOFA_QUESTS,
                       ...LAKE_QUESTS,
+                      ...SHADOW_PAST_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,
@@ -4946,6 +4954,10 @@ function phaseHelp(s: GameState) {
     return s.sailing.test.phase === "actions"
       ? "Resolve the Sailing test to look at encounter cards and choose the fleet’s heading."
       : "Choose ready characters and resolve the fleet’s heading in the Sailing dialog. Player actions resume after the test.";
+  if (s.hideTest)
+    return s.hideTest.phase === "actions"
+      ? "An action window is open after the Hide test's cards were discarded. Play events or use abilities, then resolve the test."
+      : "Exhaust ready characters to commit their willpower to the Hide test; then the encounter cards are discarded.";
   if (s.escapeTest)
     return s.escapeTest.phase === "preparing"
       ? "Use end-of-quest actions, then choose ready characters for the escape test."
@@ -5271,6 +5283,7 @@ function CharacterCard({
     canQuest =
       canCommit(s, u) &&
       !s.escapeTest &&
+      !s.hideTest &&
       !s.sailing?.test &&
       !s.flow?.pending &&
       !s.choice &&

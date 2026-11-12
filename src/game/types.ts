@@ -264,6 +264,7 @@ export type ScenarioId =
   | "the-lonely-mountain"
   | "the-battle-of-five-armies"
   | "the-battle-of-lake-town"
+  | "a-shadow-of-the-past"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -432,6 +433,7 @@ export interface GameState {
   lonelyMountain?: import("./lonely-mountain-types").LonelyMountainState;
   battleFiveArmies?: import("./battle-five-armies-types").BattleFiveArmiesState;
   lakeTown?: import("./lake-town-types").LakeTownState;
+  shadowPast?: import("./shadow-past-types").ShadowPastState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -611,6 +613,10 @@ export interface GameState {
   queue: Effect[];
   /** An escape test suspends ordinary encounter/phase effects until resolved. */
   escapeTest?: EscapeTest;
+  /** A Hide test suspends ordinary effects until its action window resolves. */
+  hideTest?: import("./hide-test").HideTest;
+  /** Failed Hide tests this round, for "this phase" and "this round" effects. */
+  hideFailures?: import("./hide-test").HideFailure[];
   /** Scoped "as if engaged" attacks keep the enemy in its physical staging zone. */
   playerAttackContexts?: { enemyId: string; player: number }[];
   combat: {
@@ -770,6 +776,10 @@ export interface GameState {
     lakeReckless?: boolean;
     /** The Master's Manor's shadow: a kill discards the defending player's hand. */
     lakeManor?: boolean;
+    /** A Shadow of the Past: return the attacking enemy to the staging area after this attack. */
+    spReturn?: boolean;
+    /** Pathless Country's shadow: the enemy engages the next player and attacks. */
+    spPathless?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;
@@ -824,7 +834,8 @@ export type Action =
         | "COMMIT"
         | "END_ATTACKS"
         | "RESOLVE_ESCAPE"
-        | "RESOLVE_SAILING";
+        | "RESOLVE_SAILING"
+        | "RESOLVE_HIDE";
     }
   | { type: "TOGGLE_QUEST"; id: string }
   | { type: "CHOOSE"; id: string }

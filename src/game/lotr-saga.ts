@@ -1,0 +1,169 @@
+import type { Effect, GameState, Option, Unit } from "./types";
+import { card, name } from "./cards";
+import { fx, get, log, make, prepend, shuffle, spendResources } from "./core";
+import { depositInFlightEncounterCards } from "./board";
+import {
+  activeSeat,
+  firstPlayer,
+  forOwner,
+  globalCharacters,
+  globalPlayerOrder,
+  ownerOf,
+  playerOrder,
+  seatName,
+} from "./table";
+import {
+  ONE_RING,
+  SAGA_FRODO,
+  isLotrSagaScenarioId,
+  isRingBearerCode,
+} from "./lotr-saga-codes";
+export * from "./lotr-saga-codes";
+
+/**
+ * The Lord of the Rings Saga rules shared by its scenarios: the first player
+ * controls the Ring-bearer, a Fellowship hero carrying The One Ring, in
+ * addition to that player's heroes. Control passes with the first player
+ * token, with the hero's resources and attachments. If The One Ring leaves
+ * play, the players lose the game. During staging the players reveal their
+ * encounter cards one at a time in player order.
+ */
+export const lotrSaga = (s: GameState) => isLotrSagaScenarioId(s.scenarioId);
+/** The hero carrying The One Ring. */
+export const ringBearer = (s: GameState): Unit | undefined =>
+  globalCharacters(s).find((u) =>
+    u.attachments.some((a) => a.code === ONE_RING),
+  );
+export const oneRing = (s: GameState) =>
+  ringBearer(s)?.attachments.find((a) => a.code === ONE_RING);
+export const oneRingExhausted = (s: GameState) => !!oneRing(s)?.exhausted;
+/** Setup: the first player gains control of Frodo Baggins and attaches The One Ring. */
+export function placeRingBearer(s: GameState) {
+  if (!lotrSaga(s) || ringBearer(s)) return;
+  const first = s.table?.first ?? 0;
+  forOwner(s, first, () => {
+    const frodo = make(s, SAGA_FRODO);
+    frodo.owner = first;
+    frodo.controller = first;
+    const ring = make(s, ONE_RING);
+    frodo.attachments.push({ id: ring.id, code: ONE_RING, exhausted: false });
+    s.heroes.push(frodo);
+  });
+  log(
+    s,
+    `${s.table ? `Player ${first + 1}` : "The first player"} claims The One Ring and gains control of the Ring-bearer, Frodo Baggins.`,
+    "good",
+  );
+}
+/** Control of the Ring-bearer passes with the first player token. */
+export function ringBearerFollowsFirstPlayer(s: GameState) {
+  const bearer = ringBearer(s);
+  if (!bearer || !s.table || !lotrSaga(s)) return;
+  const from = ownerOf(s, bearer),
+    to = firstPlayer(s);
+  if (from === to || !globalPlayerOrder(s).includes(to)) return;
+  forOwner(s, from, () => {
+    s.heroes = s.heroes.filter((u) => u.id !== bearer.id);
+    s.committedIds = s.committedIds.filter((id) => id !== bearer.id);
+  });
+  bearer.owner = to;
+  bearer.controller = to;
+  forOwner(s, to, () => s.heroes.push(bearer));
+  log(
+    s,
+    `Player ${to + 1} gains control of the Ring-bearer, ${name(bearer)}, with The One Ring, resources and attachments.`,
+  );
+}
+export function loseOneRing(s: GameState) {
+  if (s.status !== "playing") return;
+  s.status = "lost";
+  s.reason = "The One Ring has left play. The players lose the game.";
+  depositInFlightEncounterCards(s);
+  s.choice = null;
+  s.queue = [];
+  log(s, s.reason, "danger");
+}
+/** The players lose as soon as The One Ring is no longer in play. */
+export function lotrSagaCheck(s: GameState) {
+  if (lotrSaga(s) && s.status === "playing" && !ringBearer(s)) loseOneRing(s);
+}
+/** Saga staging: each player reveals their own encounter card in player order. */
+export function sagaRevealPlayer(s: GameState, index: number, first: number) {
+  if (!lotrSaga(s)) return first;
+  return playerOrder(s)[index] ?? first;
+}
+/** Fellowship heroes are placed by the Saga; players never choose them. */
+export const isFellowshipHero = (code: string) =>
+  isRingBearerCode(code) || card(code).sphere_code === "fellowship";
+
+// ---------------------------------------------------------------------------
+// Frodo Baggins: cancel the effects of an encounter card just revealed.
+
+const frodo = (s: GameState) =>
+  globalCharacters(s).find((u) => u.code === SAGA_FRODO && !u.blanked);
+/** Response options offered when an encounter card is revealed from the deck. */
+export function ringBearerRevealOptions(
+  s: GameState,
+  code: string,
+  revealOrigin: Effect["revealOrigin"],
+  resume: Effect,
+): Option[] {
+  if (!lotrSaga(s) || revealOrigin !== "encounter") return [];
+  if (/cannot be cancel/i.test(card(code).text ?? "")) return [];
+  const hero = frodo(s);
+  const ring = hero?.attachments.find((a) => a.code === ONE_RING);
+  if (!hero || !ring || ring.exhausted || ring.blanked || hero.resources < 1)
+    return [];
+  const player = ownerOf(s, hero);
+  return [
+    {
+      id: `saga-frodo-${player}`,
+      label:
+        "Frodo Baggins · Spend 1 resource and exhaust The One Ring to cancel this card, shuffle it back and reveal another",
+      code: SAGA_FRODO,
+      ability: { player, source: hero.id, code: SAGA_FRODO, type: "response" },
+      effects: [
+        fx("sagaFrodoCancel", {
+          code,
+          target: hero.id,
+          source: resume.source,
+          revealOrigin: resume.revealOrigin,
+          player: resume.player ?? activeSeat(s),
+          effects: [resume],
+        }),
+      ],
+    },
+  ];
+}
+export function lotrSagaEffect(s: GameState, e: Effect): boolean {
+  switch (e.kind) {
+    case "sagaFrodoCancel": {
+      const hero = get(s, e.target);
+      const ring = hero?.attachments.find((a) => a.code === ONE_RING);
+      if (!hero || !ring || ring.exhausted || hero.resources < 1 || !e.code) {
+        prepend(s, ...(e.effects ?? []));
+        return true;
+      }
+      spendResources(s, hero, 1);
+      ring.exhausted = true;
+      s.encounterDeck.push(e.code);
+      shuffle(s, s.encounterDeck);
+      log(
+        s,
+        `Frodo Baggins exhausts The One Ring: ${card(e.code).name} is canceled and shuffled back into the encounter deck. ${s.table ? seatName(s, e.player ?? activeSeat(s)) : "You"} reveal${s.table ? "s" : ""} another card.`,
+        "good",
+      );
+      prepend(
+        s,
+        fx("reveal", {
+          source: e.source,
+          revealOrigin: e.revealOrigin,
+          player: e.player,
+        }),
+      );
+      return true;
+    }
+    default:
+      return false;
+  }
+}

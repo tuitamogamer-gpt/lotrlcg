@@ -28,6 +28,7 @@ import { TRIALS } from "../game/three-trials-support";
 import { fangornCarrier } from "../game/fangorn";
 import { fordsMandatoryTravel } from "../game/fords-isen";
 import { voyageMandatoryTravel } from "../game/voyage-belegaer";
+import { hideTestPublic } from "../game/hide-test";
 import { druadanPlayerQuestStat } from "../game/druadan-player-cards";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
@@ -146,21 +147,25 @@ export const nextAction = (s: GameState): Action | null =>
           s.escapeTest.phase === "committing"
           ? null
           : { type: "RESOLVE_ESCAPE" }
-        : offTurn(s)
-          ? { type: "SELECT_SEAT", seat: s.table!.turn }
-          : s.choice || s.status !== "playing"
+        : s.hideTest
+          ? s.choice || s.status !== "playing" || s.hideTest.phase !== "actions"
             ? null
-            : s.phase === "setup"
-              ? { type: "KEEP" }
-              : s.phase === "quest"
-                ? requiredQuestSelections(s)
-                  ? null
-                  : { type: "COMMIT" }
-                : s.phase === "defense"
-                  ? null
-                  : s.phase === "attack"
-                    ? { type: "END_ATTACKS" }
-                    : { type: "NEXT" };
+            : { type: "RESOLVE_HIDE" }
+          : offTurn(s)
+            ? { type: "SELECT_SEAT", seat: s.table!.turn }
+            : s.choice || s.status !== "playing"
+              ? null
+              : s.phase === "setup"
+                ? { type: "KEEP" }
+                : s.phase === "quest"
+                  ? requiredQuestSelections(s)
+                    ? null
+                    : { type: "COMMIT" }
+                  : s.phase === "defense"
+                    ? null
+                    : s.phase === "attack"
+                      ? { type: "END_ATTACKS" }
+                      : { type: "NEXT" };
 export const nextLabel = (s: GameState) =>
   s.phase === "travel" && voyageMandatoryTravel(s)
     ? "Travel to Waterspout"
@@ -176,51 +181,55 @@ export const nextLabel = (s: GameState) =>
             : s.escapeTest.phase === "actions"
               ? "Resolve escape test"
               : "Choose escape characters"
-          : offTurn(s)
-            ? `Continue as Player ${s.table!.turn + 1}`
-            : s.phase === "attack" && s.earlyAttackPlayers?.length
-              ? "Continue to enemy attacks"
-              : requiredQuestSelections(s) > 0
-                ? `Select ${requiredQuestSelections(s)} more characters`
-                : s.table &&
-                    [
-                      "resource",
-                      "planning",
-                      "quest",
-                      "encounter",
-                      "attack",
-                    ].includes(s.phase)
-                  ? {
-                      resource: "Finish resource actions",
-                      planning: "Finish planning",
-                      quest: "Commit this fellowship",
-                      encounter: "Finish engagement choices",
-                      attack: "Finish attacks",
-                    }[
-                      s.phase as
-                        | "resource"
-                        | "planning"
-                        | "quest"
-                        | "encounter"
-                        | "attack"
-                    ]
-                  : {
-                      setup: "Keep hand",
-                      resource: "Begin planning",
-                      planning:
-                        s.templeDoom && s.stage === 1
-                          ? "Finish planning"
-                          : "Begin quest",
-                      quest: "Commit & reveal",
-                      staging: "Resolve quest",
-                      travel: allActiveLocations(s).length
-                        ? "Continue to encounter"
-                        : "Continue without travel",
-                      encounter: "Engagement checks",
-                      defense: "Choose an enemy",
-                      attack: "Finish combat",
-                      refresh: "Begin next round",
-                    }[s.phase];
+          : s.hideTest
+            ? s.hideTest.phase === "actions"
+              ? "Resolve Hide test"
+              : "Choose Hide test characters"
+            : offTurn(s)
+              ? `Continue as Player ${s.table!.turn + 1}`
+              : s.phase === "attack" && s.earlyAttackPlayers?.length
+                ? "Continue to enemy attacks"
+                : requiredQuestSelections(s) > 0
+                  ? `Select ${requiredQuestSelections(s)} more characters`
+                  : s.table &&
+                      [
+                        "resource",
+                        "planning",
+                        "quest",
+                        "encounter",
+                        "attack",
+                      ].includes(s.phase)
+                    ? {
+                        resource: "Finish resource actions",
+                        planning: "Finish planning",
+                        quest: "Commit this fellowship",
+                        encounter: "Finish engagement choices",
+                        attack: "Finish attacks",
+                      }[
+                        s.phase as
+                          | "resource"
+                          | "planning"
+                          | "quest"
+                          | "encounter"
+                          | "attack"
+                      ]
+                    : {
+                        setup: "Keep hand",
+                        resource: "Begin planning",
+                        planning:
+                          s.templeDoom && s.stage === 1
+                            ? "Finish planning"
+                            : "Begin quest",
+                        quest: "Commit & reveal",
+                        staging: "Resolve quest",
+                        travel: allActiveLocations(s).length
+                          ? "Continue to encounter"
+                          : "Continue without travel",
+                        encounter: "Engagement checks",
+                        defense: "Choose an enemy",
+                        attack: "Finish combat",
+                        refresh: "Begin next round",
+                      }[s.phase];
 export function TurnActions({
   s,
   dispatch,
@@ -251,6 +260,23 @@ export function TurnActions({
           {s.sailing.test.phase === "actions"
             ? "Look at the Sailing cards, then choose how far to turn on-course."
             : "Finish the current Sailing choice to continue."}
+        </p>
+        <button
+          className="primary"
+          disabled={!action}
+          onClick={() => action && dispatch(action)}
+        >
+          {nextLabel(s)} <ArrowRight size={18} />
+        </button>
+      </div>
+    );
+  if (s.hideTest)
+    return (
+      <div className="turn-actions escape-turn-actions">
+        <p>
+          {s.hideTest.phase === "actions"
+            ? "An action window is open. Play events or use abilities, then resolve the Hide test."
+            : "Finish choosing ready characters in the Hide test dialog."}
         </p>
         <button
           className="primary"
@@ -360,6 +386,62 @@ export function TurnActions({
         </button>
       )}
     </div>
+  );
+}
+export function HideTestSummary({ s }: { s: GameState }) {
+  const test = hideTestPublic(s);
+  if (!test) return null;
+  const committed = allCharacters(s).filter((u) =>
+    test.committedIds.includes(u.id),
+  );
+  return (
+    <section
+      className="escape-test-summary"
+      aria-label="Hide test"
+      aria-live="polite"
+      data-hide-test={test.phase}
+      data-hide-threat={test.threat}
+      data-hide-willpower={test.willpower}
+    >
+      <div>
+        <strong>
+          {card(test.source).name} · Hide {test.value} test
+        </strong>
+        <span>
+          {test.willpower} committed willpower ·{" "}
+          {test.phase === "actions"
+            ? `${test.threat} threat discarded`
+            : `${test.count} encounter ${test.count === 1 ? "card" : "cards"} to discard`}
+        </span>
+      </div>
+      <div className="escape-participants">
+        <span>
+          <strong>
+            {s.table ? `Player ${test.player + 1}` : "Your fellowship"}
+          </strong>
+          {committed.length
+            ? committed.map((u) => card(u.code).name).join(", ")
+            : "No characters committed"}
+        </span>
+        {test.phase === "actions" && (
+          <span>
+            <strong>Discarded</strong>
+            {test.discarded.length
+              ? test.discarded
+                  .map((c) => `${card(c).name} (${card(c).threat ?? 0})`)
+                  .join(", ")
+              : "No cards"}
+          </span>
+        )}
+      </div>
+      <p>
+        {test.phase === "actions"
+          ? test.willpower >= test.threat
+            ? "The test succeeds if willpower stays equal to or above the threat. Use actions, then resolve."
+            : "The test fails if the threat stays above the committed willpower. Use actions to raise willpower, then resolve."
+          : "Exhaust ready characters to commit their willpower, then discard the encounter cards."}
+      </p>
+    </section>
   );
 }
 export function EscapeTestSummary({ s }: { s: GameState }) {

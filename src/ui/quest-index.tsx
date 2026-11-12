@@ -71,6 +71,10 @@ const HEADLINES: Partial<
     lead: "Save the burning town",
     em: "and slay the dragon.",
   },
+  "a-shadow-of-the-past": {
+    lead: "Hide from the Black Riders",
+    em: "and cross the Brandywine.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

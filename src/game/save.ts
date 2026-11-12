@@ -19,6 +19,8 @@ import {
   validateBattleFiveArmies,
 } from "./battle-five-armies-support";
 import { lakeTownUnits, validateLakeTown } from "./lake-town-support";
+import { shadowPastUnits, validateShadowPast } from "./shadow-past-support";
+import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
 import { validateWainridersPlayers } from "./wainriders-player-support";
@@ -355,6 +357,8 @@ export function validateSave(
         c.lakeLeap,
         c.lakeReckless,
         c.lakeManor,
+        c.spReturn,
+        c.spPathless,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
@@ -917,6 +921,7 @@ export function validateSave(
         !validateLonelyMountain(s, validUnit as (v: unknown) => boolean) ||
         !validateBattleFiveArmies(s, validUnit as (v: unknown) => boolean) ||
         !validateLakeTown(s, validUnit as (v: unknown) => boolean) ||
+        !validateShadowPast(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1368,6 +1373,8 @@ export function validateSave(
       return false;
     if (inheritedSeatCount === undefined && !validateSailing(s, validEffect))
       return false;
+    if (inheritedSeatCount === undefined && !validateHideTest(s, validEffect))
+      return false;
     if (s.escapeTest !== undefined) {
       const e = s.escapeTest;
       if (
@@ -1514,6 +1521,8 @@ export function validateSave(
               ),
               table: undefined,
               escapeTest: undefined,
+              hideTest: undefined,
+              hideFailures: undefined,
               earlyAttackPlayers: undefined,
               combat: null,
               suspendedCombats: [],
@@ -1543,6 +1552,7 @@ export function validateSave(
       const effects = [
         ...s.queue,
         ...(s.escapeTest?.continuation ?? []),
+        ...(s.hideTest?.continuation ?? []),
         ...(s.sailing?.test?.continuation ?? []),
         ...(s.choice?.options.flatMap((o) => o.effects) ?? []),
       ];
@@ -1628,6 +1638,7 @@ export function validateSave(
       ...tlmUnits(s),
       ...bofaUnits(s),
       ...lakeTownUnits(s),
+      ...shadowPastUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

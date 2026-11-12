@@ -1,0 +1,32 @@
+[
+  {
+    "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+    "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+    "name": "The One Ring",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item. Ring.",
+    "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.\nAttached hero does not count against the hero limit. The first player gains control of attached hero.\nIf The One Ring leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 85,
+    "quantity": 1,
+    "printed_stats": {},
+    "imagesrc": "/cards/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 85,
+        "quantity": 1,
+        "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

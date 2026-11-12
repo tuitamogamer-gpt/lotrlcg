@@ -260,4 +260,14 @@ export interface Batch4ScenarioHooks {
   claimableObjective?(s: GameState, u: Unit): boolean;
   /** Claim an objective with a hero; true when the scenario handled it. */
   claim?(s: GameState, objective: Unit, hero: Unit): boolean;
+  /** Hide tests: willpower added to a committed character. */
+  hideWillpower?(s: GameState, u: Unit): number;
+  /** Hide tests: added to the Hide X value of a player's test. */
+  hideValueBonus?(s: GameState, player: number): number;
+  /** Hide tests: added to the total threat of the discarded cards. */
+  hideThreatBonus?(s: GameState, player: number): number;
+  /** Effects after a player passes a Hide test. */
+  hidePassed?(s: GameState, player: number, source: string): Effect[];
+  /** Effects after a player fails a Hide test. */
+  hideFailed?(s: GameState, player: number, source: string): Effect[];
 }

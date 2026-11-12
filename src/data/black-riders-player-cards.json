@@ -1,0 +1,46 @@
+[
+  {
+    "code": "141001",
+    "name": "Frodo Baggins",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 1,
+    "defense": 2,
+    "health": 2,
+    "traits": "Hobbit. Ring-bearer.",
+    "text": "Response: Spend 1 [fellowship] resource and exhaust The One Ring to cancel the effects of an encounter card just revealed from the encounter deck. Shuffle that card back into the encounter deck and reveal another encounter card.",
+    "flavor": "\"I will take the Ring,\" he said, \"though I do not know the way.\" <cite>The Fellowship of the Ring</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Black Riders",
+    "pack_code": "TBR",
+    "position": 1,
+    "illustrator": "Jake Murray",
+    "imagesrc": "/cards/141001.png",
+    "url": "https://ringsdb.com/card/141001",
+    "quantity": 1,
+    "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "141001",
+        "illustrator": "Jake Murray",
+        "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+        "imagesrc": "/bundles/cards/141001.png",
+        "date_release": "2013-09-01"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/141001",
+    "official": true,
+    "nightmare": false
+  }
+]

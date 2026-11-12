@@ -1,0 +1,643 @@
+[
+  {
+    "code": "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
+    "octgnid": "09aeff64-6e0d-4dfa-af21-2e7805441376",
+    "name": "Black Steed",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Morgul.",
+    "text": "Surge.\nWhen Revealed: Attach to a Nazgûl enemy in play, if able. (Counts as a Mount attachment with the text: \"Limit 1 per enemy. Attached enemy gets -10 engagement cost and gains: 'Forced: At the end of the refresh phase, return attached enemy to the staging area.'\")",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 74,
+    "quantity": 3,
+    "encounter_set": "The Black Riders",
+    "printed_stats": {},
+    "imagesrc": "/cards/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 74,
+        "quantity": 3,
+        "octgnid": "09aeff64-6e0d-4dfa-af21-2e7805441376",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/09aeff64-6e0d-4dfa-af21-2e7805441376.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
+    "octgnid": "0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
+    "name": "Bag End",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Shire.",
+    "text": "Response: After Bag End leaves play, each player draws 1 card for each Hobbit hero he controls.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 31,
+    "quantity": 1,
+    "threat": 0,
+    "quest": 3,
+    "victory": 1,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "0",
+      "quest": "3",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/0d30fbf1-6e8f-480f-9f2f-3196777f6e11.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0d30fbf1-6e8f-480f-9f2f-3196777f6e11.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+    "octgnid": "1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+    "name": "Rode Like a Gale",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Return each engaged Nazgûl enemy to the staging area. If no enemies were returned to the staging area by this effect, Rode Like a Gale gains surge.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 75,
+    "quantity": 2,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "The Black Riders",
+    "printed_stats": {},
+    "imagesrc": "/cards/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 75,
+        "quantity": 2,
+        "octgnid": "1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2b38254c-e992-4fb5-89e8-e7f636658ce0",
+    "octgnid": "2b38254c-e992-4fb5-89e8-e7f636658ce0",
+    "name": "Stock-brook",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Stream.",
+    "text": "When Revealed: Immediately travel to Stock-brook. If another location is currently active, return it to the staging area.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 33,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 5,
+    "victory": 1,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "5",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/2b38254c-e992-4fb5-89e8-e7f636658ce0.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 33,
+        "quantity": 1,
+        "octgnid": "2b38254c-e992-4fb5-89e8-e7f636658ce0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2b38254c-e992-4fb5-89e8-e7f636658ce0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:3104ef1f-4f1c-4603-87cb-f3a70f5e6710",
+    "octgnid": "3104ef1f-4f1c-4603-87cb-f3a70f5e6710",
+    "name": "Have you seen Baggins?",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. Surge.\nWhen Revealed: Attach to a hero. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Forced: After a player fails a Hide test, discard attached hero.\")",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 43,
+    "quantity": 2,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {},
+    "imagesrc": "/cards/3104ef1f-4f1c-4603-87cb-f3a70f5e6710.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 43,
+        "quantity": 2,
+        "octgnid": "3104ef1f-4f1c-4603-87cb-f3a70f5e6710",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3104ef1f-4f1c-4603-87cb-f3a70f5e6710.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+    "octgnid": "32416ec8-b50d-4cd2-a62f-10f97c87be73",
+    "name": "Pathless Country",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "Pathless Country gets +4 quest points while in the staging area.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 72,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: After this attack, the attacking enemy engages the next player then makes an immediate attack.",
+    "encounter_set": "Hunted",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 72,
+        "quantity": 3,
+        "octgnid": "32416ec8-b50d-4cd2-a62f-10f97c87be73",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/32416ec8-b50d-4cd2-a62f-10f97c87be73.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:409bc89e-b5af-4626-ade6-60bcfcb290b7",
+    "octgnid": "409bc89e-b5af-4626-ade6-60bcfcb290b7",
+    "name": "The Marish",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marshland.",
+    "text": "Forced: After a player fails a Hide test, shuffle a Nazgûl enemy from the discard pile into the encounter deck, if able.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 38,
+    "quantity": 2,
+    "threat": 3,
+    "quest": 4,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending player failed a Hide test this round).",
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/409bc89e-b5af-4626-ade6-60bcfcb290b7.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 38,
+        "quantity": 2,
+        "octgnid": "409bc89e-b5af-4626-ade6-60bcfcb290b7",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/409bc89e-b5af-4626-ade6-60bcfcb290b7.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:48384e79-d397-4dcd-9862-8a72acb448d0",
+    "octgnid": "48384e79-d397-4dcd-9862-8a72acb448d0",
+    "name": "Lure of the Ring",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: The first player must either exhaust The One Ring or raise his threat by 3.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 76,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if The One Ring is exhausted).",
+    "encounter_set": "The Ring",
+    "printed_stats": {},
+    "imagesrc": "/cards/48384e79-d397-4dcd-9862-8a72acb448d0.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 76,
+        "quantity": 3,
+        "octgnid": "48384e79-d397-4dcd-9862-8a72acb448d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/48384e79-d397-4dcd-9862-8a72acb448d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
+    "octgnid": "53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
+    "name": "Bucklebury Ferry",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "River.",
+    "text": "Immune to player card effects.\nWhile there is at least 1 other location in play, the players cannot travel here.\nTravel: The first player must make a Hide 3 test to travel here.\nAfter Bucklebury Ferry leaves play as an explored location, the players win the game.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 35,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 9,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "9"
+    },
+    "imagesrc": "/cards/53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 35,
+        "quantity": 1,
+        "octgnid": "53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:57107fd1-0092-41d3-ae9d-8ff6c06933eb",
+    "octgnid": "57107fd1-0092-41d3-ae9d-8ff6c06933eb",
+    "name": "Black Rider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Hide 2. Cannot have non-Morgul attachments.\nForced: After engaged player fails a Hide test, Black Rider makes an immediate attack.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 39,
+    "quantity": 5,
+    "threat": 4,
+    "attack": 5,
+    "defense": 4,
+    "health": 6,
+    "engagement": 35,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "4",
+      "health": "6",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/57107fd1-0092-41d3-ae9d-8ff6c06933eb.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 39,
+        "quantity": 5,
+        "octgnid": "57107fd1-0092-41d3-ae9d-8ff6c06933eb",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/57107fd1-0092-41d3-ae9d-8ff6c06933eb.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:79b5dd16-2427-4950-94e9-46905eebe56d",
+    "octgnid": "79b5dd16-2427-4950-94e9-46905eebe56d",
+    "name": "Crawling Towards Him",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril. Hide 2.\nWhen Revealed: If you have failed a Hide test this phase, remove each character you control from the quest.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 41,
+    "quantity": 3,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {},
+    "imagesrc": "/cards/79b5dd16-2427-4950-94e9-46905eebe56d.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 41,
+        "quantity": 3,
+        "octgnid": "79b5dd16-2427-4950-94e9-46905eebe56d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/79b5dd16-2427-4950-94e9-46905eebe56d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+    "octgnid": "7e470346-1828-49c0-b241-58d0dbf27b4b",
+    "name": "Piercing Cry",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Search the encounter deck and discard pile for a Nazgûl enemy. Either add it to the staging area or put it into play engaged with the first player. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 73,
+    "quantity": 3,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "Hunted",
+    "printed_stats": {},
+    "imagesrc": "/cards/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 73,
+        "quantity": 3,
+        "octgnid": "7e470346-1828-49c0-b241-58d0dbf27b4b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7e470346-1828-49c0-b241-58d0dbf27b4b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:82c68020-eb2e-4853-9919-df3066d13721",
+    "octgnid": "82c68020-eb2e-4853-9919-df3066d13721",
+    "name": "Bamfurlong",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Shire.",
+    "text": "Response: After the players travel to Bamfurlong, each player engaged with a Nazgûl enemy may ready a hero he controls.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 34,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 1,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/82c68020-eb2e-4853-9919-df3066d13721.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 34,
+        "quantity": 1,
+        "octgnid": "82c68020-eb2e-4853-9919-df3066d13721",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82c68020-eb2e-4853-9919-df3066d13721.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:8df24501-bfd8-4602-92e1-61f5d5cf7035",
+    "octgnid": "8df24501-bfd8-4602-92e1-61f5d5cf7035",
+    "name": "Stock Road",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Road.",
+    "text": "While Stock Road is in the staging area, add 2 to the total [threat] of the discarded cards when a player resolves a Hide test.\nTravel: The first player must make a Hide 1 test to travel here.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 37,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/8df24501-bfd8-4602-92e1-61f5d5cf7035.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 37,
+        "quantity": 3,
+        "octgnid": "8df24501-bfd8-4602-92e1-61f5d5cf7035",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8df24501-bfd8-4602-92e1-61f5d5cf7035.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:98dff367-a068-4aac-a46b-7dc201aff42d",
+    "octgnid": "98dff367-a068-4aac-a46b-7dc201aff42d",
+    "name": "Green Hill Country",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Green Hill Country is the active location, characters get +1 [willpower] while committed to Hide tests.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 36,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 3,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if you have failed a Hide test this round).",
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/98dff367-a068-4aac-a46b-7dc201aff42d.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 36,
+        "quantity": 3,
+        "octgnid": "98dff367-a068-4aac-a46b-7dc201aff42d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/98dff367-a068-4aac-a46b-7dc201aff42d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:a46578d6-303e-4f35-9a11-8b9f807427ba",
+    "octgnid": "a46578d6-303e-4f35-9a11-8b9f807427ba",
+    "name": "Hunting for the Ring",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Doomed 2.\nWhen Revealed: Starting with the last player, each player must either return a Nazgûl enemy engaged with him to the staging area or make a Hide 2 test.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 42,
+    "quantity": 3,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {},
+    "imagesrc": "/cards/a46578d6-303e-4f35-9a11-8b9f807427ba.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 42,
+        "quantity": 3,
+        "octgnid": "a46578d6-303e-4f35-9a11-8b9f807427ba",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a46578d6-303e-4f35-9a11-8b9f807427ba.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:b194fe1c-18c8-47d2-a674-8e209339c7e2",
+    "octgnid": "b194fe1c-18c8-47d2-a674-8e209339c7e2",
+    "name": "Woody End",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Woody End is the active location, reduce each Hide X value by 1.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 32,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 1,
+    "victory": 1,
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "1",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/b194fe1c-18c8-47d2-a674-8e209339c7e2.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 32,
+        "quantity": 1,
+        "octgnid": "b194fe1c-18c8-47d2-a674-8e209339c7e2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b194fe1c-18c8-47d2-a674-8e209339c7e2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
+    "octgnid": "ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
+    "name": "Evil Crow",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "While Evil Crow is engaged with a player, that player adds 1 to the Hide value for each Hide test he makes.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 40,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 0,
+    "defense": 1,
+    "health": 2,
+    "engagement": 25,
+    "shadow": "Shadow: If you have failed a Hide test this round, this attack is considered undefended.",
+    "encounter_set": "A Shadow of the Past",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "0",
+      "defense": "1",
+      "health": "2",
+      "engagement": "25"
+    },
+    "imagesrc": "/cards/ff597a85-6a02-4301-a9dc-4dcb4cf9b626.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 40,
+        "quantity": 3,
+        "octgnid": "ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ff597a85-6a02-4301-a9dc-4dcb4cf9b626.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]
