@@ -75,6 +75,10 @@ const HEADLINES: Partial<
     lead: "Hide from the Black Riders",
     em: "and cross the Brandywine.",
   },
+  "a-knife-in-the-dark": {
+    lead: "Survive Weathertop",
+    em: "and drive off the Nazgûl.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

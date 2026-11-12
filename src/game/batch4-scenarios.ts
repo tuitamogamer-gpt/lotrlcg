@@ -8,6 +8,7 @@ import { TLM_HOOKS } from "./lonely-mountain";
 import { BOFA_HOOKS } from "./battle-five-armies";
 import { LAKE_TOWN_HOOKS } from "./lake-town";
 import { SHADOW_PAST_HOOKS } from "./shadow-past";
+import { KNIFE_DARK_HOOKS } from "./knife-dark";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -52,6 +53,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return LAKE_TOWN_HOOKS;
     case "a-shadow-of-the-past":
       return SHADOW_PAST_HOOKS;
+    case "a-knife-in-the-dark":
+      return KNIFE_DARK_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -124,4 +127,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     BOFA_HOOKS,
     LAKE_TOWN_HOOKS,
     SHADOW_PAST_HOOKS,
+    KNIFE_DARK_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

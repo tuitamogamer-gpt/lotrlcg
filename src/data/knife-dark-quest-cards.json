@@ -1,0 +1,124 @@
+[
+  {
+    "code": "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
+    "octgnid": "d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
+    "name": "Trouble in Bree",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set all copies of Ringwraith, The Witch-king, Midgewater, and Weathertop aside, out of play. Add The Prancing Pony and Bill Ferny to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 25,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "A Knife in the Dark",
+    "side": "A",
+    "back_name": "Trouble in Bree",
+    "back_text": "The players cannot advance while The Prancing Pony is in play.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 25,
+        "quantity": 1,
+        "octgnid": "d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:28a4721b-3696-4fae-9eea-01b5a250c892",
+    "octgnid": "28a4721b-3696-4fae-9eea-01b5a250c892",
+    "name": "Into the Wild",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 26,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "A Knife in the Dark",
+    "side": "A",
+    "back_name": "Into the Wild",
+    "back_text": "When Revealed: Add Midgewater to the staging area. Each player places 1 progress on the current quest.\nForced: At the end of the round, either remove X progress from the current quest or shuffle 1 out of play Ringwraith into the encounter deck. X is the number of players in the game.\nThe players cannot advance while Midgewater is in play.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/28a4721b-3696-4fae-9eea-01b5a250c892.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/28a4721b-3696-4fae-9eea-01b5a250c892.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 26,
+        "quantity": 1,
+        "octgnid": "28a4721b-3696-4fae-9eea-01b5a250c892",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/28a4721b-3696-4fae-9eea-01b5a250c892.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 6
+  },
+  {
+    "code": "octgn:257f9b44-2744-4f02-bbf6-115d12b52e8d",
+    "octgnid": "257f9b44-2744-4f02-bbf6-115d12b52e8d",
+    "name": "The Ringwraiths Attack",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Weathertop and The Witch-king to the staging area. Search the encounter deck and discard pile and add each Nazgûl enemy found to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 27,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "A Knife in the Dark",
+    "side": "A",
+    "back_name": "The Ringwraiths Attack",
+    "back_text": "If there are no Nazgûl enemies in play, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/257f9b44-2744-4f02-bbf6-115d12b52e8d.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/257f9b44-2744-4f02-bbf6-115d12b52e8d.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 27,
+        "quantity": 1,
+        "octgnid": "257f9b44-2744-4f02-bbf6-115d12b52e8d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/257f9b44-2744-4f02-bbf6-115d12b52e8d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  }
+]

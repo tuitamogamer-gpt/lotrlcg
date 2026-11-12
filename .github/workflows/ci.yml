@@ -537,6 +537,24 @@ jobs:
           path: output/shadow-past-release/failures
           retention-days: 7
 
+  knife-dark-simulation:
+    name: A Knife in the Dark complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:knife-dark-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: knife-dark-simulation
+          path: output/knife-dark-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -680,6 +698,8 @@ jobs:
             suite: test:browser-lake-town
           - group: shadow-past
             suite: test:browser-shadow-past
+          - group: knife-dark
+            suite: test:browser-knife-dark
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

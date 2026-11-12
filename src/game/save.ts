@@ -20,6 +20,7 @@ import {
 } from "./battle-five-armies-support";
 import { lakeTownUnits, validateLakeTown } from "./lake-town-support";
 import { shadowPastUnits, validateShadowPast } from "./shadow-past-support";
+import { knifeDarkUnits, validateKnifeDark } from "./knife-dark-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -672,6 +673,7 @@ export function validateSave(
         u.tempThreat,
         u.tempEngagement,
         u.roundAttack,
+        u.roundWill,
       ].every((n) => n === undefined || integer(n)) &&
       SCRIPTED.has(u.code) &&
       [u.damage, u.progress, u.resources, u.boost].every(integer) &&
@@ -922,6 +924,7 @@ export function validateSave(
         !validateBattleFiveArmies(s, validUnit as (v: unknown) => boolean) ||
         !validateLakeTown(s, validUnit as (v: unknown) => boolean) ||
         !validateShadowPast(s, validUnit as (v: unknown) => boolean) ||
+        !validateKnifeDark(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1639,6 +1642,7 @@ export function validateSave(
       ...bofaUnits(s),
       ...lakeTownUnits(s),
       ...shadowPastUnits(s),
+      ...knifeDarkUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

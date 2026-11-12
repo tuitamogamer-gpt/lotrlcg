@@ -2808,6 +2808,7 @@ export function nextRound(s: GameState) {
     delete u.roundThreat;
     delete u.roundAttack;
     delete u.roundDefense;
+    delete u.roundWill;
     delete u.roundCannotTakeDamage;
   }
   heirsRoundEnd(s);

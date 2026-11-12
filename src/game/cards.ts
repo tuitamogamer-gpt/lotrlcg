@@ -17,6 +17,10 @@ import {
   SHADOW_PAST_ENCOUNTERS,
   SHADOW_PAST_QUESTS,
 } from "./shadow-past-scenario-data";
+import {
+  KNIFE_DARK_ENCOUNTERS,
+  KNIFE_DARK_QUESTS,
+} from "./knife-dark-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
@@ -495,6 +499,7 @@ export const encounterCards = [
       ...LAKE_ENCOUNTERS,
       ...(lotrSagaCards as Card[]),
       ...SHADOW_PAST_ENCOUNTERS,
+      ...KNIFE_DARK_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -576,6 +581,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...BOFA_QUESTS,
     ...LAKE_QUESTS,
     ...SHADOW_PAST_QUESTS,
+    ...KNIFE_DARK_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -698,6 +704,7 @@ export const SCRIPTED = new Set(
     ...BOFA_QUESTS,
     ...LAKE_QUESTS,
     ...SHADOW_PAST_QUESTS,
+    ...KNIFE_DARK_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

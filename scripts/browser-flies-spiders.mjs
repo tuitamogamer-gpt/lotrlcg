@@ -86,11 +86,29 @@ try {
           const seats = s.table
             ? s.table.seats.map((p, i) => (i === s.table.active ? s : p))
             : [s];
+          const recipe = FAS_RECIPES.find(
+            (r) => r.mode === (easy ? "easy" : "standard"),
+          );
+          const encounterCodes = new Set(
+            recipe.cards
+              .map((r) => r.code)
+              .filter((c) => c !== OTD_RING && c !== OTD_BILBO),
+          );
           const physical = [
             ...s.encounterDeck,
             ...s.encounterDiscard,
             ...s.staging.map((u) => u.code),
             ...seats.flatMap((p) => p.engaged.map((u) => u.code)),
+            // A setup reveal can make an immediate attack whose shadow card
+            // (Dark Bats) attaches to the defending character.
+            ...seats.flatMap((p) =>
+              [...p.heroes, ...p.allies, ...p.engaged]
+                .flatMap((u) => [
+                  ...u.attachments.map((a) => a.code),
+                  ...u.shadows,
+                ])
+                .filter((c) => encounterCodes.has(c)),
+            ),
             ...s.fliesSpiders.setAside.map((u) => u.code),
             ...s.fliesSpiders.rings,
             ...seats.flatMap((p) =>
@@ -103,9 +121,7 @@ try {
           ].sort();
           assert.deepEqual(
             physical,
-            FAS_RECIPES.find((r) => r.mode === (easy ? "easy" : "standard"))
-              .cards.flatMap((r) => Array(r.quantity).fill(r.code))
-              .sort(),
+            recipe.cards.flatMap((r) => Array(r.quantity).fill(r.code)).sort(),
           );
           assert.deepEqual((await resume(page)).fliesSpiders, s.fliesSpiders);
           await page

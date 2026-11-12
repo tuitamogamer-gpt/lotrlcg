@@ -8,6 +8,7 @@ import { TLM_ADVENTURES } from "./lonely-mountain-scenario-data";
 import { BOFA_ADVENTURES } from "./battle-five-armies-scenario-data";
 import { LAKE_ADVENTURES } from "./lake-town-scenario-data";
 import { SHADOW_PAST_ADVENTURES } from "./shadow-past-scenario-data";
+import { KNIFE_DARK_ADVENTURES } from "./knife-dark-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1183,6 +1184,7 @@ export const SCENARIOS = [
   ...BOFA_ADVENTURES,
   ...LAKE_ADVENTURES,
   ...SHADOW_PAST_ADVENTURES,
+  ...KNIFE_DARK_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

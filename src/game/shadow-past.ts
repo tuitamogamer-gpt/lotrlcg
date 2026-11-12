@@ -4,11 +4,9 @@ import { card, name } from "./cards";
 import { choose, draw, fx, get, log, make, prepend, shuffle } from "./core";
 import {
   discardCharacter,
-  enemyAddedToStaging,
   engage,
   progressLocation,
   questDefeated,
-  raiseThreat,
   removeFromQuest,
   win,
 } from "./board";
@@ -27,7 +25,18 @@ import {
 import { mainQuestUnit } from "./quest-state";
 import { surgeEffects } from "./surge";
 import { hideFailed, hideKeyword } from "./hide-test";
-import { lotrSagaCheck, oneRing, oneRingExhausted } from "./lotr-saga";
+import {
+  huntedAttackFinished,
+  huntedEffect,
+  huntedShadow,
+  huntedTreachery,
+  isMorgul,
+  pathlessQuestBonus,
+  returnToStaging,
+  searchEncounter,
+  who,
+} from "./black-riders-hunted";
+import { lotrSagaCheck } from "./lotr-saga";
 import {
   SHADOW_PAST_QUESTS,
   SHADOW_PAST_RECIPES,
@@ -51,37 +60,6 @@ const stageLive = (s: GameState) =>
   !s.stageRevealing && !mainQuestUnit(s)?.blanked;
 const activeIs = (s: GameState, code: string) =>
   allActiveLocations(s).some((l) => l.code === code && !l.blanked);
-const isMorgul = (code: string) =>
-  (card(code).traits ?? "").split(".").some((t) => t.trim() === "Morgul");
-const who = (s: GameState, p: number) => (s.table ? seatName(s, p) : "you");
-function nextPlayer(s: GameState, p: number) {
-  const order = playerOrder(s);
-  if (order.length < 2) return undefined;
-  return order[(order.indexOf(p) + 1) % order.length];
-}
-/** Return an engaged enemy to the staging area; its shadow cards are discarded. */
-function returnToStaging(s: GameState, u: Unit) {
-  if (!allEngaged(s).some((x) => x.id === u.id)) return false;
-  forOwner(s, ownerOf(s, u), () => {
-    s.engaged = s.engaged.filter((x) => x.id !== u.id);
-  });
-  s.encounterDiscard.push(...u.shadows);
-  u.shadows = [];
-  delete u.faceupShadows;
-  u.revealedShadowCount = 0;
-  s.staging.push(u);
-  enemyAddedToStaging(s, u);
-  log(s, `${name(u)} returns to the staging area.`, "danger");
-  return true;
-}
-/** Take a card out of the encounter deck, else the discard pile. */
-function search(s: GameState, test: (code: string) => boolean) {
-  const i = s.encounterDeck.findIndex(test);
-  if (i >= 0) return s.encounterDeck.splice(i, 1)[0];
-  for (let j = s.encounterDiscard.length - 1; j >= 0; j--)
-    if (test(s.encounterDiscard[j])) return s.encounterDiscard.splice(j, 1)[0];
-  return undefined;
-}
 const steedOf = (u: Unit) =>
   u.attachments.some((a) => a.code === SP.steed && !a.blanked);
 
@@ -188,9 +166,6 @@ function shadow(s: GameState, code: string) {
     case SP.gale:
       c.spReturn = true;
       return true;
-    case SP.pathless:
-      c.spPathless = true;
-      return true;
     case SP.marish:
     case SP.greenHill:
       c.attackBonus += hideFailed(s, p, "round") ? 2 : 1;
@@ -202,17 +177,10 @@ function shadow(s: GameState, code: string) {
         log(s, "Evil Crow: this attack is considered undefended.", "danger");
       }
       return true;
-    case SP.cry:
-      c.extraAttacks = (c.extraAttacks ?? 0) + 1;
-      return true;
-    case SP.lure:
-      c.attackBonus += oneRingExhausted(s) ? 2 : 1;
-      return true;
   }
-  return false;
+  return huntedShadow(s, code);
 }
 function treachery(s: GameState, code: string, source: string, p: number) {
-  const first = firstPlayer(s);
   switch (code) {
     case SP.crawling:
       if (!hideFailed(s, p, "phase")) return;
@@ -243,37 +211,6 @@ function treachery(s: GameState, code: string, source: string, p: number) {
           effects: [fx("spAttach", { target: h.id, source, player: p })],
         })),
         "Forced: After a player fails a Hide test, discard attached hero.",
-      );
-      return;
-    }
-    case SP.cry: {
-      const found = [...s.encounterDeck, ...s.encounterDiscard].some((c) =>
-        isNazgul(c),
-      );
-      if (!found) {
-        shuffle(s, s.encounterDeck);
-        log(
-          s,
-          "Piercing Cry: no Nazgûl enemy is in the encounter deck or discard pile.",
-        );
-        return;
-      }
-      choose(
-        s,
-        "Piercing Cry · Where does the Nazgûl enemy go?",
-        [
-          {
-            id: "staging",
-            label: "Add it to the staging area",
-            effects: [fx("spCry", { flag: false, player: p })],
-          },
-          {
-            id: "engaged",
-            label: `Put it into play engaged with ${who(s, first)}`,
-            effects: [fx("spCry", { flag: true, player: p })],
-          },
-        ],
-        "Search the encounter deck and discard pile for a Nazgûl enemy, then shuffle the encounter deck.",
       );
       return;
     }
@@ -310,27 +247,8 @@ function treachery(s: GameState, code: string, source: string, p: number) {
       }
       return;
     }
-    case SP.lure: {
-      const ring = oneRing(s);
-      if (!ring || ring.exhausted) {
-        prepend(s, fx("spLureThreat", { player: first }));
-        return;
-      }
-      choose(s, "Lure of the Ring · The first player chooses", [
-        {
-          id: "exhaust",
-          label: "Exhaust The One Ring",
-          code: ring.code,
-          effects: [fx("spLureExhaust", { player: first })],
-        },
-        {
-          id: "threat",
-          label: "Raise your threat by 3",
-          effects: [fx("spLureThreat", { player: first })],
-        },
-      ]);
-      return;
-    }
+    default:
+      huntedTreachery(s, code, p);
   }
 }
 /** After a failed Hide test: Black Riders attack, then The Marish, then Baggins. */
@@ -401,7 +319,7 @@ export function shadowPastEffect(s: GameState, e: Effect): boolean {
       return true;
     }
     case "spRevealRider": {
-      const code = search(s, (c) => c === SP.rider);
+      const code = searchEncounter(s, (c) => c === SP.rider);
       if (!code) {
         shuffle(s, s.encounterDeck);
         log(s, "No Black Rider is in the encounter deck or discard pile.");
@@ -479,48 +397,6 @@ export function shadowPastEffect(s: GameState, e: Effect): boolean {
       );
       return true;
     }
-    case "spReturn":
-      if (u) returnToStaging(s, u);
-      return true;
-    case "spCry": {
-      const code = search(s, (c) => isNazgul(c));
-      shuffle(s, s.encounterDeck);
-      if (!code) return true;
-      const rider = make(s, code);
-      s.staging.push(rider);
-      if (e.flag) {
-        forOwner(s, first, () => engage(s, rider));
-        log(
-          s,
-          `Piercing Cry: ${card(code).name} enters play engaged with ${who(s, first)}.`,
-          "danger",
-        );
-      } else {
-        enemyAddedToStaging(s, rider);
-        log(
-          s,
-          `Piercing Cry: ${card(code).name} is added to the staging area.`,
-          "danger",
-        );
-      }
-      return true;
-    }
-    case "spLureExhaust": {
-      const ring = oneRing(s);
-      if (ring && !ring.exhausted) {
-        ring.exhausted = true;
-        log(s, "Lure of the Ring: The One Ring is exhausted.", "danger");
-      } else prepend(s, fx("spLureThreat", { player: first }));
-      return true;
-    }
-    case "spLureThreat":
-      raiseThreat(s, 3, "encounter");
-      log(
-        s,
-        "Lure of the Ring: the first player raises their threat by 3.",
-        "danger",
-      );
-      return true;
     case "spNazgulEngage": {
       const riders = s.staging.filter(
         (x) => isNazgul(x) && card(x.code).type_code === "enemy",
@@ -705,13 +581,7 @@ export const SHADOW_PAST_HOOKS: Batch4ScenarioHooks = {
   cannotAttach: (s, u, code) =>
     !!s.shadowPast && u.code === SP.rider && !u.blanked && !isMorgul(code),
   immune: (s, u) => !!s.shadowPast && u.code === SP.ferry,
-  locationQuestBonus: (s, u) =>
-    s.shadowPast &&
-    u.code === SP.pathless &&
-    !u.blanked &&
-    s.staging.some((x) => x.id === u.id)
-      ? 4
-      : 0,
+  locationQuestBonus: pathlessQuestBonus,
   travelProblem: (s, u) => {
     if (!s.shadowPast || u.code !== SP.ferry) return null;
     return spLocations(s).some((l) => l.id !== u.id)
@@ -759,39 +629,8 @@ export const SHADOW_PAST_HOOKS: Batch4ScenarioHooks = {
           .map((u) =>
             fx("spSteedReturn", { target: u.id, player: ownerOf(s, u) }),
           ),
-  attackFinished: (s, combat, skipped = false) => {
-    if (!s.shadowPast || skipped) return [];
-    const enemy = get(s, combat.enemyId);
-    if (!enemy) return [];
-    const p = combat.attackPlayer ?? firstPlayer(s);
-    const effects: Effect[] = [];
-    if (combat.spReturn)
-      effects.push(fx("spReturn", { target: enemy.id, player: p }));
-    const next = nextPlayer(s, p);
-    if (combat.spPathless && next !== undefined)
-      effects.push(fx("spPathlessEngage", { target: enemy.id, player: next }));
-    return effects;
-  },
-  effect: (s, e) => {
-    if (e.kind === "spPathlessEngage") {
-      const u = get(s, e.target);
-      if (!u || !s.shadowPast) return true;
-      if (
-        s.staging.some((x) => x.id === u.id) ||
-        allEngaged(s).some((x) => x.id === u.id)
-      ) {
-        forOwner(s, e.player ?? activeSeat(s), () => engage(s, u));
-        log(
-          s,
-          `Pathless Country: ${name(u)} engages ${who(s, e.player ?? activeSeat(s))} and attacks.`,
-          "danger",
-        );
-        prepend(s, fx("immediateAttack", { target: u.id, player: e.player }));
-      }
-      return true;
-    }
-    return shadowPastEffect(s, e);
-  },
+  attackFinished: huntedAttackFinished,
+  effect: (s, e) => huntedEffect(s, e) || shadowPastEffect(s, e),
   sharedEffect: (e) =>
     [
       "spDefeatQuest",

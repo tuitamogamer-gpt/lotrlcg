@@ -692,6 +692,7 @@ export function stats(s: GameState, u: Unit) {
           u.attachments.filter((a) => !a.blanked && a.code === "01055").length,
           -u.attachments.filter((a) => !a.blanked && a.code === "01071").length,
           u.tempWill ?? 0,
+          u.roundWill ?? 0,
           -Nin.ninStatPenalty(s, u),
           u.code === "01007" ? u.boost : 0,
           -(u.committed ? s.questDebuff : 0),
@@ -1235,6 +1236,7 @@ export const enemyAttackPrevented = (
   Depths.depthsCannotAttack(s, u) ||
   !!u.feinted ||
   !!u.preventedAttacks?.includes(player) ||
+  !!batch4Scenario(s).enemyCannotAttack?.(s, u, player) ||
   ShadowEastSupport.shadowEastPlayerPreventAttack(s, u, player) ||
   EredFinalSupport.eredFinalPlayerPreventAttack(s, u, player) ||
   has(u, "01069") ||

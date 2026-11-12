@@ -178,7 +178,9 @@
     "test:lake-town-simulation": "node --import tsx --test tests/lake-town-simulation.test.ts",
     "test:browser-lake-town": "node --import tsx scripts/browser-lake-town.mjs",
     "test:shadow-past-simulation": "node --import tsx --test tests/shadow-past-simulation.test.ts",
-    "test:browser-shadow-past": "node --import tsx scripts/browser-shadow-past.mjs"
+    "test:browser-shadow-past": "node --import tsx scripts/browser-shadow-past.mjs",
+    "test:knife-dark-simulation": "node --import tsx --test tests/knife-dark-simulation.test.ts",
+    "test:browser-knife-dark": "node --import tsx scripts/browser-knife-dark.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

@@ -60,6 +60,8 @@ export interface Batch4ScenarioHooks {
   cannotOptionallyEngage?(s: GameState, u: Unit): boolean;
   cannotDefend?(s: GameState, enemy: Unit, defender?: Unit): boolean;
   cannotAttack?(s: GameState, character: Unit, enemy: Unit): boolean;
+  /** This enemy cannot attack the given player right now. */
+  enemyCannotAttack?(s: GameState, enemy: Unit, player: number): boolean;
   consideredEngaged?(s: GameState, u: Unit, player: number): boolean;
   extraOptionalEngagements?(s: GameState, player: number): number;
   cannotCancel?(s: GameState, shadow?: boolean, code?: string): boolean;

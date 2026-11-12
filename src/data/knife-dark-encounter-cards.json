@@ -1,0 +1,571 @@
+[
+  {
+    "code": "octgn:0e1451ba-5fa6-4a13-869b-d23d9ecef15e",
+    "octgnid": "0e1451ba-5fa6-4a13-869b-d23d9ecef15e",
+    "name": "Shady Bree-lander",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Bree. Spy.",
+    "text": "While The One Ring is exhausted, Shady Bree-lander gains: \"Cannot be optionally engaged.\"",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 52,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 4,
+    "engagement": 28,
+    "shadow": "Shadow: Defending character gets -1 [defense] (-2 [defense] instead if The One Ring is exhausted).",
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "4",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/0e1451ba-5fa6-4a13-869b-d23d9ecef15e.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 52,
+        "quantity": 4,
+        "octgnid": "0e1451ba-5fa6-4a13-869b-d23d9ecef15e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0e1451ba-5fa6-4a13-869b-d23d9ecef15e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+    "octgnid": "2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+    "name": "Ringwraith",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Cannot have non-Morgul attachments.\nForced: When Ringwraith attacks, deal it an additional shadow card if The One Ring is exhausted.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 69,
+    "quantity": 4,
+    "threat": 3,
+    "attack": 5,
+    "defense": 4,
+    "health": 5,
+    "engagement": 35,
+    "shadow": "Shadow: Shuffle this card into the encounter deck.",
+    "encounter_set": "The Nazgûl",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "5",
+      "defense": "4",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 69,
+        "quantity": 4,
+        "octgnid": "2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/2d819f76-77dd-47a2-9a3f-ac8b8018f0df.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:33a575b4-e373-46db-b11e-90f8fc41ef6e",
+    "octgnid": "33a575b4-e373-46db-b11e-90f8fc41ef6e",
+    "name": "Rider of Mordor",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Cannot have non-Morgul attachments.\nWhile Rider of Mordor is engaged with a player, characters that player controls get -1 [willpower].\nWhile The One Ring is exhausted, Rider of Mordor gets -10 engagement cost.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 50,
+    "quantity": 2,
+    "threat": 4,
+    "attack": 4,
+    "defense": 3,
+    "health": 5,
+    "engagement": 35,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "4",
+      "defense": "3",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/33a575b4-e373-46db-b11e-90f8fc41ef6e.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 50,
+        "quantity": 2,
+        "octgnid": "33a575b4-e373-46db-b11e-90f8fc41ef6e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/33a575b4-e373-46db-b11e-90f8fc41ef6e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+    "octgnid": "4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+    "name": "Power in their Terror",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each ally gets -1 [willpower] until the end of the round. Deal 2 damage to each ally with 0 [willpower].",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 71,
+    "quantity": 3,
+    "shadow": "Shadow: Discard a non-objective attachment you control.",
+    "encounter_set": "The Nazgûl",
+    "printed_stats": {},
+    "imagesrc": "/cards/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 71,
+        "quantity": 3,
+        "octgnid": "4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4765cbea-5ae8-4e39-a811-a67f1f6ca2a0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+    "octgnid": "4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+    "name": "Pale Blade",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Morgul.",
+    "text": "Surge.\nWhen Revealed: Attach to a Nazgûl enemy in play, if able. (Counts as a Weapon attachment with the text: \"Limit 1 per enemy. Attached enemy gets +1 [attack] and cannot take non-combat damage.\")",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 70,
+    "quantity": 3,
+    "encounter_set": "The Nazgûl",
+    "printed_stats": {},
+    "imagesrc": "/cards/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 70,
+        "quantity": 3,
+        "octgnid": "4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4b36df3f-d75b-4b3a-9324-9ab31c10d7b9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6a3e1c91-accd-476b-9ecc-ace35274a052",
+    "octgnid": "6a3e1c91-accd-476b-9ecc-ace35274a052",
+    "name": "Bill Ferny",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Bree. Spy.",
+    "text": "Players cannot optionally engage Bill Ferny.\nForced: At the beginning of the staging step, either shuffle 1 out of play Ringwraith into the encounter deck or each player raises his threat by 1 for each non-[fellowship] hero he committed to the quest.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 51,
+    "quantity": 1,
+    "threat": 3,
+    "attack": 1,
+    "defense": 3,
+    "health": 5,
+    "engagement": 38,
+    "victory": 1,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "1",
+      "defense": "3",
+      "health": "5",
+      "engagement": "38",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/6a3e1c91-accd-476b-9ecc-ace35274a052.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 51,
+        "quantity": 1,
+        "octgnid": "6a3e1c91-accd-476b-9ecc-ace35274a052",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6a3e1c91-accd-476b-9ecc-ace35274a052.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
+    "octgnid": "795579db-249d-4c9d-850f-6f39bc96c063",
+    "name": "Squint-eyed Southerner",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Spy.",
+    "text": "When Revealed: You must either shuffle an out of play Ringwraith into the encounter deck or reveal an additional encounter card.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 53,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 2,
+    "defense": 2,
+    "health": 3,
+    "engagement": 33,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "2",
+      "health": "3",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/795579db-249d-4c9d-850f-6f39bc96c063.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 53,
+        "quantity": 3,
+        "octgnid": "795579db-249d-4c9d-850f-6f39bc96c063",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/795579db-249d-4c9d-850f-6f39bc96c063.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
+    "octgnid": "90d620e5-d7be-42e6-9756-b92761ecd8c9",
+    "name": "Midgewater",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Marshland.",
+    "text": "While Midgewater is the active location, enemies cannot attack, take damage, or be engaged.\nForced: After Midgewater becomes the active location, return each engaged enemy in play to the staging area.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 48,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 6,
+    "victory": 1,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/90d620e5-d7be-42e6-9756-b92761ecd8c9.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 48,
+        "quantity": 1,
+        "octgnid": "90d620e5-d7be-42e6-9756-b92761ecd8c9",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/90d620e5-d7be-42e6-9756-b92761ecd8c9.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:984d2a01-f12a-4e8b-800c-6a04b1904049",
+    "octgnid": "984d2a01-f12a-4e8b-800c-6a04b1904049",
+    "name": "The Prancing Pony",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Bree.",
+    "text": "Response: After the players travel here, the first player puts 1 ally into play from his hand.\nForced: After The Prancing Pony leaves play, discard cards from the top of the encounter deck until X enemies have been discarded. X is the number of players in the game. Put each enemy discarded by this effect into play engaged with the first player.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 45,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 4,
+    "victory": 1,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/984d2a01-f12a-4e8b-800c-6a04b1904049.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 45,
+        "quantity": 1,
+        "octgnid": "984d2a01-f12a-4e8b-800c-6a04b1904049",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/984d2a01-f12a-4e8b-800c-6a04b1904049.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ad09f848-9430-41c8-8723-671f08b79078",
+    "octgnid": "ad09f848-9430-41c8-8723-671f08b79078",
+    "name": "Weathertop",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills. Ruins.",
+    "text": "Immune to player card effects.\nWhile Weathertop is in the victory display, each enemy in play gets -1 [threat].\nTravel: The first player must exhaust The One Ring to travel here.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 46,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 4,
+    "victory": 4,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "4",
+      "victory": "4"
+    },
+    "imagesrc": "/cards/ad09f848-9430-41c8-8723-671f08b79078.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 46,
+        "quantity": 1,
+        "octgnid": "ad09f848-9430-41c8-8723-671f08b79078",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ad09f848-9430-41c8-8723-671f08b79078.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+    "octgnid": "c5657436-d6c8-400d-ba1f-a723799ac685",
+    "name": "The Witch-king",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Nazgûl.",
+    "text": "Immune to player card effects.\nThe Witch-king gets -30 engagement cost while The One Ring is exhausted.\nCharacters with 1 [willpower] or less cannot defend attacks made by The Witch-king.",
+    "is_unique": true,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 68,
+    "quantity": 1,
+    "threat": 5,
+    "attack": 6,
+    "defense": 5,
+    "health": 9,
+    "engagement": 45,
+    "encounter_set": "The Nazgûl",
+    "printed_stats": {
+      "threat": "5",
+      "attack": "6",
+      "defense": "5",
+      "health": "9",
+      "engagement": "45"
+    },
+    "imagesrc": "/cards/c5657436-d6c8-400d-ba1f-a723799ac685.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 68,
+        "quantity": 1,
+        "octgnid": "c5657436-d6c8-400d-ba1f-a723799ac685",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c5657436-d6c8-400d-ba1f-a723799ac685.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "octgnid": "d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "name": "Unwanted Attention",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: You must either remove 2 heroes you control from the quest or shuffle an out of play Ringwraith into the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 54,
+    "quantity": 3,
+    "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {},
+    "imagesrc": "/cards/d47ece86-2645-4d35-8ab7-c439d12abe65.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 54,
+        "quantity": 3,
+        "octgnid": "d47ece86-2645-4d35-8ab7-c439d12abe65",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d47ece86-2645-4d35-8ab7-c439d12abe65.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ddb20145-e570-4099-8d8a-11d64895939b",
+    "octgnid": "ddb20145-e570-4099-8d8a-11d64895939b",
+    "name": "Weather Hills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest. Hills.",
+    "text": "Response: After the players travel here, place 1 non-unique enemy in play facedown under this location. While an enemy is under this location, it is out of play.\nForced: After this location leaves play, return each enemy under it to the staging area face-up.",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 49,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 2,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/ddb20145-e570-4099-8d8a-11d64895939b.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 49,
+        "quantity": 3,
+        "octgnid": "ddb20145-e570-4099-8d8a-11d64895939b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ddb20145-e570-4099-8d8a-11d64895939b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:df23bd50-5ca3-4a0e-a83c-a349632b0ff4",
+    "octgnid": "df23bd50-5ca3-4a0e-a83c-a349632b0ff4",
+    "name": "Chetwood",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Forest.",
+    "text": "While Chetwood is in the staging area, Spy enemies get +1 [threat] and +1 [attack].",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 47,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 2,
+    "shadow": "Shadow: Defending player discards 1 random card from his hand.",
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2"
+    },
+    "imagesrc": "/cards/df23bd50-5ca3-4a0e-a83c-a349632b0ff4.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 47,
+        "quantity": 3,
+        "octgnid": "df23bd50-5ca3-4a0e-a83c-a349632b0ff4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/df23bd50-5ca3-4a0e-a83c-a349632b0ff4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
+    "octgnid": "e6721e44-5706-4a0f-a895-ced75f9c6219",
+    "name": "Black Breath",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Morgul.",
+    "text": "Peril.\nWhen Revealed: Attach to a hero you control. (Counts as a Condition attachment with the text: \"Limit 1 per hero. Reduce attached hero's [willpower], [attack], and [defense] to 0.\")",
+    "is_unique": false,
+    "pack_code": "TBR",
+    "pack_name": "The Black Riders",
+    "position": 55,
+    "quantity": 2,
+    "encounter_set": "A Knife in the Dark",
+    "printed_stats": {},
+    "imagesrc": "/cards/e6721e44-5706-4a0f-a895-ced75f9c6219.jpg",
+    "packs": [
+      {
+        "pack_code": "TBR",
+        "pack_name": "The Black Riders",
+        "position": 55,
+        "quantity": 2,
+        "octgnid": "e6721e44-5706-4a0f-a895-ced75f9c6219",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e6721e44-5706-4a0f-a895-ced75f9c6219.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

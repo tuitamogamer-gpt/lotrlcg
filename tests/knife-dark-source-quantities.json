@@ -1,0 +1,140 @@
+[
+  {
+    "name": "Frodo Baggins",
+    "code": "141001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Shady Bree-Lander",
+    "code": "octgn:0e1451ba-5fa6-4a13-869b-d23d9ecef15e",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "The Ringwraiths Attack",
+    "code": "octgn:257f9b44-2744-4f02-bbf6-115d12b52e8d",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Into the Wild",
+    "code": "octgn:28a4721b-3696-4fae-9eea-01b5a250c892",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Ringwraith",
+    "code": "octgn:2d819f76-77dd-47a2-9a3f-ac8b8018f0df",
+    "normal": 4,
+    "easy": 2
+  },
+  {
+    "name": "Pathless Country",
+    "code": "octgn:32416ec8-b50d-4cd2-a62f-10f97c87be73",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Rider of Mordor",
+    "code": "octgn:33a575b4-e373-46db-b11e-90f8fc41ef6e",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "name": "Power In Their Terror",
+    "code": "octgn:4765cbea-5ae8-4e39-a811-a67f1f6ca2a0",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Lure of the Ring",
+    "code": "octgn:48384e79-d397-4dcd-9862-8a72acb448d0",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Pale Blade",
+    "code": "octgn:4b36df3f-d75b-4b3a-9324-9ab31c10d7b9",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Bill Ferny",
+    "code": "octgn:6a3e1c91-accd-476b-9ecc-ace35274a052",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Squint-Eyed Southerner",
+    "code": "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Piercing Cry",
+    "code": "octgn:7e470346-1828-49c0-b241-58d0dbf27b4b",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "name": "Midgewater",
+    "code": "octgn:90d620e5-d7be-42e6-9756-b92761ecd8c9",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Prancing Pony",
+    "code": "octgn:984d2a01-f12a-4e8b-800c-6a04b1904049",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Weathertop",
+    "code": "octgn:ad09f848-9430-41c8-8723-671f08b79078",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Witch-king",
+    "code": "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Trouble in Bree",
+    "code": "octgn:d0b6992d-9dc4-41fa-a483-b4ad0a3d60b3",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Unwanted Attention",
+    "code": "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Weather Hills",
+    "code": "octgn:ddb20145-e570-4099-8d8a-11d64895939b",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Chetwood",
+    "code": "octgn:df23bd50-5ca3-4a0e-a83c-a349632b0ff4",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Black Breath",
+    "code": "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
+    "normal": 2,
+    "easy": 0
+  }
+]

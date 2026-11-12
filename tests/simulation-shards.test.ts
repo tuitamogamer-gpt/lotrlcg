@@ -29,7 +29,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
   assert.equal(baseline.selectedCases.length, baseline.registeredCases);
   assert.equal(new Set(baseline.selectedCases).size, baseline.registeredCases);
   assert.equal(priorSimulationCases.cases.length, 259);
-  assert.equal(baseline.registeredCases, 459);
+  assert.equal(baseline.registeredCases, 464);
   assert.deepEqual(
     baseline.selectedCases
       .filter(
@@ -69,6 +69,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
             "The Battle of Five Armies",
             "The Battle of Lake-town",
             "A Shadow of the Past",
+            "A Knife in the Dark",
             "The Black Serpent",
             "The Dungeons of Cirith Gurat",
             "The Crossings of Poros",
@@ -174,6 +175,7 @@ test("four CI simulation shards cover every registered complete-game case exactl
     "The Battle of Five Armies",
     "The Battle of Lake-town",
     "A Shadow of the Past",
+    "A Knife in the Dark",
   ])
     assert.deepEqual(
       baseline.selectedCases

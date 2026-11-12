@@ -136,6 +136,10 @@ Engine additions:
   Frodo's response and staging in player order.
 - A shared fix: an enemy destroyed during an immediate attack now discards
   the shadow cards held from its earlier attack, which were lost before.
+- Pathless Country, Piercing Cry and Lure of the Ring are shared with
+  [A Knife in the Dark](KNIFE-DARK.md) through
+  `src/game/black-riders-hunted.ts`; their effect names are unchanged, so
+  older saves still load.
 
 ## Verification
 

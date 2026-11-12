@@ -132,6 +132,8 @@ export interface Unit {
   /** Dunland Tribesman bonuses expire at round end. */
   roundThreat?: number;
   roundAttack?: number;
+  /** Willpower modifiers that last until the end of the round. */
+  roundWill?: number;
   /** Resolved shadow protections expire when the attached shadows are discarded. */
   shadowCancelsDamage?: boolean;
   /** Frenzied Attack lasts through refresh, until the round ends. */
@@ -265,6 +267,7 @@ export type ScenarioId =
   | "the-battle-of-five-armies"
   | "the-battle-of-lake-town"
   | "a-shadow-of-the-past"
+  | "a-knife-in-the-dark"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -434,6 +437,7 @@ export interface GameState {
   battleFiveArmies?: import("./battle-five-armies-types").BattleFiveArmiesState;
   lakeTown?: import("./lake-town-types").LakeTownState;
   shadowPast?: import("./shadow-past-types").ShadowPastState;
+  knifeDark?: import("./knife-dark-types").KnifeDarkState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
