@@ -1,0 +1,1611 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Battle of Five Armies",
+  "slug": "the-battle-of-five-armies",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "132001",
+      "name": "Bilbo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "baggins",
+      "sphere_name": "Baggins",
+      "threat": 0,
+      "willpower": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 3,
+      "traits": "Hobbit. Burglar.",
+      "text": "Bilbo Baggins does not count against the hero limit and cannot gain resources from non-treasure cards. The first player gains control of Bilbo Baggins.\r\n<b>Action:</b> Spend 1 [baggins] resource to search your deck for a treasure card and add it to your hand.\r\n<b>If Bilbo Baggins leaves play, the players have lost the game.</b>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "On the Doorstep",
+      "pack_code": "OtD",
+      "position": 1,
+      "illustrator": "Magali Villeneuve",
+      "imagesrc": "/cards/132001.png",
+      "url": "https://ringsdb.com/card/132001",
+      "quantity": 1,
+      "octgnid": "4e61b160-2104-497f-9977-4b353e54fbb7",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "132001",
+          "illustrator": "Magali Villeneuve",
+          "octgnid": "4e61b160-2104-497f-9977-4b353e54fbb7",
+          "imagesrc": "/bundles/cards/132001.png",
+          "date_release": "2013-02-22"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/132001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+      "octgnid": "058a5508-6b20-4305-94ea-53d5d2f33595",
+      "name": "Gundabad Wolf Rider",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Forced: When this enemy attacks, remove 1 progress from the current quest.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 55,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 3,
+      "defense": 0,
+      "health": 3,
+      "engagement": 15,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest stage in play with no progress on it.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "3",
+        "defense": "0",
+        "health": "3",
+        "engagement": "15"
+      },
+      "imagesrc": "/cards/058a5508-6b20-4305-94ea-53d5d2f33595.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 55,
+          "quantity": 3,
+          "octgnid": "058a5508-6b20-4305-94ea-53d5d2f33595",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/058a5508-6b20-4305-94ea-53d5d2f33595.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "octgnid": "10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "name": "Weighed Down",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Until the end of the round, exhausted characters get -1 [willpower], -1 [attack], and -1 [defense].",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 38,
+      "quantity": 2,
+      "shadow": "Shadow: If the defending character is destroyed by this attack, its controller must raise his threat by 5.",
+      "encounter_set": "Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 38,
+          "quantity": 2,
+          "octgnid": "10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+      "octgnid": "19e2470a-94c6-4f14-b824-7d2f952b60fd",
+      "name": "Heedless of Order",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Choose a different quest to be the current quest until the end of the round, if able. If the current quest did not change as a result of this effect, this card gains Doomed 3.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 66,
+      "quantity": 2,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {},
+      "imagesrc": "/cards/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 66,
+          "quantity": 2,
+          "octgnid": "19e2470a-94c6-4f14-b824-7d2f952b60fd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+      "octgnid": "19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+      "name": "The Front Gate",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Mountain.",
+      "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 2B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 2B is the current quest.)",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 63,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "victory": 3,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 63,
+          "quantity": 1,
+          "octgnid": "19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+      "octgnid": "29005ca1-107a-4473-8769-ce7d944e9844",
+      "name": "Northern Slopes",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "While Northern Slopes is in the staging area, each Goblin enemy gets +1 [attack] and +1 [defense].  While Northern Slopes is the active location, it gains: \"Forced: When a character leaves play, remove 1 progress from the current quest, if able.\"",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 60,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/29005ca1-107a-4473-8769-ce7d944e9844.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 60,
+          "quantity": 3,
+          "octgnid": "29005ca1-107a-4473-8769-ce7d944e9844",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29005ca1-107a-4473-8769-ce7d944e9844.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "octgnid": "323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "name": "Dark Bats",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: After Dark Bats damages a character, attach it to that character. (While attached, counts as a Condition attachment with the text: \"Attached character gets -1 [willpower], -1 [attack], and -1 [defense].\")",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 36,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 0,
+      "health": 1,
+      "engagement": 15,
+      "shadow": "Shadow: Attach this card to the defending character.",
+      "encounter_set": "Wilderland",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "0",
+        "health": "1",
+        "engagement": "15"
+      },
+      "imagesrc": "/cards/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 36,
+          "quantity": 3,
+          "octgnid": "323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "octgnid": "3f78ed57-49cc-4886-b84f-3fe886203794",
+      "name": "Hidden Path",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. Mountain.",
+      "text": "While Hidden Path is the active location, locations in the staging area get -1 [threat].  Travel: Spend 2 [baggins] resources to travel here.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 35,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 1,
+      "encounter_set": "Wilderland",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 35,
+          "quantity": 3,
+          "octgnid": "3f78ed57-49cc-4886-b84f-3fe886203794",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f78ed57-49cc-4886-b84f-3fe886203794.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+      "octgnid": "54ed3453-1df4-458d-bc7d-e1f7c10de237",
+      "name": "The Defense of Ravenhill",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 78,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Battle of Five Armies",
+      "side": "A",
+      "back_name": "The Defense of Ravenhill",
+      "back_text": "Players cannot advance from this stage unless stage 2 and stage 3 are complete.  Forced: If there is no progress on this stage at the end of the round, each player must discard all resources from each hero's resource pool.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 78,
+          "quantity": 1,
+          "octgnid": "54ed3453-1df4-458d-bc7d-e1f7c10de237",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+      "octgnid": "56e98bd5-c952-436e-b552-832031d4bb20",
+      "name": "Vanguard of Bolg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "This enemy gets +1 [threat], +1 [attack], and +1 [defense] for each quest stage in play with no progress on it.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 57,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 1,
+      "defense": 1,
+      "health": 4,
+      "engagement": 20,
+      "shadow": "Shadow: If this attack destroys a character, remove all progress from the current quest.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "1",
+        "health": "4",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/56e98bd5-c952-436e-b552-832031d4bb20.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 57,
+          "quantity": 4,
+          "octgnid": "56e98bd5-c952-436e-b552-832031d4bb20",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56e98bd5-c952-436e-b552-832031d4bb20.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+      "octgnid": "624d5999-1a76-4783-b4e4-d9b596242d18",
+      "name": "Bolg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Immune to player card effects.\nX is the number of players in the game.  Cannot leave the staging area.  The first Goblin revealed each round gains surge.",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 53,
+      "quantity": 1,
+      "attack": 6,
+      "defense": 3,
+      "health": 8,
+      "engagement": 50,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "X",
+        "attack": "6",
+        "defense": "3",
+        "health": "8",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/624d5999-1a76-4783-b4e4-d9b596242d18.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 53,
+          "quantity": 1,
+          "octgnid": "624d5999-1a76-4783-b4e4-d9b596242d18",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/624d5999-1a76-4783-b4e4-d9b596242d18.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+      "octgnid": "66812347-fac2-4a76-aa69-ac0861071c0d",
+      "name": "Bodyguard of Bolg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "Bolg cannot take damage.\nForced: When this enemy attacks, deal it an additional shadow card for each quest stage in play with no progress tokens on it.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 54,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 5,
+      "engagement": 35,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "5",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/66812347-fac2-4a76-aa69-ac0861071c0d.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 54,
+          "quantity": 4,
+          "octgnid": "66812347-fac2-4a76-aa69-ac0861071c0d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66812347-fac2-4a76-aa69-ac0861071c0d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+      "octgnid": "6e193811-584d-4888-a1b8-5296522b5cd1",
+      "name": "Misty Mountain Eagle",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Creature. Eagle.",
+      "text": "Action: The first player may spend 2 [baggins] resources to (choose one): take control of Misty Mountain Eagle, or discard this ally to discard a non-unique enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 52,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 2,
+      "shadow": "Shadow: Deal 3 damage to attacking enemy.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "2"
+      },
+      "imagesrc": "/cards/6e193811-584d-4888-a1b8-5296522b5cd1.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 52,
+          "quantity": 1,
+          "octgnid": "6e193811-584d-4888-a1b8-5296522b5cd1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e193811-584d-4888-a1b8-5296522b5cd1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+      "octgnid": "771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+      "name": "Gundabad Climber",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "When Revealed: Remove 1 progress from every quest stage in play. (2 progress instead if 3 or more players in the game.)",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 56,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 2,
+      "defense": 2,
+      "health": 2,
+      "engagement": 33,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "2",
+        "health": "2",
+        "engagement": "33"
+      },
+      "imagesrc": "/cards/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 56,
+          "quantity": 4,
+          "octgnid": "771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+      "octgnid": "81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+      "name": "Battle in the Dale",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 77,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Battle of Five Armies",
+      "side": "A",
+      "back_name": "Battle in the Dale",
+      "back_text": "Players cannot advance from this stage unless stage 2 and stage 4 are complete.  Forced: If there is no progress on this stage at the end of the round, the first player adds the topmost enemy in the discard pile to the staging area, if able.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 77,
+          "quantity": 1,
+          "octgnid": "81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+      "octgnid": "82514713-7cc4-4b76-a5f2-42a69ccff76b",
+      "name": "The Clouds Burst",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 79,
+      "quantity": 1,
+      "cost": 5,
+      "encounter_set": "The Battle of Five Armies",
+      "side": "A",
+      "back_name": "The Clouds Burst",
+      "back_text": "When Revealed: Each player must search the encounter deck and discard pile for a copy of Bodyguard of Bolg and add it to the staging area, if able. Shuffle the encounter deck.  Progress cannot be placed on this stage. While Bolg is in the staging area, it is considered to be engaged with the first player.  If Bolg is destroyed, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.B.jpg",
+      "printed_stats": {
+        "cost": "5"
+      },
+      "imagesrc": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 79,
+          "quantity": 1,
+          "octgnid": "82514713-7cc4-4b76-a5f2-42a69ccff76b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+      "octgnid": "87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+      "name": "Hatred Rekindled",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each enemy engaged with a player makes an immediate attack. Do not deal shadow cards for attacks made by this effect. If no attacks were made by this effect, this card gains surge.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 64,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack immediately after this one.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {},
+      "imagesrc": "/cards/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 64,
+          "quantity": 2,
+          "octgnid": "87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+      "octgnid": "aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+      "name": "The Eastern Spur",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 76,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Battle of Five Armies",
+      "side": "A",
+      "back_name": "The Eastern Spur",
+      "back_text": "Players cannot advance from this stage unless stage 3 and stage 4 are complete.  Forced: If there is no progress on this stage at the end of the round, each player must discard 1 random card from his hand.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 76,
+          "quantity": 1,
+          "octgnid": "aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+      "octgnid": "ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+      "name": "Goblins are Upon You!",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player must search the encounter deck and discard pile for a Goblin enemy and put it into play, engaged with him. Then, shuffle the encounter deck. (This effect cannot be canceled.)",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 65,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] for each Goblin enemy engaged with you.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {},
+      "imagesrc": "/cards/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 65,
+          "quantity": 2,
+          "octgnid": "ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+      "octgnid": "dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+      "name": "The Gathering of the Clouds",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Search the encounter deck for Bolg and add it to the staging area. Then, shuffle the encounter deck and reveal 1 encounter card per player.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 75,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Battle of Five Armies",
+      "side": "A",
+      "back_name": "The Gathering of the Clouds",
+      "back_text": "When Revealed: Put stage 2, stage 3, and stage 4 into play at the same time. Then, remove this stage from play.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 75,
+          "quantity": 1,
+          "octgnid": "dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+      "octgnid": "ee451e81-d7ee-40a6-9079-7f6538a26a26",
+      "name": "Ruins of Dale",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Valley.",
+      "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 3B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 3B is the current quest.)",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 61,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "victory": 3,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 61,
+          "quantity": 1,
+          "octgnid": "ee451e81-d7ee-40a6-9079-7f6538a26a26",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+      "octgnid": "f29b2736-9499-4e1d-9e53-96be59f78741",
+      "name": "Ravenous Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Forced: When Ravenous Warg attacks, the defending player must declare the character he controls with the most damage as the defender. (Even if exhausted.)",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 59,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 3,
+      "defense": 1,
+      "health": 3,
+      "engagement": 30,
+      "shadow": "Shadow: Defending character gets -1 [defense] for each quest stage in play with no progress on it.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "1",
+        "health": "3",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/f29b2736-9499-4e1d-9e53-96be59f78741.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 59,
+          "quantity": 3,
+          "octgnid": "f29b2736-9499-4e1d-9e53-96be59f78741",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f29b2736-9499-4e1d-9e53-96be59f78741.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+      "octgnid": "f388bf8b-461c-4478-8155-74775bf27714",
+      "name": "Ravenhill",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Ruins. Mountain.",
+      "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 4B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 4B is the current quest.)",
+      "is_unique": true,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 62,
+      "quantity": 1,
+      "threat": 2,
+      "quest": 2,
+      "victory": 3,
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "2",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/f388bf8b-461c-4478-8155-74775bf27714.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 62,
+          "quantity": 1,
+          "octgnid": "f388bf8b-461c-4478-8155-74775bf27714",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f388bf8b-461c-4478-8155-74775bf27714.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+      "octgnid": "fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+      "name": "Gundabad Archer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Goblin. Orc.",
+      "text": "When Revealed: Each player must deal 2 damage to a character he controls.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 58,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 40,
+      "shadow": "Shadow: Deal 1 damage to defending character for each quest stage in play with no progress on it.",
+      "encounter_set": "The Battle of Five Armies",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 58,
+          "quantity": 2,
+          "octgnid": "fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+      "octgnid": "ffe307bf-dd8e-4df3-9355-55564137d311",
+      "name": "Fighting Among Friends",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player names a sphere. Then, all non-Baggins characters who do not belong to the named sphere are removed from the quest.",
+      "is_unique": false,
+      "pack_code": "OtD",
+      "pack_name": "On the Doorstep",
+      "position": 37,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. (+2 [attack] instead if undefended.)",
+      "encounter_set": "Wilderland",
+      "printed_stats": {},
+      "imagesrc": "/cards/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "packs": [
+        {
+          "pack_code": "OtD",
+          "pack_name": "On the Doorstep",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "ffe307bf-dd8e-4df3-9355-55564137d311",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe307bf-dd8e-4df3-9355-55564137d311.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0A.6",
+      "name": "The Battle of Five Armies (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "OtD"
+      ],
+      "card_codes": [
+        "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+        "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+        "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+        "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+        "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+        "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+        "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+        "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+        "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+        "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+        "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+        "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+        "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+        "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+        "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+        "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+        "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+        "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+        "132001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "132001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371": 1,
+          "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3": 1,
+          "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc": 1,
+          "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237": 1,
+          "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+          "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+          "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 1,
+          "octgn:66812347-fac2-4a76-aa69-ac0861071c0d": 4,
+          "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c": 4,
+          "octgn:058a5508-6b20-4305-94ea-53d5d2f33595": 3,
+          "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd": 2,
+          "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168": 1,
+          "octgn:6e193811-584d-4888-a1b8-5296522b5cd1": 1,
+          "octgn:29005ca1-107a-4473-8769-ce7d944e9844": 2,
+          "octgn:f388bf8b-461c-4478-8155-74775bf27714": 1,
+          "octgn:f29b2736-9499-4e1d-9e53-96be59f78741": 1,
+          "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26": 1,
+          "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941": 1,
+          "octgn:56e98bd5-c952-436e-b552-832031d4bb20": 3,
+          "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099": 2
+        },
+        "sharedStagingArea": {
+          "octgn:624d5999-1a76-4783-b4e4-d9b596242d18": 1
+        },
+        "player1Play1": {
+          "132001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0A.6",
+      "name": "The Battle of Five Armies",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "OtD"
+      ],
+      "card_codes": [
+        "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+        "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+        "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+        "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+        "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+        "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+        "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+        "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+        "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+        "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+        "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+        "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+        "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+        "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+        "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+        "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+        "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+        "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+        "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+        "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+        "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+        "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+        "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+        "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+        "132001"
+      ],
+      "cards": [
+        {
+          "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "132001",
+          "quantity": 1,
+          "section": "player1Play1"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371": 1,
+          "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3": 1,
+          "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc": 1,
+          "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237": 1,
+          "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb": 3,
+          "octgn:ffe307bf-dd8e-4df3-9355-55564137d311": 2,
+          "octgn:3f78ed57-49cc-4886-b84f-3fe886203794": 3,
+          "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d": 2,
+          "octgn:66812347-fac2-4a76-aa69-ac0861071c0d": 4,
+          "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8": 2,
+          "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c": 4,
+          "octgn:058a5508-6b20-4305-94ea-53d5d2f33595": 3,
+          "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd": 2,
+          "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168": 2,
+          "octgn:6e193811-584d-4888-a1b8-5296522b5cd1": 1,
+          "octgn:29005ca1-107a-4473-8769-ce7d944e9844": 3,
+          "octgn:f388bf8b-461c-4478-8155-74775bf27714": 1,
+          "octgn:f29b2736-9499-4e1d-9e53-96be59f78741": 3,
+          "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26": 1,
+          "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941": 1,
+          "octgn:56e98bd5-c952-436e-b552-832031d4bb20": 4,
+          "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099": 2
+        },
+        "sharedStagingArea": {
+          "octgn:624d5999-1a76-4783-b4e4-d9b596242d18": 1
+        },
+        "player1Play1": {
+          "132001": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "132001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/132001.png",
+      "localPath": "/cards/132001.png",
+      "bytes": 153053,
+      "sha256": "fed2177e64a1f65249d5a4351c77e257f5577214cef59f335ede3c51428496ff"
+    },
+    {
+      "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/058a5508-6b20-4305-94ea-53d5d2f33595.jpg",
+      "localPath": "/cards/058a5508-6b20-4305-94ea-53d5d2f33595.jpg",
+      "bytes": 154366,
+      "sha256": "05b4bd23a19908ec94366f9c44df2f5703fb92696a476570a9f59d10f13e4aca"
+    },
+    {
+      "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "localPath": "/cards/10c41b09-adf9-4a78-a67a-a9a1e04d7e8d.jpg",
+      "bytes": 142443,
+      "sha256": "9db52443f05ad9601fe422e8550b51b5fbc86c1fcf0d3bd4e8b875658803b36a"
+    },
+    {
+      "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg",
+      "localPath": "/cards/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg",
+      "bytes": 144653,
+      "sha256": "f8c28cd19b15fd122f669a3456f0233323962015501336934b40cea4101bb5b4"
+    },
+    {
+      "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg",
+      "localPath": "/cards/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg",
+      "bytes": 145043,
+      "sha256": "3e38aaffdf4d1c2f5340aa80416f26e6e75104c3a87cc0b4440b62725f07ba87"
+    },
+    {
+      "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29005ca1-107a-4473-8769-ce7d944e9844.jpg",
+      "localPath": "/cards/29005ca1-107a-4473-8769-ce7d944e9844.jpg",
+      "bytes": 154443,
+      "sha256": "096206affb410bc933da28b7ebcc47f0f4c1b02703103431f69758696a74d2b9"
+    },
+    {
+      "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "localPath": "/cards/323842f5-457f-4dd4-95b8-eb19c24664cb.jpg",
+      "bytes": 150467,
+      "sha256": "0bc07a8f9cf4602ee64d6bcf31ef003f0173b0f4786580953902d7d0b80e2474"
+    },
+    {
+      "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "localPath": "/cards/3f78ed57-49cc-4886-b84f-3fe886203794.jpg",
+      "bytes": 155790,
+      "sha256": "705bf066aaf8a8d5621dccc07f6c7a96fdaf412fa6fbae597fc72bd0790154b5"
+    },
+    {
+      "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg",
+      "localPath": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg",
+      "bytes": 142710,
+      "sha256": "c858e25abaee4703dc0d16b2d50a9abd746ae78d388e37f16ac2eec60923a578"
+    },
+    {
+      "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54ed3453-1df4-458d-bc7d-e1f7c10de237.B.jpg",
+      "localPath": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.B.jpg",
+      "bytes": 138299,
+      "sha256": "1ee0f093de190420a76597478f36d381f4dca1259acab16a6c7667fdd7d4c9d1"
+    },
+    {
+      "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56e98bd5-c952-436e-b552-832031d4bb20.jpg",
+      "localPath": "/cards/56e98bd5-c952-436e-b552-832031d4bb20.jpg",
+      "bytes": 155157,
+      "sha256": "c79bf8246e5bd360951d123a4776b0f9df937d4f9c23e8c670019c4513267434"
+    },
+    {
+      "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/624d5999-1a76-4783-b4e4-d9b596242d18.jpg",
+      "localPath": "/cards/624d5999-1a76-4783-b4e4-d9b596242d18.jpg",
+      "bytes": 161022,
+      "sha256": "ffa62565902e25016a47cde891280d50c29683d28e44be50d358b2e1b43bd2d8"
+    },
+    {
+      "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66812347-fac2-4a76-aa69-ac0861071c0d.jpg",
+      "localPath": "/cards/66812347-fac2-4a76-aa69-ac0861071c0d.jpg",
+      "bytes": 151543,
+      "sha256": "7ee1c46f5a3c72fd5742983582be09b50ff733d4155a6370cc33fbcf4495c40f"
+    },
+    {
+      "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e193811-584d-4888-a1b8-5296522b5cd1.jpg",
+      "localPath": "/cards/6e193811-584d-4888-a1b8-5296522b5cd1.jpg",
+      "bytes": 152105,
+      "sha256": "647a61ead38e5579af0b9ca15d3265a7260f8461560a37b04ee006d0191f9900"
+    },
+    {
+      "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg",
+      "localPath": "/cards/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg",
+      "bytes": 152976,
+      "sha256": "2d9b176d71df7f17914420a1871b32be0c0bbb795a5c3a42c77730609ea04fc9"
+    },
+    {
+      "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg",
+      "localPath": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg",
+      "bytes": 151898,
+      "sha256": "2bcc97e0c5099c86d3295f429ab8b10da0ae7d127a73e2c6ee7272dcb511b6df"
+    },
+    {
+      "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81e81787-13b1-4bbf-a9ef-b8516deebbbc.B.jpg",
+      "localPath": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.B.jpg",
+      "bytes": 152190,
+      "sha256": "256c522b7b5b141583d1f73ecd08b85029694c40220eb591f903c92071e2d1f8"
+    },
+    {
+      "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg",
+      "localPath": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg",
+      "bytes": 146120,
+      "sha256": "de6da9df25b9a0ef5ba9bae0d115856b5f0cb5f61b16e63734d12976a62ec009"
+    },
+    {
+      "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82514713-7cc4-4b76-a5f2-42a69ccff76b.B.jpg",
+      "localPath": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.B.jpg",
+      "bytes": 152004,
+      "sha256": "8cde12bab3cd0867d601173ee27ca57fa11d6131203e3b0cfe750ad3b3153d18"
+    },
+    {
+      "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg",
+      "localPath": "/cards/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg",
+      "bytes": 150885,
+      "sha256": "1a6167ff11e9b53b97cb4d7acf9689ebaad8f033d2bed9338c209c981f87f817"
+    },
+    {
+      "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg",
+      "localPath": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg",
+      "bytes": 131196,
+      "sha256": "d6d0e5b8f3ae1c1b9ef435f1fb1749ab3e93fb0cdb90b49d0bb5e25e1393dee7"
+    },
+    {
+      "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.B.jpg",
+      "localPath": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.B.jpg",
+      "bytes": 129722,
+      "sha256": "79fd1bd7d7d3e0d3c307c3222122b066670f51589c837b580ec8c88ddd2cb249"
+    },
+    {
+      "code": "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg",
+      "localPath": "/cards/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg",
+      "bytes": 159415,
+      "sha256": "1439cd3c351996cf3deebbcab5180ac984294de29d9b0b1757baa1d5facfefcc"
+    },
+    {
+      "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg",
+      "localPath": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg",
+      "bytes": 145201,
+      "sha256": "233972b50c323b45dc46a2426ad73ba558a51077ab052376c6349f5e643686b3"
+    },
+    {
+      "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.B.jpg",
+      "localPath": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.B.jpg",
+      "bytes": 145746,
+      "sha256": "e11d97eb5206d8eb64121ffd8c93cb07c26f74b7317514679d09d84ae84757e0"
+    },
+    {
+      "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg",
+      "localPath": "/cards/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg",
+      "bytes": 140557,
+      "sha256": "ae78dbc197bcd70c8d6ddd8310e496120baa27da7df5cc0ada96b2b0bb42a34e"
+    },
+    {
+      "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f29b2736-9499-4e1d-9e53-96be59f78741.jpg",
+      "localPath": "/cards/f29b2736-9499-4e1d-9e53-96be59f78741.jpg",
+      "bytes": 154419,
+      "sha256": "934fd7629169ba59545466777c6837edb947ebe912e94915c5c2647dcc781e95"
+    },
+    {
+      "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f388bf8b-461c-4478-8155-74775bf27714.jpg",
+      "localPath": "/cards/f388bf8b-461c-4478-8155-74775bf27714.jpg",
+      "bytes": 138123,
+      "sha256": "abf94927f23896255754b1280ce1feb1f043acc432364d8369a9fdbd92652870"
+    },
+    {
+      "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg",
+      "localPath": "/cards/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg",
+      "bytes": 162003,
+      "sha256": "db2f9cd6ad0473e9b1c37da76032df2cde8b5dd64fe4077a1e2031f8fd670d06"
+    },
+    {
+      "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "localPath": "/cards/ffe307bf-dd8e-4df3-9355-55564137d311.jpg",
+      "bytes": 153259,
+      "sha256": "37e50460a65bf7bce677fac7d489fff1e7671942f7ca7199db6a47a4089e6b4f"
+    }
+  ]
+}

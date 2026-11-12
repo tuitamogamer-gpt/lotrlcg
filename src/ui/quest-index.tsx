@@ -63,6 +63,10 @@ const HEADLINES: Partial<
     lead: "Burgle Smaug's hoard",
     em: "and survive his wrath.",
   },
+  "the-battle-of-five-armies": {
+    lead: "Hold three fronts",
+    em: "and bring down Bolg.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

@@ -5,8 +5,8 @@
     "playerCards": 775,
     "heroes": 88,
     "deckCards": 683,
-    "encounterCards": 1285,
-    "scenarios": 87,
+    "encounterCards": 1300,
+    "scenarios": 88,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -94,17 +94,18 @@
       "over-the-misty-mountains-grim",
       "dungeons-deep-and-caverns-dim",
       "flies-and-spiders",
-      "the-lonely-mountain"
+      "the-lonely-mountain",
+      "the-battle-of-five-armies"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2332,
-    "pending": 1851
+    "scripted": 2352,
+    "pending": 1831
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 173
+    "scripted": 175
   },
   "registeredCodes": [
     "01001",
@@ -970,6 +971,7 @@
     "octgn:04f24d17-9764-4385-b22c-0e45f6fa5654",
     "octgn:0554f2f9-c578-4644-9c28-b617e846b787",
     "octgn:05738935-2cd4-4ce3-a977-9e4f59689a32",
+    "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
     "octgn:05a0e539-e140-4dfc-a151-21cd8aaef094",
     "octgn:05bf91b3-8e8e-4a45-a6cf-ac8b936b032d",
     "octgn:0676e5a8-1637-42f8-95fa-37aa6e189070",
@@ -1044,6 +1046,8 @@
     "octgn:19675b16-16ee-4477-a753-bd1cf7b51b7a",
     "octgn:19b732b9-a26a-4535-a438-7dd83cd4ecf2",
     "octgn:19bcc176-d952-485b-9d28-12188c5a0bc1",
+    "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+    "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
     "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
@@ -1134,6 +1138,7 @@
     "octgn:282bca71-ff04-4447-a4e9-a7e5f70e0083",
     "octgn:286a5206-9ebb-4ec4-a349-2960ccb2f669",
     "octgn:28ba7c20-b660-40cb-9e2c-bf6ebaec723e",
+    "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
     "octgn:2935fd55-6945-4c20-8586-c435ceec52f3",
     "octgn:29662c71-2f27-405c-ae5a-db519ed91f33",
     "octgn:29f8a182-2e69-47d7-a742-296836371f41",
@@ -1670,6 +1675,7 @@
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
     "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
     "octgn:5571b159-9889-4fcd-bc0e-13bea7443348",
@@ -1680,6 +1686,7 @@
     "octgn:566898f1-9e85-4463-b220-6924d5106447",
     "octgn:56b24d25-a04a-418b-add0-7b1971dae38e",
     "octgn:56da2e72-9580-4537-95e9-c138b4d9480e",
+    "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
     "octgn:572ba251-0abb-4a81-b38b-d695123b7219",
     "octgn:576b4f3c-add2-42b6-b78c-8a2e482290ae",
     "octgn:5775b97c-4047-4dc2-b148-b852bad4f9bb",
@@ -1730,6 +1737,7 @@
     "octgn:617bc2e6-05a9-4c99-b3ff-8304ecb6ef32",
     "octgn:617ce2f8-f33e-4898-9fa4-38787ee9c2b6",
     "octgn:6220ef6b-f314-4cf9-92df-f9551d6cfde0",
+    "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
     "octgn:626abd2c-11bc-416b-9db6-a72d5525d3de",
     "octgn:62d5807c-caef-49bd-8cbc-cb6429647fce",
     "octgn:62d814e4-e0cf-437b-8ee7-b26478beb721",
@@ -1744,6 +1752,7 @@
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
+    "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
@@ -1769,6 +1778,7 @@
     "octgn:6da909d1-c3e0-4c13-8986-4b3a066e67b5",
     "octgn:6def55a1-ee80-4570-831b-d591e6effc11",
     "octgn:6df2979e-ad8d-4c3b-a27c-5ed4b9b2f948",
+    "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
     "octgn:6e449166-50ab-4ec5-875f-3cc8adcbb64e",
     "octgn:6f7cdfa5-f61f-44b1-8b6c-2b3f477f7557",
     "octgn:6f999889-bd70-42c9-ad2a-b159a5e2f73c",
@@ -1804,6 +1814,7 @@
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
     "octgn:76a512ea-3a6a-4c99-8c29-d980dea802ff",
+    "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
@@ -1851,8 +1862,10 @@
     "octgn:818e2f2f-4070-4056-85bd-5e729ccbad30",
     "octgn:81b31016-bcc3-4445-8f4d-64187e99aff3",
     "octgn:81de0a94-a871-42af-8497-d66b900c9620",
+    "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
+    "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
     "octgn:82ca7902-f8fa-4352-8f54-f5f6a8875c51",
     "octgn:8351cce0-b16e-4eba-93f2-24015bbc54c1",
@@ -1875,6 +1888,7 @@
     "octgn:877a0217-9708-4139-b305-14c1b83c1d14",
     "octgn:87c33692-599d-4914-a513-4353906fc6d4",
     "octgn:87c80644-57bb-4c66-8df6-c60cadc32d32",
+    "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
     "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
     "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
@@ -2027,6 +2041,7 @@
     "octgn:a944e2e1-56e4-461d-b703-db991b673b9b",
     "octgn:a961751d-414b-4a53-9da4-5708f8b7bb1f",
     "octgn:a9e14405-1ac0-4db8-8357-1ac2e9d59624",
+    "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
     "octgn:aa6914e2-4b79-4a95-ab3e-386d6a924bee",
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
@@ -2036,6 +2051,7 @@
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
     "octgn:abd56f0e-0238-432b-84b2-7c715d96477b",
     "octgn:abeec7e9-ccf6-4145-ae1a-d7179c5a4b4d",
+    "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
     "octgn:ac9fe707-143f-492e-89e3-bdd02973a0f2",
     "octgn:aca1ee7f-ad29-4218-8dd5-f7f7a8e617fe",
     "octgn:acbf7fd1-9f93-4d0b-b18a-8f0854e028f5",
@@ -2261,6 +2277,7 @@
     "octgn:df69b078-0073-44b6-9f18-1fed38f9711c",
     "octgn:df908f24-8927-42cf-a6dd-9dfc41de74c1",
     "octgn:df9ba79f-91a3-4fc7-a2af-6bddcc795f29",
+    "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
     "octgn:e0841275-753f-47bd-8d6d-807e4fb747ac",
     "octgn:e0fd5147-e1aa-42c3-972f-5cf0c93a6716",
     "octgn:e1001736-68fc-4e7b-a7df-23230876eb92",
@@ -2326,6 +2343,7 @@
     "octgn:edfb7ef3-dee9-4cf4-986e-5698bb3fb320",
     "octgn:edfe479c-dc2b-43d0-9d4b-708e96320748",
     "octgn:ee30a928-cdf8-40c0-87b3-13115bc16cd3",
+    "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
     "octgn:eec35e8e-281e-4dc7-8a76-b4823de3cb71",
     "octgn:eed0925e-5376-4ad0-b571-69cfbb2118ae",
     "octgn:ef0a0467-656b-4cef-baf2-e60037d69472",
@@ -2345,11 +2363,13 @@
     "octgn:f24f8d3e-3193-4111-9fea-ecdbbafd921a",
     "octgn:f250a697-b5aa-4041-9bad-a66b2ab8ccba",
     "octgn:f2981455-b642-4d9b-851d-0209a12cffae",
+    "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
     "octgn:f35e7236-2e03-4e03-aa92-7c4803e79acf",
+    "octgn:f388bf8b-461c-4478-8155-74775bf27714",
     "octgn:f38caab3-61dc-45e2-9b31-533ba3b9fbd9",
     "octgn:f3bc3759-1f94-4983-bebb-66c7d9e3e0b3",
     "octgn:f3d71c42-c368-45c1-9228-b58cf9c54ff5",
@@ -2405,6 +2425,7 @@
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
     "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
     "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
+    "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
     "octgn:fcb54294-8a36-4a51-bf1b-7d75ac1598e2",
     "octgn:fd06cd6e-5741-4bd2-b50c-52052f973208",
     "octgn:fd2014e3-43df-4378-9c67-61f99353f87f",
@@ -2726,7 +2747,7 @@
     {
       "product": "on-the-doorstep",
       "total": 79,
-      "scripted": 44,
+      "scripted": 64,
       "player": 24,
       "playerScripted": 9
     },
@@ -12630,7 +12651,7 @@
       "name": "Gundabad Wolf Rider",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -14118,7 +14139,7 @@
       "name": "Heedless of Order",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -14126,7 +14147,7 @@
       "name": "The Front Gate",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -15518,7 +15539,7 @@
       "name": "Northern Slopes",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -22134,7 +22155,7 @@
       "name": "The Defense of Ravenhill",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -22302,7 +22323,7 @@
       "name": "Vanguard of Bolg",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -23158,7 +23179,7 @@
       "name": "Bolg",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -23390,7 +23411,7 @@
       "name": "Bodyguard of Bolg",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -23982,7 +24003,7 @@
       "name": "Misty Mountain Eagle",
       "type": "objective-ally",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -24734,7 +24755,7 @@
       "name": "Gundabad Climber",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -25750,7 +25771,7 @@
       "name": "Battle in the Dale",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -25814,7 +25835,7 @@
       "name": "The Clouds Burst",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -26286,7 +26307,7 @@
       "name": "Hatred Rekindled",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -29054,7 +29075,7 @@
       "name": "The Eastern Spur",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -29246,7 +29267,7 @@
       "name": "Goblins are Upon You!",
       "type": "treachery",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -33742,7 +33763,7 @@
       "name": "The Gathering of the Clouds",
       "type": "quest",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -35102,7 +35123,7 @@
       "name": "Ruins of Dale",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -35502,7 +35523,7 @@
       "name": "Ravenous Warg",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -35590,7 +35611,7 @@
       "name": "Ravenhill",
       "type": "location",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -36454,7 +36475,7 @@
       "name": "Gundabad Archer",
       "type": "enemy",
       "pack": "On the Doorstep",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "on-the-doorstep"
     },
     {
@@ -37511,8 +37532,8 @@
       "id": "E0A.6",
       "name": "The Battle of Five Armies (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-five-armies",
+      "state": "scripted"
     },
     {
       "id": "E0B.01",
@@ -39002,8 +39023,8 @@
       "id": "Q0A.6",
       "name": "The Battle of Five Armies",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-battle-of-five-armies",
+      "state": "scripted"
     },
     {
       "id": "Q0B.01",

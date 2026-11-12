@@ -6,6 +6,7 @@ one to four local players, in normal and easy mode. This import also adds the
 five Erebor treasures as player cards. The On the Doorstep Bilbo Baggins and
 Bilbo's Magic Ring are described with Flies and Spiders, and the other Saga
 rules with [We Must Away, Ere Break of Day](WE-MUST-AWAY.md).
+[The Battle of Five Armies](BATTLE-FIVE-ARMIES.md) follows.
 
 ## Sources and corrections
 
@@ -116,6 +117,7 @@ offers only discovered treasures whose set the scenario's setup lists:
 | --- | --- |
 | Over the Misty Mountains Grim, Dungeons Deep and Caverns Dim, Flies and Spiders | We Must Away (Sting, Orcrist, Glamdring) |
 | The Lonely Mountain | We Must Away and Flies and Spiders (Bilbo's Magic Ring) |
+| The Battle of Five Armies | We Must Away, Flies and Spiders and The Lonely Mountain (the Erebor treasures) |
 
 The rules insert shows these sets as icons that the available transcription
 does not reproduce; each scenario accepts the sets discovered in the earlier

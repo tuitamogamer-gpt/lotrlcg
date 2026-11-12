@@ -119,6 +119,7 @@ import {
   ownerOf,
   playerOrder,
   defendersFor,
+  forcedDefenders,
   attackersFor,
   forOwner,
   allCharacters,
@@ -673,6 +674,11 @@ export function beginEnemyAttack(
         (holdLine === "declared" && ids.length <= 3)),
     "Multiple defenders require Stand Together.",
   );
+  const forced = anchorDefenders ? undefined : forcedDefenders(s, enemy);
+  requireRule(
+    !forced?.length || ids.some((id) => forced.some((u) => u.id === id)),
+    "This attack must be defended by the character with the most damage.",
+  );
   const defenders = ids.map((id) =>
     (anchorDefenders
       ? GreyPlayers.greyHavensAnchorDefenders(s, enemy)
@@ -723,6 +729,8 @@ export function beginEnemyAttack(
   for (const d of defenders.filter((d) => d && get(s, d.id)))
     if (
       !anchorDefenders &&
+      // A forced defender defends even if it is already exhausted.
+      !(d!.exhausted && forced?.some((u) => u.id === d!.id)) &&
       !Antlered.antleredNoDefenseExhaust(d!) &&
       !EredFinalSupport.eredFinalPlayerNoDefenseExhaust(s, d!) &&
       !Angmar.angmarNoCombatExhaust(s, d!) &&

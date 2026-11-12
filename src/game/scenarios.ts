@@ -5,6 +5,7 @@ import { OMM_ADVENTURES } from "./misty-mountains-scenario-data";
 import { DDCD_ADVENTURES } from "./dungeons-deep-scenario-data";
 import { FAS_ADVENTURES } from "./flies-spiders-scenario-data";
 import { TLM_ADVENTURES } from "./lonely-mountain-scenario-data";
+import { BOFA_ADVENTURES } from "./battle-five-armies-scenario-data";
 import { LAND_SORROW_ADVENTURES } from "./land-sorrow-scenario-data";
 import { ASH_ADVENTURES } from "./ash-mountains-scenario-data";
 import { WAINRIDERS_ADVENTURES } from "./wainriders-scenario-data";
@@ -1177,6 +1178,7 @@ export const SCENARIOS = [
   ...DDCD_ADVENTURES,
   ...FAS_ADVENTURES,
   ...TLM_ADVENTURES,
+  ...BOFA_ADVENTURES,
 ] as const;
 /** The Mirkwood Paths campaign covers the three Core Set quests in order. */
 export const CAMPAIGN_CHAPTERS: readonly ScenarioId[] = [

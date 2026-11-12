@@ -24,6 +24,7 @@ import {
   allCharacters,
   attackersFor,
   defendersFor,
+  forcedDefenders,
   ownerOf,
   seatName,
 } from "../game/table";
@@ -447,7 +448,7 @@ export function CombatDialog({
               {defending ? "defend" : "attack"}.
             </p>
           )}
-          {defending && (
+          {defending && !forcedDefenders(s, enemy)?.length && (
             <button
               className={`undefended ${undefended ? "selected" : ""}`}
               aria-pressed={undefended}

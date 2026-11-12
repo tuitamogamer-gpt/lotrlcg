@@ -1,0 +1,200 @@
+[
+  {
+    "code": "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
+    "octgnid": "54ed3453-1df4-458d-bc7d-e1f7c10de237",
+    "name": "The Defense of Ravenhill",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 78,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Battle of Five Armies",
+    "side": "A",
+    "back_name": "The Defense of Ravenhill",
+    "back_text": "Players cannot advance from this stage unless stage 2 and stage 3 are complete.\nSiege. (Characters use [defense] instead of [willpower] when questing here.)\nForced: If there is no progress on this stage at the end of the round, each player must discard all resources from each hero's resource pool.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 78,
+        "quantity": 1,
+        "octgnid": "54ed3453-1df4-458d-bc7d-e1f7c10de237",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54ed3453-1df4-458d-bc7d-e1f7c10de237.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+    "octgnid": "81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+    "name": "Battle in the Dale",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 77,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Battle of Five Armies",
+    "side": "A",
+    "back_name": "Battle in the Dale",
+    "back_text": "Players cannot advance from this stage unless stage 2 and stage 4 are complete.\nBattle. (Characters use [attack] instead of [willpower] when questing here.)\nForced: If there is no progress on this stage at the end of the round, the first player adds the topmost enemy in the discard pile to the staging area, if able.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 77,
+        "quantity": 1,
+        "octgnid": "81e81787-13b1-4bbf-a9ef-b8516deebbbc",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/81e81787-13b1-4bbf-a9ef-b8516deebbbc.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
+    "octgnid": "82514713-7cc4-4b76-a5f2-42a69ccff76b",
+    "name": "The Clouds Burst",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 79,
+    "quantity": 1,
+    "cost": 5,
+    "encounter_set": "The Battle of Five Armies",
+    "side": "A",
+    "back_name": "The Clouds Burst",
+    "back_text": "When Revealed: Each player must search the encounter deck and discard pile for a copy of Bodyguard of Bolg and add it to the staging area, if able. Shuffle the encounter deck.  Progress cannot be placed on this stage. While Bolg is in the staging area, it is considered to be engaged with the first player.  If Bolg is destroyed, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.B.jpg",
+    "printed_stats": {
+      "cost": "5"
+    },
+    "imagesrc": "/cards/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 79,
+        "quantity": 1,
+        "octgnid": "82514713-7cc4-4b76-a5f2-42a69ccff76b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/82514713-7cc4-4b76-a5f2-42a69ccff76b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+    "octgnid": "aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+    "name": "The Eastern Spur",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 76,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Battle of Five Armies",
+    "side": "A",
+    "back_name": "The Eastern Spur",
+    "back_text": "Players cannot advance from this stage unless stage 3 and stage 4 are complete.  Forced: If there is no progress on this stage at the end of the round, each player must discard 1 random card from his hand.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 76,
+        "quantity": 1,
+        "octgnid": "aa3355cb-57e1-4d8b-8a1b-9be22581a9f3",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/aa3355cb-57e1-4d8b-8a1b-9be22581a9f3.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+    "octgnid": "dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+    "name": "The Gathering of the Clouds",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Search the encounter deck for Bolg and add it to the staging area. Then, shuffle the encounter deck and reveal 1 encounter card per player.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 75,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Battle of Five Armies",
+    "side": "A",
+    "back_name": "The Gathering of the Clouds",
+    "back_text": "When Revealed: Put stage 2, stage 3, and stage 4 into play at the same time. Then, remove this stage from play.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 75,
+        "quantity": 1,
+        "octgnid": "dfd05c9f-1dc1-4af6-a22f-fe39969c6371",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/dfd05c9f-1dc1-4af6-a22f-fe39969c6371.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

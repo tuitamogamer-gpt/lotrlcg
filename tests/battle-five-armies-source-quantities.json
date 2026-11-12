@@ -1,0 +1,116 @@
+[
+  {
+    "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+    "name": "Gundabad Wolf Rider",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:10c41b09-adf9-4a78-a67a-a9a1e04d7e8d",
+    "name": "Weighed Down",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+    "name": "Heedless of Order",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+    "name": "The Front Gate",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+    "name": "Northern Slopes",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "code": "octgn:323842f5-457f-4dd4-95b8-eb19c24664cb",
+    "name": "Dark Bats",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
+    "name": "Hidden Path",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+    "name": "Vanguard of Bolg",
+    "normal": 4,
+    "easy": 3
+  },
+  {
+    "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+    "name": "Bolg",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+    "name": "Bodyguard of Bolg",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+    "name": "Misty Mountain Eagle",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+    "name": "Gundabad Climber",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+    "name": "Hatred Rekindled",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "code": "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+    "name": "Goblins are Upon You!",
+    "normal": 2,
+    "easy": 0
+  },
+  {
+    "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+    "name": "Ruins of Dale",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+    "name": "Ravenous Warg",
+    "normal": 3,
+    "easy": 1
+  },
+  {
+    "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+    "name": "Ravenhill",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+    "name": "Gundabad Archer",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "code": "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
+    "name": "Fighting Among Friends",
+    "normal": 2,
+    "easy": 0
+  }
+]

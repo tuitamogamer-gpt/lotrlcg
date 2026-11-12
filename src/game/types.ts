@@ -262,6 +262,7 @@ export type ScenarioId =
   | "dungeons-deep-and-caverns-dim"
   | "flies-and-spiders"
   | "the-lonely-mountain"
+  | "the-battle-of-five-armies"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -428,6 +429,7 @@ export interface GameState {
   dungeonsDeep?: import("./dungeons-deep-types").DungeonsDeepState;
   fliesSpiders?: import("./flies-spiders-types").FliesSpidersState;
   lonelyMountain?: import("./lonely-mountain-types").LonelyMountainState;
+  battleFiveArmies?: import("./battle-five-armies-types").BattleFiveArmiesState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -751,6 +753,10 @@ export interface GameState {
     fasWeighed?: boolean;
     /** Dark Bats damaged this character and attaches to it after the attack. */
     fasBats?: string;
+    /** Hatred Rekindled shadow: the enemy attacks again after this attack. */
+    bofaAgain?: boolean;
+    /** Vanguard of Bolg shadow: a destroyed character clears the current quest. */
+    bofaVanguard?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

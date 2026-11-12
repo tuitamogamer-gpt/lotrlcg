@@ -1096,6 +1096,7 @@ export const questWill = (s: GameState) =>
     );
 
 export const questStat = (s: GameState) =>
+  batch4Scenario(s).questStat?.(s) ??
   Carn.carnQuestStat(s) ??
   (selectedSideQuest(s)
     ? /\bBattle\b/.test(card(selectedSideQuest(s)!.code).text ?? "")

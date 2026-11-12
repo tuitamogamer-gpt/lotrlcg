@@ -17,6 +17,7 @@ export const OHAUH_SCENARIO_IDS: readonly string[] = [
 export const OTD_SCENARIO_IDS: readonly string[] = [
   "flies-and-spiders",
   "the-lonely-mountain",
+  "the-battle-of-five-armies",
 ];
 export const HOBBIT_SCENARIO_IDS: readonly string[] = [
   ...OHAUH_SCENARIO_IDS,
@@ -62,6 +63,11 @@ const SCENARIO_TREASURE_SETS: Readonly<Record<string, readonly string[]>> = {
   "dungeons-deep-and-caverns-dim": ["we-must-away-ere-break-of-day"],
   "flies-and-spiders": ["we-must-away-ere-break-of-day"],
   "the-lonely-mountain": ["we-must-away-ere-break-of-day", "flies-and-spiders"],
+  "the-battle-of-five-armies": [
+    "we-must-away-ere-break-of-day",
+    "flies-and-spiders",
+    "the-lonely-mountain",
+  ],
 };
 /** The discovered treasures that may join decks in a scenario. */
 export const scenarioTreasures = (scenarioId: string | undefined) =>

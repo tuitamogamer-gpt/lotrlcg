@@ -300,7 +300,11 @@ export const seatName = (s: GameState, i: number) =>
     .join(" & ");
 export const hasKeyword = (u: Unit, keyword: string) =>
   effectiveKeyword(u, keyword);
+/** Characters the defending player must choose among, even if exhausted. */
+export const forcedDefenders = (s: GameState, enemy?: Unit) =>
+  enemy ? batch4Scenario(s).forcedDefenders?.(s, enemy) : undefined;
 export const defendersFor = (s: GameState, enemy?: Unit) =>
+  forcedDefenders(s, enemy) ??
   allCharacters(s).filter(
     (u) =>
       (!u.exhausted || angmarNoCombatExhaust(s, u)) &&

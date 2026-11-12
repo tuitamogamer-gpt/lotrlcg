@@ -32,7 +32,7 @@ export const WILDERLAND_TREACHERIES: readonly string[] = [W.friends, W.weighed];
 type Combat = NonNullable<GameState["combat"]>;
 /** Each scenario that uses the set records the rounds Weighed Down lasts. */
 const holder = (s: GameState): { weighedDown: number[] } | undefined =>
-  s.fliesSpiders ?? s.lonelyMountain;
+  s.fliesSpiders ?? s.lonelyMountain ?? s.battleFiveArmies;
 const isCharacter = (u: Unit) =>
   ["hero", "ally"].includes(card(u.code).type_code);
 const sphereOf = (u: Unit) => card(u.code).sphere_code ?? "";

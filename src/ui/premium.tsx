@@ -27,6 +27,10 @@ export const PLAYMATS = {
     name: "Smaug's Hoard",
     detail: "Burgle attempts · The dragon wakes",
   },
+  "the-battle-of-five-armies": {
+    name: "Five Armies",
+    detail: "Three fronts · Bolg's bodyguard",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -427,6 +431,7 @@ export const PLAYMAT_CHOICES = [
   "dungeons-deep-and-caverns-dim",
   "flies-and-spiders",
   "the-lonely-mountain",
+  "the-battle-of-five-armies",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

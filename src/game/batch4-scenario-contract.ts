@@ -172,6 +172,15 @@ export interface Batch4ScenarioHooks {
   keepFirstPlayer?(s: GameState): boolean;
   /** A hero actually spent resources from its pool. */
   resourcesSpent?(s: GameState, hero: Unit, amount: number): void;
+  /** Effects at the beginning of the round, before resources are collected. */
+  resourceStart?(s: GameState): Effect[];
+  /** The stat characters count while questing (Battle or Siege). */
+  questStat?(s: GameState): "attack" | "defense" | undefined;
+  /**
+   * The defending player must declare one of these characters as the
+   * defender, even if it is exhausted.
+   */
+  forcedDefenders?(s: GameState, enemy: Unit): Unit[] | undefined;
   playerAttackDeclared?(s: GameState, enemy: Unit, ids: string[]): boolean;
   /** Responses after attackers are declared, resolved before the attack's damage. */
   attackersDeclared?(s: GameState, enemy: Unit, ids: string[]): Effect[];

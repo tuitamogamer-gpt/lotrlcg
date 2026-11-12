@@ -8,6 +8,10 @@ import { OMM_ENCOUNTERS, OMM_QUESTS } from "./misty-mountains-scenario-data";
 import { DDCD_ENCOUNTERS, DDCD_QUESTS } from "./dungeons-deep-scenario-data";
 import { FAS_ENCOUNTERS, FAS_QUESTS } from "./flies-spiders-scenario-data";
 import { TLM_ENCOUNTERS, TLM_QUESTS } from "./lonely-mountain-scenario-data";
+import {
+  BOFA_ENCOUNTERS,
+  BOFA_QUESTS,
+} from "./battle-five-armies-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -479,6 +483,7 @@ export const encounterCards = [
       ...DDCD_ENCOUNTERS,
       ...FAS_ENCOUNTERS,
       ...TLM_ENCOUNTERS,
+      ...BOFA_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -557,6 +562,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...DDCD_QUESTS,
     ...FAS_QUESTS,
     ...TLM_QUESTS,
+    ...BOFA_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -676,6 +682,7 @@ export const SCRIPTED = new Set(
     ...DDCD_QUESTS,
     ...FAS_QUESTS,
     ...TLM_QUESTS,
+    ...BOFA_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

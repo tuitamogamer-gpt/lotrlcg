@@ -5,6 +5,7 @@ import { OMM_HOOKS } from "./misty-mountains";
 import { DDCD_HOOKS } from "./dungeons-deep";
 import { FAS_HOOKS } from "./flies-spiders";
 import { TLM_HOOKS } from "./lonely-mountain";
+import { BOFA_HOOKS } from "./battle-five-armies";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -43,6 +44,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return FAS_HOOKS;
     case "the-lonely-mountain":
       return TLM_HOOKS;
+    case "the-battle-of-five-armies":
+      return BOFA_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -112,4 +115,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     DDCD_HOOKS,
     FAS_HOOKS,
     TLM_HOOKS,
+    BOFA_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

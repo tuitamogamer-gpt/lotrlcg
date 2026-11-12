@@ -357,6 +357,7 @@ import type { Effect, GameState, Unit } from "./types";
 import {
   activeSeat,
   defendersFor,
+  forcedDefenders,
   allCharacters,
   allActiveLocations,
   allHeroes,
@@ -877,17 +878,22 @@ function handleEffect(s: GameState, e: Effect) {
             player: activeSeat(s),
           }),
         ]),
-        {
-          id: "undefended",
-          label: "Leave the attack undefended",
-          effects: [
-            fx("immediateDefend", {
-              target: u.id,
-              ids: [],
-              player: activeSeat(s),
-            }),
-          ],
-        },
+        // A forced defender must be declared.
+        ...(forcedDefenders(s, u)?.length
+          ? []
+          : [
+              {
+                id: "undefended",
+                label: "Leave the attack undefended",
+                effects: [
+                  fx("immediateDefend", {
+                    target: u.id,
+                    ids: [],
+                    player: activeSeat(s),
+                  }),
+                ],
+              },
+            ]),
       ]);
       break;
     }

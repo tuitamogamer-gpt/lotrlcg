@@ -1,0 +1,585 @@
+[
+  {
+    "code": "octgn:058a5508-6b20-4305-94ea-53d5d2f33595",
+    "octgnid": "058a5508-6b20-4305-94ea-53d5d2f33595",
+    "name": "Gundabad Wolf Rider",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Forced: When this enemy attacks, remove 1 progress from the current quest.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 55,
+    "quantity": 3,
+    "threat": 1,
+    "attack": 3,
+    "defense": 0,
+    "health": 3,
+    "engagement": 15,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each quest stage in play with no progress on it.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "3",
+      "defense": "0",
+      "health": "3",
+      "engagement": "15"
+    },
+    "imagesrc": "/cards/058a5508-6b20-4305-94ea-53d5d2f33595.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 55,
+        "quantity": 3,
+        "octgnid": "058a5508-6b20-4305-94ea-53d5d2f33595",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/058a5508-6b20-4305-94ea-53d5d2f33595.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:19e2470a-94c6-4f14-b824-7d2f952b60fd",
+    "octgnid": "19e2470a-94c6-4f14-b824-7d2f952b60fd",
+    "name": "Heedless of Order",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Surge.\nWhen Revealed: Choose a different quest to be the current quest until the end of the round, if able. If the current quest did not change as a result of this effect, this card gains Doomed 3.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 66,
+    "quantity": 2,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {},
+    "imagesrc": "/cards/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 66,
+        "quantity": 2,
+        "octgnid": "19e2470a-94c6-4f14-b824-7d2f952b60fd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19e2470a-94c6-4f14-b824-7d2f952b60fd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+    "octgnid": "19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+    "name": "The Front Gate",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Mountain.",
+    "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 2B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 2B is the current quest.)",
+    "is_unique": true,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 63,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 3,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 63,
+        "quantity": 1,
+        "octgnid": "19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/19f36ec5-7ad4-4dab-80a7-4a7a6c716941.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:29005ca1-107a-4473-8769-ce7d944e9844",
+    "octgnid": "29005ca1-107a-4473-8769-ce7d944e9844",
+    "name": "Northern Slopes",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "While Northern Slopes is in the staging area, each Goblin enemy gets +1 [attack] and +1 [defense].  While Northern Slopes is the active location, it gains: \"Forced: When a character leaves play, remove 1 progress from the current quest, if able.\"",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 60,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 3,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "3"
+    },
+    "imagesrc": "/cards/29005ca1-107a-4473-8769-ce7d944e9844.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 60,
+        "quantity": 3,
+        "octgnid": "29005ca1-107a-4473-8769-ce7d944e9844",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/29005ca1-107a-4473-8769-ce7d944e9844.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:56e98bd5-c952-436e-b552-832031d4bb20",
+    "octgnid": "56e98bd5-c952-436e-b552-832031d4bb20",
+    "name": "Vanguard of Bolg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "This enemy gets +1 [threat], +1 [attack], and +1 [defense] for each quest stage in play with no progress on it.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 57,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 1,
+    "defense": 1,
+    "health": 4,
+    "engagement": 20,
+    "shadow": "Shadow: If this attack destroys a character, remove all progress from the current quest.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "1",
+      "defense": "1",
+      "health": "4",
+      "engagement": "20"
+    },
+    "imagesrc": "/cards/56e98bd5-c952-436e-b552-832031d4bb20.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 57,
+        "quantity": 4,
+        "octgnid": "56e98bd5-c952-436e-b552-832031d4bb20",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/56e98bd5-c952-436e-b552-832031d4bb20.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:624d5999-1a76-4783-b4e4-d9b596242d18",
+    "octgnid": "624d5999-1a76-4783-b4e4-d9b596242d18",
+    "name": "Bolg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Immune to player card effects.\nX is the number of players in the game.  Cannot leave the staging area.  The first Goblin revealed each round gains surge.",
+    "is_unique": true,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 53,
+    "quantity": 1,
+    "attack": 6,
+    "defense": 3,
+    "health": 8,
+    "engagement": 50,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "X",
+      "attack": "6",
+      "defense": "3",
+      "health": "8",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/624d5999-1a76-4783-b4e4-d9b596242d18.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 53,
+        "quantity": 1,
+        "octgnid": "624d5999-1a76-4783-b4e4-d9b596242d18",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/624d5999-1a76-4783-b4e4-d9b596242d18.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:66812347-fac2-4a76-aa69-ac0861071c0d",
+    "octgnid": "66812347-fac2-4a76-aa69-ac0861071c0d",
+    "name": "Bodyguard of Bolg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "Bolg cannot take damage.\nForced: When this enemy attacks, deal it an additional shadow card for each quest stage in play with no progress tokens on it.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 54,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 4,
+    "defense": 2,
+    "health": 5,
+    "engagement": 35,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "4",
+      "defense": "2",
+      "health": "5",
+      "engagement": "35"
+    },
+    "imagesrc": "/cards/66812347-fac2-4a76-aa69-ac0861071c0d.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 54,
+        "quantity": 4,
+        "octgnid": "66812347-fac2-4a76-aa69-ac0861071c0d",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/66812347-fac2-4a76-aa69-ac0861071c0d.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:6e193811-584d-4888-a1b8-5296522b5cd1",
+    "octgnid": "6e193811-584d-4888-a1b8-5296522b5cd1",
+    "name": "Misty Mountain Eagle",
+    "type_code": "objective-ally",
+    "sphere_code": "encounter",
+    "traits": "Creature. Eagle.",
+    "text": "Action: The first player may spend 2 [baggins] resources to (choose one): take control of Misty Mountain Eagle, or discard this ally to discard a non-unique enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 52,
+    "quantity": 1,
+    "willpower": 3,
+    "attack": 3,
+    "defense": 3,
+    "health": 2,
+    "shadow": "Shadow: Deal 3 damage to attacking enemy.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "willpower": "3",
+      "attack": "3",
+      "defense": "3",
+      "health": "2"
+    },
+    "imagesrc": "/cards/6e193811-584d-4888-a1b8-5296522b5cd1.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 52,
+        "quantity": 1,
+        "octgnid": "6e193811-584d-4888-a1b8-5296522b5cd1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6e193811-584d-4888-a1b8-5296522b5cd1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+    "octgnid": "771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+    "name": "Gundabad Climber",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "When Revealed: Remove 1 progress from every quest stage in play. (2 progress instead if 3 or more players in the game.)",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 56,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 2,
+    "defense": 2,
+    "health": 2,
+    "engagement": 33,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "2",
+      "defense": "2",
+      "health": "2",
+      "engagement": "33"
+    },
+    "imagesrc": "/cards/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 56,
+        "quantity": 4,
+        "octgnid": "771c6c83-a602-4c35-92f6-5ac349c4ec8c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/771c6c83-a602-4c35-92f6-5ac349c4ec8c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+    "octgnid": "87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+    "name": "Hatred Rekindled",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each enemy engaged with a player makes an immediate attack. Do not deal shadow cards for attacks made by this effect. If no attacks were made by this effect, this card gains surge.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 64,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack immediately after this one.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {},
+    "imagesrc": "/cards/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 64,
+        "quantity": 2,
+        "octgnid": "87d2f0c4-8874-4910-9bb4-4f2d06c64168",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/87d2f0c4-8874-4910-9bb4-4f2d06c64168.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+    "octgnid": "ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+    "name": "Goblins are Upon You!",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player must search the encounter deck and discard pile for a Goblin enemy and put it into play, engaged with him. Then, shuffle the encounter deck. (This effect cannot be canceled.)",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 65,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] for each Goblin enemy engaged with you.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {},
+    "imagesrc": "/cards/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 65,
+        "quantity": 2,
+        "octgnid": "ac4724db-a3cc-4984-bef5-f51b0f4421f8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ac4724db-a3cc-4984-bef5-f51b0f4421f8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ee451e81-d7ee-40a6-9079-7f6538a26a26",
+    "octgnid": "ee451e81-d7ee-40a6-9079-7f6538a26a26",
+    "name": "Ruins of Dale",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Valley.",
+    "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 3B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 3B is the current quest.)",
+    "is_unique": true,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 61,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 3,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 61,
+        "quantity": 1,
+        "octgnid": "ee451e81-d7ee-40a6-9079-7f6538a26a26",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ee451e81-d7ee-40a6-9079-7f6538a26a26.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
+    "octgnid": "f29b2736-9499-4e1d-9e53-96be59f78741",
+    "name": "Ravenous Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Forced: When Ravenous Warg attacks, the defending player must declare the character he controls with the most damage as the defender. (Even if exhausted.)",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 59,
+    "quantity": 3,
+    "threat": 2,
+    "attack": 3,
+    "defense": 1,
+    "health": 3,
+    "engagement": 30,
+    "shadow": "Shadow: Defending character gets -1 [defense] for each quest stage in play with no progress on it.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "1",
+      "health": "3",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/f29b2736-9499-4e1d-9e53-96be59f78741.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 59,
+        "quantity": 3,
+        "octgnid": "f29b2736-9499-4e1d-9e53-96be59f78741",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f29b2736-9499-4e1d-9e53-96be59f78741.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:f388bf8b-461c-4478-8155-74775bf27714",
+    "octgnid": "f388bf8b-461c-4478-8155-74775bf27714",
+    "name": "Ravenhill",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Ruins. Mountain.",
+    "text": "Immune to player card effects.\nForced: Remove 2 progress from stage 4B at the end of each round, if able.  Travel: Spend 3 [baggins] resources to travel here. (1 [baggins] instead if stage 4B is the current quest.)",
+    "is_unique": true,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 62,
+    "quantity": 1,
+    "threat": 2,
+    "quest": 2,
+    "victory": 3,
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "2",
+      "victory": "3"
+    },
+    "imagesrc": "/cards/f388bf8b-461c-4478-8155-74775bf27714.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 62,
+        "quantity": 1,
+        "octgnid": "f388bf8b-461c-4478-8155-74775bf27714",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f388bf8b-461c-4478-8155-74775bf27714.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+    "octgnid": "fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+    "name": "Gundabad Archer",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Goblin. Orc.",
+    "text": "When Revealed: Each player must deal 2 damage to a character he controls.",
+    "is_unique": false,
+    "pack_code": "OtD",
+    "pack_name": "On the Doorstep",
+    "position": 58,
+    "quantity": 2,
+    "threat": 2,
+    "attack": 2,
+    "defense": 1,
+    "health": 3,
+    "engagement": 40,
+    "shadow": "Shadow: Deal 1 damage to defending character for each quest stage in play with no progress on it.",
+    "encounter_set": "The Battle of Five Armies",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "2",
+      "defense": "1",
+      "health": "3",
+      "engagement": "40"
+    },
+    "imagesrc": "/cards/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg",
+    "packs": [
+      {
+        "pack_code": "OtD",
+        "pack_name": "On the Doorstep",
+        "position": 58,
+        "quantity": 2,
+        "octgnid": "fca6840a-ae90-42c7-b0cb-79ef8c7de099",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fca6840a-ae90-42c7-b0cb-79ef8c7de099.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  }
+]

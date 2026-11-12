@@ -2803,6 +2803,11 @@ export function nextRound(s: GameState) {
 }
 
 export function beginResources(s: GameState) {
+  const scenarioStart = batch4Scenario(s).resourceStart?.(s) ?? [];
+  if (scenarioStart.length) {
+    prepend(s, ...scenarioStart, fx("resourceCollect"));
+    return;
+  }
   const cityResourceEffects = City.cityResourcesBegin(s);
   if (cityResourceEffects.length) {
     prepend(s, ...cityResourceEffects, fx("resourceCollect"));

@@ -14,6 +14,8 @@ import { FliesSpidersState } from "./ui/flies-spiders-state";
 import { FAS_QUESTS } from "./game/flies-spiders-support";
 import { LonelyMountainState } from "./ui/lonely-mountain-state";
 import { TLM_QUESTS } from "./game/lonely-mountain-support";
+import { BattleFiveArmiesState } from "./ui/battle-five-armies-state";
+import { BOFA_QUESTS } from "./game/battle-five-armies-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3219,6 +3221,11 @@ export default function App() {
               dispatch={dispatch}
             />
             <LonelyMountainState s={game} inspect={setDetail} />
+            <BattleFiveArmiesState
+              s={game}
+              inspect={setDetail}
+              dispatch={dispatch}
+            />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3964,6 +3971,7 @@ export default function App() {
                       ...DDCD_QUESTS,
                       ...FAS_QUESTS,
                       ...TLM_QUESTS,
+                      ...BOFA_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

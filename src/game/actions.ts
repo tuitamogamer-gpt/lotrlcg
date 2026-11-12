@@ -7,6 +7,7 @@ import { ommPublicState } from "./misty-mountains-support";
 import { ddcdPublicState } from "./dungeons-deep-support";
 import { fasPublicState } from "./flies-spiders-support";
 import { tlmPublicState } from "./lonely-mountain-support";
+import { bofaPublicState } from "./battle-five-armies-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -3542,6 +3543,7 @@ export function publicState(s: GameState) {
     dungeonsDeep: ddcdPublicState(s),
     fliesSpiders: fasPublicState(s),
     lonelyMountain: tlmPublicState(s),
+    battleFiveArmies: bofaPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),
