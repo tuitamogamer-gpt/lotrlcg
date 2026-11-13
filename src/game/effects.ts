@@ -6,6 +6,10 @@ import {
 } from "./lotr-saga";
 import { hideTestEffect } from "./hide-test";
 import {
+  blackRidersPlayerEffect,
+  blackRidersPlayerUndefendedTargets,
+} from "./black-riders-player-cards";
+import {
   hobbitPlayerEffect,
   hobbitPlayerRefreshEnd,
 } from "./hobbit-player-cards";
@@ -623,6 +627,7 @@ function handleEffect(s: GameState, e: Effect) {
   if (landSorrowPlayerEffect(s, e)) return;
   if (fortressNurnPlayerEffect(s, e)) return;
   if (hobbitPlayerEffect(s, e)) return;
+  if (blackRidersPlayerEffect(s, e)) return;
   if (wainridersPlayerEffect(s, e)) return;
   if (ulfastPlayerEffect(s, e)) return;
   if (HaradPlayers.handleHaradPlayerEffect(s, e)) return;
@@ -2548,6 +2553,7 @@ function handleEffect(s: GameState, e: Effect) {
                       ...s.heroes,
                       ...druadanPlayerUndefendedTargets(s),
                       ...finalRingUndefendedTargets(s),
+                      ...blackRidersPlayerUndefendedTargets(s),
                     ]),
                 ],
             (h) => [
@@ -2561,7 +2567,8 @@ function handleEffect(s: GameState, e: Effect) {
           isShipEnemy(enemy)
             ? "All undefended ship damage goes to one ship you control."
             : druadanPlayerUndefendedTargets(s).length ||
-                finalRingUndefendedTargets(s).length
+                finalRingUndefendedTargets(s).length ||
+                blackRidersPlayerUndefendedTargets(s).length
               ? "Assign all damage to one hero or an eligible ally."
               : "All undefended damage goes to one hero.",
         );

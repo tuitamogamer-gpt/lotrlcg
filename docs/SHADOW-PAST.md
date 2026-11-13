@@ -133,7 +133,8 @@ Engine additions:
   and its own panel, the RESOLVE_HIDE action and scenario hooks for its
   modifiers and results.
 - The Saga framework (`src/game/lotr-saga.ts`): the Ring-bearer, The One Ring,
-  Frodo's response and staging in player order.
+  Frodo's response and staging in player order. The box's other player cards
+  are described with [their scripts](BLACK-RIDERS-PLAYER-SCRIPTS.md).
 - A shared fix: an enemy destroyed during an immediate attack now discards
   the shadow cards held from its earlier attack, which were lost before.
 - Pathless Country, Piercing Cry and Lure of the Ring are shared with

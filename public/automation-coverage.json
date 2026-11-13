@@ -2,9 +2,9 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 791,
-    "heroes": 93,
-    "deckCards": 694,
+    "playerCards": 805,
+    "heroes": 97,
+    "deckCards": 704,
     "encounterCards": 1371,
     "scenarios": 92,
     "scenarioIds": [
@@ -104,8 +104,8 @@
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2450,
-    "pending": 1733
+    "scripted": 2464,
+    "pending": 1719
   },
   "scenarioRecipes": {
     "total": 355,
@@ -724,6 +724,20 @@
     "132023",
     "132024",
     "141001",
+    "141002",
+    "141003",
+    "141004",
+    "141005",
+    "141006",
+    "141007",
+    "141008",
+    "141009",
+    "141010",
+    "141011",
+    "141012",
+    "141013",
+    "141014",
+    "141015",
     "141016",
     "141080",
     "141081",
@@ -2989,9 +3003,9 @@
     {
       "product": "the-black-riders",
       "total": 85,
-      "scripted": 60,
+      "scripted": 74,
       "player": 21,
-      "playerScripted": 2
+      "playerScripted": 16
     },
     {
       "product": "the-black-riders-nightmare",
@@ -9385,7 +9399,7 @@
       "name": "Sam Gamgee",
       "type": "hero",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9393,7 +9407,7 @@
       "name": "Merry",
       "type": "hero",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9401,7 +9415,7 @@
       "name": "Pippin",
       "type": "hero",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9409,7 +9423,7 @@
       "name": "Fatty Bolger",
       "type": "hero",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9417,7 +9431,7 @@
       "name": "Bill the Pony",
       "type": "ally",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9425,7 +9439,7 @@
       "name": "Barliman Butterbur",
       "type": "ally",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9433,7 +9447,7 @@
       "name": "Farmer Maggot",
       "type": "ally",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9441,7 +9455,7 @@
       "name": "Halfling Determination",
       "type": "event",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9449,7 +9463,7 @@
       "name": "Smoke Rings",
       "type": "event",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9457,7 +9471,7 @@
       "name": "Take No Notice",
       "type": "event",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9465,7 +9479,7 @@
       "name": "Frodo's Intuition",
       "type": "event",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9473,7 +9487,7 @@
       "name": "Hobbit Cloak",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9481,7 +9495,7 @@
       "name": "Dagger of Westernesse",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {
@@ -9489,7 +9503,7 @@
       "name": "Hobbit Pipe",
       "type": "attachment",
       "pack": "The Black Riders",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-black-riders"
     },
     {

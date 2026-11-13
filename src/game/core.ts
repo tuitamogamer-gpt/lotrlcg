@@ -7,6 +7,7 @@ import {
 } from "./land-sorrow-player";
 import { fortressNurnPlayerUnit } from "./fortress-nurn-player";
 import { hobbitPlayerExtraPayers } from "./hobbit-player-cards";
+import * as BlackRidersPlayers from "./black-riders-player-cards";
 import { ereborCostReduction } from "./erebor-treasures";
 import { wandererNoMatch, sarumanPays } from "./wainriders-player-support";
 import {
@@ -639,6 +640,7 @@ export function stats(s: GameState, u: Unit) {
   const templePlayerBonus = TemplePlayers.templePlayerStats(s, u);
   const templeEncounterBonus = TempleEncounters.templeEncounterStats(s, u);
   const cobasBonus = cobasPlayerStats(s, u);
+  const blackRidersBonus = BlackRidersPlayers.blackRidersPlayerStats(s, u);
   const result = {
     will: Math.max(
       0,
@@ -721,6 +723,7 @@ export function stats(s: GameState, u: Unit) {
         Sands.beneathSandsStats(s, u).attack +
         (batch4Scenario(s).stats?.(s, u).attack ?? 0) +
         BatchSupport.batch4PlayerStats(s, u).attack +
+        blackRidersBonus.attack +
         eredFinalBonus.attack +
         shadowEastBonus.attack +
         wrathBonus.attack +
@@ -853,6 +856,7 @@ export function stats(s: GameState, u: Unit) {
       Dread.dreadStats(s, u).health +
       Depths.depthsStats(s, u).health +
       stewardBonus.health +
+      blackRidersBonus.health +
       bonus.health +
       u.attachments.filter((a) => !a.blanked && a.code === "01040").length * 4,
   };
@@ -928,6 +932,7 @@ export function playCost(s: GameState, c: Card, target?: Unit) {
                 ereborCostReduction(s, c) -
                 dwarfCostReduction(s, c) -
                 landSorrowPlayerCostReduction(s, c) -
+                BlackRidersPlayers.blackRidersPlayerCostReduction(s, c) -
                 EredFinalSupport.eredFinalPlayerCostReduction(s, c) -
                 ShadowEastSupport.shadowEastPlayerCostReduction(s, c) -
                 huntersCostReduction(s, c, target) -
@@ -1154,7 +1159,8 @@ export const engagementCost = (s: GameState, u: Unit) =>
       (batch4Scenario(s).engagementBonus?.(s, u) ?? 0) +
       Cobas.cobasEngagementModifier(s, u) +
       Mordor.mordorEngagementModifier(s, u) +
-      TempleEncounters.templeEncounterEngagement(s, u),
+      TempleEncounters.templeEncounterEngagement(s, u) +
+      BlackRidersPlayers.blackRidersPlayerEngagementBonus(s, u),
   );
 
 export const mainStageInfo = (s: GameState) => {

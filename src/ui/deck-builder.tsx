@@ -567,6 +567,7 @@ export default function DeckBuilder({
                   "lore",
                   "neutral",
                   "baggins",
+                  "fellowship",
                 ].map((v) => (
                   <option key={v} value={v}>
                     {v[0].toUpperCase() + v.slice(1)}

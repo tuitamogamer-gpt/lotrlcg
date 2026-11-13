@@ -36,12 +36,16 @@ let nextDeckId = 0;
 export const createDeckId = (now = Date.now()) =>
   `d${now.toString(36)}-${globalThis.crypto?.randomUUID?.() ?? ++nextDeckId}`;
 
-/** The Baggins Bilbo joins the first player in The Hobbit and is never chosen. */
+/**
+ * The Baggins Bilbo joins the first player in The Hobbit and the Fellowship
+ * Ring-bearer in The Lord of the Rings Saga; neither is ever chosen.
+ */
 export const HERO_CARDS: Card[] = playerCards.filter(
   (c) =>
     c.type_code === "hero" &&
     SCRIPTED.has(c.code) &&
-    c.sphere_code !== "baggins",
+    c.sphere_code !== "baggins" &&
+    c.sphere_code !== "fellowship",
 );
 export const DECK_CARDS: Card[] = playerCards.filter(
   (c) =>
@@ -137,7 +141,9 @@ export function deckWarnings(deck: Pick<CustomDeck, "heroes" | "cards">) {
     .map(([code]) =>
       card(code).sphere_code === "baggins"
         ? `${card(code).name} is paid with Bilbo Baggins' Baggins resources, so it can only be played in The Hobbit scenarios.`
-        : `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
+        : card(code).sphere_code === "fellowship"
+          ? `${card(code).name} is paid with the Ring-bearer's Fellowship resources, so it can only be played in The Lord of the Rings scenarios.`
+          : `${card(code).name} has no matching hero sphere; plan an effect that lets you play it.`,
     );
 }
 

@@ -32,6 +32,7 @@ import * as EredPlayers from "./ered-mithrin-player";
 import * as EredSupport from "./ered-mithrin-player-support";
 import type { DamageContext } from "./damage-context";
 import * as BatchPlayers from "./batch4-player";
+import * as BlackRidersPlayers from "./black-riders-player-cards";
 import * as WildsPlayers from "./wilds-player";
 import { batch4Scenario } from "./batch4-scenarios";
 import { dealEnemyShadows } from "./considered-engagement";
@@ -936,6 +937,7 @@ export function check(s: GameState) {
   eachArea(s, () => syncAttachmentText(s));
   EredSupport.eredMithrinPlayerRefresh(s);
   ShadowEastPlayers.shadowEastPlayerCheck(s);
+  BlackRidersPlayers.blackRidersPlayerCheck(s);
   if (s.status !== "playing") return;
   finalRingFollowFirst(s);
   Angmar.angmarSyncSwordThain(s);
@@ -2950,6 +2952,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   Cobas.cobasEngaged(s, u);
   EredPlayers.eredMithrinPlayerEnemyEngaged(s, u, activeSeat(s));
   BatchPlayers.batch4PlayerEnemyEngaged(s, u, activeSeat(s));
+  BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
   batch4Scenario(s).engaged?.(s, u);
@@ -3880,6 +3883,7 @@ export function allyEntryResponses(
   ulfastPlayerAllyEntered(s, u, played, fromHand);
   ashPlayerAllyEntered(s, u);
   landSorrowPlayerAllyEntered(s, u);
+  BlackRidersPlayers.blackRidersPlayerAllyEntered(s, u);
   EredFinalPlayers.eredFinalPlayerAllyEntered(s, u, played, fromHand);
   EredPlayers.eredMithrinPlayerAllyEntered(s, u, played);
   BatchPlayers.batch4PlayerAllyEntered(s, u, played);

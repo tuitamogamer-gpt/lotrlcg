@@ -1,5 +1,6 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
+import * as BlackRidersPlayers from "./black-riders-player-cards";
 import {
   otdPlayerAttackersDeclared,
   otdPlayerAttackResolved,
@@ -429,6 +430,7 @@ export function resolvePlayerAttack(
           ShadowEastSupport.shadowEastPlayerAttackBonus(s, u, enemy) +
           ulfastPlayerAttackBonus(s, u, enemy) +
           landSorrowPlayerAttackBonus(s, u, enemy) +
+          BlackRidersPlayers.blackRidersPlayerAttackBonus(s, u, enemy) +
           cityPlayerAttackBonus(s, u, enemy) +
           morgulPlayerAttackBonus(s, u, enemy) +
           redhornPlayerAttackBonus(s, u, enemy) +
@@ -542,6 +544,7 @@ export function playerAttackKilled(
   ShadowEastPlayers.shadowEastPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   WrathPlayers.wrathRuinPlayerAttackKilled(s, enemy, ids, engagedPlayer);
   landSorrowPlayerAttackKilled(s, enemy, ids);
+  BlackRidersPlayers.blackRidersPlayerAttackKilled(s, enemy, ids);
   EredPlayers.eredMithrinPlayerAttackKilled(s, enemy, ids);
   BatchPlayers.batch4PlayerAttackKilled(s, enemy, ids);
   Realm.realmAttackKilled(s, ids);
@@ -592,7 +595,8 @@ export function combatDefenderDefense(
     0,
     stats(s, defender).defense +
       Angmar.angmarDefenseBonus(s, defender, enemy) +
-      Rhudaur.rhudaurDefenseBonus(s, enemy, defender) -
+      Rhudaur.rhudaurDefenseBonus(s, enemy, defender) +
+      BlackRidersPlayers.blackRidersPlayerDefenseBonus(s, defender, enemy) -
       (combat.defensePenalty ?? 0),
   );
 }

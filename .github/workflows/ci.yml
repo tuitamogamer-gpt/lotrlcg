@@ -724,6 +724,8 @@ jobs:
             suite: test:browser-hobbit-players
           - group: otd-players
             suite: test:browser-otd-players
+          - group: black-riders-players
+            suite: test:browser-black-riders-players
           - group: wainriders
             suite: test:browser-wainriders
           - group: ulfast

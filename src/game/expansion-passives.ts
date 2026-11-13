@@ -67,6 +67,11 @@ const rules: Record<string, AttachmentRule> = {
   "132015": { type: "hero", requiresKeyword: "Ranged" },
   "132016": { type: "hero" },
   "132017": { type: "hero", limit: 1 },
+  // The Lord of the Rings: The Black Riders. The conditional bonuses of the
+  // Cloak and the Dagger are in black-riders-player-cards.ts.
+  "141013": { type: "hero", traits: ["Hobbit"], limit: 1 },
+  "141014": { type: "hero", restricted: 1, attack: 1 },
+  "141015": { traits: ["Hobbit"], limit: 1 },
   "22110": { type: "hero", traits: ["Hobbit"], restricted: 1 },
   "22112": { type: "hero", limit: 1 },
   "22115": { health: 1 },

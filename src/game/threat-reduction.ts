@@ -1,4 +1,5 @@
 import { sarumanThreatReduction } from "./wainriders-player-support";
+import { blackRidersPlayerThreatReduced } from "./black-riders-player-cards";
 import { batch4Scenario } from "./batch4-scenarios";
 import { CHETWOOD } from "./chetwood-support";
 import type { GameState } from "./types";
@@ -48,6 +49,7 @@ export function reduceThreat(
   amount = sarumanThreatReduction(s, amount, reason);
   const reduction = Math.min(s.threat, amount);
   s.threat -= reduction;
+  if (reduction) blackRidersPlayerThreatReduced(s, source, reason);
   if (
     !reduction ||
     reason !== "player-card" ||

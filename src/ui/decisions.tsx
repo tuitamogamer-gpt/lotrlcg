@@ -1,5 +1,10 @@
 import { cityPlayerAttackBonus } from "../game/city-player-support";
 import { landSorrowPlayerAttackBonus } from "../game/land-sorrow-player";
+import {
+  blackRidersPlayerAttackBonus,
+  blackRidersPlayerDefenseBonus,
+  blackRidersPlayerUndefendedTargets,
+} from "../game/black-riders-player-cards";
 import { druadanForestAttackStat } from "../game/druadan-forest";
 import { stormcallerAttackBonus } from "../game/stormcaller-player";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
@@ -197,7 +202,8 @@ export function DecisionStats({
             ? stormcallerAttackBonus(s, u) +
               (enemy
                 ? cityPlayerAttackBonus(s, u, enemy) +
-                  landSorrowPlayerAttackBonus(s, u, enemy)
+                  landSorrowPlayerAttackBonus(s, u, enemy) +
+                  blackRidersPlayerAttackBonus(s, u, enemy)
                 : 0)
             : 0)
         }
@@ -314,8 +320,10 @@ export function CombatDialog({
       (!defending && attackStat === "attack"
         ? stormcallerAttackBonus(s, u) +
           cityPlayerAttackBonus(s, u, enemy) +
-          landSorrowPlayerAttackBonus(s, u, enemy)
-        : 0),
+          landSorrowPlayerAttackBonus(s, u, enemy) +
+          blackRidersPlayerAttackBonus(s, u, enemy)
+        : 0) +
+      (defending ? blackRidersPlayerDefenseBonus(s, u, enemy) : 0),
     0,
   );
   const ownAttacker = picked.some((u) => ownerOf(s, u) === activeSeat(s));
@@ -467,7 +475,9 @@ export function CombatDialog({
                       ? "All attack damage goes to the lowest-threat Battleground. Excess damage does not carry over."
                       : druadanPlayerUndefendedTargets(s).length
                         ? "Assign all damage to one hero or an eligible White Tower Watchman. Defense does not count."
-                        : "All attack damage goes to one hero. Its defense does not count."}
+                        : blackRidersPlayerUndefendedTargets(s).length
+                          ? "Assign all damage to one hero or Barliman Butterbur. Defense does not count."
+                          : "All attack damage goes to one hero. Its defense does not count."}
                 </small>
               </span>
               {undefended && <Check size={19} />}

@@ -1,0 +1,114 @@
+[
+  {
+    "code": "141002",
+    "name": "Sam Gamgee",
+    "localPath": "/cards/141002.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141002.png",
+    "bytes": 150243,
+    "sha256": "7104001474226d66753a0c839f193549e5615c80c6b0d4ef74cdf218480569f9"
+  },
+  {
+    "code": "141003",
+    "name": "Merry",
+    "localPath": "/cards/141003.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141003.png",
+    "bytes": 152296,
+    "sha256": "1ca6c8398203848b01001f13e4a6c1b9b40fe6f1f6a17b1a4dc91f91ca4e2e4f"
+  },
+  {
+    "code": "141004",
+    "name": "Pippin",
+    "localPath": "/cards/141004.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141004.png",
+    "bytes": 143238,
+    "sha256": "165561b7e6dfe2c2fbf39e59d0ada666d73e7187a90fc73ed3bdfb26033eddaf"
+  },
+  {
+    "code": "141005",
+    "name": "Fatty Bolger",
+    "localPath": "/cards/141005.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141005.png",
+    "bytes": 151628,
+    "sha256": "196c67fde80c4fbdc387e26193f4a717960dc71f3e60759d26b71e3215b1fd8d"
+  },
+  {
+    "code": "141006",
+    "name": "Bill the Pony",
+    "localPath": "/cards/141006.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141006.png",
+    "bytes": 148488,
+    "sha256": "62d5eb60e8f9cdefed8bb726a0a24ec709c881578e988bd50d67fddc338d91dd"
+  },
+  {
+    "code": "141007",
+    "name": "Barliman Butterbur",
+    "localPath": "/cards/141007.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141007.png",
+    "bytes": 145316,
+    "sha256": "36187654bc20f71ffab0d851984ec7a605541ca243ad74f641060edce73d159c"
+  },
+  {
+    "code": "141008",
+    "name": "Farmer Maggot",
+    "localPath": "/cards/141008.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141008.png",
+    "bytes": 148892,
+    "sha256": "ce58066de8447f993ebe43dc2258a1def9eee9256d4813d2211c1c8238fbc311"
+  },
+  {
+    "code": "141009",
+    "name": "Halfling Determination",
+    "localPath": "/cards/141009.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141009.png",
+    "bytes": 137989,
+    "sha256": "645556a940fe58fd4b09395961c4402a84203ac5114a1f9df9b4db983947923b"
+  },
+  {
+    "code": "141010",
+    "name": "Smoke Rings",
+    "localPath": "/cards/141010.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141010.png",
+    "bytes": 142219,
+    "sha256": "f26ff7f27715d03e3dd272da9279eb4539d2a191ef88b8e439a90ece1e3fcbb7"
+  },
+  {
+    "code": "141011",
+    "name": "Take No Notice",
+    "localPath": "/cards/141011.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141011.png",
+    "bytes": 130243,
+    "sha256": "d80b2a630bfd87f8386acee8c4b2675bb17f60dc867e782ff428652b821fdb98"
+  },
+  {
+    "code": "141012",
+    "name": "Frodo's Intuition",
+    "localPath": "/cards/141012.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141012.png",
+    "bytes": 131090,
+    "sha256": "a517caf991c370dc1cae19efe14e2b6efe2f32fbeb9a4eb0889f052f7deec321"
+  },
+  {
+    "code": "141013",
+    "name": "Hobbit Cloak",
+    "localPath": "/cards/141013.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141013.png",
+    "bytes": 134024,
+    "sha256": "4b7870d63b1f6d139252d2861bcf00816bfc76d2d54d9157f7a58b8a85c0145d"
+  },
+  {
+    "code": "141014",
+    "name": "Dagger of Westernesse",
+    "localPath": "/cards/141014.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141014.png",
+    "bytes": 139699,
+    "sha256": "3f122ea9c223750b88486ccfaf563950c93e2f54d73874d870d7264f0dce1d07"
+  },
+  {
+    "code": "141015",
+    "name": "Hobbit Pipe",
+    "localPath": "/cards/141015.png",
+    "sourceUrl": "https://ringsdb.com/bundles/cards/141015.png",
+    "bytes": 155914,
+    "sha256": "5b855fc3eb9fb74169aea6142c8afd2a798b5285b64ed81d3356d29ca47e7a00"
+  }
+]
