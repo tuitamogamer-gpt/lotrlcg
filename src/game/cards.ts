@@ -25,6 +25,10 @@ import {
   FLIGHT_FORD_ENCOUNTERS,
   FLIGHT_FORD_QUESTS,
 } from "./flight-ford-scenario-data";
+import {
+  STONE_ERECH_ENCOUNTERS,
+  STONE_ERECH_QUESTS,
+} from "./stone-erech-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
@@ -505,6 +509,7 @@ export const encounterCards = [
       ...SHADOW_PAST_ENCOUNTERS,
       ...KNIFE_DARK_ENCOUNTERS,
       ...FLIGHT_FORD_ENCOUNTERS,
+      ...STONE_ERECH_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -588,6 +593,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...SHADOW_PAST_QUESTS,
     ...KNIFE_DARK_QUESTS,
     ...FLIGHT_FORD_QUESTS,
+    ...STONE_ERECH_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -712,6 +718,7 @@ export const SCRIPTED = new Set(
     ...SHADOW_PAST_QUESTS,
     ...KNIFE_DARK_QUESTS,
     ...FLIGHT_FORD_QUESTS,
+    ...STONE_ERECH_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

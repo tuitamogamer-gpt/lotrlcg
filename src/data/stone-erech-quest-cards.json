@@ -1,0 +1,125 @@
+[
+  {
+    "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+    "octgnid": "e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+    "name": "The Disappearance",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Make Tarlang's Neck the active location. Set Derufin, The Lord of the Dead, The Stone of Erech, and the 3 Night objectives aside, out of play. Shuffle the encounter deck. Place Eventide into play, next to the current quest.",
+    "is_unique": false,
+    "pack_code": "TSoE",
+    "pack_name": "The Stone of Erech",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Stone of Erech",
+    "side": "A",
+    "back_name": "The Disappearance",
+    "back_text": "When Revealed: Reveal 1 encounter card per player, adding them to the staging area.\nPlayers cannot defeat this stage while Tarlang's Neck is in play.",
+    "back_type_code": "quest",
+    "back_quest": 6,
+    "back_imagesrc": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoE",
+        "pack_name": "The Stone of Erech",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 6
+  },
+  {
+    "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+    "octgnid": "ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+    "name": "Terror of the Dead",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add The Stone of Erech to the staging area and attach Derufin to it.",
+    "is_unique": false,
+    "pack_code": "TSoE",
+    "pack_name": "The Stone of Erech",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Stone of Erech",
+    "side": "A",
+    "back_name": "Terror of the Dead",
+    "back_text": "Forced: At the beginning of each round, the players must choose: each player skips the next planning phase, or heroes do not collect resources during the resource phase this round.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoE",
+        "pack_name": "The Stone of Erech",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+    "octgnid": "efd4cef9-ce8b-4985-8825-853ba98baa2b",
+    "name": "The Shadow Host",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Starting with the first player, each player searches the encounter deck and discard pile for 1 Oathbreaker enemy, reveals it, and adds it to the staging area. Add the Lord of the Dead to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TSoE",
+    "pack_name": "The Stone of Erech",
+    "position": 3,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Stone of Erech",
+    "side": "A",
+    "back_name": "The Shadow Host",
+    "back_text": "Midnight. Battle. (Characters use their [attack] instead of [willpower] when questing.)\nPlayers cannot place progress on this stage unless they control Derufin.\nIf the players defeat this stage, they have escaped the Blackroot Vale with Derufin and won the game.",
+    "back_type_code": "quest",
+    "back_quest": 14,
+    "back_imagesrc": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg",
+    "packs": [
+      {
+        "pack_code": "TSoE",
+        "pack_name": "The Stone of Erech",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "efd4cef9-ce8b-4985-8825-853ba98baa2b",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 14
+  }
+]

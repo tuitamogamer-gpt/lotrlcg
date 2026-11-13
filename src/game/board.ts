@@ -2858,7 +2858,8 @@ export function collectResources(s: GameState) {
       if (
         !carrockSacked(h) &&
         khazadResourcePhase(s) &&
-        !Etten.ettenCannotCollectResources(s, h)
+        !Etten.ettenCannotCollectResources(s, h) &&
+        !batch4Scenario(s).cannotCollectResources?.(s, h)
       )
         h.resources +=
           1 +

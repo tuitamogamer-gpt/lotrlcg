@@ -5,8 +5,8 @@
     "playerCards": 805,
     "heroes": 97,
     "deckCards": 704,
-    "encounterCards": 1371,
-    "scenarios": 92,
+    "encounterCards": 1395,
+    "scenarios": 93,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -99,17 +99,18 @@
       "the-battle-of-lake-town",
       "a-shadow-of-the-past",
       "a-knife-in-the-dark",
-      "flight-to-the-ford"
+      "flight-to-the-ford",
+      "the-stone-of-erech"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2464,
-    "pending": 1719
+    "scripted": 2491,
+    "pending": 1692
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 185
+    "scripted": 186
   },
   "registeredCodes": [
     "01001",
@@ -999,6 +1000,7 @@
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
     "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
+    "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
     "octgn:0323e852-a05c-4c2d-a038-3f2596af7a85",
     "octgn:03587572-2760-48b5-9b08-e01ccdc9788f",
     "octgn:039a688f-8bef-4a77-97c4-84b942f3d91a",
@@ -1032,6 +1034,7 @@
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+    "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
     "octgn:0d30fbf1-6e8f-480f-9f2f-3196777f6e11",
@@ -1072,6 +1075,7 @@
     "octgn:13b4d81e-1bd7-4a56-a418-b60e58767c12",
     "octgn:14be3661-3f3c-4a89-b27f-ab7c15f92e4e",
     "octgn:14f41245-2616-4358-a8bb-6b9bcf83cf56",
+    "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
     "octgn:152a0b0a-7e01-41ce-98a4-3e7b0d6eaac4",
     "octgn:15602096-12af-47a0-9f9a-01778d2b0a7b",
     "octgn:1574141b-b11e-4be9-82c9-ddc1fb2f5269",
@@ -1258,6 +1262,7 @@
     "octgn:35ed8128-584c-43cc-ae7c-a4430e78940c",
     "octgn:365efac0-2631-483c-91ce-19da7585bd1a",
     "octgn:36905f8f-3807-432b-bd0f-892c97504afd",
+    "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
     "octgn:36ac198d-0248-464a-8919-36f96b8e7caf",
     "octgn:36dd0d2a-ba57-4ca0-b750-967c958e8bfb",
     "octgn:36e1a766-7b31-4bb4-be01-4995a9f9c2f3",
@@ -1312,6 +1317,7 @@
     "octgn:435e12a1-d479-42f6-a40d-8067615ec9e1",
     "octgn:4362ef23-0ade-4eea-974b-2959803f8528",
     "octgn:43867521-f76f-48be-9911-a90ac0f539f6",
+    "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
     "octgn:441a78e5-078f-433d-b092-5d94d1101aa1",
     "octgn:447061f6-3399-4309-9885-1045f115820f",
     "octgn:447dd08d-693c-407f-8155-87164f212351",
@@ -1808,6 +1814,7 @@
     "octgn:5ddb243e-ee43-45fd-b4c2-2b197fdf70a9",
     "octgn:5df1bf1c-8dc0-4534-9380-6af6812dc6f8",
     "octgn:5e39ebfc-287a-49d5-9369-49dbfb0fd665",
+    "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
     "octgn:5edbdc1f-e177-4a8b-b4f1-8475fe297a4b",
     "octgn:5f18c4ca-fcda-46d2-874b-3a1a73ef7c53",
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
@@ -1834,6 +1841,7 @@
     "octgn:6566587d-e2ac-46e6-adbd-fe667b077136",
     "octgn:65ad784f-d82e-4659-8d1c-53d2e4d19336",
     "octgn:65ef76b1-e624-4763-8906-899e4630225f",
+    "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
     "octgn:6603b3a5-b955-4109-a63d-b8405c86d0b7",
     "octgn:663a47fc-e264-485b-832d-2c327aa1a493",
     "octgn:6651f8a6-e442-4eba-a8b5-13fab4c1e93c",
@@ -1885,6 +1893,7 @@
     "octgn:721bbc14-f14c-4464-9963-55a77ab2d9bc",
     "octgn:7271da0e-570b-461c-b632-b6f82ab2c146",
     "octgn:727b90c5-46b3-4568-9ab9-cb7c6e662428",
+    "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
     "octgn:7295a9fb-961f-42ad-b07d-33793e2f2274",
     "octgn:72b4cfd3-457b-4574-b638-c0fcce49dd68",
     "octgn:73515869-890b-4169-9104-b2e882d921ae",
@@ -1918,14 +1927,17 @@
     "octgn:79f789a1-8a89-468b-8fb1-7a0292cc963f",
     "octgn:7a165c5c-caba-4af1-880e-845a124344d7",
     "octgn:7a2f15bc-d05d-4891-9558-02396affc32b",
+    "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
     "octgn:7a5671ee-27e0-4d04-95e3-77fe26a8a88b",
     "octgn:7aa7f695-f5b5-4fb4-9296-53ec517d6a30",
     "octgn:7aa9b24a-7b10-4457-be9e-5bfb78bff865",
     "octgn:7ab4b2ae-a646-4e24-bec6-7cd85d8a1c7c",
     "octgn:7ac077eb-0879-4230-8e27-97549f46eb4b",
+    "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
     "octgn:7b261ec7-bc90-4bd3-884d-d14a44e88942",
     "octgn:7b491dcc-668a-431f-b0a1-ec2bf34840a7",
     "octgn:7b8369b4-cca1-4076-8985-1c7be238ccb0",
+    "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
     "octgn:7c463bf7-9a1a-4d8a-879b-f966f19d0695",
     "octgn:7c5f503a-61aa-4f12-acdf-e52fc51e295f",
     "octgn:7c690a1f-83c5-4465-9c64-eaddc1b592e7",
@@ -1958,6 +1970,7 @@
     "octgn:81e81787-13b1-4bbf-a9ef-b8516deebbbc",
     "octgn:82141d38-fb53-472c-a5e8-6a495447c9ad",
     "octgn:821a078b-ae42-4b69-bd49-cc235916be77",
+    "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
     "octgn:8239e81a-f779-4c7c-b586-cd5ad732f061",
     "octgn:82514713-7cc4-4b76-a5f2-42a69ccff76b",
     "octgn:8275a439-ebcd-4cc3-907b-1e217d222806",
@@ -1987,6 +2000,7 @@
     "octgn:8815a340-fc16-41c5-ac2c-d647876c2bbd",
     "octgn:882952c5-c3a7-43aa-91d2-8a130b300d5f",
     "octgn:8830070b-b918-4b74-8dfb-dced3866e53b",
+    "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
     "octgn:89baec7c-4e60-4b12-9d7d-80b11e786d89",
     "octgn:89cd149f-69d3-4d75-887d-96b45730792a",
     "octgn:89f263b0-c4a5-43ea-b59d-6207f9f65954",
@@ -2021,6 +2035,7 @@
     "octgn:8e6fe06e-36a6-491d-ae17-6580ddfd8014",
     "octgn:8eae3ce5-c37e-4092-b91d-02c0721ffc0d",
     "octgn:8eb1ca03-da9e-4e84-abf2-090804eeb1aa",
+    "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
     "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
@@ -2131,6 +2146,7 @@
     "octgn:a750ab9c-9b29-4ca4-8221-8fa27cd74fe2",
     "octgn:a7907eca-8205-40a3-95ba-f30e31aaad82",
     "octgn:a7ae0add-ff9b-4976-8932-cff6d6e9a4dc",
+    "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
     "octgn:a7f5f1b7-6510-4c0f-9198-fd109e19a5c3",
     "octgn:a802fd4f-0a1b-440e-8648-ff44601bda2c",
     "octgn:a835576b-6a6c-4407-8f40-0151b70f5902",
@@ -2256,6 +2272,7 @@
     "octgn:c1ee0cb7-a209-44d6-8f35-8494a9e6cf1d",
     "octgn:c2181617-ad55-4bf7-a6f3-60979d112ce6",
     "octgn:c2720938-450b-4017-9ac3-f3130164bdf9",
+    "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
     "octgn:c2d8cd64-a1dc-4bf2-9e61-0336170e73af",
     "octgn:c2ff668a-6174-47d4-bbab-46f9c91403eb",
     "octgn:c319315a-e506-45a2-8ec0-c98e4bd9bad5",
@@ -2278,6 +2295,7 @@
     "octgn:c49ec585-e306-4fda-a55b-497cb0fd1174",
     "octgn:c5215a42-f064-46cc-a9a2-75ef4d57fcd2",
     "octgn:c5657436-d6c8-400d-ba1f-a723799ac685",
+    "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
@@ -2317,6 +2335,7 @@
     "octgn:cd628acc-acdf-48c5-a9cc-136eb9bc3095",
     "octgn:cd883a3f-65b8-473e-97f7-b8ac12f91194",
     "octgn:cd974fa4-7f3a-4b46-b2d0-b99d086fe98a",
+    "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
     "octgn:ce14480c-dfc0-4b30-8f8d-e878e003f4cd",
     "octgn:ce1cf93c-68d9-4613-af3a-a08671152358",
     "octgn:ce5c7298-f5ff-478f-b70a-9efa27bd071e",
@@ -2338,8 +2357,10 @@
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+    "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
+    "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
     "octgn:d4686e4d-2d50-4ffd-9b95-7bcdf9b2a494",
     "octgn:d47ece86-2645-4d35-8ab7-c439d12abe65",
     "octgn:d5134ddf-8c78-4e68-a603-7df5d48f5016",
@@ -2421,6 +2442,7 @@
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
     "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
+    "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
     "octgn:e4f6c61b-afb1-4f12-81d5-4edd14a90d32",
     "octgn:e542f4f9-420f-40eb-8c95-d648f2589511",
     "octgn:e6721e44-5706-4a0f-a895-ced75f9c6219",
@@ -2450,6 +2472,7 @@
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
     "octgn:ec9d7726-89fa-41ee-a6ad-30761a6b79d3",
     "octgn:ec9f4d54-a419-4b3e-a6b9-605119950d07",
+    "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
     "octgn:eccef05c-0f43-4cfa-91c6-e9eaf0eff7c9",
     "octgn:ed7b5f3e-432b-4dd7-85f9-6dea5ff62d3d",
     "octgn:edae55ef-8025-4553-9ff8-e81526effd59",
@@ -2466,11 +2489,13 @@
     "octgn:ef7c6601-a62d-440a-89b1-5a9d6208481b",
     "octgn:ef975c81-544a-4f1b-a3c4-d0bc42ef636c",
     "octgn:efcd8672-26f1-4c32-b6ef-5a06f80e406a",
+    "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
     "octgn:efdbe76c-5b41-4f28-a390-a72ec784e5a3",
     "octgn:f015bc92-42c1-405d-a54e-1a1c7bc0afae",
     "octgn:f02f15ee-3262-435a-b894-8f4003068c32",
     "octgn:f041d625-2075-4501-ad40-f17042c3d3df",
     "octgn:f054a6e2-71ae-4acb-ba62-2548ecbfcf9a",
+    "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af",
     "octgn:f0d30258-7122-4004-a689-9ff50a00b3af:B",
     "octgn:f16aabcd-6a98-4e4a-89ca-0f0d69407d85",
@@ -2518,8 +2543,10 @@
     "octgn:f8d69554-7cc1-4adc-b021-b6d3601e777d",
     "octgn:f8edfe48-aeda-41ea-bef9-db49d4781e7b",
     "octgn:f92ddbe7-0db6-494f-bdab-b5bd20439c18",
+    "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
     "octgn:f945cfde-271f-4e93-8eed-93eaaf0fb408",
     "octgn:f9824e39-fda8-4e4b-bc74-83b4bd40c72d",
+    "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
     "octgn:f9d0fb76-13bc-44f9-853f-8d2e417d0098",
     "octgn:f9e9bc93-8044-474c-8f80-d3787edbca5f",
     "octgn:fa3a740d-36b7-4fa9-b5d5-6d70aa50f078",
@@ -2537,6 +2564,7 @@
     "octgn:fbfee53c-fec3-4b55-a8b4-c7329f8f973e",
     "octgn:fc351b81-fc50-40a5-9f94-7ab885cb7a8c",
     "octgn:fc4f9f69-7870-4449-b89b-cd7b4dc158d0",
+    "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
     "octgn:fc6d1863-5007-4705-9d47-99d6d118e5ca",
     "octgn:fc70a2bc-c2ba-4364-a609-811daa0d6780",
     "octgn:fc8711c3-a458-4f0b-86d2-61fb3fd70316",
@@ -3402,7 +3430,7 @@
     {
       "product": "the-stone-of-erech",
       "total": 27,
-      "scripted": 0,
+      "scripted": 27,
       "player": 0,
       "playerScripted": 0
     },
@@ -12535,7 +12563,7 @@
       "name": "Shadow of Dwimorberg",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -13199,7 +13227,7 @@
       "name": "Midnight",
       "type": "objective",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -13863,7 +13891,7 @@
       "name": "Banks of Morthond",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -16943,7 +16971,7 @@
       "name": "Eventide",
       "type": "objective",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -17871,7 +17899,7 @@
       "name": "Whisperer",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -23015,7 +23043,7 @@
       "name": "The Dead Ride Behind",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -23471,7 +23499,7 @@
       "name": "Restless Dead",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -24479,7 +24507,7 @@
       "name": "Groping Horror",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -25175,7 +25203,7 @@
       "name": "Haunted Valley",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -25231,7 +25259,7 @@
       "name": "Relic from the Dark Years",
       "type": "objective",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -25287,7 +25315,7 @@
       "name": "The Lord of the Dead",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -25927,7 +25955,7 @@
       "name": "The Stone of Erech",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -26487,7 +26515,7 @@
       "name": "Tarlang's Neck",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -27055,7 +27083,7 @@
       "name": "Shadow-man",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -29015,7 +29043,7 @@
       "name": "Shadow Host Captain",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -31559,7 +31587,7 @@
       "name": "Midnight Throng",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -31863,7 +31891,7 @@
       "name": "Vale of Shadows",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -32567,7 +32595,7 @@
       "name": "Driven by Fear",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -32975,7 +33003,7 @@
       "name": "The Gloaming",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -33023,7 +33051,7 @@
       "name": "Dusk",
       "type": "objective",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -34287,7 +34315,7 @@
       "name": "The Disappearance",
       "type": "quest",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -35111,7 +35139,7 @@
       "name": "Terror of the Dead",
       "type": "quest",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -35375,7 +35403,7 @@
       "name": "The Shadow Host",
       "type": "quest",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -35455,7 +35483,7 @@
       "name": "Regretful Shade",
       "type": "enemy",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -36191,7 +36219,7 @@
       "name": "Derufin",
       "type": "objective-ally",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -36223,7 +36251,7 @@
       "name": "Murmurs of Dread",
       "type": "treachery",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -36551,7 +36579,7 @@
       "name": "Blackroot Graves",
       "type": "location",
       "pack": "The Stone of Erech",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-stone-of-erech"
     },
     {
@@ -39426,8 +39454,8 @@
       "id": "Q99.03",
       "name": "The Stone of Erech",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-stone-of-erech",
+      "state": "scripted"
     },
     {
       "id": "Q99.04",

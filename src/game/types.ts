@@ -156,6 +156,8 @@ export interface Unit {
   phaseResourceIcons?: string[];
   /** Derived resource icons granted by current engagement conditions. */
   dynamicResourceIcons?: string[];
+  /** Derived: the character has lost its sphere resource icons (Haunted Valley). */
+  noResourceIcons?: boolean;
   owner?: number;
   consideredEnemyAttackedBy?: number[];
   attackedBy?: number[];
@@ -269,6 +271,7 @@ export type ScenarioId =
   | "a-shadow-of-the-past"
   | "a-knife-in-the-dark"
   | "flight-to-the-ford"
+  | "the-stone-of-erech"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -440,6 +443,7 @@ export interface GameState {
   shadowPast?: import("./shadow-past-types").ShadowPastState;
   knifeDark?: import("./knife-dark-types").KnifeDarkState;
   flightFord?: import("./flight-ford-types").FlightFordState;
+  stoneErech?: import("./stone-erech-types").StoneErechState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -792,6 +796,10 @@ export interface GameState {
     ffPain?: boolean;
     /** Flight to the Ford: this attack destroyed a character. */
     ffDestroyed?: boolean;
+    /** The Stone of Erech: Banks of Morthond's shadow (a kill adds Night progress). */
+    seBanks?: boolean;
+    /** The Stone of Erech: this attack destroyed a character. */
+    seDestroyed?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

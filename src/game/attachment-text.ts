@@ -132,6 +132,9 @@ export function syncAttachmentText(s: GameState, extra?: Unit) {
     ];
     if (icons.length) host.dynamicResourceIcons = icons;
     else delete host.dynamicResourceIcons;
+    if (batch4Scenario(s).resourceIconsLost?.(s, host))
+      host.noResourceIcons = true;
+    else delete host.noResourceIcons;
   }
   for (const host of hosts) {
     const keywords = [

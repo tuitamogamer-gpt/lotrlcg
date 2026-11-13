@@ -6,6 +6,7 @@ import {
   blackRidersPlayerUndefendedTargets,
 } from "../game/black-riders-player-cards";
 import { druadanForestAttackStat } from "../game/druadan-forest";
+import { batch4Scenario } from "../game/batch4-scenarios";
 import { stormcallerAttackBonus } from "../game/stormcaller-player";
 import { druadanPlayerUndefendedTargets } from "../game/druadan-player-cards";
 import { amonPlayerCannotDeclareAttack } from "../game/amon-din-player-cards";
@@ -312,7 +313,10 @@ export function CombatDialog({
     ? defendersFor(s, enemy)
     : attackersFor(s, enemy);
   const picked = candidates.filter((u) => selected.includes(u.id));
-  const attackStat = druadanForestAttackStat(s);
+  const attackStat =
+    !defending && batch4Scenario(s).attackStat?.(s, enemy) === "will"
+      ? "will"
+      : druadanForestAttackStat(s);
   const total = picked.reduce(
     (sum, u) =>
       sum +

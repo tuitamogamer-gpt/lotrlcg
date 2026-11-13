@@ -926,6 +926,7 @@ function handleEffect(s: GameState, e: Effect) {
     case "startPlanning":
       startPhase(s, "planning");
       prepend(s, ...Mordor.mordorPlanningBegin(s));
+      batch4Scenario(s).planningBegin?.(s);
       break;
     case "freeHandPlay":
       choose(s, "Play a card from your hand at no cost", [
@@ -2854,7 +2855,7 @@ export function shadowResponse(s: GameState, code: string) {
   if (
     !Wastes.wastesCancelAllowed(s) ||
     Sands.beneathSandsCannotCancel(s) ||
-    batch4Scenario(s).cannotCancel?.(s, true)
+    batch4Scenario(s).cannotCancel?.(s, true, code)
   ) {
     prepend(s, fx("shadowEffect", { code }));
     return;

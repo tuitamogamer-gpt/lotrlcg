@@ -1,0 +1,1452 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Stone of Erech",
+  "slug": "the-stone-of-erech",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+      "octgnid": "02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+      "name": "Shadow of Dwimorberg",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale. Mountain.",
+      "text": "Dusk. Shadow of Dwimorberg gets +2 [threat].  Midnight. Shadow of Dwimorberg gets +4 [threat].",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 20,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 4,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+      "octgnid": "0c15f99d-9066-4e7c-b364-104a0083d997",
+      "name": "Midnight",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Night.",
+      "text": "Forced: At the end of the round, place 1 progress on Midnight. Then, raise each player's threat by the number of progress on Midnight.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 10,
+      "quantity": 1,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/0c15f99d-9066-4e7c-b364-104a0083d997.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 10,
+          "quantity": 1,
+          "octgnid": "0c15f99d-9066-4e7c-b364-104a0083d997",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c15f99d-9066-4e7c-b364-104a0083d997.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+      "octgnid": "14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+      "name": "Banks of Morthond",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale. Riverland.",
+      "text": "While Banks of Morthond is the active location, each location in the staging area gets -1 [threat]",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 17,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 7,
+      "shadow": "Shadow: If this attack destroys a character, add 1 progress to the current Night objective.",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "7"
+      },
+      "imagesrc": "/cards/14f7c98c-b425-4fac-850a-729d8fcdaa0c.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 17,
+          "quantity": 2,
+          "octgnid": "14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14f7c98c-b425-4fac-850a-729d8fcdaa0c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+      "octgnid": "36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+      "name": "Eventide",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Night.",
+      "text": "Forced: At the end of the round, place 1 progress on Eventide.  If there are 4 or more progress on Eventide, add it to the victory display and put Dusk into play.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 8,
+      "quantity": 1,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/36a22f2b-56d9-4148-a962-f7fbdf60f3a1.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 8,
+          "quantity": 1,
+          "octgnid": "36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36a22f2b-56d9-4148-a962-f7fbdf60f3a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+      "octgnid": "43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+      "name": "Whisperer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral.\nDusk. Whisperer gets +1 [threat].  Midnight. Whisperer gets +2 [threat] and gains doomed 2.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 14,
+      "quantity": 3,
+      "threat": 2,
+      "attack": 2,
+      "defense": 2,
+      "health": 4,
+      "engagement": 35,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "2",
+        "defense": "2",
+        "health": "4",
+        "engagement": "35"
+      },
+      "imagesrc": "/cards/43bb02ff-9fcc-47e8-822c-ffcd620c9fc4.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 14,
+          "quantity": 3,
+          "octgnid": "43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43bb02ff-9fcc-47e8-822c-ffcd620c9fc4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
+      "octgnid": "5e7c36de-a2bb-44e3-951b-80123788d571",
+      "name": "The Dead Ride Behind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Deal 1 damage to each character with less than 2 [willpower] (Dusk. less than 3 [willpower] instead. Midnight. less than 4 [willpower] instead).",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 26,
+      "quantity": 2,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/5e7c36de-a2bb-44e3-951b-80123788d571.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 26,
+          "quantity": 2,
+          "octgnid": "5e7c36de-a2bb-44e3-951b-80123788d571",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e7c36de-a2bb-44e3-951b-80123788d571.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
+      "octgnid": "65f48337-cec0-41a1-84ff-490c4f563ce4",
+      "name": "Restless Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral.\nWhen Revealed: Return the topmost Undead enemy in the encounter discard pile to the staging area.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 13,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 0,
+      "health": 2,
+      "engagement": 12,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "0",
+        "health": "2",
+        "engagement": "12"
+      },
+      "imagesrc": "/cards/65f48337-cec0-41a1-84ff-490c4f563ce4.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 13,
+          "quantity": 4,
+          "octgnid": "65f48337-cec0-41a1-84ff-490c4f563ce4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65f48337-cec0-41a1-84ff-490c4f563ce4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
+      "octgnid": "728f17db-d741-4f1b-92da-8aac3d78432d",
+      "name": "Groping Horror",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player must choose: skip the next travel phase, or each player must pass his hand to the player on his left (discard your hand instead if you are the only player in the game).  Midnight. Groping Horror gains surge.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 24,
+      "quantity": 2,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/728f17db-d741-4f1b-92da-8aac3d78432d.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 24,
+          "quantity": 2,
+          "octgnid": "728f17db-d741-4f1b-92da-8aac3d78432d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/728f17db-d741-4f1b-92da-8aac3d78432d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
+      "octgnid": "7a3411df-76a0-432b-a64a-d499b0b1ae50",
+      "name": "Haunted Valley",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale.",
+      "text": "While this location is in the staging area, all ready heroes lose all [lore], [leadership], [spirit], and [tactics] icons.  Planning Action: Exhaust a hero. Any player may trigger this action.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 21,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 3,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/7a3411df-76a0-432b-a64a-d499b0b1ae50.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "7a3411df-76a0-432b-a64a-d499b0b1ae50",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a3411df-76a0-432b-a64a-d499b0b1ae50.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
+      "octgnid": "7b0eb4e5-962c-4041-baea-3a09a83fb996",
+      "name": "Relic from the Dark Years",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Item. Artifact.",
+      "text": "Midnight. Action: Claim this objective and attach it to a hero you control. Counts as an Artifact attachment with the text: \"When attached hero attacks an Oathbreaker, that enemy loses the Spectral keyword until the end of the phase.\"",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 11,
+      "quantity": 1,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/7b0eb4e5-962c-4041-baea-3a09a83fb996.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "7b0eb4e5-962c-4041-baea-3a09a83fb996",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b0eb4e5-962c-4041-baea-3a09a83fb996.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+      "octgnid": "7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+      "name": "The Lord of the Dead",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral. Cannot have attachments.\nWhile you are engaged with The Lord of the Dead, treat all printed text boxes on characters you control as if they were blank (except for Traits).",
+      "is_unique": true,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 5,
+      "quantity": 1,
+      "threat": 5,
+      "attack": 6,
+      "defense": 3,
+      "health": 9,
+      "engagement": 30,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "5",
+        "attack": "6",
+        "defense": "3",
+        "health": "9",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/7b9dd852-ed19-4a00-b09e-f6c2cee549fa.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b9dd852-ed19-4a00-b09e-f6c2cee549fa.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
+      "octgnid": "822ca699-4763-4b8c-baff-d8d828c002a9",
+      "name": "The Stone of Erech",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale.",
+      "text": "Immune to player card effects. X is twice the number of players in the game.\nWhile The Stone of Erech is the active location, characters with less than 2 [willpower] cannot ready.  Travel: Exhaust each character with less than 2 [willpower].",
+      "is_unique": true,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 6,
+      "quantity": 1,
+      "quest": 6,
+      "victory": 5,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "6",
+        "victory": "5"
+      },
+      "imagesrc": "/cards/822ca699-4763-4b8c-baff-d8d828c002a9.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 6,
+          "quantity": 1,
+          "octgnid": "822ca699-4763-4b8c-baff-d8d828c002a9",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/822ca699-4763-4b8c-baff-d8d828c002a9.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+      "octgnid": "88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+      "name": "Tarlang's Neck",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale. Road.",
+      "text": "While Tarlang's Neck is the active location, it gains, \"Forced: At the beginning of the encounter phase, the players must either immediately end the encounter phase, or the first player must engage all enemies in the staging area.\"",
+      "is_unique": true,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 7,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 6,
+      "victory": 1,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/88df7c56-ee11-48f0-b6a0-0486e0a8ce92.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/88df7c56-ee11-48f0-b6a0-0486e0a8ce92.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+      "octgnid": "8ece887c-6ca7-467d-80d4-3f28afa13433",
+      "name": "Shadow-man",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral.\nWhen Revealed: Players cannot play events until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 12,
+      "quantity": 2,
+      "threat": 2,
+      "attack": 4,
+      "defense": 1,
+      "health": 5,
+      "engagement": 27,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (Dusk. +2 [attack] instead. Midnight. +3 [attack] instead)",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "1",
+        "health": "5",
+        "engagement": "27"
+      },
+      "imagesrc": "/cards/8ece887c-6ca7-467d-80d4-3f28afa13433.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 12,
+          "quantity": 2,
+          "octgnid": "8ece887c-6ca7-467d-80d4-3f28afa13433",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ece887c-6ca7-467d-80d4-3f28afa13433.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
+      "octgnid": "a7d52939-2989-44d2-b81b-571db0ee8c16",
+      "name": "Shadow Host Captain",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral.\nDusk. Shadow Host Captain gets +1 [attack] and +1 [defense].  Midnight. Shadow Host Captain gains +2 [attack] and +2 [defense].",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 15,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 4,
+      "defense": 1,
+      "health": 6,
+      "engagement": 42,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "4",
+        "defense": "1",
+        "health": "6",
+        "engagement": "42"
+      },
+      "imagesrc": "/cards/a7d52939-2989-44d2-b81b-571db0ee8c16.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 15,
+          "quantity": 2,
+          "octgnid": "a7d52939-2989-44d2-b81b-571db0ee8c16",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7d52939-2989-44d2-b81b-571db0ee8c16.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+      "octgnid": "c29c98de-5660-498c-a5cc-a1800985d221",
+      "name": "Midnight Throng",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player must search the encounter deck and discard pile for an Undead enemy, reveal it, and add it to the staging area. Shuffle the encounter deck.  Midnight. This effect cannot be canceled.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 22,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (Dusk. +2 [attack] instead. Midnight. +3 [attack] instead)",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/c29c98de-5660-498c-a5cc-a1800985d221.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 22,
+          "quantity": 2,
+          "octgnid": "c29c98de-5660-498c-a5cc-a1800985d221",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c29c98de-5660-498c-a5cc-a1800985d221.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+      "octgnid": "c57661b7-62f9-4906-b2eb-73af91fd8252",
+      "name": "Vale of Shadows",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale.",
+      "text": "When Revealed: Make Vale of Shadows the active location. If another location is currently active, return it to the staging area.  Dusk. Vale of Shadows gets +2 quest points.  Midnight. Vale of Shadows gets +4 quest points.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 18,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 3,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "3"
+      },
+      "imagesrc": "/cards/c57661b7-62f9-4906-b2eb-73af91fd8252.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 18,
+          "quantity": 2,
+          "octgnid": "c57661b7-62f9-4906-b2eb-73af91fd8252",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c57661b7-62f9-4906-b2eb-73af91fd8252.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+      "octgnid": "cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+      "name": "Driven by Fear",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: The first player attaches Driven by Fear to a hero he controls. Counts as a Condition attachment with the text: \"Attached character's [willpower] is reduced to 0. Treat attached character's text box as if it was blank (except for Traits.)\"",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 25,
+      "quantity": 2,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 25,
+          "quantity": 2,
+          "octgnid": "cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+      "octgnid": "d33ef89b-13c9-49b2-a921-a527f27a415a",
+      "name": "The Gloaming",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Add 1 progress to the current Night objective.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 27,
+      "quantity": 2,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/d33ef89b-13c9-49b2-a921-a527f27a415a.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 27,
+          "quantity": 2,
+          "octgnid": "d33ef89b-13c9-49b2-a921-a527f27a415a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d33ef89b-13c9-49b2-a921-a527f27a415a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+      "octgnid": "d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+      "name": "Dusk",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Night.",
+      "text": "Forced: At the end of the round, place 1 progress on Dusk.  If there are 4 or more progress on Dusk, add it to the victory display and put Midnight into play.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 9,
+      "quantity": 1,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/d3c68791-c3f9-4e8d-9515-2496f9ca1895.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 9,
+          "quantity": 1,
+          "octgnid": "d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3c68791-c3f9-4e8d-9515-2496f9ca1895.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+      "octgnid": "e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+      "name": "The Disappearance",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Make Tarlang's Neck the active location. Set Derufin, The Lord of the Dead, The Stone of Erech, and the 3 Night objectives aside, out of play. Shuffle the encounter deck. Place Eventide into play, next to the current quest.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Stone of Erech",
+      "side": "A",
+      "back_name": "The Disappearance",
+      "back_text": "When Revealed: Reveal 1 encounter card per player, adding them to the staging area.  Players cannot defeat this stage while Tarlang's Neck is in play.",
+      "back_type_code": "quest",
+      "back_quest": 6,
+      "back_imagesrc": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+      "octgnid": "ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+      "name": "Terror of the Dead",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add The Stone of Erech to the staging area and attach Derufin to it.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 2,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Stone of Erech",
+      "side": "A",
+      "back_name": "Terror of the Dead",
+      "back_text": "Forced: At the beginning of each round, the players must choose: each player skips the next planning phase, or heroes do not collect resources during the resource phase this round.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 2,
+          "quantity": 1,
+          "octgnid": "ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+      "octgnid": "efd4cef9-ce8b-4985-8825-853ba98baa2b",
+      "name": "The Shadow Host",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Starting with the first player, each player searches the encounter deck and discard pile for 1 Oathbreaker enemy, reveals it, and adds it to the staging area. Add the Lord of the Dead to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 3,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Stone of Erech",
+      "side": "A",
+      "back_name": "The Shadow Host",
+      "back_text": "Players cannot place progress on this stage unless they control Derufin.  If the players defeat this stage, they have escaped the Blackroot Vale with Derufin and won the game.",
+      "back_type_code": "quest",
+      "back_quest": 14,
+      "back_imagesrc": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "efd4cef9-ce8b-4985-8825-853ba98baa2b",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+      "octgnid": "f079c496-20bf-4ce4-a5ca-d644172d83fe",
+      "name": "Regretful Shade",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Undead. Oathbreaker.",
+      "text": "Spectral. Surge.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 16,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 2,
+      "defense": 1,
+      "health": 3,
+      "engagement": 23,
+      "shadow": "Shadow: Deal attacking enemy 1 additional shadow card (Dusk. 2 additional cards instead. Midnight. 3 additional cards instead).",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "2",
+        "defense": "1",
+        "health": "3",
+        "engagement": "23"
+      },
+      "imagesrc": "/cards/f079c496-20bf-4ce4-a5ca-d644172d83fe.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 16,
+          "quantity": 3,
+          "octgnid": "f079c496-20bf-4ce4-a5ca-d644172d83fe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f079c496-20bf-4ce4-a5ca-d644172d83fe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+      "octgnid": "f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+      "name": "Derufin",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Gondor.",
+      "text": "Forced: After the players travel to The Stone of Erech, the first player gains control of Derufin.  Dusk. Derufin gets -1 [willpower].  Midnight. Derufin gets -2 [willpower].  If Derufin leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 4,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 1,
+      "defense": 1,
+      "health": 2,
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "1",
+        "defense": "1",
+        "health": "2"
+      },
+      "imagesrc": "/cards/f93a8fda-7383-41c9-b86d-c5ba1fec760d.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f93a8fda-7383-41c9-b86d-c5ba1fec760d.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+      "octgnid": "f985bda2-5029-4c34-91f7-721f830cbd9c",
+      "name": "Murmurs of Dread",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: All character get -1 [willpower] until the end of the round.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 23,
+      "quantity": 2,
+      "shadow": "Shadow: Dusk/Midnight. Attacking enemy makes an additional attack after this one. Midnight. This effect cannot be canceled.",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {},
+      "imagesrc": "/cards/f985bda2-5029-4c34-91f7-721f830cbd9c.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 23,
+          "quantity": 2,
+          "octgnid": "f985bda2-5029-4c34-91f7-721f830cbd9c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f985bda2-5029-4c34-91f7-721f830cbd9c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+      "octgnid": "fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+      "name": "Blackroot Graves",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Blackroot Vale.",
+      "text": "Forced: When Blackroot Graves is explored, return the topmost Undead enemy in the encounter discard pile to play, engaged with the first player.",
+      "is_unique": false,
+      "pack_code": "TSoE",
+      "pack_name": "The Stone of Erech",
+      "position": 19,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 1,
+      "shadow": "Shadow: If defending character has 0 [willpower], deal 2 damage to that character.",
+      "encounter_set": "The Stone of Erech",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "1"
+      },
+      "imagesrc": "/cards/fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a.jpg",
+      "packs": [
+        {
+          "pack_code": "TSoE",
+          "pack_name": "The Stone of Erech",
+          "position": 19,
+          "quantity": 3,
+          "octgnid": "fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q99.03",
+      "name": "The Stone of Erech",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TSoE"
+      ],
+      "card_codes": [
+        "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+        "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+        "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+        "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+        "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+        "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
+        "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+        "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
+        "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+        "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
+        "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+        "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+        "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+        "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
+        "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+        "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+        "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
+        "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+        "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+        "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
+        "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+        "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+        "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+        "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+        "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+        "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+        "octgn:822ca699-4763-4b8c-baff-d8d828c002a9"
+      ],
+      "cards": [
+        {
+          "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791": 1,
+          "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce": 1,
+          "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c": 2,
+          "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a": 3,
+          "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996": 1,
+          "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433": 2,
+          "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4": 4,
+          "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4": 3,
+          "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16": 2,
+          "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe": 3,
+          "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252": 2,
+          "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8": 2,
+          "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50": 2,
+          "octgn:c29c98de-5660-498c-a5cc-a1800985d221": 2,
+          "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c": 2,
+          "octgn:728f17db-d741-4f1b-92da-8aac3d78432d": 2,
+          "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a": 2,
+          "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142": 2,
+          "octgn:5e7c36de-a2bb-44e3-951b-80123788d571": 2
+        },
+        "sharedSetAside": {
+          "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92": 1,
+          "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1": 1,
+          "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895": 1,
+          "octgn:0c15f99d-9066-4e7c-b364-104a0083d997": 1,
+          "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d": 1,
+          "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa": 1,
+          "octgn:822ca699-4763-4b8c-baff-d8d828c002a9": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8.jpg",
+      "localPath": "/cards/02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8.jpg",
+      "bytes": 132098,
+      "sha256": "8b9a0f4fa14699354914e856fa01d1ab794f9abd969872c57fc0448a2cd1353e"
+    },
+    {
+      "code": "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c15f99d-9066-4e7c-b364-104a0083d997.jpg",
+      "localPath": "/cards/0c15f99d-9066-4e7c-b364-104a0083d997.jpg",
+      "bytes": 120125,
+      "sha256": "d688f4d6675531a7de4bd6828487392c033ebee66d0d866ecf926f3c89a5780f"
+    },
+    {
+      "code": "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/14f7c98c-b425-4fac-850a-729d8fcdaa0c.jpg",
+      "localPath": "/cards/14f7c98c-b425-4fac-850a-729d8fcdaa0c.jpg",
+      "bytes": 138308,
+      "sha256": "15c054d06bf581f6923a13e41006a6f4469d229da4a76ec519428b72b01fef95"
+    },
+    {
+      "code": "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/36a22f2b-56d9-4148-a962-f7fbdf60f3a1.jpg",
+      "localPath": "/cards/36a22f2b-56d9-4148-a962-f7fbdf60f3a1.jpg",
+      "bytes": 119409,
+      "sha256": "d02a6323cf090e71c5dfd34e52c57163af035676d441b0cbb8880c30c39ff2ed"
+    },
+    {
+      "code": "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/43bb02ff-9fcc-47e8-822c-ffcd620c9fc4.jpg",
+      "localPath": "/cards/43bb02ff-9fcc-47e8-822c-ffcd620c9fc4.jpg",
+      "bytes": 130095,
+      "sha256": "eb35b80b233700831d107ed7a5150a5fc85bddec375b8f7618d7a971201fbdca"
+    },
+    {
+      "code": "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5e7c36de-a2bb-44e3-951b-80123788d571.jpg",
+      "localPath": "/cards/5e7c36de-a2bb-44e3-951b-80123788d571.jpg",
+      "bytes": 121899,
+      "sha256": "1c599c5fee05679894fd935e789e8107d3c80c1e554d980d0cb9fe2cc8f878ce"
+    },
+    {
+      "code": "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/65f48337-cec0-41a1-84ff-490c4f563ce4.jpg",
+      "localPath": "/cards/65f48337-cec0-41a1-84ff-490c4f563ce4.jpg",
+      "bytes": 136253,
+      "sha256": "ff667c37cddb2e3ad981161d0a02c61c4b83ffa797390152652b3862c3c271ca"
+    },
+    {
+      "code": "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/728f17db-d741-4f1b-92da-8aac3d78432d.jpg",
+      "localPath": "/cards/728f17db-d741-4f1b-92da-8aac3d78432d.jpg",
+      "bytes": 130311,
+      "sha256": "b082773f4ea8d45133e92b209cc8cea645c6d03111223fb84c14da867b6beafa"
+    },
+    {
+      "code": "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7a3411df-76a0-432b-a64a-d499b0b1ae50.jpg",
+      "localPath": "/cards/7a3411df-76a0-432b-a64a-d499b0b1ae50.jpg",
+      "bytes": 129803,
+      "sha256": "d4d852b51f3a2f660acc905b2e2889e7d2b2e51983dd91f61790df560d6866ce"
+    },
+    {
+      "code": "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b0eb4e5-962c-4041-baea-3a09a83fb996.jpg",
+      "localPath": "/cards/7b0eb4e5-962c-4041-baea-3a09a83fb996.jpg",
+      "bytes": 147984,
+      "sha256": "e9948674d754dc9114441b04954302b61bdeccedc3278edadd0334b9e94d9fd9"
+    },
+    {
+      "code": "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7b9dd852-ed19-4a00-b09e-f6c2cee549fa.jpg",
+      "localPath": "/cards/7b9dd852-ed19-4a00-b09e-f6c2cee549fa.jpg",
+      "bytes": 144883,
+      "sha256": "2743d821c78b48745980c79e236ae6056d4bc9e023bbbd69a4855868069c8f42"
+    },
+    {
+      "code": "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/822ca699-4763-4b8c-baff-d8d828c002a9.jpg",
+      "localPath": "/cards/822ca699-4763-4b8c-baff-d8d828c002a9.jpg",
+      "bytes": 138739,
+      "sha256": "a695bd909af303377ef16350fc004ca13b4331d84969041c4542a97df4e00aa0"
+    },
+    {
+      "code": "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/88df7c56-ee11-48f0-b6a0-0486e0a8ce92.jpg",
+      "localPath": "/cards/88df7c56-ee11-48f0-b6a0-0486e0a8ce92.jpg",
+      "bytes": 148891,
+      "sha256": "756b355e0081f84712efa68359a28dcbe712347df1e4121e76639e698d35b82d"
+    },
+    {
+      "code": "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8ece887c-6ca7-467d-80d4-3f28afa13433.jpg",
+      "localPath": "/cards/8ece887c-6ca7-467d-80d4-3f28afa13433.jpg",
+      "bytes": 131956,
+      "sha256": "021cded814854c5136d68694611bf9498039e89e5b707498ec5c3369fb4f7719"
+    },
+    {
+      "code": "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a7d52939-2989-44d2-b81b-571db0ee8c16.jpg",
+      "localPath": "/cards/a7d52939-2989-44d2-b81b-571db0ee8c16.jpg",
+      "bytes": 139569,
+      "sha256": "b5b974357a3b92635c399e3d3949380aa8d643834cafd5ba73acaa11190614ed"
+    },
+    {
+      "code": "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c29c98de-5660-498c-a5cc-a1800985d221.jpg",
+      "localPath": "/cards/c29c98de-5660-498c-a5cc-a1800985d221.jpg",
+      "bytes": 128211,
+      "sha256": "631efe7b7a850b5f16ca0158f8b720bed04baf3641dc7c9aba85520f6f950193"
+    },
+    {
+      "code": "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c57661b7-62f9-4906-b2eb-73af91fd8252.jpg",
+      "localPath": "/cards/c57661b7-62f9-4906-b2eb-73af91fd8252.jpg",
+      "bytes": 133681,
+      "sha256": "f1b8db825bcb72e2538bc4e91662de3ed6f0f16873d9af72f387b2ae29084335"
+    },
+    {
+      "code": "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142.jpg",
+      "localPath": "/cards/cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142.jpg",
+      "bytes": 136057,
+      "sha256": "b904dd606763e2e2d5a33fd1cf8c8d97bb1ec9a8ee17d9dc27ef5a4ddda5ef38"
+    },
+    {
+      "code": "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d33ef89b-13c9-49b2-a921-a527f27a415a.jpg",
+      "localPath": "/cards/d33ef89b-13c9-49b2-a921-a527f27a415a.jpg",
+      "bytes": 124849,
+      "sha256": "7bcfcc768e3940974b81fa59deecf74401501a20612f6b5210d2e8f3cb3b92cf"
+    },
+    {
+      "code": "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d3c68791-c3f9-4e8d-9515-2496f9ca1895.jpg",
+      "localPath": "/cards/d3c68791-c3f9-4e8d-9515-2496f9ca1895.jpg",
+      "bytes": 121405,
+      "sha256": "2e082e41daa96a7f9608169ec924aeaf3ad4e555bc54fc2969cf72be40f46334"
+    },
+    {
+      "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg",
+      "localPath": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.jpg",
+      "bytes": 131350,
+      "sha256": "19fad16361755e02898a9ab632bcfd2fe6a52e43fde8eb91dfd9f3d4f4a55188"
+    },
+    {
+      "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.B.jpg",
+      "localPath": "/cards/e4af5d7f-9af5-41bb-b22a-cce8b91ac791.B.jpg",
+      "bytes": 132787,
+      "sha256": "9f5d0ff13cde3276ba194fca4d844257d14e111926479789a6401c10f5f8d92d"
+    },
+    {
+      "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg",
+      "localPath": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.jpg",
+      "bytes": 130495,
+      "sha256": "23c48f5edc0e8150450971c35d557d9b140cedc00ae0006232b7b4fd189ba859"
+    },
+    {
+      "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.B.jpg",
+      "localPath": "/cards/ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce.B.jpg",
+      "bytes": 129755,
+      "sha256": "d1cb35b6e1b731e000154333a21ba946f91bd5723ef8e1cd5960929bfb3ee5d2"
+    },
+    {
+      "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg",
+      "localPath": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.jpg",
+      "bytes": 144292,
+      "sha256": "16ef8190ddb13414be9ac25f8f0584fa84bcf80929f66417ce61c41e5a3ab897"
+    },
+    {
+      "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/efd4cef9-ce8b-4985-8825-853ba98baa2b.B.jpg",
+      "localPath": "/cards/efd4cef9-ce8b-4985-8825-853ba98baa2b.B.jpg",
+      "bytes": 135685,
+      "sha256": "21442054f7ecc5181feab7fa0b092127b278de4fef0b7b65212064ef934a818f"
+    },
+    {
+      "code": "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f079c496-20bf-4ce4-a5ca-d644172d83fe.jpg",
+      "localPath": "/cards/f079c496-20bf-4ce4-a5ca-d644172d83fe.jpg",
+      "bytes": 131929,
+      "sha256": "504cd3e0aef44a2613b60c9a4304cfd97bb72a2d7cb4235a1e56b04938473a6a"
+    },
+    {
+      "code": "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f93a8fda-7383-41c9-b86d-c5ba1fec760d.jpg",
+      "localPath": "/cards/f93a8fda-7383-41c9-b86d-c5ba1fec760d.jpg",
+      "bytes": 128313,
+      "sha256": "bce86c9a3c08a6e26c4657161c978775a387e96648e76de4ad274a44dc232d35"
+    },
+    {
+      "code": "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f985bda2-5029-4c34-91f7-721f830cbd9c.jpg",
+      "localPath": "/cards/f985bda2-5029-4c34-91f7-721f830cbd9c.jpg",
+      "bytes": 123672,
+      "sha256": "2385828e699a6daa1893a5858cf3aaeeb3d65b554cfcada140e7cf041b69d489"
+    },
+    {
+      "code": "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a.jpg",
+      "localPath": "/cards/fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a.jpg",
+      "bytes": 134296,
+      "sha256": "27e73b1a6026926d4159800b8bd13af8a3f0bb56b29b6546994891945f92345c"
+    }
+  ]
+}

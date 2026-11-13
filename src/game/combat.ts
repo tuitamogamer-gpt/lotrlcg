@@ -422,7 +422,8 @@ export function resolvePlayerAttack(
   const contributions = Object.fromEntries(
     attackers.map((u) => [
       u.id,
-      Druadan.druadanForestAttackStat(s) === "will"
+      Druadan.druadanForestAttackStat(s) === "will" ||
+      batch4Scenario(s).attackStat?.(s, enemy) === "will"
         ? stats(s, u).will
         : stats(s, u).attack +
           StormPlayers.stormcallerAttackBonus(s, u) +

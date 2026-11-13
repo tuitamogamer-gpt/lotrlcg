@@ -47,6 +47,10 @@ export const PLAYMATS = {
     name: "The Last Bridge to the Bruinen",
     detail: "The Ring-bearer's wound · Fell Riders on the Road",
   },
+  "the-stone-of-erech": {
+    name: "The Blackroot Vale",
+    detail: "Night deepens · The Dead Men of Dunharrow",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -452,6 +456,7 @@ export const PLAYMAT_CHOICES = [
   "a-shadow-of-the-past",
   "a-knife-in-the-dark",
   "flight-to-the-ford",
+  "the-stone-of-erech",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

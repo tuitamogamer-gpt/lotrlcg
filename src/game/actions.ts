@@ -14,6 +14,7 @@ import { hideTestPublic, resolveHideTest } from "./hide-test";
 import { shadowPastPublicState } from "./shadow-past-support";
 import { knifeDarkPublicState } from "./knife-dark-support";
 import { flightFordPublicState } from "./flight-ford-support";
+import { stoneErechPublicState } from "./stone-erech-support";
 import { ereborAllyPlayed } from "./erebor-treasures";
 import * as LandSorrowPlayers from "./land-sorrow-player";
 import { sorrowPublicState } from "./land-sorrow-support";
@@ -3608,6 +3609,7 @@ export function publicState(s: GameState) {
     shadowPast: shadowPastPublicState(s),
     knifeDark: knifeDarkPublicState(s),
     flightFord: flightFordPublicState(s),
+    stoneErech: stoneErechPublicState(s),
     fortressNurnPlayers: FortressPlayers.fortressNurnPlayerPublic(s),
     ashMountains: ashPublicState(s),
     ashPlayers: AshPlayers.councilPublic(s),

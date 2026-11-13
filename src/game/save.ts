@@ -22,6 +22,7 @@ import { lakeTownUnits, validateLakeTown } from "./lake-town-support";
 import { shadowPastUnits, validateShadowPast } from "./shadow-past-support";
 import { knifeDarkUnits, validateKnifeDark } from "./knife-dark-support";
 import { flightFordUnits, validateFlightFord } from "./flight-ford-support";
+import { stoneErechUnits, validateStoneErech } from "./stone-erech-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -364,6 +365,8 @@ export function validateSave(
         c.ffUponUs,
         c.ffPain,
         c.ffDestroyed,
+        c.seBanks,
+        c.seDestroyed,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
@@ -636,6 +639,7 @@ export function validateSave(
         u.flipped,
         u.printedKeywordsPreserved,
         u.printedTraitsPreserved,
+        u.noResourceIcons,
       ].every((v) => v === undefined || typeof v === "boolean") &&
       (u.blanked === undefined || typeof u.blanked === "boolean") &&
       (u.owner === undefined ||
@@ -930,6 +934,7 @@ export function validateSave(
         !validateShadowPast(s, validUnit as (v: unknown) => boolean) ||
         !validateKnifeDark(s, validUnit as (v: unknown) => boolean) ||
         !validateFlightFord(s, validUnit as (v: unknown) => boolean) ||
+        !validateStoneErech(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1649,6 +1654,7 @@ export function validateSave(
       ...shadowPastUnits(s),
       ...knifeDarkUnits(s),
       ...flightFordUnits(s),
+      ...stoneErechUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

@@ -83,6 +83,10 @@ const HEADLINES: Partial<
     lead: "Race the Riders",
     em: "to the Ford of Bruinen.",
   },
+  "the-stone-of-erech": {
+    lead: "Rescue Derufin",
+    em: "before midnight falls.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

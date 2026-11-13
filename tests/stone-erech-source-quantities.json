@@ -1,0 +1,164 @@
+[
+  {
+    "name": "The Disappearance",
+    "code": "octgn:e4af5d7f-9af5-41bb-b22a-cce8b91ac791",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Terror of the Dead",
+    "code": "octgn:ecc8fd11-b2b9-4adc-91eb-6fcc1212e7ce",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Shadow Host",
+    "code": "octgn:efd4cef9-ce8b-4985-8825-853ba98baa2b",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Banks of Morthond",
+    "code": "octgn:14f7c98c-b425-4fac-850a-729d8fcdaa0c",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Blackroot Graves",
+    "code": "octgn:fc54b033-56cc-4ca9-8e0f-7f1c7b82bd6a",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Relic from the Dark Years",
+    "code": "octgn:7b0eb4e5-962c-4041-baea-3a09a83fb996",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Shadow-man",
+    "code": "octgn:8ece887c-6ca7-467d-80d4-3f28afa13433",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Restless Dead",
+    "code": "octgn:65f48337-cec0-41a1-84ff-490c4f563ce4",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Whisperer",
+    "code": "octgn:43bb02ff-9fcc-47e8-822c-ffcd620c9fc4",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Shadow Host Captain",
+    "code": "octgn:a7d52939-2989-44d2-b81b-571db0ee8c16",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Regretful Shade",
+    "code": "octgn:f079c496-20bf-4ce4-a5ca-d644172d83fe",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Vale of Shadows",
+    "code": "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Shadow of Dwimorberg",
+    "code": "octgn:02cae27a-3b0c-4396-aea3-8fc2bdd4ffe8",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Haunted Valley",
+    "code": "octgn:7a3411df-76a0-432b-a64a-d499b0b1ae50",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Midnight Throng",
+    "code": "octgn:c29c98de-5660-498c-a5cc-a1800985d221",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Murmurs of Dread",
+    "code": "octgn:f985bda2-5029-4c34-91f7-721f830cbd9c",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Groping Horror",
+    "code": "octgn:728f17db-d741-4f1b-92da-8aac3d78432d",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Gloaming",
+    "code": "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Driven by Fear",
+    "code": "octgn:cdf8dee9-b2ac-4e5f-bf4c-0b9c15cac142",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "The Dead Ride Behind",
+    "code": "octgn:5e7c36de-a2bb-44e3-951b-80123788d571",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Tarlang's Neck",
+    "code": "octgn:88df7c56-ee11-48f0-b6a0-0486e0a8ce92",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Eventide",
+    "code": "octgn:36a22f2b-56d9-4148-a962-f7fbdf60f3a1",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Dusk",
+    "code": "octgn:d3c68791-c3f9-4e8d-9515-2496f9ca1895",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Midnight",
+    "code": "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Derufin",
+    "code": "octgn:f93a8fda-7383-41c9-b86d-c5ba1fec760d",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Lord of the Dead",
+    "code": "octgn:7b9dd852-ed19-4a00-b09e-f6c2cee549fa",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Stone of Erech",
+    "code": "octgn:822ca699-4763-4b8c-baff-d8d828c002a9",
+    "normal": 1,
+    "easy": 1
+  }
+]

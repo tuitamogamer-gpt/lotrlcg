@@ -178,6 +178,14 @@ export interface Batch4ScenarioHooks {
   resourceStart?(s: GameState): Effect[];
   /** The stat characters count while questing (Battle or Siege). */
   questStat?(s: GameState): "attack" | "defense" | undefined;
+  /** The stat characters count when attacking this enemy (Spectral). */
+  attackStat?(s: GameState, enemy: Unit): "will" | undefined;
+  /** At the beginning of the planning phase. */
+  planningBegin?(s: GameState): void;
+  /** Heroes that do not collect a resource in the resource phase. */
+  cannotCollectResources?(s: GameState, hero: Unit): boolean;
+  /** Characters that lose their sphere resource icons. */
+  resourceIconsLost?(s: GameState, u: Unit): boolean;
   /**
    * The defending player must declare one of these characters as the
    * defender, even if it is exhausted.

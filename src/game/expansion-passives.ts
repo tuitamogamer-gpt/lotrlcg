@@ -313,6 +313,7 @@ export function effectiveKeyword(u: Unit, keyword: string): boolean {
   );
 }
 export function hasResourceIcon(u: Unit, sphere: string) {
+  if (u.noResourceIcons && sphere !== "neutral") return false;
   return (
     sphere === "neutral" ||
     card(u.code).sphere_code === sphere ||
