@@ -11,8 +11,11 @@ export const BLACK_RIDERS_SCENARIO_IDS: readonly string[] = [
   "a-knife-in-the-dark",
   "flight-to-the-ford",
 ];
+/** Standalone scenarios played with the Saga's Ring-bearer rules. */
+export const LOTR_SAGA_STANDALONE_IDS: readonly string[] = ["the-old-forest"];
 export const LOTR_SAGA_SCENARIO_IDS: readonly string[] = [
   ...BLACK_RIDERS_SCENARIO_IDS,
+  ...LOTR_SAGA_STANDALONE_IDS,
 ];
 export const isLotrSagaScenarioId = (id: string | undefined) =>
   !!id && LOTR_SAGA_SCENARIO_IDS.includes(id);

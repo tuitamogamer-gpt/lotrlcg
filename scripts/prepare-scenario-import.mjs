@@ -145,10 +145,17 @@ if (download) {
         ? `https://ringsdb.com${c[field]}`
         : c[field];
       const url = new URL(source);
+      // Hall of Beorn's public card images cover the print-on-demand cards
+      // that DragnCards does not host.
+      const hallOfBeorn =
+        url.hostname === "s3.amazonaws.com" &&
+        url.pathname.startsWith("/hallofbeorn-resources/Images/Cards/");
       if (
         url.protocol !== "https:" ||
-        !["dragncards-lotrlcg.s3.amazonaws.com", "ringsdb.com"].includes(
-          url.hostname,
+        !(
+          ["dragncards-lotrlcg.s3.amazonaws.com", "ringsdb.com"].includes(
+            url.hostname,
+          ) || hallOfBeorn
         )
       )
         throw new Error(`Unsupported artwork source for ${c.code}`);

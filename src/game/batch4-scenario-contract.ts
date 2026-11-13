@@ -79,7 +79,8 @@ export interface Batch4ScenarioHooks {
   endQuest?(s: GameState): void;
   committed?(s: GameState): void;
   missingHeroAllowed?(s: GameState, player: number): boolean;
-  engaged?(s: GameState, u: Unit): void;
+  /** After an enemy engages the active player; optional for an optional engagement. */
+  engaged?(s: GameState, u: Unit, optional?: boolean): void;
   hostLeaves?(s: GameState, u: Unit, defeated?: boolean): void;
   /** Printed replacement effects run before defeat and leave-play reactions. */
   beforeDestroy?(

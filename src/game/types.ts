@@ -272,6 +272,7 @@ export type ScenarioId =
   | "a-knife-in-the-dark"
   | "flight-to-the-ford"
   | "the-stone-of-erech"
+  | "the-old-forest"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -444,6 +445,7 @@ export interface GameState {
   knifeDark?: import("./knife-dark-types").KnifeDarkState;
   flightFord?: import("./flight-ford-types").FlightFordState;
   stoneErech?: import("./stone-erech-types").StoneErechState;
+  oldForest?: import("./old-forest-types").OldForestState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -800,6 +802,12 @@ export interface GameState {
     seBanks?: boolean;
     /** The Stone of Erech: this attack destroyed a character. */
     seDestroyed?: boolean;
+    /** The Old Forest: Strange Woods' shadow (a kill raises each player's threat by 2). */
+    otfStrange?: boolean;
+    /** The Old Forest: this attack destroyed a character. */
+    otfDestroyed?: boolean;
+    /** The Old Forest: Ending and Failing's shadow returns the attacker to the staging area. */
+    otfReturn?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;

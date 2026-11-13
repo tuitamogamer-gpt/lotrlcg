@@ -87,6 +87,10 @@ const HEADLINES: Partial<
     lead: "Rescue Derufin",
     em: "before midnight falls.",
   },
+  "the-old-forest": {
+    lead: "Find a way through",
+    em: "the Old Forest.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

@@ -11,6 +11,7 @@ import { SHADOW_PAST_HOOKS } from "./shadow-past";
 import { KNIFE_DARK_HOOKS } from "./knife-dark";
 import { FLIGHT_FORD_HOOKS } from "./flight-ford";
 import { STONE_ERECH_HOOKS } from "./stone-erech";
+import { OLD_FOREST_HOOKS } from "./old-forest";
 import { LAND_SORROW_HOOKS } from "./land-sorrow";
 import { ASH_HOOKS } from "./ash-mountains";
 import { WAINRIDERS_HOOKS } from "./wainriders";
@@ -61,6 +62,8 @@ export function batch4Scenario(s: GameState): Batch4ScenarioHooks {
       return FLIGHT_FORD_HOOKS;
     case "the-stone-of-erech":
       return STONE_ERECH_HOOKS;
+    case "the-old-forest":
+      return OLD_FOREST_HOOKS;
     case "the-land-of-sorrow":
       return LAND_SORROW_HOOKS;
     case "under-the-ash-mountains":
@@ -136,4 +139,5 @@ export const batch4SharedEffect = (effect: Effect) =>
     KNIFE_DARK_HOOKS,
     FLIGHT_FORD_HOOKS,
     STONE_ERECH_HOOKS,
+    OLD_FOREST_HOOKS,
   ].some((hooks) => hooks.sharedEffect?.(effect));

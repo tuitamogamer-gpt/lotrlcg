@@ -5,8 +5,8 @@
     "playerCards": 805,
     "heroes": 97,
     "deckCards": 704,
-    "encounterCards": 1395,
-    "scenarios": 93,
+    "encounterCards": 1411,
+    "scenarios": 94,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -100,17 +100,18 @@
       "a-shadow-of-the-past",
       "a-knife-in-the-dark",
       "flight-to-the-ford",
-      "the-stone-of-erech"
+      "the-stone-of-erech",
+      "the-old-forest"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2491,
-    "pending": 1692
+    "scripted": 2513,
+    "pending": 1670
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 186
+    "scripted": 187
   },
   "registeredCodes": [
     "01001",
@@ -997,6 +998,7 @@
     "octgn:019ebbd1-9632-4c0a-bd98-4ecef29afb1a",
     "octgn:01a43351-0e36-4175-9a94-693ff91404ad",
     "octgn:01b1d42b-11a4-4030-988d-064673169fec",
+    "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
     "octgn:022c654e-9d4d-40ff-9d67-8e465fda0e78",
     "octgn:026a36ed-0979-4422-a581-a4decdc3c102",
     "octgn:02a5e04c-d08f-49f4-a7b5-ba6a1cb86de7",
@@ -1027,6 +1029,7 @@
     "octgn:07a8f60f-926c-4342-bf04-e3af9a24df10",
     "octgn:0856a4b4-ec02-4586-8147-93fbadf544cd",
     "octgn:08af0240-fb38-4a33-a1f0-af07fd496b42",
+    "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
     "octgn:0909409e-d2d3-4304-b239-76bb6da0dceb",
     "octgn:09aeff64-6e0d-4dfa-af21-2e7805441376",
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
@@ -1088,6 +1091,7 @@
     "octgn:174507ac-5617-4e3c-998b-75eeceb9db33",
     "octgn:18484359-d4b5-4ed6-b7be-e013fae4df43",
     "octgn:1851fafb-7f9a-46d7-a0f0-7fb2ad9ee567",
+    "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
     "octgn:1866ce74-8552-4ac5-8b0a-1e7a6f3b4338",
     "octgn:1877b069-7015-4172-b5df-bbfd235b976f",
     "octgn:18d6f0aa-a62e-4ce5-b169-cae8836d8442",
@@ -1104,6 +1108,7 @@
     "octgn:1b0de48c-a010-490f-b0e3-0ced635b3b3b",
     "octgn:1b3b1063-e102-4fea-a29b-5692fbfb9cd6",
     "octgn:1b5b129a-0c2c-4750-b1d6-dd3ea82acb84",
+    "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
     "octgn:1c240b63-841f-4b76-9808-13c0ee0f986e",
     "octgn:1c65b78b-6b68-458f-9510-a00a9576a042",
     "octgn:1c95d49a-5638-4f31-a42f-f93a5d1f50db",
@@ -1272,6 +1277,7 @@
     "octgn:37f205e5-5144-4987-8764-46909460797b",
     "octgn:388d173e-e32a-4e02-b029-99180e34b014",
     "octgn:389031d2-7a44-4c4d-82f2-cf79c08ce0ae",
+    "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
     "octgn:39773513-ff69-4918-9323-6f04b7109b2f",
     "octgn:397ef92c-981b-4495-a2a0-681ea886d30c",
     "octgn:39df5c92-f79e-4d39-b8a3-f93631e183db",
@@ -1294,6 +1300,7 @@
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
+    "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
     "octgn:3f78ed57-49cc-4886-b84f-3fe886203794",
     "octgn:3f8273a2-f64c-407c-97fb-4a4ef0bddb0b",
     "octgn:3f8e889e-db35-4044-ac19-43fd146bffd1",
@@ -1336,6 +1343,7 @@
     "octgn:47aada3f-9ee6-455d-8c2d-786962633f34",
     "octgn:47afd15f-ffe3-4a90-9128-f2a79ba3b070",
     "octgn:47b1cd0f-5d56-483c-956c-7851eb4b0a9a",
+    "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
     "octgn:47ecf6a6-84e9-4aa7-ba23-9afe914027cd",
     "octgn:47f627da-150c-41b2-9442-390d8d2a897a",
     "octgn:4823aae3-46ef-4a75-89f9-cbd3aa1b9001",
@@ -1401,6 +1409,7 @@
     "octgn:4893d105-fada-4bee-a4bb-d26463b97b63",
     "octgn:48c82a72-ad2f-4452-9906-b5505caf27e1",
     "octgn:48d2ea1f-449b-4af9-9f43-c70fffd66991",
+    "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
     "octgn:499195c5-389f-4a56-b67e-b6e5b8f2fb91",
     "octgn:49aa4e88-3774-43f7-ab8d-05268ed3fb7e",
     "octgn:49e857d2-b78f-4b5f-8c07-604af73fd616",
@@ -1416,6 +1425,7 @@
     "octgn:4bae8841-e3e4-4a93-b10f-8544eaab9cb3",
     "octgn:4bc78852-59b2-4126-86e1-96a1ee918a05",
     "octgn:4bcc7bde-4223-411e-a612-9459a1502743",
+    "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55",
     "octgn:4be4e706-1bd2-455a-a712-833c1bbcea55:B",
     "octgn:4befb4c8-e350-48ed-a7dd-ee803e2ca8d7",
@@ -1764,6 +1774,7 @@
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
+    "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
     "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
     "octgn:552b11aa-b91e-44aa-8e54-1bad1aa74bbd",
     "octgn:5542dd91-98bd-4a72-bd19-f706f3440ab8",
@@ -1849,6 +1860,7 @@
     "octgn:6709bafa-87b5-483e-9895-0f2edea7e47a",
     "octgn:67251171-ee5f-46d5-b3c8-10523350c60c",
     "octgn:67455bf8-25ea-453e-9066-58e66fdf0528",
+    "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
     "octgn:680e0591-23db-402e-829d-bc2c15ec026f",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49",
     "octgn:6860f9ad-0f09-450a-adf9-6ebe9b872a49:B",
@@ -1902,6 +1914,7 @@
     "octgn:737a8d5f-2f82-47e4-844e-52fdae95ccf5",
     "octgn:738b3bad-7a2b-47ad-a34f-503028f4f4c1",
     "octgn:73969b8e-9591-4ab0-bd28-75c7780875b0",
+    "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
     "octgn:744536a0-0ff0-47e8-b938-ee0f379b1370",
     "octgn:744e45f8-a808-4d9f-96f4-59e26cff5874",
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
@@ -1909,6 +1922,7 @@
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
+    "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
     "octgn:766735f8-3b17-4b50-aee3-a869837f986c",
     "octgn:768bab66-1707-41a4-adf3-3baad2e7daad",
     "octgn:7691fb33-603e-4460-9f09-5f96bc05c2bb",
@@ -2120,6 +2134,7 @@
     "octgn:a0e1e091-fbbb-459e-9cb7-2cc63bd85711",
     "octgn:a0f5082c-acc7-4884-a3d4-a7eed0f053e6",
     "octgn:a11f08ac-541b-46ba-9528-467dcbdc90c6",
+    "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
     "octgn:a1a8bd6e-4cd1-4641-9cb1-f693f053f62e",
     "octgn:a264930c-e083-484a-bbe8-9b615942e83a",
     "octgn:a2b6cb8b-dacf-4c82-9097-2206610192ac",
@@ -2164,6 +2179,7 @@
     "octgn:aabc830a-4833-42cf-9b26-d8f2c5eb9658",
     "octgn:ab2ac791-b266-43b2-b6ee-0d412a1100bc",
     "octgn:ab5fec4c-b353-47e5-ae47-db7daf7f9088",
+    "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
     "octgn:ab92ac2e-30e8-4eb2-9818-7d7efd3658aa",
     "octgn:aba39503-0700-40c9-9c06-729e82bf67fe",
     "octgn:aba5ebdb-81d8-4e41-bddd-568f9ab2bd13",
@@ -2186,6 +2202,7 @@
     "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
+    "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
     "octgn:b06030a9-7ab9-48a6-b7da-5ffd8ce3a1a6",
     "octgn:b07cec11-452d-423a-b33e-3f9345c9f6e1",
@@ -2242,6 +2259,7 @@
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
+    "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
     "octgn:bb58f446-da73-47e3-98e8-70f69ee77d34",
     "octgn:bb5d1d76-663f-4261-94ec-7a9bfc025acf",
     "octgn:bbc72a18-cf4c-469f-bd01-6b1d3492c2ff",
@@ -2298,6 +2316,7 @@
     "octgn:c57661b7-62f9-4906-b2eb-73af91fd8252",
     "octgn:c5d1793e-a4e2-4a40-97e9-e5e6f8b1cdfb",
     "octgn:c5e9ef20-a88f-40fb-861f-c44de8e12bd9",
+    "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
     "octgn:c69c1fe9-076a-4a5b-8388-9f653015d84d",
     "octgn:c6ffa525-d499-4dcc-9f07-cbd0da50479f",
     "octgn:c71fa40c-524e-43ec-b058-7ea239fdfd1d",
@@ -2357,6 +2376,7 @@
     "octgn:d198aa74-21ec-462a-ac1a-f9c2fcf526cb",
     "octgn:d1a3a535-7679-4757-871c-80c50c003cff",
     "octgn:d2bf00ad-2e1e-4537-b662-f6f20f9a1cfe",
+    "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
     "octgn:d33ef89b-13c9-49b2-a921-a527f27a415a",
     "octgn:d3a3d024-2321-4707-b319-eb62537e6d92",
     "octgn:d3bd47e5-cf59-4097-9cec-92a15fe56bf4",
@@ -2504,6 +2524,7 @@
     "octgn:f2981455-b642-4d9b-851d-0209a12cffae",
     "octgn:f29b2736-9499-4e1d-9e53-96be59f78741",
     "octgn:f2a34148-f5af-4a16-a1ae-953ea5d5482f",
+    "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
     "octgn:f2c22e9a-c3f6-450c-b891-98e0e5c18b6c",
     "octgn:f3285b0c-ccd9-48b1-9c20-c8fbc4bd1695",
     "octgn:f330efb5-6263-48a1-9f08-0911f214bd96",
@@ -2591,6 +2612,7 @@
     "octgn:fd89bdbf-7475-4f3e-96fc-8f5315a93080",
     "octgn:fdd55ddc-2f18-4ae6-89bb-e54827a1bbdc",
     "octgn:fdf01cb8-5798-43f3-adbd-e2870c53f0cf",
+    "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
     "octgn:fe2c30ae-dd35-48de-a2c2-4886a0c0783e",
     "octgn:fe419fec-bc64-493c-aa23-fa3e62c57768",
     "octgn:fe7448a2-e2e2-4e81-95f4-2ac585160433",
@@ -2598,6 +2620,7 @@
     "octgn:ff597a85-6a02-4301-a9dc-4dcb4cf9b626",
     "octgn:ff79510f-a6c3-4357-a582-853e5bb3e2bc",
     "octgn:ff815834-bf79-4914-8057-903f834190f1",
+    "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
     "octgn:ffe307bf-dd8e-4df3-9355-55564137d311",
     "octgn:ffe7cb9e-8ac6-411d-a8b9-77ebaf8ee12e",
     "orc-guard",
@@ -3360,7 +3383,7 @@
     {
       "product": "the-old-forest",
       "total": 24,
-      "scripted": 0,
+      "scripted": 22,
       "player": 1,
       "playerScripted": 0
     },
@@ -12507,7 +12530,7 @@
       "name": "Ending and Failing",
       "type": "treachery",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -13003,7 +13026,7 @@
       "name": "Old Man Willow",
       "type": "enemy",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -14147,7 +14170,7 @@
       "name": "Farewell to the Shire",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -14435,7 +14458,7 @@
       "name": "Swaying Without Wind",
       "type": "treachery",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -17147,7 +17170,7 @@
       "name": "Falling Branches",
       "type": "treachery",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -17531,7 +17554,7 @@
       "name": "Song of Sleep",
       "type": "treachery",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -18203,7 +18226,7 @@
       "name": "The Living Forest",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -18795,7 +18818,7 @@
       "name": "The Living Forest",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -19043,7 +19066,7 @@
       "name": "Wall of Trees",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -22283,7 +22306,7 @@
       "name": "Long Trailer",
       "type": "enemy",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -23651,7 +23674,7 @@
       "name": "The Wicked Willow",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -24651,7 +24674,7 @@
       "name": "Oppressive Forest",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -24787,7 +24810,7 @@
       "name": "Tom Bombadil",
       "type": "objective-ally",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -28539,7 +28562,7 @@
       "name": "Misleading Path",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -29299,7 +29322,7 @@
       "name": "The Living Forest",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -29747,7 +29770,7 @@
       "name": "Withywindle",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -31083,7 +31106,7 @@
       "name": "Lost and Witless",
       "type": "treachery",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -31963,7 +31986,7 @@
       "name": "Strange Woods",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -32947,7 +32970,7 @@
       "name": "Army of Flies",
       "type": "enemy",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -35683,7 +35706,7 @@
       "name": "The Living Forest",
       "type": "quest",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -36859,7 +36882,7 @@
       "name": "Deep Gulley",
       "type": "location",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -37035,7 +37058,7 @@
       "name": "Grasping Root",
       "type": "enemy",
       "pack": "The Old Forest",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-old-forest"
     },
     {
@@ -39461,8 +39484,8 @@
       "id": "Q99.04",
       "name": "The Old Forest",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-old-forest",
+      "state": "scripted"
     },
     {
       "id": "Q99.05",

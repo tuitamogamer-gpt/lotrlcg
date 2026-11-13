@@ -1,0 +1,1386 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Old Forest",
+  "slug": "the-old-forest",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "141001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Response:</b> Spend 1 [fellowship] resource and exhaust The One Ring to cancel the effect of an encounter card just revealed from the encounter deck. Shuffle that card back into the encounter deck and reveal another encounter card.",
+      "flavor": "\"I will take the Ring,\" he said, \"though I do not know the way.\" <cite>The Fellowship of the Ring</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Black Riders",
+      "pack_code": "TBR",
+      "position": 1,
+      "illustrator": "Jake Murray",
+      "imagesrc": "/cards/141001.png",
+      "url": "https://ringsdb.com/card/141001",
+      "quantity": 1,
+      "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "141001",
+          "illustrator": "Jake Murray",
+          "octgnid": "3217a119-6b86-47dd-b451-c5e45be3f874",
+          "imagesrc": "/bundles/cards/141001.png",
+          "date_release": "2013-09-01"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/141001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+      "octgnid": "021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+      "name": "Ending and Failing",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Doomed 2.\nWhen Revealed: At the end of the phase, raise each player's threat by X where X is the number of enemies in the staging area.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 21,
+      "quantity": 2,
+      "shadow": "Shadow: Return attacking enemy to the staging area after this attack.",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/021d423c-d9e4-4b7f-bca3-ee1ec4361a23.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 21,
+          "quantity": 2,
+          "octgnid": "021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/021d423c-d9e4-4b7f-bca3-ee1ec4361a23.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
+      "octgnid": "08b55b0b-93e5-42d3-a746-703c7ce9146f",
+      "name": "Old Man Willow",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Tree.",
+      "text": "Indestructible. Immune to player card effects.\nForced: When Old Man Willow attacks, discard a random location from the victory display. The defending player raises his threat by X, where X is that location's victory point value. ",
+      "is_unique": true,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 7,
+      "quantity": 1,
+      "threat": 3,
+      "attack": 5,
+      "defense": 4,
+      "health": 12,
+      "engagement": 50,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "5",
+        "defense": "4",
+        "health": "12",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/08b55b0b-93e5-42d3-a746-703c7ce9146f.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 7,
+          "quantity": 1,
+          "octgnid": "08b55b0b-93e5-42d3-a746-703c7ce9146f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/08b55b0b-93e5-42d3-a746-703c7ce9146f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+      "octgnid": "185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+      "name": "Farewell to the Shire",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Old Man Willow and Withywindle aside, out of play. Each player searches the encounter deck and adds 1 different location to the staging area. Shuffle the encounter deck. ",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 1,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "Farewell to the Shire",
+      "back_text": "When Revealed: Each player draws 1 card. Advance to a random stage 2A.",
+      "back_type_code": "quest",
+      "back_quest": 0,
+      "back_imagesrc": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 1,
+          "quantity": 1,
+          "octgnid": "185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+      "octgnid": "1ba09574-9d2a-4687-bd58-ca37ceadb023",
+      "name": "Swaying Without Wind",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Choose a location in the victory display and return it to the staging area. If no location was returned to the staging area this way, Swaying Without Wind gains surge.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 17,
+      "quantity": 2,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/1ba09574-9d2a-4687-bd58-ca37ceadb023.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 17,
+          "quantity": 2,
+          "octgnid": "1ba09574-9d2a-4687-bd58-ca37ceadb023",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ba09574-9d2a-4687-bd58-ca37ceadb023.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
+      "octgnid": "389072e7-d59a-4a04-bed8-568cc367b06f",
+      "name": "Falling Branches",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player removes a character he controls from the quest and deals 2 damage to that character (3 damage instead if that character is an ally).",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 18,
+      "quantity": 3,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if the defending characters is an ally).",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/389072e7-d59a-4a04-bed8-568cc367b06f.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 18,
+          "quantity": 3,
+          "octgnid": "389072e7-d59a-4a04-bed8-568cc367b06f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/389072e7-d59a-4a04-bed8-568cc367b06f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
+      "octgnid": "3f24ad57-1c50-47dc-a117-5aee279b8451",
+      "name": "Song of Sleep",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Enchantment.",
+      "text": "Peril.\nWhen Revealed: Remove a questing hero you control from the quest and attach Song of Sleep to that hero. Counts as a Condition attachment with the text: \"Limit 1 per hero. Treat attached hero's printed text box as if it were blank (except for Traits). Attached hero cannot ready.\"",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 19,
+      "quantity": 2,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/3f24ad57-1c50-47dc-a117-5aee279b8451.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 19,
+          "quantity": 2,
+          "octgnid": "3f24ad57-1c50-47dc-a117-5aee279b8451",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f24ad57-1c50-47dc-a117-5aee279b8451.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+      "octgnid": "47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+      "name": "The Living Forest",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 3,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "Choked with Brambles",
+      "back_text": "Forced: At the end of the round, remove all progress from each location in play.  Forced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 3,
+          "quantity": 1,
+          "octgnid": "47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+      "octgnid": "49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+      "name": "The Living Forest",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 5,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "Closing in Around Them",
+      "back_text": "Forced: The first player reveals 1 additional encounter card during the quest phase.  Forced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 5,
+          "quantity": 1,
+          "octgnid": "49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+      "octgnid": "4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+      "name": "Wall of Trees",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "X equals the number of players in the game.\nWhile Wall of Trees is in the staging area, progress must be placed on Wall of Trees before it can be placed on the current quest. ",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 15,
+      "quantity": 4,
+      "quest": 4,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "X",
+        "quest": "4",
+        "victory": "X"
+      },
+      "imagesrc": "/cards/4bdcd185-ba8e-45f7-83e3-04325a07a5ed.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 15,
+          "quantity": 4,
+          "octgnid": "4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bdcd185-ba8e-45f7-83e3-04325a07a5ed.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
+      "octgnid": "54c8ecae-73b1-4c42-84ed-0411551c363a",
+      "name": "Long Trailer",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Tree.",
+      "text": "While Long Trailer is in the staging area it gains: \"Forced: After the active location leaves play as an explored location, Long Trailer makes an immediate attack against the first player.\" ",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 8,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 4,
+      "defense": 2,
+      "health": 6,
+      "engagement": 40,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "4",
+        "defense": "2",
+        "health": "6",
+        "engagement": "40"
+      },
+      "imagesrc": "/cards/54c8ecae-73b1-4c42-84ed-0411551c363a.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 8,
+          "quantity": 4,
+          "octgnid": "54c8ecae-73b1-4c42-84ed-0411551c363a",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54c8ecae-73b1-4c42-84ed-0411551c363a.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+      "octgnid": "6805d08f-84e0-412d-a728-35a42ea9a091",
+      "name": "The Wicked Willow",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Add Old Man Willow and Withywindle to the staging area. Reveal X encounter cards where X is the number of players in the game minus 1.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 6,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "The Wicked Willow",
+      "back_text": "Old Man Willow cannot leave the staging area but is considered to be engaged with each player and attacks each player in turn order during the combat phase (deal and resolve a shadow card for each attack).   If the players defeat this stage, they win the game. ",
+      "back_type_code": "quest",
+      "back_quest": 18,
+      "back_imagesrc": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 6,
+          "quantity": 1,
+          "octgnid": "6805d08f-84e0-412d-a728-35a42ea9a091",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6805d08f-84e0-412d-a728-35a42ea9a091.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
+      "octgnid": "7445051f-ca99-4a2c-8a8c-656f325fa227",
+      "name": "Oppressive Forest",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Oppressive Forest is in the staging area, each player cannot play more than 1 card each round.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 16,
+      "quantity": 2,
+      "threat": 2,
+      "quest": 5,
+      "victory": 2,
+      "shadow": "Shadow: If there are no locations in the staging area, add this location to the staging area.",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "5",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/7445051f-ca99-4a2c-8a8c-656f325fa227.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 16,
+          "quantity": 2,
+          "octgnid": "7445051f-ca99-4a2c-8a8c-656f325fa227",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7445051f-ca99-4a2c-8a8c-656f325fa227.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+      "octgnid": "75b111c9-fb49-4a53-ac50-729ff2d06abe",
+      "name": "Tom Bombadil",
+      "type_code": "objective-ally",
+      "sphere_code": "encounter",
+      "traits": "Legend.",
+      "text": "When Revealed: Choose a player. That player gains control of Tom Bombadil, ready and committed to the quest. At the end of the round, discard Tom Bombadil. Then Shuffle the encounter discard pile into the encounter deck. This effect cannot be canceled.",
+      "is_unique": true,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 22,
+      "quantity": 1,
+      "willpower": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 6,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "willpower": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "6"
+      },
+      "imagesrc": "/cards/75b111c9-fb49-4a53-ac50-729ff2d06abe.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "75b111c9-fb49-4a53-ac50-729ff2d06abe",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/75b111c9-fb49-4a53-ac50-729ff2d06abe.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+      "octgnid": "a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+      "name": "Misleading Path",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "Surge.\nWhen faced with the option to travel, the players must travel to Misleading Path if there is no active location.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 12,
+      "quantity": 2,
+      "threat": 1,
+      "quest": 2,
+      "shadow": "Shadow: Defending player discards each ally card in his hand.",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "2"
+      },
+      "imagesrc": "/cards/a1827b45-42bd-44b3-a86d-d773e60ac1b5.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 12,
+          "quantity": 2,
+          "octgnid": "a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a1827b45-42bd-44b3-a86d-d773e60ac1b5.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+      "octgnid": "ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+      "name": "The Living Forest",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 2,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "Dark Bad Place",
+      "back_text": "Forced: At the end of the planning phase, each player much exhaust a hero he controls.  Forced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stagfe 2A. X is the number of players in the game times 5.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 2,
+          "quantity": 1,
+          "octgnid": "ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
+      "octgnid": "b00c623e-2aaa-4286-9fba-499fe39eb204",
+      "name": "Withywindle",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest. River.",
+      "text": "Immune to player card effects. The players cannot win the game while Withywindle is in play.\nWhile Withywindle is the active location, the first player reveals 1 additional encounter card during the quest phase.",
+      "is_unique": true,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 11,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 5,
+      "victory": 3,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "5",
+        "victory": "3"
+      },
+      "imagesrc": "/cards/b00c623e-2aaa-4286-9fba-499fe39eb204.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 11,
+          "quantity": 1,
+          "octgnid": "b00c623e-2aaa-4286-9fba-499fe39eb204",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b00c623e-2aaa-4286-9fba-499fe39eb204.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+      "octgnid": "bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+      "name": "Lost and Witless",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Surge.\nWhen Revealed: Discard all progress from each location in the staging area. If there is a non-unique active location, randomly choose a location in the staging area and switch it with the active location.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 20,
+      "quantity": 2,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {},
+      "imagesrc": "/cards/bb1652ba-37e4-4a59-a7c7-39f398c0ab19.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 20,
+          "quantity": 2,
+          "octgnid": "bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb1652ba-37e4-4a59-a7c7-39f398c0ab19.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+      "octgnid": "c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+      "name": "Strange Woods",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Strange Woods is in the staging area, characters cannot be healed.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 14,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 3,
+      "victory": 1,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, raise each player's threat by 2.",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "3",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/c60642b2-4ce3-42e8-8cb5-41c9ac9251fb.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 14,
+          "quantity": 3,
+          "octgnid": "c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c60642b2-4ce3-42e8-8cb5-41c9ac9251fb.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.  Attached hero does not count against the hero limit. The first player gains control of the attached hero.  If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TBR",
+      "pack_name": "The Black Riders",
+      "position": 85,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "packs": [
+        {
+          "pack_code": "TBR",
+          "pack_name": "The Black Riders",
+          "position": 85,
+          "quantity": 1,
+          "octgnid": "c9575426-59ea-4863-bf6a-407e9eae3f33",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+      "octgnid": "d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+      "name": "Army of Flies",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Insect.",
+      "text": "Surge.\nForced: After Army of Flies engages a player, that player discards a non-objective attachment he controls. ",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 10,
+      "quantity": 3,
+      "threat": 1,
+      "attack": 1,
+      "defense": 0,
+      "health": 2,
+      "engagement": 20,
+      "shadow": "Shadow: Defending player discards a non-objective attachment he controls.",
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "1",
+        "defense": "0",
+        "health": "2",
+        "engagement": "20"
+      },
+      "imagesrc": "/cards/d2cd3802-0667-4124-b7b6-5e753ff71ec3.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 10,
+          "quantity": 3,
+          "octgnid": "d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2cd3802-0667-4124-b7b6-5e753ff71ec3.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+      "octgnid": "f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+      "name": "The Living Forest",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 4,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Old Forest",
+      "side": "A",
+      "back_name": "Shifting Trees",
+      "back_text": "Forced: At the end of the round, discard a random location from the victory display.  Forced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 4,
+          "quantity": 1,
+          "octgnid": "f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+      "octgnid": "fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+      "name": "Deep Gulley",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Forest.",
+      "text": "While Deep Gulley is in the staging area, it gains: \"Forced: After a player optionally engages an enemy, that player raises his threat by X, where X is the engaged enemy's [attack].\"",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 13,
+      "quantity": 4,
+      "threat": 2,
+      "quest": 4,
+      "victory": 2,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4",
+        "victory": "2"
+      },
+      "imagesrc": "/cards/fdfc404e-67b0-44d6-a1e7-a5e568ac0265.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 13,
+          "quantity": 4,
+          "octgnid": "fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fdfc404e-67b0-44d6-a1e7-a5e568ac0265.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+      "octgnid": "ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+      "name": "Grasping Root",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Tree.",
+      "text": "Forced: After Grasping Root engages a player, that player must assign X damage among characters he controls. X is the number of locations in the victory display. ",
+      "is_unique": false,
+      "pack_code": "TOF",
+      "pack_name": "The Old Forest",
+      "position": 9,
+      "quantity": 4,
+      "threat": 3,
+      "attack": 3,
+      "defense": 3,
+      "health": 5,
+      "engagement": 30,
+      "encounter_set": "The Old Forest",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "3",
+        "defense": "3",
+        "health": "5",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171.jpg",
+      "packs": [
+        {
+          "pack_code": "TOF",
+          "pack_name": "The Old Forest",
+          "position": 9,
+          "quantity": 4,
+          "octgnid": "ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "Q99.04",
+      "name": "The Old Forest",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TBR",
+        "TOF"
+      ],
+      "card_codes": [
+        "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+        "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+        "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+        "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+        "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+        "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+        "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
+        "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+        "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+        "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+        "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+        "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+        "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+        "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
+        "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+        "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
+        "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
+        "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+        "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+        "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+        "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
+        "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
+        "141001",
+        "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33"
+      ],
+      "cards": [
+        {
+          "code": "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "141001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c": 1,
+          "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38": 1,
+          "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8": 1,
+          "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f": 1,
+          "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0": 1,
+          "octgn:6805d08f-84e0-412d-a728-35a42ea9a091": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a": 4,
+          "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171": 4,
+          "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3": 3,
+          "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5": 1,
+          "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265": 3,
+          "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb": 2,
+          "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed": 3,
+          "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227": 1,
+          "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023": 2,
+          "octgn:389072e7-d59a-4a04-bed8-568cc367b06f": 3,
+          "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451": 2,
+          "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19": 2,
+          "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23": 2,
+          "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe": 1
+        },
+        "sharedSetAside": {
+          "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f": 1,
+          "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204": 1
+        },
+        "player1Play1": {
+          "141001": 1,
+          "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33": 1
+        },
+        "sharedStagingArea": {
+          "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5": 1,
+          "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265": 1,
+          "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed": 1,
+          "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb": 1,
+          "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "141001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/141001.png",
+      "localPath": "/cards/141001.png",
+      "bytes": 148338,
+      "sha256": "ff73769c48ec94f424ca3834bcd0d5e18c1aebbc04f7237485490f115ee5775a"
+    },
+    {
+      "code": "octgn:021d423c-d9e4-4b7f-bca3-ee1ec4361a23",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/021d423c-d9e4-4b7f-bca3-ee1ec4361a23.jpg",
+      "localPath": "/cards/021d423c-d9e4-4b7f-bca3-ee1ec4361a23.jpg",
+      "bytes": 143556,
+      "sha256": "6584a1f72768103e024b1527c6dd84c67367b4a4b57aee39f8ab149d0a9b495a"
+    },
+    {
+      "code": "octgn:08b55b0b-93e5-42d3-a746-703c7ce9146f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/08b55b0b-93e5-42d3-a746-703c7ce9146f.jpg",
+      "localPath": "/cards/08b55b0b-93e5-42d3-a746-703c7ce9146f.jpg",
+      "bytes": 152017,
+      "sha256": "eb9659a48e7613f931e330150c704d92e39c63a80a001686c9437e972d0e7dd4"
+    },
+    {
+      "code": "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg",
+      "localPath": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg",
+      "bytes": 147585,
+      "sha256": "40c66466ec8ea70acf0a26fc5ff6703702ba0472fec41f686503db571d9f88ec"
+    },
+    {
+      "code": "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.B.jpg",
+      "localPath": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.B.jpg",
+      "bytes": 138217,
+      "sha256": "d6a0ca1ae3769f04b3850dd55cb764c6391827563413e75c4b17cee52a84e714"
+    },
+    {
+      "code": "octgn:1ba09574-9d2a-4687-bd58-ca37ceadb023",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1ba09574-9d2a-4687-bd58-ca37ceadb023.jpg",
+      "localPath": "/cards/1ba09574-9d2a-4687-bd58-ca37ceadb023.jpg",
+      "bytes": 144670,
+      "sha256": "439b5eb117f178b02fcf9ad49ffb872c55b8249b600461a353cef2eacd77e7fd"
+    },
+    {
+      "code": "octgn:389072e7-d59a-4a04-bed8-568cc367b06f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/389072e7-d59a-4a04-bed8-568cc367b06f.jpg",
+      "localPath": "/cards/389072e7-d59a-4a04-bed8-568cc367b06f.jpg",
+      "bytes": 151174,
+      "sha256": "6d99315b472f2c574a3cf503458c2c7fb1e575bd2b5b7105d3347ea493a257db"
+    },
+    {
+      "code": "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3f24ad57-1c50-47dc-a117-5aee279b8451.jpg",
+      "localPath": "/cards/3f24ad57-1c50-47dc-a117-5aee279b8451.jpg",
+      "bytes": 145856,
+      "sha256": "57868be5dc3b4b4452f8b648d996b88557a75d2ca3b468d46cd68ff36c270d24"
+    },
+    {
+      "code": "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg",
+      "localPath": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg",
+      "bytes": 150196,
+      "sha256": "996a590bf16caa5103d8d75c518fd50e49af5e6d6976a1f9951c0c1edba8648b"
+    },
+    {
+      "code": "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.B.jpg",
+      "localPath": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.B.jpg",
+      "bytes": 152032,
+      "sha256": "e0523b87c93ade6590b621155a000fcc5b283af4bd674dcbc1cf44684a3d0104"
+    },
+    {
+      "code": "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg",
+      "localPath": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg",
+      "bytes": 150196,
+      "sha256": "996a590bf16caa5103d8d75c518fd50e49af5e6d6976a1f9951c0c1edba8648b"
+    },
+    {
+      "code": "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.B.jpg",
+      "localPath": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.B.jpg",
+      "bytes": 147518,
+      "sha256": "6904547149fdc712133eabee1a9b04daf4eb5cc47ce7ee3f3e7d09205b08f9b1"
+    },
+    {
+      "code": "octgn:4bdcd185-ba8e-45f7-83e3-04325a07a5ed",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/4bdcd185-ba8e-45f7-83e3-04325a07a5ed.jpg",
+      "localPath": "/cards/4bdcd185-ba8e-45f7-83e3-04325a07a5ed.jpg",
+      "bytes": 153327,
+      "sha256": "d6ca0a4332ed43d6909fd788dd54f6a17b3e61fb977e827e65a5ac5d50498728"
+    },
+    {
+      "code": "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54c8ecae-73b1-4c42-84ed-0411551c363a.jpg",
+      "localPath": "/cards/54c8ecae-73b1-4c42-84ed-0411551c363a.jpg",
+      "bytes": 149212,
+      "sha256": "1b09199b17542b119eb494e94a824d2ad46c243cd3464653d7c35fd8f8bb780d"
+    },
+    {
+      "code": "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6805d08f-84e0-412d-a728-35a42ea9a091.jpg",
+      "localPath": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.jpg",
+      "bytes": 146113,
+      "sha256": "389cabce07294912e24ef1337d22c652d540a7ff66fa6ed1a8a45f3a2a648b4b"
+    },
+    {
+      "code": "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6805d08f-84e0-412d-a728-35a42ea9a091.B.jpg",
+      "localPath": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.B.jpg",
+      "bytes": 151861,
+      "sha256": "b6a10818292da6f22bc002a1c7116da39b612625e8cb8db4e55ce4169c7d1dd5"
+    },
+    {
+      "code": "octgn:7445051f-ca99-4a2c-8a8c-656f325fa227",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/7445051f-ca99-4a2c-8a8c-656f325fa227.jpg",
+      "localPath": "/cards/7445051f-ca99-4a2c-8a8c-656f325fa227.jpg",
+      "bytes": 137620,
+      "sha256": "e72ff51ea68c4f8b3d93014c1c0ac184c437e72f2fc11989a908bb554843cada"
+    },
+    {
+      "code": "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/75b111c9-fb49-4a53-ac50-729ff2d06abe.jpg",
+      "localPath": "/cards/75b111c9-fb49-4a53-ac50-729ff2d06abe.jpg",
+      "bytes": 151475,
+      "sha256": "513b011388cca3c9ead1d9954557b1e0eaf3523b3432e4e2132238f23f7eab86"
+    },
+    {
+      "code": "octgn:a1827b45-42bd-44b3-a86d-d773e60ac1b5",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/a1827b45-42bd-44b3-a86d-d773e60ac1b5.jpg",
+      "localPath": "/cards/a1827b45-42bd-44b3-a86d-d773e60ac1b5.jpg",
+      "bytes": 134796,
+      "sha256": "3fb390dc8e9e5b595c7972d8612934c6f1253ab8258e8cbbbdc33d8b89cb8f9e"
+    },
+    {
+      "code": "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg",
+      "localPath": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg",
+      "bytes": 150196,
+      "sha256": "996a590bf16caa5103d8d75c518fd50e49af5e6d6976a1f9951c0c1edba8648b"
+    },
+    {
+      "code": "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.B.jpg",
+      "localPath": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.B.jpg",
+      "bytes": 136352,
+      "sha256": "7cdf867efef435492effd70b6187211433f14985e75b4e55049bfb35f8c9e984"
+    },
+    {
+      "code": "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/b00c623e-2aaa-4286-9fba-499fe39eb204.jpg",
+      "localPath": "/cards/b00c623e-2aaa-4286-9fba-499fe39eb204.jpg",
+      "bytes": 140123,
+      "sha256": "e29202999c2ab50c55e9a99ee8a3a660d7e23a85611fb42da7f073aa599d21ab"
+    },
+    {
+      "code": "octgn:bb1652ba-37e4-4a59-a7c7-39f398c0ab19",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/bb1652ba-37e4-4a59-a7c7-39f398c0ab19.jpg",
+      "localPath": "/cards/bb1652ba-37e4-4a59-a7c7-39f398c0ab19.jpg",
+      "bytes": 143184,
+      "sha256": "fa23d9842ac948e8aa520b05f921bb34d36ece3dd60b338db2c999de4e795091"
+    },
+    {
+      "code": "octgn:c60642b2-4ce3-42e8-8cb5-41c9ac9251fb",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c60642b2-4ce3-42e8-8cb5-41c9ac9251fb.jpg",
+      "localPath": "/cards/c60642b2-4ce3-42e8-8cb5-41c9ac9251fb.jpg",
+      "bytes": 142431,
+      "sha256": "7941b83b2958ee2d0018aa6ea6c38517c2f25af89951e61ee0bef21c3a28ecc3"
+    },
+    {
+      "code": "octgn:c9575426-59ea-4863-bf6a-407e9eae3f33",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "localPath": "/cards/c9575426-59ea-4863-bf6a-407e9eae3f33.jpg",
+      "bytes": 134804,
+      "sha256": "865e8e9dfd65691316f42bcf12c8e6cd2c27a115ada618168cafc12b1dde018c"
+    },
+    {
+      "code": "octgn:d2cd3802-0667-4124-b7b6-5e753ff71ec3",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/d2cd3802-0667-4124-b7b6-5e753ff71ec3.jpg",
+      "localPath": "/cards/d2cd3802-0667-4124-b7b6-5e753ff71ec3.jpg",
+      "bytes": 148327,
+      "sha256": "8ed665521acfc4c244db200b87efb621f9a10f2bd0d9a1595990ba6c37c6697d"
+    },
+    {
+      "code": "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg",
+      "localPath": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg",
+      "bytes": 150196,
+      "sha256": "996a590bf16caa5103d8d75c518fd50e49af5e6d6976a1f9951c0c1edba8648b"
+    },
+    {
+      "code": "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2bb7a4e-eca9-4889-b908-1da95fbb089f.B.jpg",
+      "localPath": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.B.jpg",
+      "bytes": 147125,
+      "sha256": "a991369591054fc3d816144aaebe43181495a21e0650290d33c808fee032542e"
+    },
+    {
+      "code": "octgn:fdfc404e-67b0-44d6-a1e7-a5e568ac0265",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/fdfc404e-67b0-44d6-a1e7-a5e568ac0265.jpg",
+      "localPath": "/cards/fdfc404e-67b0-44d6-a1e7-a5e568ac0265.jpg",
+      "bytes": 153098,
+      "sha256": "3a226fa554dcf836d4ae67be8af00e0097b69ae168654d80ad397bbca5c6a918"
+    },
+    {
+      "code": "octgn:ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171.jpg",
+      "localPath": "/cards/ffd2cfe7-e5fc-4f47-b85e-19e8b2df5171.jpg",
+      "bytes": 143342,
+      "sha256": "535d6c33c8821201d18fc4ce50820670b87b5b4eda11804c97c431da0041e70e"
+    }
+  ]
+}

@@ -26,6 +26,8 @@ import { FlightFordState } from "./ui/flight-ford-state";
 import { FLIGHT_FORD_QUESTS } from "./game/flight-ford-support";
 import { StoneErechState } from "./ui/stone-erech-state";
 import { STONE_ERECH_QUESTS } from "./game/stone-erech-support";
+import { OldForestState } from "./ui/old-forest-state";
+import { OLD_FOREST_QUESTS } from "./game/old-forest-support";
 import { DDCD_QUESTS } from "./game/dungeons-deep-support";
 import {
   discoveredTreasures,
@@ -3248,6 +3250,7 @@ export default function App() {
             <KnifeDarkState s={game} inspect={setDetail} />
             <FlightFordState s={game} inspect={setDetail} />
             <StoneErechState s={game} inspect={setDetail} />
+            <OldForestState s={game} inspect={setDetail} />
             <AshMountainsState s={game} inspect={setDetail} />
             <CouncilOfTheWiseState s={game} inspect={setDetail} />
             <WainridersScenarioState s={game} inspect={setDetail} />
@@ -3999,6 +4002,7 @@ export default function App() {
                       ...KNIFE_DARK_QUESTS,
                       ...FLIGHT_FORD_QUESTS,
                       ...STONE_ERECH_QUESTS,
+                      ...OLD_FOREST_QUESTS,
                       ...(carrockQuestCards as Card[]),
                       ...EMYN_MUIL_QUESTS,
                       ...CITY_QUESTS,

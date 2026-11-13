@@ -591,6 +591,24 @@ jobs:
           path: output/stone-erech-release/failures
           retention-days: 7
 
+  old-forest-simulation:
+    name: The Old Forest complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:old-forest-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: old-forest-simulation
+          path: output/old-forest-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -740,6 +758,8 @@ jobs:
             suite: test:browser-flight-ford
           - group: stone-erech
             suite: test:browser-stone-erech
+          - group: old-forest
+            suite: test:browser-old-forest
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

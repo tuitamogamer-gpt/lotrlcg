@@ -1,0 +1,244 @@
+[
+  {
+    "code": "octgn:185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+    "octgnid": "185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+    "name": "Farewell to the Shire",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Old Man Willow and Withywindle aside, out of play. Each player searches the encounter deck and adds 1 different location to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 1,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "Farewell to the Shire",
+    "back_text": "When Revealed: Each player draws 1 card. Advance to a random stage 2A.",
+    "back_type_code": "quest",
+    "back_quest": 0,
+    "back_imagesrc": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 1,
+        "quantity": 1,
+        "octgnid": "185d7d65-ebec-4d7a-aca0-b5b2e3449c3c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/185d7d65-ebec-4d7a-aca0-b5b2e3449c3c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 0
+  },
+  {
+    "code": "octgn:ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+    "octgnid": "ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+    "name": "The Living Forest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 2,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "Dark Bad Place",
+    "back_text": "Forced: At the end of the planning phase, each player must exhaust a hero he controls.\nForced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 2,
+        "quantity": 1,
+        "octgnid": "ab7ef031-1d13-4623-a9c3-2f6e3ce15d38",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ab7ef031-1d13-4623-a9c3-2f6e3ce15d38.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+    "octgnid": "47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+    "name": "The Living Forest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 3,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "Choked with Brambles",
+    "back_text": "Forced: At the end of the round, remove all progress from each location in play.\nForced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 3,
+        "quantity": 1,
+        "octgnid": "47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/47c0a2e6-0b38-4142-9891-fcb3b3e0bbd8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+    "octgnid": "f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+    "name": "The Living Forest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 4,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "Shifting Trees",
+    "back_text": "Forced: At the end of the round, discard a random location from the victory display.\nForced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 4,
+        "quantity": 1,
+        "octgnid": "f2bb7a4e-eca9-4889-b908-1da95fbb089f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/f2bb7a4e-eca9-4889-b908-1da95fbb089f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+    "octgnid": "49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+    "name": "The Living Forest",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: If the number of locations in the staging area is less than the number of players in the game, search the encounter deck and discard pile for a location and add it to the staging area. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 5,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "Closing in Around Them",
+    "back_text": "Forced: The first player reveals 1 additional encounter card during the quest phase.\nForced: After placing progress as the result of questing successfully, if there are X or more total victory points on locations in the victory display, advance to stage 3A. Otherwise, advance to a different random stage 2A. X is the number of players in the game times 5.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 5,
+        "quantity": 1,
+        "octgnid": "49304bf6-63f3-4fd1-b3ec-072a034e4eb0",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/49304bf6-63f3-4fd1-b3ec-072a034e4eb0.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:6805d08f-84e0-412d-a728-35a42ea9a091",
+    "octgnid": "6805d08f-84e0-412d-a728-35a42ea9a091",
+    "name": "The Wicked Willow",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Add Old Man Willow and Withywindle to the staging area. Reveal X encounter cards where X is the number of players in the game minus 1.",
+    "is_unique": false,
+    "pack_code": "TOF",
+    "pack_name": "The Old Forest",
+    "position": 6,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Old Forest",
+    "side": "A",
+    "back_name": "The Wicked Willow",
+    "back_text": "Old Man Willow cannot leave the staging area but is considered to be engaged with each player and attacks each player in turn order during the combat phase (deal and resolve a shadow card for each attack).\nIf the players defeat this stage, they win the game.",
+    "back_type_code": "quest",
+    "back_quest": 18,
+    "back_imagesrc": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/6805d08f-84e0-412d-a728-35a42ea9a091.jpg",
+    "packs": [
+      {
+        "pack_code": "TOF",
+        "pack_name": "The Old Forest",
+        "position": 6,
+        "quantity": 1,
+        "octgnid": "6805d08f-84e0-412d-a728-35a42ea9a091",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/6805d08f-84e0-412d-a728-35a42ea9a091.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 18
+  }
+]

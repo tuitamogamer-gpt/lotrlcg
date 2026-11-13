@@ -23,6 +23,7 @@ import { shadowPastUnits, validateShadowPast } from "./shadow-past-support";
 import { knifeDarkUnits, validateKnifeDark } from "./knife-dark-support";
 import { flightFordUnits, validateFlightFord } from "./flight-ford-support";
 import { stoneErechUnits, validateStoneErech } from "./stone-erech-support";
+import { oldForestUnits, validateOldForest } from "./old-forest-support";
 import { validateHideTest } from "./hide-test";
 import { validateAsh, ashExtraUnits } from "./ash-mountains-support";
 import { validateAshPlayers } from "./ash-mountains-player";
@@ -367,6 +368,9 @@ export function validateSave(
         c.ffDestroyed,
         c.seBanks,
         c.seDestroyed,
+        c.otfStrange,
+        c.otfDestroyed,
+        c.otfReturn,
       ].every((b) => b === undefined || typeof b === "boolean") &&
       (c.attackResolved === undefined ||
         typeof c.attackResolved === "boolean") &&
@@ -935,6 +939,7 @@ export function validateSave(
         !validateKnifeDark(s, validUnit as (v: unknown) => boolean) ||
         !validateFlightFord(s, validUnit as (v: unknown) => boolean) ||
         !validateStoneErech(s, validUnit as (v: unknown) => boolean) ||
+        !validateOldForest(s, validUnit as (v: unknown) => boolean) ||
         !validateLandSorrow(s, validUnit as (v: unknown) => boolean) ||
         !validateAsh(s, validUnit as (v: unknown) => boolean) ||
         !validateWainriders(s, validUnit as (v: unknown) => boolean, (c) =>
@@ -1655,6 +1660,7 @@ export function validateSave(
       ...knifeDarkUnits(s),
       ...flightFordUnits(s),
       ...stoneErechUnits(s),
+      ...oldForestUnits(s),
       ...(s.fortressNurnPlayers?.contracts.map((c) => c.unit) ?? []),
       ...(s.landSorrowPlayers?.contracts.flatMap((c) =>
         c.unit ? [c.unit] : [],

@@ -185,7 +185,9 @@
     "test:flight-ford-simulation": "node --import tsx --test tests/flight-ford-simulation.test.ts",
     "test:browser-flight-ford": "node --import tsx scripts/browser-flight-ford.mjs",
     "test:stone-erech-simulation": "node --import tsx --test tests/stone-erech-simulation.test.ts",
-    "test:browser-stone-erech": "node --import tsx scripts/browser-stone-erech.mjs"
+    "test:browser-stone-erech": "node --import tsx scripts/browser-stone-erech.mjs",
+    "test:old-forest-simulation": "node --import tsx --test tests/old-forest-simulation.test.ts",
+    "test:browser-old-forest": "node --import tsx scripts/browser-old-forest.mjs"
   },
   "dependencies": {
     "@fontsource/crimson-pro": "^5.3.0",

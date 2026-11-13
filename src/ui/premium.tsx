@@ -51,6 +51,10 @@ export const PLAYMATS = {
     name: "The Blackroot Vale",
     detail: "Night deepens · The Dead Men of Dunharrow",
   },
+  "the-old-forest": {
+    name: "The Old Forest",
+    detail: "Shifting trees · Old Man Willow by the Withywindle",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -457,6 +461,7 @@ export const PLAYMAT_CHOICES = [
   "a-knife-in-the-dark",
   "flight-to-the-ford",
   "the-stone-of-erech",
+  "the-old-forest",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

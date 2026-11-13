@@ -2956,7 +2956,7 @@ export function engage(s: GameState, u: Unit, optional = false) {
   BlackRidersPlayers.blackRidersPlayerEnemyEngaged(s, u);
   ShadowEastPlayers.shadowEastPlayerEngaged(s, u);
   Umbar.umbarEngaged(s, u);
-  batch4Scenario(s).engaged?.(s, u);
+  batch4Scenario(s).engaged?.(s, u, optional);
   Desert.desertCrossingEngaged(s, u);
   Mordor.mordorEngaged(s, u);
   HaradResponses.haradEnemyEngaged(s, u);
