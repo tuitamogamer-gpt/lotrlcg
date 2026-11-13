@@ -1,6 +1,15 @@
 import type { Effect, GameState, Option, Unit } from "./types";
 import { card, name } from "./cards";
-import { fx, get, log, make, prepend, shuffle, spendResources } from "./core";
+import {
+  choose,
+  fx,
+  get,
+  log,
+  make,
+  prepend,
+  shuffle,
+  spendResources,
+} from "./core";
 import { depositInFlightEncounterCards } from "./board";
 import {
   activeSeat,
@@ -13,11 +22,16 @@ import {
   seatName,
 } from "./table";
 import {
-  ONE_RING,
+  ROAD_DARKENS_FRODO,
   SAGA_FRODO,
   isLotrSagaScenarioId,
+  isOneRing,
   isRingBearerCode,
+  sagaRingCards,
 } from "./lotr-saga-codes";
+import { playerEffectImmune } from "./player-effect-immunity";
+import { raiseThreat } from "./board";
+import { batch4Scenario } from "./batch4-scenarios";
 export * from "./lotr-saga-codes";
 
 /**
@@ -31,22 +45,21 @@ export * from "./lotr-saga-codes";
 export const lotrSaga = (s: GameState) => isLotrSagaScenarioId(s.scenarioId);
 /** The hero carrying The One Ring. */
 export const ringBearer = (s: GameState): Unit | undefined =>
-  globalCharacters(s).find((u) =>
-    u.attachments.some((a) => a.code === ONE_RING),
-  );
+  globalCharacters(s).find((u) => u.attachments.some((a) => isOneRing(a.code)));
 export const oneRing = (s: GameState) =>
-  ringBearer(s)?.attachments.find((a) => a.code === ONE_RING);
+  ringBearer(s)?.attachments.find((a) => isOneRing(a.code));
 export const oneRingExhausted = (s: GameState) => !!oneRing(s)?.exhausted;
 /** Setup: the first player gains control of Frodo Baggins and attaches The One Ring. */
 export function placeRingBearer(s: GameState) {
   if (!lotrSaga(s) || ringBearer(s)) return;
   const first = s.table?.first ?? 0;
+  const codes = sagaRingCards(s.scenarioId);
   forOwner(s, first, () => {
-    const frodo = make(s, SAGA_FRODO);
+    const frodo = make(s, codes.frodo);
     frodo.owner = first;
     frodo.controller = first;
-    const ring = make(s, ONE_RING);
-    frodo.attachments.push({ id: ring.id, code: ONE_RING, exhausted: false });
+    const ring = make(s, codes.ring);
+    frodo.attachments.push({ id: ring.id, code: codes.ring, exhausted: false });
     s.heroes.push(frodo);
   });
   log(
@@ -111,7 +124,7 @@ export function ringBearerRevealOptions(
   if (!lotrSaga(s) || revealOrigin !== "encounter") return [];
   if (/cannot be cancel/i.test(card(code).text ?? "")) return [];
   const hero = frodo(s);
-  const ring = hero?.attachments.find((a) => a.code === ONE_RING);
+  const ring = hero?.attachments.find((a) => isOneRing(a.code));
   if (!hero || !ring || ring.exhausted || ring.blanked || hero.resources < 1)
     return [];
   const player = ownerOf(s, hero);
@@ -135,11 +148,102 @@ export function ringBearerRevealOptions(
     },
   ];
 }
+// ---------------------------------------------------------------------------
+// The Road Darkens' Frodo Baggins: after he exhausts to defend, the attack
+// deals no damage.
+
+/** Responses after defenders are declared: Frodo exhausted to defend this attack. */
+export function roadDarkensFrodoDefended(
+  s: GameState,
+  enemy: Unit,
+  defenders: Unit[],
+  exhaustedIds: string[],
+): Effect[] {
+  if (!lotrSaga(s)) return [];
+  const hero = defenders.find(
+    (d) =>
+      d.code === ROAD_DARKENS_FRODO &&
+      !d.blanked &&
+      exhaustedIds.includes(d.id),
+  );
+  if (!hero) return [];
+  const ring = hero.attachments.find((a) => isOneRing(a.code));
+  if (!ring || ring.exhausted || ring.blanked || hero.resources < 1) return [];
+  // "Target the attacking enemy": an enemy immune to player card effects cannot be chosen.
+  if (playerEffectImmune(s, enemy, ROAD_DARKENS_FRODO)) return [];
+  return [
+    fx("sagaFrodoDefenseOffer", {
+      target: hero.id,
+      source: enemy.id,
+      player: ownerOf(s, hero),
+    }),
+  ];
+}
 export function lotrSagaEffect(s: GameState, e: Effect): boolean {
   switch (e.kind) {
+    case "sagaFrodoDefenseOffer": {
+      const hero = get(s, e.target);
+      const ring = hero?.attachments.find((a) => isOneRing(a.code));
+      if (
+        !hero ||
+        !ring ||
+        ring.exhausted ||
+        hero.resources < 1 ||
+        s.combat?.enemyId !== e.source
+      )
+        return true;
+      const player = e.player ?? activeSeat(s);
+      forOwner(s, player, () =>
+        choose(
+          s,
+          `Frodo Baggins · Response${s.table ? ` · ${seatName(s, player)}` : ""}`,
+          [
+            {
+              id: "use",
+              label:
+                "Exhaust The One Ring and spend 1 resource: this attack deals no damage and each player raises his threat by 2",
+              code: ROAD_DARKENS_FRODO,
+              ability: {
+                player,
+                source: hero.id,
+                code: ROAD_DARKENS_FRODO,
+                type: "response",
+              },
+              effects: [
+                fx("sagaFrodoDefense", {
+                  target: hero.id,
+                  source: e.source,
+                  player,
+                }),
+              ],
+            },
+            { id: "skip", label: "Do not respond", effects: [] },
+          ],
+          "After Frodo Baggins exhausts to defend an attack.",
+        ),
+      );
+      return true;
+    }
+    case "sagaFrodoDefense": {
+      const hero = get(s, e.target);
+      const ring = hero?.attachments.find((a) => isOneRing(a.code));
+      if (!hero || !ring || ring.exhausted || hero.resources < 1) return true;
+      spendResources(s, hero, 1);
+      ring.exhausted = true;
+      if (s.combat && s.combat.enemyId === e.source) s.combat.noDamage = true;
+      log(
+        s,
+        "Frodo Baggins exhausts The One Ring: this attack deals no damage, and each player raises his threat by 2.",
+        "good",
+      );
+      for (const player of playerOrder(s))
+        forOwner(s, player, () => raiseThreat(s, 2, "player-card"));
+      batch4Scenario(s).oneRingExhausted?.(s);
+      return true;
+    }
     case "sagaFrodoCancel": {
       const hero = get(s, e.target);
-      const ring = hero?.attachments.find((a) => a.code === ONE_RING);
+      const ring = hero?.attachments.find((a) => isOneRing(a.code));
       if (!hero || !ring || ring.exhausted || hero.resources < 1 || !e.code) {
         prepend(s, ...(e.effects ?? []));
         return true;

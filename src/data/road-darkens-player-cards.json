@@ -1,0 +1,46 @@
+[
+  {
+    "code": "142001",
+    "name": "Frodo Baggins",
+    "type_code": "hero",
+    "type_name": "Hero",
+    "sphere_code": "fellowship",
+    "sphere_name": "Fellowship",
+    "threat": 0,
+    "willpower": 2,
+    "attack": 1,
+    "defense": 2,
+    "health": 2,
+    "traits": "Hobbit. Ring-bearer.",
+    "text": "Response: After Frodo Baggins exhausts to defend an attack, exhaust The One Ring and spend 1 [fellowship] resource to target the attacking enemy. Then, this attack deals no damage and each player raises his threat by 2.",
+    "flavor": "\"But there is more about you now than appears on the surface.\" <cite>Bilbo, The Fellowship of the Ring</cite>",
+    "is_unique": true,
+    "deck_limit": 1,
+    "pack_name": "The Road Darkens",
+    "pack_code": "TRD",
+    "position": 1,
+    "illustrator": "Sebastian Giacobino",
+    "imagesrc": "/cards/142001.png",
+    "url": "https://ringsdb.com/card/142001",
+    "quantity": 1,
+    "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 1,
+        "quantity": 1,
+        "image_code": "142001",
+        "illustrator": "Sebastian Giacobino",
+        "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+        "imagesrc": "/bundles/cards/142001.png",
+        "date_release": "2014-10-03"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/142001",
+    "official": true,
+    "nightmare": false
+  }
+]

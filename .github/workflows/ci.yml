@@ -609,6 +609,24 @@ jobs:
           path: output/old-forest-release/failures
           retention-days: 7
 
+  ring-south-simulation:
+    name: The Ring Goes South complete games (14 games)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:ring-south-simulation
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ring-south-simulation
+          path: output/ring-south-release/failures
+          retention-days: 7
+
   multiplayer:
     name: Multiplayer games (${{ matrix.scenario }})
     runs-on: ubuntu-latest
@@ -760,6 +778,8 @@ jobs:
             suite: test:browser-stone-erech
           - group: old-forest
             suite: test:browser-old-forest
+          - group: ring-south
+            suite: test:browser-ring-south
           - group: hobbit-players
             suite: test:browser-hobbit-players
           - group: otd-players

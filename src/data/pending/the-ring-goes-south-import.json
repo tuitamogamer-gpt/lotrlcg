@@ -1,0 +1,1412 @@
+{
+  "schema": "lotr-pending-scenario-import/v1",
+  "status": "pending-rules",
+  "name": "The Ring Goes South",
+  "slug": "the-ring-goes-south",
+  "sources": {
+    "catalog": "public/catalog.json",
+    "recipes": "public/scenarios.json"
+  },
+  "cards": [
+    {
+      "code": "142001",
+      "name": "Frodo Baggins",
+      "type_code": "hero",
+      "type_name": "Hero",
+      "sphere_code": "fellowship",
+      "sphere_name": "Fellowship",
+      "threat": 0,
+      "willpower": 2,
+      "attack": 1,
+      "defense": 2,
+      "health": 2,
+      "traits": "Hobbit. Ring-bearer.",
+      "text": "<b>Response:</b> After Frodo Baggins exhausts to defend an attack, exhaust The One Ring and spend 1 [fellowship] resource to target the attacking enemy. Then, this attack deals no damage and each player raises his threat by 2.",
+      "flavor": "\"But there is more about you now than appears on the surface.\" <cite>Bilbo, The Fellowship of the Ring</cite>",
+      "is_unique": true,
+      "deck_limit": 1,
+      "pack_name": "The Road Darkens",
+      "pack_code": "TRD",
+      "position": 1,
+      "illustrator": "Sebastian Giacobino",
+      "imagesrc": "/cards/142001.png",
+      "url": "https://ringsdb.com/card/142001",
+      "quantity": 1,
+      "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 1,
+          "quantity": 1,
+          "image_code": "142001",
+          "illustrator": "Sebastian Giacobino",
+          "octgnid": "f9196cda-8f50-4cc5-9aad-1c56cb677bca",
+          "imagesrc": "/bundles/cards/142001.png",
+          "date_release": "2014-10-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/142001",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "142084",
+      "name": "Lust for the Ring",
+      "type_code": "treachery",
+      "type_name": "Campaign",
+      "sphere_code": "burden",
+      "sphere_name": "Neutral",
+      "traits": "Corruption.",
+      "text": "Peril. Surge.\r\n<b>When Revealed:</b> Attach to a non-[fellowship] hero in play. Counts as a <i><b>Condition</b></i> attachment with the text: \"<b>Forced:</b> After The One Ring exhausts, raise each player's threat by 1 and reduce attached hero's [willpower] to 0 until the end of the round.\"",
+      "is_unique": false,
+      "deck_limit": 1,
+      "pack_name": "The Road Darkens",
+      "pack_code": "TRD",
+      "position": 84,
+      "illustrator": "Arden Beckwith",
+      "imagesrc": "/cards/142084.png",
+      "url": "https://ringsdb.com/card/142084",
+      "quantity": 1,
+      "octgnid": "7068731b-3837-40f3-9e98-6c996af4dddc",
+      "has_errata": false,
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 84,
+          "quantity": 1,
+          "image_code": "142084",
+          "illustrator": "Arden Beckwith",
+          "octgnid": "7068731b-3837-40f3-9e98-6c996af4dddc",
+          "imagesrc": "/bundles/cards/142084.png",
+          "date_release": "2014-10-03"
+        }
+      ],
+      "source": "ringsdb",
+      "source_url": "https://ringsdb.com/card/142084",
+      "official": true,
+      "nightmare": false,
+      "ringsdb_type_code": "treasure",
+      "encounter_set": "The Ring Goes South"
+    },
+    {
+      "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+      "octgnid": "0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+      "name": "The Hunt is Up!",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Each player searches the encounter deck and discard pile for an enemy and adds it to the staging area. One of those enemies must be Great Warg Chief, if able. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 22,
+      "quantity": 1,
+      "cost": 3,
+      "encounter_set": "The Ring Goes South",
+      "side": "A",
+      "back_name": "The Hunt is Up!",
+      "back_text": "During the travel phase, the players must travel to a location, if able. Forced: After a location enters play, place 1 damage on it.  Forced: After an enemy engages a player, place 1 damage on the active location, if able.",
+      "back_type_code": "quest",
+      "back_quest": 12,
+      "back_imagesrc": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.B.jpg",
+      "printed_stats": {
+        "cost": "3"
+      },
+      "imagesrc": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 22,
+          "quantity": 1,
+          "octgnid": "0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+      "octgnid": "0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+      "name": "The Council of Elrond",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Setup: Set Lust for the Ring, Redhorn Pass, Doors of Durin and Watcher in the Water aside, out of play. Shuffle the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 20,
+      "quantity": 1,
+      "cost": 1,
+      "encounter_set": "The Ring Goes South",
+      "side": "A",
+      "back_name": "The Council of Elrond",
+      "back_text": "Forced: At the end of the planning phase, each player places the top card of his deck faceup in front of him, in player order, until there are a total of 4 faceup cards between the players. The first player chooses 1 faceup card to player for 0 cost, 1 to add to its owners hand, 1 to discard, and 1 to shuffle into its owner's deck. Then, either shuffle Lust for the Ring into the encounter deck, or raise each player's threat by 5. Advance to stage 2.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.B.jpg",
+      "printed_stats": {
+        "cost": "1"
+      },
+      "imagesrc": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 20,
+          "quantity": 1,
+          "octgnid": "0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+      "octgnid": "1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+      "name": "Hound of Sauron",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Surge.\nHound of Sauron gets -5 engagement cost for each enemy in the staging area.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 26,
+      "quantity": 4,
+      "threat": 1,
+      "attack": 4,
+      "defense": 1,
+      "health": 3,
+      "engagement": 50,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it was engaged this round).",
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "1",
+        "attack": "4",
+        "defense": "1",
+        "health": "3",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 26,
+          "quantity": 4,
+          "octgnid": "1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+      "octgnid": "232256cb-40ee-4cec-84ac-995b3ba43eb2",
+      "name": "Great Warg Chief",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Cannot have attachments.\nForced: After Great Warg Chief engages you, discard cards from the encounter deck until a Warg enemy is discarded. Put that enemy into play engaged with you.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 25,
+      "quantity": 1,
+      "threat": 4,
+      "attack": 5,
+      "defense": 3,
+      "health": 6,
+      "engagement": 30,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "4",
+        "attack": "5",
+        "defense": "3",
+        "health": "6",
+        "engagement": "30"
+      },
+      "imagesrc": "/cards/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 25,
+          "quantity": 1,
+          "octgnid": "232256cb-40ee-4cec-84ac-995b3ba43eb2",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+      "octgnid": "3e99373a-ce10-4907-acd5-5a4b8dce425c",
+      "name": "The Gates of Moria",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Make Doors of Durin the active location. Add Watcher in the Water to the staging area. Discard all tokens from the Ring-bearer and place it (and each card attached to it) facedown under Watcher in the Water.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 23,
+      "quantity": 1,
+      "cost": 4,
+      "encounter_set": "The Ring Goes South",
+      "side": "A",
+      "back_name": "The Gates of Moria",
+      "back_text": "There can be 2 active locations. During the travel phase, the players must travel to a location, if able. Forced: After an enemy engages a player, place 1 damage on each active location.  If Doors of Durin is explored, the players win the game.",
+      "back_type_code": "quest",
+      "back_imagesrc": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.B.jpg",
+      "printed_stats": {
+        "cost": "4"
+      },
+      "imagesrc": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 23,
+          "quantity": 1,
+          "octgnid": "3e99373a-ce10-4907-acd5-5a4b8dce425c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+      "octgnid": "54981b6b-c247-40f9-9321-fd7913b897dd",
+      "name": "Storm of Howls",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "Peril.\nWhen Revealed: Either the Warg enemy in the staging area with the highest engagement cost attacks you, or each Warg enemy gets -20 engagement cost until the end of the round. If no Warg enemy is in the staging area, Storm of Howls gains surge.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 38,
+      "quantity": 3,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {},
+      "imagesrc": "/cards/54981b6b-c247-40f9-9321-fd7913b897dd.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 38,
+          "quantity": 3,
+          "octgnid": "54981b6b-c247-40f9-9321-fd7913b897dd",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54981b6b-c247-40f9-9321-fd7913b897dd.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+      "octgnid": "5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+      "name": "Doors of Durin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Gate.",
+      "text": "Immune to player card effects.\nProgress must be placed on each other active location before it can be placed here. Progress cannot be placed here unless the first player controls the Ring-bearer.  If there are 9 damage tokens here, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 30,
+      "quantity": 1,
+      "threat": 1,
+      "quest": 9,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "1",
+        "quest": "9"
+      },
+      "imagesrc": "/cards/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 30,
+          "quantity": 1,
+          "octgnid": "5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+      "octgnid": "5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+      "name": "Hills of Hollin",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "While Hills of Hollin is the active location, each enemy in the staging area gets +5 engagement cost.  Forced: When Hills of Hollin is explored, each player raises his threat by 1 for each damage here.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 32,
+      "quantity": 3,
+      "threat": 2,
+      "quest": 4,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "2",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 32,
+          "quantity": 3,
+          "octgnid": "5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+      "octgnid": "60546e25-329e-4846-852d-65c1a6ee6c5c",
+      "name": "Bitter Cold",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Each player must choose: either discard each ally he controls, or raise his threat by 1 for each ally he controls.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 37,
+      "quantity": 2,
+      "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {},
+      "imagesrc": "/cards/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 37,
+          "quantity": 2,
+          "octgnid": "60546e25-329e-4846-852d-65c1a6ee6c5c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+      "octgnid": "74f47fcd-31fb-4034-924c-034e1615a3c4",
+      "name": "Crebain from Dunland",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Peril.\nWhen Revealed: Either exhaust a hero you control, or engage Crebain from Dunland. Forced: After Crebain from Dunland engages a player, reveal the top card of the encounter deck.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 28,
+      "quantity": 2,
+      "threat": 3,
+      "attack": 1,
+      "defense": 1,
+      "health": 2,
+      "engagement": 28,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "3",
+        "attack": "1",
+        "defense": "1",
+        "health": "2",
+        "engagement": "28"
+      },
+      "imagesrc": "/cards/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 28,
+          "quantity": 2,
+          "octgnid": "74f47fcd-31fb-4034-924c-034e1615a3c4",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+      "octgnid": "78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+      "name": "Regiments of Crows",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Place 3 damage on each active location.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 35,
+      "quantity": 2,
+      "shadow": "Shadow: Undefended damage from this attack must be assigned to the active location.",
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {},
+      "imagesrc": "/cards/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 35,
+          "quantity": 2,
+          "octgnid": "78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+      "octgnid": "867b61a1-4e23-4426-ad94-b912e89055b8",
+      "name": "Redhorn Foothills",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "While Redhorn Foothills is the active location, it gains: \"Forced: After an enemy is added to the staging area, it gets -5 engagement cost until the end of the round.\"  Forced: When Redhorn Foothills is explored, each player must discard X cards from his hand at random. X is the number of damage here.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 33,
+      "quantity": 3,
+      "threat": 4,
+      "quest": 5,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "5"
+      },
+      "imagesrc": "/cards/867b61a1-4e23-4426-ad94-b912e89055b8.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 33,
+          "quantity": 3,
+          "octgnid": "867b61a1-4e23-4426-ad94-b912e89055b8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/867b61a1-4e23-4426-ad94-b912e89055b8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+      "octgnid": "8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+      "name": "Watcher in the Water",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature.",
+      "text": "Idestructible. Immune to player card effects.\nCannot leave the staging area but is considered to be engaged with each player. Forced: After placing the 6th damage here, the first player takes control of the Ring-bearer, exhausted with 1 damage on it.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 24,
+      "quantity": 1,
+      "threat": 5,
+      "attack": 6,
+      "defense": 5,
+      "health": 12,
+      "engagement": 50,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "5",
+        "attack": "6",
+        "defense": "5",
+        "health": "12",
+        "engagement": "50"
+      },
+      "imagesrc": "/cards/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 24,
+          "quantity": 1,
+          "octgnid": "8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+      "octgnid": "9e678947-2687-4b3b-b98c-f05f289793ff",
+      "name": "The Nine Walkers",
+      "type_code": "quest",
+      "sphere_code": "encounter",
+      "traits": "",
+      "text": "When Revealed: Make Redhorn Pass the active location. The first player reveals cards from the encounter deck until there is at least X [threat] in the staging area. X is twice the number of players in the game.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 21,
+      "quantity": 1,
+      "cost": 2,
+      "encounter_set": "The Ring Goes South",
+      "side": "A",
+      "back_name": "The Nine Walkers",
+      "back_text": "During the travel phase, the players must travel to a location, if able.  Forced: After an enemy engages a player, place 1 damage on the active location, if able.",
+      "back_type_code": "quest",
+      "back_quest": 8,
+      "back_imagesrc": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.B.jpg",
+      "printed_stats": {
+        "cost": "2"
+      },
+      "imagesrc": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 21,
+          "quantity": 1,
+          "octgnid": "9e678947-2687-4b3b-b98c-f05f289793ff",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e678947-2687-4b3b-b98c-f05f289793ff.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+      "octgnid": "af787868-59d6-48be-983f-447ba0523f46",
+      "name": "Eregion",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "Forced: When Eregion is explored, the players as a group must discard X allies from play. X is the number of damage here.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 34,
+      "quantity": 3,
+      "threat": 3,
+      "quest": 4,
+      "shadow": "Shadow: Defending player discards a non-objective attachment he controls.",
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "4"
+      },
+      "imagesrc": "/cards/af787868-59d6-48be-983f-447ba0523f46.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 34,
+          "quantity": 3,
+          "octgnid": "af787868-59d6-48be-983f-447ba0523f46",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/af787868-59d6-48be-983f-447ba0523f46.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "name": "The One Ring",
+      "type_code": "objective",
+      "sphere_code": "encounter",
+      "traits": "Artifact. Item. Ring.",
+      "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.  Attached hero does not count against the hero limit. The first player gains control of attached hero.   If The One Ring leaves play, the players lose the game.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 91,
+      "quantity": 1,
+      "printed_stats": {},
+      "imagesrc": "/cards/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 91,
+          "quantity": 1,
+          "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+      "octgnid": "ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+      "name": "Tree-crowned Hill",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Hills.",
+      "text": "While Tree-crowned Hill is the active location, each enemy gets -1 [threat].\nForced: When Tree-crowned Hill is explored, the players, as a group, exhaust X characters in play. X is the number of damage here.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 31,
+      "quantity": 1,
+      "threat": 3,
+      "quest": 6,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "3",
+        "quest": "6"
+      },
+      "imagesrc": "/cards/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 31,
+          "quantity": 1,
+          "octgnid": "ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+      "octgnid": "ca24cab1-1489-4c4d-8cea-50d076c020b8",
+      "name": "Snowdrifts",
+      "type_code": "treachery",
+      "sphere_code": "encounter",
+      "traits": "Weather.",
+      "text": "When Revealed: Attach to the active location. (Counts as a Condition attachment with the text, \"Limit 1 per location. No more than 3 progress can be placed on attached location each round.\") If Snowdrifts is not attached to the active location, it gains surge.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 36,
+      "quantity": 2,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {},
+      "imagesrc": "/cards/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 36,
+          "quantity": 2,
+          "octgnid": "ca24cab1-1489-4c4d-8cea-50d076c020b8",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+      "octgnid": "e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+      "name": "Howling Warg",
+      "type_code": "enemy",
+      "sphere_code": "encounter",
+      "traits": "Creature. Warg.",
+      "text": "Forced: When Howling Warg attacks, place 1 damage on an active location.",
+      "is_unique": false,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 27,
+      "quantity": 4,
+      "threat": 2,
+      "attack": 3,
+      "defense": 2,
+      "health": 4,
+      "engagement": 38,
+      "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destoys a character, place 1 damage on an active location.",
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "2",
+        "attack": "3",
+        "defense": "2",
+        "health": "4",
+        "engagement": "38"
+      },
+      "imagesrc": "/cards/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 27,
+          "quantity": 4,
+          "octgnid": "e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    },
+    {
+      "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+      "octgnid": "ebd1944a-928c-40ff-88de-dfebdfcf633c",
+      "name": "Redhorn Pass",
+      "type_code": "location",
+      "sphere_code": "encounter",
+      "traits": "Mountain.",
+      "text": "Immune to player card effects.\nForced: When Redhorn Pass is explored, each player assigns X damage among characters he controls. X is the number of damage here.",
+      "is_unique": true,
+      "pack_code": "TRD",
+      "pack_name": "The Road Darkens",
+      "position": 29,
+      "quantity": 1,
+      "threat": 4,
+      "quest": 6,
+      "victory": 1,
+      "encounter_set": "The Ring Goes South",
+      "printed_stats": {
+        "threat": "4",
+        "quest": "6",
+        "victory": "1"
+      },
+      "imagesrc": "/cards/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg",
+      "packs": [
+        {
+          "pack_code": "TRD",
+          "pack_name": "The Road Darkens",
+          "position": 29,
+          "quantity": 1,
+          "octgnid": "ebd1944a-928c-40ff-88de-dfebdfcf633c",
+          "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg"
+        }
+      ],
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "official": true,
+      "nightmare": false
+    }
+  ],
+  "recipes": [
+    {
+      "id": "E0B.04",
+      "name": "The Ring Goes South (Easy)",
+      "mode": "easy",
+      "campaign": false,
+      "pack_codes": [
+        "TRD"
+      ],
+      "card_codes": [
+        "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+        "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+        "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+        "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+        "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+        "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+        "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+        "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+        "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+        "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+        "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+        "octgn:af787868-59d6-48be-983f-447ba0523f46",
+        "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+        "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+        "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+        "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+        "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+        "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+        "142001",
+        "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+        "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "142001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777": 1,
+          "octgn:9e678947-2687-4b3b-b98c-f05f289793ff": 1,
+          "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4": 1,
+          "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2": 1,
+          "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e": 2,
+          "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48": 4,
+          "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4": 2,
+          "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1": 1,
+          "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6": 3,
+          "octgn:867b61a1-4e23-4426-ad94-b912e89055b8": 2,
+          "octgn:af787868-59d6-48be-983f-447ba0523f46": 2,
+          "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf": 1,
+          "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8": 2,
+          "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c": 1,
+          "octgn:54981b6b-c247-40f9-9321-fd7913b897dd": 2
+        },
+        "sharedSetAside": {
+          "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1": 1,
+          "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f": 1
+        },
+        "player1Play1": {
+          "142001": 1,
+          "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    },
+    {
+      "id": "Q0B.04",
+      "name": "The Ring Goes South",
+      "mode": "standard",
+      "campaign": false,
+      "pack_codes": [
+        "TRD"
+      ],
+      "card_codes": [
+        "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+        "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+        "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+        "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+        "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+        "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+        "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+        "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+        "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+        "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+        "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+        "octgn:af787868-59d6-48be-983f-447ba0523f46",
+        "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+        "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+        "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+        "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+        "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+        "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+        "142001",
+        "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+        "142084",
+        "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c"
+      ],
+      "cards": [
+        {
+          "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+          "quantity": 1,
+          "section": "sharedQuestDeck"
+        },
+        {
+          "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+          "quantity": 4,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+          "quantity": 1,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+          "quantity": 2,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+          "quantity": 3,
+          "section": "sharedEncounterDeck"
+        },
+        {
+          "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+          "quantity": 1,
+          "section": "sharedSetAside"
+        },
+        {
+          "code": "142001",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+          "quantity": 1,
+          "section": "player1Play1"
+        },
+        {
+          "code": "142084",
+          "quantity": 1,
+          "section": "sharedStagingArea"
+        },
+        {
+          "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+          "quantity": 1,
+          "section": "sharedActiveLocation"
+        }
+      ],
+      "sections": {
+        "sharedQuestDeck": {
+          "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777": 1,
+          "octgn:9e678947-2687-4b3b-b98c-f05f289793ff": 1,
+          "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4": 1,
+          "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c": 1
+        },
+        "sharedEncounterDeck": {
+          "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2": 1,
+          "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e": 4,
+          "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48": 4,
+          "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4": 2,
+          "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1": 1,
+          "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6": 3,
+          "octgn:867b61a1-4e23-4426-ad94-b912e89055b8": 3,
+          "octgn:af787868-59d6-48be-983f-447ba0523f46": 3,
+          "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf": 2,
+          "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8": 2,
+          "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c": 2,
+          "octgn:54981b6b-c247-40f9-9321-fd7913b897dd": 3
+        },
+        "sharedSetAside": {
+          "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1": 1,
+          "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f": 1
+        },
+        "player1Play1": {
+          "142001": 1,
+          "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8": 1
+        },
+        "sharedStagingArea": {
+          "142084": 1
+        },
+        "sharedActiveLocation": {
+          "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c": 1
+        }
+      },
+      "source": "dragncards",
+      "source_url": "https://dragncards.com/plugin/1",
+      "automated": false
+    }
+  ],
+  "artwork": [
+    {
+      "code": "142001",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/142001.png",
+      "localPath": "/cards/142001.png",
+      "bytes": 129519,
+      "sha256": "2ba7fcc0552a48201306744ddc9d2409ddc041ab30b9d28f0e94b0cf7df788d4"
+    },
+    {
+      "code": "142084",
+      "face": "front",
+      "source": "https://ringsdb.com/bundles/cards/142084.png",
+      "localPath": "/cards/142084.png",
+      "bytes": 510782,
+      "sha256": "0f45acfab930efff63523ebe14092f17c50fc8b2b143f2b83b0c8419fa6b6783"
+    },
+    {
+      "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg",
+      "localPath": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg",
+      "bytes": 153953,
+      "sha256": "6b0cd25cb1a90346c2e16d7f1c06499a270e515b549a8e58db991502f8062aff"
+    },
+    {
+      "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.B.jpg",
+      "localPath": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.B.jpg",
+      "bytes": 140390,
+      "sha256": "22787577e367e3310f5421d8e0ef5a914cb6c0131e31517f65d969be06c4d2cc"
+    },
+    {
+      "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg",
+      "localPath": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg",
+      "bytes": 170829,
+      "sha256": "4b16023c0ea54f8c5431b39e11fb47100d0445034a67e050432f1693bb51870e"
+    },
+    {
+      "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.B.jpg",
+      "localPath": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.B.jpg",
+      "bytes": 171950,
+      "sha256": "d9ab2e11c24b531685565238e4d0b18ac143e072aabf15971c561d5cd5089d7e"
+    },
+    {
+      "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg",
+      "localPath": "/cards/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg",
+      "bytes": 154838,
+      "sha256": "ad0d3e0df319e3f46ed050d0aeee06b44da504a18a1d32c01262b0b6e082c79f"
+    },
+    {
+      "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg",
+      "localPath": "/cards/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg",
+      "bytes": 153762,
+      "sha256": "e670a91ecb81804105160e1033473be4b4b6ce75e6e3a8c2917dc1e559606cca"
+    },
+    {
+      "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg",
+      "localPath": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg",
+      "bytes": 159440,
+      "sha256": "b3d5df74ae0ed7b4a7244dae9991494886b861ab3a0ae18ee3e15d2580049b2c"
+    },
+    {
+      "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e99373a-ce10-4907-acd5-5a4b8dce425c.B.jpg",
+      "localPath": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.B.jpg",
+      "bytes": 149156,
+      "sha256": "435ef1dd239df08f52748618b816797cea94c6a8dda441891ae78e293cbe958a"
+    },
+    {
+      "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54981b6b-c247-40f9-9321-fd7913b897dd.jpg",
+      "localPath": "/cards/54981b6b-c247-40f9-9321-fd7913b897dd.jpg",
+      "bytes": 154409,
+      "sha256": "ab5087ee8b65bf7cf9c8ad85d7b3a00a0b04d8d51fd5fc0205e2999cc0e69c24"
+    },
+    {
+      "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg",
+      "localPath": "/cards/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg",
+      "bytes": 151878,
+      "sha256": "3da0030191b1acb9ea5ba22c66eef9b842b009534b92de289628218fb20c25a3"
+    },
+    {
+      "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg",
+      "localPath": "/cards/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg",
+      "bytes": 144585,
+      "sha256": "7536be07557d53d8de59d12b4e037c273c0f1170e3957d64ed03906cbbe2645e"
+    },
+    {
+      "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg",
+      "localPath": "/cards/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg",
+      "bytes": 150699,
+      "sha256": "81760c86bc7dd597496489e1b15fd27b52245797d814b18ff8d9d2388ed9194c"
+    },
+    {
+      "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg",
+      "localPath": "/cards/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg",
+      "bytes": 144584,
+      "sha256": "91c8b81af8b628412dbefeb11a13876dd41de6931adb1b4e28f73c596cd3c5db"
+    },
+    {
+      "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg",
+      "localPath": "/cards/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg",
+      "bytes": 155660,
+      "sha256": "89f7d64b2413987c05383b11c5e10b0b0522c0299588dbdffe15b59e42616673"
+    },
+    {
+      "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/867b61a1-4e23-4426-ad94-b912e89055b8.jpg",
+      "localPath": "/cards/867b61a1-4e23-4426-ad94-b912e89055b8.jpg",
+      "bytes": 160203,
+      "sha256": "d709114f3e380ceb38ee52250ad55042069811e0b1100ac35a22ae7e7d364b4b"
+    },
+    {
+      "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg",
+      "localPath": "/cards/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg",
+      "bytes": 155067,
+      "sha256": "3560f55daf1797e23d86d3f3c79699fc07f2ed121fd99e47963c55032f0029d7"
+    },
+    {
+      "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e678947-2687-4b3b-b98c-f05f289793ff.jpg",
+      "localPath": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.jpg",
+      "bytes": 156888,
+      "sha256": "c9d431edab32229bf2e39b1acbdb9e49ada6a761dbf9a4442cbc49ceb80b851c"
+    },
+    {
+      "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+      "face": "back",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e678947-2687-4b3b-b98c-f05f289793ff.B.jpg",
+      "localPath": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.B.jpg",
+      "bytes": 143482,
+      "sha256": "d3998251bee3c198d6de3488635e6436aef3740b128efe1cb477107d6b4f6a03"
+    },
+    {
+      "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/af787868-59d6-48be-983f-447ba0523f46.jpg",
+      "localPath": "/cards/af787868-59d6-48be-983f-447ba0523f46.jpg",
+      "bytes": 149434,
+      "sha256": "48d6ab1fd2bc2dd7fa27a96d097459f439ee52359b97afb84f154d8bb0f9659e"
+    },
+    {
+      "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "localPath": "/cards/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+      "bytes": 145036,
+      "sha256": "6c44976cbca42bb57aa7f441b7e3e997161100a15e59c36b8f4626270b10e0b0"
+    },
+    {
+      "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg",
+      "localPath": "/cards/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg",
+      "bytes": 153450,
+      "sha256": "9319899124b6f4aff63e84bb1813ae3fab9c640bab10a79ff5cea8ab8856f4e5"
+    },
+    {
+      "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg",
+      "localPath": "/cards/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg",
+      "bytes": 118830,
+      "sha256": "c65b0bd6cf25361e20eb31fb82318e84c103b20a415c5cba9b102267bc05c0e6"
+    },
+    {
+      "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg",
+      "localPath": "/cards/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg",
+      "bytes": 146934,
+      "sha256": "7738355af0ba6cf80af51f36c317d8c194e79258cf9d585e34a6de5b85d392ca"
+    },
+    {
+      "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+      "face": "front",
+      "source": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg",
+      "localPath": "/cards/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg",
+      "bytes": 151763,
+      "sha256": "bfcfaeffc10c203f36a0c65163cc79d819f1b901ed2a5ba3a460ac441248fc8a"
+    }
+  ]
+}

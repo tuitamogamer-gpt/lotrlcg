@@ -1,6 +1,7 @@
 import { wainridersPlayerAttackKilled } from "./wainriders-player";
 import { hobbitPlayerNoDefenseExhaust } from "./hobbit-player-cards";
 import * as BlackRidersPlayers from "./black-riders-player-cards";
+import { roadDarkensFrodoDefended } from "./lotr-saga";
 import {
   otdPlayerAttackersDeclared,
   otdPlayerAttackResolved,
@@ -882,6 +883,12 @@ export function beginEnemyAttack(
       enemy,
       defenders.filter((d): d is Unit => !!d),
     ) ?? []),
+    ...roadDarkensFrodoDefended(
+      s,
+      enemy,
+      defenders.filter((d): d is Unit => !!d),
+      actuallyExhausted,
+    ),
     ...MumakPlayers.mumakilDefendersDeclared(
       s,
       enemy,

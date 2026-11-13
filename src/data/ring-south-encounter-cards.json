@@ -1,0 +1,599 @@
+[
+  {
+    "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+    "octgnid": "8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+    "name": "Watcher in the Water",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Indestructible. Immune to player card effects.\nCannot leave the staging area but is considered to be engaged with each player.\nForced: After placing the 6th damage here, the first player takes control of the Ring-bearer, exhausted with 1 damage on it.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 24,
+    "quantity": 1,
+    "threat": 5,
+    "attack": 6,
+    "defense": 5,
+    "health": 12,
+    "engagement": 50,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "5",
+      "attack": "6",
+      "defense": "5",
+      "health": "12",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 24,
+        "quantity": 1,
+        "octgnid": "8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/8f38ca4f-5893-4bd4-854d-6788a3ada41f.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+    "octgnid": "232256cb-40ee-4cec-84ac-995b3ba43eb2",
+    "name": "Great Warg Chief",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Cannot have attachments.\nForced: After Great Warg Chief engages you, discard cards from the encounter deck until a Warg enemy is discarded. Put that enemy into play engaged with you.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 25,
+    "quantity": 1,
+    "threat": 4,
+    "attack": 5,
+    "defense": 3,
+    "health": 6,
+    "engagement": 30,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "4",
+      "attack": "5",
+      "defense": "3",
+      "health": "6",
+      "engagement": "30"
+    },
+    "imagesrc": "/cards/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 25,
+        "quantity": 1,
+        "octgnid": "232256cb-40ee-4cec-84ac-995b3ba43eb2",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/232256cb-40ee-4cec-84ac-995b3ba43eb2.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+    "octgnid": "1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+    "name": "Hound of Sauron",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Surge.\nHound of Sauron gets -5 engagement cost for each enemy in the staging area.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 26,
+    "quantity": 4,
+    "threat": 1,
+    "attack": 4,
+    "defense": 1,
+    "health": 3,
+    "engagement": 50,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack] (+2 [attack] instead if it was engaged this round).",
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "1",
+      "attack": "4",
+      "defense": "1",
+      "health": "3",
+      "engagement": "50"
+    },
+    "imagesrc": "/cards/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 26,
+        "quantity": 4,
+        "octgnid": "1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/1a55452f-9e4c-4cdc-8ce1-549c862bf96e.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+    "octgnid": "e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+    "name": "Howling Warg",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature. Warg.",
+    "text": "Forced: When Howling Warg attacks, place 1 damage on an active location.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 27,
+    "quantity": 4,
+    "threat": 2,
+    "attack": 3,
+    "defense": 2,
+    "health": 4,
+    "engagement": 38,
+    "shadow": "Shadow: Attacking enemy gets +1 [attack]. If this attack destroys a character, place 1 damage on an active location.",
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "2",
+      "attack": "3",
+      "defense": "2",
+      "health": "4",
+      "engagement": "38"
+    },
+    "imagesrc": "/cards/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 27,
+        "quantity": 4,
+        "octgnid": "e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/e476b426-a9db-4d95-ab93-a32f4a5b7f48.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+    "octgnid": "74f47fcd-31fb-4034-924c-034e1615a3c4",
+    "name": "Crebain from Dunland",
+    "type_code": "enemy",
+    "sphere_code": "encounter",
+    "traits": "Creature.",
+    "text": "Peril.\nWhen Revealed: Either exhaust a hero you control, or engage Crebain from Dunland. Forced: After Crebain from Dunland engages a player, reveal the top card of the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 28,
+    "quantity": 2,
+    "threat": 3,
+    "attack": 1,
+    "defense": 1,
+    "health": 2,
+    "engagement": 28,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "3",
+      "attack": "1",
+      "defense": "1",
+      "health": "2",
+      "engagement": "28"
+    },
+    "imagesrc": "/cards/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 28,
+        "quantity": 2,
+        "octgnid": "74f47fcd-31fb-4034-924c-034e1615a3c4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/74f47fcd-31fb-4034-924c-034e1615a3c4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+    "octgnid": "ebd1944a-928c-40ff-88de-dfebdfcf633c",
+    "name": "Redhorn Pass",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Mountain.",
+    "text": "Immune to player card effects.\nForced: When Redhorn Pass is explored, each player assigns X damage among characters he controls. X is the number of damage here.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 29,
+    "quantity": 1,
+    "threat": 4,
+    "quest": 6,
+    "victory": 1,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "6",
+      "victory": "1"
+    },
+    "imagesrc": "/cards/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 29,
+        "quantity": 1,
+        "octgnid": "ebd1944a-928c-40ff-88de-dfebdfcf633c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ebd1944a-928c-40ff-88de-dfebdfcf633c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+    "octgnid": "5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+    "name": "Doors of Durin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Gate.",
+    "text": "Immune to player card effects.\nProgress must be placed on each other active location before it can be placed here. Progress cannot be placed here unless the first player controls the Ring-bearer.\nIf there are 9 damage tokens here, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 30,
+    "quantity": 1,
+    "threat": 1,
+    "quest": 9,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "1",
+      "quest": "9"
+    },
+    "imagesrc": "/cards/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 30,
+        "quantity": 1,
+        "octgnid": "5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+    "octgnid": "ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+    "name": "Tree-crowned Hill",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Tree-crowned Hill is the active location, each enemy gets -1 [threat].\nForced: When Tree-crowned Hill is explored, the players, as a group, exhaust X characters in play. X is the number of damage here.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 31,
+    "quantity": 1,
+    "threat": 3,
+    "quest": 6,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "6"
+    },
+    "imagesrc": "/cards/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 31,
+        "quantity": 1,
+        "octgnid": "ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+    "octgnid": "5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+    "name": "Hills of Hollin",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Hills of Hollin is the active location, each enemy in the staging area gets +5 engagement cost.\nForced: When Hills of Hollin is explored, each player raises his threat by 1 for each damage here.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 32,
+    "quantity": 3,
+    "threat": 2,
+    "quest": 4,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "2",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 32,
+        "quantity": 3,
+        "octgnid": "5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/5d0085bd-ebb9-46a7-ae28-698da3d11ae6.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+    "octgnid": "867b61a1-4e23-4426-ad94-b912e89055b8",
+    "name": "Redhorn Foothills",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "While Redhorn Foothills is the active location, it gains: \"Forced: After an enemy is added to the staging area, it gets -5 engagement cost until the end of the round.\"\nForced: When Redhorn Foothills is explored, each player must discard X cards from his hand at random. X is the number of damage here.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 33,
+    "quantity": 3,
+    "threat": 4,
+    "quest": 5,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "4",
+      "quest": "5"
+    },
+    "imagesrc": "/cards/867b61a1-4e23-4426-ad94-b912e89055b8.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 33,
+        "quantity": 3,
+        "octgnid": "867b61a1-4e23-4426-ad94-b912e89055b8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/867b61a1-4e23-4426-ad94-b912e89055b8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+    "octgnid": "af787868-59d6-48be-983f-447ba0523f46",
+    "name": "Eregion",
+    "type_code": "location",
+    "sphere_code": "encounter",
+    "traits": "Hills.",
+    "text": "Forced: When Eregion is explored, the players as a group must discard X allies from play. X is the number of damage here.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 34,
+    "quantity": 3,
+    "threat": 3,
+    "quest": 4,
+    "shadow": "Shadow: Defending player discards a non-objective attachment he controls.",
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {
+      "threat": "3",
+      "quest": "4"
+    },
+    "imagesrc": "/cards/af787868-59d6-48be-983f-447ba0523f46.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 34,
+        "quantity": 3,
+        "octgnid": "af787868-59d6-48be-983f-447ba0523f46",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/af787868-59d6-48be-983f-447ba0523f46.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+    "octgnid": "78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+    "name": "Regiments of Crows",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Place 3 damage on each active location.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 35,
+    "quantity": 2,
+    "shadow": "Shadow: Undefended damage from this attack must be assigned to the active location.",
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {},
+    "imagesrc": "/cards/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 35,
+        "quantity": 2,
+        "octgnid": "78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+    "octgnid": "ca24cab1-1489-4c4d-8cea-50d076c020b8",
+    "name": "Snowdrifts",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Attach to the active location. (Counts as a Condition attachment with the text, \"Limit 1 per location. No more than 3 progress can be placed on attached location each round.\") If Snowdrifts is not attached to the active location, it gains surge.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 36,
+    "quantity": 2,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {},
+    "imagesrc": "/cards/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 36,
+        "quantity": 2,
+        "octgnid": "ca24cab1-1489-4c4d-8cea-50d076c020b8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ca24cab1-1489-4c4d-8cea-50d076c020b8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+    "octgnid": "60546e25-329e-4846-852d-65c1a6ee6c5c",
+    "name": "Bitter Cold",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "Weather.",
+    "text": "When Revealed: Each player must choose: either discard each ally he controls, or raise his threat by 1 for each ally he controls.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 37,
+    "quantity": 2,
+    "shadow": "Shadow: Attacking enemy makes an additional attack after this one.",
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {},
+    "imagesrc": "/cards/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 37,
+        "quantity": 2,
+        "octgnid": "60546e25-329e-4846-852d-65c1a6ee6c5c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/60546e25-329e-4846-852d-65c1a6ee6c5c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+    "octgnid": "54981b6b-c247-40f9-9321-fd7913b897dd",
+    "name": "Storm of Howls",
+    "type_code": "treachery",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Peril.\nWhen Revealed: Either the Warg enemy in the staging area with the highest engagement cost attacks you, or each Warg enemy gets -20 engagement cost until the end of the round. If no Warg enemy is in the staging area, Storm of Howls gains surge.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 38,
+    "quantity": 3,
+    "encounter_set": "The Ring Goes South",
+    "printed_stats": {},
+    "imagesrc": "/cards/54981b6b-c247-40f9-9321-fd7913b897dd.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 38,
+        "quantity": 3,
+        "octgnid": "54981b6b-c247-40f9-9321-fd7913b897dd",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/54981b6b-c247-40f9-9321-fd7913b897dd.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
+  },
+  {
+    "code": "142084",
+    "name": "Lust for the Ring",
+    "type_code": "treachery",
+    "type_name": "Campaign",
+    "sphere_code": "burden",
+    "sphere_name": "Neutral",
+    "traits": "Corruption.",
+    "text": "Peril. Surge.\r\nWhen Revealed: Attach to a non-[fellowship] hero in play. Counts as a Condition attachment with the text: \"Forced: After The One Ring exhausts, raise each player's threat by 1 and reduce attached hero's [willpower] to 0 until the end of the round.\"",
+    "is_unique": false,
+    "deck_limit": 1,
+    "pack_name": "The Road Darkens",
+    "pack_code": "TRD",
+    "position": 84,
+    "illustrator": "Arden Beckwith",
+    "imagesrc": "/cards/142084.png",
+    "url": "https://ringsdb.com/card/142084",
+    "quantity": 1,
+    "octgnid": "7068731b-3837-40f3-9e98-6c996af4dddc",
+    "has_errata": false,
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 84,
+        "quantity": 1,
+        "image_code": "142084",
+        "illustrator": "Arden Beckwith",
+        "octgnid": "7068731b-3837-40f3-9e98-6c996af4dddc",
+        "imagesrc": "/bundles/cards/142084.png",
+        "date_release": "2014-10-03"
+      }
+    ],
+    "source": "ringsdb",
+    "source_url": "https://ringsdb.com/card/142084",
+    "official": true,
+    "nightmare": false,
+    "ringsdb_type_code": "treasure",
+    "encounter_set": "The Ring Goes South"
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Bitter Cold",
+    "code": "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Crebain from Dunland",
+    "code": "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Doors of Durin",
+    "code": "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Eregion",
+    "code": "octgn:af787868-59d6-48be-983f-447ba0523f46",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Frodo Baggins",
+    "code": "142001",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Great Warg Chief",
+    "code": "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Hills of Hollin",
+    "code": "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
+    "normal": 3,
+    "easy": 3
+  },
+  {
+    "name": "Hound of Sauron",
+    "code": "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
+    "normal": 4,
+    "easy": 2
+  },
+  {
+    "name": "Howling Warg",
+    "code": "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
+    "normal": 4,
+    "easy": 4
+  },
+  {
+    "name": "Lust for the Ring",
+    "code": "142084",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Redhorn Foothills",
+    "code": "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "Redhorn Pass",
+    "code": "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Regiments of Crows",
+    "code": "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
+    "normal": 2,
+    "easy": 1
+  },
+  {
+    "name": "Snowdrifts",
+    "code": "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
+    "normal": 2,
+    "easy": 2
+  },
+  {
+    "name": "Storm of Howls",
+    "code": "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
+    "normal": 3,
+    "easy": 2
+  },
+  {
+    "name": "The Council of Elrond",
+    "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Gates of Moria",
+    "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Hunt is Up!",
+    "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The Nine Walkers",
+    "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "The One Ring",
+    "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Tree-crowned Hill",
+    "code": "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+    "normal": 1,
+    "easy": 1
+  },
+  {
+    "name": "Watcher in the Water",
+    "code": "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
+    "normal": 1,
+    "easy": 1
+  }
+]

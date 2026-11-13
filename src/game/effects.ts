@@ -2478,6 +2478,11 @@ function handleEffect(s: GameState, e: Effect) {
         .map((id) => get(s, id))
         .filter((x): x is Unit => !!x);
       if (!defenders.length) Osgiliath.assaultOsgiliathAttackUndefended(s, c);
+      // An effect has made this attack deal no damage (The Road Darkens' Frodo).
+      if (c.noDamage) {
+        log(s, `${name(enemy)}'s attack deals no damage.`, "good");
+        break;
+      }
       const power =
         stats(s, enemy).attack +
         c.attackBonus +

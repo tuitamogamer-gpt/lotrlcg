@@ -46,6 +46,13 @@ export interface Batch4ScenarioHooks {
   progress?(s: GameState, amount: number, quest: Unit): number;
   questProgressPlaced?(s: GameState, quest: Unit, amount: number): void;
   locationProgressBlocked?(s: GameState, u: Unit): boolean;
+  /** The most progress this location can receive now (a per-round cap). */
+  locationProgressCapacity?(s: GameState, u: Unit): number | undefined;
+  /**
+   * Active locations that receive progress one after another, in this order,
+   * instead of the players dividing it; leaving one out places none on it.
+   */
+  progressLocations?(s: GameState, locations: Unit[]): Unit[] | undefined;
   sideDefeatBlocked?(s: GameState, u: Unit): boolean;
   sideDefeated?(s: GameState, u: Unit): void;
   sideQuestChosen?(s: GameState, u: Unit): void;
@@ -271,6 +278,8 @@ export interface Batch4ScenarioHooks {
   claimableObjective?(s: GameState, u: Unit): boolean;
   /** Claim an objective with a hero; true when the scenario handled it. */
   claim?(s: GameState, objective: Unit, hero: Unit): boolean;
+  /** The Lord of the Rings Saga: The One Ring has just exhausted. */
+  oneRingExhausted?(s: GameState): void;
   /** Hide tests: willpower added to a committed character. */
   hideWillpower?(s: GameState, u: Unit): number;
   /** Hide tests: added to the Hide X value of a player's test. */

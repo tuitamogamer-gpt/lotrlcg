@@ -33,8 +33,13 @@ import {
   OLD_FOREST_ENCOUNTERS,
   OLD_FOREST_QUESTS,
 } from "./old-forest-scenario-data";
+import {
+  RING_SOUTH_ENCOUNTERS,
+  RING_SOUTH_QUESTS,
+} from "./ring-south-scenario-data";
 import hobbitPlayers from "../data/hobbit-player-cards.json";
 import blackRidersPlayers from "../data/black-riders-player-cards.json";
+import roadDarkensPlayers from "../data/road-darkens-player-cards.json";
 import lotrSagaCards from "../data/lotr-saga-cards.json";
 import {
   FORTRESS_NURN_ENCOUNTERS,
@@ -344,6 +349,7 @@ export const playerCards = [
           ...fortressNurnPlayers,
           ...hobbitPlayers,
           ...blackRidersPlayers,
+          ...roadDarkensPlayers,
         ] as Card[]
       ).map((c) => {
         if (c.code === "19146")
@@ -515,6 +521,7 @@ export const encounterCards = [
       ...FLIGHT_FORD_ENCOUNTERS,
       ...STONE_ERECH_ENCOUNTERS,
       ...OLD_FOREST_ENCOUNTERS,
+      ...RING_SOUTH_ENCOUNTERS,
       ...(shadowEastEncounterPlayers as Card[]),
     ].map((c) => [c.code, c]),
   ).values(),
@@ -600,6 +607,7 @@ export const cards: Record<string, Card> = Object.fromEntries(
     ...FLIGHT_FORD_QUESTS,
     ...STONE_ERECH_QUESTS,
     ...OLD_FOREST_QUESTS,
+    ...RING_SOUTH_QUESTS,
     ORC_GUARD,
   ].map((c) => [c.code, c]),
 );
@@ -726,6 +734,7 @@ export const SCRIPTED = new Set(
     ...FLIGHT_FORD_QUESTS,
     ...STONE_ERECH_QUESTS,
     ...OLD_FOREST_QUESTS,
+    ...RING_SOUTH_QUESTS,
     ...RETURN_MIRKWOOD_QUESTS,
     ...KHAZAD_QUESTS,
     ...REDHORN_QUESTS,

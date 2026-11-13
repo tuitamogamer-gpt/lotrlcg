@@ -2149,6 +2149,7 @@ export function progressLocation(s: GameState, u: Unit, value: number) {
   value = Math.min(
     Math.max(0, value),
     watcherWaterProgressCapacity(s, u) ?? Infinity,
+    batch4Scenario(s).locationProgressCapacity?.(s, u) ?? Infinity,
   );
   u.progress += value;
   batch4Scenario(s).locationProgressPlaced?.(s, u, value);
@@ -2307,12 +2308,25 @@ function placeProgress(
     )
   )
     return;
-  if (locations.length > 1) {
-    const remaining = (l: Unit) =>
-      Math.max(
-        0,
+  const capacity = (l: Unit) =>
+    Math.max(
+      0,
+      Math.min(
         watcherWaterProgressCapacity(s, l) ?? locationQuest(s, l) - l.progress,
-      );
+        batch4Scenario(s).locationProgressCapacity?.(s, l) ?? Infinity,
+      ),
+    );
+  const ordered = batch4Scenario(s).progressLocations?.(s, locations);
+  if (ordered) {
+    for (const l of ordered) {
+      if (n <= 0) break;
+      const amount = Math.min(n, capacity(l));
+      if (amount <= 0) continue;
+      progressLocation(s, l, amount);
+      n -= amount;
+    }
+  } else if (locations.length > 1) {
+    const remaining = capacity;
     const total = locations.reduce((sum, l) => sum + remaining(l), 0);
     if (n > 0 && n < total) {
       selectSeat(s, firstPlayer(s));
@@ -2357,13 +2371,9 @@ function placeProgress(
       n -= amount;
     }
   }
-  if (locations.length === 1) {
+  if (!ordered && locations.length === 1) {
     const location = locations[0];
-    const toLocation = Math.min(
-      n,
-      watcherWaterProgressCapacity(s, location) ??
-        locationQuest(s, location) - location.progress,
-    );
+    const toLocation = Math.min(n, capacity(location));
     if (
       longDarkProgressLocation(s, location, toLocation, [
         fx("continueProgress", {

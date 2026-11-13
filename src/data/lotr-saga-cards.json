@@ -28,5 +28,35 @@
     "source_url": "https://dragncards.com/plugin/1",
     "official": true,
     "nightmare": false
+  },
+  {
+    "code": "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+    "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+    "name": "The One Ring",
+    "type_code": "objective",
+    "sphere_code": "encounter",
+    "traits": "Artifact. Item. Ring.",
+    "text": "Setup: The first player claims The One Ring and attaches it to the Ring-bearer.\nAttached hero does not count against the hero limit. The first player gains control of attached hero.\nIf The One Ring leaves play, the players lose the game.",
+    "is_unique": true,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 91,
+    "quantity": 1,
+    "printed_stats": {},
+    "imagesrc": "/cards/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 91,
+        "quantity": 1,
+        "octgnid": "ba2e4a33-edc6-4638-a3f5-b818b080aea8",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/ba2e4a33-edc6-4638-a3f5-b818b080aea8.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false
   }
 ]

@@ -91,6 +91,10 @@ const HEADLINES: Partial<
     lead: "Find a way through",
     em: "the Old Forest.",
   },
+  "the-ring-goes-south": {
+    lead: "Take the Ring south",
+    em: "to the Doors of Durin.",
+  },
   "challenge-of-the-wainriders": {
     lead: "Race the champion",
     em: "for freedom.",

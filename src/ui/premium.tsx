@@ -55,6 +55,10 @@ export const PLAYMATS = {
     name: "The Old Forest",
     detail: "Shifting trees · Old Man Willow by the Withywindle",
   },
+  "the-ring-goes-south": {
+    name: "Hollin and the Redhorn Pass",
+    detail: "The Council of Elrond · The Watcher at the Doors of Durin",
+  },
   "the-fortress-of-nurn": {
     name: "Dol Rhugar",
     detail: "Four castle defences · The Thane’s great hall",
@@ -462,6 +466,7 @@ export const PLAYMAT_CHOICES = [
   "flight-to-the-ford",
   "the-stone-of-erech",
   "the-old-forest",
+  "the-ring-goes-south",
   "the-city-of-ulfast",
   "the-black-serpent",
   "the-dungeons-of-cirith-gurat",

@@ -2,11 +2,11 @@
   "schema": "lotr-script-coverage/v1",
   "catalogSha256": "cc2f96ffac0b8baad068321c61d28bad2beffdb346e0d3ec486977714268ad63",
   "runtime": {
-    "playerCards": 805,
-    "heroes": 97,
+    "playerCards": 806,
+    "heroes": 98,
     "deckCards": 704,
-    "encounterCards": 1411,
-    "scenarios": 94,
+    "encounterCards": 1428,
+    "scenarios": 95,
     "scenarioIds": [
       "mirkwood",
       "anduin",
@@ -101,17 +101,18 @@
       "a-knife-in-the-dark",
       "flight-to-the-ford",
       "the-stone-of-erech",
-      "the-old-forest"
+      "the-old-forest",
+      "the-ring-goes-south"
     ]
   },
   "catalog": {
     "total": 4183,
-    "scripted": 2513,
-    "pending": 1670
+    "scripted": 2535,
+    "pending": 1648
   },
   "scenarioRecipes": {
     "total": 355,
-    "scripted": 187
+    "scripted": 190
   },
   "registeredCodes": [
     "01001",
@@ -746,8 +747,10 @@
     "141082",
     "141083",
     "141084",
+    "142001",
     "142003",
     "142005",
+    "142084",
     "143004",
     "143005",
     "143009",
@@ -1035,8 +1038,10 @@
     "octgn:0a0e6044-c5ab-43ed-832a-71516c7d035a",
     "octgn:0a1166fb-fb90-4651-a8ae-7d532e41c2b6",
     "octgn:0a6774e7-f110-4917-84b5-1f81a7aefbf8",
+    "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
     "octgn:0ae9f4f9-eec9-404f-ae93-7a54287d1bc2",
     "octgn:0bb77cd5-0340-4411-9e1f-997b1d6cb35a",
+    "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
     "octgn:0c15f99d-9066-4e7c-b364-104a0083d997",
     "octgn:0c44ed2b-976a-4b17-b7e7-e64b20f74fd7",
     "octgn:0cdc4034-738d-487d-9a8c-8ef364772076",
@@ -1102,6 +1107,7 @@
     "octgn:19f36ec5-7ad4-4dab-80a7-4a7a6c716941",
     "octgn:1a06164a-8f54-49b7-a067-52680893f69d",
     "octgn:1a3d3725-9451-4c97-a8c7-5d2fa8e35c4c",
+    "octgn:1a55452f-9e4c-4cdc-8ce1-549c862bf96e",
     "octgn:1a96a88c-3715-4419-89b1-a218e838b5b5",
     "octgn:1ab32b8c-b942-4c77-af19-9703fba1dfa9",
     "octgn:1ac7e2b5-aa19-4608-b101-e22390c8a906",
@@ -1150,6 +1156,7 @@
     "octgn:22d6a151-ee2a-4ad0-9d97-5eddd5cc0391",
     "octgn:2301fc93-a05e-4dd4-b06e-40d659783d8b",
     "octgn:231bf335-bf9b-44d9-a919-e59aa1d46473",
+    "octgn:232256cb-40ee-4cec-84ac-995b3ba43eb2",
     "octgn:233a2687-04a8-4c18-90cc-e90b9574b282",
     "octgn:2351fadd-4348-4a17-b062-f0e8142f2e6f",
     "octgn:2362af02-42b8-43fe-b3b6-f11f011b3197",
@@ -1298,6 +1305,7 @@
     "octgn:3e471bd0-5ee5-4846-815d-fd6a5cd5f921",
     "octgn:3e8eaee9-6fdb-4207-864f-151f0f98807b",
     "octgn:3e905158-737c-45c4-a32d-e88061e94564",
+    "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
     "octgn:3ef4f724-8f91-42d3-9ba2-5d731283c069",
     "octgn:3ef57050-0209-46de-8815-0c4d52b1aaf7",
     "octgn:3f24ad57-1c50-47dc-a117-5aee279b8451",
@@ -1773,6 +1781,7 @@
     "octgn:53ac8ba6-0487-4b1f-91e9-cf7ca9e7c1d0",
     "octgn:53c01bdc-2761-4f8f-90bc-1eedd14ca376",
     "octgn:54014fda-7adc-49b0-96ac-656e849eaf7b",
+    "octgn:54981b6b-c247-40f9-9321-fd7913b897dd",
     "octgn:54a26608-eebd-4bd6-855a-ceccb4507bab",
     "octgn:54c8ecae-73b1-4c42-84ed-0411551c363a",
     "octgn:54ed3453-1df4-458d-bc7d-e1f7c10de237",
@@ -1804,6 +1813,7 @@
     "octgn:590dd523-5743-4c36-b905-c34c021c2676",
     "octgn:59314974-a07d-4024-9951-40736209b6b9",
     "octgn:595c34f1-60e3-401a-bd65-df6dda627896",
+    "octgn:5963e5c4-0f2e-43c4-afa2-a9b2cfde73d1",
     "octgn:5a0d35ad-e9af-48b1-8454-534753394ed2",
     "octgn:5a3a6917-900b-4878-9545-56c297a50248",
     "octgn:5a3d198a-5c72-42ec-b5ae-f183194632cf",
@@ -1819,6 +1829,7 @@
     "octgn:5c0a0aea-af43-441b-9d7f-86a1dfd09f00",
     "octgn:5c31f690-9802-4638-8316-5380ef32575b",
     "octgn:5c5ce14a-332a-40fe-8f55-cfa2f53e8592",
+    "octgn:5d0085bd-ebb9-46a7-ae28-698da3d11ae6",
     "octgn:5d811a82-3729-4b54-8748-e0abffd96e90",
     "octgn:5d991933-f49d-4ece-a288-7484ebc75d14",
     "octgn:5dbc4cec-84c9-420b-809f-088296eb4a62",
@@ -1831,6 +1842,7 @@
     "octgn:5f1ef9c5-ccb2-4f1e-bc5b-9a1de708d2ba",
     "octgn:5fd6638a-3135-460f-bf5e-b3cb0128f939",
     "octgn:5fefdbc7-05e2-4c1b-96fd-46121f87d6b3",
+    "octgn:60546e25-329e-4846-852d-65c1a6ee6c5c",
     "octgn:607c3e44-5add-4c80-bb3b-55b016b6cd0e",
     "octgn:60b96a86-77b5-4184-9703-f55b8c857eb9",
     "octgn:60ba0781-d051-46f0-97b1-e02fb637b94e",
@@ -1920,6 +1932,7 @@
     "octgn:74c7a9e0-940f-4b66-bc23-c938eef5587f",
     "octgn:74ceb68a-a1c9-41bc-aeb8-41738b34a3bb",
     "octgn:74f297ed-3cb6-4c2d-83d8-c27b447a9250",
+    "octgn:74f47fcd-31fb-4034-924c-034e1615a3c4",
     "octgn:74fc62c2-b1b6-4338-819a-1f00f871312c",
     "octgn:7562e662-3b3e-4378-9a3f-c45908bc05cf",
     "octgn:75b111c9-fb49-4a53-ac50-729ff2d06abe",
@@ -1931,6 +1944,7 @@
     "octgn:77833ba7-253c-4d4b-9c45-1764ce014dce",
     "octgn:77dd117d-b2b6-4324-aa59-09fd1343fde9",
     "octgn:783ecb94-e005-4ff7-8bc3-76196bba9249",
+    "octgn:78fd9e40-f68d-46c9-b6bf-8fec3b77bfcf",
     "octgn:795579db-249d-4c9d-850f-6f39bc96c063",
     "octgn:797a1805-f347-4eb3-9f77-5c9e6b6a850f",
     "octgn:7991d705-7e2d-4303-abbc-f9999b2d2502",
@@ -2003,6 +2017,7 @@
     "octgn:85d48eb0-3339-4db6-976f-a800213e7eea",
     "octgn:85eb724c-a258-4d94-83ba-5e9f21d82491",
     "octgn:8615beb7-a9f7-4852-bc0a-3d1a5f2c9532",
+    "octgn:867b61a1-4e23-4426-ad94-b912e89055b8",
     "octgn:86e8724b-32cb-4d63-b918-5754d39d2249",
     "octgn:86fe0f99-d978-40be-8f39-136bec2a3d58",
     "octgn:87379a08-2fe2-4e32-9341-d78fb4e0298b",
@@ -2053,6 +2068,7 @@
     "octgn:8ef56cb3-b483-4b38-b208-6c16e16bdb6d",
     "octgn:8f106a70-0102-41ad-8752-fb5667748850",
     "octgn:8f3395ff-bccf-4620-beec-581c585682f2",
+    "octgn:8f38ca4f-5893-4bd4-854d-6788a3ada41f",
     "octgn:8f6254c0-a723-4e66-bdc7-4c92eed415f8",
     "octgn:8f6e5d67-81c7-4db8-9cb0-ef45b71490c6",
     "octgn:9031b458-f7e0-4c55-9266-f30aaaf718c1",
@@ -2125,6 +2141,7 @@
     "octgn:9dda3cf1-e5bd-4cab-8c3b-b29db1220249",
     "octgn:9e0bb4e8-9b4f-4780-9b83-ea6bc86745ae",
     "octgn:9e490f6c-3873-4cd7-8c80-98a6640b9043",
+    "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
     "octgn:9e864a49-89b3-4ea0-be1f-f4336adfa088",
     "octgn:9e9e76b7-ef3c-4c7c-baf2-061dc0d2ccd0",
     "octgn:9feef7b4-4ca7-4adc-aeb7-56947254588a",
@@ -2201,6 +2218,7 @@
     "octgn:aefb838f-b748-4249-8f24-8dce9e838880",
     "octgn:af3543c4-f30f-4522-bbb7-5ef039344fdf",
     "octgn:af53407e-c51f-4b41-bd25-312f681149e1",
+    "octgn:af787868-59d6-48be-983f-447ba0523f46",
     "octgn:afd48fc2-1bca-44d1-9b30-380d2035f2fb",
     "octgn:b00c623e-2aaa-4286-9fba-499fe39eb204",
     "octgn:b03a007c-42bc-433c-bd0e-efbf65a8696d",
@@ -2256,6 +2274,7 @@
     "octgn:b93c5b70-0655-4577-9f5e-68ca00d4bfc8",
     "octgn:b9b2c1fc-2954-46f3-8b6c-71300a35eb5d",
     "octgn:ba090102-5f80-4dbc-aefd-2f965685e954",
+    "octgn:ba2e4a33-edc6-4638-a3f5-b818b080aea8",
     "octgn:ba630f98-6ad5-4c4a-adfd-aeeac5485722",
     "octgn:ba77505a-1def-4537-a194-0b7482433a72",
     "octgn:babeedb8-f7cd-4e8a-a5c4-fbfdd57238fb",
@@ -2339,6 +2358,8 @@
     "octgn:c9b1ad84-a3ea-4ab5-9db1-4addb4ae383d",
     "octgn:c9bd8efc-b0df-4ab9-aeb2-07796818ff7d",
     "octgn:c9c2b094-c895-4714-bb2e-c6558c82a153",
+    "octgn:ca18c3fa-ebda-4cf9-99bb-2ce47c9160a1",
+    "octgn:ca24cab1-1489-4c4d-8cea-50d076c020b8",
     "octgn:ca41e49b-6bf0-42dc-8f83-83d7c8aaba1c",
     "octgn:caaafdd2-3559-496a-a08c-ce81ec212b6c",
     "octgn:cac948bb-b3dc-423d-8082-340e2596d623",
@@ -2459,6 +2480,7 @@
     "octgn:e428dad0-f116-40c3-82fd-6c78bfcdcb32",
     "octgn:e4432b9b-4969-44be-937f-ca2728d57ad4",
     "octgn:e46a15c0-abbe-4a2e-8951-0e9950aa0288",
+    "octgn:e476b426-a9db-4d95-ab93-a32f4a5b7f48",
     "octgn:e48c7313-d1cb-4291-9dc1-9fff6fb23e83",
     "octgn:e49be9ae-10f1-44fe-a1b8-fc931be2d208",
     "octgn:e4ad5220-6251-4c65-8206-ab656540cc3b",
@@ -2487,6 +2509,7 @@
     "octgn:eb2b56e7-d669-405b-b2d3-5d3c30cb3f4e",
     "octgn:eb353293-1a80-445c-b4a9-422c83dadfd5",
     "octgn:eb9f723d-0f74-4d10-89e7-b046313a1e91",
+    "octgn:ebd1944a-928c-40ff-88de-dfebdfcf633c",
     "octgn:ebde9bba-fd89-4098-ad60-9d1d4e746d23",
     "octgn:ec2f100d-22c8-4cc6-82d9-fb4f07446b0f",
     "octgn:ec97b3a4-4904-42ac-beb0-9d4d935241fb",
@@ -3404,9 +3427,9 @@
     {
       "product": "the-road-darkens",
       "total": 91,
-      "scripted": 2,
+      "scripted": 24,
       "player": 18,
-      "playerScripted": 2
+      "playerScripted": 3
     },
     {
       "product": "the-road-darkens-nightmare",
@@ -9674,7 +9697,7 @@
       "name": "Frodo Baggins",
       "type": "hero",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -9818,7 +9841,7 @@
       "name": "Lust for the Ring",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -13162,7 +13185,7 @@
       "name": "The Hunt is Up!",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -13242,7 +13265,7 @@
       "name": "The Council of Elrond",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -14354,7 +14377,7 @@
       "name": "Hound of Sauron",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -15114,7 +15137,7 @@
       "name": "Great Warg Chief",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -17522,7 +17545,7 @@
       "name": "The Gates of Moria",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -22282,7 +22305,7 @@
       "name": "Storm of Howls",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -22706,7 +22729,7 @@
       "name": "Doors of Durin",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -22946,7 +22969,7 @@
       "name": "Hills of Hollin",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -23202,7 +23225,7 @@
       "name": "Bitter Cold",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -24762,7 +24785,7 @@
       "name": "Crebain from Dunland",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -25082,7 +25105,7 @@
       "name": "Regiments of Crows",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -26322,7 +26345,7 @@
       "name": "Redhorn Foothills",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -27154,7 +27177,7 @@
       "name": "Watcher in the Water",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -28314,7 +28337,7 @@
       "name": "The Nine Walkers",
       "type": "quest",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -29746,7 +29769,7 @@
       "name": "Eregion",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -31034,7 +31057,7 @@
       "name": "The One Ring",
       "type": "objective",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -32378,7 +32401,7 @@
       "name": "Tree-crowned Hill",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -32386,7 +32409,7 @@
       "name": "Snowdrifts",
       "type": "treachery",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -34298,7 +34321,7 @@
       "name": "Howling Warg",
       "type": "enemy",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -35058,7 +35081,7 @@
       "name": "Redhorn Pass",
       "type": "location",
       "pack": "The Road Darkens",
-      "state": "pending",
+      "state": "scripted",
       "originalProduct": "the-road-darkens"
     },
     {
@@ -37727,8 +37750,8 @@
       "id": "E0B.04",
       "name": "The Ring Goes South (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "E0B.05",
@@ -37853,8 +37876,8 @@
       "id": "E0C.04",
       "name": "The Ring Goes South (Easy)",
       "mode": "easy",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "E0C.05",
@@ -39218,8 +39241,8 @@
       "id": "Q0B.04",
       "name": "The Ring Goes South",
       "mode": "standard",
-      "engineId": null,
-      "state": "pending"
+      "engineId": "the-ring-goes-south",
+      "state": "scripted"
     },
     {
       "id": "Q0B.05",

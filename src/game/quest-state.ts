@@ -38,6 +38,7 @@ export function mainQuestCode(s: GameState): string | undefined {
   if (s.flightFord) return s.flightFord.currentQuest;
   if (s.stoneErech) return s.stoneErech.currentQuest;
   if (s.oldForest) return s.oldForest.currentQuest;
+  if (s.ringSouth) return s.ringSouth.currentQuest;
   if (s.landSorrow) return s.landSorrow.currentQuest;
   if (s.ashMountains) return s.ashMountains.currentQuest;
   if (s.wainriders) return s.wainriders.currentQuest;

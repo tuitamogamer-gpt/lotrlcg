@@ -1,0 +1,164 @@
+[
+  {
+    "code": "octgn:0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+    "octgnid": "0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+    "name": "The Council of Elrond",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "Setup: Set Lust for the Ring, Redhorn Pass, Doors of Durin and Watcher in the Water aside, out of play. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 20,
+    "quantity": 1,
+    "cost": 1,
+    "encounter_set": "The Ring Goes South",
+    "side": "A",
+    "back_name": "The Council of Elrond",
+    "back_text": "Forced: At the end of the planning phase, each player places the top card of his deck faceup in front of him, in player order, until there are a total of 4 faceup cards between the players. The first player chooses 1 faceup card to be played for 0 cost, 1 to add to its owner's hand, 1 to discard, and 1 to shuffle into its owner's deck. Then, either shuffle Lust for the Ring into the encounter deck, or raise each player's threat by 5. Advance to stage 2.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.B.jpg",
+    "printed_stats": {
+      "cost": "1"
+    },
+    "imagesrc": "/cards/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 20,
+        "quantity": 1,
+        "octgnid": "0c0fdef7-f55a-4bcf-91f9-317cd7a00777",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0c0fdef7-f55a-4bcf-91f9-317cd7a00777.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  },
+  {
+    "code": "octgn:9e678947-2687-4b3b-b98c-f05f289793ff",
+    "octgnid": "9e678947-2687-4b3b-b98c-f05f289793ff",
+    "name": "The Nine Walkers",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Make Redhorn Pass the active location. The first player reveals cards from the encounter deck until there is at least X [threat] in the staging area. X is twice the number of players in the game.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 21,
+    "quantity": 1,
+    "cost": 2,
+    "encounter_set": "The Ring Goes South",
+    "side": "A",
+    "back_name": "The Nine Walkers",
+    "back_text": "During the travel phase, the players must travel to a location, if able.\nForced: After an enemy engages a player, place 1 damage on the active location, if able.",
+    "back_type_code": "quest",
+    "back_quest": 8,
+    "back_imagesrc": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.B.jpg",
+    "printed_stats": {
+      "cost": "2"
+    },
+    "imagesrc": "/cards/9e678947-2687-4b3b-b98c-f05f289793ff.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 21,
+        "quantity": 1,
+        "octgnid": "9e678947-2687-4b3b-b98c-f05f289793ff",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/9e678947-2687-4b3b-b98c-f05f289793ff.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 8
+  },
+  {
+    "code": "octgn:0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+    "octgnid": "0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+    "name": "The Hunt is Up!",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Each player searches the encounter deck and discard pile for an enemy and adds it to the staging area. One of those enemies must be Great Warg Chief, if able. Shuffle the encounter deck.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 22,
+    "quantity": 1,
+    "cost": 3,
+    "encounter_set": "The Ring Goes South",
+    "side": "A",
+    "back_name": "The Hunt is Up!",
+    "back_text": "During the travel phase, the players must travel to a location, if able. Forced: After a location enters play, place 1 damage on it.\nForced: After an enemy engages a player, place 1 damage on the active location, if able.",
+    "back_type_code": "quest",
+    "back_quest": 12,
+    "back_imagesrc": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.B.jpg",
+    "printed_stats": {
+      "cost": "3"
+    },
+    "imagesrc": "/cards/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 22,
+        "quantity": 1,
+        "octgnid": "0ae0d2d5-b082-4cc7-b227-9b60c60de8b4",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/0ae0d2d5-b082-4cc7-b227-9b60c60de8b4.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": 12
+  },
+  {
+    "code": "octgn:3e99373a-ce10-4907-acd5-5a4b8dce425c",
+    "octgnid": "3e99373a-ce10-4907-acd5-5a4b8dce425c",
+    "name": "The Gates of Moria",
+    "type_code": "quest",
+    "sphere_code": "encounter",
+    "traits": "",
+    "text": "When Revealed: Make Doors of Durin the active location. Add Watcher in the Water to the staging area. Discard all tokens from the Ring-bearer and place it (and each card attached to it) facedown under Watcher in the Water.",
+    "is_unique": false,
+    "pack_code": "TRD",
+    "pack_name": "The Road Darkens",
+    "position": 23,
+    "quantity": 1,
+    "cost": 4,
+    "encounter_set": "The Ring Goes South",
+    "side": "A",
+    "back_name": "The Gates of Moria",
+    "back_text": "There can be 2 active locations. During the travel phase, the players must travel to a location, if able. Forced: After an enemy engages a player, place 1 damage on each active location.\nIf Doors of Durin is explored, the players win the game.",
+    "back_type_code": "quest",
+    "back_imagesrc": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.B.jpg",
+    "printed_stats": {
+      "cost": "4"
+    },
+    "imagesrc": "/cards/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg",
+    "packs": [
+      {
+        "pack_code": "TRD",
+        "pack_name": "The Road Darkens",
+        "position": 23,
+        "quantity": 1,
+        "octgnid": "3e99373a-ce10-4907-acd5-5a4b8dce425c",
+        "imagesrc": "https://dragncards-lotrlcg.s3.amazonaws.com/cards/English/3e99373a-ce10-4907-acd5-5a4b8dce425c.jpg"
+      }
+    ],
+    "source": "dragncards",
+    "source_url": "https://dragncards.com/plugin/1",
+    "official": true,
+    "nightmare": false,
+    "quest": null
+  }
+]

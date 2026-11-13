@@ -273,6 +273,7 @@ export type ScenarioId =
   | "flight-to-the-ford"
   | "the-stone-of-erech"
   | "the-old-forest"
+  | "the-ring-goes-south"
   | "under-the-ash-mountains"
   | "challenge-of-the-wainriders"
   | "the-city-of-ulfast"
@@ -446,6 +447,7 @@ export interface GameState {
   flightFord?: import("./flight-ford-types").FlightFordState;
   stoneErech?: import("./stone-erech-types").StoneErechState;
   oldForest?: import("./old-forest-types").OldForestState;
+  ringSouth?: import("./ring-south-types").RingSouthState;
   /** Transient: Wolves from Mordor being shuffled into the encounter deck. */
   massingShuffle?: string;
   ashMountains?: import("./ash-mountains-types").AshMountainsState;
@@ -808,6 +810,12 @@ export interface GameState {
     otfDestroyed?: boolean;
     /** The Old Forest: Ending and Failing's shadow returns the attacker to the staging area. */
     otfReturn?: boolean;
+    /** This attack deals no damage (The Road Darkens' Frodo Baggins). */
+    noDamage?: boolean;
+    /** The Ring Goes South: Howling Warg's shadow (a kill damages an active location). */
+    rgsHowling?: boolean;
+    /** The Ring Goes South: this attack destroyed a character. */
+    rgsDestroyed?: boolean;
     ashKilled?: boolean;
     ashWolf?: boolean;
     ashTroll?: boolean;
